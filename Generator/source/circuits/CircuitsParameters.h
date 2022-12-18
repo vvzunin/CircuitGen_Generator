@@ -5,14 +5,12 @@ class CircuitParameters
 {
 public:
   CircuitParameters(){};
-
-
-private:
-  std::string name = "";
+  
+  std::string d_name = "";
   int d_numInputs = 0;
   int d_munOutputs = 0;
   int d_maxLevel = 0;
-  int d_munEdges = 0;
+  int d_numEdges = 0;
   double d_reliability = 0.;
   double d_size = 0.;
   double d_area = 0.;
