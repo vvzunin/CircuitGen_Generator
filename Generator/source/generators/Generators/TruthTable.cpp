@@ -1,0 +1,125 @@
+#include <vector>
+
+#include "TruthTable.h"
+
+TruthTable::TruthTable()
+{
+  d_settings = Settings::readSettings();
+}
+
+TruthTable::TruthTable(Chromosome<TruthTableParameters> i_chr)
+{
+  d_settings = Settings::readSettings();
+}
+
+TruthTable::TruthTable(int i_input, int i_output, const std::vector<std::vector<bool>>& i_array = {}) :
+  d_input(i_input),
+  d_output(i_output)
+{
+  d_settings = Settings::readSettings();
+  d_size = 1u << d_input;
+  if (i_array.size() == 0 || i_array.size() != d_size || array[0].size() != d_output)
+    self.generateRandom(TruthTable(i_input, d_output));
+  else:
+    d_array = i_array;
+}
+
+TruthTable::TruthTable(const TruthTable& i_tt, std::vector<std::vector<bool>> i_array = {}) :
+  d_input(i_tt.d_input),
+  d_output(i_tt.d_output)
+{
+  d_settings = Settings::readSettings();
+  d_size = 1u << d_input; // what?
+}
+
+int TruthTable::getInput() const
+{
+  return d_input;
+}
+
+int TruthTable::getOutput() const
+{
+  return d_output;
+}
+
+int TruthTable::size() const
+{
+  return d_size;
+}
+
+std::vector<std::vector<bool>> TruthTable::getOutTable() const
+{
+  return d_array;
+}
+
+int TruthTable::getOutTable(int i, int j) const
+{
+  return d_output.at(i).at(j);
+}
+
+void TruthTable::generateTable(double i_p = 0)
+{
+  std::srand(std::time(0));
+  if (i_p == 0)
+  {
+    d_array.clear();
+    d_array.resize(d_size);
+    for (int i = 0; i < d_size; ++i)
+    {
+      d_array[i].resize(d_output);
+      for (int j = 0; j < d_output; ++j)
+        d_array[i][j] = (rand() % 2) == 1;
+    }
+  }
+  if (i_p > 0 && i_p <= 1)
+  {
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution(0.0,1.0);
+    d_array.clear();
+    for (int i = 0; i < d_size(); ++i)
+    {
+      d_array[i].resize(d_output);
+      for (int j = 0; j < d_output; ++j)
+        d_array[i][j] = distribution(generator) < i_p;
+    }
+  }
+}
+
+void TruthTable::generateRandom(TruthTableParameters i_gp)
+{
+  std::srand(std::time(0));
+  if (i_gp.getInputs() == 0)
+  {
+    i_gp = TruthTableParameters();
+    i_gp.setInputs(rand() % d_settings.getMaxInputs());
+    i_gp.setOutputs(rand() % d_settings.getMaxOutputs());
+  }
+
+  d_input = i_gp.getInputs();
+  d_output = i_gp.getOutputs();
+  d_size = 1u << d_input;
+
+  d_array.clear();
+  d_array.resize(d_size);
+
+  for (int i = 0; i < d_size; ++i)
+  {
+    d_array[i].resize(d_outputs);
+    for (int j = 0; j < d_outputs; ++j)
+      d_array[i][j] = (rand() % 2) == 1;
+  }
+}
+
+std::vector<std::vector<bool>> TruthTable::convToBinary() const
+{
+  std::vector<std::vector<bool>> bin(d_size, std::vector<bool>(d_input));
+  for (int i = 0; i < d_size; ++i)
+  {
+    for (int j = d_input - 1, tmp = i; j >= 0; --j)
+    {
+      bin[i][j] = (tmp % 2) == 1;
+      tmp /= 2;
+    }
+  }
+  return bin;
+}
