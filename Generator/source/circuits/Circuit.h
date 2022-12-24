@@ -4,10 +4,10 @@ class Circuit
 {
 public:
   Circuit(const OrientedGraph& i_graph, const std::vector<std::string>& i_logExpressions);
-  void updateCircuitsParameters();
   void computeHash();
+  void updateCircuitsParameters();
   bool graphToVerilog(const std::string& i_path, bool i_pathExists = false);
-  bool saveParameters(bool i_pathExists = false);
+  bool saveParameters(bool i_pathExists = false) const;
   bool generate(bool i_pathExists);
 
 private:

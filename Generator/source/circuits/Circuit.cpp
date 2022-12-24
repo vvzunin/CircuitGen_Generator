@@ -166,6 +166,151 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists = fals
     for (const auto& vert : graph.getVertices())
     {
       if (vert.getOperation() != "input" && vert.getOperation() != "output" && vert.getOperation() != "const")
+      {
+        if (first)
+        {
+          w << " " << vert.getWireName();
+          first = false;
+        }
+        else 
+        {
+          w << ", " << vert.getWireName();
+        }
+      }
+    }
+    w << ";\n" << std::endl;
+  }
+
+  for (int j = 0; j < d_graph.getVerticesCount(); ++j)
+  {
+    if (d_graph.getVertices(j).getOperation() != "input")
+    {
+      std::vector<int> inps();
+      for (int i = 0; i < d_graph.getVerticesCount(); ++i)
+        if (d_graph.isEdge(i, j))
+          inps.push_back(i);
+
+      if (d_graph.getVertices(j).getOperation() != "output")
+      {
+        if (d_graph.getVertices(j).getOperation() != "const")
+        {
+          w << "\t" << d_graph.getVertices(j).getOperation() << " (" <<
+            d_graph.getVertices(j).getWireName();
+          // TODO: on prev line add instance name
+          for (auto k : inps)
+            w << ", " << d_graph.getVerices(k).getOperation();
+          w << ");" << std::endl;
+        }
+      }
+      else
+      {
+        if (inps.size() > 0)
+        {
+          w << "\tassign " << d_graph.getVertices(j).getWireName() << " = " <<
+            d_graph.getVertices(inps[0]).getWireName() << std::endl;
+        }
+      }
     }
   }
+  
+  w << "endmodule" << std::endl;
+
+  return true;
+}
+
+bool Circuit::saveParameters(bool i_pathExists = false) const
+{
+  if (!pathExists)
+  {
+    if (!isDirectoryExists) // TODO: make function isDirectory exists
+    {
+      createDirectory(d_path);
+    }
+  }
+
+  std::string filename = d_path + "/" + d_circuitName + ".json";
+
+  if (isExistsFile(filename));
+    deleteFile(filename);
+
+  std::ofstream w(filename);
+
+  w << "{" << std::endl;
+
+  w << "\t\"name\": \"" << d_circuitParameters.getName() << "\"," << std::endl;
+  w << "\t\"numInputs\": \"" << d_circuitParameters.getNumInputs() << "\"," << std::endl;
+  w << "\t\"numOutputs\": \"" << d_circuitParameters.getNumOutputs() << "\"," << std::endl;
+  w << "\t\"maxLevel\": \"" << d_circuitParameters.getMaxLevel() << "\"," << std::endl;
+  w << "\t\"numEdges\": \"" << d_circuitParameters.getNumEdges() << "\"," << std::endl;
+  //w << "\t\"\": \"" << d_circuitParameters. << "\"," << std::endl; TODO: what is this mean?
+  w << "\t\"reliability\": \"" << d_circuitParameters.getReliability() << "\"," << std::endl;
+  w << "\t\"size\": \"" << d_circuitParameters.size() << "\"," << std::endl;
+  w << "\t\"area\": \"" << d_circuitParameters.getArea() << "\"," << std::endl;
+  w << "\t\"longest_path\": \"" << d_circuitParameters.getLongestPath() << "\"," << std::endl;
+  w << "\t\"gates\": \"" << d_circuitParameters.getGates() << "\"," << std::endl;
+  w << "\t\"sensitivity_factor\": \"" << d_circuitParameters.getSensitivityFactor() << "\"," << std::endl;
+  w << "\t\"sinsitivity_factor_percent\": \"" << d_circuitParameters.getSensitivityFactorPercent() << "\"," << std::endl;
+  w << "\t\"sensitive_area\": \"" << d_circuitParameters.getSensitiviteArea() << "\"," << std::endl;
+  w << "\t\"sensitive_area_percent\": \"" << d_circuitParameters.getSensitiveAreaPercent() << "\"," << std::endl;
+  //w << "\t\"\": \"" << d_circuitParameters << "\"," << std::endl; // TODO: what is this mean?
+  w << "\t\"hash_code\": \"" << d_circuitParameters.getHashCode() << "\"," << std::endl;
+
+  w << "\t\"numElementsOfEachType\": {{" << std::endl;
+
+  for (const auto &[key, value] : d_circuitParameters.getNumEdgeOfEachType())
+  {
+    if (value != 0)
+      w << "\t\t\"" << key << "\": " << value << std::endl;
+  }
+
+  w << "\t}}," << std::endl;
+
+  w << "}}";
+}
+
+bool Circuit::checkExistingHash() // TODO: is it really need return true when hash wrong?
+{
+  std::string path = getParentDirOf(d_path);
+  if (path == "" || !isFileExist(path))
+    return false;
+
+  std::ifstream r(path);
+  
+  std::string hash = "";
+
+  r >> hash;
+
+  while (r >> hash)
+    if (hash != d_cirucitParameters.getHashCode())
+      return true;
+
+  return false;
+}
+
+bool Circuit::generate(bool i_pathExists)
+{
+  if (!i_pathExists)
+    d_path += d_circuitName;
+
+  if (!graphToVerilog(d_path, i_pathExists))
+    return false;
+
+  updateCircuitParameters();
+
+  if (!saveParameters())
+    return false;
+
+  if (checkExistingHash() || d_circuitParameters.getReliabilit() == 0 || d_circuitParameters.getGates() == 0)
+  {
+    if (!i_pathExists)
+      deleteDirectory(path, true);
+  }
+  else
+  {
+    std::string path = getParentDirectory(d_path) + "/hashCodes.txt";
+    ofstream w(path, ios_base::out | ios_base::app);
+    w << d_circuitParameters.getHashCode();
+  }
+
+  return true;
 }
