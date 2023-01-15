@@ -1,0 +1,164 @@
+In file included from ./Generators/TruthTable.cpp:3:
+In file included from ./Generators/TruthTable.h:5:
+./Generators/./Genetic/Chronosome.h:10:11: error: C++ requires a type specifier for all declarations
+  virtual generateRandom(T i_gp) = 0;
+  ~~~~~~~ ^
+In file included from ./Generators/TruthTable.cpp:3:
+./Generators/TruthTable.h:21:50: error: only virtual member functions can be marked 'override'
+  void generateRandom(TruthTableParameters i_gp) override;
+                                                 ^~~~~~~~
+./Generators/TruthTable.cpp:22:20: error: call to constructor of 'TruthTable' is ambiguous
+    generateRandom(TruthTable(i_input, d_output));
+                   ^          ~~~~~~~~~~~~~~~~~
+./Generators/TruthTable.h:14:3: note: candidate constructor
+  TruthTable(int i_input, int i_output, double i_p = 0.5);
+  ^
+./Generators/TruthTable.cpp:15:13: note: candidate constructor
+TruthTable::TruthTable(int i_input, int i_output, const std::vector<std::vector<bool>>& i_array) :
+            ^
+./Generators/TruthTable.cpp:22:20: error: no viable conversion from 'TruthTable' to 'TruthTableParameters'
+    generateRandom(TruthTable(i_input, d_output));
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./Generators/./Genetic/GeneticParameters.h:41:7: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'TruthTable' to 'const TruthTableParameters &' for 1st argument
+class TruthTableParameters : GeneticParameters
+      ^
+./Generators/./Genetic/GeneticParameters.h:41:7: note: candidate constructor (the implicit move constructor) not viable: no known conversion from 'TruthTable' to 'TruthTableParameters &&' for 1st argument
+./Generators/./Genetic/GeneticParameters.h:44:3: note: candidate constructor not viable: no known conversion from 'TruthTable' to 'int' for 1st argument
+  TruthTableParameters(int i_inputs = 0, int i_outputs = 0);
+  ^
+./Generators/./Genetic/GeneticParameters.h:45:3: note: candidate constructor not viable: no known conversion from 'TruthTable' to 'const GeneticParameters &' for 1st argument
+  TruthTableParameters(const GeneticParameters& i_gp);
+  ^
+./Generators/TruthTable.h:21:44: note: passing argument to parameter 'i_gp' here
+  void generateRandom(TruthTableParameters i_gp) override;
+                                           ^
+./Generators/TruthTable.cpp:23:7: error: expected expression
+  else:
+      ^
+./Generators/TruthTable.cpp:52:10: error: use of undeclared identifier 'd_array'
+  return d_array;
+         ^
+./Generators/TruthTable.cpp:55:17: error: return type of out-of-line definition of 'TruthTable::getOutTable' differs from that in the declaration
+int TruthTable::getOutTable(int i, int j) const
+~~~             ^
+./Generators/TruthTable.h:19:8: note: previous declaration is here
+  bool getOutTable(int i, int j) const;
+  ~~~~ ^
+./Generators/TruthTable.cpp:57:18: error: member reference base type 'const int' is not a structure or union
+  return d_output.at(i).at(j);
+         ~~~~~~~~^~~
+./Generators/TruthTable.cpp:65:5: error: use of undeclared identifier 'd_array'
+    d_array.clear();
+    ^
+./Generators/TruthTable.cpp:66:5: error: use of undeclared identifier 'd_array'
+    d_array.resize(d_size);
+    ^
+./Generators/TruthTable.cpp:69:7: error: use of undeclared identifier 'd_array'
+      d_array[i].resize(d_output);
+      ^
+./Generators/TruthTable.cpp:71:9: error: use of undeclared identifier 'd_array'
+        d_array[i][j] = (rand() % 2) == 1;
+        ^
+./Generators/TruthTable.cpp:76:32: error: use of undeclared identifier 'generator'; did you mean 'operator'?
+    std::default_random_engine generator;
+                               ^~~~~~~~~
+                               operator
+./Generators/TruthTable.cpp:76:10: error: no type named 'default_random_engine' in namespace 'std'
+    std::default_random_engine generator;
+    ~~~~~^
+./Generators/TruthTable.cpp:76:41: error: expected a type
+    std::default_random_engine generator;
+                                        ^
+./Generators/TruthTable.cpp:77:10: error: no template named 'uniform_real_distribution' in namespace 'std'; did you mean 'uniform_int_distribution'?
+    std::uniform_real_distribution<double> distribution(0.0,1.0);
+    ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+         uniform_int_distribution
+/Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/algorithm:3011:7: note: 'uniform_int_distribution' declared here
+class uniform_int_distribution
+      ^
+./Generators/TruthTable.cpp:78:5: error: use of undeclared identifier 'd_array'
+    d_array.clear();
+    ^
+./Generators/TruthTable.cpp:79:31: error: called object type 'int' is not a function or function pointer
+    for (int i = 0; i < d_size(); ++i)
+                        ~~~~~~^
+./Generators/TruthTable.cpp:81:7: error: use of undeclared identifier 'd_array'
+      d_array[i].resize(d_output);
+      ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+In file included from ./DataBase/DataBaseGenerator.cpp:3:
+In file included from ./DataBase/../Generators/TruthTable.h:5:
+./DataBase/../Generators/./Genetic/Chronosome.h:10:11: error: C++ requires a type specifier for all declarations
+  virtual generateRandom(T i_gp) = 0;
+  ~~~~~~~ ^
+In file included from ./DataBase/DataBaseGenerator.cpp:3:
+./DataBase/../Generators/TruthTable.h:21:50: error: only virtual member functions can be marked 'override'
+  void generateRandom(TruthTableParameters i_gp) override;
+                                                 ^~~~~~~~
+./DataBase/DataBaseGenerator.cpp:67:25: error: template argument for template type parameter must be a type
+  TruthTable<Chronosome<TruthTable>> tt(i_param.getInputs(), i_param.getOutputs(), {});
+                        ^~~~~~~~~~
+./DataBase/../Generators/./Genetic/Chronosome.h:6:19: note: template parameter is declared here
+template<typename T>
+                  ^
+./DataBase/DataBaseGenerator.cpp:67:3: error: 'TruthTable' does not name a template but is followed by template arguments
+  TruthTable<Chronosome<TruthTable>> tt(i_param.getInputs(), i_param.getOutputs(), {});
+  ^         ~~~~~~~~~~~~~~~~~~~~~~~~
+./DataBase/../Generators/./Genetic/Chronosome.h:3:3: note: non-template declaration found by name lookup
+  TruthTable
+  ^
+./DataBase/DataBaseGenerator.cpp:68:3: error: use of undeclared identifier 'tt'
+  tt.generateRandom({i_param.getInputs(), i_param.getOutputs()});
+  ^
+./DataBase/DataBaseGenerator.cpp:70:3: error: unknown type name 'SimpleGenerators'
+  SimpleGenerators tftt;
+  ^
+./DataBase/DataBaseGenerator.cpp:72:14: error: expected unqualified-id
+  std::string<std::pair<std::string, std::vector<std::string>>> circs;
+             ^
+./DataBase/DataBaseGenerator.cpp:74:15: error: no member named 'cnfFromTruthTableParameters' in 'GenerationParameters'
+  if (i_param.cnfFromTruthTableParameters.CNFT)
+      ~~~~~~~ ^
+./DataBase/DataBaseGenerator.cpp:75:5: error: use of undeclared identifier 'circs'
+    circs.push_back("CNFT", tftt.cnfFromTruthTable(tt, true));
+    ^
+./DataBase/DataBaseGenerator.cpp:75:52: error: use of undeclared identifier 'tt'
+    circs.push_back("CNFT", tftt.cnfFromTruthTable(tt, true));
+                                                   ^
+./DataBase/DataBaseGenerator.cpp:77:15: error: no member named 'cnfFromTruthTableParameters' in 'GenerationParameters'
+  if (i_param.cnfFromTruthTableParameters.CNFF)
+      ~~~~~~~ ^
+./DataBase/DataBaseGenerator.cpp:78:5: error: use of undeclared identifier 'circs'
+    circs.push_back("CNFF", tftt.cnfFromTruthTable(tt, false));
+    ^
+./DataBase/DataBaseGenerator.cpp:78:52: error: use of undeclared identifier 'tt'
+    circs.push_back("CNFF", tftt.cnfFromTruthTable(tt, false));
+                                                   ^
+./DataBase/DataBaseGenerator.cpp:80:35: error: use of undeclared identifier 'circs'
+  for (const auto& [name, expr] : circs)
+                                  ^
+./DataBase/DataBaseGenerator.cpp:82:5: error: unknown type name 'Parser'
+    Parser pCNFT(expr);
+    ^
+./DataBase/DataBaseGenerator.cpp:85:5: error: unknown type name 'OrientedGraph'
+    OrientedGraph graph = pCNFT.getGraph();
+    ^
+./DataBase/DataBaseGenerator.cpp:86:5: error: unknown type name 'Circuit'
+    Circuit c(graph, expr);
+    ^
+./DataBase/DataBaseGenerator.cpp:87:17: error: use of undeclared identifier 'tt'
+    c.settTable(tt);
+                ^
+./DataBase/DataBaseGenerator.cpp:94:25: error: out-of-line definition of 'generateDataBaseRandLevel' does not match any declaration in 'DataBaseGenerator'
+void DataBaseGenerator::generateDataBaseRandLevel(GenerationParameters i_param)
+                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+./DataBase/DataBaseGenerator.h:27:40: note: type of 1st parameter of member declaration does not match definition ('const GenerationParameters &' vs 'GenerationParameters')
+  void generateDataBaseRandLevel(const GenerationParameters& i_params);
+                                       ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+main.cpp:13:68: error: no member named 'truthTableToGraphWithoutOptimization' in 'GenerationTypes'
+  DataBaseGeneratorParameters dbgp(2, 4, 3, 5, 3, GenerationTypes::truthTableToGraphWithoutOptimization, gp);
+                                                  ~~~~~~~~~~~~~~~~~^
+1 error generated.

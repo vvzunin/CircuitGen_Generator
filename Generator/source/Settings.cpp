@@ -1,29 +1,25 @@
 #include <fstream>
+#include <iostream>
 
 #include "Settings.h"
 
-Settings Settings::GetInstance()
-{
-    return *this;
-}
-
 Settings::Settings()
 {
-  for (const auto &[item, value] : d_logicOperations) {
-    int i = value.seconds;
-    if (d_operationsToHierarchy.find(i) == operationsToHierarchy.end()) 
+  for (const auto &[key, value] : d_logicOperations) {
+    int i = value.second;
+    if (d_operationsToHierarchy.find(i) == d_operationsToHierarchy.end()) 
       d_operationsToHierarchy[i] = {};
     d_operationsToHierarchy[i].push_back(value.first);
   }
 
-  for (const auto &[item, value] : d_logicOperations)
-    operationsToName[value.first] = value.seconds;
+  for (const auto &[key, value] : d_logicOperations)
+    d_operationsToName[value.first] = key;
 }
 
 void Settings::loadSettings() {
-  ifstream readFile(d_fileName);
+  std::ifstream readFile(d_fileName);
 
-  readFile >> d_csvDataset >> d_fileName >> d_datasetPath >> d_pathToNadezhda;
+  readFile >> d_csvdataset >> d_fileName >> d_datasetPath >> d_pathToNadezhda;
 
   int nadezhdaPathsCount;
   readFile >> nadezhdaPathsCount;
@@ -41,7 +37,7 @@ void Settings::loadSettings() {
   for (int i = 0; i < logicOperationCount; ++i) {
     std::string operation, operationName, operationId;
     readFile >> operation >> operationName >> operationId;
-    d_logicOperations[operation] = {operationName, operationId};
+    d_logicOperations[operation] = {operationName, std::stoi(operationId)};
   }
 
   int operationHierarchyCount;
@@ -78,7 +74,7 @@ std::pair<std::string, int> Settings::getLogicOperation(const std::string& i_op)
 std::vector<std::string> Settings::getLogicOperationsKeys()
 {
   std::vector<std::string> res;
-  for (const auto &[key, value])
+  for (const auto &[key, value] : d_logicOperations)
    res.push_back(key);
 
   return res;
@@ -90,7 +86,7 @@ std::string Settings::fromOperationsToName(const std::string& i_op) const
 }
 
 void Settings::SaveSettings() {
-  ofstream writeFile(d_fileName);
+  std::ofstream writeFile(d_fileName);
   writeFile << d_csvdataset << ' ' << d_fileName << ' ' << d_datasetPath << ' ' << 
     d_pathToNadezhda << std::endl;
   
@@ -106,15 +102,36 @@ void Settings::SaveSettings() {
 
   writeFile << d_operationsToHierarchy.size() << std::endl;
   for (const auto &[key, value] : d_operationsToHierarchy) {
-    writeFile << key << ' ' value.size() << std::endl;
+    writeFile << key << ' ' << value.size() << std::endl;
     for (const auto& operation : value) 
       writeFile << operation << ' ' ;
     writeFile << std::endl;
   }
 
   writeFile << d_operationsToName.size() << std::endl;
-  for (cont auto &[key, value])
+  for (const auto &[key, value] : d_operationsToName)
     writeFile << key << ' ' << value << std::endl;
 
   writeFile << d_maxInputs << ' ' << d_maxOutputs << std::endl;
+}
+
+std::string Settings::getDatasetPath() const
+{
+  return d_datasetPath;
+}
+
+std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const
+{
+  if (i_s == "FromRandomTruthTable")
+    return "ftt";
+  if (i_s == "RandLevel")
+    return "rl";
+  if (i_s == "NumOperation")
+    return "nop";
+  if (i_s == "Genetic")
+    return "gen";
+
+  std::cout << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
+
+  return "ftt";
 }

@@ -20,6 +20,7 @@ namespace {
 SimpleGenerators::SimpleGenerators()
 {
   std::srand(std::time(0));
+  d_settings.loadSettings()
 }
 
 std::vector<std::string> SimpleGenerators::cnfFromTruthTable(

@@ -1,20 +1,34 @@
+#pragma once
+
 #include <string>
 #include <map>
 #include <utility>
+#include <vector>
+
+enum generationTypes {
+  none,
+  truthTableToGraphWithoutOptimization,
+  truthTableToGraphWithOptimization
+};
 
 class Settings {
 public:
-  Settings loadSettings();
+  Settings();
+  void loadSettings();
   std::pair<std::string, int> getLogicOperation(const std::string& i_op);
   std::vector<std::string> getLogicOperationsKeys();
   std::string fromOperationsToName(const std::string& i_op) const;
+  std::string getDatasetPath() const;
+  std::string getGenerationMethodPrefix(const std::string& i_s) const;
 private:
+  void SaveSettings();
+
   std::string d_csvdataset = "dataset.csv";
   std::string d_fileName = "settings.dat";
   std::string d_datasetPath = "./database";
-  Settings d_instance;
+  //Settings d_instance;
   std::string d_pathToNadezhda = "./data/Nadezhda";
-  const std::map<std::string, std::string> d_nadezhda = {
+  std::map<std::string, std::string> d_nadezhda = {
     {"python", "pathtopython"},
     {"resynthesis", "Nadezda/Scripts/resynthesis_local_rewriting.pyc"},
     {"reliability", "Nadezhda/Scripts/check_reliability.pyc"},
@@ -35,14 +49,9 @@ private:
     {"xor",    {"xor",  6}},
     {"xnor",   {"xnor", 5}}
 
-  }
+  };
   std::map<int, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string> d_operationsToName;
   int d_maxInputs = 50;
   int d_maxOutputs = 50;
-  enum d_generationTypes {
-    none,
-    truthTableToGraphWithoutOptimization,
-    truthTableToGraphWIthOptimization
-  };
-}
+};

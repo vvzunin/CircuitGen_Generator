@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "../../Settings.h"
+
 template<typename Type, typename ParametersTypes>
 class ChronosomeType
 {
@@ -15,4 +17,4 @@ private:
   Type d_chronosome;
   Settings d_settings;
   std::string d_name;
-}
+};

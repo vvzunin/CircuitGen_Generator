@@ -17,7 +17,7 @@ private:
   std::string d_path;
   std::string d_circuitName;
   CircuitParameters d_circuitParameters;
-  Settings d_settings = Settings::loadSettings();
+  Settings d_settings;
 
   bool checkExistingHash();
 

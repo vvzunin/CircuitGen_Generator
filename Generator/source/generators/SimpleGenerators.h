@@ -14,7 +14,7 @@ public:
   );
 
 private:
-  Settings settings = Settings::readSettings();
+  Settings d_settings;
   void delNull(std::map<std::string, int>& i_copyLogicOper);
   std::string randomGenerator(const std::map<std::string, int>& i_map);
 }

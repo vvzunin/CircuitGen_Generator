@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Parents/ParentsParameters.h"
+
 enum RecombinationTypes
 {
   CrossingEachExitInTurnMany, // relative to several reference points
@@ -7,7 +9,7 @@ enum RecombinationTypes
   CrossingTriadic,
   CrossingReducedReplacement,
   CorssingShuffling
-}
+};
 
 class RecombinationParameters
 {
@@ -33,9 +35,9 @@ public:
   }
 
 private:
-  RecombinationTypes d_recombinationType = RecombinationTypes.CrossingEachExitInTurnMany;
+  RecombinationTypes d_recombinationType = RecombinationTypes::CrossingEachExitInTurnMany;
   ParentsParameters d_parentsParameters = ParentsParameters();
   int d_refPoints = 1;
   double d_maskProbability = 0.5;
   int d_recombinationNumber = 1;
-}
+};

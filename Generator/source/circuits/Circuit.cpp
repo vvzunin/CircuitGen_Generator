@@ -8,6 +8,7 @@ Circuit::Circuit(const OrientedGraph& i_graph, const std::vector<std::string>& i
   d_graph = i_graph;
   d_graph.updateLevels();
   d_logExpressions = i_logExpressions;
+  d_settings.loadSettings();
 }
 
 void Circiut::computeHash()

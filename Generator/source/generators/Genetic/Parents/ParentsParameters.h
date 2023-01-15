@@ -5,7 +5,7 @@ enum ParentsTypes{
   Outbrinding,
   Tournament,
   Roulette
-}
+};
 
 class ParentsParameters {
 public:
@@ -14,5 +14,5 @@ public:
 
 private:
   int d_tournamentNumber = 2;
-  ParentsTypes d_parentsType = ParentsTypes.Panmixia;
-}
+  ParentsTypes d_parentsType = ParentsTypes::Panmixia;
+};

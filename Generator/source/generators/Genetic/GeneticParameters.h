@@ -1,8 +1,12 @@
 #pragma once
 
+#include "./Selections/SelectionParameters.h"
+#include "./Recombination/RecombinationParameters.h"
+#include "./Mutations/MutationParameters.h"
 
 class GeneticParameters
 {
+public:
   GeneticParameters(int i_inputs = 0, int outs = 0);
   int getInputs() const;
   void setInputs(int i_inputs);
@@ -24,7 +28,7 @@ protected:
   RecombinationParameters d_recombinationParameters;
   MutationParameters d_mutationParameters;
   double d_keyEndProcessIndex = 0;
-}
+};
 
 //class OrientedGraphParameters : GeneticParameters
 //{
@@ -36,7 +40,8 @@ protected:
 
 class TruthTableParameters : GeneticParameters
 {
+public:
   TruthTableParameters(int i_inputs = 0, int i_outputs = 0);
-  TruthTableParameters(const GeneticParameteres& i_gp);
+  TruthTableParameters(const GeneticParameters& i_gp);
   int size() const;
-}
+};

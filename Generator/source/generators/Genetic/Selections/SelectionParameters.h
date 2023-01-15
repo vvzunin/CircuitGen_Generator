@@ -20,6 +20,6 @@ public:
   }
 
 private:
-  SelectionTypes d_selectionType = Selection.Base;
+  SelectionTypes d_selectionType = SelectionTypes::Base;
   int d_numOfSurvivors = 0;
-}
+};

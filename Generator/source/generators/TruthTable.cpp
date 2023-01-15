@@ -4,31 +4,31 @@
 
 TruthTable::TruthTable()
 {
-  d_settings = Settings::readSettings();
+  d_settings.loadSettings();
 }
 
-TruthTable::TruthTable(Chromosome<TruthTableParameters> i_chr)
+TruthTable::TruthTable(Chronosome<TruthTableParameters> i_chr)
 {
-  d_settings = Settings::readSettings();
+  d_settings.loadSettings();
 }
 
-TruthTable::TruthTable(int i_input, int i_output, const std::vector<std::vector<bool>>& i_array = {}) :
+TruthTable::TruthTable(int i_input, int i_output, const std::vector<std::vector<bool>>& i_array) :
   d_input(i_input),
   d_output(i_output)
 {
-  d_settings = Settings::readSettings();
+  d_settings.loadSettings();
   d_size = 1u << d_input;
-  if (i_array.size() == 0 || i_array.size() != d_size || array[0].size() != d_output)
-    self.generateRandom(TruthTable(i_input, d_output));
+  if (i_array.size() == 0 || i_array.size() != d_size || i_array[0].size() != d_output)
+    generateRandom(TruthTable(i_input, d_output));
   else:
     d_array = i_array;
 }
 
-TruthTable::TruthTable(const TruthTable& i_tt, std::vector<std::vector<bool>> i_array = {}) :
+TruthTable::TruthTable(const TruthTable& i_tt, std::vector<std::vector<bool>> i_array) :
   d_input(i_tt.d_input),
   d_output(i_tt.d_output)
 {
-  d_settings = Settings::readSettings();
+  d_settings.loadSettings();
   d_size = 1u << d_input; // what?
 }
 
@@ -57,7 +57,7 @@ int TruthTable::getOutTable(int i, int j) const
   return d_output.at(i).at(j);
 }
 
-void TruthTable::generateTable(double i_p = 0)
+void TruthTable::generateTable(double i_p)
 {
   std::srand(std::time(0));
   if (i_p == 0)
@@ -85,7 +85,7 @@ void TruthTable::generateTable(double i_p = 0)
   }
 }
 
-void TruthTable::generateRandom(TruthTableParameters i_gp)
+void TruthTable::generateRandom(TruthTableParameters i_gp) override
 {
   std::srand(std::time(0));
   if (i_gp.getInputs() == 0)

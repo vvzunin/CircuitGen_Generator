@@ -150,6 +150,43 @@ std::map<std::string, double> Reliability::runNadezhda(
   std::cout << cpCommand2 << std::endl;
   std::cout << rmCommand << std::endl;
 
+  std::string nadezdhaReliabilityCommand = 
+    d_settings.getNadezhdaVar("python") + " " +
+    d_settings.getNadezhdaVar("reliability") + " " +
+    i_path + "/" + i_circuitName + "_Nangate.v " +
+    d_settings.getNadezhdaVar("liberty") + " " +
+    i_path + "/report.txt" + std::endl;
+
+  std::cout << nadezdhaReliabilityCommand;
 
 
+  //TODO: wait for exit
+
+  std::string reportPath = i+path + "/report.json"
+
+  if (isFileExists(reportPath))
+  {
+    std::string s = FilesTools::readAllFileText(reportPath);
+    //TODO: make to json var
+    JSON obj = JSON::read(s);
+
+    for (const auto& [key, value] : obj)
+    {
+      if (std::to_string(key) == "before")
+      {
+        if (key == "reliability_metric")
+          dict[key] = static_cast<double>(value);
+        if (key == "area")
+          dict[key] = static_cast<double>(value);
+        if (key == "size")
+          dict[key] = static_cast<double>(value);
+        if (key == "longest_path")
+          dict[key] = static_cast<double>(value);
+
+      }
+    }
+    FilesTools::deleteFile(reportPath);
+  }
+    
+  //TODO: why double check?
 }

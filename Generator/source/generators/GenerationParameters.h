@@ -1,8 +1,11 @@
 #pragma once
 
 #include <string>
+#include <map>
 
-class CNFFromTruthTableParameters
+#include "./Genetic/GeneticParameters.h"
+
+class CNNFromTruthTableParameters
 {
 public:
 
@@ -10,7 +13,7 @@ private:
   bool d_generateLimitations = false;
   bool d_CNFF = false;
   bool d_CNFT = false;
-}
+};
 
 class GeneratorRandLevelParameters
 {
@@ -38,7 +41,7 @@ public:
 private:
   int d_maxLevel = 0;
   int d_maxElements = 0;
-}
+};
 
 class GeneratorNumOperationParameters
 {
@@ -50,12 +53,12 @@ public:
     return -1;
   }
 
-  void setLogicOper(const std::pair<std::string, std::int>& i_p)
+  void setLogicOper(const std::pair<std::string, int>& i_p)
   {
     d_logicOper[i_p.first] = i_p.second;
   }
 
-  void setLogicOper(const std::map<std::string, std::int>& i_p)
+  void setLogicOper(const std::map<std::string, int>& i_p)
   {
     d_logicOper = i_p;
   }
@@ -65,21 +68,33 @@ public:
     return d_leaveEmptyOut;
   }
 
-  void setLeaveEmptyOut(boon i_leo)
+  void setLeaveEmptyOut(bool i_leo)
   {
     d_leaveEmptyOut = i_leo;
   }
 
 private:
   std::map<std::string, int> d_logicOper;
-  bool leaveEmptyOut = true;
-}
+  bool d_leaveEmptyOut = true;
+};
 
-class GeneratiorParameters
+class GenerationParameters
 {
 public:
 
-  std::string getName const
+  GenerationParameters(
+    const std::string& i_name,
+    int i_inputs,
+    int i_outputs,
+    int i_iteration) :
+    d_name(i_name),
+    d_inputs(i_inputs),
+    d_outputs(i_outputs),
+    d_iteration(i_iteration),
+    d_geneticParameters(GeneticParameters(d_inputs, d_outputs))
+  {};
+
+  std::string getName() const
   {
     return d_name;
   }
@@ -129,5 +144,5 @@ private:
   GeneratorRandLevelParameters d_generatorRandLevelParameters;
   GeneratorNumOperationParameters d_generatorNumOperationParameters;
 
-  GeneticParameters d_geneticParameters;
-}
+  GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
+};
