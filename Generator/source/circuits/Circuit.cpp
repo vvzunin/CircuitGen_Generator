@@ -1,7 +1,11 @@
-#include "Circuit.h"
-#include <stringstream>
+#include <cstdio>
+#include <sstream>
 #include <fstream>
-#include <iomanaip>
+#include <iomanip>
+
+#include "Circuit.h"
+#include "../reliability/Reliability.h"
+#include "../FilesTools.h"
 
 Circuit::Circuit(const OrientedGraph& i_graph, const std::vector<std::string>& i_logExpressions)
 {
@@ -11,27 +15,27 @@ Circuit::Circuit(const OrientedGraph& i_graph, const std::vector<std::string>& i
   d_settings.loadSettings();
 }
 
-void Circiut::computeHash()
+void Circuit::computeHash()
 {
-  std::stringstream stream = "";
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_numInputs << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_numOutputs << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_maxLevel << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_numEdges << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_reliability << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_size << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_area << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_gates << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_sensitiveArea << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_sensitiveAreaPercent << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_sensitivityFactor << '\n';
-  stream << setfill(' ') << setw(10) << d_circuitParameters.d_reliabilityPercent << '\n';
+  std::stringstream stream;
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_numInputs << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_numOutputs << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_maxLevel << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_numEdges << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_reliability << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_size << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_area << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_gates << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_sensitiveArea << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_sensitiveAreaPercent << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_sensitivityFactor << '\n';
+  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_reliabilityPercent << '\n';
 
-  for (const auto &[key, value] : d_circuitParameters.getNumElementsOfEachType())
+  for (const auto &[key, value] : d_circuitParameters.d_numElementsOfEachType)
     stream << "\t\t\"" << key << "\": " << value << '\n';
 
-  for (const auto &[key, value] : d_circuitPArameters.getNumEdgesOfEachType())
-    stream << "\t\t\"" << key << "\": " << value << '\n';
+  for (const auto &[key, value] : d_circuitParameters.d_numEdgesOfEachType)
+    stream << "\t\t\"" << key.first << "-" << key.second << "\": " << value << '\n';
 
   {
      //TODO: write logic of get SHA256
@@ -47,27 +51,27 @@ void Circuit::updateCircuitsParameters()
 
   d_graph.updateLevels();
 
-  d_circuitParameters.setName(d_circuitName);
+  d_circuitParameters.d_name = d_circuitName;
 
-  std::vector<std::string> inputs = graph.getVerticesByType("input");
-  std::vector<std::string> outputs = graph.getVerticesByType("output");
+  std::vector<std::string> inputs = d_graph.getVerticesByType("input");
+  std::vector<std::string> outputs = d_graph.getVerticesByType("output");
 
-  d_circuitParameters.setNumInputs(0);
+  d_circuitParameters.d_numInputs = 0;
   for (int i = 0; i < inputs.size(); ++i)
-    if (inputs[i].find("'b") == inputs[i].end())
-      d_circuitParameters.setNumInputs(d_circuitParameters.getNumInputs() + 1);
+    if (inputs[i].find("'b") == std::string::npos)
+      d_circuitParameters.d_numInputs++;
 
-  d_circuitParameters.setNumOutputs(outputs.size());
+  d_circuitParameters.d_numOutputs = outputs.size();
 
-  d_circuitParameters.setMaxLevel(graph.getMaxLevel());
+  d_circuitParameters.d_maxLevel = d_graph.getMaxLevel();
 
-  d_circuitParameters.setNumEdges(0);
-  for (const auto& row : graph.getAdjacencyMatrix())
+  d_circuitParameters.d_numEdges = 0;
+  for (const auto& row : d_graph.getAdjacencyMatrix())
     for (const auto& el : row)
       if (el)
-        d_circuitParameters.setNumEdges(d_circuitParameters.getNumEdges() + 1);
+        d_circuitParameters.d_numEdges++;
         
-  Reliability R(graph, 0.5);
+  Reliability R(d_graph, 0.5);
   std::map<std::string, double> dict = R.runNadezhda(d_path, d_circuitName); // what? d_path
   d_circuitParameters.d_reliability = dict["reliability_metric"];
   d_circuitParameters.d_size = dict["size"];
@@ -75,13 +79,13 @@ void Circuit::updateCircuitsParameters()
   d_circuitParameters.d_longestPath = dict["longestPath"];
 
   d_circuitParameters.d_gates = dict["gates"];
-  d_circuitParameters.d_sensitiveFactor = dict["sensitive_factor"];
+  d_circuitParameters.d_sensitivityFactor = dict["sensitive_factor"];
   d_circuitParameters.d_reliabilityPercent = dict["sensitivity_factor_percent"];
-  d_circuitParameters.sensitiveArea = dict["sencitive_area"];
-  d_circuitParameters.sensitiveAreaPercent = dict["sensitive_area_persent"];
+  d_circuitParameters.d_sensitiveArea = dict["sencitive_area"];
+  d_circuitParameters.d_sensitiveAreaPercent = dict["sensitive_area_persent"];
 
-  d_cicuitParams.d_numElementsOfEachTypy.clear();
-  std::vector<GrapthVertex> gv = d_graph.getVertices();
+  d_circuitParameters.d_numElementsOfEachType.clear();
+  std::vector<GraphVertex> gv = d_graph.getVertices();
 
   for (const auto &[key, value] : d_settings.getLogicOperations())
     d_circuitParameters.d_numElementsOfEachType[key] = 0;
@@ -92,42 +96,42 @@ void Circuit::updateCircuitsParameters()
         d_circuitParameters.d_numElementsOfEachType[v.getOperation()]++;
   
   d_circuitParameters.d_numEdgesOfEachType.clear();
-  for (const auto &[key1, value1] : d_settings.getOperations())
-    for (const auto &[key2, vluae2] : d_settings.getoperations())
+  for (const auto &[key1, value1] : d_settings.getLogicOperations())
+    for (const auto &[key2, vluae2] : d_settings.getLogicOperations())
       if (key1 != "output" && key2 != "input")
-        d_circuitsParameters.d_numEdgesOfEachType[std::make_pair(key1, key2)] = 0;
+        d_circuitParameters.d_numEdgesOfEachType[std::make_pair(key1, key2)] = 0;
 
   for (int i = 0; i < gv.size(); ++i)
     for (int j = 0; j < gv.size(); ++j)
-      if (d_graph.getAdjencyMatrix(i, j))
-        d_circuitsParameters.d_numEdgesOfEachType[std::make_pair(gv[i].getOperation(), gv[j].getOperation)]++;
+      if (d_graph.getAdjacencyMatrix(i, j))
+        d_circuitParameters.d_numEdgesOfEachType[std::make_pair(gv[i].getOperation(), gv[j].getOperation())]++;
 
   computeHash();
 }
 
-bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists = false)
+bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
 {
   if (d_graph.empty())
-    return;
+    return false;
 
-  if (!pathExists) // TODO: work with directory
-    if (!isDirectoryExists(getCureentDirectory() + path))
-      createDirectory(path)
+  if (!i_pathExists) // TODO: work with directory
+    if (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() + i_path))
+      std::filesystem::create_directory(i_path);
 
   std::string filename = d_path + "/" + d_circuitName + ".v";
 
   std::vector<std::string> inputs = d_graph.getVerticesByType("input");
-  std::vector<std::string> inputs = d_graph.getVerticesByType("output");
-  std::vector<std::string> inputs = d_graph.getVerticesByType("const");
+  std::vector<std::string> outputs = d_graph.getVerticesByType("output");
+  std::vector<std::string> consts = d_graph.getVerticesByType("const");
 
-  std::string s = //TODO: work with directory
-  bool f = isFileExists();
+  std::string s = std::filesystem::current_path().string() + "/" + filename;
+  bool f = std::filesystem::exists(s);
 
-  if (isFileExists(filename))
-    deletefile(filename);
+  if (std::filesystem::exists(filename))
+    std::remove(filename.c_str());
 
   std::ofstream w(filename);
-  for (const auto& expr : d_logexpressions)
+  for (const auto& expr : d_logExpressions)
     w << "//" << expr << '\n';
 
   w << "module " << d_circuitName << "(\n";
@@ -137,16 +141,16 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists = fals
   const std::string inputModule = "\tinput";
 
   in += inputModule;
-  for (const auto& in : d_inputs)
-    if (in.find("1'b") == in.end())
-      in += " " + in + ",";
+  for (const auto& in_i : inputs)
+    if (in_i.find("1'b") == std::string::npos)
+      in += " " + in_i + ",";
 
   if (in.length() > inputModule.length())
     w << in << '\n';
 
   w << "\toutput";
   bool first = true;
-  for (const auto& out : d_outputs)
+  for (const auto& out : outputs)
   {
     if (first)
     {
@@ -160,11 +164,11 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists = fals
   }
   w << "\n);\n";
 
-  if (d_graph.getVerticesSize() - inputs.size() - outputs.size() - consts.size() > 0)
+  if (d_graph.size() - inputs.size() - outputs.size() - consts.size() > 0)
   {
     w << "\n\twire";
     bool first = true;
-    for (const auto& vert : graph.getVertices())
+    for (const auto& vert : d_graph.getVertices())
     {
       if (vert.getOperation() != "input" && vert.getOperation() != "output" && vert.getOperation() != "const")
       {
@@ -182,24 +186,24 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists = fals
     w << ";\n" << std::endl;
   }
 
-  for (int j = 0; j < d_graph.getVerticesCount(); ++j)
+  for (int j = 0; j < d_graph.size(); ++j)
   {
-    if (d_graph.getVertices(j).getOperation() != "input")
+    if (d_graph.getVertice(j).getOperation() != "input")
     {
-      std::vector<int> inps();
-      for (int i = 0; i < d_graph.getVerticesCount(); ++i)
-        if (d_graph.isEdge(i, j))
+      std::vector<int> inps;
+      for (int i = 0; i < d_graph.size(); ++i)
+        if (d_graph.getAdjacencyMatrix(i, j))
           inps.push_back(i);
 
-      if (d_graph.getVertices(j).getOperation() != "output")
+      if (d_graph.getVertice(j).getOperation() != "output")
       {
-        if (d_graph.getVertices(j).getOperation() != "const")
+        if (d_graph.getVertice(j).getOperation() != "const")
         {
-          w << "\t" << d_graph.getVertices(j).getOperation() << " (" <<
-            d_graph.getVertices(j).getWireName();
+          w << "\t" << d_graph.getVertice(j).getOperation() << " (" <<
+            d_graph.getVertice(j).getWireName();
           // TODO: on prev line add instance name
           for (auto k : inps)
-            w << ", " << d_graph.getVerices(k).getOperation();
+            w << ", " << d_graph.getVertice(k).getOperation();
           w << ");" << std::endl;
         }
       }
@@ -207,8 +211,8 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists = fals
       {
         if (inps.size() > 0)
         {
-          w << "\tassign " << d_graph.getVertices(j).getWireName() << " = " <<
-            d_graph.getVertices(inps[0]).getWireName() << std::endl;
+          w << "\tassign " << d_graph.getVertice(j).getWireName() << " = " <<
+            d_graph.getVertice(inps[0]).getWireName() << std::endl;
         }
       }
     }
@@ -219,46 +223,46 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists = fals
   return true;
 }
 
-bool Circuit::saveParameters(bool i_pathExists = false) const
+bool Circuit::saveParameters(bool i_pathExists) const
 {
-  if (!pathExists)
+  if (!i_pathExists)
   {
-    if (!isDirectoryExists) // TODO: make function isDirectory exists
+    if (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() + d_path)) // TODO: make function isDirectory exists
     {
-      createDirectory(d_path);
+      std::filesystem::create_directory(d_path);
     }
   }
 
   std::string filename = d_path + "/" + d_circuitName + ".json";
 
-  if (isExistsFile(filename));
-    deleteFile(filename);
+  if (std::filesystem::exists(filename))
+    std::remove(filename.c_str());
 
   std::ofstream w(filename);
 
   w << "{" << std::endl;
 
-  w << "\t\"name\": \"" << d_circuitParameters.getName() << "\"," << std::endl;
-  w << "\t\"numInputs\": \"" << d_circuitParameters.getNumInputs() << "\"," << std::endl;
-  w << "\t\"numOutputs\": \"" << d_circuitParameters.getNumOutputs() << "\"," << std::endl;
-  w << "\t\"maxLevel\": \"" << d_circuitParameters.getMaxLevel() << "\"," << std::endl;
-  w << "\t\"numEdges\": \"" << d_circuitParameters.getNumEdges() << "\"," << std::endl;
+  w << "\t\"name\": \"" << d_circuitParameters.d_name << "\"," << std::endl;
+  w << "\t\"numInputs\": \"" << d_circuitParameters.d_numInputs << "\"," << std::endl;
+  w << "\t\"numOutputs\": \"" << d_circuitParameters.d_numOutputs << "\"," << std::endl;
+  w << "\t\"maxLevel\": \"" << d_circuitParameters.d_maxLevel << "\"," << std::endl;
+  w << "\t\"numEdges\": \"" << d_circuitParameters.d_numEdges << "\"," << std::endl;
   //w << "\t\"\": \"" << d_circuitParameters. << "\"," << std::endl; TODO: what is this mean?
-  w << "\t\"reliability\": \"" << d_circuitParameters.getReliability() << "\"," << std::endl;
-  w << "\t\"size\": \"" << d_circuitParameters.size() << "\"," << std::endl;
-  w << "\t\"area\": \"" << d_circuitParameters.getArea() << "\"," << std::endl;
-  w << "\t\"longest_path\": \"" << d_circuitParameters.getLongestPath() << "\"," << std::endl;
-  w << "\t\"gates\": \"" << d_circuitParameters.getGates() << "\"," << std::endl;
-  w << "\t\"sensitivity_factor\": \"" << d_circuitParameters.getSensitivityFactor() << "\"," << std::endl;
-  w << "\t\"sinsitivity_factor_percent\": \"" << d_circuitParameters.getSensitivityFactorPercent() << "\"," << std::endl;
-  w << "\t\"sensitive_area\": \"" << d_circuitParameters.getSensitiviteArea() << "\"," << std::endl;
-  w << "\t\"sensitive_area_percent\": \"" << d_circuitParameters.getSensitiveAreaPercent() << "\"," << std::endl;
+  w << "\t\"reliability\": \"" << d_circuitParameters.d_reliability << "\"," << std::endl;
+  w << "\t\"size\": \"" << d_circuitParameters.d_size << "\"," << std::endl;
+  w << "\t\"area\": \"" << d_circuitParameters.d_area << "\"," << std::endl;
+  w << "\t\"longest_path\": \"" << d_circuitParameters.d_longestPath << "\"," << std::endl;
+  w << "\t\"gates\": \"" << d_circuitParameters.d_gates << "\"," << std::endl;
+  w << "\t\"sensitivity_factor\": \"" << d_circuitParameters.d_sensitivityFactor << "\"," << std::endl;
+  w << "\t\"sinsitivity_factor_percent\": \"" << d_circuitParameters.d_reliabilityPercent << "\"," << std::endl;
+  w << "\t\"sensitive_area\": \"" << d_circuitParameters.d_sensitiveArea << "\"," << std::endl;
+  w << "\t\"sensitive_area_percent\": \"" << d_circuitParameters.d_sensitiveAreaPercent << "\"," << std::endl;
   //w << "\t\"\": \"" << d_circuitParameters << "\"," << std::endl; // TODO: what is this mean?
-  w << "\t\"hash_code\": \"" << d_circuitParameters.getHashCode() << "\"," << std::endl;
+  w << "\t\"hash_code\": \"" << d_circuitParameters.d_hashCode << "\"," << std::endl;
 
   w << "\t\"numElementsOfEachType\": {{" << std::endl;
 
-  for (const auto &[key, value] : d_circuitParameters.getNumEdgeOfEachType())
+  for (const auto &[key, value] : d_circuitParameters.d_numElementsOfEachType)
   {
     if (value != 0)
       w << "\t\t\"" << key << "\": " << value << std::endl;
@@ -266,13 +270,24 @@ bool Circuit::saveParameters(bool i_pathExists = false) const
 
   w << "\t}}," << std::endl;
 
+  w << "\t\"numEdgesOfEachType\": {{" << std::endl;
+  for (const auto &[key, value] : d_circuitParameters.d_numEdgesOfEachType)
+  {
+    if (value != 0)
+      w << "\t\t\"" << key.first << "-" << key.second << "\": " << value << std::endl;
+  }
+  w << "\t}}," << std::endl;
+
+
   w << "}}";
+
+  return true;
 }
 
 bool Circuit::checkExistingHash() // TODO: is it really need return true when hash wrong?
 {
-  std::string path = getParentDirOf(d_path);
-  if (path == "" || !isFileExist(path))
+  std::string path = FilesTools::getParentDirOf(d_path);
+  if (path == "" || !std::filesystem::exists(path))
     return false;
 
   std::ifstream r(path);
@@ -282,7 +297,7 @@ bool Circuit::checkExistingHash() // TODO: is it really need return true when ha
   r >> hash;
 
   while (r >> hash)
-    if (hash != d_cirucitParameters.getHashCode())
+    if (hash != d_circuitParameters.d_hashCode)
       return true;
 
   return false;
@@ -296,22 +311,68 @@ bool Circuit::generate(bool i_pathExists)
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
 
-  updateCircuitParameters();
+  updateCircuitsParameters();
 
   if (!saveParameters())
     return false;
 
-  if (checkExistingHash() || d_circuitParameters.getReliabilit() == 0 || d_circuitParameters.getGates() == 0)
+  if (checkExistingHash() || d_circuitParameters.d_reliability == 0 || d_circuitParameters.d_gates == 0)
   {
     if (!i_pathExists)
-      deleteDirectory(path, true);
+      std::filesystem::remove_all(d_path);
   }
   else
   {
-    std::string path = getParentDirectory(d_path) + "/hashCodes.txt";
-    ofstream w(path, ios_base::out | ios_base::app);
-    w << d_circuitParameters.getHashCode();
+    std::string path = FilesTools::getParentDirOf(d_path) + "/hashCodes.txt";
+    std::ofstream w(path, std::ios_base::out | std::ios_base::app);
+    w << d_circuitParameters.d_hashCode;
   }
 
   return true;
+}
+
+void Circuit::setTable(const TruthTable& i_tt)
+{
+  d_tTable = i_tt;
+}
+
+void Circuit::setPath(const std::string& i_path)
+{
+  d_path = i_path;
+}
+
+void Circuit::setCircuitName(const std::string& i_circName)
+{
+  d_circuitName = i_circName;
+}
+
+bool Circuit::addVertex(const std::string i_vertexName, const std::string& i_operation, const std::string& i_wireName)
+{
+  return d_graph.addVertex(i_vertexName, i_operation, i_wireName);
+}
+
+int Circuit::getIndexOfWireName(const std::string& i_wireName)
+{
+  return d_graph.getIndexOfWireName(i_wireName);
+}
+
+GraphVertex Circuit::getVertice(int i) const
+{
+  return d_graph.getVertice(i);
+}
+
+bool Circuit::addEdge(const std::string& i_vertexFrom, const std::string& i_vertexTo, bool i_isExpression)
+{
+  return d_graph.addEdge(i_vertexFrom, i_vertexTo, i_isExpression);
+}
+
+bool Circuit::addDoubleEdge(const std::string& i_vertexFromFirst, const std::string& i_vertexFromSecond, const std::string& i_vertexTo, bool i_isExpression)
+{
+  return d_graph.addDoubleEdge(i_vertexFromFirst, i_vertexFromSecond,
+    i_vertexTo, i_isExpression);
+}
+
+void Circuit::setVerticeOperation(int i_vertice, const std::string& i_operation)
+{
+  d_graph.setVerticeOperation(i_vertice, i_operation);
 }

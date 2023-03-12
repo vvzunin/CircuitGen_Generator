@@ -1,3 +1,5 @@
+#pragma once
+
 enum MutationTypes
 {
   Binary,
@@ -11,11 +13,16 @@ enum MutationTypes
 class MutationParameters
 {
 public:
-  MutationParameters();
+  MutationParameters() = default;
+  MutationTypes getMutationType() const;
+  double getProbabilityGen() const;
+  int getExchangeType() const;
+  double getProbabilityTruthTable() const;
+  bool operator== (const MutationParameters& r) const;
 
 private:
   MutationTypes d_mutationType = MutationTypes::Binary;
-  double probabilityGen = 0.1;
-  int exchangeType = 0;
-  double probabilityTruthTable = 0.1;
+  double d_probabilityGen = 0.1;
+  int d_exchangeType = 0;
+  double d_probabilityTruthTable = 0.1;
 };

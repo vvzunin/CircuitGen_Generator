@@ -30,18 +30,24 @@ protected:
   double d_keyEndProcessIndex = 0;
 };
 
-//class OrientedGraphParameters : GeneticParameters
-//{
-//
-//private:
-//  int d_maxLevel;
-//  int maxElements;
-//}
+//TODO: is it really need to place it there and not in ../../graph/OrientedGraph.h?
+class OrientedGraphParameters : public GeneticParameters
+{
+public:
+  int getMaxLevel() const;
+  int getMaxElements() const;
+  bool empty() const;
 
-class TruthTableParameters : GeneticParameters
+private:
+  int d_maxLevel = 0;
+  int d_maxElements = 0;
+};
+
+class TruthTableParameters : public GeneticParameters
 {
 public:
   TruthTableParameters(int i_inputs = 0, int i_outputs = 0);
   TruthTableParameters(const GeneticParameters& i_gp);
   int size() const;
+  bool operator== (const TruthTableParameters& r);
 };

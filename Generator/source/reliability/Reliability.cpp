@@ -1,20 +1,43 @@
-#include "Reliability.h"
+#include <cassert>
+#include <cstdlib>
+#include <cmath>
+#include <filesystem>
+#include <iostream>
+#include <nlohmann/json.hpp>
 
-Reliability::Reliability(const OrientedGraph& d_graph, double d_p = 0.5) :
+
+#include "Reliability.h"
+#include "../FilesTools.h"
+
+
+namespace
+{
+  template<typename T1, typename T2>
+  std::vector<T1> getKeysFromMap(const std::map<T1, T2>& m)
+  {
+    std::vector<T1> res;
+    for (const auto &[key, value] : m)
+      res.push_back(key);
+
+    return res;
+  }
+}
+
+Reliability::Reliability(const OrientedGraph& i_graph, double i_p) :
   d_graph(i_graph),
   d_p(i_p) {};
 
 std::map<std::string, std::vector<bool>> Reliability::calc(
-  bool i_withErrorValues = false,
-  bool i_withErrorStrings = false
+  bool i_withErrorValues,
+  bool i_withErrorSetting
 )
 {
   std::vector<std::string> errorValues;
   std::vector<std::string> setErrors;
 
-  if (d_withErrorValues)
+  if (i_withErrorValues)
     errorValues = d_graph.getLogicVerticesToWireName();
-  if (d_withErrorSettings)
+  if (i_withErrorSetting)
     setErrors = d_graph.getLogicVerticesToWireName();
 
   std::vector<std::string> inputs = d_graph.getVerticesByTypeToWireName("input");
@@ -22,35 +45,37 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
 
   std::map<std::string, std::vector<bool>> result;
 
-  for (int i = 0; i < (1u << (inputs.size() + errorValues.size() + setErrors.size())))
+  for (int i = 0; i < (1u << (inputs.size() + errorValues.size() + setErrors.size())); ++i)
   {
     std::map<std::string, bool> map;
     std::map<std::string, bool> mapErrors;
     std::map<std::string, bool> mapErrorsSet;
     int sn = i; //TODO: what is this sn?
 
+    assert(inputs.size() != 0);
+
     for (int j = inputs.size() - 1; j >= 0; --j)
     {
-      map[inputs[j]] = std::static_cast<bool>(sn % 2);
+      map[inputs[j]] = sn % 2;
       sn /= 2;
     }
 
     for (int j = inputs.size() - 1; j >= 0; --j)
     {
-      mapErrors[errorValues[j]] = std::static_cast<bool>(sn % 2);
+      mapErrors[errorValues[j]] = sn % 2;
       sn /= 2;
     }
 
     for (int j = inputs.size() - 1; j >= 0; --j)
     {
-      mapErrorsSet[mapErrorsSet[j]] = std::static_cast<bool>(sn % 2);
+      mapErrorsSet[errorValues[j]] = sn % 2;
       sn /= 2;
     }
 
-    std::map<std::string, bool> res = d_graph.clacGraph(map, mapErrors, withErrorsSetting, mapErrorsSet);
+    std::map<std::string, bool> res = d_graph.calcGraph(map, i_withErrorValues, mapErrors,i_withErrorSetting, mapErrorsSet);
 
     for (const auto &[key, value] : res)
-      result[key] = value;
+      result[key].push_back(value);
   }
 
   return result;
@@ -60,8 +85,8 @@ double Reliability::calcReliabilityBase()
 {
   double reliability = 0;
 
-  int inputs = graph.getVerticesByTypeCount("inputs"); //TODO: rewrite naming
-  int M = graph.getLogicVerticesToWireNameCount();
+  int inputs = d_graph.getVerticesByType("inputs").size(); //TODO: rewrite naming
+  int M = d_graph.getLogicVerticesToWireName().size();
 
   std::map<std::string, std::vector<bool>> dict = calc(false, false);
 
@@ -71,13 +96,13 @@ double Reliability::calcReliabilityBase()
   {
     dictFull[key] = {};
     for (int i = 0; i < (1u << M); ++i)
-      for (int j = 0; j < value; ++j)
+      for (int j = 0; j < value.size(); ++j)
         dictFull[key].push_back(dict[key][j]);
   }
 
   std::map<std::string, std::vector<bool>> dictError = calc(false, true);
 
-  std::vector<std::string> outputs = getKeysFromMap(dict);
+  std::vector<std::string> outputs = getKeysFromMap<std::string>(dict);
 
   for (int j = 0; j < (1u << M); ++j)
   {
@@ -86,11 +111,11 @@ double Reliability::calcReliabilityBase()
     for (int i = 0; i < (1u << inputs); ++i)
     {
       std::vector<bool> f;
-      std::vector<std::bool> ferr;
+      std::vector<bool> ferr;
       for (const auto& s : outputs)
       {
         f.push_back(dict[s][i]);
-        ferr.push_back(dictErrors[s][dict[s].size() * j + i]);
+        ferr.push_back(dictError[s][dict[s].size() * j + i]);
       }
 
       if (f != ferr)
@@ -107,10 +132,10 @@ double Reliability::calcReliabilityBase()
       t /= 2;
     }
 
-    reliability += err * binpow(p, notNull) * binpow(1 - p, M - notNull);
+    reliability += err * pow(d_p, notNull) * pow(1 - d_p, M - notNull);
   }
 
-  return reliability / static_cast<double>(1u << inps);
+  return reliability / static_cast<double>(1u << inputs);
 }
 
 std::map<std::string, double> Reliability::runNadezhda(
@@ -129,64 +154,73 @@ std::map<std::string, double> Reliability::runNadezhda(
   dict["sensitive_area"] = 0;
   dict["sensitive_area_percent"] = 0;
 
-  std::string curPath = getCurrentDirectory();
+  std::string curPath = std::filesystem::current_path().string();
   
   std::string cdCommand = "cd " + d_settings.getPathNadezhda();
   std::string runNadezdhaCommand = d_settings.getNadezhdaVar("python") + " " +
-    d_settings.getNadezdhaVar("resynthesis") + " " + i_path + "/" + i_circuitName +
-    ".v " + d_settings.getNadezdha("liberty") + " " i_path + "/res -y";
+    d_settings.getNadezhdaVar("resynthesis") + " " + i_path + "/" + i_circuitName +
+    ".v " + d_settings.getNadezhdaVar("liberty") + " " + i_path + "/res -y";
+  
+  std::string cpAndNadezdha = cdCommand + " && " + runNadezdhaCommand;
 
-  system(cdCommand + " && " + runNadezdhaCommand);
+  std::system(cpAndNadezdha.c_str());
 
   std::string cpCommand1 = "cp " + i_path + "/res/" + i_circuitName + "r.v " + i_path + "/"
     + i_circuitName + "_Nangate.v";
   std::string cpCommand2 = "cp " + i_path + "/res/" + i_circuitName + "_report.json" + i_path + "/report.json";
   std::string rmCommand = "rm -rf " + i_path + "/res";
 
-  //system(cdCommand + " && " + cpCommand1);
-  //system(cdCommand + " && " + cpCommand2);
-  //system(cdCommand + " && " + rmCommand); 
-  std::cout << cpCommand1 << std::endl;
-  std::cout << cpCommand2 << std::endl;
-  std::cout << rmCommand << std::endl;
+  std::system(cpCommand1.c_str());
+  std::system(cpCommand2.c_str());
+  std::system(rmCommand.c_str()); 
+  //std::cout << cpCommand1 << std::endl;
+  //std::cout << cpCommand2 << std::endl;
+  //std::cout << rmCommand << std::endl;
 
   std::string nadezdhaReliabilityCommand = 
     d_settings.getNadezhdaVar("python") + " " +
     d_settings.getNadezhdaVar("reliability") + " " +
     i_path + "/" + i_circuitName + "_Nangate.v " +
     d_settings.getNadezhdaVar("liberty") + " " +
-    i_path + "/report.txt" + std::endl;
+    i_path + "/report.txt\n";
 
-  std::cout << nadezdhaReliabilityCommand;
+  //std::cout << nadezdhaReliabilityCommand;
 
 
-  //TODO: wait for exit
+  //TODO: wait for exit or proof of work
+  std::system(nadezdhaReliabilityCommand.c_str());
 
-  std::string reportPath = i+path + "/report.json"
+  std::string reportPath = i_path + "/report.json";
 
-  if (isFileExists(reportPath))
+  if (std::filesystem::exists(reportPath))
   {
-    std::string s = FilesTools::readAllFileText(reportPath);
+    //std::string s = FilesTools::loadStringFile(reportPath);
     //TODO: make to json var
-    JSON obj = JSON::read(s);
+    std::ifstream jsonFile(reportPath);
+    nlohmann::json obj = nlohmann::json::parse(jsonFile);
 
-    for (const auto& [key, value] : obj)
+    for (auto it = obj.begin(); it != obj.end(); ++it)
     {
-      if (std::to_string(key) == "before")
+      if (it.key() == "before")
       {
-        if (key == "reliability_metric")
-          dict[key] = static_cast<double>(value);
-        if (key == "area")
-          dict[key] = static_cast<double>(value);
-        if (key == "size")
-          dict[key] = static_cast<double>(value);
-        if (key == "longest_path")
-          dict[key] = static_cast<double>(value);
-
+        for (auto nit = it.value().begin(); nit != it.value().end(); ++nit)
+        {
+          if (nit.key() == "reliability_metric")
+            dict[nit.key()] = static_cast<double>(nit.value());
+          if (nit.key() == "area")
+            dict[nit.key()] = static_cast<double>(nit.value());
+          if (nit.key() == "size")
+            dict[nit.key()] = static_cast<double>(nit.value());
+          if (nit.key() == "longest_path")
+            dict[nit.key()] = static_cast<double>(nit.value());
+        }
       }
     }
-    FilesTools::deleteFile(reportPath);
+    std::filesystem::remove(reportPath);
   }
     
   //TODO: why double check?
+
+  //if (std::filesystem::exists(reportPath))
+  return dict;
 }

@@ -8,31 +8,20 @@ enum RecombinationTypes
   CrossingUniform, //
   CrossingTriadic,
   CrossingReducedReplacement,
-  CorssingShuffling
+  CrossingShuffling
 };
 
 class RecombinationParameters
 {
 public:
-  ParentsParameters getParentsParameters() const
-  {
-    return d_parentsParameters;
-  }
-
-  double getMaskProbability() const
-  {
-    return d_maskProbability;
-  }
-
-  void setRecombinationParameters(int i_rp)
-  {
-    d_recombinationNumber = i_rp;
-  }
-
-  int getRecombinationParameters() const
-  {
-    return d_recombinationNumber;
-  }
+  RecombinationTypes getRecombinationType() const;
+  ParentsParameters getParentsParameters() const;
+  int getRefPoints() const;
+  void setRefPoints(int i_refPoints);
+  double getMaskProbability() const;
+  void setRecombinationParameters(int i_rp);
+  int getRecombinationParameters() const;
+  bool operator== (const RecombinationParameters& r) const;
 
 private:
   RecombinationTypes d_recombinationType = RecombinationTypes::CrossingEachExitInTurnMany;

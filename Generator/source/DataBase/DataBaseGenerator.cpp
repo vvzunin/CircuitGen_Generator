@@ -1,6 +1,12 @@
+#include <iostream>
 #include <filesystem>
 
 #include "../Generators/TruthTable.h"
+#include "../Generators/SimpleGenerators.h"
+#include "../Generators/Parser.h"
+#include "../Generators/Genetic/GenGenerator.h"
+#include "../circuits/CircuitsParameters.h"
+#include "../circuits/Circuit.h"
 #include "../FilesTools.h"
 #include "DataBaseGenerator.h"
 
@@ -13,6 +19,7 @@ void DataBaseGenerator::generateType(
 
   std::string s = i_dbgp.getGenerationTypeString();
   std::function<void(const GenerationParameters&)> generator = getGenerateMethod(s);
+  //TODO: make normal code
 
   std::string dir = d_settings.getDatasetPath() + "/" + s;
 
@@ -64,18 +71,18 @@ void DataBaseGenerator::generateType(
 
 void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationParameters& i_param)
 {
-  TruthTable<Chronosome<TruthTable>> tt(i_param.getInputs(), i_param.getOutputs(), {});
+  TruthTable tt(i_param.getInputs(), i_param.getOutputs(), {});
   tt.generateRandom({i_param.getInputs(), i_param.getOutputs()});
 
   SimpleGenerators tftt;
 
-  std::string<std::pair<std::string, std::vector<std::string>>> circs;
+  std::vector<std::pair<std::string, std::vector<std::string>>> circs;
 
-  if (i_param.cnfFromTruthTableParameters.CNFT)
-    circs.push_back("CNFT", tftt.cnfFromTruthTable(tt, true));
+  if (i_param.getCNF().getCNFT())
+    circs.push_back({"CNFT", tftt.cnfFromTruthTable(tt, true)});
 
-  if (i_param.cnfFromTruthTableParameters.CNFF)
-    circs.push_back("CNFF", tftt.cnfFromTruthTable(tt, false));
+  if (i_param.getCNF().getCNFF())
+    circs.push_back({"CNFF", tftt.cnfFromTruthTable(tt, false)});
 
   for (const auto& [name, expr] : circs)
   {
@@ -84,24 +91,24 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
     
     OrientedGraph graph = pCNFT.getGraph();
     Circuit c(graph, expr);
-    c.settTable(tt);
+    c.setTable(tt);
     c.setPath(d_mainPath + "/FromRandomTruthTable/");
     c.setCircuitName(i_param.getName() + "_" + name);
     c.generate();
   }
 }
 
-void DataBaseGenerator::generateDataBaseRandLevel(GenerationParameters i_param)
+void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters& i_param)
 {
-  SimpleGenerator generator;
-  std::vector<std::pair<std::string, std::vector<std::string>>> circs;
-  circs.push_back("RandLevel",
-                  generator.generatorRandLevel(i_param.generatorRandLevelParameters.maxLevel,
-                                               i_param.generatorRandLevelParameters.maxElements,
+  SimpleGenerators generator;
+  std::vector<std::pair<std::string, OrientedGraph>> circs;
+  circs.push_back({"RandLevel",
+                  generator.generatorRandLevel(i_param.getRandLevel().getMaxLevel(),
+                                               i_param.getRandLevel().getMaxElements(),
                                                i_param.getInputs(),
                                                i_param.getOutputs()
                                                )
-  );
+  });
 
   for (const auto& [name, graph] : circs)
   {
@@ -112,33 +119,34 @@ void DataBaseGenerator::generateDataBaseRandLevel(GenerationParameters i_param)
   }
 }
 
-void DataBaseGenerator::generateDataBaseNumOperation(GenerationParameters i_param)
+void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters& i_param)
 {
-  SimpleGenerator generator;
+  SimpleGenerators generator;
   std::vector<std::pair<std::string, OrientedGraph>> circs;
-  circs.push_back("RandLevel", 
+  circs.push_back({"RandLevel", 
                   generator.generatorNumOperation(
-                    i_param.inputs,
-                    i_param.generatorNumOperationParameters.getLogicOper,
-                    i_param.generatorNumOperationParameters.getLeaveEmptyOut
+                    i_param.getInputs(),
+                    i_param.getOutputs(),
+                    i_param.getNumOperations().getLogicOpers(),
+                    i_param.getNumOperations().getLeaveEmptyOut()
                   )
-  );
+  });
   
-  for (const auto &[name expr] : circs)
+  for (const auto &[name, graph] : circs)
   {
     Circuit c(graph);
     c.setPath(d_mainPath + "/NumOperation/");
-    c.setCircuitName(i_param.name);
+    c.setCircuitName(i_param.getName());
     c.generate();
   }
 }
 
 void DataBaseGenerator::generateDataBaseGenetic(GenerationParameters i_param)
 {
-  i_param.geneticParameters.setInputs(param.getInputs());
-  i_param.geneticParameters.setOutputs(param.getOutputs());
+  i_param.getGenetic().setInputs(i_param.getInputs());
+  i_param.getGenetic().setOutputs(i_param.getOutputs());
 
-  GeneticGeneration<TruthTable, TruthTableParameters> gg({i_param.getGeneticParameters()},
+  GeneticGenerator<TruthTable, TruthTableParameters> gg({i_param.getGenetic()},
                                                          {i_param.getInputs(), i_param.getOutputs()},
                                                          d_mainPath + "/");
   gg.generate();
@@ -147,15 +155,15 @@ void DataBaseGenerator::generateDataBaseGenetic(GenerationParameters i_param)
 std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateMethod(const std::string& i_methodName)
 {
   if (i_methodName == "FromRandomTruthTable")
-    return generateDataBaseFromRandomTruthTable;
+    return std::bind(&DataBaseGenerator::generateDataBaseFromRandomTruthTable, this, std::placeholders::_1);
   if (i_methodName == "RandLevel")
-    return generateDataBaseRandLevel;
+    return std::bind(&DataBaseGenerator::generateDataBaseRandLevel, this, std::placeholders::_1);
   if (i_methodName == "NumOperation")
-    return generateDataBaseNumOperations;
+    return std::bind(&DataBaseGenerator::generateDataBaseNumOperations, this, std::placeholders::_1);
   if (i_methodName == "Genetic")
-    return generateDataBaseGenetic;
+    return std::bind(&DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1);
 
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;
-  return generateDataBaseFromRandomTruthTable;
+  return std::bind(&DataBaseGenerator::generateDataBaseFromRandomTruthTable, this, std::placeholders::_1);
 
 }

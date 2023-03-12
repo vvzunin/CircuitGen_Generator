@@ -20,6 +20,13 @@ public:
   std::string fromOperationsToName(const std::string& i_op) const;
   std::string getDatasetPath() const;
   std::string getGenerationMethodPrefix(const std::string& i_s) const;
+  int getMaxInputs() const;
+  int getMaxOutputs() const;
+  std::map<std::string, std::pair<std::string, int>> getLogicOperations() const;
+  std::string getPathNadezhda() const;
+  std::string getNadezhdaVar(const std::string& key) const;
+  std::vector<std::string> fromOperationsToHierarchy(int key) const;
+
 private:
   void SaveSettings();
 

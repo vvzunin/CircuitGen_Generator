@@ -3,6 +3,8 @@
 #include <string>
 #include <utility>
 
+#include "ChronosomeTypes.h"
+
 template<typename Type, typename ParametersType>
 class GeneticGenerator
 {
@@ -26,4 +28,5 @@ private:
     const std::vector<ChronosomeType<Type, ParametersType>>& i_population
   );
   void createPopulation();
-}
+  double endProcessFunction() const;
+};

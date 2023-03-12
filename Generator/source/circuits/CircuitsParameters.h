@@ -1,14 +1,17 @@
+#pragma once
+
 #include <string>
 #include <map>
 
 class CircuitParameters
 {
 public:
-  CircuitParameters(){};
+  CircuitParameters() = default;
   
+  // TODO: rewrite getters and setters
   std::string d_name = "";
   int d_numInputs = 0;
-  int d_munOutputs = 0;
+  int d_numOutputs = 0;
   int d_maxLevel = 0;
   int d_numEdges = 0;
   double d_reliability = 0.;
@@ -20,11 +23,7 @@ public:
   double d_reliabilityPercent = 0.;
   double d_sensitiveArea = 0.;
   double d_sensitiveAreaPercent = 0.;
-  std::string hashCode = "";
-  std::map<std::string, int> numElementsOfEachType;
-  std::map<std::pair<std::string, std::string>, int> numEdgesOfEachType;
-
-  
-
-
-}
+  std::string d_hashCode = "";
+  std::map<std::string, int> d_numElementsOfEachType;
+  std::map<std::pair<std::string, std::string>, int> d_numEdgesOfEachType;
+};

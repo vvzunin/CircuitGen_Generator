@@ -1,11 +1,13 @@
+#pragma once
+
 enum GenotypeParametersTypes
 {
-  TruthTable
+  TruthTableEnum
 };
 
 template<typename T>
 class Chronosome
 {
 public:
-  virtual generateRandom(T i_gp) = 0;
+  virtual void generateRandom(T i_gp) = 0;
 };

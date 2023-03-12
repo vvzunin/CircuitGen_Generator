@@ -2,8 +2,9 @@
 #include <algorithm>
 #include <vector>
 
+#include "MutationTruthTable.h"
 
-std::vector<vector<bool>> MutationTable(const vector<vector<bool>>& i_table,
+std::vector<std::vector<bool>> MutationTable(std::vector<std::vector<bool>> i_table,
                                             double i_probability)
 {
   std::srand(std::time(0));
@@ -11,30 +12,31 @@ std::vector<vector<bool>> MutationTable(const vector<vector<bool>>& i_table,
   std::uniform_real_distribution<double> distribution(0.0,1.0);
   for (int i = 0; i < i_table.size(); ++i)
   {
-    for (int j = 0; j < table[i].size(); ++j)
+    for (int j = 0; j < i_table[i].size(); ++j)
     {
       if (distribution(generator) < i_probability)
       {
-        table[i][j] = !table[i][j];
+        i_table[i][j] = !i_table[i][j];
       }
     }
   }
-  return table;
+  return i_table;
 }
 
-std::vector<ChronosomeType<TruthTable, TruthParameters>> MutationBinary(
+std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationBinary(
   MutationParameters i_mutationParameters,
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
-  std::vector<ChromosomeType<TruthTable, TruthTableParameters>> mutants;
+  std::vector<ChronosomeType<TruthTable, TruthTableParameters>> mutants;
   int num_mut, k, n;
-  int size = i_population[i].chronosome.OutTable;
+  int size = i_population[0].getChronosomeType().size();
+  int output = i_population[0].getChronosomeType().getOutput();
   std::srand(time(0));
   for (int i = 0; i < i_population.size(); ++i)
   {
     num_mut = (rand() % (size * output)) + 1;
-    std::vector<std::vector<bool>> mutant = i_population[i].chronosome.OutTable;
+    std::vector<std::vector<bool>> mutant = i_population[i].getChronosomeType().getOutTable();
     std::vector<int> m;
     for (int j = 0; j < num_mut; ++j)
     {
@@ -43,18 +45,18 @@ std::vector<ChronosomeType<TruthTable, TruthParameters>> MutationBinary(
         n = rand() % output;
         k = rand() % size;
       }
-      while (m.find(k*output + n) != m.end())
+      while (std::find(m.begin(), m.end(), k*output + n) != m.end());
       m.push_back(k*output + n);
       mutant[k][n] = !mutant[k][n];
     }
-    TruthTable tt = {i_population[i].chronosome, mutant};
-    ChronosomeType<TruthTable, TruthTableParameters> tmp = {population[i].Name, tt};
+    TruthTable tt = {i_population[i].getChronosomeType(), mutant};
+    ChronosomeType<TruthTable, TruthTableParameters> tmp = {i_population[i].getName(), tt};
     mutants.push_back(tmp);
   }
   return mutants;
 }
 
-vector<CrhonosomeType<TruthTable, TruthTableParameters>> MutationDensity(
+std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationDensity(
   MutationParameters i_mutationParameters,
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
@@ -63,18 +65,21 @@ vector<CrhonosomeType<TruthTable, TruthTableParameters>> MutationDensity(
   std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution(0.0,1.0);
   
-  TruthTable tt = {population[0].chronosome.Input, population[0].chronosome.Output, NULL};
-  std::vector<bool> bin = tt.OutTable;
+  TruthTable tt = {i_population[0].getChronosomeType().getInput(), i_population[0].getChronosomeType().getOutput(), {}};
+  //std::vector<bool> bin = tt.getOutTable();
 
   for (int i = 0; i < i_population.size(); ++i)
   {
-    if (distribution(generator) < mutationParameters.probabilityGen)
+    if (distribution(generator) < i_mutationParameters.getProbabilityGen())
     {
-      std::vector<std::vector<bool>> mutant = MutationTalbe(i_mutationParameters.probabilityTruthTable, i_popultaion[i].chronosome.OutTbale);
-      population[i].chronosome = TruthTable(i_population[i].chronosome, mutant);
+      std::vector<std::vector<bool>> mutant = MutationTable(
+        i_population[i].getChronosomeType().getOutTable(),
+        i_mutationParameters.getProbabilityTruthTable()
+      );
+      i_population[i].setChronosomeType(TruthTable(i_population[i].getChronosomeType(), mutant));
     }
   }
-  return population;
+  return i_population;
 }
 
 std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationAccessionDel(
@@ -85,18 +90,18 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationAccessionD
   std::srand(std::time(0));
   std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution(0.0,1.0);
-  int size = i_population[0].chronosome.size();
+  int size = i_population[0].getChronosomeType().size();
 
-  TrturhTable tt = {i_population[0].chronosome.Input, i_population[0].chronosome.Output, NULL};
-  std::vector<std::vector<bool>> bin = tt.OutTable;
+  TruthTable tt = {i_population[0].getChronosomeType().getInput(), i_population[0].getChronosomeType().getOutput(), {}};
+  std::vector<std::vector<bool>> bin = tt.getOutTable();
 
   for (int i = 0; i < i_population.size(); ++i)
   {
-    if(distribution(generator) < i_mutationParameters.probabilityGen)
+    if(distribution(generator) < i_mutationParameters.getProbabilityGen())
     {
-      std::vector<std::vector<bool>> bin2 = i_population[i].chronosome;
-      bin2[size - 1] = bin[rand % size];
-      population[i].chronosome = {i_population[0].chronosome, bin2};
+      std::vector<std::vector<bool>> bin2 = i_population[i].getChronosomeType().getOutTable();
+      bin2[size - 1] = bin[rand() % size];
+      i_population[i].setChronosomeType(TruthTable(i_population[0].getChronosomeType(), bin2));
     }
   }
   return i_population;
@@ -111,18 +116,18 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationInsertDel(
   std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution(0.0,1.0);
 
-  int size = i_population[0].chronosome.size();
+  int size = i_population[0].getChronosomeType().size();
   
-  TruthTable tt = {i_population[0].chronosome};
-  std::vector<std::vector<bool>> bin = tt.OutTable;
+  TruthTable tt = {i_population[0].getChronosomeType()};
+  std::vector<std::vector<bool>> bin = tt.getOutTable();
 
-  for (int i = 0; i < population.size(); ++i)
+  for (int i = 0; i < i_population.size(); ++i)
   {
-    if (distribution(generator) < i_mutationParameters.probabilityGen)
+    if (distribution(generator) < i_mutationParameters.getProbabilityGen())
     {
-      std::vector<std::vector<bool>> bin2 = i_population[i].chronosome;
-      bin2[rand % size] = bin[rand % size];
-      population[i].chronosome = {population[0].chronosome, bin2};
+      std::vector<std::vector<bool>> bin2 = i_population[i].getChronosomeType().getOutTable();
+      bin2[rand() % size] = bin[rand() % size];
+      i_population[i].setChronosomeType(TruthTable(i_population[0].getChronosomeType(), bin2));
     }
   }
   return i_population;
@@ -130,40 +135,40 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationInsertDel(
 
 std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationExchange(
   MutationParameters i_mutationParameters,
-  std::vector<ChronosomeTpye<TruthTable, TruthTableParameters>> i_population
+  std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
   std::srand(std::time(0));
   std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution(0.0,1.0);
   
-  int type = i_mutationParameters.exchangeType;
-  int size = i_population[0].chronosome.size();
-  int output = i_population[0].chronosome.Output;
+  int type = i_mutationParameters.getExchangeType();
+  int size = i_population[0].getChronosomeType().size();
+  int output = i_population[0].getChronosomeType().getOutput();
 
   int k = rand() % size;
   int n = rand() % output;
 
-  for (int z = 0; z < population.size(); ++z)
+  for (int z = 0; z < i_population.size(); ++z)
   {
-    if (distribution(generator) < i_mutationParameters.probabilityGen)
+    if (distribution(generator) < i_mutationParameters.getProbabilityGen())
     {
       if (type == 0 || type == 1 || type == 2)
       {
         if (type == 0 || type == 1)
         {
-          std::vector<std::vector<bool>> bin = i_population[z].chronosome;
+          std::vector<std::vector<bool>> bin = i_population[z].getChronosomeType().getOutTable();
           std::swap(bin[k - 1][n], bin[k + 1][n]);
-          i_population[z].chronosome = {i_population[z].chronosome, bin};
+          i_population[z].setChronosomeType(TruthTable(i_population[z].getChronosomeType(), bin));
         }
 
         if (type == 0 || type == 2) 
         {
-          std::vector<std::vector<bin>> = i_population[z].chronosome;
+          std::vector<std::vector<bool>> bin = i_population[z].getChronosomeType().getOutTable();
           std::swap(bin[k - 1], bin[k + 1]);
-          i_population[z].chronosome = {i_population[z].chronosome.Input,
-                                      i_population[z].chronosome.Output,
-                                      bin};
+          i_population[z].setChronosomeType(TruthTable(i_population[z].getChronosomeType().getInput(),
+                                      i_population[z].getChronosomeType().getOutput(),
+                                      bin));
         }
       }
     }
@@ -180,26 +185,26 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationDelete(
   std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution(0.0,1.0);
   
-  int size = i_population[0].chronosome.size();
-  int output = i_population[0].chronosome.Output;
+  int size = i_population[0].getChronosomeType().size();
+  int output = i_population[0].getChronosomeType().getOutput();
 
   for (int i = 0; i < i_population.size(); ++i)
   {
-    if (distribution(generator) < i_mutationParameters.probabilityGen)
+    if (distribution(generator) < i_mutationParameters.getProbabilityGen())
     {
-      for (int j = 0; j < size(); ++j)
+      for (int j = 0; j < size; ++j)
       {
         for (int k = 0; k < output; ++k)
         {
-          if (distribution(generator) < i_mutationParameters.probabilityTruthTable)
+          if (distribution(generator) < i_mutationParameters.getProbabilityTruthTable())
           {
-            std::vector<std::vector<bool>> bin = i_population[i].chronosome;
+            std::vector<std::vector<bool>> bin = i_population[i].getChronosomeType().getOutTable();
             bin[j][k] = false;
-            population[i].chronosome = {i_population[i].chronosome, bin};
+            i_population[i].setChronosomeType(TruthTable(i_population[i].getChronosomeType(), bin));
           }
         }
       }
     }
   }
-  return i_population
+  return i_population;
 }

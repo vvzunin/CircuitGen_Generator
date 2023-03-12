@@ -1,0 +1,3 @@
+/Users/danilmacin/hse/iot/coursach/MIEM_coursach/Generator/source/CMakeFiles/main.cpp.dir
+/Users/danilmacin/hse/iot/coursach/MIEM_coursach/Generator/source/CMakeFiles/edit_cache.dir
+/Users/danilmacin/hse/iot/coursach/MIEM_coursach/Generator/source/CMakeFiles/rebuild_cache.dir

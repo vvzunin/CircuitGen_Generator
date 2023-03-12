@@ -1,3 +1,4 @@
+#pragma once
 
 enum ParentsTypes{
   Panmixia,
@@ -11,6 +12,9 @@ class ParentsParameters {
 public:
   void setParentsType(ParentsTypes i_parentsTypes);
   ParentsTypes getParentsType() const;
+  void setTournamentNumber(int i_tournamentNumber);
+  int getTournamentNumber() const;
+  bool operator== (const ParentsParameters& r) const;
 
 private:
   int d_tournamentNumber = 2;

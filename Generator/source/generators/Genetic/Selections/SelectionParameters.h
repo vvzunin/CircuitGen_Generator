@@ -9,15 +9,9 @@ enum SelectionTypes
 class SelectionParameters
 {
 public:
-  int getNumOfSurvivors() const
-  {
-    return d_numOfSurvivors;
-  }
-
-  void setNumOfSurvivors(int i_survivors)
-  {
-    d_numOfSurvivors = i_survivors;
-  }
+  int getNumOfSurvivors() const;
+  void setNumOfSurvivors(int i_survivors);
+  bool operator== (const SelectionParameters& r) const;
 
 private:
   SelectionTypes d_selectionType = SelectionTypes::Base;

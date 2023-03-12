@@ -1,5 +1,8 @@
 #pragma once
 
+#include "../graph/OrientedGraph.h"
+#include "./TruthTable.h"
+
 class SimpleGenerators
 {
 public:
@@ -10,11 +13,11 @@ public:
     int i_input,
     int i_output,
     std::map<std::string, int> i_logicOper,
-    bool i_leaveEmptyOut = true,
+    bool i_leaveEmptyOut = true
   );
 
 private:
   Settings d_settings;
-  void delNull(std::map<std::string, int>& i_copyLogicOper);
+  std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);
   std::string randomGenerator(const std::map<std::string, int>& i_map);
-}
+;};

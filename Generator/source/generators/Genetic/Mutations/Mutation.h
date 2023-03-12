@@ -1,7 +1,12 @@
+#pragma once
+
 #include <vector>
 
+#include "MutationParameters.h"
+#include "../ChronosomeTypes.h"
+
 template<typename Type, typename ParametersType>
-class Mutations<Type, ParametersType>
+class Mutations
 {
 public:
   std::vector<ChronosomeType<Type, ParametersType>> MutationType(
@@ -12,4 +17,4 @@ public:
 
 private:
   
-}
+};

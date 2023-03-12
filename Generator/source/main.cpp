@@ -10,7 +10,7 @@ int main()
   //TODO:: make function that return DataBaseGeneratorParameters from json
 
   GenerationParameters gp("My_first_test", 2, 4, 0);
-  DataBaseGeneratorParameters dbgp(2, 4, 3, 5, 3, GenerationTypes::truthTableToGraphWithoutOptimization, gp);
+  DataBaseGeneratorParameters dbgp(2, 4, 3, 5, 3, GenerationTypes::FromRandomTruthTable, gp);
 
   DataBaseGenerator generator(dbgp);
 

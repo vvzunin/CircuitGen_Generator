@@ -1,5 +1,10 @@
 #pragma once
 
+#include <map>
+#include <string>
+
+#include "../graph/OrientedGraph.h"
+
 class Reliability
 {
 public:
@@ -13,8 +18,8 @@ public:
 
 
 private:
-  OreintedGraph d_graph;
+  OrientedGraph d_graph;
   double d_p;
   Settings d_settings;
 
-}
+};

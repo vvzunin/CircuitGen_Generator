@@ -27,17 +27,17 @@ namespace
 
 Parser::Parser(const std::string& i_logExpression)
 {
-  d_graph.setVertexCount(0);
+  //d_graph.setVertexCount(0); TODO: wtf? https://github.com/RomeoMe5/CAD_Combinational_Circuits/blob/7ae1fe61eb61e1751147a8598b7a25c976d233b3/Generator/source/Generators/Parsing.cs#L29
   d_logExpressions.push_back(deleteDoubleSpaces(i_logExpression));
-  d_settings = readSettings();
+  d_settings.loadSettings();
 }
 
-Parser::Parser(const std::string& i_logExpressions)
+Parser::Parser(const std::vector<std::string>& i_logExpressions)
 {
-  d_graph.setVertexCount(0);
+  //d_graph.setVertexCount(0); TODO: wtf? https://github.com/RomeoMe5/CAD_Combinational_Circuits/blob/7ae1fe61eb61e1751147a8598b7a25c976d233b3/Generator/source/Generators/Parsing.cs#L42
   for (const auto& expression : i_logExpressions)
-    d_logExpressions.push_back(i_logExpression);
-  d_settings = readSettings();
+    d_logExpressions.push_back(expression);
+  d_settings.loadSettings();
 }
 
 OrientedGraph Parser::getGraph() const
@@ -50,41 +50,42 @@ std::pair<bool, std::vector<std::pair<int, int>>> Parser::createBrackets(const s
   std::vector<std::pair<int, int>> brackets;
   for (int i = 0; i < i_expr.length(); ++i)
   {
-    if (expr[i] == '(')
+    if (i_expr[i] == '(')
     {
       brackets.push_back({i, -1});
     }
-    if (expr[i] == ')')
+    if (i_expr[i] == ')')
     {
       int j = static_cast<int>(brackets.size()) - 1;
-      while (j >= 0 && brackets[j].Item2 != -1)
+      while (j >= 0 && brackets[j].second != -1)
         --j;
 
       if (j == -1)
-        return {false, {-1, -1}};
+        return {false, {{-1, -1}}};
 
-      brackets[j] = {brackets[j].Item1, i};
+      brackets[j] = {brackets[j].first, i};
     }
   }
 
-  int u = static_cast<int>(brackets) - 1;
-  while (u >= 0 && brackets[u].Item2 != -1)
+  int u = static_cast<int>(brackets.size()) - 1;
+  assert(u >= 0);
+  while (u >= 0 && brackets[u].second != -1)
     --u;
   
   if (u == -1)
     return {true, brackets};
 
-  return {false, {-1, -1}};
+  return {false, {{-1, -1}}};
 }
 
 bool Parser::inBrackets(const std::vector<std::pair<int, int>>& i_brackets, int i_position) const
 {
   int i = static_cast<int>(i_brackets.size()) - 1;
 
-  while (i >= 0 && !(i_poisition > brackets[i] && i_position < brackets[i].Item2))
-    j--;
+  while (i >= 0 && !(i_position > i_brackets[i].first && i_position < i_brackets[i].second))
+    i--;
 
-  if (j == -1)
+  if (i == -1)
     return false;
   return true;
 }
@@ -96,57 +97,51 @@ std::string deleteExtraSpace(const std::string& i_s)
   {
     if (i_s[i] != ' ')
     {
-      l = min(l, i);
+      l = std::min(l, i);
       r = i;
     }
   }
   return i_s.substr(l, r - l + 1);
 }
 
-std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(string i_expr)
+std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(std::string i_expr)
 {
   bool f = true;
   int l = 0;
 
-  while (f && l <= d_settings.getLogicOperations("input").second)
+  while (f && l <= d_settings.getLogicOperation("input").second)
   {
     std::vector<std::string> operations = d_settings.fromOperationsToHierarchy(l);
     if (i_expr == "1'b1")
       i_expr = i_expr; //what?
 
-    for (const auto& op : operation)
+    for (const auto& op : operations)
     {
-      int index = i_expr.find(op) - i_expr.begin();
-      while (index != i_expr.length())
+      int index = i_expr.find(op);
+      while (index != i_expr.length() && index != std::string::npos)
       {
-        std::pair<bool, std::vector<std::pair<int, int>>> brackets = CreateBracketsList(i_expr);
+        std::pair<bool, std::vector<std::pair<int, int>>> brackets = createBrackets(i_expr);
         if (!inBrackets(brackets.second, index))
         {
           std::vector<std::string> lst;
           std::string newOp = d_settings.fromOperationsToName(op);
           lst.push_back(deleteExtraSpaces(newOp));
-          switch(newOp)
+          if (newOp == "not")
+            lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));
+          else if (newOp == "buff")
+            lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));
+          else if (newOp == "input")
+            lst.push_back(deleteExtraSpaces(i_expr));
+          else if (newOp == "const")
+            lst.push_back(deleteExtraSpaces(i_expr));
+          else
           {
-            case "not":
-              lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));
-              break;
-            case "buff":
-              lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));
-              break;
-            case "input":
-              lst.push_back(deleteExtraSpaces(i_expr));
-              break;
-            case "const":
-              lst.push_back(deleteExtraSpaces(i_expr));
-              break;
-            default:
-              lst.push_back(deleteExtraSpaces(i_expr.substr(0, index)));
-              lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));
-              break;
+            lst.push_back(deleteExtraSpaces(i_expr.substr(0, index)));
+            lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));
           }
           return {index, lst}; //what?
         }
-        index = i_expr.find(op, i_expr() + index + 1) - i_expr.begin();
+        index = i_expr.find(op, index + 1);
       }
     }
     l++;
@@ -154,15 +149,15 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(string i_e
   return {-1, {}};
 }
 
-Parser::parse(const std::string& i_expr) //what? change true/false
+bool Parser::parse(const std::string& i_expr) //what? change true/false
 {
-  std::pair<int, std::vector<std::string>> t = splitLogicExpression(i_expression);
+  std::pair<int, std::vector<std::string>> t = splitLogicExpression(i_expr);
   if (t.first == -1)
     return false;
 
   if (t.second[0] == "output")
   {
-    std::vector<std::pair<int, int>> bl = createBracketsList(t.second[2]).second;
+    std::vector<std::pair<int, int>> bl = createBrackets(t.second[2]).second;
     for (auto tl : bl)
       if (tl.first == 0 && tl.second == t.second[2].size() - 1)
         t.second[2] = t.second[2].substr(1, t.second[2].size() - 2);
@@ -185,11 +180,11 @@ Parser::parse(const std::string& i_expr) //what? change true/false
     {
       std::string part = t.second[i];
 
-      std::vector<std::pair<int, int>> bl = createBracketsList(part).second;
+      std::vector<std::pair<int, int>> bl = createBrackets(part).second;
 
       for (auto tl : bl)
-        if (tl.first == 0 && tl.second == static_cast<int>(part.legth()) - 1)
-          part = part.substr(1, static_cast<int>(part.length()) - 1);
+        if (tl.first == 0 && tl.second == static_cast<int>(part.size()) - 1)
+          part = part.substr(1, static_cast<int>(part.size()) - 1);
 
       std::pair<int, std::vector<std::string>> tt = splitLogicExpression(part);
       if (tt.first == -1)
@@ -204,15 +199,25 @@ Parser::parse(const std::string& i_expr) //what? change true/false
   return true;
 }
 
-Parser::parseAll()
+bool Parser::parseAll()
 {
   d_graph = OrientedGraph();
   for (int i = 0; i < d_logExpressions.size(); ++i)
-  {
-    if (createBracketsList(d_logExpressions[i]).first != -1)
-      if (parse(d_logExpressions[i]) != -1)
+    if (createBrackets(d_logExpressions[i]).first)
+      if (!parse(d_logExpressions[i]))
         return false;
+  return true;
+}
 
-    return true;
-  }
+std::string Parser::deleteExtraSpaces(std::string i_s)
+{
+  int i = 0;
+  while (i_s[i] == ' ')
+    ++i;
+  i_s.erase(0, i);
+
+  while (i_s.size() > 0 && i_s.back() == ' ')
+    i_s.pop_back();
+
+  return i_s;
 }

@@ -8,6 +8,8 @@
 class CNNFromTruthTableParameters
 {
 public:
+  bool getCNFF() { return d_CNFF; }
+  bool getCNFT() { return d_CNFT; }
 
 private:
   bool d_generateLimitations = false;
@@ -51,6 +53,11 @@ public:
     if (d_logicOper.find(i_op) != d_logicOper.end())
       return d_logicOper.at(i_op);
     return -1;
+  }
+
+  std::map<std::string, int> getLogicOpers() const
+  {
+    return d_logicOper;
   }
 
   void setLogicOper(const std::pair<std::string, int>& i_p)
@@ -133,6 +140,11 @@ public:
   {
     d_iteration = i_iteration;
   }
+
+  CNNFromTruthTableParameters getCNF() const { return d_cnfFromTruthTableParameters; }
+  GeneratorRandLevelParameters getRandLevel() const { return d_generatorRandLevelParameters; }
+  GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; }
+  GeneticParameters& getGenetic() { return d_geneticParameters; }
 
 private:
   std::string d_name = "";

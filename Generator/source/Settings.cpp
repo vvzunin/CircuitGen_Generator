@@ -80,6 +80,21 @@ std::vector<std::string> Settings::getLogicOperationsKeys()
   return res;
 }
 
+std::string Settings::getPathNadezhda() const
+{
+  return d_pathToNadezhda;
+}
+
+std::string Settings::getNadezhdaVar(const std::string& key) const
+{
+  return d_nadezhda.at(key);
+}
+
+std::vector<std::string> Settings::fromOperationsToHierarchy(int key) const
+{
+  return d_operationsToHierarchy.at(key);
+}
+
 std::string Settings::fromOperationsToName(const std::string& i_op) const
 {
   return d_operationsToName.at(i_op);
@@ -134,4 +149,19 @@ std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const
   std::cout << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
 
   return "ftt";
+}
+
+int Settings::getMaxInputs() const
+{
+  return d_maxInputs;
+}
+
+int Settings::getMaxOutputs() const
+{
+  return d_maxOutputs;
+}
+
+std::map<std::string, std::pair<std::string, int>> Settings::getLogicOperations() const
+{
+  return d_logicOperations;
 }

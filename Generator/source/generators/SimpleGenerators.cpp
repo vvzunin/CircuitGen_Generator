@@ -1,4 +1,5 @@
 #include "SimpleGenerators.h"
+#include "../graph/OrientedGraph.h"
 
 namespace {
   int maxValueInMap(const std::map<std::string, int>& i_map)
@@ -20,26 +21,26 @@ namespace {
 SimpleGenerators::SimpleGenerators()
 {
   std::srand(std::time(0));
-  d_settings.loadSettings()
+  d_settings.loadSettings();
 }
 
 std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
   const TruthTable& i_table, 
-  bool i_tp = true
+  bool i_tp
 )
 {
   std::vector<std::string> fun;
   std::vector<std::vector<bool>> bin = i_table.convToBinary();
 
-  for (int j = 0; j < i_table.getOutput; ++j)
+  for (int j = 0; j < i_table.getOutput(); ++j)
   {
-    fun.push_back("f" + std::tostring(j) + " = ");
+    fun.push_back("f" + std::to_string(j) + " = ");
     int mem = 0;
     int tmp = 0;
 
     for (int i = 0; i < i_table.size(); ++i)
     {
-      if (!(i_table.getOutTable(int i, int j) ^ i_tp))
+      if (!(i_table.getOutTable(i, j) ^ i_tp))
         mem++;
     }
 
@@ -64,30 +65,30 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
     for (int i = 0; i < mem; ++i)
     {
       fun[j] += '(';
-      while ((table.getOutTable(tmp, j) ^ i_tp) && tmp < i_table.size())
+      while ((i_table.getOutTable(tmp, j) ^ i_tp) && tmp < i_table.size())
         tmp++;
 
       for (int k = 0; k < i_table.getInput(); ++k)
       {
         if (bin[tmp][k] ^ i_tp)
-          fun[j] ++ settings.getLogicOperations("not").first + " ";
+          fun[j] += d_settings.getLogicOperation("not").first + " ";
 
         fun[j] += 'x';
-        fun[j] += std::tostring(k);
+        fun[j] += std::to_string(k);
 
         if (k != i_table.getInput() - 1)
-          fun[j] += " " (i_tp ? 
-                           settings.getLogicOperations("and").first : 
-                           settings.getLogicOperation("or").first
+          fun[j] += " " + (i_tp ? 
+                           d_settings.getLogicOperation("and").first : 
+                           d_settings.getLogicOperation("or").first
                         ) + " ";
       }
 
       fun[j] += ')';
 
       if (i != mem - 1)
-        fun[j] += " " (i_tp ? 
-                       settings.getLogicOperation("or").first : 
-                       settings.getLogicOperation("and").first
+        fun[j] += " " + (i_tp ? 
+                       d_settings.getLogicOperation("or").first : 
+                       d_settings.getLogicOperation("and").first
                       ) + " ";
 
       tmp++;
@@ -99,17 +100,17 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
 
 OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs)
 {
-  int i_maxLevel = rand() % d_maxLevel;
-  std::vector<int> elemLevel(i_maxLevel + 1);
+  int maxLevel = rand() % i_maxLevel;
+  std::vector<int> elemLevel(maxLevel + 1);
   std::vector<std::string> logOper = d_settings.getLogicOperationsKeys();
-  logOper.erase(logOper.find("input"));
-  logOper.erase(logOper.find("output"));
-  logOper.erase(logOper.find("const"));
+  logOper.erase(std::find(logOper.begin(), logOper.end(), "input"));
+  logOper.erase(std::find(logOper.begin(), logOper.end(), "output"));
+  logOper.erase(std::find(logOper.begin(), logOper.end(), "const"));
 
   //maxLevel++ // what?
   elemLevel[0] = i_inputs;
   elemLevel[maxLevel] = i_outputs;
-  for (int i = 1; i < d_maxLevel; ++i)
+  for (int i = 1; i < maxLevel; ++i)
     elemLevel[i] = (rand() % (i_maxElements - 1)) + 2;
 
   int choice;
@@ -119,7 +120,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
 
   for (int i = 0; i < elemLevel[0]; ++i)
   {
-    expression = "x" + std::tostring(i);
+    expr = "x" + std::to_string(i);
     graph.addVertex(expr, "input");
   }
 
@@ -134,8 +135,8 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
       choice = rand() % logOper.size();
       if (logOper[choice] == "not")
       {
-        child1 = rand() % currentIndex;
-        expr = d_settings.fromOperationsToName(logopper[choice]) + " (" +
+        child1 = rand() % currIndex;
+        expr = d_settings.fromOperationsToName(logOper[choice]) + " (" +
           graph.getVertice(currIndex + position).getLogicExpression() + ")";
 
         if (graph.addVertex(expr, "not"))
@@ -149,7 +150,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
         child2 = (rand() % (currIndex - prevIndex)) + prevIndex;
 
         expr = "(" + graph.getVertice(child2).getLogicExpression() + " )" +
-          d_settings.fromOperationToName(logOper[choice]) + " (" + graph.getVertice(child1).getLogicExpression() + ")";
+          d_settings.fromOperationsToName(logOper[choice]) + " (" + graph.getVertice(child1).getLogicExpression() + ")";
 
         if (graph.addVertex(expr, logOper[choice]))
           graph.addDoubleEdge(graph.getVertice(child2).getLogicExpression(),
@@ -168,9 +169,9 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
   for (int i = 0; i < i_outputs; ++i)
   {
     child1 = (rand() % (currIndex - prevIndex)) + prevIndex;
-    expr = "f" + std::tostring(i + 1);
+    expr = "f" + std::to_string(i + 1);
     graph.addVertex(expr, "output");
-    graph.addEdge(graph.getVertice(ch1).getLogicExpression(),
+    graph.addEdge(graph.getVertice(child1).getLogicExpression(),
                   graph.getVertice(currIndex + i).getLogicExpression()
     );
   }
@@ -181,12 +182,12 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
   int i_input,
   int i_output,
   std::map<std::string, int> i_logicOper,
-  bool i_leaveEmptyOut = true,
+  bool i_leaveEmptyOut
 )
 {
   int sumOper = 0, maxLvl;
   std::string name;
-  std::map<std::string, int> copyLogicOper levelName;
+  std::map<std::string, int> copyLogicOper, levelName;
   std::vector<std::string> nameOut, nameInput;
 
   copyLogicOper = i_logicOper;
@@ -195,17 +196,17 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
 
   for (int i = 0; i < i_input; ++i)
   {
-    name = "x" + std::tostring(i);
+    name = "x" + std::to_string(i);
     graph.addVertex(name, "input");
-    levelName.push_back({name, graph.getVertice(graph.getIndexOfExpression(name)).getLevel()});
+    levelName[name] = graph.getVertice(graph.getIndexOfExpression(name)).getLevel();
     if (!i_leaveEmptyOut)
       nameInput.push_back(name);
   }
 
   for (int i = 0; i < i_output; ++i)
   {
-    name = "f" + std::tostring(i);
-    graph.addVertex(name);
+    name = "f" + std::to_string(i);
+    graph.addVertex(name, "output");
     nameOut.push_back(name);
   }
 
@@ -238,10 +239,10 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
       std::string ver2 = randomGenerator(levelName);
       name = "(" + ver1 + ") " + d_settings.getLogicOperation(oper).first + "(" + ver2 + ")";
       std::string reserveName = "(" + ver2 + ") " + d_settings.getLogicOperation(oper).first + "(" + ver1 + ")";
-      if (graph.addVertex(name oper))
+      if (graph.addVertex(name, oper))
       {
         graph.addDoubleEdge(ver1, ver2, name);
-        levelName.push_back({name, graph.getVertice(graph.getIndexOfExpression(name)).getLevel()});
+        levelName[name] = graph.getVertice(graph.getIndexOfExpression(name)).getLevel();
       }
       else
       {
@@ -251,7 +252,7 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
     }
   }
 
-  while ((nameOut.size() > 0 & (levelName.size() > 0 || leaveEmptyOut == false))
+  while ((nameOut.size() > 0) & ((levelName.size() > 0 || i_leaveEmptyOut == false)))
   {
     if (levelName.size() > 0)
     {
@@ -269,9 +270,9 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
         int R1 = rand() % help.size();
         int R2 = rand() % nameOut.size();
         graph.addEdge(help[R1], nameOut[R2]);
-        levelName.erase(R1);
-        help.erase(R1);
-        nameOut.erase(R2);
+        levelName.erase(help[R1]);
+        help.erase(help.begin() + R1);
+        nameOut.erase(nameOut.begin() + R2);
       }
     }
     else
@@ -280,13 +281,13 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
       int R2 = rand() % nameOut.size();
 
       graph.addEdge(nameInput[R1], nameOut[R2]);
-      nameOut.erase(R2);
+      nameOut.erase(nameOut.begin() + R2);
     }
   }
   return graph;
 }
 
-void SimpleGenerators::delNull(std::map<std::string, int>& i_copyLogicOper)
+std::map<std::string, int> SimpleGenerators::delNull(std::map<std::string, int> i_copyLogicOper)
 {
   std::vector<std::string> delList;
   for (const auto &[key, value] : i_copyLogicOper)
@@ -295,9 +296,10 @@ void SimpleGenerators::delNull(std::map<std::string, int>& i_copyLogicOper)
 
   for (const auto& op : delList)
     i_copyLogicOper.erase(op);
+  return i_copyLogicOper;
 }
 
-std::string SimpleGenerators::randomGenerator(std::map<std::string, int>& i_map)
+std::string SimpleGenerators::randomGenerator(const std::map<std::string, int>& i_map)
 {
   int i = rand() % i_map.size();
 

@@ -1,18 +1,25 @@
+#pragma once
 
+#include <string>
 
+#include "../Settings.h"
 
 class GraphVertex {
 public:
   GraphVertex(const std::string& i_expr,
-              const string& i_operation
+              const std::string& i_operation,
               bool i_value = false,
-              const std::string& i_wireName);
-  int GraphVertex::getLevel();
-  void GraphVertex::setLevel(int i_level);
-  bool GraphVertex::getValue();
-  void GraphVertex::setValue(bool i_value);
-  std::string GraphVertex::getOperation();
-  std::string GraphVertex::getWireName();
+              const std::string& i_wireName = ""
+             );
+  int getLevel() const;
+  void setLevel(int i_level);
+  bool getValue() const;
+  void setValue(bool i_value);
+  void setLogicExpression(const std::string& i_logicExpression);
+  std::string getLogicExpression() const;
+  std::string getOperation() const;
+  void setOperation(const std::string& i_operation);
+  std::string getWireName() const;
 
 private:
   std::string d_logicExpression = "";
@@ -22,4 +29,4 @@ private:
   std::string d_wireName = "wr";
   int d_count = 0;
   Settings d_settings;
-}
+};

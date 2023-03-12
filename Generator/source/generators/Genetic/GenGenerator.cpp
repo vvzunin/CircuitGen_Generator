@@ -1,28 +1,20 @@
 
 #include "cstdlib"
+#include <algorithm>
 #include <filesystem>
 #include <string>
 #include <utility>
+#include <iostream>
 
 #include "GenGenerator.h"
+#include "../TruthTable.h"
+#include "../SimpleGenerators.h"
+#include "../Parser.h"
+#include "../../circuits/Circuit.h"
+#include "../../FilesTools.h"
 
 namespace
 {
-  isDirectorExist(const string& path)
-  {
-    try
-    {
-      filesystem::path pathObj(filePath);
-      if (filesystem::exists(pathObj) && filesystem::is_directory(pathObj))
-        return true;
-    }
-    catch(filesystem::filesystem_error & e)
-    {
-      std::cerr << e.what() << std::endl;
-    }
-    return false;
-  }
-
   bool isNumber(const std::string& s)
   {
     for (auto c : s)
@@ -33,7 +25,7 @@ namespace
     return true;
   }
 
-  int getNumFolderFromString(const std::string path)
+  int getNumFolderFromString(const std::string& path)
   {
     int lastSlash = 0;
     for (int i = 0; i < path.size(); ++i)
@@ -41,28 +33,28 @@ namespace
       if (path[i] == '_')
         lastSlash = i;
     }
-    path = path.subsrt(lastSlash);
+    std::string lastDir = path.substr(lastSlash);
     int res = 0;
-    if (!isNumber(path))
+    if (!isNumber(lastDir))
       return 0;
-    return std::stoi(path);
+    return std::stoi(lastDir);
   }
 }
 
-GeneticGenerator::GeneticGenerator(
+template<typename Type, typename ParametersType>
+GeneticGenerator<Type, ParametersType>::GeneticGenerator(
   const ParametersType& i_parameters,
   std::pair<int, int> i_inout,
-  const std::string& i_mainPath = "") :
+  const std::string& i_mainPath) :
   d_parameters(i_parameters),
   d_inputs(i_inout.first),
   d_outputs(i_inout.second),
-  d_mainPath(i_mainPath),
-
+  d_mainPath(i_mainPath)
 {
-  std::string dataPath = d_settings.getDatasetPath + "/Genetic";
-  if (isDirectoryExists(dataPath))
+  std::string dataPath = d_settings.getDatasetPath() + "/Genetic";
+  if (FilesTools::isDirectoryExists(dataPath))
   {
-    for (const auto & entry : filesystem::directory_iterator(dataPath))
+    for (const auto & entry : std::filesystem::directory_iterator(dataPath))
     {
       d_foldersCount = max(d_foldersCount, getNumFolderFromString(entry.path()) + 1);
     }
@@ -75,7 +67,8 @@ GeneticGenerator::GeneticGenerator(
   }
 }
 
-void GeneticGenerator::savePopulation(
+template<typename Type, typename ParametersType>
+void GeneticGenerator<Type, ParametersType>::savePopulation(
   const std::vector<ChronosomeType<Type, ParametersType>>& i_population
 )
 {
@@ -85,48 +78,62 @@ void GeneticGenerator::savePopulation(
     tt = ttp.chronosome;
 
     SimpleGenerators tftt;
-    std::vector<str::pair<std::string, std::vector<std::string>>> circs;
-    circs.push_back({d_settings.fromGenMethodToPrefix("Genetic") + std::tostring(d_foldersCount++), tftt.cnfFromTruthTable(tt, true)});
-    circs.push_back({d_settings.fromGenMethodToPrefix("Genetic") + std::tostring(d_foldersCount++), tftt.cnfFromtruthTable(tt, false)});
+    std::vector<std::pair<std::string, std::vector<std::string>>> circs;
+    circs.push_back({d_settings.getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, true)});
+    circs.push_back({d_settings.getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, false)});
 
     for (const auto& nameexpr : circs)
     {
-      std::string name = nameexpr.Item1;
-      std::vector<std::string> expr = nameexpr.Item2;
+      std::string name = nameexpr.first;
+      std::vector<std::string> expr = nameexpr.second;
       Parser pCNFT(expr);
-      pcnft.ParseAll();
+      pCNFT.parseAll();
       OrientedGraph graph = pCNFT.getGraph();
       Circuit c(graph, expr);
-      c.settTable(tt);
+      c.setTable(tt);
       c.setPath(d_mainPath + "/Genetic/");
-      c.setCircuitName(d_name);
+      c.setCircuitName(name);
       c.generate();
     }
   }
 }
 
-void GeneticGenerator::createPopulation()
+template<typename Type, typename ParametersType>
+void GeneticGenerator<Type, ParametersType>::createPopulation()
 {
   d_population.clear();
   for (int i = 0; i < d_parameters.getPopulationSize(); ++i)
   {
     Type gen;
     gen.generateRandom(d_parameters);
-    ChronosomeType<Type, ParametersType> ind("ind" + std::stoi(i), gen);
+    ChronosomeType<Type, ParametersType> ind("ind" + std::to_string(i), gen);
     d_population.push_back(ind);
   }
-  savePopulation(population);
+  savePopulation(d_population);
 }
 
-std::vector<ChronosomeType<Type, ParametersType>> GeneticGenerator::generate()
+template<typename Type, typename ParametersType>
+std::vector<ChronosomeType<Type, ParametersType>> GeneticGenerator<Type, ParametersType>::generate()
 {
   createPopulation();
-  double d = endProceessFunction();
-  for (int i = 0; i < d_parameterss.getNumOfCycles && endProcessFunction() < d_parameters.getKeyEndProcessIndex; ++i)
+  double d = endProcessFunction();
+  for (int i = 0; (i < d_parameters.getNumOfCycles()) && (endProcessFunction() < d_parameters.getKeyEndProcessIndex()); ++i)
   {
-    std::vector<ChromosomeType<Type, ParametersType>> newPopulation = getRecombinationType(d_parameters.getRecombinationParameter, d_population);
-    std::vector<ChromosomeType<Type, ParametersType>> mutants = getMutationType(d_parameters.getMutationParameter, newPopulation);
+    std::vector<ChronosomeType<Type, ParametersType>> newPopulation = getRecombinationType(d_parameters.getRecombinationParameter, d_population);
+    std::vector<ChronosomeType<Type, ParametersType>> mutants = getMutationType(d_parameters.getMutationParameter, newPopulation);
     d_population = getSelectionType(d_parameters.getSelectionParameter, mutants);
     savePopulation(d_population);
   }
+}
+
+template<typename Type, typename ParametersType>
+double GeneticGenerator<Type, ParametersType>::endProcessFunction() const
+{
+  double max = 0;
+  for (const auto& i : d_population)
+  {
+    max = std::max(max, i.getAdaptationIndex());
+  }
+
+  return max;
 }
