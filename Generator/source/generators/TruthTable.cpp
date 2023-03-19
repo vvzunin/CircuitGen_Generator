@@ -1,5 +1,6 @@
 #include <random>
 #include <vector>
+#include <ctime>
 
 #include "TruthTable.h"
 

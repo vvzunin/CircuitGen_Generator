@@ -60,6 +60,7 @@ set(SOURCES
   graph/OrientedGraph.cpp
   reliability/Reliability.cpp
   generators/TruthTable.cpp
+  generators/Genetic/Chronosome.cpp
   generators/Genetic/ChronosomeTypes.cpp
   circuits/Circuit.cpp
   generators/Parser.cpp
