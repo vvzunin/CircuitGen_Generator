@@ -78,6 +78,6 @@ set(SOURCES
 # Create executable
 add_executable(prog ${SOURCES})
 
-add_library(settings settings.h settings.cpp)
+add_library(settings Settings.h Settings.cpp)
 add_subdirectory(graph)
 target_link_libraries(prog graph settings nlohmann_json::nlohmann_json)
