@@ -12,7 +12,7 @@ public:
   TruthTable();
   void generateRandom(TruthTableParameters i_gp) override;
   void generateTable(double i_p = 0);
-  TruthTable(Chronosome<TruthTableParameters> i_chr);
+  TruthTable(const Chronosome<TruthTableParameters>& i_chr);
   TruthTable(int i_input, int i_output, const std::vector<std::vector<bool>>& i_array = {});
   TruthTable(const TruthTable& i_tt, std::vector<std::vector<bool>> i_array = {});
   TruthTable(int i_input, int i_output, double i_p = 0.5);

@@ -6,10 +6,12 @@
 
 TruthTable::TruthTable()
 {
+  d_settings = Settings::getInstance("TruthTable");
 }
 
-TruthTable::TruthTable(Chronosome<TruthTableParameters> i_chr)
+TruthTable::TruthTable(const Chronosome<TruthTableParameters>& i_chr)
 {
+  d_settings = Settings::getInstance("TruthTable");
 }
 
 void TruthTable::generateRandom(TruthTableParameters i_gp)
