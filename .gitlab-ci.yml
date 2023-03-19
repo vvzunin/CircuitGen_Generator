@@ -49,6 +49,7 @@ test:
   tags:
     - docker_miem
   script:
+    - pwd
     - ls ./Generator/source/build/tests
     - ./Generator/source/build/tests/tests
 
