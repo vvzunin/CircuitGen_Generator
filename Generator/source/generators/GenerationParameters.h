@@ -144,7 +144,7 @@ public:
   CNNFromTruthTableParameters getCNF() const { return d_cnfFromTruthTableParameters; }
   GeneratorRandLevelParameters getRandLevel() const { return d_generatorRandLevelParameters; }
   GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; }
-  GeneticParameters& getGenetic() { return d_geneticParameters; }
+  GeneticParameters getGenetic() const { return d_geneticParameters; }
 
 private:
   std::string d_name = "";

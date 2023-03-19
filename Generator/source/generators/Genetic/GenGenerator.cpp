@@ -124,6 +124,8 @@ std::vector<ChronosomeType<Type, ParametersType>> GeneticGenerator<Type, Paramet
     d_population = getSelectionType(d_parameters.getSelectionParameter, mutants);
     savePopulation(d_population);
   }
+
+  return d_population;
 }
 
 template<typename Type, typename ParametersType>

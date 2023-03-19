@@ -17,7 +17,7 @@ public:
   int getMaxLevel();
   std::vector<std::vector<bool>> getAdjacencyMatrix() const;
   bool getAdjacencyMatrix(int i, int j) const;
-  void generateRandom(OrientedGraphParameters i_gp);
+  //void generateRandom(OrientedGraphParameters i_gp);
   int getIndexOfExpression(const std::string& i_expression);
   int getIndexOfWireName(const std::string& i_wireName);
   bool addVertex(const std::string i_vertexName, const std::string& i_operation, const std::string& i_wireName = "");

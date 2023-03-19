@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "OrientedGraph.h"
-#include "../Generators/SimpleGenerators.h"
+//#include "../Generators/SimpleGenerators.h"
 
 OrientedGraph::OrientedGraph()
 {
@@ -56,34 +56,34 @@ bool OrientedGraph::getAdjacencyMatrix(int i, int j) const
   return d_adjacencyMatrix.at(i).at(j);
 }
 
-void OrientedGraph::generateRandom(OrientedGraphParameters i_gp)
-{
-  std::srand(std::time(0));
-  int inputs;
-  int outputs;
-  int maxLevel;
-  int maxElements;
-  if (!i_gp.empty())
-  {
-    inputs = i_gp.getInputs();
-    outputs = i_gp.getOutputs();
-    maxLevel = i_gp.getMaxLevel();
-    maxElements = i_gp.getMaxElements();
-  }
-  else
-  {
-    inputs = (std::rand() % d_settings.getMaxInputs()) + 1; // in code without +1. It is need? https://github.com/RomeoMe5/CAD_Combinational_Circuits/blob/7ae1fe61eb61e1751147a8598b7a25c976d233b3/Generator/source/Graph/OrientedGraph.cs#L80
-    outputs = (std::rand() % d_settings.getMaxOutputs()) + 1;
-    maxLevel = i_gp.getMaxLevel(); //TODO: WTF?
-    maxElements = i_gp.getMaxElements(); //TODO: WTF2?
-  }
-
-  SimpleGenerators sg;
-  OrientedGraph grd = sg.generatorRandLevel(maxLevel, maxElements, inputs, outputs);
-  
-  d_vertices = grd.getVertices();
-  d_adjacencyMatrix = grd.getAdjacencyMatrix();
-}
+//void OrientedGraph::generateRandom(OrientedGraphParameters i_gp)
+//{
+//  std::srand(std::time(0));
+//  int inputs;
+//  int outputs;
+//  int maxLevel;
+//  int maxElements;
+//  if (!i_gp.empty())
+//  {
+//    inputs = i_gp.getInputs();
+//    outputs = i_gp.getOutputs();
+//    maxLevel = i_gp.getMaxLevel();
+//    maxElements = i_gp.getMaxElements();
+//  }
+//  else
+//  {
+//    inputs = (std::rand() % d_settings.getMaxInputs()) + 1; // in code without +1. It is need? https://github.com/RomeoMe5/CAD_Combinational_Circuits/blob/7ae1fe61eb61e1751147a8598b7a25c976d233b3/Generator/source/Graph/OrientedGraph.cs#L80
+//    outputs = (std::rand() % d_settings.getMaxOutputs()) + 1;
+//    maxLevel = i_gp.getMaxLevel(); //TODO: WTF?
+//    maxElements = i_gp.getMaxElements(); //TODO: WTF2?
+//  }
+//
+//  SimpleGenerators sg;
+//  OrientedGraph grd = sg.generatorRandLevel(maxLevel, maxElements, inputs, outputs);
+//  
+//  d_vertices = grd.getVertices();
+//  d_adjacencyMatrix = grd.getAdjacencyMatrix();
+//}
 
 int OrientedGraph::getIndexOfExpression(const std::string& i_expression)
 {
