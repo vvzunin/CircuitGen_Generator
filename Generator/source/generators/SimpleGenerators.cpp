@@ -1,3 +1,6 @@
+#include <algorithm>
+#include <ctime>
+
 #include "SimpleGenerators.h"
 #include "../graph/OrientedGraph.h"
 
