@@ -5,7 +5,7 @@
 
 #include "CircuitsParameters.h"
 #include "../graph/OrientedGraph.h"
-#include "../Generators/TruthTable.h"
+#include "../generators/TruthTable.h"
 
 class Circuit
 {
