@@ -21,7 +21,7 @@ ExternalProject_Add(googletest
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
 )
 
-add_subdirectory (${CMAKE_BINARY_DIR}/googletest-src)
+add_subdirectory (${CMAKE_BINARY_DIR}/../googletest-src)
 
 include(FetchContent)
 
