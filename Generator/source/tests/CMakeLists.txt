@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 add_executable(${PROJECT_NAME} AuxiliaryMethodsTests.cpp SettingsTests.cpp)
 target_link_libraries(${PROJECT_NAME} PUBLIC
-ParentsParameters SelectionParameters RecombinationParameters MutationParameters GeneticParameters TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings nlohmann_json::nlohmann_json
+ParentsParameters SelectionParameters RecombinationParameters MutationParameters GeneticParameters TruthTable Reliability GraphVertex OrientedGraph AuxiliaryMethods Circuit FilesTools settings nlohmann_json::nlohmann_json
 gtest
 gtest_main
 )
