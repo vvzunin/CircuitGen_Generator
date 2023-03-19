@@ -49,6 +49,6 @@ test:
   tags:
     - docker_miem
   script:
-    - lst ./Generator/source/build/tests
+    - ls ./Generator/source/build/tests
     - ./Generator/source/build/tests/tests
 
