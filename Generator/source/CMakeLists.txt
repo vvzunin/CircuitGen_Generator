@@ -13,15 +13,15 @@ add_subdirectory(tests)
 
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
 
-ExternalProject_Add(googletest
-  GIT_REPOSITORY https://github.com/google/googletest
-  GIT_TAG main
-  SOURCE_DIR "${CMAKE_BINARY_DIR}/googletest-src"
-  BINARY_DIR "${CMAKE_BINARY_DIR}/googletest-build" 
-  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
-)
+#ExternalProject_Add(googletest
+#  GIT_REPOSITORY https://github.com/google/googletest
+#  GIT_TAG main
+#  SOURCE_DIR "${CMAKE_BINARY_DIR}/googletest-src"
+#  BINARY_DIR "${CMAKE_BINARY_DIR}/googletest-build" 
+#  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+#)
 
-add_subdirectory (${CMAKE_BINARY_DIR}/../googletest-src)
+#add_subdirectory (${CMAKE_BINARY_DIR}/external/lib/cmake/GTest)
 
 include(FetchContent)
 
@@ -34,6 +34,17 @@ if(NOT json_POPULATED)
   FetchContent_Populate(json)
   add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
+
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+)
+
+
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+
 
 # Add source files
 set(SOURCES
