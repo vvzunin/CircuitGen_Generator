@@ -50,6 +50,7 @@ test:
     - docker_miem
   script:
     - pwd
+    - ls
     - ls ./Generator
     - ls ./Generator/source
     - ls ./Generator/source/build
