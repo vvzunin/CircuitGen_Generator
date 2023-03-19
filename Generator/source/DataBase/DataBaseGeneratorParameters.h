@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Generators/GenerationParameters.h"
+#include "../generators/GenerationParameters.h"
 #include "../Settings.h"
 
 enum GenerationTypes
