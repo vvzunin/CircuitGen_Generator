@@ -9,7 +9,6 @@ SET(GCC_COVERAGE_LINK_FLAGS    "-lgcov")
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-add_subdirectory(tests)
 
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
 
@@ -80,5 +79,11 @@ set(SOURCES
 add_executable(prog ${SOURCES})
 
 add_library(settings Settings.h Settings.cpp)
+add_library(FilesTools FilesTools.h FilesTools.cpp)
+add_library(AuxiliaryMethods AuxiliaryMethods.h AuxiliaryMethods.cpp)
 add_subdirectory(graph)
-target_link_libraries(prog graph settings nlohmann_json::nlohmann_json)
+add_subdirectory(generators)
+add_subdirectory(circuits)
+add_subdirectory(reliability)
+target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings nlohmann_json::nlohmann_json)
+add_subdirectory(tests)

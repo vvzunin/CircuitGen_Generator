@@ -33,6 +33,8 @@ generator:
   script:
     - cd Generator/source/build
     - pwd
+    - cmake --version
+    - make --version
     - cmake ../
     - make
   artifacts:
