@@ -46,6 +46,8 @@ generator:
 # run tests using the binary built before
 test:
   stage: test
+  tags:
+    - docker_miem
   script:
     - ./Generator/source/build/tests/tests
 
