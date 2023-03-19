@@ -56,7 +56,7 @@ GeneticGenerator<Type, ParametersType>::GeneticGenerator(
   {
     for (const auto & entry : std::filesystem::directory_iterator(dataPath))
     {
-      d_foldersCount = max(d_foldersCount, getNumFolderFromString(entry.path()) + 1);
+      d_foldersCount = std::max(d_foldersCount, getNumFolderFromString(entry.path()) + 1);
     }
   }
   else
