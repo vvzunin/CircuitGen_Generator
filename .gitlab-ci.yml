@@ -37,7 +37,7 @@ generator:
     - make
   artifacts:
     paths:
-      - Generator/source/prog
+      - Generator/source/build/prog
       # depending on your build setup it's most likely a good idea to cache outputs to reduce the build time
       # cache:
       #   paths:
@@ -47,5 +47,5 @@ generator:
 test:
   stage: test
   script:
-    - ./Generator/source/tests/tests
+    - ./Generator/source/build/tests/tests
 
