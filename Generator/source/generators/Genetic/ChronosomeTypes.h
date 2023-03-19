@@ -20,6 +20,6 @@ public:
 private:
   double d_adaptationIndex;
   Type d_chronosome;
-  Settings d_settings;
+  Settings* d_settings = Settings::getInstance("GraphVertex");
   std::string d_name;
 };

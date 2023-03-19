@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "GraphVertex.h"
+#include "../graph/GraphVertex.h"
 
 TEST(test_graph_vertex, test_init)
 {

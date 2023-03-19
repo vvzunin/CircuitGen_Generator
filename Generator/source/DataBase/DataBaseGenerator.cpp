@@ -1,11 +1,11 @@
 #include <iostream>
 #include <filesystem>
 
-#include "../Generators/TruthTable.h"
-#include "../Generators/Genetic/GeneticParameters.h"
-#include "../Generators/SimpleGenerators.h"
-#include "../Generators/Parser.h"
-#include "../Generators/Genetic/GenGenerator.h"
+#include "../generators/TruthTable.h"
+#include "../generators/Genetic/GeneticParameters.h"
+#include "../generators/SimpleGenerators.h"
+#include "../generators/Parser.h"
+#include "../generators/Genetic/GenGenerator.h"
 #include "../circuits/CircuitsParameters.h"
 #include "../circuits/Circuit.h"
 #include "../FilesTools.h"
@@ -22,7 +22,7 @@ void DataBaseGenerator::generateType(
   std::function<void(const GenerationParameters&)> generator = getGenerateMethod(s);
   //TODO: make normal code
 
-  std::string dir = d_settings.getDatasetPath() + "/" + s;
+  std::string dir = d_settings->getDatasetPath() + "/" + s;
 
   d_dirCount = 0;
 
@@ -31,8 +31,8 @@ void DataBaseGenerator::generateType(
     for (const auto item : FilesTools::getDirectories(dir))
     {
       std::string s0 = item;
-      auto pos = s0.find(d_settings.getGenerationMethodPrefix(s));
-      s.replace(pos, d_settings.getGenerationMethodPrefix(s).size(), "");
+      auto pos = s0.find(d_settings->getGenerationMethodPrefix(s));
+      s.replace(pos, d_settings->getGenerationMethodPrefix(s).size(), "");
       
       auto jk = s0.find("_"); // TODO: maybe it need last find of "_"?
       if (jk == std::string::npos)
@@ -60,7 +60,7 @@ void DataBaseGenerator::generateType(
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt)
         {
           d_parameters.setIteration(tt);
-          d_parameters.setName(d_settings.getGenerationMethodPrefix(s) + std::to_string(d_dirCount + tt));
+          d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount + tt));
           generator(d_parameters.getGenerationParameters());
         }
       }

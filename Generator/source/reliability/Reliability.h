@@ -20,6 +20,5 @@ public:
 private:
   OrientedGraph d_graph;
   double d_p;
-  Settings d_settings;
-
+  Settings* d_settings = Settings::getInstance("GraphVertex");
 };

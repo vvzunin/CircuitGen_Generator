@@ -5,7 +5,7 @@
 #include <map>
 
 #include "GraphVertex.h"
-#include "../Generators/Genetic/GeneticParameters.h"
+#include "../generators/Genetic/GeneticParameters.h"
 
 class OrientedGraph {
 public:
@@ -48,6 +48,5 @@ private:
   std::vector<GraphVertex> d_vertices;
   std::vector<std::vector<bool>> d_adjacencyMatrix;
   std::map<std::string, bool> d_error;
-  Settings d_settings;
-
+  Settings* d_settings = Settings::getInstance("OrietedGraph");
 };

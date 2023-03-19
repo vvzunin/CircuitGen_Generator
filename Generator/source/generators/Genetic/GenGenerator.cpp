@@ -51,7 +51,7 @@ GeneticGenerator<Type, ParametersType>::GeneticGenerator(
   d_outputs(i_inout.second),
   d_mainPath(i_mainPath)
 {
-  std::string dataPath = d_settings.getDatasetPath() + "/Genetic";
+  std::string dataPath = d_settings->getDatasetPath() + "/Genetic";
   if (FilesTools::isDirectoryExists(dataPath))
   {
     for (const auto & entry : std::filesystem::directory_iterator(dataPath))
@@ -79,8 +79,8 @@ void GeneticGenerator<Type, ParametersType>::savePopulation(
 
     SimpleGenerators tftt;
     std::vector<std::pair<std::string, std::vector<std::string>>> circs;
-    circs.push_back({d_settings.getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, true)});
-    circs.push_back({d_settings.getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, false)});
+    circs.push_back({d_settings->getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, true)});
+    circs.push_back({d_settings->getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, false)});
 
     for (const auto& nameexpr : circs)
     {

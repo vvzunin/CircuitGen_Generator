@@ -12,7 +12,6 @@ Circuit::Circuit(const OrientedGraph& i_graph, const std::vector<std::string>& i
   d_graph = i_graph;
   d_graph.updateLevels();
   d_logExpressions = i_logExpressions;
-  d_settings.loadSettings();
 }
 
 void Circuit::computeHash()
@@ -87,17 +86,17 @@ void Circuit::updateCircuitsParameters()
   d_circuitParameters.d_numElementsOfEachType.clear();
   std::vector<GraphVertex> gv = d_graph.getVertices();
 
-  for (const auto &[key, value] : d_settings.getLogicOperations())
+  for (const auto &[key, value] : d_settings->getLogicOperations())
     d_circuitParameters.d_numElementsOfEachType[key] = 0;
 
   for (const auto v : gv)
-    for (const auto &[key, value] : d_settings.getLogicOperations())
+    for (const auto &[key, value] : d_settings->getLogicOperations())
       if (v.getOperation() == key)
         d_circuitParameters.d_numElementsOfEachType[v.getOperation()]++;
   
   d_circuitParameters.d_numEdgesOfEachType.clear();
-  for (const auto &[key1, value1] : d_settings.getLogicOperations())
-    for (const auto &[key2, vluae2] : d_settings.getLogicOperations())
+  for (const auto &[key1, value1] : d_settings->getLogicOperations())
+    for (const auto &[key2, vluae2] : d_settings->getLogicOperations())
       if (key1 != "output" && key2 != "input")
         d_circuitParameters.d_numEdgesOfEachType[std::make_pair(key1, key2)] = 0;
 

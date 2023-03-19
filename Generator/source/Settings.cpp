@@ -1,69 +1,90 @@
 #include <fstream>
 #include <iostream>
+#include <filesystem>
 
 #include "Settings.h"
 
-Settings::Settings()
+Settings* Settings::d_singleton= nullptr;;
+
+Settings* Settings::getInstance(const std::string& i_value)
 {
+    /**
+     * This is a safer way to create an instance. instance = new Singleton is
+     * dangeruous in case two instance threads wants to access at the same time
+     */
+    if(d_singleton==nullptr){
+        d_singleton = new Settings(i_value);
+        d_singleton->loadSettings();
+    }
+    return d_singleton;
+}
+
+void Settings::loadSettings() {
   for (const auto &[key, value] : d_logicOperations) {
     int i = value.second;
-    if (d_operationsToHierarchy.find(i) == d_operationsToHierarchy.end()) 
+    if (d_operationsToHierarchy.find(i) == d_operationsToHierarchy.end())
       d_operationsToHierarchy[i] = {};
     d_operationsToHierarchy[i].push_back(value.first);
   }
 
   for (const auto &[key, value] : d_logicOperations)
     d_operationsToName[value.first] = key;
+
+  if (std::filesystem::exists(d_fileName))
+  {
+    std::ifstream readFile(d_fileName);
+  
+    readFile >> d_csvdataset >> d_fileName >> d_datasetPath >> d_pathToNadezhda;
+  
+    int nadezhdaPathsCount;
+    readFile >> nadezhdaPathsCount;
+    for (int i = 0; i < nadezhdaPathsCount; ++i) 
+    {
+      std::string tool, path;
+      readFile >> tool >> path;
+      d_nadezhda[tool] = path;
+    }
+  
+    readFile >> d_numThreads;
+  
+    int logicOperationCount;
+    readFile >> logicOperationCount;
+    for (int i = 0; i < logicOperationCount; ++i) {
+      std::string operation, operationName, operationId;
+      readFile >> operation >> operationName >> operationId;
+      d_logicOperations[operation] = {operationName, std::stoi(operationId)};
+    }
+  
+    int operationHierarchyCount;
+    readFile >> operationHierarchyCount;
+    for (int i = 0; i < operationHierarchyCount; ++i) {
+      int operationId, operationHierarchyCount;
+      std::vector<std::string> operations;
+      readFile >> operationId >> operationHierarchyCount;
+      
+      std::string operation;
+      for (int j = 0; j < operationHierarchyCount; ++j) {
+        readFile >> operation;
+        operations.push_back(operation);
+      }
+      d_operationsToHierarchy[operationId] = operations;
+    }
+  
+    int operationsCount;
+    readFile >> operationsCount;
+    for (int i = 0; i < operationsCount; ++i) {
+      std::string fromName, toName;
+      readFile >> fromName >> toName;
+      d_operationsToName[fromName] = toName;
+    }
+  
+    readFile >> d_maxInputs >> d_maxOutputs;
+  }
 }
 
-void Settings::loadSettings() {
-  std::ifstream readFile(d_fileName);
-
-  readFile >> d_csvdataset >> d_fileName >> d_datasetPath >> d_pathToNadezhda;
-
-  int nadezhdaPathsCount;
-  readFile >> nadezhdaPathsCount;
-  for (int i = 0; i < nadezhdaPathsCount; ++i) 
-  {
-    std::string tool, path;
-    readFile >> tool >> path;
-    d_nadezhda[tool] = path;
-  }
-
-  readFile >> d_numThreads;
-
-  int logicOperationCount;
-  readFile >> logicOperationCount;
-  for (int i = 0; i < logicOperationCount; ++i) {
-    std::string operation, operationName, operationId;
-    readFile >> operation >> operationName >> operationId;
-    d_logicOperations[operation] = {operationName, std::stoi(operationId)};
-  }
-
-  int operationHierarchyCount;
-  readFile >> operationHierarchyCount;
-  for (int i = 0; i < operationHierarchyCount; ++i) {
-    int operationId, operationHierarchyCount;
-    std::vector<std::string> operations;
-    readFile >> operationId >> operationHierarchyCount;
-    
-    std::string operation;
-    for (int j = 0; j < operationHierarchyCount; ++j) {
-      readFile >> operation;
-      operations.push_back(operation);
-    }
-    d_operationsToHierarchy[operationId] = operations;
-  }
-
-  int operationsCount;
-  readFile >> operationsCount;
-  for (int i = 0; i < operationsCount; ++i) {
-    std::string fromName, toName;
-    readFile >> fromName >> toName;
-    d_operationsToName[fromName] = toName;
-  }
-
-  readFile >> d_maxInputs >> d_maxOutputs;
+std::string Settings::getInstanceName() const
+{
+  return d_name;
 }
 
 std::pair<std::string, int> Settings::getLogicOperation(const std::string& i_op)

@@ -19,7 +19,7 @@ private:
   int d_outputs;
   int d_numCross;
   std::vector<ChronosomeType<Type, ParametersType>> d_population;
-  Settings d_settings;
+  Settings* d_settings = Settings::getInstance("GraphVertex");
   ParametersType d_parameters;
   std::string d_mainPath;
   int d_foldersCount = 0;

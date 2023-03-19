@@ -21,7 +21,6 @@ namespace {
 SimpleGenerators::SimpleGenerators()
 {
   std::srand(std::time(0));
-  d_settings.loadSettings();
 }
 
 std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
@@ -71,15 +70,15 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
       for (int k = 0; k < i_table.getInput(); ++k)
       {
         if (bin[tmp][k] ^ i_tp)
-          fun[j] += d_settings.getLogicOperation("not").first + " ";
+          fun[j] += d_settings->getLogicOperation("not").first + " ";
 
         fun[j] += 'x';
         fun[j] += std::to_string(k);
 
         if (k != i_table.getInput() - 1)
           fun[j] += " " + (i_tp ? 
-                           d_settings.getLogicOperation("and").first : 
-                           d_settings.getLogicOperation("or").first
+                           d_settings->getLogicOperation("and").first : 
+                           d_settings->getLogicOperation("or").first
                         ) + " ";
       }
 
@@ -87,8 +86,8 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
 
       if (i != mem - 1)
         fun[j] += " " + (i_tp ? 
-                       d_settings.getLogicOperation("or").first : 
-                       d_settings.getLogicOperation("and").first
+                       d_settings->getLogicOperation("or").first : 
+                       d_settings->getLogicOperation("and").first
                       ) + " ";
 
       tmp++;
@@ -102,7 +101,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
 {
   int maxLevel = rand() % i_maxLevel;
   std::vector<int> elemLevel(maxLevel + 1);
-  std::vector<std::string> logOper = d_settings.getLogicOperationsKeys();
+  std::vector<std::string> logOper = d_settings->getLogicOperationsKeys();
   logOper.erase(std::find(logOper.begin(), logOper.end(), "input"));
   logOper.erase(std::find(logOper.begin(), logOper.end(), "output"));
   logOper.erase(std::find(logOper.begin(), logOper.end(), "const"));
@@ -136,7 +135,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
       if (logOper[choice] == "not")
       {
         child1 = rand() % currIndex;
-        expr = d_settings.fromOperationsToName(logOper[choice]) + " (" +
+        expr = d_settings->fromOperationsToName(logOper[choice]) + " (" +
           graph.getVertice(currIndex + position).getLogicExpression() + ")";
 
         if (graph.addVertex(expr, "not"))
@@ -150,7 +149,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
         child2 = (rand() % (currIndex - prevIndex)) + prevIndex;
 
         expr = "(" + graph.getVertice(child2).getLogicExpression() + " )" +
-          d_settings.fromOperationsToName(logOper[choice]) + " (" + graph.getVertice(child1).getLogicExpression() + ")";
+          d_settings->fromOperationsToName(logOper[choice]) + " (" + graph.getVertice(child1).getLogicExpression() + ")";
 
         if (graph.addVertex(expr, logOper[choice]))
           graph.addDoubleEdge(graph.getVertice(child2).getLogicExpression(),
@@ -222,7 +221,7 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
     if (oper == "not")
     {
       std::string ver1 = randomGenerator(levelName);
-      name = d_settings.getLogicOperation(oper).first + "(" + ver1 + ")";
+      name = d_settings->getLogicOperation(oper).first + "(" + ver1 + ")";
       if (graph.addVertex(name, oper))
       {
         graph.addEdge(ver1, name);
@@ -237,8 +236,8 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
     {
       std::string ver1 = randomGenerator(levelName);
       std::string ver2 = randomGenerator(levelName);
-      name = "(" + ver1 + ") " + d_settings.getLogicOperation(oper).first + "(" + ver2 + ")";
-      std::string reserveName = "(" + ver2 + ") " + d_settings.getLogicOperation(oper).first + "(" + ver1 + ")";
+      name = "(" + ver1 + ") " + d_settings->getLogicOperation(oper).first + "(" + ver2 + ")";
+      std::string reserveName = "(" + ver2 + ") " + d_settings->getLogicOperation(oper).first + "(" + ver1 + ")";
       if (graph.addVertex(name, oper))
       {
         graph.addDoubleEdge(ver1, ver2, name);

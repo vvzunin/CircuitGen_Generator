@@ -156,10 +156,10 @@ std::map<std::string, double> Reliability::runNadezhda(
 
   std::string curPath = std::filesystem::current_path().string();
   
-  std::string cdCommand = "cd " + d_settings.getPathNadezhda();
-  std::string runNadezdhaCommand = d_settings.getNadezhdaVar("python") + " " +
-    d_settings.getNadezhdaVar("resynthesis") + " " + i_path + "/" + i_circuitName +
-    ".v " + d_settings.getNadezhdaVar("liberty") + " " + i_path + "/res -y";
+  std::string cdCommand = "cd " + d_settings->getPathNadezhda();
+  std::string runNadezdhaCommand = d_settings->getNadezhdaVar("python") + " " +
+    d_settings->getNadezhdaVar("resynthesis") + " " + i_path + "/" + i_circuitName +
+    ".v " + d_settings->getNadezhdaVar("liberty") + " " + i_path + "/res -y";
   
   std::string cpAndNadezdha = cdCommand + " && " + runNadezdhaCommand;
 
@@ -178,10 +178,10 @@ std::map<std::string, double> Reliability::runNadezhda(
   //std::cout << rmCommand << std::endl;
 
   std::string nadezdhaReliabilityCommand = 
-    d_settings.getNadezhdaVar("python") + " " +
-    d_settings.getNadezhdaVar("reliability") + " " +
+    d_settings->getNadezhdaVar("python") + " " +
+    d_settings->getNadezhdaVar("reliability") + " " +
     i_path + "/" + i_circuitName + "_Nangate.v " +
-    d_settings.getNadezhdaVar("liberty") + " " +
+    d_settings->getNadezhdaVar("liberty") + " " +
     i_path + "/report.txt\n";
 
   //std::cout << nadezdhaReliabilityCommand;

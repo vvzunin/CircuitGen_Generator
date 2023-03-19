@@ -29,7 +29,6 @@ Parser::Parser(const std::string& i_logExpression)
 {
   //d_graph.setVertexCount(0); TODO: wtf? https://github.com/RomeoMe5/CAD_Combinational_Circuits/blob/7ae1fe61eb61e1751147a8598b7a25c976d233b3/Generator/source/Generators/Parsing.cs#L29
   d_logExpressions.push_back(deleteDoubleSpaces(i_logExpression));
-  d_settings.loadSettings();
 }
 
 Parser::Parser(const std::vector<std::string>& i_logExpressions)
@@ -37,7 +36,6 @@ Parser::Parser(const std::vector<std::string>& i_logExpressions)
   //d_graph.setVertexCount(0); TODO: wtf? https://github.com/RomeoMe5/CAD_Combinational_Circuits/blob/7ae1fe61eb61e1751147a8598b7a25c976d233b3/Generator/source/Generators/Parsing.cs#L42
   for (const auto& expression : i_logExpressions)
     d_logExpressions.push_back(expression);
-  d_settings.loadSettings();
 }
 
 OrientedGraph Parser::getGraph() const
@@ -109,9 +107,9 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(std::strin
   bool f = true;
   int l = 0;
 
-  while (f && l <= d_settings.getLogicOperation("input").second)
+  while (f && l <= d_settings->getLogicOperation("input").second)
   {
-    std::vector<std::string> operations = d_settings.fromOperationsToHierarchy(l);
+    std::vector<std::string> operations = d_settings->fromOperationsToHierarchy(l);
     if (i_expr == "1'b1")
       i_expr = i_expr; //what?
 
@@ -124,7 +122,7 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(std::strin
         if (!inBrackets(brackets.second, index))
         {
           std::vector<std::string> lst;
-          std::string newOp = d_settings.fromOperationsToName(op);
+          std::string newOp = d_settings->fromOperationsToName(op);
           lst.push_back(deleteExtraSpaces(newOp));
           if (newOp == "not")
             lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));

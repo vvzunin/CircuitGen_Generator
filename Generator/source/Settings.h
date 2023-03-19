@@ -12,9 +12,14 @@ enum generationTypes {
 };
 
 class Settings {
+protected:
+  Settings(const std::string& i_path): d_path(i_path){}
 public:
-  Settings();
+  Settings(Settings &other) = delete;
+  void operator=(const Settings &) = delete;
+  static Settings* getInstance(const std::string& i_value);
   void loadSettings();
+  std::string getInstanceName() const;
   std::pair<std::string, int> getLogicOperation(const std::string& i_op);
   std::vector<std::string> getLogicOperationsKeys();
   std::string fromOperationsToName(const std::string& i_op) const;
@@ -30,6 +35,9 @@ public:
 private:
   void SaveSettings();
 
+  std::string d_name;
+  static Settings* d_singleton;
+  std::string d_path;
   std::string d_csvdataset = "dataset.csv";
   std::string d_fileName = "settings.dat";
   std::string d_datasetPath = "./database";
@@ -47,7 +55,7 @@ private:
     {"input",  {"",     10}},
     {"output", {"=",    0}},
     {"const",  {"1'b",  9}},
-    {"and",    {"ans",  4}},
+    {"and",    {"and",  4}},
     {"nand",   {"nand", 3}},
     {"or",     {"or",   2}},
     {"nor",    {"nor",  1}},

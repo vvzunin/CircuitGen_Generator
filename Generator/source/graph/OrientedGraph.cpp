@@ -9,7 +9,6 @@
 
 OrientedGraph::OrientedGraph()
 {
-  d_settings.loadSettings();
 }
 
 std::vector<GraphVertex> OrientedGraph::getVertices() const

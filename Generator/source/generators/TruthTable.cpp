@@ -5,12 +5,10 @@
 
 TruthTable::TruthTable()
 {
-  d_settings.loadSettings();
 }
 
 TruthTable::TruthTable(Chronosome<TruthTableParameters> i_chr)
 {
-  d_settings.loadSettings();
 }
 
 void TruthTable::generateRandom(TruthTableParameters i_gp)
@@ -19,8 +17,8 @@ void TruthTable::generateRandom(TruthTableParameters i_gp)
   if (i_gp.getInputs() == 0)
   {
     i_gp = TruthTableParameters();
-    i_gp.setInputs(rand() % d_settings.getMaxInputs());
-    i_gp.setOutputs(rand() % d_settings.getMaxOutputs());
+    i_gp.setInputs(rand() % d_settings->getMaxInputs());
+    i_gp.setOutputs(rand() % d_settings->getMaxOutputs());
   }
 
   d_input = i_gp.getInputs();
@@ -56,7 +54,6 @@ TruthTable::TruthTable(int i_input, int i_output, const std::vector<std::vector<
   d_input(i_input),
   d_output(i_output)
 {
-  d_settings.loadSettings();
   d_size = 1u << d_input;
   if (i_array.size() == 0 || i_array.size() != d_size || i_array[0].size() != d_output)
     generateRandom(TruthTableParameters(d_input, d_output));
@@ -68,7 +65,6 @@ TruthTable::TruthTable(const TruthTable& i_tt, std::vector<std::vector<bool>> i_
   d_input(i_tt.d_input),
   d_output(i_tt.d_output)
 {
-  d_settings.loadSettings();
   d_size = 1u << d_input; // what?
 }
 
@@ -76,7 +72,6 @@ TruthTable::TruthTable(int i_input, int i_output, double i_p) :
   d_input(i_input),
   d_output(i_output)
 {
-  d_settings.loadSettings();
   d_size = (1u << i_input);
   generateTable(i_p);
 }

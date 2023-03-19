@@ -11,7 +11,6 @@ public:
   DataBaseGenerator(const DataBaseGeneratorParameters& i_parameters):
     d_parameters(i_parameters) 
   {
-    d_settings.loadSettings();
   };
   void generateType(const DataBaseGeneratorParameters& i_gp,
                     bool parallel = true);
@@ -19,7 +18,7 @@ public:
 
 private:
   std::string d_mainPath;
-  Settings d_settings;
+  Settings* d_settings = Settings::getInstance("DataBaseGenerator");
   DataBaseGeneratorParameters d_parameters; // why we need this var?
   int d_dirCount = 0;
 

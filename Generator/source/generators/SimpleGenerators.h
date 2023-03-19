@@ -17,7 +17,7 @@ public:
   );
 
 private:
-  Settings d_settings;
+  Settings* d_settings = Settings::getInstance("GraphVertex");
   std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);
   std::string randomGenerator(const std::map<std::string, int>& i_map);
 ;};
