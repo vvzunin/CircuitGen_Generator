@@ -3,11 +3,13 @@ cmake_minimum_required(VERSION 3.1)
 project(MyProjectName)
 
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # Add source files
 set(SOURCES
   Settings.cpp
   AuxiliaryMethods.cpp
+  FilesTools.cpp
   Generators/Genetic/Parents/ParentsParameters.cpp
   Generators/Genetic/Recombination/RecombinationParameters.cpp
   Generators/Genetic/Mutations/MutationParameters.cpp
