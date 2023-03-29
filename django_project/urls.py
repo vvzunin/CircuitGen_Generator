@@ -22,11 +22,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from backend.views import front
+
+# from backend.views import front
+from .views import front
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('backend.urls')),
-    # path("", front, name="front"),
+    # path('', include('backend.urls')),
+    # path('', include('urls')),
+    # path('', views.front, name="front"),
+    path('', front, name="front"),
     # path('add/', include('add.urls')),
 ]
