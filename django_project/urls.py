@@ -25,6 +25,7 @@ from django.urls import path, include
 
 # from backend.views import front
 from .views import front
+from add.views import FromRandomTruthTableAPIview
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +34,5 @@ urlpatterns = [
     # path('', views.front, name="front"),
     path('', front, name="front"),
     # path('add/', include('add.urls')),
+    path('api/v1/fromrandomtruthtablelist', FromRandomTruthTableAPIview.as_view())
 ]
