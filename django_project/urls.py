@@ -1,39 +1,29 @@
-"""django_project URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-# from django.contrib import admin
-# from django.urls import path
-#
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-# ]
-
 from django.contrib import admin
 from django.urls import path, include
 
 # from backend.views import front
 from .views import front
 from add.views import *
+from rest_framework import routers
+
+
+router = routers.SimpleRouter()
+router.register(r'table', FromRandomTruthTableAPISet)
+router.register(r'rand', RandLevelViewAPISet)
+router.register(r'num', NumOperationsViewAPISet)
+router.register(r'gen_play', GeneticPlaybackViewAPISet)
+router.register(r'gen_mut', GeneticMutationViewAPISet)
+router.register(r'gen_sel', GeneticSelectionViewAPISet)
 
 urlpatterns = [
     path('', front, name="front"),
     path('admin/', admin.site.urls),
-    path('api/fromrandomtruthtablelist', FromRandomTruthTableAPIList.as_view()),
-    path('api/randlevellist', RandLevelAPIList.as_view()),
-    path('api/numoperationslist', NumOperationsAPIList.as_view()),
-    path('api/geneticplaybacklist', GeneticPlaybackAPIList.as_view()),
-    path('api/geneticmutationlist', GeneticMutationAPIList.as_view()),
-    path('api/geneticselectionlist', GeneticSelectionAPIList.as_view()),
+    path('', include(router.urls)),
+    # path('api/fromrandomtruthtablelist', FromRandomTruthTableAPISet.as_view()),
+    # path('api/randlevellist', RandLevelAPIList.as_view()),
+    # path('api/numoperationslist', NumOperationsAPIList.as_view()),
+    # path('api/geneticplaybacklist', GeneticPlaybackAPIList.as_view()),
+    # path('api/geneticmutationlist', GeneticMutationAPIList.as_view()),
+    # path('api/geneticselectionlist', GeneticSelectionAPIList.as_view()),
+    # path('api/addparameterlist', AddParameterAPISet.as_view()),
 ]

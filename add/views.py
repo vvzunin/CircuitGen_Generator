@@ -1,36 +1,42 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from rest_framework.views import APIView
 
 from .models import *
 from .serializers import *
 
 
-class FromRandomTruthTableAPIList(generics.ListCreateAPIView):
+# class AddParameterAPISet(viewsets.ModelViewSet):
+#     # queryset = AddParameter.objects.all()
+#     # serializer_class = AddParameterSerializer
+#     pass
+
+
+class FromRandomTruthTableAPISet(viewsets.ModelViewSet):
     queryset = FromRandomTruthTable.objects.all()
     serializer_class = FromRandomTruthTableSerializer
 
 
-class RandLevelAPIList(generics.ListCreateAPIView):
+class RandLevelViewAPISet(viewsets.ModelViewSet):
     queryset = RandLevel.objects.all()
     serializer_class = RandLevelSerializer
 
 
-class NumOperationsAPIList(generics.ListCreateAPIView):
+class NumOperationsViewAPISet(viewsets.ModelViewSet):
     queryset = NumOperations.objects.all()
     serializer_class = NumOperationsSerializer
 
 
-class GeneticPlaybackAPIList(generics.ListCreateAPIView):
+class GeneticPlaybackViewAPISet(viewsets.ModelViewSet):
     queryset = GeneticPlayback.objects.all()
     serializer_class = GeneticPlaybackSerializer
 
 
-class GeneticMutationAPIList(generics.ListCreateAPIView):
+class GeneticMutationViewAPISet(viewsets.ModelViewSet):
     queryset = GeneticMutation.objects.all()
     serializer_class = GeneticMutationSerializer
 
 
-class GeneticSelectionAPIList(generics.ListCreateAPIView):
+class GeneticSelectionViewAPISet(viewsets.ModelViewSet):
     queryset = GeneticSelection.objects.all()
     serializer_class = GeneticSelectionSerializer
