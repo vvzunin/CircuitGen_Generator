@@ -25,14 +25,15 @@ from django.urls import path, include
 
 # from backend.views import front
 from .views import front
-from add.views import FromRandomTruthTableAPIview
+from add.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # path('', include('backend.urls')),
-    # path('', include('urls')),
-    # path('', views.front, name="front"),
     path('', front, name="front"),
-    # path('add/', include('add.urls')),
-    path('api/v1/fromrandomtruthtablelist', FromRandomTruthTableAPIview.as_view())
+    path('admin/', admin.site.urls),
+    path('api/fromrandomtruthtablelist', FromRandomTruthTableAPIList.as_view()),
+    path('api/randlevellist', RandLevelAPIList.as_view()),
+    path('api/numoperationslist', NumOperationsAPIList.as_view()),
+    path('api/geneticplaybacklist', GeneticPlaybackAPIList.as_view()),
+    path('api/geneticmutationlist', GeneticMutationAPIList.as_view()),
+    path('api/geneticselectionlist', GeneticSelectionAPIList.as_view()),
 ]
