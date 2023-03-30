@@ -18,7 +18,7 @@ router.register(r'gen_sel', GeneticSelectionViewAPISet)
 urlpatterns = [
     path('', front, name="front"),
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
     # path('api/fromrandomtruthtablelist', FromRandomTruthTableAPISet.as_view()),
     # path('api/randlevellist', RandLevelAPIList.as_view()),
     # path('api/numoperationslist', NumOperationsAPIList.as_view()),
