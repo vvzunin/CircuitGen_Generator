@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics, viewsets
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import *
@@ -10,6 +11,19 @@ from .serializers import *
 #     # queryset = AddParameter.objects.all()
 #     # serializer_class = AddParameterSerializer
 #     pass
+
+
+class AddParameterAPISet(APIView):
+    def get(self, request):
+        return Response({
+            'FromRandomTruthTable': list(FromRandomTruthTable.objects.all().values()),
+            'RandLevel': list(RandLevel.objects.all().values()),
+            'NumOperations': list(NumOperations.objects.all().values()),
+            'GeneticPlayback': list(GeneticPlayback.objects.all().values()),
+            'GeneticSelection': list(GeneticSelection.objects.all().values()),
+            'GeneticMutation': list(GeneticMutation.objects.all().values()),
+        })
+
 
 
 class FromRandomTruthTableAPISet(viewsets.ModelViewSet):

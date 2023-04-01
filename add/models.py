@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 class AddParameter(models.Model):
     min_in = models.IntegerField(null=False, default=1, verbose_name='Минимальное количество входов')
     max_in = models.IntegerField(null=False, default=1, verbose_name='Максимальное количество входов')

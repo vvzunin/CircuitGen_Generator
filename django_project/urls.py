@@ -14,6 +14,7 @@ router.register(r'num', NumOperationsViewAPISet)
 router.register(r'gen_play', GeneticPlaybackViewAPISet)
 router.register(r'gen_mut', GeneticMutationViewAPISet)
 router.register(r'gen_sel', GeneticSelectionViewAPISet)
+# router.register(r'add_test', AddParameterAPISet)
 
 urlpatterns = [
     path('', front, name="front"),
@@ -25,5 +26,5 @@ urlpatterns = [
     # path('api/geneticplaybacklist', GeneticPlaybackAPIList.as_view()),
     # path('api/geneticmutationlist', GeneticMutationAPIList.as_view()),
     # path('api/geneticselectionlist', GeneticSelectionAPIList.as_view()),
-    # path('api/addparameterlist', AddParameterAPISet.as_view()),
+    path('api/add_test', AddParameterAPISet.as_view()),
 ]
