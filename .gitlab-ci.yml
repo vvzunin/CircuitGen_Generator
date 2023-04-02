@@ -54,5 +54,5 @@ test:
   script:
     - cd ./Generator/source/build/tests
     - ./tests
-    - ./Generator/source/build/tests/tests
+    - ./tests
 
