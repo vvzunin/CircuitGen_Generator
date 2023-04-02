@@ -10,7 +10,7 @@ TEST(test_aux_methods, test_remove_spaces_without_spaces)
 TEST(test_aux_methods, test_read_empty_file)
 {
   std::string answer = "";
-  std::string path = "./Generator/source/test_data/AuxMethods/test_empty_file.txt";
+  std::string path = "../../test_data/AuxMethods/test_empty_file.txt";
 
   EXPECT_EQ(answer, AuxMethods::readAllFile(path));
 }

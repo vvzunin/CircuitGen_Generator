@@ -52,11 +52,7 @@ test:
   tags:
     - docker_miem
   script:
-    - pwd
-    - ls
-    - ls ./Generator
-    - ls ./Generator/source
-    - ls ./Generator/source/build
-    - ls ./Generator/source/build/tests
+    - cd ./Generator/source/build/tests
+    - ./tests
     - ./Generator/source/build/tests/tests
 
