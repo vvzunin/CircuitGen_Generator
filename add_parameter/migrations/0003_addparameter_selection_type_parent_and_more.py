@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('add', '0002_addparameter_delete_fromrandomtruthtable_and_more'),
+        ('add_parameter', '0002_addparameter_delete_fromrandomtruthtable_and_more'),
     ]
 
     operations = [

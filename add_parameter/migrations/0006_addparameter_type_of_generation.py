@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('add', '0005_alter_addparameter_cnff_alter_addparameter_cnft_and_more'),
+        ('add_parameter', '0005_alter_addparameter_cnff_alter_addparameter_cnft_and_more'),
     ]
 
     operations = [

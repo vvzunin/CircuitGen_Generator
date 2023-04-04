@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('add', '0004_alter_addparameter_chromosome_type_and_more'),
+        ('add_parameter', '0004_alter_addparameter_chromosome_type_and_more'),
     ]
 
     operations = [

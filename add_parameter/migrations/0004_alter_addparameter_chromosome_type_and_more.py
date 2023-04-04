@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('add', '0003_addparameter_selection_type_parent_and_more'),
+        ('add_parameter', '0003_addparameter_selection_type_parent_and_more'),
     ]
 
     operations = [
