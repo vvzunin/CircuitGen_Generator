@@ -214,3 +214,20 @@ TEST(TestGetLogicVerticesToWireName, EmptyGraph)
     OrientedGraph example;
     EXPECT_EQ(example.getLogicVerticesToWireName(), std::vector<std::string>({ }));
 }
+TEST(TestGetLogicVerticesToWireName, NormalTest)
+{
+    OrientedGraph example;
+    example.addVertex("1", "nor", "1");
+    example.addVertex("2", "or", "2");
+    EXPECT_EQ(example.getLogicVerticesToWireName().size(), 2);// When we push nor and or we expect that both will be included in output of getLogicVerticesToWireName
+    example.addVertex("3", "const", "3");
+    example.addVertex("4", "const", "4");
+    EXPECT_EQ(example.getLogicVerticesToWireName().size(), 2);// When we added const there are nothing must be changed in output of getLogicVerticesToWireName
+    example.addVertex("5", "nand", "5");
+    example.addVertex("6", "input", "6");
+    EXPECT_EQ(example.getLogicVerticesToWireName().size(), 3);// The same logic as before with input because input obeys the same rules as const. nand have to be included in output of getLogicVerticesToWireName 
+    example.addVertex("7", "output", "7");
+    EXPECT_EQ(example.getLogicVerticesToWireName().size(), 3);// output obeys the same rules as const. See definition of getLogicVerticesToWireName
+   
+
+}
