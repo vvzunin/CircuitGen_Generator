@@ -181,3 +181,23 @@ TEST(TestGetVerticeByTypeToWireName, EmptyGraph)
     EXPECT_EQ(example.getVerticesByType("xnor"), std::vector<std::string>({  }));
 
 }
+TEST(TestGetVerticeByTypeToWireName, NormalTest)
+{
+    OrientedGraph example;
+    example.addVertex("1", "input", "1");
+    example.addVertex("2", "input", "2");
+    example.addVertex("3", "input", "3");
+    example.addVertex("4", "input", "4");
+    example.addVertex("5", "const", "5");
+    example.addVertex("6", "const", "6");
+    example.addVertex("7", "const", "7");
+    example.addVertex("8", "const", "8");
+    example.addVertex("9", "const", "9");
+    example.addVertex("10", "output", "10");
+    example.addVertex("11", "output", "11");
+    example.addVertex("12", "output", "12");
+    example.addVertex("13", "output", "13");
+    EXPECT_EQ(example.getVerticesByTypeToWireName("input"), std::vector<std::string>({ "1" ,"2" ,  "3" , "4"}));
+    EXPECT_EQ(example.getVerticesByTypeToWireName("const"), std::vector<std::string>({ "5" , "6" , "7" , "8" , "9"}));
+    EXPECT_EQ(example.getVerticesByTypeToWireName("output"), std::vector<std::string>({ "10" , "11" , "12" , "13" }));
+}
