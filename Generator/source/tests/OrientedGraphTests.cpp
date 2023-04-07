@@ -45,3 +45,10 @@ TEST(TestAddVertex, EmptyName)
     example.addVertex("xor", "input",  "2");
     EXPECT_TRUE(example.addVertex("", "Anything", "Anything") == true);
 }
+TEST(TestAddVertex, NonEmptyName)
+{
+    OrientedGraph example;
+    example.addVertex("nor", "const", "1");
+    example.addVertex("xor", "const",  "2");
+    EXPECT_TRUE(example.addVertex("NonEmptyString", "Anything",  "Anything") == true);
+}
