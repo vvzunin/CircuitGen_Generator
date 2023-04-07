@@ -310,3 +310,23 @@ TEST(TestGetConnectedTo, NormalTest)
     example.addVertex("6", "nand", "6");
     EXPECT_EQ(example.getMaxLevel(), 0);
 }
+TEST(TestUpdateLevels, NormalTest)
+{
+    OrientedGraph example;
+    example.addVertex("0", "and", "0");
+    example.addVertex("1", "nor", "1");
+    example.addVertex("2", "output", "2");
+    example.addVertex("3", "output", "3");
+    example.addVertex("4", "nor", "4");
+    example.addVertex("5", "and", "5");
+    example.addVertex("6", "nand", "6");
+    example.updateLevels();
+    EXPECT_EQ(example.getMaxLevel(), 0);
+    example.addEdge("1", "2");
+    example.updateLevels();
+    EXPECT_EQ(example.getMaxLevel(), 1);
+    example.addEdge("2", "3");
+    example.updateLevels();
+    EXPECT_EQ(example.getMaxLevel(), 2);
+
+}
