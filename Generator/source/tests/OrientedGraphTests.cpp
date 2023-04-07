@@ -63,3 +63,12 @@ TEST(TestAddEdge, ExpressionFalse)
     EXPECT_TRUE(example.addEdge("1", "5", false) == true);
     EXPECT_TRUE(example.addEdge("2", "3", false) == true);
 }
+TEST(TestAddEdge, ExpressionTrue)
+{
+    OrientedGraph example;
+    example.addVertex("nor", "nor",  "1");
+    example.addVertex("nor", "nor", "5");
+    example.addVertex("nand", "nand", "3");
+    example.addVertex("xor", "xor", "2");
+    EXPECT_TRUE(example.addEdge("nor", "xor", true) == true);
+}
