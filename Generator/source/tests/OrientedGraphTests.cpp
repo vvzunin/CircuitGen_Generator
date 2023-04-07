@@ -31,3 +31,10 @@ TEST(TestGetIndexOfWireName, NameDoesNotExist)
     example.addVertex("xor", "input",  "2");
     EXPECT_TRUE(example.getIndexOfWireName("0") == -1);
 }
+TEST(TestAddVertex, ReturnAtFirstLine)
+{
+    OrientedGraph example;
+    example.addVertex("nor", "input",  "1");
+    example.addVertex("xor", "input",   "2");
+    EXPECT_TRUE(example.addVertex("nor", "Anything",  "Anything") == false);
+}
