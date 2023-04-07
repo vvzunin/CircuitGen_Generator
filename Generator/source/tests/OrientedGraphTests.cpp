@@ -201,3 +201,11 @@ TEST(TestGetVerticeByTypeToWireName, NormalTest)
     EXPECT_EQ(example.getVerticesByTypeToWireName("const"), std::vector<std::string>({ "5" , "6" , "7" , "8" , "9"}));
     EXPECT_EQ(example.getVerticesByTypeToWireName("output"), std::vector<std::string>({ "10" , "11" , "12" , "13" }));
 }
+TEST(TestGetLogicVerticesToWireName, NamesWasNotFound)
+{
+    OrientedGraph example;
+    example.addVertex("11", "const", "11");
+    example.addVertex("12", "input", "12");
+    example.addVertex("13", "output", "13");
+    EXPECT_EQ(example.getLogicVerticesToWireName(), std::vector<std::string>({ }));
+}
