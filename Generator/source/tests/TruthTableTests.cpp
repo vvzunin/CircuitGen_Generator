@@ -30,3 +30,7 @@ TEST(ConstructorForTruthTableWithVector, CorrectInput)
 {
     EXPECT_EQ((TruthTable{ 1 , 1 , std::vector<std::vector<bool>>{} }).getInput(), 1);
 }
+TEST(ConstructorForTruthTableWithVector, CorrectOutput)
+{
+    EXPECT_EQ((TruthTable{ 1 , 1 , std::vector<std::vector<bool>>{} }).getOutput(), 1);
+}
