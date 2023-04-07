@@ -26,3 +26,7 @@ TEST(ConstructorForTruthTableWithVector, CorrectSize)
 {
     EXPECT_EQ((TruthTable{ 1 , 1 , std::vector<std::vector<bool>>{} }).size(), 2);
 }
+TEST(ConstructorForTruthTableWithVector, CorrectInput)
+{
+    EXPECT_EQ((TruthTable{ 1 , 1 , std::vector<std::vector<bool>>{} }).getInput(), 1);
+}
