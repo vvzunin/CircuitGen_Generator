@@ -136,3 +136,25 @@ TEST(TestGetVerticeByType, EmptyGraph)
     OrientedGraph example;
     EXPECT_TRUE(example.getVerticesByType("and").empty());
 }
+TEST(TestGetVerticeByType, NormalTest)
+{
+    OrientedGraph example;
+    example.addVertex("1", "nor", "anything");
+    example.addVertex("2", "or", "anything");
+    example.addVertex("3", "or", "anything");
+    example.addVertex("4", "nand", "anything");
+    example.addVertex("5", "nand", "anything");
+    example.addVertex("6", "buf", "anything");
+    example.addVertex("7", "and", "anything");
+    example.addVertex("8", "xor", "anything");
+    example.addVertex("9", "not", "anything");
+    example.addVertex("10", "not", "anything");
+    example.addVertex("11", "not", "anything");
+    EXPECT_EQ(example.getVerticesByType("or"), std::vector<std::string>({ std::string("2"), std::string("3") }));
+    EXPECT_EQ(example.getVerticesByType("buf"), std::vector<std::string>({ std::string("6") }));
+    EXPECT_EQ(example.getVerticesByType("nor"), std::vector<std::string>({ std::string("1") }));
+    EXPECT_EQ(example.getVerticesByType("nand"), std::vector<std::string>({ std::string("4") , std::string("5") }));
+    EXPECT_EQ(example.getVerticesByType(""), std::vector<std::string>({  }));
+    EXPECT_EQ(example.getVerticesByType("not"), std::vector<std::string>({ std::string("9"), std::string("10") , std::string("11") }));
+
+}
