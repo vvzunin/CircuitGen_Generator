@@ -108,3 +108,15 @@ TEST(TestAddDoubleEdge, ExpressionFalse)
     EXPECT_TRUE(example.addDoubleEdge("4", "3", "2", false) == true);
 
 }
+TEST(TestAddDoubleEdge, OneOfTheVerticiesDoesNotExists)
+{
+    OrientedGraph example;
+    example.addVertex("1", "or", "1");
+    example.addVertex("2", "nor", "2");
+    example.addVertex("3", "nor", "3");
+    EXPECT_TRUE(example.addDoubleEdge("nor", "or", "and", true) == false);
+    EXPECT_TRUE(example.addDoubleEdge("nor", "or", "nand", true) == false);
+    EXPECT_TRUE(example.addDoubleEdge("nor", "nand", "or", true) == false);
+    EXPECT_TRUE(example.addDoubleEdge("nand", "or", "xor", true) == false);
+    EXPECT_TRUE(example.addDoubleEdge("not", "or", "nand", true) == false);
+}
