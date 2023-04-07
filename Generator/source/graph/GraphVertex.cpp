@@ -1,7 +1,7 @@
 #include <string>
 
 #include "GraphVertex.h"
-
+int GraphVertex::d_count = 0;
 GraphVertex::GraphVertex(const std::string& i_expr,
                          const std::string& i_operation,
                          bool i_value,

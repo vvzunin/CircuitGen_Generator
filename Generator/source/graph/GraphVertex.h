@@ -27,6 +27,6 @@ private:
   int d_level = 0;
   bool d_value = false;
   std::string d_wireName = "wr";
-  int d_count = 0;
+  static int d_count;
   Settings* d_settings = Settings::getInstance("GraphVertex");
 };
