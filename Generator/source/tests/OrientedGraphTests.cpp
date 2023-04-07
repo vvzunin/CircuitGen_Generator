@@ -52,3 +52,14 @@ TEST(TestAddVertex, NonEmptyName)
     example.addVertex("xor", "const",  "2");
     EXPECT_TRUE(example.addVertex("NonEmptyString", "Anything",  "Anything") == true);
 }
+TEST(TestAddEdge, ExpressionFalse)
+{
+    OrientedGraph example;
+    example.addVertex("1", "const",  "Anything");// The construction of GraphVertex made so that it do not care about i_wirename. d_wirename gonna be 
+                                                 // The same thing as logicExpresion gonna be when d_operation == const or d_operation == input or d_operation == output
+    example.addVertex("5", "const",  "Anything");
+    example.addVertex("3", "output",  "Anything");
+    example.addVertex("2", "output",  "Anything");
+    EXPECT_TRUE(example.addEdge("1", "5", false) == true);
+    EXPECT_TRUE(example.addEdge("2", "3", false) == true);
+}
