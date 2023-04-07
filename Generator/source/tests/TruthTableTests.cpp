@@ -50,3 +50,7 @@ TEST(ConstructorForTruthTableWithDouble, CorrectOutput)
 {
     EXPECT_EQ((TruthTable{ 1 , 1 , 0.1 }).getOutput(), 1);
 }
+TEST(ConstructorForTruthTableWithDouble, CorrectSizeOfVector)
+{
+    EXPECT_EQ((TruthTable{ 1  , 1 , 0.2 }).getOutTable().size(), 2);
+}
