@@ -81,11 +81,30 @@ TEST(TestAddEdge, OneOfTheVerticiesDoesNotExists)
     example.addVertex("2", "nor", "2");
     EXPECT_TRUE(example.addEdge("nor", "xor", true) == false);
 }
-TEST(TestAddDoubleEdge, IsExpressionTrue)
+TEST(TestAddDoubleEdge, ExpressionTrue)
 {
     OrientedGraph example;
     example.addVertex("1", "const", "1");
     example.addVertex("2", "const", "2");
     example.addVertex("3", "const", "3");
     EXPECT_TRUE(example.addDoubleEdge("1", "2", "3", false) == true);
+}
+TEST(TestAddDoubleEdge, ExpressionFalse)
+{
+    OrientedGraph example;
+    example.addVertex("1", "const", "1");
+    example.addVertex("2", "const", "2");
+    example.addVertex("3", "const", "3");
+    example.addVertex("6", "const", "6");
+    example.addVertex("5", "input", "5");
+    example.addVertex("4", "input", "4");
+    example.addVertex("7", "input", "7");
+    EXPECT_TRUE(example.addDoubleEdge("1", "2", "3", false) == true);
+    EXPECT_TRUE(example.addDoubleEdge("1", "3", "2", false) == true);
+    EXPECT_TRUE(example.addDoubleEdge("2", "1", "3", false) == true);
+    EXPECT_TRUE(example.addDoubleEdge("1", "2", "3", false) == true);
+    EXPECT_TRUE(example.addDoubleEdge("6", "5", "3", false) == true);
+    EXPECT_TRUE(example.addDoubleEdge("2", "5", "4", false) == true);
+    EXPECT_TRUE(example.addDoubleEdge("4", "3", "2", false) == true);
+
 }
