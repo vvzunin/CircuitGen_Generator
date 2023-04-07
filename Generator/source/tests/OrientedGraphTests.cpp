@@ -38,3 +38,10 @@ TEST(TestAddVertex, ReturnAtFirstLine)
     example.addVertex("xor", "input",   "2");
     EXPECT_TRUE(example.addVertex("nor", "Anything",  "Anything") == false);
 }
+TEST(TestAddVertex, EmptyName)
+{
+    OrientedGraph example;
+    example.addVertex("nor", "input", "1");
+    example.addVertex("xor", "input",  "2");
+    EXPECT_TRUE(example.addVertex("", "Anything", "Anything") == true);
+}
