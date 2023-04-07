@@ -172,3 +172,12 @@ TEST(TestGetVerticeByTypeToWireName, NamesWasNotFound)
     EXPECT_EQ(example.getVerticesByType("xnor"), std::vector<std::string>({  }));
 
 }
+TEST(TestGetVerticeByTypeToWireName, EmptyGraph)
+{
+    OrientedGraph example;
+    EXPECT_EQ(example.getVerticesByType("not"), std::vector<std::string>({  }));
+    EXPECT_EQ(example.getVerticesByType("or"), std::vector<std::string>({  }));
+    EXPECT_EQ(example.getVerticesByType("buf"), std::vector<std::string>({  }));
+    EXPECT_EQ(example.getVerticesByType("xnor"), std::vector<std::string>({  }));
+
+}
