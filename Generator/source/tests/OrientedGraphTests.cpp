@@ -131,3 +131,8 @@ TEST(TestGetVerticeByType, NamesWasNotFound)
     EXPECT_TRUE(example.getVerticesByType("buf").empty());
     EXPECT_TRUE(example.getVerticesByType("xnor").empty());
 }
+TEST(TestGetVerticeByType, EmptyGraph)
+{
+    OrientedGraph example;
+    EXPECT_TRUE(example.getVerticesByType("and").empty());
+}
