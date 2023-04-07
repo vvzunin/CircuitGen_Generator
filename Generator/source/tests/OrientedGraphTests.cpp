@@ -263,3 +263,10 @@ TEST(TestGetVerticesByLevel, WithExistingLevel)
     example.updateLevels();
     EXPECT_EQ(example.getVerticesByLevel(1), std::vector<std::string>({"2"}));
 }
+TEST(TestGetVerticesByLevel, EmptyGraph)
+{
+    OrientedGraph example;
+    for (int i = 0; i < 10; i++)
+        EXPECT_EQ(example.getVerticesByLevel(i), std::vector<std::string>({  }));
+
+}
