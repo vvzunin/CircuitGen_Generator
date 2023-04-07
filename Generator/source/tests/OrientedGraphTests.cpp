@@ -254,3 +254,12 @@ TEST(TestGetVerticesByLevel, WithNonExistingLevel)
     example.addVertex("8", "nor", "8");
     EXPECT_EQ(example.getVerticesByLevel(111), std::vector<std::string>({  }));
 }
+TEST(TestGetVerticesByLevel, WithExistingLevel)
+{
+    OrientedGraph example;
+    example.addVertex("1", "input", "1");
+    example.addVertex("2", "or", "2");
+    example.addEdge("1", "2");
+    example.updateLevels();
+    EXPECT_EQ(example.getVerticesByLevel(1), std::vector<std::string>({"2"}));
+}
