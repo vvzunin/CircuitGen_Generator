@@ -81,3 +81,11 @@ TEST(TestAddEdge, OneOfTheVerticiesDoesNotExists)
     example.addVertex("2", "nor", "2");
     EXPECT_TRUE(example.addEdge("nor", "xor", true) == false);
 }
+TEST(TestAddDoubleEdge, IsExpressionTrue)
+{
+    OrientedGraph example;
+    example.addVertex("1", "const", "1");
+    example.addVertex("2", "const", "2");
+    example.addVertex("3", "const", "3");
+    EXPECT_TRUE(example.addDoubleEdge("1", "2", "3", false) == true);
+}
