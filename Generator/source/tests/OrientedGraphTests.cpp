@@ -270,3 +270,27 @@ TEST(TestGetVerticesByLevel, EmptyGraph)
         EXPECT_EQ(example.getVerticesByLevel(i), std::vector<std::string>({  }));
 
 }
+TEST(TestGetVerticesByLevel, NormalTest)
+{
+    OrientedGraph example;
+    example.addVertex("1", "nor", "1");
+    EXPECT_EQ(example.getVerticesByLevel(0), std::vector<std::string>({ "1" }));
+    example.addVertex("2", "or", "2");
+    example.updateLevels();
+    EXPECT_EQ(example.getVerticesByLevel(0), std::vector<std::string>({ "1" , "2" }));
+    example.addVertex("3", "nor", "3");// Current vertex
+    example.addEdge("1", "3");// Now the level of the current vertex equal to 1
+    EXPECT_EQ(example.getVerticesByLevel(1), std::vector<std::string>({ "3" }));
+    example.addVertex("4", "xor", "4");// Current vertex
+    example.addEdge("2" , "4");// Now the level of the current vertex equal to 1
+    EXPECT_EQ(example.getVerticesByLevel(1), std::vector<std::string>({ "3" , "4" }));
+    example.addVertex("5", "and", "5");// Current vertex
+    example.addEdge("1" , "5"); // Now the level of the current vertex equal to 1
+    EXPECT_EQ(example.getVerticesByLevel(1), std::vector<std::string>({ "3" , "4" , "5" }));
+    example.addVertex("6", "nand", "6");// Current vertex
+    example.addEdge("3" , "6");// Now the level of the current vertex equal to 2
+    EXPECT_EQ(example.getVerticesByLevel(2), std::vector<std::string>({ "6" }));
+    example.addVertex("7", "not", "7");// Current vertex
+    example.addEdge("3" , "7");// Now the level of the current vertex equal to 2
+    EXPECT_EQ(example.getVerticesByLevel(2), std::vector<std::string>({ "6" , "7" }));
+}
