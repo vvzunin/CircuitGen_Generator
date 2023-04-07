@@ -294,3 +294,19 @@ TEST(TestGetVerticesByLevel, NormalTest)
     example.addEdge("3" , "7");// Now the level of the current vertex equal to 2
     EXPECT_EQ(example.getVerticesByLevel(2), std::vector<std::string>({ "6" , "7" }));
 }
+// Because of incapsulation we gonna test ConnectedTo  indirectly.
+TEST(TestGetConnectedTo, NormalTest)
+{
+    OrientedGraph example;
+    example.addVertex("1", "nor", "1");
+    example.addVertex("2", "or", "2");
+    example.addEdge("1" , "2" , true);
+    example.addVertex("3", "xor", "3");
+    example.addVertex("4", "nor", "4");
+    example.addEdge("3", "4", true);
+    example.addEdge("3", "2", true);
+    example.addEdge("2", "3", true);
+    example.addVertex("5", "and", "5");
+    example.addVertex("6", "nand", "6");
+    EXPECT_EQ(example.getMaxLevel(), 0);
+}
