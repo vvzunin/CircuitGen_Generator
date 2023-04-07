@@ -42,3 +42,7 @@ TEST(ConstructorForTruthTableWithDouble, CorrectSize)
 {
     EXPECT_EQ((TruthTable{ 1 , 1 , 0.3 }).size(), 2);
 }
+TEST(ConstructorForTruthTableWithDouble, CorrectInput)
+{
+    EXPECT_EQ((TruthTable{ 1 , 1 ,0.5 }).getInput(), 1);
+}
