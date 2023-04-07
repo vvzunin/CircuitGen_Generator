@@ -231,3 +231,26 @@ TEST(TestGetLogicVerticesToWireName, NormalTest)
    
 
 }
+TEST(TestGetVerticesByLevel, WithNonExistingLevel)
+{
+    OrientedGraph example;
+    example.addVertex("1", "nor", "1");
+    EXPECT_EQ(example.getVerticesByLevel(6), std::vector<std::string>({  }));
+    example.addVertex("2", "or", "2");
+    EXPECT_EQ(example.getVerticesByLevel(6), std::vector<std::string>({  }));
+    example.addVertex("3", "nor", "3");
+    example.addEdge("1" , "2");
+    example.addEdge("1", "3");
+    example.updateLevels();
+    EXPECT_EQ(example.getVerticesByLevel(6), std::vector<std::string>({  }));
+    example.addVertex("4", "xor", "4");
+    EXPECT_EQ(example.getVerticesByLevel(3), std::vector<std::string>({  }));
+    example.addVertex("5", "and", "5");
+    EXPECT_EQ(example.getVerticesByLevel(5), std::vector<std::string>({  }));
+    example.addVertex("6", "nand", "6");
+    EXPECT_EQ(example.getVerticesByLevel(4), std::vector<std::string>({  }));
+    example.addVertex("7", "not", "7");
+    EXPECT_EQ(example.getVerticesByLevel(3), std::vector<std::string>({  }));
+    example.addVertex("8", "nor", "8");
+    EXPECT_EQ(example.getVerticesByLevel(111), std::vector<std::string>({  }));
+}
