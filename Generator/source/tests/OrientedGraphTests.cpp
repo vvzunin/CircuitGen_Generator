@@ -24,3 +24,10 @@ TEST(TestGetIndexOfWireName, NameExists)
     example.addVertex("2", "input",  "2");
     EXPECT_TRUE(example.getIndexOfWireName("2") != -1);
 }
+TEST(TestGetIndexOfWireName, NameDoesNotExist)
+{
+    OrientedGraph example;
+    example.addVertex("nor", "input", "1");
+    example.addVertex("xor", "input",  "2");
+    EXPECT_TRUE(example.getIndexOfWireName("0") == -1);
+}
