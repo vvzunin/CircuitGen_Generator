@@ -120,3 +120,14 @@ TEST(TestAddDoubleEdge, OneOfTheVerticiesDoesNotExists)
     EXPECT_TRUE(example.addDoubleEdge("nand", "or", "xor", true) == false);
     EXPECT_TRUE(example.addDoubleEdge("not", "or", "nand", true) == false);
 }
+TEST(TestGetVerticeByType, NamesWasNotFound)
+{
+    OrientedGraph example;
+    example.addVertex("1", "or", "1");
+    example.addVertex("2"  "nand", "2");
+    example.addVertex("3", "and", "3");
+    EXPECT_TRUE(example.getVerticesByType("xor").empty());
+    EXPECT_TRUE(example.getVerticesByType("not").empty());
+    EXPECT_TRUE(example.getVerticesByType("buf").empty());
+    EXPECT_TRUE(example.getVerticesByType("xnor").empty());
+}
