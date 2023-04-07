@@ -158,3 +158,17 @@ TEST(TestGetVerticeByType, NormalTest)
     EXPECT_EQ(example.getVerticesByType("not"), std::vector<std::string>({ std::string("9"), std::string("10") , std::string("11") }));
 
 }
+TEST(TestGetVerticeByTypeToWireName, NamesWasNotFound)
+{
+    OrientedGraph example;
+    example.addVertex("anything", "nor", "1");
+    example.addVertex("anything", "xor", "2");
+    example.addVertex("anything", "nor", "3");
+    example.addVertex("anything", "and", "4");
+    example.addVertex("anything", "nand", "5");
+    EXPECT_EQ(example.getVerticesByType("not"), std::vector<std::string>({  }));
+    EXPECT_EQ(example.getVerticesByType("or"), std::vector<std::string>({  }));
+    EXPECT_EQ(example.getVerticesByType("buf"), std::vector<std::string>({  }));
+    EXPECT_EQ(example.getVerticesByType("xnor"), std::vector<std::string>({  }));
+
+}
