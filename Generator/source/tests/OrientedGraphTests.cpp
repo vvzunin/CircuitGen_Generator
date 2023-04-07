@@ -209,3 +209,8 @@ TEST(TestGetLogicVerticesToWireName, NamesWasNotFound)
     example.addVertex("13", "output", "13");
     EXPECT_EQ(example.getLogicVerticesToWireName(), std::vector<std::string>({ }));
 }
+TEST(TestGetLogicVerticesToWireName, EmptyGraph)
+{
+    OrientedGraph example;
+    EXPECT_EQ(example.getLogicVerticesToWireName(), std::vector<std::string>({ }));
+}
