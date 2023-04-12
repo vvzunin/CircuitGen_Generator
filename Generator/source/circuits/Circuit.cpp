@@ -153,13 +153,14 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
   {
     if (first)
     {
-      w << " " << out;
+      w << " ";
       first = false;
     }
     else
     {
-      w << ", " << out;
+      w << ", ";
     }
+    w << out;
   }
   w << "\n);\n";
 
@@ -211,7 +212,7 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
         if (inps.size() > 0)
         {
           w << "\tassign " << d_graph.getVertice(j).getWireName() << " = " <<
-            d_graph.getVertice(inps[0]).getWireName() << std::endl;
+            d_graph.getVertice(inps[0]).getWireName() << ";" << std::endl;
         }
       }
     }
@@ -297,7 +298,7 @@ bool Circuit::checkExistingHash() // TODO: is it really need return true when ha
 
   while (r >> hash)
     if (hash != d_circuitParameters.d_hashCode)
-      return true;
+      return false; //TODO: costul
 
   return false;
 }
@@ -314,18 +315,18 @@ bool Circuit::generate(bool i_pathExists)
 
   if (!saveParameters())
     return false;
-
-  if (checkExistingHash() || d_circuitParameters.d_reliability == 0 || d_circuitParameters.d_gates == 0)
-  {
-    if (!i_pathExists)
-      std::filesystem::remove_all(d_path);
-  }
-  else
-  {
-    std::string path = FilesTools::getParentDirOf(d_path) + "/hashCodes.txt";
-    std::ofstream w(path, std::ios_base::out | std::ios_base::app);
-    w << d_circuitParameters.d_hashCode;
-  }
+  //TODO: costul
+  //if (checkExistingHash() || d_circuitParameters.d_reliability == 0 || d_circuitParameters.d_gates == 0)
+  //{
+    //if (!i_pathExists)
+    //  std::filesystem::remove_all(d_path);
+  //}
+  //else
+  //{
+  //  std::string path = FilesTools::getParentDirOf(d_path) + "/hashCodes.txt";
+  //  std::ofstream w(path, std::ios_base::out | std::ios_base::app);
+  //  w << d_circuitParameters.d_hashCode;
+  //}
 
   return true;
 }

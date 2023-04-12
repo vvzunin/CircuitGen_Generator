@@ -80,7 +80,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
 
   std::vector<std::pair<std::string, std::vector<std::string>>> circs;
 
-  if (i_param.getCNF().getCNFT())
+  //if (i_param.getCNF().getCNFT()) TODO: remove costul. Need to make it by parameter
     circs.push_back({"CNFT", tftt.cnfFromTruthTable(tt, true)});
 
   if (i_param.getCNF().getCNFF())

@@ -10,6 +10,7 @@ GraphVertex::GraphVertex(const std::string& i_expr,
                          d_operation(i_operation),
                          d_value(i_value)
 {
+  static int d_count = 0;
   if (d_operation == "input" || d_operation == "output" || d_operation == "const")
     d_wireName = i_expr;
   else
