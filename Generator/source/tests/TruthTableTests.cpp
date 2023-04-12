@@ -4,23 +4,37 @@
 
 TEST(EqualOperationOfTruthTable, EqualToEachOther)
 {
-
-   EXPECT_EQ((TruthTable{ 1,  1 , std::vector<std::vector<bool>>({{true},{true}}) } == TruthTable{ 1, 1 , std::vector<std::vector<bool>>({{true},{true}}) }), true);
-   EXPECT_EQ((TruthTable{ 2,  1 , std::vector<std::vector<bool>>({{true},{true} ,{true} , {false}}) } == TruthTable{ 2, 1 , std::vector<std::vector<bool>>({{true},{true} , {true} , {false}}) }), true);
-   EXPECT_EQ((TruthTable{ 2,  2 , std::vector<std::vector<bool>>({{true , true},{true , true} ,{true , true} , {false , false}}) } == TruthTable{ 2,  2 , std::vector<std::vector<bool>>({{true , true},{true , true} ,{true , true} , {false , false}}) }), true);
+    TruthTable firstTable = TruthTable{ 1,  1 , std::vector<std::vector<bool>>({{1},{1}}) };
+    TruthTable secondTable = TruthTable{ 1, 1 , std::vector<std::vector<bool>>({{1},{1}}) };
+   EXPECT_TRUE(firstTable == secondTable);
+   firstTable = TruthTable{ 2,  1 , std::vector<std::vector<bool>>({{1},{1} ,{1} , {0}}) };
+   secondTable = TruthTable{ 2, 1 , std::vector<std::vector<bool>>({{1},{1} , {1} , {0}}) };
+   EXPECT_TRUE(firstTable == secondTable);
+   firstTable = TruthTable{ 2,  2 , std::vector<std::vector<bool>>({{1 , 1},{1 , 1} ,{1 , 1} , {0 , 0}}) };
+   secondTable = TruthTable{ 2,  2 , std::vector<std::vector<bool>>({{1 , 1},{1 , 1} ,{1 , 1} , {0 , 0}}) };
+   EXPECT_TRUE(firstTable == secondTable);
 
 }
 TEST(EqualOperationOfTruthTable, DifferentFromEachOther)
 {
-    EXPECT_EQ((TruthTable{ 1,  1 , std::vector<std::vector<bool>>({{true},{true}}) } == TruthTable{ 1, 1 , std::vector<std::vector<bool>>({{true},{false}}) }), false);
-    EXPECT_EQ((TruthTable{ 3,  1 , std::vector<std::vector<bool>>({{true},{true} ,{true} , {false} , {true},{true} ,{true} , {false}}) } == TruthTable{ 3, 1 , std::vector<std::vector<bool>>({{true},{true} , {true} , {false} , {true},{true} ,{true} , {true}}) }), false);
-    EXPECT_EQ((TruthTable{ 1,  1 , std::vector<std::vector<bool>>({{false},{false}}) } == TruthTable{ 1, 1 , std::vector<std::vector<bool>>({{true},{true}}) }), false);
+    TruthTable firstTable = TruthTable{ 1,  1 , std::vector<std::vector<bool>>({{1},{1}}) };
+    TruthTable secondTable = TruthTable{ 1, 1 , std::vector<std::vector<bool>>({{1},{0}}) };
+    EXPECT_FALSE(firstTable == secondTable);
+    firstTable = TruthTable{ 3,  1 , std::vector<std::vector<bool>>({{1},{1} ,{1} , {0} , {1},{1} ,{1} , {0}}) };
+    secondTable = TruthTable{ 3, 1 , std::vector<std::vector<bool>>({{1},{1} , {1} , {0} , {1},{1} ,{1} , {1}}) };
+    EXPECT_FALSE(firstTable == secondTable);
+    firstTable = TruthTable{ 1,  1 , std::vector<std::vector<bool>>({{0},{0}}) };
+    secondTable = TruthTable{ 1, 1 , std::vector<std::vector<bool>>({{1},{1}}) };
+    EXPECT_FALSE(firstTable == secondTable);
 }
 TEST(ConvToBinaryOfTruthTable, NormalTest)
 {
-    EXPECT_EQ((TruthTable{ 1  , 1 , std::vector<std::vector<bool>>({{true} , {true} }) }).convToBinary(), std::vector<std::vector<bool>>({ {false} , {true} }));
-    EXPECT_EQ((TruthTable{ 2  , 1 , std::vector<std::vector<bool>>({{true} , {false}, {false} , {false} }) }).convToBinary(), std::vector<std::vector<bool>>({ { false , false }, { false , true }, { true, false }, {true , true} }));
-    EXPECT_EQ((TruthTable{ 3  , 1 , std::vector<std::vector<bool>>({}) }).convToBinary(), std::vector<std::vector<bool>>({ { false , false , false },  { false , false , true },{ false , true , false }, {false , true , true} , {true , false , false} , {true , false , true} , {true, true ,false} , {true , true ,true} }));
+    TruthTable table = TruthTable{ 1  , 1 , std::vector<std::vector<bool>>({{1} , {1} }) };
+    EXPECT_EQ(table.convToBinary(), std::vector<std::vector<bool>>({ {0} , {1} }));
+    table = TruthTable{ 2  , 1 , std::vector<std::vector<bool>>({{1} , {0}, {0} , {0} }) };
+    EXPECT_EQ(table.convToBinary(), std::vector<std::vector<bool>>({ { 0 , 0 }, { 0 , 1 }, { 1, 0 }, {1 , 1} }));
+    table = TruthTable{ 3  , 1 , std::vector<std::vector<bool>>({}) };
+    EXPECT_EQ(table.convToBinary(), std::vector<std::vector<bool>>({ { 0 , 0 , 0 },  { 0 , 0 , 1 },{ 0 , 1 , 0 }, {0 , 1 , 1} , {1 , 0 , 0} , {1 , 0 , 1} , {1, 1 ,0} , {1, 1 ,1} }));
 }
 TEST(ConstructorForTruthTableWithVector, CorrectSize)
 {
@@ -36,7 +50,7 @@ TEST(ConstructorForTruthTableWithVector, CorrectOutput)
 }
 TEST(ConstructorForTruthTableWithVector, CorrectVector)
 {
-    EXPECT_EQ((TruthTable{ 1  , 1 , std::vector<std::vector<bool>>({{true} , {true} }) }).getOutTable(), std::vector<std::vector<bool>>({ {true} , {true} }));
+    EXPECT_EQ((TruthTable{ 1  , 1 , std::vector<std::vector<bool>>({{1} , {1} }) }).getOutTable(), std::vector<std::vector<bool>>({ {1} , {1} }));
 }
 TEST(ConstructorForTruthTableWithDouble, CorrectSize)
 {
