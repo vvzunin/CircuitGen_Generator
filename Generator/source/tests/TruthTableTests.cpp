@@ -4,8 +4,8 @@
 
 TEST(EqualOperationOfTruthTable, EqualToEachOther)
 {
-    TruthTable firstTable = TruthTable{ 1,  1 , std::vector<std::vector<bool>>({{1},{1}}) };
-    TruthTable secondTable = TruthTable{ 1, 1 , std::vector<std::vector<bool>>({{1},{1}}) };
+   TruthTable firstTable = TruthTable{ 1,  1 , std::vector<std::vector<bool>>({{1},{1}}) };
+   TruthTable secondTable = TruthTable{ 1, 1 , std::vector<std::vector<bool>>({{1},{1}}) };
    EXPECT_TRUE(firstTable == secondTable);
    firstTable = TruthTable{ 2,  1 , std::vector<std::vector<bool>>({{1},{1} ,{1} , {0}}) };
    secondTable = TruthTable{ 2, 1 , std::vector<std::vector<bool>>({{1},{1} , {1} , {0}}) };
