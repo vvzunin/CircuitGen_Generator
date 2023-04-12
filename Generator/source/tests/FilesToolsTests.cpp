@@ -38,3 +38,19 @@ TEST(FileTools , OnlyDirectoriesNoFiles)
     std::filesystem::remove_all(tmpPath.string());//Delete the current directory we work with.
     
 }
+TEST(FileTools, NoDirectoriesNoFiles)
+{
+    fs::path tmpPath = (fs::temp_directory_path() / "anotherOne");//Created temporary guaranted directory to deal with
+    std::string tmp = tmpPath.string();
+    try
+    {
+        getDirectories(tmp);// when there is no element in directory that we pushed to getDirectories than it is gonna throw exception. Here I handle that exception.
+    	EXPECT_EQ(0, 1);    // If the command at the line above throw exception this line will not be run and the test will not fail.
+    }
+    catch (...)
+    {
+        EXPECT_EQ(1, 1);//To show on the console application that test was passed. We can ignore this line and just delete it. The result will not change anyway
+			//but for more readability I decided to leave it.
+    }
+    std::filesystem::remove(tmpPath.string());//Clean our directories.
+}
