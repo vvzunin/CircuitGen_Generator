@@ -1,4 +1,5 @@
 #include <cassert>
+#include <iostream>
 
 #include "Parser.h"
 
@@ -66,7 +67,7 @@ std::pair<bool, std::vector<std::pair<int, int>>> Parser::createBrackets(const s
   }
 
   int u = static_cast<int>(brackets.size()) - 1;
-  assert(u >= 0);
+  //assert(u >= 0);
   while (u >= 0 && brackets[u].second != -1)
     --u;
   

@@ -59,6 +59,7 @@ void DataBaseGenerator::generateType(
       {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt)
         {
+          //TODO: it is that Rustam told about iteration?
           d_parameters.setIteration(tt);
           d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount + tt));
           generator(d_parameters.getGenerationParameters());
