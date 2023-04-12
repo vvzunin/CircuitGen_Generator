@@ -10,6 +10,7 @@ TEST(TestGetIndexOfExpression, ExpressionExists)
     example.addVertex("xor", "input" ,  "2");
     EXPECT_TRUE(example.getIndexOfExpression("nor") != -1);
 }
+
 TEST(TestGetIndexOfExpression, ExpressionDoesNotExist)
 {
     OrientedGraph example;
@@ -17,6 +18,7 @@ TEST(TestGetIndexOfExpression, ExpressionDoesNotExist)
     example.addVertex("xor", "input",  "2");
     EXPECT_TRUE(example.getIndexOfExpression("or") == -1);
 }
+
 TEST(TestGetIndexOfWireName, NameExists)
 {
     OrientedGraph example;
@@ -24,6 +26,7 @@ TEST(TestGetIndexOfWireName, NameExists)
     example.addVertex("2", "input",  "2");
     EXPECT_TRUE(example.getIndexOfWireName("2") != -1);
 }
+
 TEST(TestGetIndexOfWireName, NameDoesNotExist)
 {
     OrientedGraph example;
@@ -31,6 +34,7 @@ TEST(TestGetIndexOfWireName, NameDoesNotExist)
     example.addVertex("xor", "input",  "2");
     EXPECT_TRUE(example.getIndexOfWireName("0") == -1);
 }
+
 TEST(TestAddVertex, ReturnAtFirstLine)
 {
     OrientedGraph example;
@@ -38,6 +42,7 @@ TEST(TestAddVertex, ReturnAtFirstLine)
     example.addVertex("xor", "input",   "2");
     EXPECT_TRUE(example.addVertex("nor", "Anything",  "Anything") == false);
 }
+
 TEST(TestAddVertex, EmptyName)
 {
     OrientedGraph example;
@@ -45,6 +50,7 @@ TEST(TestAddVertex, EmptyName)
     example.addVertex("xor", "input",  "2");
     EXPECT_TRUE(example.addVertex("", "Anything", "Anything") == true);
 }
+
 TEST(TestAddVertex, NonEmptyName)
 {
     OrientedGraph example;
@@ -52,6 +58,7 @@ TEST(TestAddVertex, NonEmptyName)
     example.addVertex("xor", "const",  "2");
     EXPECT_TRUE(example.addVertex("NonEmptyString", "Anything",  "Anything") == true);
 }
+
 TEST(TestAddEdge, ExpressionFalse)
 {
     OrientedGraph example;
@@ -63,6 +70,7 @@ TEST(TestAddEdge, ExpressionFalse)
     EXPECT_TRUE(example.addEdge("1", "5", false) == true);
     EXPECT_TRUE(example.addEdge("2", "3", false) == true);
 }
+
 TEST(TestAddEdge, ExpressionTrue)
 {
     OrientedGraph example;
@@ -72,6 +80,7 @@ TEST(TestAddEdge, ExpressionTrue)
     example.addVertex("xor", "xor", "2");
     EXPECT_TRUE(example.addEdge("nor", "xor", true) == true);
 }
+
 TEST(TestAddEdge, OneOfTheVerticiesDoesNotExists)
 {
     OrientedGraph example;
@@ -81,6 +90,7 @@ TEST(TestAddEdge, OneOfTheVerticiesDoesNotExists)
     example.addVertex("2", "nor", "2");
     EXPECT_TRUE(example.addEdge("nor", "xor", true) == false);
 }
+
 TEST(TestAddDoubleEdge, ExpressionTrue)
 {
     OrientedGraph example;
@@ -89,6 +99,7 @@ TEST(TestAddDoubleEdge, ExpressionTrue)
     example.addVertex("3", "const", "3");
     EXPECT_TRUE(example.addDoubleEdge("1", "2", "3", false) == true);
 }
+
 TEST(TestAddDoubleEdge, ExpressionFalse)
 {
     OrientedGraph example;
@@ -108,6 +119,7 @@ TEST(TestAddDoubleEdge, ExpressionFalse)
     EXPECT_TRUE(example.addDoubleEdge("4", "3", "2", false) == true);
 
 }
+
 TEST(TestAddDoubleEdge, OneOfTheVerticiesDoesNotExists)
 {
     OrientedGraph example;
@@ -120,6 +132,7 @@ TEST(TestAddDoubleEdge, OneOfTheVerticiesDoesNotExists)
     EXPECT_TRUE(example.addDoubleEdge("nand", "or", "xor", true) == false);
     EXPECT_TRUE(example.addDoubleEdge("not", "or", "nand", true) == false);
 }
+
 TEST(TestGetVerticeByType, NamesWasNotFound)
 {
     OrientedGraph example;
@@ -131,11 +144,13 @@ TEST(TestGetVerticeByType, NamesWasNotFound)
     EXPECT_TRUE(example.getVerticesByType("buf").empty());
     EXPECT_TRUE(example.getVerticesByType("xnor").empty());
 }
+
 TEST(TestGetVerticeByType, EmptyGraph)
 {
     OrientedGraph example;
     EXPECT_TRUE(example.getVerticesByType("and").empty());
 }
+
 TEST(TestGetVerticeByType, NormalTest)
 {
     OrientedGraph example;
@@ -158,6 +173,7 @@ TEST(TestGetVerticeByType, NormalTest)
     EXPECT_EQ(example.getVerticesByType("not"), std::vector<std::string>({ std::string("9"), std::string("10") , std::string("11") }));
 
 }
+
 TEST(TestGetVerticeByTypeToWireName, NamesWasNotFound)
 {
     OrientedGraph example;
@@ -172,6 +188,7 @@ TEST(TestGetVerticeByTypeToWireName, NamesWasNotFound)
     EXPECT_EQ(example.getVerticesByType("xnor"), std::vector<std::string>({  }));
 
 }
+
 TEST(TestGetVerticeByTypeToWireName, EmptyGraph)
 {
     OrientedGraph example;
@@ -181,6 +198,7 @@ TEST(TestGetVerticeByTypeToWireName, EmptyGraph)
     EXPECT_EQ(example.getVerticesByType("xnor"), std::vector<std::string>({  }));
 
 }
+
 TEST(TestGetVerticeByTypeToWireName, NormalTest)
 {
     OrientedGraph example;
@@ -201,6 +219,7 @@ TEST(TestGetVerticeByTypeToWireName, NormalTest)
     EXPECT_EQ(example.getVerticesByTypeToWireName("const"), std::vector<std::string>({ "5" , "6" , "7" , "8" , "9"}));
     EXPECT_EQ(example.getVerticesByTypeToWireName("output"), std::vector<std::string>({ "10" , "11" , "12" , "13" }));
 }
+
 TEST(TestGetLogicVerticesToWireName, NamesWasNotFound)
 {
     OrientedGraph example;
@@ -209,11 +228,13 @@ TEST(TestGetLogicVerticesToWireName, NamesWasNotFound)
     example.addVertex("13", "output", "13");
     EXPECT_EQ(example.getLogicVerticesToWireName(), std::vector<std::string>({ }));
 }
+
 TEST(TestGetLogicVerticesToWireName, EmptyGraph)
 {
     OrientedGraph example;
     EXPECT_EQ(example.getLogicVerticesToWireName(), std::vector<std::string>({ }));
 }
+
 TEST(TestGetLogicVerticesToWireName, NormalTest)
 {
     OrientedGraph example;
@@ -229,8 +250,9 @@ TEST(TestGetLogicVerticesToWireName, NormalTest)
     example.addVertex("7", "output", "7");
     EXPECT_EQ(example.getLogicVerticesToWireName().size(), 3);// output obeys the same rules as const. See definition of getLogicVerticesToWireName
    
-
+    
 }
+
 TEST(TestGetVerticesByLevel, WithNonExistingLevel)
 {
     OrientedGraph example;
@@ -254,6 +276,7 @@ TEST(TestGetVerticesByLevel, WithNonExistingLevel)
     example.addVertex("8", "nor", "8");
     EXPECT_EQ(example.getVerticesByLevel(111), std::vector<std::string>({  }));
 }
+
 TEST(TestGetVerticesByLevel, WithExistingLevel)
 {
     OrientedGraph example;
@@ -263,6 +286,7 @@ TEST(TestGetVerticesByLevel, WithExistingLevel)
     example.updateLevels();
     EXPECT_EQ(example.getVerticesByLevel(1), std::vector<std::string>({"2"}));
 }
+
 TEST(TestGetVerticesByLevel, EmptyGraph)
 {
     OrientedGraph example;
@@ -270,6 +294,7 @@ TEST(TestGetVerticesByLevel, EmptyGraph)
         EXPECT_EQ(example.getVerticesByLevel(i), std::vector<std::string>({  }));
 
 }
+
 TEST(TestGetVerticesByLevel, NormalTest)
 {
     OrientedGraph example;
@@ -294,6 +319,7 @@ TEST(TestGetVerticesByLevel, NormalTest)
     example.addEdge("3" , "7");// Now the level of the current vertex equal to 2
     EXPECT_EQ(example.getVerticesByLevel(2), std::vector<std::string>({ "6" , "7" }));
 }
+
 // Because of incapsulation we gonna test ConnectedTo  indirectly.
 TEST(TestGetConnectedTo, NormalTest)
 {
@@ -310,6 +336,7 @@ TEST(TestGetConnectedTo, NormalTest)
     example.addVertex("6", "nand", "6");
     EXPECT_EQ(example.getMaxLevel(), 0);
 }
+
 TEST(TestUpdateLevels, NormalTest)
 {
     OrientedGraph example;
