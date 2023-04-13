@@ -212,25 +212,39 @@ TEST(TestAddDoubleEdge, OneOfTheVerticiesDoesNotExists)
     EXPECT_TRUE(example.addDoubleEdge("not", "or", "nand", true) == false);
 }
 
-TEST(TestGetVerticeByType, NamesWasNotFound)
+TEST(TestGetVerticeByTypeWhichGetTheOperationAsInputAndAfterThatReturnTheVectorWithVerticiesWhichHaveSuchOperation, getVerticesByTypeReturnEmptyVectorWhenThereAreNoVerticiesInGraphWhichHasSuchOperation)
 {
     OrientedGraph example;
-    example.addVertex("1", "or", "1");
-    example.addVertex("2"  "nand", "2");
-    example.addVertex("3", "and", "3");
+    example.addVertex("nand", "nand", "1");
+    example.addVertex("nor"  "nor", "2");
+    example.addVertex("or", "or", "3");
     EXPECT_TRUE(example.getVerticesByType("xor").empty());
     EXPECT_TRUE(example.getVerticesByType("not").empty());
     EXPECT_TRUE(example.getVerticesByType("buf").empty());
     EXPECT_TRUE(example.getVerticesByType("xnor").empty());
+    EXPECT_TRUE(example.getVerticesByType("and").empty());
+    EXPECT_TRUE(example.getVerticesByType("").empty());
+    EXPECT_TRUE(example.getVerticesByType("=").empty());
+    EXPECT_TRUE(example.getVerticesByType("1'b").empty());
 }
 
-TEST(TestGetVerticeByType, EmptyGraph)
+TEST(TestGetVerticeByTypeWhichGetTheOperationAsInputAndAfterThatReturnTheVectorWithVerticiesWhichHaveSuchOperation, getVerticeByTypeReturnEmptyVectorWhenThereAreNoVerticiesInGraph)
 {
     OrientedGraph example;
     EXPECT_TRUE(example.getVerticesByType("and").empty());
+    EXPECT_TRUE(example.getVerticesByType("nand").empty());
+    EXPECT_TRUE(example.getVerticesByType("xor").empty());
+    EXPECT_TRUE(example.getVerticesByType("nor").empty());
+    EXPECT_TRUE(example.getVerticesByType("or").empty());
+    EXPECT_TRUE(example.getVerticesByType("").empty());
+    EXPECT_TRUE(example.getVerticesByType("=").empty());
+    EXPECT_TRUE(example.getVerticesByType("xnor").empty());
+    EXPECT_TRUE(example.getVerticesByType("1'b").empty());
+    EXPECT_TRUE(example.getVerticesByType("and").empty());
+    EXPECT_TRUE(example.getVerticesByType("not").empty());
 }
 
-TEST(TestGetVerticeByType, NormalTest)
+TEST(TestGetVerticeByTypeWhichGetTheOperationAsInputAndAfterThatReturnTheVectorWithVerticiesWhichHaveSuchOperation, getVerticeByTypeNormalTest)
 {
     OrientedGraph example;
     example.addVertex("1", "nor", "anything");
