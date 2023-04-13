@@ -3,23 +3,51 @@
 #include <vector>
 #include "../graph/OrientedGraph.h"
 
-TEST(TestGetIndexOfExpression, ExpressionExists)
+TEST(TestGetIndexOfExpressionWhichReturnMinusOneIfThereIsNoSuchExpressionInGraphOtherWiseReturnTheIndexOfVertix, ReturnRightIndexOfExpressionInGraphWhenWeCalledGetIndexOfExpression)
 {
     OrientedGraph example;
-    example.addVertex("nor", "input",  "1");
-    example.addVertex("xor", "input" ,  "2");
-    EXPECT_TRUE(example.getIndexOfExpression("nor") != -1);
+    example.addVertex("nor", "Anything",  "Anything");// addVertex(i_expression , i_operation, i_wireName)
+    example.addVertex("xor", "Anything" ,  "Anything");//When I write down Anything it means that if we replace the content it does not change anything
+    example.addVertex("and", "Anything", "Anything");
+    example.addVertex("nand", "Anything", "Anything");
+    example.addVertex("or", "Anything", "Anything");
+    example.addVertex("xnor", "Anything", "Anything");
+    example.addVertex("buf", "Anything", "Anything");
+    example.addVertex("not", "Anything", "Anything");
+    example.addVertex("input", "Anything", "Anything");
+    example.addVertex("output", "Anything", "Anything");
+    example.addVertex("const", "Anything", "Anything");
+    EXPECT_TRUE(example.getIndexOfExpression("nor") == 0);
+    EXPECT_TRUE(example.getIndexOfExpression("xor") == 1);
+    EXPECT_TRUE(example.getIndexOfExpression("and") == 2);
+    EXPECT_TRUE(example.getIndexOfExpression("nand") == 3);
+    EXPECT_TRUE(example.getIndexOfExpression("or") == 4);
+    EXPECT_TRUE(example.getIndexOfExpression("xnor") == 5);
+    EXPECT_TRUE(example.getIndexOfExpression("buf") == 6);
+    EXPECT_TRUE(example.getIndexOfExpression("not") == 7);
+    EXPECT_TRUE(example.getIndexOfExpression("input") == 8);
+    EXPECT_TRUE(example.getIndexOfExpression("output") == 9);
+    EXPECT_TRUE(example.getIndexOfExpression("const") == 10);
 }
 
-TEST(TestGetIndexOfExpression, ExpressionDoesNotExist)
+TEST(TestGetIndexOfExpressionWhichReturnMinusOneIfThereIsNoSuchExpressionInGraphOtherWiseReturnTheIndexOfVertix, ReturnMinusOneWhenWePassedExpressionThatDoesNotExistInGetIndexOfExpression)
 {
     OrientedGraph example;
     example.addVertex("nor", "input", "1");
     example.addVertex("xor", "input",  "2");
     EXPECT_TRUE(example.getIndexOfExpression("or") == -1);
+    EXPECT_TRUE(example.getIndexOfExpression("and") == -1);
+    EXPECT_TRUE(example.getIndexOfExpression("nand") == -1);
+    EXPECT_TRUE(example.getIndexOfExpression("const") == -1);
+    EXPECT_TRUE(example.getIndexOfExpression("xnor") == -1);
+    EXPECT_TRUE(example.getIndexOfExpression("buf") == -1);
+    EXPECT_TRUE(example.getIndexOfExpression("input") == -1);
+    EXPECT_TRUE(example.getIndexOfExpression("output") == -1);
+    EXPECT_TRUE(example.getIndexOfExpression("not") == -1);
+    EXPECT_TRUE(example.getIndexOfExpression("Anything") == -1);
 }
 
-TEST(TestGetIndexOfWireName, NameExists)
+TEST(TestGetIndexOfWireNameWhichReturn, NameExists)
 {
     OrientedGraph example;
     example.addVertex("1", "input", "1");
@@ -35,15 +63,26 @@ TEST(TestGetIndexOfWireName, NameDoesNotExist)
     EXPECT_TRUE(example.getIndexOfWireName("0") == -1);
 }
 
-TEST(TestAddVertex, ReturnAtFirstLine)
+TEST(TestAddVertexWhichReturnFalseIfThereAlreadyExistSuchVertexOtherwiseAddVertexToGraphAndReturnTrue, AddVertexDoesNotAddVertexWhichAlreadyExistsInGraph)
 {
     OrientedGraph example;
-    example.addVertex("nor", "input",  "1");
-    example.addVertex("xor", "input",   "2");
-    EXPECT_TRUE(example.addVertex("nor", "Anything",  "Anything") == false);
+    example.addVertex("nor", "",  "1");//Reminder: addVertex(const std::string i_vertexName, const std::string& i_operation, const std::string& i_wireName)
+    example.addVertex("nor", "", "0");//Check with all operation(second parameter) and the same expresion(first parameter)
+    example.addVertex("nor", "=", "1");
+    example.addVertex("nor", "1'b", "2");
+    example.addVertex("nor", "and", "3");
+    example.addVertex("nor", "nand", "4");
+    example.addVertex("nor", "or", "5");
+    example.addVertex("nor", "nor", "6");
+    example.addVertex("nor", "not", "7");
+    example.addVertex("nor", "buf", "8");
+    example.addVertex("nor", "xor", "9");
+    example.addVertex("nor", "xnor", "10");
+    EXPECT_EQ(example.size(), 1);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("nor"), 0);// Check if the expression "nor" was not replaced by anything else
 }
 
-TEST(TestAddVertex, EmptyName)
+TEST(TestAddVertexWhichReturnFalseIfThereAlreadyExistSuchVertexOtherwiseAddVertexToGraphAndReturnTrue, EmptyName)
 {
     OrientedGraph example;
     example.addVertex("nor", "input", "1");
@@ -59,19 +98,18 @@ TEST(TestAddVertex, NonEmptyName)
     EXPECT_TRUE(example.addVertex("NonEmptyString", "Anything",  "Anything") == true);
 }
 
-TEST(TestAddEdge, ExpressionFalse)
+TEST(TestAddEdgeWhichCreatedOrientedEdgeFromFirstPassedExistingVertexEdgeToSecondPassedExistingVertexAndReturnTrueButIfOneOfThePassedVerticesDoesNotExistsWillDoNothingAndReturnFalse, AddEdgeActuallyAddEdgeBetweenTwoPassedExistingVertices)
 {
     OrientedGraph example;
-    example.addVertex("1", "const",  "Anything");// The construction of GraphVertex made so that it do not care about i_wirename. d_wirename gonna be 
-                                                 // The same thing as logicExpresion gonna be when d_operation == const or d_operation == input or d_operation == output
-    example.addVertex("5", "const",  "Anything");
-    example.addVertex("3", "output",  "Anything");
-    example.addVertex("2", "output",  "Anything");
+    example.addVertex("nor", "const",  "1");// The construction of GraphVertex made so that it do not care about i_wirename. d_wirename gonna be 
+    example.addVertex("xor", "const",  "2");// The same thing as logicExpresion gonna be when d_operation == const or d_operation == input or d_operation == output
+    example.addVertex("and", "and",  "3");
+    example.addVertex("nand", "and",  "4");
     EXPECT_TRUE(example.addEdge("1", "5", false) == true);
     EXPECT_TRUE(example.addEdge("2", "3", false) == true);
 }
 
-TEST(TestAddEdge, ExpressionTrue)
+TEST(TestAddEdgeWhichCreatedOrientedEdgeFromFirstPassedVertexEdgeToSecondPassedVertexAndReturnTrueIfOneOfThePassedVerticesDoesNotExistsWillDoNothingAndReturnFalse, ExpressionTrue)
 {
     OrientedGraph example;
     example.addVertex("nor", "nor",  "1");
@@ -81,7 +119,7 @@ TEST(TestAddEdge, ExpressionTrue)
     EXPECT_TRUE(example.addEdge("nor", "xor", true) == true);
 }
 
-TEST(TestAddEdge, OneOfTheVerticiesDoesNotExists)
+TEST(TestAddEdgeWhichCreatedOrientedEdgeFromFirstPassedVertexEdgeToSecondPassedVertexAndReturnTrueIfOneOfThePassedVerticesDoesNotExistsWillDoNothingAndReturnFalse, OneOfTheVerticiesDoesNotExists)
 {
     OrientedGraph example;
     example.addVertex("1", "or", "1");
