@@ -110,8 +110,8 @@ void TruthTable::generateTable(double i_p)
   std::srand(std::time(0));
   if (i_p == 0)
   {
-      d_array.clear();
-      d_array.resize(d_size);
+    d_array.clear();
+    d_array.resize(d_size);
     for (int i = 0; i < d_size; ++i)
     {
       d_array[i].resize(d_output);
@@ -121,8 +121,8 @@ void TruthTable::generateTable(double i_p)
   }
   if (i_p > 0 && i_p <= 1)
   {
-      d_array.clear();
-      d_array.resize(d_size);
+    d_array.clear();
+    d_array.resize(d_size);
     std::default_random_engine generator;
     std::uniform_real_distribution<double> distribution(0.0,1.0);
     for (int i = 0; i < d_size; ++i)
