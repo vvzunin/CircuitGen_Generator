@@ -59,6 +59,7 @@ void DataBaseGenerator::generateType(
       {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt)
         {
+          //TODO: it is that Rustam told about iteration?
           d_parameters.setIteration(tt);
           d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount + tt));
           generator(d_parameters.getGenerationParameters());
@@ -79,7 +80,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
 
   std::vector<std::pair<std::string, std::vector<std::string>>> circs;
 
-  if (i_param.getCNF().getCNFT())
+  //if (i_param.getCNF().getCNFT()) TODO: remove costul. Need to make it by parameter
     circs.push_back({"CNFT", tftt.cnfFromTruthTable(tt, true)});
 
   if (i_param.getCNF().getCNFF())

@@ -17,7 +17,7 @@ public:
 
 
 private:
-  std::string d_mainPath;
+  std::string d_mainPath = ".";
   Settings* d_settings = Settings::getInstance("DataBaseGenerator");
   DataBaseGeneratorParameters d_parameters; // why we need this var?
   int d_dirCount = 0;

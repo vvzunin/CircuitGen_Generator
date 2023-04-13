@@ -28,7 +28,7 @@ bool OrientedGraph::empty() const
 
 GraphVertex OrientedGraph::getVertice(int i) const
 {
-  assert(i > 0 && i < d_vertices.size());
+  assert(i >= 0 && i < d_vertices.size());
   return d_vertices.at(i);
 }
 
