@@ -101,32 +101,73 @@ TEST(TestAddVertex, NonEmptyName)
 TEST(TestAddEdgeWhichCreatedOrientedEdgeFromFirstPassedExistingVertexEdgeToSecondPassedExistingVertexAndReturnTrueButIfOneOfThePassedVerticesDoesNotExistsWillDoNothingAndReturnFalse, AddEdgeActuallyAddEdgeBetweenTwoPassedExistingVertices)
 {
     OrientedGraph example;
-    example.addVertex("nor", "const",  "1");// The construction of GraphVertex made so that it do not care about i_wirename. d_wirename gonna be 
-    example.addVertex("xor", "const",  "2");// The same thing as logicExpresion gonna be when d_operation == const or d_operation == input or d_operation == output
+    example.addVertex("nor", "and",  "1");// The construction of GraphVertex made so that it do not care about i_wirename. d_wirename gonna be 
+    example.addVertex("xor", "nand",  "2");// The same thing as logicExpresion gonna be when d_operation == const or d_operation == input or d_operation == output
     example.addVertex("and", "and",  "3");
-    example.addVertex("nand", "and",  "4");
-    EXPECT_TRUE(example.addEdge("1", "5", false) == true);
-    EXPECT_TRUE(example.addEdge("2", "3", false) == true);
+    example.addVertex("nand", "and",  "5");
+    example.addEdge("nor", "xor");
+    EXPECT_TRUE(example.getAdjacencyMatrix(0, 1));
 }
 
-TEST(TestAddEdgeWhichCreatedOrientedEdgeFromFirstPassedVertexEdgeToSecondPassedVertexAndReturnTrueIfOneOfThePassedVerticesDoesNotExistsWillDoNothingAndReturnFalse, ExpressionTrue)
+TEST(TestAddEdgeWhichCreatedOrientedEdgeFromFirstPassedVertexEdgeToSecondPassedVertexAndReturnTrueIfOneOfThePassedVerticesDoesNotExistsWillDoNothingAndReturnFalse, AddEdgeDoesNotAddRedundantEdgesToOtherVertices)
 {
     OrientedGraph example;
     example.addVertex("nor", "nor",  "1");
-    example.addVertex("nor", "nor", "5");
+    example.addVertex("xor", "or", "2");
     example.addVertex("nand", "nand", "3");
-    example.addVertex("xor", "xor", "2");
-    EXPECT_TRUE(example.addEdge("nor", "xor", true) == true);
+    example.addEdge("nor", "xor");
+    EXPECT_TRUE(example.getAdjacencyMatrix(0,2) == false);
+    EXPECT_TRUE(example.getAdjacencyMatrix(2, 0) == false);
+    EXPECT_TRUE(example.getAdjacencyMatrix(0, 0) == false);
+    EXPECT_TRUE(example.getAdjacencyMatrix(1, 2) == false);
+    EXPECT_TRUE(example.getAdjacencyMatrix(2, 1) == false);
+    EXPECT_TRUE(example.getAdjacencyMatrix(1, 1) == false);
+    EXPECT_TRUE(example.getAdjacencyMatrix(0, 2) == false);
+    EXPECT_TRUE(example.getAdjacencyMatrix(2, 2) == false);
 }
 
-TEST(TestAddEdgeWhichCreatedOrientedEdgeFromFirstPassedVertexEdgeToSecondPassedVertexAndReturnTrueIfOneOfThePassedVerticesDoesNotExistsWillDoNothingAndReturnFalse, OneOfTheVerticiesDoesNotExists)
+TEST(TestAddEdgeWhichCreatedOrientedEdgeFromFirstPassedVertexEdgeToSecondPassedVertexAndReturnTrueIfOneOfThePassedVerticesDoesNotExistsWillDoNothingAndReturnFalse, AddEdgeDoesNothingWhenOneOfTheVerticiesDoesNotExists)
 {
     OrientedGraph example;
-    example.addVertex("1", "or", "1");
-    example.addVertex("5", "and", "5");
-    example.addVertex("3", "nand", "3");
-    example.addVertex("2", "nor", "2");
-    EXPECT_TRUE(example.addEdge("nor", "xor", true) == false);
+
+    example.addVertex("buf", "or", "1");
+    example.addVertex("or", "and", "5");
+    example.addVertex("and", "nand", "3");
+    example.addVertex("nand", "nor", "2");
+
+    example.addEdge("xnor", "buf");// one non-existing vertex
+
+    for (int i = 0; i < example.getAdjacencyMatrix().size(); i++)
+    {
+        for (int j = 0; j < example.getAdjacencyMatrix().size(); j++)
+        {
+            EXPECT_TRUE(example.getAdjacencyMatrix(i, j) == false);
+        }
+    }
+
+    EXPECT_TRUE(example.size() == 4);
+
+    EXPECT_TRUE(example.getIndexOfExpression("buf") == 0);// Check that the content of the Graph was not changed
+    EXPECT_TRUE(example.getIndexOfExpression("or") == 1);
+    EXPECT_TRUE(example.getIndexOfExpression("and") == 2);
+    EXPECT_TRUE(example.getIndexOfExpression("nand") == 3);
+
+    example.addEdge("xor", "xnor");// two non-existing verticies
+
+    for (int i = 0; i < example.getAdjacencyMatrix().size(); i++)
+    {
+        for (int j = 0; j < example.getAdjacencyMatrix().size(); j++)
+        {
+            EXPECT_TRUE(example.getAdjacencyMatrix(i, j) == false);
+        }
+    }
+
+    EXPECT_TRUE(example.size() == 4);
+
+    EXPECT_TRUE(example.getIndexOfExpression("buf") == 0);// Check that the content of the Graph was not changed
+    EXPECT_TRUE(example.getIndexOfExpression("or") == 1);
+    EXPECT_TRUE(example.getIndexOfExpression("and") == 2);
+    EXPECT_TRUE(example.getIndexOfExpression("nand") == 3);
 }
 
 TEST(TestAddDoubleEdge, ExpressionTrue)
