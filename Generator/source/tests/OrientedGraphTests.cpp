@@ -47,20 +47,28 @@ TEST(TestGetIndexOfExpressionWhichReturnMinusOneIfThereIsNoSuchExpressionInGraph
     EXPECT_TRUE(example.getIndexOfExpression("Anything") == -1);
 }
 
-TEST(TestGetIndexOfWireNameWhichReturn, NameExists)
+TEST(TestGetIndexOfWireNameWhichReturnTheIndexOfPassedWireNameAndMinusOneWhenThereIsNoSuchWireName, getIndexOfWireNameReturnRigthIndexWhenSuchWireNameExists)
 {
     OrientedGraph example;
-    example.addVertex("1", "input", "1");
-    example.addVertex("2", "input",  "2");
-    EXPECT_TRUE(example.getIndexOfWireName("2") != -1);
+    example.addVertex("nor", "input", "1");
+    example.addVertex("nand", "input",  "2");
+    EXPECT_TRUE(example.getIndexOfWireName("nor") == 0);
+    EXPECT_TRUE(example.getIndexOfWireName("nand") == 1);
 }
 
-TEST(TestGetIndexOfWireName, NameDoesNotExist)
+TEST(TestGetIndexOfWireNameWhichReturnTheIndexOfPassedWireNameAndMinusOneWhenThereIsNoSuchWireName, GetIndexOfWireNameReturnMinusOneWhenThereIsNoSuchWireName)
 {
     OrientedGraph example;
     example.addVertex("nor", "input", "1");
     example.addVertex("xor", "input",  "2");
-    EXPECT_TRUE(example.getIndexOfWireName("0") == -1);
+    EXPECT_TRUE(example.getIndexOfWireName("not") == -1);
+    EXPECT_TRUE(example.getIndexOfWireName("and") == -1);
+    EXPECT_TRUE(example.getIndexOfWireName("nand") == -1);
+    EXPECT_TRUE(example.getIndexOfWireName("xnor") == -1);
+    EXPECT_TRUE(example.getIndexOfWireName("or") == -1);
+    EXPECT_TRUE(example.getIndexOfWireName("Something") == -1);
+    EXPECT_TRUE(example.getIndexOfWireName("123") == -1);
+    EXPECT_TRUE(example.getIndexOfWireName("") == -1);
 }
 
 TEST(TestAddVertexWhichReturnFalseIfThereAlreadyExistSuchVertexOtherwiseAddVertexToGraphAndReturnTrue, AddVertexDoesNotAddVertexWhichAlreadyExistsInGraph)
@@ -80,6 +88,46 @@ TEST(TestAddVertexWhichReturnFalseIfThereAlreadyExistSuchVertexOtherwiseAddVerte
     example.addVertex("nor", "xnor", "10");
     EXPECT_EQ(example.size(), 1);// The size of graph must be the same as before second addVertex
     EXPECT_EQ(example.getIndexOfExpression("nor"), 0);// Check if the expression "nor" was not replaced by anything else
+    example.addVertex("or", "=", "1");
+    example.addVertex("or", "=", "1");
+    EXPECT_EQ(example.size(), 2);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("or"), 1);// Check if the expression "or" was not replaced by anything else
+    example.addVertex("xor", "=", "1");
+    example.addVertex("xor", "=", "1");
+    EXPECT_EQ(example.size(), 3);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("xor"), 2);// Check if the expression "xor" was not replaced by anything else
+    example.addVertex("xnor", "xnor", "1");
+    example.addVertex("xnor", "xnor", "1");
+    EXPECT_EQ(example.size(), 4);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("xnor"), 3);// Check if the expression "xnor" was not replaced by anything else
+    example.addVertex("and", "and", "1");
+    example.addVertex("and", "", "1");
+    EXPECT_EQ(example.size(), 5);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("and"), 4);// Check if the expression "and" was not replaced by anything else
+    example.addVertex("nand", "=", "1");
+    example.addVertex("nand", "=", "1");
+    EXPECT_EQ(example.size(), 6);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("nand"), 5);// Check if the expression "nor" was not replaced by anything else
+    example.addVertex("not", "=", "1");
+    example.addVertex("not", "=", "1");
+    EXPECT_EQ(example.size(), 7);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("not"), 6);// Check if the expression "nor" was not replaced by anything else
+    example.addVertex("buf", "=", "1");
+    example.addVertex("buf", "=", "1");
+    EXPECT_EQ(example.size(), 8);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("buf"), 7);// Check if the expression "nor" was not replaced by anything else
+    example.addVertex("input", "=", "1");
+    example.addVertex("input", "=", "1");
+    EXPECT_EQ(example.size(), 9);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("input"), 8);// Check if the expression "nor" was not replaced by anything else
+    example.addVertex("output", "=", "1");
+    example.addVertex("output", "=", "1");
+    EXPECT_EQ(example.size(), 10);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("output"), 9);// Check if the expression "nor" was not replaced by anything else
+    example.addVertex("const", "=", "1");
+    example.addVertex("const", "=", "1");
+    EXPECT_EQ(example.size(), 11);// The size of graph must be the same as before second addVertex
+    EXPECT_EQ(example.getIndexOfExpression("const"), 10);// Check if the expression "nor" was not replaced by anything else
 }
 
 TEST(TestAddVertexWhichReturnFalseIfThereAlreadyExistSuchVertexOtherwiseAddVertexToGraphAndReturnTrue, EmptyName)
