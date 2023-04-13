@@ -260,26 +260,50 @@ bool Circuit::saveParameters(bool i_pathExists) const
   //w << "\t\"\": \"" << d_circuitParameters << "\"," << std::endl; // TODO: what is this mean?
   w << "\t\"hash_code\": \"" << d_circuitParameters.d_hashCode << "\"," << std::endl;
 
-  w << "\t\"numElementsOfEachType\": {{" << std::endl;
+  w << "\t\"numElementsOfEachType\": {" << std::endl;
 
+  bool first = true;
   for (const auto &[key, value] : d_circuitParameters.d_numElementsOfEachType)
   {
     if (value != 0)
-      w << "\t\t\"" << key << "\": " << value << std::endl;
+    {
+      if (first)
+      {
+        first = false;
+        w << "\t\t\"" << key << "\": " << value;
+      } else 
+      {
+        w << "," << std::endl << "\t\t\"" << key << "\": " << value;
+      }
+    }
   }
+  w << std::endl;
 
-  w << "\t}}," << std::endl;
+  w << "\t}," << std::endl;
 
-  w << "\t\"numEdgesOfEachType\": {{" << std::endl;
+  w << "\t\"numEdgesOfEachType\": {" << std::endl;
+  first = true;
   for (const auto &[key, value] : d_circuitParameters.d_numEdgesOfEachType)
   {
     if (value != 0)
-      w << "\t\t\"" << key.first << "-" << key.second << "\": " << value << std::endl;
+    {
+      if (first)
+      {
+        first = false;
+        w << "\t\t\"" << key.first << "-" << key.second << "\": " << value;
+      }
+      else 
+      {
+        w << "," << std::endl << "\t\t\"" << key.first << "-" << key.second << "\": " << value;
+      }
+    }
   }
-  w << "\t}}," << std::endl;
+  w << std::endl;
+
+  w << "\t}" << std::endl;
 
 
-  w << "}}";
+  w << "}";
 
   return true;
 }
