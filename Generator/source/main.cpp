@@ -10,9 +10,9 @@ int main()
   //TODO:: make function that return DataBaseGeneratorParameters from json
 
   std::cout << "WTF IS IT WORK?\n";
-  GenerationParameters gp("My_first_test", 2, 4, 0);
+  GenerationParameters gp("My_first_test", 2, 4, 0, 20, 10);
   std::cout << "WTF IS IT WORK?\n";
-  DataBaseGeneratorParameters dbgp(2, 4, 3, 5, 3, GenerationTypes::FromRandomTruthTable, gp);
+  DataBaseGeneratorParameters dbgp(2, 4, 3, 5, 3, GenerationTypes::RandLevel, gp);
 
   std::cout << "WTF IS IT WORK?\n";
   DataBaseGenerator generator(dbgp);

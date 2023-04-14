@@ -1,7 +1,7 @@
 #include <string>
 
 #include "GraphVertex.h"
-
+int GraphVertex::d_count = 0;
 GraphVertex::GraphVertex(const std::string& i_expr,
                          const std::string& i_operation,
                          bool i_value,
@@ -10,14 +10,20 @@ GraphVertex::GraphVertex(const std::string& i_expr,
                          d_operation(i_operation),
                          d_value(i_value)
 {
+  static int d_count = 0;
   if (d_operation == "input" || d_operation == "output" || d_operation == "const")
     d_wireName = i_expr;
   else
   {
-    if (d_wireName == "")
-        d_wireName += std::to_string(d_count++);
-    else
-        d_wireName = "";
+      if (i_wireName == "")
+      {
+          std::string var = "d";
+          d_wireName += var + std::to_string(d_count++);
+      }
+      else
+      {
+          d_wireName = i_wireName;
+      }
   }
 }
 

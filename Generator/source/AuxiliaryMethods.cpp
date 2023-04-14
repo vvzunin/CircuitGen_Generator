@@ -80,23 +80,7 @@ std::vector<int> AuxMethods::getRandomIntList(int i_n, int i_minNumber,
   return lst;
 }
 
-template<typename Key, typename Value>
-std::vector<std::pair<Key, Value>> AuxMethods::sortDictByValue(const std::map<Key, Value>& i_dict, bool up)
-{
-  std::vector<std::pair<Key, Value>> pairs(i_dict.begin(), i_dict.end());
 
-  // Define a lambda function to compare values
-  auto cmp = [](const std::pair<Key, Value>& lhs, const std::pair<Key, Value>& rhs) {
-      return lhs.second < rhs.second;
-  };
-
-  // Sort the vector of pairs based on the values
-  std::sort(pairs.begin(), pairs.end(), cmp);
-  if (!up)
-    std::reverse(pairs.begin(), pairs.end());
-
-  return pairs;
-}
 
 std::string AuxMethods::removeSpaces(const std::string& i_s)
 {

@@ -178,7 +178,7 @@ std::map<std::string, double> Reliability::runNadezhda(
   //std::cout << rmCommand << std::endl;
 
   std::string nadezdhaReliabilityCommand = 
-    d_settings->getNadezhdaVar("python") + " " +
+    d_settings->getNadezhdaVar("python") + " " + "./Nadezhda/" +
     d_settings->getNadezhdaVar("reliability") + " " +
     i_path + "/" + i_circuitName + "_Nangate.v " +
     d_settings->getNadezhdaVar("liberty") + " " +

@@ -1,4 +1,4 @@
-#include <algorithm>
+﻿#include <algorithm>
 #include <iostream>
 #include <cassert>
 #include <string>
@@ -28,7 +28,7 @@ bool OrientedGraph::empty() const
 
 GraphVertex OrientedGraph::getVertice(int i) const
 {
-  assert(i > 0 && i < d_vertices.size());
+  assert(i >= 0 && i < d_vertices.size());
   return d_vertices.at(i);
 }
 
@@ -117,7 +117,7 @@ bool OrientedGraph::addVertex(const std::string i_vertexName, const std::string&
   else
     d_vertices.push_back(GraphVertex(i_vertexName, i_operation, false, i_wireName));
 
-  for (int i = 0; i < d_vertices.size(); ++i)
+  for (int i = 0; i + 1 < d_vertices.size(); ++i)
   {
     d_adjacencyMatrix[i].push_back(false);
   }
@@ -260,6 +260,7 @@ std::vector<int> OrientedGraph::getConnectedFrom(int k)
 }
 
 void OrientedGraph::updateLevels(bool i_isFull, int i_k) //TODO: maybe we need two different func?
+//TODO: this is too slow
 {
   if (i_isFull)
   {
