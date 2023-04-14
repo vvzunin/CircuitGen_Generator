@@ -129,7 +129,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
   int currIndex = elemLevel[0];
   int prevIndex = 0;
 
-  for (int i = 1; i < i_maxLevel - 1; ++i)
+  for (int i = 1; i < maxLevel - 1; ++i)
   {
     int position = 0;
     for (int j = 0; j < elemLevel[i]; ++j)
@@ -139,7 +139,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
       {
         child1 = rand() % currIndex;
         expr = d_settings->fromOperationsToName(logOper[choice]) + " (" +
-          graph.getVertice(currIndex + position).getLogicExpression() + ")";
+          graph.getVertice(child1).getLogicExpression() + ")";
 
         if (graph.addVertex(expr, "not"))
           graph.addEdge(graph.getVertice(child1).getLogicExpression(), graph.getVertice(currIndex + position).getLogicExpression());

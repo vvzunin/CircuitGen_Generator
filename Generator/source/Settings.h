@@ -44,8 +44,8 @@ private:
   //Settings d_instance;
   std::string d_pathToNadezhda = "./data/Nadezhda";
   std::map<std::string, std::string> d_nadezhda = {
-    {"python", "pathtopython"},
-    {"resynthesis", "Nadezda/Scripts/resynthesis_local_rewriting.pyc"},
+    {"python", "python3"},
+    {"resynthesis", "Nadezhda/Scripts/resynthesis_local_rewriting.pyc"},
     {"reliability", "Nadezhda/Scripts/check_reliability.pyc"},
     {"liberty", "Nadezda/Test/Nangate.lib"}
   };

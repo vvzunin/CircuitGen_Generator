@@ -260,6 +260,7 @@ std::vector<int> OrientedGraph::getConnectedFrom(int k)
 }
 
 void OrientedGraph::updateLevels(bool i_isFull, int i_k) //TODO: maybe we need two different func?
+//TODO: this is too slow
 {
   if (i_isFull)
   {

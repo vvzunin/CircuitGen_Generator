@@ -93,13 +93,18 @@ public:
     const std::string& i_name,
     int i_inputs,
     int i_outputs,
-    int i_iteration) :
+    int i_iteration,
+    int i_maxLevel,
+    int i_maxElements) :
     d_name(i_name),
     d_inputs(i_inputs),
     d_outputs(i_outputs),
     d_iteration(i_iteration),
     d_geneticParameters(GeneticParameters(d_inputs, d_outputs))
-  {};
+  {
+    d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
+    d_generatorRandLevelParameters.setMaxElements(i_maxElements);
+  };
 
   std::string getName() const
   {
