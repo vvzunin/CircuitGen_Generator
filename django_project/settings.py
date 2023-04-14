@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'add_parameter.apps.AddConfig',
+    'make_dataset',
     'rest_framework',
 ]
 
