@@ -25,7 +25,7 @@ generator:
   # instead of calling g++ directly you can also use some build toolkit like make
   # install the necessary build tools when needed
   tags:
-    - specific-shell-runner
+    - docker
   before_script:
  #    - rmdir -rf Generator/source/build
      - apt update && apt -y install make && apt -y install cmake
