@@ -1,6 +1,4 @@
 #include <algorithm>
-#include <fstream>
-#include <sstream>
 #include <iostream>
 #include <cassert>
 #include <string_view>
@@ -17,17 +15,6 @@ namespace
     return (rand() % d) + i_lower;
   }
 
-  std::string readAllFile(const std::string& filename) {
-    std::ifstream file(filename);
-    if (!file) {
-        throw std::runtime_error("Failed to open file: " + filename);
-    }
-
-    std::stringstream buffer;
-    buffer << file.rdbuf();
-    return buffer.str();
-  }
-
   std::vector<std::string> splitString(const std::string& s, char delimiter)
   {
     std::vector<std::string> tokens;
@@ -40,6 +27,18 @@ namespace
 
     return tokens;
   }
+}
+
+
+std::string AuxMethods::readAllFile(const std::string& filename) {
+  std::ifstream file(filename);
+  if (!file) {
+      throw std::runtime_error("Failed to open file: " + filename);
+  }
+
+  std::stringstream buffer;
+  buffer << file.rdbuf();
+  return buffer.str();
 }
 
 std::vector<int> AuxMethods::getRandomIntList(int i_n, int i_minNumber,

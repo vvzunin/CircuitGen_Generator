@@ -1,4 +1,6 @@
 #include <vector>
+#include <fstream>
+#include <sstream>
 #include <map>
 #include <utility>
 
@@ -6,6 +8,7 @@
 
 namespace AuxMethods
 {
+  std::string readAllFile(const std::string& filename);
   std::vector<int> getRandomIntList(int i_n, int i_minNumber,
     int i_maxNumber, bool repite = false);
   template<typename Key, typename Value>
