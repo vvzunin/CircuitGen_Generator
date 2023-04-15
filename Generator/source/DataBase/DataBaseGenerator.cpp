@@ -24,15 +24,18 @@ void DataBaseGenerator::generateType(
 
   std::string dir = d_settings->getDatasetPath() + "/" + s;
 
+  std::cout << std::filesystem::current_path() << std::endl;
+  d_mainPath = d_settings->getDatasetPath();
   d_dirCount = 0;
 
   if (std::filesystem::is_directory(dir))
   {
+    
     for (const auto item : FilesTools::getDirectories(dir))
     {
       std::string s0 = item;
       auto pos = s0.find(d_settings->getGenerationMethodPrefix(s));
-      s.replace(pos, d_settings->getGenerationMethodPrefix(s).size(), "");
+      s0.replace(pos, d_settings->getGenerationMethodPrefix(s).size(), "");
       
       auto jk = s0.find("_"); // TODO: maybe it need last find of "_"?
       if (jk == std::string::npos)

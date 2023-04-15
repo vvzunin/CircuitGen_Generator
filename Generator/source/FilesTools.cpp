@@ -9,7 +9,19 @@ std::vector<std::string> getDirectories(std::string& path)
     for (const auto & file : std::filesystem::directory_iterator(path))
     {
       if (std::filesystem::is_directory(path))
-        res.push_back(file.path());
+      {
+        std::string path = file.path();
+        int lastSlash = 0;
+        for (int i = 0; i < path.size(); ++i)
+        {
+          if (path[i] == '/')
+          {
+            lastSlash = i + 1;
+          }
+        }
+        path.erase(0, lastSlash);
+        res.push_back(path);
+      }
     }
     return res;
   }

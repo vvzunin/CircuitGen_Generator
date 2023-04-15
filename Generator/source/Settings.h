@@ -40,7 +40,7 @@ private:
   std::string d_path;
   std::string d_csvdataset = "dataset.csv";
   std::string d_fileName = "settings.dat";
-  std::string d_datasetPath = "./database";
+  std::string d_datasetPath = "./generated_data";
   //Settings d_instance;
   std::string d_pathToNadezhda = "./data/Nadezhda";
   std::map<std::string, std::string> d_nadezhda = {
