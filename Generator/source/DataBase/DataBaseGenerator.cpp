@@ -24,7 +24,6 @@ void DataBaseGenerator::generateType(
 
   std::string dir = d_settings->getDatasetPath() + "/" + s;
 
-  std::cout << std::filesystem::current_path() << std::endl;
   d_mainPath = d_settings->getDatasetPath();
   d_dirCount = 0;
 
