@@ -50,7 +50,7 @@ generator:
 test:
   stage: test
   tags:
-    - docker_miem
+    - docker
   script:
     - pwd
     - ls
