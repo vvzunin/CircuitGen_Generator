@@ -4,7 +4,7 @@
 TEST(test_aux_methods, test_remove_spaces_without_spaces)
 {
   std::string answer = "word";
-  EXPECT_EQ(ans, AuxMethods::removeSpaces(answer));
+  EXPECT_EQ(answer, AuxMethods::removeSpaces(answer));
 }
 
 TEST(test_aux_methods, test_read_empty_file)
