@@ -52,11 +52,7 @@ test:
   tags:
     - docker
   script:
-    - pwd
-    - ls
-    - ls ./Generator
-    - ls ./Generator/source
-    - ls ./Generator/source/build
-    - ls ./Generator/source/build/tests
-    - ./Generator/source/build/tests/tests
+    - cd ./Generator/source/build/tests
+    - ./tests
+    - ./tests
 
