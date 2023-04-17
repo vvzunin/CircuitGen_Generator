@@ -16,5 +16,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     # path('api/add_parameter', AddParameterAPI.as_view()),
-    path('api/make_dataset', views.make_dataset_function),
+    path('api/make_dataset', views.make_dataset),
 ]
