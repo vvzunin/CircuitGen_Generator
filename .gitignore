@@ -1,0 +1,7 @@
+data/Nadezhda
+Generator/source/build/*
+*.swp
+*.cmake
+Generator/source/generators/buil*
+Generator/source/data/Nadezhda/*
+Generator/source/.DS_Store
