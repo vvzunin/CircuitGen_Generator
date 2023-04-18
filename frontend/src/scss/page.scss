@@ -1,0 +1,255 @@
+.container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+h1 {
+    padding-top: 30px;
+    font-weight: 600;
+    font-size: 36px;
+    color: $main-color-dark;
+    text-align: center;
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    background-color: $box-bg;
+    margin-top: 20px;
+    border-radius: 20px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__scroll {
+        overflow-y: auto;
+        width: 100%;
+    }
+    &__wrapper {
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 40px;
+        h3 {
+            font-weight: 500;
+            font-size: 20px;
+            color: $main-color-dark;
+        }
+    }
+    &__buttons {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 20px;
+        padding: 15px;
+        border-top: 1px solid $main-bg;
+    }
+    &__add-parametr {
+        font-weight: 500;
+        font-size: 16px;
+        border-radius: 10px;
+        border: 1px solid $main-color;
+        color: $main-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__generate {
+        font-weight: 500;
+        font-size: 16px;
+        border-radius: 10px;
+        border: 1px solid $main-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $main-bg;
+        background-color: $main-color;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.parametr {
+    &__wrapper {
+        background-color: $main-bg;
+        border-radius: 10px;
+        padding: 12px 15px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    &__main {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__name {
+        font-weight: 500;
+        font-size: 16px;
+        color: $main-color;
+    }
+    &__buttons {
+        display: flex;
+    }
+    &__more {
+        font-weight: 500;
+        font-size: 14px;
+        color: $main-color;
+        padding: 5px 12px;
+        border: 1px solid $main-color;
+        background-color: transparent;
+        border-radius: 6px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__delete {
+        font-weight: 500;
+        font-size: 14px;
+        color: $main-red;
+        padding: 5px 12px;
+        margin-left: 12px;
+        border: 1px solid $main-red;
+        background-color: transparent;
+        border-radius: 6px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__info {
+        display: none;
+        &.active {
+            display: block;
+        }
+        position: relative;
+        padding-top: 15px;
+        margin-top: 15px;
+        background-color: $main-bg;
+        width: 100%;
+        ul {
+            display: flex;
+            flex-direction: column;
+            li {
+                font-weight: 500;
+                font-size: 14px;
+                color: $main-color;
+                margin-bottom: 8px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    &__line {
+        top: 0;
+        left: -15px;
+        position: absolute;
+        width: calc(100% + 30px);
+        height: 1px;
+        background-color: $box-bg;
+    }
+}
+
+.scheme {
+    &__wrapper {
+        background-color: $main-bg;
+        border-radius: 10px;
+        padding: 12px 15px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    &__main {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__name {
+        font-weight: 500;
+        font-size: 16px;
+        color: $main-color;
+    }
+    &__buttons {
+        display: flex;
+    }
+    &__more {
+        font-weight: 500;
+        font-size: 14px;
+        color: $main-color;
+        padding: 5px 12px;
+        border: 1px solid $main-color;
+        background-color: transparent;
+        border-radius: 6px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__show {
+        font-weight: 500;
+        font-size: 14px;
+        color: $main-bg;
+        padding: 5px 12px;
+        margin-left: 12px;
+        border: 1px solid $main-color;
+        background-color: $main-color;
+        border-radius: 6px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__info {
+        display: none;
+        &.active {
+            display: block;
+        }
+        position: relative;
+        padding-top: 15px;
+        margin-top: 15px;
+        background-color: $main-bg;
+        width: 100%;
+        ul {
+            display: flex;
+            flex-direction: column;
+            li {
+                font-weight: 500;
+                font-size: 14px;
+                color: $main-color;
+                margin-bottom: 8px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    &__line {
+        top: 0;
+        left: -15px;
+        position: absolute;
+        width: calc(100% + 30px);
+        height: 1px;
+        background-color: $box-bg;
+    }
+}
+
+
+.pb75 {
+    padding-bottom: 75px;
+}
