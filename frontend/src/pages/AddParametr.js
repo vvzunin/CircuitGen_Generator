@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 import Dropdown from '../components/Dropdown';
 import ToggleSwitchFilter from '../components/ToggleSwitch';
 
@@ -106,14 +107,34 @@ const Genetic = () => {
 
 const AddParametr = () => {
 
+  const AddParametr = () => {
+    let sendData = {};
+    sendData.method = data[generationMethod];
+    sendData.minInCount = minInCount;
+    sendData.maxInCount = maxInCount;
+    sendData.minOutCount = minOutCount;
+    sendData.maxOutCount = maxOutCount;
+    sendData.repeats = repeats;
+    axios.post('https://641051b7e1212d9cc930179a.mockapi.io/generatorParametrs', sendData)
+    .then(() => {
+      alert('Параметр успешно создан')
+    }).catch(e => console.log(e));
+  }
+
   const [generationMethod, setGenerationMethod] = React.useState(0);
+
+  const [minInCount, setMinInCount] = React.useState(0);
+  const [maxInCount, setMaxInCount] = React.useState(0);
+  const [minOutCount, setMinOutCount] = React.useState(0);
+  const [maxOutCount, setMaxOutCount] = React.useState(0);
+  const [repeats, setRepeats] = React.useState(0);
 
   return (
     <div className="add__wrapper">
         <div className="add__top">
             <h3>Добавить параметр генерации</h3>
             <div className="add__buttons">
-                <button className="add__add">Добавить</button>
+                <button className="add__add" onClick={() => AddParametr()}>Добавить</button>
                 <Link to='/' className="add__return">Вернуться на главную</Link>
             </div>
         </div>
@@ -127,9 +148,14 @@ const AddParametr = () => {
             </ul>
           </div>
           <div className="add__base">
-              {base.map(({name, count}) => {
+              {/* {base.map(({name, count}) => {
                 return <label>{name}<input type="number" min={0}/></label>
-              })}
+              })} */}
+              <label>Минимальное количество входов<input type="number" value={minInCount} onChange={e => setMinInCount(e.target.value)} min={0}/></label>
+              <label>Максимальное количество входов<input type="number" value={maxInCount} onChange={e => setMaxInCount(e.target.value)} min={0}/></label>
+              <label>Минимальное количество выходов<input type="number" value={minOutCount} onChange={e => setMinOutCount(e.target.value)} min={0}/></label>
+              <label>Максимальное количество выходов<input type="number" value={maxOutCount} onChange={e => setMaxOutCount(e.target.value)} min={0}/></label>
+              <label>Количество повторений каждой комбинации<input type="number" value={repeats} onChange={e => setRepeats(e.target.value)} min={0}/></label>
           </div>
           {generationMethod === 0 && <TruthTable/>}
           {generationMethod === 1 && <RandLevel/>}
