@@ -29,7 +29,6 @@ void DataBaseGenerator::generateType(
 
   if (std::filesystem::is_directory(dir))
   {
-    
     for (const auto item : FilesTools::getDirectories(dir))
     {
       std::string s0 = item;
