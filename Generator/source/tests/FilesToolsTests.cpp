@@ -23,9 +23,7 @@ TEST(FileTools , OnlyDirectoriesNoFiles)
 
 
     std::vector<std::string> correctVec = 
-    {     (tmpPath / "1").string() , (tmpPath / "2").string()
-        , (tmpPath / "3").string() , (tmpPath / "4").string()
-        , (tmpPath / "5").string() , (tmpPath / "6").string() }; // Created vector that's gonna be compared with the result vector we wanna test 
+    {"1", "2", "3", "4", "5", "6"}; // Created vector that's gonna be compared with the result vector we wanna test 
    
     tmp = tmpPath.string();// get the path to the current directory which contain created directories
     std::vector<std::string> resVec = getDirectories(tmp);// Vector which we wanna test 
@@ -100,9 +98,7 @@ TEST(FileTools, DirectoriesAndFilesExist)
 
 
     std::vector<std::string> correctVec =
-    { (tmpPath / "1").string() , (tmpPath / "2").string()
-        , (tmpPath / "3").string() , (tmpPath / "4").string()
-        , (tmpPath / "5").string() , (tmpPath / "6").string() }; // Created vector that's gonna be compared with the result vector we wanna test
+    {"1", "2", "3", "4", "5", "6"}; // Created vector that's gonna be compared with the result vector we wanna test
 
     // Created ten empty txt files in the current directory to make sure that the function does not count files.
     for (int i = 1; i <= 10; i++)
