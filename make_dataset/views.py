@@ -18,8 +18,8 @@ def make_dataset(request):
 
 def cpp_function(data, dataset_id):
     # run cpp code here
-    print(dataset_id)
-    print(data)
+    #print(dataset_id)
+    #print(data)
 
     data = list(data)[0]
 
