@@ -148,7 +148,7 @@ bool OrientedGraph::addEdge(const std::string& i_vertexFrom, const std::string& 
   if (v1 == -1 || v2 == -1)
     return false;
 
-  d_vertices[v2].setLevel(std::max(d_vertices[v1].getLevel() + 1, d_vertices[v2].getLevel()));
+  d_vertices[v2].setLevel(std::max(d_vertices[v1].getLevel() + 1, d_vertices[v2].getLevel())); // TODO: Zunin ask max really and max without prev max, and +1 for v2?
   d_adjacencyMatrix[v1][v2] = true;
   return true;
 }
@@ -385,7 +385,7 @@ std::map<std::string, bool> OrientedGraph::calcGraph(
       {
         std::vector<int> from = getConnectedFrom(i);
         if (from.size() > 0)
-          dict[d_vertices[i].getWireName()] = d_vertices[from[0]].getValue();
+          dict[d_vertices[i].getWireName()] = d_vertices[from[0]].getValue(); // TODO: Zunin really from[0]?
       }
       else if (d_vertices[i].getOperation() == "const")
       {

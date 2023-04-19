@@ -144,6 +144,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
     c.setCircuitName(i_param.getName());
     c.generate();
   }
+  // TODO: remake all generates to return value and call graphToVerilog
 }
 
 //void DataBaseGenerator::generateDataBaseGenetic(const GenerationParameters& i_param)
