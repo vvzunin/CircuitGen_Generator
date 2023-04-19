@@ -1,9 +1,12 @@
 import random
+import subprocess
 
+from django.core import serializers
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse
 from add_parameter.views import *
+import json
 
 
 def make_dataset(request):
@@ -15,6 +18,13 @@ def make_dataset(request):
 
 def cpp_function(data, dataset_id):
     # run cpp code here
-    # print(dataset_id)
-    # print(data)
+    print(dataset_id)
+    print(data)
+
+    data = list(data)
+
+    with open(f'data_{dataset_id}.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+    subprocess.Popen(f"./Generator/source/build/prog --json_path=./data_{dataset_id}.json", shell=True)
     return HttpResponse("https://youtu.be/dQw4w9WgXcQ")
