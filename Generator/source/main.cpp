@@ -55,7 +55,7 @@ int main(int argc, char** argv)
   }
 
   std::ifstream f(json_path);
-  nlohmann::json data = nlohmann::json::parse(f);
+  nlohmann::json data = nlohmann::json::parse(f)[0];
   std::cout << "red json" << std::endl;
   std:: cout << data["min_in"] << std::endl;
 
