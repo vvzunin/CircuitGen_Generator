@@ -44,6 +44,7 @@ const MainPage = () => {
 								minOutCount={item.minOutCount}
 								maxOutCount={item.maxOutCount}
 								repeats={item.repeats}
+								gear={item.gear}
 								deleteParametr={() => deleteParametr(item.id)}
 							/>
 						})}

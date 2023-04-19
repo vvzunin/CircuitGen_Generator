@@ -104,8 +104,40 @@ h1 {
     }
     &__buttons {
         display: flex;
+        height: 28px;
+    }
+    &__status {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+            cursor: pointer;
+        }
+        margin-right: 12px;
+        padding: 0 6px;
+        border-radius: 6px;
+        border: 1px solid $main-color;
+        img {
+            width: 18px;
+            user-select: none;
+        }
+        &.noselect {
+            border: 1px solid #769fcd41;
+            img {
+                opacity: 0.5;
+            }
+        }
+        &.gear {
+            border: 1px solid #769fcd41;
+            img {
+                animation: gear 2s ease-in-out infinite;
+                opacity: .5;
+            }
+        }
     }
     &__more {
+        height: 100%;
         font-weight: 500;
         font-size: 14px;
         color: $main-color;
@@ -118,6 +150,7 @@ h1 {
         }
     }
     &__delete {
+        height: 100%;
         font-weight: 500;
         font-size: 14px;
         color: $main-red;
@@ -252,4 +285,13 @@ h1 {
 
 .pb75 {
     padding-bottom: 75px;
+}
+
+@keyframes gear {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
