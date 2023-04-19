@@ -21,7 +21,9 @@ def cpp_function(data, dataset_id):
     print(dataset_id)
     print(data)
 
-    data = list(data)
+    data = list(data)[0]
+
+    data['request_id'] = dataset_id
 
     with open(f'data_{dataset_id}.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)

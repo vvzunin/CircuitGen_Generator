@@ -58,9 +58,14 @@ int main(int argc, char** argv)
   }
 
   std::ifstream f(json_path);
-  nlohmann::json data = nlohmann::json::parse(f)[0];
+  nlohmann::json data = nlohmann::json::parse(f);
   std::cout << "red json" << std::endl;
+  
+  std::cout << data.dump(4);
+  
   std:: cout << data["min_in"] << std::endl;
+  
+
 
   GenerationTypes gt;
   if (data["type_of_generation"] == "From Random Truth Table")
