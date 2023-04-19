@@ -102,7 +102,7 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
 
 OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs)
 {
-  int maxLevel = rand() % i_maxLevel;
+  int maxLevel = rand() % i_maxLevel; // TODO: Zunin , not +1?
   std::vector<int> elemLevel(maxLevel + 1);
   std::vector<std::string> logOper = d_settings->getLogicOperationsKeys();
   logOper.erase(std::find(logOper.begin(), logOper.end(), "input"));
@@ -168,6 +168,8 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
     currIndex += position;
   }
 
+  //TODO: fix when elements less than outputs
+
   for (int i = 0; i < i_outputs; ++i)
   {
     child1 = (rand() % (currIndex - prevIndex)) + prevIndex;
@@ -217,7 +219,7 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
 
   for (int i = 0; i < sumOper; ++i)
   {
-    copyLogicOper = delNull(copyLogicOper);
+    copyLogicOper = delNull(copyLogicOper); // TODO: optimize
     std::string oper = randomGenerator(copyLogicOper);
     copyLogicOper[oper]--;
 

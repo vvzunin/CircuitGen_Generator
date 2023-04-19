@@ -22,9 +22,11 @@ void DataBaseGenerator::generateType(
   std::function<void(const GenerationParameters&)> generator = getGenerateMethod(s);
   //TODO: make normal code
 
-  std::string dir = d_settings->getDatasetPath() + "/" + s;
+  std::string dir = d_settings->getDatasetPath() + "/" + s + "/" + i_dbgp.getGenerationParameters().getRequestId();
 
-  d_mainPath = d_settings->getDatasetPath();
+  std::filesystem::create_directory(dir);
+
+  d_mainPath = dir + "/";
   d_dirCount = 0;
 
   if (std::filesystem::is_directory(dir))
@@ -95,7 +97,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
     OrientedGraph graph = pCNFT.getGraph();
     Circuit c(graph, expr);
     c.setTable(tt);
-    c.setPath(d_mainPath + "/FromRandomTruthTable/");
+    c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName() + "_" + name);
     c.generate();
   }
@@ -116,7 +118,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters& i_
   for (const auto& [name, graph] : circs)
   {
     Circuit c(graph);
-    c.setPath(d_mainPath + "/RandLevel/");
+    c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
     c.generate();
   }
@@ -138,10 +140,11 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
   for (const auto &[name, graph] : circs)
   {
     Circuit c(graph);
-    c.setPath(d_mainPath + "/NumOperation/");
+    c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
     c.generate();
   }
+  // TODO: remake all generates to return value and call graphToVerilog
 }
 
 //void DataBaseGenerator::generateDataBaseGenetic(const GenerationParameters& i_param)
@@ -151,7 +154,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
 //
 //  GeneticGenerator<TruthTable, TruthTableParameters> gg(GeneticParameters(i_param.getGenetic()),
 //                                                         {i_param.getInputs(), i_param.getOutputs()},
-//                                                         d_mainPath + "/");
+//                                                         d_mainPath);
 //  //TODO: uncomment gg.generate();
 //}
 

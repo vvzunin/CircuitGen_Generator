@@ -12,6 +12,9 @@
 
 int main(int argc, char** argv)
 {
+
+  std::cout << std::filesystem::current_path() << std::endl;
+
   int num_nodes = 0;
   std::string json_path;
 
@@ -64,6 +67,8 @@ int main(int argc, char** argv)
   {
     gt = GenerationTypes::FromRandomTruthTable;
   }
+  std::string request_id = data["request_id"];
+  assert(request_id != "");
   int minInputs = data["min_in"];
   int maxInputs = data["max_in"];
   int minOutputs = data["min_out"];
@@ -87,7 +92,7 @@ int main(int argc, char** argv)
 
   //TODO:: make function that return DataBaseGeneratorParameters from json
 
-  GenerationParameters gp("My_first_test", 2, 4, 0, 20, 10);
+  GenerationParameters gp("My_first_test", request_id, 2, 4, 0, 20, 10);
   DataBaseGeneratorParameters dbgp(2, 4, 3, 5, 3, GenerationTypes::FromRandomTruthTable, gp);
 
   DataBaseGenerator generator(dbgp);

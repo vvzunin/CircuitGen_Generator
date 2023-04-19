@@ -42,7 +42,7 @@ private:
   std::string d_fileName = "settings.dat";
   std::string d_datasetPath = "./dataset";
   //Settings d_instance;
-  std::string d_pathToNadezhda = "./data/Nadezhda";
+  std::string d_pathToNadezhda = "./Generator/source/data/Nadezhda";
   std::map<std::string, std::string> d_nadezhda = {
     {"python", "python3"},
     {"resynthesis", "Nadezhda/Scripts/resynthesis_local_rewriting.pyc"},
