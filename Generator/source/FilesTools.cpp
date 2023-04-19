@@ -8,13 +8,13 @@ std::vector<std::string> getDirectories(std::string& path)
 
     for (const auto & file : std::filesystem::directory_iterator(path))
     {
-      if (std::filesystem::is_directory(path))
+      if (std::filesystem::is_directory(file))
       {
-        std::string path = file.path();
+        std::string path = file.path().string();
         int lastSlash = 0;
         for (int i = 0; i < path.size(); ++i)
         {
-          if (path[i] == '/')
+          if (path[i] == std::filesystem::path::preferred_separator)
           {
             lastSlash = i + 1;
           }
