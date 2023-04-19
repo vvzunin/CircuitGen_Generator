@@ -91,12 +91,14 @@ public:
 
   GenerationParameters(
     const std::string& i_name,
+    const std::string& i_requestId,
     int i_inputs,
     int i_outputs,
     int i_iteration,
     int i_maxLevel,
     int i_maxElements) :
     d_name(i_name),
+    d_requestId(i_requestId),
     d_inputs(i_inputs),
     d_outputs(i_outputs),
     d_iteration(i_iteration),
@@ -114,6 +116,11 @@ public:
   void setName(const std::string& i_name)
   {
     d_name = i_name;
+  }
+
+  std::string getRequestId() const
+  {
+    return d_requestId;
   }
 
   int getInputs() const
@@ -153,6 +160,7 @@ public:
 
 private:
   std::string d_name = "";
+  std::string d_requestId;
   int d_inputs = 0;
   int d_outputs = 0;
   int d_iteration = 0;
