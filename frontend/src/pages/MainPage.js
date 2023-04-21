@@ -1,20 +1,40 @@
 import React from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import ContentLoader from "react-content-loader"
 
 import Parametr from "../components/Parametr";
 import Scheme from "../components/Scheme";
 
+const skeleton = [0, 0, 0, 0, 0];
+
+const MyLoader = (props) => (
+	<ContentLoader 
+	  speed={2}
+	  width={"100%"}
+	  height={58}
+	  backgroundColor="#f7fdfc"
+	  foregroundColor="#ebf4ff"
+	  {...props}
+	>
+	  <rect x="0" y="0" rx="10" ry="10" width="520" height="52"/>
+	</ContentLoader>
+  )
+
+
 const MainPage = () => {
 
 	const [generatorParametrs, setGeneratorParametrs] = React.useState(null);
+	const [isLoading, setIsLoading] = React.useState(false);
 
 	console.log(generatorParametrs)
 
 	const getGeneratorParametrs = () => {
+		setIsLoading(true);
 		axios.get('https://641051b7e1212d9cc930179a.mockapi.io/generatorParametrs')
-		.then(({data}) => setGeneratorParametrs(data))
-		.catch(e => console.log(e));
+		// .then((e) => console.log(e))
+		.then(({data}) => {setGeneratorParametrs(data); setIsLoading(false);})
+		.catch(e => {console.log(e); setIsLoading(false);});
 	}
 
 	const deleteParametr = (id) => {
@@ -35,7 +55,10 @@ const MainPage = () => {
 				<h3>Параметры генерации</h3>
 				<div className="content pb75">
 					<div className="content__scroll">
-						{generatorParametrs && generatorParametrs.map((item, i) => {
+						{isLoading && skeleton.map(item => {
+							return <MyLoader/>
+						})}
+						{!isLoading && generatorParametrs && generatorParametrs.map((item, i) => {
 							return <Parametr 
 								id={item.id} 
 								method={item.method}
