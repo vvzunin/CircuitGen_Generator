@@ -77,7 +77,6 @@ TEST(TestAuxiliaryRemoveSpaces, RemoveSpacesDeleteAllSpacesWhenTheStringHasOnlyS
 {
 	std::string OnlySpaces = "                          ";
 	EXPECT_EQ((removeSpaces(OnlySpaces)).size(), 0);// If string contain only spaces so that output string have to have no symbols => the size of the string equals to 0
-
 }
 
 TEST(TestAuxiliaryRemoveSpaces, RemoveSpacesDoesNothingWithStringHasNoSpaces)//By special input I mean string that have only spaces or string that have nothing and so on
@@ -122,10 +121,26 @@ TEST(TestAuxiliarySortDictByValue, NormalTest)
 	std::reverse(correctAnswer.begin(), correctAnswer.end());
 	EXPECT_EQ(correctAnswer, sortDictByValue(normalInput3, false));
 }
+
 TEST(TestAuxiliarySortDictByValue, SortDictByValueReturnEmptyVectorWhenThereEmptyDictionary)
 {
 	//Just created a map that gonna be input for  sortDictByValue
 	std::map<std::string, int> EmptyMap = { };
 	EXPECT_EQ(0, (sortDictByValue(EmptyMap, true)).size());// Check to make sure that output of sortDictByValue(testDict1, true) has nothing
 	EXPECT_EQ(0, (sortDictByValue(EmptyMap, false)).size());// Check to make sure that output of sortDictByValue(testDict1, false) has nothing
+}
+
+TEST(TestAuxiliarySortDictByValue.WhenThereTheSameValuesInDictionary)
+{
+	//Just created a map that's gonna be input for  sortDictByValue
+	std::map<std::string, int> TheSameElements = { {"1" , 1 }, {"2" , 1} ,{"3" , 1} , {"4" , 1} ,{"5", 1} };
+	//Here I crated vector correctAnswer which I will use to compare with the result of sortDictByValue
+	std::vector<std::pair<std::string, int >> correctAnswer;
+	//Here I fill the vector with expected from sortDictByValue(testDict1, false) data
+	correctAnswer.push_back({ "1", 1 });
+	correctAnswer.push_back({ "2", 1 });
+	correctAnswer.push_back({ "3", 1 });
+	correctAnswer.push_back({ "4", 1 });
+	correctAnswer.push_back({ "5", 1 });
+	EXPECT_EQ(correctAnswer, sortDictByValue(TheSameElements, true));// No matter true or false second input of sortDictByValue the answer msut be the same
 }
