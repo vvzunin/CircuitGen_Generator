@@ -53,6 +53,64 @@ TEST(test_settings, test_default_load_settings)
   ptr_settings->~Settings();
 }
 
+TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsToHierarchy)
+{
+    if (!std::filesystem::exists(fileName))
+    {
+        std::shared_ptr<Settings> ptr_settings(Settings::getInstance(" "));// Here we call implicitly loadSettings.
+        // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+        std::map <std::string, std::pair<std::string, int>> correctLogicOperations =
+        {
+          {"input",  {"",     10}},
+          {"output", {"=",    0}},
+          {"const",  {"1'b",  9}},
+          {"and",    {"and",  4}},
+          {"nand",   {"nand", 3}},
+          {"or",     {"or",   2}},
+          {"nor",    {"nor",  1}},
+          {"not",    {"not",  7}},
+          {"buf",    {"buf",  8}},
+          {"xor",    {"xor",  6}},
+          {"xnor",   {"xnor", 5}}
+        };
+
+        for (auto const& [key, val] : correctLogicOperations)
+        {
+            EXPECT_EQ(correctLogicOperations[key], ptr_settings->getLogicOperation(key));
+        }
+        ptr_settings->~Settings();
+    }
+}
+
+TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperations)
+{
+    if (!std::filesystem::exists(fileName))
+    {
+        std::shared_ptr<Settings> ptr_settings(Settings::getInstance(" "));// Here we call implicitly loadSettings.
+        // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+        std::map <int, std::vector<std::string>> correctOperationsToHierarchy =
+        {
+          {10,      {""}},
+          {0,      {"="}},
+          {9,    {"1'b"}},
+          {4,    {"and"}},
+          {3,  {"nand" }},
+          {2,    {"or" }},
+          {1,    {"nor"}},
+          {7,    {"not"}},
+          {8,    {"buf"}},
+          {6,    {"xor"}},
+          {5,   {"xnor"}}
+        };
+
+        for (auto const& [key, val] : correctOperationsToHierarchy)
+        {
+            EXPECT_EQ(correctOperationsToHierarchy[key], ptr_settings->fromOperationsToHierarchy(key));
+        }
+        ptr_settings->~Settings();
+    }
+}
+
 TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperations)
 {
     if (!std::filesystem::exists(fileName))
