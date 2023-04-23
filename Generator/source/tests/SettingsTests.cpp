@@ -56,7 +56,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperati
 {
     if (!std::filesystem::exists(fileName))
     {
-        std::shared_ptr<Settings> ptr_settings(Settings::getInstance(" "));// Here we call implicitly loadSettings.
+        Settings * SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
         // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
         std::map <std::string, std::pair<std::string, int>> correctLogicOperations =
         {
@@ -75,7 +75,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperati
 
         for (auto const& [key, val] : correctLogicOperations)
         {
-            EXPECT_EQ(correctLogicOperations[key], ptr_settings->getLogicOperation(key));
+            EXPECT_EQ(correctLogicOperations[key], SetPtr->getLogicOperation(key));
         }
     }
 }
@@ -84,7 +84,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
 {
     if (!std::filesystem::exists(fileName))
     {
-        std::shared_ptr<Settings> ptr_settings(Settings::getInstance(" "));// Here we call implicitly loadSettings.
+        Settings * SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
         // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
         std::map <int, std::vector<std::string>> correctOperationsToHierarchy =
         {
@@ -103,7 +103,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
 
         for (auto const& [key, val] : correctOperationsToHierarchy)
         {
-            EXPECT_EQ(correctOperationsToHierarchy[key], ptr_settings->fromOperationsToHierarchy(key));
+            EXPECT_EQ(correctOperationsToHierarchy[key], SetPtr->fromOperationsToHierarchy(key));
         }
     }
 }
@@ -112,7 +112,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
 {
     if (!std::filesystem::exists(fileName))
     {
-        std::shared_ptr<Settings> ptr_settings(Settings::getInstance(" "));// Here we call implicitly loadSettings.
+        Settings * SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
         // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
 
         std::map <std::string, std::string> correctOperationsToName =
@@ -132,7 +132,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
 
         for (auto const& [key, val] : correctOperationsToName)
         {
-            EXPECT_EQ(correctOperationsToName[key], ptr_settings->fromOperationsToName(key));
+            EXPECT_EQ(correctOperationsToName[key], SetPtr->fromOperationsToName(key));
         }
     }
 }
@@ -142,12 +142,12 @@ TEST(SettingsTest, SaveSettingsNormalTest)
     std::ifstream readFile(fileName);
     std::vector<std::string> BeforeSaveSettings;
     std::vector<std::string> AfterSaveSettings;
-    std::shared_ptr<Settings> ptr_settings(Settings::getInstance(" "));// Here we implicitely called loadSettings()
+    Settings * SetPtr = Settings::getInstance(" ");// Here we implicitely called loadSettings()
     readFile.clear();
     readFile.seekg(0);// Back to the beginnigs of the file .
     std::string str;
 
-    ptr_settings->loadSettings();// Fill file with data
+    SetPtr->loadSettings();// Fill file with data
 
     while (!readFile.eof())
     {
@@ -156,7 +156,7 @@ TEST(SettingsTest, SaveSettingsNormalTest)
         str = "";
     }
 
-    ptr_settings->SaveSettings();
+    SetPtr->SaveSettings();
 
     readFile.clear();
     readFile.seekg(0);// Back to the beginnigs of the file .
