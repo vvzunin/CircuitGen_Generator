@@ -122,3 +122,10 @@ TEST(TestAuxiliarySortDictByValue, NormalTest)
 	std::reverse(correctAnswer.begin(), correctAnswer.end());
 	EXPECT_EQ(correctAnswer, sortDictByValue(normalInput3, false));
 }
+TEST(TestAuxiliarySortDictByValue, SortDictByValueReturnEmptyVectorWhenThereEmptyDictionary)
+{
+	//Just created a map that gonna be input for  sortDictByValue
+	std::map<std::string, int> EmptyMap = { };
+	EXPECT_EQ(0, (sortDictByValue(EmptyMap, true)).size());// Check to make sure that output of sortDictByValue(testDict1, true) has nothing
+	EXPECT_EQ(0, (sortDictByValue(EmptyMap, false)).size());// Check to make sure that output of sortDictByValue(testDict1, false) has nothing
+}
