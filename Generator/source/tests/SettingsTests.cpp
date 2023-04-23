@@ -168,3 +168,37 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperati
         ptr_settings->~Settings();
     }
 }
+
+TEST(SettingsTest, SaveSettingsNormalTest)
+{
+    std::ifstream readFile(fileName);
+    std::vector<std::string> BeforeSaveSettings;
+    std::vector<std::string> AfterSaveSettings;
+    std::shared_ptr<Settings> ptr_settings(Settings::getInstance(" "));// Here we implicitely called loadSettings()
+    readFile.clear();
+    readFile.seekg(0);// Back to the beginnigs of the file .
+    std::string str;
+
+    ptr_settings->loadSettings();// Fill file with data
+
+    while (!readFile.eof())
+    {
+        readFile >> str;
+        if (str != "") BeforeSaveSettings.push_back(str);//Read all data from the file to BeforeSaveSettings
+        str = "";
+    }
+
+    ptr_settings->SaveSettings();
+
+    readFile.clear();
+    readFile.seekg(0);// Back to the beginnigs of the file .
+
+    while (!readFile.eof())
+    {
+        readFile >> str;
+        if (str != "") AfterSaveSettings.push_back(str);//Read all data from the file to AfterSaveSettings
+        str = "";
+    }
+
+    EXPECT_EQ(BeforeSaveSettings, AfterSaveSettings);
+}
