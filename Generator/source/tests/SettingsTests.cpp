@@ -50,7 +50,6 @@ TEST(test_settings, test_default_load_settings)
   {
     EXPECT_EQ(value, t->fromOperationsToName(key));
   }
-  ptr_settings->~Settings();
 }
 
 TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperation)
@@ -78,7 +77,6 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperati
         {
             EXPECT_EQ(correctLogicOperations[key], ptr_settings->getLogicOperation(key));
         }
-        ptr_settings->~Settings();
     }
 }
 
@@ -107,7 +105,6 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
         {
             EXPECT_EQ(correctOperationsToHierarchy[key], ptr_settings->fromOperationsToHierarchy(key));
         }
-        ptr_settings->~Settings();
     }
 }
 
@@ -137,7 +134,6 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
         {
             EXPECT_EQ(correctOperationsToName[key], ptr_settings->fromOperationsToName(key));
         }
-        ptr_settings->~Settings();
     }
 }
 /* This part of code is working just fine. It can be used when SaveSettings will be set as public
