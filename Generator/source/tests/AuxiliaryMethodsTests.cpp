@@ -73,3 +73,10 @@ TEST(TestAuxiliaryRemoveSpaces, NormalTest)
 	EXPECT_EQ(removeSpaces(normalInput4), "a123");
 }
 
+TEST(TestAuxiliaryRemoveSpaces, RemoveSpacesDeleteAllSpacesWhenTheStringHasOnlySpaces)//By special input I mean string that have only spaces or string that have nothing and so on
+{
+	std::string OnlySpaces = "                          ";
+	EXPECT_EQ((removeSpaces(OnlySpaces)).size(), 0);// If string contain only spaces so that output string have to have no symbols => the size of the string equals to 0
+
+}
+
