@@ -130,7 +130,7 @@ TEST(TestAuxiliarySortDictByValue, SortDictByValueReturnEmptyVectorWhenThereEmpt
 	EXPECT_EQ(0, (sortDictByValue(EmptyMap, false)).size());// Check to make sure that output of sortDictByValue(testDict1, false) has nothing
 }
 
-TEST(TestAuxiliarySortDictByValue.WhenThereTheSameValuesInDictionary)
+TEST(TestAuxiliarySortDictByValue, WhenThereTheSameValuesInDictionary)
 {
 	//Just created a map that's gonna be input for  sortDictByValue
 	std::map<std::string, int> TheSameElements = { {"1" , 1 }, {"2" , 1} ,{"3" , 1} , {"4" , 1} ,{"5", 1} };
