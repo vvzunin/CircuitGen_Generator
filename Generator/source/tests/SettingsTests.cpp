@@ -139,3 +139,32 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperati
         ptr_settings->~Settings();
     }
 }
+
+TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperations)
+{
+    if (!std::filesystem::exists(fileName))
+    {
+        std::shared_ptr<Settings> ptr_settings(Settings::getInstance(" "));// Here we call implicitly loadSettings.
+        // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+        std::map <int, std::vector<std::string>> correctOperationsToHierarchy =
+        {
+          {10,      {""}},
+          {0,      {"="}},
+          {9,    {"1'b"}},
+          {4,    {"and"}},
+          {3,  {"nand" }},
+          {2,    {"or" }},
+          {1,    {"nor"}},
+          {7,    {"not"}},
+          {8,    {"buf"}},
+          {6,    {"xor"}},
+          {5,   {"xnor"}}
+        };
+
+        for (auto const& [key, val] : correctOperationsToHierarchy)
+        {
+            EXPECT_EQ(correctOperationsToHierarchy[key], ptr_settings->fromOperationsToHierarchy(key));
+        }
+        ptr_settings->~Settings();
+    }
+}
