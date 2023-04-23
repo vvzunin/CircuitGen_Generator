@@ -1,5 +1,14 @@
 #include <gtest/gtest.h>
 #include "../Settings.cpp"
+#include <string>
+#include <exception>
+#include <memory>
+#include <fstream>
+#include <filesystem>
+std::string fileName = "settings.dat"; // To test LoadSettings by default. See below.
+// If the d_fileName will assign to another value by default you also have to change the input of  std::filesystem::exists that placed above. 
+// That's the only way to test LoadSettings when file does not exists without breaking encapsulation.
+
 
 TEST(test_settings, test_default_load_settings)
 {
@@ -41,4 +50,34 @@ TEST(test_settings, test_default_load_settings)
   {
     EXPECT_EQ(value, t->fromOperationsToName(key));
   }
+  ptr_settings->~Settings();
+}
+
+TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperations)
+{
+    if (!std::filesystem::exists(fileName))
+    {
+        std::shared_ptr<Settings> ptr_settings(Settings::getInstance(" "));// Here we call implicitly loadSettings.
+        // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+        std::map <int, std::vector<std::string>> correctOperationsToHierarchy =
+        {
+          {10,      {""}},
+          {0,      {"="}},
+          {9,    {"1'b"}},
+          {4,    {"and"}},
+          {3,  {"nand" }},
+          {2,    {"or" }},
+          {1,    {"nor"}},
+          {7,    {"not"}},
+          {8,    {"buf"}},
+          {6,    {"xor"}},
+          {5,   {"xnor"}}
+        };
+
+        for (auto const& [key, val] : correctOperationsToHierarchy)
+        {
+            EXPECT_EQ(correctOperationsToHierarchy[key], ptr_settings->fromOperationsToHierarchy(key));
+        }
+        ptr_settings->~Settings();
+    }
 }
