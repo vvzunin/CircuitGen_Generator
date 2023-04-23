@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include <utility>
+#include <algorithm>
 #include "../AuxiliaryMethods.h"
 
 TEST(test_aux_methods, test_remove_spaces_without_spaces)
@@ -55,4 +57,19 @@ TEST(test_aux_methods, test_read_non_existent_file)
   EXPECT_THROW(AuxMethods::readAllFile(path), std::runtime_error);
 }
 
+using namespace AuxMethods;
+
+TEST(TestAuxiliaryRemoveSpaces, NormalTest)
+{
+	//Created  instances of std::string which gonna be input for removeSpaces.
+	std::string normalInput1 = "abcd  a";
+	std::string normalInput2 = "a    v";
+	std::string normalInput3 = "   a";
+	std::string normalInput4 = " a1  2  3";
+	//EXPECT_EQ(ActualResult , expectedResult):
+	EXPECT_EQ(removeSpaces(normalInput1), "abcda");
+	EXPECT_EQ(removeSpaces(normalInput2), "av");
+	EXPECT_EQ(removeSpaces(normalInput3), "a");
+	EXPECT_EQ(removeSpaces(normalInput4), "a123");
+}
 
