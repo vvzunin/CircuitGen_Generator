@@ -80,3 +80,9 @@ TEST(TestAuxiliaryRemoveSpaces, RemoveSpacesDeleteAllSpacesWhenTheStringHasOnlyS
 
 }
 
+TEST(TestAuxiliaryRemoveSpaces, RemoveSpacesDoesNothingWithStringHasNoSpaces)//By special input I mean string that have only spaces or string that have nothing and so on
+{
+	std::string NoSpaces = "StringWithoutSpaces";
+	EXPECT_EQ(NoSpaces, removeSpaces(NoSpaces));// If there no spaces in the string so that it must not be changed after removeSpaces;
+}
+
