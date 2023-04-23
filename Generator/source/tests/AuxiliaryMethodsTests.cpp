@@ -86,3 +86,39 @@ TEST(TestAuxiliaryRemoveSpaces, RemoveSpacesDoesNothingWithStringHasNoSpaces)//B
 	EXPECT_EQ(NoSpaces, removeSpaces(NoSpaces));// If there no spaces in the string so that it must not be changed after removeSpaces;
 }
 
+TEST(TestAuxiliarySortDictByValue, NormalTest)
+{
+	//Just created some maps that gonna be input for  sortDictByValue
+	std::map<std::string, int> normalInput1 = { {"0" , 0 }, {"1" , 1} ,{"2" , 2} ,{"3" , 3} };
+	std::map<std::string, int> normalInput2 = { {"0" , 110 }, {"1" , 10} ,{"2" , 20} ,{"3" , 3} };
+	std::map<std::string, int> normalInput3 = { {"0" , 1100 }, {"1" , 1} ,{"2" , 1} ,{"3" , 33} };
+	//Here I crated vector correctAnswer which I will use to compare with the result of sortDictByValue
+	std::vector<std::pair<std::string, int >> correctAnswer;
+	//Here I fill the vector with expected from sortDictByValue(testDict1, false) data
+	correctAnswer.push_back({ "3", 3 });
+	correctAnswer.push_back({ "2", 2 });
+	correctAnswer.push_back({ "1", 1 });
+	correctAnswer.push_back({ "0", 0 });
+	// Here I check the equality of the expected data and the data that I have from sortDictByValue
+	EXPECT_EQ(correctAnswer, sortDictByValue(normalInput1, false));
+	std::reverse(correctAnswer.begin(), correctAnswer.end()); // reverse it because now I gonna check the result of  sortDictByValue(testDict1, true) when up == true
+	EXPECT_EQ(correctAnswer, sortDictByValue(normalInput1, true));
+	correctAnswer.clear(); // Make it clear to fill it again with data which I expected from sortDictByValue(testDict2, true)
+	// Below just repetition the same logic as above
+	correctAnswer.push_back({ "3" , 3 });
+	correctAnswer.push_back({ "1" , 10 });
+	correctAnswer.push_back({ "2" , 20 });
+	correctAnswer.push_back({ "0" , 110 });
+	EXPECT_EQ(correctAnswer, sortDictByValue(normalInput2, true));
+	std::reverse(correctAnswer.begin(), correctAnswer.end());
+	EXPECT_EQ(correctAnswer, sortDictByValue(normalInput2, false));
+
+	correctAnswer.clear();
+	correctAnswer.push_back({ "1" , 1 });
+	correctAnswer.push_back({ "2" , 1 });
+	correctAnswer.push_back({ "3" , 33 });
+	correctAnswer.push_back({ "0" , 1100 });
+	EXPECT_EQ(correctAnswer, sortDictByValue(normalInput3, true));
+	std::reverse(correctAnswer.begin(), correctAnswer.end());
+	EXPECT_EQ(correctAnswer, sortDictByValue(normalInput3, false));
+}
