@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from add_parameter.views import *
 import json
+import os
 
 
 def make_dataset(request):
@@ -30,3 +31,25 @@ def cpp_function(data, dataset_id):
 
     subprocess.Popen(f"./Generator/source/build/prog --json_path=./data_{dataset_id}.json", shell=True)
     return HttpResponse("https://youtu.be/dQw4w9WgXcQ")
+
+
+def make_image_from_verilog(request):
+    # scheme_images_path = '/Users/kudr.max/PycharmProjects/1290_project/source/scheme_images'
+    # os.system('pwd')
+    # os.system('cd ' + scheme_images_path)
+    # os.system('pwd')
+    # os.system('yosys')
+
+    # os.system('source /Users/kudr.max/PycharmProjects/1290_project/oss-cad-suite/environment')
+    # os.system('read_verilog /Users/kudr.max/oss-cad-suite/my_verilogs/CNFT.v')
+    # os.system('yosys')
+    # os.system('show -format png -prefix /Users/kudr.max/oss-cad-suite/my_verilogs/name')
+
+    # os.system('read_verilog /Users/kudr.max/oss-cad-suite/my_verilogs/CNFT.v')
+    # os.system('show')
+    # os.system('dot -Tpng yosys_show.dot -o name.png')
+    # os.system('dot -Tpng ' + dot_path + ' -o image.png')
+    path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/oss-cad-suite/bin:$PATH"'
+    yo = "yosys -p 'read_verilog /Users/kudr.max/PycharmProjects/1290_project/source/CNFT.v; show -format png -prefix /Users/kudr.max/PycharmProjects/1290_project/source/name'"
+    os.system(path + ";" + yo)
+    return HttpResponse('sheme_image')
