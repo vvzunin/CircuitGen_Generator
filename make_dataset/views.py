@@ -19,8 +19,8 @@ def make_dataset(request):
 
 def cpp_function(data, dataset_id):
     # run cpp code here
-    #print(dataset_id)
-    #print(data)
+    # print(dataset_id)
+    # print(data)
 
     data = list(data)[0]
 
@@ -34,22 +34,16 @@ def cpp_function(data, dataset_id):
 
 
 def make_image_from_verilog(request):
-    # scheme_images_path = '/Users/kudr.max/PycharmProjects/1290_project/source/scheme_images'
-    # os.system('pwd')
-    # os.system('cd ' + scheme_images_path)
-    # os.system('pwd')
-    # os.system('yosys')
-
-    # os.system('source /Users/kudr.max/PycharmProjects/1290_project/oss-cad-suite/environment')
-    # os.system('read_verilog /Users/kudr.max/oss-cad-suite/my_verilogs/CNFT.v')
-    # os.system('yosys')
-    # os.system('show -format png -prefix /Users/kudr.max/oss-cad-suite/my_verilogs/name')
-
-    # os.system('read_verilog /Users/kudr.max/oss-cad-suite/my_verilogs/CNFT.v')
-    # os.system('show')
-    # os.system('dot -Tpng yosys_show.dot -o name.png')
-    # os.system('dot -Tpng ' + dot_path + ' -o image.png')
     path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/oss-cad-suite/bin:$PATH"'
-    yo = "yosys -p 'read_verilog /Users/kudr.max/PycharmProjects/1290_project/source/CNFT.v; show -format png -prefix /Users/kudr.max/PycharmProjects/1290_project/source/name'"
+    base_folder_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    verilog_name = "CNFT.v"
+    verilog_path = base_folder_path + "/scheme_images/" + verilog_name
+
+    image_id = "image_" + "%032x" % random.getrandbits(128)
+    image_path = base_folder_path + "/scheme_images/" + image_id
+    image_path_dot_png = image_path + ".png"
+
+    yo = "yosys -p'read_verilog " + verilog_path + "; show -format png -prefix " + image_path + "'"
     os.system(path + ";" + yo)
-    return HttpResponse('sheme_image')
+    return JsonResponse({"image_path": image_path_dot_png})
