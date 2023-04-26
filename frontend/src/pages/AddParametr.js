@@ -29,12 +29,25 @@ const base = [
   },
 ];
 
-const TruthTable = () => {
+const TruthTable = ({setLimitParent, setCNFFParent, setCNFTParent}) => {
+
+  const changeLimit = (limit) => {
+    setLimitParent(limit);
+  }
+
+  const changeCNFF = (CNFF) => {
+    setCNFFParent(CNFF);
+  }
+
+  const changeCNFT = (CNFT) => {
+    setCNFTParent(CNFT);
+  }
+
   return (
     <div className="add__truth">
-      <div className='add__truth-name'>Ограничение генерации</div><ToggleSwitchFilter/>
-      <div className='add__truth-name'>CNFF</div><ToggleSwitchFilter/>
-      <div className='add__truth-name'>CNFT</div><ToggleSwitchFilter/>
+      <div className='add__truth-name'>Ограничение генерации</div><ToggleSwitchFilter changeParentState={(limit) => changeLimit(limit)}/>
+      <div className='add__truth-name'>CNFF</div><ToggleSwitchFilter changeParentState={(CNFF) => changeCNFF(CNFF)}/>
+      <div className='add__truth-name'>CNFT</div><ToggleSwitchFilter changeParentState={(CNFT) => changeCNFT(CNFT)}/>
     </div>
   )
 }
@@ -109,13 +122,26 @@ const AddParametr = () => {
 
   const AddParametr = () => {
     let sendData = {};
-    sendData.method = data[generationMethod];
-    sendData.minInCount = minInCount;
-    sendData.maxInCount = maxInCount;
-    sendData.minOutCount = minOutCount;
-    sendData.maxOutCount = maxOutCount;
-    sendData.repeats = repeats;
-    axios.post('https://641051b7e1212d9cc930179a.mockapi.io/generatorParametrs', sendData)
+    sendData.type_of_generation = data[generationMethod];
+    sendData.min_in = minInCount;
+    sendData.max_in = maxInCount;
+    sendData.min_out = minOutCount;
+    sendData.max_out = maxOutCount;
+    sendData.repeat_n = repeats;
+    sendData.limit = limit;
+    sendData.CNFF = CNFF;
+    sendData.CNFT = CNFT;
+
+    sendData.oper_type = "and";
+    sendData.chromosome_type = "Truth Table";
+    sendData.selection_type_parent = "Panmixia";
+    sendData.playback_type = "CrossingEachExit";
+    sendData.mut_type = "Binary";
+    sendData.selection_type = "Base";
+
+    console.log(sendData);
+    
+    axios.post('http://127.0.0.1:8000/api/add_parameter/', sendData)
     .then(() => {
       alert('Параметр успешно создан')
     }).catch(e => console.log(e));
@@ -128,6 +154,9 @@ const AddParametr = () => {
   const [minOutCount, setMinOutCount] = React.useState(0);
   const [maxOutCount, setMaxOutCount] = React.useState(0);
   const [repeats, setRepeats] = React.useState(0);
+  const [limit, setLimit] = React.useState(false);
+  const [CNFF, setCNFF] = React.useState(false);
+  const [CNFT, setCNFT] = React.useState(false);
 
   return (
     <div className="add__wrapper">
@@ -157,7 +186,7 @@ const AddParametr = () => {
               <label>Максимальное количество выходов<input type="number" value={maxOutCount} onChange={e => setMaxOutCount(e.target.value)} min={0}/></label>
               <label>Количество повторений каждой комбинации<input type="number" value={repeats} onChange={e => setRepeats(e.target.value)} min={0}/></label>
           </div>
-          {generationMethod === 0 && <TruthTable/>}
+          {generationMethod === 0 && <TruthTable setLimitParent={setLimit} setCNFFParent={setCNFF} setCNFTParent={setCNFT}/>}
           {generationMethod === 1 && <RandLevel/>}
           {generationMethod === 2 && <NumOperations/>}
           {generationMethod === 3 && <Genetic/>}

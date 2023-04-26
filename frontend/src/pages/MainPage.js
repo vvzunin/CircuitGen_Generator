@@ -27,18 +27,15 @@ const MainPage = () => {
 	const [generatorParametrs, setGeneratorParametrs] = React.useState(null);
 	const [isLoading, setIsLoading] = React.useState(false);
 
-	console.log(generatorParametrs)
-
 	const getGeneratorParametrs = () => {
 		setIsLoading(true);
-		axios.get('https://641051b7e1212d9cc930179a.mockapi.io/generatorParametrs')
-		// .then((e) => console.log(e))
+		axios.get('http://127.0.0.1:8000/api/add_parameter/')
 		.then(({data}) => {setGeneratorParametrs(data); setIsLoading(false);})
 		.catch(e => {console.log(e); setIsLoading(false);});
 	}
 
 	const deleteParametr = (id) => {
-		axios.delete(`https://641051b7e1212d9cc930179a.mockapi.io/generatorParametrs/${id}`)
+		axios.delete(`http://127.0.0.1:8000/api/add_parameter/${id}`)
 		.then(() => {
 			getGeneratorParametrs();
 		})
@@ -60,14 +57,8 @@ const MainPage = () => {
 						})}
 						{!isLoading && generatorParametrs && generatorParametrs.map((item, i) => {
 							return <Parametr 
-								id={item.id} 
-								method={item.method}
-								minInCount={item.minInCount}
-								maxInCount={item.maxInCount}
-								minOutCount={item.minOutCount}
-								maxOutCount={item.maxOutCount}
-								repeats={item.repeats}
-								gear={item.gear}
+								dataItem={item}
+								gear={false}
 								deleteParametr={() => deleteParametr(item.id)}
 							/>
 						})}
