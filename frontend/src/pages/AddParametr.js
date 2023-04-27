@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Dropdown from '../components/Dropdown';
-import ToggleSwitchFilter from '../components/ToggleSwitch';
 import TruthTable from '../components/TruthTable';
 import RandLevel from '../components/RandLevel';
+import NumOperations from '../components/NumOperations';  
 
 const data = ['From Random Truth Table','Rand Level','Num Operation','Genetic'];
 
@@ -31,15 +31,6 @@ const base = [
   },
 ];
 
-const NumOperations = () => {
-  return (
-    <div className="add__truth">
-      <div className='add__truth-name'>Оставлять пустые выходы</div><ToggleSwitchFilter/>
-      <Dropdown data={['and', 'nand', 'or', 'not', 'nor', 'buf', 'xor', 'xnor']} />
-      <input className='add__empty' type="number" min={0}/>
-    </div>
-  )
-}
 
 const Genetic = () => {
 
