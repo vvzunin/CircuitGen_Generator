@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Dropdown from '../components/Dropdown';
 import ToggleSwitchFilter from '../components/ToggleSwitch';
+import TruthTable from '../components/TruthTable';
+import RandLevel from '../components/RandLevel';
 
 const data = ['From Random Truth Table','Rand Level','Num Operation','Genetic'];
 
@@ -28,38 +30,6 @@ const base = [
     count: 2
   },
 ];
-
-const TruthTable = ({setLimitParent, setCNFFParent, setCNFTParent}) => {
-
-  const changeLimit = (limit) => {
-    setLimitParent(limit);
-  }
-
-  const changeCNFF = (CNFF) => {
-    setCNFFParent(CNFF);
-  }
-
-  const changeCNFT = (CNFT) => {
-    setCNFTParent(CNFT);
-  }
-
-  return (
-    <div className="add__truth">
-      <div className='add__truth-name'>Ограничение генерации</div><ToggleSwitchFilter changeParentState={(limit) => changeLimit(limit)}/>
-      <div className='add__truth-name'>CNFF</div><ToggleSwitchFilter changeParentState={(CNFF) => changeCNFF(CNFF)}/>
-      <div className='add__truth-name'>CNFT</div><ToggleSwitchFilter changeParentState={(CNFT) => changeCNFT(CNFT)}/>
-    </div>
-  )
-}
-
-const RandLevel = () => {
-  return (
-    <div className="add__base">
-      <label>Максимальное количество уровней<input type="number"/></label>
-      <label>Максимальное количество элементов<input type="number"/></label>
-    </div>
-  )
-}
 
 const NumOperations = () => {
   return (
@@ -131,6 +101,8 @@ const AddParametr = () => {
     sendData.limit = limit;
     sendData.CNFF = CNFF;
     sendData.CNFT = CNFT;
+    sendData.max_level = maxLevel;
+    sendData.max_elem = maxElem;
 
     sendData.oper_type = "and";
     sendData.chromosome_type = "Truth Table";
@@ -157,6 +129,8 @@ const AddParametr = () => {
   const [limit, setLimit] = React.useState(false);
   const [CNFF, setCNFF] = React.useState(false);
   const [CNFT, setCNFT] = React.useState(false);
+  const [maxLevel, setMaxLevel] = React.useState(0);
+  const [maxElem, setMaxElem] = React.useState(0);
 
   return (
     <div className="add__wrapper">
@@ -187,7 +161,7 @@ const AddParametr = () => {
               <label>Количество повторений каждой комбинации<input type="number" value={repeats} onChange={e => setRepeats(e.target.value)} min={0}/></label>
           </div>
           {generationMethod === 0 && <TruthTable setLimitParent={setLimit} setCNFFParent={setCNFF} setCNFTParent={setCNFT}/>}
-          {generationMethod === 1 && <RandLevel/>}
+          {generationMethod === 1 && <RandLevel setMaxLevel={setMaxLevel} maxLevel={maxLevel} maxElem={maxElem} setMaxElem={setMaxElem}/>}
           {generationMethod === 2 && <NumOperations/>}
           {generationMethod === 3 && <Genetic/>}
         </div>
