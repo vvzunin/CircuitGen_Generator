@@ -52,11 +52,12 @@ const MainPage = () => {
 				<h3>Параметры генерации</h3>
 				<div className="content pb75">
 					<div className="content__scroll">
-						{isLoading && skeleton.map(item => {
-							return <MyLoader/>
+						{isLoading && skeleton.map((item, i) => {
+							return <MyLoader key={i}/>
 						})}
 						{!isLoading && generatorParametrs && generatorParametrs.map((item, i) => {
 							return <Parametr 
+								key={i}
 								dataItem={item}
 								gear={false}
 								deleteParametr={() => deleteParametr(item.id)}

@@ -28,7 +28,7 @@ const Dropdown = ({data}) => {
                     return null;
                 }
                 else {
-                    return <li onClick={() => changeActive(i)}>{item}</li>;
+                    return <li key={i} onClick={() => changeActive(i)}>{item}</li>;
                 }
             })}
         </ul>}

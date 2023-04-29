@@ -48,7 +48,7 @@ const Genetic = () => {
     </div>
     <div className="add__genetic-submenu">
       {data.map((item, i) => {
-        return <div className={activeSubmenu === i ? "add__genetic-submenu-item active" : "add__genetic-submenu-item"} onClick={() => setActiveSubmenu(i)}>{item}</div>
+        return <div key={i} className={activeSubmenu === i ? "add__genetic-submenu-item active" : "add__genetic-submenu-item"} onClick={() => setActiveSubmenu(i)}>{item}</div>
       })}
     </div>
     {activeSubmenu === 0 && 
@@ -137,7 +137,7 @@ const AddParametr = () => {
             <div className="add__method-name">Метод генерации</div>
             <ul>
               {data.map((item, i) => {
-                return <li className={i === generationMethod ? "active" : ""} onClick={() => setGenerationMethod(i)}>{item}</li>
+                return <li key={i} className={i === generationMethod ? "active" : ""} onClick={() => setGenerationMethod(i)}>{item}</li>
               })}
             </ul>
           </div>
