@@ -247,3 +247,143 @@
         transition: 0.3s;
     }
 }
+
+@media (max-width: 1200px) {
+    .add {
+        &__add {
+            font-size: 16px;
+        }
+        &__return {
+            font-size: 16px;
+        }
+        &__method {
+            ul {
+                column-gap: 8px;
+            }
+            &-name {
+                font-size: 16px;
+                margin-right: 10px;
+            }
+            li {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+        &__base {
+            label {
+                font-size: 14px;
+            }
+        }
+        &__truth {
+            label {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            &-name {
+                font-size: 14px;
+            }
+        }
+        &__genetic {
+            label {
+                font-size: 14px;
+            }
+            &-submenu {
+                font-size: 14px;
+            }
+            &-dropdown {
+                p {
+                    font-size: 14px;
+                }
+
+            }
+        }
+    }
+    .dropdown {
+        &__active {
+            p {
+                font-size: 14px;
+            }
+        }
+        &__list {
+            z-index: 2;
+            li {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .add {
+        &__base {
+            label {
+                font-size: 16px;
+                margin-right: 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding-bottom: 0;
+            }
+            input {
+                margin-left: 0;
+                margin-top: 6px;
+            }
+        }
+        &__truth {
+            label {
+                font-size: 16px;
+            }
+            &-name {
+                font-size: 16px;
+                margin-bottom: 6px;
+            }
+        }
+        &__wrapper {
+            margin-top: 40px;
+        }
+        &__buttons {
+            margin-top: 10px;
+        }
+        &__top {
+            flex-direction: column;
+        }
+        &__method {
+            flex-direction: column;
+            ul {
+                margin-top: 10px;
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+                li {
+                    width: 100%;
+                    margin-bottom: 6px;
+                }
+            }
+        }
+        &__genetic {
+            &-submenu {
+                margin-top: 12px;
+            }
+            label {
+                font-size: 16px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-right: 0;
+            }
+            &-dropdown {
+                margin-right: 0 !important;
+                flex-wrap: wrap;
+                padding-bottom: 0;
+                p {
+                    font-size: 16px;
+
+                }
+            }
+            &-dropdown > p {
+                margin-bottom: 6px;
+            }
+        }
+    }
+}
