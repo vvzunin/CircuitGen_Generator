@@ -5,11 +5,11 @@ import { useId } from "react-id-generator";
 const ToggleSwitchFilter = ({changeParentState}) => {
 
 	const [htmlId] = useId();
-	const [checked, setChecked] = React.useState(false);
+	const [checked, setChecked] = React.useState(false);	
 
 	function changeCheckbox() {
 	   setChecked(!checked);
-	   changeParentState(!checked);
+	   {changeParentState && changeParentState(!checked);}
 	}
 
 	return (

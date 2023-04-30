@@ -17,7 +17,7 @@ const MyLoader = (props) => (
 	  foregroundColor="#ebf4ff"
 	  {...props}
 	>
-	  <rect x="0" y="0" rx="10" ry="10" width="520" height="52"/>
+	  <rect x="0" y="0" rx="10" ry="10" width="100%" height="52"/>
 	</ContentLoader>
   )
 
@@ -52,11 +52,12 @@ const MainPage = () => {
 				<h3>Параметры генерации</h3>
 				<div className="content pb75">
 					<div className="content__scroll">
-						{isLoading && skeleton.map(item => {
-							return <MyLoader/>
+						{isLoading && skeleton.map((item, i) => {
+							return <MyLoader key={i}/>
 						})}
 						{!isLoading && generatorParametrs && generatorParametrs.map((item, i) => {
 							return <Parametr 
+								key={i}
 								dataItem={item}
 								gear={false}
 								deleteParametr={() => deleteParametr(item.id)}
