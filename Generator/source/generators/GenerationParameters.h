@@ -169,6 +169,9 @@ public:
   void setNumOfCycles( const int i_numOfCycles){ d_geneticParameters.setNumOfCycles(i_numOfCycles); }
   void setPopulationSize( const int i_populationSize) { d_geneticParameters.setPopulationSize(i_populationSize); }
   void setRecombinationParameters( ParentsTypes i_parentsTypes, const int i_tournamentNumber, RecombinationTypes i_recombinationType, const int i_refPoints, const double maskProbability, const int i_recombinationNumber);
+  void setMutationParameters( MutationTypes i_mutationTipe, const double i_probabilityGen, const int i_exchangeType, const double i_probabilityTruthTable);
+  void setSelectionParameters(const SelectionTypes i_selectionType, const int i_numOfSurvivors);
+  void setKeyEndProcessIndex(const double i_keyEndProcessIndex) { d_geneticParameters.setKeyEndProcessIndex(i_keyEndProcessIndex); }
 private:
   std::string d_name = "";
   std::string d_requestId;
