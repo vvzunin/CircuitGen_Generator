@@ -1,6 +1,10 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
+#include <map>
+#include <vector>
+#include <string>
+#include <algorithm>
 
 #include <nlohmann/json.hpp>
 
@@ -59,6 +63,7 @@ int main(int argc, char** argv)
 
   std::ifstream f(json_path);
   nlohmann::json data = nlohmann::json::parse(f);
+  data = *(data.begin() + 1);
   std::cout << "red json" << std::endl;
   
   std::cout << data.dump(4);
@@ -81,24 +86,45 @@ int main(int argc, char** argv)
   int repeats = data["repeat_n"];
   int maxLevel = data["max_level"];
   int maxElement = data["max_elem"];
-  bool limit = data["limit"];
+  bool limit = data["limit_generation"];
   bool CNFF = data["CNFF"];
   bool CNFT = data["CNFT"];
+  bool LeaveEmptyOut = data["leave_empty_out"];
+  int numOfSurv =  data["surv_num"];
+  std::string mutType = data["mut_type"];
+  int mutChance = data["mut_chance"];
+  int swapType = data["swap_type"];
+  double ratioInTable = data["ratio_in_table"];
+  int recNum = data["rec_num"];
+  int refPoints = data["ref_points"];
+  int tourSize = data["tour_size"];
+  std::string selectionTypeParent = data["selection_type_parent"];
   int inputs = minInputs;
   int outputs = minOutputs;
-
+  std::map<std::string, int> m;
+  std::vector<std::string> v = {"num_and", "num_nand", "num_or", "num_not", "num_nor", "num_buf", "num_xor", "num_xnor"}; 
+  for(auto& el : data.items())
+  {
+	  if(std::find(v.begin(), v.end(), el.key()) != v.end()) m.insert({el.key(), el.value()});
+  }
+    
   if (gt == GenerationTypes::FromRandomTruthTable)
   {
-    inputs = (random() % (maxInputs - minInputs)) + minInputs;
-    outputs = (random() % (maxOutputs - minOutputs)) + minOutputs;
+    //inputs = (random() % (maxInputs - minInputs)) + minInputs;
+    //outputs = (random() % (maxOutputs - minOutputs)) + minOutputs;
   }
 
   //JSON params = JSON::Read("params.json");
 
   //TODO:: make function that return DataBaseGeneratorParameters from json
 
-  GenerationParameters gp("My_first_test", request_id, 2, 4, 0, 20, 10);
-  DataBaseGeneratorParameters dbgp(2, 4, 3, 5, 3, GenerationTypes::FromRandomTruthTable, gp);
+  GenerationParameters gp("My_first_test", request_id, inputs, outputs, repeats, maxLevel, maxElement);
+  gp.setCNFF(CNFF);
+  gp.setCNFT(CNFT);
+  gp.setLimit(limit);
+  gp.setNumOperationParameters(m, LeaveEmptyOut);
+//  gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType, ratioInTable, recNum, refPoints, tourSize,  selectionTypeParent);
+  DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp);
 
   DataBaseGenerator generator(dbgp);
 
