@@ -12,7 +12,7 @@ ParentsTypes ParentsParameters::getParentsType() const
   return d_parentsType;
 }
 
-void ParentsParameters::setTournamentNumber(int i_tournamentNumber)
+void ParentsParameters::setTournamentNumber( const int i_tournamentNumber)
 {
   d_tournamentNumber = i_tournamentNumber;
 }

@@ -17,12 +17,14 @@ public:
   RecombinationTypes getRecombinationType() const;
   ParentsParameters getParentsParameters() const;
   int getRefPoints() const;
-  void setRefPoints(int i_refPoints);
+  void setRefPoints( int i_refPoints);
   double getMaskProbability() const;
-  void setRecombinationParameters(int i_rp);
+  void setRecombinationParameters( int i_rp);
   int getRecombinationParameters() const;
   bool operator== (const RecombinationParameters& r) const;
-
+  void setMaskProbability(const double i_maskProbability);
+  void setParentsParameters(ParentsTypes i_parentsType, const int i_tournamentSize);
+  void setRecombinationType(RecombinationTypes i_recombinationType);
 private:
   RecombinationTypes d_recombinationType = RecombinationTypes::CrossingEachExitInTurnMany;
   ParentsParameters d_parentsParameters = ParentsParameters();
