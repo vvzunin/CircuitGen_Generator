@@ -2,13 +2,14 @@ import React from 'react'
 
 import arrow from '../assets/arrow.svg';
 
-const Dropdown = ({data}) => {
+const Dropdown = ({data, setActiveParentValue}) => {
 
     const [active, setActive] = React.useState(0);
     const [isOpen, setIsOpen] = React.useState(false);
 
     const changeActive = i => {
         setActive(i);
+        setActiveParentValue(data[i]);
         setIsOpen(false);
     }
 
