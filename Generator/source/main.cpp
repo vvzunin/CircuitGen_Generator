@@ -78,7 +78,7 @@ int main(int argc, char** argv)
   {
     gt = GenerationTypes::FromRandomTruthTable;
   }
-  std::string request_id = data["request_id"];
+  std::string request_id = data["id"];
   assert(request_id != "");
   int minInputs = data["min_in"];
   int maxInputs = data["max_in"];
@@ -93,9 +93,17 @@ int main(int argc, char** argv)
   bool LeaveEmptyOut = data["leave_empty_out"];
   int numOfSurv =  data["surv_num"];
   std::string mutType = data["mut_type"];
-  int mutChance = data["mut_chance"];
-  int swapType = data["swap_type"];
-  double ratioInTable = data["ratio_in_table"];
+  MutationTypes mType;
+  if(mutType == "Binary") mType = MutationTypes::Binary;
+  if(mutType == "Density") mType = MutationTypes::Density;
+  if(mutType == "AccessionDel") mType = MutationTypes::AccessionDel;
+  if(mutType == "InsertDel") mType = MutationTypes::InsertDel;
+  if(mutType == "Exchange") mType = MutationTypes::Exchange;
+  if(mutType == "Delete") mType = MutationTypes::Delete;
+  double mutChance = data["mut_chance"];
+  int exchangeType = data["swap_type"];
+  double outRatio = data["out_ratio"];
+  double probabilityTruthTable = data["ratio_in_table"];
   int recNum = data["rec_num"];
   int refPoints = data["ref_points"];
   int tourSize = data["tour_size"];
@@ -118,6 +126,10 @@ int main(int argc, char** argv)
   int numOfCycles = data["cycles"];
   int inputs = minInputs;
   int outputs = minOutputs;
+  std::string selectionType = data["selection_type"];
+  SelectionTypes selType;
+  if(selectionType == "Base") selType = SelectionTypes::Base;
+  int survNum = data["surv_num"];
   std::map<std::string, int> m;
   std::vector<std::string> v = {"num_and", "num_nand", "num_or", "num_not", "num_nor", "num_buf", "num_xor", "num_xnor"}; 
   for(auto& el : data.items())
@@ -143,6 +155,9 @@ int main(int argc, char** argv)
   gp.setPopulationSize(populationSize);
   gp.setNumOfCycles(numOfCycles);
   gp.setRecombinationParameters(selecTypeParent, tourSize, recombType, refPoints, maskProb, recNum);
+  gp.setMutationParameters(mType, mutChance, exchangeType, probabilityTruthTable);
+  gp.setSelectionParameters(selType, survNum);
+  gp.setKeyEndProcessIndex(outRatio);
 //  gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType, ratioInTable, recNum, refPoints, tourSize,  selectionTypeParent);
   DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp);
 
