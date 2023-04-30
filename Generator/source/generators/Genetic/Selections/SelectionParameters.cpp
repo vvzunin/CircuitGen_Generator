@@ -2,6 +2,11 @@
 
 #include "SelectionParameters.h"
 
+void SelectionParameters::setSelectionType (const SelectionTypes i_selectionType)
+{
+  d_selectionType = i_selectionType;
+}
+
 int SelectionParameters::getNumOfSurvivors() const
 {
   return d_numOfSurvivors;
