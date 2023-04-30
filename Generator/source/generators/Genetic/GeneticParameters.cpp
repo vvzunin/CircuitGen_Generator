@@ -2,6 +2,11 @@
 
 #include "GeneticParameters.h"
 
+void GeneticParameters::setKeyEndProcessIndex(const double i_keyEndProcessIndex)
+{
+  d_keyEndProcessIndex = i_keyEndProcessIndex;
+}
+
 void GeneticParameters::setPopulationSize(const int i_populationSize)
 {
   d_populationSize = i_populationSize;

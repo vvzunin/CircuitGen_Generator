@@ -20,6 +20,7 @@ public:
   void setMutationParameters(const MutationParameters& i_mp);
   void setPopulationSize(const int i_populationSize);
   void setNumOfCycles(const int i_numOfCycles);
+  void setKeyEndProcessIndex(const double i_keyEndProcessIndex);
 protected:
   int d_inputs;
   int d_outputs;
