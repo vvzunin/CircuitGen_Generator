@@ -2,6 +2,16 @@
 
 #include "GeneticParameters.h"
 
+void GeneticParameters::setPopulationSize(const int i_populationSize)
+{
+  d_populationSize = i_populationSize;
+}
+
+void GeneticParameters::setNumOfCycles(const int i_numOfCycles)
+{
+  d_numOfCycles = i_numOfCycles;
+}
+
 GeneticParameters::GeneticParameters(int i_inputs, int i_outputs) :
   d_inputs(i_inputs),
   d_outputs(i_outputs)

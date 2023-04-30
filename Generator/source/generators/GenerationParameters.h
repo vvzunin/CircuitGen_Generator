@@ -158,14 +158,16 @@ public:
   GeneratorRandLevelParameters getRandLevel() const { return d_generatorRandLevelParameters; }
   GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; } 
   GeneticParameters getGenetic() const { return d_geneticParameters; }
-  void setCNFF(bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
-  void setCNFT(bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
-  void setLimit(bool i_limit){ d_cnfFromTruthTableParameters.setLimit(i_limit); }
-  void setNumOperationParameters(const std::map<std::string, int>& i_m, bool i_LeaveEmptyOut)
+  void setCNFF( bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
+  void setCNFT( bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
+  void setLimit( bool i_limit){ d_cnfFromTruthTableParameters.setLimit(i_limit); }
+  void setNumOperationParameters( const std::map<std::string, int>& i_m, bool i_LeaveEmptyOut)
   {
 	d_generatorNumOperationParameters.setLogicOper(i_m);
   	d_generatorNumOperationParameters.setLeaveEmptyOut(i_LeaveEmptyOut);
   }
+  void setNumOfCycles( const int i_numOfCycles){ d_geneticParameters.setNumOfCycles(i_numOfCycles); }
+  void setPopulationSize( const int i_populationSize) { d_geneticParameters.setPopulationSize(i_populationSize); }
 private:
   std::string d_name = "";
   std::string d_requestId;
