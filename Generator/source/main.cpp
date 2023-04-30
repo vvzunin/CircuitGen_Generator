@@ -13,6 +13,7 @@
 
 #include "./DataBase/DataBaseGenerator.h"
 #include "./DataBase/DataBaseGeneratorParameters.h"
+#include "./generators/GenerationParameters.h"
 
 int main(int argc, char** argv)
 {
@@ -99,6 +100,22 @@ int main(int argc, char** argv)
   int refPoints = data["ref_points"];
   int tourSize = data["tour_size"];
   std::string selectionTypeParent = data["selection_type_parent"];
+  ParentsTypes selecTypeParent;
+  if(selectionTypeParent == "Panmixia") selecTypeParent = ParentsTypes::Panmixia;
+  if(selectionTypeParent == "Inbringing") selecTypeParent = ParentsTypes::Inbringing;
+  if(selectionTypeParent == "Outbrinding") selecTypeParent = ParentsTypes::Outbrinding;
+  if(selectionTypeParent == "Tournament") selecTypeParent = ParentsTypes::Tournament;
+  if(selectionTypeParent == "Roulette") selecTypeParent = ParentsTypes::Roulette;
+  std::string recombinationType = data["playback_type"];
+  RecombinationTypes recombType;
+  if(recombinationType == "CrossingEachExitInTurnMany") recombType = RecombinationTypes::CrossingEachExitInTurnMany;
+  if(recombinationType == "CrossingUniform") recombType = RecombinationTypes::CrossingUniform;
+  if(recombinationType == "CrossingTriadic") recombType = RecombinationTypes::CrossingTriadic;
+  if(recombinationType == "CrossingReducedReplacement") recombType = RecombinationTypes::CrossingReducedReplacement;
+  if(recombinationType == "CrossingShuffling") recombType = RecombinationTypes::CrossingShuffling;
+  double maskProb = data["mask_prob"];
+  int populationSize = data["population_size"];
+  int numOfCycles = data["cycles"];
   int inputs = minInputs;
   int outputs = minOutputs;
   std::map<std::string, int> m;
@@ -123,6 +140,9 @@ int main(int argc, char** argv)
   gp.setCNFT(CNFT);
   gp.setLimit(limit);
   gp.setNumOperationParameters(m, LeaveEmptyOut);
+  gp.setPopulationSize(populationSize);
+  gp.setNumOfCycles(numOfCycles);
+  gp.setRecombinationParameters(selecTypeParent, tourSize, recombType, refPoints, maskProb, recNum);
 //  gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType, ratioInTable, recNum, refPoints, tourSize,  selectionTypeParent);
   DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp);
 
