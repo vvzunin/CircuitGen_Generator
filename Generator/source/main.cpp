@@ -15,12 +15,10 @@
 #include "./DataBase/DataBaseGeneratorParameters.h"
 #include "./generators/GenerationParameters.h"
 
+void runGenerationFromJson(std::string json_path);
+
 int main(int argc, char** argv)
 {
-
-  std::cout << std::filesystem::current_path() << std::endl;
-
-  int num_nodes = 0;
   std::string json_path;
 
     // Use getopt to parse command line arguments
@@ -38,9 +36,6 @@ int main(int argc, char** argv)
       case 'j':
         json_path = optarg;
         break;
-      case 'n':
-        num_nodes = std::stoi(optarg);
-        break;
       case '?':
         // Unknown option or missing argument
         break;
@@ -49,19 +44,10 @@ int main(int argc, char** argv)
         return 1;
     }
   }
-  std::cout << "JSON path: " << json_path << std::endl;
-  std::cout << "Num nodes: " << num_nodes << std::endl;
-
-  std::cout << std::filesystem::current_path() << std::endl;
-
-  if (std::filesystem::exists(json_path))
-  {
-    std::cout << "All ok, file finded" << std::endl;
-  } else 
-  {
-    std::cout << "Where is the file???" << std::endl;
-  }
-
+  runGenerationFromJson(json_path);
+}
+void runGenerationFromJson(std::string json_path)
+{
   std::ifstream f(json_path);
   nlohmann::json data = nlohmann::json::parse(f);
   data = *(data.begin() + 1);
@@ -165,6 +151,5 @@ int main(int argc, char** argv)
 
 
   generator.generateType(dbgp, false);
-
   
 }
