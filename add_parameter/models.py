@@ -69,7 +69,12 @@ class AddParameter(models.Model):
         ("Delete", "Delete"),
     ), verbose_name='Тип мутации')
     mut_chance = models.FloatField(default=0, verbose_name='Вероятность мутации')
-    swap_type = models.IntegerField(default=0, verbose_name='Тип обмена')
+    swap_type = models.CharField(max_length=12, choices=(
+        ("Cell Above", 0),
+        ("Cell Right", 1),
+        ("Four Cells", 2),
+        ("String Above", 3),
+    ), verbose_name='Тип обмена')
     ratio_in_table = models.FloatField(default=0, verbose_name='Соотношение в таблице истинности')
 
     selection_type = models.CharField(max_length=6, choices=(
