@@ -21,6 +21,9 @@ public:
   void setPopulationSize(const int i_populationSize);
   void setNumOfCycles(const int i_numOfCycles);
   void setKeyEndProcessIndex(const double i_keyEndProcessIndex);
+  double getKeyEndProcessIndex() { return d_keyEndProcessIndex; }
+  int getNumOfCycles() { return d_numOfCycles; }
+ 
 protected:
   int d_inputs;
   int d_outputs;
