@@ -1,83 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import Dropdown from '../components/Dropdown';
 import TruthTable from '../components/TruthTable';
 import RandLevel from '../components/RandLevel';
-import NumOperations from '../components/NumOperations';  
+import NumOperations from '../components/NumOperations';
+import Genetic from '../components/Genetic';
 
 const data = ['From Random Truth Table','Rand Level','Num Operation','Genetic'];
 
-const base = [
-  {
-    name: 'Минимальное количество входов',
-    count: 2
-  },
-  {
-    name: 'Максимальное количество входов',
-    count: 2
-  },
-  {
-    name: 'Минимальное количество выходов',
-    count: 2
-  },
-  {
-    name: 'Максимальное количество выходов',
-    count: 2
-  },
-  {
-    name: 'Количество повторений каждой комбинации',
-    count: 2
-  },
-];
-
-
-const Genetic = ({setMutType, setSelectionType, setPlaybackType, setSelectionTypeParent, setChromosomeType, survNum, setSurvNum, ratio, setRatio, swapType, setSwapType, mutChance, setMutChance, recNum, setRecNum, maskProb, setMaskProb, refPoints, setRefPoints, tourSize, setTourSize, population, setPopulation, cycles, setCycles, uOut, setUOut, geneticActive, setGeneticActive}) => {
-
-  const data = ['Воиспроизведение', 'Мутация', 'Отбор'];
-
-
-
-  return (
-    <>
-    <div className="add__genetic">
-      <label>Размер популяции<input type="number" min={0} value={population} onChange={e => setPopulation(e.target.value)}/></label>
-      <label>Количество циклов<input type="number" min={0} value={cycles} onChange={e => setCycles(e.target.value)}/></label>
-      <label>Коэффициент выхода<input type="number" min={0} value={uOut} onChange={e => setUOut(e.target.value)}/></label>
-      <div className='add__genetic-dropdown'><p>Тип хромосомы</p><Dropdown setActiveParentValue={setChromosomeType} data={['Truth Table', 'Table 2']}/></div>
-    </div>
-    <div className="add__genetic-submenu">
-      {data.map((item, i) => {
-        return <div key={i} className={geneticActive === i ? "add__genetic-submenu-item active" : "add__genetic-submenu-item"} onClick={() => setGeneticActive(i)}>{item}</div>
-      })}
-    </div>
-    {geneticActive === 0 && 
-      <div className="add__base">
-        <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип отбора родителей</p><Dropdown setActiveParentValue={setSelectionTypeParent} data={['Panmixia', 'Inbriding', 'Otbriding', 'Toumament', 'Roulette']}/></div>
-        <label>Размер турнира<input type="number" min={0} value={tourSize} onChange={e => setTourSize(e.target.value)}/></label>
-        <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип воиспроизведения</p><Dropdown setActiveParentValue={setPlaybackType} data={['CrossingEachExit', 'CrossingUniform', 'CrossingTriadic', 'CrossingReducedReplace', 'CrossingSnuffling']}/></div>
-        <label>Reference points<input type="number" min={0} value={refPoints} onChange={e => setRefPoints(e.target.value)}/></label>
-        <label>maskProbability<input type="number" min={0} value={maskProb} onChange={e => setMaskProb(e.target.value)}/></label>
-        <label>recombinationNumber<input type="number" min={0} value={recNum} onChange={e => setRecNum(e.target.value)}/></label>      
-      </div>
-    }
-    {geneticActive === 1 && 
-      <div className="add__base">
-        <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип мутации</p><Dropdown setActiveParentValue={setMutType} data={['Binary', 'Density', 'AccessionDel', 'IncertDel', 'Exchange', 'Delete']}/></div>
-        <label>Вероятность мутации<input type="number" min={0} value={mutChance} onChange={e => setMutChance(e.target.value)}/></label>
-        <label>Тип обмена<input type="number" min={0} value={swapType} onChange={e => setSwapType(e.target.value)}/></label>
-        <label>Соотношение в таблице истинности<input type="number" min={0} value={ratio} onChange={e => setRatio(e.target.value)}/></label>
-      </div>
-    }
-    {geneticActive === 2 && 
-      <div className="add__base">
-        <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип отбора</p><Dropdown setActiveParentValue={setSelectionType} data={['Base', 'Base 2']}/></div>
-        <label>Количество выживших<input type="number" min={0} value={survNum} onChange={e => setSurvNum(e.target.value)}/></label>
-      </div>
-    }
-    </>
-  )
-}
 
 const AddParametr = () => {
 
@@ -100,7 +30,6 @@ const AddParametr = () => {
   const [population, setPopulation] = React.useState(0);
   const [cycles, setCycles] = React.useState(0);
   const [uOut, setUOut] = React.useState(0);
-
   const [tourSize, setTourSize] = React.useState(0);
   const [refPoints, setRefPoints] = React.useState(0);
   const [maskProb, setMaskProb] = React.useState(0);
@@ -109,12 +38,21 @@ const AddParametr = () => {
   const [swapType, setSwapType] = React.useState(0);
   const [ratio, setRatio] = React.useState(0);
   const [survNum, setSurvNum] = React.useState(0);
-
   const [chromosomeType, setChromosomeType] = React.useState('Truth Table');
   const [selectionTypeParent, setSelectionTypeParent] = React.useState('Panmixia');
   const [playbackType, setPlaybackType] = React.useState('CrossingEachExit');
   const [mutType, setMutType] = React.useState('Binary');
   const [selectionType, setSelectionType] = React.useState('Base');
+
+  const [numAnd, setNumAnd] = React.useState(0);
+  const [numNand, setNumNand] = React.useState(0);
+  const [numOr, setNumOr] = React.useState(0);
+  const [numNot, setNumNot] = React.useState(0);
+  const [numNor, setNumNor] = React.useState(0);
+  const [numBuf, setNumBuf] = React.useState(0);
+  const [numXor, setNumXor] = React.useState(0);
+  const [numXnor, setNumXnor] = React.useState(0);
+  const [leaveEmptyOut, setLeaveEmptyOut] = React.useState(false);
 
 
   const AddParametr = () => {
@@ -143,16 +81,25 @@ const AddParametr = () => {
     sendData.rec_num = recNum;
     sendData.mut_chance = mutChance;
     sendData.swap_type = swapType;
-    sendData.ratio = ratio;
+    sendData.ratio_in_table = ratio;
     sendData.surv_num = survNum;
-
-    sendData.oper_type = "and";
-
     sendData.chromosome_type = chromosomeType;
     sendData.selection_type_parent = selectionTypeParent;
     sendData.playback_type = playbackType;
     sendData.mut_type = mutType;
     sendData.selection_type = selectionType;
+
+    sendData.num_and = numAnd;
+    sendData.num_nand = numNand;
+    sendData.num_or = numOr;
+    sendData.num_not = numNot;
+    sendData.num_nor = numNor;
+    sendData.num_buf = numBuf;
+    sendData.num_xor = numXor;
+    sendData.num_xnor = numXnor;
+    sendData.leave_empty_out = leaveEmptyOut;;
+
+
 
     console.log(sendData);
     
@@ -192,7 +139,17 @@ const AddParametr = () => {
           </div>
           {generationMethod === 0 && <TruthTable setLimitParent={setLimit} setCNFFParent={setCNFF} setCNFTParent={setCNFT}/>}
           {generationMethod === 1 && <RandLevel setMaxLevel={setMaxLevel} maxLevel={maxLevel} maxElem={maxElem} setMaxElem={setMaxElem}/>}
-          {generationMethod === 2 && <NumOperations/>}
+          {generationMethod === 2 && <NumOperations
+            setLeaveEmptyOut={setLeaveEmptyOut} 
+            numAnd={numAnd} setNumAnd={setNumAnd}
+            numNand={numNand} setNumNand={setNumNand}
+            numOr={numOr} setNumOr={setNumOr}
+            numNot={numNot} setNumNot={setNumNot}
+            numNor={numNor} setNumNor={setNumNor}
+            numBuf={numBuf} setNumBuf={setNumBuf}
+            numXor={numXor} setNumXor={setNumXor}
+            numXnor={numXnor} setNumXnor={setNumXnor}
+          />}
           {generationMethod === 3 && <Genetic 
             setMutType={setMutType}
             setSelectionType={setSelectionType}
