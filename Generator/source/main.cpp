@@ -49,23 +49,22 @@ int main(int argc, char** argv)
 void runGenerationFromJson(std::string json_path)
 {
   std::ifstream f(json_path);
-  nlohmann::json data = nlohmann::json::parse(f);
-  data = *(data.begin() + 1);
-  std::cout << "red json" << std::endl;
-  
-  std::cout << data.dump(4);
-  
-  std:: cout << data["min_in"] << std::endl;
-  
-
+  nlohmann::json DATA = nlohmann::json::parse(f);
+  for( auto it = DATA.begin(); it != DATA.end(); it++)
+  {
+  nlohmann::json data = *it;
 
   GenerationTypes gt;
   if (data["type_of_generation"] == "From Random Truth Table")
   {
     gt = GenerationTypes::FromRandomTruthTable;
   }
+
   std::string request_id = data["id"];
   assert(request_id != "");
+  
+  // std::cout << data.dump(4);
+
   int minInputs = data["min_in"];
   int maxInputs = data["max_in"];
   int minOutputs = data["min_out"];
@@ -78,6 +77,7 @@ void runGenerationFromJson(std::string json_path)
   bool CNFT = data["CNFT"];
   bool LeaveEmptyOut = data["leave_empty_out"];
   int numOfSurv =  data["surv_num"];
+
   std::string mutType = data["mut_type"];
   MutationTypes mType;
   if(mutType == "Binary") mType = MutationTypes::Binary;
@@ -86,6 +86,7 @@ void runGenerationFromJson(std::string json_path)
   if(mutType == "InsertDel") mType = MutationTypes::InsertDel;
   if(mutType == "Exchange") mType = MutationTypes::Exchange;
   if(mutType == "Delete") mType = MutationTypes::Delete;
+  
   double mutChance = data["mut_chance"];
   int exchangeType = data["swap_type"];
   double outRatio = data["out_ratio"];
@@ -93,6 +94,7 @@ void runGenerationFromJson(std::string json_path)
   int recNum = data["rec_num"];
   int refPoints = data["ref_points"];
   int tourSize = data["tour_size"];
+
   std::string selectionTypeParent = data["selection_type_parent"];
   ParentsTypes selecTypeParent;
   if(selectionTypeParent == "Panmixia") selecTypeParent = ParentsTypes::Panmixia;
@@ -100,6 +102,7 @@ void runGenerationFromJson(std::string json_path)
   if(selectionTypeParent == "Outbrinding") selecTypeParent = ParentsTypes::Outbrinding;
   if(selectionTypeParent == "Tournament") selecTypeParent = ParentsTypes::Tournament;
   if(selectionTypeParent == "Roulette") selecTypeParent = ParentsTypes::Roulette;
+
   std::string recombinationType = data["playback_type"];
   RecombinationTypes recombType;
   if(recombinationType == "CrossingEachExitInTurnMany") recombType = RecombinationTypes::CrossingEachExitInTurnMany;
@@ -125,14 +128,14 @@ void runGenerationFromJson(std::string json_path)
     
   if (gt == GenerationTypes::FromRandomTruthTable)
   {
-    //inputs = (random() % (maxInputs - minInputs)) + minInputs;
-    //outputs = (random() % (maxOutputs - minOutputs)) + minOutputs;
+    inputs = (random() % std::max((maxInputs - minInputs), 1)) + minInputs;
+    outputs = (random() % std::max((maxOutputs - minOutputs), 1)) + minOutputs;
   }
 
   //JSON params = JSON::Read("params.json");
 
   //TODO:: make function that return DataBaseGeneratorParameters from json
-
+  //Recording of json data to gp
   GenerationParameters gp("My_first_test", request_id, inputs, outputs, repeats, maxLevel, maxElement);
   gp.setCNFF(CNFF);
   gp.setCNFT(CNFT);
@@ -151,5 +154,5 @@ void runGenerationFromJson(std::string json_path)
 
 
   generator.generateType(dbgp, false);
-  
+  }
 }
