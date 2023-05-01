@@ -7,17 +7,17 @@ void MutationParameters::setMutationType(MutationTypes i_mutationType)
   d_mutationType = i_mutationType;
 }
 
-void MutationParameters::setProbabilityGen(const double i_probabilityGen)
+void MutationParameters::setProbabilityGen(double i_probabilityGen)
 {
   d_probabilityGen = i_probabilityGen;
 }
 
-void MutationParameters::setExchangeType(const int i_exchangeType)
+void MutationParameters::setExchangeType(int i_exchangeType)
 {
   d_exchangeType = i_exchangeType;
 }
 
-void MutationParameters::setProbabilityTruthTable(const double i_probabilityTruthTable)
+void MutationParameters::setProbabilityTruthTable(double i_probabilityTruthTable)
 {
   d_probabilityTruthTable = i_probabilityTruthTable;
 }

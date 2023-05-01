@@ -158,17 +158,20 @@ public:
   GeneratorRandLevelParameters getRandLevel() const { return d_generatorRandLevelParameters; }
   GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; } 
   GeneticParameters getGenetic() const { return d_geneticParameters; }
-  void setCNFF( bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
-  void setCNFT( bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
-  void setLimit( bool i_limit){ d_cnfFromTruthTableParameters.setLimit(i_limit); }
-  void setNumOperationParameters( const std::map<std::string, int>& i_m, bool i_LeaveEmptyOut)
+  void setCNFF(bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
+  void setCNFT(bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
+  void setLimit(bool i_limit){ d_cnfFromTruthTableParameters.setLimit(i_limit); }
+  void setNumOperationParameters(const std::map<std::string, int>& i_m, bool i_LeaveEmptyOut)
   {
 	d_generatorNumOperationParameters.setLogicOper(i_m);
   	d_generatorNumOperationParameters.setLeaveEmptyOut(i_LeaveEmptyOut);
   }
-  void setNumOfCycles( const int i_numOfCycles){ d_geneticParameters.setNumOfCycles(i_numOfCycles); }
-  void setPopulationSize( const int i_populationSize) { d_geneticParameters.setPopulationSize(i_populationSize); }
-  void setRecombinationParameters( ParentsTypes i_parentsTypes, const int i_tournamentNumber, RecombinationTypes i_recombinationType, const int i_refPoints, const double maskProbability, const int i_recombinationNumber);
+  void setNumOfCycles(int i_numOfCycles){ d_geneticParameters.setNumOfCycles(i_numOfCycles); }
+  void setPopulationSize(int i_populationSize) { d_geneticParameters.setPopulationSize(i_populationSize); }
+  void setRecombinationParameters(ParentsTypes i_parentsTypes, int i_tournamentNumber, RecombinationTypes i_recombinationType, int i_refPoints, double maskProbability, int i_recombinationNumber);
+  void setMutationParameters(MutationTypes i_mutationTipe, double i_probabilityGen, int i_exchangeType, double i_probabilityTruthTable);
+  void setSelectionParameters(SelectionTypes i_selectionType, int i_numOfSurvivors);
+  void setKeyEndProcessIndex(double i_keyEndProcessIndex) { d_geneticParameters.setKeyEndProcessIndex(i_keyEndProcessIndex); }
 private:
   std::string d_name = "";
   std::string d_requestId;

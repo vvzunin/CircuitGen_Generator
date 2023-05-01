@@ -12,7 +12,7 @@ class ParentsParameters {
 public:
   void setParentsType(ParentsTypes i_parentsTypes);
   ParentsTypes getParentsType() const;
-  void setTournamentNumber(const int i_tournamentNumber);
+  void setTournamentNumber(int i_tournamentNumber);
   int getTournamentNumber() const;
   bool operator== (const ParentsParameters& r) const;
 

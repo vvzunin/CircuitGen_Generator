@@ -28,7 +28,13 @@ void DataBaseGenerator::generateType(
 
   d_mainPath = dir + "/";
   d_dirCount = 0;
-
+  //std::cout << "Inside of generateType: " << std::endl;
+  //std::cout << "dir = " << dir << std::endl;
+  //std::cout << "i_dbgp.getGenerationParameters().getRequestId() returned: " << i_dbgp.getGenerationParameters().getRequestId() << std::endl;
+  //std::cout << "i_dbgp.getMaxInputs() returned: " << i_dbgp.getMaxInputs() << std::endl;
+  //std::cout << "i_dbgp.getMinInputs() returned: " << i_dbgp.getMinInputs() << std::endl;
+  //std::cout << "i_dbgp.getMaxOutputs() returned: " << i_dbgp.getMaxOutputs() << std::endl;
+  //std::cout << "i_dbgp.getMinOutsputs() returned: " << i_dbgp.getMinOutputs() << std::endl;
   if (std::filesystem::is_directory(dir))
   {
     for (const auto item : FilesTools::getDirectories(dir))
@@ -65,7 +71,13 @@ void DataBaseGenerator::generateType(
           //TODO: it is that Rustam told about iteration?
           d_parameters.setIteration(tt);
           d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount + tt));
-          generator(d_parameters.getGenerationParameters());
+	  //std::cout << "d_parameters.getGenerationParameters().getName() returned: " << d_parameters.getGenerationParameters().getName() << "	when tt == " << tt << std::endl;
+	  //std::cout << "d_parameters.getGenerationParameters().getInputs() returned: " << d_parameters.getGenerationParameters().getInputs() << "	when tt == " << tt << std::endl;
+	  //std::cout << "d_parameters.getGenerationParameters().getOutputs() returned: " << d_parameters.getGenerationParameters().getOutputs() << "	when tt == " << tt << std::endl;
+	  //std::cout << "d_parameters.getGenerationParameters().getOutputs() returned: " << d_parameters.getGenerationParameters().getOutputs() << "	when tt == " << tt << std::endl;
+	  //std::cout << "d_parameters.getGenerationParameters().getRequestId() returned: " << d_parameters.getGenerationParameters().getRequestId() << "		when tt == " << tt << std::endl;
+	  //std::cout << "d_parameters.getGenerationParameters().getIteration() returned: " << d_parameters.getGenerationParameters().getIteration() << "		when tt == " << tt << std::endl;
+	  generator(d_parameters.getGenerationParameters());
         }
       }
     }

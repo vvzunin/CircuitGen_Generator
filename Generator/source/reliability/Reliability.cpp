@@ -143,6 +143,7 @@ std::map<std::string, double> Reliability::runNadezhda(
   const std::string i_circuitName
 )
 {
+  /* This part of the code will work if someone manages to install the program Nadezhda which is not work on Ubuntu and MAC.
   std::map<std::string, double> dict;
   dict["reliability_metric"] = 0;
   dict["area"] = 0;
@@ -223,4 +224,6 @@ std::map<std::string, double> Reliability::runNadezhda(
 
   //if (std::filesystem::exists(reportPath))
   return dict;
+  */
+  return {};
 }
