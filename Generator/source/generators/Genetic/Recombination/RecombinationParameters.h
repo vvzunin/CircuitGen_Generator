@@ -19,7 +19,7 @@ public:
   int getRefPoints() const;
   void setRefPoints(int i_refPoints);
   double getMaskProbability() const;
-  void setRecombinationParameters( int i_rp);
+  void setRecombinationParameters(int i_rp);
   int getRecombinationParameters() const;
   bool operator== (const RecombinationParameters& r) const;
   void setMaskProbability(double i_maskProbability);
