@@ -51,8 +51,17 @@ void Settings::loadSettings() {
     readFile >> logicOperationCount;
     for (int i = 0; i < logicOperationCount; ++i) {
       std::string operation, operationName, operationId;
-      readFile >> operation >> operationName >> operationId;
-      d_logicOperations[operation] = {operationName, std::stoi(operationId)};
+      readFile >> operation ; // When it comes to input  there have to be empty string at operationName,  so it is unreasonable to read from file.
+      if (operation != "input")
+        {
+                readFile >> operationName;
+        }
+      else
+      	{
+                operationName = ""; // When we get input there must be empty string in OperationName . Empty string cannot be read from file.
+        }
+            readFile >> operationId;
+            d_logicOperations[operation] = { operationName, std::stoi(operationId) };
     }
   
     int operationHierarchyCount;
@@ -64,8 +73,10 @@ void Settings::loadSettings() {
       
       std::string operation;
       for (int j = 0; j < operationHierarchyCount; ++j) {
-        readFile >> operation;
-        operations.push_back(operation);
+        if (operationId == 10) operation = "";// If we get the index 10 it means we deal with input that have empty string as operation and so that 
+                                                      //we cannot read from file.
+        else readFile >> operation; 
+        	operations.push_back(operation);
       }
       d_operationsToHierarchy[operationId] = operations;
     }
@@ -74,7 +85,13 @@ void Settings::loadSettings() {
     readFile >> operationsCount;
     for (int i = 0; i < operationsCount; ++i) {
       std::string fromName, toName;
-      readFile >> fromName >> toName;
+      readFile >> fromName;
+            if (fromName == "input")
+            {
+                fromName = "";
+                toName = "input"; // fromName take operation but the operation that input have is empty string so it is gonna take directly input.
+            }                  // So that I check it out right here
+            else readFile >> toName;
       d_operationsToName[fromName] = toName;
     }
   

@@ -1,5 +1,14 @@
 #include <gtest/gtest.h>
 #include "../Settings.cpp"
+#include <string>
+#include <exception>
+#include <memory>
+#include <fstream>
+#include <filesystem>
+std::string fileName = "settings.dat"; // To test LoadSettings by default. See below.
+// If the d_fileName will assign to another value by default you also have to change the input of  std::filesystem::exists that placed above. 
+// That's the only way to test LoadSettings when file does not exists without breaking encapsulation.
+
 
 TEST(test_settings, test_default_load_settings)
 {
@@ -42,3 +51,122 @@ TEST(test_settings, test_default_load_settings)
     EXPECT_EQ(value, t->fromOperationsToName(key));
   }
 }
+
+TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperation)
+{
+    if (!std::filesystem::exists(fileName))
+    {
+        Settings * SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
+        // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+        std::map <std::string, std::pair<std::string, int>> correctLogicOperations =
+        {
+          {"input",  {"",     10}},
+          {"output", {"=",    0}},
+          {"const",  {"1'b",  9}},
+          {"and",    {"and",  4}},
+          {"nand",   {"nand", 3}},
+          {"or",     {"or",   2}},
+          {"nor",    {"nor",  1}},
+          {"not",    {"not",  7}},
+          {"buf",    {"buf",  8}},
+          {"xor",    {"xor",  6}},
+          {"xnor",   {"xnor", 5}}
+        };
+
+        for (auto const& [key, val] : correctLogicOperations)
+        {
+            EXPECT_EQ(correctLogicOperations[key], SetPtr->getLogicOperation(key));
+        }
+    }
+}
+
+TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsToHierarchy)
+{
+    if (!std::filesystem::exists(fileName))
+    {
+        Settings * SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
+        // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+        std::map <int, std::vector<std::string>> correctOperationsToHierarchy =
+        {
+          {10,      {""}},
+          {0,      {"="}},
+          {9,    {"1'b"}},
+          {4,    {"and"}},
+          {3,  {"nand" }},
+          {2,    {"or" }},
+          {1,    {"nor"}},
+          {7,    {"not"}},
+          {8,    {"buf"}},
+          {6,    {"xor"}},
+          {5,   {"xnor"}}
+        };
+
+        for (auto const& [key, val] : correctOperationsToHierarchy)
+        {
+            EXPECT_EQ(correctOperationsToHierarchy[key], SetPtr->fromOperationsToHierarchy(key));
+        }
+    }
+}
+
+TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsToName)
+{
+    if (!std::filesystem::exists(fileName))
+    {
+        Settings * SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
+        // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+
+        std::map <std::string, std::string> correctOperationsToName =
+        {
+            {"" , "input"},
+            {"=" , "output"},
+            {"1'b" , "const"},
+            {"and" , "and"},
+            {"nand" , "nand"},
+            {"or" , "or"},
+            {"nor" , "nor"},
+            {"not" , "not"},
+            {"buf" , "buf"},
+            {"xor" , "xor"},
+            {"xnor" , "xnor"}
+        };
+
+        for (auto const& [key, val] : correctOperationsToName)
+        {
+            EXPECT_EQ(correctOperationsToName[key], SetPtr->fromOperationsToName(key));
+        }
+    }
+}
+/* This part of code is working just fine. It can be used when SaveSettings will be set as public
+TEST(SettingsTest, SaveSettingsNormalTest)
+{
+    std::ifstream readFile(fileName);
+    std::vector<std::string> BeforeSaveSettings;
+    std::vector<std::string> AfterSaveSettings;
+    Settings * SetPtr = Settings::getInstance(" ");// Here we implicitely called loadSettings()
+    readFile.clear();
+    readFile.seekg(0);// Back to the beginnigs of the file .
+    std::string str;
+
+    SetPtr->loadSettings();// Fill file with data
+
+    while (!readFile.eof())
+    {
+        readFile >> str;
+        if (str != "") BeforeSaveSettings.push_back(str);//Read all data from the file to BeforeSaveSettings
+        str = "";
+    }
+
+    SetPtr->SaveSettings();
+
+    readFile.clear();
+    readFile.seekg(0);// Back to the beginnigs of the file .
+
+    while (!readFile.eof())
+    {
+        readFile >> str;
+        if (str != "") AfterSaveSettings.push_back(str);//Read all data from the file to AfterSaveSettings
+        str = "";
+    }
+
+    EXPECT_EQ(BeforeSaveSettings, AfterSaveSettings);
+}*/
