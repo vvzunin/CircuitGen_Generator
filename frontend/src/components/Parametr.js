@@ -51,9 +51,15 @@ const Parametr = ({dataItem, deleteParametr, gear}) => {
                 <li>Ограничение генерации: {dataItem.limit ? "true" : "false"}</li>
                 <li>CNFF: {dataItem.CNFF ? "true" : "false"}</li>
                 <li>CNFT: {dataItem.CNFT ? "true" : "false"}</li>
-                <li>Оставлять пустые выходы: {dataItem.empty_out ? "true" : "false"}</li>
-                <li>Тип оператора: {dataItem.oper_type}</li>
-                <li>Тип оператора (количество): {dataItem.num}</li>
+                <li>Оставлять пустые выходы: {dataItem.leave_empty_out ? "true" : "false"}</li>
+                <li>And: {dataItem.num_and}</li>
+                <li>Nand: {dataItem.num_nand}</li>
+                <li>Or: {dataItem.num_or}</li>
+                <li>Not: {dataItem.num_not}</li>
+                <li>Nor: {dataItem.num_nor}</li>
+                <li>Buf: {dataItem.num_buf}</li>
+                <li>Xor: {dataItem.num_xor}</li>
+                <li>Xnor: {dataItem.num_xnor}</li>
                 <li>Размер популяции: {dataItem.population}</li>
                 <li>Количество циклов: {dataItem.cycles}</li>
                 <li>Коэффициент выхода: {dataItem.u_out}</li>
@@ -67,7 +73,7 @@ const Parametr = ({dataItem, deleteParametr, gear}) => {
                 <li>Тип мутации: {dataItem.mut_type}</li>
                 <li>Вероятность мутации: {dataItem.mut_chance}</li>
                 <li>Тип обмена: {dataItem.swap_type}</li>
-                <li>Соотношение в таблице истинности: {dataItem.ratio}</li>
+                <li>Соотношение в таблице истинности: {dataItem.ratio_in_table}</li>
                 <li>Тип отбора: {dataItem.selection_type}</li>
                 <li>Количество выживших: {dataItem.surv_num}</li>
             </ul>
