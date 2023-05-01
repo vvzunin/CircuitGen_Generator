@@ -57,6 +57,7 @@ set(SOURCES
   generators/Genetic/Mutations/MutationParameters.cpp
   generators/Genetic/Selections/SelectionParameters.cpp
   generators/Genetic/GeneticParameters.cpp
+  generators/GenerationParameters.cpp
   graph/GraphVertex.cpp
   graph/OrientedGraph.cpp
   reliability/Reliability.cpp

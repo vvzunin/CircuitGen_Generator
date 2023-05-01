@@ -1,6 +1,10 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
+#include <map>
+#include <vector>
+#include <string>
+#include <algorithm>
 
 #include <nlohmann/json.hpp>
 
@@ -9,16 +13,15 @@
 
 #include "./DataBase/DataBaseGenerator.h"
 #include "./DataBase/DataBaseGeneratorParameters.h"
+#include "./generators/GenerationParameters.h"
+
+void runGenerationFromJson(std::string json_path);
 
 int main(int argc, char** argv)
 {
-
-  std::cout << std::filesystem::current_path() << std::endl;
-
-  int num_nodes = 0;
   std::string json_path;
 
-    // Use getopt to parse command line arguments
+      // Use getopt to parse command line arguments
 
   const char* const short_opts = "j:n:";
   const option long_opts[] = {
@@ -33,9 +36,6 @@ int main(int argc, char** argv)
       case 'j':
         json_path = optarg;
         break;
-      case 'n':
-        num_nodes = std::stoi(optarg);
-        break;
       case '?':
         // Unknown option or missing argument
         break;
@@ -44,36 +44,29 @@ int main(int argc, char** argv)
         return 1;
     }
   }
-  std::cout << "JSON path: " << json_path << std::endl;
-  std::cout << "Num nodes: " << num_nodes << std::endl;
 
-  std::cout << std::filesystem::current_path() << std::endl;
-
-  if (std::filesystem::exists(json_path))
-  {
-    std::cout << "All ok, file finded" << std::endl;
-  } else 
-  {
-    std::cout << "Where is the file???" << std::endl;
-  }
-
+  runGenerationFromJson(json_path);
+}
+void runGenerationFromJson(std::string json_path)
+{
   std::ifstream f(json_path);
-  nlohmann::json data = nlohmann::json::parse(f);
-  std::cout << "red json" << std::endl;
-  
-  std::cout << data.dump(4);
-  
-  std:: cout << data["min_in"] << std::endl;
-  
-
+  nlohmann::json DATA = nlohmann::json::parse(f);
+  //Read all json objects in json file.
+  for( auto it = DATA.begin(); it != DATA.end(); it++)
+  {
+  nlohmann::json data = *it;
 
   GenerationTypes gt;
   if (data["type_of_generation"] == "From Random Truth Table")
   {
     gt = GenerationTypes::FromRandomTruthTable;
   }
-  std::string request_id = data["request_id"];
+
+  std::string request_id = data["id"];
   assert(request_id != "");
+  
+  // std::cout << data.dump(4);
+
   int minInputs = data["min_in"];
   int maxInputs = data["max_in"];
   int minOutputs = data["min_out"];
@@ -81,29 +74,93 @@ int main(int argc, char** argv)
   int repeats = data["repeat_n"];
   int maxLevel = data["max_level"];
   int maxElement = data["max_elem"];
-  bool limit = data["limit"];
+  bool limit = data["limit_generation"];
   bool CNFF = data["CNFF"];
   bool CNFT = data["CNFT"];
+  bool LeaveEmptyOut = data["leave_empty_out"];
+  int numOfSurv =  data["surv_num"];
+
+  std::string mutType = data["mut_type"];
+  MutationTypes mType;
+  if(mutType == "Binary") mType = MutationTypes::Binary;
+  if(mutType == "Density") mType = MutationTypes::Density;
+  if(mutType == "AccessionDel") mType = MutationTypes::AccessionDel;
+  if(mutType == "InsertDel") mType = MutationTypes::InsertDel;
+  if(mutType == "Exchange") mType = MutationTypes::Exchange;
+  if(mutType == "Delete") mType = MutationTypes::Delete;
+  
+  double mutChance = data["mut_chance"];
+  int exchangeType = data["swap_type"];
+  double outRatio = data["out_ratio"];
+  double probabilityTruthTable = data["ratio_in_table"];
+  int recNum = data["rec_num"];
+  int refPoints = data["ref_points"];
+  int tourSize = data["tour_size"];
+
+  std::string selectionTypeParent = data["selection_type_parent"];
+  ParentsTypes selecTypeParent;
+  if(selectionTypeParent == "Panmixia") selecTypeParent = ParentsTypes::Panmixia;
+  if(selectionTypeParent == "Inbringing") selecTypeParent = ParentsTypes::Inbringing;
+  if(selectionTypeParent == "Outbrinding") selecTypeParent = ParentsTypes::Outbrinding;
+  if(selectionTypeParent == "Tournament") selecTypeParent = ParentsTypes::Tournament;
+  if(selectionTypeParent == "Roulette") selecTypeParent = ParentsTypes::Roulette;
+
+  std::string recombinationType = data["playback_type"];
+  RecombinationTypes recombType;
+  if(recombinationType == "CrossingEachExitInTurnMany") recombType = RecombinationTypes::CrossingEachExitInTurnMany;
+  if(recombinationType == "CrossingUniform") recombType = RecombinationTypes::CrossingUniform;
+  if(recombinationType == "CrossingTriadic") recombType = RecombinationTypes::CrossingTriadic;
+  if(recombinationType == "CrossingReducedReplacement") recombType = RecombinationTypes::CrossingReducedReplacement;
+  if(recombinationType == "CrossingShuffling") recombType = RecombinationTypes::CrossingShuffling;
+
+  double maskProb = data["mask_prob"];
+  int populationSize = data["population_size"];
+  int numOfCycles = data["cycles"];
   int inputs = minInputs;
   int outputs = minOutputs;
 
+  std::string selectionType = data["selection_type"];
+  SelectionTypes selType;
+  if(selectionType == "Base") selType = SelectionTypes::Base;
+  int survNum = data["surv_num"];
+
+  std::map<std::string, int> m;
+  std::vector<std::string> v = {"num_and", "num_nand", "num_or", "num_not", "num_nor", "num_buf", "num_xor", "num_xnor"}; 
+
+  for(auto& el : data.items())
+  {
+	  if(std::find(v.begin(), v.end(), el.key()) != v.end()) m.insert({el.key(), el.value()});
+  }
+    
   if (gt == GenerationTypes::FromRandomTruthTable)
   {
-    inputs = (random() % (maxInputs - minInputs)) + minInputs;
-    outputs = (random() % (maxOutputs - minOutputs)) + minOutputs;
+    inputs = (random() % std::max((maxInputs - minInputs), 1)) + minInputs;
+    outputs = (random() % std::max((maxOutputs - minOutputs), 1)) + minOutputs;
   }
 
   //JSON params = JSON::Read("params.json");
 
   //TODO:: make function that return DataBaseGeneratorParameters from json
-
-  GenerationParameters gp("My_first_test", request_id, 2, 4, 0, 20, 10);
-  DataBaseGeneratorParameters dbgp(2, 4, 3, 5, 3, GenerationTypes::FromRandomTruthTable, gp);
+  //Recording of json data to gp
+  GenerationParameters gp("My_first_test", request_id, inputs, outputs, repeats, maxLevel, maxElement);
+  
+  gp.setCNFF(CNFF);
+  gp.setCNFT(CNFT);
+  gp.setLimit(limit);
+  gp.setNumOperationParameters(m, LeaveEmptyOut);
+  gp.setPopulationSize(populationSize);
+  gp.setNumOfCycles(numOfCycles);
+  gp.setRecombinationParameters(selecTypeParent, tourSize, recombType, refPoints, maskProb, recNum);
+  gp.setMutationParameters(mType, mutChance, exchangeType, probabilityTruthTable);
+  gp.setSelectionParameters(selType, survNum);
+  gp.setKeyEndProcessIndex(outRatio);
+//  gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType, ratioInTable, recNum, refPoints, tourSize,  selectionTypeParent);
+//
+  DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp);
 
   DataBaseGenerator generator(dbgp);
 
 
   generator.generateType(dbgp, false);
-
-  
+  }
 }
