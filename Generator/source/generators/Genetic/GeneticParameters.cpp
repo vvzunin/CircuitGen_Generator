@@ -2,17 +2,17 @@
 
 #include "GeneticParameters.h"
 
-void GeneticParameters::setKeyEndProcessIndex(const double i_keyEndProcessIndex)
+void GeneticParameters::setKeyEndProcessIndex(double i_keyEndProcessIndex)
 {
   d_keyEndProcessIndex = i_keyEndProcessIndex;
 }
 
-void GeneticParameters::setPopulationSize(const int i_populationSize)
+void GeneticParameters::setPopulationSize(int i_populationSize)
 {
   d_populationSize = i_populationSize;
 }
 
-void GeneticParameters::setNumOfCycles(const int i_numOfCycles)
+void GeneticParameters::setNumOfCycles(int i_numOfCycles)
 {
   d_numOfCycles = i_numOfCycles;
 }

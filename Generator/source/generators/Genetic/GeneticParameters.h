@@ -18,9 +18,9 @@ public:
   void setRecombinationParameters(const RecombinationParameters& i_rp);
   MutationParameters getMutationParameters() const;
   void setMutationParameters(const MutationParameters& i_mp);
-  void setPopulationSize(const int i_populationSize);
-  void setNumOfCycles(const int i_numOfCycles);
-  void setKeyEndProcessIndex(const double i_keyEndProcessIndex);
+  void setPopulationSize(int i_populationSize);
+  void setNumOfCycles(int i_numOfCycles);
+  void setKeyEndProcessIndex(double i_keyEndProcessIndex);
   double getKeyEndProcessIndex() { return d_keyEndProcessIndex; }
   int getNumOfCycles() { return d_numOfCycles; }
  

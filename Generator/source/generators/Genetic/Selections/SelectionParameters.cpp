@@ -2,7 +2,7 @@
 
 #include "SelectionParameters.h"
 
-void SelectionParameters::setSelectionType (const SelectionTypes i_selectionType)
+void SelectionParameters::setSelectionType (SelectionTypes i_selectionType)
 {
   d_selectionType = i_selectionType;
 }

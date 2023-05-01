@@ -2,12 +2,12 @@
 
 #include "RecombinationParameters.h"
 
-void RecombinationParameters::setMaskProbability(const double i_maskProbability)
+void RecombinationParameters::setMaskProbability(double i_maskProbability)
 {
   d_maskProbability = i_maskProbability;
 }
 
-void RecombinationParameters::setParentsParameters( ParentsTypes i_parentsType, const int i_tournamentSize)
+void RecombinationParameters::setParentsParameters(ParentsTypes i_parentsType, int i_tournamentSize)
 {
   d_parentsParameters.setParentsType(i_parentsType);
   d_parentsParameters.setTournamentNumber(i_tournamentSize);

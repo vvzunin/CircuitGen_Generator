@@ -2,7 +2,7 @@
 
 #include "GenerationParameters.h"
 
-void GenerationParameters::setRecombinationParameters( ParentsTypes i_parentsType, const int i_tournamentSize, RecombinationTypes i_recombinationType, const int i_refPoints, const double i_maskProbability, const int i_recombinationNumber)
+void GenerationParameters::setRecombinationParameters(ParentsTypes i_parentsType, int i_tournamentSize, RecombinationTypes i_recombinationType, int i_refPoints, double i_maskProbability, int i_recombinationNumber)
 {
   RecombinationParameters RP;
   RP.setParentsParameters(i_parentsType, i_tournamentSize);
@@ -13,7 +13,7 @@ void GenerationParameters::setRecombinationParameters( ParentsTypes i_parentsTyp
   d_geneticParameters.setRecombinationParameters(RP);
 }
 
-void GenerationParameters::setMutationParameters( MutationTypes i_mutationType, const double i_probabilityGen, const int i_exchangeType, const double i_probabilityTruthTable)
+void GenerationParameters::setMutationParameters(MutationTypes i_mutationType, double i_probabilityGen, int i_exchangeType, double i_probabilityTruthTable)
 {
   MutationParameters MP;
   MP.setMutationType(i_mutationType);
@@ -23,7 +23,7 @@ void GenerationParameters::setMutationParameters( MutationTypes i_mutationType, 
   d_geneticParameters.setMutationParameters(MP);
 }
 
-void GenerationParameters::setSelectionParameters (const SelectionTypes i_selectionType, const int i_numOfSurvivors)
+void GenerationParameters::setSelectionParameters (SelectionTypes i_selectionType, int i_numOfSurvivors)
 {
   SelectionParameters SP;
   SP.setSelectionType(i_selectionType);
