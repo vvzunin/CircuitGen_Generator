@@ -1,3 +1,4 @@
+import pathlib
 import random
 import subprocess
 
@@ -12,7 +13,6 @@ from .models import Dataset
 from .serializers import DatasetSerializer
 
 from pathlib import Path
-
 
 
 class DatasetList(viewsets.ModelViewSet):
@@ -84,17 +84,31 @@ def make_image_from_verilog(request):
     return JsonResponse({"image_path": image_path_dot_png})
 
 
-def progress_of_dataset(request, my_id):
-    ready = ready_verilogs(47)
-    in_total = 5000
-    progress_dict = {
-        "ready": ready,
-        "in_total": in_total
-    }
-    return JsonResponse(progress_dict)
+def progress_of_dataset(request):
+    datasets = list(Dataset.objects.all().values())
+    progress_list = {}
+    for obj in datasets:
+        ready = ready_verilogs(obj["id"])
+        in_total = in_total_function(obj)
+        progress_dict = {
+            "ready": ready,
+            "in_total": in_total
+        }
+        progress_list[obj["id"]] = progress_dict
+    return JsonResponse(progress_list)
 
 
 def ready_verilogs(dataset_id):
     directory = Path(f"./dataset/{dataset_id}/")
     num = len(list(directory.rglob("*.v")))
     return num
+
+
+def in_total_function(obj):
+    list_of_param = obj["parameters_of_generation"]
+    in_total = 0
+    for param in list_of_param:
+        id_of_parameter = param["id_of_parameter"]
+        data_param = AddParameter.objects.values().get(id=id_of_parameter)
+        in_total += (data_param["max_in"] - data_param["min_in"]) * (data_param["max_out"] - data_param["min_out"]) * data_param["repeat_n"]
+    return in_total
