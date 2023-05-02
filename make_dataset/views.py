@@ -84,7 +84,7 @@ def make_image_from_verilog(request):
     return JsonResponse({"image_path": image_path_dot_png})
 
 
-def progress_of_dataset(request):
+def progress_of_datasets(request):
     datasets = list(Dataset.objects.all().values())
     progress_list = {}
     for obj in datasets:
