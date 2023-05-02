@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+
+def contact_default():
+    return {"email": "to1@example.com"}
+
+
+class Dataset(models.Model):
+    parameters_of_generation = models.JSONField("ContactInfo", default=contact_default)
+    parameters_of_generation = models.JSONField("ContactInfo", default=contact_default)

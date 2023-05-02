@@ -10,6 +10,16 @@ import json
 import os
 
 
+from rest_framework import viewsets
+from .models import Dataset
+from .serializers import DatasetSerializer
+
+
+class DatasetList(viewsets.ModelViewSet):
+    queryset = Dataset.objects.all()
+    serializer_class = DatasetSerializer
+
+
 def make_dataset(request):
     data = AddParameter.objects.all().values()
     dataset_id = "%032x" % random.getrandbits(128)
