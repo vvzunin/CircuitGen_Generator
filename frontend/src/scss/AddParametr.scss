@@ -10,7 +10,7 @@
         h3 {
             font-weight: 500;
             font-size: 20px;
-            color: $main-color-dark;
+            color: $main-color;
         }
     }
     &__buttons {
@@ -77,7 +77,7 @@
                 cursor: pointer;
             }
             &.active {
-                border: 2px solid #769FCD;
+                border: 2px solid $main-color;
                 color: $main-color;
             }
         }

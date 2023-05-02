@@ -15,7 +15,7 @@ h1 {
     padding-top: 30px;
     font-weight: 600;
     font-size: 36px;
-    color: $main-color-dark;
+    color: $main-color;
     text-align: center;
 }
 
@@ -42,7 +42,7 @@ h1 {
         h3 {
             font-weight: 500;
             font-size: 20px;
-            color: $main-color-dark;
+            color: $main-color;
         }
     }
     &__buttons {
@@ -122,7 +122,7 @@ h1 {
         &:hover {
             cursor: pointer;
         }
-        margin-right: 12px;
+        margin-right: 8px;
         padding: 0 6px;
         border-radius: 6px;
         border: 1px solid $main-color;
@@ -131,7 +131,7 @@ h1 {
             user-select: none;
         }
         &.noselect {
-            border: 1px solid #769fcd41;
+            border: 1px solid rgba(145, 196, 255, 0.54);
             img {
                 opacity: 0.5;
             }
@@ -163,7 +163,7 @@ h1 {
         font-size: 14px;
         color: $main-red;
         padding: 5px 12px;
-        margin-left: 12px;
+        margin-left: 8px;
         border: 1px solid $main-red;
         background-color: transparent;
         border-radius: 6px;
@@ -205,9 +205,33 @@ h1 {
     }
 }
 
+.dataset {
+    &__info {
+        // padding: 0 15px;
+        span {
+            display: block;
+            color: $main-color;
+            font-weight: 600;
+            font-size: 16px;
+        }
+    }
+    &__content {
+        margin-top: 20px;
+    }
+    &__wrapper {
+        padding: 15px;
+        background-color: $main-bg;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
 .scheme {
     &__wrapper {
-        background-color: $main-bg;
+        background-color: $box-bg;
         border-radius: 10px;
         padding: 12px 15px;
         width: 100%;
@@ -248,7 +272,7 @@ h1 {
         font-size: 14px;
         color: $main-bg;
         padding: 5px 12px;
-        margin-left: 12px;
+        margin-left: 8px;
         border: 1px solid $main-color;
         background-color: $main-color;
         border-radius: 6px;
@@ -264,7 +288,6 @@ h1 {
         position: relative;
         padding-top: 15px;
         margin-top: 15px;
-        background-color: $main-bg;
         width: 100%;
         ul {
             display: flex;
@@ -286,7 +309,7 @@ h1 {
         position: absolute;
         width: calc(100% + 30px);
         height: 1px;
-        background-color: $box-bg;
+        background-color: $main-bg;
     }
 }
 
@@ -368,3 +391,41 @@ h1 {
         }
     }
 }
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #91c4ff #DFE9EB;
+  }
+  
+  /* Chrome, Edge and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+    width: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #DFE9EB;
+  }
+  
+  *::-webkit-scrollbar-track:hover {
+    background-color: #DFE9EB;
+  }
+  
+  *::-webkit-scrollbar-track:active {
+    background-color: #DFE9EB;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #91c4ff;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #91c4ff;
+  }
+  
+  *::-webkit-scrollbar-thumb:active {
+    background-color: #91c4ff;
+  }
+  
