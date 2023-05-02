@@ -11,6 +11,9 @@ from rest_framework import viewsets
 from .models import Dataset
 from .serializers import DatasetSerializer
 
+from pathlib import Path
+
+
 
 class DatasetList(viewsets.ModelViewSet):
     queryset = Dataset.objects.all()
@@ -18,7 +21,6 @@ class DatasetList(viewsets.ModelViewSet):
 
 
 def add_dataset(request):
-
     # добавление пустого датасета в бд датасетов
 
     list_of_parameters = list(AddParameter.objects.all().values())
@@ -80,3 +82,19 @@ def make_image_from_verilog(request):
     yo = "yosys -p'read_verilog " + verilog_path + "; show -format png -prefix " + image_path + "'"
     os.system(path + ";" + yo)
     return JsonResponse({"image_path": image_path_dot_png})
+
+
+def progress_of_dataset(request, my_id):
+    ready = ready_verilogs(47)
+    in_total = 5000
+    progress_dict = {
+        "ready": ready,
+        "in_total": in_total
+    }
+    return JsonResponse(progress_dict)
+
+
+def ready_verilogs(dataset_id):
+    directory = Path(f"./dataset/{dataset_id}/")
+    num = len(list(directory.rglob("*.v")))
+    return num

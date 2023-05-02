@@ -18,6 +18,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/add_dataset', views.add_dataset),
+    path('api/progress_of_dataset', views.progress_of_dataset),
     path('api/scheme_image', views.make_image_from_verilog),
     # path('api/add_parameter', AddParameterAPI.as_view()),
 ]
