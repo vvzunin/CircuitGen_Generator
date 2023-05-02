@@ -1,6 +1,7 @@
 from django.db import models
 import json
 
+
 def parameters_of_generation_default():
     return {
         "parameter_id": 0,
@@ -16,5 +17,3 @@ def parameters_of_generation_default():
 
 class Dataset(models.Model):
     parameters_of_generation = models.JSONField()
-    # parameters_of_generation = models.JSONField(default=parameters_of_generation_default)
-    # parameters_of_generation = models.JSONField("Test", default=contact_default)
