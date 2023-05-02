@@ -1,5 +1,6 @@
 data/Nadezhda
 data/Yosys
+data/.DS_Store
 Generator/source/build/*
 *.swp
 *.cmake
