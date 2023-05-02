@@ -30,6 +30,8 @@ Reliability::Reliability(const OrientedGraph& i_graph, double i_p) :
 std::map<std::string, std::vector<bool>> Reliability::calc(
   bool i_withErrorValues,
   bool i_withErrorSetting
+  // a flag that detects an error on one valve (i-om)
+  int i_withOneValveError = -1,
 )
 {
   std::vector<std::string> errorValues;
@@ -50,7 +52,7 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
     std::map<std::string, bool> map;
     std::map<std::string, bool> mapErrors;
     std::map<std::string, bool> mapErrorsSet;
-    int sn = i; //TODO: what is this sn?
+    int sn = i;
 
     assert(inputs.size() != 0);
 
@@ -60,11 +62,15 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
       sn /= 2;
     }
 
+    sn = i;
+
     for (int j = inputs.size() - 1; j >= 0; --j)
     {
       mapErrors[errorValues[j]] = sn % 2;
       sn /= 2;
     }
+
+    sn = i;
 
     for (int j = inputs.size() - 1; j >= 0; --j)
     {
@@ -226,4 +232,72 @@ std::map<std::string, double> Reliability::runNadezhda(
   return dict;
   */
   return {};
+}
+
+double Reliability::valveRating()
+{
+    // input and output vectors in the circuit
+    std::vector<std::string> inputs = d_graph.getVerticesByTypeToWireName("input");
+    std::vector<std::string> outputs = d_graph.getVerticesByTypeToWireName("output");
+    // keeps a list of valves
+    std::vector<std::string> vect_valves = d_graph.getLogicVerticesToWireName();
+    // Table of reference values
+    std::map<std::string, std::vector<bool>> error_start = this.calc(); // X
+    // truth table construction
+    // vector that stores the value of each o_i
+    std::vector<double> arr_oi;
+    // number of inputs in the schematic - Check
+    int count_inputs = inputs.size();
+    for (size_t i = 0; i < d_graph.getLogicVerticesToWireName().size(); i++)
+    {
+        std::map<std::string, std::vector<bool>> error_i_valve = this->calc(false, false, i);
+        // sum of errors is passed to vector o_i - stores things. number
+        arr_oi.push_back(sumErrorBetweenReferenceAndOther(error_start, error_i_valve));
+        arr_oi[i] /= pow(2, count_inputs);
+    }
+    // Found o_i
+
+    // Find the error range
+
+    // holds the total probability
+    double average_value = 0;
+    // Ask if the cycle runs on all valves
+    for (size_t i = 0; i < d_graph.getLogicVerticesToWireName().size(); i++)
+    {
+        double tmp = 0;
+        tmp = arr_oi[i] * d_p * pow(1 - d_p, count_inputs - 1) + (0.5 (1 - (pow(1 - d_p, count_inputs)) - count_inputs * d_p * pow(1 - d_p, count_inputs - 1));
+        average_value += tmp;
+    }
+
+    return average_value;
+
+}
+
+// function that returns the sum of errors on (compares between the reference and any second)
+int Reliability::sumErrorBetweenReferenceAndOther(std::map<std::string, std::vector<bool>> i_errorStart, std::map<std::string, std::vector<bool>> i_otherTable)
+{
+    // TODO:
+    // Make a key check between i_errorStart and i_otherTable, if it does not match - print -1;
+
+    int err = 0;
+
+
+    // size
+    int size_maybe_err = i_errorStart[i_errorStart.begin()->first].size();
+
+    for (int i = 0; i < size_maybe_err; ++i)
+    {
+        std::vector<bool> f;
+        std::vector<bool> ferr;
+        for (const auto& [key,value] : i_errorStart)
+        {
+            f.push_back(dict[s][i]);
+            ferr.push_back(dictError[s][dict[s].size() * j + i]);
+        }
+
+        if (f != ferr)
+            ++err;
+    }
+
+    return err;
 }

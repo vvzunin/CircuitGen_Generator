@@ -15,6 +15,8 @@ public:
   );
   double calcReliabilityBase();
   std::map<std::string, double> runNadezhda(const std::string& i_path, const std::string i_circuitName);
+  // reliability evaluation method
+  double valveRating();
 
 
 private:
