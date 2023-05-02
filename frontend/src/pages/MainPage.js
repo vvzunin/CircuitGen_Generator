@@ -5,8 +5,20 @@ import ContentLoader from "react-content-loader"
 
 import Parametr from "../components/Parametr";
 import Scheme from "../components/Scheme";
+import DatasetItem from '../components/DatasetItem';
 
 const skeleton = [0, 0, 0, 0, 0];
+
+const dataset = [{
+	id: 1
+},
+{
+	id: 2
+},
+{
+	id: 3
+},
+];
 
 const MyLoader = (props) => (
 	<ContentLoader 
@@ -74,9 +86,11 @@ const MainPage = () => {
 				<h3>Сгенерированный датасет</h3>
 				<div className="content">
 					<div className="content__scroll">
-						<Scheme/>
-						<Scheme/>
-						<Scheme/>
+						{
+							dataset && dataset.map((item , i) => {
+								return <DatasetItem key={i} id={item.id}/>
+							})
+						}
 					</div>
 				</div>
 			</div>
