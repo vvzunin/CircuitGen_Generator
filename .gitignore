@@ -1,9 +1,11 @@
 data/Nadezhda
+data/Yosys
 Generator/source/build/*
 *.swp
 *.cmake
 Generator/source/generators/buil*
 Generator/source/data/Nadezhda/*
 Generator/source/.DS_Store
+Generator/.DS_Store
 .DS_Store
 pyth
