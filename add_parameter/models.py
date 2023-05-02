@@ -41,16 +41,16 @@ class AddParameter(models.Model):
         ("Other", "Other"),
     ), verbose_name='Тип хромосомы')
 
-    selection_type_parent = models.CharField(max_length=9, choices=(
+    selection_type_parent = models.CharField(max_length=10, choices=(
         ("Panmixia", "Panmixia"),
         ("Inbriding", "Inbriding"),
         ("Otbriding", "Otbriding"),
-        ("Toumament", "Toumament"),
+        ("Tournament", "Tournament"),
         ("Roulette", "Roulette"),
     ), verbose_name='Тип отбора родителей')
     tour_size = models.IntegerField(default=0, verbose_name='Размер турнира')
-    playback_type = models.CharField(max_length=22, choices=(
-        ("CrossingEachExit", "CrossingEachExit"),
+    playback_type = models.CharField(max_length=28, choices=(
+        ("CrossingEachExitInTurnMany", "CrossingEachExitInTurnMany"),
         ("CrossingUniform", "CrossingUniform"),
         ("CrossingTriadic", "CrossingTriadic"),
         ("CrossingReducedReplace", "CrossingReducedReplace"),
