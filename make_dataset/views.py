@@ -34,7 +34,7 @@ def cpp_function(data, dataset_id):
 
 
 def make_image_from_verilog(request):
-    path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/oss-cad-suite/bin:$PATH"'
+    path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/source/Yosys/bin:$PATH"'
     base_folder_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     verilog_name = "CNFT.v"
