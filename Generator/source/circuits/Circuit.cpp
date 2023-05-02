@@ -199,7 +199,7 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
       {
         if (d_graph.getVertice(j).getOperation() != "const")
         {
-          w << "\t" << d_graph.getVertice(j).getWireName() << " (" <<
+          w << "\t" << d_graph.getVertice(j).getOperation() << " (" <<
             d_graph.getVertice(j).getWireName();
           // TODO: on prev line add instance name
           for (auto k : inps)
