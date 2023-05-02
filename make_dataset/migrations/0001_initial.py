@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name='Dataset',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('parameters_of_generation', models.JSONField(default=make_dataset.models.contact_default, verbose_name='ContactInfo')),
+                ('parameters_of_generation', models.JSONField(default=make_dataset.models.parameters_of_generation_default, verbose_name='ContactInfo')),
             ],
         ),
     ]

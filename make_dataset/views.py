@@ -9,7 +9,6 @@ from add_parameter.views import *
 import json
 import os
 
-
 from rest_framework import viewsets
 from .models import Dataset
 from .serializers import DatasetSerializer
@@ -20,10 +19,34 @@ class DatasetList(viewsets.ModelViewSet):
     serializer_class = DatasetSerializer
 
 
-def make_dataset(request):
-    data = AddParameter.objects.all().values()
-    dataset_id = "%032x" % random.getrandbits(128)
-    cpp_function(data, dataset_id)
+def add_dataset(request):
+
+    # добавление пустого датасета в бд датасетов
+
+    list_of_parameters = list(AddParameter.objects.all().values())
+    list_of_id_of_parameters = []
+
+    for obj in list_of_parameters:
+        yandex_link_to_parameter = "empty link"
+        my_dict = {
+            "id_of_parameter": obj['id'],
+            "yandex_link_of_parameter": yandex_link_to_parameter
+        }
+        list_of_id_of_parameters.append(my_dict)
+
+    Dataset.objects.create(parameters_of_generation=list_of_id_of_parameters)
+
+    # # получить параметры генерации
+    # data = AddParameter.objects.all().values()
+    # dataset_id = "%032x" % random.getrandbits(128)
+    #
+    # # запуск генератора
+    # cpp_function(data, dataset_id)
+
+    # загрузка на яндекс диск
+
+    # изменение ссылки на яндекс диск на актуальную
+
     return HttpResponse("Ok")
 
 
