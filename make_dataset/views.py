@@ -61,10 +61,10 @@ def add_dataset(request):
 
 def cpp_function(parameters_of_generation, dataset_id):
     # print(parameters_of_generation)
-    # parameters_of_generation['request_id'] = dataset_id
+    for obj in parameters_of_generation:
+        obj['dataset_id'] = dataset_id
     with open(f'data_{dataset_id}.json', 'w', encoding='utf-8') as f:
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
-
     subprocess.Popen(f"./Generator/source/build/prog --json_path=./data_{dataset_id}.json", shell=True)
 
 
