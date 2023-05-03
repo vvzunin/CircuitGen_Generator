@@ -12,7 +12,7 @@ const Genetic = ({setMutType, setSelectionType, setPlaybackType, setSelectionTyp
         <label>Размер популяции<input type="number" min={0} value={population} onChange={e => setPopulation(e.target.value)}/></label>
         <label>Количество циклов<input type="number" min={0} value={cycles} onChange={e => setCycles(e.target.value)}/></label>
         <label>Коэффициент выхода<input type="number" min={0} value={uOut} onChange={e => setUOut(e.target.value)}/></label>
-        <div className='add__genetic-dropdown'><p>Тип хромосомы</p><Dropdown setActiveParentValue={setChromosomeType} data={['Truth Table', 'Table 2']}/></div>
+        <div className='add__genetic-dropdown'><p>Тип хромосомы</p><Dropdown setActiveParentValue={setChromosomeType} data={['Truth Table', 'Other']}/></div>
       </div>
       <div className="add__genetic-submenu">
         {data.map((item, i) => {
@@ -21,13 +21,13 @@ const Genetic = ({setMutType, setSelectionType, setPlaybackType, setSelectionTyp
       </div>
       {geneticActive === 0 && 
         <div className="add__base">
-          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип отбора родителей</p><Dropdown setActiveParentValue={setSelectionTypeParent} data={['Panmixia', 'Inbriding', 'Otbriding', 'Toumament', 'Roulette']}/></div>
+          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип отбора родителей</p><Dropdown setActiveParentValue={setSelectionTypeParent} data={['Panmixia', 'Inbriding', 'Otbriding', 'Tournament', 'Roulette']}/></div>
           <label>Размер турнира<input type="number" min={0} value={tourSize} onChange={e => setTourSize(e.target.value)}/></label>
-          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип воиспроизведения</p><Dropdown setActiveParentValue={setPlaybackType} data={['CrossingEachExit', 'CrossingUniform', 'CrossingTriadic', 'CrossingReducedReplace', 'CrossingSnuffling']}/></div>
+          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип воиспроизведения</p><Dropdown setActiveParentValue={setPlaybackType} data={['CrossingEachExitInTurnMany', 'CrossingUniform', 'CrossingTriadic', 'CrossingReducedReplace', 'CrossingSnuffling']}/></div>
           <label>Reference points<input type="number" min={0} value={refPoints} onChange={e => setRefPoints(e.target.value)}/></label>
           <label>maskProbability<input type="number" min={0} value={maskProb} onChange={e => setMaskProb(e.target.value)}/></label>
           <label>recombinationNumber<input type="number" min={0} value={recNum} onChange={e => setRecNum(e.target.value)}/></label>      
-        </div>
+        </div>  
       }
       {geneticActive === 1 && 
         <div className="add__base">
@@ -39,7 +39,7 @@ const Genetic = ({setMutType, setSelectionType, setPlaybackType, setSelectionTyp
       }
       {geneticActive === 2 && 
         <div className="add__base">
-          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип отбора</p><Dropdown setActiveParentValue={setSelectionType} data={['Base', 'Base 2']}/></div>
+          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип отбора</p><Dropdown setActiveParentValue={setSelectionType} data={['Base', 'Other']}/></div>
           <label>Количество выживших<input type="number" min={0} value={survNum} onChange={e => setSurvNum(e.target.value)}/></label>
         </div>
       }
