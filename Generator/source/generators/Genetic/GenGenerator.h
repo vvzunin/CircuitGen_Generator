@@ -2,7 +2,7 @@
 
 #include <string>
 #include <utility>
-#include "cstdlib"
+#include <cstdlib>
 #include <algorithm>
 #include <filesystem>
 #include <string>
@@ -54,7 +54,7 @@ GeneticGenerator<Type, ParametersType>::GeneticGenerator(
     d_outputs(i_inout.second),
     d_mainPath(i_mainPath)
 {
-    std::string dataPath = d_settings->getDatasetPath() + "/Genetic";
+    std::string dataPath = d_settings->getDatasetPath() + "/Genetic";//TODO:: Make general function
     if (FilesTools::isDirectoryExists(dataPath))
     {
         for (const auto& entry : std::filesystem::directory_iterator(dataPath))
