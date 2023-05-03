@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import ContentLoader from "react-content-loader"
 
 import Parametr from "../components/Parametr";
-import Scheme from "../components/Scheme";
 import DatasetItem from '../components/DatasetItem';
 
 import plus from '../assets/plus.svg';

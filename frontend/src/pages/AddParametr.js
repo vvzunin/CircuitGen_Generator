@@ -40,7 +40,7 @@ const AddParametr = () => {
   const [survNum, setSurvNum] = React.useState(0);
   const [chromosomeType, setChromosomeType] = React.useState('Truth Table');
   const [selectionTypeParent, setSelectionTypeParent] = React.useState('Panmixia');
-  const [playbackType, setPlaybackType] = React.useState('CrossingEachExit');
+  const [playbackType, setPlaybackType] = React.useState('CrossingEachExitInTurnMany');
   const [mutType, setMutType] = React.useState('Binary');
   const [selectionType, setSelectionType] = React.useState('Base');
 
@@ -67,14 +67,14 @@ const AddParametr = () => {
     sendData.min_out = minOutCount;
     sendData.max_out = maxOutCount;
     sendData.repeat_n = repeats;
-    sendData.limit = limit;
+    // sendData.limit = limit;
     sendData.CNFF = CNFF;
     sendData.CNFT = CNFT;
     sendData.max_level = maxLevel;
     sendData.max_elem = maxElem;
-    sendData.population = population;
+    sendData.population_size = population;
     sendData.cycles = cycles;
-    sendData.u_out = uOut; 
+    sendData.out_ratio = uOut; 
     sendData.tour_size = tourSize;
     sendData.ref_points = refPoints;
     sendData.mask_prob = maskProb;
@@ -97,8 +97,7 @@ const AddParametr = () => {
     sendData.num_buf = numBuf;
     sendData.num_xor = numXor;
     sendData.num_xnor = numXnor;
-    sendData.leave_empty_out = leaveEmptyOut;;
-
+    sendData.leave_empty_out = leaveEmptyOut;
 
 
     console.log(sendData);
