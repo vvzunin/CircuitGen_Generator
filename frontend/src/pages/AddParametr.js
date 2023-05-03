@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import TruthTable from '../components/TruthTable';
@@ -10,6 +10,13 @@ const data = ['From Random Truth Table','Rand Level','Num Operation','Genetic'];
 
 
 const AddParametr = () => {
+
+  React.useEffect(() => {
+    axios.post('http://127.0.0.1:8000/api/progress_of_datasets', {"7": {"ready": 10, "in_total": 37652}, "8": {"ready": 0, "in_total": 37652}})
+    .then(() => {
+      alert('Бу')
+    }).catch(e => console.log(e));
+  }, []);
 
   const genetic = ['Genetic reproduction', 'Genetic mutation', 'Genetic selection'];
 
