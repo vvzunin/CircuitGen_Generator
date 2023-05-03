@@ -30,6 +30,27 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    &__new {
+        opacity: 0.6;
+        border-radius: 10px;
+        padding: 12px 15px;
+        margin: auto;
+        width: fit-content;
+        // width: 100%;
+        border: 1px solid #4b96eb;
+        color: #4b96eb;
+        display: flex;
+        &.error {
+            border: 1px solid transparent;
+            text-align: center;
+            color: #F88383;
+            opacity: 1;
+        }
+        img {
+            width: 20px;
+            margin-left: 10px;
+        }
+    }
     &__scroll {
         overflow-y: auto;
         width: 100%;

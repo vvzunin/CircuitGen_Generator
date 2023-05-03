@@ -7,6 +7,8 @@ import Parametr from "../components/Parametr";
 import Scheme from "../components/Scheme";
 import DatasetItem from '../components/DatasetItem';
 
+import plus from '../assets/plus.svg';
+
 const skeleton = [0, 0, 0, 0, 0];
 
 const dataset = [{
@@ -38,12 +40,13 @@ const MainPage = () => {
 
 	const [generatorParametrs, setGeneratorParametrs] = React.useState(null);
 	const [isLoading, setIsLoading] = React.useState(false);
+	const [isError, setIsError] = React.useState(false);
 
 	const getGeneratorParametrs = () => {
 		setIsLoading(true);
 		axios.get('http://127.0.0.1:8000/api/add_parameter/')
 		.then(({data}) => {setGeneratorParametrs(data); setIsLoading(false);})
-		.catch(e => {console.log(e); setIsLoading(false);});
+		.catch(e => {console.log(e); setIsLoading(false); setIsError(true);});
 	}
 
 	const deleteParametr = (id) => {
@@ -63,6 +66,12 @@ const MainPage = () => {
 			<div className="content__left">
 				<h3>Параметры генерации</h3>
 				<div className="content pb75">
+						{
+						!isLoading && (generatorParametrs?.length == 0) && <Link to='/add' className="content__new">Создать параметр генерации<img src={plus}/></Link>
+						}
+						{
+						!isLoading && isError && <div className='content__new error'>Произошла ошибка при загрузке параметров</div>
+						}
 					<div className="content__scroll">
 						{isLoading && skeleton.map((item, i) => {
 							return <MyLoader key={i}/>
