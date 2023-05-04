@@ -234,6 +234,35 @@ std::map<std::string, double> Reliability::runNadezhda(
   return {};
 }
 
+// function that returns the sum of errors on (compares between the reference and any second)
+int Reliability::sumErrorBetweenReferenceAndOther(std::map<std::string, std::vector<bool>> i_errorStart, std::map<std::string, std::vector<bool>> i_otherTable)
+{
+    // TODO:
+    // Make a key check between i_errorStart and i_otherTable, if it does not match - print -1;
+
+    int err = 0;
+
+
+    // size
+    int size_maybe_err = i_errorStart[i_errorStart.begin()->first].size();
+
+    for (int i = 0; i < size_maybe_err; ++i)
+    {
+        std::vector<bool> f;
+        std::vector<bool> ferr;
+        for (const auto& [key,value] : i_errorStart)
+        {
+            f.push_back(dict[s][i]);
+            ferr.push_back(dictError[s][dict[s].size() * j + i]);
+        }
+
+        if (f != ferr)
+            ++err;
+    }
+    return err;
+}
+
+
 double Reliability::valveRating()
 {
     // input and output vectors in the circuit
@@ -272,29 +301,3 @@ double Reliability::valveRating()
     return average_value;
 
 }
-
-// function that returns the sum of errors on (compares between the reference and any second)
-int Reliability::sumErrorBetweenReferenceAndOther(std::map<std::string, std::vector<bool>> i_errorStart, std::map<std::string, std::vector<bool>> i_otherTable)
-{
-    // TODO:
-    // Make a key check between i_errorStart and i_otherTable, if it does not match - print -1;
-
-    int err = 0;
-
-
-    // size
-    int size_maybe_err = i_errorStart[i_errorStart.begin()->first].size();
-
-    for (int i = 0; i < size_maybe_err; ++i)
-    {
-        std::vector<bool> f;
-        std::vector<bool> ferr;
-        for (const auto& [key,value] : i_errorStart)
-        {
-            f.push_back(dict[s][i]);
-            ferr.push_back(dictError[s][dict[s].size() * j + i]);
-        }
-
-        if (f != ferr)
-            ++err;
-    }
