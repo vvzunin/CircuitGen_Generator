@@ -242,6 +242,8 @@ int Reliability::sumErrorBetweenReferenceAndOther(std::map<std::string, std::vec
 
     int err = 0;
 
+    // dict = i_errorStart // look at the following calcReliabilityBase()
+    // dictError = i_otherTable
 
     // size
     int size_maybe_err = i_errorStart[i_errorStart.begin()->first].size();
@@ -252,8 +254,8 @@ int Reliability::sumErrorBetweenReferenceAndOther(std::map<std::string, std::vec
         std::vector<bool> ferr;
         for (const auto& [key,value] : i_errorStart)
         {
-            f.push_back(dict[s][i]);
-            ferr.push_back(dictError[s][dict[s].size() * j + i]);
+            f.push_back(i_errorStart[s][i]);
+            ferr.push_back(i_otherTable[s][i_errorStart[s].size() * j + i]);
         }
 
         if (f != ferr)
