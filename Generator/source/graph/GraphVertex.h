@@ -21,7 +21,6 @@ public:
   std::string getOperation() const;
   void setOperation(const std::string& i_operation);
   std::string getWireName() const;
-  static void setCount(int i_count) { d_count = i_count; }
 private:
   std::string d_logicExpression = "";
   std::string d_operation = "";
