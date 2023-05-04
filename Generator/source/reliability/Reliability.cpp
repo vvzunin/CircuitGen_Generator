@@ -242,7 +242,7 @@ double Reliability::valveRating()
     // keeps a list of valves
     std::vector<std::string> vect_valves = d_graph.getLogicVerticesToWireName();
     // Table of reference values
-    std::map<std::string, std::vector<bool>> error_start = this.calc(); // X
+    std::map<std::string, std::vector<bool>> error_start = this->calc(); // X
     // truth table construction
     // vector that stores the value of each o_i
     std::vector<double> arr_oi;
