@@ -11,6 +11,15 @@ OrientedGraph::OrientedGraph()
 {
 }
 
+void OrientedGraph::numberVerticesCorrectly()
+{
+    int counter = 1;
+    for (auto& element : d_vertices) 
+    { 
+       if(element.getOperation() != "input" && element.getOperation() != "output" && element.getOperation() != "const") element.setWireName("d" + std::to_string(counter++));
+    }
+}
+
 std::vector<GraphVertex> OrientedGraph::getVertices() const
 {
   return d_vertices;
