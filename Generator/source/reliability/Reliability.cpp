@@ -265,7 +265,7 @@ double Reliability::valveRating()
     for (size_t i = 0; i < d_graph.getLogicVerticesToWireName().size(); i++)
     {
         double tmp = 0;
-        tmp = arr_oi[i] * d_p * pow(1 - d_p, count_inputs - 1) + (0.5 (1 - (pow(1 - d_p, count_inputs)) - count_inputs * d_p * pow(1 - d_p, count_inputs - 1)));
+        tmp = arr_oi[i] * d_p * pow(1 - d_p, count_inputs - 1) + (0.5 * (1 - (pow(1 - d_p, count_inputs)) - count_inputs * d_p * pow(1 - d_p, count_inputs - 1)));
         average_value += tmp;
     }
 
