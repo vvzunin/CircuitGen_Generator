@@ -31,7 +31,7 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
   bool i_withErrorValues,
   bool i_withErrorSetting
   // a flag that detects an error on one valve (i-om)
-  int i_withOneValveError = -1,
+  int i_withOneValveError
 )
 {
   std::vector<std::string> errorValues;
@@ -298,6 +298,3 @@ int Reliability::sumErrorBetweenReferenceAndOther(std::map<std::string, std::vec
         if (f != ferr)
             ++err;
     }
-
-    return err;
-}

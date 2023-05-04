@@ -11,7 +11,8 @@ public:
   Reliability(const OrientedGraph& i_graph, double i_p = 0.5);
   std::map<std::string, std::vector<bool>> calc(
     bool i_withErrorValues = false,
-    bool i_withErrorStrings = false
+    bool i_withErrorStrings = false,
+    int i_withOneValveError = -1
   );
   double calcReliabilityBase();
   std::map<std::string, double> runNadezhda(const std::string& i_path, const std::string i_circuitName);
