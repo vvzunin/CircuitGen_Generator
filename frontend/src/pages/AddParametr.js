@@ -1,68 +1,158 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { Formik, Form, Field, ErrorMessage, useField } from 'formik';
+import * as Yup from 'yup';
+
 import TruthTable from '../components/TruthTable';
 import RandLevel from '../components/RandLevel';
 import NumOperations from '../components/NumOperations';
 import Genetic from '../components/Genetic';
+import TextField from '../components/TextField';
 
 const data = ['From Random Truth Table','Rand Level','Num Operation','Genetic'];
+const genetic = ['Genetic reproduction', 'Genetic mutation', 'Genetic selection'];
 
 
 const AddParametr = () => {
 
+  const validateNumber = (min, max) =>
+  Yup.number()
+    .required()
+    .integer()
+    .min(min)
+    .max(max);
+
+  const validateChance = () =>
+  Yup.number()
+  .required()
+  .min(0)
+  .max(1);
+
+  const validate = Yup.object({
+    minInCount: validateNumber(1, 100),
+    maxInCount: validateNumber(1, 100),
+    minOutCount: validateNumber(1, 100),
+    maxOutCount: validateNumber(1, 100),
+    repeats: validateNumber(1, 100),
+    maxElem: validateNumber(1, 1000),
+    maxLevel: validateNumber(1, 1000),
+    numAnd: validateNumber(0, 1000),
+    numNand: validateNumber(0, 1000),
+    numOr: validateNumber(0, 1000),
+    numNot: validateNumber(0, 1000),
+    numNor: validateNumber(0, 1000),
+    numBuf: validateNumber(0, 1000),
+    numXor: validateNumber(0, 1000),
+    numXnor: validateNumber(0, 1000),
+    population: validateNumber(1, 1000),
+    cycles: validateNumber(1, 1000),
+    uOut: validateChance(),
+    mutChance: validateChance(),
+    ratio: validateChance(),
+    survNum: validateNumber(1, 1000),
+    tourSize: validateNumber(1, 1000),
+    refPoints: validateNumber(0, 1000),
+    maskProb: validateChance(),
+    recNum: validateNumber(0, 1000),
+})
+
+  const [check, setCheck] = React.useState(false);
+
   React.useEffect(() => {
-    axios.post('http://127.0.0.1:8000/api/progress_of_datasets', {"7": {"ready": 10, "in_total": 37652}, "8": {"ready": 0, "in_total": 37652}})
-    .then(() => {
-      alert('Бу')
-    }).catch(e => console.log(e));
-  }, []);
+    if (check) {
+      addParametr()
+      setCheck(false)
+    }
+  }, [check])
 
-  const genetic = ['Genetic reproduction', 'Genetic mutation', 'Genetic selection'];
+  const [state, setState] = React.useState({
+    geneticActive: 0,
+    generationMethod: 0,
+    minInCount: 1,
+    maxInCount: 1,
+    minOutCount: 1,
+    maxOutCount: 1,
+    repeats: 1,
+    limit: false,
+    CNFF: true,
+    CNFT: true,
+    maxLevel: 1,
+    maxElem: 1,
+    population: 1,
+    cycles: 1,
+    uOut: 0,
+    tourSize: 1,
+    refPoints: 0,
+    maskProb: 0,
+    recNum: 0,
+    mutChance: 0,
+    swapType: 0,
+    ratio: 0,
+    survNum: 1,
+    chromosomeType: 'Truth Table',
+    selectionTypeParent: 'Panmixia',
+    playbackType: 'CrossingEachExitInTurnMany',
+    mutType: 'Binary',
+    selectionType: 'Base',
+    numAnd: 0,
+    numNand: 0,
+    numOr: 0,
+    numNot: 0,
+    numNor: 0,
+    numBuf: 0,
+    numXor: 0,
+    numXnor: 0,
+    leaveEmptyOut: false,
+  });
 
-  const [geneticActive, setGeneticActive] = React.useState(0); 
+  const {
+    geneticActive,
+    generationMethod,
+    minInCount,
+    maxInCount,
+    minOutCount,
+    maxOutCount,
+    repeats,
+    CNFF,
+    CNFT,
+    maxLevel,
+    maxElem,
+    population,
+    cycles,
+    uOut,
+    tourSize,
+    refPoints,
+    maskProb,
+    recNum,
+    mutChance,
+    swapType,
+    ratio,
+    survNum,
+    chromosomeType,
+    selectionTypeParent,
+    playbackType,
+    mutType,
+    selectionType,
+    numAnd,
+    numNand,
+    numOr,
+    numNot,
+    numNor,
+    numBuf,
+    numXor,
+    numXnor,
+    leaveEmptyOut,
+  } = state;
+  
+  const updateState = (key, value) => {
+    setState(prevState => ({
+      ...prevState,
+      [key]: value,
+    }));
+  };
 
-  const [generationMethod, setGenerationMethod] = React.useState(0);
-
-  const [minInCount, setMinInCount] = React.useState(0);
-  const [maxInCount, setMaxInCount] = React.useState(0);
-  const [minOutCount, setMinOutCount] = React.useState(0);
-  const [maxOutCount, setMaxOutCount] = React.useState(0);
-  const [repeats, setRepeats] = React.useState(0);
-  const [limit, setLimit] = React.useState(false);
-  const [CNFF, setCNFF] = React.useState(false);
-  const [CNFT, setCNFT] = React.useState(false);
-  const [maxLevel, setMaxLevel] = React.useState(0);
-  const [maxElem, setMaxElem] = React.useState(0);
-  const [population, setPopulation] = React.useState(0);
-  const [cycles, setCycles] = React.useState(0);
-  const [uOut, setUOut] = React.useState(0);
-  const [tourSize, setTourSize] = React.useState(0);
-  const [refPoints, setRefPoints] = React.useState(0);
-  const [maskProb, setMaskProb] = React.useState(0);
-  const [recNum, setRecNum] = React.useState(0);
-  const [mutChance, setMutChance] = React.useState(0);
-  const [swapType, setSwapType] = React.useState(0);
-  const [ratio, setRatio] = React.useState(0);
-  const [survNum, setSurvNum] = React.useState(0);
-  const [chromosomeType, setChromosomeType] = React.useState('Truth Table');
-  const [selectionTypeParent, setSelectionTypeParent] = React.useState('Panmixia');
-  const [playbackType, setPlaybackType] = React.useState('CrossingEachExitInTurnMany');
-  const [mutType, setMutType] = React.useState('Binary');
-  const [selectionType, setSelectionType] = React.useState('Base');
-
-  const [numAnd, setNumAnd] = React.useState(0);
-  const [numNand, setNumNand] = React.useState(0);
-  const [numOr, setNumOr] = React.useState(0);
-  const [numNot, setNumNot] = React.useState(0);
-  const [numNor, setNumNor] = React.useState(0);
-  const [numBuf, setNumBuf] = React.useState(0);
-  const [numXor, setNumXor] = React.useState(0);
-  const [numXnor, setNumXnor] = React.useState(0);
-  const [leaveEmptyOut, setLeaveEmptyOut] = React.useState(false);
-
-
-  const AddParametr = () => {
+  const addParametr = () => {
     let sendData = {};
     if (generationMethod === 3) {
       sendData.type_of_generation = genetic[geneticActive];
@@ -74,7 +164,6 @@ const AddParametr = () => {
     sendData.min_out = minOutCount;
     sendData.max_out = maxOutCount;
     sendData.repeat_n = repeats;
-    // sendData.limit = limit;
     sendData.CNFF = CNFF;
     sendData.CNFT = CNFT;
     sendData.max_level = maxLevel;
@@ -95,7 +184,6 @@ const AddParametr = () => {
     sendData.playback_type = playbackType;
     sendData.mut_type = mutType;
     sendData.selection_type = selectionType;
-
     sendData.num_and = numAnd;
     sendData.num_nand = numNand;
     sendData.num_or = numOr;
@@ -116,67 +204,126 @@ const AddParametr = () => {
   }
 
   return (
-    <div className="add__wrapper">
+    <Formik
+      initialValues={{
+        minInCount: 1, 
+        maxInCount: 1, 
+        minOutCount: 1,
+        maxOutCount: 1, 
+        repeats: 1, 
+        maxElem: 1, 
+        maxLevel: 1,
+        numAnd: 0, 
+        numNand: 0,
+        numOr: 0,
+        numNot: 0,
+        numNor: 0,
+        numBuf: 0,
+        numXor: 0,
+        numXnor: 0,
+        population: 1,
+        cycles: 1,
+        uOut: 0,
+        survNum: 1,
+        mutChance: 0,
+        ratio: 0,
+        tourSize: 1,
+        refPoints: 0,
+        maskProb: 0,
+        recNum: 0,
+
+      }}   
+      validationSchema={validate}
+      onSubmit={(values, {resetForm}) => {
+          const keys = Object.keys(values);
+          for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const isLastKey = i === keys.length - 1;
+            updateState(key, values[key], isLastKey ? addParametr : undefined);
+          }
+          setCheck(true)
+          resetForm()
+    }}>
+    <Form className="add__wrapper">
         <div className="add__top">
             <h3>Добавить параметр генерации</h3>
             <div className="add__buttons">
-                <button className="add__add" onClick={() => AddParametr()}>Добавить</button>
+                <button className="add__add" type="submit">Добавить</button>
                 <Link to='/' className="add__return">Вернуться на главную</Link>
             </div>
         </div>
-        <div className="add__content">
+        <div className='add__content'>
           <div className="add__method">
             <div className="add__method-name">Метод генерации</div>
             <ul>
               {data.map((item, i) => {
-                return <li key={i} className={i === generationMethod ? "active" : ""} onClick={() => setGenerationMethod(i)}>{item}</li>
+                return <li key={i} className={i === generationMethod ? "active" : ""} onClick={() => {updateState("generationMethod", i)}}>{item}</li>
               })}
             </ul>
           </div>
           <div className="add__base">
-              {/* {base.map(({name, count}) => {
-                return <label>{name}<input type="number" min={0}/></label>
-              })} */}
-              <label>Минимальное количество входов<input type="number" value={minInCount} onChange={e => setMinInCount(e.target.value)} min={0}/></label>
-              <label>Максимальное количество входов<input type="number" value={maxInCount} onChange={e => setMaxInCount(e.target.value)} min={0}/></label>
-              <label>Минимальное количество выходов<input type="number" value={minOutCount} onChange={e => setMinOutCount(e.target.value)} min={0}/></label>
-              <label>Максимальное количество выходов<input type="number" value={maxOutCount} onChange={e => setMaxOutCount(e.target.value)} min={0}/></label>
-              <label>Количество повторений каждой комбинации<input type="number" value={repeats} onChange={e => setRepeats(e.target.value)} min={0}/></label>
+                  <TextField 
+                  label="Минимальное количество входов"
+                  type="number"
+                  name="minInCount"
+                  min={1}
+                  />
+                  <TextField 
+                  label="Максимальное количество входов"
+                  type="number"
+                  name="maxInCount"
+                  min={1}
+                  />
+                  <TextField 
+                  label="Минимальное количество выходов"
+                  type="number"
+                  name="minOutCount"
+                  min={1}
+                  />
+                  <TextField 
+                  label="Максимальное количество выходов"
+                  type="number"
+                  name="maxOutCount"
+                  min={1}
+                  />
+                  <TextField 
+                  label="Количество повторений каждой комбинации"
+                  type="number"
+                  name="repeats"
+                  min={1}
+                  />
           </div>
-          {generationMethod === 0 && <TruthTable setLimitParent={setLimit} setCNFFParent={setCNFF} setCNFTParent={setCNFT}/>}
-          {generationMethod === 1 && <RandLevel setMaxLevel={setMaxLevel} maxLevel={maxLevel} maxElem={maxElem} setMaxElem={setMaxElem}/>}
+          {generationMethod === 0 && <TruthTable state={state} updateState={updateState}/>}
+          {generationMethod === 1 && <RandLevel updateState={updateState} maxLevel={maxLevel} maxElem={maxElem}/>}
           {generationMethod === 2 && <NumOperations
-            setLeaveEmptyOut={setLeaveEmptyOut} 
-            numAnd={numAnd} setNumAnd={setNumAnd}
-            numNand={numNand} setNumNand={setNumNand}
-            numOr={numOr} setNumOr={setNumOr}
-            numNot={numNot} setNumNot={setNumNot}
-            numNor={numNor} setNumNor={setNumNor}
-            numBuf={numBuf} setNumBuf={setNumBuf}
-            numXor={numXor} setNumXor={setNumXor}
-            numXnor={numXnor} setNumXnor={setNumXnor}
+            state={state}
+            updateState={updateState}
+            numAnd={numAnd}
+            numNand={numNand}
+            numOr={numOr} 
+            numNot={numNot}
+            numNor={numNor} 
+            numBuf={numBuf} 
+            numXor={numXor}
+            numXnor={numXnor}
           />}
           {generationMethod === 3 && <Genetic 
-            setMutType={setMutType}
-            setSelectionType={setSelectionType}
-            setPlaybackType={setPlaybackType}
-            setSelectionTypeParent= {setSelectionTypeParent}
-            setChromosomeType={setChromosomeType}
-            geneticActive={geneticActive} setGeneticActive={setGeneticActive} 
-            population={population} setPopulation={setPopulation} 
-            cycles={cycles} setCycles={setCycles} 
-            uOut={uOut} setUOut={setUOut}
-            tourSize={tourSize} setTourSize={setTourSize}
-            refPoints={refPoints} setRefPoints={setRefPoints}
-            maskProb={maskProb} setMaskProb={setMaskProb}
-            recNum={recNum} setRecNum={setRecNum}
-            mutChance={mutChance} setMutChance={setMutChance}
-            swapType={swapType} setSwapType={setSwapType}
-            ratio={ratio} setRatio={setRatio}
-            survNum={survNum} setSurvNum={setSurvNum}
+            geneticActive={geneticActive} updateState={updateState} 
+            population={population}
+            cycles={cycles}
+            uOut={uOut}
+            tourSize={tourSize}
+            refPoints={refPoints}
+            maskProb={maskProb}
+            recNum={recNum}
+            mutChance={mutChance}
+            swapType={swapType}
+            ratio={ratio}
+            survNum={survNum}
           />}
-        </div>
-    </div>
+          </div>
+    </Form>
+    </Formik>
   )
 }
 

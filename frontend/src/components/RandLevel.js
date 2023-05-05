@@ -1,9 +1,20 @@
+import TextField from "./TextField";
 
-const RandLevel = ({maxElem, maxLevel, setMaxElem, setMaxLevel}) => {
+const RandLevel = () => {
     return (
       <div className="add__base">
-        <label>Максимальное количество уровней<input type="number" value={maxLevel} onChange={e => setMaxLevel(e.target.value)} min={0}/></label>
-        <label>Максимальное количество элементов<input type="number" value={maxElem} onChange={e => setMaxElem(e.target.value)} min={0}/></label>
+         <TextField 
+                  label="Максимальное количество уровней"
+                  type="number"
+                  name="maxLevel"
+                  min={1}
+         />
+         <TextField 
+                  label="Максимальное количество элементов"
+                  type="number"
+                  name="maxElem"
+                  min={1}
+         />
       </div>
     )
 }

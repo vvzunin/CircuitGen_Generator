@@ -68,9 +68,9 @@ const Parametr = ({dataItem, deleteParametr, selectedParametrs, setSelectedParam
                     <li>Xnor: {dataItem.num_xnor}</li>
                 </>}
                 {dataItem.type_of_generation === "Genetic reproduction" && <>
-                    <li>Размер популяции: {dataItem.population}</li>
+                    <li>Размер популяции: {dataItem.population_size}</li>
                     <li>Количество циклов: {dataItem.cycles}</li>
-                    <li>Коэффициент выхода: {dataItem.u_out}</li>
+                    <li>Коэффициент выхода: {dataItem.out_ratio}</li>
                     <li>Тип хромосомы: {dataItem.chromosome_type}</li>
                     <li>Тип отбора родителей: {dataItem.selection_type_parent}</li>
                     <li>Размер турнира: {dataItem.tour_size}</li>

@@ -1,6 +1,7 @@
 import Dropdown from "./Dropdown";
+import TextField from "./TextField";
 
-const Genetic = ({setMutType, setSelectionType, setPlaybackType, setSelectionTypeParent, setChromosomeType, survNum, setSurvNum, ratio, setRatio, swapType, setSwapType, mutChance, setMutChance, recNum, setRecNum, maskProb, setMaskProb, refPoints, setRefPoints, tourSize, setTourSize, population, setPopulation, cycles, setCycles, uOut, setUOut, geneticActive, setGeneticActive}) => {
+const Genetic = ({geneticActive, updateState}) => {
 
     const data = ['Воиспроизведение', 'Мутация', 'Отбор'];
   
@@ -9,38 +10,96 @@ const Genetic = ({setMutType, setSelectionType, setPlaybackType, setSelectionTyp
     return (
       <>
       <div className="add__genetic">
-        <label>Размер популяции<input type="number" min={0} value={population} onChange={e => setPopulation(e.target.value)}/></label>
-        <label>Количество циклов<input type="number" min={0} value={cycles} onChange={e => setCycles(e.target.value)}/></label>
-        <label>Коэффициент выхода<input type="number" min={0} value={uOut} onChange={e => setUOut(e.target.value)}/></label>
-        <div className='add__genetic-dropdown'><p>Тип хромосомы</p><Dropdown setActiveParentValue={setChromosomeType} data={['Truth Table', 'Other']}/></div>
+        <TextField 
+            label="Размер популяции"
+            type="number"
+            name="population"
+            min={1}
+          />
+          <TextField 
+            label="Количество циклов"
+            type="number"
+            name="cycles"
+            min={1}
+          />
+          <TextField 
+            label="Коэффициент выхода"
+            type="number"
+            name="uOut"
+            min={0}
+            max={1}
+            step={0.01}
+          />
+        <div className='add__genetic-dropdown'><p>Тип хромосомы</p><Dropdown setActiveParentValue={(value) => updateState("chromosomeType",value)} data={['Truth Table', 'Other']}/></div>
       </div>
       <div className="add__genetic-submenu">
         {data.map((item, i) => {
-          return <div key={i} className={geneticActive === i ? "add__genetic-submenu-item active" : "add__genetic-submenu-item"} onClick={() => setGeneticActive(i)}>{item}</div>
+          return <div key={i} className={geneticActive === i ? "add__genetic-submenu-item active" : "add__genetic-submenu-item"} onClick={() => updateState("geneticActive", i)}>{item}</div>
         })}
       </div>
       {geneticActive === 0 && 
         <div className="add__base">
-          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип отбора родителей</p><Dropdown setActiveParentValue={setSelectionTypeParent} data={['Panmixia', 'Inbriding', 'Otbriding', 'Tournament', 'Roulette']}/></div>
-          <label>Размер турнира<input type="number" min={0} value={tourSize} onChange={e => setTourSize(e.target.value)}/></label>
-          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип воиспроизведения</p><Dropdown setActiveParentValue={setPlaybackType} data={['CrossingEachExitInTurnMany', 'CrossingUniform', 'CrossingTriadic', 'CrossingReducedReplace', 'CrossingSnuffling']}/></div>
-          <label>Reference points<input type="number" min={0} value={refPoints} onChange={e => setRefPoints(e.target.value)}/></label>
-          <label>maskProbability<input type="number" min={0} value={maskProb} onChange={e => setMaskProb(e.target.value)}/></label>
-          <label>recombinationNumber<input type="number" min={0} value={recNum} onChange={e => setRecNum(e.target.value)}/></label>      
+          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип отбора родителей</p><Dropdown setActiveParentValue={(value) => updateState("selectionTypeParent",value)} data={['Panmixia', 'Inbriding', 'Otbriding', 'Tournament', 'Roulette']}/></div>
+          <TextField 
+            label="Размер турнира"
+            type="number"
+            name="tourSize"
+            min={1}
+          />
+          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип воиспроизведения</p><Dropdown setActiveParentValue={(value) => updateState("playbackType",value)} data={['CrossingEachExitInTurnMany', 'CrossingUniform', 'CrossingTriadic', 'CrossingReducedReplace', 'CrossingSnuffling']}/></div>
+          <TextField 
+            label="Reference points"
+            type="number"
+            name="refPoints"
+            min={0}
+          />
+          <TextField 
+            label="maskProbability"
+            type="number"
+            name="maskProb"
+            min={0}
+            max={1}
+            step={0.01}
+          />
+          <TextField 
+            label="recombinationNumber"
+            type="number"
+            name="recNum"
+            min={0}
+          />
         </div>  
       }
       {geneticActive === 1 && 
         <div className="add__base">
-          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип мутации</p><Dropdown setActiveParentValue={setMutType} data={['Binary', 'Density', 'AccessionDel', 'IncertDel', 'Exchange', 'Delete']}/></div>
-          <label>Вероятность мутации<input type="number" min={0} max={1} step={0.01} value={mutChance} onChange={e => setMutChance(e.target.value)}/></label>
-          <label>Тип обмена<input type="number" min={0} value={swapType} onChange={e => setSwapType(e.target.value)}/></label>
-          <label>Соотношение в таблице истинности<input type="number" min={0} max={1} step={0.01} value={ratio} onChange={e => setRatio(e.target.value)}/></label>
+          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип мутации</p><Dropdown setActiveParentValue={(value) => updateState("mutType",value)} data={['Binary', 'Density', 'AccessionDel', 'IncertDel', 'Exchange', 'Delete']}/></div>
+          <TextField 
+            label="Вероятность мутации"
+            type="number"
+            name="mutChance"
+            min={0}
+            max={1}
+            step={0.01}
+          />
+          <div className='add__genetic-dropdown'><p>Тип обмена</p><Dropdown setActiveParentValue={(value) => updateState("swapType",value)} data={['1', '2', '3', '4']}/></div>
+          <TextField 
+            label="Соотношение в таблице истинности"
+            type="number"
+            name="ratio"
+            min={0}
+            max={1}
+            step={0.01}
+          />
         </div>
       }
       {geneticActive === 2 && 
         <div className="add__base">
-          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип отбора</p><Dropdown setActiveParentValue={setSelectionType} data={['Base', 'Other']}/></div>
-          <label>Количество выживших<input type="number" min={0} value={survNum} onChange={e => setSurvNum(e.target.value)}/></label>
+          <div className='add__genetic-dropdown' style={{marginRight: '20px'}}><p>Тип отбора</p><Dropdown setActiveParentValue={(value) => updateState("selectionType",value)} data={['Base', 'Other']}/></div>
+          <TextField 
+            label="Количество выживших"
+            type="number"
+            name="survNum"
+            min={1}
+          />
         </div>
       }
       </>
