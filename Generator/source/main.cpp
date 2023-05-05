@@ -66,7 +66,7 @@ void runGenerationFromJson(std::string json_path)
   assert(request_id != "");
   
   // std::cout << data.dump(4);
-
+  
   int minInputs = data["min_in"];
   int maxInputs = data["max_in"];
   int minOutputs = data["min_out"];
@@ -79,6 +79,7 @@ void runGenerationFromJson(std::string json_path)
   bool CNFT = data["CNFT"];
   bool LeaveEmptyOut = data["leave_empty_out"];
   int numOfSurv =  data["surv_num"];
+  std::string datasetId = data["dataset_id"];
 
   std::string mutType = data["mut_type"];
   MutationTypes mType;
@@ -142,7 +143,7 @@ void runGenerationFromJson(std::string json_path)
 
   //TODO:: make function that return DataBaseGeneratorParameters from json
   //Recording of json data to gp
-  GenerationParameters gp("My_first_test", request_id, inputs, outputs, repeats, maxLevel, maxElement);
+  GenerationParameters gp(datasetId, request_id, inputs, outputs, repeats, maxLevel, maxElement);
   
   gp.setCNFF(CNFF);
   gp.setCNFT(CNFT);

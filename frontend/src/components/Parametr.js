@@ -4,18 +4,22 @@ import gearImg from '../assets/gear.svg';
 import select from '../assets/select.svg';
 import noselect from '../assets/noselect.svg';
 
-const Parametr = ({dataItem, deleteParametr, gear}) => {
+const Parametr = ({dataItem, deleteParametr, selectedParametrs, setSelectedParametrs}) => {
 
     const [isOpen, setIsOpen] = React.useState(false);
 
-    const [status, setStatus] = React.useState('noselect');
+    const [status, setStatus] = React.useState(false);
 
-    React.useEffect(() => {
-        if (gear) {
-            setStatus('gear');
+    const updateSelected = (value) => {
+        if (selectedParametrs.includes(value)) {
+          const updatedArray = selectedParametrs.filter(item => item !== value);
+          setSelectedParametrs(updatedArray);
+        } else {
+          const updatedArray = [...selectedParametrs, value];
+          setSelectedParametrs(updatedArray);
         }
-    }, [gear]);
-    
+      };
+      
 
     return (
     <div className='parametr__wrapper'>
@@ -24,13 +28,10 @@ const Parametr = ({dataItem, deleteParametr, gear}) => {
                 Параметр генерации #{dataItem.id}
             </div>
             <div className="parametr__buttons">
-                {status && (status == 'gear') && <div className="parametr__status gear">
-                    <img src={gearImg}/>
-                </div>}
-                {status && (status == 'select') && <div className="parametr__status select" onClick={() => setStatus('noselect')}>
+                {status && <div className="parametr__status select" onClick={() => {setStatus(false); updateSelected(dataItem.id);}}>
                     <img src={select}/>
                 </div>}
-                {status && (status == 'noselect') && <div className="parametr__status noselect" onClick={() => setStatus('select')}>
+                {!status && <div className="parametr__status noselect" onClick={() => {setStatus(true); updateSelected(dataItem.id);}}>
                     <img src={noselect}/>
                 </div>}
                 <button className='parametr__more' onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Скрыть' : 'Подробнее'}</button>

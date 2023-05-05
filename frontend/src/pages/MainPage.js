@@ -41,6 +41,8 @@ const MainPage = () => {
 	const [isLoading, setIsLoading] = React.useState(false);
 	const [isError, setIsError] = React.useState(false);
 
+	const [selectedParametrs, setSelectedParametrs] = React.useState([]);
+
 	const getGeneratorParametrs = () => {
 		setIsLoading(true);
 		axios.get('http://127.0.0.1:8000/api/add_parameter/')
@@ -52,6 +54,16 @@ const MainPage = () => {
 		axios.delete(`http://127.0.0.1:8000/api/add_parameter/${id}`)
 		.then(() => {
 			getGeneratorParametrs();
+		})
+		.catch(e => console.log(e));
+	}
+	
+	const addDataset = () => {
+		const data = {parameters_of_generation: selectedParametrs};
+		console.log(data);
+		axios.post(`http://127.0.0.1:8000/api/add_dataset`, data)
+		.then(() => {
+			alert('Параметры успешно отправлены на генерацию')
 		})
 		.catch(e => console.log(e));
 	}
@@ -77,16 +89,17 @@ const MainPage = () => {
 						})}
 						{!isLoading && generatorParametrs && generatorParametrs.map((item, i) => {
 							return <Parametr 
+								selectedParametrs={selectedParametrs}
+								setSelectedParametrs={setSelectedParametrs}
 								key={i}
 								dataItem={item}
-								gear={false}
 								deleteParametr={() => deleteParametr(item.id)}
 							/>
 						})}
 					</div>
 					<div className="content__buttons">
 						<Link to='/add' className="content__add-parametr">Добавить параметр</Link>
-						<button className="content__generate">Сгенерировать датасет</button>
+						<button className="content__generate" onClick={() => addDataset()}>Сгенерировать датасет</button>
 					</div>
 				</div>
 			</div>
