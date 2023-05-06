@@ -110,5 +110,7 @@ def in_total_function(obj):
     for param in list_of_param:
         id_of_parameter = param["id_of_parameter"]
         data_param = AddParameter.objects.values().get(id=id_of_parameter)
-        in_total += (data_param["max_in"] - data_param["min_in"]) * (data_param["max_out"] - data_param["min_out"]) * data_param["repeat_n"]
+        in_total += (data_param["max_in"] - data_param["min_in"] + 1) * (data_param["max_out"] - data_param["min_out"] + 1) * data_param["repeat_n"]
+        if data_param["CNFF"] is True or data_param["CNFT"] is True:
+            in_total *= 2
     return in_total
