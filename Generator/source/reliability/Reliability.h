@@ -17,7 +17,7 @@ public:
   double calcReliabilityBase();
   std::map<std::string, double> runNadezhda(const std::string& i_path, const std::string i_circuitName);
   // reliability evaluation method
-  int sumErrorBetweenReferenceAndOther(std::map<std::string, std::vector<bool>> i_errorStart, std::map<std::string, std::vector<bool>> i_otherTable)
+  int sumErrorBetweenReferenceAndOther(std::map<std::string, std::vector<bool>> i_errorStart, std::map<std::string, std::vector<bool>> i_otherTable);
   double valveRating();
 
 private:
