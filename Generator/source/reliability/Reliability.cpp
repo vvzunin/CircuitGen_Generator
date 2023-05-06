@@ -29,7 +29,7 @@ Reliability::Reliability(const OrientedGraph& i_graph, double i_p) :
 
 std::map<std::string, std::vector<bool>> Reliability::calc(
   bool i_withErrorValues,
-  bool i_withErrorSetting
+  bool i_withErrorSetting,
   // a flag that detects an error on one valve (i-om)
   int i_withOneValveError
 )
