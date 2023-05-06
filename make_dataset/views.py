@@ -24,7 +24,6 @@ def add_dataset(request):
     # добавление пустого датасета в бд датасетов
 
     list_of_parameters = list(AddParameter.objects.all().values())
-    print(list_of_parameters)
     list_of_id_of_parameters = []
 
     for obj in list_of_parameters:
