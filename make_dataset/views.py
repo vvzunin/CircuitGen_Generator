@@ -24,15 +24,13 @@ def add_dataset(request):
     # добавление пустого датасета в бд датасетов
 
     list_of_parameters = list(AddParameter.objects.all().values())
+    print(list_of_parameters)
     list_of_id_of_parameters = []
 
     for obj in list_of_parameters:
         yandex_link_to_parameter = "empty link"
-        my_dict = {
-            "id_of_parameter": obj['id'],
-            "yandex_link_of_parameter": yandex_link_to_parameter
-        }
-        list_of_id_of_parameters.append(my_dict)
+        obj["yandex_link_of_parameter"] = yandex_link_to_parameter
+        list_of_id_of_parameters.append(obj)
 
     dataset_id = Dataset.objects.create(parameters_of_generation=list_of_id_of_parameters).id
 
