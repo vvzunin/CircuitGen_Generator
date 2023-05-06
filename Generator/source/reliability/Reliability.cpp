@@ -254,8 +254,8 @@ int Reliability::sumErrorBetweenReferenceAndOther(std::map<std::string, std::vec
         std::vector<bool> ferr;
         for (const auto& [key,value] : i_errorStart)
         {
-            f.push_back(i_errorStart[s][i]);
-            ferr.push_back(i_otherTable[s][i_errorStart[s].size() * j + i]);
+            f.push_back(i_errorStart[key][i]);
+            ferr.push_back(i_otherTable[key][i]);
         }
 
         if (f != ferr)
