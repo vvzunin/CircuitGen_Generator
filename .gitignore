@@ -1,5 +1,6 @@
 data/Nadezhda
 data/Yosys
+data/SynologyDrive
 data/.DS_Store
 Generator/source/build/*
 *.swp
@@ -14,3 +15,4 @@ db.sqlite3
 add_parameter/migrations
 make_dataset/migrations
 dataset/
+temp_for_json/

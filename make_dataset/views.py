@@ -13,6 +13,10 @@ from .models import Dataset
 from .serializers import DatasetSerializer
 
 from pathlib import Path
+import glob
+
+# from data.SynologyDrive.synology_drive_api.drive import SynologyDrive
+from synology_drive_api.drive import SynologyDrive
 
 
 class DatasetList(viewsets.ModelViewSet):
@@ -28,11 +32,8 @@ def add_dataset(request):
 
     for obj in list_of_parameters:
         yandex_link_to_parameter = "empty link"
-        my_dict = {
-            "id_of_parameter": obj['id'],
-            "yandex_link_of_parameter": yandex_link_to_parameter
-        }
-        list_of_id_of_parameters.append(my_dict)
+        obj["yandex_link_of_parameter"] = yandex_link_to_parameter
+        list_of_id_of_parameters.append(obj)
 
     dataset_id = Dataset.objects.create(parameters_of_generation=list_of_id_of_parameters).id
 
@@ -48,13 +49,18 @@ def add_dataset(request):
     cpp_function(parameters_of_generation, dataset_id)
 
     # запус Yosys
-    # ??????????
+
+    # make_image_from_verilog(dataset_id)
+    make_image_from_verilog(7)
 
     # загрузка на яндекс диск
-    # ??????????
+    # upload_to_synology()
 
     # изменение ссылки на яндекс диск на актуальную
     # ??????????
+
+    # удалить json
+    # удалить v
 
     return HttpResponse("Ok")
 
@@ -63,25 +69,22 @@ def cpp_function(parameters_of_generation, dataset_id):
     # print(parameters_of_generation)
     for obj in parameters_of_generation:
         obj['dataset_id'] = dataset_id
-    with open(f'data_{dataset_id}.json', 'w', encoding='utf-8') as f:
+    with open(f'temp_for_json/data_{dataset_id}.json', 'w', encoding='utf-8') as f:
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
     subprocess.Popen(f"./Generator/source/build/prog --json_path=./data_{dataset_id}.json", shell=True)
 
 
-def make_image_from_verilog(request):
-    path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/source/Yosys/bin:$PATH"'
+def make_image_from_verilog(dataset_id):
+    path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/source/data/Yosys/bin:$PATH"'
     base_folder_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-    verilog_name = "CNFT.v"
-    verilog_path = base_folder_path + "/scheme_images/" + verilog_name
-
-    image_id = "image_" + "%032x" % random.getrandbits(128)
-    image_path = base_folder_path + "/scheme_images/" + image_id
-    image_path_dot_png = image_path + ".png"
-
-    yo = "yosys -p'read_verilog " + verilog_path + "; show -format png -prefix " + image_path + "'"
-    os.system(path + ";" + yo)
-    return JsonResponse({"image_path": image_path_dot_png})
+    directory = f"./dataset/{dataset_id}/"
+    for verilog_path in glob.iglob(f'{directory}/**/**/*.v', recursive=True):
+        image_path = pathlib.Path(verilog_path).parent
+        full_name = os.path.basename(verilog_path)
+        file_name = os.path.splitext(full_name)
+        image_path = './' + str(image_path) + '/' + file_name[0]
+        yo = "yosys -p'read_verilog " + verilog_path + "; show -format png -prefix " + image_path + "'"
+        os.system(path + ";" + yo)
 
 
 def progress_of_datasets(request):
@@ -110,5 +113,21 @@ def in_total_function(obj):
     for param in list_of_param:
         id_of_parameter = param["id_of_parameter"]
         data_param = AddParameter.objects.values().get(id=id_of_parameter)
-        in_total += (data_param["max_in"] - data_param["min_in"]) * (data_param["max_out"] - data_param["min_out"]) * data_param["repeat_n"]
+        in_total += (data_param["max_in"] - data_param["min_in"] + 1) * (data_param["max_out"] - data_param["min_out"] + 1) * data_param["repeat_n"]
+        if data_param["CNFF"] is True or data_param["CNFT"] is True:
+            in_total *= 2
     return in_total
+
+
+def upload_to_synology():
+    NAS_USER = 'project1290'
+    NAS_PASS = '~.*{*$7]NJ1[pS`\\'
+    NAS_IP = 'vvzunin.me'
+    NAS_PORT = 10003
+    dsm_version = '7'
+
+    with SynologyDrive(NAS_USER, NAS_PASS, NAS_IP, NAS_PORT, dsm_version=dsm_version) as synd:
+        a = synd.list_folder('/team-folders/circuits')  # Папка circuits
+        items = a['data']['items']
+        for i in items:
+            print(i['name'])
