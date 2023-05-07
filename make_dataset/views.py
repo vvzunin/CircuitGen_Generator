@@ -13,7 +13,9 @@ from .models import Dataset
 from .serializers import DatasetSerializer
 
 from pathlib import Path
+import glob
 
+import time
 
 class DatasetList(viewsets.ModelViewSet):
     queryset = Dataset.objects.all()
@@ -42,16 +44,23 @@ def add_dataset(request):
 
     # запуск генератора
 
-    cpp_function(parameters_of_generation, dataset_id)
+    # cpp_function(parameters_of_generation, dataset_id)
 
     # запус Yosys
-    # ??????????
+
+    # make_image_from_verilog(f'./dataset/{dataset_id}/')
+    make_image_from_verilog(7)
+    # (!) ЗАМЕНИТЬ 7 на dataset_id
+
 
     # загрузка на яндекс диск
     # ??????????
 
     # изменение ссылки на яндекс диск на актуальную
     # ??????????
+
+    # удалить json
+    # удалить v
 
     return HttpResponse("Ok")
 
@@ -60,25 +69,22 @@ def cpp_function(parameters_of_generation, dataset_id):
     # print(parameters_of_generation)
     for obj in parameters_of_generation:
         obj['dataset_id'] = dataset_id
-    with open(f'data_{dataset_id}.json', 'w', encoding='utf-8') as f:
+    with open(f'temp_for_json/data_{dataset_id}.json', 'w', encoding='utf-8') as f:
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
     subprocess.Popen(f"./Generator/source/build/prog --json_path=./data_{dataset_id}.json", shell=True)
 
 
-def make_image_from_verilog(request):
-    path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/source/Yosys/bin:$PATH"'
+def make_image_from_verilog(dataset_id):
+    path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/source/data/Yosys/bin:$PATH"'
     base_folder_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-    verilog_name = "CNFT.v"
-    verilog_path = base_folder_path + "/scheme_images/" + verilog_name
-
-    image_id = "image_" + "%032x" % random.getrandbits(128)
-    image_path = base_folder_path + "/scheme_images/" + image_id
-    image_path_dot_png = image_path + ".png"
-
-    yo = "yosys -p'read_verilog " + verilog_path + "; show -format png -prefix " + image_path + "'"
-    os.system(path + ";" + yo)
-    return JsonResponse({"image_path": image_path_dot_png})
+    directory = f"./dataset/{dataset_id}/"
+    for verilog_path in glob.iglob(f'{directory}/**/**/*.v', recursive=True):
+        image_path = pathlib.Path(verilog_path).parent
+        full_name = os.path.basename(verilog_path)
+        file_name = os.path.splitext(full_name)
+        image_path = './' + str(image_path) + '/' + file_name[0]
+        yo = "yosys -p'read_verilog " + verilog_path + "; show -format png -prefix " + image_path + "'"
+        os.system(path + ";" + yo)
 
 
 def progress_of_datasets(request):
