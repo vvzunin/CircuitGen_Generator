@@ -74,7 +74,7 @@ void runGenerationFromJson(std::string json_path)
   int repeats = data["repeat_n"];
   int maxLevel = data["max_level"];
   int maxElement = data["max_elem"];
-  bool limit = data["limit_generation"];
+//  bool limit = data["limit_generation"];
   bool CNFF = data["CNFF"];
   bool CNFT = data["CNFT"];
   bool LeaveEmptyOut = data["leave_empty_out"];
@@ -147,7 +147,7 @@ void runGenerationFromJson(std::string json_path)
   
   gp.setCNFF(CNFF);
   gp.setCNFT(CNFT);
-  gp.setLimit(limit);
+//  gp.setLimit(limit);
   gp.setNumOperationParameters(m, LeaveEmptyOut);
   gp.setPopulationSize(populationSize);
   gp.setNumOfCycles(numOfCycles);
