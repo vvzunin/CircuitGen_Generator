@@ -43,6 +43,7 @@ def add_dataset(request):
     parameters_of_generation = list(AddParameter.objects.all().values())
     for obj in parameters_of_generation:
         obj['id'] = str(obj['id'])
+        obj['swap_type'] = int(obj['swap_type'])
 
     # запуск генератора
 
@@ -51,7 +52,7 @@ def add_dataset(request):
     # запус Yosys
 
     # make_image_from_verilog(dataset_id)
-    make_image_from_verilog(7)
+    # make_image_from_verilog(7)
 
     # загрузка на яндекс диск
     # upload_to_synology()
@@ -71,7 +72,7 @@ def cpp_function(parameters_of_generation, dataset_id):
         obj['dataset_id'] = dataset_id
     with open(f'temp_for_json/data_{dataset_id}.json', 'w', encoding='utf-8') as f:
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
-    subprocess.Popen(f"./Generator/source/build/prog --json_path=./data_{dataset_id}.json", shell=True)
+    subprocess.Popen(f"./Generator/source/build/prog --json_path=./temp_for_json/data_{dataset_id}.json", shell=True)
 
 
 def make_image_from_verilog(dataset_id):
