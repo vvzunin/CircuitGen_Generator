@@ -113,6 +113,8 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
   if (d_graph.empty())
     return false;
 
+  d_graph.numberVerticesCorrectly();
+
   if (!i_pathExists) // TODO: work with directory
     if (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() + i_path))
       std::filesystem::create_directory(i_path);

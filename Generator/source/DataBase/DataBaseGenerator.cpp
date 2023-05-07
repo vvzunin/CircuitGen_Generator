@@ -22,8 +22,8 @@ void DataBaseGenerator::generateType(
   std::function<void(const GenerationParameters&)> generator = getGenerateMethod(s);
   //TODO: make normal code
 
-  std::string dir = d_settings->getDatasetPath() + "/" + s + "/" + i_dbgp.getGenerationParameters().getRequestId();
-
+  std::string dir = d_settings->getDatasetPath() + "/" + i_dbgp.getGenerationParameters().getName() + "/" + i_dbgp.getGenerationParameters().getRequestId();
+  std::filesystem::create_directory(d_settings->getDatasetPath() + "/" + i_dbgp.getGenerationParameters().getName());
   std::filesystem::create_directory(dir);
 
   d_mainPath = dir + "/";

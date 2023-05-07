@@ -37,7 +37,7 @@ public:
     const std::map<std::string, bool>& i_setError = {}
   );
   void setVerticeOperation(int i_vertice, const std::string& i_operation);
-  
+  void numberVerticesCorrectly();
 
 private:
   std::vector<int> getConnectedTo(int k);
