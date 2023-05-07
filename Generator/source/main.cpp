@@ -62,8 +62,9 @@ void runGenerationFromJson(std::string json_path)
     gt = GenerationTypes::FromRandomTruthTable;
   }
 
-  std::string request_id = data["id"];
-  assert(request_id != "");
+  int requestIdINT = data["id"];
+  std::string requestId = std::to_string(requestIdINT);
+  assert(requestId != "");
   
   // std::cout << data.dump(4);
   
@@ -143,7 +144,7 @@ void runGenerationFromJson(std::string json_path)
 
   //TODO:: make function that return DataBaseGeneratorParameters from json
   //Recording of json data to gp
-  GenerationParameters gp(datasetId, request_id, inputs, outputs, repeats, maxLevel, maxElement);
+  GenerationParameters gp(datasetId, requestId, inputs, outputs, repeats, maxLevel, maxElement);
   
   gp.setName(datasetId);
   gp.setCNFF(CNFF);
