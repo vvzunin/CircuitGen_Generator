@@ -145,6 +145,7 @@ void runGenerationFromJson(std::string json_path)
   //Recording of json data to gp
   GenerationParameters gp(datasetId, request_id, inputs, outputs, repeats, maxLevel, maxElement);
   
+  gp.setName(datasetId);
   gp.setCNFF(CNFF);
   gp.setCNFT(CNFT);
 //  gp.setLimit(limit);
