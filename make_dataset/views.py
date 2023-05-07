@@ -9,19 +9,24 @@ import json
 import os
 
 from rest_framework import viewsets
+
 from .models import Dataset
 from .serializers import DatasetSerializer
 
 from pathlib import Path
 import glob
 
+from .upload_to_synology import upload_to_synology
 # from data.SynologyDrive.synology_drive_api.drive import SynologyDrive
-from synology_drive_api.drive import SynologyDrive
+# from synology_drive_api.drive import SynologyDrive
+
+import ssl
 
 
 class DatasetList(viewsets.ModelViewSet):
     queryset = Dataset.objects.all()
     serializer_class = DatasetSerializer
+
 
 
 def add_dataset(request):
@@ -55,6 +60,7 @@ def add_dataset(request):
     # make_image_from_verilog(7)
 
     # загрузка на яндекс диск
+    # os.system('python data/SynologyDrive/upload_to_synology.py')
     # upload_to_synology()
 
     # изменение ссылки на яндекс диск на актуальную
