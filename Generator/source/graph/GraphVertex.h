@@ -14,13 +14,13 @@ public:
   int getLevel() const;
   void setLevel(int i_level);
   bool getValue() const;
+  void setWireName(std::string i_wireName);
   void setValue(bool i_value);
   void setLogicExpression(const std::string& i_logicExpression);
   std::string getLogicExpression() const;
   std::string getOperation() const;
   void setOperation(const std::string& i_operation);
   std::string getWireName() const;
-
 private:
   std::string d_logicExpression = "";
   std::string d_operation = "";

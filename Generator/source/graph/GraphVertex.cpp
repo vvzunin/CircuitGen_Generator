@@ -27,6 +27,12 @@ GraphVertex::GraphVertex(const std::string& i_expr,
   }
 }
 
+void GraphVertex::setWireName(std::string i_wireName)
+{
+    d_wireName = i_wireName;
+}
+
+
 int GraphVertex::getLevel() const
 {
   return d_level;
