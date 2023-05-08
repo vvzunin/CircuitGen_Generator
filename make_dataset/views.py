@@ -89,7 +89,7 @@ def make_image_from_verilog(dataset_id):
         full_name = os.path.basename(verilog_path)
         file_name = os.path.splitext(full_name)
         image_path = './' + str(image_path) + '/' + file_name[0]
-        yo = "yosys -p'read_verilog " + verilog_path + "; show -format png -prefix " + image_path + "'"
+        yo = "yosys -p'read_verilog " + verilog_path + "; clean; show -format png -prefix " + image_path + "'"
         os.system(path + ";" + yo)
 
 
