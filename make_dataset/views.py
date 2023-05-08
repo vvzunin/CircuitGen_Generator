@@ -46,7 +46,6 @@ def add_dataset(request):
     dataset_id = str(dataset_id)
     parameters_of_generation = list(AddParameter.objects.all().values())
     for obj in parameters_of_generation:
-        obj['id'] = str(obj['id'])
         obj['swap_type'] = int(obj['swap_type'])
 
     # запуск генератора
