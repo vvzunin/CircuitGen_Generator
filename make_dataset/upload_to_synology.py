@@ -10,8 +10,8 @@ def upload_to_synology():
     dsm_version = '7'
 
     with SynologyDrive(NAS_USER, NAS_PASS, NAS_IP, NAS_PORT, dsm_version=dsm_version) as synd:
+        print("Synology is working")
         a = synd.list_folder('/team-folders/circuits')  # Папка circuits
         items = a['data']['items']
         for i in items:
             print(i['name'])
-        pass

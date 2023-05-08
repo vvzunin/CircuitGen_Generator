@@ -28,7 +28,6 @@ class DatasetList(viewsets.ModelViewSet):
     serializer_class = DatasetSerializer
 
 
-
 def add_dataset(request):
     # добавление пустого датасета в бд датасетов
 
@@ -51,24 +50,21 @@ def add_dataset(request):
         obj['swap_type'] = int(obj['swap_type'])
 
     # запуск генератора
-
     cpp_function(parameters_of_generation, dataset_id)
 
     # запус Yosys
-
-    # make_image_from_verilog(dataset_id)
-    # make_image_from_verilog(7)
+    make_image_from_verilog(dataset_id)
 
     # загрузка на яндекс диск
-    # os.system('python data/SynologyDrive/upload_to_synology.py')
     # upload_to_synology()
 
-    # изменение ссылки на яндекс диск на актуальную
-    # ??????????
+    # изменение ссылки на synology на актуальную
+    # ДОПИСАТЬ
 
-    # удалить json
-    # удалить v
+    # удалить локальную папку с датасетом
+    # ДОПИСАТЬ
 
+    print("add_dataset is finished")
     return HttpResponse("Ok")
 
 
@@ -78,14 +74,17 @@ def cpp_function(parameters_of_generation, dataset_id):
         obj['dataset_id'] = dataset_id
     with open(f'temp_for_json/data_{dataset_id}.json', 'w', encoding='utf-8') as f:
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
-    subprocess.Popen(f"./Generator/source/build/prog --json_path=./temp_for_json/data_{dataset_id}.json", shell=True)
+    subprocess.Popen(f"./Generator/source/build/prog --json_path=./temp_for_json/data_{dataset_id}.json", shell=True).wait()
 
 
 def make_image_from_verilog(dataset_id):
+    dataset_id = int(dataset_id)
     path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/source/data/Yosys/bin:$PATH"'
     base_folder_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     directory = f"./dataset/{dataset_id}/"
+    print(directory)
     for verilog_path in glob.iglob(f'{directory}/**/**/*.v', recursive=True):
+        print("yosys")
         image_path = pathlib.Path(verilog_path).parent
         full_name = os.path.basename(verilog_path)
         file_name = os.path.splitext(full_name)
