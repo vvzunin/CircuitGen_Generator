@@ -49,13 +49,13 @@ def add_dataset(request):
         obj['swap_type'] = int(obj['swap_type'])
 
     # запуск генератора
-    cpp_function(parameters_of_generation, dataset_id)
+    # cpp_function(parameters_of_generation, dataset_id)
 
     # запус Yosys
-    make_image_from_verilog(dataset_id)
+    # make_image_from_verilog(dataset_id)
 
     # загрузка на яндекс диск
-    # upload_to_synology()
+    upload_to_synology()
 
     # изменение ссылки на synology на актуальную
     # ДОПИСАТЬ
