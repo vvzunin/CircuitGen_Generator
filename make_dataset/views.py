@@ -9,14 +9,18 @@ import json
 import os
 
 from rest_framework import viewsets
+
 from .models import Dataset
 from .serializers import DatasetSerializer
 
 from pathlib import Path
 import glob
 
+from .upload_to_synology import upload_to_synology
 # from data.SynologyDrive.synology_drive_api.drive import SynologyDrive
-from synology_drive_api.drive import SynologyDrive
+# from synology_drive_api.drive import SynologyDrive
+
+import ssl
 
 
 class DatasetList(viewsets.ModelViewSet):
@@ -46,23 +50,21 @@ def add_dataset(request):
         obj['swap_type'] = int(obj['swap_type'])
 
     # запуск генератора
-
     cpp_function(parameters_of_generation, dataset_id)
 
     # запус Yosys
-
-    # make_image_from_verilog(dataset_id)
-    # make_image_from_verilog(7)
+    make_image_from_verilog(dataset_id)
 
     # загрузка на яндекс диск
     # upload_to_synology()
 
-    # изменение ссылки на яндекс диск на актуальную
-    # ??????????
+    # изменение ссылки на synology на актуальную
+    # ДОПИСАТЬ
 
-    # удалить json
-    # удалить v
+    # удалить локальную папку с датасетом
+    # ДОПИСАТЬ
 
+    print("add_dataset is finished")
     return HttpResponse("Ok")
 
 
@@ -72,19 +74,22 @@ def cpp_function(parameters_of_generation, dataset_id):
         obj['dataset_id'] = dataset_id
     with open(f'temp_for_json/data_{dataset_id}.json', 'w', encoding='utf-8') as f:
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
-    subprocess.Popen(f"./Generator/source/build/prog --json_path=./temp_for_json/data_{dataset_id}.json", shell=True)
+    subprocess.Popen(f"./Generator/source/build/prog --json_path=./temp_for_json/data_{dataset_id}.json", shell=True).wait()
 
 
 def make_image_from_verilog(dataset_id):
+    dataset_id = int(dataset_id)
     path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/source/data/Yosys/bin:$PATH"'
     base_folder_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     directory = f"./dataset/{dataset_id}/"
+    print(directory)
     for verilog_path in glob.iglob(f'{directory}/**/**/*.v', recursive=True):
+        print("yosys")
         image_path = pathlib.Path(verilog_path).parent
         full_name = os.path.basename(verilog_path)
         file_name = os.path.splitext(full_name)
         image_path = './' + str(image_path) + '/' + file_name[0]
-        yo = "yosys -p'read_verilog " + verilog_path + "; show -format png -prefix " + image_path + "'"
+        yo = "yosys -p'read_verilog " + verilog_path + "; clean; show -format png -prefix " + image_path + "'"
         os.system(path + ";" + yo)
 
 
@@ -118,17 +123,3 @@ def in_total_function(obj):
         if data_param["CNFF"] is True or data_param["CNFT"] is True:
             in_total *= 2
     return in_total
-
-
-def upload_to_synology():
-    NAS_USER = 'project1290'
-    NAS_PASS = '~.*{*$7]NJ1[pS`\\'
-    NAS_IP = 'vvzunin.me'
-    NAS_PORT = 10003
-    dsm_version = '7'
-
-    with SynologyDrive(NAS_USER, NAS_PASS, NAS_IP, NAS_PORT, dsm_version=dsm_version) as synd:
-        a = synd.list_folder('/team-folders/circuits')  # Папка circuits
-        items = a['data']['items']
-        for i in items:
-            print(i['name'])
