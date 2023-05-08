@@ -143,7 +143,7 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
 
   in += inputModule;
   for (const auto& in_i : inputs)
-    if (in_i.find("1'b") == std::string::npos)
+    if (in_i.find("x") != std::string::npos)
       in += " " + in_i + ",";
 
   if (in.length() > inputModule.length())
