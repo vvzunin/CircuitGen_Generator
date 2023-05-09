@@ -19,6 +19,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/add_dataset', views.add_dataset),
     path('api/progress_of_datasets', views.progress_of_datasets),
-    path('api/scheme_image', views.make_image_from_verilog),
     # path('api/add_parameter', AddParameterAPI.as_view()),
 ]

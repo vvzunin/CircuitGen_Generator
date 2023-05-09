@@ -29,19 +29,19 @@ class DatasetList(viewsets.ModelViewSet):
 
 def add_dataset(request):
     # добавить датасет в базу данных
-    [dataset_id, parameters_of_generation] = add_dataset_to_database()
+    [dataset_id, parameters_of_generation] = add_dataset_to_database(request)
 
     # запуск генератора
     run_generator(parameters_of_generation, dataset_id)
 
     # запус Yosys
-    make_image_from_verilog(dataset_id)
+    # make_image_from_verilog(dataset_id)
 
     # загрузка Synology Drive
     upload_to_synology(dataset_id)
 
     # удалить локальную папку с датасетом
-    delete_folders(dataset_id)
+    # delete_folders(dataset_id)
 
     print("add_dataset is finished")
     return HttpResponse("Ok")
@@ -150,7 +150,9 @@ def delete_folders(dataset_id):
     except OSError as e:
         print("Error: %s - %s." % (e.filename, e.strerror))
 
-def add_dataset_to_database():
+
+def add_dataset_to_database(request):
+    # print(request.POST.get)
     # получаем список id параметров генерации, по которым будем делать датасет
     # потом поменять цикл на то, что мы приняли в фронта
     id_of_parameters_of_generation = []
