@@ -278,7 +278,7 @@ double Reliability::valveRating()
     {
         std::map<std::string, std::vector<bool>> errorIValve = this->calc(false, false, i);
         // sum of errors is passed to vector o_i - stores things. number
-        arrOi.push_back(sumErrorBetweenReferenceAndOther(error_start, errorIValve));
+        arrOi.push_back(sumErrorBetweenReferenceAndOther(errorStart, errorIValve));
         arrOi[i] /= pow(2, countInputs);
     }
     // Found o_i
@@ -290,7 +290,7 @@ double Reliability::valveRating()
     // Ask if the cycle runs on all valves
     for (int i = 0; i < d_graph.getLogicVerticesToWireName().size(); i++)
     {
-        averageValue += (arrOi[i] * d_p * pow(1 - d_p, count_inputs - 1) + (0.5 * (1 - (pow(1 - d_p, count_inputs)) - count_inputs * d_p * pow(1 - d_p, count_inputs - 1))));
+        averageValue += (arrOi[i] * d_p * pow(1 - d_p, countInputs - 1) + (0.5 * (1 - (pow(1 - d_p, countInputs)) - countInputs * d_p * pow(1 - d_p, countInputs - 1))));
     }
     // DOI: 10.18522/2311-3103-2016-7-149158, article with the formula
 
