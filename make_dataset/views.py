@@ -35,7 +35,7 @@ def add_dataset(request):
     run_generator(parameters_of_generation, dataset_id)
 
     # запус Yosys
-    make_image_from_verilog(dataset_id)
+    # make_image_from_verilog(dataset_id)
 
     # загрузка Synology Drive
     upload_to_synology(dataset_id)
@@ -119,14 +119,14 @@ def upload_to_synology(dataset_id):
         for param in os.listdir(dataset_dir):
             param_dir = f'{dataset_dir}/{param}'
             for circuit in os.listdir(param_dir):
-                extension_lst = ['.v', '.json', '.png']
+                extension_lst = ['.v', '.json']
                 for extension in extension_lst:
-                    verilog_path = f'{param_dir}/{circuit}/{circuit}/{extension}'
+                    verilog_path = f'{param_dir}/{circuit}/{circuit}{extension}'
                     try:
                         with open(verilog_path, 'rb') as file:
                             bfile = io.BytesIO(file.read())
-                            bfile.name = f'{dataset_id}/{param}/{circuit}/{circuit}/{extension}'
-                            synd.upload_file(bfile, dest_folder_path='/team-folders/circuits/')
+                            bfile.name = f'{dataset_id}/{param}/{circuit}/{circuit}{extension}'
+                            synd.upload_file(bfile, dest_folder_path='/team-folders/circuits/datasets/')
                     except Exception as e:
                         print(e)
 
@@ -139,8 +139,8 @@ def get_link_to_synology(dataset_id, param_id):
     dsm_version = '7'
 
     with SynologyDrive(NAS_USER, NAS_PASS, NAS_IP, NAS_PORT, dsm_version=dsm_version) as synd:
-        synd.create_folder(f'{dataset_id}/{param_id}', f'team-folders/circuits/')
-        return synd.create_link(f'team-folders/circuits/{dataset_id}/{param_id}/')['data']['url']
+        synd.create_folder(f'{dataset_id}/{param_id}', f'team-folders/circuits/datasets/')
+        return synd.create_link(f'team-folders/circuits/datasets/{dataset_id}/{param_id}/')['data']['url']
 
 
 def delete_folders(dataset_id):
