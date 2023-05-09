@@ -115,10 +115,10 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
 
   d_graph.numberVerticesCorrectly();
 
-  if (!i_pathExists) // TODO: work with directory
+ /* if (!i_pathExists) // TODO: work with directory
     if (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() + i_path))
       std::filesystem::create_directory(i_path);
-
+  */    
   std::string filename = d_path + "/" + d_circuitName + ".v";
 
   std::vector<std::string> inputs = d_graph.getVerticesByType("input");
@@ -231,7 +231,7 @@ bool Circuit::saveParameters(bool i_pathExists) const
   {
     if (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() + d_path)) // TODO: make function isDirectory exists
     {
-      std::filesystem::create_directory(d_path);
+      //std::filesystem::create_directory(d_path);
     }
   }
 
@@ -332,7 +332,7 @@ bool Circuit::checkExistingHash() // TODO: is it really need return true when ha
 bool Circuit::generate(bool i_pathExists)
 {
   if (!i_pathExists)
-    d_path += d_circuitName;
+    //d_path += d_circuitName;
 
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
