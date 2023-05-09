@@ -62,19 +62,16 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
       sn /= 2;
     }
 
-    sn = i;
 
-    for (int j = inputs.size() - 1; j >= 0; --j)
+    for (int j = errorValues.size() - 1; j >= 0; --j)
     {
       mapErrors[errorValues[j]] = sn % 2;
       sn /= 2;
     }
 
-    sn = i;
-
-    for (int j = inputs.size() - 1; j >= 0; --j)
+    for (int j = setErrors.size() - 1; j >= 0; --j)
     {
-      mapErrorsSet[errorValues[j]] = sn % 2;
+      mapErrorsSet[setErrors[j]] = sn % 2;
       sn /= 2;
     }
 
@@ -124,7 +121,7 @@ double Reliability::calcReliabilityBase()
         ferr.push_back(dictError[s][dict[s].size() * j + i]);
       }
 
-      if (f != ferr)
+      if (!std::equal(f.begin(), f.end(), ferr.begin()))
         ++err;
 
       // TODO: does we really need std::cout << std::endl;?
@@ -246,9 +243,9 @@ int Reliability::sumErrorBetweenReferenceAndOther(std::map<std::string, std::vec
     // dictError = i_otherTable
 
     // size
-    int size_maybe_err = i_errorStart[i_errorStart.begin()->first].size();
+    int sizeMaybeErr = i_errorStart[i_errorStart.begin()->first].size();
 
-    for (int i = 0; i < size_maybe_err; ++i)
+    for (int i = 0; i < sizeMaybeErr; ++i)
     {
         std::vector<bool> f;
         std::vector<bool> ferr;
@@ -270,36 +267,33 @@ double Reliability::valveRating()
     // input and output vectors in the circuit
     std::vector<std::string> inputs = d_graph.getVerticesByTypeToWireName("input");
     std::vector<std::string> outputs = d_graph.getVerticesByTypeToWireName("output");
-    // keeps a list of valves
-    std::vector<std::string> vect_valves = d_graph.getLogicVerticesToWireName();
     // Table of reference values
-    std::map<std::string, std::vector<bool>> error_start = this->calc(); // X
+    std::map<std::string, std::vector<bool>> errorStart = this->calc(); // X
     // truth table construction
-    // vector that stores the value of each o_i
-    std::vector<double> arr_oi;
+    // vector that stores the value of each o_i - observability of the valve
+    std::vector<double> arrOi;
     // number of inputs in the schematic - Check
-    int count_inputs = inputs.size();
-    for (size_t i = 0; i < d_graph.getLogicVerticesToWireName().size(); i++)
+    int countInputs = inputs.size();
+    for (int i = 0; i < d_graph.getLogicVerticesToWireName().size(); i++)
     {
-        std::map<std::string, std::vector<bool>> error_i_valve = this->calc(false, false, i);
+        std::map<std::string, std::vector<bool>> errorIValve = this->calc(false, false, i);
         // sum of errors is passed to vector o_i - stores things. number
-        arr_oi.push_back(sumErrorBetweenReferenceAndOther(error_start, error_i_valve));
-        arr_oi[i] /= pow(2, count_inputs);
+        arrOi.push_back(sumErrorBetweenReferenceAndOther(error_start, errorIValve));
+        arrOi[i] /= pow(2, countInputs);
     }
     // Found o_i
 
     // Find the error range
 
     // holds the total probability
-    double average_value = 0;
+    double averageValue = 0;
     // Ask if the cycle runs on all valves
-    for (size_t i = 0; i < d_graph.getLogicVerticesToWireName().size(); i++)
+    for (int i = 0; i < d_graph.getLogicVerticesToWireName().size(); i++)
     {
-        double tmp = 0;
-        tmp = arr_oi[i] * d_p * pow(1 - d_p, count_inputs - 1) + (0.5 * (1 - (pow(1 - d_p, count_inputs)) - count_inputs * d_p * pow(1 - d_p, count_inputs - 1)));
-        average_value += tmp;
+        averageValue += (arrOi[i] * d_p * pow(1 - d_p, count_inputs - 1) + (0.5 * (1 - (pow(1 - d_p, count_inputs)) - count_inputs * d_p * pow(1 - d_p, count_inputs - 1))));
     }
+    // DOI: 10.18522/2311-3103-2016-7-149158, article with the formula
 
-    return average_value;
+    return averageValue;
 
 }
