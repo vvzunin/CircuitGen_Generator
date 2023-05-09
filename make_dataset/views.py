@@ -35,13 +35,13 @@ def add_dataset(request):
     run_generator(parameters_of_generation, dataset_id)
 
     # запус Yosys
-    # make_image_from_verilog(dataset_id)
+    make_image_from_verilog(dataset_id)
 
     # загрузка Synology Drive
     upload_to_synology(dataset_id)
 
     # удалить локальную папку с датасетом
-    # delete_folders(dataset_id)
+    delete_folders(dataset_id)
 
     print("add_dataset is finished")
     return HttpResponse("Ok")
