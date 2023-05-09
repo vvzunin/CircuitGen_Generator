@@ -28,56 +28,26 @@ class DatasetList(viewsets.ModelViewSet):
 
 
 def add_dataset(request):
-    # получаем список id параметров генерации, по которым будем делать датасет
-    # потом поменять цикл на то, что мы приняли в фронта
-    id_of_parameters_of_generation = []
-    for obj in list(AddParameter.objects.all().values()):
-        id_of_parameters_of_generation.append(obj['id'])
-
-    # получаем list параметров генерации, по которым будет делать датасет
-    list_of_parameters = []
-    for param_id in id_of_parameters_of_generation:
-        list_of_parameters.append(AddParameter.objects.filter(id=param_id))
-
-    # добавление пустого датасета в бд датасетов
-    list_of_parameters_for_dataset = []
-    for param in list_of_parameters:
-        link_to_parameter = "empty link"
-        obj = list(param.values())[0]
-        obj["link_of_parameter"] = link_to_parameter
-        list_of_parameters_for_dataset.append(obj)
-    dataset_id = Dataset.objects.create(parameters_of_generation=list_of_parameters_for_dataset).id
-
-    # замена ссылок на правильные в бд датаета
-    for obj in list_of_parameters_for_dataset:
-        obj['link_of_parameter'] = get_link_to_synology(dataset_id, obj['id'])
-    obj = Dataset.objects.get(id=dataset_id)
-    obj.parameters_of_generation = list_of_parameters_for_dataset
-    obj.save()
-
-    # получить параметры генерации
-    dataset_id = str(dataset_id)
-    parameters_of_generation = list(AddParameter.objects.all().values())
-    for obj in parameters_of_generation:
-        obj['swap_type'] = int(obj['swap_type'])
+    # добавить датасет в базу данных
+    [dataset_id, parameters_of_generation] = add_dataset_to_database()
 
     # запуск генератора
-    cpp_function(parameters_of_generation, dataset_id)
+    run_generator(parameters_of_generation, dataset_id)
 
     # запус Yosys
     make_image_from_verilog(dataset_id)
 
-    # загрузка на яндекс диск
+    # загрузка Synology Drive
     upload_to_synology(dataset_id)
 
     # удалить локальную папку с датасетом
-    delete_folder(dataset_id)
+    delete_folders(dataset_id)
 
     print("add_dataset is finished")
     return HttpResponse("Ok")
 
 
-def cpp_function(parameters_of_generation, dataset_id):
+def run_generator(parameters_of_generation, dataset_id):
     # print(parameters_of_generation)
     for obj in parameters_of_generation:
         obj['dataset_id'] = dataset_id
@@ -173,9 +143,45 @@ def get_link_to_synology(dataset_id, param_id):
         return synd.create_link(f'team-folders/circuits/{dataset_id}/{param_id}/')['data']['url']
 
 
-def delete_folder(dataset_id):
+def delete_folders(dataset_id):
     mydir = f'./dataset/{dataset_id}/'
     try:
         shutil.rmtree(mydir)
     except OSError as e:
         print("Error: %s - %s." % (e.filename, e.strerror))
+
+def add_dataset_to_database():
+    # получаем список id параметров генерации, по которым будем делать датасет
+    # потом поменять цикл на то, что мы приняли в фронта
+    id_of_parameters_of_generation = []
+    for obj in list(AddParameter.objects.all().values()):
+        id_of_parameters_of_generation.append(obj['id'])
+
+    # получаем list параметров генерации, по которым будет делать датасет
+    list_of_parameters = []
+    for param_id in id_of_parameters_of_generation:
+        list_of_parameters.append(AddParameter.objects.filter(id=param_id))
+
+    # добавление пустого датасета в бд датасетов
+    list_of_parameters_for_dataset = []
+    for param in list_of_parameters:
+        link_to_parameter = "empty link"
+        obj = list(param.values())[0]
+        obj["link_of_parameter"] = link_to_parameter
+        list_of_parameters_for_dataset.append(obj)
+    dataset_id = Dataset.objects.create(parameters_of_generation=list_of_parameters_for_dataset).id
+
+    # замена ссылок на правильные в бд датаета
+    for obj in list_of_parameters_for_dataset:
+        obj['link_of_parameter'] = get_link_to_synology(dataset_id, obj['id'])
+    obj = Dataset.objects.get(id=dataset_id)
+    obj.parameters_of_generation = list_of_parameters_for_dataset
+    obj.save()
+
+    # получить параметры генерации
+    dataset_id = str(dataset_id)
+    parameters_of_generation = list(AddParameter.objects.all().values())
+    for obj in parameters_of_generation:
+        obj['swap_type'] = int(obj['swap_type'])
+
+    return [dataset_id, parameters_of_generation]
