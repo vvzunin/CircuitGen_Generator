@@ -115,20 +115,20 @@ def upload_to_synology(dataset_id):
 
     with SynologyDrive(NAS_USER, NAS_PASS, NAS_IP, NAS_PORT, dsm_version=dsm_version) as synd:
         dataset_id = str(dataset_id)
-        dataset_dir = './dataset/' + dataset_id
+        dataset_dir = f'./dataset/{dataset_id}'
         for param in os.listdir(dataset_dir):
-            param_dir = '/'.join([dataset_dir, param])
+            param_dir = f'{dataset_dir}/{param}'
             for circuit in os.listdir(param_dir):
                 extension_lst = ['.v', '.json', '.png']
                 for extension in extension_lst:
-                    verilog_path = '/'.join([param_dir, circuit, circuit]) + extension
+                    verilog_path = f'{param_dir}/{circuit}/{circuit}/{extension}'
                     try:
                         with open(verilog_path, 'rb') as file:
                             bfile = io.BytesIO(file.read())
-                            bfile.name = '/'.join([dataset_id, param, circuit, circuit]) + extension
+                            bfile.name = f'{dataset_id}/{param}/{circuit}/{circuit}/{extension}'
                             synd.upload_file(bfile, dest_folder_path='/team-folders/circuits/')
-                    except OSError as e:
-                        pass
+                    except Exception as e:
+                        print(e)
 
 
 def get_link_to_synology(dataset_id, param_id):
