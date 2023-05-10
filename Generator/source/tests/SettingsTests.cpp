@@ -24,7 +24,7 @@ TEST(test_settings, test_default_load_settings)
   operToHierAns[6] = {"xor"};
   operToHierAns[7] = {"not"};
   operToHierAns[8] = {"buf"};
-  operToHierAns[9] = {"1'b"};
+  operToHierAns[9] = {"1'b0"};
   operToHierAns[10] = {""};
 
   std::map<std::string, std::string> operToNameAns;
@@ -62,7 +62,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperati
         {
           {"input",  {"",     10}},
           {"output", {"=",    0}},
-          {"const",  {"1'b",  9}},
+          {"const",  {"1'b0",  9}},
           {"and",    {"and",  4}},
           {"nand",   {"nand", 3}},
           {"or",     {"or",   2}},
@@ -90,7 +90,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
         {
           {10,      {""}},
           {0,      {"="}},
-          {9,    {"1'b"}},
+          {9,    {"1'b0"}},
           {4,    {"and"}},
           {3,  {"nand" }},
           {2,    {"or" }},
@@ -119,7 +119,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
         {
             {"" , "input"},
             {"=" , "output"},
-            {"1'b" , "const"},
+            {"1'b0" , "const"},
             {"and" , "and"},
             {"nand" , "nand"},
             {"or" , "or"},

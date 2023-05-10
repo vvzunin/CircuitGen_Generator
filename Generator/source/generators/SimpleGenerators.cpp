@@ -49,18 +49,18 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
     if (mem == 0)
     {
       if (i_tp)
-        fun[j] += "1'0";
+        fun[j] += "1'b0";
       else
-        fun[j] += "1'1";
+        fun[j] += "1'b1";
       continue;
     }
 
     if (mem == i_table.size())
     {
       if (i_tp)
-        fun[j] += "1'1";
+        fun[j] += "1'b1";
       else
-        fun[j] += "1'0";
+        fun[j] += "1'b0";
       continue;
     }
 

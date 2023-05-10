@@ -57,10 +57,11 @@ void runGenerationFromJson(std::string json_path)
   nlohmann::json data = *it;
 
   GenerationTypes gt;
-  if (data["type_of_generation"] == "From Random Truth Table")
-  {
-    gt = GenerationTypes::FromRandomTruthTable;
-  }
+  if (data["type_of_generation"] == "From Random Truth Table") gt = GenerationTypes::FromRandomTruthTable;
+  if (data["type_of_generation"] == "Rand Level") gt = GenerationTypes::RandLevel;
+  if (data["type_of_generation"] == "Num Operation") gt = GenerationTypes::NumOperation;
+  if (data["type_of_generation"] == "Genetic") gt = GenerationTypes::Genetic;
+ 
 
   int requestIdINT = data["id"];
   std::string requestId = std::to_string(requestIdINT);
