@@ -5,4 +5,5 @@ cd build
 cmake ..
 make
 cd ../../../
-gdb --args Generator/source/build/prog --json_path=/home/rustam/1290_project/Generator/source/test_data/wast/sample.json
+currentDir=$(pwd)
+gdb --args Generator/source/build/prog --json_path=$currentDir/Generator/source/test_data/wast/sample.json
