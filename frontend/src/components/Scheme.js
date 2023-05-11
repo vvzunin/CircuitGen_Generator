@@ -2,7 +2,7 @@ import React from 'react'
 
 import link from '../assets/link.svg';
 
-const Scheme = () => {
+const Scheme = ({id}) => {
 
     const [isOpen, setIsOpen] = React.useState(false);
 
@@ -10,7 +10,7 @@ const Scheme = () => {
     <div className='scheme__wrapper'>
         <div className='scheme__main'>
             <div className="scheme__name">
-                Параметр генерации #1
+                Параметр генерации #{id}
             </div>
             <div className="scheme__buttons">
                 <button className='scheme__more' onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Скрыть' : 'Подробнее'}</button>
