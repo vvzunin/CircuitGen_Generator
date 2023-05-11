@@ -34,7 +34,7 @@ const DatasetItem = ({id, parameters, currentProgress}) => {
         </div>
         <div className="dataset__content">
             {parameters && parameters.map((item, i) => {
-              return <Scheme id={item} key={i}/>
+              return <Scheme data={item} key={i}/>
             })}
         </div>
     </div>
