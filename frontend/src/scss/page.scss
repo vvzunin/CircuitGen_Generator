@@ -279,7 +279,7 @@ h1 {
     }
     &__name {
         font-weight: 500;
-        font-size: 16px;
+        font-size: 14px;
         color: $main-color;
     }
     &__buttons {
@@ -306,8 +306,13 @@ h1 {
         border: 1px solid $main-color;
         background-color: $main-color;
         border-radius: 6px;
+        cursor: auto;
         &:hover {
             cursor: pointer;
+        }
+        &.disabled {
+            cursor: not-allowed;
+            user-select: none;
         }
     }
     &__info {

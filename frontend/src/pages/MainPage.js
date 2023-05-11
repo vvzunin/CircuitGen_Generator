@@ -53,7 +53,7 @@ const MainPage = () => {
 	}
 
 	const getDatasets = () => {
-		axios.get('https://641051b7e1212d9cc930179a.mockapi.io/datasets')
+		axios.get('http://127.0.0.1:8000/api/datasets/')
 		.then(({data}) => {setDatasets(data)})
 		.catch(e => {console.log(e)});
 	}
@@ -135,7 +135,11 @@ const MainPage = () => {
 									return null;
 								  }
 								const currentProgress = findObjectById(progress, item.id);
-								return <DatasetItem key={i} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress}/>
+								if (item.parameters_of_generation && (item.parameters_of_generation.length > 0)) {
+									return <DatasetItem key={i} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress}/>
+								} else {
+									return null;
+								}
 							})
 						}
 					</div>
