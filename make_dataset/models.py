@@ -1,19 +1,10 @@
 from django.db import models
 import json
 
-
-def parameters_of_generation_default():
-    return {
-        "parameter_id": 0,
-        "data": {
-            "yandex_link_to_parameter": "some_link",
-            "data_of_parameter": {
-                "min_in": 0,
-                "max_in": 0
-            }
-        }
-    }
+# def parameters_of_generation_default():
+#     pass
 
 
 class Dataset(models.Model):
+    ready = models.BooleanField(default=0, verbose_name='ready')
     parameters_of_generation = models.JSONField()

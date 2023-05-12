@@ -28,20 +28,26 @@ class DatasetList(viewsets.ModelViewSet):
 
 
 def add_dataset(request):
+    print("add_dataset is running")
     # добавить датасет в базу данных
     [dataset_id, parameters_of_generation] = add_dataset_to_database(request)
+    print("add_dataset_to_database is finished")
 
     # запуск генератора
     run_generator(parameters_of_generation, dataset_id)
+    print("run_generator is finished")
 
     # запус Yosys
     # make_image_from_verilog(dataset_id)
+    # print("make_image_from_verilog is finished")
 
     # загрузка Synology Drive
-    upload_to_synology(dataset_id)
+    # upload_to_synology(dataset_id)
+    print("upload_to_synology is finished")
 
     # удалить локальную папку с датасетом
     delete_folders(dataset_id)
+    print("delete_folders is finished")
 
     print("add_dataset is finished")
     return HttpResponse("Ok")
@@ -55,6 +61,9 @@ def run_generator(parameters_of_generation, dataset_id):
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
     subprocess.Popen(f"./Generator/source/build/prog --json_path=./temp_for_json/data_{dataset_id}.json",
                      shell=True).wait()
+    obj = Dataset.objects.get(id=dataset_id)
+    obj.ready = True
+    obj.save()
 
 
 def make_image_from_verilog(dataset_id):
@@ -63,7 +72,7 @@ def make_image_from_verilog(dataset_id):
     base_folder_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     directory = f"./dataset/{dataset_id}/"
     print(directory)
-    for verilog_path in glob.iglob(f'{directory}/**/**/*.v', recursive=True):
+    for verilog_path in glob.iglob(f'{directory}/**/*.v', recursive=True):
         print("yosys")
         image_path = pathlib.Path(verilog_path).parent
         full_name = os.path.basename(verilog_path)
@@ -79,10 +88,16 @@ def progress_of_datasets(request):
     for obj in datasets:
         ready = ready_verilogs(obj["id"])
         in_total = in_total_function(obj)
-        progress_dict = {
-            "ready": ready,
-            "in_total": in_total
-        }
+        if obj['ready'] is False:
+            progress_dict = {
+                "ready": ready,
+                "in_total": in_total
+            }
+        else:
+            progress_dict = {
+                "ready": in_total,
+                "in_total": in_total
+            }
         progress_list[obj["id"]] = progress_dict
     return JsonResponse(progress_list)
 
@@ -97,11 +112,9 @@ def in_total_function(obj):
     list_of_param = obj["parameters_of_generation"]
     in_total = 0
     for param in list_of_param:
-        id_of_parameter = param["id_of_parameter"]
-        data_param = AddParameter.objects.values().get(id=id_of_parameter)
-        in_total += (data_param["max_in"] - data_param["min_in"] + 1) * (
-                data_param["max_out"] - data_param["min_out"] + 1) * data_param["repeat_n"]
-        if data_param["CNFF"] is True or data_param["CNFT"] is True:
+        in_total += (param["max_in"] - param["min_in"] + 1) * (
+                param["max_out"] - param["min_out"] + 1) * param["repeat_n"]
+        if param["CNFF"] is True and param["CNFT"] is True:
             in_total *= 2
     return in_total
 
@@ -121,11 +134,11 @@ def upload_to_synology(dataset_id):
             for circuit in os.listdir(param_dir):
                 extension_lst = ['.v', '.json']
                 for extension in extension_lst:
-                    verilog_path = f'{param_dir}/{circuit}/{circuit}{extension}'
+                    verilog_path = f'{param_dir}/{circuit}'
                     try:
                         with open(verilog_path, 'rb') as file:
                             bfile = io.BytesIO(file.read())
-                            bfile.name = f'{dataset_id}/{param}/{circuit}/{circuit}{extension}'
+                            bfile.name = f'{dataset_id}/{param}/{circuit}'
                             synd.upload_file(bfile, dest_folder_path='/team-folders/circuits/datasets/')
                     except Exception as e:
                         print(e)
@@ -171,7 +184,7 @@ def add_dataset_to_database(request):
         obj = list(param.values())[0]
         obj["link_of_parameter"] = link_to_parameter
         list_of_parameters_for_dataset.append(obj)
-    dataset_id = Dataset.objects.create(parameters_of_generation=list_of_parameters_for_dataset).id
+    dataset_id = Dataset.objects.create(parameters_of_generation=list_of_parameters_for_dataset, ready=False).id
 
     # замена ссылок на правильные в бд датаета
     for obj in list_of_parameters_for_dataset:
