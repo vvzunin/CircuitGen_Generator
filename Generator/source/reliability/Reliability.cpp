@@ -84,7 +84,7 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
         {
             mapErrors[errorValues[j]] = 0;
         }
-        mapErrors[i_withOneValveError] = 1;
+        mapErrors[errorValues[i_withOneValveError]] = 1;
     }
 
     std::map<std::string, bool> res = d_graph.calcGraph(map, i_withErrorValues, mapErrors,i_withErrorSetting, mapErrorsSet);
