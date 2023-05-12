@@ -323,5 +323,6 @@ double Reliability::endToEndMethod()
     // веро€тность ошибки вентил€ - d_p
     // —читаем, что
     // this->calc (true) - дл€ второй таблицы
+    //
 }
 */
