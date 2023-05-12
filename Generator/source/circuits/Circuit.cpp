@@ -123,7 +123,7 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
   static std::string filename;
   static std::string s;
 
-  int previousSizeOfFileName = (int)filename.size();
+  int previousSizeOfFileName = filename.size();
 
   filename = d_path + "/" + d_circuitName + ".v";
 
@@ -131,11 +131,13 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
   std::vector<std::string> outputs = d_graph.getVerticesByType("output");
   std::vector<std::string> consts = d_graph.getVerticesByType("const");
   
-  int pos = (int)s.find_last_of('/') + 1;
-  int pos2 = (int)filename.find_last_of('/') + 1;
+  int pos = static_cast<int&>(s.find_last_of('/')) + 1;
+  int pos2 = static_cast<int&>(filename.find_last_of('/')) + 1;
   
-  if (previousSizeOfFileName == 0) s = std::filesystem::current_path().string() + "/" + filename;// static variable will be created one time and then will be used throught running of the program
-  else s.replace(pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName);
+  if (previousSizeOfFileName == 0) 
+      s = std::filesystem::current_path().string() + "/" + filename;// static variable will be created one time and then will be used throught running of the program
+  else 
+      s.replace(pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName);
 
   bool f = std::filesystem::exists(s);
 
