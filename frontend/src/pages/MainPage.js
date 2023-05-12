@@ -74,9 +74,8 @@ const MainPage = () => {
 	}
 	
 	const addDataset = () => {
-		const data = {parameters_of_generation: selectedParametrs};
-		console.log(data);
-		axios.post(`http://127.0.0.1:8000/api/add_dataset`, data)
+		console.log(selectedParametrs);
+		axios.post(`http://127.0.0.1:8000/api/add_dataset`, selectedParametrs)
 		.then(() => {
 			alert('Параметры успешно отправлены на генерацию')
 		})
