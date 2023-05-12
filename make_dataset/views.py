@@ -28,6 +28,7 @@ class DatasetList(viewsets.ModelViewSet):
 
 
 def add_dataset(request):
+
     print("add_dataset is running")
     # добавить датасет в базу данных
     [dataset_id, parameters_of_generation] = add_dataset_to_database(request)
@@ -37,12 +38,12 @@ def add_dataset(request):
     run_generator(parameters_of_generation, dataset_id)
     print("run_generator is finished")
 
-    # запус Yosys
+    # запуск Yosys
     # make_image_from_verilog(dataset_id)
     # print("make_image_from_verilog is finished")
 
     # загрузка Synology Drive
-    # upload_to_synology(dataset_id)
+    upload_to_synology(dataset_id)
     print("upload_to_synology is finished")
 
     # удалить локальную папку с датасетом
@@ -165,12 +166,16 @@ def delete_folders(dataset_id):
 
 
 def add_dataset_to_database(request):
-    # print(request.POST.get)
     # получаем список id параметров генерации, по которым будем делать датасет
-    # потом поменять цикл на то, что мы приняли в фронта
-    id_of_parameters_of_generation = []
-    for obj in list(AddParameter.objects.all().values()):
-        id_of_parameters_of_generation.append(obj['id'])
+    test = request.body.decode('utf-8')
+    if len(list(test)) != 0:
+        id_of_parameters_of_generation = json.loads(request.body.decode('utf-8'))
+    else:
+        id_of_parameters_of_generation = []
+
+    # id_of_parameters_of_generation = []
+    # for obj in list(AddParameter.objects.all().values()):
+    #     id_of_parameters_of_generation.append(obj['id'])
 
     # получаем list параметров генерации, по которым будет делать датасет
     list_of_parameters = []
