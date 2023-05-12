@@ -59,6 +59,9 @@ def run_generator(parameters_of_generation, dataset_id):
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
     subprocess.Popen(f"./Generator/source/build/prog --json_path=./temp_for_json/data_{dataset_id}.json",
                      shell=True).wait()
+    obj = Dataset.objects.get(id=dataset_id)
+    obj.ready = True
+    obj.save()
 
 
 def make_image_from_verilog(dataset_id):
@@ -175,7 +178,7 @@ def add_dataset_to_database(request):
         obj = list(param.values())[0]
         obj["link_of_parameter"] = link_to_parameter
         list_of_parameters_for_dataset.append(obj)
-    dataset_id = Dataset.objects.create(parameters_of_generation=list_of_parameters_for_dataset).id
+    dataset_id = Dataset.objects.create(parameters_of_generation=list_of_parameters_for_dataset, ready=False).id
 
     # замена ссылок на правильные в бд датаета
     for obj in list_of_parameters_for_dataset:
