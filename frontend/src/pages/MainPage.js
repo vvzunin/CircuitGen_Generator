@@ -8,6 +8,9 @@ import DatasetItem from '../components/DatasetItem';
 
 import plus from '../assets/plus.svg';
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+
 const skeleton = [0, 0, 0, 0, 0];
 
 const dataset = [{
