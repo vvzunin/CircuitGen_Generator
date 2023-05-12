@@ -230,6 +230,14 @@ h1 {
 .dataset {
     &__info {
         // padding: 0 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p {
+            color: $main-color;
+            font-weight: 400;
+            font-size: 14px;
+        }
         span {
             display: block;
             color: $main-color;
@@ -271,7 +279,7 @@ h1 {
     }
     &__name {
         font-weight: 500;
-        font-size: 16px;
+        font-size: 14px;
         color: $main-color;
     }
     &__buttons {
@@ -298,8 +306,13 @@ h1 {
         border: 1px solid $main-color;
         background-color: $main-color;
         border-radius: 6px;
+        cursor: auto;
         &:hover {
             cursor: pointer;
+        }
+        &.disabled {
+            cursor: not-allowed;
+            user-select: none;
         }
     }
     &__info {

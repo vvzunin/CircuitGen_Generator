@@ -37,16 +37,31 @@ const MyLoader = (props) => (
 
 const MainPage = () => {
 
+	const [datasets, setDatasets] = React.useState(null);
+	const [progress, setProgress] = React.useState([]);
+
 	const [generatorParametrs, setGeneratorParametrs] = React.useState(null);
 	const [isLoading, setIsLoading] = React.useState(false);
 	const [isError, setIsError] = React.useState(false);
 
 	const [selectedParametrs, setSelectedParametrs] = React.useState([]);
 
+	const getProgres = () => {
+		axios.get('https://641051b7e1212d9cc930179a.mockapi.io/progres')
+		.then(({data}) => {setProgress(data)})
+		.catch(e => {console.log(e)});
+	}
+
+	const getDatasets = () => {
+		axios.get('http://127.0.0.1:8000/api/datasets/')
+		.then(({data}) => {setDatasets(data)})
+		.catch(e => {console.log(e)});
+	}
+
 	const getGeneratorParametrs = () => {
 		setIsLoading(true);
 		axios.get('http://127.0.0.1:8000/api/add_parameter/')
-		.then(({data}) => {setGeneratorParametrs(data); setIsLoading(false); console.log(data)})
+		.then(({data}) => {setGeneratorParametrs(data); setIsLoading(false);})
 		.catch(e => {console.log(e); setIsLoading(false); setIsError(true);});
 	}
 
@@ -59,9 +74,8 @@ const MainPage = () => {
 	}
 	
 	const addDataset = () => {
-		const data = {parameters_of_generation: selectedParametrs};
-		console.log(data);
-		axios.post(`http://127.0.0.1:8000/api/add_dataset`, data)
+		console.log(selectedParametrs);
+		axios.post(`http://127.0.0.1:8000/api/add_dataset`, selectedParametrs)
 		.then(() => {
 			alert('Параметры успешно отправлены на генерацию')
 		})
@@ -70,6 +84,8 @@ const MainPage = () => {
 
 	React.useEffect(() => {
 		getGeneratorParametrs();
+		getDatasets();
+		getProgres();
 	}, []);
 
 	return (
@@ -108,8 +124,21 @@ const MainPage = () => {
 				<div className="content">
 					<div className="content__scroll">
 						{
-							dataset && dataset.map((item , i) => {
-								return <DatasetItem key={i} id={item.id}/>
+							datasets && datasets.map((item , i) => {
+								function findObjectById(array, id) {
+									for (let i = 0; i < array.length; i++) {
+									  if (array[i].id === id) {
+										return array[i];
+									  }
+									}
+									return null;
+								  }
+								const currentProgress = findObjectById(progress, item.id);
+								if (item.parameters_of_generation && (item.parameters_of_generation.length > 0)) {
+									return <DatasetItem key={i} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress}/>
+								} else {
+									return null;
+								}
 							})
 						}
 					</div>
