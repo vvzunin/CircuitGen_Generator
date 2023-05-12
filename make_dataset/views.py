@@ -33,15 +33,19 @@ def add_dataset(request):
 
     # запуск генератора
     run_generator(parameters_of_generation, dataset_id)
+    print("run_generator is finished")
 
     # запус Yosys
     # make_image_from_verilog(dataset_id)
+    # print("make_image_from_verilog is finished")
 
     # загрузка Synology Drive
     upload_to_synology(dataset_id)
+    print("upload_to_synology is finished")
 
     # удалить локальную папку с датасетом
-    delete_folders(dataset_id)
+    # delete_folders(dataset_id)
+    # print("delete_folders is finished")
 
     print("add_dataset is finished")
     return HttpResponse("Ok")
@@ -63,7 +67,7 @@ def make_image_from_verilog(dataset_id):
     base_folder_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     directory = f"./dataset/{dataset_id}/"
     print(directory)
-    for verilog_path in glob.iglob(f'{directory}/**/**/*.v', recursive=True):
+    for verilog_path in glob.iglob(f'{directory}/**/*.v', recursive=True):
         print("yosys")
         image_path = pathlib.Path(verilog_path).parent
         full_name = os.path.basename(verilog_path)
@@ -121,11 +125,11 @@ def upload_to_synology(dataset_id):
             for circuit in os.listdir(param_dir):
                 extension_lst = ['.v', '.json']
                 for extension in extension_lst:
-                    verilog_path = f'{param_dir}/{circuit}/{circuit}{extension}'
+                    verilog_path = f'{param_dir}/{circuit}'
                     try:
                         with open(verilog_path, 'rb') as file:
                             bfile = io.BytesIO(file.read())
-                            bfile.name = f'{dataset_id}/{param}/{circuit}/{circuit}{extension}'
+                            bfile.name = f'{dataset_id}/{param}/{circuit}'
                             synd.upload_file(bfile, dest_folder_path='/team-folders/circuits/datasets/')
                     except Exception as e:
                         print(e)
