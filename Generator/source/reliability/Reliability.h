@@ -19,6 +19,7 @@ public:
   // reliability evaluation method
   int sumErrorBetweenReferenceAndOther(std::map<std::string, std::vector<bool>> i_errorStart, std::map<std::string, std::vector<bool>> i_otherTable);
   double valveRating(); //DOI: 10.18522 / 2311 - 3103 - 2016 - 7 - 149158
+  double endToEndMethod();
 
 private:
   OrientedGraph d_graph;

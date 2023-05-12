@@ -37,10 +37,11 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
   std::vector<std::string> errorValues;
   std::vector<std::string> setErrors;
 
-  if (i_withErrorValues)
+  if ((i_withErrorValues)||(i_withOneValveError!=-1))
     errorValues = d_graph.getLogicVerticesToWireName();
   if (i_withErrorSetting)
     setErrors = d_graph.getLogicVerticesToWireName();
+
 
   std::vector<std::string> inputs = d_graph.getVerticesByTypeToWireName("input");
   std::vector<std::string> outputs = d_graph.getVerticesByTypeToWireName("output");
@@ -73,6 +74,17 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
     {
       mapErrorsSet[setErrors[j]] = sn % 2;
       sn /= 2;
+    }
+
+    // TODO: map'ы обнулить
+
+    if (i_withOneValveError == -1)
+    {
+        for (int j = errorValues.size() - 1; j >= 0; --j)
+        {
+            mapErrors[errorValues[j]] = 0;
+        }
+        mapErrors[i_withOneValveError] = 1;
     }
 
     std::map<std::string, bool> res = d_graph.calcGraph(map, i_withErrorValues, mapErrors,i_withErrorSetting, mapErrorsSet);
@@ -237,6 +249,7 @@ int Reliability::sumErrorBetweenReferenceAndOther(std::map<std::string, std::vec
     // TODO:
     // Make a key check between i_errorStart and i_otherTable, if it does not match - print -1;
 
+
     int err = 0;
 
     // dict = i_errorStart // look at the following calcReliabilityBase()
@@ -295,5 +308,20 @@ double Reliability::valveRating()
     // DOI: 10.18522/2311-3103-2016-7-149158, article with the formula
 
     return averageValue;
-
 }
+
+/*
+double Reliability::endToEndMethod()
+{
+    // input and output vectors in the circuit
+    std::vector<std::string> inputs = d_graph.getVerticesByTypeToWireName("input");
+    std::vector<std::string> outputs = d_graph.getVerticesByTypeToWireName("output");
+    // number of inputs in the schematic - Check
+    int countInputs = inputs.size();
+    double averageValue = 0;
+    // Полином ошибок:
+    // вероятность ошибки вентиля - d_p
+    // Считаем, что
+    // this->calc (true) - для второй таблицы
+}
+*/
