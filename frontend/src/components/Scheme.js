@@ -15,7 +15,7 @@ const Scheme = ({data}) => {
             <div className="scheme__buttons">
                 <button className='scheme__more' onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Скрыть' : 'Подробнее'}</button>
                 {data.link_of_parameter && data.link_of_parameter === "empty link" && <a className='scheme__show disabled'>Просмотреть</a>}
-                {data.link_of_parameter && data.link_of_parameter !== "empty link" && <a className='scheme__show' href={data.link_of_parameter}>Просмотреть</a>}                
+                {data.link_of_parameter && data.link_of_parameter !== "empty link" && <a className='scheme__show' href={data.link_of_parameter} target='_blank'>Просмотреть</a>}                
                 {/* <div className='scheme__show'><img src={link} alt="link" /></div> */}
             </div>
         </div>
@@ -23,7 +23,7 @@ const Scheme = ({data}) => {
             <div className="scheme__line"></div>
             <ul>
                 <li>Тип генерации: {data.type_of_generation}</li>
-                <li>Минимальное количество входов: {data.min_in}</li>
+                <li>Минимальное количество входов: {data.min_in}</li>   
                 <li>Максимальное количество входов: {data.max_in}</li>
                 <li>Минимальное количество выходов: {data.min_out}</li>
                 <li>Максимальное количество выходов: {data.max_out}</li>

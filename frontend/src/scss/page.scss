@@ -31,6 +31,22 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    &__right {
+        &-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            a {
+                font-weight: 500;
+                font-size: 14px;
+                color: $main-color;
+                padding: 5px 12px;
+                border: 1px solid $main-color;
+                background-color: transparent;
+                border-radius: 6px;
+            }
+        }
+    }
     &__new {
         opacity: 0.6;
         border-radius: 10px;
@@ -41,6 +57,10 @@ h1 {
         border: 1px solid #4b96eb;
         color: #4b96eb;
         display: flex;
+        &.dataset {
+            border: 1px solid transparent;
+            text-align: center;
+        }
         &.error {
             border: 1px solid transparent;
             text-align: center;
@@ -413,6 +433,15 @@ h1 {
             font-size: 14px;
             text-align: center;
             padding: 0 10px;
+        }
+        &__right {
+            &-link {
+                flex-direction: column;
+                align-items: center;
+                button {
+                    margin-top: 8px;
+                }
+            }
         }
     }
     .scheme {

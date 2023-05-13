@@ -50,7 +50,7 @@ const MainPage = () => {
 	const [selectedParametrs, setSelectedParametrs] = React.useState([]);
 
 	const getProgres = () => {
-		axios.get('https://641051b7e1212d9cc930179a.mockapi.io/progres')
+		axios.get('http://127.0.0.1:8000/api/progress_of_datasets')
 		.then(({data}) => {setProgress(data)})
 		.catch(e => {console.log(e)});
 	}
@@ -72,18 +72,25 @@ const MainPage = () => {
 		axios.delete(`http://127.0.0.1:8000/api/add_parameter/${id}`)
 		.then(() => {
 			getGeneratorParametrs();
+			alert("Параметр генерации успешно удален!");
 		})
 		.catch(e => console.log(e));
 	}
 	
 	const addDataset = () => {
-		console.log(selectedParametrs);
-		axios.post(`http://127.0.0.1:8000/api/add_dataset`, selectedParametrs)
-		.then(() => {
-			alert('Параметры успешно отправлены на генерацию')
-		})
-		.catch(e => console.log(e));
-	}
+		if (selectedParametrs.length > 0) {
+			console.log(selectedParametrs);
+			axios.post(`http://127.0.0.1:8000/api/add_dataset`, selectedParametrs)
+			.then(() => {
+				alert('Параметры успешно отправлены на генерацию!');
+				getDatasets();
+				getProgres();
+			})
+			.catch(e => {console.log(e); alert("Не удалось отправить запрос, попробуйте еще раз")});
+		} else {
+			alert("Пожалуйста, выберите как минимум 1 параметр генерации");
+		}
+	} 
 
 	React.useEffect(() => {
 		getGeneratorParametrs();
@@ -123,7 +130,10 @@ const MainPage = () => {
 				</div>
 			</div>
 			<div className="content__right">
+				<div className="content__right-link">
 				<h3>Сгенерированный датасет</h3>
+				<a href="https://disk.yandex.ru/" target='_blank'>перейти на Яндекс диск</a>
+				</div>
 				<div className="content">
 					<div className="content__scroll">
 						{
@@ -138,13 +148,14 @@ const MainPage = () => {
 								  }
 								const currentProgress = findObjectById(progress, item.id);
 								if (item.parameters_of_generation && (item.parameters_of_generation.length > 0)) {
-									return <DatasetItem key={i} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress}/>
+									return <DatasetItem getDatasets={getDatasets} key={i} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress}/>
 								} else {
 									return null;
 								}
 							})
 						}
 					</div>
+					{datasets && (datasets.length == 0) && <div className="content__new dataset">Сгенерированный датасет отсутствует</div>} 
 				</div>
 			</div>
     </div>
