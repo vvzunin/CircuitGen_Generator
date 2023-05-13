@@ -69,7 +69,7 @@ void DataBaseGenerator::generateType(
         {
           //TODO: it is that Rustam told about iteration?
           d_parameters.setIteration(tt);
-          d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount + tt));
+          d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount));
 	  //std::cout << "d_parameters.getGenerationParameters().getName() returned: " << d_parameters.getGenerationParameters().getName() << "	when tt == " << tt << std::endl;
 	  //std::cout << "d_parameters.getGenerationParameters().getInputs() returned: " << d_parameters.getGenerationParameters().getInputs() << "	when tt == " << tt << std::endl;
 	  //std::cout << "d_parameters.getGenerationParameters().getOutputs() returned: " << d_parameters.getGenerationParameters().getOutputs() << "	when tt == " << tt << std::endl;
