@@ -5,6 +5,8 @@ import Scheme from './Scheme'
 
 const DatasetItem = ({id, parameters, currentProgress, getDatasets}) => {
 
+  console.log(currentProgress);
+
   const [status, setStatus] = React.useState(null);
 
   React.useEffect(() => {

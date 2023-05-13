@@ -138,15 +138,16 @@ const MainPage = () => {
 					<div className="content__scroll">
 						{
 							datasets && datasets.map((item , i) => {
-								function findObjectById(array, id) {
-									for (let i = 0; i < array.length; i++) {
-									  if (array[i].id === id) {
-										return array[i];
-									  }
-									}
-									return null;
-								  }
-								const currentProgress = findObjectById(progress, item.id);
+								// function findObjectById(array, id) {
+								// 	for (let i = 0; i < array.length; i++) {
+								// 	  if (array[i].id == id) {
+								// 		return array[i];
+								// 	  }
+								// 	}
+								// 	return null;
+								//   }
+								// const currentProgress = findObjectById(progress, item.id);
+								const currentProgress = progress[item.id];
 								if (item.parameters_of_generation && (item.parameters_of_generation.length > 0)) {
 									return <DatasetItem getDatasets={getDatasets} key={i} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress}/>
 								} else {
