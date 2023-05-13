@@ -17,7 +17,6 @@ void DataBaseGenerator::generateType(
   bool parallel
 )
 {
-  int counter = 0;
   std::string s = i_dbgp.getGenerationTypeString();
   std::function<void(const GenerationParameters&)> generator = getGenerateMethod(s);
   //TODO: make normal code
