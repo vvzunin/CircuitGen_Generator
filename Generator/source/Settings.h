@@ -60,7 +60,7 @@ private:
     {"or",     {"or",   2}},
     {"nor",    {"nor",  1}},
     {"not",    {"not",  7}},
-    {"buf",    {"buf",  8}},
+   // {"buf",    {"buf",  8}},
     {"xor",    {"xor",  6}},
     {"xnor",   {"xnor", 5}}
 

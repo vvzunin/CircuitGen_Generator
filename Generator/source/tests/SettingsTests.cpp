@@ -23,7 +23,7 @@ TEST(test_settings, test_default_load_settings)
   operToHierAns[5] = {"xnor"};
   operToHierAns[6] = {"xor"};
   operToHierAns[7] = {"not"};
-  operToHierAns[8] = {"buf"};
+ // operToHierAns[8] = {"buf"};
   operToHierAns[9] = {"1'b0"};
   operToHierAns[10] = {""};
 
@@ -31,13 +31,13 @@ TEST(test_settings, test_default_load_settings)
 
   operToNameAns[""] = "input";
   operToNameAns["="] = "output";
-  operToNameAns["1'b"] = "const";
+  operToNameAns["1'b0"] = "const";
   operToNameAns["and"] = "and";
   operToNameAns["nand"] = "nand";
   operToNameAns["or"] = "or";
   operToNameAns["nor"] = "nor";
   operToNameAns["not"] = "not";
-  operToNameAns["buf"] = "buf";
+//  operToNameAns["buf"] = "buf";
   operToNameAns["xor"] = "xor";
   operToNameAns["xnor"] = "xnor";
 
@@ -68,7 +68,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperati
           {"or",     {"or",   2}},
           {"nor",    {"nor",  1}},
           {"not",    {"not",  7}},
-          {"buf",    {"buf",  8}},
+     //     {"buf",    {"buf",  8}},
           {"xor",    {"xor",  6}},
           {"xnor",   {"xnor", 5}}
         };
@@ -96,7 +96,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
           {2,    {"or" }},
           {1,    {"nor"}},
           {7,    {"not"}},
-          {8,    {"buf"}},
+    //      {8,    {"buf"}},
           {6,    {"xor"}},
           {5,   {"xnor"}}
         };
@@ -125,7 +125,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
             {"or" , "or"},
             {"nor" , "nor"},
             {"not" , "not"},
-            {"buf" , "buf"},
+       //     {"buf" , "buf"},
             {"xor" , "xor"},
             {"xnor" , "xnor"}
         };
