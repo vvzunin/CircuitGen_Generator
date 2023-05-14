@@ -213,7 +213,7 @@ const AddParametr = () => {
     
     axios.post('http://127.0.0.1:8000/api/add_parameter/', sendData)
     .then(() => {
-      alert('Параметр успешно создан')
+      alert('Параметр успешно создан!')
     }).catch(e => console.log(e));
   }
 

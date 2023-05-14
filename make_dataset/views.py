@@ -100,7 +100,6 @@ def progress_of_datasets(request):
         progress_list[obj["id"]] = progress_dict
     return JsonResponse(progress_list)
 
-
 def ready_verilogs(dataset_id):
     directory = Path(f"./dataset/{dataset_id}/")
     num = len(list(directory.rglob("*.v")))
@@ -109,6 +108,7 @@ def ready_verilogs(dataset_id):
 
 def in_total_function(obj):
     list_of_param = obj["parameters_of_generation"]
+    print(list_of_param)
     in_total = 0
     for param in list_of_param:
         in_total += (param["max_in"] - param["min_in"] + 1) * (
