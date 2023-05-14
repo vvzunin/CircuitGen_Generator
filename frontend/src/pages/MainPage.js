@@ -65,7 +65,7 @@ const MainPage = () => {
 
 	const getDatasets = () => {
 		axios.get('http://127.0.0.1:8000/api/datasets/')
-		.then(({data}) => {setDatasets(data)})
+		.then(({data}) => {setDatasets(data.reverse())})
 		.catch(e => {console.log(e)});
 	}
 
@@ -112,7 +112,9 @@ const MainPage = () => {
 	return (
 	<div className="content__wrapper">
 			<div className="content__left">
-				<h3>Параметры генерации</h3>
+				<div className="content__right-link">
+					<h3>Параметры генерации</h3>
+				</div>
 				<div className="content pb75">
 						{
 						!isLoading && (generatorParametrs?.length == 0) && <Link to='/add' className="content__new">Создать параметр генерации<img src={plus}/></Link>
