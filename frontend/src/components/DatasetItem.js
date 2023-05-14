@@ -37,10 +37,10 @@ const DatasetItem = ({id, parameters, currentProgress, getDatasets}) => {
             <span>Датасет #{id}</span>
             <button className='parametr__delete' onClick={deleteDataset}>Удалить</button>
             {
-              (status === "error") && <p>Статус генерации: ошибка генерации</p>
+              (status === "error") && <p>Статус генерации: ошибка</p>
             }
             {
-              (status === "equal") && <p>Статус генерации: генерация завершена</p>
+              (status === "equal") && <p>Статус генерации: завершена</p>
             }
             {
               (status === "generation") && <p>Статус генерации: {currentProgress?.ready} из {currentProgress?.in_total} схем</p>

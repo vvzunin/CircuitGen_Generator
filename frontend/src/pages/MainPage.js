@@ -58,7 +58,8 @@ const MainPage = () => {
 	React.useEffect(() => {
 		const interval = setInterval(() => {
 			getProgres();
-		}, 10000);
+			getDatasets();
+		}, 1000);
 		return () => clearInterval(interval);
 	  }, []);
 
@@ -88,12 +89,15 @@ const MainPage = () => {
 		if (selectedParametrs.length > 0) {
 			console.log(selectedParametrs);
 			axios.post(`http://127.0.0.1:8000/api/add_dataset`, selectedParametrs)
-			.then(() => {
-				alert('Параметры успешно отправлены на генерацию!');
-				getDatasets();
-				getProgres();
-			})
+			// .then(() => {
+			// 	alert('Параметры успешно отправлены на генерацию!');
+			// 	getDatasets();
+			// 	getProgres();
+			// })
 			.catch(e => {console.log(e); alert("Не удалось отправить запрос, попробуйте еще раз")});
+			// alert('Параметры успешно отправлены на генерацию!');
+			setTimeout(getDatasets, 200);
+			setTimeout(getProgres, 1000);
 		} else {
 			alert("Пожалуйста, выберите как минимум 1 параметр генерации");
 		}
