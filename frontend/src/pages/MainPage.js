@@ -55,6 +55,13 @@ const MainPage = () => {
 		.catch(e => {console.log(e)});
 	}
 
+	React.useEffect(() => {
+		const interval = setInterval(() => {
+			getProgres();
+		}, 10000);
+		return () => clearInterval(interval);
+	  }, []);
+
 	const getDatasets = () => {
 		axios.get('http://127.0.0.1:8000/api/datasets/')
 		.then(({data}) => {setDatasets(data)})
@@ -132,7 +139,7 @@ const MainPage = () => {
 			<div className="content__right">
 				<div className="content__right-link">
 				<h3>Сгенерированный датасет</h3>
-				<a href="https://disk.yandex.ru/" target='_blank'>перейти на Яндекс диск</a>
+				<a href="https://vvzunin.me:10003/d/s/tVFkjEa5dJVgkpNCMirx37WFS3vxKPgU/tWINRKjvi7TCinaI8i5arDSuCxhKzd-o-X7RAk_qacAo" target='_blank'>Перейти на Synology Drive</a>
 				</div>
 				<div className="content">
 					<div className="content__scroll">
