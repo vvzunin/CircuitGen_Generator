@@ -4,9 +4,7 @@ import TextField from "./TextField";
 const Genetic = ({geneticActive, updateState}) => {
 
     const data = ['Воиспроизведение', 'Мутация', 'Отбор'];
-  
-  
-  
+    
     return (
       <>
       <div className="add__genetic">

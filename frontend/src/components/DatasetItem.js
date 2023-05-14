@@ -43,7 +43,7 @@ const DatasetItem = ({id, parameters, currentProgress, getDatasets}) => {
               (status === "equal") && <p>Статус генерации: генерация завершена</p>
             }
             {
-              (status === "generation") && <p>Статус генерации: сгенерировано {currentProgress?.ready} из {currentProgress?.in_total} схем</p>
+              (status === "generation") && <p>Статус генерации: {currentProgress?.ready} из {currentProgress?.in_total} схем</p>
             }
         </div>
         <div className="dataset__content">
