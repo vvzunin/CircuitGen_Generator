@@ -19,7 +19,7 @@ import io
 import os
 import shutil
 
-from synology_drive_api.drive import SynologyDrive
+from make_dataset.synology_drive_api.drive import SynologyDrive
 
 
 class DatasetList(viewsets.ModelViewSet):
