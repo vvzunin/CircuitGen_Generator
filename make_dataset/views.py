@@ -19,7 +19,7 @@ import io
 import os
 import shutil
 
-from synology_drive_api.drive import SynologyDrive
+from make_dataset.synology_drive_api.drive import SynologyDrive
 
 
 class DatasetList(viewsets.ModelViewSet):
@@ -40,7 +40,7 @@ def add_dataset(request):
 
     # запуск Yosys
     # make_image_from_verilog(dataset_id)
-    # print("make_image_from_verilog is finished")
+    print("make_image_from_verilog is finished")
 
     # загрузка Synology Drive
     upload_to_synology(dataset_id)
@@ -58,9 +58,9 @@ def run_generator(parameters_of_generation, dataset_id):
     # print(parameters_of_generation)
     for obj in parameters_of_generation:
         obj['dataset_id'] = dataset_id
-    with open(f'temp_for_json/data_{dataset_id}.json', 'w', encoding='utf-8') as f:
+    with open(f'jsons_for_generator/data_{dataset_id}.json', 'w', encoding='utf-8') as f:
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
-    subprocess.Popen(f"./Generator/source/build/prog --json_path=./temp_for_json/data_{dataset_id}.json",
+    subprocess.Popen(f"./Generator/source/build/prog --json_path=./jsons_for_generator/data_{dataset_id}.json",
                      shell=True).wait()
     obj = Dataset.objects.get(id=dataset_id)
     obj.ready = True
@@ -72,9 +72,7 @@ def make_image_from_verilog(dataset_id):
     path = 'export PATH="/Users/kudr.max/PycharmProjects/1290_project/source/data/Yosys/bin:$PATH"'
     base_folder_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     directory = f"./dataset/{dataset_id}/"
-    print(directory)
     for verilog_path in glob.iglob(f'{directory}/**/*.v', recursive=True):
-        print("yosys")
         image_path = pathlib.Path(verilog_path).parent
         full_name = os.path.basename(verilog_path)
         file_name = os.path.splitext(full_name)
@@ -130,16 +128,15 @@ def upload_to_synology(dataset_id):
     with SynologyDrive(NAS_USER, NAS_PASS, NAS_IP, NAS_PORT, dsm_version=dsm_version) as synd:
         dataset_id = str(dataset_id)
         dataset_dir = f'./dataset/{dataset_id}'
+        extension_lst = ['.v', '.json', '.png']
         for param in os.listdir(dataset_dir):
-            param_dir = f'{dataset_dir}/{param}'
-            for circuit in os.listdir(param_dir):
-                extension_lst = ['.v', '.json']
-                for extension in extension_lst:
-                    verilog_path = f'{param_dir}/{circuit}'
+            for extension in extension_lst:
+                for file_path in glob.iglob(f'{dataset_dir}/{param}/*{extension}', recursive=True):
                     try:
-                        with open(verilog_path, 'rb') as file:
+                        with open(file_path, 'rb') as file:
+                            file_name = os.path.basename(file_path)
                             bfile = io.BytesIO(file.read())
-                            bfile.name = f'{dataset_id}/{param}/{circuit}'
+                            bfile.name = f'{dataset_id}/{param}/{file_name}'
                             synd.upload_file(bfile, dest_folder_path='/team-folders/circuits/datasets/')
                     except Exception as e:
                         print(e)
@@ -158,9 +155,10 @@ def get_link_to_synology(dataset_id, param_id):
 
 
 def delete_folders(dataset_id):
-    mydir = f'./dataset/{dataset_id}/'
     try:
-        shutil.rmtree(mydir)
+        shutil.rmtree(f'./dataset/{dataset_id}/')
+        for f in os.listdir('./jsons_for_generator'):
+            os.remove(os.path.join('./jsons_for_generator', f))
     except OSError as e:
         print("Error: %s - %s." % (e.filename, e.strerror))
 
@@ -172,10 +170,6 @@ def add_dataset_to_database(request):
         id_of_parameters_of_generation = json.loads(request.body.decode('utf-8'))
     else:
         id_of_parameters_of_generation = []
-
-    # id_of_parameters_of_generation = []
-    # for obj in list(AddParameter.objects.all().values()):
-    #     id_of_parameters_of_generation.append(obj['id'])
 
     # получаем list параметров генерации, по которым будет делать датасет
     list_of_parameters = []
