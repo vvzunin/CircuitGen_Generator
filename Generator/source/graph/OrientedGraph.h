@@ -40,13 +40,15 @@ public:
   void numberVerticesCorrectly();
 
 private:
-  std::vector<int> getConnectedTo(int k);
+  std::vector<int> getConnectedTo(int k) const;
   std::vector<int> getConnectedFrom(int k);
   std::vector<bool> vertsToValues(std::vector<int> i_verts);
   bool calc(std::vector<bool> i_inputs, const std::string& i_op);
 
   std::vector<GraphVertex> d_vertices;
   std::vector<std::vector<bool>> d_adjacencyMatrix;
+  std::vector<std::vector<int>> d_listOfEdgesFromTo;
+  std::vector<std::vector<int>> d_listOfEdgesToFrom;
   std::map<std::string, bool> d_error;
   Settings* d_settings = Settings::getInstance("OrietedGraph");
 };

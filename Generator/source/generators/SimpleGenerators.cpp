@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <ctime>
+#include <iostream>
 
 #include "SimpleGenerators.h"
 #include "../graph/OrientedGraph.h"
@@ -129,7 +130,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
   int currIndex = elemLevel[0];
   int prevIndex = 0;
 
-  for (int i = 1; i < maxLevel - 1; ++i)
+  for (int i = 1; i < maxLevel; ++i)
   {
     int position = 0;
     for (int j = 0; j < elemLevel[i]; ++j)

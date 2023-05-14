@@ -21,7 +21,7 @@ void Circuit::computeHash()
   stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_numOutputs << '\n';
   stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_maxLevel << '\n';
   stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_numEdges << '\n';
-  stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_reliability << '\n';
+  stream << std::setfill(' ') << std::setw(10) << std::fixed << std::setprecision(10) << d_circuitParameters.d_reliability << '\n';
   stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_size << '\n';
   stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_area << '\n';
   stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_gates << '\n';
@@ -72,6 +72,9 @@ void Circuit::updateCircuitsParameters()
         
   Reliability R(d_graph, 0.5);
   std::map<std::string, double> dict = R.runNadezhda(d_path, d_circuitName); // what? d_path
+  //std::cout << R.calcReliabilityBase() << std::endl;
+  //std::cout << R.valveRating() << std::endl;
+
   d_circuitParameters.d_reliability = dict["reliability_metric"];
   d_circuitParameters.d_size = dict["size"];
   d_circuitParameters.d_area = dict["area"];
@@ -140,9 +143,6 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
       s.replace(pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName);
 
   bool f = std::filesystem::exists(s);
-
-  if (std::filesystem::exists(filename))
-    std::remove(filename.c_str());
 
   std::ofstream w(filename);
   for (const auto& expr : d_logExpressions)
@@ -240,18 +240,19 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
 
 bool Circuit::saveParameters(bool i_pathExists) const
 {
-  if (!i_pathExists)
-  {
+  if (true)
+  {/*
     if (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() + d_path)) // TODO: make function isDirectory exists
     {
       //std::filesystem::create_directory(d_path);
     }
+  */
   }
 
   std::string filename = d_path + "/" + d_circuitName + ".json";
 
-  if (std::filesystem::exists(filename))
-    std::remove(filename.c_str());
+  //if (std::filesystem::exists(filename))
+  //  std::remove(filename.c_str());
 
   std::ofstream w(filename);
 
@@ -263,7 +264,7 @@ bool Circuit::saveParameters(bool i_pathExists) const
   w << "\t\"maxLevel\": \"" << d_circuitParameters.d_maxLevel << "\"," << std::endl;
   w << "\t\"numEdges\": \"" << d_circuitParameters.d_numEdges << "\"," << std::endl;
   //w << "\t\"\": \"" << d_circuitParameters. << "\"," << std::endl; TODO: what is this mean?
-  w << "\t\"reliability\": \"" << d_circuitParameters.d_reliability << "\"," << std::endl;
+  w << "\t\"reliability\": \"" << std::fixed << std::setprecision(20) << d_circuitParameters.d_reliability << "\"," << std::endl;
   w << "\t\"size\": \"" << d_circuitParameters.d_size << "\"," << std::endl;
   w << "\t\"area\": \"" << d_circuitParameters.d_area << "\"," << std::endl;
   w << "\t\"longest_path\": \"" << d_circuitParameters.d_longestPath << "\"," << std::endl;

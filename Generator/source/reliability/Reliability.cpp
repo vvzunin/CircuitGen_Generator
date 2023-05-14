@@ -57,20 +57,20 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
 
     assert(inputs.size() != 0);
 
-    for (int j = inputs.size() - 1; j >= 0; --j)
+    for (int j = (int)inputs.size() - 1; j >= 0; --j)
     {
       map[inputs[j]] = sn % 2;
       sn /= 2;
     }
 
 
-    for (int j = errorValues.size() - 1; j >= 0; --j)
+    for (int j = (int)errorValues.size() - 1; j >= 0; --j)
     {
       mapErrors[errorValues[j]] = sn % 2;
       sn /= 2;
     }
 
-    for (int j = setErrors.size() - 1; j >= 0; --j)
+    for (int j = (int)setErrors.size() - 1; j >= 0; --j)
     {
       mapErrorsSet[setErrors[j]] = sn % 2;
       sn /= 2;
@@ -78,9 +78,9 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
 
     // TODO: map'ы обнулить
 
-    if (i_withOneValveError == -1)
+    if (i_withOneValveError != -1)
     {
-        for (int j = errorValues.size() - 1; j >= 0; --j)
+        for (int j = (int)errorValues.size() - 1; j >= 0; --j)
         {
             mapErrors[errorValues[j]] = 0;
         }
