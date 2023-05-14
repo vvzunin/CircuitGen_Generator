@@ -54,13 +54,13 @@ private:
   {
     {"input",  {"",     10}},
     {"output", {"=",    0}},
-    {"const",  {"1'b",  9}},
+    {"const",  {"1'b0",  9}},
     {"and",    {"and",  4}},
     {"nand",   {"nand", 3}},
     {"or",     {"or",   2}},
     {"nor",    {"nor",  1}},
     {"not",    {"not",  7}},
-    {"buf",    {"buf",  8}},
+   // {"buf",    {"buf",  8}},
     {"xor",    {"xor",  6}},
     {"xnor",   {"xnor", 5}}
 

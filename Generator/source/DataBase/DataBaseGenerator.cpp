@@ -17,7 +17,6 @@ void DataBaseGenerator::generateType(
   bool parallel
 )
 {
-
   std::string s = i_dbgp.getGenerationTypeString();
   std::function<void(const GenerationParameters&)> generator = getGenerateMethod(s);
   //TODO: make normal code
@@ -70,7 +69,7 @@ void DataBaseGenerator::generateType(
         {
           //TODO: it is that Rustam told about iteration?
           d_parameters.setIteration(tt);
-          d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount + tt));
+          d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount));
 	  //std::cout << "d_parameters.getGenerationParameters().getName() returned: " << d_parameters.getGenerationParameters().getName() << "	when tt == " << tt << std::endl;
 	  //std::cout << "d_parameters.getGenerationParameters().getInputs() returned: " << d_parameters.getGenerationParameters().getInputs() << "	when tt == " << tt << std::endl;
 	  //std::cout << "d_parameters.getGenerationParameters().getOutputs() returned: " << d_parameters.getGenerationParameters().getOutputs() << "	when tt == " << tt << std::endl;
@@ -78,10 +77,11 @@ void DataBaseGenerator::generateType(
 	  //std::cout << "d_parameters.getGenerationParameters().getRequestId() returned: " << d_parameters.getGenerationParameters().getRequestId() << "		when tt == " << tt << std::endl;
 	  //std::cout << "d_parameters.getGenerationParameters().getIteration() returned: " << d_parameters.getGenerationParameters().getIteration() << "		when tt == " << tt << std::endl;
 	  generator(d_parameters.getGenerationParameters());
+      d_dirCount++;
         }
       }
     }
-    d_dirCount++;
+    
   }
 }
 
@@ -95,7 +95,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
 
   std::vector<std::pair<std::string, std::vector<std::string>>> circs;
 
-  //if (i_param.getCNF().getCNFT()) TODO: remove costul. Need to make it by parameter
+  if (i_param.getCNF().getCNFT()) 
     circs.push_back({"CNFT", tftt.cnfFromTruthTable(tt, true)});
 
   if (i_param.getCNF().getCNFF())

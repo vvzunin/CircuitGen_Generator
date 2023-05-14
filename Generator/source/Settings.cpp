@@ -176,13 +176,13 @@ std::string Settings::getDatasetPath() const
 std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const
 {
   if (i_s == "FromRandomTruthTable")
-    return "ftt";
+    return "CCGRTT";
   if (i_s == "RandLevel")
-    return "rl";
+    return "CCGRCG";
   if (i_s == "NumOperation")
-    return "nop";
+    return "CCGRVC";
   if (i_s == "Genetic")
-    return "gen";
+    return "CCGGA";
 
   std::cout << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
 
