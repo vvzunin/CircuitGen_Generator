@@ -72,7 +72,7 @@ const MainPage = () => {
 	const getGeneratorParametrs = () => {
 		setIsLoading(true);
 		axios.get('http://127.0.0.1:8000/api/add_parameter/')
-		.then(({data}) => {setGeneratorParametrs(data); setIsLoading(false);})
+		.then(({data}) => {setGeneratorParametrs(data.reverse()); setIsLoading(false);})
 		.catch(e => {console.log(e); setIsLoading(false); setIsError(true);});
 	}
 
@@ -83,6 +83,11 @@ const MainPage = () => {
 			alert("Параметр генерации успешно удален!");
 		})
 		.catch(e => console.log(e));
+	}
+
+	const updateData = () => {
+		getDatasets();
+		getProgres();
 	}
 	
 	const addDataset = () => {
@@ -96,8 +101,7 @@ const MainPage = () => {
 			// })
 			.catch(e => {console.log(e); alert("Не удалось отправить запрос, попробуйте еще раз")});
 			// alert('Параметры успешно отправлены на генерацию!');
-			setTimeout(getDatasets, 200);
-			setTimeout(getProgres, 1000);
+			setTimeout(updateData, 200);
 		} else {
 			alert("Пожалуйста, выберите как минимум 1 параметр генерации");
 		}

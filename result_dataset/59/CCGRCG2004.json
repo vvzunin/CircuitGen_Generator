@@ -1,0 +1,24 @@
+{
+	"name": "CCGRCG2004",
+	"numInputs": "8",
+	"numOutputs": "7",
+	"maxLevel": "1",
+	"numEdges": "7",
+	"reliability": "0",
+	"size": "0",
+	"area": "0",
+	"longest_path": "0",
+	"gates": "0",
+	"sensitivity_factor": "0",
+	"sinsitivity_factor_percent": "0",
+	"sensitive_area": "0",
+	"sensitive_area_percent": "0",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"input": 8,
+		"output": 7
+	},
+	"numEdgesOfEachType": {
+		"input-output": 7
+	}
+}
