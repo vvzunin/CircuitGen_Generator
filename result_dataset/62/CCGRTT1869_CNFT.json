@@ -1,0 +1,33 @@
+{
+	"name": "CCGRTT1869_CNFT",
+	"numInputs": "4",
+	"numOutputs": "6",
+	"maxLevel": "14",
+	"numEdges": "144",
+	"reliability": "0.00000000000000000000",
+	"size": "0.00000000000000000000",
+	"area": "0.00000000000000000000",
+	"longest_path": "0",
+	"gates": "0",
+	"sensitivity_factor": "0.00000000000000000000",
+	"sinsitivity_factor_percent": "0.00000000000000000000",
+	"sensitive_area": "0.00000000000000000000",
+	"sensitive_area_percent": "0.00000000000000000000",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"and": 28,
+		"input": 4,
+		"not": 4,
+		"or": 39,
+		"output": 6
+	},
+	"numEdgesOfEachType": {
+		"and-and": 24,
+		"and-or": 43,
+		"input-and": 16,
+		"input-not": 4,
+		"not-and": 16,
+		"or-or": 35,
+		"or-output": 6
+	}
+}

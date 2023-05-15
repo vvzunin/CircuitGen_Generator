@@ -1,0 +1,33 @@
+{
+	"name": "CCGRTT1617_CNFF",
+	"numInputs": "4",
+	"numOutputs": "4",
+	"maxLevel": "15",
+	"numEdges": "128",
+	"reliability": "0.00000000000000000000",
+	"size": "0.00000000000000000000",
+	"area": "0.00000000000000000000",
+	"longest_path": "0",
+	"gates": "0",
+	"sensitivity_factor": "0.00000000000000000000",
+	"sinsitivity_factor_percent": "0.00000000000000000000",
+	"sensitive_area": "0.00000000000000000000",
+	"sensitive_area_percent": "0.00000000000000000000",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"and": 32,
+		"input": 4,
+		"not": 4,
+		"or": 28,
+		"output": 4
+	},
+	"numEdgesOfEachType": {
+		"and-and": 29,
+		"and-output": 4,
+		"input-not": 4,
+		"input-or": 16,
+		"not-or": 16,
+		"or-and": 35,
+		"or-or": 24
+	}
+}
