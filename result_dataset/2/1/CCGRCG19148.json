@@ -1,0 +1,22 @@
+{
+	"name": "CCGRCG19148",
+	"numInputs": "6",
+	"numOutputs": "4",
+	"maxLevel": "3",
+	"numEdges": "7",
+	"reliability": "0.85563411617988527347",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"input": 6,
+		"not": 1,
+		"or": 1,
+		"output": 4,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"input-not": 1,
+		"input-or": 1,
+		"not-xnor": 1,
+		"xnor-output": 4
+	}
+}

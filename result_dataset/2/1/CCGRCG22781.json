@@ -1,0 +1,27 @@
+{
+	"name": "CCGRCG22781",
+	"numInputs": "6",
+	"numOutputs": "7",
+	"maxLevel": "3",
+	"numEdges": "15",
+	"reliability": "0.95237672834728326343",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"buf": 2,
+		"input": 6,
+		"nor": 2,
+		"output": 7,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"buf-buf": 1,
+		"buf-nor": 1,
+		"buf-output": 1,
+		"buf-xnor": 1,
+		"input-buf": 2,
+		"input-nor": 2,
+		"nor-output": 4,
+		"nor-xnor": 1,
+		"xnor-output": 2
+	}
+}

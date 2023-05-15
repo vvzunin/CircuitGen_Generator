@@ -1,0 +1,22 @@
+{
+	"name": "CCGRCG18822",
+	"numInputs": "6",
+	"numOutputs": "3",
+	"maxLevel": "3",
+	"numEdges": "6",
+	"reliability": "0.84253888103137031251",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"input": 6,
+		"not": 1,
+		"or": 1,
+		"output": 3,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"input-not": 1,
+		"input-or": 1,
+		"not-xnor": 1,
+		"xnor-output": 3
+	}
+}

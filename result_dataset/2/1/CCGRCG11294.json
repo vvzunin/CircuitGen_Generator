@@ -1,0 +1,21 @@
+{
+	"name": "CCGRCG11294",
+	"numInputs": "4",
+	"numOutputs": "8",
+	"maxLevel": "2",
+	"numEdges": "10",
+	"reliability": "0.72454984516816178797",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"input": 4,
+		"not": 1,
+		"output": 8,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"input-not": 1,
+		"input-xnor": 1,
+		"not-output": 3,
+		"xnor-output": 5
+	}
+}

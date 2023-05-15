@@ -1,0 +1,28 @@
+{
+	"name": "CCGRCG6267",
+	"numInputs": "4",
+	"numOutputs": "3",
+	"maxLevel": "3",
+	"numEdges": "15",
+	"reliability": "0.31971132548436920207",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"and": 1,
+		"buf": 2,
+		"input": 4,
+		"nand": 1,
+		"output": 3,
+		"xnor": 2
+	},
+	"numEdgesOfEachType": {
+		"and-buf": 1,
+		"and-nand": 1,
+		"buf-buf": 1,
+		"buf-output": 2,
+		"input-and": 2,
+		"input-buf": 2,
+		"input-xnor": 4,
+		"nand-output": 1,
+		"xnor-nand": 1
+	}
+}

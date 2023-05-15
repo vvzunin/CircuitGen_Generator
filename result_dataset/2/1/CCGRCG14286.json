@@ -1,0 +1,21 @@
+{
+	"name": "CCGRCG14286",
+	"numInputs": "5",
+	"numOutputs": "5",
+	"maxLevel": "2",
+	"numEdges": "8",
+	"reliability": "0.00892342077325883852",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"input": 5,
+		"nor": 1,
+		"not": 1,
+		"output": 5
+	},
+	"numEdgesOfEachType": {
+		"input-nor": 2,
+		"input-not": 1,
+		"nor-output": 4,
+		"not-output": 1
+	}
+}

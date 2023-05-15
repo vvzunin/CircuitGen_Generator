@@ -1,0 +1,28 @@
+{
+	"name": "CCGRCG31781",
+	"numInputs": "8",
+	"numOutputs": "4",
+	"maxLevel": "3",
+	"numEdges": "16",
+	"reliability": "0.58857110165181980577",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"buf": 1,
+		"input": 8,
+		"nand": 3,
+		"output": 4,
+		"xnor": 1,
+		"xor": 1
+	},
+	"numEdgesOfEachType": {
+		"buf-nand": 1,
+		"buf-xnor": 1,
+		"input-buf": 2,
+		"input-nand": 4,
+		"input-xor": 2,
+		"nand-output": 3,
+		"nand-xnor": 1,
+		"xnor-output": 1,
+		"xor-nand": 1
+	}
+}

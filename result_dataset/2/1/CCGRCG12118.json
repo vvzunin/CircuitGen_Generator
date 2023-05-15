@@ -1,0 +1,20 @@
+{
+	"name": "CCGRCG12118",
+	"numInputs": "5",
+	"numOutputs": "3",
+	"maxLevel": "2",
+	"numEdges": "5",
+	"reliability": "0.35134302717226595369",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"input": 5,
+		"not": 1,
+		"output": 3,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"input-not": 1,
+		"input-xnor": 1,
+		"xnor-output": 3
+	}
+}

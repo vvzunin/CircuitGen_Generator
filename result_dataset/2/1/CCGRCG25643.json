@@ -1,0 +1,33 @@
+{
+	"name": "CCGRCG25643",
+	"numInputs": "7",
+	"numOutputs": "4",
+	"maxLevel": "3",
+	"numEdges": "17",
+	"reliability": "0.67632689865742023905",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"and": 1,
+		"buf": 1,
+		"input": 7,
+		"nand": 2,
+		"nor": 1,
+		"or": 1,
+		"output": 4,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"and-output": 1,
+		"buf-output": 2,
+		"input-nand": 3,
+		"input-nor": 2,
+		"input-or": 2,
+		"nand-buf": 1,
+		"nor-and": 1,
+		"nor-buf": 1,
+		"nor-xnor": 1,
+		"or-and": 1,
+		"or-xnor": 1,
+		"xnor-output": 1
+	}
+}

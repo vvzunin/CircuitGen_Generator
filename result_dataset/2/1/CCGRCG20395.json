@@ -1,0 +1,32 @@
+{
+	"name": "CCGRCG20395",
+	"numInputs": "6",
+	"numOutputs": "5",
+	"maxLevel": "4",
+	"numEdges": "20",
+	"reliability": "0.49278735041429511110",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"and": 2,
+		"buf": 1,
+		"input": 6,
+		"nand": 3,
+		"nor": 1,
+		"not": 1,
+		"output": 5,
+		"xor": 1
+	},
+	"numEdgesOfEachType": {
+		"and-nor": 1,
+		"and-xor": 1,
+		"buf-and": 2,
+		"input-buf": 2,
+		"input-nand": 3,
+		"nand-and": 2,
+		"nand-nand": 2,
+		"nand-nor": 1,
+		"nand-not": 1,
+		"not-output": 1,
+		"xor-output": 4
+	}
+}

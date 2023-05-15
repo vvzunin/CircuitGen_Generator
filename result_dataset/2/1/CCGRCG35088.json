@@ -1,0 +1,30 @@
+{
+	"name": "CCGRCG35088",
+	"numInputs": "8",
+	"numOutputs": "8",
+	"maxLevel": "3",
+	"numEdges": "20",
+	"reliability": "0.12072157845689535094",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"and": 1,
+		"buf": 2,
+		"input": 8,
+		"nand": 1,
+		"nor": 1,
+		"or": 1,
+		"output": 8
+	},
+	"numEdgesOfEachType": {
+		"and-output": 5,
+		"buf-and": 1,
+		"buf-nor": 2,
+		"buf-or": 1,
+		"input-buf": 4,
+		"input-nand": 2,
+		"nand-and": 1,
+		"nand-or": 1,
+		"nor-output": 2,
+		"or-output": 1
+	}
+}

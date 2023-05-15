@@ -1,0 +1,21 @@
+{
+	"name": "CCGRCG10976",
+	"numInputs": "4",
+	"numOutputs": "7",
+	"maxLevel": "2",
+	"numEdges": "9",
+	"reliability": "0.28619472595818823413",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"input": 4,
+		"not": 1,
+		"output": 7,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"input-not": 1,
+		"input-xnor": 1,
+		"not-output": 2,
+		"xnor-output": 5
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"name": "CCGRCG16013",
+	"numInputs": "5",
+	"numOutputs": "7",
+	"maxLevel": "3",
+	"numEdges": "17",
+	"reliability": "0.49011569760118256500",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"and": 1,
+		"buf": 3,
+		"input": 5,
+		"not": 2,
+		"output": 7,
+		"xor": 1
+	},
+	"numEdgesOfEachType": {
+		"and-output": 2,
+		"buf-output": 5,
+		"input-not": 2,
+		"input-xor": 2,
+		"not-and": 1,
+		"not-buf": 3,
+		"xor-and": 1,
+		"xor-buf": 1
+	}
+}

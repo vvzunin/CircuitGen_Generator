@@ -1,0 +1,28 @@
+{
+	"name": "CCGRCG1857",
+	"numInputs": "3",
+	"numOutputs": "4",
+	"maxLevel": "3",
+	"numEdges": "15",
+	"reliability": "0.96081743187946855311",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"buf": 2,
+		"input": 3,
+		"nor": 1,
+		"output": 4,
+		"xor": 3
+	},
+	"numEdgesOfEachType": {
+		"buf-buf": 1,
+		"buf-output": 1,
+		"buf-xor": 1,
+		"input-buf": 2,
+		"input-xor": 4,
+		"nor-output": 1,
+		"xor-buf": 1,
+		"xor-nor": 1,
+		"xor-output": 2,
+		"xor-xor": 1
+	}
+}

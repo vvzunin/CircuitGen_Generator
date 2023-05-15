@@ -1,0 +1,23 @@
+{
+	"name": "CCGRCG22063",
+	"numInputs": "6",
+	"numOutputs": "7",
+	"maxLevel": "2",
+	"numEdges": "15",
+	"reliability": "0.74328498086277483559",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"buf": 1,
+		"input": 6,
+		"or": 2,
+		"output": 7,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"buf-output": 1,
+		"input-buf": 2,
+		"input-or": 4,
+		"input-xnor": 2,
+		"or-output": 6
+	}
+}

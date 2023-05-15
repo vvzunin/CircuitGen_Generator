@@ -1,0 +1,42 @@
+{
+	"name": "CCGRCG10547",
+	"numInputs": "4",
+	"numOutputs": "7",
+	"maxLevel": "4",
+	"numEdges": "28",
+	"reliability": "0.32660634481429617892",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"buf": 2,
+		"input": 4,
+		"nand": 1,
+		"nor": 2,
+		"or": 3,
+		"output": 7,
+		"xnor": 1,
+		"xor": 3
+	},
+	"numEdgesOfEachType": {
+		"buf-output": 2,
+		"buf-xor": 1,
+		"input-nor": 2,
+		"input-or": 1,
+		"input-xnor": 2,
+		"input-xor": 2,
+		"nand-output": 1,
+		"nor-buf": 1,
+		"nor-nand": 1,
+		"nor-or": 1,
+		"nor-xor": 1,
+		"or-buf": 1,
+		"or-nand": 1,
+		"or-or": 1,
+		"or-output": 4,
+		"xnor-buf": 1,
+		"xnor-or": 1,
+		"xnor-xor": 1,
+		"xor-nor": 1,
+		"xor-or": 1,
+		"xor-xor": 1
+	}
+}

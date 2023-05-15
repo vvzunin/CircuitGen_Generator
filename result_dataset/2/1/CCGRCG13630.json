@@ -1,0 +1,35 @@
+{
+	"name": "CCGRCG13630",
+	"numInputs": "5",
+	"numOutputs": "4",
+	"maxLevel": "4",
+	"numEdges": "18",
+	"reliability": "0.05156970680763492410",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"and": 1,
+		"buf": 2,
+		"input": 5,
+		"nor": 2,
+		"not": 2,
+		"or": 1,
+		"output": 4,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"and-nor": 1,
+		"and-xnor": 1,
+		"buf-nor": 1,
+		"buf-xnor": 1,
+		"input-and": 2,
+		"input-buf": 2,
+		"input-nor": 1,
+		"input-not": 1,
+		"nor-or": 1,
+		"not-output": 2,
+		"or-output": 2,
+		"xnor-buf": 1,
+		"xnor-not": 1,
+		"xnor-or": 1
+	}
+}

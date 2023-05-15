@@ -1,0 +1,31 @@
+{
+	"name": "CCGRCG6957",
+	"numInputs": "4",
+	"numOutputs": "3",
+	"maxLevel": "4",
+	"numEdges": "13",
+	"reliability": "0.11412662608825041577",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"buf": 3,
+		"input": 4,
+		"nand": 1,
+		"nor": 1,
+		"not": 1,
+		"output": 3,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"buf-buf": 2,
+		"buf-output": 2,
+		"buf-xnor": 1,
+		"input-buf": 1,
+		"input-not": 1,
+		"nand-output": 1,
+		"nor-buf": 1,
+		"nor-nand": 1,
+		"not-buf": 1,
+		"not-nor": 1,
+		"not-xnor": 1
+	}
+}

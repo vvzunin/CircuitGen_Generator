@@ -1,0 +1,29 @@
+{
+	"name": "CCGRCG27110",
+	"numInputs": "7",
+	"numOutputs": "6",
+	"maxLevel": "4",
+	"numEdges": "18",
+	"reliability": "0.42480019193614432238",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"and": 2,
+		"buf": 3,
+		"input": 7,
+		"nand": 1,
+		"not": 1,
+		"output": 6
+	},
+	"numEdgesOfEachType": {
+		"and-output": 2,
+		"buf-and": 2,
+		"buf-buf": 1,
+		"buf-output": 4,
+		"input-buf": 2,
+		"input-nand": 2,
+		"input-not": 1,
+		"nand-buf": 1,
+		"not-and": 2,
+		"not-buf": 1
+	}
+}

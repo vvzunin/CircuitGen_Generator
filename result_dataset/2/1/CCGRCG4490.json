@@ -1,0 +1,24 @@
+{
+	"name": "CCGRCG4490",
+	"numInputs": "3",
+	"numOutputs": "7",
+	"maxLevel": "2",
+	"numEdges": "13",
+	"reliability": "0.16245568358995210456",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"input": 3,
+		"nand": 1,
+		"nor": 1,
+		"output": 7,
+		"xnor": 1
+	},
+	"numEdgesOfEachType": {
+		"input-nand": 2,
+		"input-nor": 2,
+		"input-xnor": 2,
+		"nand-output": 2,
+		"nor-output": 2,
+		"xnor-output": 3
+	}
+}

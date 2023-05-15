@@ -1,0 +1,20 @@
+{
+	"name": "CCGRCG34192",
+	"numInputs": "8",
+	"numOutputs": "7",
+	"maxLevel": "2",
+	"numEdges": "11",
+	"reliability": "0.15360759431063461533",
+	"hash_code": "",
+	"numElementsOfEachType": {
+		"and": 1,
+		"input": 8,
+		"nor": 1,
+		"output": 7
+	},
+	"numEdgesOfEachType": {
+		"and-output": 7,
+		"input-and": 2,
+		"input-nor": 2
+	}
+}
