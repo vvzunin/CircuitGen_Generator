@@ -53,6 +53,7 @@ class TruthTableParameters : public GeneticParameters
 public:
   TruthTableParameters(int i_inputs = 0, int i_outputs = 0);
   TruthTableParameters(const GeneticParameters& i_gp);
+  int getPopulationSize() { return size(); }
   int size() const;
   bool operator== (const TruthTableParameters& r);
 };
