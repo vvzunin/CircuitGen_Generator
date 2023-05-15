@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <ctime>
+#include <iostream>
 
 #include "SimpleGenerators.h"
 #include "../graph/OrientedGraph.h"
@@ -102,7 +103,9 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
 
 OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs)
 {
-  int maxLevel = rand() % i_maxLevel; // TODO: Zunin , not +1?
+  int maxLevel;
+  if (i_maxLevel != 0) maxLevel = rand() % i_maxLevel + 2; // TODO: Zunin , not +1?
+  else maxLevel = 2;
   std::vector<int> elemLevel(maxLevel + 1);
   std::vector<std::string> logOper = d_settings->getLogicOperationsKeys();
   logOper.erase(std::find(logOper.begin(), logOper.end(), "input"));
@@ -113,7 +116,10 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
   elemLevel[0] = i_inputs;
   elemLevel[maxLevel] = i_outputs;
   for (int i = 1; i < maxLevel; ++i)
-    elemLevel[i] = (rand() % (i_maxElements - 1)) + 2;
+  { 
+      if (i_maxElements > 1) elemLevel[i] = (rand() % (i_maxElements - 1)) + 2;
+      else elemLevel[i] = 2;
+  }
 
   int choice;
   std::string expr;
@@ -129,7 +135,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
   int currIndex = elemLevel[0];
   int prevIndex = 0;
 
-  for (int i = 1; i < maxLevel - 1; ++i)
+  for (int i = 1; i < maxLevel; ++i)
   {
     int position = 0;
     for (int j = 0; j < elemLevel[i]; ++j)

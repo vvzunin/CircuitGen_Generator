@@ -17,6 +17,7 @@ void DataBaseGenerator::generateType(
   bool parallel
 )
 {
+
   std::string s = i_dbgp.getGenerationTypeString();
   std::function<void(const GenerationParameters&)> generator = getGenerateMethod(s);
   //TODO: make normal code
@@ -167,7 +168,7 @@ void DataBaseGenerator::generateDataBaseGenetic(const GenerationParameters& i_pa
   GeneticGenerator<TruthTable, TruthTableParameters> gg(GeneticParameters(i_param.getGenetic()),
                                                          {i_param.getInputs(), i_param.getOutputs()},
                                                          d_mainPath);
-  //TODO: uncomment gg.generate();
+  //gg.generate();
 }
 
 std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateMethod(const std::string& i_methodName)

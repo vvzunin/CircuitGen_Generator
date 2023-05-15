@@ -20,7 +20,7 @@ void runGenerationFromJson(std::string json_path);
 int main(int argc, char** argv)
 {
   std::string json_path;
-
+  std::srand(std::time(nullptr));
       // Use getopt to parse command line arguments
 
   const char* const short_opts = "j:n:";
@@ -49,6 +49,7 @@ int main(int argc, char** argv)
 }
 void runGenerationFromJson(std::string json_path)
 {
+  std::srand(NULL);
   std::ifstream f(json_path);
   nlohmann::json DATA = nlohmann::json::parse(f);
   //Read all json objects in json file.
@@ -85,12 +86,18 @@ void runGenerationFromJson(std::string json_path)
 
   std::string mutType = data["mut_type"];
   MutationTypes mType;
-  if(mutType == "Binary") mType = MutationTypes::Binary;
-  if(mutType == "Density") mType = MutationTypes::Density;
-  if(mutType == "AccessionDel") mType = MutationTypes::AccessionDel;
-  if(mutType == "InsertDel") mType = MutationTypes::InsertDel;
-  if(mutType == "Exchange") mType = MutationTypes::Exchange;
-  if(mutType == "Delete") mType = MutationTypes::Delete;
+  if(mutType == "Binary") 
+      mType = MutationTypes::Binary;
+  if(mutType == "Density") 
+      mType = MutationTypes::Density;
+  if(mutType == "AccessionDel") 
+      mType = MutationTypes::AccessionDel;
+  if(mutType == "InsertDel") 
+      mType = MutationTypes::InsertDel;
+  if(mutType == "Exchange") 
+      mType = MutationTypes::Exchange;
+  if(mutType == "Delete")
+      mType = MutationTypes::Delete;
   
   double mutChance = data["mut_chance"];
   int exchangeType = data["swap_type"];
@@ -102,19 +109,29 @@ void runGenerationFromJson(std::string json_path)
 
   std::string selectionTypeParent = data["selection_type_parent"];
   ParentsTypes selecTypeParent;
-  if(selectionTypeParent == "Panmixia") selecTypeParent = ParentsTypes::Panmixia;
-  if(selectionTypeParent == "Inbringing") selecTypeParent = ParentsTypes::Inbringing;
-  if(selectionTypeParent == "Outbrinding") selecTypeParent = ParentsTypes::Outbrinding;
-  if(selectionTypeParent == "Tournament") selecTypeParent = ParentsTypes::Tournament;
-  if(selectionTypeParent == "Roulette") selecTypeParent = ParentsTypes::Roulette;
+  if(selectionTypeParent == "Panmixia") 
+      selecTypeParent = ParentsTypes::Panmixia;
+  if(selectionTypeParent == "Inbringing") 
+      selecTypeParent = ParentsTypes::Inbringing;
+  if(selectionTypeParent == "Outbrinding") 
+      selecTypeParent = ParentsTypes::Outbrinding;
+  if(selectionTypeParent == "Tournament") 
+      selecTypeParent = ParentsTypes::Tournament;
+  if(selectionTypeParent == "Roulette") 
+      selecTypeParent = ParentsTypes::Roulette;
 
   std::string recombinationType = data["playback_type"];
   RecombinationTypes recombType;
-  if(recombinationType == "CrossingEachExitInTurnMany") recombType = RecombinationTypes::CrossingEachExitInTurnMany;
-  if(recombinationType == "CrossingUniform") recombType = RecombinationTypes::CrossingUniform;
-  if(recombinationType == "CrossingTriadic") recombType = RecombinationTypes::CrossingTriadic;
-  if(recombinationType == "CrossingReducedReplacement") recombType = RecombinationTypes::CrossingReducedReplacement;
-  if(recombinationType == "CrossingShuffling") recombType = RecombinationTypes::CrossingShuffling;
+  if(recombinationType == "CrossingEachExitInTurnMany") 
+      recombType = RecombinationTypes::CrossingEachExitInTurnMany;
+  if(recombinationType == "CrossingUniform") 
+      recombType = RecombinationTypes::CrossingUniform;
+  if(recombinationType == "CrossingTriadic") 
+      recombType = RecombinationTypes::CrossingTriadic;
+  if(recombinationType == "CrossingReducedReplacement") 
+      recombType = RecombinationTypes::CrossingReducedReplacement;
+  if(recombinationType == "CrossingShuffling") 
+      recombType = RecombinationTypes::CrossingShuffling;
 
   double maskProb = data["mask_prob"];
   int populationSize = data["population_size"];
@@ -125,20 +142,17 @@ void runGenerationFromJson(std::string json_path)
   std::string selectionType = data["selection_type"];
   SelectionTypes selType;
   if(selectionType == "Base") selType = SelectionTypes::Base;
+
   int survNum = data["surv_num"];
 
   std::map<std::string, int> m;
-  std::vector<std::string> v = {"num_and", "num_nand", "num_or", "num_not", "num_nor", "num_buf", "num_xor", "num_xnor"}; 
+  std::vector<std::string> v = 
+  {"num_and", "num_nand", "num_or", "num_not", 
+   "num_nor", "num_buf", "num_xor", "num_xnor"}; 
 
   for(auto& el : data.items())
   {
 	  if(std::find(v.begin(), v.end(), el.key()) != v.end()) m.insert({el.key(), el.value()});
-  }
-    
-  if (gt == GenerationTypes::FromRandomTruthTable)
-  {
-    inputs = (random() % std::max((maxInputs - minInputs), 1)) + minInputs;
-    outputs = (random() % std::max((maxOutputs - minOutputs), 1)) + minOutputs;
   }
 
   //JSON params = JSON::Read("params.json");

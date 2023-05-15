@@ -131,6 +131,8 @@ bool OrientedGraph::addVertex(const std::string i_vertexName, const std::string&
     d_adjacencyMatrix[i].push_back(false);
   }
 
+  d_listOfEdgesFromTo.push_back({});
+  d_listOfEdgesToFrom.push_back({});
   d_adjacencyMatrix.push_back({});
   for (int i = 0; i < d_adjacencyMatrix.size(); ++i)
     d_adjacencyMatrix.back().push_back(false);
@@ -159,6 +161,8 @@ bool OrientedGraph::addEdge(const std::string& i_vertexFrom, const std::string& 
 
   d_vertices[v2].setLevel(std::max(d_vertices[v1].getLevel() + 1, d_vertices[v2].getLevel())); // TODO: Zunin ask max really and max without prev max, and +1 for v2?
   d_adjacencyMatrix[v1][v2] = true;
+  d_listOfEdgesFromTo[v1].push_back(v2);
+  d_listOfEdgesToFrom[v2].push_back(v1);
   return true;
 }
 
@@ -186,6 +190,10 @@ bool OrientedGraph::addDoubleEdge(const std::string& i_vertexFromFirst, const st
   d_vertices[v3].setLevel(std::max(d_vertices[v2].getLevel() + 1, d_vertices[v3].getLevel())); //TODO: WTF? Line up why? https://github.com/RomeoMe5/CAD_Combinational_Circuits/blob/7ae1fe61eb61e1751147a8598b7a25c976d233b3/Generator/source/Graph/OrientedGraph.cs#L196
   d_adjacencyMatrix[v1][v3] = true;
   d_adjacencyMatrix[v2][v3] = true;
+  d_listOfEdgesFromTo[v1].push_back(v3);
+  d_listOfEdgesFromTo[v2].push_back(v3);
+  d_listOfEdgesToFrom[v3].push_back(v1);
+  d_listOfEdgesToFrom[v3].push_back(v2);
   return true;
 }
 
@@ -242,8 +250,9 @@ std::vector<std::string> OrientedGraph::getVerticesByLevel(int i_level)
   return names;
 }
 
-std::vector<int> OrientedGraph::getConnectedTo(int k)
+std::vector<int> OrientedGraph::getConnectedTo(int k) const
 {
+    /*
   std::vector<int> lst; //TODO: very usefull name
 
   for (int i = 0; i < d_vertices.size(); ++i)
@@ -251,12 +260,13 @@ std::vector<int> OrientedGraph::getConnectedTo(int k)
     if (d_adjacencyMatrix[k][i])
       lst.push_back(i);
   }
-
-  return lst;
+  */
+  return d_listOfEdgesFromTo[k];
 } 
 
 std::vector<int> OrientedGraph::getConnectedFrom(int k)
 {
+    /*
   std::vector<int> lst; //TODO: very usefull name
   
   for (int i = 0; i < d_vertices.size(); ++i)
@@ -264,8 +274,8 @@ std::vector<int> OrientedGraph::getConnectedFrom(int k)
     if (d_adjacencyMatrix[i][k])
       lst.push_back(i);
   }
-  
-  return lst;
+  */
+  return d_listOfEdgesToFrom[k];
 }
 
 void OrientedGraph::updateLevels(bool i_isFull, int i_k) //TODO: maybe we need two different func?
@@ -284,8 +294,8 @@ void OrientedGraph::updateLevels(bool i_isFull, int i_k) //TODO: maybe we need t
   }
   else
   {
-    std::vector<int> ver = getConnectedTo(i_k);
-    for (const auto& j : ver)
+    //std::vector<int> ver = getConnectedTo(i_k);
+    for (auto j : d_listOfEdgesFromTo[i_k])
     {
       d_vertices[j].setLevel(std::max(d_vertices[j].getLevel(), d_vertices[i_k].getLevel() + 1));
       updateLevels(i_isFull, j); //TODO: wtf - i_isFull is always false
@@ -380,7 +390,7 @@ std::map<std::string, bool> OrientedGraph::calcGraph(
     return {};
 
   int n = getMaxLevel();
-  for (int level = 0; level < n; ++level) //TODO: Are we really need this fucking spaceship?
+  for (int level = 0; level <= n; ++level) //TODO: Are we really need this fucking spaceship?
   {
     std::vector<std::string> verts = getVerticesByLevel(level);
     for (const auto& v : verts)
