@@ -195,8 +195,4 @@ def add_dataset_to_database(request):
 
     # получить параметры генерации
     dataset_id = str(dataset_id)
-    # parameters_of_generation = list(AddParameter.objects.all().values())
-    # for obj in parameters_of_generation:
-    #     obj['swap_type'] = int(obj['swap_type'])
-    print(list_of_parameters_for_dataset)
     return [dataset_id, list_of_parameters_for_dataset]
