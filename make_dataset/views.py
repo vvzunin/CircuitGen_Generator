@@ -113,7 +113,7 @@ def in_total_function(obj):
     for param in list_of_param:
         in_total += (param["max_in"] - param["min_in"] + 1) * (
                 param["max_out"] - param["min_out"] + 1) * param["repeat_n"]
-        if param["type_of_generation"] is "From Random Truth Table" and param["CNFF"] is True and param["CNFT"] is True:
+        if param["type_of_generation"] == "From Random Truth Table" and param["CNFF"] is True and param["CNFT"] is True:
             in_total *= 2
     return in_total
 
