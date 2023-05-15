@@ -31,6 +31,23 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    &__right {
+        &-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 30px;
+            a {
+                font-weight: 500;
+                font-size: 14px;
+                color: $main-color;
+                padding: 5px 12px;
+                border: 1px solid $main-color;
+                background-color: transparent;
+                border-radius: 6px;
+            }
+        }
+    }
     &__new {
         opacity: 0.6;
         border-radius: 10px;
@@ -41,6 +58,10 @@ h1 {
         border: 1px solid #4b96eb;
         color: #4b96eb;
         display: flex;
+        &.dataset {
+            border: 1px solid transparent;
+            text-align: center;
+        }
         &.error {
             border: 1px solid transparent;
             text-align: center;
@@ -230,6 +251,15 @@ h1 {
 .dataset {
     &__info {
         // padding: 0 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p {
+            color: $main-color;
+            font-weight: 400;
+            font-size: 14px;
+            max-width: 250px;
+        }
         span {
             display: block;
             color: $main-color;
@@ -271,7 +301,7 @@ h1 {
     }
     &__name {
         font-weight: 500;
-        font-size: 16px;
+        font-size: 14px;
         color: $main-color;
     }
     &__buttons {
@@ -298,8 +328,13 @@ h1 {
         border: 1px solid $main-color;
         background-color: $main-color;
         border-radius: 6px;
+        cursor: auto;
         &:hover {
             cursor: pointer;
+        }
+        &.disabled {
+            cursor: not-allowed;
+            user-select: none;
         }
     }
     &__info {
@@ -400,6 +435,15 @@ h1 {
             font-size: 14px;
             text-align: center;
             padding: 0 10px;
+        }
+        &__right {
+            &-link {
+                flex-direction: column;
+                align-items: center;
+                button {
+                    margin-top: 8px;
+                }
+            }
         }
     }
     .scheme {

@@ -1,9 +1,9 @@
 from typing import Optional, Union
 
-from synology_drive_api.base import SynologySession
-from synology_drive_api.files import FilesMixin
-from synology_drive_api.labels import LabelsMixin
-from synology_drive_api.tasks import TasksMixin
+from make_dataset.synology_drive_api.base import SynologySession
+from make_dataset.synology_drive_api.files import FilesMixin
+from make_dataset.synology_drive_api.labels import LabelsMixin
+from make_dataset.synology_drive_api.tasks import TasksMixin
 
 
 class SynologyDrive(LabelsMixin, FilesMixin, TasksMixin):

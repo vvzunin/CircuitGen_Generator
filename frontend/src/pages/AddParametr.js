@@ -31,9 +31,23 @@ const AddParametr = () => {
 
   const validate = Yup.object({
     minInCount: validateNumber(1, 100),
-    maxInCount: validateNumber(1, 100),
+    maxInCount: Yup.number()
+    .required()
+    .integer()
+    .min(1)
+    .max(100).test('greaterThan', 'maxInCount должно быть больше minInCount', function(value) {
+      const { minInCount } = this.parent;
+      return value >= minInCount;
+    }),
     minOutCount: validateNumber(1, 100),
-    maxOutCount: validateNumber(1, 100),
+    maxOutCount: Yup.number()
+    .required()
+    .integer()
+    .min(1)
+    .max(100).test('greaterThan', 'maxOutCount должно быть больше minOutCount', function(value) {
+      const { minOutCount } = this.parent;
+      return value >= minOutCount;
+    }),
     repeats: validateNumber(1, 100),
     maxElem: validateNumber(1, 1000),
     maxLevel: validateNumber(1, 1000),
@@ -199,7 +213,7 @@ const AddParametr = () => {
     
     axios.post('http://127.0.0.1:8000/api/add_parameter/', sendData)
     .then(() => {
-      alert('Параметр успешно создан')
+      alert('Параметр успешно создан!')
     }).catch(e => console.log(e));
   }
 

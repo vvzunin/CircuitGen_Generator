@@ -4,10 +4,10 @@ from pathlib import Path
 from time import time, sleep
 from typing import Optional, Union, BinaryIO
 
-from synology_drive_api.base import SynologyOfficeFileConvertFailed
-from synology_drive_api.utils import concat_drive_path
-from synology_drive_api.utils import form_urlencoded
-from synology_drive_api.utils import deprecate
+from make_dataset.synology_drive_api.base import SynologyOfficeFileConvertFailed
+from make_dataset.synology_drive_api.utils import concat_drive_path
+from make_dataset.synology_drive_api.utils import form_urlencoded
+from make_dataset.synology_drive_api.utils import deprecate
 
 
 class FilesMixin:
