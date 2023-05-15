@@ -162,7 +162,7 @@ const MainPage = () => {
 								// const currentProgress = findObjectById(progress, item.id);
 								const currentProgress = progress[item.id];
 								if (item.parameters_of_generation && (item.parameters_of_generation.length > 0)) {
-									return <DatasetItem getDatasets={getDatasets} key={i} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress}/>
+									return <DatasetItem getDatasets={getDatasets} ready={item.ready} key={i} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress}/>
 								} else {
 									return null;
 								}

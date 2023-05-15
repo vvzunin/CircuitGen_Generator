@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Scheme from './Scheme'
 
-const DatasetItem = ({id, parameters, currentProgress, getDatasets}) => {
+const DatasetItem = ({id, parameters, currentProgress, getDatasets, ready}) => {
 
   console.log(currentProgress);
 
@@ -37,13 +37,13 @@ const DatasetItem = ({id, parameters, currentProgress, getDatasets}) => {
             <span>Датасет #{id}</span>
             <button className='parametr__delete' onClick={deleteDataset}>Удалить</button>
             {
-              (status === "error") && <p>Статус генерации: ошибка</p>
+              !ready && (status === "error") && <p>Статус генерации: ошибка</p>
             }
             {
-              (status === "equal") && <p>Статус генерации: завершена</p>
+              !ready && (status === "generation") && <p>Статус генерации: {currentProgress?.ready} из {currentProgress?.in_total} схем</p>
             }
             {
-              (status === "generation") && <p>Статус генерации: {currentProgress?.ready} из {currentProgress?.in_total} схем</p>
+              ready && <p>Статус генерации: завершена</p>
             }
         </div>
         <div className="dataset__content">
