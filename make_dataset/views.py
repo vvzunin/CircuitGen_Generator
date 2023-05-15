@@ -182,6 +182,7 @@ def add_dataset_to_database(request):
         link_to_parameter = "empty link"
         obj = list(param.values())[0]
         obj["link_of_parameter"] = link_to_parameter
+        obj['swap_type'] = int(obj['swap_type'])
         list_of_parameters_for_dataset.append(obj)
     dataset_id = Dataset.objects.create(parameters_of_generation=list_of_parameters_for_dataset, ready=False).id
 
@@ -194,8 +195,8 @@ def add_dataset_to_database(request):
 
     # получить параметры генерации
     dataset_id = str(dataset_id)
-    parameters_of_generation = list(AddParameter.objects.all().values())
-    for obj in parameters_of_generation:
-        obj['swap_type'] = int(obj['swap_type'])
-
-    return [dataset_id, parameters_of_generation]
+    # parameters_of_generation = list(AddParameter.objects.all().values())
+    # for obj in parameters_of_generation:
+    #     obj['swap_type'] = int(obj['swap_type'])
+    print(list_of_parameters_for_dataset)
+    return [dataset_id, list_of_parameters_for_dataset]
