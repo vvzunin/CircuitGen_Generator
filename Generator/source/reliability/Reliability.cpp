@@ -87,10 +87,15 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
         mapErrors[errorValues[i_withOneValveError]] = 1;
     }
 
-    std::map<std::string, bool> res = d_graph.calcGraph(map, i_withErrorValues, mapErrors,i_withErrorSetting, mapErrorsSet);
+    std::map<std::string, bool> res = d_graph.calcGraph(map, i_withErrorValues, mapErrors, i_withErrorSetting, mapErrorsSet);
 
-    for (const auto &[key, value] : res)
-      result[key].push_back(value);
+    for (const auto& [key, value] : res)
+    {
+        if (result.find(key) != result.end())
+            result[key].push_back(value);
+        else
+            result.emplace(key, std::vector<bool>());
+    }
   }
 
   return result;

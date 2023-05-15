@@ -1,12 +1,12 @@
 [
   {
     "id": 14,
-    "type_of_generation": "Rand Level",
-    "min_in": 7,
-    "max_in": 9,
-    "min_out": 7,
-    "max_out": 10,
-    "repeat_n": 2,
+    "type_of_generation": "From Random Truth Table",
+    "min_in": 4,
+    "max_in": 4,
+    "min_out": 4,
+    "max_out": 4,
+    "repeat_n": 1,
     "CNFF": false,
     "CNFT": true,
     "max_level": 1,
