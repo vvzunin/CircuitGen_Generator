@@ -21,6 +21,7 @@ public:
   std::string getOperation() const;
   void setOperation(const std::string& i_operation);
   std::string getWireName() const;
+  bool wrongVertex = false;
 private:
   std::string d_logicExpression = "";
   std::string d_operation = "";
@@ -28,5 +29,6 @@ private:
   bool d_value = false;
   std::string d_wireName = "";
   static int d_count;
+  
   Settings* d_settings = Settings::getInstance("GraphVertex");
 };

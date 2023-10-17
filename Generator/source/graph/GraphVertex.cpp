@@ -33,6 +33,15 @@ void GraphVertex::setWireName(std::string i_wireName)
 }
 
 
+
+
+
+
+
+
+
+
+
 int GraphVertex::getLevel() const
 {
   return d_level;
@@ -45,7 +54,14 @@ void GraphVertex::setLevel(int i_level)
 
 bool GraphVertex::getValue() const
 {
-  return d_value;
+    if(!wrongVertex)
+    { 
+        return d_value;
+    }
+    else
+    {
+        return !d_value;
+    }
 }
 
 void GraphVertex::setValue(bool i_value)

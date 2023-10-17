@@ -35,10 +35,10 @@ bool OrientedGraph::empty() const
   return d_vertices.size() == 0;
 }
 
-GraphVertex OrientedGraph::getVertice(int i) const
+GraphVertex  OrientedGraph::getVertice(int i) const
 {
   assert(i >= 0 && i < d_vertices.size());
-  return d_vertices.at(i);
+  return d_vertices[i];
 }
 
 int OrientedGraph::getMaxLevel()
@@ -238,6 +238,19 @@ std::vector<std::string> OrientedGraph::getLogicVerticesToWireName()
   return names;
 }
 
+std::vector<int> OrientedGraph::getVerticesByLevel_2(int i_level)
+{
+    std::vector<int> vec_index;
+    for (int i =0; i < d_vertices.size(); i++)
+    {
+        if (d_vertices[i].getLevel() == i_level && d_vertices[i].getOperation() != "output" && d_vertices[i].getOperation() != "input" && d_vertices[i].getOperation() != "const")
+        {
+            vec_index.push_back(i);
+        }
+    }
+    return vec_index;
+}
+
 std::vector<std::string> OrientedGraph::getVerticesByLevel(int i_level)
 {
   //TODO: rewrite this func to one line
@@ -249,6 +262,31 @@ std::vector<std::string> OrientedGraph::getVerticesByLevel(int i_level)
   }
   return names;
 }
+/*
+std::vector<int> OrientedGraph::getVerticesByLevel_2(int i_level)
+{
+    //TODO: rewrite this func to one line
+    std::vector<std::string> names;
+    for (int i = 0; i <  d_vertices.size(); i++)
+    {
+        if (d_vertices[i].getLevel() == i_level)
+            names.push_back(i);
+    }
+    return names;
+}
+
+std::vector<int> OrientedGraph::getVerticesByType_2(int i_level)
+{
+    //TODO: rewrite this func to one line
+    std::vector<std::string> names;
+    for (int i = 0; i < d_vertices.size(); i++)
+    {
+        if (d_vertices[i].getLevel() == i_level)
+            names.push_back(i);
+    }
+    return names;
+}
+*/
 
 std::vector<int> OrientedGraph::getConnectedTo(int k) const
 {

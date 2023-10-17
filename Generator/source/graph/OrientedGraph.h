@@ -3,12 +3,12 @@
 #include <string>
 #include <vector>
 #include <map>
-
 #include "GraphVertex.h"
 #include "../generators/Genetic/GeneticParameters.h"
 
 class OrientedGraph {
 public:
+  friend class Circuit;
   OrientedGraph();
   std::vector<GraphVertex> getVertices() const;
   GraphVertex getVertice(int i) const;
@@ -36,19 +36,34 @@ public:
     bool i_withErrorSetting = false,
     const std::map<std::string, bool>& i_setError = {}
   );
+  std::vector<int> getVerticesByLevel_2(int i_level);
   void setVerticeOperation(int i_vertice, const std::string& i_operation);
   void numberVerticesCorrectly();
 
+  std::vector<int> getVertices(std::string str)
+  {
+      std::vector<int> vec_index = {};
+      for (int i = 0; i < d_vertices.size(); i++)
+      {
+          if (d_vertices[i].getOperation() == str)
+          {
+              vec_index.push_back(i);
+          }
+      }
+      return vec_index;
+  }
+  std::vector<std::vector<int>> d_listOfEdgesFromTo;
+  std::vector<std::vector<int>> d_listOfEdgesToFrom;
+  std::vector<GraphVertex> d_vertices;
 private:
   std::vector<int> getConnectedTo(int k) const;
   std::vector<int> getConnectedFrom(int k);
   std::vector<bool> vertsToValues(std::vector<int> i_verts);
   bool calc(std::vector<bool> i_inputs, const std::string& i_op);
 
-  std::vector<GraphVertex> d_vertices;
+  
   std::vector<std::vector<bool>> d_adjacencyMatrix;
-  std::vector<std::vector<int>> d_listOfEdgesFromTo;
-  std::vector<std::vector<int>> d_listOfEdgesToFrom;
+  
   std::map<std::string, bool> d_error;
   Settings* d_settings = Settings::getInstance("OrietedGraph");
 };

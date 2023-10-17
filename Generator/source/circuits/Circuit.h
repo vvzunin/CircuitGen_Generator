@@ -25,7 +25,7 @@ public:
   bool addEdge(const std::string& i_vertexFrom, const std::string& i_vertexTo, bool i_isExpression = true);
   bool addDoubleEdge(const std::string& i_vertexFromFirst, const std::string& i_vertexFromSecond, const std::string& i_vertexTo, bool i_isExpression = true);
   void setVerticeOperation(int i_vertice, const std::string& i_operation);
-
+  
 private:
   OrientedGraph d_graph;
   std::vector<std::string> d_logExpressions;
