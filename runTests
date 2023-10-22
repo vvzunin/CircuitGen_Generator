@@ -7,4 +7,3 @@ cmake ..
 make
 cd $currentDir/Generator/source/build/tests
 ./tests
-cd currentDir
