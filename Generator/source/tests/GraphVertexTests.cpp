@@ -1,5 +1,8 @@
 #include <gtest/gtest.h>
 #include "../graph/GraphVertex.h"
+#include <thread>
+#include <functional>
+#include <memory>
 
 TEST(test_graph_vertex, test_init)
 {
@@ -12,13 +15,13 @@ class GraphVertexTest: public testing::Test
 protected:
 	void SetUp()
 	{
-		vertex = std::make_unique<GraphVertex>("or", "or");
+		vertex = std::make_shared<GraphVertex>("or", "or");
 	}
 	void TearDown()
 	{
-		vertex = std::make_unique<GraphVertex>("or", "or");
+		vertex = std::make_shared<GraphVertex>("or", "or");
 	}
-	std::unique_ptr<GraphVertex> vertex;
+	std::shared_ptr<GraphVertex> vertex;
 };
 
 TEST_F(GraphVertexTest, setValueAndGetValueWorksCorrectly)
@@ -32,10 +35,32 @@ TEST_F(GraphVertexTest, setValueAndGetValueWorksCorrectly)
 
 TEST_F(GraphVertexTest, setLevelAndGetLevelWorksCorrectly)
 {
-	for (int i = 0; i < 50; i++)
+
+	std::vector<std::function<void(void)>> lambdas;
+	
+	for (int i = 1; i < 5; i++)
 	{
-		vertex->setLevel(i);
-		ASSERT_EQ(vertex->getLevel(), i);
+		lambdas.push_back([i, this]() {
+			for (int j = (i - 1) * 1000; j < i * 1000; j++)
+			{
+				vertex->setLevel(j);
+				ASSERT_EQ(vertex->getLevel(), j);
+			}
+			}
+		);
+	}
+
+	std::vector<std::thread> vecOfThreads;
+	for (int i = 1; i < 5; i++)
+	{
+		std::thread th1(lambdas.back());
+		lambdas.pop_back();
+		vecOfThreads.push_back(std::move(th1));
+	}
+	for (std::thread& th : vecOfThreads)
+	{
+		if (th.joinable())
+			th.join();
 	}
 }
 
@@ -50,3 +75,12 @@ TEST_F(GraphVertexTest, setLogicExpressionAndGetLogicExpressionWorksCorrectly)
 	}
 }
 
+/*
+TEST_F(GraphVertexTest, setWireNameAndGetWireNameWorksCorrectly)
+{
+	for (int i = 0; i < 50; i++)
+	{
+		
+	}
+}
+*/
