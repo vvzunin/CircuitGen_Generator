@@ -15,18 +15,16 @@ class GraphVertexTest: public testing::Test
 protected:
 	void SetUp()
 	{
-		for (auto& el : vertexes)
+
+		for (int i = 0; i < 5; i++)
 		{
-			el = std::make_shared<GraphVertex>("or", "or");
+			vertexes.push_back(std::make_shared<GraphVertex>("or", "or"));
 		}
 		vertex = std::make_shared<GraphVertex>("or", "or");
 	}
 	void TearDown()
 	{
-		for (auto& el : vertexes)
-		{
-			el = std::make_shared<GraphVertex>("or", "or");
-		}
+		
 		vertex = std::make_shared<GraphVertex>("or", "or");
 	}
 	std::vector<std::shared_ptr<GraphVertex>> vertexes;
@@ -60,11 +58,11 @@ void Loop<T>::loop(int i, std::shared_ptr<T> ptr)
 	}
 }
 
+
 TEST_F(GraphVertexTest, setLevelAndGetLevelWorksCorrectly)
 {
-	Loop<GraphVertex>::loop(1, vertex);
 	std::vector<std::thread> vecOfThreads;
-	for (int i = 0; i < 5; i++) vecOfThreads.push_back(std::thread(Loop<GraphVertex>::loop, i, vertexes[i]));
+	for (int i = 0; i < 5; i++) vecOfThreads.push_back(std::move(std::thread(Loop<GraphVertex>::loop, i, vertexes[i])));
 	for (int i = 0; i < 5; i++) vecOfThreads[i].join();
 }
 
@@ -109,5 +107,4 @@ TEST_F(GraphVertexTest, setWireNameAndGetWireNameWorksCorrectly)
 			th.join();
 	}
 }*/
-
 
