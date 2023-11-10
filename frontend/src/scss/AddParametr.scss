@@ -1,0 +1,411 @@
+.add {
+    &__wrapper {
+        margin-top: 50px;
+        
+    }
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h3 {
+            font-weight: 500;
+            font-size: 20px;
+            color: $main-color;
+        }
+    }
+    &__buttons {
+        display: flex;
+        align-items: center;
+    }
+    &__add {
+        padding: 8px 15px;
+        border-radius: 10px;
+        border: 1px solid $main-color;
+        background-color: $main-color;
+        font-weight: 500;
+        font-size: 18px;
+        color: $main-bg;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__return {
+        margin-left: 12px;
+        padding: 8px 15px;
+        border-radius: 10px;
+        font-weight: 500;
+        font-size: 18px;
+        border: 1px solid $main-color;
+        background-color: transparent;
+        color: $main-color;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__content {
+        margin-top: 20px;
+        padding: 15px;
+        // min-height: 270px;
+        background-color: $box-bg;
+        border-radius: 10px;
+    }
+    &__method {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        &-name {
+            font-weight: 500;
+            font-size: 18px;
+            color: $main-color;
+            margin-right: 50px;
+        }
+        ul {
+            display: grid;
+            column-gap: 10px;
+            grid-template-columns: repeat(4, auto);
+        }
+        li {
+            font-weight: 500;
+            padding: 0 auto;
+            font-size: 16px;
+            color: #D2D2D2;
+            padding: 15px;
+            background-color: $main-bg;
+            border-radius: 10px;
+            border: 2px solid $main-bg;
+            &:hover {
+                cursor: pointer;
+            }
+            &.active {
+                border: 2px solid $main-color;
+                color: $main-color;
+            }
+        }
+    }
+    &__base {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;   
+        label {
+            font-weight: 500;
+            font-size: 16px;
+            color: $main-color;
+            padding-bottom: 10px;
+            margin-right: 15px;
+            &.error {
+                color: $main-error;
+            }
+        }  
+        input {
+            font-weight: 500;
+            font-size: 16px;
+            color: $main-color;
+            padding: 10px 15px;
+            width: 90px;
+            margin-left: 20px;
+            border: 1px solid $main-color;
+            border-radius: 10px;
+            &.error {
+                border: 1px solid $main-error;
+                color: $main-error;
+            }
+        }
+    }
+    &__genetic {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;   
+        label {
+            font-weight: 500;
+            font-size: 16px;
+            color: $main-color;
+            padding-bottom: 10px;
+            margin-right: 10px;
+            &.error {
+                color: $main-error;
+            }
+        }  
+        input {
+            font-weight: 500;
+            font-size: 16px;
+            color: $main-color;
+            padding: 10px 15px;
+            width: 90px;
+            margin-left: 10px;
+            border: 1px solid $main-color;
+            border-radius: 10px;
+            &.error {
+                color: $main-error;
+                border: 1px solid $main-error;
+            }
+        }
+        &-dropdown {
+            p {
+                font-weight: 500;
+                font-size: 16px;
+                color: $main-color;
+                margin-right: 10px;
+            }
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        &-submenu {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            font-weight: 500;
+            font-size: 16px;
+            color: $main-color;
+            border-bottom: 1px solid $main-color;
+            &-item {
+                padding: 6px 0;
+                text-align: center;
+                &.active {
+                    background: #D4E8FF;
+                }
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    &__truth {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;  
+        align-items: center;
+        &-name {
+            font-weight: 500;
+            font-size: 16px;
+            color: $main-color;
+        }
+        label {
+            font-weight: 500;
+            font-size: 16px;
+            color: $main-color;
+            // padding-bottom: 10px;
+            margin-right: 15px;
+            // user-select: none;
+            // &:hover {
+            //     cursor: pointer;
+            // }
+            &.error {
+                color: $main-error;
+            }
+        }  
+        input {
+            font-weight: 500;
+            font-size: 16px;
+            color: #769FCD;
+            padding: 10px 15px;
+            width: 70px;
+            margin-left: 20px;
+            border: 1px solid #769FCD;
+            border-radius: 10px;
+            &.error {
+                color: $main-error;
+                border: 1px solid $main-error;
+            }
+        }
+    }
+    &__empty {
+        font-weight: 500;
+        font-size: 16px;
+        color: $main-color;
+        padding: 10px 15px;
+        width: 70px;
+        margin-left: 20px;
+        border: 1px solid $main-color;
+        border-radius: 10px;
+    }
+}
+
+.toggleSwitch {
+    display: flex;
+    height: 36px;
+    align-items: center;
+
+    input[type=checkbox]{
+        height: 0;
+        width: 0;
+        visibility: hidden;
+    } 
+    
+    label {
+        cursor: pointer;
+        text-indent: -9999px;
+        width: 45px; // ширина фон
+        height: 18px; // высота фон
+        transition: background 0.1s ease;
+        background: #fff; // цвет не актив
+        display: block;
+        border-radius: 100px;
+        position: relative;
+        box-shadow: 0px 0px 20px rgba(145, 145, 145, 0.25);
+        &.active {
+            background: $main-color;
+            &:after {
+                background-color: #fff;
+                left: calc(100% - 2px);
+                transform: translateX(-100%);
+            }
+        }
+    }
+
+    // label:active:after {
+    //     width: 20px; // ширина, если зажать ЛКМ
+    // }
+    
+    label:after {
+        content: '';
+        position: absolute;
+        top: 2px; // внутренние отступы круга
+        left: 2px; // внутренние отступы круга
+        width: 14px; // сам круг
+        height: 14px; // сам круг
+        background: $main-color;
+        border-radius: 90px;
+        transition: 0.3s;
+    }
+}
+
+@media (max-width: 1200px) {
+    .add {
+        &__add {
+            font-size: 16px;
+        }
+        &__return {
+            font-size: 16px;
+        }
+        &__method {
+            ul {
+                column-gap: 8px;
+            }
+            &-name {
+                font-size: 16px;
+                margin-right: 10px;
+            }
+            li {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+        &__base {
+            label {
+                font-size: 14px;
+            }
+        }
+        &__truth {
+            label {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            &-name {
+                font-size: 14px;
+            }
+        }
+        &__genetic {
+            label {
+                font-size: 14px;
+            }
+            &-submenu {
+                font-size: 14px;
+            }
+            &-dropdown {
+                p {
+                    font-size: 14px;
+                }
+
+            }
+        }
+    }
+    .dropdown {
+        &__active {
+            p {
+                font-size: 14px;
+            }
+        }
+        &__list {
+            z-index: 2;
+            li {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .add {
+        &__base {
+            label {
+                font-size: 16px;
+                margin-right: 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding-bottom: 0;
+            }
+            input {
+                margin-left: 0;
+                margin-top: 6px;
+                width: 70px;
+            }
+        }
+        &__truth {
+            label {
+                font-size: 16px;
+            }
+            &-name {
+                font-size: 16px;
+                margin-bottom: 6px;
+            }
+        }
+        &__wrapper {
+            margin-top: 40px;
+        }
+        &__buttons {
+            margin-top: 10px;
+        }
+        &__top {
+            flex-direction: column;
+        }
+        &__method {
+            flex-direction: column;
+            ul {
+                margin-top: 10px;
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+                li {
+                    width: 100%;
+                    margin-bottom: 6px;
+                }
+            }
+        }
+        &__genetic {
+            &-submenu {
+                margin-top: 12px;
+            }
+            label {
+                font-size: 16px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-right: 0;
+            }
+            &-dropdown {
+                margin-right: 0 !important;
+                flex-wrap: wrap;
+                padding-bottom: 0;
+                p {
+                    font-size: 16px;
+
+                }
+            }
+            &-dropdown > p {
+                margin-bottom: 6px;
+            }
+        }
+    }
+}
