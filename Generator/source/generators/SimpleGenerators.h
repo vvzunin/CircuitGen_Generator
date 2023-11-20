@@ -15,7 +15,7 @@ public:
     std::map<std::string, int> i_logicOper,
     bool i_leaveEmptyOut = true
   );
-
+  OrientedGraph generatorСomparison(int bits, bool compare0, bool compare1, bool compare2, bool act = false);
 private:
   Settings* d_settings = Settings::getInstance("GraphVertex");
   std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);

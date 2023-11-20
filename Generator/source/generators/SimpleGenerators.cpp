@@ -321,3 +321,169 @@ std::string SimpleGenerators::randomGenerator(const std::map<std::string, int>& 
   return (*p).first;
 
 }
+
+OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bool compare1, bool compare2, bool act = false)
+{
+    OrientedGraph graph;
+
+    std::string cond = std::string(compare0 ? "t" : "f") + (compare1 ? "t" : "f") + (compare2 ? "t" : "f");
+    for (int i = bits - 1; i >= 0; i--)
+    {
+        std::string C = std::to_string(i);
+        std::string NextC = std::to_string(i - 1);
+        std::string x = "coma" + cond + C;
+        std::string y = "comb" + cond + C;
+        if (i == 0)
+        {
+            NextC = "X";
+        }
+        graph.addVertex(x, "input");
+        graph.addVertex(y, "input");
+        graph.addVertex("not (" + y + C + ")", "not", "nb" + C);
+        graph.addEdge(y, "nb" + C, false);
+        graph.addVertex("not (" + x + C + ")", "not", "na" + C);
+        graph.addEdge(x, "na" + C, false);
+        if (act)
+        {
+            graph.addVertex("1", "const");
+        }
+        if (compare0)
+        {
+            if (!act)
+            {
+                graph.addVertex("E0_" + C, "output");
+            }
+            graph.addVertex("(na" + C + " and nb" + C + ")", "and", "nab" + C);
+            graph.addVertex("(" + x + C + " and " + y + C + ")", "and", "ab" + C);
+            graph.addVertex("(nab" + C + " or ab" + C + ")", "or", "p0_" + NextC);
+            graph.addDoubleEdge("na" + C, "nb" + C, "nab" + C, false);
+            graph.addDoubleEdge(x, y, "ab" + C, false);
+            graph.addDoubleEdge("nab" + C, "ab" + C, "p0_" + NextC, false);
+
+            if (i == bits - 1)
+            {
+                if (act)
+                {
+                    graph.addVertex("(1 and p0_" + NextC + ")", "and", "E0and1_" + C);
+                    graph.addDoubleEdge("1", "p0_" + NextC, "E0and1_" + C, false);
+                }
+                else
+                {
+                    graph.addEdge("p0_" + NextC, "E0_" + C, false);
+                }
+            }
+            else
+            {
+                graph.addVertex("(p0_" + C + " and p0_" + NextC + ")", "and", "pE0_" + C);
+                graph.addDoubleEdge("p0_" + C, "p0_" + NextC, "pE0_" + C, false);
+                if (act)
+                {
+                    graph.addVertex("(1 and pE0_" + C + ")", "and", "E0and1_" + C);
+                    graph.addDoubleEdge("1", "pE0_" + C, "E0and1_" + C, false);
+                }
+                else
+                {
+                    graph.addEdge("pE0_" + C, "E0_" + C, false);
+                }
+            }
+        }
+        if (compare1)
+        {
+            if (act)
+            {
+                graph.addVertex("1", "const");
+            }
+            else
+            {
+                graph.addVertex("E1_" + C, "output");
+            }
+
+            graph.addVertex("(" + x + C + " and " + "(not (" + y + C + "))", "and", "p1_" + NextC);
+            graph.addDoubleEdge(x, "nb" + C, "p1_" + NextC, false);
+
+            if (i == bits - 1)
+            {
+                if (act)
+                {
+                    graph.addVertex("(1 and p1_" + NextC + ")", "and", "E1and1_" + C);
+                    graph.addDoubleEdge("1", "p1_" + NextC, "E1and1_" + C, false);
+                }
+                else
+                {
+                    graph.addEdge("p1_" + NextC, "E1_" + C, false);
+                }
+            }
+            else
+            {
+                graph.addVertex("not (p1_" + C + ")", "not", "np1_" + C);
+                graph.addVertex("not (p1_" + NextC + ")", "not", "np1_" + NextC);
+                graph.addEdge("p1_" + C, "np1_" + C, false);
+                graph.addEdge("p1_" + NextC, "np1_" + NextC, false);
+                graph.addVertex("(np1_" + C + " and p1_" + NextC + ")", "and", "P11_" + C);
+                graph.addDoubleEdge("np1_" + C, "p1_" + NextC, "P11_", false);
+                graph.addVertex("(p1_" + C + " and np1_" + NextC + ")", "and", "P12_" + C);
+                graph.addDoubleEdge("p1_" + C, "np1_" + NextC, "P12_", false);
+                graph.addVertex("(P11_" + C + " or P12_" + C + ")", "or", "pE1_" + C);
+                graph.addDoubleEdge("P11_" + C, "P12_" + C, "pE1_" + C, false);
+                if (act)
+                {
+                    graph.addVertex("(1 and pE1_" + C + ")", "and", "E1and1_" + C);
+                    graph.addDoubleEdge("1", "pE1_" + C, "E1and1_" + C, false);
+                }
+                else
+                {
+                    graph.addEdge("pE1_" + C, "E1_" + C, false);
+                }
+            }
+        }
+        if (compare2)
+        {
+            if (act)
+            {
+                graph.addVertex("1", "const");
+            }
+            else
+            {
+                graph.addVertex("E2_" + C, "output");
+            }
+            graph.addVertex("(" + y + C + " and " + "(not (" + x + C + "))", "and", "p2_" + NextC);
+            graph.addDoubleEdge(y, "na" + C, "p2_" + NextC, false);
+
+            if (i == bits - 1)
+            {
+                if (act)
+                {
+                    graph.addVertex("(1 and p2_" + NextC + ")", "and", "E2and1_" + C);
+                    graph.addDoubleEdge("1", "p2_" + NextC, "E2and1_" + C, false);
+                }
+                else
+                {
+                    graph.addEdge("p2_" + NextC, "E2_" + C, false);
+                }
+            }
+            else
+            {
+                graph.addVertex("not (p2_" + C + ")", "not", "np2_" + C);
+                graph.addVertex("not (p2_" + NextC + ")", "not", "np2_" + NextC);
+                graph.addEdge("p2_" + C, "np2_" + C, false);
+                graph.addEdge("p2_" + NextC, "np2_" + NextC, false);
+                graph.addVertex("(np2_" + C + " and p2_" + NextC + ")", "and", "P21_" + C);
+                graph.addDoubleEdge("np2_" + C, "p2_" + NextC, "P21_", false);
+                graph.addVertex("(p2_" + C + " and np2_" + NextC + ")", "and", "P22_" + C);
+                graph.addDoubleEdge("p2_" + C, "np2_" + NextC, "P22_", false);
+                graph.addVertex("(P21_" + C + " or P22_" + C + ")", "or", "pE2_" + C);
+                graph.addDoubleEdge("P21_" + C, "P22_" + C, "pE2_" + C, false);
+                if (act)
+                {
+                    graph.addVertex("(1 and pE2_" + C + ")", "and", "E2and1_" + C);
+                    graph.addDoubleEdge("1", "pE2_" + C, "E2and1_" + C, false);
+                }
+                else
+                {
+                    graph.addEdge("pE2_" + C, "E2_" + C, false);
+                }
+            }
+        }
+    }
+    return graph;
+}
