@@ -8,7 +8,8 @@ enum GenerationTypes
   FromRandomTruthTable,
   RandLevel,
   NumOperation,
-  Genetic
+  Genetic,
+  Summator
 };
 
 class DataBaseGeneratorParameters //TODO: maybe it need heritance from GenerationParameters?

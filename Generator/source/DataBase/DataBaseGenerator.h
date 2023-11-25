@@ -26,5 +26,6 @@ private:
   void generateDataBaseRandLevel(const GenerationParameters& i_params);
   void generateDataBaseNumOperations(const GenerationParameters& i_param);
   void generateDataBaseGenetic(const GenerationParameters& i_param);
+  void GenerateDataBaseSummator(GenerationParameters& i_param);
   std::function<void(const GenerationParameters&)> getGenerateMethod(const std::string& i_methodName);
 };

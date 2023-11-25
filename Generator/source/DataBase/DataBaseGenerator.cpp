@@ -171,6 +171,19 @@ void DataBaseGenerator::generateDataBaseGenetic(const GenerationParameters& i_pa
   //gg.generate();
 }
 
+void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param) {
+    SimpleGenerators sg;
+    int bits = i_param.getInputs();
+    bool overflowIn = i_param.getSummator().OverFlowIn;
+    bool overflowOut = i_param.getSummator().OverFlowOut;
+    bool minus = i_param.getSummator().minus;
+    OrientedGraph graph = sg.generatorSummator(bits, overflowIn, overflowOut, minus);
+    Circuit c (graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate();
+}
+
 std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateMethod(const std::string& i_methodName)
 {
   if (i_methodName == "FromRandomTruthTable")

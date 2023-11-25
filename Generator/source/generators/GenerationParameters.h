@@ -86,6 +86,13 @@ private:
   bool d_leaveEmptyOut = true;
 };
 
+class GeneratorSummatorParameters{
+public:
+    bool OverFlowIn = false;
+    bool OverFlowOut = false;
+    bool minus = false;
+};
+
 class GenerationParameters
 {
 public:
@@ -156,7 +163,8 @@ public:
 
   CNNFromTruthTableParameters getCNF() const { return d_cnfFromTruthTableParameters; }
   GeneratorRandLevelParameters getRandLevel() const { return d_generatorRandLevelParameters; }
-  GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; } 
+  GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; }
+  GeneratorSummatorParameters getSummator() const {return d_generatorSummatorParameters; }
   GeneticParameters getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
   void setCNFT(bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
@@ -182,6 +190,6 @@ private:
   CNNFromTruthTableParameters d_cnfFromTruthTableParameters;
   GeneratorRandLevelParameters d_generatorRandLevelParameters;
   GeneratorNumOperationParameters d_generatorNumOperationParameters;
-
+  GeneratorSummatorParameters d_generatorSummatorParameters;
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };

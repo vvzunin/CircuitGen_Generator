@@ -322,7 +322,99 @@ std::string SimpleGenerators::randomGenerator(const std::map<std::string, int>& 
 
 }
 
-OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bool compare1, bool compare2, bool act = false)
+OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, bool overflowOut, bool minus, bool act)
+{
+    OrientedGraph graph;
+    if (overflowIn)
+        graph.addVertex("p0", "input");
+    if (act)
+        graph.addVertex("1", "const");
+    std::string pi;
+    std::string x;
+    std::string y;
+    std::string z;
+    std::string cond = std::string(overflowIn ? "t" : "f") + (overflowOut ? "t" : "f") + (minus ? "t" : "f");
+    z = std::string(minus ? "n" : "") + "s" + (!overflowIn && !overflowOut ? "0" : (!overflowIn && overflowOut ? "1" : (overflowIn && !overflowOut ? "2" : "3")));
+    for (int i = 0; i < bits; i++){
+        std::string S = std::to_string(i);
+        x = "suma" + cond + S;
+        y = "sumb" + cond + S;
+        graph.addVertex(x, "input");
+        graph.addVertex(y, "input");
+        if (minus)
+        {
+            graph.addVertex("not (" + x + ")", "not", "na" + S);
+            graph.addVertex("not (" + y + ")", "not", "nb" + S);
+            graph.addEdge(x, "na" + S, false);
+            graph.addEdge(y, "nb" + S, false);
+            x = "na" + S;
+            y = "nb" + S;
+        }
+        if (!act)
+        {
+            graph.addVertex(z + S, "output");
+        }
+
+        graph.addVertex("(" + x + " and " + y + ")", "and", "andab" + S);
+
+        std::string NextS = std::to_string(i + 1);
+        pi = "p" + S;
+        graph.addVertex("(" + x + " and " + pi + ")", "and", "anda" + pi);
+        graph.addVertex("(" + y + " and " + pi + ")", "and", "andb" + pi);
+
+        graph.addDoubleEdge(x, y, "andab" + S, false);
+        graph.addDoubleEdge(x, pi, "anda" + pi, false);
+        graph.addDoubleEdge(y, pi, "andb" + pi, false);
+
+        graph.addVertex("((andab" + S + ")" + " or " + "(anda" + pi + ")" + " or " + "(andb" + pi + "))", "or", "p" + NextS);
+        graph.addEdge("andab" + S, "p" + NextS, false);
+        graph.addEdge("anda" + pi, "p" + NextS, false);
+        graph.addEdge("andb" + pi, "p" + NextS, false);
+        if (overflowOut && i + 1 == bits)
+        {
+            if (act)
+            {
+                graph.addVertex("(1 and p" + NextS + ")", "and", z + "and1_" + NextS);
+                graph.addDoubleEdge("1", "p" + NextS, z + "and1_" + NextS, false);
+            }
+            else
+            {
+                graph.addVertex(z + std::to_string(bits), "output");
+                graph.addEdge("p" + NextS, z + std::to_string(bits), false);
+            }
+        }
+        graph.addVertex("not (p" + NextS + ")", "not", "np" + NextS);
+        graph.addEdge("p" + NextS, "np" + NextS, false);
+
+        graph.addVertex("(" + x + " or " + y + " or " + pi + ")", "or", "abpor" + S);
+        graph.addEdge(x, "abpor" + S, false);
+        graph.addEdge(y, "abpor" + S, false);
+        graph.addEdge(pi, "abpor" + S, false);
+
+        graph.addVertex("(abpor" + S + " and np" + NextS + ")", "and", "andnp" + NextS);
+        graph.addDoubleEdge("abpor" + S, "np" + NextS, "andnp" + NextS, false);
+
+        graph.addVertex("(" + x + " and " + y + " and " + pi + ")", "and", "abpand" + S);
+        graph.addEdge(x, "abpand" + S, false);
+        graph.addEdge(y, "abpand" + S, false);
+        graph.addEdge(pi, "abpand" + S, false);
+
+        graph.addVertex("(abpand" + S + " or " + "andnp" + NextS + ")", "or", "pS" + S);
+        graph.addDoubleEdge("abpand" + S, "andnp" + NextS, "pS" + S, false);
+        if (act)
+        {
+            graph.addVertex("(1 and pS" + S + ")", "and", z + "and1_" + S);
+            graph.addDoubleEdge("1", "pS" + S, z + "and1_" + S, false);
+        }
+        else
+        {
+            graph.addEdge("pS" + S, z + S, false);
+        }
+    }
+    return graph;
+}
+
+OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bool compare1, bool compare2, bool act)
 {
     OrientedGraph graph;
 
