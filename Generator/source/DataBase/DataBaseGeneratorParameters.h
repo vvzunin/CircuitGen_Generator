@@ -9,7 +9,8 @@ enum GenerationTypes
   RandLevel,
   NumOperation,
   Genetic,
-  Summator
+  Summator,
+  Comparison
 };
 
 class DataBaseGeneratorParameters //TODO: maybe it need heritance from GenerationParameters?

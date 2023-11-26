@@ -93,6 +93,14 @@ public:
     bool minus = false;
 };
 
+class GeneratorComparisonParameters
+{
+  public:
+    bool compare0 = false;
+    bool compare1 = false;
+    bool compare2 = false;
+};
+
 class GenerationParameters
 {
 public:
@@ -165,6 +173,7 @@ public:
   GeneratorRandLevelParameters getRandLevel() const { return d_generatorRandLevelParameters; }
   GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; }
   GeneratorSummatorParameters getSummator() const {return d_generatorSummatorParameters; }
+  GeneratorComparisonParameters getComparison() const {return d_generatorComparisonParameters; }
   GeneticParameters getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
   void setCNFT(bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
@@ -191,5 +200,6 @@ private:
   GeneratorRandLevelParameters d_generatorRandLevelParameters;
   GeneratorNumOperationParameters d_generatorNumOperationParameters;
   GeneratorSummatorParameters d_generatorSummatorParameters;
+  GeneratorComparisonParameters d_generatorComparisonParameters;
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };

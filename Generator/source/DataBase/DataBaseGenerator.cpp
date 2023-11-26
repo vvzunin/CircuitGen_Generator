@@ -184,6 +184,20 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param) 
     c.generate();
 }
 
+void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i_param)
+{
+  SimpleGenerators sg;
+  int bits = i_param.getInputs();
+  bool compare0 = i_param.getComparison().compare0;
+  bool compare1 = i_param.getComparison().compare1;
+  bool compare2 = i_param.getComparison().compare2;
+  OrientedGraph graph = sg.generatorСomparison(bits, compare0, compare1, compare2);
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());;
+  c.generate();
+}
+
 std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateMethod(const std::string& i_methodName)
 {
   if (i_methodName == "FromRandomTruthTable")
