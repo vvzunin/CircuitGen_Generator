@@ -28,5 +28,6 @@ private:
   void generateDataBaseGenetic(const GenerationParameters& i_param);
   void GenerateDataBaseSummator(GenerationParameters& i_param);
   void GenerateDataBaseComparison(const GenerationParameters& i_param);
+  void GenerateDataBaseEncoder(const GenerationParameters& i_param);
   std::function<void(const GenerationParameters&)> getGenerateMethod(const std::string& i_methodName);
 };

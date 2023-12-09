@@ -80,4 +80,6 @@ std::string DataBaseGeneratorParameters::getGenerationTypeString() const
       return "Summator";
   if (d_generationTypes == GenerationTypes::Comparison)
     return "Comparison";
+  if (d_generationTypes == GenerationTypes::Encoder)
+      return "Encoder";
 }

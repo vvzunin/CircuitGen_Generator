@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <ctime>
 #include <iostream>
+#include <math.h>
 
 #include "SimpleGenerators.h"
 #include "../graph/OrientedGraph.h"
@@ -577,5 +578,60 @@ OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bo
             }
         }
     }
+    return graph;
+}
+
+ OrientedGraph SimpleGenerators::generatorEncoder(int bits)
+{
+    OrientedGraph graph ;
+    int k = 0;
+    for (int t = 0; t <= bits; t++)
+        if (bits - 1 >= pow(2, t))
+        {
+            k = k + 1;
+        }
+    for (int l = 0; l <= bits - 1; l++)
+    {
+        string Z = std::to_string(l);
+        graph.addVertex("x" + Z, "input");
+    }
+    if (bits > 1)
+        for (int p = k - 1; p >= 0; p--)
+        {
+            std::string L = "";
+            std::string P = "";
+            std::string M = "";
+            std::string K = "";
+            std::string S = std::to_string(p);
+            graph.addVertex("a" + S, "output");
+
+            for (int i = 0; i <= bits - 1; i++)
+                for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
+                    if (pow(2, p + 1) * i + t <= bits - 1)
+                    {
+                        std::string R = std::to_string(pow(2, p + 1) * i + t);
+                        K = std::to_string(M + " or x" + R);
+                        L = std::to_string(P + "orx" + R);
+                        //graph.addEdge("x" + R, "a" + S, false);
+                        P = L;
+                        L = "";
+                        M = K;
+                        K = "";
+                    }
+            M = M.erase(0, 3);
+            graph.addVertex(M, "or", P);
+            for (int i = 0; i <= bits - 1; i++)
+                for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
+                    if (pow(2, p + 1) * i + t <= bits - 1)
+                    {
+                        std::string R = std::to_string(pow(2, p + 1) * i + t);
+                        graph.addEdge("x" + R, P, false);
+                    }
+            graph.addEdge(P, "a" + S, false);
+        }
+    else
+
+        Console::WriteLine("Недостаточно входных сигналов");
+
     return graph;
 }

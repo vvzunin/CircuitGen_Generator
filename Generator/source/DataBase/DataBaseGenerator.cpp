@@ -194,8 +194,20 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
   OrientedGraph graph = sg.generatorСomparison(bits, compare0, compare1, compare2);
   Circuit c(graph);
   c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());;
+  c.setCircuitName(i_param.getName());
   c.generate();
+}
+
+ void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_param)
+{
+    SimpleGenerators sg;
+    int bits = i_param.getInputs();
+    OrientedGraph graph = sg.generatorEncoder(bits);
+    Circuit c(graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate();
+
 }
 
 std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateMethod(const std::string& i_methodName)
