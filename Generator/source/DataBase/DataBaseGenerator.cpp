@@ -23,7 +23,8 @@ void DataBaseGenerator::generateType(
   //TODO: make normal code
 
   std::string dir = d_settings->getDatasetPath() + "/" + i_dbgp.getGenerationParameters().getName() + "/" + i_dbgp.getGenerationParameters().getRequestId();
-  std::filesystem::create_directory(d_settings->getDatasetPath() + "/" + i_dbgp.getGenerationParameters().getName());
+  // Creating nested directories 
+  std::filesystem::create_directories(d_settings->getDatasetPath() + "/" + i_dbgp.getGenerationParameters().getName());
   std::filesystem::create_directory(dir);
 
   d_mainPath = dir + "/";

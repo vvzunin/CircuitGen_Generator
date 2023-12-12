@@ -334,36 +334,42 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
   for (const auto& expr : d_logExpressions)
     w << "//" << expr << '\n';
 
-  w << "module " << d_circuitName << "(\n";
+  w << "module " << d_circuitName << "(";
 
   std::string in = "";
+  std::string out = ""; 
 
   const std::string inputModule = "\tinput";
+  const std::string outputModule = "\toutput";
 
-  in += inputModule;
   for (const auto& in_i : inputs)
     if (in_i.find("x") != std::string::npos)
       in += " " + in_i + ",";
 
-  if (in.length() > inputModule.length())
-    w << in << '\n';
+  if (in.length()) {
+    w << in;
+    in[in.length() - 1] = ';';
+  }
 
-  w << "\toutput";
   bool first = true;
-  for (const auto& out : outputs)
+  for (const auto& output : outputs)
   {
     if (first)
     {
-      w << " ";
+      out += " ";
       first = false;
     }
     else
     {
-      w << ", ";
+      out += ", ";
     }
-    w << out;
+    out += output;
   }
-  w << "\n);\n";
+  w << out << " );\n\n";
+
+  if (in.length())
+    w << inputModule << in << '\n';
+  w << outputModule << out << ";\n";
 
   if (d_graph.size() - inputs.size() - outputs.size() - consts.size() > 0)
   {
