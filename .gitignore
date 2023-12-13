@@ -19,4 +19,4 @@ package-lock.json
 jsons_for_generator/*
 launch.json
 settings.json
-test.sh
+.vscode

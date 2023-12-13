@@ -58,6 +58,10 @@ def run_generator(parameters_of_generation, dataset_id):
     # print(parameters_of_generation)
     for obj in parameters_of_generation:
         obj['dataset_id'] = dataset_id
+    
+    if not os.path.exists("jsons_for_generator/"):
+        os.mkdir("jsons_for_generator/")
+
     with open(f'jsons_for_generator/data_{dataset_id}.json', 'w', encoding='utf-8') as f:
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
     subprocess.Popen(f"./Generator/source/build/prog --json_path=./jsons_for_generator/data_{dataset_id}.json",
