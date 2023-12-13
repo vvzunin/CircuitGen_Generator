@@ -76,5 +76,10 @@ std::string DataBaseGeneratorParameters::getGenerationTypeString() const
     return "NumOperation";
   if (d_generationTypes == GenerationTypes::Genetic)
     return "Genetic";
-  return "FromRandomTruthTable";
+  if (d_generationTypes == GenerationTypes::Summator)
+      return "Summator";
+  if (d_generationTypes == GenerationTypes::Comparison)
+    return "Comparison";
+  if (d_generationTypes == GenerationTypes::Encoder)
+      return "Encoder";
 }
