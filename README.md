@@ -53,6 +53,7 @@ python manage.py runserver
 ```
 
 [&#8593; Contents](#content_rus)
+# [Текущий датасет](https://vvzunin.me:10003/d/s/tVFkjEa5dJVgkpNCMirx37WFS3vxKPgU/tWINRKjvi7TCinaI8i5arDSuCxhKzd-o-X7RAk_qacAo)
 
 # Планы на будущее
 ## Написать полностью с нуля свою архитектуру нейронной сети
