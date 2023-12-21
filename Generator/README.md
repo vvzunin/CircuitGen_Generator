@@ -92,5 +92,6 @@ JSON файл может содержать несколько наборов г
       8) mask_prob - float; RecombinationCrossingTriadic и CrossingUniform;
       9) rec_num - int; количество рекомбинаций;
       10) surv_num - int; количество выживших.
+В [примере](docs/sample.json) JSON файла указаны все возможнные параметры генерации, что позволяет использвоать его для всех параметров генерации с минимальными изменениями.
 
 [&#8593; Contents](#content_rus)
