@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "../../TruthTable.h"
-#include "../ChronosomeTypes.h"
+#include "../ChronosomeType.h"
 
 std::vector<std::vector<bool>> MutationTable(std::vector<std::vector<bool>> i_table,
                                             double i_probability);

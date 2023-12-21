@@ -1,12 +1,13 @@
 [
   {
-    "id": 14,
-    "type_of_generation": "From Random Truth Table",
+    "dataset_id": "0",
+    "id": 0,
+    "type_of_generation": "Truth Table",
     "min_in": 4,
-    "max_in": 4,
-    "min_out": 7,
-    "max_out": 7,
-    "repeat_n": 1,
+    "max_in": 5,
+    "min_out": 4,
+    "max_out": 5,
+    "repeat_n": 2,
     "CNFF": false,
     "CNFT": true,
     "max_level": 1,
@@ -35,8 +36,7 @@
     "swap_type": 0,
     "ratio_in_table": 1.0,
     "selection_type": "Base",
-    "surv_num": 1,
-    "dataset_id": "0"
+    "surv_num": 1    
   }
 ]
  

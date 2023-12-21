@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../TruthTable.h"
-#include "../ChronosomeTypes.h"
+#include "../ChronosomeType.h"
 
 std::vector<int> GetHemming(int i_t,
                             std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population);

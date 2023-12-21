@@ -1,4 +1,5 @@
 #include <vector>
+#include <ctime>
 
 #include "SelectionParameters.h"
 #include "SelectionsTruthTable.h"

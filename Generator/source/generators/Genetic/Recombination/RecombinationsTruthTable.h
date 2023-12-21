@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "RecombinationParameters.h"
-#include "../ChronosomeTypes.h"
+#include "../ChronosomeType.h"
 #include "../Parents/ParentsParameters.h"
 #include "../../TruthTable.h"
 

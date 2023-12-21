@@ -1,6 +1,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <ctime>
 
 #include "ParentsTruthTable.h"
 #include "../../../AuxiliaryMethods.h"

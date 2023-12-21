@@ -61,7 +61,7 @@ std::vector<std::vector<bool>> OrientedGraph::getAdjacencyMatrix() const
 
 bool OrientedGraph::getAdjacencyMatrix(int i, int j) const
 {
-  return d_adjacencyMatrix.at(i).at(j);
+return d_adjacencyMatrix.at(i).at(j);
 }
 
 //void OrientedGraph::generateRandom(OrientedGraphParameters i_gp)
@@ -199,7 +199,7 @@ bool OrientedGraph::addDoubleEdge(const std::string& i_vertexFromFirst, const st
 
 void OrientedGraph::printAdjacencyMatrix(bool i_isExpressions)
 {
-  std::cout << "I fucked this func\n";
+  std::cout << "This feature isn't complete.";
 }
 
 std::vector<std::string> OrientedGraph::getVerticesByType(const std::string i_type)
@@ -435,9 +435,7 @@ std::map<std::string, bool> OrientedGraph::calcGraph(
     {
       int i = getIndexOfExpression(v);
       if (d_vertices[i].getOperation() == "input")
-      {
         d_vertices[i].setValue(i_inputValues.at(d_vertices[i].getWireName()));
-      }
       else if (d_vertices[i].getOperation() == "output")
       {
         std::vector<int> from = getConnectedFrom(i);

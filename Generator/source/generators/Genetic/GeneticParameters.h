@@ -23,6 +23,7 @@ public:
   void setKeyEndProcessIndex(double i_keyEndProcessIndex);
   double getKeyEndProcessIndex() { return d_keyEndProcessIndex; }
   int getNumOfCycles() { return d_numOfCycles; }
+
  
 protected:
   int d_inputs;

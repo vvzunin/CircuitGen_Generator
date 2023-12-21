@@ -9,13 +9,17 @@
 #include <utility>
 #include <iostream>
 
-#include "GenGenerator.h"
 #include "../TruthTable.h"
 #include "../SimpleGenerators.h"
 #include "../Parser.h"
 #include "../../circuits/Circuit.h"
 #include "../../FilesTools.h"
-#include "ChronosomeTypes.h"
+#include "ChronosomeType.h"
+
+#include "Recombination/Recombinations.h"
+#include "Selections/Selections.h"
+#include "Recombination/Recombinations.h"
+#include "Mutations/Mutation.h"
 
 int getNumFolderFromString(const std::string& path);//Linker without this line throw error.
 
@@ -77,8 +81,8 @@ void GeneticGenerator<Type, ParametersType>::savePopulation(
 {
     for (const auto& ttp : i_population)
     {
-        TruthTable tt;
-        tt = ttp.chronosome;
+        Type tt;
+        tt = ttp.getChronosomeType();
 
         SimpleGenerators tftt;
         std::vector<std::pair<std::string, std::vector<std::string>>> circs;
@@ -117,14 +121,14 @@ void GeneticGenerator<Type, ParametersType>::createPopulation()
 
 template<typename Type, typename ParametersType>
 std::vector<ChronosomeType<Type, ParametersType>> GeneticGenerator<Type, ParametersType>::generate()
-{
+{   
     createPopulation();
     double d = endProcessFunction();
     for (int i = 0; (i < d_parameters.getNumOfCycles()) && (endProcessFunction() < d_parameters.getKeyEndProcessIndex()); ++i)
     {
-        std::vector<ChronosomeType<Type, ParametersType>> newPopulation = getRecombinationType(d_parameters.getRecombinationParameter, d_population);
-        std::vector<ChronosomeType<Type, ParametersType>> mutants = getMutationType(d_parameters.getMutationParameter, newPopulation);
-        d_population = getSelectionType(d_parameters.getSelectionParameter, mutants);
+        std::vector<ChronosomeType<Type, ParametersType>> newPopulation = RecombinationType<Type, ParametersType>(d_parameters.getRecombinationParameters(), d_population);
+        std::vector<ChronosomeType<Type, ParametersType>> mutants = MutationType<Type, ParametersType>(d_parameters.getMutationParameters(), newPopulation);
+        d_population = SelectionType<Type, ParametersType>(d_parameters.getSelectionParameters(), mutants);
         savePopulation(d_population);
     }
 

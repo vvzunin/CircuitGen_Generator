@@ -1,6 +1,7 @@
 #include <random>
 #include <algorithm>
 #include <vector>
+#include <ctime>
 
 #include "MutationTruthTable.h"
 

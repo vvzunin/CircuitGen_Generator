@@ -16,3 +16,4 @@ make_dataset/migrations
 dataset/
 temp_for_json/
 result_dataset/
+*/*/.vscode

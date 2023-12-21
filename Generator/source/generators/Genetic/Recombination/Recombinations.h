@@ -4,7 +4,7 @@
 
 #include "RecombinationParameters.h"
 
-#include "../ChronosomeTypes.h"
+#include "../ChronosomeType.h"
 
 template<typename Type, typename ParametersType>
 std::vector<ChronosomeType<Type, ParametersType>> RecombinationType

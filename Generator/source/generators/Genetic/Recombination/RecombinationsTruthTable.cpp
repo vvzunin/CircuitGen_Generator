@@ -2,6 +2,7 @@
 #include "../Parents/Parents.h"
 #include "../Mutations/MutationTruthTable.h"
 #include "../../../AuxiliaryMethods.h"
+#include <ctime>
 
 std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCrossingEachExitInTurnMany
 (
