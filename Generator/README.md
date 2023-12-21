@@ -4,7 +4,7 @@
 <a name="content_rus"></a> 
 - [Генератор комбинационных схем](#generator_rus)
     - [Сборка программы](#generator_build_rus)
-    - [Запуск одного json фалйа с информацией](#generator_run_one_json_rus)
+    - [Запуск одного json фала с информацией](#generator_run_one_json_rus)
     - [JSON файлы](#JSON_files)
     
 
