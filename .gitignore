@@ -20,3 +20,5 @@ jsons_for_generator/*
 launch.json
 settings.json
 .vscode
+result_dataset/
+*/*/.vscode

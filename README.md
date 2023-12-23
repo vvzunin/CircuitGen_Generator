@@ -1,17 +1,33 @@
-**1290 Разработка единой системы хранения и обработки датасета цифровых схем**
+**Разработка единой системы хранения и обработки датасета цифровых схем**
 
 <font size="5">**Content**:</font>
 <a name="content_rus"></a> 
 - [Сборка и запуск компонентов](#build_rus)
+    - [Генератор комбинационных схем](#generator_rus)
+        - [Сборка программы](#generator_build_rus)
     - [Backend + frontend](#backend_frontend_rus)
         - [Установка](#install_rus)
         - [Запуск](#run_rus)
-    - [Генератор](#generator_rus)
-        - [Установка](#generator_build_rus)
-        - [Запуск одного json фалйа с информацией](#generator_run_one_json_rus)
+    
 
 # Сборка и запуск компонентов
 <a name="build_rus"></a> 
+
+Сборка и запуск производится из операционной системы Linux.
+
+Программа запускалась на Ubuntu 22.04 с использованием WSL (Windows Subsystem for Linux).
+
+## [Генератор комбинационных схем](Generator/README.md)
+<a name="generator_rus"></a> 
+### Сборка программы
+<a name="generator_build_rus"></a> 
+Для сборки программы необходимо выполнить следующую команду из начальной директории:
+```
+./buildGenerator
+```
+
+[&#8593; Contents](#content_rus)
+
 ## Backend + frontend
 <a name="backend_frontend_rus"></a> 
 ### Установка
@@ -37,30 +53,12 @@ python manage.py runserver
 ```
 
 [&#8593; Contents](#content_rus)
-
-## Generator
-<a name="generator_rus"></a> 
-### Build
-<a name="generator_build_rus"></a> 
-```
-./run.sh
-```
-
-[&#8593; Contents](#content_rus)
-
-### Запуск одного json фалйа с информацией
-<a name="generator_run_one_json_rus"></a> 
-```
-<path_to_compiled_prog> --json_path <path_to_json>
-```
-
-[&#8593; Contents](#content_rus)
+# [Текущий датасет](https://vvzunin.me:10003/d/s/tVFkjEa5dJVgkpNCMirx37WFS3vxKPgU/tWINRKjvi7TCinaI8i5arDSuCxhKzd-o-X7RAk_qacAo)
 
 # Планы на будущее
-## Написать полностью свою архитектуру нейронное сети с нуля
-## Реализовать больше методов оценки надёжности
+## Написать полностью с нуля свою архитектуру нейронной сети
 ## Исправить сомнительные участки в коде, которые были помечены в ходе работы
-## Написать больше тестов на тетестируемые функции
-## Написать программу визуализации схем, которая будет заметно быстрее работать, чем yosys
-## Сделать кросс-платформенность
+## Разработать больше тестов на тестируемые функции
+## Разработать программу визуализации схем, которая будет заметно быстрее работать, чем yosys
+## Реализовать кросс-платформенность
 

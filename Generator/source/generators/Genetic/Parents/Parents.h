@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "ParentsParameters.h"
-#include "../ChronosomeTypes.h"
+#include "../ChronosomeType.h"
 
 
 template<typename Type, typename ParametersType>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../TruthTable.h"
-#include "../ChronosomeTypes.h"
+#include "../ChronosomeType.h"
 
 std::vector<ChronosomeType<TruthTable, TruthTableParameters>> SelectionBase(
   SelectionParameters i_selectionParameters,

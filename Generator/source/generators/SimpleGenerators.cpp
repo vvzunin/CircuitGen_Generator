@@ -201,6 +201,11 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
   std::map<std::string, int> copyLogicOper, levelName;
   std::vector<std::string> nameOut, nameInput;
 
+  for(const auto& elem : i_logicOper)
+  {
+    std::cout << elem.first << " " << elem.second << "\n";
+  }
+
   copyLogicOper = i_logicOper;
   
   OrientedGraph graph;

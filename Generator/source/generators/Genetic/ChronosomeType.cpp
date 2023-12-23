@@ -2,7 +2,7 @@
 #include <tuple>
 #include <cmath>
 
-#include "ChronosomeTypes.h"
+#include "ChronosomeType.h"
 #include "../TruthTable.h"
 
 template<typename Type, typename ParametersTypes>

@@ -7,6 +7,11 @@ void SelectionParameters::setSelectionType (SelectionTypes i_selectionType)
   d_selectionType = i_selectionType;
 }
 
+SelectionTypes SelectionParameters::getSelectionType() const
+{
+  return d_selectionType;
+}
+
 int SelectionParameters::getNumOfSurvivors() const
 {
   return d_numOfSurvivors;

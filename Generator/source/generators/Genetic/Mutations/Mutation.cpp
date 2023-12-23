@@ -4,7 +4,7 @@
 #include "MutationTruthTable.h"
 
 template<typename Type, typename ParametersType>
-std::vector<ChronosomeType<Type, ParametersType>> Mutations<Type, ParametersType>::MutationType(
+std::vector<ChronosomeType<Type, ParametersType>> MutationType(
     MutationParameters i_mutationParameters,
     std::vector<ChronosomeType<Type, ParametersType>> i_population)
 {
