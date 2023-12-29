@@ -36,7 +36,7 @@ inline bool AbcUtils::standartExecutor(
     int write_pos = result.find(abc_word, strash_pos + 1);
     int end_pos = result.find(abc_word, write_pos + 1);
 
-    // если хоть где-то ошибка была
+    // if there was an error
     if (
         read_pos == std::string::npos || 
         strash_pos == std::string::npos || 
@@ -76,6 +76,7 @@ inline bool AbcUtils::standartExecutor(
 }
 
 inline bool AbcUtils::verilogToAiger(std::string i_inpuFileName, std::string i_outpuFileName) {
+    // format command, then execute it with specified parametrs
     std::string command = "(echo \"read_verilog " + i_inpuFileName + "\"";
     command += "&& echo \"strash\" && echo \"";
     command += "write_aiger " + i_outpuFileName + "\") | abc";
