@@ -3,14 +3,14 @@
 #include <stdlib.h>
 #include <cassert>
 
-#include "AbcUtil.h"
+#include "AbcUtils.h"
 
 // declare of value of static var
-inline const std::string AbcUtil::abc_word = "abc ";
+inline const std::string AbcUtils::abc_word = "abc ";
 
 // TODO at this moment can execute only three commands, in fact one operation
 // make it to read more, if it would ne neccessary
-inline bool AbcUtil::standartExecutor(
+inline bool AbcUtils::standartExecutor(
             std::string command,
             int i_len, 
             int o_len, 
@@ -44,7 +44,7 @@ inline bool AbcUtil::standartExecutor(
         end_pos == std::string::npos
     ) 
     {
-        std::cout << "Something went wrong during files parsing in AbcUtil\n";
+        std::cout << "Something went wrong during files parsing in AbcUtils\n";
         return false;
     }
 
@@ -75,7 +75,7 @@ inline bool AbcUtil::standartExecutor(
     return true;
 }
 
-inline bool AbcUtil::verilogToAiger(std::string i_inpuFileName, std::string i_outpuFileName) {
+inline bool AbcUtils::verilogToAiger(std::string i_inpuFileName, std::string i_outpuFileName) {
     std::string command = "(echo \"read_verilog " + i_inpuFileName + "\"";
     command += "&& echo \"strash\" && echo \"";
     command += "write_aiger " + i_outpuFileName + "\") | abc";
@@ -87,14 +87,14 @@ inline bool AbcUtil::verilogToAiger(std::string i_inpuFileName, std::string i_ou
     );
 }
 
-inline bool AbcUtil::verilogToAiger(std::string i_inpuFileName, std::string i_outpuFileName, std::string i_directory) {
+inline bool AbcUtils::verilogToAiger(std::string i_inpuFileName, std::string i_outpuFileName, std::string i_directory) {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
     return verilogToAiger(i_directory + i_inpuFileName, i_directory + i_outpuFileName);
 }
 
-inline bool AbcUtil::aigerToVerilog(std::string i_inpuFileName, std::string i_outpuFileName) {
+inline bool AbcUtils::aigerToVerilog(std::string i_inpuFileName, std::string i_outpuFileName) {
     std::string command = "(echo \"read_aiger " + i_inpuFileName + "\"";
     command += "&& echo \"strash\" && echo \"";
     command += "write_verilog " + i_outpuFileName + "\") | abc";
@@ -106,9 +106,48 @@ inline bool AbcUtil::aigerToVerilog(std::string i_inpuFileName, std::string i_ou
     );
 }
 
-inline bool AbcUtil::aigerToVerilog(std::string i_inpuFileName, std::string i_outpuFileName, std::string i_directory) {
+inline bool AbcUtils::aigerToVerilog(std::string i_inpuFileName, std::string i_outpuFileName, std::string i_directory) {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
     return aigerToVerilog(i_directory + i_inpuFileName, i_directory + i_outpuFileName);
+}
+
+
+inline bool AbcUtils::balanceVerilog(std::string i_inpuFileName) {
+    std::string command = "(echo \"read_verilog " + i_inpuFileName + "\"";
+    command += "&& echo \"balance\" && echo \"";
+    command += "write_verilog " + i_inpuFileName + "\") | abc";
+    
+    return standartExecutor(
+        command, 
+        i_inpuFileName.size(), i_inpuFileName.size(), 
+        r_verilog_len, balance_len, w_verilog_len
+    );
+}
+
+inline bool AbcUtils::balanceVerilog(std::string i_inpuFileName, std::string i_directory) {
+    if (i_directory[i_directory.size() - 1] != '/')
+        i_directory += "/";
+
+    return balanceVerilog(i_directory + i_inpuFileName);
+}
+
+inline bool AbcUtils::balanceAiger(std::string i_inpuFileName) {
+    std::string command = "(echo \"read_aiger " + i_inpuFileName + "\"";
+    command += "&& echo \"balance\" && echo \"";
+    command += "write_aiger " + i_inpuFileName + "\") | abc";
+    
+    return standartExecutor(
+        command, 
+        i_inpuFileName.size(), i_inpuFileName.size(), 
+        r_aiger_len, balance_len, w_aiger_len
+    );
+}
+
+inline  bool AbcUtils::balanceAiger(std::string i_inpuFileName, std::string i_directory) {
+    if (i_directory[i_directory.size() - 1] != '/')
+        i_directory += "/";
+
+    return balanceAiger(i_directory + i_inpuFileName);
 }

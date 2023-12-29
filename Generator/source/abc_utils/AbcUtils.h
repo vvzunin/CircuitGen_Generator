@@ -9,7 +9,7 @@ read aiger file, make strash and to write file into
 verilog or aiger
 */
 
-class AbcUtil {
+class AbcUtils {
     public:
         static bool verilogToAiger(std::string i_inpuFileName, std::string i_outpuFileName);
         static bool verilogToAiger(
