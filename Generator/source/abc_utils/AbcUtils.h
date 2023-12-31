@@ -9,6 +9,16 @@ read aiger file, make strash and to write file into
 verilog or aiger
 */
 
+// so, this struct is used for sending info about multi-line commands
+// for abc
+struct standartCommandInfo {
+    int filenameLen;
+    int commandLen;
+    int spacesAndNewlines;
+    int flagsLen;
+    std::string info;
+};
+
 class AbcUtils {
     public:
         static bool verilogToAiger(std::string i_inpuFileName, std::string i_outpuFileName);
@@ -55,10 +65,6 @@ class AbcUtils {
 
         static bool standartExecutor(
             std::string command,
-            int i_len, 
-            int o_len, 
-            int first_command, 
-            int second_command, 
-            int third_command
+            std::vector<standartCommandInfo> info
         );
 };

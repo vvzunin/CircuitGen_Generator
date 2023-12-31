@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <cassert>
+#include <vector>
 
 #include "AbcUtils.h"
 
@@ -12,11 +13,7 @@ inline const std::string AbcUtils::abc_word = "abc ";
 // make it to read more, if it would ne neccessary
 inline bool AbcUtils::standartExecutor(
             std::string command,
-            int i_len, 
-            int o_len, 
-            int first_command, 
-            int second_command, 
-            int third_command) 
+            std::vector<standartCommandInfo> info) 
 {
     FILE *abc_output;
     char out[40];      
@@ -31,60 +28,78 @@ inline bool AbcUtils::standartExecutor(
     }
 
     // looking for each command execution
-    int read_pos = result.find(abc_word, 0);
-    int strash_pos = result.find(abc_word, read_pos + 1);
-    int write_pos = result.find(abc_word, strash_pos + 1);
-    int end_pos = result.find(abc_word, write_pos + 1);
+    int first_pos = result.find(abc_word, 0);
 
     // if there was an error
-    if (
-        read_pos == std::string::npos || 
-        strash_pos == std::string::npos || 
-        write_pos == std::string::npos || 
-        end_pos == std::string::npos
-    ) 
-    {
+    if (first_pos == std::string::npos) {
         std::cout << "Something went wrong during files parsing in AbcUtils\n";
         return false;
     }
 
-    // 2 - one space and one \n
-    int delta = abc_len + first_command + 2 + i_len;
+    for (auto currentCommand : info) {
+        int second_pos = result.find(abc_word, first_pos + 1);
 
-    // If something went wrong during read
-    // and abc wrote something
-    if (strash_pos - read_pos > delta) {
-        std::cerr << "Incorrect read: " << result.substr(read_pos + delta, strash_pos - read_pos - delta) << '\n';
-        return false;
-    }
+        // if there was an error
+        if (second_pos == std::string::npos) {
+            std::cout << "Something went wrong during files parsing in AbcUtils\n";
+            return false;
+        }
+        // 2 - one space and one \n
+        int delta = abc_len + currentCommand.filenameLen + 
+                              currentCommand.spacesAndNewlines + 
+                              currentCommand.commandLen + 
+                              currentCommand.flagsLen;
+        
+        // If something went wrong during read
+        // and abc wrote something
+        if (second_pos - first_pos > delta) {
+            std::cerr << "Incorrect " << currentCommand.info << ": " << result.substr(first_pos + delta, second_pos - first_pos - delta) << '\n';
+            return false;
+        }
 
-    delta = abc_len + second_command + 1;
-    // If there were some problems with strash
-    if (write_pos - strash_pos > delta) {
-        std::cerr << "Incorrect strash/balance: " << result.substr(strash_pos + delta, write_pos - strash_pos - delta) << '\n';
-        return false;
-    }
-
-    delta = abc_len + third_command + 2 + o_len;
-    // If there were problems during writing
-    if (end_pos - write_pos > delta) {
-        std::cerr << "Incorrect write: " << result.substr(write_pos + delta, end_pos - write_pos - delta) << '\n';
-        return false;
+        first_pos = second_pos;
     }
 
     return true;
 }
 
+// TODO I know, that creating such structs is a bit ugly. So, I'm going
+// tp fix it, but at this moment it's 22:06 of 31.12.2023, and I'm going to have a rest
 inline bool AbcUtils::verilogToAiger(std::string i_inpuFileName, std::string i_outpuFileName) {
     // format command, then execute it with specified parametrs
     std::string command = "(echo \"read_verilog " + i_inpuFileName + "\"";
     command += "&& echo \"strash\" && echo \"";
     command += "write_aiger " + i_outpuFileName + "\") | abc";
 
+    standartCommandInfo com1 = {
+        .filenameLen = (int) i_inpuFileName.size(),
+        .commandLen = r_verilog_len,
+        .spacesAndNewlines = 2,
+        .flagsLen = 0,
+        .info = "read"
+    };
+
+    standartCommandInfo com2 = {
+        .filenameLen = 0,
+        .commandLen = strash_len,
+        .spacesAndNewlines = 1,
+        .flagsLen = 0,
+        .info = "strash/balance"
+    };
+
+    standartCommandInfo com3 = {
+        .filenameLen = (int) i_outpuFileName.size(),
+        .commandLen = w_aiger_len,
+        .spacesAndNewlines = 2,
+        .flagsLen = 0,
+        .info = "write"
+    };
+
+    std::vector<standartCommandInfo> data = { com1, com2, com3 };
+
     return standartExecutor(
         command, 
-        i_inpuFileName.size(), i_outpuFileName.size(), 
-        r_verilog_len, strash_len, w_aiger_len
+        data
     );
 }
 
@@ -100,10 +115,35 @@ inline bool AbcUtils::aigerToVerilog(std::string i_inpuFileName, std::string i_o
     command += "&& echo \"strash\" && echo \"";
     command += "write_verilog " + i_outpuFileName + "\") | abc";
     
+    standartCommandInfo com1 = {
+        .filenameLen = (int) i_inpuFileName.size(),
+        .commandLen = r_aiger_len,
+        .spacesAndNewlines = 2,
+        .flagsLen = 0,
+        .info = "read"
+    };
+
+    standartCommandInfo com2 = {
+        .filenameLen = 0,
+        .commandLen = strash_len,
+        .spacesAndNewlines = 1,
+        .flagsLen = 0,
+        .info = "strash/balance"
+    };
+
+    standartCommandInfo com3 = {
+        .filenameLen = (int) i_outpuFileName.size(),
+        .commandLen = w_verilog_len,
+        .spacesAndNewlines = 2,
+        .flagsLen = 0,
+        .info = "write"
+    }; 
+    
+    std::vector<standartCommandInfo> data = { com1, com2, com3 };
+
     return standartExecutor(
         command, 
-        i_inpuFileName.size(), i_outpuFileName.size(), 
-        r_aiger_len, strash_len, w_verilog_len
+        data
     );
 }
 
@@ -120,10 +160,35 @@ inline bool AbcUtils::balanceVerilog(std::string i_inpuFileName) {
     command += "&& echo \"balance\" && echo \"";
     command += "write_verilog " + i_inpuFileName + "\") | abc";
     
+    standartCommandInfo com1 = {
+        .filenameLen = (int) i_inpuFileName.size(),
+        .commandLen = r_verilog_len,
+        .spacesAndNewlines = 2,
+        .flagsLen = 0,
+        .info = "read"
+    };
+
+    standartCommandInfo com2 = {
+        .filenameLen = 0,
+        .commandLen = balance_len,
+        .spacesAndNewlines = 1,
+        .flagsLen = 0,
+        .info = "strash/balance"
+    };
+
+    standartCommandInfo com3 = {
+        .filenameLen = (int) i_inpuFileName.size(),
+        .commandLen = w_verilog_len,
+        .spacesAndNewlines = 2,
+        .flagsLen = 0,
+        .info = "write"
+    }; 
+    
+    std::vector<standartCommandInfo> data = { com1, com2, com3 };
+
     return standartExecutor(
         command, 
-        i_inpuFileName.size(), i_inpuFileName.size(), 
-        r_verilog_len, balance_len, w_verilog_len
+        data
     );
 }
 
@@ -139,10 +204,35 @@ inline bool AbcUtils::balanceAiger(std::string i_inpuFileName) {
     command += "&& echo \"balance\" && echo \"";
     command += "write_aiger " + i_inpuFileName + "\") | abc";
     
+    standartCommandInfo com1 = {
+        .filenameLen = (int) i_inpuFileName.size(),
+        .commandLen = r_aiger_len,
+        .spacesAndNewlines = 2,
+        .flagsLen = 0,
+        .info = "read"
+    };
+
+    standartCommandInfo com2 = {
+        .filenameLen = 0,
+        .commandLen = balance_len,
+        .spacesAndNewlines = 1,
+        .flagsLen = 0,
+        .info = "strash/balance"
+    };
+
+    standartCommandInfo com3 = {
+        .filenameLen = (int) i_inpuFileName.size(),
+        .commandLen = w_aiger_len,
+        .spacesAndNewlines = 2,
+        .flagsLen = 0,
+        .info = "write"
+    }; 
+    
+    std::vector<standartCommandInfo> data = { com1, com2, com3 };
+
     return standartExecutor(
         command, 
-        i_inpuFileName.size(), i_inpuFileName.size(), 
-        r_aiger_len, balance_len, w_aiger_len
+        data
     );
 }
 
