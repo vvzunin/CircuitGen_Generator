@@ -11,60 +11,96 @@ verilog or aiger
 
 // so, this struct is used for sending info about multi-line commands
 // for abc
-struct standartCommandInfo {
-    int filenameLen;
-    int commandLen;
-    int spacesAndNewlines;
-    int flagsLen;
+struct StandartCommandInfo {
+    // int filenameLen;
+    // int commandLen;
+    // int spacesAndNewlines;
+    // int flagsLen;
+    int sumLen;
     std::string info;
 };
 
 class AbcUtils {
     public:
-        static bool verilogToAiger(std::string i_inpuFileName, std::string i_outpuFileName);
-        static bool verilogToAiger(
-            std::string i_inpuFileName, std::string i_outpuFileName, std::string i_directory
+        static void verilogToAiger(
+            std::string i_inpuFileName, 
+            std::string i_outpuFileName,
+            void (*on_finish) (bool) = NULL
+        );
+        static void verilogToAiger(
+            std::string i_inpuFileName, 
+            std::string i_outpuFileName, 
+            std::string i_directory,
+            void (*on_finish) (bool) = NULL
         );
 
-        static bool aigerToVerilog(std::string i_inpuFileName, std::string i_outpuFileName);
-        static bool aigerToVerilog(
-            std::string i_inpuFileName, std::string i_outpuFileName, std::string i_directory
+        static void aigerToVerilog(
+            std::string i_inpuFileName, 
+            std::string i_outpuFileName,
+            void (*on_finish) (bool) = NULL
+        );
+        static void aigerToVerilog(
+            std::string i_inpuFileName, 
+            std::string i_outpuFileName, 
+            std::string i_directory,
+            void (*on_finish) (bool) = NULL
         );
 
-        static bool balanceVerilog(std::string i_inpuFileName);
-        static bool balanceVerilog(std::string i_inpuFileName, std::string i_directory);
+        static void balanceVerilog(
+            std::string i_inpuFileName,
+            void (*on_finish) (bool) = NULL
+        );
+        static void balanceVerilog(
+            std::string i_inpuFileName, 
+            std::string i_directoryv,
+            void (*on_finish) (bool) = NULL
+        );
 
-        static bool balanceAiger(std::string i_inpuFileName);
-        static bool balanceAiger(std::string i_inpuFileName, std::string i_directory);
+        static void balanceAiger(
+            std::string i_inpuFileName,
+            void (*on_finish) (bool) = NULL
+        );
+        static void balanceAiger(
+            std::string i_inpuFileName, 
+            std::string i_directory,
+            void (*on_finish) (bool) = NULL
+        );
 
-        static bool strashVerilog(std::string i_inpuFileName);
-        static bool strashVerilog(std::string i_inpuFileName, std::string i_directory);
+        static void strashVerilog(
+            std::string i_inpuFileName,
+            void (*on_finish) (bool) = NULL
+        );
+        static void strashVerilog(
+            std::string i_inpuFileName, 
+            std::string i_directory,
+            void (*on_finish) (bool) = NULL
+        );
 
-        static bool strashAiger(std::string i_inpuFileName);
-        static bool strashAiger(std::string i_inpuFileName, std::string i_directory);
+        static void strashAiger(
+            std::string i_inpuFileName,
+            void (*on_finish) (bool) = NULL
+        );
+        static void strashAiger(
+            std::string i_inpuFileName, 
+            std::string i_directory,
+            void (*on_finish) (bool) = NULL
+        );
+
+        // parser, which gets info about elements in command
+        static std::vector<StandartCommandInfo> parseCommand(
+            std::string command,
+            bool parseAll = false
+        );
     private:
         // len of "abc 0*> "
         static const int abc_len = 8;
         // "abc *" itself
         static const std::string abc_word;
 
-        // "read_verilog" len
-        static const int r_verilog_len = 12;
-        // "write_verilog" len
-        static const int w_verilog_len = 13;
-
-        // "read_aiger" len
-        static const int r_aiger_len = 10;
-        // "write_aiger" len
-        static const int w_aiger_len = 11;
-
-        // len of "strash"
-        static const int strash_len = 6;
-        // len of "balance"
-        static const int balance_len = 7;
-
-        static bool standartExecutor(
+        static void standartExecutor(
             std::string command,
-            std::vector<standartCommandInfo> info
+            std::vector<StandartCommandInfo> info, 
+            void (*on_finish) (bool) = NULL
         );
 };
+
