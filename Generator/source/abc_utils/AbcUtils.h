@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <thread>
 
 /*
 This class is made for basic work with abc.
@@ -22,65 +23,65 @@ struct StandartCommandInfo {
 
 class AbcUtils {
     public:
-        static void verilogToAiger(
+        static std::thread verilogToAiger(
             std::string i_inpuFileName, 
             std::string i_outpuFileName,
             void (*on_finish) (bool) = NULL
         );
-        static void verilogToAiger(
+        static std::thread verilogToAiger(
             std::string i_inpuFileName, 
             std::string i_outpuFileName, 
             std::string i_directory,
             void (*on_finish) (bool) = NULL
         );
 
-        static void aigerToVerilog(
+        static std::thread aigerToVerilog(
             std::string i_inpuFileName, 
             std::string i_outpuFileName,
             void (*on_finish) (bool) = NULL
         );
-        static void aigerToVerilog(
+        static std::thread aigerToVerilog(
             std::string i_inpuFileName, 
             std::string i_outpuFileName, 
             std::string i_directory,
             void (*on_finish) (bool) = NULL
         );
 
-        static void balanceVerilog(
+        static std::thread balanceVerilog(
             std::string i_inpuFileName,
             void (*on_finish) (bool) = NULL
         );
-        static void balanceVerilog(
+        static std::thread balanceVerilog(
             std::string i_inpuFileName, 
             std::string i_directoryv,
             void (*on_finish) (bool) = NULL
         );
 
-        static void balanceAiger(
+        static std::thread balanceAiger(
             std::string i_inpuFileName,
             void (*on_finish) (bool) = NULL
         );
-        static void balanceAiger(
+        static std::thread balanceAiger(
             std::string i_inpuFileName, 
             std::string i_directory,
             void (*on_finish) (bool) = NULL
         );
 
-        static void strashVerilog(
+        static std::thread strashVerilog(
             std::string i_inpuFileName,
             void (*on_finish) (bool) = NULL
         );
-        static void strashVerilog(
+        static std::thread strashVerilog(
             std::string i_inpuFileName, 
             std::string i_directory,
             void (*on_finish) (bool) = NULL
         );
 
-        static void strashAiger(
+        static std::thread strashAiger(
             std::string i_inpuFileName,
             void (*on_finish) (bool) = NULL
         );
-        static void strashAiger(
+        static std::thread strashAiger(
             std::string i_inpuFileName, 
             std::string i_directory,
             void (*on_finish) (bool) = NULL

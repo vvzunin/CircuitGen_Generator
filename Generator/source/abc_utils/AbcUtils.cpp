@@ -1,9 +1,9 @@
 #include <string>
-#include <vector>
-#include <thread>
-#include <cassert>
 #include <iostream>
 #include <stdlib.h>
+#include <cassert>
+#include <vector>
+#include <thread>
 
 #include "AbcUtils.h"
 
@@ -63,10 +63,8 @@ inline void AbcUtils::standartExecutor(
         correct = false;
     }
 
-    if (on_finish) {
-        std::thread th(on_finish, correct);
-        th.detach();
-    }
+    if (on_finish)
+        on_finish(correct);
 }
 
 inline std::vector<StandartCommandInfo> AbcUtils::parseCommand(
@@ -105,7 +103,7 @@ inline std::vector<StandartCommandInfo> AbcUtils::parseCommand(
 
 // TODO I know, that creating such structs is a bit ugly. So, I'm going
 // tp fix it, but at this moment it's 22:06 of 31.12.2023, and I'm going to have a rest
-inline void AbcUtils::verilogToAiger(
+inline std::thread AbcUtils::verilogToAiger(
     std::string i_inpuFileName, std::string i_outpuFileName, void (*on_finish) (bool)) 
 {
     // format command, then execute it with specified parametrs
@@ -113,92 +111,92 @@ inline void AbcUtils::verilogToAiger(
     command += "&& echo \"strash\" && echo \"";
     command += "write_aiger " + i_outpuFileName + "\") | abc";
     
-    {std::thread thread_executor(
+    std::thread thread_executor(
         standartExecutor, 
         command, 
         parseCommand(command),
         on_finish
     );
 
-    thread_executor.detach();}
+    return thread_executor;
 }
 
-inline void AbcUtils::verilogToAiger(
+inline std::thread AbcUtils::verilogToAiger(
     std::string i_inpuFileName, std::string i_outpuFileName, std::string i_directory, void (*on_finish) (bool)) 
 {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
-    verilogToAiger(i_directory + i_inpuFileName, i_directory + i_outpuFileName, on_finish);
+    return verilogToAiger(i_directory + i_inpuFileName, i_directory + i_outpuFileName, on_finish);
 }
 
-inline void AbcUtils::aigerToVerilog(
+inline std::thread AbcUtils::aigerToVerilog(
     std::string i_inpuFileName, std::string i_outpuFileName, void (*on_finish) (bool)) 
 {
     std::string command = "(echo \"read_aiger " + i_inpuFileName + "\"";
     command += "&& echo \"strash\" && echo \"";
     command += "write_verilog " + i_outpuFileName + "\") | abc";
     
-    {std::thread thread_executor(
+    std::thread thread_executor(
         standartExecutor, 
         command, 
         parseCommand(command),
         on_finish
     );
 
-    thread_executor.detach();}
+    return thread_executor;
 }
 
-inline void AbcUtils::aigerToVerilog(
+inline std::thread AbcUtils::aigerToVerilog(
     std::string i_inpuFileName, std::string i_outpuFileName, std::string i_directory, void (*on_finish) (bool)) 
 {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
-    aigerToVerilog(i_directory + i_inpuFileName, i_directory + i_outpuFileName, on_finish);
+    return aigerToVerilog(i_directory + i_inpuFileName, i_directory + i_outpuFileName, on_finish);
 }
 
 
-inline void AbcUtils::balanceVerilog(std::string i_inpuFileName, void (*on_finish) (bool)) {
+inline std::thread AbcUtils::balanceVerilog(std::string i_inpuFileName, void (*on_finish) (bool)) {
     std::string command = "(echo \"read_verilog " + i_inpuFileName + "\"";
     command += "&& echo \"balance\" && echo \"";
     command += "write_verilog " + i_inpuFileName + "\") | abc";
     
-    {std::thread thread_executor(
+    std::thread thread_executor(
         standartExecutor, 
         command, 
         parseCommand(command),
         on_finish
     );
 
-    thread_executor.detach();}
+    return thread_executor;
 }
 
-inline void AbcUtils::balanceVerilog(std::string i_inpuFileName, std::string i_directory, void (*on_finish) (bool)) {
+inline std::thread AbcUtils::balanceVerilog(std::string i_inpuFileName, std::string i_directory, void (*on_finish) (bool)) {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
-    balanceVerilog(i_directory + i_inpuFileName, on_finish);
+    return balanceVerilog(i_directory + i_inpuFileName, on_finish);
 }
 
-inline void AbcUtils::balanceAiger(std::string i_inpuFileName, void (*on_finish) (bool)) {
+inline std::thread AbcUtils::balanceAiger(std::string i_inpuFileName, void (*on_finish) (bool)) {
     std::string command = "(echo \"read_aiger " + i_inpuFileName + "\"";
     command += "&& echo \"balance\" && echo \"";
     command += "write_aiger " + i_inpuFileName + "\") | abc";
     
-    {std::thread thread_executor(
+    std::thread thread_executor(
         standartExecutor, 
         command, 
         parseCommand(command),
         on_finish
     );
 
-    thread_executor.detach();}
+    return thread_executor;
 }
 
-inline void AbcUtils::balanceAiger(std::string i_inpuFileName, std::string i_directory, void (*on_finish) (bool)) {
+inline std::thread AbcUtils::balanceAiger(std::string i_inpuFileName, std::string i_directory, void (*on_finish) (bool)) {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
-    balanceAiger(i_directory + i_inpuFileName, on_finish);
+    return balanceAiger(i_directory + i_inpuFileName, on_finish);
 }
