@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 set (SOURCES
-  abc_utils/AbcUtil.cpp
+  abc_utils/AbcUtils.cpp
 )
 
-add_library(AbcUtil AbcUtil.cpp AbcUtil.h)
+add_library(AbcUtils AbcUtils.cpp AbcUtils.h)
