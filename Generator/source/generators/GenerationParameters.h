@@ -113,6 +113,11 @@ class GeneratorEncoderParameters
 
 };
 
+class GeneratorMultiplexerParameters
+{
+
+};
+
 class GenerationParameters
 {
 public:

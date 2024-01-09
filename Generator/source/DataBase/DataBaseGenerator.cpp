@@ -210,6 +210,17 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
 
 }
 
+void DataBaseGenerator::GenerateDataBaseMultiplexer(const GenerationParameters &i_param)
+{
+    SimpleGenerators sg;
+    int bits = i_param.getInputs();
+    OrientedGraph graph = sg.generatorMultiplexer(bits);
+    Circuit c(graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate();
+}
+
 std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateMethod(const std::string& i_methodName)
 {
   if (i_methodName == "FromRandomTruthTable")

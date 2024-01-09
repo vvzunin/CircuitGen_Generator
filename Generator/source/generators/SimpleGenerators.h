@@ -18,6 +18,7 @@ public:
   OrientedGraph generatorSummator(int i_bits, bool i_overflowIn, bool i_overflowOut, bool i_minus, bool act = false);
   OrientedGraph generatorСomparison(int bits, bool compare0, bool compare1, bool compare2, bool act = false);
   OrientedGraph generatorEncoder(int bits);
+  OrientedGraph generatorMultiplexer(int bits, std::string T = "0");
 private:
   Settings* d_settings = Settings::getInstance("GraphVertex");
   std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);
