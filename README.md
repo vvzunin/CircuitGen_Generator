@@ -33,11 +33,11 @@
 ### Установка
 <a name="install_rus"></a> 
 ```
-pip install djangorestframework
-pip install django-cors-headers
+pip install -r requirements.txt
 
 python manage.py makemigrations
 python manage.py migrate
+python manage.py migrate --run-syncdb
 cd frontend
 npm i
 npm run build

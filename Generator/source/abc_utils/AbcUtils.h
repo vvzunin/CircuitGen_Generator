@@ -2,6 +2,7 @@
 
 #include <string>
 #include <thread>
+#include <vector>
 
 /*
 This class is made for basic work with abc.
