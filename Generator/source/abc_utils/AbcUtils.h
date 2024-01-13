@@ -17,67 +17,75 @@ verilog or aiger
 class AbcUtils : public StandartUtil {
     public:
         static std::thread verilogToAiger(
-            std::string i_inputFileName, 
-            std::string i_outputFileName,
+            const std::string &i_inputFileName, 
+            const std::string &i_outputFileName,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
         static std::thread verilogToAiger(
-            std::string i_inputFileName, 
-            std::string i_outputFileName, 
+            const std::string &i_inputFileName, 
+            const std::string &i_outputFileName, 
             std::string i_directory,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
 
         static std::thread aigerToVerilog(
-            std::string i_inputFileName, 
-            std::string i_outputFileName,
+            const std::string &i_inputFileName, 
+            const std::string &i_outputFileName,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
         static std::thread aigerToVerilog(
-            std::string i_inputFileName, 
-            std::string i_outputFileName, 
+            const std::string &i_inputFileName, 
+            const std::string &i_outputFileName, 
             std::string i_directory,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
 
         static std::thread balanceVerilog(
-            std::string i_inputFileName,
+            const std::string &i_inputFileName,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
         static std::thread balanceVerilog(
-            std::string i_inputFileName, 
+            const std::string &i_inputFileName, 
             std::string i_directoryv,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
 
         static std::thread balanceAiger(
-            std::string i_inputFileName,
+            const std::string &i_inputFileName,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
         static std::thread balanceAiger(
-            std::string i_inputFileName, 
+            const std::string &i_inputFileName, 
             std::string i_directory,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
 
-        static void runExecutorForStats(
-            std::string i_command,
-            std::vector<StandartCommandInfo> i_info, 
-            void (*i_onFinish) (CommandWorkResult)
+        static std::thread getStats(
+            const std::string &i_inputFileName,
+            const std::string &i_libName,
+            void (*i_onFinish) (CommandWorkResult) = NULL
         );
 
-        static std::thread optimizeWithLib(
-            std::string i_inputFileName, 
-            std::string i_outputFileName, 
-            std::string i_libName,
+        static std::thread getStats(
+            const std::string &i_inputFileName, 
+            const std::string &i_libName,
+            std::string i_fileDirectory,
+            std::string i_libDirectory,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
 
         static std::thread optimizeWithLib(
-            std::string i_inputFileName, 
-            std::string i_outputFileName, 
-            std::string i_libName,
-            std::string i_directory,
+            const std::string &i_inputFileName, 
+            const std::string &i_outputFileName, 
+            const std::string &i_libName,
+            void (*i_onFinish) (CommandWorkResult) = NULL
+        );
+
+        static std::thread optimizeWithLib(
+            const std::string &i_inputFileName, 
+            const std::string &i_outputFileName, 
+            const std::string &i_libName,
+            std::string i_fileDirectory,
             std::string i_libDirectory,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
@@ -88,9 +96,9 @@ class AbcUtils : public StandartUtil {
         );
     protected:
         static void standartExecutor(
-            std::string i_command,
-            std::vector<StandartCommandInfo> i_info, 
-            void (*i_onFinish) (CommandWorkResult) = NULL
+            const std::string &i_command,
+            const std::vector<StandartCommandInfo> &i_info, 
+            const std::function<void(CommandWorkResult)> &i_onFinish = NULL
         );
 
         // len of "synthes_util*> "
@@ -102,6 +110,14 @@ class AbcUtils : public StandartUtil {
         static std::string d_className;
 
         static std::vector<std::string> d_allowedOutput;
+    
+    private:
+        static void runExecutorForStats(
+            const std::string &i_command,
+            const std::vector<StandartCommandInfo> &i_info, 
+            void (*i_onFinish) (CommandWorkResult)
+        );
+
 };
 
 #endif

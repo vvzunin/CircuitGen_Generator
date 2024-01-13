@@ -5,6 +5,7 @@
 #include <thread>
 #include <cassert>
 #include <stdlib.h>
+#include <algorithm>
 #include <functional>
 
 #include "AbcUtils.h"
@@ -23,9 +24,9 @@ inline std::vector<std::string> AbcUtils::d_allowedOutput = {
 
 
 inline void AbcUtils::standartExecutor(
-            std::string i_command,
-            std::vector<StandartCommandInfo> i_info, 
-            void (*i_onFinish) (CommandWorkResult)) 
+            const std::string &i_command,
+            const std::vector<StandartCommandInfo> &i_info, 
+            const std::function<void(CommandWorkResult)> &i_onFinish) 
 {
     FILE *abcOutput;
     char out[40];
@@ -117,7 +118,11 @@ inline std::vector<StandartCommandInfo> AbcUtils::parseCommand(
     
     while (start != std::string::npos) {
         int commandNameStart = i_command.find_first_not_of(" ", start + 1);
-        int commandNameEnd = i_command.find(" ", commandNameStart);
+        // if it's read_verilog etc, frist is ' ', else - '"'
+        int commandNameEnd = std::min(
+            i_command.find(' ', commandNameStart),
+            i_command.find('"', commandNameStart)        
+        );
 
         // sumLen: end is bigger on 1 than real i_command ending, start is on 1 smaller,
         // but we have \n in the end, so we do not add 1
@@ -147,36 +152,80 @@ inline std::vector<StandartCommandInfo> AbcUtils::parseCommand(
 }
 
 
-// inline void AbcUtils::runExecutorForStats(
-//     std::string i_command,
-//     std::vector<StandartCommandInfo> i_info, 
-//     void (*i_onFinish) (CommandWorkResult))
-// {
-//     if (i_onFinish) {
-//         CommandWorkResult final_res;
+inline void AbcUtils::runExecutorForStats(
+        const std::string &i_command,
+        const std::vector<StandartCommandInfo> &i_info, 
+        void (*i_onFinish) (CommandWorkResult))
+{
+    if (i_onFinish) {
+        CommandWorkResult final_res;
 
-//         // this function is used for saving data
-//         auto on_finish = [&final_res] (CommandWorkResult result)
-//         {
-//             final_res = result;
-//         };
+        // this function is used for saving data
+        auto on_finish = [&final_res] (CommandWorkResult result)
+        {
+            final_res = result;
+        };
 
-//         standartExecutor(
-//             i_command, 
-//             i_info,
-//             on_finish
-//         );
+        standartExecutor(
+            i_command, 
+            i_info,
+            on_finish
+        );
         
-//         i_onFinish(final_res);
-//     }
-//     else
-//         standartExecutor(i_command, i_info, i_onFinish);
-// }
+        std::cout << final_res.commandsOutput["print_stats"];
+        i_onFinish(final_res);
+    }
+    else
+        standartExecutor(i_command, i_info, i_onFinish);
+}
+
+inline std::thread AbcUtils::getStats(
+    const std::string &i_inputFileName,
+    const std::string &i_libName,
+    void (*i_onFinish) (CommandWorkResult))
+{
+        // format i_command, then execute it with specified parametrs
+    std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\" ";
+    i_command += "&& echo \"read " + i_libName + "\" ";
+    i_command += "&& echo \"strash\" ";
+    i_command += "&& echo \"rewrite\" ";
+    i_command += "&& echo \"map\" ";
+    i_command += "&& echo \"print_stats\") | abc";
+    
+    std::thread threadExecutor(
+        runExecutorForStats,
+        i_command, 
+        parseCommand(i_command),
+        i_onFinish
+    );
+
+    return threadExecutor;
+}
+
+inline std::thread AbcUtils::getStats(
+    const std::string &i_inputFileName, 
+    const std::string &i_libName,
+    std::string i_fileDirectory,
+    std::string i_libDirectory,
+    void (*i_onFinish) (CommandWorkResult))
+{
+    if (i_fileDirectory[i_fileDirectory.size() - 1] != '/')
+        i_fileDirectory += "/";
+    
+    if (i_libDirectory[i_libDirectory.size() - 1] != '/')
+        i_libDirectory += "/";
+
+    return getStats(
+        i_fileDirectory + i_inputFileName,
+        i_libDirectory + i_libName,
+        i_onFinish
+    );
+}
 
 inline std::thread AbcUtils::optimizeWithLib(
-    std::string i_inputFileName, 
-    std::string i_outputFileName, 
-    std::string i_libName,
+    const std::string &i_inputFileName, 
+    const std::string &i_outputFileName, 
+    const std::string &i_libName,
     void (*i_onFinish) (CommandWorkResult)) 
 {
     // format i_command, then execute it with specified parametrs
@@ -198,9 +247,9 @@ inline std::thread AbcUtils::optimizeWithLib(
 }
 
 inline std::thread AbcUtils::optimizeWithLib(
-    std::string i_inputFileName, 
-    std::string i_outputFileName, 
-    std::string i_libName,
+    const std::string &i_inputFileName, 
+    const std::string &i_outputFileName, 
+    const std::string &i_libName,
     std::string i_fileDirectory,
     std::string i_libDirectory,
     void (*i_onFinish) (CommandWorkResult))
@@ -221,7 +270,7 @@ inline std::thread AbcUtils::optimizeWithLib(
 
 
 inline std::thread AbcUtils::verilogToAiger(
-    std::string i_inputFileName, std::string i_outputFileName, void (*i_onFinish) (CommandWorkResult)) 
+    const std::string &i_inputFileName, const std::string &i_outputFileName, void (*i_onFinish) (CommandWorkResult)) 
 {
     // format i_command, then execute it with specified parametrs
     std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\"";
@@ -239,7 +288,7 @@ inline std::thread AbcUtils::verilogToAiger(
 }
 
 inline std::thread AbcUtils::verilogToAiger(
-    std::string i_inputFileName, std::string i_outputFileName, std::string i_directory, void (*i_onFinish) (CommandWorkResult)) 
+    const std::string &i_inputFileName, const std::string &i_outputFileName, std::string i_directory, void (*i_onFinish) (CommandWorkResult)) 
 {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
@@ -248,7 +297,7 @@ inline std::thread AbcUtils::verilogToAiger(
 }
 
 inline std::thread AbcUtils::aigerToVerilog(
-    std::string i_inputFileName, std::string i_outputFileName, void (*i_onFinish) (CommandWorkResult)) 
+    const std::string &i_inputFileName, const std::string &i_outputFileName, void (*i_onFinish) (CommandWorkResult)) 
 {
     std::string i_command = "(echo \"read_aiger " + i_inputFileName + "\"";
     i_command += "&& echo \"strash\" && echo \"";
@@ -265,7 +314,7 @@ inline std::thread AbcUtils::aigerToVerilog(
 }
 
 inline std::thread AbcUtils::aigerToVerilog(
-    std::string i_inputFileName, std::string i_outputFileName, std::string i_directory, void (*i_onFinish) (CommandWorkResult)) 
+    const std::string &i_inputFileName, const std::string &i_outputFileName, std::string i_directory, void (*i_onFinish) (CommandWorkResult)) 
 {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
@@ -274,7 +323,7 @@ inline std::thread AbcUtils::aigerToVerilog(
 }
 
 
-inline std::thread AbcUtils::balanceVerilog(std::string i_inputFileName, void (*i_onFinish) (CommandWorkResult)) {
+inline std::thread AbcUtils::balanceVerilog(const std::string &i_inputFileName, void (*i_onFinish) (CommandWorkResult)) {
     std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\"";
     i_command += "&& echo \"balance\" && echo \"";
     i_command += "write_verilog " + i_inputFileName + "\") | abc";
@@ -289,14 +338,14 @@ inline std::thread AbcUtils::balanceVerilog(std::string i_inputFileName, void (*
     return threadExecutor;
 }
 
-inline std::thread AbcUtils::balanceVerilog(std::string i_inputFileName, std::string i_directory, void (*i_onFinish) (CommandWorkResult)) {
+inline std::thread AbcUtils::balanceVerilog(const std::string &i_inputFileName, std::string i_directory, void (*i_onFinish) (CommandWorkResult)) {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
     return balanceVerilog(i_directory + i_inputFileName, i_onFinish);
 }
 
-inline std::thread AbcUtils::balanceAiger(std::string i_inputFileName, void (*i_onFinish) (CommandWorkResult)) {
+inline std::thread AbcUtils::balanceAiger(const std::string &i_inputFileName, void (*i_onFinish) (CommandWorkResult)) {
     std::string i_command = "(echo \"read_aiger " + i_inputFileName + "\"";
     i_command += "&& echo \"balance\" && echo \"";
     i_command += "write_aiger " + i_inputFileName + "\") | abc";
@@ -311,7 +360,7 @@ inline std::thread AbcUtils::balanceAiger(std::string i_inputFileName, void (*i_
     return threadExecutor;
 }
 
-inline std::thread AbcUtils::balanceAiger(std::string i_inputFileName, std::string i_directory, void (*i_onFinish) (CommandWorkResult)) {
+inline std::thread AbcUtils::balanceAiger(const std::string &i_inputFileName, std::string i_directory, void (*i_onFinish) (CommandWorkResult)) {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 

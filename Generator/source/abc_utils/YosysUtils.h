@@ -17,13 +17,13 @@ make opt and to write file into verilog
 class YosysUtils : public StandartUtil {
     public:
         static std::thread optVerilog(
-            std::string i_inputFileName,
-            std::string i_outputFileName,
+            const std::string &i_inputFileName,
+            const std::string &i_outputFileName,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
         static std::thread optVerilog(
-            std::string i_inputFileName,
-            std::string i_outputFileName, 
+            const std::string &i_inputFileName,
+            const std::string &i_outputFileName, 
             std::string i_directory,
             void (*i_onFinish) (CommandWorkResult) = NULL
         );
@@ -35,9 +35,9 @@ class YosysUtils : public StandartUtil {
         );
     protected:
         static void standartExecutor(
-            std::string i_command,
-            std::vector<StandartCommandInfo> info, 
-            void (*i_onFinish) (CommandWorkResult) = NULL
+            const std::string &i_command,
+            const std::vector<StandartCommandInfo> &i_info, 
+            const std::function<void(CommandWorkResult)> &i_onFinish = NULL
         );
 
         // len of "synthes_util*> "

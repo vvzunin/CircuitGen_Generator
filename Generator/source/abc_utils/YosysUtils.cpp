@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <thread>
+#include <algorithm>
+#include <functional>
 
 #include "YosysUtils.h"
 
@@ -13,9 +15,9 @@ inline int YosysUtils::d_utilLen = 7;
 
 
 inline void YosysUtils::standartExecutor(
-            std::string i_command,
-            std::vector<StandartCommandInfo> i_info, 
-            void (*i_onFinish) (CommandWorkResult)) 
+            const std::string &i_command,
+            const std::vector<StandartCommandInfo> &i_info, 
+            const std::function<void(CommandWorkResult)> &i_onFinish) 
 {
     FILE *abcOutput;
     char out[80];
@@ -90,7 +92,10 @@ inline std::vector<StandartCommandInfo> YosysUtils::parseCommand(
     
     while (start != std::string::npos) {
         int commandNameStart = i_command.find_first_not_of(" ", start + 1);
-        int commandNameEnd = i_command.find(" ", commandNameStart);
+        int commandNameEnd = std::min(
+            i_command.find(" ", commandNameStart),
+            i_command.find('"', commandNameStart)        
+        );
 
         // sumLen: end is bigger on 1 than real i_command ending, start is on 1 smaller,
         // but we have \n in the end, so we do not add 1
@@ -118,8 +123,8 @@ inline std::vector<StandartCommandInfo> YosysUtils::parseCommand(
 
 
 inline std::thread YosysUtils::optVerilog(
-    std::string i_inputFileName,
-    std::string i_outputFileName,
+    const std::string &i_inputFileName,
+    const std::string &i_outputFileName,
     void (*i_onFinish) (CommandWorkResult)) 
 {
     // format i_command, then execute it with specified parametrs
@@ -139,8 +144,8 @@ inline std::thread YosysUtils::optVerilog(
 }
 
 inline std::thread YosysUtils::optVerilog(
-    std::string i_inputFileName, 
-    std::string i_outputFileName,
+    const std::string &i_inputFileName, 
+    const std::string &i_outputFileName,
     std::string i_directory,
     void (*i_onFinish) (CommandWorkResult))
 {

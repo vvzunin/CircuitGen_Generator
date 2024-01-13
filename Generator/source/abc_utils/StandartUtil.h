@@ -26,15 +26,15 @@ class StandartUtil {
     public:
         // parser, which gets info about elements in command
         static std::vector<StandartCommandInfo> parseCommand(
-            std::string i_command,
+            const std::string &i_command,
             bool i_parseAll = true
         );
     
     protected:
         static void standartExecutor(
-            std::string i_command,
-            std::vector<StandartCommandInfo> i_info, 
-            void (*i_onFinish) (CommandWorkResult) = NULL
+            const std::string &i_command,
+            const std::vector<StandartCommandInfo> &i_info, 
+            const std::function<void(CommandWorkResult)> &i_onFinish = NULL
         );
         
         // len of "synthes_util*> "
