@@ -13,6 +13,10 @@ inline std::string YosysUtils::d_utilWord = "yosys";
 inline std::string YosysUtils::d_className = "YosysUtils";
 inline int YosysUtils::d_utilLen = 7;
 
+inline std::vector<std::string> YosysUtils::d_incorrectWords = {
+    "ERROR"
+};
+
 
 inline void YosysUtils::standartExecutor(
             const std::string &i_command,
@@ -42,7 +46,7 @@ inline void YosysUtils::standartExecutor(
             int secondPos = result.find(d_utilWord, firstPos + 1);
 
             // перебираем все слова-ошибки
-            for (auto word : currentCommand.incorrectWords) {
+            for (auto word : d_incorrectWords) {
                 int errorPos = result.find(word, firstPos);
 
                 // if there was an error
@@ -79,9 +83,7 @@ inline void YosysUtils::standartExecutor(
 }
 
 
-inline std::vector<StandartCommandInfo> YosysUtils::parseCommand(
-    std::string i_command,
-    bool i_parseAll)
+inline std::vector<StandartCommandInfo> YosysUtils::parseCommand(std::string i_command)
 {
         // we use the fact, that each i_command is surrounded by "
     int end, start;
@@ -105,11 +107,6 @@ inline std::vector<StandartCommandInfo> YosysUtils::parseCommand(
             .sumLen = end - start,
             .info = i_command.substr(commandNameStart, commandNameEnd - commandNameStart)
         };
-
-        if (i_parseAll) {
-            commandInfo.incorrectWords = std::vector<std::string>();
-            commandInfo.incorrectWords.push_back("ERROR");
-        }
 
         info.push_back(commandInfo);
         

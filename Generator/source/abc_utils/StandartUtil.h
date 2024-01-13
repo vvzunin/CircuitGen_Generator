@@ -13,8 +13,6 @@ struct StandartCommandInfo {
     int sumLen;
     // информация о том, какая команда вызвала ошибку
     std::string info;
-    // слова, которые надо найти, которые будет означать некорректность выполнения
-    std::vector<std::string> incorrectWords;
 };
 
 // result of work
@@ -27,8 +25,7 @@ class StandartUtil {
     public:
         // parser, which gets info about elements in command
         static std::vector<StandartCommandInfo> parseCommand(
-            const std::string &i_command,
-            bool i_parseAll = true
+            const std::string &i_command
         );
     
     protected:
@@ -47,6 +44,8 @@ class StandartUtil {
         static std::string d_className;
 
         static std::vector<std::string> d_allowedOutput;
+        // слова, которые надо найти, которые будет означать некорректность выполнения
+        static std::vector<std::string> d_incorrectWords;
 };
 
 #endif

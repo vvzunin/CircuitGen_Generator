@@ -31,8 +31,7 @@ class YosysUtils : public StandartUtil {
 
         // IMPORTANT parseAll here is TRUE
         static std::vector<StandartCommandInfo> parseCommand(
-            std::string i_command,
-            bool i_parseAll = true
+            std::string i_command
         );
     protected:
         static void standartExecutor(
@@ -48,6 +47,8 @@ class YosysUtils : public StandartUtil {
 
         // AbcUtils, YosysUtils etc
         static std::string d_className;
+
+        static std::vector<std::string> d_incorrectWords;
 };
 
 #endif

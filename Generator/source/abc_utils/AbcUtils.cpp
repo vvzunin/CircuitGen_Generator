@@ -21,6 +21,12 @@ inline std::vector<std::string> AbcUtils::d_allowedOutput = {
     "read",
     "print"
 };
+// which words means errors
+inline std::vector<std::string> AbcUtils::d_incorrectWords = {
+    "Error",
+    "failed",
+    "Cannot"
+};
 
 
 inline void AbcUtils::standartExecutor(
@@ -78,8 +84,8 @@ inline void AbcUtils::standartExecutor(
             else if (allowedToPrint) {
                 std::string output = result.substr(firstPos + delta, secondPos - firstPos - delta);
 
-                for (int i = 0; i < currentCommand.incorrectWords.size() && correct; ++i) {
-                    if (output.find(currentCommand.incorrectWords[i]) != std::string::npos) {
+                for (int i = 0; i < d_incorrectWords.size() && correct; ++i) {
+                    if (output.find(d_incorrectWords[i]) != std::string::npos) {
                         std::cerr << "Incorrect " << currentCommand.info << ": " << output << '\n';
                         correct = false;
                     }
@@ -105,9 +111,7 @@ inline void AbcUtils::standartExecutor(
 }
 
 
-inline std::vector<StandartCommandInfo> AbcUtils::parseCommand(
-            std::string i_command,
-            bool i_parseAll) 
+inline std::vector<StandartCommandInfo> AbcUtils::parseCommand(std::string i_command) 
 {
     // we use the fact, that each i_command is surrounded by "
     int end, start;
@@ -132,14 +136,6 @@ inline std::vector<StandartCommandInfo> AbcUtils::parseCommand(
             .sumLen = end - start,
             .info = i_command.substr(commandNameStart, commandNameEnd - commandNameStart)
         };
-
-        // in abc word is Error
-        if (i_parseAll) {
-            commandInfo.incorrectWords = std::vector<std::string>();
-            commandInfo.incorrectWords.push_back("Error");
-            commandInfo.incorrectWords.push_back("failed");
-            commandInfo.incorrectWords.push_back("Cannot");
-        }
 
         info.push_back(commandInfo);
         
