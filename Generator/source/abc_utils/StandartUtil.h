@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 // so, this struct is used for sending info about multi-line commands
 // for abc, yosys etc
@@ -11,8 +12,14 @@ struct StandartCommandInfo {
     int sumLen;
     // информация о том, какая команда вызвала ошибку
     std::string info;
-    // слово, которое надо найти, которое будет означать некорректность выполнения
-    std::string incorrectWord;
+    // слова, которые надо найти, которые будет означать некорректность выполнения
+    std::vector<std::string> incorrectWords;
+};
+
+// result of work
+struct CommandWorkResult {
+    bool correct;
+    std::map<std::string, std::string> commandsOutput; 
 };
 
 class StandartUtil {
@@ -20,14 +27,14 @@ class StandartUtil {
         // parser, which gets info about elements in command
         static std::vector<StandartCommandInfo> parseCommand(
             std::string i_command,
-            bool i_parseAll = false
+            bool i_parseAll = true
         );
     
     protected:
         static void standartExecutor(
             std::string i_command,
             std::vector<StandartCommandInfo> i_info, 
-            void (*i_onFinish) (bool) = NULL
+            void (*i_onFinish) (CommandWorkResult) = NULL
         );
         
         // len of "synthes_util*> "
@@ -37,6 +44,8 @@ class StandartUtil {
 
         // AbcUtils, YosysUtils etc
         static std::string d_className;
+
+        static std::vector<std::string> d_allowedOutput;
 };
 
 #endif

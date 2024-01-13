@@ -15,7 +15,7 @@ inline int YosysUtils::d_utilLen = 7;
 inline void YosysUtils::standartExecutor(
             std::string i_command,
             std::vector<StandartCommandInfo> i_info, 
-            void (*i_onFinish) (bool)) 
+            void (*i_onFinish) (CommandWorkResult)) 
 {
     FILE *abcOutput;
     char out[80];
@@ -32,31 +32,35 @@ inline void YosysUtils::standartExecutor(
 
     // looking for each i_command execution
     int firstPos = result.find(d_utilWord, 0);
+    CommandWorkResult workResult;
 
     // if there was an error
     if (firstPos != std::string::npos) {
         for (auto currentCommand : i_info) {
             int secondPos = result.find(d_utilWord, firstPos + 1);
 
-            int errorPos = result.find(currentCommand.incorrectWord, firstPos);
+            // перебираем все слова-ошибки
+            for (auto word : currentCommand.incorrectWords) {
+                int errorPos = result.find(word, firstPos);
 
-            // if there was an error
-            if (secondPos == std::string::npos && errorPos == std::string::npos) {
-                std::cout << "Something went wrong during files parsing in " << d_className << '\n';
-                correct = false;
-                break;
-            }
-            
-            // If something went wrong during read
-            // and abc wrote something
-            if (errorPos != std::string::npos && (errorPos < secondPos || secondPos == std::string::npos)) {
-                int endPos = secondPos - errorPos - 1;
-                if (secondPos == std::string::npos)
-                    endPos = result.size() - errorPos - 1;
+                // if there was an error
+                if (secondPos == std::string::npos && errorPos == std::string::npos) {
+                    std::cout << "Something went wrong during files parsing in " << d_className << '\n';
+                    correct = false;
+                    break;
+                }
+                
+                // If something went wrong during read
+                // and abc wrote something
+                if (errorPos != std::string::npos && (errorPos < secondPos || secondPos == std::string::npos)) {
+                    int endPos = secondPos - errorPos - 1;
+                    if (secondPos == std::string::npos)
+                        endPos = result.size() - errorPos - 1;
 
-                std::cerr << "Incorrect " << currentCommand.info << ": " << result.substr(errorPos, endPos) << '\n';
-                correct = false;
-                break;
+                    std::cerr << "Incorrect " << currentCommand.info << ": " << result.substr(errorPos, endPos) << '\n';
+                    correct = false;
+                    break;
+                }
             }
 
             firstPos = secondPos;
@@ -66,9 +70,10 @@ inline void YosysUtils::standartExecutor(
         std::cout << "Something went wrong during files parsing in " << d_className << '\n';
         correct = false;
     }
+    workResult.correct = correct;
 
     if (i_onFinish)
-        i_onFinish(correct);
+        i_onFinish(workResult);
 }
 
 
@@ -97,7 +102,8 @@ inline std::vector<StandartCommandInfo> YosysUtils::parseCommand(
         };
 
         if (i_parseAll) {
-            commandInfo.incorrectWord = "ERROR";
+            commandInfo.incorrectWords = std::vector<std::string>();
+            commandInfo.incorrectWords.push_back("ERROR");
         }
 
         info.push_back(commandInfo);
@@ -114,7 +120,7 @@ inline std::vector<StandartCommandInfo> YosysUtils::parseCommand(
 inline std::thread YosysUtils::optVerilog(
     std::string i_inputFileName,
     std::string i_outputFileName,
-    void (*i_onFinish) (bool)) 
+    void (*i_onFinish) (CommandWorkResult)) 
 {
     // format i_command, then execute it with specified parametrs
     // REMEMBER 
@@ -125,7 +131,7 @@ inline std::thread YosysUtils::optVerilog(
     std::thread threadExecutor(
         standartExecutor, 
         i_command, 
-        parseCommand(i_command, true),
+        parseCommand(i_command),
         i_onFinish
     );
 
@@ -136,7 +142,7 @@ inline std::thread YosysUtils::optVerilog(
     std::string i_inputFileName, 
     std::string i_outputFileName,
     std::string i_directory,
-    void (*i_onFinish) (bool))
+    void (*i_onFinish) (CommandWorkResult))
 {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";

@@ -19,25 +19,25 @@ class YosysUtils : public StandartUtil {
         static std::thread optVerilog(
             std::string i_inputFileName,
             std::string i_outputFileName,
-            void (*i_onFinish) (bool) = NULL
+            void (*i_onFinish) (CommandWorkResult) = NULL
         );
         static std::thread optVerilog(
             std::string i_inputFileName,
             std::string i_outputFileName, 
             std::string i_directory,
-            void (*i_onFinish) (bool) = NULL
+            void (*i_onFinish) (CommandWorkResult) = NULL
         );
 
         // IMPORTANT parseAll here is TRUE
         static std::vector<StandartCommandInfo> parseCommand(
             std::string i_command,
-            bool i_parseAll = false
+            bool i_parseAll = true
         );
     protected:
         static void standartExecutor(
             std::string i_command,
             std::vector<StandartCommandInfo> info, 
-            void (*i_onFinish) (bool) = NULL
+            void (*i_onFinish) (CommandWorkResult) = NULL
         );
 
         // len of "synthes_util*> "
