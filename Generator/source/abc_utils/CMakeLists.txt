@@ -8,6 +8,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 set (SOURCES
   abc_utils/AbcUtils.cpp
+  abc_utils/YosysUtils.cpp
 )
 
-add_library(AbcUtils AbcUtils.cpp AbcUtils.h)
+add_library(AbcUtils AbcUtils.cpp AbcUtils.h YosysUtils.cpp YosysUtils.h StandartUtil.h)

@@ -1,202 +1,204 @@
 #include <string>
 #include <iostream>
-#include <stdlib.h>
-#include <cassert>
 #include <vector>
 #include <thread>
+#include <cassert>
+#include <stdlib.h>
 
 #include "AbcUtils.h"
 
-// declare of value of static var
-inline const std::string AbcUtils::abc_word = "abc ";
 
-// TODO at this moment can execute only three commands, in fact one operation
-// make it to read more, if it would ne neccessary
+// declare of value of static var
+inline std::string AbcUtils::d_utilWord = "abc ";
+inline std::string AbcUtils::d_className = "AbcUtils";
+inline int AbcUtils::d_utilLen = 8;
+
+
 inline void AbcUtils::standartExecutor(
-            std::string command,
-            std::vector<StandartCommandInfo> info, 
-            void (*on_finish) (bool)) 
+            std::string i_command,
+            std::vector<StandartCommandInfo> i_info, 
+            void (*i_onFinish) (bool)) 
 {
-    FILE *abc_output;
+    FILE *abcOutput;
     char out[40];
     bool correct = true;
 
-    // executing command with own read stream
-    abc_output = popen(command.c_str(), "r");
+    // executing i_command with own read stream
+    abcOutput = popen(i_command.c_str(), "r");
 
     std::string result;
     // parsing output
-    while (fgets(out, sizeof(out), abc_output)) {
+    while (fgets(out, sizeof(out), abcOutput)) {
         result += out;
     }
 
-    // looking for each command execution
-    int first_pos = result.find(abc_word, 0);
+    // looking for each i_command execution
+    int firstPos = result.find(d_utilWord, 0);
 
     // if there was an error
-    if (first_pos != std::string::npos) {
-        for (auto currentCommand : info) {
-            int second_pos = result.find(abc_word, first_pos + 1);
+    if (firstPos != std::string::npos) {
+        for (auto currentCommand : i_info) {
+            int secondPos = result.find(d_utilWord, firstPos + 1);
 
             // if there was an error
-            if (second_pos == std::string::npos) {
-                std::cout << "Something went wrong during files parsing in AbcUtils\n";
+            if (secondPos == std::string::npos) {
+                std::cout << "Something went wrong during files parsing in " << d_className << '\n';
                 correct = false;
                 break;
             }
 
-            int delta = abc_len + currentCommand.sumLen;
+            int delta = d_utilLen + currentCommand.sumLen;
             
             // If something went wrong during read
             // and abc wrote something
-            if (second_pos - first_pos > delta) {
-                std::cerr << "Incorrect " << currentCommand.info << ": " << result.substr(first_pos + delta, second_pos - first_pos - delta) << '\n';
+            if (secondPos - firstPos > delta) {
+                std::cerr << "Incorrect " << currentCommand.info << ": " << result.substr(firstPos + delta, secondPos - firstPos - delta) << '\n';
                 correct = false;
                 break;
             }
 
-            first_pos = second_pos;
+            firstPos = secondPos;
         }
     }
     else {
-        std::cout << "Something went wrong during files parsing in AbcUtils\n";
+        std::cout << "Something went wrong during files parsing in " << d_className << '\n';
         correct = false;
     }
 
-    if (on_finish)
-        on_finish(correct);
+    if (i_onFinish)
+        i_onFinish(correct);
 }
 
+
 inline std::vector<StandartCommandInfo> AbcUtils::parseCommand(
-            std::string command,
-            bool parseAll) 
+            std::string i_command,
+            bool i_parseAll) 
 {
-    // we use the fact, that each command is surrounded by "
+    // we use the fact, that each i_command is surrounded by "
     int end, start;
     std::vector<StandartCommandInfo> info;
 
-    start = command.find('"');
-    end = command.find('"', start + 1);
+    start = i_command.find('"');
+    end = i_command.find('"', start + 1);
     
     while (start != std::string::npos) {
-        int command_name_start = command.find_first_not_of(" ", start + 1);
-        int command_name_end = command.find(" ", command_name_start);
+        int commandNameStart = i_command.find_first_not_of(" ", start + 1);
+        int commandNameEnd = i_command.find(" ", commandNameStart);
 
-        // sumLen: end is bigger on 1 than real command ending, start is on 1 smaller,
+        // sumLen: end is bigger on 1 than real i_command ending, start is on 1 smaller,
         // but we have \n in the end, so we do not add 1
-        // info: we use substr, "command_name_end - command_name_start + 1" will show
-        // command name with a space
+        // info: we use substr, "commandNameEnd - commandNameStart + 1" will show
+        // i_command name with a space
         StandartCommandInfo commandInfo = {
             .sumLen = end - start,
-            .info = command.substr(command_name_start, command_name_end - command_name_start)
+            .info = i_command.substr(commandNameStart, commandNameEnd - commandNameStart)
         };
 
         info.push_back(commandInfo);
         
         // next two "
-        start = command.find('"', end + 1);
-        end = command.find('"', start + 1);
+        start = i_command.find('"', end + 1);
+        end = i_command.find('"', start + 1);
     }
 
     return info;
 }
 
-// TODO I know, that creating such structs is a bit ugly. So, I'm going
-// tp fix it, but at this moment it's 22:06 of 31.12.2023, and I'm going to have a rest
+
 inline std::thread AbcUtils::verilogToAiger(
-    std::string i_inpuFileName, std::string i_outpuFileName, void (*on_finish) (bool)) 
+    std::string i_inputFileName, std::string i_outputFileName, void (*i_onFinish) (bool)) 
 {
-    // format command, then execute it with specified parametrs
-    std::string command = "(echo \"read_verilog " + i_inpuFileName + "\"";
-    command += "&& echo \"strash\" && echo \"";
-    command += "write_aiger " + i_outpuFileName + "\") | abc";
+    // format i_command, then execute it with specified parametrs
+    std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\"";
+    i_command += "&& echo \"strash\" && echo \"";
+    i_command += "write_aiger " + i_outputFileName + "\") | abc";
     
-    std::thread thread_executor(
+    std::thread threadExecutor(
         standartExecutor, 
-        command, 
-        parseCommand(command),
-        on_finish
+        i_command, 
+        parseCommand(i_command),
+        i_onFinish
     );
 
-    return thread_executor;
+    return threadExecutor;
 }
 
 inline std::thread AbcUtils::verilogToAiger(
-    std::string i_inpuFileName, std::string i_outpuFileName, std::string i_directory, void (*on_finish) (bool)) 
+    std::string i_inputFileName, std::string i_outputFileName, std::string i_directory, void (*i_onFinish) (bool)) 
 {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
-    return verilogToAiger(i_directory + i_inpuFileName, i_directory + i_outpuFileName, on_finish);
+    return verilogToAiger(i_directory + i_inputFileName, i_directory + i_outputFileName, i_onFinish);
 }
 
 inline std::thread AbcUtils::aigerToVerilog(
-    std::string i_inpuFileName, std::string i_outpuFileName, void (*on_finish) (bool)) 
+    std::string i_inputFileName, std::string i_outputFileName, void (*i_onFinish) (bool)) 
 {
-    std::string command = "(echo \"read_aiger " + i_inpuFileName + "\"";
-    command += "&& echo \"strash\" && echo \"";
-    command += "write_verilog " + i_outpuFileName + "\") | abc";
+    std::string i_command = "(echo \"read_aiger " + i_inputFileName + "\"";
+    i_command += "&& echo \"strash\" && echo \"";
+    i_command += "write_verilog " + i_outputFileName + "\") | abc";
     
-    std::thread thread_executor(
+    std::thread threadExecutor(
         standartExecutor, 
-        command, 
-        parseCommand(command),
-        on_finish
+        i_command, 
+        parseCommand(i_command),
+        i_onFinish
     );
 
-    return thread_executor;
+    return threadExecutor;
 }
 
 inline std::thread AbcUtils::aigerToVerilog(
-    std::string i_inpuFileName, std::string i_outpuFileName, std::string i_directory, void (*on_finish) (bool)) 
+    std::string i_inputFileName, std::string i_outputFileName, std::string i_directory, void (*i_onFinish) (bool)) 
 {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
-    return aigerToVerilog(i_directory + i_inpuFileName, i_directory + i_outpuFileName, on_finish);
+    return aigerToVerilog(i_directory + i_inputFileName, i_directory + i_outputFileName, i_onFinish);
 }
 
 
-inline std::thread AbcUtils::balanceVerilog(std::string i_inpuFileName, void (*on_finish) (bool)) {
-    std::string command = "(echo \"read_verilog " + i_inpuFileName + "\"";
-    command += "&& echo \"balance\" && echo \"";
-    command += "write_verilog " + i_inpuFileName + "\") | abc";
+inline std::thread AbcUtils::balanceVerilog(std::string i_inputFileName, void (*i_onFinish) (bool)) {
+    std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\"";
+    i_command += "&& echo \"balance\" && echo \"";
+    i_command += "write_verilog " + i_inputFileName + "\") | abc";
     
-    std::thread thread_executor(
+    std::thread threadExecutor(
         standartExecutor, 
-        command, 
-        parseCommand(command),
-        on_finish
+        i_command, 
+        parseCommand(i_command),
+        i_onFinish
     );
 
-    return thread_executor;
+    return threadExecutor;
 }
 
-inline std::thread AbcUtils::balanceVerilog(std::string i_inpuFileName, std::string i_directory, void (*on_finish) (bool)) {
+inline std::thread AbcUtils::balanceVerilog(std::string i_inputFileName, std::string i_directory, void (*i_onFinish) (bool)) {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
-    return balanceVerilog(i_directory + i_inpuFileName, on_finish);
+    return balanceVerilog(i_directory + i_inputFileName, i_onFinish);
 }
 
-inline std::thread AbcUtils::balanceAiger(std::string i_inpuFileName, void (*on_finish) (bool)) {
-    std::string command = "(echo \"read_aiger " + i_inpuFileName + "\"";
-    command += "&& echo \"balance\" && echo \"";
-    command += "write_aiger " + i_inpuFileName + "\") | abc";
+inline std::thread AbcUtils::balanceAiger(std::string i_inputFileName, void (*i_onFinish) (bool)) {
+    std::string i_command = "(echo \"read_aiger " + i_inputFileName + "\"";
+    i_command += "&& echo \"balance\" && echo \"";
+    i_command += "write_aiger " + i_inputFileName + "\") | abc";
     
-    std::thread thread_executor(
+    std::thread threadExecutor(
         standartExecutor, 
-        command, 
-        parseCommand(command),
-        on_finish
+        i_command, 
+        parseCommand(i_command),
+        i_onFinish
     );
 
-    return thread_executor;
+    return threadExecutor;
 }
 
-inline std::thread AbcUtils::balanceAiger(std::string i_inpuFileName, std::string i_directory, void (*on_finish) (bool)) {
+inline std::thread AbcUtils::balanceAiger(std::string i_inputFileName, std::string i_directory, void (*i_onFinish) (bool)) {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
-    return balanceAiger(i_directory + i_inpuFileName, on_finish);
+    return balanceAiger(i_directory + i_inputFileName, i_onFinish);
 }
