@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <functional>
 
 // so, this struct is used for sending info about multi-line commands
 // for abc, yosys etc

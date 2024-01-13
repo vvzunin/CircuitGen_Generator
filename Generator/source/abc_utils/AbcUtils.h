@@ -4,6 +4,7 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <functional>
 
 #include "StandartUtil.h"
 
