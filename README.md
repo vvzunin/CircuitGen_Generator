@@ -13,7 +13,7 @@
 # Сборка и запуск компонентов
 <a name="build_rus"></a> 
 
-Сборка и запуск производится из операционной системы Linux.
+Сборка и запуск производятся из операционной системы Linux.
 
 Программа запускалась на Ubuntu 22.04 с использованием WSL (Windows Subsystem for Linux).
 
@@ -33,11 +33,11 @@
 ### Установка
 <a name="install_rus"></a> 
 ```
-pip install djangorestframework
-pip install django-cors-headers
+pip install -r requirements.txt
 
 python manage.py makemigrations
 python manage.py migrate
+python manage.py migrate --run-syncdb
 cd frontend
 npm i
 npm run build

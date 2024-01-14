@@ -102,41 +102,63 @@ int AuxMethods::skipSpaces(const std::string& i_s, int i_start)
 
 Circuit AuxMethods::parseVerilog(const std::string& i_filepath)
 {
+  const int MODULE_WORD_SIZE = 7;
+  const int INPUT_WORD_SIZE = 6;
+  const int OUTPUT_WORD_SIZE = 7;
+  const int WIRE_WORD_SIZE = 5;
+
   Circuit circuit({}, {});
   circuit.setPath(i_filepath);
 
-  std::string s = readAllFile(i_filepath);
+  std::string verilog_module = readAllFile(i_filepath);
 
-  int start = s.find("module ");
-  std::string ch = " (";
-  size_t n2 = s.find_first_of(" (", start + 7);
-  assert(n2 != std::string::npos);
+  int start = verilog_module.find("module ");
+  // TODO would it work with "module NAME("
+  std::string left_brace = " (";
+  size_t io_names_start = verilog_module.find_first_of(left_brace, start + MODULE_WORD_SIZE);
 
-  circuit.setCircuitName(removeSpaces(s.substr(start + 7, n2 - start - 7)));
-  start = skipSpaces(s, n2 + 1);
+  // Protection against missing left brace
+  assert(io_names_start != std::string::npos);
+
+  circuit.setCircuitName(
+    removeSpaces(
+      verilog_module.substr(start + MODULE_WORD_SIZE, io_names_start - start - MODULE_WORD_SIZE)
+    )
+  );
+
+  start = skipSpaces(verilog_module, io_names_start + 1);
   
   std::vector<std::string> inputs;
   std::string inps = "";
   std::string outs = "";
 
-  if (s.find("input", start) == start) {
-    int k = s.find("input ", start) + 6;
-    int t = s.find("output ", k + 1) + 7;
-    inps = removeSpaces(s.substr(k, t - k - 7));
+  if (verilog_module.find("input", start) == start) {
+    int i_names_start = verilog_module.find("input ", start) + INPUT_WORD_SIZE;
+    int o_names_start = verilog_module.find("output ", i_names_start + 1) + OUTPUT_WORD_SIZE;
+
+    inps = removeSpaces(verilog_module.substr(i_names_start, o_names_start - i_names_start - OUTPUT_WORD_SIZE));
     inps = inps.substr(0, inps.size() - 1);
-    outs = removeSpaces(s.substr(t, s.find(");", t + 1) - t));
-    start = s.find(");", t + 1);
+
+    outs = removeSpaces(verilog_module.substr(
+      o_names_start, verilog_module.find(");", o_names_start + 1) - o_names_start
+    ));
+
+    start = verilog_module.find(");", o_names_start + 1);
   }
   else
   {
-    start = s.find(");", start);
-    int k = s.find("input ", start) + 6;
-    int k_end = s.find(";", k);
-    int t = s.find("output ", start) + 7;
-    int t_end = s.find(";", t);
-    inps = removeSpaces(s.substr(k, k_end - k));
-    outs = removeSpaces(s.substr(t, t_end - t));
-    start = std::max(k_end, t_end);
+    start = verilog_module.find(");", start);
+
+    int i_names_start = verilog_module.find("input ", start) + INPUT_WORD_SIZE;
+    int i_names_end = verilog_module.find(";", i_names_start);
+
+    int o_names_start = verilog_module.find("output ", start) + OUTPUT_WORD_SIZE;
+    int o_names_end = verilog_module.find(";", o_names_start);
+
+    inps = removeSpaces(verilog_module.substr(i_names_start, i_names_end - i_names_start));
+    outs = removeSpaces(verilog_module.substr(o_names_start, o_names_end - o_names_start));
+
+    start = std::max(i_names_end, o_names_end);
   }
 
   for (const auto& input : splitString(inps, ','))
@@ -146,24 +168,33 @@ Circuit AuxMethods::parseVerilog(const std::string& i_filepath)
     circuit.addVertex(output, "output");
 
   {
-    int k = s.find("wire ", start) + 5;
-    int k_end = s.find(";", k);
-    //TODO: we really need this? std::string wires = removeSpaces(s.substr(k, k_end - k));
-    start = k_end + 1;
+    int wire_start = verilog_module.find("wire ", start) + WIRE_WORD_SIZE;
+    int wire_end = verilog_module.find(";", wire_start);
+    //TODO: we really need this? std::string wires = removeSpaces(s.substr(wire_start, wire_end - wire_start));
+    start = wire_start + 1;
   }
 
   {
-    s = s.substr(start);
-    s = s.substr(0, s.find("endmodule"));
-    s = s.substr(skipSpaces(s));
+    verilog_module = verilog_module.substr(start);
+    verilog_module = verilog_module.substr(0, verilog_module.find("endmodule"));
+    verilog_module = verilog_module.substr(skipSpaces(verilog_module));
+
     int n = 0;
-    while(s.size() != 0)
+
+    while(verilog_module.size() != 0)
     {
-      if (!s.starts_with("assign")) {
-        int end = s.find(";");
-        std::string type = s.substr(0, s.find_first_of(ch));
-        std::string wireList = removeSpaces(s.substr(s.find('(') + 1, end - 2 - s.find('(')));
+      if (!verilog_module.starts_with("assign")) 
+      {
+        int end = verilog_module.find(";");
+
+        std::string type = verilog_module.substr(0, verilog_module.find_first_of(left_brace));
+        std::string wireList = removeSpaces(
+          verilog_module.substr(
+            verilog_module.find('(') + 1, end - 2 - verilog_module.find('(')
+          )
+        );
         std::vector<std::string> wires = splitString(wireList, ',');
+
         int tt = circuit.getIndexOfWireName(wires[0]);
         if (tt != -1 && circuit.getVertice(tt).getOperation() == "output")
         {
@@ -182,6 +213,7 @@ Circuit AuxMethods::parseVerilog(const std::string& i_filepath)
         if (wires.size() > 3) //TODO: what the magic number?
         {
           std::string prev = wires[1];
+
           for (int i = 2; i + 1 < wires.size(); ++i)
           {
             std::string wire = "ewr_" + std::to_string(n++);
@@ -195,18 +227,23 @@ Circuit AuxMethods::parseVerilog(const std::string& i_filepath)
           for (int i = 1; i < wires.size(); ++i)
             circuit.addEdge(wires[i], wires[0]);
 
-        s.erase(0, end + 1);
+        verilog_module.erase(0, end + 1);
       }
       else
       {
-        int end = s.find(";");
-        std::string left = removeSpaces(s.substr(6, s.find('=') - 6));
-        std::string right = removeSpaces(s.substr(s.find('=') + 1, end - s.find('=') - 1));
+        int end = verilog_module.find(";");
+
+        std::string left = removeSpaces(verilog_module.substr(6, verilog_module.find('=') - 6));
+        std::string right = removeSpaces(
+          verilog_module.substr(verilog_module.find('=') + 1, end - verilog_module.find('=') - 1)
+        );
+        
         bool f = circuit.addEdge(right, left, false);
 
-        s.erase(0, end + 1);
+        verilog_module.erase(0, end + 1);
       }
-      s = s.erase(0, skipSpaces(s));
+
+      verilog_module = verilog_module.erase(0, skipSpaces(verilog_module));
     }
   }
   return circuit;

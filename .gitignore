@@ -15,5 +15,10 @@ add_parameter/migrations
 make_dataset/migrations
 dataset/
 temp_for_json/
+package-lock.json
+jsons_for_generator/*
+launch.json
+settings.json
+.vscode/
 result_dataset/
 */*/.vscode

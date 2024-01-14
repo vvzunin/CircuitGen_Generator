@@ -637,7 +637,6 @@ OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bo
             graph.addEdge(P, "a" + S, false);
         }
     else
-
        std::cout << "Недостаточно входных сигналов\n";
 
     return graph;
