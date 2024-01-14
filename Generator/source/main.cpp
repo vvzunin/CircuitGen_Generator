@@ -69,13 +69,13 @@ void runGenerationFromJson(std::string json_path)
     if (data["type_of_generation"] == "Genetic")
       gt = GenerationTypes::Genetic;
     if (data["type_of_generation"] == "Summator")
-        gt = GenerationTypes::Summator;
+      gt = GenerationTypes::Summator;
 
     int requestIdINT = data["id"];
     std::string requestId = std::to_string(requestIdINT);
     assert(requestId != "");
 
-    // std::cout << data.dump(4);
+    std::cout << data.dump(4);
 
     int minInputs = data["min_in"];
     int maxInputs = data["max_in"];
@@ -168,7 +168,7 @@ void runGenerationFromJson(std::string json_path)
         m.insert({el.key().substr(4, 10), el.value()});
     }
 
-    // JSON params = JSON::Read("params.json");
+    //JSON params = JSON::Read("params.json");
 
     // TODO:: make function that return DataBaseGeneratorParameters from json
     // Recording of json data to gp
@@ -179,7 +179,7 @@ void runGenerationFromJson(std::string json_path)
     gp.setCNFT(CNFT);
     //  gp.setLimit(limit);
     gp.setNumOperationParameters(m, LeaveEmptyOut);
-    gp.setSummatorParameters(inputs, overflowIn, overflowOut, minus);
+    gp.setSummatorParameters(overflowIn, overflowOut, minus);
     gp.setPopulationSize(populationSize);
     gp.setNumOfCycles(numOfCycles);
     gp.setRecombinationParameters(selecTypeParent, tourSize, recombType, refPoints, maskProb, recNum);

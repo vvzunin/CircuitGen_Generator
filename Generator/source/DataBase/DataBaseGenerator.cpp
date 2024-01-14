@@ -171,13 +171,13 @@ void DataBaseGenerator::generateDataBaseGenetic(const GenerationParameters& i_pa
   //gg.generate();
 }
 
-void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param) {
-    SimpleGenerators sg;
+void DataBaseGenerator::generateDataBaseSummator(const GenerationParameters &i_param) {
+    SimpleGenerators generator;
     int i_bits = i_param.getInputs();
     bool i_overflowIn = i_param.getSummator().getOverFlowIn();
     bool i_overflowOut = i_param.getSummator().getOverFlowOut();
     bool i_minus = i_param.getSummator().getMinus();
-    OrientedGraph graph = sg.generatorSummator(i_bits, i_overflowIn, i_overflowOut, i_minus);
+    OrientedGraph graph = generator.generatorSummator(i_bits, i_overflowIn, i_overflowOut, i_minus);
     Circuit c (graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
@@ -210,17 +210,6 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
 
 }
 
-void DataBaseGenerator::GenerateDataBaseMultiplexer(const GenerationParameters &i_param)
-{
-    SimpleGenerators sg;
-    int bits = i_param.getInputs();
-    OrientedGraph graph = sg.generatorMultiplexer(bits);
-    Circuit c(graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate();
-}
-
 std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateMethod(const std::string& i_methodName)
 {
   if (i_methodName == "FromRandomTruthTable")
@@ -231,6 +220,8 @@ std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateM
     return std::bind(&DataBaseGenerator::generateDataBaseNumOperations, this, std::placeholders::_1);
   if (i_methodName == "Genetic")
     return std::bind(&DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1);
+  if (i_methodName == "Summator")
+      return std::bind(&DataBaseGenerator::generateDataBaseSummator, this, std::placeholders::_1);
   
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;
   return std::bind(&DataBaseGenerator::generateDataBaseFromRandomTruthTable, this, std::placeholders::_1);
