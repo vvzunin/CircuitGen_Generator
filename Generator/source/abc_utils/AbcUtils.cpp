@@ -168,7 +168,33 @@ inline void AbcUtils::runExecutorForStats(
             on_finish
         );
         
-        std::cout << final_res.commandsOutput["print_stats"];
+        std::string stats = final_res.commandsOutput["print_stats"];
+        // change \n to ' ' for correct work
+        stats[stats.size() - 1] = ' ';
+
+        final_res.commandsOutput.clear();
+
+        // beginning of required info about circuit
+        int startPos = stats.find("lat");
+
+        while (startPos != std::string::npos) {
+            int wordEnd = stats.find(' ', startPos + 1);
+
+            int digitStart = stats.find('=', wordEnd + 1);
+            digitStart = stats.find_first_not_of(' ', digitStart + 1);
+
+            int digitEnd = stats.find(' ', digitStart + 1);
+
+            final_res.commandsOutput[stats.substr(startPos, wordEnd - startPos)] = stats.substr(digitStart, digitEnd - digitStart);
+
+            startPos = stats.find_first_not_of(' ', digitEnd + 1);
+        }
+
+        for(const auto& elem : final_res.commandsOutput)
+        {
+            std::cout << elem.first << " = " << elem.second << ";\n";
+        }
+
         i_onFinish(final_res);
     }
     else
