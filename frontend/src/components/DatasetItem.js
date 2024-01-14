@@ -3,33 +3,43 @@ import axios from 'axios';
 
 import Scheme from './Scheme'
 
-const DatasetItem = ({id, parameters, currentProgress, getDatasets, ready}) => {
+const DatasetItem = ({getDatasets, ready, id, parameters, currentProgress, isUpdating, setIsUpdating}) => {
 
-  console.log(currentProgress);
+  const isDone = 'is'+id+'Done';
+  const status = !currentProgress
+  ? 'error'
+  : currentProgress.ready === currentProgress.in_total
+  ? 'equal'
+  : 'generation';
 
-  const [status, setStatus] = React.useState(null);
 
-  React.useEffect(() => {
-    if (!currentProgress) {
-      setStatus('error');
-    } else {
-      if (currentProgress.ready == currentProgress.in_total) {
-        setStatus('equal')
-      } else {
-        setStatus('generation')
-      }
-    }
-  }, [])
+  if (!localStorage.getItem(isDone) && ready) {
+    localStorage.setItem(isDone, true);
+    setIsUpdating(false);
+  }
+  if (status !== 'equal' && !isUpdating) {
+    setIsUpdating(true);
+  }
+
+  // console.log('currentProgress: '+currentProgress)
+  // console.log('id: '+id);
+  // console.log('isDone: '+localStorage.getItem(isDone));
+  // console.log('isUpdating: '+isUpdating);
+  // console.log('status: '+status);
+  // console.log('ready: '+ready);
+
 
   const deleteDataset = () => {
     axios.delete(`http://127.0.0.1:8000/api/datasets/${id}`)
     .then(() => {
+      localStorage.removeItem(isDone);
+      getDatasets();
       alert("Датасет успешно удален!");
-      getDatasets();}
-    )
+      setIsUpdating(false);
+    })
     .catch((e) => console.log(e));
   }
-  
+
 
   return (
     <div className='dataset__wrapper'>

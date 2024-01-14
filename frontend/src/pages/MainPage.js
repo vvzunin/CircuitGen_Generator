@@ -13,16 +13,16 @@ axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 
 const skeleton = [0, 0, 0, 0, 0];
 
-const dataset = [{
-	id: 1
-},
-{
-	id: 2
-},
-{
-	id: 3
-},
-];
+// const dataset = [{
+// 	id: 1
+// },
+// {
+// 	id: 2
+// },
+// {
+// 	id: 3
+// },
+// ];
 
 const MyLoader = (props) => (
 	<ContentLoader 
@@ -37,49 +37,53 @@ const MyLoader = (props) => (
 	</ContentLoader>
   )
 
-
 const MainPage = () => {
 
 	const [datasets, setDatasets] = React.useState(null);
 	const [progress, setProgress] = React.useState([]);
 
-	const [generatorParametrs, setGeneratorParametrs] = React.useState(null);
+	const [generatorParameters, setGeneratorParameters] = React.useState(null);
 	const [isLoading, setIsLoading] = React.useState(false);
 	const [isError, setIsError] = React.useState(false);
 
-	const [selectedParametrs, setSelectedParametrs] = React.useState([]);
+	const [selectedParameters, setSelectedParameters] = React.useState([]);
 
-	const getProgres = () => {
+	const [isUpdating, setIsUpdating] = React.useState(false);
+
+	const getProgress = () => {
 		axios.get('http://127.0.0.1:8000/api/progress_of_datasets')
 		.then(({data}) => {setProgress(data)})
 		.catch(e => {console.log(e)});
 	}
-
+	
 	React.useEffect(() => {
-		const interval = setInterval(() => {
-			getProgres();
+		let interval;
+		if (isUpdating) {
+		  interval = setInterval(() => {
+			getProgress();
 			getDatasets();
-		}, 1000);
-		return () => clearInterval(interval);
-	  }, []);
+		  }, 1000); }
+		return () => {clearInterval(interval);};
+	  }, [isUpdating]);
 
+	
 	const getDatasets = () => {
 		axios.get('http://127.0.0.1:8000/api/datasets/')
 		.then(({data}) => {setDatasets(data.reverse())})
 		.catch(e => {console.log(e)});
 	}
 
-	const getGeneratorParametrs = () => {
+	const getGeneratorParameters = () => {
 		setIsLoading(true);
 		axios.get('http://127.0.0.1:8000/api/add_parameter/')
-		.then(({data}) => {setGeneratorParametrs(data.reverse()); setIsLoading(false);})
+		.then(({data}) => {setGeneratorParameters(data.reverse()); setIsLoading(false);})
 		.catch(e => {console.log(e); setIsLoading(false); setIsError(true);});
 	}
 
 	const deleteParametr = (id) => {
 		axios.delete(`http://127.0.0.1:8000/api/add_parameter/${id}`)
 		.then(() => {
-			getGeneratorParametrs();
+			getGeneratorParameters();
 			alert("Параметр генерации успешно удален!");
 		})
 		.catch(e => console.log(e));
@@ -87,17 +91,17 @@ const MainPage = () => {
 
 	const updateData = () => {
 		getDatasets();
-		getProgres();
+		getProgress();
 	}
-	
+
 	const addDataset = () => {
-		if (selectedParametrs.length > 0) {
-			console.log(selectedParametrs);
-			axios.post(`http://127.0.0.1:8000/api/add_dataset`, selectedParametrs)
+		if (selectedParameters.length > 0) {
+			console.log(selectedParameters);
+			axios.post(`http://127.0.0.1:8000/api/add_dataset`, selectedParameters)
 			// .then(() => {
 			// 	alert('Параметры успешно отправлены на генерацию!');
 			// 	getDatasets();
-			// 	getProgres();
+			// 	getProgress();
 			// })
 			.catch(e => {console.log(e); alert("Не удалось отправить запрос, попробуйте еще раз")});
 			// alert('Параметры успешно отправлены на генерацию!');
@@ -108,9 +112,9 @@ const MainPage = () => {
 	} 
 
 	React.useEffect(() => {
-		getGeneratorParametrs();
+		getGeneratorParameters();
 		getDatasets();
-		getProgres();
+		getProgress();
 	}, []);
 
 	return (
@@ -121,7 +125,7 @@ const MainPage = () => {
 				</div>
 				<div className="content pb75">
 						{
-						!isLoading && (generatorParametrs?.length == 0) && <Link to='/add' className="content__new">Создать параметр генерации<img src={plus}/></Link>
+						!isLoading && (generatorParameters?.length == 0) && <Link to='/add' className="content__new">Создать параметр генерации<img src={plus}/></Link>
 						}
 						{
 						!isLoading && isError && <div className='content__new error'>Произошла ошибка при загрузке параметров</div>
@@ -130,10 +134,10 @@ const MainPage = () => {
 						{isLoading && skeleton.map((item, i) => {
 							return <MyLoader key={i}/>
 						})}
-						{!isLoading && generatorParametrs && generatorParametrs.map((item, i) => {
+						{!isLoading && generatorParameters && generatorParameters.map((item, i) => {
 							return <Parametr 
-								selectedParametrs={selectedParametrs}
-								setSelectedParametrs={setSelectedParametrs}
+								selectedParametrs={selectedParameters}
+								setSelectedParametrs={setSelectedParameters}
 								key={i}
 								dataItem={item}
 								deleteParametr={() => deleteParametr(item.id)}
@@ -166,14 +170,16 @@ const MainPage = () => {
 								// const currentProgress = findObjectById(progress, item.id);
 								const currentProgress = progress[item.id];
 								if (item.parameters_of_generation && (item.parameters_of_generation.length > 0)) {
-									return <DatasetItem getDatasets={getDatasets} ready={item.ready} key={i} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress}/>
+									return (
+										<DatasetItem getDatasets={getDatasets} ready={item.ready} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress} isUpdating={isUpdating} setIsUpdating={setIsUpdating}/>
+									);
 								} else {
 									return null;
 								}
 							})
 						}
 					</div>
-					{datasets && (datasets.length == 0) && <div className="content__new dataset">Сгенерированный датасет отсутствует</div>} 
+					{datasets && (datasets.length === 0) && <div className="content__new dataset">Сгенерированный датасет отсутствует</div>} 
 				</div>
 			</div>
     </div>
