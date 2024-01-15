@@ -20,7 +20,6 @@ void runGenerationFromJson(std::string json_path);
 int main(int argc, char **argv)
 {
   std::string json_path;
-  std::srand(std::time(nullptr));
   // Use getopt to parse command line arguments
 
   const char *const short_opts = "j:n:";
@@ -50,8 +49,6 @@ int main(int argc, char **argv)
 }
 void runGenerationFromJson(std::string json_path)
 {
-  std::srand(NULL);
-
   std::ifstream f(json_path);
   nlohmann::json DATA = nlohmann::json::parse(f);
   // Read all json objects in json file.
@@ -59,6 +56,10 @@ void runGenerationFromJson(std::string json_path)
   {
     nlohmann::json data = *it;
 
+    std::srand(data.contains("seed") ? 
+    static_cast<unsigned int>(data["seed"]) : 
+    static_cast<unsigned int>(std::time(0)));
+    
     GenerationTypes gt;
     if (data["type_of_generation"] == "From Random Truth Table")
       gt = GenerationTypes::FromRandomTruthTable;

@@ -186,7 +186,6 @@ void Circuit::updateCircuitsParameters()
       }
 
       // Choose random wrong vertex.
-      srand((unsigned)time(NULL));
       int t = (rand()%indecies__.size());
       d_graph.d_vertices[indecies__[t]].wrongVertex = true;
       pos = indecies__[t];

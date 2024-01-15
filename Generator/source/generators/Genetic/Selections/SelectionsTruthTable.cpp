@@ -9,7 +9,6 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> SelectionBase(
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
-  std::srand(std::time(0));
 
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> survivors;
   while (survivors.size() < i_selectionParameters.getNumOfSurvivors())

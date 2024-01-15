@@ -109,7 +109,6 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCross
   int size = i_population[0].getChronosomeType().size();
 
   int child3;
-  std::srand(std::time(0));
 
   for (int cr = 0; cr < i_recombinationParameters.getRecombinationParameters(); ++cr)
   {
@@ -166,7 +165,6 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCross
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
-  std::srand(std::time(0));
 
   int input = i_population[0].getChronosomeType().getInput();
   int output = i_population[0].getChronosomeType().getOutput();
@@ -210,7 +208,6 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCross
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
-  std::srand(std::time(0));
 
   int input = i_population[0].getChronosomeType().getInput();
   int output = i_population[0].getChronosomeType().getOutput();
