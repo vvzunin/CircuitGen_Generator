@@ -23,10 +23,7 @@ namespace {
   }
 }
 
-SimpleGenerators::SimpleGenerators()
-{
-  std::srand(std::time(0));
-}
+SimpleGenerators::SimpleGenerators() {}
 
 std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
   const TruthTable& i_table, 

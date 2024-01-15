@@ -1,4 +1,3 @@
-#include <random>
 #include <vector>
 #include <ctime>
 
@@ -16,7 +15,6 @@ TruthTable::TruthTable(const Chronosome<TruthTableParameters>& i_chr)
 
 void TruthTable::generateRandom(TruthTableParameters i_gp)
 {
-  std::srand(std::time(0));
   if (i_gp.getInputs() == 0)
   {
     i_gp = TruthTableParameters();
@@ -107,7 +105,6 @@ bool TruthTable::getOutTable(int i, int j) const
 void TruthTable::generateTable(double i_p)
 {
   
-  std::srand(std::time(0));
   if (i_p == 0)
   {
     d_array.clear();
@@ -123,13 +120,11 @@ void TruthTable::generateTable(double i_p)
   {
     d_array.clear();
     d_array.resize(d_size);
-    std::default_random_engine generator;
-    std::uniform_real_distribution<double> distribution(0.0,1.0);
     for (int i = 0; i < d_size; ++i)
     {
       d_array[i].resize(d_output);
       for (int j = 0; j < d_output; ++j)
-        d_array[i][j] = distribution(generator) < i_p;
+        d_array[i][j] = static_cast<double>(std::rand()) / RAND_MAX < i_p;
     }
   }
 }
