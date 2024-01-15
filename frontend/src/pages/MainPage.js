@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 import ContentLoader from "react-content-loader"
 
-import Parametr from "../components/Parametr";
+import Parameter from "../components/Parameter";
 import DatasetItem from '../components/DatasetItem';
 
 import plus from '../assets/plus.svg';
@@ -80,7 +80,7 @@ const MainPage = () => {
 		.catch(e => {console.log(e); setIsLoading(false); setIsError(true);});
 	}
 
-	const deleteParametr = (id) => {
+	const deleteParameter = (id) => {
 		axios.delete(`http://127.0.0.1:8000/api/add_parameter/${id}`)
 		.then(() => {
 			getGeneratorParameters();
@@ -135,17 +135,17 @@ const MainPage = () => {
 							return <MyLoader key={i}/>
 						})}
 						{!isLoading && generatorParameters && generatorParameters.map((item, i) => {
-							return <Parametr 
-								selectedParametrs={selectedParameters}
-								setSelectedParametrs={setSelectedParameters}
+							return <Parameter 
+								selectedParameters={selectedParameters}
+								setSelectedParameters={setSelectedParameters}
 								key={i}
 								dataItem={item}
-								deleteParametr={() => deleteParametr(item.id)}
+								deleteParameter={() => deleteParameter(item.id)}
 							/>
 						})}
 					</div>
 					<div className="content__buttons">
-						<Link to='/add' className="content__add-parametr">Добавить параметр</Link>
+						<Link to='/add' className="content__add-parameter">Добавить параметр</Link>
 						<button className="content__generate" onClick={() => addDataset()}>Сгенерировать датасет</button>
 					</div>
 				</div>

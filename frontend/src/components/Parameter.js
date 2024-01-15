@@ -4,42 +4,42 @@ import gearImg from '../assets/gear.svg';
 import select from '../assets/select.svg';
 import noselect from '../assets/noselect.svg';
 
-const Parametr = ({dataItem, deleteParametr, selectedParametrs, setSelectedParametrs}) => {
+const Parameter = ({dataItem, deleteParameter, selectedParameters, setSelectedParameters}) => {
 
     const [isOpen, setIsOpen] = React.useState(false);
 
     const [status, setStatus] = React.useState(false);
 
     const updateSelected = (value) => {
-        if (selectedParametrs.includes(value)) {
-          const updatedArray = selectedParametrs.filter(item => item !== value);
-          setSelectedParametrs(updatedArray);
+        if (selectedParameters.includes(value)) {
+          const updatedArray = selectedParameters.filter(item => item !== value);
+          setSelectedParameters(updatedArray);
         } else {
-          const updatedArray = [...selectedParametrs, value];
-          setSelectedParametrs(updatedArray);
+          const updatedArray = [...selectedParameters, value];
+          setSelectedParameters(updatedArray);
         }
       };
       
 
     return (
-    <div className='parametr__wrapper'>
-        <div className='parametr__main'>
-            <div className="parametr__name">
+    <div className='parameter__wrapper'>
+        <div className='parameter__main'>
+            <div className="parameter__name">
                 Параметр генерации #{dataItem.id}
             </div>
-            <div className="parametr__buttons">
-                {status && <div className="parametr__status select" onClick={() => {setStatus(false); updateSelected(dataItem.id);}}>
+            <div className="parameter__buttons">
+                {status && <div className="parameter__status select" onClick={() => {setStatus(false); updateSelected(dataItem.id);}}>
                     <img src={select}/>
                 </div>}
-                {!status && <div className="parametr__status noselect" onClick={() => {setStatus(true); updateSelected(dataItem.id);}}>
+                {!status && <div className="parameter__status noselect" onClick={() => {setStatus(true); updateSelected(dataItem.id);}}>
                     <img src={noselect}/>
                 </div>}
-                <button className='parametr__more' onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Скрыть' : 'Подробнее'}</button>
-                <button className='parametr__delete'onClick={() => deleteParametr()}>Удалить</button>
+                <button className='parameter__more' onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Скрыть' : 'Подробнее'}</button>
+                <button className='parameter__delete'onClick={() => deleteParameter()}>Удалить</button>
             </div>
         </div>
-    <div className={isOpen ? "parametr__info active" : "parametr__info"}>
-        <div className="parametr__line"></div>
+    <div className={isOpen ? "parameter__info active" : "parameter__info"}>
+        <div className="parameter__line"></div>
             <ul>
                 <li>Тип генерации: {dataItem.type_of_generation}</li>
                 <li>Минимальное количество входов: {dataItem.min_in}</li>
@@ -103,4 +103,4 @@ const Parametr = ({dataItem, deleteParametr, selectedParametrs, setSelectedParam
     )
 }
 
-export default Parametr;
+export default Parameter;

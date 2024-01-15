@@ -1,6 +1,6 @@
 import MainPage from "./pages/MainPage";
 import { Route, Routes } from "react-router-dom"
-import AddParametr from "./pages/AddParametr";
+import AddParameter from "./pages/AddParameter";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
 		<h1>Генератор комбинационных схем</h1>
 		<Routes>
 			<Route path="/" element={<MainPage/>} />
-			<Route path="/add" element={<AddParametr/>}/>
+			<Route path="/add" element={<AddParameter/>}/>
 		</Routes>
     </div>
   );

@@ -45,7 +45,7 @@ const DatasetItem = ({getDatasets, ready, id, parameters, currentProgress, isUpd
     <div className='dataset__wrapper'>
         <div className="dataset__info">
             <span>Датасет #{id}</span>
-            <button className='parametr__delete' onClick={deleteDataset}>Удалить</button>
+            <button className='parameter__delete' onClick={deleteDataset}>Удалить</button>
             {
               !ready && (status === "error") && <p>Статус генерации: ...</p>
             }

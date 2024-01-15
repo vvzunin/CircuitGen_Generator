@@ -100,7 +100,7 @@ h1 {
         padding: 15px;
         border-top: 1px solid $main-bg;
     }
-    &__add-parametr {
+    &__add-parameter {
         font-weight: 500;
         font-size: 16px;
         border-radius: 10px;
@@ -130,7 +130,7 @@ h1 {
     }
 }
 
-.parametr {
+.parameter {
     &__wrapper {
         background-color: $main-bg;
         border-radius: 10px;
@@ -405,7 +405,7 @@ h1 {
     h1 {
         font-size: 24px;
     }
-    .parametr {
+    .parameter {
         &__buttons {
             flex-wrap: wrap;
             height: auto;
@@ -431,7 +431,7 @@ h1 {
         &__generate{
             font-size: 14px;
         }
-        &__add-parametr {
+        &__add-parameter {
             font-size: 14px;
             text-align: center;
             padding: 0 10px;

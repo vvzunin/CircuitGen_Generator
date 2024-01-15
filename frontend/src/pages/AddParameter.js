@@ -14,7 +14,7 @@ const data = ['From Random Truth Table','Rand Level','Num Operation','Genetic'];
 const genetic = ['Genetic reproduction', 'Genetic mutation', 'Genetic selection'];
 
 
-const AddParametr = () => {
+const AddParameter = () => {
 
   const validateNumber = (min, max) =>
   Yup.number()
@@ -75,7 +75,7 @@ const AddParametr = () => {
 
   React.useEffect(() => {
     if (check) {
-      addParametr()
+      addParameter()
       setCheck(false)
     }
   }, [check])
@@ -166,7 +166,7 @@ const AddParametr = () => {
     }));
   };
 
-  const addParametr = () => {
+  const addParameter = () => {
     let sendData = {};
     if (generationMethod === 3) {
       sendData.type_of_generation = genetic[geneticActive];
@@ -253,7 +253,7 @@ const AddParametr = () => {
           for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
             const isLastKey = i === keys.length - 1;
-            updateState(key, values[key], isLastKey ? addParametr : undefined);
+            updateState(key, values[key], isLastKey ? addParameter : undefined);
           }
           setCheck(true)
           resetForm()
@@ -342,4 +342,4 @@ const AddParametr = () => {
 }
 
 
-export default AddParametr
+export default AddParameter
