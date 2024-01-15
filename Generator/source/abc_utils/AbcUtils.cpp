@@ -193,7 +193,6 @@ inline void AbcUtils::runExecutorForStats(
         if (final_res.correct && final_res.commandsOutput.count("print_stats")) {
             std::string stats = final_res.commandsOutput["print_stats"];
 
-            std::cout <<stats;
             // change \n to ' ' for correct work
             stats[stats.size() - 1] = ' ';
 
@@ -290,20 +289,31 @@ inline std::thread AbcUtils::getStats(
 
 inline std::thread AbcUtils::optimizeWithLib(
     const std::string &i_inputFileName, 
-    const std::string &i_outputFileName, 
     const std::string &i_libName,
-    void (*i_onFinish) (CommandWorkResult)) 
+    const std::function<void(CommandWorkResult)> &i_onFinish) 
 {
+    std::string real_name = i_inputFileName;
+    // if is neccessary, remove .v
+    if (real_name.find(".v") != std::string::npos)
+        real_name.erase(real_name.size() - 2, 2);
+
     // format i_command, then execute it with specified parametrs
     std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\" ";
     i_command += "&& echo \"read " + i_libName + "\" ";
-    i_command += "&& echo \"strash\" ";
-    i_command += "&& echo \"rewrite\" ";
+    i_command += "&& echo \"balance\" ";
+    i_command += "&& echo \"write " + real_name + ".aig\" ";
+    i_command += "&& echo \"refactor -z\" ";
     i_command += "&& echo \"map\" ";
-    i_command += "&& echo \"write_verilog " + i_outputFileName + "\") | abc";
+    i_command += "&& echo \"balance -x\" ";
+    i_command += "&& echo \"rewrite -z\" ";
+    i_command += "&& echo \"write " + real_name + "_REDUCED.aig\" ";
+    i_command += "&& echo \"map\" ";
+    i_command += "&& echo \"print_stats\" ";
+    i_command += "&& echo \"unmap\" ";
+    i_command += "&& echo \"write_verilog " + real_name + "_REDUCED.v\") | abc";
     
     std::thread threadExecutor(
-        standartExecutor,
+        runExecutorForStats,
         i_command, 
         parseCommand(i_command),
         i_onFinish
@@ -313,12 +323,11 @@ inline std::thread AbcUtils::optimizeWithLib(
 }
 
 inline std::thread AbcUtils::optimizeWithLib(
-    const std::string &i_inputFileName, 
-    const std::string &i_outputFileName, 
+    const std::string &i_inputFileName,  
     const std::string &i_libName,
     std::string i_fileDirectory,
     std::string i_libDirectory,
-    void (*i_onFinish) (CommandWorkResult))
+    const std::function<void(CommandWorkResult)> &i_onFinish)
 {
     if (i_fileDirectory[i_fileDirectory.size() - 1] != '/')
         i_fileDirectory += "/";
@@ -327,8 +336,7 @@ inline std::thread AbcUtils::optimizeWithLib(
         i_libDirectory += "/";
 
     return optimizeWithLib(
-        i_fileDirectory + i_inputFileName, 
-        i_fileDirectory + i_outputFileName,
+        i_fileDirectory + i_inputFileName,
         i_libDirectory + i_libName,
         i_onFinish
     );

@@ -79,18 +79,16 @@ class AbcUtils : public StandartUtil {
 
         static std::thread optimizeWithLib(
             const std::string &i_inputFileName, 
-            const std::string &i_outputFileName, 
             const std::string &i_libName,
-            void (*i_onFinish) (CommandWorkResult) = NULL
+            const std::function<void(CommandWorkResult)> &i_onFinish = NULL
         );
 
         static std::thread optimizeWithLib(
-            const std::string &i_inputFileName, 
-            const std::string &i_outputFileName, 
+            const std::string &i_inputFileName,
             const std::string &i_libName,
             std::string i_fileDirectory,
             std::string i_libDirectory,
-            void (*i_onFinish) (CommandWorkResult) = NULL
+            const std::function<void(CommandWorkResult)> &i_onFinish = NULL
         );
 
         static std::vector<StandartCommandInfo> parseCommand(

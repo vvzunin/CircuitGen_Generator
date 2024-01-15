@@ -584,7 +584,17 @@ bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_gen
 
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
-
+  
+  if (i_generateAig)
+  {
+    AbcUtils::optimizeWithLib(
+      d_circuitName + ".v",
+      i_libraryName,
+      d_path,
+      AbcUtils::defaultLibPath,
+      [] (CommandWorkResult res) {}
+    ).detach();
+  }
   updateCircuitsParameters(i_getAbcStats, i_libraryName);
 
   if (!saveParameters(i_getAbcStats))
