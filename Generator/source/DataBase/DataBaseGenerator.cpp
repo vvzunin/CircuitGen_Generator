@@ -113,7 +113,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
     c.setTable(tt);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName() + "_" + name);
-    c.generate();
+    c.generate(i_param.getCalculateStats(), i_param.getLibraryName());
   }
 }
 
@@ -134,7 +134,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters& i_
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate();
+    c.generate(i_param.getCalculateStats(), i_param.getLibraryName());
   }
 }
 
@@ -156,7 +156,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate();
+    c.generate(i_param.getCalculateStats(), i_param.getLibraryName());
   }
   // TODO: remake all generates to return value and call graphToVerilog
 }
@@ -182,7 +182,7 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param) 
     Circuit c (graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate();
+    c.generate(i_param.getCalculateStats(), i_param.getLibraryName());
 }
 
 void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i_param)
@@ -196,7 +196,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate();
+  c.generate(i_param.getCalculateStats(), i_param.getLibraryName());
 }
 
  void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_param)
@@ -207,7 +207,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate();
+    c.generate(i_param.getCalculateStats(), i_param.getLibraryName());
 
 }
 

@@ -117,12 +117,16 @@ public:
     int i_outputs,
     int i_iteration,
     int i_maxLevel,
-    int i_maxElements) :
+    int i_maxElements,
+    std::string i_libraryName = "",
+    bool i_calculateStats = false) :
     d_name(i_name),
     d_requestId(i_requestId),
     d_inputs(i_inputs),
     d_outputs(i_outputs),
     d_iteration(i_iteration),
+    d_libraryName(i_libraryName),
+    d_calculateStats(i_calculateStats),
     d_geneticParameters(GeneticParameters(d_inputs, d_outputs))
   {
     d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
@@ -142,6 +146,16 @@ public:
   std::string getRequestId() const
   {
     return d_requestId;
+  }
+
+  std::string getLibraryName() const 
+  {
+    return d_libraryName;
+  }
+
+  void setLibraryName(std::string i_libraryName) 
+  {
+    d_libraryName = i_libraryName;
   }
 
   int getInputs() const
@@ -174,6 +188,14 @@ public:
     d_iteration = i_iteration;
   }
 
+  bool getCalculateStats() const {
+    return d_calculateStats;
+  }
+
+  void setCalculateStats(bool i_calculateStats) {
+    d_calculateStats = i_calculateStats;
+  }
+
   CNNFromTruthTableParameters getCNF() const { return d_cnfFromTruthTableParameters; }
   GeneratorRandLevelParameters getRandLevel() const { return d_generatorRandLevelParameters; }
   GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; }
@@ -198,9 +220,11 @@ public:
 private:
   std::string d_name = "";
   std::string d_requestId;
+  std::string d_libraryName;
   int d_inputs = 0;
   int d_outputs = 0;
   int d_iteration = 0;
+  bool d_calculateStats;
 
   CNNFromTruthTableParameters d_cnfFromTruthTableParameters;
   GeneratorRandLevelParameters d_generatorRandLevelParameters;

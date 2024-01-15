@@ -5,6 +5,7 @@
 #include <cmath>
 #include "Circuit.h"
 #include "../reliability/Reliability.h"
+#include "../abc_utils/AbcUtils.cpp"
 #include "../FilesTools.h"
 
 Circuit::Circuit(const OrientedGraph& i_graph, const std::vector<std::string>& i_logExpressions)
@@ -44,7 +45,7 @@ void Circuit::computeHash()
 
 
 
-void Circuit::updateCircuitsParameters()
+void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_libraryName)
 {
   if (d_graph.size() == 0)
     return;
@@ -294,6 +295,27 @@ d_circuitParameters.d_reliability = 1 - numberOfIncoincidences / pow(2.0, float(
       if (d_graph.getAdjacencyMatrix(i, j))
         d_circuitParameters.d_numEdgesOfEachType[std::make_pair(gv[i].getOperation(), gv[j].getOperation())]++;
 
+  if (i_getAbcStats) {
+    std::cout << d_circuitName << " calc started" << std::endl;
+    // Would be called after abc work
+    auto onFinish = [this](CommandWorkResult result)
+    { 
+      if (result.correct)
+        d_circuitParameters.d_abcStats = result.commandsOutput;
+    };
+
+    // TODO add library name
+    AbcUtils::getStats(
+      d_circuitName + ".v",
+      i_libraryName,
+      d_path,
+      AbcUtils::defaultLibPath,
+      onFinish
+    ).join();
+
+    std::cout << d_circuitName << " calc ended" << std::endl;
+  }
+
   computeHash();
 }
 
@@ -430,7 +452,7 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
   return true;
 }
 
-bool Circuit::saveParameters(bool i_pathExists) const
+bool Circuit::saveParameters(bool i_getAbcStats, bool i_pathExists) const
 {
   if (true)
   {/*
@@ -446,29 +468,29 @@ bool Circuit::saveParameters(bool i_pathExists) const
   //if (std::filesystem::exists(filename))
   //  std::remove(filename.c_str());
 
-  std::ofstream w(filename);
+  std::ofstream outputFile(filename);
 
-  w << "{" << std::endl;
+  outputFile << "{" << std::endl;
 
-  w << "\t\"name\": \"" << d_circuitParameters.d_name << "\"," << std::endl;
-  w << "\t\"numInputs\": \"" << d_circuitParameters.d_numInputs << "\"," << std::endl;
-  w << "\t\"numOutputs\": \"" << d_circuitParameters.d_numOutputs << "\"," << std::endl;
-  w << "\t\"maxLevel\": \"" << d_circuitParameters.d_maxLevel << "\"," << std::endl;
-  w << "\t\"numEdges\": \"" << d_circuitParameters.d_numEdges << "\"," << std::endl;
+  outputFile << "\t\"name\": \"" << d_circuitParameters.d_name << "\"," << std::endl;
+  outputFile << "\t\"numInputs\": \"" << d_circuitParameters.d_numInputs << "\"," << std::endl;
+  outputFile << "\t\"numOutputs\": \"" << d_circuitParameters.d_numOutputs << "\"," << std::endl;
+  outputFile << "\t\"maxLevel\": \"" << d_circuitParameters.d_maxLevel << "\"," << std::endl;
+  outputFile << "\t\"numEdges\": \"" << d_circuitParameters.d_numEdges << "\"," << std::endl;
   //w << "\t\"\": \"" << d_circuitParameters. << "\"," << std::endl; TODO: what is this mean?
-  w << "\t\"reliability\": \"" << std::fixed << std::setprecision(20) << d_circuitParameters.d_reliability << "\"," << std::endl;
-  w << "\t\"size\": \"" << d_circuitParameters.d_size << "\"," << std::endl;
-  w << "\t\"area\": \"" << d_circuitParameters.d_area << "\"," << std::endl;
-  w << "\t\"longest_path\": \"" << d_circuitParameters.d_longestPath << "\"," << std::endl;
-  w << "\t\"gates\": \"" << d_circuitParameters.d_gates << "\"," << std::endl;
-  w << "\t\"sensitivity_factor\": \"" << d_circuitParameters.d_sensitivityFactor << "\"," << std::endl;
-  w << "\t\"sinsitivity_factor_percent\": \"" << d_circuitParameters.d_reliabilityPercent << "\"," << std::endl;
-  w << "\t\"sensitive_area\": \"" << d_circuitParameters.d_sensitiveArea << "\"," << std::endl;
-  w << "\t\"sensitive_area_percent\": \"" << d_circuitParameters.d_sensitiveAreaPercent << "\"," << std::endl;
+  outputFile << "\t\"reliability\": \"" << std::fixed << std::setprecision(20) << d_circuitParameters.d_reliability << "\"," << std::endl;
+  outputFile << "\t\"size\": \"" << d_circuitParameters.d_size << "\"," << std::endl;
+  outputFile << "\t\"area\": \"" << d_circuitParameters.d_area << "\"," << std::endl;
+  outputFile << "\t\"longest_path\": \"" << d_circuitParameters.d_longestPath << "\"," << std::endl;
+  outputFile << "\t\"gates\": \"" << d_circuitParameters.d_gates << "\"," << std::endl;
+  outputFile << "\t\"sensitivity_factor\": \"" << d_circuitParameters.d_sensitivityFactor << "\"," << std::endl;
+  outputFile << "\t\"sinsitivity_factor_percent\": \"" << d_circuitParameters.d_reliabilityPercent << "\"," << std::endl;
+  outputFile << "\t\"sensitive_area\": \"" << d_circuitParameters.d_sensitiveArea << "\"," << std::endl;
+  outputFile << "\t\"sensitive_area_percent\": \"" << d_circuitParameters.d_sensitiveAreaPercent << "\"," << std::endl;
   //w << "\t\"\": \"" << d_circuitParameters << "\"," << std::endl; // TODO: what is this mean?
-  w << "\t\"hash_code\": \"" << d_circuitParameters.d_hashCode << "\"," << std::endl;
+  outputFile << "\t\"hash_code\": \"" << d_circuitParameters.d_hashCode << "\"," << std::endl;
 
-  w << "\t\"numElementsOfEachType\": {" << std::endl;
+  outputFile << "\t\"numElementsOfEachType\": {" << std::endl;
 
   bool first = true;
   for (const auto &[key, value] : d_circuitParameters.d_numElementsOfEachType)
@@ -478,18 +500,18 @@ bool Circuit::saveParameters(bool i_pathExists) const
       if (first)
       {
         first = false;
-        w << "\t\t\"" << key << "\": " << value;
+        outputFile << "\t\t\"" << key << "\": " << value;
       } else 
       {
-        w << "," << std::endl << "\t\t\"" << key << "\": " << value;
+        outputFile << "," << std::endl << "\t\t\"" << key << "\": " << value;
       }
     }
   }
-  w << std::endl;
+  outputFile << std::endl;
 
-  w << "\t}," << std::endl;
+  outputFile << "\t}," << std::endl;
 
-  w << "\t\"numEdgesOfEachType\": {" << std::endl;
+  outputFile << "\t\"numEdgesOfEachType\": {" << std::endl;
   first = true;
   for (const auto &[key, value] : d_circuitParameters.d_numEdgesOfEachType)
   {
@@ -498,20 +520,39 @@ bool Circuit::saveParameters(bool i_pathExists) const
       if (first)
       {
         first = false;
-        w << "\t\t\"" << key.first << "-" << key.second << "\": " << value;
+        outputFile << "\t\t\"" << key.first << "-" << key.second << "\": " << value;
       }
       else 
       {
-        w << "," << std::endl << "\t\t\"" << key.first << "-" << key.second << "\": " << value;
+        outputFile << "," << std::endl << "\t\t\"" << key.first << "-" << key.second << "\": " << value;
       }
     }
   }
-  w << std::endl;
+  outputFile << std::endl;
 
-  w << "\t}" << std::endl;
+  outputFile << "\t}," << std::endl;
 
+  if (i_getAbcStats) {
+    outputFile << "\t\"abcStats\": {" << std::endl;
+    first = true;
+    for (const auto &data : d_circuitParameters.d_abcStats)
+    {
+      if (first)
+      {
+        first = false;
+        outputFile << "\t\t\"" << data.first << "\": " << data.second;
+      }
+      else 
+      {
+        outputFile << "," << std::endl << "\t\t\"" << data.first << "\": " << data.second;
+      }
+    }
+    outputFile << std::endl;
 
-  w << "}";
+    outputFile << "\t}" << std::endl;
+  }
+
+  outputFile << "}";
 
   return true;
 }
@@ -535,17 +576,18 @@ bool Circuit::checkExistingHash() // TODO: is it really need return true when ha
   return false;
 }
 
-bool Circuit::generate(bool i_pathExists)
+bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_generateAig, bool i_pathExists)
 {
   if (!i_pathExists)
     //d_path += d_circuitName;
+  
 
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
 
-  updateCircuitsParameters();
+  updateCircuitsParameters(i_getAbcStats, i_libraryName);
 
-  if (!saveParameters())
+  if (!saveParameters(i_getAbcStats))
     return false;
   //TODO: costul
   //if (checkExistingHash() || d_circuitParameters.d_reliability == 0 || d_circuitParameters.d_gates == 0)

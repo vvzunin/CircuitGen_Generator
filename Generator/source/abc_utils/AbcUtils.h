@@ -17,6 +17,8 @@ verilog or aiger
 
 class AbcUtils : public StandartUtil {
     public:
+        static const std::string defaultLibPath;
+
         static std::thread verilogToAiger(
             const std::string &i_inputFileName, 
             const std::string &i_outputFileName,
@@ -64,7 +66,7 @@ class AbcUtils : public StandartUtil {
         static std::thread getStats(
             const std::string &i_inputFileName,
             const std::string &i_libName,
-            void (*i_onFinish) (CommandWorkResult) = NULL
+            const std::function<void(CommandWorkResult)> &i_onFinish = NULL
         );
 
         static std::thread getStats(
@@ -72,7 +74,7 @@ class AbcUtils : public StandartUtil {
             const std::string &i_libName,
             std::string i_fileDirectory,
             std::string i_libDirectory,
-            void (*i_onFinish) (CommandWorkResult) = NULL
+            const std::function<void(CommandWorkResult)> &i_onFinish = NULL
         );
 
         static std::thread optimizeWithLib(
@@ -116,7 +118,7 @@ class AbcUtils : public StandartUtil {
         static void runExecutorForStats(
             const std::string &i_command,
             const std::vector<StandartCommandInfo> &i_info, 
-            void (*i_onFinish) (CommandWorkResult)
+            const std::function<void(CommandWorkResult)> &i_onFinish
         );
 
 };

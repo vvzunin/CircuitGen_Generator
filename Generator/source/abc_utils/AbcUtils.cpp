@@ -16,10 +16,13 @@ inline std::string AbcUtils::d_utilWord = "abc ";
 inline std::string AbcUtils::d_className = "AbcUtils";
 inline int AbcUtils::d_utilLen = 8;
 
+inline const std::string AbcUtils::defaultLibPath = "Generator/libs";
+
 // which commands can output something
 inline std::vector<std::string> AbcUtils::d_allowedOutput = {
     "read",
-    "print"
+    "print",
+    "map"
 };
 // which words means errors
 inline std::vector<std::string> AbcUtils::d_incorrectWords = {
@@ -59,9 +62,17 @@ inline void AbcUtils::standartExecutor(
             int secondPos = result.find(d_utilWord, firstPos + 1);
 
             // if there was an error
-            if (secondPos == std::string::npos) {
-                std::cout << "Something went wrong during files parsing in " << d_className << '\n';
+            if (secondPos == std::string::npos && currentCommand.info != "quit") {
+                std::string errText = "Something went wrong during files parsing in " + d_className + '\n';
+
+                std::cerr << errText;
+                workResult.commandsOutput.clear();
+                workResult.commandsOutput["error"] = errText;
+                    
                 correct = false;
+                break;
+            }
+            else if (currentCommand.info == "quit") {
                 break;
             }
 
@@ -76,7 +87,12 @@ inline void AbcUtils::standartExecutor(
             // If something went wrong during read
             // and abc wrote something
             if (!allowedToPrint && secondPos - firstPos > delta) {
-                std::cerr << "Incorrect " << currentCommand.info << ": " << result.substr(firstPos + delta, secondPos - firstPos - delta) << '\n';
+                std::string errText = "Incorrect " + currentCommand.info + ": " + result.substr(firstPos + delta, secondPos - firstPos - delta) + '\n';
+                
+                std::cerr << errText;
+                workResult.commandsOutput.clear();
+                workResult.commandsOutput["error"] = errText;
+                
                 correct = false;
                 break;
             }
@@ -86,7 +102,12 @@ inline void AbcUtils::standartExecutor(
 
                 for (int i = 0; i < d_incorrectWords.size() && correct; ++i) {
                     if (output.find(d_incorrectWords[i]) != std::string::npos) {
-                        std::cerr << "Incorrect " << currentCommand.info << ": " << output << '\n';
+                        std::string errText = "Incorrect " + currentCommand.info + ": " + output + '\n';
+
+                        std::cerr << errText;
+                        workResult.commandsOutput.clear();
+                        workResult.commandsOutput["error"] = errText;
+
                         correct = false;
                     }
                 }
@@ -151,7 +172,7 @@ inline std::vector<StandartCommandInfo> AbcUtils::parseCommand(std::string i_com
 inline void AbcUtils::runExecutorForStats(
         const std::string &i_command,
         const std::vector<StandartCommandInfo> &i_info, 
-        void (*i_onFinish) (CommandWorkResult))
+        const std::function<void(CommandWorkResult)> &i_onFinish)
 {
     if (i_onFinish) {
         CommandWorkResult final_res;
@@ -167,33 +188,58 @@ inline void AbcUtils::runExecutorForStats(
             i_info,
             on_finish
         );
-        
-        std::string stats = final_res.commandsOutput["print_stats"];
-        // change \n to ' ' for correct work
-        stats[stats.size() - 1] = ' ';
 
-        final_res.commandsOutput.clear();
+        // if there were no errors and sth was printed
+        if (final_res.correct && final_res.commandsOutput.count("print_stats")) {
+            std::string stats = final_res.commandsOutput["print_stats"];
 
-        // beginning of required info about circuit
-        int startPos = stats.find("lat");
+            std::cout <<stats;
+            // change \n to ' ' for correct work
+            stats[stats.size() - 1] = ' ';
 
-        while (startPos != std::string::npos) {
-            int wordEnd = stats.find(' ', startPos + 1);
+            final_res.commandsOutput.clear();
 
-            int digitStart = stats.find('=', wordEnd + 1);
-            digitStart = stats.find_first_not_of(' ', digitStart + 1);
+            int startPos = stats.find("=");
+            startPos = stats.find_first_not_of(' ', startPos + 1);
+            {
+                int endPos = stats.find('/', startPos + 1);
+                final_res.commandsOutput["inputs"] = stats.substr(startPos, endPos - startPos);
 
-            int digitEnd = stats.find(' ', digitStart + 1);
+                startPos = stats.find_first_not_of(' ', endPos + 1);
+                endPos = stats.find(' ', startPos + 1);
 
-            final_res.commandsOutput[stats.substr(startPos, wordEnd - startPos)] = stats.substr(digitStart, digitEnd - digitStart);
+                final_res.commandsOutput["outputs"] = stats.substr(startPos, endPos - startPos);
+            }
 
-            startPos = stats.find_first_not_of(' ', digitEnd + 1);
+            // beginning of required info about circuit
+            startPos = stats.find("lat", startPos);
+
+            while (startPos != std::string::npos) {
+                int wordEnd = stats.find(' ', startPos + 1);
+
+                int digitStart = stats.find('=', wordEnd + 1);
+                digitStart = stats.find_first_not_of(' ', digitStart + 1);
+
+                int digitEnd = stats.find(' ', digitStart + 1);
+
+                final_res.commandsOutput[stats.substr(startPos, wordEnd - startPos)] = stats.substr(digitStart, digitEnd - digitStart);
+
+                startPos = stats.find_first_not_of(' ', digitEnd + 1);
+            }
+        }
+        else if (final_res.correct && !final_res.commandsOutput.count("print_stats")) {
+            final_res.commandsOutput.clear();
+
+            final_res.commandsOutput["error"] = "Incorrect output, no stats had been printed\n";
+            std::cerr << final_res.commandsOutput["error"];
+
+            final_res.correct = false;
         }
 
-        for(const auto& elem : final_res.commandsOutput)
-        {
-            std::cout << elem.first << " = " << elem.second << ";\n";
-        }
+        // for(const auto& elem : final_res.commandsOutput)
+        // {
+        //     std::cout << elem.first << " = " << elem.second << ";\n";
+        // }
 
         i_onFinish(final_res);
     }
@@ -204,13 +250,11 @@ inline void AbcUtils::runExecutorForStats(
 inline std::thread AbcUtils::getStats(
     const std::string &i_inputFileName,
     const std::string &i_libName,
-    void (*i_onFinish) (CommandWorkResult))
+    const std::function<void(CommandWorkResult)> &i_onFinish)
 {
         // format i_command, then execute it with specified parametrs
     std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\" ";
     i_command += "&& echo \"read " + i_libName + "\" ";
-    i_command += "&& echo \"strash\" ";
-    i_command += "&& echo \"rewrite\" ";
     i_command += "&& echo \"map\" ";
     i_command += "&& echo \"print_stats\") | abc";
     
@@ -229,7 +273,7 @@ inline std::thread AbcUtils::getStats(
     const std::string &i_libName,
     std::string i_fileDirectory,
     std::string i_libDirectory,
-    void (*i_onFinish) (CommandWorkResult))
+    const std::function<void(CommandWorkResult)> &i_onFinish)
 {
     if (i_fileDirectory[i_fileDirectory.size() - 1] != '/')
         i_fileDirectory += "/";

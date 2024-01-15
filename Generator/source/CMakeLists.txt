@@ -61,6 +61,8 @@ set(SOURCES
   graph/GraphVertex.cpp
   graph/OrientedGraph.cpp
   reliability/Reliability.cpp
+  abc_utils/AbcUtils.cpp
+  abc_utils/YosysUtils.cpp
   generators/TruthTable.cpp
   generators/Genetic/Chronosome.cpp
   generators/Genetic/ChronosomeType.cpp
@@ -88,5 +90,6 @@ add_subdirectory(graph)
 add_subdirectory(generators)
 add_subdirectory(circuits)
 add_subdirectory(reliability)
-target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings nlohmann_json::nlohmann_json)
+add_subdirectory(abc_utils)
+target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings AbcUtils nlohmann_json::nlohmann_json)
 add_subdirectory(tests)

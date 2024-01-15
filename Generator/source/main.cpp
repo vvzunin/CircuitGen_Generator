@@ -85,6 +85,9 @@ void runGenerationFromJson(std::string json_path)
     //  bool limit = data["limit_generation"];
     bool CNFF = data["CNFF"];
     bool CNFT = data["CNFT"];
+    // this is for ABC
+    bool calculateStats = data.contains("calculate_stats") ? (bool) data["calculate_stats"] : false;
+    std::string libraryName = data.contains("library_name") ? (std::string) data["library_name"] : "";
     bool LeaveEmptyOut = data["leave_empty_out"];
     int numOfSurv = data["surv_num"];
     std::string datasetId = data["dataset_id"];
@@ -166,7 +169,17 @@ void runGenerationFromJson(std::string json_path)
 
     // TODO:: make function that return DataBaseGeneratorParameters from json
     // Recording of json data to gp
-    GenerationParameters gp(datasetId, requestId, inputs, outputs, repeats, maxLevel, maxElement);
+    GenerationParameters gp(
+      datasetId, 
+      requestId, 
+      inputs, 
+      outputs, 
+      repeats, 
+      maxLevel, 
+      maxElement, 
+      libraryName, 
+      calculateStats
+    );
 
     gp.setName(datasetId);
     gp.setCNFF(CNFF);
