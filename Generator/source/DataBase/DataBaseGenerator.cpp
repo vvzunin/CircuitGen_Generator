@@ -199,7 +199,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
   c.generate();
 }
 
- void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_param)
+void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_param)
 {
     SimpleGenerators sg;
     int bits = i_param.getInputs();
@@ -208,7 +208,16 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
     c.generate();
+}
 
+void DataBaseGenerator::generateDataBaseMultiplier(const GenerationParameters &i_param) {
+    SimpleGenerators generator;
+    int i_bits = i_param.getInputs();
+    OrientedGraph graph = generator.generatorMultiplier(i_bits);
+    Circuit c (graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate();
 }
 
 std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateMethod(const std::string& i_methodName)

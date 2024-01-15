@@ -641,3 +641,141 @@ OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bo
 
     return graph;
 }
+
+public OrientedGraph generatorMultiplier(int i_bits, bool act = false)
+{
+    ///a - бит первого множителя
+    ///b - бит второго множителя
+    ///с - результат логического и
+    ///s - результат суммы
+    ///p - перенос
+    ///m - бит полученного умножения
+    OrientedGraph graph;
+    int n = 0;
+    for (int i = 0; i < i_bits; i++)
+    {
+
+        std::string M1 = std::to_string(i);
+        std::string M01 = std::to_string(i - 1);
+
+        if (act)
+        {
+            graph.addVertex("1", "const");
+        }
+
+        graph.addVertex("x_b" + M1, "input");
+        for (int j = 0; j < i_bits; j++)
+        {
+            std::string M2 = std::to_string(j);
+            std::string M20 = std::to_string(j + 1);
+            graph.addVertex("x_a" + M2, "input");
+            graph.addVertex("(a" + M2 + " and b" + M1 + ")", "and", "c" + M1 + M2);
+            graph.addDoubleEdge("a" + M2, "b" + M1, "c" + M1 + M2, false);
+            if (i == 0)
+            {
+                if (j == 0)
+                {
+                    std::string N = std::to_string(n);
+                    if (act)
+                    {
+                        graph.addVertex("(1 and " + "c" + M1 + M2 + ")", "and", "mand1_" + N);
+                        graph.addDoubleEdge("1", "c" + M1 + M2, "mand1_" + N, false);
+                    }
+                    else
+                    {
+                        graph.addVertex("m" + N, "output");
+                        graph.addEdge("c" + M1 + M2, "m" + N, false);
+                    }
+                    n += 1;
+                    continue;
+                }
+                else { continue; }
+            }
+            else if (i > 0 && i < i_bits)
+            {
+                if (j < i_bits)
+                {
+                    std::string Nowab = "c" + M1 + M2;
+                    std::string Pastab = "c" + M01 + M20;
+
+                    if (i > 1)
+                    {
+                        Pastab = "sum" + M01 + M20;
+                    }
+
+                    graph.addVertex("(" + Nowab + " and " + Pastab + ")", "and", "NandPT" + M1 + M2);
+                    std::string pi = "p" + std::to_string(i) + std::to_string(j);
+
+                    graph.addVertex("(" + Nowab + " and " + pi + ")", "and", "Nandp" + M1 + M2);
+                    graph.addVertex("(" + Pastab + " and " + pi + ")", "and", "PTandp" + M1 + M2);
+
+                    graph.addDoubleEdge(Nowab, Pastab, "NandPT" + M1 + M2, false);
+                    graph.addDoubleEdge(Nowab, pi, "Nandp" + M1 + M2, false);
+                    graph.addDoubleEdge(Pastab, pi, "PTandp" + M1 + M2, false);
+
+                    std::string NextS = std::to_string(i) + std::to_string(j + 1);
+                    if (j == i_bits - 1)
+                    {
+                        NextS = std::to_string(i + 1) + std::to_string(j);
+                    }
+
+                    graph.addVertex("(" + "NandPT" + M1 + M2 + ")" + " or " + "(" + "Nandp" + M1 + M2 + ")" + " or " + "(" + "PTandp" + M1 + M2 + ")", "or", "p" + NextS);
+                    graph.addEdge("NandPT" + M1 + M2, "p" + NextS, false);
+                    graph.addEdge("Nandp" + M1 + M2, "p" + NextS, false);
+                    graph.addEdge("PTandp" + M1 + M2, "p" + NextS, false);
+
+                    graph.addVertex("not (p" + NextS + ")", "not", "np" + NextS);
+                    graph.addEdge("p" + NextS, "np" + NextS, false);
+
+                    graph.addVertex("(" + Nowab + " or " + Pastab + " or " + pi + ")", "or", "Sor" + M1 + M2);
+                    graph.addEdge(Nowab, "Sor" + M1 + M2, false);
+                    graph.addEdge(Pastab, "Sor" + M1 + M2, false);
+                    graph.addEdge(pi, "Sor" + M1 + M2, false);
+
+                    graph.addVertex("(Sor" + M1 + M2 + " and np" + NextS + ")", "and", "Snp" + NextS);
+                    graph.addDoubleEdge("Sor" + M1 + M2, "np" + NextS, "Snp" + NextS, false);
+
+                    graph.addVertex("(" + Nowab + " and " + Pastab + " and " + pi + ")", "and", "Sand" + M1 + M2);
+                    graph.addEdge(Nowab, "Sand" + M1 + M2, false);
+                    graph.addEdge(Pastab, "Sand" + M1 + M2, false);
+                    graph.addEdge(pi, "Sand" + M1 + M2, false);
+
+                    graph.addVertex("(Sand" + M1 + M2 + " or " + "Snp" + NextS + ")", "or", "sum" + M1 + M2);
+                    graph.addDoubleEdge("Sand" + M1 + M2, "Snp" + NextS, "sum" + M1 + M2, false);
+                    if (j == 0 || i == i_bits - 1)
+                    {
+                        std::string N = std::to_string(n);
+                        if (act)
+                        {
+                            graph.addVertex("(1 and " + "sum" + M1 + M2 + ")", "and", "mand1_" + N);
+                            graph.addDoubleEdge("1", "sum" + M1 + M2, "mand1_" + N, false);
+                        }
+                        else
+                        {
+                            graph.addVertex("m" + N, "output");
+                            graph.addEdge("sum" + M1 + M2, "m" + N, false);
+                        }
+                        n += 1;
+                    }
+                    if (i == i_bits - 1 && j == i_bits - 1)
+                    {
+                        std::string N = std::to_string(n);
+                        if (act)
+                        {
+                            graph.addVertex("(1 and " + "p" + NextS + ")", "and", "mand1_" + N);
+                            graph.addDoubleEdge("1", "p" + NextS, "mand1_" + N, false);
+                        }
+                        else
+                        {
+                            graph.addVertex("m" + N, "output");
+                            graph.addEdge("p" + NextS, "m" + N, false);
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+    return graph;
+}
