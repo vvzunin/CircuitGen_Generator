@@ -44,6 +44,7 @@ std::string AuxMethods::readAllFile(const std::string& filename) {
 std::vector<int> AuxMethods::getRandomIntList(int i_n, int i_minNumber,
     int i_maxNumber, bool repite)
 {
+  std::srand(time(0));
   std::vector<int> lst;
   bool flag = true;
   //TODO: can we just rewrite it to simple while? and withour UB make flag = true before while?

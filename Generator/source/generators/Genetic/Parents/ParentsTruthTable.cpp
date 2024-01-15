@@ -47,6 +47,7 @@ std::vector<int> ParentsPanmixia(
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
+  std::srand(std::time(0));
   int parent1 = 0, parent2 = 0;
   
   while (i_population.size() > 2 && parent1 == parent2)
@@ -63,6 +64,7 @@ std::vector<int> ParentsInbrinding(
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
+  std::srand(std::time(0));
 
   int parent1 = rand() % i_population.size();
   int parent2 = GetHemming(parent1, i_population).back();
@@ -75,6 +77,7 @@ std::vector<int> ParentsOutbrinding(
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
+  std::srand(std::time(0));
 
   int parent1 = rand() % i_population.size();
   int parent2 = GetHemming(parent1, i_population).front();
