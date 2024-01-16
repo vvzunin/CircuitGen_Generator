@@ -14,6 +14,7 @@
 #include "./DataBase/DataBaseGenerator.h"
 #include "./DataBase/DataBaseGeneratorParameters.h"
 #include "./generators/GenerationParameters.h"
+#include "AuxiliaryMethods.h"
 
 void runGenerationFromJson(std::string json_path);
 
@@ -55,11 +56,11 @@ void runGenerationFromJson(std::string json_path)
   for (auto it = DATA.begin(); it != DATA.end(); it++)
   {
     nlohmann::json data = *it;
-
-    std::srand(data.contains("seed") ? 
-    static_cast<unsigned int>(data["seed"]) : 
-    static_cast<unsigned int>(std::time(0)));
     
+    AuxMethods::setRandSeed(!data.contains("seed") || data["seed"] == -1 ? 
+    static_cast<unsigned>(std::time(0)) :
+    static_cast<unsigned>(data["seed"]));
+
     GenerationTypes gt;
     if (data["type_of_generation"] == "From Random Truth Table")
       gt = GenerationTypes::FromRandomTruthTable;

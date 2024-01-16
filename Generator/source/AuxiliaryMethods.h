@@ -8,6 +8,10 @@
 
 namespace AuxMethods
 {
+  void setRandSeed(unsigned seed);
+  int getRandInt(int lower, int upper, bool inclusively = false);
+  double getRandDouble(double lower, double upper);
+
   std::string readAllFile(const std::string& filename);
   std::vector<int> getRandomIntList(int i_n, int i_minNumber, int i_maxNumber, bool repite = false);
 

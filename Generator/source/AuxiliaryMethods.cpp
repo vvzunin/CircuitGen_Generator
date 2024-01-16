@@ -11,12 +11,14 @@
 
 namespace
 {
-  int getRandInt(int i_lower, int i_upper)
-  {
-    assert(i_lower <= i_upper);
-    int d = i_upper - i_lower + 1;
-    return (rand() % d) + i_lower;
-  }
+  // legacy
+  //
+  // int getRandInt(int i_lower, int i_upper)
+  // {
+  //   assert(i_lower <= i_upper);
+  //   int d = i_upper - i_lower + 1;
+  //   return (rand() % d) + i_lower;
+  // }
 
   std::vector<std::string> splitString(const std::string& s, char delimiter)
   {
@@ -30,31 +32,23 @@ namespace
 
     return tokens;
   }
+
+  std::minstd_rand gen;
 }
 
-// WIP
-//
-// class Rand {
-// public :
-//   static std::mt19937 gen;
 
-//   static void setSeed(unsigned seed) {
-//     gen.seed(seed);
-//   }
-
-//   static unsigned getInt(unsigned lower, unsigned upper) {
-//     std::uniform_int_distribution<> dis(0, upper);
-
-//     return dis(gen);
-//   }
-
-//     static double getDouble(double lower, double upper) {
-//     std::uniform_real_distribution<> dis(lower, upper);
-
-//     return dis(gen);
-//   }
-
-// };
+void AuxMethods::setRandSeed(unsigned seed) {
+  gen.seed(seed);
+}
+int AuxMethods::getRandInt(int lower, int upper, bool inclusively) {
+  if (!inclusively) upper--;
+  std::uniform_int_distribution<> dis(lower, upper);
+  return dis(gen);
+}
+double AuxMethods::getRandDouble(double lower, double upper) {
+  std::uniform_real_distribution<> dis(lower, upper);
+  return dis(gen);
+}
 
 std::string AuxMethods::readAllFile(const std::string& filename) {
   std::ifstream file(filename);
@@ -80,7 +74,7 @@ std::vector<int> AuxMethods::getRandomIntList(int i_n, int i_minNumber,
     flag = false;
     int k = i_n - lst.size();
     for (i = 0; i < k; ++i)
-      lst.push_back(getRandInt(i_minNumber, i_maxNumber));
+      lst.push_back(getRandInt(i_minNumber, i_maxNumber, true));
 
     sort(lst.begin(), lst.end());
 

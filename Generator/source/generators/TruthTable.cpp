@@ -2,6 +2,7 @@
 #include <ctime>
 
 #include "TruthTable.h"
+#include "../AuxiliaryMethods.h"
 
 TruthTable::TruthTable()
 {
@@ -18,8 +19,8 @@ void TruthTable::generateRandom(TruthTableParameters i_gp)
   if (i_gp.getInputs() == 0)
   {
     i_gp = TruthTableParameters();
-    i_gp.setInputs(rand() % d_settings->getMaxInputs());
-    i_gp.setOutputs(rand() % d_settings->getMaxOutputs());
+    i_gp.setInputs(AuxMethods::getRandInt(0, d_settings->getMaxInputs()));
+    i_gp.setOutputs(AuxMethods::getRandInt(0, d_settings->getMaxOutputs()));
   }
 
   d_input = i_gp.getInputs();
@@ -33,7 +34,7 @@ void TruthTable::generateRandom(TruthTableParameters i_gp)
   {
     d_array[i].resize(i_gp.getOutputs());
     for (int j = 0; j < i_gp.getOutputs(); ++j)
-      d_array[i][j] = (rand() % 2) == 1;
+      d_array[i][j] = AuxMethods::getRandInt(0, 1, true) == 1;
   }
 }
 
@@ -113,7 +114,7 @@ void TruthTable::generateTable(double i_p)
     {
       d_array[i].resize(d_output);
       for (int j = 0; j < d_output; ++j)
-        d_array[i][j] = (rand() % 2) == 1;
+        d_array[i][j] = AuxMethods::getRandInt(0, 1, true) == 1;
     }
   }
   if (i_p > 0 && i_p <= 1)
@@ -124,7 +125,7 @@ void TruthTable::generateTable(double i_p)
     {
       d_array[i].resize(d_output);
       for (int j = 0; j < d_output; ++j)
-        d_array[i][j] = static_cast<double>(std::rand()) / RAND_MAX < i_p;
+        d_array[i][j] = AuxMethods::getRandDouble(0, 1) < i_p;
     }
   }
 }

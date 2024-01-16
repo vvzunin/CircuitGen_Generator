@@ -3,6 +3,7 @@
 #include <ctime>
 
 #include "MutationTruthTable.h"
+#include "../../../AuxiliaryMethods.h"
 
 std::vector<std::vector<bool>> MutationTable(std::vector<std::vector<bool>> i_table,
                                             double i_probability)
@@ -11,7 +12,7 @@ std::vector<std::vector<bool>> MutationTable(std::vector<std::vector<bool>> i_ta
   {
     for (int j = 0; j < i_table[i].size(); ++j)
     {
-      if (static_cast<double>(std::rand()) / RAND_MAX < i_probability)
+      if (AuxMethods::getRandDouble(0, 1) < i_probability)
       {
         i_table[i][j] = !i_table[i][j];
       }
@@ -31,15 +32,15 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationBinary(
   int output = i_population[0].getChronosomeType().getOutput();
   for (int i = 0; i < i_population.size(); ++i)
   {
-    num_mut = (rand() % (size * output)) + 1;
+    num_mut = (AuxMethods::getRandInt(1, size * output, true));
     std::vector<std::vector<bool>> mutant = i_population[i].getChronosomeType().getOutTable();
     std::vector<int> m;
     for (int j = 0; j < num_mut; ++j)
     {
       do
       {
-        n = rand() % output;
-        k = rand() % size;
+        n = AuxMethods::getRandInt(0, output);
+        k = AuxMethods::getRandInt(0, size);
       }
       while (std::find(m.begin(), m.end(), k*output + n) != m.end());
       m.push_back(k*output + n);
@@ -63,7 +64,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationDensity(
 
   for (int i = 0; i < i_population.size(); ++i)
   {
-    if (static_cast<double>(std::rand()) / RAND_MAX < i_mutationParameters.getProbabilityGen())
+    if (AuxMethods::getRandDouble(0, 1) < i_mutationParameters.getProbabilityGen())
     {
       std::vector<std::vector<bool>> mutant = MutationTable(
         i_population[i].getChronosomeType().getOutTable(),
@@ -87,10 +88,10 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationAccessionD
 
   for (int i = 0; i < i_population.size(); ++i)
   {
-    if(static_cast<double>(std::rand()) / RAND_MAX < i_mutationParameters.getProbabilityGen())
+    if (AuxMethods::getRandDouble(0, 1) < i_mutationParameters.getProbabilityGen())
     {
       std::vector<std::vector<bool>> bin2 = i_population[i].getChronosomeType().getOutTable();
-      bin2[size - 1] = bin[rand() % size];
+      bin2[size - 1] = bin[AuxMethods::getRandInt(0, size)];
       i_population[i].setChronosomeType(TruthTable(i_population[0].getChronosomeType(), bin2));
     }
   }
@@ -110,10 +111,10 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationInsertDel(
 
   for (int i = 0; i < i_population.size(); ++i)
   {
-    if (static_cast<double>(std::rand()) / RAND_MAX < i_mutationParameters.getProbabilityGen())
+    if (AuxMethods::getRandDouble(0, 1) < i_mutationParameters.getProbabilityGen())
     {
       std::vector<std::vector<bool>> bin2 = i_population[i].getChronosomeType().getOutTable();
-      bin2[rand() % size] = bin[rand() % size];
+      bin2[AuxMethods::getRandInt(0, size)] = bin[AuxMethods::getRandInt(0, size)];
       i_population[i].setChronosomeType(TruthTable(i_population[0].getChronosomeType(), bin2));
     }
   }
@@ -130,12 +131,12 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationExchange(
   int size = i_population[0].getChronosomeType().size();
   int output = i_population[0].getChronosomeType().getOutput();
 
-  int k = rand() % size;
-  int n = rand() % output;
+  int k = AuxMethods::getRandInt(0, size);
+  int n = AuxMethods::getRandInt(0, output);
 
   for (int z = 0; z < i_population.size(); ++z)
   {
-    if (static_cast<double>(std::rand()) / RAND_MAX < i_mutationParameters.getProbabilityGen())
+    if (AuxMethods::getRandDouble(0, 1) < i_mutationParameters.getProbabilityGen())
     {
       if (type == 0 || type == 1 || type == 2)
       {
@@ -171,13 +172,13 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationDelete(
 
   for (int i = 0; i < i_population.size(); ++i)
   {
-    if (static_cast<double>(std::rand()) / RAND_MAX < i_mutationParameters.getProbabilityGen())
+    if (AuxMethods::getRandDouble(0, 1) < i_mutationParameters.getProbabilityGen())
     {
       for (int j = 0; j < size; ++j)
       {
         for (int k = 0; k < output; ++k)
         {
-          if (static_cast<double>(std::rand()) / RAND_MAX < i_mutationParameters.getProbabilityTruthTable())
+          if (AuxMethods::getRandDouble(0, 1) < i_mutationParameters.getProbabilityTruthTable())
           {
             std::vector<std::vector<bool>> bin = i_population[i].getChronosomeType().getOutTable();
             bin[j][k] = false;
