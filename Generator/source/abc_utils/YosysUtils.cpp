@@ -9,19 +9,18 @@
 
 
 // declare of value of static var
-inline std::string YosysUtils::d_utilWord = "yosys";
-inline std::string YosysUtils::d_className = "YosysUtils";
-inline int YosysUtils::d_utilLen = 7;
+static std::string d_utilWord = "yosys";
+static std::string d_className = "YosysUtils";
+static int d_utilLen = 7;
 
-inline std::vector<std::string> YosysUtils::d_incorrectWords = {
+static std::vector<std::string> d_incorrectWords = {
     "ERROR"
 };
 
 
-inline void YosysUtils::standartExecutor(
-            const std::string &i_command,
-            const std::vector<StandartCommandInfo> &i_info, 
-            const std::function<void(CommandWorkResult)> &i_onFinish) 
+CommandWorkResult YosysUtils::standartExecutor(
+            std::string i_command,
+            std::vector<StandartCommandInfo> i_info) 
 {
     FILE *abcOutput;
     char out[80];
@@ -78,12 +77,11 @@ inline void YosysUtils::standartExecutor(
     }
     workResult.correct = correct;
 
-    if (i_onFinish)
-        i_onFinish(workResult);
+    return workResult;
 }
 
 
-inline std::vector<StandartCommandInfo> YosysUtils::parseCommand(std::string i_command)
+std::vector<StandartCommandInfo> YosysUtils::parseCommand(std::string i_command)
 {
         // we use the fact, that each i_command is surrounded by "
     int end, start;
@@ -119,10 +117,9 @@ inline std::vector<StandartCommandInfo> YosysUtils::parseCommand(std::string i_c
 }
 
 
-inline std::thread YosysUtils::optVerilog(
-    const std::string &i_inputFileName,
-    const std::string &i_outputFileName,
-    void (*i_onFinish) (CommandWorkResult)) 
+CommandWorkResult YosysUtils::optVerilog(
+    std::string i_inputFileName,
+    std::string i_outputFileName) 
 {
     // format i_command, then execute it with specified parametrs
     // REMEMBER 
@@ -130,24 +127,19 @@ inline std::thread YosysUtils::optVerilog(
     i_command += "&& echo \"opt\" && echo \"";
     i_command += "write_verilog " + i_outputFileName + "\") | yosys 2>&1";
     
-    std::thread threadExecutor(
-        standartExecutor, 
+    return standartExecutor( 
         i_command, 
-        parseCommand(i_command),
-        i_onFinish
+        parseCommand(i_command)
     );
-
-    return threadExecutor;
 }
 
-inline std::thread YosysUtils::optVerilog(
-    const std::string &i_inputFileName, 
-    const std::string &i_outputFileName,
-    std::string i_directory,
-    void (*i_onFinish) (CommandWorkResult))
+CommandWorkResult YosysUtils::optVerilog(
+    std::string i_inputFileName, 
+    std::string i_outputFileName,
+    std::string i_directory)
 {
     if (i_directory[i_directory.size() - 1] != '/')
         i_directory += "/";
 
-    return optVerilog(i_directory + i_inputFileName, i_directory + i_outputFileName, i_onFinish);
+    return optVerilog(i_directory + i_inputFileName, i_directory + i_outputFileName);
 }

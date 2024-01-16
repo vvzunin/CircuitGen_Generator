@@ -7,7 +7,7 @@
 
 
 #include "Reliability.h"
-#include "../FilesTools.h"
+#include <FilesTools.h>
 
 
 namespace
@@ -76,7 +76,7 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
       sn /= 2;
     }
 
-    // TODO: map'ы обнулить
+    // TODO: map'пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     if (i_withOneValveError != -1)
     {
@@ -324,10 +324,10 @@ double Reliability::endToEndMethod()
     // number of inputs in the schematic - Check
     int countInputs = inputs.size();
     double averageValue = 0;
-    // Полином ошибок:
-    // вероятность ошибки вентиля - d_p
-    // Считаем, что
-    // this->calc (true) - для второй таблицы
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - d_p
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ
+    // this->calc (true) - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     //
 }
 */

@@ -4,9 +4,9 @@
 #include <vector>
 
 #include "CircuitsParameters.h"
-#include "../graph/OrientedGraph.h"
-#include "../generators/TruthTable.h"
-#include "../abc_utils/AbcUtils.h"
+#include <graph/OrientedGraph.h>
+#include <generators/TruthTable.h>
+#include <abc_utils/StandartUtil.h>
 
 class Circuit
 {
@@ -15,7 +15,8 @@ public:
   void computeHash();
   void updateCircuitsParameters(bool i_getAbcStats = false, std::string libraryName = "");
   bool graphToVerilog(const std::string& i_path, bool i_pathExists = false);
-  bool saveParameters(bool i_getAbcStats = false, bool i_pathExists = false) const;
+  bool saveParameters(bool i_getAbcStats = false, bool i_generateAig = false, bool i_pathExists = false) const;
+  void saveAdditionalStats(CommandWorkResult res) const;
   bool generate(bool i_getAbcStats = false, std::string libraryName = "", bool i_generateAig = false, bool i_pathExists = false);
   void setTable(const TruthTable& i_tt);
   void setPath(const std::string& i_path);

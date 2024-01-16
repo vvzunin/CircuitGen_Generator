@@ -93,3 +93,7 @@ add_subdirectory(reliability)
 add_subdirectory(abc_utils)
 target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings AbcUtils nlohmann_json::nlohmann_json)
 add_subdirectory(tests)
+
+target_include_directories(settings PUBLIC ${CMAKE_SOURCE_DIR})
+target_include_directories(FilesTools PUBLIC ${CMAKE_SOURCE_DIR})
+target_include_directories(AuxiliaryMethods PUBLIC ${CMAKE_SOURCE_DIR})

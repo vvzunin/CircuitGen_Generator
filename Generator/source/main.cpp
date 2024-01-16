@@ -86,8 +86,8 @@ void runGenerationFromJson(std::string json_path)
     bool CNFF = data["CNFF"];
     bool CNFT = data["CNFT"];
     // this is for ABC
-    bool calculateStats = data.contains("calculate_stats") ? (bool) data["calculate_stats"] : false;
-    bool makeOptimizedFiles = data.contains("makeOptimizedFiles") ? (bool) data["makeOptimizedFiles"] : false;
+    bool calculateStatsAbc = data.contains("calculate_stats_abc") ? (bool) data["calculate_stats_abc"] : false;
+    bool makeOptimizedFiles = data.contains("make_optimized_files") ? (bool) data["make_optimized_files"] : false;
     std::string libraryName = data.contains("library_name") ? (std::string) data["library_name"] : "";
     bool LeaveEmptyOut = data["leave_empty_out"];
     int numOfSurv = data["surv_num"];
@@ -179,7 +179,7 @@ void runGenerationFromJson(std::string json_path)
       maxLevel, 
       maxElement, 
       libraryName, 
-      calculateStats,
+      calculateStatsAbc,
       makeOptimizedFiles
     );
 

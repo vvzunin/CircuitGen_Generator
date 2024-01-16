@@ -1,13 +1,14 @@
+#include <cmath>
 #include <cstdio>
+#include <thread>
 #include <sstream>
 #include <fstream>
 #include <iomanip>
-#include <cmath>
 
 #include "Circuit.h"
-#include "../reliability/Reliability.h"
-#include "../abc_utils/AbcUtils.cpp"
-#include "../FilesTools.h"
+#include <reliability/Reliability.h>
+#include <abc_utils/AbcUtils.h>
+#include <FilesTools.h>
 
 Circuit::Circuit(const OrientedGraph& i_graph, const std::vector<std::string>& i_logExpressions)
 {
@@ -284,21 +285,14 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
 
   if (i_getAbcStats) {
     std::cout << d_circuitName << " calc started" << std::endl;
-    // Would be called after abc work
-    auto onFinish = [this](CommandWorkResult result)
-    { 
-      if (result.correct)
-        d_circuitParameters.d_abcStats = result.commandsOutput;
-    };
 
-    // TODO add library name
-    AbcUtils::getStats(
+    // Would be called after abc work
+    d_circuitParameters.d_abcStats = AbcUtils::getStats(
       d_circuitName + ".v",
       i_libraryName,
       d_path,
-      AbcUtils::defaultLibPath,
-      onFinish
-    ).join();
+      d_settings->getLibraryPath()
+    ).commandsOutput;
 
     std::cout << d_circuitName << " calc ended" << std::endl;
   }
@@ -439,7 +433,7 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists)
   return true;
 }
 
-bool Circuit::saveParameters(bool i_getAbcStats, bool i_pathExists) const
+bool Circuit::saveParameters(bool i_getAbcStats, bool i_generateAig, bool i_pathExists) const
 {
   if (true)
   {/*
@@ -517,10 +511,12 @@ bool Circuit::saveParameters(bool i_getAbcStats, bool i_pathExists) const
   }
   outputFile << std::endl;
 
-  outputFile << "\t}," << std::endl;
+  outputFile << "\t},";
 
   if (i_getAbcStats) {
+    outputFile << std::endl;
     outputFile << "\t\"abcStats\": {" << std::endl;
+
     first = true;
     for (const auto &data : d_circuitParameters.d_abcStats)
     {
@@ -536,10 +532,14 @@ bool Circuit::saveParameters(bool i_getAbcStats, bool i_pathExists) const
     }
     outputFile << std::endl;
 
-    outputFile << "\t}" << std::endl;
+    outputFile << "\t}";
   }
 
-  outputFile << "}";
+  // if we are going to add sth into this file, this flag is true
+  if (!i_generateAig)
+    outputFile << std::endl << "}";
+  else
+    outputFile << "," << std::endl;
 
   return true;
 }
@@ -563,8 +563,43 @@ bool Circuit::checkExistingHash() // TODO: is it really need return true when ha
   return false;
 }
 
+void Circuit::saveAdditionalStats(CommandWorkResult res) const {
+  std::ofstream outJson;
+
+  outJson.open((d_path + "/" + d_circuitName + ".json"), std::ios_base::app);
+
+  outJson << "\t\"abcStatsBalanced\": {" << std::endl;
+
+  if (res.correct) {
+    bool first = true;
+    for (const auto &data : res.commandsOutput)
+    {
+      if (first)
+      {
+        first = false;
+        outJson << "\t\t\"" << data.first << "\": " << data.second;
+      }
+      else 
+      {
+        outJson << "," << std::endl << "\t\t\"" << data.first << "\": " << data.second;
+      }
+    }
+    outJson << std::endl;
+  }
+  else {
+    outJson << "\t\t" << "\"error\": \"" << res.commandsOutput["error"] << "\"\n";
+  }
+
+  outJson << "\t}" << std::endl << "}";
+
+  std::cout << d_circuitName << " reduce ended\n";
+}
+
 bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_generateAig, bool i_pathExists)
 {
+  if (i_libraryName.find(".lib") == std::string::npos)
+    i_libraryName = i_libraryName + ".lib";
+
   if (!i_pathExists)
     //d_path += d_circuitName;
 
@@ -572,52 +607,44 @@ bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_gen
     return false;
   
   if (i_generateAig)
-  {
+  { 
+    CommandWorkResult res;
     // this lambda is used for writing reduced.json in thread
-    auto writeReducedJson = [this] (CommandWorkResult res) {
-      std::ofstream outReducedJson(d_path + "/" + d_circuitName + "_REDUCED.json");
-
-      outReducedJson << "{" << std::endl;
-      outReducedJson << "\t\"abcStats\": {" << std::endl;
-
-      if (res.correct) {
-        bool first = true;
-        for (const auto &data : res.commandsOutput)
-        {
-          if (first)
-          {
-            first = false;
-            outReducedJson << "\t\t\"" << data.first << "\": " << data.second;
-          }
-          else 
-          {
-            outReducedJson << "," << std::endl << "\t\t\"" << data.first << "\": " << data.second;
-          }
-        }
-        outReducedJson << std::endl;
-      }
-      else {
-        outReducedJson << "\t\t" << "\"error\": \"" << res.commandsOutput["error"] << "\"\n";
-      }
-
-      outReducedJson << "\t}" << std::endl << "}";
-
-      std::cout << d_circuitName << " reduce ended\n";
+    auto rewriteJson = [
+        path = this->d_path, 
+        circuitName = this->d_circuitName,
+        libraryName = i_libraryName,
+        libraryPath = d_settings->getLibraryPath(),
+        &res
+      ] () {
+      res = AbcUtils::optimizeWithLib(
+        circuitName + ".v",
+        libraryName,
+        path,
+        libraryPath
+      );
     };
 
-    // running thread
-    AbcUtils::optimizeWithLib(
-      d_circuitName + ".v",
-      i_libraryName,
-      d_path,
-      AbcUtils::defaultLibPath,
-      writeReducedJson
-    ).detach();
-  }
-  updateCircuitsParameters(i_getAbcStats, i_libraryName);
+    std::thread generateAig(
+      rewriteJson
+    );
 
-  if (!saveParameters(i_getAbcStats))
-    return false;
+    updateCircuitsParameters(i_getAbcStats, i_libraryName);
+
+    if (!saveParameters(i_getAbcStats, i_generateAig))
+      return false;
+    
+    generateAig.join();
+
+    saveAdditionalStats(res);
+  }
+  else {
+
+    updateCircuitsParameters(i_getAbcStats, i_libraryName);
+
+    if (!saveParameters(i_getAbcStats))
+      return false;
+  }
   //TODO: costul
   //if (checkExistingHash() || d_circuitParameters.d_reliability == 0 || d_circuitParameters.d_gates == 0)
   //{

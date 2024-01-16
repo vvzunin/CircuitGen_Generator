@@ -2,9 +2,7 @@
 #define YOSYS_UTILS_H
 
 #include <string>
-#include <thread>
 #include <vector>
-#include <functional>
 
 #include "StandartUtil.h"
 
@@ -15,18 +13,16 @@ make opt and to write file into verilog
 */
 
 
-class YosysUtils : public StandartUtil {
+class YosysUtils {
     public:
-        static std::thread optVerilog(
-            const std::string &i_inputFileName,
-            const std::string &i_outputFileName,
-            void (*i_onFinish) (CommandWorkResult) = NULL
+        static CommandWorkResult optVerilog(
+            std::string i_inputFileName,
+            std::string i_outputFileName
         );
-        static std::thread optVerilog(
-            const std::string &i_inputFileName,
-            const std::string &i_outputFileName, 
-            std::string i_directory,
-            void (*i_onFinish) (CommandWorkResult) = NULL
+        static CommandWorkResult optVerilog(
+            std::string i_inputFileName,
+            std::string i_outputFileName, 
+            std::string i_directory
         );
 
         // IMPORTANT parseAll here is TRUE
@@ -34,21 +30,10 @@ class YosysUtils : public StandartUtil {
             std::string i_command
         );
     protected:
-        static void standartExecutor(
-            const std::string &i_command,
-            const std::vector<StandartCommandInfo> &i_info, 
-            const std::function<void(CommandWorkResult)> &i_onFinish = NULL
+        static CommandWorkResult standartExecutor(
+            std::string i_command,
+            std::vector<StandartCommandInfo> i_info
         );
-
-        // len of "synthes_util*> "
-        static int d_utilLen;
-        // "synthes_util *" itself
-        static std::string d_utilWord;
-
-        // AbcUtils, YosysUtils etc
-        static std::string d_className;
-
-        static std::vector<std::string> d_incorrectWords;
 };
 
 #endif

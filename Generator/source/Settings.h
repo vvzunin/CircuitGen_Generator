@@ -11,6 +11,10 @@ enum generationTypes {
   truthTableToGraphWithOptimization
 };
 
+enum LibrariesTypes {
+  SKY_LIB
+};
+
 class Settings {
 protected:
   Settings(const std::string& i_path): d_path(i_path){}
@@ -25,6 +29,8 @@ public:
   std::string fromOperationsToName(const std::string& i_op) const;
   std::string getDatasetPath() const;
   std::string getGenerationMethodPrefix(const std::string& i_s) const;
+  std::string getLibraryPath() const;
+  std::string getLibraryNameFromEnum(const LibrariesTypes &library) const;
   int getMaxInputs() const;
   int getMaxOutputs() const;
   std::map<std::string, std::pair<std::string, int>> getLogicOperations() const;
@@ -41,6 +47,7 @@ private:
   std::string d_csvdataset = "dataset.csv";
   std::string d_fileName = "settings.dat";
   std::string d_datasetPath = "./dataset";
+  std::string d_libraryPath = "Generator/libs";
   //Settings d_instance;
   std::string d_pathToNadezhda = "./Generator/source/data/Nadezhda";
   std::map<std::string, std::string> d_nadezhda = {

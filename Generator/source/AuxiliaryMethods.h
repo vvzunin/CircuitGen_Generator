@@ -4,7 +4,7 @@
 #include <map>
 #include <utility>
 
-#include "./circuits/Circuit.h"
+#include <circuits/Circuit.h>
 
 namespace AuxMethods
 {

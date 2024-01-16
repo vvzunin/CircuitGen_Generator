@@ -119,7 +119,7 @@ public:
     int i_maxLevel,
     int i_maxElements,
     std::string i_libraryName = "",
-    bool i_calculateStats = false,
+    bool i_calculateStatsAbc = false,
     bool i_makeOptimizedFiles = false) :
     d_name(i_name),
     d_requestId(i_requestId),
@@ -127,7 +127,7 @@ public:
     d_outputs(i_outputs),
     d_iteration(i_iteration),
     d_libraryName(i_libraryName),
-    d_calculateStats(i_calculateStats),
+    d_calculateStatsAbc(i_calculateStatsAbc),
     d_makeOptimizedFiles(i_makeOptimizedFiles),
     d_geneticParameters(GeneticParameters(d_inputs, d_outputs))
   {
@@ -190,12 +190,12 @@ public:
     d_iteration = i_iteration;
   }
 
-  bool getCalculateStats() const {
-    return d_calculateStats;
+  bool getCalculateStatsAbc() const {
+    return d_calculateStatsAbc;
   }
 
-  void setCalculateStats(bool i_calculateStats) {
-    d_calculateStats = i_calculateStats;
+  void setCalculateStatsAbc(bool i_calculateStatsAbc) {
+    d_calculateStatsAbc = i_calculateStatsAbc;
   }
 
   bool getMakeOptimizedFiles() const {
@@ -234,7 +234,7 @@ private:
   int d_inputs = 0;
   int d_outputs = 0;
   int d_iteration = 0;
-  bool d_calculateStats;
+  bool d_calculateStatsAbc;
   bool d_makeOptimizedFiles;
 
   CNNFromTruthTableParameters d_cnfFromTruthTableParameters;

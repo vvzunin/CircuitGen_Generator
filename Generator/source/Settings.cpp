@@ -173,6 +173,11 @@ std::string Settings::getDatasetPath() const
   return d_datasetPath;
 }
 
+std::string Settings::getLibraryPath() const
+{
+  return d_libraryPath;
+}
+
 std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const
 {
   if (i_s == "FromRandomTruthTable")
@@ -187,6 +192,15 @@ std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const
   std::cout << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
 
   return "ftt";
+}
+
+std::string Settings::getLibraryNameFromEnum(const LibrariesTypes &library) const {
+  switch (library)
+  {
+    case SKY_LIB:
+    default:
+      return "sky130.lib";
+  }
 }
 
 int Settings::getMaxInputs() const

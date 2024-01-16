@@ -20,10 +20,6 @@ if(NOT json_POPULATED)
   add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
 
-set (SOURCES
-  ../Settings.cpp
-  reliability/Reliability.cpp
-)
-
-add_library(Reliability Reliability.cpp Reliability.h)
+add_library(Reliability SHARED Reliability.cpp Reliability.h)
 target_link_libraries(Reliability nlohmann_json::nlohmann_json)
+target_include_directories(Reliability PUBLIC ${CMAKE_SOURCE_DIR})
