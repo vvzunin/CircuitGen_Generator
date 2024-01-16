@@ -6,6 +6,7 @@
 #include "CircuitsParameters.h"
 #include "../graph/OrientedGraph.h"
 #include "../generators/TruthTable.h"
+#include "../abc_utils/AbcUtils.h"
 
 class Circuit
 {

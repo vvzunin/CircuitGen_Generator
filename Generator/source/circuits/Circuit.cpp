@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iomanip>
 #include <cmath>
+
 #include "Circuit.h"
 #include "../reliability/Reliability.h"
 #include "../abc_utils/AbcUtils.cpp"
@@ -71,7 +72,7 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
     for (const auto& el : row)
       if (el)
         d_circuitParameters.d_numEdges++;
-        
+  
   Reliability R(d_graph, 0.5);
   std::map<std::string, double> dict = R.runNadezhda(d_path, d_circuitName); // what? d_path
   
@@ -88,6 +89,7 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
       first.push_back(false);
   }
   vec.push_back(first);
+
   for (int i = 0; i < pow(2.0, float(inputs.size())); i++)
   {
       std::vector<bool> next = {};
@@ -192,15 +194,6 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
       d_graph.d_vertices[indecies__[t]].wrongVertex = true;
       pos = indecies__[t];
 
-      
-
-
-
-
-
-
-
-
       for (int j = 0; j < vec_index.size(); j++)
       {
           d_graph.d_vertices[vec_index[j]].setValue(tmp.back());
@@ -255,13 +248,7 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
 
   }
 
-
-d_circuitParameters.d_reliability = 1 - numberOfIncoincidences / pow(2.0, float(inputs.size()));
-  
-
-
-
-
+  d_circuitParameters.d_reliability = 1 - numberOfIncoincidences / pow(2.0, float(inputs.size()));
 
   d_circuitParameters.d_size = dict["size"];
   d_circuitParameters.d_area = dict["area"];
@@ -580,19 +567,51 @@ bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_gen
 {
   if (!i_pathExists)
     //d_path += d_circuitName;
-  
 
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
   
   if (i_generateAig)
   {
+    // this lambda is used for writing reduced.json in thread
+    auto writeReducedJson = [this] (CommandWorkResult res) {
+      std::ofstream outReducedJson(d_path + "/" + d_circuitName + "_REDUCED.json");
+
+      outReducedJson << "{" << std::endl;
+      outReducedJson << "\t\"abcStats\": {" << std::endl;
+
+      if (res.correct) {
+        bool first = true;
+        for (const auto &data : res.commandsOutput)
+        {
+          if (first)
+          {
+            first = false;
+            outReducedJson << "\t\t\"" << data.first << "\": " << data.second;
+          }
+          else 
+          {
+            outReducedJson << "," << std::endl << "\t\t\"" << data.first << "\": " << data.second;
+          }
+        }
+        outReducedJson << std::endl;
+      }
+      else {
+        outReducedJson << "\t\t" << "\"error\": \"" << res.commandsOutput["error"] << "\"\n";
+      }
+
+      outReducedJson << "\t}" << std::endl << "}";
+
+      std::cout << d_circuitName << " reduce ended\n";
+    };
+
+    // running thread
     AbcUtils::optimizeWithLib(
       d_circuitName + ".v",
       i_libraryName,
       d_path,
       AbcUtils::defaultLibPath,
-      [] (CommandWorkResult res) {}
+      writeReducedJson
     ).detach();
   }
   updateCircuitsParameters(i_getAbcStats, i_libraryName);

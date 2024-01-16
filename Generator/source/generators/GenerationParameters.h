@@ -119,7 +119,8 @@ public:
     int i_maxLevel,
     int i_maxElements,
     std::string i_libraryName = "",
-    bool i_calculateStats = false) :
+    bool i_calculateStats = false,
+    bool i_makeOptimizedFiles = false) :
     d_name(i_name),
     d_requestId(i_requestId),
     d_inputs(i_inputs),
@@ -127,6 +128,7 @@ public:
     d_iteration(i_iteration),
     d_libraryName(i_libraryName),
     d_calculateStats(i_calculateStats),
+    d_makeOptimizedFiles(i_makeOptimizedFiles),
     d_geneticParameters(GeneticParameters(d_inputs, d_outputs))
   {
     d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
@@ -196,6 +198,14 @@ public:
     d_calculateStats = i_calculateStats;
   }
 
+  bool getMakeOptimizedFiles() const {
+    return d_makeOptimizedFiles;
+  }
+
+  void setMakeOptimizedFiles(bool i_makeOptimizedFiles) {
+    d_makeOptimizedFiles = i_makeOptimizedFiles;
+  }
+
   CNNFromTruthTableParameters getCNF() const { return d_cnfFromTruthTableParameters; }
   GeneratorRandLevelParameters getRandLevel() const { return d_generatorRandLevelParameters; }
   GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; }
@@ -225,6 +235,7 @@ private:
   int d_outputs = 0;
   int d_iteration = 0;
   bool d_calculateStats;
+  bool d_makeOptimizedFiles;
 
   CNNFromTruthTableParameters d_cnfFromTruthTableParameters;
   GeneratorRandLevelParameters d_generatorRandLevelParameters;

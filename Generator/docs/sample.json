@@ -11,6 +11,7 @@
     "CNFF": false,
     "CNFT": true,
     "calculate_stats": true,
+    "makeOptimizedFiles": true,
     "library_name": "library.lib",
     "max_level": 1,
     "max_elem": 1,
