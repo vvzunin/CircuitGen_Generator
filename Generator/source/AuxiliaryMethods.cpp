@@ -2,7 +2,10 @@
 #include <iostream>
 #include <cassert>
 #include <string_view>
-
+#include <random>
+#include <map>
+#include <vector>
+#include <utility>
 
 #include "AuxiliaryMethods.h"
 
@@ -29,6 +32,29 @@ namespace
   }
 }
 
+// WIP
+//
+// class Rand {
+// public :
+//   static std::mt19937 gen;
+
+//   static void setSeed(unsigned seed) {
+//     gen.seed(seed);
+//   }
+
+//   static unsigned getInt(unsigned lower, unsigned upper) {
+//     std::uniform_int_distribution<> dis(0, upper);
+
+//     return dis(gen);
+//   }
+
+//     static double getDouble(double lower, double upper) {
+//     std::uniform_real_distribution<> dis(lower, upper);
+
+//     return dis(gen);
+//   }
+
+// };
 
 std::string AuxMethods::readAllFile(const std::string& filename) {
   std::ifstream file(filename);
@@ -79,6 +105,29 @@ std::vector<int> AuxMethods::getRandomIntList(int i_n, int i_minNumber,
   return lst;
 }
 
+template<typename Key, typename Value>
+std::vector<std::pair<Key, Value>> AuxMethods::sortDictByValue(const std::map<Key, Value>& i_dict, bool up)
+{
+  std::vector<std::pair<Key, Value>> pairs(i_dict.begin(), i_dict.end());
+
+  // Define a lambda function to compare values
+  auto cmp = [](const std::pair<Key, Value>& lhs, const std::pair<Key, Value>& rhs) {
+      return lhs.second < rhs.second;
+  };
+
+  // Sort the vector of pairs based on the values
+  std::sort(pairs.begin(), pairs.end(), cmp);
+  if (!up)
+    std::reverse(pairs.begin(), pairs.end());
+
+  return pairs;
+}
+
+// explicit instatiation of sortDictByValue
+// if you want to use this func with other types, just add corresponding instatiation below, compilation error otherwise.
+template std::vector<std::pair<int, int>> AuxMethods::sortDictByValue(const std::map<int, int>& i_dict, bool up);
+template std::vector<std::pair<int, double>> AuxMethods::sortDictByValue(const std::map<int, double>& i_dict, bool up);
+template std::vector<std::pair<std::string, int>> AuxMethods::sortDictByValue(const std::map<std::string, int>& i_dict, bool up);
 
 
 std::string AuxMethods::removeSpaces(const std::string& i_s)
