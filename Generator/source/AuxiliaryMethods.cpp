@@ -2,18 +2,23 @@
 #include <iostream>
 #include <cassert>
 #include <string_view>
-
+#include <random>
+#include <map>
+#include <vector>
+#include <utility>
 
 #include "AuxiliaryMethods.h"
 
 namespace
 {
-  int getRandInt(int i_lower, int i_upper)
-  {
-    assert(i_lower <= i_upper);
-    int d = i_upper - i_lower + 1;
-    return (rand() % d) + i_lower;
-  }
+  // legacy
+  //
+  // int getRandInt(int i_lower, int i_upper)
+  // {
+  //   assert(i_lower <= i_upper);
+  //   int d = i_upper - i_lower + 1;
+  //   return (rand() % d) + i_lower;
+  // }
 
   std::vector<std::string> splitString(const std::string& s, char delimiter)
   {
@@ -27,8 +32,23 @@ namespace
 
     return tokens;
   }
+
+  std::minstd_rand gen;
 }
 
+
+void AuxMethods::setRandSeed(unsigned seed) {
+  gen.seed(seed);
+}
+int AuxMethods::getRandInt(int lower, int upper, bool inclusively) {
+  if (!inclusively) upper--;
+  std::uniform_int_distribution<> dis(lower, upper);
+  return dis(gen);
+}
+double AuxMethods::getRandDouble(double lower, double upper) {
+  std::uniform_real_distribution<> dis(lower, upper);
+  return dis(gen);
+}
 
 std::string AuxMethods::readAllFile(const std::string& filename) {
   std::ifstream file(filename);
@@ -44,7 +64,6 @@ std::string AuxMethods::readAllFile(const std::string& filename) {
 std::vector<int> AuxMethods::getRandomIntList(int i_n, int i_minNumber,
     int i_maxNumber, bool repite)
 {
-  std::srand(time(0));
   std::vector<int> lst;
   bool flag = true;
   //TODO: can we just rewrite it to simple while? and withour UB make flag = true before while?
@@ -55,7 +74,7 @@ std::vector<int> AuxMethods::getRandomIntList(int i_n, int i_minNumber,
     flag = false;
     int k = i_n - lst.size();
     for (i = 0; i < k; ++i)
-      lst.push_back(getRandInt(i_minNumber, i_maxNumber));
+      lst.push_back(getRandInt(i_minNumber, i_maxNumber, true));
 
     sort(lst.begin(), lst.end());
 
@@ -80,6 +99,29 @@ std::vector<int> AuxMethods::getRandomIntList(int i_n, int i_minNumber,
   return lst;
 }
 
+template<typename Key, typename Value>
+std::vector<std::pair<Key, Value>> AuxMethods::sortDictByValue(const std::map<Key, Value>& i_dict, bool up)
+{
+  std::vector<std::pair<Key, Value>> pairs(i_dict.begin(), i_dict.end());
+
+  // Define a lambda function to compare values
+  auto cmp = [](const std::pair<Key, Value>& lhs, const std::pair<Key, Value>& rhs) {
+      return lhs.second < rhs.second;
+  };
+
+  // Sort the vector of pairs based on the values
+  std::sort(pairs.begin(), pairs.end(), cmp);
+  if (!up)
+    std::reverse(pairs.begin(), pairs.end());
+
+  return pairs;
+}
+
+// explicit instatiation of sortDictByValue
+// if you want to use this func with other types, just add corresponding instatiation below, compilation error otherwise.
+template std::vector<std::pair<int, int>> AuxMethods::sortDictByValue(const std::map<int, int>& i_dict, bool up);
+template std::vector<std::pair<int, double>> AuxMethods::sortDictByValue(const std::map<int, double>& i_dict, bool up);
+template std::vector<std::pair<std::string, int>> AuxMethods::sortDictByValue(const std::map<std::string, int>& i_dict, bool up);
 
 
 std::string AuxMethods::removeSpaces(const std::string& i_s)

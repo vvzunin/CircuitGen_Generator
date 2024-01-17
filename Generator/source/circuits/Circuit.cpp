@@ -6,6 +6,7 @@
 #include "Circuit.h"
 #include "../reliability/Reliability.h"
 #include "../FilesTools.h"
+#include "../AuxiliaryMethods.h"
 
 Circuit::Circuit(const OrientedGraph& i_graph, const std::vector<std::string>& i_logExpressions)
 {
@@ -186,8 +187,7 @@ void Circuit::updateCircuitsParameters()
       }
 
       // Choose random wrong vertex.
-      srand((unsigned)time(NULL));
-      int t = (rand()%indecies__.size());
+      int t = AuxMethods::getRandInt(0, indecies__.size());
       d_graph.d_vertices[indecies__[t]].wrongVertex = true;
       pos = indecies__[t];
 
