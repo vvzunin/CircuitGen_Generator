@@ -4,6 +4,7 @@
 #include <sstream>
 #include <fstream>
 #include <iomanip>
+#include <filesystem>
 
 #include "Circuit.h"
 #include <reliability/Reliability.h>
@@ -511,10 +512,10 @@ bool Circuit::saveParameters(bool i_getAbcStats, bool i_generateAig, bool i_path
   }
   outputFile << std::endl;
 
-  outputFile << "\t},";
+  outputFile << "\t}";
 
   if (i_getAbcStats) {
-    outputFile << std::endl;
+    outputFile << "," << std::endl;
     outputFile << "\t\"abcStats\": {" << std::endl;
 
     first = true;
@@ -596,9 +597,14 @@ void Circuit::saveAdditionalStats(CommandWorkResult res) const {
 }
 
 bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_generateAig, bool i_pathExists)
-{
+{ 
+  // creating all files in sub directories
+  d_path += d_circuitName + "/";
+
+  std::filesystem::create_directory(d_path);
+
   if (i_libraryName.find(".lib") == std::string::npos)
-    i_libraryName = i_libraryName + ".lib";
+    i_libraryName += ".lib";
 
   if (!i_pathExists)
     //d_path += d_circuitName;
