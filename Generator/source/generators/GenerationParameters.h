@@ -120,11 +120,6 @@ class GeneratorEncoderParameters
 
 };
 
-class GeneratorMultiplierParameters{
-
-};
-
-
 class GenerationParameters
 {
 public:
@@ -199,7 +194,6 @@ public:
   GeneratorSummatorParameters getSummator() const {return d_generatorSummatorParameters; }
   GeneratorComparisonParameters getComparison() const {return d_generatorComparisonParameters; }
   GeneratorEncoderParameters getEncoder() const { return d_generatorEncoderParameters; }
-  GeneratorMultiplierParameters getMultiplier() const { return d_generatorMultiplierParameters; }
   GeneticParameters getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
   void setCNFT(bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
@@ -221,7 +215,6 @@ public:
     d_generatorComparisonParameters.setCompare1(i_compare1);
     d_generatorComparisonParameters.setCompare2(i_compare2);
   }
-  void setMultiplierParameters(){ }
   void setNumOfCycles(int i_numOfCycles){ d_geneticParameters.setNumOfCycles(i_numOfCycles); }
   void setPopulationSize(int i_populationSize) { d_geneticParameters.setPopulationSize(i_populationSize); }
   void setRecombinationParameters(ParentsTypes i_parentsTypes, int i_tournamentNumber, RecombinationTypes i_recombinationType, int i_refPoints, double maskProbability, int i_recombinationNumber);
@@ -241,6 +234,5 @@ private:
   GeneratorSummatorParameters d_generatorSummatorParameters;
   GeneratorComparisonParameters d_generatorComparisonParameters;
   GeneratorEncoderParameters d_generatorEncoderParameters;
-  GeneratorMultiplierParameters d_generatorMultiplierParameters;
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };

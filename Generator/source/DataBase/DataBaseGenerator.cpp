@@ -254,6 +254,8 @@ std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateM
     return std::bind(&DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1);
   if (i_methodName == "Summator")
       return std::bind(&DataBaseGenerator::generateDataBaseSummator, this, std::placeholders::_1);
+  if (i_methodName == "Multiplier")
+      return std::bind(&DataBaseGenerator::generateDataBaseMultiplier, this, std::placeholders::_1);
   if (i_methodName == "Comparison")
       return std::bind(&DataBaseGenerator::generateDataBaseComparison, this, std::placeholders::_1);
   if (i_methodName == "Multiplexer")

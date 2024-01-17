@@ -777,14 +777,14 @@ OrientedGraph SimpleGenerators::generatorParity(int i_bits)
     return graph;
 }
 
-public OrientedGraph generatorMultiplier(int i_bits, bool act = false)
+OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
 {
-    ///a - бит первого множителя
-    ///b - бит второго множителя
-    ///с - результат логического и
-    ///s - результат суммы
-    ///p - перенос
-    ///m - бит полученного умножения
+    //a - бит первого множителя
+    //b - бит второго множителя
+    //с - результат логического и
+    //s - результат суммы
+    //p - перенос
+    //m - бит полученного умножения
     OrientedGraph graph;
     int n = 0;
     for (int i = 0; i < i_bits; i++)
@@ -813,7 +813,7 @@ public OrientedGraph generatorMultiplier(int i_bits, bool act = false)
                     std::string N = std::to_string(n);
                     if (act)
                     {
-                        graph.addVertex("(1 and " + "c" + M1 + M2 + ")", "and", "mand1_" + N);
+                        graph.addVertex("(1 and c" + M1 + M2 + ")", "and", "mand1_" + N);
                         graph.addDoubleEdge("1", "c" + M1 + M2, "mand1_" + N, false);
                     }
                     else
@@ -854,7 +854,7 @@ public OrientedGraph generatorMultiplier(int i_bits, bool act = false)
                         NextS = std::to_string(i + 1) + std::to_string(j);
                     }
 
-                    graph.addVertex("(" + "NandPT" + M1 + M2 + ")" + " or " + "(" + "Nandp" + M1 + M2 + ")" + " or " + "(" + "PTandp" + M1 + M2 + ")", "or", "p" + NextS);
+                    graph.addVertex("(NandPT" + M1 + M2 + ")" + " or " + "(Nandp" + M1 + M2 + ")" + " or " + "(PTandp" + M1 + M2 + ")", "or", "p" + NextS);
                     graph.addEdge("NandPT" + M1 + M2, "p" + NextS, false);
                     graph.addEdge("Nandp" + M1 + M2, "p" + NextS, false);
                     graph.addEdge("PTandp" + M1 + M2, "p" + NextS, false);
@@ -882,7 +882,7 @@ public OrientedGraph generatorMultiplier(int i_bits, bool act = false)
                         std::string N = std::to_string(n);
                         if (act)
                         {
-                            graph.addVertex("(1 and " + "sum" + M1 + M2 + ")", "and", "mand1_" + N);
+                            graph.addVertex("(1 and sum" + M1 + M2 + ")", "and", "mand1_" + N);
                             graph.addDoubleEdge("1", "sum" + M1 + M2, "mand1_" + N, false);
                         }
                         else
@@ -897,7 +897,7 @@ public OrientedGraph generatorMultiplier(int i_bits, bool act = false)
                         std::string N = std::to_string(n);
                         if (act)
                         {
-                            graph.addVertex("(1 and " + "p" + NextS + ")", "and", "mand1_" + N);
+                            graph.addVertex("(1 and p" + NextS + ")", "and", "mand1_" + N);
                             graph.addDoubleEdge("1", "p" + NextS, "mand1_" + N, false);
                         }
                         else

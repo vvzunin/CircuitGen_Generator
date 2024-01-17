@@ -72,7 +72,7 @@ void runGenerationFromJson(std::string json_path)
       gt = GenerationTypes::Summator;
     if (data["type_of_generation"] == "Comparison")
       gt = GenerationTypes::Comparison;
-    if (data["type_of_generation"] = "Multiplier")
+    if (data["type_of_generation"] == "Multiplier")
         gt = GenerationTypes::Multiplier;
     if (data["type_of_generation"] = "Multiplexer")
         gt = GenerationTypes::Multiplexer;
@@ -191,7 +191,6 @@ void runGenerationFromJson(std::string json_path)
     //  gp.setLimit(limit);
     gp.setNumOperationParameters(m, LeaveEmptyOut);
     gp.setSummatorParameters(overflowIn, overflowOut, minus);
-    gp.setMultiplierParameters();
     gp.setPopulationSize(populationSize);
     gp.setNumOfCycles(numOfCycles);
     gp.setRecombinationParameters(selecTypeParent, tourSize, recombType, refPoints, maskProb, recNum);
