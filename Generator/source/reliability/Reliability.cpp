@@ -76,7 +76,7 @@ std::map<std::string, std::vector<bool>> Reliability::calc(
       sn /= 2;
     }
 
-    // TODO: map'� ��������
+    // TODO: map
 
     if (i_withOneValveError != -1)
     {
@@ -324,10 +324,9 @@ double Reliability::endToEndMethod()
     // number of inputs in the schematic - Check
     int countInputs = inputs.size();
     double averageValue = 0;
-    // ������� ������:
-    // ����������� ������ ������� - d_p
-    // �������, ���
-    // this->calc (true) - ��� ������ �������
-    //
+    // Полином ошибок:
+    // в  отчетность ошибки в нтил  - d_p
+    // Считаем, что
+    // this->calc (true) - для второй таблицы
 }
 */

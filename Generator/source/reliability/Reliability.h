@@ -3,7 +3,7 @@
 #include <map>
 #include <string>
 
-#include "../graph/OrientedGraph.h"
+#include <graph/OrientedGraph.h>
 
 class Reliability
 {

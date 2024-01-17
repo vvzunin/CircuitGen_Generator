@@ -135,7 +135,7 @@ def upload_to_synology(dataset_id):
         extension_lst = ['.v', '.aig', '.json', '.png']
 
         for param in os.listdir(dataset_dir):
-            # looking for subdirictiries
+            # looking for subdirectiries
             sub_folders = [ f.name for f in os.scandir(f'{dataset_dir}/{param}') if f.is_dir() ]
             
             if not sub_folders:

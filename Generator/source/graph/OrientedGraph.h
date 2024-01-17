@@ -3,8 +3,9 @@
 #include <string>
 #include <vector>
 #include <map>
+
 #include "GraphVertex.h"
-#include "../generators/Genetic/GeneticParameters.h"
+#include <generators/Genetic/GeneticParameters.h>
 
 class OrientedGraph {
 public:

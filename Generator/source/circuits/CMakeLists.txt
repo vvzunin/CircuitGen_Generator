@@ -8,4 +8,4 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 add_library(Circuit SHARED Circuit.cpp Circuit.h)
 target_include_directories(Circuit PUBLIC ${CMAKE_SOURCE_DIR})
-target_link_libraries(Circuit PUBLIC AbcUtils)
+target_link_libraries(Circuit PUBLIC OptimizationUtils)

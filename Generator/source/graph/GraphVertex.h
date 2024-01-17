@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "../Settings.h"
+#include <Settings.h>
 
 class GraphVertex {
 public:
