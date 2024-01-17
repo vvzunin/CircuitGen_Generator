@@ -70,6 +70,8 @@ void runGenerationFromJson(std::string json_path)
       gt = GenerationTypes::Genetic;
     if (data["type_of_generation"] == "Summator")
       gt = GenerationTypes::Summator;
+    if (data["type_of_generation"] == "Comparison")
+      gt = GenerationTypes::Comparison;
     if (data["type_of_generation"] = "Multiplier")
         gt = GenerationTypes::Multiplier;
     if (data["type_of_generation"] = "Multiplexer")

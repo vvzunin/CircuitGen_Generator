@@ -423,12 +423,12 @@ OrientedGraph SimpleGenerators::generatorSummator(int i_bits, bool i_overflowIn,
     return graph;
 }
 
-OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bool compare1, bool compare2, bool act)
+OrientedGraph SimpleGenerators::generatorСomparison(int i_bits, bool i_compare0, bool i_compare1, bool i_compare2, bool act)
 {
     OrientedGraph graph;
 
-    std::string cond = std::string(compare0 ? "t" : "f") + (compare1 ? "t" : "f") + (compare2 ? "t" : "f");
-    for (int i = bits - 1; i >= 0; i--)
+    std::string cond = std::string(i_compare0 ? "t" : "f") + (i_compare1 ? "t" : "f") + (i_compare2 ? "t" : "f");
+    for (int i = i_bits - 1; i >= 0; i--)
     {
         std::string C = std::to_string(i);
         std::string NextC = std::to_string(i - 1);
@@ -448,7 +448,7 @@ OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bo
         {
             graph.addVertex("1", "const");
         }
-        if (compare0)
+        if (i_compare0)
         {
             if (!act)
             {
@@ -461,7 +461,7 @@ OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bo
             graph.addDoubleEdge(x, y, "ab" + C, false);
             graph.addDoubleEdge("nab" + C, "ab" + C, "p0_" + NextC, false);
 
-            if (i == bits - 1)
+            if (i == i_bits - 1)
             {
                 if (act)
                 {
@@ -488,7 +488,7 @@ OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bo
                 }
             }
         }
-        if (compare1)
+        if (i_compare1)
         {
             if (act)
             {
@@ -502,7 +502,7 @@ OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bo
             graph.addVertex("(" + x + C + " and " + "(not (" + y + C + "))", "and", "p1_" + NextC);
             graph.addDoubleEdge(x, "nb" + C, "p1_" + NextC, false);
 
-            if (i == bits - 1)
+            if (i == i_bits - 1)
             {
                 if (act)
                 {
@@ -537,7 +537,7 @@ OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bo
                 }
             }
         }
-        if (compare2)
+        if (i_compare2)
         {
             if (act)
             {
@@ -550,7 +550,7 @@ OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bo
             graph.addVertex("(" + y + C + " and " + "(not (" + x + C + "))", "and", "p2_" + NextC);
             graph.addDoubleEdge(y, "na" + C, "p2_" + NextC, false);
 
-            if (i == bits - 1)
+            if (i == i_bits - 1)
             {
                 if (act)
                 {

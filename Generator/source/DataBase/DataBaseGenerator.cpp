@@ -185,13 +185,13 @@ void DataBaseGenerator::generateDataBaseSummator(const GenerationParameters &i_p
     c.generate();
 }
 
-void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i_param)
+void DataBaseGenerator::generateDataBaseComparison(const GenerationParameters &i_param)
 {
   SimpleGenerators sg;
   int bits = i_param.getInputs();
-  bool compare0 = i_param.getComparison().compare0;
-  bool compare1 = i_param.getComparison().compare1;
-  bool compare2 = i_param.getComparison().compare2;
+  bool compare0 = i_param.getComparison().getCompare0();
+  bool compare1 = i_param.getComparison().getCompare1();
+  bool compare2 = i_param.getComparison().getCompare2();
   OrientedGraph graph = sg.generatorСomparison(bits, compare0, compare1, compare2);
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -254,6 +254,8 @@ std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateM
     return std::bind(&DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1);
   if (i_methodName == "Summator")
       return std::bind(&DataBaseGenerator::generateDataBaseSummator, this, std::placeholders::_1);
+  if (i_methodName == "Comparison")
+      return std::bind(&DataBaseGenerator::generateDataBaseComparison, this, std::placeholders::_1);
   if (i_methodName == "Multiplexer")
       return std::bind(&DataBaseGenerator::generateDataBaseMultiplexer, this, std::placeholders::_1);
   if (i_methodName == "Parity")

@@ -27,7 +27,7 @@ private:
   void generateDataBaseNumOperations(const GenerationParameters& i_param);
   void generateDataBaseGenetic(const GenerationParameters& i_param);
   void generateDataBaseSummator(const GenerationParameters& i_param);
-  void GenerateDataBaseComparison(const GenerationParameters& i_param);
+  void generateDataBaseComparison(const GenerationParameters& i_param);
   void GenerateDataBaseEncoder(const GenerationParameters& i_param);
   void generateDataBaseMultiplier(const GenerationParameters& i_param);
   void generateDataBaseMultiplexer(const GenerationParameters& i_param);

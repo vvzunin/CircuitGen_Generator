@@ -103,9 +103,16 @@ private:
 class GeneratorComparisonParameters
 {
   public:
-    bool compare0 = false;
-    bool compare1 = false;
-    bool compare2 = false;
+    bool getCompare0() {return d_compare0;}
+    bool getCompare1() {return d_compare1;}
+    bool getCompare2() {return d_compare2;}
+    bool setCompare0(bool i_compare0) {d_compare0 = i_compare0;}
+    bool setCompare1(bool i_compare0) {d_compare0 = i_compare0;}
+    bool setCompare2(bool i_compare0) {d_compare0 = i_compare0;}
+  private:
+    bool d_compare0 = false;
+    bool d_compare1 = false;
+    bool d_compare2 = false;
 };
 
 class GeneratorEncoderParameters
@@ -218,6 +225,12 @@ public:
       d_generatorSummatorParameters.setOverFlowIn(i_overflowIn);
       d_generatorSummatorParameters.setOverFlowOut(i_overflowOut);
       d_generatorSummatorParameters.setMinus(i_minus);
+  }
+  void setComparisonParameters(bool i_compare0, bool i_compare1, bool i_compare2)
+  {
+    d_generatorComparisonParameters.setCompare0(i_compare0);
+    d_generatorComparisonParameters.setCompare1(i_compare1);
+    d_generatorComparisonParameters.setCompare2(i_compare2);
   }
   void setMultiplierParameters(){ }
   void setMultiplexerParameters(){}
