@@ -1,13 +1,13 @@
 [
   {
     "dataset_id": "2",
-    "id": 0,
-    "type_of_generation": "Multiplier",
-    "min_in": 4,
-    "max_in": 4,
+    "id": 8,
+    "type_of_generation": "Parity",
+    "min_in": 10,
+    "max_in": 10,
     "min_out": 4,
     "max_out": 5,
-    "repeat_n": 2,
+    "repeat_n": 1,
     "CNFF": false,
     "CNFT": true,
     "calculate_stats_abc": true,
@@ -42,7 +42,10 @@
     "surv_num": 1,
 	"overflowIn": false,
 	"overflowOut": true,
-	"minus": false
+	"minus": false,
+    "=": true,
+    "<": true,
+    ">": false
   }
 ]
 
