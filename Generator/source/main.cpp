@@ -164,6 +164,10 @@ void runGenerationFromJson(std::string json_path)
     bool overflowOut = data["overflowOut"];
     bool minus = data["minus"];
 
+    bool compare0 = data["="];
+    bool compare1 = data["<"];
+    bool compare2 = data[">"];
+
     std::map<std::string, int> m;
     std::vector<std::string> v =
         {"num_and", "num_nand", "num_or", "num_not",

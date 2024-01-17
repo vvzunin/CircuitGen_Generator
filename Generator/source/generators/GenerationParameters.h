@@ -107,8 +107,8 @@ class GeneratorComparisonParameters
     bool getCompare1() {return d_compare1;}
     bool getCompare2() {return d_compare2;}
     bool setCompare0(bool i_compare0) {d_compare0 = i_compare0;}
-    bool setCompare1(bool i_compare0) {d_compare0 = i_compare0;}
-    bool setCompare2(bool i_compare0) {d_compare0 = i_compare0;}
+    bool setCompare1(bool i_compare1) {d_compare1 = i_compare1;}
+    bool setCompare2(bool i_compare2) {d_compare2 = i_compare2;}
   private:
     bool d_compare0 = false;
     bool d_compare1 = false;
@@ -124,15 +124,6 @@ class GeneratorMultiplierParameters{
 
 };
 
-class GeneratorMultiplexerParameters
-{
-
-};
-
-class GeneratorParityParameters
-{
-
-};
 
 class GenerationParameters
 {
@@ -209,8 +200,6 @@ public:
   GeneratorComparisonParameters getComparison() const {return d_generatorComparisonParameters; }
   GeneratorEncoderParameters getEncoder() const { return d_generatorEncoderParameters; }
   GeneratorMultiplierParameters getMultiplier() const { return d_generatorMultiplierParameters; }
-  GeneratorMultiplexerParameters getMultiplexer() const { return d_generatorMultiplexerParameters; }
-  GeneratorParityParameters getParity() const { return d_generatorParityParameters; }
   GeneticParameters getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
   void setCNFT(bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
@@ -233,8 +222,6 @@ public:
     d_generatorComparisonParameters.setCompare2(i_compare2);
   }
   void setMultiplierParameters(){ }
-  void setMultiplexerParameters(){}
-  void setParityParameters(){}
   void setNumOfCycles(int i_numOfCycles){ d_geneticParameters.setNumOfCycles(i_numOfCycles); }
   void setPopulationSize(int i_populationSize) { d_geneticParameters.setPopulationSize(i_populationSize); }
   void setRecombinationParameters(ParentsTypes i_parentsTypes, int i_tournamentNumber, RecombinationTypes i_recombinationType, int i_refPoints, double maskProbability, int i_recombinationNumber);
@@ -255,7 +242,5 @@ private:
   GeneratorComparisonParameters d_generatorComparisonParameters;
   GeneratorEncoderParameters d_generatorEncoderParameters;
   GeneratorMultiplierParameters d_generatorMultiplierParameters;
-  GeneratorMultiplexerParameters d_generatorMultiplexerParameters;
-  GeneratorParityParameters d_generatorParityParameters;
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };

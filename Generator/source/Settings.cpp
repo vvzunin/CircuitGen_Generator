@@ -190,7 +190,7 @@ std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const
   if (i_s == "Multiplier")
       return "CCGTCM";
   if (i_s == "Multiplexer")
-      return "CCGMPX";
+      return "CCGTCMP";
   if (i_s == "Parity")
       return "CCGTCP"; 
 
