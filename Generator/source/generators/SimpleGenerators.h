@@ -20,6 +20,7 @@ public:
   OrientedGraph generatorEncoder(int bits);
   OrientedGraph generatorMultiplier(int i_bits, bool act = false);
   OrientedGraph generatorMultiplexer(int i_bits, std::string T = "0");
+  OrientedGraph generatorParity(int i_bits);
 private:
   Settings* d_settings = Settings::getInstance("GraphVertex");
   std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);

@@ -13,7 +13,8 @@ enum GenerationTypes
   Comparison,
   Encoder,
   Multiplier,
-  Multiplexer
+  Multiplexer,
+  Parity
 };
 
 class DataBaseGeneratorParameters //TODO: maybe it need heritance from GenerationParameters?

@@ -74,6 +74,8 @@ void runGenerationFromJson(std::string json_path)
         gt = GenerationTypes::Multiplier;
     if (data["type_of_generation"] = "Multiplexer")
         gt = GenerationTypes::Multiplexer;
+    if (data["type_of_generation"] = "Parity")
+        gt = GenerationTypes::Parity;
     int requestIdINT = data["id"];
     std::string requestId = std::to_string(requestIdINT);
     assert(requestId != "");

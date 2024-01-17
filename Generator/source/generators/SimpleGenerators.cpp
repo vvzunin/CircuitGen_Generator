@@ -726,7 +726,56 @@ OrientedGraph SimpleGenerators::generatorMultiplexer(int i_bits, std::string T =
     return graph;
 }
 
-
+OrientedGraph SimpleGenerators::generatorParity(int i_bits)
+{
+    //bits - количество входов
+    //T[]- массив для текущего ряда узлов
+    //X[]- массив для предыдущего ряда узлов
+    //"хi" - входной бит
+    //F - функция на выходе
+    OrientedGraph graph;
+    if (i_bits > 1)
+    {
+        std::vector<std::string> X(i_bits);
+        std::vector<std::string> T(i_bits);
+        for (int l = 0; l <= i_bits - 1; l++)
+        {
+            std::string Z = std::to_string(l);
+            graph.addVertex("x" + Z, "input");
+            X[l] = "x" + Z;
+        }
+        graph.addVertex("F", "output");
+        int p = i_bits;
+        while (p > 1)
+        {
+            if (p % 2 == 1)
+            {
+                T[p - 2] = X[p - 2] + " xor " + X[p - 1];
+                graph.addVertex(T[p - 2], "xor", T[p - 2]);
+                graph.addDoubleEdge(X[p - 2], X[p - 1], T[p - 2], false);
+                X[p - 2] = T[p - 2];
+                T[p - 2] = "";
+                p = p - 1;
+            }
+            p = p / 2;
+            for (int i = 0; i <= p - 1; i++)
+                T[i] = X[2 * i] + " xor " + X[2 * i + 1];
+            for (int i = 0; i <= p - 1; i++)
+            {
+                graph.addVertex(T[i], "xor", T[i]);
+                graph.addDoubleEdge(X[2 * i], X[2 * i + 1], T[i], false);
+            }
+            for (int i = 0; i <= p - 1; i++)
+            {
+                X[i] = T[i];
+                T[i] = "";
+            }
+        }
+        graph.addEdge(X[0], "F", false);
+    } else
+        std::cout << "Недостаточно входных сигналов" << std::endl;
+    return graph;
+}
 
 public OrientedGraph generatorMultiplier(int i_bits, bool act = false)
 {

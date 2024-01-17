@@ -122,6 +122,11 @@ class GeneratorMultiplexerParameters
 
 };
 
+class GeneratorParityParameters
+{
+
+};
+
 class GenerationParameters
 {
 public:
@@ -198,6 +203,7 @@ public:
   GeneratorEncoderParameters getEncoder() const { return d_generatorEncoderParameters; }
   GeneratorMultiplierParameters getMultiplier() const { return d_generatorMultiplierParameters; }
   GeneratorMultiplexerParameters getMultiplexer() const { return d_generatorMultiplexerParameters; }
+  GeneratorParityParameters getParity() const { return d_generatorParityParameters; }
   GeneticParameters getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
   void setCNFT(bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
@@ -214,7 +220,8 @@ public:
       d_generatorSummatorParameters.setMinus(i_minus);
   }
   void setMultiplierParameters(){ }
-  void setMultiplexerParameters(bool i_overflowIn, bool i_overflowOut, bool i_minus){}
+  void setMultiplexerParameters(){}
+  void setParityParameters(){}
   void setNumOfCycles(int i_numOfCycles){ d_geneticParameters.setNumOfCycles(i_numOfCycles); }
   void setPopulationSize(int i_populationSize) { d_geneticParameters.setPopulationSize(i_populationSize); }
   void setRecombinationParameters(ParentsTypes i_parentsTypes, int i_tournamentNumber, RecombinationTypes i_recombinationType, int i_refPoints, double maskProbability, int i_recombinationNumber);
@@ -236,5 +243,6 @@ private:
   GeneratorEncoderParameters d_generatorEncoderParameters;
   GeneratorMultiplierParameters d_generatorMultiplierParameters;
   GeneratorMultiplexerParameters d_generatorMultiplexerParameters;
+  GeneratorParityParameters d_generatorParityParameters;
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };
