@@ -3,13 +3,13 @@
 
 #include "SelectionParameters.h"
 #include "SelectionsTruthTable.h"
+#include "../../AuxiliaryMethods.h"
 
 std::vector<ChronosomeType<TruthTable, TruthTableParameters>> SelectionBase(
   SelectionParameters i_selectionParameters,
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
-  std::srand(std::time(0));
 
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> survivors;
   while (survivors.size() < i_selectionParameters.getNumOfSurvivors())
@@ -17,8 +17,8 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> SelectionBase(
     int r1 = 0, r2 = 0;
     while (i_population.size() > 2 && r2 == r1)
     {
-      r1 = rand() % i_population.size();
-      r2 = rand() % i_population.size();
+      r1 = AuxMethods::getRandInt(0, i_population.size());
+      r2 = AuxMethods::getRandInt(0, i_population.size());
     }
 
     if ((i_population[r1].getAdaptationIndex() < i_population[r2].getAdaptationIndex()) &&

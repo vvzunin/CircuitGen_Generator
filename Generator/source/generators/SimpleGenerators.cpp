@@ -5,6 +5,7 @@
 
 #include "SimpleGenerators.h"
 #include <graph/OrientedGraph.h>
+#include <AuxiliaryMethods.h>
 
 namespace {
   int maxValueInMap(const std::map<std::string, int>& i_map)
@@ -23,10 +24,7 @@ namespace {
   }
 }
 
-SimpleGenerators::SimpleGenerators()
-{
-  std::srand(std::time(0));
-}
+SimpleGenerators::SimpleGenerators() {}
 
 std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
   const TruthTable& i_table, 
@@ -105,7 +103,7 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
 OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs)
 {
   int maxLevel;
-  if (i_maxLevel != 0) maxLevel = rand() % i_maxLevel + 2; // TODO: Zunin , not +1?
+  if (i_maxLevel != 0) maxLevel = AuxMethods::getRandInt(0, i_maxLevel) + 2; // TODO: Zunin , not +1?
   else maxLevel = 2;
   std::vector<int> elemLevel(maxLevel + 1);
   std::vector<std::string> logOper = d_settings->getLogicOperationsKeys();
@@ -118,7 +116,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
   elemLevel[maxLevel] = i_outputs;
   for (int i = 1; i < maxLevel; ++i)
   { 
-      if (i_maxElements > 1) elemLevel[i] = (rand() % (i_maxElements - 1)) + 2;
+      if (i_maxElements > 1) elemLevel[i] = AuxMethods::getRandInt(2, i_maxElements, true);
       else elemLevel[i] = 2;
   }
 
@@ -141,10 +139,10 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
     int position = 0;
     for (int j = 0; j < elemLevel[i]; ++j)
     {
-      choice = rand() % logOper.size();
+      choice = AuxMethods::getRandInt(0, logOper.size());
       if (logOper[choice] == "not")
       {
-        child1 = rand() % currIndex;
+        child1 = AuxMethods::getRandInt(0, currIndex);
         expr = d_settings->fromOperationsToName(logOper[choice]) + " (" +
           graph.getVertice(child1).getLogicExpression() + ")";
 
@@ -155,8 +153,11 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
       }
       else
       {
-        child1 = (rand() % (currIndex - prevIndex)) + prevIndex;
-        child2 = (rand() % (currIndex - prevIndex)) + prevIndex;
+        // is child2 even needed?
+        child1 = AuxMethods::getRandInt(prevIndex, currIndex);
+        child2 = child1;
+        // child1 = (rand() % (currIndex - prevIndex)) + prevIndex;
+        // child2 = (rand() % (currIndex - prevIndex)) + prevIndex;
 
         expr = "(" + graph.getVertice(child2).getLogicExpression() + " )" +
           d_settings->fromOperationsToName(logOper[choice]) + " (" + graph.getVertice(child1).getLogicExpression() + ")";
@@ -179,7 +180,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
 
   for (int i = 0; i < i_outputs; ++i)
   {
-    child1 = (rand() % (currIndex - prevIndex)) + prevIndex;
+    child1 = AuxMethods::getRandInt(prevIndex, currIndex);
     expr = "f" + std::to_string(i + 1);
     graph.addVertex(expr, "output");
     graph.addEdge(graph.getVertice(child1).getLogicExpression(),
@@ -283,8 +284,8 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
 
       while (help.size() > 0 && nameOut.size() > 0)
       {
-        int R1 = rand() % help.size();
-        int R2 = rand() % nameOut.size();
+        int R1 = AuxMethods::getRandInt(0, help.size());
+        int R2 = AuxMethods::getRandInt(0, nameOut.size());
         graph.addEdge(help[R1], nameOut[R2]);
         levelName.erase(help[R1]);
         help.erase(help.begin() + R1);
@@ -293,8 +294,8 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
     }
     else
     {
-      int R1 = rand() % nameInput.size();
-      int R2 = rand() % nameOut.size();
+      int R1 = AuxMethods::getRandInt(0, nameInput.size());
+      int R2 = AuxMethods::getRandInt(0, nameOut.size());
 
       graph.addEdge(nameInput[R1], nameOut[R2]);
       nameOut.erase(nameOut.begin() + R2);
@@ -317,7 +318,7 @@ std::map<std::string, int> SimpleGenerators::delNull(std::map<std::string, int> 
 
 std::string SimpleGenerators::randomGenerator(const std::map<std::string, int>& i_map)
 {
-  int i = rand() % i_map.size();
+  int i = AuxMethods::getRandInt(0, i_map.size());
 
   auto p = i_map.begin();
 

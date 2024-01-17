@@ -14,13 +14,13 @@
 #include "./DataBase/DataBaseGenerator.h"
 #include "./DataBase/DataBaseGeneratorParameters.h"
 #include "./generators/GenerationParameters.h"
+#include "AuxiliaryMethods.h"
 
 void runGenerationFromJson(std::string json_path);
 
 int main(int argc, char **argv)
 {
   std::string json_path;
-  std::srand(std::time(nullptr));
   // Use getopt to parse command line arguments
 
   const char *const short_opts = "j:n:";
@@ -50,14 +50,16 @@ int main(int argc, char **argv)
 }
 void runGenerationFromJson(std::string json_path)
 {
-  std::srand(NULL);
-
   std::ifstream f(json_path);
   nlohmann::json DATA = nlohmann::json::parse(f);
   // Read all json objects in json file.
   for (auto it = DATA.begin(); it != DATA.end(); it++)
   {
     nlohmann::json data = *it;
+    
+    AuxMethods::setRandSeed(!data.contains("seed") || data["seed"] == -1 ? 
+    static_cast<unsigned>(std::time(0)) :
+    static_cast<unsigned>(data["seed"]));
 
     GenerationTypes gt;
     if (data["type_of_generation"] == "From Random Truth Table")

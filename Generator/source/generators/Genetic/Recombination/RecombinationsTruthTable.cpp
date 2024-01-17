@@ -109,7 +109,6 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCross
   int size = i_population[0].getChronosomeType().size();
 
   int child3;
-  std::srand(std::time(0));
 
   for (int cr = 0; cr < i_recombinationParameters.getRecombinationParameters(); ++cr)
   {
@@ -122,7 +121,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCross
     int child2 = parentsInt[1];
 
     while (child1 == child3 || child2 == child3)
-      child3 = rand() % i_population.size();
+      child3 = AuxMethods::getRandInt(0, i_population.size());
 
     TruthTable mask(
       input,
@@ -166,12 +165,11 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCross
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
-  std::srand(std::time(0));
 
   int input = i_population[0].getChronosomeType().getInput();
   int output = i_population[0].getChronosomeType().getOutput();
   int size = i_population[0].getChronosomeType().size();
-  int referencePoint = rand() % size;
+  int referencePoint = AuxMethods::getRandInt(0, size);
 
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> survivors;
 
@@ -192,7 +190,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCross
     for (int j = 0; j < output; ++j)
     {
       while (parents[0][referencePoint][j] == parents[1][referencePoint][j])
-        referencePoint = rand() % size;
+        referencePoint = AuxMethods::getRandInt(0, size);
 
       for (int i = 0; i < size; ++i)
         child[i][j] = parents[i < referencePoint ? 0 : 1][i][j];
@@ -210,12 +208,11 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCross
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {
-  std::srand(std::time(0));
 
   int input = i_population[0].getChronosomeType().getInput();
   int output = i_population[0].getChronosomeType().getOutput();
   int size = i_population[0].getChronosomeType().size();
-  int referencePoint = rand() % size;
+  int referencePoint = AuxMethods::getRandInt(0, size);
 
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> survivors;
 
@@ -228,7 +225,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCross
     int child1 = parentsInt[0];
     int child2 = parentsInt[1];
   
-    referencePoint = rand() % size;
+    referencePoint = AuxMethods::getRandInt(0, size);
     std::vector<std::vector<std::vector<bool>>> parents;
     parents.push_back(i_population[child1].getChronosomeType().getOutTable());
     parents.push_back(i_population[child2].getChronosomeType().getOutTable());
@@ -238,7 +235,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> RecombinationCross
     {
       for (int j = 0; j < output; ++j)
       {
-        if (rand() % 2)
+        if (AuxMethods::getRandInt(0, 1, true))
           swap(parents[0][i][j], parents[1][i][j]);
       }
     }

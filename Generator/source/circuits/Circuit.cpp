@@ -10,6 +10,7 @@
 #include <reliability/Reliability.h>
 #include <optimization_utils/AbcUtils.h>
 #include <FilesTools.h>
+#include <AuxiliaryMethods.h>
 
 Circuit::Circuit(const OrientedGraph& i_graph, const std::vector<std::string>& i_logExpressions)
 {
@@ -190,11 +191,19 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
         }
     }
 
-    // Choose random wrong vertex.
-    srand((unsigned)time(NULL));
-    int t = (rand()%indecies__.size());
-    d_graph.d_vertices[indecies__[t]].wrongVertex = true;
-    pos = indecies__[t];
+      // Choose random wrong vertex.
+      int t = AuxMethods::getRandInt(0, indecies__.size());
+      d_graph.d_vertices[indecies__[t]].wrongVertex = true;
+      pos = indecies__[t];
+
+      
+
+
+
+
+
+
+
 
     for (int j = 0; j < vec_index.size(); j++)
     {
