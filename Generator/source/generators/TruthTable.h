@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "../Settings.h"
+#include <Settings.h>
 #include "./Genetic/GeneticParameters.h"
 #include "./Genetic/Chronosome.h"
 

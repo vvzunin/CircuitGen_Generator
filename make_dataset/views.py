@@ -132,18 +132,31 @@ def upload_to_synology(dataset_id):
     with SynologyDrive(NAS_USER, NAS_PASS, NAS_IP, NAS_PORT, dsm_version=dsm_version) as synd:
         dataset_id = str(dataset_id)
         dataset_dir = f'./dataset/{dataset_id}'
-        extension_lst = ['.v', '.json', '.png']
+        extension_lst = ['.v', '.aig', '.json', '.png']
+
         for param in os.listdir(dataset_dir):
-            for extension in extension_lst:
-                for file_path in glob.iglob(f'{dataset_dir}/{param}/*{extension}', recursive=True):
-                    try:
-                        with open(file_path, 'rb') as file:
-                            file_name = os.path.basename(file_path)
-                            bfile = io.BytesIO(file.read())
-                            bfile.name = f'{dataset_id}/{param}/{file_name}'
-                            synd.upload_file(bfile, dest_folder_path='/team-folders/circuits/datasets/')
-                    except Exception as e:
-                        print(e)
+            # looking for subdirectiries
+            sub_folders = [ f.name for f in os.scandir(f'{dataset_dir}/{param}') if f.is_dir() ]
+            
+            if not sub_folders:
+                sub_folders = ['']
+            
+            for sub_folder in sub_folders:
+                sub_path = f'{param}' + ('/' + sub_folder if sub_folders else '')
+
+                for extension in extension_lst:
+                    for file_path in glob.iglob(f'{dataset_dir}/{sub_path}/*{extension}', recursive=True):
+                        try:
+                            with open(file_path, 'rb') as file:
+                                file_name = os.path.basename(file_path)
+                                bfile = io.BytesIO(file.read())
+                                bfile.name = f'{dataset_id}/{sub_path}/{file_name}'
+                                synd.upload_file(
+                                    bfile,
+                                    dest_folder_path=f'/team-folders/circuits/datasets/'
+                                )
+                        except Exception as e:
+                            print(e)
 
 
 def get_link_to_synology(dataset_id, param_id):

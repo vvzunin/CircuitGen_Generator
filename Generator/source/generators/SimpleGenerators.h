@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../graph/OrientedGraph.h"
+#include <graph/OrientedGraph.h>
 #include "./TruthTable.h"
 
 class SimpleGenerators

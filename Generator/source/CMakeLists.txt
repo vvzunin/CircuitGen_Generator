@@ -61,6 +61,8 @@ set(SOURCES
   graph/GraphVertex.cpp
   graph/OrientedGraph.cpp
   reliability/Reliability.cpp
+  optimization_utils/AbcUtils.cpp
+  optimization_utils/YosysUtils.cpp
   generators/TruthTable.cpp
   generators/Genetic/Chronosome.cpp
   generators/Genetic/ChronosomeType.cpp
@@ -88,5 +90,10 @@ add_subdirectory(graph)
 add_subdirectory(generators)
 add_subdirectory(circuits)
 add_subdirectory(reliability)
-target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings nlohmann_json::nlohmann_json)
+add_subdirectory(optimization_utils)
+target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings OptimizationUtils nlohmann_json::nlohmann_json)
 add_subdirectory(tests)
+
+target_include_directories(settings PUBLIC ${CMAKE_SOURCE_DIR})
+target_include_directories(FilesTools PUBLIC ${CMAKE_SOURCE_DIR})
+target_include_directories(AuxiliaryMethods PUBLIC ${CMAKE_SOURCE_DIR})

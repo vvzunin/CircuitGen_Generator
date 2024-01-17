@@ -7,9 +7,5 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 add_subdirectory(Genetic)
 
-set (SOURCES
-  ../Settings.cpp
-  generators/TruthTable.cpp
-)
-
-add_library(TruthTable TruthTable.cpp TruthTable.h)
+add_library(TruthTable SHARED TruthTable.cpp TruthTable.h)
+target_include_directories(TruthTable PUBLIC ${CMAKE_SOURCE_DIR})

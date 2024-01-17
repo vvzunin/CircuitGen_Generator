@@ -5,11 +5,8 @@ SET(GCC_COVERAGE_LINK_FLAGS    "-lgcov")
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-set (SOURCES
-  ../Settings.cpp
-  graph/GraphVertex.cpp
-  graph/OrientedGraph.cpp
-)
+add_library(GraphVertex SHARED GraphVertex.cpp GraphVertex.h)
+add_library(OrientedGraph SHARED OrientedGraph.cpp OrientedGraph.h)
 
-add_library(GraphVertex GraphVertex.cpp GraphVertex.h)
-add_library(OrientedGraph OrientedGraph.cpp OrientedGraph.h)
+target_include_directories(GraphVertex PUBLIC ${CMAKE_SOURCE_DIR})
+target_include_directories(OrientedGraph PUBLIC ${CMAKE_SOURCE_DIR})
