@@ -643,7 +643,7 @@ OrientedGraph SimpleGenerators::generatorСomparison(int i_bits, bool i_compare0
     return graph;
 }
 
-OrientedGraph SimpleGenerators::generatorMultiplexer(int i_bits, std::string T = "0")
+OrientedGraph SimpleGenerators::generatorMultiplexer(int i_bits, std::string T)
 {
     OrientedGraph graph;
     int k = 0;
