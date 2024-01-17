@@ -30,5 +30,6 @@ private:
   void GenerateDataBaseComparison(const GenerationParameters& i_param);
   void GenerateDataBaseEncoder(const GenerationParameters& i_param);
   void generateDataBaseMultiplier(const GenerationParameters& i_param);
+  void generateDataBaseMultiplexer(const GenerationParameters& i_param);
   std::function<void(const GenerationParameters&)> getGenerateMethod(const std::string& i_methodName);
 };

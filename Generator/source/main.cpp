@@ -72,7 +72,8 @@ void runGenerationFromJson(std::string json_path)
       gt = GenerationTypes::Summator;
     if (data["type_of_generation"] = "Multiplier")
         gt = GenerationTypes::Multiplier;
-
+    if (data["type_of_generation"] = "Multiplexer")
+        gt = GenerationTypes::Multiplexer;
     int requestIdINT = data["id"];
     std::string requestId = std::to_string(requestIdINT);
     assert(requestId != "");

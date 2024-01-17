@@ -220,6 +220,17 @@ void DataBaseGenerator::generateDataBaseMultiplier(const GenerationParameters &i
     c.generate();
 }
 
+void DataBaseGenerator::generateDataBaseMultiplexer(const GenerationParameters &i_param) 
+{
+    SimpleGenerators generator;
+    int i_bits = i_param.getInputs();
+    OrientedGraph graph = generator.generatorMultiplexer(i_bits);
+    Circuit c(graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate();
+}
+
 std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateMethod(const std::string& i_methodName)
 {
   if (i_methodName == "FromRandomTruthTable")
@@ -232,6 +243,8 @@ std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateM
     return std::bind(&DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1);
   if (i_methodName == "Summator")
       return std::bind(&DataBaseGenerator::generateDataBaseSummator, this, std::placeholders::_1);
+  if (i_methodName == "Multiplexer")
+      return std::bind(&DataBaseGenerator::generateDataBaseMultiplexer, this, std::placeholders::_1);
   
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;
   return std::bind(&DataBaseGenerator::generateDataBaseFromRandomTruthTable, this, std::placeholders::_1);

@@ -2,6 +2,7 @@
 #include <ctime>
 #include <iostream>
 #include <math.h>
+#include <bitset>
 
 #include "SimpleGenerators.h"
 #include "../graph/OrientedGraph.h"
@@ -641,6 +642,91 @@ OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bo
 
     return graph;
 }
+
+OrientedGraph SimpleGenerators::generatorMultiplexer(int i_bits, std::string T = "0")
+{
+    OrientedGraph graph;
+    int k = 0;
+    
+    for (int t = 0; t <= i_bits; t++) {
+        if (i_bits - 1 >= std::pow(2, t)) {
+            k = k + 1;
+        }
+    }
+
+    std::vector<std::string> F(i_bits);
+    std::vector<std::string> X(i_bits);
+    std::vector<std::string> K(i_bits);
+    std::vector<std::string> S(k);
+    std::vector<std::string> Z(i_bits);
+
+    graph.addVertex("f" + T, "output");
+
+    if (i_bits > 1) {
+        for (int p = 0; p <= k - 1; p++) {
+            S[p] = std::to_string(p);
+            graph.addVertex("a" + T + "_" + S[p], "input");
+            graph.addVertex("not (a" + T + "_" + S[p] + ")", "not", "na" + T + "_" + S[p]);
+            graph.addEdge("a" + T + "_" + S[p], "na" + T + "_" + S[p], false);
+        }
+
+        for (int i = 0; i <= i_bits - 1; i++) {
+            Z[i] = std::to_string(i);
+            graph.addVertex("x" + T + "_" + Z[i], "input");
+            F[i] = std::bitset<8>(i).to_string(); 
+            int len = F[i].length();
+
+            for (int w = 0; w <= k - 1; w++) {
+                if (F[i].length() < w + 1) {
+                    X[i] = K[i] + " and na" + T + "_" + S[w];
+                } else {
+                    char u = F[i][len - w - 1];
+                    if (u == '1') {
+                        X[i] = K[i] + " and a" + T + "_" + S[w];
+                    } else {
+                        X[i] = K[i] + " and na" + T + "_" + S[w];
+                    }
+                }
+                K[i] = X[i];
+                X[i] = "";
+            }
+        }
+
+        for (int i = 0; i <= i_bits - 1; i++) {
+            if (!K[i].empty()) {
+                K[i].erase(0, 4);
+            }
+            graph.addVertex(K[i] + " and x" + T + "_" + Z[i], "and", K[i] + " and x" + T + "_" + Z[i]);
+            graph.addVertex(K[i] + " and x" + T + "_" + Z[i], "or", "f" + T);
+        }
+
+        for (int i = 0; i <= i_bits - 1; i++) {
+            int len = F[i].length();
+            for (int w = 0; w <= k - 1; w++) {
+                if (F[i].length() < w + 1) {
+                    graph.addEdge("a" + T + "_" + S[w], "na" + T + "_" + S[w], false);
+                    graph.addEdge("na" + T + "_" + S[w], K[i] + " and x" + T + "_" + Z[i], false);
+                } else {
+                    char u = F[i][len - w - 1];
+                    if (u == '1') {
+                        graph.addEdge("a" + T + "_" + S[w], K[i] + " and x" + T + "_" + Z[i], false);
+                    } else {
+                        graph.addEdge(" a" + T + "_" + S[w], "na" + T + "_" + S[w], false);
+                        graph.addEdge("na" + T + "_" + S[w], K[i] + " and x" + T + "_" + Z[i], false);
+                    }
+                }
+            }
+            graph.addEdge("x" + T + "_" + Z[i], K[i] + " and x" + T + "_" + Z[i], false);
+            graph.addEdge(K[i] + " and x" + T + "_" + Z[i], "f" + T, false);
+        }
+    } else {
+        std::cout << "Недостаточно выходных сигналов" << std::endl;
+    }
+
+    return graph;
+}
+
+
 
 public OrientedGraph generatorMultiplier(int i_bits, bool act = false)
 {
