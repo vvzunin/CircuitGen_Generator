@@ -1,14 +1,15 @@
 #include <iostream>
 #include <filesystem>
 
-#include "../generators/TruthTable.h"
-#include "../generators/Genetic/GeneticParameters.h"
-#include "../generators/SimpleGenerators.h"
-#include "../generators/Parser.h"
-#include "../generators/Genetic/GenGenerator.h"
-#include "../circuits/CircuitsParameters.h"
-#include "../circuits/Circuit.h"
-#include "../FilesTools.h"
+#include <generators/TruthTable.h>
+#include <generators/Genetic/GeneticParameters.h>
+#include <generators/SimpleGenerators.h>
+#include <generators/Parser.h>
+#include <generators/Genetic/GenGenerator.h>
+#include <circuits/CircuitsParameters.h>
+#include <circuits/Circuit.h>
+#include <FilesTools.h>
+
 #include "DataBaseGenerator.h"
 
 

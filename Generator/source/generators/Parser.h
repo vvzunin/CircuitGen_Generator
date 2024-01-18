@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 #include "../graph/OrientedGraph.h"
 
@@ -19,7 +20,7 @@ private:
   std::vector<std::string> d_logExpressions;
 
   OrientedGraph d_graph;
-  Settings* d_settings = Settings::getInstance("Parser");
+  std::shared_ptr<Settings> d_settings = Settings::getInstance("Parser");
 
   std::pair<bool, std::vector<std::pair<int, int>>> createBrackets(const std::string& i_expr);
   bool inBrackets(const std::vector<std::pair<int, int>>& i_brackets, int i_position) const;

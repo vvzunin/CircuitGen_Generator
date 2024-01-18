@@ -5,6 +5,7 @@
 #include <memory>
 #include <fstream>
 #include <filesystem>
+
 std::string fileName = "settings.dat"; // To test LoadSettings by default. See below.
 // If the d_fileName will assign to another value by default you also have to change the input of  std::filesystem::exists that placed above. 
 // That's the only way to test LoadSettings when file does not exists without breaking encapsulation.
@@ -12,7 +13,7 @@ std::string fileName = "settings.dat"; // To test LoadSettings by default. See b
 
 TEST(test_settings, test_default_load_settings)
 {
-  Settings* t = Settings::getInstance("test_default_load_settings");
+  std::shared_ptr<Settings> t = Settings::getInstance("test_default_load_settings");
 
   std::map<int, std::vector<std::string>> operToHierAns;
   operToHierAns[0] = {"="};
@@ -56,7 +57,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperati
 {
     if (!std::filesystem::exists(fileName))
     {
-        Settings * SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
+        std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
         // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
         std::map <std::string, std::pair<std::string, int>> correctLogicOperations =
         {
@@ -84,7 +85,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
 {
     if (!std::filesystem::exists(fileName))
     {
-        Settings * SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
+        std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
         // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
         std::map <int, std::vector<std::string>> correctOperationsToHierarchy =
         {
@@ -112,7 +113,7 @@ TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsTo
 {
     if (!std::filesystem::exists(fileName))
     {
-        Settings * SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
+        std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
         // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
 
         std::map <std::string, std::string> correctOperationsToName =
@@ -142,7 +143,7 @@ TEST(SettingsTest, SaveSettingsNormalTest)
     std::ifstream readFile(fileName);
     std::vector<std::string> BeforeSaveSettings;
     std::vector<std::string> AfterSaveSettings;
-    Settings * SetPtr = Settings::getInstance(" ");// Here we implicitely called loadSettings()
+    std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we implicitely called loadSettings()
     readFile.clear();
     readFile.seekg(0);// Back to the beginnigs of the file .
     std::string str;

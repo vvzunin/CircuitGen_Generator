@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.5)
 
 project(Generator)
 
@@ -11,8 +11,9 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_CXX_FLAGS_RELEASE "-O0")
 set(CMAKE_BUILD_TYPE Debug)
 
-
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
+
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
 #ExternalProject_Add(googletest
 #  GIT_REPOSITORY https://github.com/google/googletest
@@ -91,7 +92,8 @@ add_subdirectory(generators)
 add_subdirectory(circuits)
 add_subdirectory(reliability)
 add_subdirectory(optimization_utils)
-target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings OptimizationUtils nlohmann_json::nlohmann_json)
+add_subdirectory(DataBase)
+target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings OptimizationUtils DataBaseGenerator nlohmann_json::nlohmann_json)
 add_subdirectory(tests)
 
 target_include_directories(settings PUBLIC ${CMAKE_SOURCE_DIR})
