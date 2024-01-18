@@ -9,3 +9,4 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 add_library(OptimizationUtils STATIC AbcUtils.cpp AbcUtils.h YosysUtils.cpp YosysUtils.h StandartUtil.h)
+set_target_properties(OptimizationUtils PROPERTIES PUBLIC_HEADER optimization_utils/*.h)

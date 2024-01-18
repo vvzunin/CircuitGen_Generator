@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 #include <map>
 #include <utility>
 #include <vector>
@@ -21,7 +22,7 @@ protected:
 public:
   Settings(Settings &other) = delete;
   void operator=(const Settings &) = delete;
-  static Settings* getInstance(const std::string& i_value);
+  static std::shared_ptr<Settings> getInstance(const std::string& i_value);
   void loadSettings();
   std::string getInstanceName() const;
   std::pair<std::string, int> getLogicOperation(const std::string& i_op);
@@ -42,7 +43,7 @@ private:
   void SaveSettings();
 
   std::string d_name;
-  static Settings* d_singleton;
+  static std::shared_ptr<Settings> d_singleton;
   std::string d_path;
   std::string d_csvdataset = "dataset.csv";
   std::string d_fileName = "settings.dat";

@@ -64,6 +64,18 @@ class AbcUtils {
             std::string i_libDirectory
         );
 
+        static CommandWorkResult resyn2(
+            std::string i_inputFileName,  
+            std::string i_libName
+        ); 
+
+        static CommandWorkResult resyn2(
+            std::string i_inputFileName,  
+            std::string i_libName,
+            std::string i_fileDirectory,
+            std::string i_libDirectory
+        ); 
+
         static CommandWorkResult optimizeWithLib(
             std::string i_inputFileName, 
             std::string i_libName

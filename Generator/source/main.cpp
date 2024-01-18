@@ -11,9 +11,9 @@
 #include <unistd.h>
 #include <getopt.h>
 
-#include "./DataBase/DataBaseGenerator.h"
-#include "./DataBase/DataBaseGeneratorParameters.h"
-#include "./generators/GenerationParameters.h"
+#include <DataBase/DataBaseGenerator.h>
+#include <DataBase/DataBaseGeneratorParameters.h>
+#include <generators/GenerationParameters.h>
 #include "AuxiliaryMethods.h"
 
 void runGenerationFromJson(std::string json_path);

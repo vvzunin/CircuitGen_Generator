@@ -260,6 +260,62 @@ CommandWorkResult AbcUtils::getStats(
     );
 }
 
+CommandWorkResult AbcUtils::resyn2(
+    std::string i_inputFileName,  
+    std::string i_libName)
+{
+    std::string real_name = i_inputFileName;
+    // if is neccessary, remove .v
+    if (real_name.find(".v") != std::string::npos)
+        real_name.erase(real_name.size() - 2, 2);
+
+    // format i_command, then execute it with specified parametrs
+    std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\" ";
+    i_command += "&& echo \"read " + i_libName + "\" ";
+    i_command += "&& echo \"balance\" ";
+    i_command += "&& echo \"rewrite\" ";
+    i_command += "&& echo \"refactor\" ";
+    i_command += "&& echo \"balance\" ";
+    i_command += "&& echo \"rewrite\" ";
+    i_command += "&& echo \"rewrite -z\" ";
+    i_command += "&& echo \"balance\" ";
+    i_command += "&& echo \"refactor -z\" ";
+    i_command += "&& echo \"rewrite -z\" ";
+    i_command += "&& echo \"write_verilog " + real_name + "_RESYN2.aig\" ";
+    i_command += "&& echo \"map\" ";
+    i_command += "&& echo \"print_stats\" ";
+    i_command += "&& echo \"unmap\" ";
+    i_command += "&& echo \"write_verilog " + real_name + "_RESYN2.v\") | abc";
+    
+    
+    CommandWorkResult res = runExecutorForStats(
+        i_command, 
+        parseCommand(i_command)
+    );
+
+    res.commandsOutput["optimization_type"] = "Resyn2";
+
+    return res;
+}
+
+CommandWorkResult AbcUtils::resyn2(
+    std::string i_inputFileName,  
+    std::string i_libName,
+    std::string i_fileDirectory,
+    std::string i_libDirectory) 
+{
+    if (i_fileDirectory[i_fileDirectory.size() - 1] != '/')
+        i_fileDirectory += "/";
+    
+    if (i_libDirectory[i_libDirectory.size() - 1] != '/')
+        i_libDirectory += "/";
+
+    return resyn2(
+        i_fileDirectory + i_inputFileName,
+        i_libDirectory + i_libName
+    );
+}
+
 CommandWorkResult AbcUtils::optimizeWithLib(
     std::string i_inputFileName,  
     std::string i_libName) 
@@ -284,10 +340,14 @@ CommandWorkResult AbcUtils::optimizeWithLib(
     i_command += "&& echo \"write_verilog " + real_name + "_BALANCED.v\") | abc";
     
     
-    return runExecutorForStats(
+    CommandWorkResult res = runExecutorForStats(
         i_command, 
         parseCommand(i_command)
     );
+
+    res.commandsOutput["optimization_type"] = "Balance";
+
+    return res;
 }
 
 CommandWorkResult AbcUtils::optimizeWithLib(

@@ -5,8 +5,5 @@ SET(GCC_COVERAGE_LINK_FLAGS    "-lgcov")
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-set (SOURCES
-  generators/Genetic/Selections/SelectionParameters.cpp
-)
-
-add_library(SelectionParameters SelectionParameters.cpp SelectionParameters.h)
+add_library(SelectionParameters SHARED SelectionParameters.cpp SelectionParameters.h)
+target_include_directories(SelectionParameters PUBLIC ${CMAKE_SOURCE_DIR})

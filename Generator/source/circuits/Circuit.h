@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -16,7 +17,7 @@ public:
   void updateCircuitsParameters(bool i_getAbcStats = false, std::string libraryName = "");
   bool graphToVerilog(const std::string& i_path, bool i_pathExists = false);
   bool saveParameters(bool i_getAbcStats = false, bool i_generateAig = false, bool i_pathExists = false) const;
-  void saveAdditionalStats(CommandWorkResult res) const;
+  void saveAdditionalStats(CommandWorkResult i_res, std::string i_optimizationName = "Balanced", bool i_lastData = true) const;
   bool generate(bool i_getAbcStats = false, std::string libraryName = "", bool i_generateAig = false, bool i_pathExists = false);
   void setTable(const TruthTable& i_tt);
   void setPath(const std::string& i_path);
@@ -35,7 +36,7 @@ private:
   std::string d_path;
   std::string d_circuitName;
   CircuitParameters d_circuitParameters;
-  Settings* d_settings = Settings::getInstance("GraphVertex");
+  std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
 
   bool checkExistingHash();
 

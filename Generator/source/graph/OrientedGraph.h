@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #include <map>
 
 #include "GraphVertex.h"
@@ -66,5 +67,5 @@ private:
   std::vector<std::vector<bool>> d_adjacencyMatrix;
   
   std::map<std::string, bool> d_error;
-  Settings* d_settings = Settings::getInstance("OrietedGraph");
+  std::shared_ptr<Settings> d_settings = Settings::getInstance("OrietedGraph");
 };

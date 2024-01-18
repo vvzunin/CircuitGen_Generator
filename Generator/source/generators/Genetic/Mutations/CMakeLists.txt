@@ -5,8 +5,5 @@ SET(GCC_COVERAGE_LINK_FLAGS    "-lgcov")
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-set (SOURCES
-  generators/Genetic/Mutations/MutationParameters.cpp
-)
-
-add_library(MutationParameters MutationParameters.cpp MutationParameters.h)
+add_library(MutationParameters SHARED MutationParameters.cpp MutationParameters.h)
+target_include_directories(MutationParameters PUBLIC ${CMAKE_SOURCE_DIR})

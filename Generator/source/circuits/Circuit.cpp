@@ -1,4 +1,5 @@
 #include <cmath>
+#include <mutex>
 #include <cstdio>
 #include <thread>
 #include <sstream>
@@ -573,16 +574,16 @@ bool Circuit::checkExistingHash() // TODO: is it really need return true when ha
   return false;
 }
 
-void Circuit::saveAdditionalStats(CommandWorkResult res) const {
+void Circuit::saveAdditionalStats(CommandWorkResult i_res, std::string i_optimizationName, bool i_lastData) const {
   std::ofstream outJson;
 
   outJson.open((d_path + "/" + d_circuitName + ".json"), std::ios_base::app);
 
-  outJson << "\t\"abcStatsBalanced\": {" << std::endl;
+  outJson << "\t\"abcStats" << i_optimizationName << "\": {" << std::endl;
 
-  if (res.correct) {
+  if (i_res.correct) {
     bool first = true;
-    for (const auto &data : res.commandsOutput)
+    for (const auto &data : i_res.commandsOutput)
     {
       if (first)
       {
@@ -597,12 +598,16 @@ void Circuit::saveAdditionalStats(CommandWorkResult res) const {
     outJson << std::endl;
   }
   else {
-    outJson << "\t\t" << "\"error\": \"" << res.commandsOutput["error"] << "\"\n";
+    outJson << "\t\t" << "\"error\": \"" << i_res.commandsOutput["error"] << "\"\n";
   }
 
-  outJson << "\t}" << std::endl << "}";
+  outJson << "\t}";
+  if (i_lastData)
+    outJson << std::endl << "}";
+  else
+    outJson << ',' << std::endl;
 
-  std::clog << d_circuitName << " reduce ended\n";
+  std::clog << d_circuitName << " " << i_optimizationName << " ended\n";
 }
 
 bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_generateAig, bool i_pathExists)
@@ -623,25 +628,39 @@ bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_gen
   
   if (i_generateAig)
   { 
-    CommandWorkResult res;
+    std::vector<CommandWorkResult> res;
+    std::mutex resWrite;
+
     // this lambda is used for writing reduced.json in thread
-    auto rewriteJson = [
+    auto saveOptimizationParameters = [
         path = this->d_path, 
         circuitName = this->d_circuitName,
         libraryName = i_libraryName,
         libraryPath = d_settings->getLibraryPath(),
-        &res
-      ] () {
-      res = AbcUtils::optimizeWithLib(
-        circuitName + ".v",
-        libraryName,
-        path,
-        libraryPath
-      );
+        &res,
+        &resWrite
+      ] (CommandWorkResult (*func)(std::string, std::string, std::string, std::string)) {
+        resWrite.lock();
+        res.push_back(func(
+          circuitName + ".v",
+          libraryName,
+          path,
+          libraryPath
+        ));
+        resWrite.unlock();
     };
 
-    std::thread generateAig(
-      rewriteJson
+    CommandWorkResult (*func)(std::string, std::string, std::string, std::string) = AbcUtils::optimizeWithLib;
+
+    std::thread optimize1(
+      saveOptimizationParameters,
+      func
+    );
+
+    func = AbcUtils::resyn2;
+    std::thread optimize2(
+      saveOptimizationParameters,
+      func
     );
 
     updateCircuitsParameters(i_getAbcStats, i_libraryName);
@@ -649,9 +668,26 @@ bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_gen
     if (!saveParameters(i_getAbcStats, i_generateAig))
       return false;
     
-    generateAig.join();
+    optimize1.join();
+    optimize2.join();
+    
+    CommandWorkResult last_res = res.back();
+    res.pop_back();
 
-    saveAdditionalStats(res);
+    for (auto subres : res) {
+      std::string optType = subres.commandsOutput["optimization_type"];
+      subres.commandsOutput.erase("optimization_type");
+
+      saveAdditionalStats(subres, optType, false);
+    }
+
+    // last iteration has no false key, so fo optimization
+    // (remove check is the element the last one)
+    // we move last cycle to here
+    std::string optType = last_res.commandsOutput["optimization_type"];
+    last_res.commandsOutput.erase("optimization_type");
+
+    saveAdditionalStats(last_res, optType);
   }
   else {
 

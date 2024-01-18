@@ -1,19 +1,20 @@
+#include <memory>
 #include <fstream>
 #include <iostream>
 #include <filesystem>
 
 #include "Settings.h"
 
-Settings* Settings::d_singleton= nullptr;;
+std::shared_ptr<Settings> Settings::d_singleton = nullptr;
 
-Settings* Settings::getInstance(const std::string& i_value)
+std::shared_ptr<Settings> Settings::getInstance(const std::string& i_value)
 {
     /**
      * This is a safer way to create an instance. instance = new Singleton is
      * dangeruous in case two instance threads wants to access at the same time
      */
     if(d_singleton==nullptr){
-        d_singleton = new Settings(i_value);
+        d_singleton.reset(new Settings(i_value));
         d_singleton->loadSettings();
     }
     return d_singleton;

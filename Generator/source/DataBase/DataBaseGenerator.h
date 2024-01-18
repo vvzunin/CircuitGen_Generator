@@ -3,22 +3,20 @@
 #include <functional>
 
 #include "DataBaseGeneratorParameters.h"
-#include "../Settings.h"
+#include <Settings.h>
 
 class DataBaseGenerator
 {
 public:
   DataBaseGenerator(const DataBaseGeneratorParameters& i_parameters):
-    d_parameters(i_parameters) 
-  {
-  };
+    d_parameters(i_parameters) {};
   void generateType(const DataBaseGeneratorParameters& i_gp,
                     bool parallel = true);
 
 
 private:
   std::string d_mainPath = ".";
-  Settings* d_settings = Settings::getInstance("DataBaseGenerator");
+  std::shared_ptr<Settings> d_settings = Settings::getInstance("DataBaseGenerator");
   DataBaseGeneratorParameters d_parameters; // why we need this var?
   int d_dirCount = 0;
 
