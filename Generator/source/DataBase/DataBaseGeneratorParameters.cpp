@@ -88,4 +88,6 @@ std::string DataBaseGeneratorParameters::getGenerationTypeString() const
       return "Multiplexer";
   if (d_generationTypes == GenerationTypes::Parity)
       return "Parity";
+  if (d_generationTypes == GenerationTypes::Decoder)
+      return "Decoder";
 }

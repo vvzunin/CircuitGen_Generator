@@ -32,5 +32,6 @@ private:
   void generateDataBaseMultiplier(const GenerationParameters& i_param);
   void generateDataBaseMultiplexer(const GenerationParameters& i_param);
   void generateDataBaseParity(const GenerationParameters& i_param);
+  void generateDataBaseDecoder(const GenerationParameters& i_param);
   std::function<void(const GenerationParameters&)> getGenerateMethod(const std::string& i_methodName);
 };
