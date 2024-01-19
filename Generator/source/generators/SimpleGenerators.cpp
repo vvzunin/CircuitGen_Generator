@@ -333,7 +333,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int i_bits, bool i_overflowIn,
 {
     OrientedGraph graph;
     if (i_overflowIn)
-        graph.addVertex("p0", "x_input");
+        graph.addVertex("x_p0", "input");
     if (act)
         graph.addVertex("1", "const");
     std::string pi;
@@ -365,7 +365,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int i_bits, bool i_overflowIn,
         graph.addVertex("(" + x + " and " + y + ")", "and", "andab" + S);
 
         std::string NextS = std::to_string(i + 1);
-        pi = "p" + S;
+        pi = "x_p" + S;
         graph.addVertex("(" + x + " and " + pi + ")", "and", "anda" + pi);
         graph.addVertex("(" + y + " and " + pi + ")", "and", "andb" + pi);
 
@@ -373,25 +373,25 @@ OrientedGraph SimpleGenerators::generatorSummator(int i_bits, bool i_overflowIn,
         graph.addDoubleEdge(x, pi, "anda" + pi, false);
         graph.addDoubleEdge(y, pi, "andb" + pi, false);
 
-        graph.addVertex("((andab" + S + ")" + " or " + "(anda" + pi + ")" + " or " + "(andb" + pi + "))", "or", "p" + NextS);
-        graph.addEdge("andab" + S, "p" + NextS, false);
-        graph.addEdge("anda" + pi, "p" + NextS, false);
-        graph.addEdge("andb" + pi, "p" + NextS, false);
+        graph.addVertex("((andab" + S + ")" + " or " + "(anda" + pi + ")" + " or " + "(andb" + pi + "))", "or", "x_p" + NextS);
+        graph.addEdge("andab" + S, "x_p" + NextS, false);
+        graph.addEdge("anda" + pi, "x_p" + NextS, false);
+        graph.addEdge("andb" + pi, "x_p" + NextS, false);
         if (i_overflowOut && i + 1 == i_bits)
         {
             if (act)
             {
-                graph.addVertex("(1 and p" + NextS + ")", "and", z + "and1_" + NextS);
-                graph.addDoubleEdge("1", "p" + NextS, z + "and1_" + NextS, false);
+                graph.addVertex("(1 and x_p" + NextS + ")", "and", z + "and1_" + NextS);
+                graph.addDoubleEdge("1", "x_p" + NextS, z + "and1_" + NextS, false);
             }
             else
             {
                 graph.addVertex(z + std::to_string(i_bits), "output");
-                graph.addEdge("p" + NextS, z + std::to_string(i_bits), false);
+                graph.addEdge("x_p" + NextS, z + std::to_string(i_bits), false);
             }
         }
-        graph.addVertex("not (p" + NextS + ")", "not", "np" + NextS);
-        graph.addEdge("p" + NextS, "np" + NextS, false);
+        graph.addVertex("not (x_p" + NextS + ")", "not", "np" + NextS);
+        graph.addEdge("x_p" + NextS, "np" + NextS, false);
 
         graph.addVertex("(" + x + " or " + y + " or " + pi + ")", "or", "abpor" + S);
         graph.addEdge(x, "abpor" + S, false);
@@ -430,8 +430,8 @@ OrientedGraph SimpleGenerators::generatorСomparison(int i_bits, bool i_compare0
     std::string cond = std::string(i_compare0 ? "t" : "f") + (i_compare1 ? "t" : "f") + (i_compare2 ? "t" : "f");
     for (int i = i_bits - 1; i >= 0; i--)
     {
-        std::string C = std::to_string(i);
-        std::string NextC = std::to_string(i - 1);
+        std::string C = "x_" + std::to_string(i);
+        std::string NextC = "x_" + std::to_string(i - 1);
         std::string x = "coma" + cond + C;
         std::string y = "comb" + cond + C;
         if (i == 0)
@@ -521,9 +521,9 @@ OrientedGraph SimpleGenerators::generatorСomparison(int i_bits, bool i_compare0
                 graph.addEdge("p1_" + C, "np1_" + C, false);
                 graph.addEdge("p1_" + NextC, "np1_" + NextC, false);
                 graph.addVertex("(np1_" + C + " and p1_" + NextC + ")", "and", "P11_" + C);
-                graph.addDoubleEdge("np1_" + C, "p1_" + NextC, "P11_", false);
+                graph.addDoubleEdge("np1_" + C, "p1_" + NextC, "P11_" + C, false);
                 graph.addVertex("(p1_" + C + " and np1_" + NextC + ")", "and", "P12_" + C);
-                graph.addDoubleEdge("p1_" + C, "np1_" + NextC, "P12_", false);
+                graph.addDoubleEdge("p1_" + C, "np1_" + NextC, "P12_" + C, false);
                 graph.addVertex("(P11_" + C + " or P12_" + C + ")", "or", "pE1_" + C);
                 graph.addDoubleEdge("P11_" + C, "P12_" + C, "pE1_" + C, false);
                 if (act)
@@ -569,9 +569,9 @@ OrientedGraph SimpleGenerators::generatorСomparison(int i_bits, bool i_compare0
                 graph.addEdge("p2_" + C, "np2_" + C, false);
                 graph.addEdge("p2_" + NextC, "np2_" + NextC, false);
                 graph.addVertex("(np2_" + C + " and p2_" + NextC + ")", "and", "P21_" + C);
-                graph.addDoubleEdge("np2_" + C, "p2_" + NextC, "P21_", false);
+                graph.addDoubleEdge("np2_" + C, "p2_" + NextC, "P21_" + C, false);
                 graph.addVertex("(p2_" + C + " and np2_" + NextC + ")", "and", "P22_" + C);
-                graph.addDoubleEdge("p2_" + C, "np2_" + NextC, "P22_", false);
+                graph.addDoubleEdge("p2_" + C, "np2_" + NextC, "P22_" + C, false);
                 graph.addVertex("(P21_" + C + " or P22_" + C + ")", "or", "pE2_" + C);
                 graph.addDoubleEdge("P21_" + C, "P22_" + C, "pE2_" + C, false);
                 if (act)
@@ -665,8 +665,8 @@ OrientedGraph SimpleGenerators::generatorMultiplexer(int i_bits, std::string T)
     if (i_bits > 1) {
         for (int p = 0; p <= k - 1; p++) {
             S[p] = std::to_string(p);
-            graph.addVertex("a" + T + "_" + S[p], "input");
-            graph.addVertex("not (a" + T + "_" + S[p] + ")", "not", "na" + T + "_" + S[p]);
+            graph.addVertex("x_a" + T + "_" + S[p], "input");
+            graph.addVertex("not (x_a" + T + "_" + S[p] + ")", "not", "na" + T + "_" + S[p]);
             graph.addEdge("a" + T + "_" + S[p], "na" + T + "_" + S[p], false);
         }
 
@@ -682,7 +682,7 @@ OrientedGraph SimpleGenerators::generatorMultiplexer(int i_bits, std::string T)
                 } else {
                     char u = F[i][len - w - 1];
                     if (u == '1') {
-                        X[i] = K[i] + " and a" + T + "_" + S[w];
+                        X[i] = K[i] + " and x_a" + T + "_" + S[w];
                     } else {
                         X[i] = K[i] + " and na" + T + "_" + S[w];
                     }
@@ -704,14 +704,14 @@ OrientedGraph SimpleGenerators::generatorMultiplexer(int i_bits, std::string T)
             int len = F[i].length();
             for (int w = 0; w <= k - 1; w++) {
                 if (F[i].length() < w + 1) {
-                    graph.addEdge("a" + T + "_" + S[w], "na" + T + "_" + S[w], false);
+                    graph.addEdge("x_a" + T + "_" + S[w], "na" + T + "_" + S[w], false);
                     graph.addEdge("na" + T + "_" + S[w], K[i] + " and x" + T + "_" + Z[i], false);
                 } else {
                     char u = F[i][len - w - 1];
                     if (u == '1') {
-                        graph.addEdge("a" + T + "_" + S[w], K[i] + " and x" + T + "_" + Z[i], false);
+                        graph.addEdge("x_a" + T + "_" + S[w], K[i] + " and x" + T + "_" + Z[i], false);
                     } else {
-                        graph.addEdge(" a" + T + "_" + S[w], "na" + T + "_" + S[w], false);
+                        graph.addEdge("x_a" + T + "_" + S[w], "na" + T + "_" + S[w], false);
                         graph.addEdge("na" + T + "_" + S[w], K[i] + " and x" + T + "_" + Z[i], false);
                     }
                 }
