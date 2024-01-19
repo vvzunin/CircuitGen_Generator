@@ -24,3 +24,4 @@ result_dataset/
 */*/.vscode
 .idea/*
 build
+abc/*

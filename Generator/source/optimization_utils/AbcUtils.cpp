@@ -36,6 +36,9 @@ CommandWorkResult AbcUtils::standartExecutor(
     char out[40];
     bool correct = true;
 
+    if (i_command.find("2>&1") == std::string::npos)
+        i_command += " 2>&1";
+
     // executing i_command with own read stream
     abcOutput = popen(i_command.c_str(), "r");
 
@@ -117,9 +120,16 @@ CommandWorkResult AbcUtils::standartExecutor(
         }
     }
     else {
-        std::cout << "Something went wrong during files parsing in " << d_className << '\n';
+        std::string errText = "Something went wrong during files parsing in " + d_className + ":\n";
+        errText += result;
+
+        std::cerr << errText;
+        workResult.commandsOutput.clear();
+        workResult.commandsOutput["error"] = errText;
+            
         correct = false;
     }
+
     workResult.correct = correct;
 
     return workResult;

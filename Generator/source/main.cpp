@@ -1,26 +1,30 @@
-#include <iostream>
-#include <filesystem>
-#include <fstream>
 #include <map>
+#include <chrono>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <iostream>
 #include <algorithm>
-
-#include <nlohmann/json.hpp>
+#include <filesystem>
 
 #include <unistd.h>
 #include <getopt.h>
 
+#include <nlohmann/json.hpp>
+
+#include <AuxiliaryMethods.h>
 #include <DataBase/DataBaseGenerator.h>
-#include <DataBase/DataBaseGeneratorParameters.h>
 #include <generators/GenerationParameters.h>
-#include "AuxiliaryMethods.h"
+#include <DataBase/DataBaseGeneratorParameters.h>
+
+using namespace std::chrono;
 
 void runGenerationFromJson(std::string json_path);
 
 int main(int argc, char **argv)
 {
   std::string json_path;
+  // std::string json_path = "../Generator/docs/sample.json";
   // Use getopt to parse command line arguments
 
   const char *const short_opts = "j:n:";
@@ -202,6 +206,12 @@ void runGenerationFromJson(std::string json_path)
 
     DataBaseGenerator generator(dbgp);
 
-    generator.generateType(dbgp, false);
+    auto start = high_resolution_clock::now();
+
+    generator.generateType(dbgp, data.contains("multithread") ? (bool) data["multithread"] : false);
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    std::clog << "Time taken: " << duration.count() << " microseconds" << std::endl;
   }
 }

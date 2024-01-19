@@ -1,3 +1,5 @@
+#include <thread>
+#include <vector>
 #include <iostream>
 #include <filesystem>
 
@@ -11,7 +13,6 @@
 #include <FilesTools.h>
 
 #include "DataBaseGenerator.h"
-
 
 void DataBaseGenerator::generateType(
   const DataBaseGeneratorParameters& i_dbgp,
@@ -64,7 +65,28 @@ void DataBaseGenerator::generateType(
 
       if (parallel)
       {
-        exit(1); //TODO: write to multithreading
+        
+        // exit(1); //TODO: write to threadpool
+
+        // vector of threads with generators
+        std::vector<std::thread> allGenerators(i_dbgp.getEachIteration());
+        
+        for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt)
+        {
+          d_parameters.setIteration(tt);
+          d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount));
+          
+          allGenerators.emplace_back(
+            generator,
+            d_parameters.getGenerationParameters()
+          );
+          d_dirCount++;
+        }
+
+        for (std::thread &gen : allGenerators) {
+          if (gen.joinable())
+            gen.join();
+        }
       }
       else
       {
@@ -73,14 +95,9 @@ void DataBaseGenerator::generateType(
           //TODO: it is that Rustam told about iteration?
           d_parameters.setIteration(tt);
           d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount));
-	  //std::cout << "d_parameters.getGenerationParameters().getName() returned: " << d_parameters.getGenerationParameters().getName() << "	when tt == " << tt << std::endl;
-	  //std::cout << "d_parameters.getGenerationParameters().getInputs() returned: " << d_parameters.getGenerationParameters().getInputs() << "	when tt == " << tt << std::endl;
-	  //std::cout << "d_parameters.getGenerationParameters().getOutputs() returned: " << d_parameters.getGenerationParameters().getOutputs() << "	when tt == " << tt << std::endl;
-	  //std::cout << "d_parameters.getGenerationParameters().getOutputs() returned: " << d_parameters.getGenerationParameters().getOutputs() << "	when tt == " << tt << std::endl;
-	  //std::cout << "d_parameters.getGenerationParameters().getRequestId() returned: " << d_parameters.getGenerationParameters().getRequestId() << "		when tt == " << tt << std::endl;
-	  //std::cout << "d_parameters.getGenerationParameters().getIteration() returned: " << d_parameters.getGenerationParameters().getIteration() << "		when tt == " << tt << std::endl;
-	  generator(d_parameters.getGenerationParameters());
-      d_dirCount++;
+          
+          generator(d_parameters.getGenerationParameters());
+          d_dirCount++;
         }
       }
     }

@@ -10,6 +10,7 @@
     "repeat_n": 2,
     "CNFF": false,
     "CNFT": true,
+    "multithread": false,
     "calculate_stats_abc": true,
     "make_optimized_files": true,
     "library_name": "sky130",
