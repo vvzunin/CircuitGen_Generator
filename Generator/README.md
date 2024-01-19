@@ -3,6 +3,7 @@
 <font size="5">**Content**:</font>
 <a name="content_rus"></a> 
 - [Генератор комбинационных схем](#generator_rus)
+    - [Добавление нового генератора](#generator_add_rus)
     - [Сборка программы](#generator_build_rus)
     - [Запуск одного json файла с информацией](#generator_run_one_json_rus)
     - [JSON файлы](#JSON_files)
@@ -17,6 +18,21 @@
 
 ## Генератор комбинационных схем
 <a name="generator_rus"></a> 
+
+### Добавление нового генератора
+<a name="generator_add_rus"></a> 
+
+Для добавления новых генераторов необходимо внести корректировки в следующие файлы:
+#### 1.  [DataBaseGeneratorParameters.h](source/DataBase/DataBaseGeneratorParameters.h)
+В файле необходимо отредактировать перечисление типа **GenerationTypes**, добавив в него название генератора. В качестве примера назавем его **NewGeneratorName**.
+#### 2.  [GeneratorParametrs.h](source/generators/GenerationParameters.h)
+В файле необходимо создать новый класс, в который нужно будет добавить дополнительные параметры для использования нового генератора. Название класса должно соответствовать требованию: **Generator** + <имя генератор> + **Parameters**. Используя генератор из примера класс должен назвываться так: **GeneratorNewGeneratorNameParameters**.
+[!IMPORTANT]
+Не нужно добавлять параметры, для количества входов и выходов схемы. Вся информация о них находится в классе **GenerationParameters** в этом же файле.
+
+
+[&#8593; Contents](#content_rus)
+
 ### Сборка программы
 <a name="generator_build_rus"></a> 
 Для сборки программы необходимо выполнить следующую команду из начальной директории:
