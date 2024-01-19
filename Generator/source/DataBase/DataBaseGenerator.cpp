@@ -143,7 +143,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
 {
   SimpleGenerators generator;
   std::vector<std::pair<std::string, OrientedGraph>> circs;
-  circs.push_back({"RandLevel", 
+  circs.push_back({"NumOperation", 
                   generator.generatorNumOperation(
                     i_param.getInputs(),
                     i_param.getOutputs(),
