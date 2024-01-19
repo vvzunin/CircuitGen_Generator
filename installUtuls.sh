@@ -40,25 +40,28 @@ if ! command -v abc &> /dev/null
 then
     echo "abc could not be found, installing"
 
-    #if it's ubuntu
-    lib = libreadline-dev
-    case $pckaheName in
-        yum)
-            lib = "readline-devel"
-        ;;
-        *)
-            lib = "libreadline-dev"
-        ;;
-    esac
-
-    sudo $packageName install -y $lib
     if [ $packageName == "yum" || $packageName == "dnf" ]
     then 
         sudo $packageName -y install abc
+    
     elif command -v berkeley-abc &> /dev/null
+    then
         sudo echo "alias abc=berkeley-abc" >> ~/.bashrc
         source ~/.bashrc
     else
+        #if it's ubuntu
+        lib = libreadline-dev
+        case $pckaheName in
+            pacman)
+                lib = "libreadline-devel"
+            ;;
+            *)
+                lib = "libreadline-dev"
+            ;;
+        esac
+
+        sudo $packageName install -y $lib
+
         mkdir abc
         git clone https://github.com/berkeley-abc/abc.git abc
         cd abc/
