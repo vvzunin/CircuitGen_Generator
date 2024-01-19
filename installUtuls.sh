@@ -52,19 +52,26 @@ then
     esac
 
     sudo $packageName install -y $lib
+    if [ $packageName == "yum" || $packageName == "dnf" ]
+    then 
+        sudo $packageName -y install abc
+    elif command -v berkeley-abc &> /dev/null
+        sudo echo "alias abc=berkeley-abc" >> ~/.bashrc
+        source ~/.bashrc
+    else
+        mkdir abc
+        git clone https://github.com/berkeley-abc/abc.git abc
+        cd abc/
+        make
 
-    mkdir abc
-    git clone https://github.com/berkeley-abc/abc.git abc
-    cd abc/
-    make
+        path=$(get_abs_filename "abc")
 
-    path=$(get_abs_filename "abc")
+        chmod +x $path
 
-    chmod +x $path
-
-    sudo echo "alias abc=\"$path\"" >> ~/.bashrc
-    source ~/.bashrc
-    cd ..
+        sudo echo "alias abc=\"$path\"" >> ~/.bashrc
+        source ~/.bashrc
+        cd ..
+    fi
 else 
     echo "abc is already installed"
 fi
