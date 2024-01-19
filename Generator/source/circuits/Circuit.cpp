@@ -640,13 +640,15 @@ bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_gen
         &res,
         &resWrite
       ] (CommandWorkResult (*func)(std::string, std::string, std::string, std::string)) {
-        resWrite.lock();
-        res.push_back(func(
+        CommandWorkResult r = func(
           circuitName + ".v",
           libraryName,
           path,
           libraryPath
-        ));
+        );
+
+        resWrite.lock();
+        res.push_back(r);
         resWrite.unlock();
     };
 
