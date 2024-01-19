@@ -120,6 +120,11 @@ class GeneratorEncoderParameters
 
 };
 
+class GeneratorDecoderParameters
+{
+
+};
+
 class GenerationParameters
 {
 public:
@@ -195,6 +200,7 @@ public:
   GeneratorComparisonParameters getComparison() const {return d_generatorComparisonParameters; }
   GeneratorEncoderParameters getEncoder() const { return d_generatorEncoderParameters; }
   GeneticParameters getGenetic() const { return d_geneticParameters; }
+  GeneratorDecoderParameters getDecoder() const { return d_generatorDecoderParameters; }
   void setCNFF(bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
   void setCNFT(bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
   void setLimit(bool i_limit){ d_cnfFromTruthTableParameters.setLimit(i_limit); }
@@ -234,5 +240,6 @@ private:
   GeneratorSummatorParameters d_generatorSummatorParameters;
   GeneratorComparisonParameters d_generatorComparisonParameters;
   GeneratorEncoderParameters d_generatorEncoderParameters;
+  GeneratorDecoderParameters d_generatorDecoderParameters;
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };
