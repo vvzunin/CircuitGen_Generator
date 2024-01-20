@@ -12,28 +12,25 @@ Using it, it is possible to read verlog file,
 make opt and to write file into verilog
 */
 
+class YosysUtils
+{
+public:
+    static CommandWorkResult optVerilog(
+        std::string i_inputFileName,
+        std::string i_outputFileName);
+    static CommandWorkResult optVerilog(
+        std::string i_inputFileName,
+        std::string i_outputFileName,
+        std::string i_directory);
 
-class YosysUtils {
-    public:
-        static CommandWorkResult optVerilog(
-            std::string i_inputFileName,
-            std::string i_outputFileName
-        );
-        static CommandWorkResult optVerilog(
-            std::string i_inputFileName,
-            std::string i_outputFileName, 
-            std::string i_directory
-        );
+    // IMPORTANT parseAll here is TRUE
+    static std::vector<StandartCommandInfo> parseCommand(
+        std::string i_command);
 
-        // IMPORTANT parseAll here is TRUE
-        static std::vector<StandartCommandInfo> parseCommand(
-            std::string i_command
-        );
-    protected:
-        static CommandWorkResult standartExecutor(
-            std::string i_command,
-            std::vector<StandartCommandInfo> i_info
-        );
+protected:
+    static CommandWorkResult standartExecutor(
+        std::string i_command,
+        std::vector<StandartCommandInfo> i_info);
 };
 
 #endif

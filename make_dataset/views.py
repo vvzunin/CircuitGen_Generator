@@ -47,7 +47,7 @@ def add_dataset(request):
     print("upload_to_synology is finished")
 
     # удалить локальную папку с датасетом
-    delete_folders(dataset_id)
+    # delete_folders(dataset_id)
     print("delete_folders is finished")
 
     print("add_dataset is finished")
