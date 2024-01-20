@@ -171,11 +171,11 @@ void runGenerationFromJson(std::string json_path)
                 m.insert({el.key().substr(4, 10), el.value()});
         }
 
-        std::map<std::string, std::vector<int>> gatesInfo;
+        std::map<std::string, std::vector<int>> gatesInputsInfo;
 
-        if (data.contains("gates_number"))
+        if (data.contains("gates_inputs_info"))
         {
-            for (auto gate : data["gates_number"].items())
+            for (auto gate : data["gates_inputs_info"].items())
             {
                 std::vector<int> gatesNumber = static_cast<std::vector<int>>(gate.value());
 
@@ -183,18 +183,18 @@ void runGenerationFromJson(std::string json_path)
                 if (!(int)gatesNumber.size())
                     gatesNumber.push_back(2);
 
-                gatesInfo[gate.key()] = gatesNumber;
+                gatesInputsInfo[gate.key()] = gatesNumber;
             }
         }
         else
         {
             // default init data
-            gatesInfo["and"] = {2};
-            gatesInfo["nand"] = {2};
-            gatesInfo["or"] = {2};
-            gatesInfo["nor"] = {2};
-            gatesInfo["xor"] = {2};
-            gatesInfo["xnor"] = {2};
+            gatesInputsInfo["and"] = {2};
+            gatesInputsInfo["nand"] = {2};
+            gatesInputsInfo["or"] = {2};
+            gatesInputsInfo["nor"] = {2};
+            gatesInputsInfo["xor"] = {2};
+            gatesInputsInfo["xnor"] = {2};
         }
 
         // JSON params = JSON::Read("params.json");
@@ -213,6 +213,8 @@ void runGenerationFromJson(std::string json_path)
             calculateStatsAbc,
             makeOptimizedFiles
         );
+
+        gp.setGatesInputInfo(gatesInputsInfo);
 
         gp.setName(datasetId);
         gp.setCNFF(CNFF);

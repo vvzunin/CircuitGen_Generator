@@ -1,7 +1,8 @@
 #pragma once
 
-#include <string>
 #include <map>
+#include <vector>
+#include <string>
 
 #include "./Genetic/GeneticParameters.h"
 
@@ -120,15 +121,16 @@ public:
         int i_maxElements,
         std::string i_libraryName = "",
         bool i_calculateStatsAbc = false,
-        bool i_makeOptimizedFiles = false) : d_name(i_name),
-                                             d_requestId(i_requestId),
-                                             d_inputs(i_inputs),
-                                             d_outputs(i_outputs),
-                                             d_iteration(i_iteration),
-                                             d_libraryName(i_libraryName),
-                                             d_calculateStatsAbc(i_calculateStatsAbc),
-                                             d_makeOptimizedFiles(i_makeOptimizedFiles),
-                                             d_geneticParameters(GeneticParameters(d_inputs, d_outputs))
+        bool i_makeOptimizedFiles = false
+                        ) : d_name(i_name),
+                            d_requestId(i_requestId),
+                            d_inputs(i_inputs),
+                            d_outputs(i_outputs),
+                            d_iteration(i_iteration),
+                            d_libraryName(i_libraryName),
+                            d_calculateStatsAbc(i_calculateStatsAbc),
+                            d_makeOptimizedFiles(i_makeOptimizedFiles),
+                            d_geneticParameters(GeneticParameters(d_inputs, d_outputs))
     {
         d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
         d_generatorRandLevelParameters.setMaxElements(i_maxElements);
@@ -209,6 +211,16 @@ public:
         d_makeOptimizedFiles = i_makeOptimizedFiles;
     }
 
+    std::map<std::string, std::vector<int>> getGatesInputsInfo() const 
+    {
+        return d_gatesInputsInfo;
+    }
+
+    void setGatesInputInfo(std::map<std::string, std::vector<int>> i_gatesInputsInfo) 
+    {
+        d_gatesInputsInfo = i_gatesInputsInfo;
+    } 
+
     CNNFromTruthTableParameters getCNF() const { return d_cnfFromTruthTableParameters; }
     GeneratorRandLevelParameters getRandLevel() const { return d_generatorRandLevelParameters; }
     GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; }
@@ -240,6 +252,7 @@ private:
     int d_iteration = 0;
     bool d_calculateStatsAbc;
     bool d_makeOptimizedFiles;
+    std::map<std::string, std::vector<int>> d_gatesInputsInfo;
 
     CNNFromTruthTableParameters d_cnfFromTruthTableParameters;
     GeneratorRandLevelParameters d_generatorRandLevelParameters;

@@ -42,7 +42,7 @@
     "ratio_in_table": 1.0,
     "selection_type": "Base",
     "surv_num": 1,
-    "gates_number": {
+    "gates_inputs_info": {
       "and": [2],
       "nand": [2],
       "or": [2],
