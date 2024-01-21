@@ -55,17 +55,21 @@ const MainPage = () => {
 		.then(({data}) => {setProgress(data)})
 		.catch(e => {console.log(e)});
 	}
+
 	
 	React.useEffect(() => {
 		let interval;
 		if (isUpdating) {
-		  interval = setInterval(() => {
-			getProgress();
-			getDatasets();
-		  }, 1000); }
+			interval = setInterval(() => {
+				getProgress();
+				getDatasets();
+		  	}, 1000);
+		} else {
+			clearInterval(interval);
+			setIsUpdating(false);
+		}
 		return () => {clearInterval(interval);};
-	  }, [isUpdating]);
-
+	}, [isUpdating]);
 	
 	const getDatasets = () => {
 		axios.get('http://127.0.0.1:8000/api/datasets/')
@@ -170,9 +174,15 @@ const MainPage = () => {
 								// const currentProgress = findObjectById(progress, item.id);
 								const currentProgress = progress[item.id];
 								if (item.parameters_of_generation && (item.parameters_of_generation.length > 0)) {
-									return (
-										<DatasetItem getDatasets={getDatasets} ready={item.ready} id={item.id} parameters={item.parameters_of_generation} currentProgress={currentProgress} isUpdating={isUpdating} setIsUpdating={setIsUpdating}/>
-									);
+									return <DatasetItem 
+										getDatasets={getDatasets} 
+										ready={item.ready} 
+										id={item.id} 
+										parameters={item.parameters_of_generation} 
+										currentProgress={currentProgress} 
+										isUpdating={isUpdating} 
+										setIsUpdating={setIsUpdating}
+									/>
 								} else {
 									return null;
 								}
