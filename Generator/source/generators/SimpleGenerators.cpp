@@ -4,8 +4,8 @@
 #include <math.h>
 
 #include "SimpleGenerators.h"
-#include "../graph/OrientedGraph.h"
-#include "../AuxiliaryMethods.h"
+#include <graph/OrientedGraph.h>
+#include <AuxiliaryMethods.h>
 
 namespace {
   int maxValueInMap(const std::map<std::string, int>& i_map)

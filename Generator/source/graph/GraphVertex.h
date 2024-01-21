@@ -1,8 +1,9 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
-#include "../Settings.h"
+#include <Settings.h>
 
 class GraphVertex {
 public:
@@ -30,5 +31,5 @@ private:
   std::string d_wireName = "";
   static int d_count;
   
-  Settings* d_settings = Settings::getInstance("GraphVertex");
+  std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
 };

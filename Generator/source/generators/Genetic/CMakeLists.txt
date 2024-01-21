@@ -10,8 +10,5 @@ add_subdirectory(Mutations)
 add_subdirectory(Selections)
 add_subdirectory(Recombination)
 
-set (SOURCES
-  generators/Genetic/GeneticParameters.cpp
-)
-
-add_library(GeneticParameters GeneticParameters.cpp GeneticParameters.h)
+add_library(GeneticParameters SHARED GeneticParameters.cpp GeneticParameters.h)
+target_include_directories(GeneticParameters PUBLIC ${CMAKE_SOURCE_DIR})

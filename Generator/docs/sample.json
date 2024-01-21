@@ -1,8 +1,9 @@
 [
   {
+    "seed": 2,
     "dataset_id": "0",
     "id": 0,
-    "type_of_generation": "Truth Table",
+    "type_of_generation": "From Random Truth Table",
     "min_in": 4,
     "max_in": 5,
     "min_out": 4,
@@ -10,6 +11,9 @@
     "repeat_n": 2,
     "CNFF": false,
     "CNFT": true,
+    "calculate_stats_abc": true,
+    "make_optimized_files": true,
+    "library_name": "sky130",
     "max_level": 1,
     "max_elem": 1,
     "leave_empty_out": true,

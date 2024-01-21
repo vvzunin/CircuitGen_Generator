@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 #include <map>
 #include <utility>
 #include <vector>
@@ -11,13 +12,17 @@ enum generationTypes {
   truthTableToGraphWithOptimization
 };
 
+enum LibrariesTypes {
+  SKY_LIB
+};
+
 class Settings {
 protected:
   Settings(const std::string& i_path): d_path(i_path){}
 public:
   Settings(Settings &other) = delete;
   void operator=(const Settings &) = delete;
-  static Settings* getInstance(const std::string& i_value);
+  static std::shared_ptr<Settings> getInstance(const std::string& i_value);
   void loadSettings();
   std::string getInstanceName() const;
   std::pair<std::string, int> getLogicOperation(const std::string& i_op);
@@ -25,6 +30,8 @@ public:
   std::string fromOperationsToName(const std::string& i_op) const;
   std::string getDatasetPath() const;
   std::string getGenerationMethodPrefix(const std::string& i_s) const;
+  std::string getLibraryPath() const;
+  std::string getLibraryNameFromEnum(const LibrariesTypes &library) const;
   int getMaxInputs() const;
   int getMaxOutputs() const;
   std::map<std::string, std::pair<std::string, int>> getLogicOperations() const;
@@ -36,11 +43,12 @@ private:
   void SaveSettings();
 
   std::string d_name;
-  static Settings* d_singleton;
+  static std::shared_ptr<Settings> d_singleton;
   std::string d_path;
   std::string d_csvdataset = "dataset.csv";
   std::string d_fileName = "settings.dat";
   std::string d_datasetPath = "./dataset";
+  std::string d_libraryPath = "Generator/libs";
   //Settings d_instance;
   std::string d_pathToNadezhda = "./Generator/source/data/Nadezhda";
   std::map<std::string, std::string> d_nadezhda = {

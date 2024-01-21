@@ -1,8 +1,9 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
-#include "../Settings.h"
+#include <Settings.h>
 #include "./Genetic/GeneticParameters.h"
 #include "./Genetic/Chronosome.h"
 
@@ -30,5 +31,5 @@ private:
   int d_output;
   int d_size;
   std::vector<std::vector<bool>> d_array;
-  Settings* d_settings = Settings::getInstance("TruthTable");
+  std::shared_ptr<Settings> d_settings = Settings::getInstance("TruthTable");
 };

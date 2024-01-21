@@ -1,5 +1,6 @@
 #include <vector>
 #include <ctime>
+#include <memory>
 
 #include "TruthTable.h"
 #include "../AuxiliaryMethods.h"

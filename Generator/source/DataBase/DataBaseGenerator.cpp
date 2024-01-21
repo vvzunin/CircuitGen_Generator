@@ -1,14 +1,15 @@
 #include <iostream>
 #include <filesystem>
 
-#include "../generators/TruthTable.h"
-#include "../generators/Genetic/GeneticParameters.h"
-#include "../generators/SimpleGenerators.h"
-#include "../generators/Parser.h"
-#include "../generators/Genetic/GenGenerator.h"
-#include "../circuits/CircuitsParameters.h"
-#include "../circuits/Circuit.h"
-#include "../FilesTools.h"
+#include <generators/TruthTable.h>
+#include <generators/Genetic/GeneticParameters.h>
+#include <generators/SimpleGenerators.h>
+#include <generators/Parser.h>
+#include <generators/Genetic/GenGenerator.h>
+#include <circuits/CircuitsParameters.h>
+#include <circuits/Circuit.h>
+#include <FilesTools.h>
+
 #include "DataBaseGenerator.h"
 
 
@@ -113,7 +114,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
     c.setTable(tt);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName() + "_" + name);
-    c.generate();
+    c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
   }
 }
 
@@ -134,7 +135,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters& i_
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate();
+    c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
   }
 }
 
@@ -142,7 +143,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
 {
   SimpleGenerators generator;
   std::vector<std::pair<std::string, OrientedGraph>> circs;
-  circs.push_back({"RandLevel", 
+  circs.push_back({"NumOperation", 
                   generator.generatorNumOperation(
                     i_param.getInputs(),
                     i_param.getOutputs(),
@@ -156,7 +157,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate();
+    c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
   }
   // TODO: remake all generates to return value and call graphToVerilog
 }
@@ -182,7 +183,7 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param) 
     Circuit c (graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate();
+    c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
 }
 
 void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i_param)
@@ -196,7 +197,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate();
+  c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
 }
 
  void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_param)
@@ -207,7 +208,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate();
+    c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
 
 }
 

@@ -1,6 +1,8 @@
 #pragma once
 
-#include "../graph/OrientedGraph.h"
+#include <memory>
+
+#include <graph/OrientedGraph.h>
 #include "./TruthTable.h"
 
 class SimpleGenerators
@@ -19,7 +21,7 @@ public:
   OrientedGraph generatorСomparison(int bits, bool compare0, bool compare1, bool compare2, bool act = false);
   OrientedGraph generatorEncoder(int bits);
 private:
-  Settings* d_settings = Settings::getInstance("GraphVertex");
+  std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
   std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);
   std::string randomGenerator(const std::map<std::string, int>& i_map);
 ;};

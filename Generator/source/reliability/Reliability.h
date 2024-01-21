@@ -2,8 +2,9 @@
 
 #include <map>
 #include <string>
+#include <memory>
 
-#include "../graph/OrientedGraph.h"
+#include <graph/OrientedGraph.h>
 
 class Reliability
 {
@@ -24,5 +25,5 @@ public:
 private:
   OrientedGraph d_graph;
   double d_p;
-  Settings* d_settings = Settings::getInstance("GraphVertex");
+  std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
 };
