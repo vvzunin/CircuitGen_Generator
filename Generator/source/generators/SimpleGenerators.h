@@ -1,6 +1,8 @@
 #pragma once
 
+#include <map>
 #include <memory>
+#include <vector>
 
 #include <graph/OrientedGraph.h>
 #include "./TruthTable.h"
@@ -20,9 +22,24 @@ public:
     OrientedGraph generatorСomparison(int bits, bool compare0, bool compare1, bool compare2, bool act = false);
     OrientedGraph generatorEncoder(int bits);
 
+    void setGatesInputsInfo(const std::map<std::string, std::vector<int>> &i_info) {
+        d_gatesInputsInfo = i_info;
+    }
+
+    std::map<std::string, std::vector<int>> getGatesInputsInfo() const {
+        return d_gatesInputsInfo;
+    }
 private:
     std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
     std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);
     std::string randomGenerator(const std::map<std::string, int> &i_map);
-    ;
+
+    int getRangomAndNumber() const;
+    int getRangomOrNumber() const;
+    int getRangomNandNumber() const;
+    int getRangomNorNumber() const;
+    int getRangomXorNumber() const;
+    int getRangomXnorNumber() const;
+
+    std::map<std::string, std::vector<int>> d_gatesInputsInfo;
 };

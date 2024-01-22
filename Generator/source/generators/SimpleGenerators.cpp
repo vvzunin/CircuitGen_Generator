@@ -27,10 +27,47 @@ namespace
 
 SimpleGenerators::SimpleGenerators() {}
 
+int SimpleGenerators::getRangomAndNumber() const
+{
+    return d_gatesInputsInfo.at("and")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("and").size())];
+}
+
+int SimpleGenerators::getRangomOrNumber() const
+{
+    return d_gatesInputsInfo.at("or")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("or").size())];
+}
+
+int SimpleGenerators::getRangomNandNumber() const
+{
+    return d_gatesInputsInfo.at("nand")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("nand").size())];
+}
+
+int SimpleGenerators::getRangomNorNumber() const
+{
+    return d_gatesInputsInfo.at("nor")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("nor").size())];
+}
+
+int SimpleGenerators::getRangomXorNumber() const
+{
+    return d_gatesInputsInfo.at("xor")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("xor").size())];
+}
+
+int SimpleGenerators::getRangomXnorNumber() const
+{
+    return d_gatesInputsInfo.at("xnor")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("xnor").size())];
+}
+
 std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
     const TruthTable &i_table,
     bool i_tp)
 {
+    // std::clog << getRangomAndNumber() << " ";
+    // std::clog << getRangomNandNumber() << " ";
+    // std::clog << getRangomOrNumber() << " ";
+    // std::clog << getRangomNorNumber() << " ";
+    // std::clog << getRangomXorNumber() << " ";
+    // std::clog << getRangomXnorNumber() << std::endl;
+
     std::vector<std::string> fun;
     std::vector<std::vector<bool>> bin = i_table.convToBinary();
 

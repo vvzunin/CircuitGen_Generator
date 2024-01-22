@@ -64,6 +64,7 @@ set(SOURCES
   reliability/Reliability.cpp
   optimization_utils/AbcUtils.cpp
   optimization_utils/YosysUtils.cpp
+  thread_pool/ThreadPool.cpp
   generators/TruthTable.cpp
   generators/Genetic/Chronosome.cpp
   generators/Genetic/ChronosomeType.cpp
@@ -92,8 +93,9 @@ add_subdirectory(generators)
 add_subdirectory(circuits)
 add_subdirectory(reliability)
 add_subdirectory(optimization_utils)
+add_subdirectory(thread_pool)
 add_subdirectory(DataBase)
-target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings OptimizationUtils DataBaseGenerator nlohmann_json::nlohmann_json)
+target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings OptimizationUtils ThreadPool DataBaseGenerator nlohmann_json::nlohmann_json)
 add_subdirectory(tests)
 
 target_include_directories(settings PUBLIC ${CMAKE_SOURCE_DIR})

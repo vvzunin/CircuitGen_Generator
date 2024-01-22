@@ -3,16 +3,19 @@
 #include <iostream>
 #include <filesystem>
 
-#include <generators/TruthTable.h>
-#include <generators/Genetic/GeneticParameters.h>
-#include <generators/SimpleGenerators.h>
-#include <generators/Parser.h>
-#include <generators/Genetic/GenGenerator.h>
-#include <circuits/CircuitsParameters.h>
-#include <circuits/Circuit.h>
 #include <FilesTools.h>
+#include <circuits/Circuit.h>
+#include <generators/Parser.h>
+#include <generators/TruthTable.h>
+#include <thread_pool/ThreadPool.h>
+#include <circuits/CircuitsParameters.h>
+#include <generators/SimpleGenerators.h>
+#include <generators/Genetic/GenGenerator.h>
+#include <generators/Genetic/GeneticParameters.h>
 
 #include "DataBaseGenerator.h"
+
+using namespace Threading;
 
 void DataBaseGenerator::generateType(
     const DataBaseGeneratorParameters &i_dbgp,
@@ -23,7 +26,7 @@ void DataBaseGenerator::generateType(
     std::function<void(const GenerationParameters &)> generator = getGenerateMethod(s);
     // TODO: make normal code
     std::string dir = d_settings->getDatasetPath();
-    
+
     if (createIdDirectories)
         dir += "/" + i_dbgp.getGenerationParameters().getName() + "/" + i_dbgp.getGenerationParameters().getRequestId();
     // Creating nested directories
@@ -51,7 +54,8 @@ void DataBaseGenerator::generateType(
             s0.replace(pos, d_settings->getGenerationMethodPrefix(s).size(), "");
 
             auto jk = std::min(s0.find("_"), s0.find("."));
-            if (jk == std::string::npos) {
+            if (jk == std::string::npos)
+            {
                 jk = s0.size();
             }
 
@@ -72,6 +76,7 @@ void DataBaseGenerator::generateType(
             {
 
                 // exit(1); //TODO: write to threadpool
+                ThreadPool pool(4);
 
                 // vector of threads with generators
                 std::vector<std::thread> allGenerators(i_dbgp.getEachIteration());
@@ -81,17 +86,23 @@ void DataBaseGenerator::generateType(
                     d_parameters.setIteration(tt);
                     d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount));
 
-                    allGenerators.emplace_back(
-                        generator,
-                        d_parameters.getGenerationParameters());
+                    auto runGenerator = [generator, param=d_parameters.getGenerationParameters()] () {
+                        generator(param);
+                    };
+
+                    // allGenerators.emplace_back(
+                    //     generator,
+                    //     d_parameters.getGenerationParameters());
+                    pool.submit(runGenerator);
                     d_dirCount++;
                 }
 
-                for (std::thread &gen : allGenerators)
-                {
-                    if (gen.joinable())
-                        gen.join();
-                }
+                pool.wait();
+                // for (std::thread &gen : allGenerators)
+                // {
+                //     if (gen.joinable())
+                //         gen.join();
+                // }
             }
             else
             {
@@ -115,6 +126,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
     tt.generateRandom({i_param.getInputs(), i_param.getOutputs()});
 
     SimpleGenerators tftt;
+    tftt.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
     std::vector<std::pair<std::string, std::vector<std::string>>> circs;
 
@@ -141,6 +153,8 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
 void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters &i_param)
 {
     SimpleGenerators generator;
+    generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
     std::vector<std::pair<std::string, OrientedGraph>> circs;
     circs.push_back({"RandLevel",
                      generator.generatorRandLevel(i_param.getRandLevel().getMaxLevel(),
@@ -160,6 +174,8 @@ void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters &i_
 void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters &i_param)
 {
     SimpleGenerators generator;
+    generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
     std::vector<std::pair<std::string, OrientedGraph>> circs;
     circs.push_back({"RandLevel",
                      generator.generatorNumOperation(
@@ -192,6 +208,8 @@ void DataBaseGenerator::generateDataBaseGenetic(const GenerationParameters &i_pa
 void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param)
 {
     SimpleGenerators sg;
+    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
     int bits = i_param.getInputs();
     bool overflowIn = i_param.getSummator().OverFlowIn;
     bool overflowOut = i_param.getSummator().OverFlowOut;
@@ -206,6 +224,8 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param)
 void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i_param)
 {
     SimpleGenerators sg;
+    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
     int bits = i_param.getInputs();
     bool compare0 = i_param.getComparison().compare0;
     bool compare1 = i_param.getComparison().compare1;
@@ -220,6 +240,8 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
 void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_param)
 {
     SimpleGenerators sg;
+    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
     int bits = i_param.getInputs();
     OrientedGraph graph = sg.generatorEncoder(bits);
     Circuit c(graph);

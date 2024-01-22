@@ -10,7 +10,7 @@
     "repeat_n": 2,
     "CNFF": false,
     "CNFT": true,
-    "multithread": false,
+    "multithread": true,
     "calculate_stats_abc": true,
     "make_optimized_files": true,
     "create_id_directories": true,

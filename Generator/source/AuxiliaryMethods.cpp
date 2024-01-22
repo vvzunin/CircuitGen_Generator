@@ -45,6 +45,10 @@ int AuxMethods::getRandInt(int lower, int upper, bool inclusively)
 {
     if (!inclusively)
         upper--;
+
+    if (upper < lower)
+        throw std::invalid_argument("AuxiliaryMethod random: upper boder is bigger than lower");
+
     std::uniform_int_distribution<> dis(lower, upper);
     return dis(gen);
 }
