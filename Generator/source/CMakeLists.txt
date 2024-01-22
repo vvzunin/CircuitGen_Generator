@@ -98,6 +98,15 @@ add_subdirectory(DataBase)
 target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings OptimizationUtils ThreadPool DataBaseGenerator nlohmann_json::nlohmann_json)
 add_subdirectory(tests)
 
+# Check if pthreads is installed; adjust compiler/linker options
+find_package(Threads REQUIRED)
+if(THREADS_HAVE_PTHREAD_ARG)
+  target_compile_options(prog PUBLIC "-lpthread")
+endif()
+if(CMAKE_THREAD_LIBS_INIT)
+  target_link_libraries(prog "${CMAKE_THREAD_LIBS_INIT}")
+endif()
+
 target_include_directories(settings PUBLIC ${CMAKE_SOURCE_DIR})
 target_include_directories(FilesTools PUBLIC ${CMAKE_SOURCE_DIR})
 target_include_directories(AuxiliaryMethods PUBLIC ${CMAKE_SOURCE_DIR})
