@@ -219,7 +219,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
     bool compare0 = i_param.getComparison().compare0;
     bool compare1 = i_param.getComparison().compare1;
     bool compare2 = i_param.getComparison().compare2;
-    OrientedGraph graph = sg.generatorСomparison(bits, compare0, compare1, compare2);
+    OrientedGraph graph = sg.generatorComparison(bits, compare0, compare1, compare2);
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
