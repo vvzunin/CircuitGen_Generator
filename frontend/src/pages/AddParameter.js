@@ -16,12 +16,11 @@ const genetic = ['Genetic reproduction', 'Genetic mutation', 'Genetic selection'
 
 const AddParameter = () => {
 
-  const validateNumber = (min, max) =>
+  const validateNumber = (min) =>
   Yup.number()
     .required()
     .integer()
-    .min(min)
-    .max(max);
+    .min(min);
 
   const validateChance = () =>
   Yup.number()
@@ -30,45 +29,46 @@ const AddParameter = () => {
   .max(1);
 
   const validate = Yup.object({
-    minInCount: validateNumber(1, 100),
+    minInCount: validateNumber(1),
     maxInCount: Yup.number()
     .required()
     .integer()
     .min(1)
-    .max(100).test('greaterThan', 'maxInCount должно быть больше minInCount', function(value) {
+    .test('greaterThan', 'maxInCount должно быть больше minInCount', function(value) {
       const { minInCount } = this.parent;
       return value >= minInCount;
     }),
-    minOutCount: validateNumber(1, 100),
+    minOutCount: validateNumber(1),
     maxOutCount: Yup.number()
     .required()
     .integer()
     .min(1)
-    .max(100).test('greaterThan', 'maxOutCount должно быть больше minOutCount', function(value) {
+    .test('greaterThan', 'maxOutCount должно быть больше minOutCount', function(value) {
       const { minOutCount } = this.parent;
       return value >= minOutCount;
     }),
-    repeats: validateNumber(1, 100),
-    maxElem: validateNumber(1, 1000),
-    maxLevel: validateNumber(1, 1000),
-    numAnd: validateNumber(0, 1000),
-    numNand: validateNumber(0, 1000),
-    numOr: validateNumber(0, 1000),
-    numNot: validateNumber(0, 1000),
-    numNor: validateNumber(0, 1000),
-    numBuf: validateNumber(0, 1000),
-    numXor: validateNumber(0, 1000),
-    numXnor: validateNumber(0, 1000),
-    population: validateNumber(1, 1000),
-    cycles: validateNumber(1, 1000),
+    repeats: validateNumber(1),
+    seed: validateNumber(-1),
+    maxElem: validateNumber(1),
+    maxLevel: validateNumber(1),
+    numAnd: validateNumber(0),
+    numNand: validateNumber(0),
+    numOr: validateNumber(0),
+    numNot: validateNumber(0),
+    numNor: validateNumber(0),
+    numBuf: validateNumber(0),
+    numXor: validateNumber(0),
+    numXnor: validateNumber(0),
+    population: validateNumber(1),
+    cycles: validateNumber(1),
     uOut: validateChance(),
     mutChance: validateChance(),
     ratio: validateChance(),
-    survNum: validateNumber(1, 1000),
-    tourSize: validateNumber(1, 1000),
-    refPoints: validateNumber(0, 1000),
+    survNum: validateNumber(1),
+    tourSize: validateNumber(1),
+    refPoints: validateNumber(0),
     maskProb: validateChance(),
-    recNum: validateNumber(0, 1000),
+    recNum: validateNumber(0),
 })
 
   const [check, setCheck] = React.useState(false);
@@ -88,6 +88,7 @@ const AddParameter = () => {
     minOutCount: 1,
     maxOutCount: 1,
     repeats: 1,
+    seed: -1,
     limit: false,
     CNFF: true,
     CNFT: true,
@@ -128,6 +129,7 @@ const AddParameter = () => {
     minOutCount,
     maxOutCount,
     repeats,
+    seed,
     CNFF,
     CNFT,
     maxLevel,
@@ -178,6 +180,7 @@ const AddParameter = () => {
     sendData.min_out = minOutCount;
     sendData.max_out = maxOutCount;
     sendData.repeat_n = repeats;
+    sendData.seed = seed;
     sendData.CNFF = CNFF;
     sendData.CNFT = CNFT;
     sendData.max_level = maxLevel;
@@ -225,6 +228,7 @@ const AddParameter = () => {
         minOutCount: 1,
         maxOutCount: 1, 
         repeats: 1, 
+        seed: -1,
         maxElem: 1, 
         maxLevel: 1,
         numAnd: 0, 
@@ -305,6 +309,13 @@ const AddParameter = () => {
                   type="number"
                   name="repeats"
                   min={1}
+                  />
+                  <TextField 
+                  label="Сид генерации"
+                  type="number"
+                  name="seed"
+                  min={-1}
+                  labelWidth="200px"
                   />
           </div>
           {generationMethod === 0 && <TruthTable state={state} updateState={updateState}/>}
