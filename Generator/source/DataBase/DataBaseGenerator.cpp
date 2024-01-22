@@ -1,5 +1,3 @@
-#include <thread>
-#include <vector>
 #include <iostream>
 #include <filesystem>
 
@@ -79,7 +77,6 @@ void DataBaseGenerator::generateType(
                 ThreadPool pool(4);
 
                 // vector of threads with generators
-                std::vector<std::thread> allGenerators(i_dbgp.getEachIteration());
 
                 for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt)
                 {
@@ -90,19 +87,11 @@ void DataBaseGenerator::generateType(
                         generator(param);
                     };
 
-                    // allGenerators.emplace_back(
-                    //     generator,
-                    //     d_parameters.getGenerationParameters());
                     pool.submit(runGenerator);
                     d_dirCount++;
                 }
 
                 pool.wait();
-                // for (std::thread &gen : allGenerators)
-                // {
-                //     if (gen.joinable())
-                //         gen.join();
-                // }
             }
             else
             {
