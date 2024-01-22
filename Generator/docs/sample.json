@@ -11,8 +11,10 @@
     "repeat_n": 2,
     "CNFF": false,
     "CNFT": true,
+    "multithread": true,
     "calculate_stats_abc": true,
     "make_optimized_files": true,
+    "create_id_directories": true,
     "library_name": "sky130",
     "max_level": 1,
     "max_elem": 1,
@@ -40,7 +42,15 @@
     "swap_type": 0,
     "ratio_in_table": 1.0,
     "selection_type": "Base",
-    "surv_num": 1    
+    "surv_num": 1,
+    "gates_inputs_info": {
+      "and": [2],
+      "nand": [2],
+      "or": [2],
+      "nor": [2, 4, 8],
+      "xor": [2, 10],
+      "xnor": [2, 3]
+    }
   }
 ]
  

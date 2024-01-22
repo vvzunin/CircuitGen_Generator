@@ -6,7 +6,8 @@
 
 // so, this struct is used for sending info about multi-line commands
 // for abc, yosys etc
-struct StandartCommandInfo {
+struct StandartCommandInfo
+{
     // длина команды
     int sumLen;
     // информация о том, какая команда вызвала ошибку
@@ -14,9 +15,10 @@ struct StandartCommandInfo {
 };
 
 // result of work
-struct CommandWorkResult {
+struct CommandWorkResult
+{
     bool correct;
-    std::map<std::string, std::string> commandsOutput; 
+    std::map<std::string, std::string> commandsOutput;
 };
 
 #endif
