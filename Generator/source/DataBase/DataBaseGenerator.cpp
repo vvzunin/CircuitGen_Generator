@@ -177,7 +177,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
     generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
     std::vector<std::pair<std::string, OrientedGraph>> circs;
-    circs.push_back({"RandLevel",
+    circs.push_back({"NumOperation",
                      generator.generatorNumOperation(
                          i_param.getInputs(),
                          i_param.getOutputs(),
