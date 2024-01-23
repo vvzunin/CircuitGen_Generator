@@ -13,14 +13,17 @@ import TextField from '../components/TextField';
 const data = ['From Random Truth Table','Rand Level','Num Operation','Genetic'];
 const genetic = ['Genetic reproduction', 'Genetic mutation', 'Genetic selection'];
 
+const INT_MAX = 2147483647;
+const UINT_MAX = 4294967295;
 
 const AddParameter = () => {
 
-  const validateNumber = (min) =>
+  const validateNumber = (min, max = INT_MAX) =>
   Yup.number()
     .required()
     .integer()
-    .min(min);
+    .min(min)
+    .max(max);
 
   const validateChance = () =>
   Yup.number()
@@ -34,6 +37,7 @@ const AddParameter = () => {
     .required()
     .integer()
     .min(1)
+    .max(INT_MAX)
     .test('greaterThan', 'maxInCount должно быть больше minInCount', function(value) {
       const { minInCount } = this.parent;
       return value >= minInCount;
@@ -43,12 +47,13 @@ const AddParameter = () => {
     .required()
     .integer()
     .min(1)
+    .max(INT_MAX)
     .test('greaterThan', 'maxOutCount должно быть больше minOutCount', function(value) {
       const { minOutCount } = this.parent;
       return value >= minOutCount;
     }),
     repeats: validateNumber(1),
-    seed: validateNumber(-1),
+    seed: validateNumber(-1, UINT_MAX),
     maxElem: validateNumber(1),
     maxLevel: validateNumber(1),
     numAnd: validateNumber(0),
