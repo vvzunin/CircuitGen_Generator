@@ -320,7 +320,6 @@ const AddParameter = () => {
                   type="number"
                   name="seed"
                   min={-1}
-                  labelWidth="200px"
                   />
           </div>
           {generationMethod === 0 && <TruthTable state={state} updateState={updateState}/>}

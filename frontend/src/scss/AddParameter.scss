@@ -1,3 +1,7 @@
+#seed {
+    width: 200px;
+}
+
 .add {
     &__wrapper {
         margin-top: 50px;
@@ -335,6 +339,10 @@
 }
 
 @media (max-width: 768px) {
+    #seed {
+        width: 155px;
+    }
+
     .add {
         &__base {
             label {
