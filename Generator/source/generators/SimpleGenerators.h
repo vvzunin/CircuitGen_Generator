@@ -19,7 +19,7 @@ public:
         std::map<std::string, int> i_logicOper,
         bool i_leaveEmptyOut = true);
     OrientedGraph generatorSummator(int bits, bool overflowIn, bool overflowOut, bool minus, bool act = false);
-    OrientedGraph generatorСomparison(int bits, bool compare0, bool compare1, bool compare2, bool act = false);
+    OrientedGraph generatorComparison(int bits, bool compare0, bool compare1, bool compare2, bool act = false);
     OrientedGraph generatorEncoder(int bits);
 
     void setGatesInputsInfo(const std::map<std::string, std::vector<int>> &i_info) {

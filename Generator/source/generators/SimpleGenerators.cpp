@@ -454,7 +454,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
     return graph;
 }
 
-OrientedGraph SimpleGenerators::generatorСomparison(int bits, bool compare0, bool compare1, bool compare2, bool act)
+OrientedGraph SimpleGenerators::generatorComparison(int bits, bool compare0, bool compare1, bool compare2, bool act)
 {
     OrientedGraph graph;
 
