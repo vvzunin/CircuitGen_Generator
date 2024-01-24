@@ -24,6 +24,7 @@ public:
     void setCircuitName(const std::string &i_circName);
     bool addVertex(const std::string i_vertexName, const std::string &i_operation, const std::string &i_wireName = "");
     int getIndexOfWireName(const std::string &i_wireName);
+    int calculateReliability(int inputs_size);
     GraphVertex getVertice(int i) const;
     bool addEdge(const std::string &i_vertexFrom, const std::string &i_vertexTo, bool i_isExpression = true);
     bool addDoubleEdge(const std::string &i_vertexFromFirst, const std::string &i_vertexFromSecond, const std::string &i_vertexTo, bool i_isExpression = true);
