@@ -88,6 +88,7 @@ add_executable(prog ${SOURCES})
 add_library(settings Settings.h Settings.cpp)
 add_library(FilesTools FilesTools.h FilesTools.cpp)
 add_library(AuxiliaryMethods AuxiliaryMethods.h AuxiliaryMethods.cpp)
+
 add_subdirectory(graph)
 add_subdirectory(generators)
 add_subdirectory(circuits)
@@ -95,8 +96,10 @@ add_subdirectory(reliability)
 add_subdirectory(optimization_utils)
 add_subdirectory(thread_pool)
 add_subdirectory(DataBase)
-target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings OptimizationUtils ThreadPool DataBaseGenerator nlohmann_json::nlohmann_json)
 add_subdirectory(tests)
+
+target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings OptimizationUtils ThreadPool DataBaseGenerator nlohmann_json::nlohmann_json)
+
 
 target_include_directories(settings PUBLIC ${CMAKE_SOURCE_DIR})
 target_include_directories(FilesTools PUBLIC ${CMAKE_SOURCE_DIR})
