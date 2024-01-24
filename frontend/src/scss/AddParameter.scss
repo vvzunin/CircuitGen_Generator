@@ -2,6 +2,23 @@
     width: 200px;
 }
 
+.seed_and_random {
+    display: flex;
+    justify-content: space-between;
+    button {
+        height: 41px;
+        width: 41px;
+        padding: 2px;
+        border-radius: 10px;
+        border: 1px solid $main-color;
+        background-color: transparent;
+        color: $main-color;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
 .add {
     &__wrapper {
         margin-top: 50px;
@@ -341,8 +358,16 @@
 @media (max-width: 768px) {
     #seed {
         width: 155px;
+        margin-right: 5px;
     }
-
+    .seed_and_random {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        button {
+            margin-top: 6px;
+        }
+    }
     .add {
         &__base {
             label {

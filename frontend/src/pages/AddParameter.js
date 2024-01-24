@@ -10,6 +10,8 @@ import NumOperations from '../components/NumOperations';
 import Genetic from '../components/Genetic';
 import TextField from '../components/TextField';
 
+import dice from '../assets/dice.svg';
+
 const data = ['From Random Truth Table','Rand Level','Num Operation','Genetic'];
 const genetic = ['Genetic reproduction', 'Genetic mutation', 'Genetic selection'];
 
@@ -267,91 +269,98 @@ const AddParameter = () => {
           setCheck(true)
           resetForm()
     }}>
-    <Form className="add__wrapper">
-        <div className="add__top">
-            <h3>Добавить параметр генерации</h3>
-            <div className="add__buttons">
-                <button className="add__add" type="submit">Добавить</button>
-                <Link to='/' className="add__return">Вернуться на главную</Link>
+    {({ setFieldValue }) => (
+      <Form className="add__wrapper">
+          <div className="add__top">
+              <h3>Добавить параметр генерации</h3>
+              <div className="add__buttons">
+                  <button className="add__add" type="submit">Добавить</button>
+                  <Link to='/' className="add__return">Вернуться на главную</Link>
+              </div>
+          </div>
+          <div className='add__content'>
+            <div className="add__method">
+              <div className="add__method-name">Метод генерации</div>
+              <ul>
+                {data.map((item, i) => {
+                  return <li key={i} className={i === generationMethod ? "active" : ""} onClick={() => {updateState("generationMethod", i)}}>{item}</li>
+                })}
+              </ul>
             </div>
-        </div>
-        <div className='add__content'>
-          <div className="add__method">
-            <div className="add__method-name">Метод генерации</div>
-            <ul>
-              {data.map((item, i) => {
-                return <li key={i} className={i === generationMethod ? "active" : ""} onClick={() => {updateState("generationMethod", i)}}>{item}</li>
-              })}
-            </ul>
-          </div>
-          <div className="add__base">
-                  <TextField 
-                  label="Минимальное количество входов"
-                  type="number"
-                  name="minInCount"
-                  min={1}
-                  />
-                  <TextField 
-                  label="Максимальное количество входов"
-                  type="number"
-                  name="maxInCount"
-                  min={1}
-                  />
-                  <TextField 
-                  label="Минимальное количество выходов"
-                  type="number"
-                  name="minOutCount"
-                  min={1}
-                  />
-                  <TextField 
-                  label="Максимальное количество выходов"
-                  type="number"
-                  name="maxOutCount"
-                  min={1}
-                  />
-                  <TextField 
-                  label="Количество повторений каждой комбинации"
-                  type="number"
-                  name="repeats"
-                  min={1}
-                  />
-                  <TextField 
-                  label="Сид генерации"
-                  type="number"
-                  name="seed"
-                  min={-1}
-                  />
-          </div>
-          {generationMethod === 0 && <TruthTable state={state} updateState={updateState}/>}
-          {generationMethod === 1 && <RandLevel updateState={updateState} maxLevel={maxLevel} maxElem={maxElem}/>}
-          {generationMethod === 2 && <NumOperations
-            state={state}
-            updateState={updateState}
-            numAnd={numAnd}
-            numNand={numNand}
-            numOr={numOr} 
-            numNot={numNot}
-            numNor={numNor} 
-            numBuf={numBuf} 
-            numXor={numXor}
-            numXnor={numXnor}
-          />}
-          {generationMethod === 3 && <Genetic 
-            geneticActive={geneticActive} updateState={updateState} 
-            population={population}
-            cycles={cycles}
-            uOut={uOut}
-            tourSize={tourSize}
-            refPoints={refPoints}
-            maskProb={maskProb}
-            recNum={recNum}
-            mutChance={mutChance}
-            swapType={swapType}
-            ratio={ratio}
-            survNum={survNum}
-          />}
-          </div>
-    </Form>
+            <div className="add__base">
+                    <TextField 
+                    label="Минимальное количество входов"
+                    type="number"
+                    name="minInCount"
+                    min={1}
+                    />
+                    <TextField 
+                    label="Максимальное количество входов"
+                    type="number"
+                    name="maxInCount"
+                    min={1}
+                    />
+                    <TextField 
+                    label="Минимальное количество выходов"
+                    type="number"
+                    name="minOutCount"
+                    min={1}
+                    />
+                    <TextField 
+                    label="Максимальное количество выходов"
+                    type="number"
+                    name="maxOutCount"
+                    min={1}
+                    />
+                    <TextField 
+                    label="Количество повторений каждой комбинации"
+                    type="number"
+                    name="repeats"
+                    min={1}
+                    />
+                    <div className="seed_and_random">
+                      <TextField 
+                      label="Сид генерации"
+                      type="number"
+                      name="seed"
+                      min={-1}
+                      />
+                      <button type="button" onClick={() => setFieldValue("seed", Math.floor(Math.random() * UINT_MAX))}>
+                        <img src={dice} width="35px" height="35px"/>
+                      </button>
+                    </div>
+            </div>
+            {generationMethod === 0 && <TruthTable state={state} updateState={updateState}/>}
+            {generationMethod === 1 && <RandLevel updateState={updateState} maxLevel={maxLevel} maxElem={maxElem}/>}
+            {generationMethod === 2 && <NumOperations
+              state={state}
+              updateState={updateState}
+              numAnd={numAnd}
+              numNand={numNand}
+              numOr={numOr} 
+              numNot={numNot}
+              numNor={numNor} 
+              numBuf={numBuf} 
+              numXor={numXor}
+              numXnor={numXnor}
+            />}
+            {generationMethod === 3 && <Genetic 
+              geneticActive={geneticActive} updateState={updateState} 
+              population={population}
+              cycles={cycles}
+              uOut={uOut}
+              tourSize={tourSize}
+              refPoints={refPoints}
+              maskProb={maskProb}
+              recNum={recNum}
+              mutChance={mutChance}
+              swapType={swapType}
+              ratio={ratio}
+              survNum={survNum}
+            />}
+            </div>
+      </Form>
+    )}
     </Formik>
   )
 }
