@@ -47,54 +47,25 @@ void Circuit::computeHash()
     }
 }
 
-void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_libraryName)
-{
-    if (d_graph.size() == 0)
-        return;
-
-    d_graph.updateLevels();
-
-    d_circuitParameters.d_name = d_circuitName;
-
-    std::vector<std::string> inputs = d_graph.getVerticesByType("input");
-    std::vector<std::string> outputs = d_graph.getVerticesByType("output");
-
-    d_circuitParameters.d_numInputs = 0;
-    for (int i = 0; i < inputs.size(); ++i)
-        if (inputs[i].find("'b") == std::string::npos)
-            d_circuitParameters.d_numInputs++;
-
-    d_circuitParameters.d_numOutputs = outputs.size();
-
-    d_circuitParameters.d_maxLevel = d_graph.getMaxLevel();
-
-    d_circuitParameters.d_numEdges = 0;
-    for (const auto &row : d_graph.getAdjacencyMatrix())
-        for (const auto &el : row)
-            if (el)
-                d_circuitParameters.d_numEdges++;
-
-    Reliability R(d_graph, 0.5);
-    std::map<std::string, double> dict = R.runNadezhda(d_path, d_circuitName); // what? d_path
-
+int Circuit::calculateReliability(int inputs_size) {
     // std::cout << R.calcReliabilityBase() << std::endl;
     // std::cout << R.valveRating() << std::endl;
 
     // Algorithm for evaluating circuit reliability
-    std::vector<std::vector<bool>> vec = {};
-    std::vector<bool> first = {};
-    for (int i = 0; i < inputs.size(); i++)
+    std::vector<std::vector<bool>> vec(1);
+    std::vector<bool> first(inputs_size);
+    for (int i = 0; i < inputs_size; i++)
     {
         first.push_back(false);
     }
     vec.push_back(first);
 
-    for (int i = 0; i < pow(2.0, float(inputs.size())); i++)
+    for (int i = 0; i < pow(2.0, float(inputs_size)); i++)
     {
         std::vector<bool> next = {};
-        for (int j = 0; j < inputs.size(); j++)
+        for (int j = 0; j < inputs_size; j++)
             next.push_back(vec.back()[j]);
-        for (int m = inputs.size() - 1; m >= 0; m--)
+        for (int m = inputs_size - 1; m >= 0; m--)
         {
             if (next[m] == false)
             {
@@ -109,9 +80,9 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
         vec.push_back(next);
     }
     /*
-    for (int i = 0; i < pow(2.0, float(inputs.size())); i++)
+    for (int i = 0; i < pow(2.0, float(inputs_size)); i++)
     {
-            for (int j = 0; j < inputs.size(); j++)
+            for (int j = 0; j < inputs_size; j++)
             {
                     if (vec[i][j] == false) std::cout << 0 << "    ";
                     else std::cout << 1 << "    ";
@@ -123,7 +94,7 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
     int numberOfIncoincidences = 0;
     int pos = -1;
     std::vector<int> vec_index = d_graph.getVertices("input");
-    for (int i = 0; i < pow(2.0, float(inputs.size())); i++)
+    for (int i = 0; i < pow(2.0, float(inputs_size)); i++)
     {
         std::vector<bool> tmp = vec.back();
         std::vector<bool> tmp_wrong = vec.back();
@@ -244,8 +215,45 @@ for (int j = 0; j < d_graph.d_vertices.size(); j++)
         */
     }
 
-    d_circuitParameters.d_reliability = 1 - numberOfIncoincidences / pow(2.0, float(inputs.size()));
+    return numberOfIncoincidences;
+}
 
+void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_libraryName)
+{
+    if (d_graph.size() == 0)
+        return;
+
+    d_graph.updateLevels();
+    std::clog << "Update ended, norm. calc started" << std::endl;
+
+    d_circuitParameters.d_name = d_circuitName;
+
+    std::vector<std::string> inputs = d_graph.getVerticesByType("input");
+    std::vector<std::string> outputs = d_graph.getVerticesByType("output");
+
+    d_circuitParameters.d_numInputs = 0;
+    for (int i = 0; i < inputs.size(); ++i)
+        if (inputs[i].find("'b") == std::string::npos)
+            d_circuitParameters.d_numInputs++;
+
+    d_circuitParameters.d_numOutputs = outputs.size();
+
+    d_circuitParameters.d_maxLevel = d_graph.getMaxLevel();
+
+    d_circuitParameters.d_numEdges = 0;
+    for (const auto &row : d_graph.getAdjacencyMatrix())
+        for (const auto &el : row)
+            if (el)
+                d_circuitParameters.d_numEdges++;
+
+    Reliability R(d_graph, 0.5);
+    std::map<std::string, double> dict = R.runNadezhda(d_path, d_circuitName); // what? d_path
+    
+    if (inputs.size() <= 15)
+        d_circuitParameters.d_reliability = 1 - calculateReliability(inputs.size()) / pow(2.0, float(inputs.size()));
+    else
+        d_circuitParameters.d_reliability = 1;
+    
     d_circuitParameters.d_size = dict["size"];
     d_circuitParameters.d_area = dict["area"];
     d_circuitParameters.d_longestPath = dict["longestPath"];
@@ -447,6 +455,9 @@ bool Circuit::saveParameters(bool i_getAbcStats, bool i_generateAig, bool i_path
 
     std::ofstream outputFile(filename);
 
+    if (!outputFile)
+        return false;
+
     outputFile << "{" << std::endl;
 
     outputFile << "\t\"name\": \"" << d_circuitParameters.d_name << "\"," << std::endl;
@@ -570,6 +581,10 @@ void Circuit::saveAdditionalStats(CommandWorkResult i_res, std::string i_optimiz
     std::ofstream outJson;
 
     outJson.open((d_path + "/" + d_circuitName + ".json"), std::ios_base::app);
+    if (!outJson) {
+        std::cerr << "No json file to write" << std::endl;
+        return;
+    }
 
     outJson << "\t\"abcStats" << i_optimizationName << "\": {" << std::endl;
 
@@ -658,10 +673,14 @@ bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_gen
             saveOptimizationParameters,
             func);
 
+        std::clog << "Update started" << std::endl;
         updateCircuitsParameters(i_getAbcStats, i_libraryName);
 
-        if (!saveParameters(i_getAbcStats, i_generateAig))
+        std::clog << "Write started" << std::endl;
+        if (!saveParameters(i_getAbcStats, i_generateAig)) {
+            std::cerr << "Json file was not written!" << std::endl;
             return false;
+        }
 
         optimize1.join();
         optimize2.join();
@@ -677,8 +696,8 @@ bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_gen
             saveAdditionalStats(subres, optType, false);
         }
 
-        // last iteration has no false key, so fo optimization
-        // (remove check is the element the last one)
+        // last iteration has no false key, so for optimization
+        // (remove check is current element the last one)
         // we move last cycle to here
         std::string optType = last_res.commandsOutput["optimization_type"];
         last_res.commandsOutput.erase("optimization_type");

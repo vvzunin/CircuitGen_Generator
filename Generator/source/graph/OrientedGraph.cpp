@@ -125,6 +125,18 @@ bool OrientedGraph::addVertex(const std::string i_vertexName, const std::string&
     d_vertices.push_back(GraphVertex(i_vertexName, i_operation));
   else
     d_vertices.push_back(GraphVertex(i_vertexName, i_operation, false, i_wireName));
+  
+  if (i_operation == "input") {
+    d_inputs.push_back(d_vertices.size() - 1);
+    d_inputs_names.push_back(d_vertices.back().getLogicExpression());
+  }
+  else if (i_operation == "output") {
+    d_outputs.push_back(d_vertices.size() - 1);
+    d_outputs_names.push_back(d_vertices.back().getLogicExpression());
+  }
+  else if (i_operation == "const") {
+    d_consts.push_back(d_vertices.size() - 1);
+  }
 
   for (int i = 0; i + 1 < d_vertices.size(); ++i)
   {
@@ -204,6 +216,11 @@ void OrientedGraph::printAdjacencyMatrix(bool i_isExpressions)
 
 std::vector<std::string> OrientedGraph::getVerticesByType(const std::string i_type)
 {
+  if (i_type == "input")
+    return d_inputs_names;
+  if (i_type == "output")
+    return d_outputs_names;
+
   std::vector<std::string> names; // TODO: rewrite this func to one line
   for (const auto& vert : d_vertices)
   {
@@ -321,19 +338,21 @@ void OrientedGraph::updateLevels(bool i_isFull, int i_k) //TODO: maybe we need t
 {
   if (i_isFull)
   {
-    for (int i = 0; i < d_vertices.size(); ++i)
+    for (auto i : d_inputs)
     {
-      if (d_vertices[i].getOperation() == "input" || d_vertices[i].getOperation() == "const")
-      {
-        d_vertices[i].setLevel(0);
-        updateLevels(false, i);
-      }
+      d_vertices[i].setLevel(0);
+      updateLevels(false, i);
+    }
+    for (auto i : d_consts)
+    {
+      d_vertices[i].setLevel(0);
+      updateLevels(false, i);
     }
   }
   else
   {
     //std::vector<int> ver = getConnectedTo(i_k);
-    for (auto j : d_listOfEdgesFromTo[i_k])
+    for (int j : d_listOfEdgesFromTo[i_k])
     {
       d_vertices[j].setLevel(std::max(d_vertices[j].getLevel(), d_vertices[i_k].getLevel() + 1));
       updateLevels(i_isFull, j); //TODO: wtf - i_isFull is always false
@@ -416,15 +435,15 @@ std::map<std::string, bool> OrientedGraph::calcGraph(
   updateLevels();
   std::map<std::string, bool> dict; //TODO: very usefull name
 
-  if (i_inputValues.size() != getVerticesByType("input").size())
+  if (i_inputValues.size() != d_inputs.size())
     return {};
 
   if (i_withErrorValues && i_errorValues.empty() && i_errorValues.size() != 
-      d_vertices.size() - (getVerticesByType("input").size() + getVerticesByType("const").size() + getVerticesByType("output").size()))
+      d_vertices.size() - (d_inputs.size() + d_consts.size() + d_outputs.size()))
     return {};
 
   if (i_withErrorSetting && !i_setError.empty() && i_setError.size() != 
-      d_vertices.size() - (getVerticesByType("input").size() + getVerticesByType("const").size() + getVerticesByType("output").size()))
+      d_vertices.size() - (d_inputs.size() + d_consts.size() + d_outputs.size()))
     return {};
 
   int n = getMaxLevel();
