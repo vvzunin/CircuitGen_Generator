@@ -55,6 +55,7 @@ public:
   std::vector<std::vector<int>> d_listOfEdgesFromTo;
   std::vector<std::vector<int>> d_listOfEdgesToFrom;
   std::vector<GraphVertex> d_vertices;
+  bool operator== (const OrientedGraph& r) const;
 private:
   std::vector<int> getConnectedTo(int k) const;
   std::vector<int> getConnectedFrom(int k);

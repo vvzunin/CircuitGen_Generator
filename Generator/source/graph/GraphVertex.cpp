@@ -94,3 +94,9 @@ std::string GraphVertex::getWireName() const
 {
   return d_wireName;
 }
+
+bool GraphVertex::operator== (const GraphVertex& r) const
+{
+  return std::tie(d_level, d_logicExpression, d_operation)
+  == std::tie(r.d_level, r.d_logicExpression, r.d_operation);
+}

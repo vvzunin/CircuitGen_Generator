@@ -468,6 +468,11 @@ void OrientedGraph::setVerticeOperation(int i_vertice, const std::string& i_oper
   d_vertices[i_vertice].setOperation(i_operation);
 }
 
+bool OrientedGraph::operator== (const OrientedGraph& r) const
+{
+  return std::tie(d_vertices, d_settings, d_adjacencyMatrix)
+  == std::tie(r.d_vertices, r.d_settings, r.d_adjacencyMatrix);
+}
 //TODO: отредактировать подсчет уровня каждой вершины
 //TODO: проверка на корректность.
 //TODO: оптимизация графа.
