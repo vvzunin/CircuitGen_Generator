@@ -28,9 +28,10 @@ chmod +x installUtils.sh
 sudo ./installUtils.sh
 ```
 
-Для сборки программы необходимо выполнить следующую команду из начальной директории:
+Для сборки программы необходимо выполнить следующие команды из начальной директории:
 ```
-./buildGenerator
+chmod +x buildGenerator.sh
+./buildGenerator.sh
 ```
 
 [&#8593; Contents](#content_rus)
