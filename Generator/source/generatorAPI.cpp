@@ -24,194 +24,326 @@ using namespace std::chrono;
 
 void runGenerationFromJson(std::string json_path)
 {
-    std::ifstream f(json_path);
-    nlohmann::json DATA = nlohmann::json::parse(f);
-    // Read all json objects in json file.
-    for (auto it = DATA.begin(); it != DATA.end(); it++)
+  std::ifstream f(json_path);
+  nlohmann::json DATA = nlohmann::json::parse(f);
+  // Read all json objects in json file.
+  for (auto it = DATA.begin(); it != DATA.end(); it++)
+  {
+    nlohmann::json data = *it;
+
+    // Проверка на наличие типа генерации. Если его нет, то завершаем программу.
+    if (!data.contains("type_of_generation"))
     {
-        nlohmann::json data = *it;
+      cerr << "No generation type!" << endl;
+      return;
+    }
 
-        AuxMethods::setRandSeed(!data.contains("seed") || data["seed"] == -1 ? static_cast<unsigned>(std::time(0)) : static_cast<unsigned>(data["seed"]));
+    // Задаем сид рандомизации.
+    AuxMethods::setRandSeed(
+      !data.contains("seed") || data["seed"] == -1 ? 
+      static_cast<unsigned>(std::time(0)) : 
+      static_cast<unsigned>(data["seed"]));
 
-        GenerationTypes gt;
-        if (data["type_of_generation"] == "From Random Truth Table")
-            gt = GenerationTypes::FromRandomTruthTable;
-        if (data["type_of_generation"] == "Rand Level")
-            gt = GenerationTypes::RandLevel;
-        if (data["type_of_generation"] == "Num Operation")
-            gt = GenerationTypes::NumOperation;
-        if (data["type_of_generation"] == "Genetic")
-            gt = GenerationTypes::Genetic;
+    // Задаем основные параметры генерации
+    GenerationTypes gt;
+    if (data["type_of_generation"] == "From Random Truth Table")
+      gt = GenerationTypes::FromRandomTruthTable;
+    else if (data["type_of_generation"] == "Rand Level")
+      gt = GenerationTypes::RandLevel;
+    else if (data["type_of_generation"] == "Num Operation")
+      gt = GenerationTypes::NumOperation;
+    else if (data["type_of_generation"] == "Genetic")
+      gt = GenerationTypes::Genetic;
+    else {
+      cerr << "Unsupported generation type" << endl;
+      return;
+    }
 
-        int requestIdINT = data["id"];
-        std::string requestId = std::to_string(requestIdINT);
-        assert(requestId != "");
+    std::string datasetId = "0";
+    if (data.contains("dataset_id"))
+      std::string datasetId = data["dataset_id"];
 
-        // std::cout << data.dump(4);
+    std::string requestId = "0";
+    if (data.contains("id"))
+      std::string datasetId = data["id"];
 
-        int minInputs = data["min_in"];
-        int maxInputs = data["max_in"];
-        int minOutputs = data["min_out"];
-        int maxOutputs = data["max_out"];
-        int repeats = data["repeat_n"];
-        int maxLevel = data["max_level"];
-        int maxElement = data["max_elem"];
-        //    bool limit = data["limit_generation"];
-        bool CNFF = data["CNFF"];
-        bool CNFT = data["CNFT"];
-        // this is for ABC
-        bool calculateStatsAbc = data.contains("calculate_stats_abc") ? (bool)data["calculate_stats_abc"] : false;
-        bool makeOptimizedFiles = data.contains("make_optimized_files") ? (bool)data["make_optimized_files"] : false;
-        std::string libraryName = data.contains("library_name") ? (std::string)data["library_name"] : "";
-        bool LeaveEmptyOut = data["leave_empty_out"];
+    if (data.contains("min_in")) {
+      int minInputs = data["min_in"];
+      cout << "min_in is not in json" << endl;
+    }
+    if (data.contains("max_in")) {
+      int minInputs = data["max_in"];
+      cout << "max_in is not in json" << endl;
+    }
+    if (data.contains("min_out")) {
+      int minInputs = data["min_out"];
+      cout << "min_out is not in json" << endl;
+    }
+    if (data.contains("max_out")) {
+      int minInputs = data["max_out"];
+      cout << "max_out is not in json" << endl;
+    }
+    data["repeat_n"] = 1;
+    if (data.contains("repeat_n")) {
+      int minInputs = data["repeat_n"];
+      cout << "repeat_n is not in json" << endl;
+    }
+
+    // this is for ABC
+    bool calculateStatsAbc = 
+      data.contains("calculate_stats_abc") ? 
+      (bool)data["calculate_stats_abc"] : 
+      false;
+    bool makeOptimizedFiles = 
+      data.contains("make_optimized_files") ? 
+      (bool)data["make_optimized_files"] : 
+      false;
+    std::string libraryName = 
+      data.contains("library_name") ? 
+      (std::string)data["library_name"] : "";
+
+    // Считывание информации по логичсеким элементам.
+    std::map<std::string, std::vector<int>> gatesInputsInfo;
+
+    if (data.contains("gates_inputs_info"))
+    {
+      for (auto gate : data["gates_inputs_info"].items())
+      {
+        std::vector<int> gatesNumber = static_cast<std::vector<int>>(gate.value());
+
+        // if vector is empty (suddenly), we add default gates number
+        if (!(int)gatesNumber.size())
+          gatesNumber.push_back(2);
+        gatesInputsInfo[gate.key()] = gatesNumber;
+      }
+    }
+    else
+    {
+      // default init data
+      gatesInputsInfo["and"] = {2};
+      gatesInputsInfo["nand"] = {2};
+      gatesInputsInfo["or"] = {2};
+      gatesInputsInfo["nor"] = {2};
+      gatesInputsInfo["xor"] = {2};
+      gatesInputsInfo["xnor"] = {2};
+    }
+    gp.setGatesInputInfo(gatesInputsInfo);
+    // ------------------------------------------------------------------------    
+
+    // TODO:: make function that return DataBaseGeneratorParameters from json
+    // Recording of json data to gp
+    GenerationParameters gp(
+        datasetId,
+        requestId,
+        minInputs,
+        minOutputs,
+        repeats,
+        libraryName,
+        calculateStatsAbc,
+        makeOptimizedFiles);
+
+    // ------------------------------------------------------------------------  
+
+
+    // Основные параметры для From Random Truth Table
+    if (data["type_of_generation"] == "From Random Truth Table") {
+      if !((data.contains("CNFF") || data.contains("CNFT"))) {
+        cerr << "Parameters for selected generation type is not set." << endl;
+        return;
+      }
+      gp.setCNFF(data.contains("CNFF") ? data["CNFF"] : false);
+      gp.setCNFT(data.contains("CNFT") ? data["CNFT"] : false);
+    }
+    
+    // Основные параметры для Rand Level
+    if (data["type_of_generation"] == "Rand Level") {
+      if !((data.contains("max_level") || data.contains("max_elem")))
+        cout << "Parameters for selected generation type is not set. Parameters sets to default." << endl;
+
+      int maxLevel = data.contains("max_level") ? data["max_level"] : 0;
+      int maxElement = data.contains("max_elem") ? data["max_elem"] : 0;
+      gp.setRandLevelParameters(maxLevel, maxElement);
+    }   
+
+    // Основные параметры для Num Operation
+    if (data["type_of_generation"] == "Num Operation") {
+      std::map<std::string, int> m;
+      std::vector<std::string> v =
+          {"num_and", "num_nand", "num_or", "num_not",
+          "num_nor", "num_buf", "num_xor", "num_xnor"};
+
+      for (auto &el : data.items())
+      {
+        if (std::find(v.begin(), v.end(), el.key()) != v.end())
+          m.insert({el.key().substr(4, 10), el.value()});
+      }
+      bool LeaveEmptyOut = false;
+      if (data.contains("leave_empty_out"))
+        LeaveEmptyOut = data["leave_empty_out"];
+      else
+        cout << "LeaveEmptyOut is not set." << endl;
+
+      gp.setNumOperationParameters(m, LeaveEmptyOut);
+    }
+
+    // Основные параметры для Genetic
+    if (data["type_of_generation"] == "Genetic") {
+      
+      int numOfSurv = 1;
+      if (data.contains("surv_num"))
         int numOfSurv = data["surv_num"];
-        std::string datasetId = data["dataset_id"];
+      else
+        cout << "Parameter surv_num is not set." << endl;
 
+      if (data.contains("mut_type")) {
         std::string mutType = data["mut_type"];
         MutationTypes mType;
         if (mutType == "Binary")
-            mType = MutationTypes::Binary;
-        if (mutType == "Density")
-            mType = MutationTypes::Density;
-        if (mutType == "AccessionDel")
-            mType = MutationTypes::AccessionDel;
-        if (mutType == "InsertDel")
-            mType = MutationTypes::InsertDel;
-        if (mutType == "Exchange")
-            mType = MutationTypes::Exchange;
-        if (mutType == "Delete")
-            mType = MutationTypes::Delete;
-
-        double mutChance = data["mut_chance"];
-        int exchangeType = data["swap_type"];
-        double outRatio = data["out_ratio"];
-        double probabilityTruthTable = data["ratio_in_table"];
-        int recNum = data["rec_num"];
-        int refPoints = data["ref_points"];
-        int tourSize = data["tour_size"];
-
-        std::string selectionTypeParent = data["selection_type_parent"];
-        ParentsTypes selecTypeParent;
-        if (selectionTypeParent == "Panmixia")
-            selecTypeParent = ParentsTypes::Panmixia;
-        if (selectionTypeParent == "Inbringing")
-            selecTypeParent = ParentsTypes::Inbringing;
-        if (selectionTypeParent == "Outbrinding")
-            selecTypeParent = ParentsTypes::Outbrinding;
-        if (selectionTypeParent == "Tournament")
-            selecTypeParent = ParentsTypes::Tournament;
-        if (selectionTypeParent == "Roulette")
-            selecTypeParent = ParentsTypes::Roulette;
-
-        std::string recombinationType = data["playback_type"];
-        RecombinationTypes recombType;
-        if (recombinationType == "CrossingEachExitInTurnMany")
-            recombType = RecombinationTypes::CrossingEachExitInTurnMany;
-        if (recombinationType == "CrossingUniform")
-            recombType = RecombinationTypes::CrossingUniform;
-        if (recombinationType == "CrossingTriadic")
-            recombType = RecombinationTypes::CrossingTriadic;
-        if (recombinationType == "CrossingReducedReplacement")
-            recombType = RecombinationTypes::CrossingReducedReplacement;
-        if (recombinationType == "CrossingShuffling")
-            recombType = RecombinationTypes::CrossingShuffling;
-
-        double maskProb = data["mask_prob"];
-        int populationSize = data["population_size"];
-        int numOfCycles = data["cycles"];
-        int inputs = minInputs;
-        int outputs = minOutputs;
-
-        std::string selectionType = data["selection_type"];
-        SelectionTypes selType;
-        if (selectionType == "Base")
-            selType = SelectionTypes::Base;
-
-        int survNum = data["surv_num"];
-
-        std::map<std::string, int> m;
-        std::vector<std::string> v =
-            {"num_and", "num_nand", "num_or", "num_not",
-            "num_nor", "num_buf", "num_xor", "num_xnor"};
-
-        for (auto &el : data.items())
-        {
-            if (std::find(v.begin(), v.end(), el.key()) != v.end())
-                m.insert({el.key().substr(4, 10), el.value()});
+          mType = MutationTypes::Binary;
+        else if (mutType == "Density")
+          mType = MutationTypes::Density;
+        else if (mutType == "AccessionDel")
+          mType = MutationTypes::AccessionDel;
+        else if (mutType == "InsertDel")
+          mType = MutationTypes::InsertDel;
+        else if (mutType == "Exchange")
+          mType = MutationTypes::Exchange;
+        else if (mutType == "Delete")
+          mType = MutationTypes::Delete;
+        else {
+          cerr << "Unsupported mutType." << endl;
+          return;
         }
+      } else {
+        cerr << "Parameters for mutType is not set." << endl;
+        return;
+      }
 
-        std::map<std::string, std::vector<int>> gatesInputsInfo;
+      double mutChance = 0.5;
+      if (data.contains("mut_chance"))
+        mutChance = data["mut_chance"];
+      else
+        cout << "Parameter mutChance is not set." << endl;
+      
+      int exchangeType = 0;
+      if (data.contains("swap_type"))
+        exchangeType = data["swap_type"];
+      else
+        cout << "Parameter swap_type is not set." << endl;
 
-        if (data.contains("gates_inputs_info"))
-        {
-            for (auto gate : data["gates_inputs_info"].items())
-            {
-                std::vector<int> gatesNumber = static_cast<std::vector<int>>(gate.value());
+      double outRatio = 1.0;
+      if (data.contains("out_ratio"))
+        outRatio = data["out_ratio"];
+      else
+        cout << "Parameter out_ratio is not set." << endl;
 
-                // if vector is empty (suddenly), we add default gates number
-                if (!(int)gatesNumber.size())
-                    gatesNumber.push_back(2);
+      double probabilityTruthTable = 1.0;
+      if (data.contains("ratio_in_table"))
+        probabilityTruthTable = data["ratio_in_table"];
+      else
+        cout << "Parameter ratio_in_table is not set." << endl;
+      
+      int recNum = 1;
+      if (data.contains("rec_num"))
+        recNum = data["rec_num"];
+      else
+        cout << "Parameter rec_num is not set." << endl;
 
-                gatesInputsInfo[gate.key()] = gatesNumber;
-            }
-        }
-        else
-        {
-            // default init data
-            gatesInputsInfo["and"] = {2};
-            gatesInputsInfo["nand"] = {2};
-            gatesInputsInfo["or"] = {2};
-            gatesInputsInfo["nor"] = {2};
-            gatesInputsInfo["xor"] = {2};
-            gatesInputsInfo["xnor"] = {2};
-        }
+      int refPoints = 1;
+      if (data.contains("ref_points"))
+        refPoints = data["ref_points"];
+      else
+        cout << "Parameter ref_points is not set." << endl;
 
-        // JSON params = JSON::Read("params.json");
+      int tourSize = 1;
+      if (data.contains("tour_size"))
+        tourSize = data["tour_size"];
+      else
+        cout << "Parameter tour_size is not set." << endl;
 
-        // TODO:: make function that return DataBaseGeneratorParameters from json
-        // Recording of json data to gp
-        GenerationParameters gp(
-            datasetId,
-            requestId,
-            inputs,
-            outputs,
-            repeats,
-            maxLevel,
-            maxElement,
-            libraryName,
-            calculateStatsAbc,
-            makeOptimizedFiles
-        );
+      std::string selectionTypeParent = data["selection_type_parent"];
+      ParentsTypes selecTypeParent;
+      if (selectionTypeParent == "Panmixia")
+        selecTypeParent = ParentsTypes::Panmixia;
+      else if (selectionTypeParent == "Inbringing")
+        selecTypeParent = ParentsTypes::Inbringing;
+      else if (selectionTypeParent == "Outbrinding")
+        selecTypeParent = ParentsTypes::Outbrinding;
+      else if (selectionTypeParent == "Tournament")
+        selecTypeParent = ParentsTypes::Tournament;
+      else if (selectionTypeParent == "Roulette")
+        selecTypeParent = ParentsTypes::Roulette;
+      else {
+        cerr << "Unsupported selectionTypeParent." << endl;
+        return;
+      }
 
-        gp.setGatesInputInfo(gatesInputsInfo);
+      std::string recombinationType = data["playback_type"];
+      RecombinationTypes recombType;
+      if (recombinationType == "CrossingEachExitInTurnMany")
+        recombType = RecombinationTypes::CrossingEachExitInTurnMany;
+      else if (recombinationType == "CrossingUniform")
+        recombType = RecombinationTypes::CrossingUniform;
+      else if (recombinationType == "CrossingTriadic")
+        recombType = RecombinationTypes::CrossingTriadic;
+      else if (recombinationType == "CrossingReducedReplacement")
+        recombType = RecombinationTypes::CrossingReducedReplacement;
+      else if (recombinationType == "CrossingShuffling")
+        recombType = RecombinationTypes::CrossingShuffling;
+      else {
+        cerr << "Unsupported recombinationType." << endl;
+        return;
+      }
+      
+      double maskProb = 1.0;
+      if (data.contains("mask_prob"))
+        maskProb = data["mask_prob"];
+      else
+        cout << "Parameter mask_prob is not set." << endl;
+      
+      int populationSize = 1;
+      if (data.contains("population_size"))
+        populationSize = data["population_size"];
+      else
+        cout << "Parameter population_size is not set." << endl;
 
-        gp.setName(datasetId);
-        gp.setCNFF(CNFF);
-        gp.setCNFT(CNFT);
-        //    gp.setLimit(limit);
-        gp.setNumOperationParameters(m, LeaveEmptyOut);
-        gp.setPopulationSize(populationSize);
-        gp.setNumOfCycles(numOfCycles);
-        gp.setRecombinationParameters(selecTypeParent, tourSize, recombType, refPoints, maskProb, recNum);
-        gp.setMutationParameters(mType, mutChance, exchangeType, probabilityTruthTable);
-        gp.setSelectionParameters(selType, survNum);
-        gp.setKeyEndProcessIndex(outRatio);
-        //    gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType, ratioInTable, recNum, refPoints, tourSize,    selectionTypeParent);
-        //
-        DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp);
+      int numOfCycles = 1;
+      if (data.contains("cycles"))
+        numOfCycles = data["cycles"];
+      else
+        cout << "Parameter cycles is not set." << endl;
 
-        DataBaseGenerator generator(dbgp);
+      std::string selectionType = data["selection_type"];
+      SelectionTypes selType;
+      if (selectionType == "Base")
+        selType = SelectionTypes::Base;
 
-        auto start = high_resolution_clock::now();
+      int survNum = data["surv_num"];
 
-        generator.generateType(
-            dbgp, 
-            data.contains("multithread") ? (bool)data["multithread"] : false,
-            data.contains("create_id_directories") ? (bool)data["create_id_directories"] : true
-        );
-
-        auto stop = high_resolution_clock::now();
-        auto duration = duration_cast<microseconds>(stop - start);
-        std::clog << "Time taken: " << duration.count() << " microseconds" << std::endl;
+      gp.setPopulationSize(populationSize);
+      gp.setNumOfCycles(numOfCycles);
+      gp.setRecombinationParameters(selecTypeParent, tourSize, recombType, refPoints, maskProb, recNum);
+      gp.setMutationParameters(mType, mutChance, exchangeType, probabilityTruthTable);
+      gp.setSelectionParameters(selType, survNum);
+      gp.setKeyEndProcessIndex(outRatio);
+      //gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType, ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
     }
+    
+    
+    DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp);
+
+    DataBaseGenerator generator(dbgp);
+
+    auto start = high_resolution_clock::now();
+
+    // Запускаем генерацию с учетом многопоточности и создания поддерикторий
+    generator.generateType(
+        dbgp,
+        data.contains("multithread") ? (bool)data["multithread"] : false,
+        data.contains("create_id_directories") ? (bool)data["create_id_directories"] : true);
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    std::clog << "Time taken: " << duration.count() << " microseconds" << std::endl;
+  }
 }
