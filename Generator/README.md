@@ -125,7 +125,7 @@ Generator/source/build/prog --json_path <path_to_json>
 Для генерации комбинационных схем с использованием командной строки необходимо создать JSON файл.
 
 Набор использованных методов описан в следующих статьях:
-1. V. V. Zunin, A. Y. Romanov, Solovyev R. Developing Methods for Combinational Circuit Generation, in: 2022 International Russian Automation Conference (RusAutoCon). IEEE, 2022. [doi](https://doi.org/10.1109/RusAutoCon54946.2022.9896390)
+1) V. V. Zunin, A. Y. Romanov, Solovyev R. Developing Methods for Combinational Circuit Generation, in: 2022 International Russian Automation Conference (RusAutoCon). IEEE, 2022. [doi](https://doi.org/10.1109/RusAutoCon54946.2022.9896390)
 
 JSON файл может содержать несколько наборов генерации:
 ```
@@ -183,6 +183,12 @@ JSON файл может содержать несколько наборов г
       8) mask_prob - float; RecombinationCrossingTriadic и CrossingUniform;
       9) rec_num - int; количество рекомбинаций;
       10) surv_num - int; количество выживших.
-В [примере](docs/sample.json) JSON файла указаны все возможные параметры генерации (кроме сида), что позволяет использовать его для всех параметров генерации с минимальными изменениями.
+
+В [примере](docs/sampleAll.json) JSON файла указаны все возможные параметры генерации (кроме сида), что позволяет использовать его для всех параметров генерации с минимальными изменениями.
+В дополнении в той же папке имются индивидуальные JSON файлы под каждый тип генерации:
+1. [From Random Truth Table](docs/sampleTruthTable.json)
+2. [Rand Level](docs/sampleRandLevel.json)
+3. [Num Operation](docs/sampleNumOperation.json)
+4. [Genetic](docs/sampleGenetic.json)
 
 [&#8593; Contents](#content_rus)
