@@ -1,5 +1,5 @@
-#ifndef ABC_COMMANDS
-#define ABC_COMMANDS
+#ifndef UTILS_COMMANDS
+#define UTILS_COMMANDS
 
 namespace AbcCommands {
 static const char* resyn2Command = 

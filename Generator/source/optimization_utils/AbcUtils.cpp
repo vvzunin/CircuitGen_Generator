@@ -7,11 +7,10 @@
 #include <algorithm>
 
 #include "AbcUtils.h"
-#include "AbcCommands.h"
+#include "UtilsCommands.h"
 
 // declare of value of static var
 static std::string d_utilWord = "abc ";
-static std::string d_className = "AbcUtils";
 static int d_utilLen = 8;
 
 // which commands can output something
@@ -64,7 +63,7 @@ CommandWorkResult AbcUtils::standartExecutor(
             // if there was an error
             if (secondPos == std::string::npos && currentCommand.info != "quit")
             {
-                std::string errText = "Something went wrong during files parsing in " + d_className + '\n';
+                std::string errText = "Something went wrong during files parsing in AbcUtils\n";
 
                 std::cerr << errText;
                 workResult.commandsOutput.clear();
@@ -132,7 +131,7 @@ CommandWorkResult AbcUtils::standartExecutor(
     }
     else
     {
-        std::string errText = "Something went wrong during files parsing in " + d_className + ":\n";
+        std::string errText = "Something went wrong during files parsing in AbcUtils: \n";
         errText += result;
 
         std::cerr << errText;
