@@ -123,6 +123,10 @@ Generator/source/build/prog --json_path <path_to_json>
 ## JSON файлы
 <a name="JSON_files"></a>
 Для генерации комбинационных схем с использованием командной строки необходимо создать JSON файл.
+
+Набор использованных методов описан в следующих статьях:
+1. V. V. Zunin, A. Y. Romanov, Solovyev R. Developing Methods for Combinational Circuit Generation, in: 2022 International Russian Automation Conference (RusAutoCon). IEEE, 2022. [doi](https://doi.org/10.1109/RusAutoCon54946.2022.9896390)
+
 JSON файл может содержать несколько наборов генерации:
 ```
 [
