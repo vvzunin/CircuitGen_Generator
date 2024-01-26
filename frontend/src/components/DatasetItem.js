@@ -13,12 +13,13 @@ const DatasetItem = ({getDatasets, ready, id, parameters, currentProgress, isUpd
   : 'generation';
 
 
-  if (!localStorage.getItem(isDone) && ready) {
-    localStorage.setItem(isDone, true);
-    setIsUpdating(false);
-  }
   if (status !== 'equal' && !isUpdating) {
     setIsUpdating(true);
+  }
+  if ((!localStorage.getItem(isDone) && ready) ||
+      (localStorage.getItem(isDone) && status === 'error')) {
+    localStorage.setItem(isDone, true);
+    setIsUpdating(false);
   }
 
   // console.log('currentProgress: '+currentProgress)

@@ -47,6 +47,7 @@ const Parameter = ({dataItem, deleteParameter, selectedParameters, setSelectedPa
                 <li>Минимальное количество выходов: {dataItem.min_out}</li>
                 <li>Максимальное количество выходов: {dataItem.max_out}</li>
                 <li>Количество повторений каждой комбинации: {dataItem.repeat_n}</li>
+                <li>Сид генерации: {dataItem.seed}</li>
                 {dataItem.type_of_generation === "From Random Truth Table" && <>
                     <li>Ограничение генерации: {dataItem.limit ? "true" : "false"}</li>
                     <li>CNFF: {dataItem.CNFF ? "true" : "false"}</li>

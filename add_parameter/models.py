@@ -17,6 +17,7 @@ class AddParameter(models.Model):
     min_out = models.IntegerField(default=1, verbose_name='Минимальное количество выходов')
     max_out = models.IntegerField(default=1, verbose_name='Максимальное количество выходов')
     repeat_n = models.IntegerField(default=1, verbose_name='Количество повторений каждой комбинации')
+    seed = models.IntegerField(default=-1, verbose_name='Сид генерации')
     CNFF = models.BooleanField(default=0, verbose_name='CNFF')
     CNFT = models.BooleanField(default=0, verbose_name='CNFT')
 

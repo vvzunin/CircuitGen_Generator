@@ -28,6 +28,7 @@ const Scheme = ({data}) => {
                 <li>Минимальное количество выходов: {data.min_out}</li>
                 <li>Максимальное количество выходов: {data.max_out}</li>
                 <li>Количество повторений каждой комбинации: {data.repeat_n}</li>
+                <li>Сид генерации: {data.seed}</li>
                 {data.type_of_generation === "From Random Truth Table" && <>
                     <li>Ограничение генерации: {data.limit ? "true" : "false"}</li>
                     <li>CNFF: {data.CNFF ? "true" : "false"}</li>
