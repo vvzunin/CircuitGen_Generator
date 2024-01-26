@@ -40,12 +40,17 @@ if ! command -v abc &> /dev/null
 then
     echo "abc could not be found, installing"
 
-    if [ $packageName == "yum" || $packageName == "dnf" ]
+    if [[ $packageName == "yum" || $packageName == "dnf" ]];
     then 
         sudo $packageName -y install abc
     
-    elif command -v berkeley-abc &> /dev/null
+    elif [ command -v berkeley-abc &> /dev/null ] || [[ $packageName == "apt-get" ]] ;
     then
+        if ! [ command -v berkeley-abc &> /dev/null ];
+        then
+            sudo $packageName install -y berkeley-abc;  
+        fi
+
         sudo echo "alias abc=berkeley-abc" >> ~/.bashrc
         source ~/.bashrc
     else
