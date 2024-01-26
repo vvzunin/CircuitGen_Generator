@@ -34,7 +34,7 @@ void runGenerationFromJson(std::string json_path)
     // Проверка на наличие типа генерации. Если его нет, то завершаем программу.
     if (!data.contains("type_of_generation"))
     {
-      cerr << "No generation type!" << endl;
+      std::cerr << "No generation type!" << std::endl;
       return;
     }
 
@@ -55,7 +55,7 @@ void runGenerationFromJson(std::string json_path)
     else if (data["type_of_generation"] == "Genetic")
       gt = GenerationTypes::Genetic;
     else {
-      cerr << "Unsupported generation type" << endl;
+      std::cerr << "Unsupported generation type" << std::endl;
       return;
     }
 
@@ -67,26 +67,31 @@ void runGenerationFromJson(std::string json_path)
     if (data.contains("id"))
       std::string datasetId = data["id"];
 
+    int minInputs = 1;
+    int maxInputs = 1;
+    int minOutputs = 1;
+    int maxOutputs = 1;
+    int repeats = 1;
+
     if (data.contains("min_in")) {
-      int minInputs = data["min_in"];
-      cout << "min_in is not in json" << endl;
+      minInputs = data["min_in"];
+      std::cout << "min_in is not in json" << std::endl;
     }
     if (data.contains("max_in")) {
-      int minInputs = data["max_in"];
-      cout << "max_in is not in json" << endl;
+      maxInputs = data["max_in"];
+      std::cout << "max_in is not in json" << std::endl;
     }
     if (data.contains("min_out")) {
-      int minInputs = data["min_out"];
-      cout << "min_out is not in json" << endl;
+      minOutputs = data["min_out"];
+      std::cout << "min_out is not in json" << std::endl;
     }
     if (data.contains("max_out")) {
-      int minInputs = data["max_out"];
-      cout << "max_out is not in json" << endl;
+      maxOutputs = data["max_out"];
+      std::cout << "max_out is not in json" << std::endl;
     }
-    data["repeat_n"] = 1;
     if (data.contains("repeat_n")) {
-      int minInputs = data["repeat_n"];
-      cout << "repeat_n is not in json" << endl;
+      repeats = data["repeat_n"];
+      std::cout << "repeat_n is not in json" << std::endl;
     }
 
     // this is for ABC
@@ -127,8 +132,6 @@ void runGenerationFromJson(std::string json_path)
       gatesInputsInfo["xor"] = {2};
       gatesInputsInfo["xnor"] = {2};
     }
-    gp.setGatesInputInfo(gatesInputsInfo);
-    // ------------------------------------------------------------------------    
 
     // TODO:: make function that return DataBaseGeneratorParameters from json
     // Recording of json data to gp
@@ -142,26 +145,27 @@ void runGenerationFromJson(std::string json_path)
         calculateStatsAbc,
         makeOptimizedFiles);
 
+    gp.setGatesInputInfo(gatesInputsInfo);
     // ------------------------------------------------------------------------  
 
 
     // Основные параметры для From Random Truth Table
     if (data["type_of_generation"] == "From Random Truth Table") {
-      if !((data.contains("CNFF") || data.contains("CNFT"))) {
-        cerr << "Parameters for selected generation type is not set." << endl;
+      if (!(data.contains("CNFF") || data.contains("CNFT"))) {
+        std::cerr << "Parameters for selected generation type is not set." << std::endl;
         return;
       }
-      gp.setCNFF(data.contains("CNFF") ? data["CNFF"] : false);
-      gp.setCNFT(data.contains("CNFT") ? data["CNFT"] : false);
+      gp.setCNFF(data.contains("CNFF") ? (bool)data["CNFF"] : false);
+      gp.setCNFT(data.contains("CNFT") ? (bool)data["CNFT"] : false);
     }
     
     // Основные параметры для Rand Level
     if (data["type_of_generation"] == "Rand Level") {
-      if !((data.contains("max_level") || data.contains("max_elem")))
-        cout << "Parameters for selected generation type is not set. Parameters sets to default." << endl;
+      if (!(data.contains("max_level") || data.contains("max_elem")))
+        std::cout << "Parameters for selected generation type is not set. Parameters sets to default." << std::endl;
 
-      int maxLevel = data.contains("max_level") ? data["max_level"] : 0;
-      int maxElement = data.contains("max_elem") ? data["max_elem"] : 0;
+      int maxLevel = data.contains("max_level") ? (int)data["max_level"] : 0;
+      int maxElement = data.contains("max_elem") ? (int)data["max_elem"] : 0;
       gp.setRandLevelParameters(maxLevel, maxElement);
     }   
 
@@ -181,7 +185,7 @@ void runGenerationFromJson(std::string json_path)
       if (data.contains("leave_empty_out"))
         LeaveEmptyOut = data["leave_empty_out"];
       else
-        cout << "LeaveEmptyOut is not set." << endl;
+        std::cout << "LeaveEmptyOut is not set." << std::endl;
 
       gp.setNumOperationParameters(m, LeaveEmptyOut);
     }
@@ -193,11 +197,12 @@ void runGenerationFromJson(std::string json_path)
       if (data.contains("surv_num"))
         int numOfSurv = data["surv_num"];
       else
-        cout << "Parameter surv_num is not set." << endl;
+        std::cout << "Parameter surv_num is not set." << std::endl;
 
+      MutationTypes mType;
       if (data.contains("mut_type")) {
         std::string mutType = data["mut_type"];
-        MutationTypes mType;
+        
         if (mutType == "Binary")
           mType = MutationTypes::Binary;
         else if (mutType == "Density")
@@ -211,11 +216,11 @@ void runGenerationFromJson(std::string json_path)
         else if (mutType == "Delete")
           mType = MutationTypes::Delete;
         else {
-          cerr << "Unsupported mutType." << endl;
+          std::cerr << "Unsupported mutType." << std::endl;
           return;
         }
       } else {
-        cerr << "Parameters for mutType is not set." << endl;
+        std::cerr << "Parameters for mutType is not set." << std::endl;
         return;
       }
 
@@ -223,43 +228,43 @@ void runGenerationFromJson(std::string json_path)
       if (data.contains("mut_chance"))
         mutChance = data["mut_chance"];
       else
-        cout << "Parameter mutChance is not set." << endl;
+        std::cout << "Parameter mutChance is not set." << std::endl;
       
       int exchangeType = 0;
       if (data.contains("swap_type"))
         exchangeType = data["swap_type"];
       else
-        cout << "Parameter swap_type is not set." << endl;
+        std::cout << "Parameter swap_type is not set." << std::endl;
 
       double outRatio = 1.0;
       if (data.contains("out_ratio"))
         outRatio = data["out_ratio"];
       else
-        cout << "Parameter out_ratio is not set." << endl;
+        std::cout << "Parameter out_ratio is not set." << std::endl;
 
       double probabilityTruthTable = 1.0;
       if (data.contains("ratio_in_table"))
         probabilityTruthTable = data["ratio_in_table"];
       else
-        cout << "Parameter ratio_in_table is not set." << endl;
+        std::cout << "Parameter ratio_in_table is not set." << std::endl;
       
       int recNum = 1;
       if (data.contains("rec_num"))
         recNum = data["rec_num"];
       else
-        cout << "Parameter rec_num is not set." << endl;
+        std::cout << "Parameter rec_num is not set." << std::endl;
 
       int refPoints = 1;
       if (data.contains("ref_points"))
         refPoints = data["ref_points"];
       else
-        cout << "Parameter ref_points is not set." << endl;
+        std::cout << "Parameter ref_points is not set." << std::endl;
 
       int tourSize = 1;
       if (data.contains("tour_size"))
         tourSize = data["tour_size"];
       else
-        cout << "Parameter tour_size is not set." << endl;
+        std::cout << "Parameter tour_size is not set." << std::endl;
 
       std::string selectionTypeParent = data["selection_type_parent"];
       ParentsTypes selecTypeParent;
@@ -274,7 +279,7 @@ void runGenerationFromJson(std::string json_path)
       else if (selectionTypeParent == "Roulette")
         selecTypeParent = ParentsTypes::Roulette;
       else {
-        cerr << "Unsupported selectionTypeParent." << endl;
+        std::cerr << "Unsupported selectionTypeParent." << std::endl;
         return;
       }
 
@@ -291,7 +296,7 @@ void runGenerationFromJson(std::string json_path)
       else if (recombinationType == "CrossingShuffling")
         recombType = RecombinationTypes::CrossingShuffling;
       else {
-        cerr << "Unsupported recombinationType." << endl;
+        std::cerr << "Unsupported recombinationType." << std::endl;
         return;
       }
       
@@ -299,19 +304,19 @@ void runGenerationFromJson(std::string json_path)
       if (data.contains("mask_prob"))
         maskProb = data["mask_prob"];
       else
-        cout << "Parameter mask_prob is not set." << endl;
+        std::cout << "Parameter mask_prob is not set." << std::endl;
       
       int populationSize = 1;
       if (data.contains("population_size"))
         populationSize = data["population_size"];
       else
-        cout << "Parameter population_size is not set." << endl;
+        std::cout << "Parameter population_size is not set." << std::endl;
 
       int numOfCycles = 1;
       if (data.contains("cycles"))
         numOfCycles = data["cycles"];
       else
-        cout << "Parameter cycles is not set." << endl;
+        std::cout << "Parameter cycles is not set." << std::endl;
 
       std::string selectionType = data["selection_type"];
       SelectionTypes selType;
