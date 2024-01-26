@@ -1,2 +1,0 @@
-- rewrite cp commands to std::filesystem::copy
-- rewrite cmakelists correctly

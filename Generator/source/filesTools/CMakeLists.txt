@@ -5,4 +5,5 @@ add_library(
 )
 
 target_include_directories(FilesTools PUBLIC
-${CMAKE_SOURCE_DIR})
+  ${CMAKE_SOURCE_DIR}
+)
