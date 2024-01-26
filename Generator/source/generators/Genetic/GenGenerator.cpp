@@ -11,7 +11,7 @@
 #include "../SimpleGenerators.h"
 #include "../Parser.h"
 #include "../../circuits/Circuit.h"
-#include "../../FilesTools.h"
+#include "filesTools/FilesTools.h"
 
 //Deleted anonymous namespace. And moved template function definition into header GenGenerator.h because otherwise it can not be compiled.
 bool isNumber(const std::string& s)

@@ -25,3 +25,4 @@ result_dataset/
 .idea/*
 build
 abc/*
+*.so

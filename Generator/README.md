@@ -99,7 +99,14 @@ gp.setNewGeneratorNameParameters(...);
 <a name="generator_build_rus"></a> 
 Для сборки программы необходимо выполнить следующую команду из начальной директории:
 ```
-./buildGenerator
+./buildGenerator.sh
+```
+
+## Сборка библиотеки (shared)
+<a name="generator_build_rus"></a> 
+Для сборки библиотеки (shared) необходимо выполнить следующую команду из начальной директории:
+```
+./buildGeneratorLibrary.sh
 ```
 
 [&#8593; Contents](#content_rus)
