@@ -135,6 +135,19 @@ CommandWorkResult YosysUtils::optVerilog(
         parseCommand(i_command));
 }
 
+CommandWorkResult YosysUtils::writeFirrtl(
+    std::string i_inputFileName,
+    std::string i_outputFileName)
+{
+
+    std::string i_command = "(echo \"read_verilog " + i_inputFileName + ".v\"";
+    i_command += "&& echo \"write_firrtl " + i_outputFileName + ".fir\") | yosys 2>&1";
+
+    return standartExecutor(
+        i_command,
+        parseCommand(i_command));
+}
+
 CommandWorkResult YosysUtils::optVerilog(
     std::string i_inputFileName,
     std::string i_outputFileName,

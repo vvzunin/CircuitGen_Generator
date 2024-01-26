@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include <map>
 #include <vector>
 #include <string>
@@ -121,15 +121,17 @@ public:
         int i_maxElements,
         std::string i_libraryName = "",
         bool i_calculateStatsAbc = false,
-        bool i_makeOptimizedFiles = false) : d_name(i_name),
-                                             d_requestId(i_requestId),
-                                             d_inputs(i_inputs),
-                                             d_outputs(i_outputs),
-                                             d_iteration(i_iteration),
-                                             d_libraryName(i_libraryName),
-                                             d_calculateStatsAbc(i_calculateStatsAbc),
-                                             d_makeOptimizedFiles(i_makeOptimizedFiles),
-                                             d_geneticParameters(GeneticParameters(d_inputs, d_outputs))
+        bool i_makeOptimizedFiles = false,
+        bool i_makeFirrtl = false) : d_name(i_name),
+                             d_requestId(i_requestId),
+                             d_inputs(i_inputs),
+                             d_outputs(i_outputs),
+                             d_iteration(i_iteration),
+                             d_libraryName(i_libraryName),
+                             d_calculateStatsAbc(i_calculateStatsAbc),
+                             d_makeOptimizedFiles(i_makeOptimizedFiles),
+                             d_geneticParameters(GeneticParameters(d_inputs, d_outputs)),
+                             d_makeFirrtl(i_makeFirrtl)
     {
         d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
         d_generatorRandLevelParameters.setMaxElements(i_maxElements);
@@ -210,6 +212,16 @@ public:
         d_makeOptimizedFiles = i_makeOptimizedFiles;
     }
 
+    bool getMakeFirrtl() const
+    {
+        return d_makeFirrtl;
+    }
+
+    void setMakeFirrtl(bool i_makeFirrtl)
+    {
+        d_makeFirrtl = i_makeFirrtl;
+    }
+
     std::map<std::string, std::vector<int>> getGatesInputsInfo() const
     {
         return d_gatesInputsInfo;
@@ -251,6 +263,7 @@ private:
     int d_iteration = 0;
     bool d_calculateStatsAbc;
     bool d_makeOptimizedFiles;
+    bool d_makeFirrtl;
     std::map<std::string, std::vector<int>> d_gatesInputsInfo;
 
     CNNFromTruthTableParameters d_cnfFromTruthTableParameters;

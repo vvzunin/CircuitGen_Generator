@@ -18,7 +18,7 @@ public:
     bool graphToVerilog(const std::string &i_path, bool i_pathExists = false);
     bool saveParameters(bool i_getAbcStats = false, bool i_generateAig = false, bool i_pathExists = false) const;
     void saveAdditionalStats(CommandWorkResult i_res, std::string i_optimizationName = "Balanced", bool i_lastData = true) const;
-    bool generate(bool i_getAbcStats = false, std::string libraryName = "", bool i_generateAig = false, bool i_pathExists = false);
+    bool generate(bool i_makeFirrtl = false, bool i_getAbcStats = false, std::string libraryName = "", bool i_generateAig = false, bool i_pathExists = false);
     void setTable(const TruthTable &i_tt);
     void setPath(const std::string &i_path);
     void setCircuitName(const std::string &i_circName);

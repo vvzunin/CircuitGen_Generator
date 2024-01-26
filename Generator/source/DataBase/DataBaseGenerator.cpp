@@ -135,7 +135,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
         c.setTable(tt);
         c.setPath(d_mainPath);
         c.setCircuitName(i_param.getName() + "_" + name);
-        c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
+        c.generate(i_param.getMakeFirrtl(), i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
     }
 }
 
@@ -156,7 +156,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters &i_
         Circuit c(graph);
         c.setPath(d_mainPath);
         c.setCircuitName(i_param.getName());
-        c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
+        c.generate(i_param.getMakeFirrtl(), i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
     }
 }
 
@@ -178,7 +178,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
         Circuit c(graph);
         c.setPath(d_mainPath);
         c.setCircuitName(i_param.getName());
-        c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
+        c.generate(i_param.getMakeFirrtl(), i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
     }
     // TODO: remake all generates to return value and call graphToVerilog
 }
@@ -207,7 +207,7 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param)
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
+    c.generate(i_param.getMakeFirrtl(), i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
 }
 
 void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i_param)
@@ -223,7 +223,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
+    c.generate(i_param.getMakeFirrtl(), i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
 }
 
 void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_param)
@@ -236,7 +236,7 @@ void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_pa
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
+    c.generate(i_param.getMakeFirrtl(), i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
 }
 
 std::function<void(const GenerationParameters &)> DataBaseGenerator::getGenerateMethod(const std::string &i_methodName)

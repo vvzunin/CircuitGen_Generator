@@ -93,6 +93,7 @@ void runGenerationFromJson(std::string json_path)
         // this is for ABC
         bool calculateStatsAbc = data.contains("calculate_stats_abc") ? (bool)data["calculate_stats_abc"] : false;
         bool makeOptimizedFiles = data.contains("make_optimized_files") ? (bool)data["make_optimized_files"] : false;
+        bool makeFirrtl = data.contains("make_firrtl") ? (bool)data["make_firrtl"] : false;
         std::string libraryName = data.contains("library_name") ? (std::string)data["library_name"] : "";
         bool LeaveEmptyOut = data["leave_empty_out"];
         int numOfSurv = data["surv_num"];
@@ -211,7 +212,8 @@ void runGenerationFromJson(std::string json_path)
             maxElement,
             libraryName,
             calculateStatsAbc,
-            makeOptimizedFiles
+            makeOptimizedFiles,
+            makeFirrtl
         );
 
         gp.setGatesInputInfo(gatesInputsInfo);

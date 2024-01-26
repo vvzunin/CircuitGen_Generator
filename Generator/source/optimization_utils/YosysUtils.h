@@ -22,6 +22,9 @@ public:
         std::string i_inputFileName,
         std::string i_outputFileName,
         std::string i_directory);
+    static CommandWorkResult writeFirrtl(
+        std::string i_inputFileName,
+        std::string i_outputFileName);
 
     // IMPORTANT parseAll here is TRUE
     static std::vector<StandartCommandInfo> parseCommand(

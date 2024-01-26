@@ -10,6 +10,7 @@
 #include "Circuit.h"
 #include <reliability/Reliability.h>
 #include <optimization_utils/AbcUtils.h>
+#include <optimization_utils/YosysUtils.h>
 #include <FilesTools.h>
 #include <AuxiliaryMethods.h>
 
@@ -622,9 +623,10 @@ void Circuit::saveAdditionalStats(CommandWorkResult i_res, std::string i_optimiz
     std::clog << d_circuitName << " " << i_optimizationName << " ended\n";
 }
 
-bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_generateAig, bool i_pathExists)
+bool Circuit::generate(bool i_makeFirrtl, bool i_getAbcStats, std::string i_libraryName, bool i_generateAig, bool i_pathExists)
 {
     // creating all files in sub directories
+    std::string d_path_temp = d_path + d_circuitName;
     d_path += d_circuitName + "/";
 
     std::filesystem::create_directories(d_path);
@@ -637,6 +639,10 @@ bool Circuit::generate(bool i_getAbcStats, std::string i_libraryName, bool i_gen
 
     if (!graphToVerilog(d_path, i_pathExists))
         return false;
+    
+    if (i_makeFirrtl) {
+        YosysUtils::writeFirrtl(d_path + d_circuitName, d_path + d_circuitName);
+    }
 
     if (i_generateAig)
     {
