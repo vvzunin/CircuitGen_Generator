@@ -352,6 +352,7 @@ void OrientedGraph::updateLevels(bool i_isFull, int i_k) //TODO: maybe we need t
   else
   {
     //std::vector<int> ver = getConnectedTo(i_k);
+    // Stops when we are at output
     for (int j : d_listOfEdgesFromTo[i_k])
     {
       d_vertices[j].setLevel(std::max(d_vertices[j].getLevel(), d_vertices[i_k].getLevel() + 1));
