@@ -10,13 +10,17 @@ import NumOperations from '../components/NumOperations';
 import Genetic from '../components/Genetic';
 import TextField from '../components/TextField';
 
+import dice from '../assets/dice.svg';
+
 const data = ['From Random Truth Table','Rand Level','Num Operation','Genetic'];
 const genetic = ['Genetic reproduction', 'Genetic mutation', 'Genetic selection'];
 
+const INT_MAX = 2147483647;
+const UINT_MAX = 4294967295;
 
 const AddParameter = () => {
 
-  const validateNumber = (min, max) =>
+  const validateNumber = (min, max = INT_MAX) =>
   Yup.number()
     .required()
     .integer()
@@ -30,45 +34,48 @@ const AddParameter = () => {
   .max(1);
 
   const validate = Yup.object({
-    minInCount: validateNumber(1, 100),
+    minInCount: validateNumber(1),
     maxInCount: Yup.number()
     .required()
     .integer()
     .min(1)
-    .max(100).test('greaterThan', 'maxInCount должно быть больше minInCount', function(value) {
+    .max(INT_MAX)
+    .test('greaterThan', 'maxInCount должно быть больше minInCount', function(value) {
       const { minInCount } = this.parent;
       return value >= minInCount;
     }),
-    minOutCount: validateNumber(1, 100),
+    minOutCount: validateNumber(1),
     maxOutCount: Yup.number()
     .required()
     .integer()
     .min(1)
-    .max(100).test('greaterThan', 'maxOutCount должно быть больше minOutCount', function(value) {
+    .max(INT_MAX)
+    .test('greaterThan', 'maxOutCount должно быть больше minOutCount', function(value) {
       const { minOutCount } = this.parent;
       return value >= minOutCount;
     }),
-    repeats: validateNumber(1, 100),
-    maxElem: validateNumber(1, 1000),
-    maxLevel: validateNumber(1, 1000),
-    numAnd: validateNumber(0, 1000),
-    numNand: validateNumber(0, 1000),
-    numOr: validateNumber(0, 1000),
-    numNot: validateNumber(0, 1000),
-    numNor: validateNumber(0, 1000),
-    numBuf: validateNumber(0, 1000),
-    numXor: validateNumber(0, 1000),
-    numXnor: validateNumber(0, 1000),
-    population: validateNumber(1, 1000),
-    cycles: validateNumber(1, 1000),
+    repeats: validateNumber(1),
+    seed: validateNumber(-1, UINT_MAX),
+    maxElem: validateNumber(1),
+    maxLevel: validateNumber(1),
+    numAnd: validateNumber(0),
+    numNand: validateNumber(0),
+    numOr: validateNumber(0),
+    numNot: validateNumber(0),
+    numNor: validateNumber(0),
+    numBuf: validateNumber(0),
+    numXor: validateNumber(0),
+    numXnor: validateNumber(0),
+    population: validateNumber(1),
+    cycles: validateNumber(1),
     uOut: validateChance(),
     mutChance: validateChance(),
     ratio: validateChance(),
-    survNum: validateNumber(1, 1000),
-    tourSize: validateNumber(1, 1000),
-    refPoints: validateNumber(0, 1000),
+    survNum: validateNumber(1),
+    tourSize: validateNumber(1),
+    refPoints: validateNumber(0),
     maskProb: validateChance(),
-    recNum: validateNumber(0, 1000),
+    recNum: validateNumber(0),
 })
 
   const [check, setCheck] = React.useState(false);
@@ -88,6 +95,7 @@ const AddParameter = () => {
     minOutCount: 1,
     maxOutCount: 1,
     repeats: 1,
+    seed: -1,
     limit: false,
     CNFF: true,
     CNFT: true,
@@ -128,6 +136,7 @@ const AddParameter = () => {
     minOutCount,
     maxOutCount,
     repeats,
+    seed,
     CNFF,
     CNFT,
     maxLevel,
@@ -178,6 +187,7 @@ const AddParameter = () => {
     sendData.min_out = minOutCount;
     sendData.max_out = maxOutCount;
     sendData.repeat_n = repeats;
+    sendData.seed = seed;
     sendData.CNFF = CNFF;
     sendData.CNFT = CNFT;
     sendData.max_level = maxLevel;
@@ -225,6 +235,7 @@ const AddParameter = () => {
         minOutCount: 1,
         maxOutCount: 1, 
         repeats: 1, 
+        seed: -1,
         maxElem: 1, 
         maxLevel: 1,
         numAnd: 0, 
@@ -258,85 +269,98 @@ const AddParameter = () => {
           setCheck(true)
           resetForm()
     }}>
-    <Form className="add__wrapper">
-        <div className="add__top">
-            <h3>Добавить параметр генерации</h3>
-            <div className="add__buttons">
-                <button className="add__add" type="submit">Добавить</button>
-                <Link to='/' className="add__return">Вернуться на главную</Link>
+    {({ setFieldValue }) => (
+      <Form className="add__wrapper">
+          <div className="add__top">
+              <h3>Добавить параметр генерации</h3>
+              <div className="add__buttons">
+                  <button className="add__add" type="submit">Добавить</button>
+                  <Link to='/' className="add__return">Вернуться на главную</Link>
+              </div>
+          </div>
+          <div className='add__content'>
+            <div className="add__method">
+              <div className="add__method-name">Метод генерации</div>
+              <ul>
+                {data.map((item, i) => {
+                  return <li key={i} className={i === generationMethod ? "active" : ""} onClick={() => {updateState("generationMethod", i)}}>{item}</li>
+                })}
+              </ul>
             </div>
-        </div>
-        <div className='add__content'>
-          <div className="add__method">
-            <div className="add__method-name">Метод генерации</div>
-            <ul>
-              {data.map((item, i) => {
-                return <li key={i} className={i === generationMethod ? "active" : ""} onClick={() => {updateState("generationMethod", i)}}>{item}</li>
-              })}
-            </ul>
-          </div>
-          <div className="add__base">
-                  <TextField 
-                  label="Минимальное количество входов"
-                  type="number"
-                  name="minInCount"
-                  min={1}
-                  />
-                  <TextField 
-                  label="Максимальное количество входов"
-                  type="number"
-                  name="maxInCount"
-                  min={1}
-                  />
-                  <TextField 
-                  label="Минимальное количество выходов"
-                  type="number"
-                  name="minOutCount"
-                  min={1}
-                  />
-                  <TextField 
-                  label="Максимальное количество выходов"
-                  type="number"
-                  name="maxOutCount"
-                  min={1}
-                  />
-                  <TextField 
-                  label="Количество повторений каждой комбинации"
-                  type="number"
-                  name="repeats"
-                  min={1}
-                  />
-          </div>
-          {generationMethod === 0 && <TruthTable state={state} updateState={updateState}/>}
-          {generationMethod === 1 && <RandLevel updateState={updateState} maxLevel={maxLevel} maxElem={maxElem}/>}
-          {generationMethod === 2 && <NumOperations
-            state={state}
-            updateState={updateState}
-            numAnd={numAnd}
-            numNand={numNand}
-            numOr={numOr} 
-            numNot={numNot}
-            numNor={numNor} 
-            numBuf={numBuf} 
-            numXor={numXor}
-            numXnor={numXnor}
-          />}
-          {generationMethod === 3 && <Genetic 
-            geneticActive={geneticActive} updateState={updateState} 
-            population={population}
-            cycles={cycles}
-            uOut={uOut}
-            tourSize={tourSize}
-            refPoints={refPoints}
-            maskProb={maskProb}
-            recNum={recNum}
-            mutChance={mutChance}
-            swapType={swapType}
-            ratio={ratio}
-            survNum={survNum}
-          />}
-          </div>
-    </Form>
+            <div className="add__base">
+                    <TextField 
+                    label="Минимальное количество входов"
+                    type="number"
+                    name="minInCount"
+                    min={1}
+                    />
+                    <TextField 
+                    label="Максимальное количество входов"
+                    type="number"
+                    name="maxInCount"
+                    min={1}
+                    />
+                    <TextField 
+                    label="Минимальное количество выходов"
+                    type="number"
+                    name="minOutCount"
+                    min={1}
+                    />
+                    <TextField 
+                    label="Максимальное количество выходов"
+                    type="number"
+                    name="maxOutCount"
+                    min={1}
+                    />
+                    <TextField 
+                    label="Количество повторений каждой комбинации"
+                    type="number"
+                    name="repeats"
+                    min={1}
+                    />
+                    <div className="seed_and_random">
+                      <TextField 
+                      label="Сид генерации"
+                      type="number"
+                      name="seed"
+                      min={-1}
+                      />
+                      <button type="button" onClick={() => setFieldValue("seed", Math.floor(Math.random() * UINT_MAX))}>
+                        <img src={dice} width="35px" height="35px"/>
+                      </button>
+                    </div>
+            </div>
+            {generationMethod === 0 && <TruthTable state={state} updateState={updateState}/>}
+            {generationMethod === 1 && <RandLevel updateState={updateState} maxLevel={maxLevel} maxElem={maxElem}/>}
+            {generationMethod === 2 && <NumOperations
+              state={state}
+              updateState={updateState}
+              numAnd={numAnd}
+              numNand={numNand}
+              numOr={numOr} 
+              numNot={numNot}
+              numNor={numNor} 
+              numBuf={numBuf} 
+              numXor={numXor}
+              numXnor={numXnor}
+            />}
+            {generationMethod === 3 && <Genetic 
+              geneticActive={geneticActive} updateState={updateState} 
+              population={population}
+              cycles={cycles}
+              uOut={uOut}
+              tourSize={tourSize}
+              refPoints={refPoints}
+              maskProb={maskProb}
+              recNum={recNum}
+              mutChance={mutChance}
+              swapType={swapType}
+              ratio={ratio}
+              survNum={survNum}
+            />}
+            </div>
+      </Form>
+    )}
     </Formik>
   )
 }

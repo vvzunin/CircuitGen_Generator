@@ -15,6 +15,7 @@ router.register(r'datasets', DatasetList)
 
 urlpatterns = [
     path('', front, name="front"),
+    path('add', front),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/add_dataset', views.add_dataset),
