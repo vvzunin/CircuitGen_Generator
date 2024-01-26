@@ -3,7 +3,7 @@
 #include <vector>
 #include <memory>
 
-#include <Settings.h>
+#include <settings/Settings.h>
 #include "./Genetic/GeneticParameters.h"
 #include "./Genetic/Chronosome.h"
 

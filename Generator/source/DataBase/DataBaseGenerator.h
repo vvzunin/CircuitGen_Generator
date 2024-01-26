@@ -3,7 +3,7 @@
 #include <functional>
 
 #include "DataBaseGeneratorParameters.h"
-#include <Settings.h>
+#include <settings/Settings.h>
 
 class DataBaseGenerator
 {

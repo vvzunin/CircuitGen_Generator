@@ -5,7 +5,7 @@
 
 #include "SimpleGenerators.h"
 #include <graph/OrientedGraph.h>
-#include <AuxiliaryMethods.h>
+#include <AuxiliaryMethods/AuxiliaryMethods.h>
 
 namespace
 {

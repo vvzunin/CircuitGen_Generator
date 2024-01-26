@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-#include "../../Settings.h"
+#include "settings/Settings.h"
 
 template<typename Type, typename ParametersTypes>
 class ChronosomeType
