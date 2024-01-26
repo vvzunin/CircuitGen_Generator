@@ -19,7 +19,7 @@ using namespace std::chrono;
 int main(int argc, char **argv)
 {
     std::string json_path;
-    // std::string json_path = "../Generator/docs/sample.json";
+    // std::string json_path = "../Generator/docs/sampleAll.json";
     // Use getopt to parse command line arguments
 
     const char *const short_opts = "j:n:";

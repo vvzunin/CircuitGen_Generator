@@ -115,7 +115,7 @@ gp.setNewGeneratorNameParameters(...);
 <a name="generator_run_one_json_rus"></a>
 Для проведения генерации из командной строки необходимо подготовить JSON файл с описанием параметров генерации, создать папку `dataset` в начальной директории, а после выполнить следующую команду:
 ```
-Generator/source/build/prog --json_path <path_to_json>
+Generator/source/build/circuitgen --json_path <path_to_json>
 ```
 
 [&#8593; Contents](#content_rus)
