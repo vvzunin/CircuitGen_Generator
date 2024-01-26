@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../Settings.cpp"
+#include "settings/Settings.cpp"
 #include <string>
 #include <exception>
 #include <memory>

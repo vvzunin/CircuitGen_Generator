@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-#include <Settings.h>
+#include <settings/Settings.h>
 
 class GraphVertex {
 public:

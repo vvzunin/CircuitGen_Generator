@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "TruthTable.h"
-#include "../AuxiliaryMethods.h"
+#include "AuxiliaryMethods/AuxiliaryMethods.h"
 
 TruthTable::TruthTable()
 {

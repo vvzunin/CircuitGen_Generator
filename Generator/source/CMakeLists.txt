@@ -1,58 +1,104 @@
-cmake_minimum_required(VERSION 3.5)
+# Set minimum version of cmake
+cmake_minimum_required(VERSION 3.13)
 
-project(Generator)
+# Define project name, version and description
+project(CircuitsGenerator 
+  VERSION 0.1.0
+  DESCRIPTION "Programm for circuits dataset generation"
+  HOMEPAGE_URL https://github.com/vvzunin/CAD_CombinationalCircuits
+  LANGUAGES CXX
+)
 
-include(ExternalProject)
+# Add path for .cmake files. Needed for "include" directive.
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-SET(GCC_COVERAGE_COMPILE_FLAGS "-fprofile-arcs -ftest-coverage")
-SET(GCC_COVERAGE_LINK_FLAGS    "-lgcov")
+# Big section with some variables to define
+# Define variables for coverege
+set(GCC_COVERAGE_COMPILE_FLAGS "-fprofile-arcs -ftest-coverage")
+set(GCC_COVERAGE_LINK_FLAGS    "-lgcov")
+# Define main cmake project settings
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_VERBOSE_MAKEFILE ON)
+#set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_VERBOSE_MAKEFILE OFF)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_INIT} -std=c++11 -fPIC")
 set(CMAKE_CXX_FLAGS_RELEASE "-O0")
 set(CMAKE_BUILD_TYPE Debug)
-
+# Define folder for external libraries
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
+# Define name of final file.
+set(MAIN_TARGET circuitgen)
+set(MAIN_LIBRARY cgen)
+# Needed to build library.
+set(BUILD_LIBRARY True)
 
-option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+OPTION(GENERATOR_DEBUG "Extended debug printing" OFF)
 
-#ExternalProject_Add(googletest
-#  GIT_REPOSITORY https://github.com/google/googletest
-#  GIT_TAG main
-#  SOURCE_DIR "${CMAKE_BINARY_DIR}/googletest-src"
-#  BINARY_DIR "${CMAKE_BINARY_DIR}/googletest-build" 
-#  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
-#)
+# Configuration file.
+configure_file(config.h.in config.h)
 
-#add_subdirectory (${CMAKE_BINARY_DIR}/external/lib/cmake/GTest)
+option(BUILD_SHARED_PROJECT_LIBS "Build using shared libraries" ON)
 
+include(ExternalProject)
 include(FetchContent)
 
-FetchContent_Declare(json
-  GIT_REPOSITORY https://github.com/nlohmann/json.git
-  GIT_TAG v3.7.3)
+# Get json
+FetchContent_Declare(
+  json
+  GIT_REPOSITORY https://github.com/nlohmann/json
+  GIT_TAG v3.11.3
+)
+FetchContent_MakeAvailable(json)
 
-FetchContent_GetProperties(json)
-if(NOT json_POPULATED)
-  FetchContent_Populate(json)
-  add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
-endif()
-
+# Get googletest
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
 )
 
-
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
+# The compilation options.
+# add_compile_options(-g3 -Wall -Wignored-qualifiers -DYYERROR_VERBOSE)
 
+# Add all subdirectories for the project.
+add_subdirectory(AuxiliaryMethods)
+add_subdirectory(circuits)
+add_subdirectory(DataBase)
+add_subdirectory(filesTools)
+add_subdirectory(generators)
+add_subdirectory(graph)
+add_subdirectory(optimization_utils)
+add_subdirectory(reliability)
+add_subdirectory(settings)
+add_subdirectory(thread_pool)
+
+add_subdirectory(tests)
+
+# Set all libraries, using in project.
+set(PROJECT_LIBS
+  # Internal libraries
+  GraphVertex
+  OrientedGraph
+  TruthTable
+  Reliability
+  Circuit
+  AuxiliaryMethods
+  FilesTools
+  Settings
+  OptimizationUtils
+  ThreadPool
+  DataBaseGenerator
+
+  # External libraries
+  nlohmann_json::nlohmann_json
+)
 
 # Add source files
 set(SOURCES
-  Settings.cpp
-  AuxiliaryMethods.cpp
-  FilesTools.cpp
+  settings/Settings.cpp
+  AuxiliaryMethods/AuxiliaryMethods.cpp
+  filesTools/FilesTools.cpp  
   generators/Genetic/Parents/ParentsParameters.cpp
   generators/Genetic/Recombination/RecombinationParameters.cpp
   generators/Genetic/Mutations/MutationParameters.cpp
@@ -74,42 +120,42 @@ set(SOURCES
   generators/Genetic/GenGenerator.cpp
   DataBase/DataBaseGenerator.cpp
   DataBase/DataBaseGeneratorParameters.cpp
+  generatorAPI.cpp
   main.cpp
 )
 
-# Add include directories
-#include_directories(
-#  /opt/homebrew/Cellar/nlohmann-json/3.11.2/include
-#)
-
 # Create executable
-add_executable(prog ${SOURCES})
+add_executable(${MAIN_TARGET} ${SOURCES})
 
-add_library(settings Settings.h Settings.cpp)
-add_library(FilesTools FilesTools.h FilesTools.cpp)
-add_library(AuxiliaryMethods AuxiliaryMethods.h AuxiliaryMethods.cpp)
-
-add_subdirectory(graph)
-add_subdirectory(generators)
-add_subdirectory(circuits)
-add_subdirectory(reliability)
-add_subdirectory(optimization_utils)
-add_subdirectory(thread_pool)
-add_subdirectory(DataBase)
-add_subdirectory(tests)
-
-target_link_libraries(prog TruthTable Reliability GraphVertex OrientedGraph Circuit AuxiliaryMethods FilesTools settings OptimizationUtils ThreadPool DataBaseGenerator nlohmann_json::nlohmann_json)
-
+# Add all internal libraries in the project
+target_link_libraries(${MAIN_TARGET} ${PROJECT_LIBS})
 
 # Check if pthreads is installed; adjust compiler/linker options
 find_package(Threads REQUIRED)
 if(THREADS_HAVE_PTHREAD_ARG)
-  target_compile_options(prog PUBLIC "-lpthread")
+  target_compile_options(${MAIN_TARGET} PUBLIC "-lpthread")
 endif()
-if(CMAKE_THREAD_LIBS_INIT)
-  target_link_libraries(prog "${CMAKE_THREAD_LIBS_INIT}")
+if(CMAKE_THREAD_PROJECT_LIBS_INIT)
+  target_link_libraries(${MAIN_TARGET} "${CMAKE_THREAD_PROJECT_LIBS_INIT}")
 endif()
 
-target_include_directories(settings PUBLIC ${CMAKE_SOURCE_DIR})
-target_include_directories(FilesTools PUBLIC ${CMAKE_SOURCE_DIR})
-target_include_directories(AuxiliaryMethods PUBLIC ${CMAKE_SOURCE_DIR})
+
+
+
+# Link to shared library
+function(gen_properties target visibility)
+    target_include_directories(${target} ${visibility} ${CMAKE_CURRENT_SOURCE_DIR} )
+    target_link_libraries(${target} ${visibility} ${PROJECT_LIBS})
+endfunction()
+
+add_library(${MAIN_LIBRARY} SHARED EXCLUDE_FROM_ALL ${SOURCES})
+gen_properties(${MAIN_LIBRARY} PRIVATE)
+
+set(public_headers
+    generatorAPI.h
+)
+
+set_target_properties(${MAIN_LIBRARY} PROPERTIES PUBLIC_HEADER "${public_headers}")
+
+set_property(TARGET ${MAIN_LIBRARY} PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET ${MAIN_LIBRARY} PROPERTY OUTPUT_NAME ${MAIN_LIBRARY})
