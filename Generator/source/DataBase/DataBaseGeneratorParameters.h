@@ -1,7 +1,7 @@
 #pragma once
 
 #include <generators/GenerationParameters.h>
-#include <Settings.h>
+#include <settings/Settings.h>
 
 enum GenerationTypes
 {

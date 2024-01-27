@@ -17,11 +17,8 @@ class YosysUtils
 public:
     static CommandWorkResult optVerilog(
         std::string i_inputFileName,
-        std::string i_outputFileName);
-    static CommandWorkResult optVerilog(
-        std::string i_inputFileName,
         std::string i_outputFileName,
-        std::string i_directory);
+        std::string i_directory = ".");
     static CommandWorkResult writeFirrtl(
         std::string i_inputFileName,
         std::string i_outputFileName);

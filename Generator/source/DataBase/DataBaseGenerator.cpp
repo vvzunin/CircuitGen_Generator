@@ -1,7 +1,7 @@
 #include <iostream>
 #include <filesystem>
 
-#include <FilesTools.h>
+#include <filesTools/FilesTools.h>
 #include <circuits/Circuit.h>
 #include <generators/Parser.h>
 #include <generators/TruthTable.h>

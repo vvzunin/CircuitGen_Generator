@@ -1,0 +1,30 @@
+[
+  {
+    "seed": 2,
+    "dataset_id": "0",
+    "id": 0,
+    "type_of_generation": "From Random Truth Table",
+    "min_in": 4,
+    "max_in": 5,
+    "min_out": 4,
+    "max_out": 5,
+    "repeat_n": 2,    
+    "multithread": true,
+    "calculate_stats_abc": true,
+    "make_optimized_files": true,
+    "create_id_directories": true,
+    "library_name": "sky130",
+    
+    "gates_inputs_info": {
+      "and": [2],
+      "nand": [2],
+      "or": [2],
+      "nor": [2, 4, 8],
+      "xor": [2, 10],
+      "xnor": [2, 3]
+    },
+
+    "max_level": 1,
+    "max_elem": 1
+  }
+]

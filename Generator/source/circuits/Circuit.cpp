@@ -11,8 +11,8 @@
 #include <reliability/Reliability.h>
 #include <optimization_utils/AbcUtils.h>
 #include <optimization_utils/YosysUtils.h>
-#include <FilesTools.h>
-#include <AuxiliaryMethods.h>
+#include <filesTools/FilesTools.h>
+#include <AuxiliaryMethods/AuxiliaryMethods.h>
 
 Circuit::Circuit(const OrientedGraph &i_graph, const std::vector<std::string> &i_logExpressions)
 {

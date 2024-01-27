@@ -99,7 +99,14 @@ gp.setNewGeneratorNameParameters(...);
 <a name="generator_build_rus"></a> 
 Для сборки программы необходимо выполнить следующую команду из начальной директории:
 ```
-./buildGenerator
+./buildGenerator.sh
+```
+
+## Сборка библиотеки (shared)
+<a name="generator_build_rus"></a> 
+Для сборки библиотеки (shared) необходимо выполнить следующую команду из начальной директории:
+```
+./buildGeneratorLibrary.sh
 ```
 
 [&#8593; Contents](#content_rus)
@@ -108,7 +115,7 @@ gp.setNewGeneratorNameParameters(...);
 <a name="generator_run_one_json_rus"></a>
 Для проведения генерации из командной строки необходимо подготовить JSON файл с описанием параметров генерации, создать папку `dataset` в начальной директории, а после выполнить следующую команду:
 ```
-Generator/source/build/prog --json_path <path_to_json>
+Generator/source/build/circuitgen --json_path <path_to_json>
 ```
 
 [&#8593; Contents](#content_rus)
@@ -116,6 +123,10 @@ Generator/source/build/prog --json_path <path_to_json>
 ## JSON файлы
 <a name="JSON_files"></a>
 Для генерации комбинационных схем с использованием командной строки необходимо создать JSON файл.
+
+Набор использованных методов описан в следующих статьях:
+1) V. V. Zunin, A. Y. Romanov, Solovyev R. Developing Methods for Combinational Circuit Generation, in: 2022 International Russian Automation Conference (RusAutoCon). IEEE, 2022. [doi](https://doi.org/10.1109/RusAutoCon54946.2022.9896390)
+
 JSON файл может содержать несколько наборов генерации:
 ```
 [
@@ -128,8 +139,43 @@ JSON файл может содержать несколько наборов г
 ]
 ```
 Для каждого набора генерации необходимо задать набор параметров:
-1) Сид генерации (опциональный параметр):
+1) Опциональные параметры:
    1) seed - int; сид для генератора случайных чисел, -1 или отсутствие поля для псевдослучайного сида;
+   2) multithread - bool; флаг, отвечающий за запуск генерации в многопоточном режиме. Отметим, что при использовании данного флага
+   является бессмысленным использования seed из-за гонки потоков. По умолчанию - false, вычисления производятся последовательно.
+   3) calculate_stats_abc - bool;  флаг, отвечающий за проведение обсчета схема с использованием abc. По умолчанию - false, обсчет 
+   не производится
+   4) make_optimized_files - bool; флаг, отвечающий за генерацию файлов verilog и aig, которые содержат схемы с некоторыми 
+   оптимизациями, в частности resyn2 и balance. Файлы создаются в той же директории, что и сгенерированный verilog файл. 
+   По умолчанию - false, генерация не производится. 
+   5) library_name -  string; имя библиотеки, с использованием который abc производит обсчет схемы. Является обязательным при 
+   использовании флагов calculate_stats_abc и/или make_optimized_files.
+   6) create_id_directories - bool; флаг, отвечающий за создание директорий dataset_id и id самой генерации. По умолчанию - true.
+   7) gates_inputs_info - map (словарь); содержит количество возможных входов для логических элементов. ОБЯЗАТЕЛЬНЫМ является 
+   указание всех логических элементов, т.е. and, nand, or, nor, xor, xnor.
+   Указывается допустимое количество входов в виде массива int. Пример:
+   ```
+   "gates_inputs_info": {
+      "and": [2],
+      "nand": [2],
+      "or": [2],
+      "nor": [2, 4, 8],
+      "xor": [2, 10],
+      "xnor": [2, 3]
+   }
+   ```
+   В данном примере у всех элементов может быть два входа, кроме того, у nor может быть 4 или 8 входов, у nor - 10, у nor - 3.
+   По умолчанию имеет вид 
+   ```
+   "gates_inputs_info": {
+      "and": [2],
+      "nand": [2],
+      "or": [2],
+      "nor": [2],
+      "xor": [2],
+      "xnor": [2]
+   }
+   ```
 2) Определение пути генерации:
    1) dataset_id - int; обозначение датасета схем;
    2) id - int; обозначение подкатегории датасета;
@@ -172,6 +218,12 @@ JSON файл может содержать несколько наборов г
       8) mask_prob - float; RecombinationCrossingTriadic и CrossingUniform;
       9) rec_num - int; количество рекомбинаций;
       10) surv_num - int; количество выживших.
-В [примере](docs/sample.json) JSON файла указаны все возможные параметры генерации (кроме сида), что позволяет использовать его для всех параметров генерации с минимальными изменениями.
+
+В [примере](docs/sampleAll.json) JSON файла указаны все возможные параметры генерации (кроме сида), что позволяет использовать его для всех параметров генерации с минимальными изменениями.
+В дополнении в той же папке имются индивидуальные JSON файлы под каждый тип генерации:
+1. [From Random Truth Table](docs/sampleTruthTable.json)
+2. [Rand Level](docs/sampleRandLevel.json)
+3. [Num Operation](docs/sampleNumOperation.json)
+4. [Genetic](docs/sampleGenetic.json)
 
 [&#8593; Contents](#content_rus)
