@@ -6,6 +6,7 @@
 #include <functional>
 
 #include "YosysUtils.h"
+#include "UtilsCommands.h"
 
 // declare of value of static var
 static std::string d_utilWord = "yosys";
@@ -147,26 +148,28 @@ CommandWorkResult YosysUtils::optVerilog(
     std::string i_outputFileName,
     std::string i_directory)
 {
-    // format i_command, then execute it with specified parametrs
-    // REMEMBER
-    std::string i_command = "(echo \"read_verilog " + i_directory + "/" + i_inputFileName + "\"";
-    i_command += "&& echo \"opt\" && echo \"";
-    i_command += "write_verilog " + i_directory + "/" + i_outputFileName + "\") | yosys 2>&1";
-
-    return standartExecutor(
-        i_command,
-        parseCommand(i_command));
+    return prepairCommand(
+        YosysCommands::optVerilogCommand,
+        standartExecutor,
+        i_directory,
+        i_inputFileName,
+        i_directory,
+        i_outputFileName);
 }
 
 CommandWorkResult YosysUtils::writeFirrtl(
     std::string i_inputFileName,
-    std::string i_outputFileName)
+    std::string i_outputFileName,
+    std::string i_directory)
 {
 
-    std::string i_command = "(echo \"read_verilog " + i_inputFileName + ".v\"";
-    i_command += "&& echo \"write_firrtl " + i_outputFileName + ".fir\") | yosys 2>&1";
-
-    return standartExecutor(
-        i_command,
-        parseCommand(i_command));
+    return prepairCommand(
+        YosysCommands::writeFirrtlCommand,
+        standartExecutor,
+        i_directory,
+        i_inputFileName,
+        // -
+        i_directory,
+        // -
+        i_outputFileName);
 }

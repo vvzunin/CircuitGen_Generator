@@ -641,7 +641,7 @@ bool Circuit::generate(bool i_makeFirrtl, bool i_getAbcStats, std::string i_libr
         return false;
     
     if (i_makeFirrtl) {
-        YosysUtils::writeFirrtl(d_path + d_circuitName, d_path + d_circuitName);
+        YosysUtils::writeFirrtl(d_circuitName + ".v", d_circuitName + ".fir", d_path);
     }
 
     if (i_generateAig)

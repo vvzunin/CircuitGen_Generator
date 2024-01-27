@@ -42,4 +42,24 @@ static const char *getStatsCommand =
 // namesapce end
 }
 
+namespace YosysCommands {
+static const char* optVerilogCommand = 
+    "(echo \"read_verilog {}/{}\" "
+    "&& echo \"opt\" "
+    "&& echo \"write_verilog {}/{}\") | yosys";
+
+static const char *writeFirrtlCommand = 
+    "(echo \"read_verilog {}/{}\" "
+    "&& echo \"write_firrtl {}/{}\") | yosys";
+
+// WIP
+// static const char *writeFirrtlCommand = 
+//     "pushd {} "
+//     "&& ((echo \"read_verilog {}\" "
+//     "&& echo \"write_firrtl {}\") | yosys) "
+//     "&& popd";
+
+// namesapce end
+}
+
 #endif
