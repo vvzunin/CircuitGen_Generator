@@ -128,6 +128,7 @@ public:
                                    d_libraryName(i_libraryName),
                                    d_calculateStatsAbc(i_calculateStatsAbc),
                                    d_makeOptimizedFiles(i_makeOptimizedFiles),
+                                   d_makeFirrtl(i_makeFirrtl),
                                    d_geneticParameters(GeneticParameters(d_inputs, d_outputs)){};
 
   std::string getName() const
