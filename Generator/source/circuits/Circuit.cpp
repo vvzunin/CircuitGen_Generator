@@ -51,34 +51,30 @@ int Circuit::calculateReliability(int inputs_size) {
     // std::cout << R.calcReliabilityBase() << std::endl;
     // std::cout << R.valveRating() << std::endl;
 
-    // Algorithm for evaluating circuit reliability
-    std::vector<std::vector<bool>> vec(1);
-    std::vector<bool> first(inputs_size);
-    for (int i = 0; i < inputs_size; i++)
-    {
-        first.push_back(false);
-    }
-    vec.push_back(first);
+    // // Algorithm for evaluating circuit reliability
+    // std::vector<std::vector<bool>> vec(1 + (int) pow(2.0, float(inputs_size)));
+    // std::vector<bool> first(inputs_size, false);
+    
+    // vec.push_back(first);
 
-    for (int i = 0; i < pow(2.0, float(inputs_size)); i++)
-    {
-        std::vector<bool> next = {};
-        for (int j = 0; j < inputs_size; j++)
-            next.push_back(vec.back()[j]);
-        for (int m = inputs_size - 1; m >= 0; m--)
-        {
-            if (next[m] == false)
-            {
-                next[m] = true;
-                break;
-            }
-            else
-            {
-                next[m] = false;
-            }
-        }
-        vec.push_back(next);
-    }
+    // for (int i = 0; i < pow(2.0, float(inputs_size)); i++)
+    // {
+    //     std::vector<bool> next = vec.back();
+
+    //     for (int m = inputs_size - 1; m >= 0; m--)
+    //     {
+    //         if (next[m])
+    //         {
+    //             next[m] = false;
+    //         }
+    //         else
+    //         {
+    //             next[m] = true;
+    //             break;                
+    //         }
+    //     }
+    //     vec.push_back(next);
+    // }
     /*
     for (int i = 0; i < pow(2.0, float(inputs_size)); i++)
     {
@@ -94,46 +90,49 @@ int Circuit::calculateReliability(int inputs_size) {
     int numberOfIncoincidences = 0;
     int pos = -1;
     std::vector<int> vec_index = d_graph.getVertices("input");
-    for (int i = 0; i < pow(2.0, float(inputs_size)); i++)
+
+    for (long i = 0; i < pow(2.0, float(inputs_size)); ++i)
     {
-        std::vector<bool> tmp = vec.back();
-        std::vector<bool> tmp_wrong = vec.back();
+        // std::vector<bool> tmp = vec.back();
+        // std::vector<bool> tmp_wrong = vec.back();
         if (pos != -1)
             d_graph.d_vertices[pos].wrongVertex = false;
-        vec.pop_back();
-        for (int j = 0; j < vec_index.size(); j++)
+        
+        // vec.pop_back()
+        long data = i;
+        for (int j : vec_index)
         {
-            d_graph.d_vertices[vec_index[j]].setValue(tmp.back());
-            tmp.pop_back();
+            d_graph.d_vertices[j].setValue(data % 2);
+            data >>= 1;
         }
 
         //    std::vector<bool> res_1 = {};
         for (int m = 1; m < d_graph.getMaxLevel(); m++)
         {
             std::vector<int> vec_2 = d_graph.getVerticesByLevel_2(m);
-            for (int n = 0; n < vec_2.size(); n++)
+            for (int n : vec_2)
             {
-                std::vector<bool> vec_3 = {};
-                std::vector<int> tmp_2 = d_graph.d_listOfEdgesToFrom[vec_2[n]];
-                for (int j = 0; j < tmp_2.size(); j++)
+                std::vector<int> tmp_2 = d_graph.d_listOfEdgesToFrom[n];
+                std::vector<bool> vec_3(tmp_2.size());
+
+                for (int j : tmp_2)
                 {
-                    vec_3.push_back(d_graph.d_vertices[tmp_2[j]].getValue());
+                    vec_3.push_back(d_graph.d_vertices[j].getValue());
                 }
-                d_graph.d_vertices[vec_2[n]].setValue(d_graph.calc(vec_3, (d_graph.d_vertices[vec_2[n]]).getOperation()));
+
+                d_graph.d_vertices[n].setValue(d_graph.calc(vec_3, (d_graph.d_vertices[n]).getOperation()));
                 //        res_1.push_back(d_graph.d_vertices[vec_2[n]].getValue());
             }
         }
 
         std::vector<int> vec_outputs_indices_without_error = d_graph.getVertices("output");
-        for (int j = 0; j < vec_outputs_indices_without_error.size(); j++)
+        std::vector<bool> result_without_error(vec_outputs_indices_without_error.size());
+        for (int j : vec_outputs_indices_without_error)
         {
-            d_graph.d_vertices[vec_outputs_indices_without_error[j]].setValue(d_graph.d_vertices[(d_graph.d_listOfEdgesToFrom[vec_outputs_indices_without_error[j]])[0]].getValue());
-        }
-        std::vector<bool> result_without_error = {};
-
-        for (int j = 0; j < vec_outputs_indices_without_error.size(); j++)
-        {
-            result_without_error.push_back(d_graph.d_vertices[vec_outputs_indices_without_error[j]].getValue());
+            bool cur_value = d_graph.d_vertices[(d_graph.d_listOfEdgesToFrom[j])[0]].getValue();
+            
+            d_graph.d_vertices[j].setValue(cur_value);
+            result_without_error.push_back(cur_value);
         }
 
         pos = -1;
@@ -149,8 +148,10 @@ for (int j = 0; j < d_graph.d_vertices.size(); j++)
         }
 }*/
 
-        std::vector<int> indecies__ = {};
-        for (int j = 0; j < d_graph.d_vertices.size(); j++)
+        std::vector<int> indecies__(
+            d_graph.d_vertices.size() - d_graph.d_inputs.size() - d_graph.d_outputs.size() - d_graph.d_consts.size());
+
+        for (auto j = 0; j < d_graph.d_vertices.size(); j++)
         {
             if (d_graph.d_vertices[j].getOperation() != "input" && d_graph.d_vertices[j].getOperation() != "output" && d_graph.d_vertices[j].getOperation() != "const")
             {
@@ -163,39 +164,38 @@ for (int j = 0; j < d_graph.d_vertices.size(); j++)
         d_graph.d_vertices[indecies__[t]].wrongVertex = true;
         pos = indecies__[t];
 
-        for (int j = 0; j < vec_index.size(); j++)
+        data = i;
+        for (int j : vec_index)
         {
-            d_graph.d_vertices[vec_index[j]].setValue(tmp.back());
-            tmp.pop_back();
+            d_graph.d_vertices[j].setValue(data % 2);
+            data >>= 1;
         }
 
         //    std::vector<bool> res_1 = {};
         for (int m = 1; m < d_graph.getMaxLevel(); m++)
         {
             std::vector<int> vec_2 = d_graph.getVerticesByLevel_2(m);
-            for (int n = 0; n < vec_2.size(); n++)
+            for (int n : vec_2)
             {
-                std::vector<bool> vec_3 = {};
-                std::vector<int> tmp_2 = d_graph.d_listOfEdgesToFrom[vec_2[n]];
-                for (int j = 0; j < tmp_2.size(); j++)
+                std::vector<int> tmp_2 = d_graph.d_listOfEdgesToFrom[n];
+                std::vector<bool> vec_3(tmp_2.size());
+                for (int j : tmp_2)
                 {
-                    vec_3.push_back(d_graph.d_vertices[tmp_2[j]].getValue());
+                    vec_3.push_back(d_graph.d_vertices[j].getValue());
                 }
-                d_graph.d_vertices[vec_2[n]].setValue(d_graph.calc(vec_3, (d_graph.d_vertices[vec_2[n]]).getOperation()));
+                d_graph.d_vertices[n].setValue(d_graph.calc(vec_3, (d_graph.d_vertices[n]).getOperation()));
                 //        res_1.push_back(d_graph.d_vertices[vec_2[n]].getValue());
             }
         }
 
         std::vector<int> vec_outputs_indices_with_error = d_graph.getVertices("output");
-        for (int j = 0; j < vec_outputs_indices_with_error.size(); j++)
+        std::vector<bool> result_with_error(vec_outputs_indices_with_error.size());
+        for (int j : vec_outputs_indices_with_error)
         {
-            d_graph.d_vertices[vec_outputs_indices_with_error[j]].setValue(d_graph.d_vertices[(d_graph.d_listOfEdgesToFrom[vec_outputs_indices_with_error[j]])[0]].getValue());
-        }
-        std::vector<bool> result_with_error = {};
+            bool cur_value = d_graph.d_vertices[(d_graph.d_listOfEdgesToFrom[j])[0]].getValue();
 
-        for (int j = 0; j < vec_outputs_indices_with_error.size(); j++)
-        {
-            result_with_error.push_back(d_graph.d_vertices[vec_outputs_indices_with_error[j]].getValue());
+            d_graph.d_vertices[j].setValue(cur_value);
+            result_with_error.push_back(cur_value);
         }
 
         /*
@@ -204,8 +204,8 @@ for (int j = 0; j < d_graph.d_vertices.size(); j++)
                 std::cout << "with_error: " << result_with_error[j] << "\twithout_error: " << result_without_error[j] << "\n";
         }
         std::cout << "next: " << "\n";
-        if (result_with_error != result_without_error) numberOfIncoincidences++;
         */
+        if (result_with_error != result_without_error) numberOfIncoincidences++;
         /*
         for (int j = 0; j < vec_outputs_indices.size(); j++)
         {
