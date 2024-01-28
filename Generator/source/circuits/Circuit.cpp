@@ -637,7 +637,13 @@ bool Circuit::generate(bool i_makeFirrtl, bool i_getAbcStats, std::string i_libr
         return false;
     
     if (i_makeFirrtl) {
-        YosysUtils::writeFirrtl(d_circuitName + ".v", d_circuitName + ".fir", d_path);
+        // Maybe we need to control thread, but now just detach it
+        std::thread(
+            YosysUtils::writeFirrtl,
+            d_circuitName + ".v", 
+            d_circuitName + ".fir", 
+            d_path
+        ).detach();
     }
 
     if (i_generateAig)
