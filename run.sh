@@ -1,9 +1,9 @@
-#!/bin/bash
+# #!/bin/bash
 cd Generator/source
 mkdir build
 cd build
 cmake ..
-make
+make -j $(nproc)
 cd ../../../
 currentDir=$(pwd)
-Generator/source/build/prog --json_path=$currentDir/Generator/source/test_data/wast/sample.json
+Generator/source/build/circuitgen --json_path=$currentDir/Generator/source/test_data/wast/sample.json
