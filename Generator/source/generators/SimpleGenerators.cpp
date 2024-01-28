@@ -830,6 +830,7 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
             {
                 if (j < i_bits)
                 {
+                    std::string N = std::to_string(n);
                     std::string Nowab = "c" + M1 + M2;
                     std::string Pastab = "c" + M01 + M20;
                     std::string NextS = std::to_string(i) + std::to_string(j + 1);

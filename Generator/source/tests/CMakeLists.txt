@@ -14,6 +14,7 @@ OrientedGraphSysTests.cpp
 FilesToolsTests.cpp
 GraphVertexTests.cpp
 ParityTests.cpp
+DecoderTests.cpp
 ../generators/SimpleGenerators.cpp
 )
 
