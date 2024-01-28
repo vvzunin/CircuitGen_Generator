@@ -116,10 +116,12 @@ void runGenerationFromJson(std::string json_path)
         data.contains("calculate_stats_abc") ? (bool)data["calculate_stats_abc"] : false;
     bool makeOptimizedFiles =
         data.contains("make_optimized_files") ? (bool)data["make_optimized_files"] : false;
-    bool makeFirrtl =
-        data.contains("make_firrtl") ? (bool)data["make_firrtl"] : false;
     std::string libraryName =
         data.contains("library_name") ? (std::string)data["library_name"] : "";
+    
+    // and this is for Yosys
+    bool makeFirrtl =
+        data.contains("make_firrtl") ? (bool)data["make_firrtl"] : false;
 
     // Считывание информации по логичсеким элементам.
     std::map<std::string, std::vector<int>> gatesInputsInfo;

@@ -168,8 +168,5 @@ CommandWorkResult YosysUtils::writeFirrtl(
         standartExecutor,
         i_directory,
         i_inputFileName,
-        // -
-        i_directory,
-        // -
         i_outputFileName);
 }

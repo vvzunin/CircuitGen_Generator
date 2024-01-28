@@ -49,16 +49,9 @@ static const char* optVerilogCommand =
     "&& echo \"write_verilog {}/{}\") | yosys";
 
 static const char *writeFirrtlCommand = 
-    "(echo \"read_verilog {}/{}\" "
-    "&& echo \"write_firrtl {}/{}\") | yosys";
-
-// WIP
-// static const char *writeFirrtlCommand = 
-//     "pushd {} "
-//     "&& ((echo \"read_verilog {}\" "
-//     "&& echo \"write_firrtl {}\") | yosys) "
-//     "&& popd";
-
+    "(cd {} "
+    "&& (echo \"read_verilog {}\" "
+    "&& echo \"write_firrtl {}\") | yosys)";
 // namesapce end
 }
 
