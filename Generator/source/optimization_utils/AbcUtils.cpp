@@ -49,7 +49,7 @@ CommandWorkResult AbcUtils::standartExecutor(
     int firstPos = result.find(d_utilWord, 0);
 
     CommandWorkResult workResult;
-    // workResult.commandsOutput = std::map<std::string, std::string>();
+    workResult.commandsOutput = std::map<std::string, std::string>();
 
     bool inputParsed = false;
 
@@ -68,7 +68,7 @@ CommandWorkResult AbcUtils::standartExecutor(
                 std::cerr << errText;
                 workResult.commandsOutput.clear();
                 workResult.commandsOutput["error"] = errText;
-                workResult.commandsOutput["fileRead"] = inputParsed;
+                workResult.commandsOutput["fileRead"] = inputParsed ? "true" : "false";
 
                 correct = false;
                 break;
@@ -94,7 +94,7 @@ CommandWorkResult AbcUtils::standartExecutor(
                 std::cerr << errText;
                 workResult.commandsOutput.clear();
                 workResult.commandsOutput["error"] = errText;
-                workResult.commandsOutput["fileRead"] = inputParsed;
+                workResult.commandsOutput["fileRead"] = inputParsed ? "true" : "false";
 
                 correct = false;
                 break;
@@ -113,7 +113,7 @@ CommandWorkResult AbcUtils::standartExecutor(
                         std::cerr << errText;
                         workResult.commandsOutput.clear();
                         workResult.commandsOutput["error"] = errText;
-                        workResult.commandsOutput["fileRead"] = inputParsed;
+                        workResult.commandsOutput["fileRead"] = inputParsed ? "true" : "false";
 
                         correct = false;
                     }
@@ -137,7 +137,7 @@ CommandWorkResult AbcUtils::standartExecutor(
         std::cerr << errText;
         workResult.commandsOutput.clear();
         workResult.commandsOutput["error"] = errText;
-        workResult.commandsOutput["fileRead"] = inputParsed;
+        workResult.commandsOutput["fileRead"] = inputParsed ? "true" : "false";
 
         correct = false;
     }
@@ -253,7 +253,7 @@ CommandWorkResult AbcUtils::getStats(
     std::string i_fileDirectory,
     std::string i_libDirectory)
 {
-    return prepairCommand(
+     CommandWorkResult res = prepairCommand(
         AbcCommands::getStatsCommand,
         runExecutorForStats,
         i_fileDirectory,
@@ -261,6 +261,9 @@ CommandWorkResult AbcUtils::getStats(
         i_libDirectory,
         i_libName
     );
+    res.commandsOutput["optimization_type"] = "";
+
+    return res;
 }
 
 CommandWorkResult AbcUtils::resyn2(

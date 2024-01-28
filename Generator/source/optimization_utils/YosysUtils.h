@@ -3,8 +3,6 @@
 
 #include <string>
 #include <vector>
-#include <format>
-#include <string_view>
 
 #include "StandartUtil.h"
 
@@ -38,11 +36,11 @@ protected:
 private:
     template <typename... Args>
     static CommandWorkResult prepairCommand(
-        std::string_view i_command,
+        const std::string& i_command,
         CommandWorkResult (*executableFunc)(std::string, std::vector<StandartCommandInfo>),
         Args &&...filenames)
     {
-        std::string command = std::vformat(i_command, std::make_format_args(filenames...));
+        std::string command = format(i_command, filenames...);
 
         return executableFunc(
             command,

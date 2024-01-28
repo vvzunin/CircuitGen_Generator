@@ -92,7 +92,7 @@ int Circuit::calculateReliability(int inputs_size) {
     int pos = -1;
     std::vector<int> vec_index = d_graph.getVertices("input");
 
-    for (long i = 0; i < pow(2.0, float(inputs_size)); ++i)
+    for (u_int64_t i = 0; i < pow(2.0, float(inputs_size)); ++i)
     {
         // std::vector<bool> tmp = vec.back();
         // std::vector<bool> tmp_wrong = vec.back();
@@ -100,7 +100,7 @@ int Circuit::calculateReliability(int inputs_size) {
             d_graph.d_vertices[pos].wrongVertex = false;
         
         // vec.pop_back()
-        long data = i;
+        u_int64_t data = i;
         for (int j : vec_index)
         {
             d_graph.d_vertices[j].setValue(data % 2);
@@ -296,8 +296,7 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
                                              d_circuitName + ".v",
                                              i_libraryName,
                                              d_path,
-                                             d_settings->getLibraryPath())
-                                             .commandsOutput;
+                                             d_settings->getLibraryPath());
 
         std::clog << d_circuitName << " calc ended" << std::endl;
     }
@@ -527,33 +526,20 @@ bool Circuit::saveParameters(bool i_getAbcStats, bool i_generateAig, bool i_path
     if (i_getAbcStats)
     {
         outputFile << "," << std::endl;
-        outputFile << "\t\"abcStats\": {" << std::endl;
+        
+        CommandWorkResult statsRes = d_circuitParameters.d_abcStats;
+        // we need it because we cannot change data in original d_abcStats, in it's map
+        std::string optType = statsRes.commandsOutput["optimization_type"];
+        statsRes.commandsOutput.erase("optimization_type");
 
-        first = true;
-        for (const auto &data : d_circuitParameters.d_abcStats)
-        {
-            if (first)
-            {
-                first = false;
-                outputFile << "\t\t\"" << data.first << "\": " << data.second;
-            }
-            else
-            {
-                outputFile << "," << std::endl
-                           << "\t\t\"" << data.first << "\": " << data.second;
-            }
-        }
-        outputFile << std::endl;
-
-        outputFile << "\t}";
+        // if we are going to add sth into this file, i_generateAig flag is true
+        // and we will end the json
+        saveAdditionalStats(statsRes, optType, !i_generateAig);
     }
-
-    // if we are going to add sth into this file, this flag is true
-    if (!i_generateAig)
-        outputFile << std::endl
-                   << "}";
-    else
-        outputFile << "," << std::endl;
+    
+    // if we did not ended json yet and we need it, ending
+    if (!i_generateAig && !i_getAbcStats)
+        outputFile << std::endl << "}";
 
     return true;
 }
@@ -609,8 +595,18 @@ void Circuit::saveAdditionalStats(CommandWorkResult i_res, std::string i_optimiz
     }
     else
     {
+        for (int i = i_res.commandsOutput["error"].find('"'); 
+             i != std::string::npos; i = i_res.commandsOutput["error"].find('"', i + 1))
+                i_res.commandsOutput["error"].erase(i, 1);
+        
+        for (int i = i_res.commandsOutput["error"].find('\n'); 
+             i != std::string::npos; i = i_res.commandsOutput["error"].find('\n', i + 1))
+                i_res.commandsOutput["error"][i] = ';';
+        
         outJson << "\t\t"
-                << "\"error\": \"" << i_res.commandsOutput["error"] << "\"\n";
+                << "\"error\": \"" << i_res.commandsOutput["error"] << "\",\n";
+        outJson << "\t\t"
+                << "\"fileRead\": \"" << i_res.commandsOutput["fileRead"] << "\"\n";
     }
 
     outJson << "\t}";
