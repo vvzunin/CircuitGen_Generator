@@ -533,8 +533,6 @@ bool Circuit::saveParameters(bool i_getAbcStats, bool i_generateAig, bool i_path
         // we need it because we cannot change data in original d_abcStats, in it's map
         if (statsRes.correct)
         {
-            statsRes.commandsOutput.erase("optimization_type");
-
             statsRes.commandsOutput["inputsNumberCorrect"] =
                 stoi(statsRes.commandsOutput["inputs"]) == d_circuitParameters.d_numInputs ? "true" : "false";
 

@@ -258,7 +258,7 @@ CommandWorkResult AbcUtils::getStats(
     std::string i_fileDirectory,
     std::string i_libDirectory)
 {
-     CommandWorkResult res = prepairCommand(
+    return prepairCommand(
         AbcCommands::getStatsCommand,
         runExecutorForStats,
         i_fileDirectory,
@@ -266,9 +266,6 @@ CommandWorkResult AbcUtils::getStats(
         i_libDirectory,
         i_libName
     );
-    res.commandsOutput["optimization_type"] = "";
-
-    return res;
 }
 
 CommandWorkResult AbcUtils::resyn2(
