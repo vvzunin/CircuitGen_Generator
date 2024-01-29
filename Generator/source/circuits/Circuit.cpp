@@ -629,7 +629,7 @@ void Circuit::saveAdditionalStats(CommandWorkResult i_res, std::string i_optimiz
     std::clog << d_circuitName << " " << i_optimizationName << " ended\n";
 }
 
-bool Circuit::generate(bool i_makeFirrtl, bool i_getAbcStats, std::string i_libraryName, bool i_generateAig, bool i_pathExists)
+bool Circuit::generate(bool i_makeFirrtl, bool i_makeBench, bool i_getAbcStats, std::string i_libraryName, bool i_generateAig, bool i_pathExists)
 {
     // creating all files in sub directories
     std::string d_path_temp = d_path + d_circuitName;
@@ -653,6 +653,16 @@ bool Circuit::generate(bool i_makeFirrtl, bool i_getAbcStats, std::string i_libr
             YosysUtils::writeFirrtl,
             d_circuitName + ".v",
             d_circuitName + ".fir",
+            d_path)
+            .detach();
+    }
+    if (i_makeBench)
+    {
+        // Maybe we need to control thread, but now just detach it
+        std::thread(
+            AbcUtils::verilogToBench,
+            d_circuitName + ".v",
+            d_circuitName + ".bench",
             d_path)
             .detach();
     }

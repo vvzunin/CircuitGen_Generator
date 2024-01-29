@@ -252,6 +252,20 @@ CommandWorkResult AbcUtils::runExecutorForStats(
     return final_res;
 }
 
+CommandWorkResult AbcUtils::verilogToBench(
+        std::string i_inputFileName,
+        std::string i_outputFileName,
+        std::string i_libDirectory)
+{
+    return runCommand(
+        AbcCommands::convertVerilogToBench,
+        standartExecutor,
+        i_libDirectory,
+        i_inputFileName,
+        i_outputFileName
+    );
+}
+
 CommandWorkResult AbcUtils::getStats(
     std::string i_inputFileName,
     std::string i_libName,

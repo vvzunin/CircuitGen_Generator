@@ -39,6 +39,11 @@ static const char *getStatsCommand =
     "&& echo \"read %/%\" "
     "&& echo \"map\" "
     "&& echo \"print_stats\") | abc";
+
+static const char *convertVerilogToBench = 
+    "cd % "
+    "&& ((echo \"read_verilog %\" "
+    "&& echo \"write_bench %\") | abc)";
 // namesapce end
 }
 

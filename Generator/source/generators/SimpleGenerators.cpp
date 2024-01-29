@@ -175,13 +175,13 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
         for (int j = 0; j < elemLevel[i]; ++j)
         {
             choice = AuxMethods::getRandInt(0, logOper.size());
-            if (logOper[choice] == "not")
+            if (logOper[choice] == "not" || logOper[choice] == "buf")
             {
                 child1 = AuxMethods::getRandInt(0, currIndex);
                 expr = d_settings->fromOperationsToName(logOper[choice]) + " (" +
                        graph.getVertice(child1).getLogicExpression() + ")";
 
-                if (graph.addVertex(expr, "not"))
+                if (graph.addVertex(expr, logOper[choice]))
                     graph.addEdge(graph.getVertice(child1).getLogicExpression(), graph.getVertice(currIndex + position).getLogicExpression());
                 else
                     --position;
@@ -189,8 +189,9 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
             else
             {
                 // is child2 even needed?
+                // yes, it is important
                 child1 = AuxMethods::getRandInt(prevIndex, currIndex);
-                child2 = child1;
+                child2 = AuxMethods::getRandInt(prevIndex, currIndex);
                 // child1 = (rand() % (currIndex - prevIndex)) + prevIndex;
                 // child2 = (rand() % (currIndex - prevIndex)) + prevIndex;
 

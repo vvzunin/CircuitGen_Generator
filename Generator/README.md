@@ -61,7 +61,13 @@ void DataBaseGenerator::generateNewGeneratorName(GenerationParameters &i_param) 
   Circuit c (graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles());
+  c.generate(
+      i_param.getMakeFirrtl(),
+      i_param.getMakeBench(),
+      i_param.getCalculateStatsAbc(),
+      i_param.getLibraryName(),
+      i_param.getMakeOptimizedFiles()
+   );
 }
 ```
 И код для описания метода в header:

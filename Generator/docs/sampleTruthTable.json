@@ -13,6 +13,7 @@
     "calculate_stats_abc": true,
     "make_optimized_files": true,
     "make_firrtl": true,
+    "make_bench": true,
     "create_id_directories": true,
     "library_name": "sky130",
     
