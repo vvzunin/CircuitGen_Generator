@@ -68,7 +68,7 @@ CommandWorkResult AbcUtils::standartExecutor(
                 std::cerr << errText;
                 workResult.commandsOutput.clear();
                 workResult.commandsOutput["error"] = errText;
-                workResult.commandsOutput["fileRead"] = inputParsed ? "true" : "false";
+                
 
                 correct = false;
                 break;
@@ -94,7 +94,7 @@ CommandWorkResult AbcUtils::standartExecutor(
                 std::cerr << errText;
                 workResult.commandsOutput.clear();
                 workResult.commandsOutput["error"] = errText;
-                workResult.commandsOutput["fileRead"] = inputParsed ? "true" : "false";
+                
 
                 correct = false;
                 break;
@@ -113,7 +113,7 @@ CommandWorkResult AbcUtils::standartExecutor(
                         std::cerr << errText;
                         workResult.commandsOutput.clear();
                         workResult.commandsOutput["error"] = errText;
-                        workResult.commandsOutput["fileRead"] = inputParsed ? "true" : "false";
+                        
 
                         correct = false;
                     }
@@ -137,12 +137,12 @@ CommandWorkResult AbcUtils::standartExecutor(
         std::cerr << errText;
         workResult.commandsOutput.clear();
         workResult.commandsOutput["error"] = errText;
-        workResult.commandsOutput["fileRead"] = inputParsed ? "true" : "false";
 
         correct = false;
     }
 
     workResult.correct = correct;
+    workResult.commandsOutput["fileRead"] = inputParsed ? "true" : "false";
 
     return workResult;
 }
@@ -189,6 +189,7 @@ CommandWorkResult AbcUtils::runExecutorForStats(
     CommandWorkResult final_res = standartExecutor(
         i_command,
         i_info);
+    std::string fileRead = final_res.commandsOutput["fileRead"];
 
     // if there were no errors and sth was printed
     if (final_res.correct && final_res.commandsOutput.count("print_stats"))
@@ -228,12 +229,16 @@ CommandWorkResult AbcUtils::runExecutorForStats(
 
             startPos = stats.find_first_not_of(' ', digitEnd + 1);
         }
+
+        final_res.commandsOutput["fileRead"] = fileRead;
     }
     else if (final_res.correct && !final_res.commandsOutput.count("print_stats"))
     {
         final_res.commandsOutput.clear();
 
         final_res.commandsOutput["error"] = "Incorrect output, no stats had been printed\n";
+        final_res.commandsOutput["fileRead"] = fileRead;
+
         std::cerr << final_res.commandsOutput["error"];
 
         final_res.correct = false;

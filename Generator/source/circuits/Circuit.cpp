@@ -48,14 +48,15 @@ void Circuit::computeHash()
     }
 }
 
-int Circuit::calculateReliability(int inputs_size) {
+int Circuit::calculateReliability(int inputs_size)
+{
     // std::cout << R.calcReliabilityBase() << std::endl;
     // std::cout << R.valveRating() << std::endl;
 
     // // Algorithm for evaluating circuit reliability
     // std::vector<std::vector<bool>> vec(1 + (int) pow(2.0, float(inputs_size)));
     // std::vector<bool> first(inputs_size, false);
-    
+
     // vec.push_back(first);
 
     // for (int i = 0; i < pow(2.0, float(inputs_size)); i++)
@@ -71,7 +72,7 @@ int Circuit::calculateReliability(int inputs_size) {
     //         else
     //         {
     //             next[m] = true;
-    //             break;                
+    //             break;
     //         }
     //     }
     //     vec.push_back(next);
@@ -98,7 +99,7 @@ int Circuit::calculateReliability(int inputs_size) {
         // std::vector<bool> tmp_wrong = vec.back();
         if (pos != -1)
             d_graph.d_vertices[pos].wrongVertex = false;
-        
+
         // vec.pop_back()
         u_int64_t data = i;
         for (int j : vec_index)
@@ -131,7 +132,7 @@ int Circuit::calculateReliability(int inputs_size) {
         for (int j : vec_outputs_indices_without_error)
         {
             bool cur_value = d_graph.d_vertices[(d_graph.d_listOfEdgesToFrom[j])[0]].getValue();
-            
+
             d_graph.d_vertices[j].setValue(cur_value);
             result_without_error.push_back(cur_value);
         }
@@ -206,7 +207,8 @@ for (int j = 0; j < d_graph.d_vertices.size(); j++)
         }
         std::cout << "next: " << "\n";
         */
-        if (result_with_error != result_without_error) numberOfIncoincidences++;
+        if (result_with_error != result_without_error)
+            numberOfIncoincidences++;
         /*
         for (int j = 0; j < vec_outputs_indices.size(); j++)
         {
@@ -249,12 +251,12 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
 
     Reliability R(d_graph, 0.5);
     std::map<std::string, double> dict = R.runNadezhda(d_path, d_circuitName); // what? d_path
-    
+
     if (inputs.size() <= 15)
         d_circuitParameters.d_reliability = 1 - calculateReliability(inputs.size()) / pow(2.0, float(inputs.size()));
     else
         d_circuitParameters.d_reliability = 1;
-    
+
     d_circuitParameters.d_size = dict["size"];
     d_circuitParameters.d_area = dict["area"];
     d_circuitParameters.d_longestPath = dict["longestPath"];
@@ -293,10 +295,10 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
 
         // Would be called after abc work
         d_circuitParameters.d_abcStats = AbcUtils::getStats(
-                                             d_circuitName + ".v",
-                                             i_libraryName,
-                                             d_path,
-                                             d_settings->getLibraryPath());
+            d_circuitName + ".v",
+            i_libraryName,
+            d_path,
+            d_settings->getLibraryPath());
 
         std::clog << d_circuitName << " calc ended" << std::endl;
     }
@@ -526,20 +528,29 @@ bool Circuit::saveParameters(bool i_getAbcStats, bool i_generateAig, bool i_path
     if (i_getAbcStats)
     {
         outputFile << "," << std::endl;
-        
+
         CommandWorkResult statsRes = d_circuitParameters.d_abcStats;
         // we need it because we cannot change data in original d_abcStats, in it's map
-        std::string optType = statsRes.commandsOutput["optimization_type"];
-        statsRes.commandsOutput.erase("optimization_type");
+        if (statsRes.correct)
+        {
+            statsRes.commandsOutput.erase("optimization_type");
+
+            statsRes.commandsOutput["inputsNumberCorrect"] =
+                stoi(statsRes.commandsOutput["inputs"]) == d_circuitParameters.d_numInputs ? "true" : "false";
+
+            statsRes.commandsOutput["outputsNumberCorrect"] =
+                stoi(statsRes.commandsOutput["outputs"]) == d_circuitParameters.d_numOutputs ? "true" : "false";
+        }
 
         // if we are going to add sth into this file, i_generateAig flag is true
         // and we will end the json
-        saveAdditionalStats(statsRes, optType, !i_generateAig);
+        saveAdditionalStats(statsRes, "", !i_generateAig);
     }
-    
+
     // if we did not ended json yet and we need it, ending
     if (!i_generateAig && !i_getAbcStats)
-        outputFile << std::endl << "}";
+        outputFile << std::endl
+                   << "}";
 
     return true;
 }
@@ -568,7 +579,8 @@ void Circuit::saveAdditionalStats(CommandWorkResult i_res, std::string i_optimiz
     std::ofstream outJson;
 
     outJson.open((d_path + "/" + d_circuitName + ".json"), std::ios_base::app);
-    if (!outJson) {
+    if (!outJson)
+    {
         std::cerr << "No json file to write" << std::endl;
         return;
     }
@@ -595,14 +607,14 @@ void Circuit::saveAdditionalStats(CommandWorkResult i_res, std::string i_optimiz
     }
     else
     {
-        for (int i = i_res.commandsOutput["error"].find('"'); 
+        for (int i = i_res.commandsOutput["error"].find('"');
              i != std::string::npos; i = i_res.commandsOutput["error"].find('"', i + 1))
-                i_res.commandsOutput["error"].erase(i, 1);
-        
-        for (int i = i_res.commandsOutput["error"].find('\n'); 
+            i_res.commandsOutput["error"].erase(i, 1);
+
+        for (int i = i_res.commandsOutput["error"].find('\n');
              i != std::string::npos; i = i_res.commandsOutput["error"].find('\n', i + 1))
-                i_res.commandsOutput["error"][i] = ';';
-        
+            i_res.commandsOutput["error"][i] = ';';
+
         outJson << "\t\t"
                 << "\"error\": \"" << i_res.commandsOutput["error"] << "\",\n";
         outJson << "\t\t"
@@ -635,15 +647,16 @@ bool Circuit::generate(bool i_makeFirrtl, bool i_getAbcStats, std::string i_libr
 
     if (!graphToVerilog(d_path, i_pathExists))
         return false;
-    
-    if (i_makeFirrtl) {
+
+    if (i_makeFirrtl)
+    {
         // Maybe we need to control thread, but now just detach it
         std::thread(
             YosysUtils::writeFirrtl,
-            d_circuitName + ".v", 
-            d_circuitName + ".fir", 
-            d_path
-        ).detach();
+            d_circuitName + ".v",
+            d_circuitName + ".fir",
+            d_path)
+            .detach();
     }
 
     if (i_generateAig)
@@ -685,7 +698,8 @@ bool Circuit::generate(bool i_makeFirrtl, bool i_getAbcStats, std::string i_libr
         updateCircuitsParameters(i_getAbcStats, i_libraryName);
 
         std::clog << "Write started" << std::endl;
-        if (!saveParameters(i_getAbcStats, i_generateAig)) {
+        if (!saveParameters(i_getAbcStats, i_generateAig))
+        {
             std::cerr << "Json file was not written!" << std::endl;
             return false;
         }
