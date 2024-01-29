@@ -238,6 +238,72 @@ std::vector<std::string> OrientedGraph::getLogicVerticesToWireName()
   return names;
 }
 
+/*
+void OrientedGraph::Extend(OrientedGraph og){
+    if (og == nullptr){
+        return;
+    }
+    int el = d_vertices.count();
+    d_vertices.addRange(og.d_Vertices)
+    for (int i = 0; i < el; i++){
+        for (int j = 0; j < og.d_Vertices.count(); j++){
+            d_adjacencyMatrix[i].add(false);
+        }
+    }
+    for (int i = 0; i < og.d_Vertices.count(); i++){
+        d_adjacencyMatrix[i].add(new List<bool>());
+        for (int j = 0; j < og.d_Vertices.count(); j++){
+            d_adjacencyMatrix[el + i].add(false);
+        }
+    }
+    for (int i = 0; i < og.d_Vertices.count(); i++){
+        for (int j = 0; j < og.d_Vertices.count(); j++){
+            d_adjacencyMatrix[el + i][el + i] = og.d_adjacencyMatrix[i][j];
+        }
+    }
+}
+
+bool OrientedGraph::Delete (const std::string& i_vertex, bool i_isExpression){
+    int v1 = -1;
+    if (i_isExpression)
+        v1 = getIndexOfExpression(i_vertex);
+    else
+        v1 = getIndexOfWireName(i_vertex);
+
+    if (v1 != -1){
+        for (int i = 0; i < d_vertices.count(), i++)
+            std::remove(d_adjacencyMatrix[i].begin(), d_adjacencyMatrix[i].end(), v1);
+        std::remove(d_adjacencyMatrix[i].begin(), d_adjacencyMatrix[i].end(), v1);
+        std::remove(d_vertices.begin(), d_vertices.end(), v1);
+        return true;
+    }
+    return false;
+}
+
+bool OrientedGraph::Substitute(const std::string &vertexNew, const std::string &vertexOld, bool i_isExpression) {
+    int v1 = -1;
+    int v2 = -1;
+    if (i_isExpression){
+        v1 = getIndexOfExpression(vertexOld);
+        v2 = getIndexOfExpression(vertexNew);
+    }
+    else{
+        v1 = getIndexOfWireName(vertexOld);
+        v2 = getIndexOfWireName(vertexNew);
+    }
+    if (v1 != -1 && v2 != -1){
+        for (int i = 0; i < d_vertices.count(); i++)
+            if (i != v2)
+                d_adjacencyMatrix[v2][i] |= d_adjacencyMatrix[v1][i];
+        for (int i = 0; i < d_vertices.count(); i++)
+            if (i != v2)
+                d_adjacencyMatrix[i][v2] |= d_adjacencyMatrix[i][v1];
+        Delete(vertexOld);
+        return true;
+    }
+    return false;
+}
+*/
 std::vector<int> OrientedGraph::getVerticesByLevel_2(int i_level)
 {
     std::vector<int> vec_index;
