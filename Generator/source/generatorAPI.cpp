@@ -118,7 +118,9 @@ void runGenerationFromJson(std::string json_path)
         data.contains("make_optimized_files") ? (bool)data["make_optimized_files"] : false;
     std::string libraryName =
         data.contains("library_name") ? (std::string)data["library_name"] : "";
-    
+    bool makeBench =
+        data.contains("make_bench") ? (bool)data["make_bench"] : false;
+
     // and this is for Yosys
     bool makeFirrtl =
         data.contains("make_firrtl") ? (bool)data["make_firrtl"] : false;
@@ -160,7 +162,8 @@ void runGenerationFromJson(std::string json_path)
         libraryName,
         calculateStatsAbc,
         makeOptimizedFiles,
-        makeFirrtl);
+        makeFirrtl,
+        makeBench);
 
     gp.setGatesInputInfo(gatesInputsInfo);
     // ------------------------------------------------------------------------

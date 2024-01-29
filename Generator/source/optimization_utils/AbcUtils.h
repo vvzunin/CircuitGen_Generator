@@ -32,6 +32,11 @@ public:
         std::string i_libName,
         std::string i_fileDirectory = ".",
         std::string i_libDirectory = ".");
+    
+    static CommandWorkResult verilogToBench(
+        std::string i_inputFileName,
+        std::string i_outputFileName,
+        std::string i_libDirectory = ".");
 
     static std::vector<StandartCommandInfo> parseCommand(
         std::string i_command);
