@@ -1,7 +1,8 @@
 #pragma once
 
-#include <string>
 #include <map>
+#include <string>
+#include <optimization_utils/StandartUtil.h>
 
 class CircuitParameters
 {
@@ -26,5 +27,5 @@ public:
     std::string d_hashCode = "";
     std::map<std::string, int> d_numElementsOfEachType;
     std::map<std::pair<std::string, std::string>, int> d_numEdgesOfEachType;
-    std::map<std::string, std::string> d_abcStats;
+    CommandWorkResult d_abcStats;
 };

@@ -1,16 +1,16 @@
 #include <map>
 #include <string>
-#include <iostream>
 #include <vector>
 #include <cassert>
 #include <stdlib.h>
+#include <iostream>
 #include <algorithm>
 
 #include "AbcUtils.h"
+#include "UtilsCommands.h"
 
 // declare of value of static var
 static std::string d_utilWord = "abc ";
-static std::string d_className = "AbcUtils";
 static int d_utilLen = 8;
 
 // which commands can output something
@@ -63,12 +63,12 @@ CommandWorkResult AbcUtils::standartExecutor(
             // if there was an error
             if (secondPos == std::string::npos && currentCommand.info != "quit")
             {
-                std::string errText = "Something went wrong during files parsing in " + d_className + '\n';
+                std::string errText = "Something went wrong during files parsing in AbcUtils\n";
 
                 std::cerr << errText;
                 workResult.commandsOutput.clear();
                 workResult.commandsOutput["error"] = errText;
-                workResult.commandsOutput["fileRead"] = inputParsed;
+                
 
                 correct = false;
                 break;
@@ -94,7 +94,7 @@ CommandWorkResult AbcUtils::standartExecutor(
                 std::cerr << errText;
                 workResult.commandsOutput.clear();
                 workResult.commandsOutput["error"] = errText;
-                workResult.commandsOutput["fileRead"] = inputParsed;
+                
 
                 correct = false;
                 break;
@@ -113,7 +113,7 @@ CommandWorkResult AbcUtils::standartExecutor(
                         std::cerr << errText;
                         workResult.commandsOutput.clear();
                         workResult.commandsOutput["error"] = errText;
-                        workResult.commandsOutput["fileRead"] = inputParsed;
+                        
 
                         correct = false;
                     }
@@ -131,18 +131,18 @@ CommandWorkResult AbcUtils::standartExecutor(
     }
     else
     {
-        std::string errText = "Something went wrong during files parsing in " + d_className + ":\n";
+        std::string errText = "Something went wrong during files parsing in AbcUtils: \n";
         errText += result;
 
         std::cerr << errText;
         workResult.commandsOutput.clear();
         workResult.commandsOutput["error"] = errText;
-        workResult.commandsOutput["fileRead"] = inputParsed;
 
         correct = false;
     }
 
     workResult.correct = correct;
+    workResult.commandsOutput["fileRead"] = inputParsed ? "true" : "false";
 
     return workResult;
 }
@@ -189,6 +189,7 @@ CommandWorkResult AbcUtils::runExecutorForStats(
     CommandWorkResult final_res = standartExecutor(
         i_command,
         i_info);
+    std::string fileRead = final_res.commandsOutput["fileRead"];
 
     // if there were no errors and sth was printed
     if (final_res.correct && final_res.commandsOutput.count("print_stats"))
@@ -228,12 +229,16 @@ CommandWorkResult AbcUtils::runExecutorForStats(
 
             startPos = stats.find_first_not_of(' ', digitEnd + 1);
         }
+
+        final_res.commandsOutput["fileRead"] = fileRead;
     }
     else if (final_res.correct && !final_res.commandsOutput.count("print_stats"))
     {
         final_res.commandsOutput.clear();
 
         final_res.commandsOutput["error"] = "Incorrect output, no stats had been printed\n";
+        final_res.commandsOutput["fileRead"] = fileRead;
+
         std::cerr << final_res.commandsOutput["error"];
 
         final_res.correct = false;
@@ -249,215 +254,76 @@ CommandWorkResult AbcUtils::runExecutorForStats(
 
 CommandWorkResult AbcUtils::getStats(
     std::string i_inputFileName,
-    std::string i_libName)
-{
-    // format i_command, then execute it with specified parametrs
-    std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\" ";
-    i_command += "&& echo \"read " + i_libName + "\" ";
-    i_command += "&& echo \"map\" ";
-    i_command += "&& echo \"print_stats\") | abc";
-
-    return runExecutorForStats(
-        i_command,
-        parseCommand(i_command));
-}
-
-CommandWorkResult AbcUtils::getStats(
-    std::string i_inputFileName,
     std::string i_libName,
     std::string i_fileDirectory,
     std::string i_libDirectory)
 {
-    if (i_fileDirectory[i_fileDirectory.size() - 1] != '/')
-        i_fileDirectory += "/";
-
-    if (i_libDirectory[i_libDirectory.size() - 1] != '/')
-        i_libDirectory += "/";
-
-    return getStats(
-        i_fileDirectory + i_inputFileName,
-        i_libDirectory + i_libName);
+    return runCommand(
+        AbcCommands::getStatsCommand,
+        runExecutorForStats,
+        i_fileDirectory,
+        i_inputFileName,
+        i_libDirectory,
+        i_libName
+    );
 }
 
 CommandWorkResult AbcUtils::resyn2(
     std::string i_inputFileName,
-    std::string i_libName)
+    std::string i_libName,
+    std::string i_fileDirectory,
+    std::string i_libDirectory)
 {
     std::string real_name = i_inputFileName;
     // if is neccessary, remove .v
     if (real_name.find(".v") != std::string::npos)
         real_name.erase(real_name.size() - 2, 2);
 
-    // format i_command, then execute it with specified parametrs
-    std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\" ";
-    i_command += "&& echo \"read " + i_libName + "\" ";
-    i_command += "&& echo \"balance\" ";
-    i_command += "&& echo \"rewrite\" ";
-    i_command += "&& echo \"refactor\" ";
-    i_command += "&& echo \"balance\" ";
-    i_command += "&& echo \"rewrite\" ";
-    i_command += "&& echo \"rewrite -z\" ";
-    i_command += "&& echo \"balance\" ";
-    i_command += "&& echo \"refactor -z\" ";
-    i_command += "&& echo \"rewrite -z\" ";
-    i_command += "&& echo \"write_verilog " + real_name + "_RESYN2.aig\" ";
-    i_command += "&& echo \"map\" ";
-    i_command += "&& echo \"print_stats\" ";
-    i_command += "&& echo \"unmap\" ";
-    i_command += "&& echo \"write_verilog " + real_name + "_RESYN2.v\") | abc";
-
-    CommandWorkResult res = runExecutorForStats(
-        i_command,
-        parseCommand(i_command));
+    CommandWorkResult res = runCommand(
+        AbcCommands::resyn2Command,
+        runExecutorForStats,
+        i_fileDirectory,
+        i_inputFileName,
+        i_libDirectory,
+        i_libName,
+        i_fileDirectory,
+        real_name,
+        i_fileDirectory,
+        real_name
+    );
 
     res.commandsOutput["optimization_type"] = "Resyn2";
 
     return res;
 }
 
-CommandWorkResult AbcUtils::resyn2(
+CommandWorkResult AbcUtils::optimizeWithLib(
     std::string i_inputFileName,
     std::string i_libName,
     std::string i_fileDirectory,
     std::string i_libDirectory)
-{
-    if (i_fileDirectory[i_fileDirectory.size() - 1] != '/')
-        i_fileDirectory += "/";
-
-    if (i_libDirectory[i_libDirectory.size() - 1] != '/')
-        i_libDirectory += "/";
-
-    return resyn2(
-        i_fileDirectory + i_inputFileName,
-        i_libDirectory + i_libName);
-}
-
-CommandWorkResult AbcUtils::optimizeWithLib(
-    std::string i_inputFileName,
-    std::string i_libName)
 {
     std::string real_name = i_inputFileName;
     // if is neccessary, remove .v
     if (real_name.find(".v") != std::string::npos)
         real_name.erase(real_name.size() - 2, 2);
 
-    // format i_command, then execute it with specified parametrs
-    std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\" ";
-    i_command += "&& echo \"read " + i_libName + "\" ";
-    i_command += "&& echo \"balance\" ";
-    i_command += "&& echo \"write_verilog " + real_name + ".aig\" ";
-    i_command += "&& echo \"refactor -z\" ";
-    i_command += "&& echo \"balance -x\" ";
-    i_command += "&& echo \"rewrite -z\" ";
-    i_command += "&& echo \"write_verilog " + real_name + "_BALANCED.aig\" ";
-    i_command += "&& echo \"map\" ";
-    i_command += "&& echo \"print_stats\" ";
-    i_command += "&& echo \"unmap\" ";
-    i_command += "&& echo \"write_verilog " + real_name + "_BALANCED.v\") | abc";
-
-    CommandWorkResult res = runExecutorForStats(
-        i_command,
-        parseCommand(i_command));
+    CommandWorkResult res = runCommand(
+        AbcCommands::balanceOptimizationCommand,
+        runExecutorForStats,
+        i_fileDirectory,
+        i_inputFileName,
+        i_libDirectory,
+        i_libName,
+        i_fileDirectory,
+        real_name,
+        i_fileDirectory,
+        real_name,
+        i_fileDirectory,
+        real_name
+    );
 
     res.commandsOutput["optimization_type"] = "Balance";
 
     return res;
-}
-
-CommandWorkResult AbcUtils::optimizeWithLib(
-    std::string i_inputFileName,
-    std::string i_libName,
-    std::string i_fileDirectory,
-    std::string i_libDirectory)
-{
-    if (i_fileDirectory[i_fileDirectory.size() - 1] != '/')
-        i_fileDirectory += "/";
-
-    if (i_libDirectory[i_libDirectory.size() - 1] != '/')
-        i_libDirectory += "/";
-
-    return optimizeWithLib(
-        i_fileDirectory + i_inputFileName,
-        i_libDirectory + i_libName);
-}
-
-CommandWorkResult AbcUtils::verilogToAiger(
-    std::string i_inputFileName, std::string i_outputFileName)
-{
-    // format i_command, then execute it with specified parametrs
-    std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\"";
-    i_command += "&& echo \"strash\" && echo \"";
-    i_command += "write_aiger " + i_outputFileName + "\") | abc";
-
-    return standartExecutor(
-        i_command,
-        parseCommand(i_command));
-}
-
-CommandWorkResult AbcUtils::verilogToAiger(
-    std::string i_inputFileName, std::string i_outputFileName, std::string i_directory)
-{
-    if (i_directory[i_directory.size() - 1] != '/')
-        i_directory += "/";
-
-    return verilogToAiger(i_directory + i_inputFileName, i_directory + i_outputFileName);
-}
-
-CommandWorkResult AbcUtils::aigerToVerilog(
-    std::string i_inputFileName, std::string i_outputFileName)
-{
-    std::string i_command = "(echo \"read_aiger " + i_inputFileName + "\"";
-    i_command += "&& echo \"strash\" && echo \"";
-    i_command += "write_verilog " + i_outputFileName + "\") | abc";
-
-    return standartExecutor(
-        i_command,
-        parseCommand(i_command));
-}
-
-CommandWorkResult AbcUtils::aigerToVerilog(
-    std::string i_inputFileName, std::string i_outputFileName, std::string i_directory)
-{
-    if (i_directory[i_directory.size() - 1] != '/')
-        i_directory += "/";
-
-    return aigerToVerilog(i_directory + i_inputFileName, i_directory + i_outputFileName);
-}
-
-CommandWorkResult AbcUtils::balanceVerilog(std::string i_inputFileName, void (*i_onFinish)(CommandWorkResult))
-{
-    std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\"";
-    i_command += "&& echo \"balance\" && echo \"";
-    i_command += "write_verilog " + i_inputFileName + "\") | abc";
-
-    return standartExecutor(
-        i_command,
-        parseCommand(i_command));
-}
-
-CommandWorkResult AbcUtils::balanceVerilog(std::string i_inputFileName, std::string i_directory)
-{
-    if (i_directory[i_directory.size() - 1] != '/')
-        i_directory += "/";
-
-    return balanceVerilog(i_directory + i_inputFileName);
-}
-
-CommandWorkResult AbcUtils::balanceAiger(std::string i_inputFileName, void (*i_onFinish)(CommandWorkResult))
-{
-    std::string i_command = "(echo \"read_aiger " + i_inputFileName + "\"";
-    i_command += "&& echo \"balance\" && echo \"";
-    i_command += "write_aiger " + i_inputFileName + "\") | abc";
-
-    return standartExecutor(
-        i_command,
-        parseCommand(i_command));
-}
-
-CommandWorkResult AbcUtils::balanceAiger(std::string i_inputFileName, std::string i_directory)
-{
-    if (i_directory[i_directory.size() - 1] != '/')
-        i_directory += "/";
-
-    return balanceAiger(i_directory + i_inputFileName);
 }

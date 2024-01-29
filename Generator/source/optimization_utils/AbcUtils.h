@@ -15,65 +15,23 @@ verilog or aiger
 class AbcUtils
 {
 public:
-    static CommandWorkResult verilogToAiger(
-        std::string i_inputFileName,
-        std::string i_outputFileName);
-    static CommandWorkResult verilogToAiger(
-        std::string i_inputFileName,
-        std::string i_outputFileName,
-        std::string i_directory);
-
-    static CommandWorkResult aigerToVerilog(
-        std::string i_inputFileName,
-        std::string i_outputFileName);
-    static CommandWorkResult aigerToVerilog(
-        std::string i_inputFileName,
-        std::string i_outputFileName,
-        std::string i_directory);
-
-    static CommandWorkResult balanceVerilog(
-        std::string i_inputFileName,
-        void (*i_onFinish)(CommandWorkResult) = NULL);
-    static CommandWorkResult balanceVerilog(
-        std::string i_inputFileName,
-        std::string i_directoryv);
-
-    static CommandWorkResult balanceAiger(
-        std::string i_inputFileName,
-        void (*i_onFinish)(CommandWorkResult) = NULL);
-    static CommandWorkResult balanceAiger(
-        std::string i_inputFileName,
-        std::string i_directory);
-
-    static CommandWorkResult getStats(
-        std::string i_inputFileName,
-        std::string i_libName);
-
     static CommandWorkResult getStats(
         std::string i_inputFileName,
         std::string i_libName,
-        std::string i_fileDirectory,
-        std::string i_libDirectory);
-
-    static CommandWorkResult resyn2(
-        std::string i_inputFileName,
-        std::string i_libName);
+        std::string i_fileDirectory = ".",
+        std::string i_libDirectory = ".");
 
     static CommandWorkResult resyn2(
         std::string i_inputFileName,
         std::string i_libName,
-        std::string i_fileDirectory,
-        std::string i_libDirectory);
-
-    static CommandWorkResult optimizeWithLib(
-        std::string i_inputFileName,
-        std::string i_libName);
+        std::string i_fileDirectory = ".",
+        std::string i_libDirectory = ".");
 
     static CommandWorkResult optimizeWithLib(
         std::string i_inputFileName,
         std::string i_libName,
-        std::string i_fileDirectory,
-        std::string i_libDirectory);
+        std::string i_fileDirectory = ".",
+        std::string i_libDirectory = ".");
 
     static std::vector<StandartCommandInfo> parseCommand(
         std::string i_command);
@@ -87,6 +45,20 @@ private:
     static CommandWorkResult runExecutorForStats(
         std::string i_command,
         std::vector<StandartCommandInfo> i_info);
+
+    template <typename... Args>
+    static CommandWorkResult runCommand(
+        const std::string& i_command,
+        CommandWorkResult (*executableFunc)(std::string, std::vector<StandartCommandInfo>),
+        Args &&...filenames)
+    {
+        std::string command = format(i_command, filenames...);
+
+        return executableFunc(
+            command,
+            parseCommand(command)
+        );
+    }
 };
 
 #endif

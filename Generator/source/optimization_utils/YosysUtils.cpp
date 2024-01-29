@@ -6,10 +6,10 @@
 #include <functional>
 
 #include "YosysUtils.h"
+#include "UtilsCommands.h"
 
 // declare of value of static var
 static std::string d_utilWord = "yosys";
-static std::string d_className = "YosysUtils";
 static int d_utilLen = 7;
 
 static std::vector<std::string> d_incorrectWords = {
@@ -23,6 +23,9 @@ CommandWorkResult YosysUtils::standartExecutor(
     char out[80];
     bool correct = true;
 
+    if (i_command.find("2>&1") == std::string::npos)
+        i_command += " 2>&1";
+    
     // executing i_command with own read stream
     abcOutput = popen(i_command.c_str(), "r");
 
@@ -54,7 +57,13 @@ CommandWorkResult YosysUtils::standartExecutor(
                 // if there was an error
                 if (secondPos == std::string::npos && errorPos == std::string::npos)
                 {
-                    std::cout << "Something went wrong during files parsing in " << d_className << '\n';
+                    std::string errText = "Something went wrong during files parsing in YosysUtils\n";
+
+                    std::cerr << errText;
+                    workResult.commandsOutput.clear();
+                    workResult.commandsOutput["error"] = errText;
+                    workResult.commandsOutput["fileRead"] = inputParsed;
+
                     correct = false;
                     break;
                 }
@@ -67,18 +76,32 @@ CommandWorkResult YosysUtils::standartExecutor(
                     if (secondPos == std::string::npos)
                         endPos = result.size() - errorPos - 1;
 
-                    std::cerr << "Incorrect " << currentCommand.info << ": " << result.substr(errorPos, endPos) << '\n';
+                    std::string errText = "Incorrect " + currentCommand.info + ": " + result.substr(errorPos, endPos) + '\n';
+                    
+                    std::cerr << errText;
+                    workResult.commandsOutput.clear();
+                    workResult.commandsOutput["error"] = errText;
+                    workResult.commandsOutput["fileRead"] = inputParsed;
+                    
                     correct = false;
                     break;
                 }
             }
 
             firstPos = secondPos;
+            inputParsed = true;
         }
     }
     else
     {
-        std::cout << "Something went wrong during files parsing in " << d_className << '\n';
+        std::string errText = "Something went wrong during files parsing in YosysUtils: \n";
+        errText += result;
+
+        std::cerr << errText;
+        workResult.commandsOutput.clear();
+        workResult.commandsOutput["error"] = errText;
+        workResult.commandsOutput["fileRead"] = inputParsed;
+
         correct = false;
     }
     workResult.correct = correct;
@@ -122,26 +145,28 @@ std::vector<StandartCommandInfo> YosysUtils::parseCommand(std::string i_command)
 
 CommandWorkResult YosysUtils::optVerilog(
     std::string i_inputFileName,
-    std::string i_outputFileName)
+    std::string i_outputFileName,
+    std::string i_directory)
 {
-    // format i_command, then execute it with specified parametrs
-    // REMEMBER
-    std::string i_command = "(echo \"read_verilog " + i_inputFileName + "\"";
-    i_command += "&& echo \"opt\" && echo \"";
-    i_command += "write_verilog " + i_outputFileName + "\") | yosys 2>&1";
-
-    return standartExecutor(
-        i_command,
-        parseCommand(i_command));
+    return runCommand(
+        YosysCommands::optVerilogCommand,
+        standartExecutor,
+        i_directory,
+        i_inputFileName,
+        i_directory,
+        i_outputFileName);
 }
 
-CommandWorkResult YosysUtils::optVerilog(
+CommandWorkResult YosysUtils::writeFirrtl(
     std::string i_inputFileName,
     std::string i_outputFileName,
     std::string i_directory)
 {
-    if (i_directory[i_directory.size() - 1] != '/')
-        i_directory += "/";
 
-    return optVerilog(i_directory + i_inputFileName, i_directory + i_outputFileName);
+    return runCommand(
+        YosysCommands::writeFirrtlCommand,
+        standartExecutor,
+        i_directory,
+        i_inputFileName,
+        i_outputFileName);
 }
