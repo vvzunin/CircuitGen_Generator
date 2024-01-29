@@ -258,7 +258,7 @@ CommandWorkResult AbcUtils::getStats(
     std::string i_fileDirectory,
     std::string i_libDirectory)
 {
-    return prepairCommand(
+    return runCommand(
         AbcCommands::getStatsCommand,
         runExecutorForStats,
         i_fileDirectory,
@@ -279,7 +279,7 @@ CommandWorkResult AbcUtils::resyn2(
     if (real_name.find(".v") != std::string::npos)
         real_name.erase(real_name.size() - 2, 2);
 
-    CommandWorkResult res = prepairCommand(
+    CommandWorkResult res = runCommand(
         AbcCommands::resyn2Command,
         runExecutorForStats,
         i_fileDirectory,
@@ -308,7 +308,7 @@ CommandWorkResult AbcUtils::optimizeWithLib(
     if (real_name.find(".v") != std::string::npos)
         real_name.erase(real_name.size() - 2, 2);
 
-    CommandWorkResult res = prepairCommand(
+    CommandWorkResult res = runCommand(
         AbcCommands::balanceOptimizationCommand,
         runExecutorForStats,
         i_fileDirectory,

@@ -148,7 +148,7 @@ CommandWorkResult YosysUtils::optVerilog(
     std::string i_outputFileName,
     std::string i_directory)
 {
-    return prepairCommand(
+    return runCommand(
         YosysCommands::optVerilogCommand,
         standartExecutor,
         i_directory,
@@ -163,7 +163,7 @@ CommandWorkResult YosysUtils::writeFirrtl(
     std::string i_directory)
 {
 
-    return prepairCommand(
+    return runCommand(
         YosysCommands::writeFirrtlCommand,
         standartExecutor,
         i_directory,

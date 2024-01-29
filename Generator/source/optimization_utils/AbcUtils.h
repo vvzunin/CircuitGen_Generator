@@ -47,7 +47,7 @@ private:
         std::vector<StandartCommandInfo> i_info);
 
     template <typename... Args>
-    static CommandWorkResult prepairCommand(
+    static CommandWorkResult runCommand(
         const std::string& i_command,
         CommandWorkResult (*executableFunc)(std::string, std::vector<StandartCommandInfo>),
         Args &&...filenames)
