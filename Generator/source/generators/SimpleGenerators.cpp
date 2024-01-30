@@ -787,6 +787,69 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
     //m - бит полученного умножения
     OrientedGraph graph;
     int n = 0;
+
+    /*
+    for (int ib = 1; ib <= i_bits; ib++){
+
+        std::string IB = std::to_string(ib); //IB - ib
+        std::string IBP = std::to_string(ib - 1); //IBP - ib past
+
+        graph.addVertex("xb" + IB, "input");
+        for (int ia = 1; ia <= i_bits; ia++){
+            std::string IA = std::to_string(ia); //IA - ia
+            std::string IAN = std::to_string(ia + 1); //IAN - ia next
+
+            graph.addVertex("xa" + IA, "input");
+
+            graph.addVertex("(xa" + IA + " and xb" + IB + ")", "and", "c" + IA + IB);
+            graph.addDoubleEdge("xa" + IA, "xb" + IB, "c" + IA + IB, false);
+
+            if (ib == 1){
+                if (ia == 1){
+                    std::string N = std::to_string(n);
+
+                    graph.addVertex("m" + N, "output");
+                    graph.addEdge("c" + IA + IB, "m" + N, false);
+                    n+=1;
+                }
+            }
+            if (ib > 1){
+                std::string nowAB = "c" + IA + IB;
+                std::string nApB = "c" + IAN + IBP; //nApB - nextApastB
+
+                std::string nSum = IAN + IB; //nSum - nSum - next Summator
+
+                if (ia == 1){
+                    std::string N = std::to_string(n);
+
+                    graph.addVertex("(" + nowAB + " and " + nApB + ")", "and", "p" + nSum);
+                    graph.addDoubleEdge(nowAB, nApB, "p" + nSum, false);
+                    graph.addVertex("(" + nowAB + " xor " + nApB + ")", "xor", "sum" + IA + IB);
+                    graph.addDoubleEdge(nowAB, nApB, "sum" + IA + IB, false);
+
+                    graph.addVertex("m" + N, "output");
+                    graph.addEdge("sum" + IA + IB, "m" + N, false);
+                    n+=1;
+                }
+                if (ia > 1 && ia < i_bits){
+
+
+                    if (ib == i_bits){
+
+                    }
+                }
+                if (ia == i_bits){
+
+
+                    if (ib == i_bits){
+
+                    }
+                }
+            }
+        }
+    }
+     */
+
     for (int i = 0; i < i_bits; i++)
     {
 
