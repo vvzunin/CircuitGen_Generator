@@ -1,10 +1,10 @@
 [
   {
-    "dataset_id": "2",
-    "id": 8,
-    "type_of_generation": "Parity",
-    "min_in": 10,
-    "max_in": 10,
+    "dataset_id": "0",
+    "id": 0,
+    "type_of_generation": "Encoder",
+    "min_in": 2,
+    "max_in": 2,
     "min_out": 4,
     "max_out": 5,
     "repeat_n": 1,
