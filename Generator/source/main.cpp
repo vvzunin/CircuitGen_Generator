@@ -74,8 +74,10 @@ void runGenerationFromJson(std::string json_path)
       gt = GenerationTypes::Comparison;
     if (data["type_of_generation"] == "Multiplier")
         gt = GenerationTypes::Multiplier;
-    if (data["type_of_generation"] == "Multiplexer")
-        gt = GenerationTypes::Multiplexer;
+    if (data["type_of_generation"] == "Multiplier")
+        gt = GenerationTypes::Multiplier;
+    if (data["type_of_generation"] == "Encoder")
+        gt = GenerationTypes::Encoder;
     if (data["type_of_generation"] == "Parity")
         gt = GenerationTypes::Parity;
     if (data["type_of_generation"] == "Decoder")

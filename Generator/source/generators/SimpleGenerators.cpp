@@ -589,21 +589,21 @@ OrientedGraph SimpleGenerators::generatorСomparison(int i_bits, bool i_compare0
     return graph;
 }
 
- OrientedGraph SimpleGenerators::generatorEncoder(int bits)
+ OrientedGraph SimpleGenerators::generatorEncoder(int i_bits)
 {
     OrientedGraph graph ;
     int k = 0;
-    for (int t = 0; t <= bits; t++)
-        if (bits - 1 >= pow(2, t))
+    for (int t = 0; t <= i_bits; t++)
+        if (i_bits - 1 >= pow(2, t))
         {
-            k = k + 1;
+            k += 1;
         }
-    for (int l = 0; l <= bits - 1; l++)
+    for (int l = 0; l <= i_bits - 1; l++)
     {
         std::string Z = std::to_string(l);
         graph.addVertex("x" + Z, "input");
     }
-    if (bits > 1)
+    if (i_bits > 1)
         for (int p = k - 1; p >= 0; p--)
         {
             std::string L = "";
@@ -613,13 +613,13 @@ OrientedGraph SimpleGenerators::generatorСomparison(int i_bits, bool i_compare0
             std::string S = std::to_string(p);
             graph.addVertex("a" + S, "output");
 
-            for (int i = 0; i <= bits - 1; i++)
+            for (int i = 0; i <= i_bits - 1; i++)
                 for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
-                    if (pow(2, p + 1) * i + t <= bits - 1)
+                    if (pow(2, p + 1) * i + t <= i_bits - 1)
                     {
                         std::string R = std::to_string(pow(2, p + 1) * i + t);
                         K = M + " or x" + R;
-                        L = P + "orx" + R;
+                        L = P + " or x" + R;
                         //graph.addEdge("x" + R, "a" + S, false);
                         P = L;
                         L = "";
@@ -628,9 +628,9 @@ OrientedGraph SimpleGenerators::generatorСomparison(int i_bits, bool i_compare0
                     }
             M = M.erase(0, 3);
             graph.addVertex(M, "or", P);
-            for (int i = 0; i <= bits - 1; i++)
+            for (int i = 0; i <= i_bits - 1; i++)
                 for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
-                    if (pow(2, p + 1) * i + t <= bits - 1)
+                    if (pow(2, p + 1) * i + t <= i_bits - 1)
                     {
                         std::string R = std::to_string(pow(2, p + 1) * i + t);
                         graph.addEdge("x" + R, P, false);

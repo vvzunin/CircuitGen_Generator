@@ -17,7 +17,7 @@ public:
   );
   OrientedGraph generatorSummator(int i_bits, bool i_overflowIn, bool i_overflowOut, bool i_minus, bool act = false);
   OrientedGraph generatorСomparison(int i_bits, bool i_compare0, bool i_compare1, bool i_compare2, bool act = false);
-  OrientedGraph generatorEncoder(int bits);
+  OrientedGraph generatorEncoder(int i_bits);
   OrientedGraph generatorMultiplier(int i_bits, bool act = false);
   OrientedGraph generatorMultiplexer(int i_bits, std::string T = "0");
   OrientedGraph generatorParity(int i_bits);
