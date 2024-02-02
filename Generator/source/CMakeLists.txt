@@ -128,22 +128,18 @@ set(SOURCES
   main.cpp
 )
 
+# Check if pthreads is installed; adjust compiler/linker options
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 # Create executable
 add_executable(${MAIN_TARGET} ${SOURCES})
 
 # Add all internal libraries in the project
-target_link_libraries(${MAIN_TARGET} ${PROJECT_LIBS})
+target_link_libraries(${MAIN_TARGET} ${PROJECT_LIBS} Threads::Threads)
 
-# Check if pthreads is installed; adjust compiler/linker options
-find_package(Threads REQUIRED)
 
-if(THREADS_HAVE_PTHREAD_ARG)
-  target_compile_options(${MAIN_TARGET} PUBLIC "-lpthread")
-endif()
 
-if(CMAKE_THREAD_PROJECT_LIBS_INIT)
-  target_link_libraries(${MAIN_TARGET} "${CMAKE_THREAD_PROJECT_LIBS_INIT}")
-endif()
 
 # -----------------------------------------------------------------------------
 # Link to shared library
