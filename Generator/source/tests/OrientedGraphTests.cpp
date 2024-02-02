@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "../graph/OrientedGraph.h"
+#include "../generators/SimpleGenerators.h"
 
 TEST(TestGetIndexOfExpressionWhichReturnMinusOneIfThereIsNoSuchExpressionInGraphOtherWiseReturnTheIndexOfVertix, ReturnRightIndexOfExpressionInGraphWhenWeCalledGetIndexOfExpression)
 {
@@ -497,4 +498,23 @@ TEST(TestUpdateLevels, NormalTest)
     example.updateLevels();
     EXPECT_EQ(example.getMaxLevel(), 2);
 
+}
+
+TEST(TestExtendFunc, PreviuosTestForExtend)
+{
+    SimpleGenerators S_gen_1;
+    OrientedGraph graph_1 = S_gen_1.generatorDecoder(4);
+    OrientedGraph ex_graph;
+    ex_graph.Extend(S_gen_1.generatorDecoder(4));
+    EXPECT_FALSE(graph_1 == ex_graph);
+}
+
+TEST(TestDeleteFunc, PreviuosTestForDelete)
+{
+    SimpleGenerators S_gen;
+    OrientedGraph graph_1 = S_gen.generatorDecoder(2);
+    OrientedGraph graph_2 = S_gen.generatorDecoder(2);
+    EXPECT_TRUE(graph_1 == graph_2);
+    graph_1.Delete("x_a0", false);
+    EXPECT_FALSE(graph_1 == graph_2);
 }

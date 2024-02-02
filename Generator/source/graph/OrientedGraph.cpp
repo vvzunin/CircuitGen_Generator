@@ -238,29 +238,30 @@ std::vector<std::string> OrientedGraph::getLogicVerticesToWireName()
   return names;
 }
 
-/*
-void OrientedGraph::Extend(OrientedGraph og){
-    if (og == nullptr){
-        return;
+
+bool OrientedGraph::Extend(OrientedGraph og){
+    if (og.d_vertices == std::vector<GraphVertex>()){
+        return false;
     }
-    int el = d_vertices.count();
-    d_vertices.addRange(og.d_Vertices)
+    int el = d_vertices.size();
+    d_vertices.insert(d_vertices.end(), og.d_vertices.begin(), og.d_vertices.end());
     for (int i = 0; i < el; i++){
-        for (int j = 0; j < og.d_Vertices.count(); j++){
-            d_adjacencyMatrix[i].add(false);
+        for (int j = 0; j < og.d_vertices.size(); j++){
+            d_adjacencyMatrix[i].push_back(false);
         }
     }
-    for (int i = 0; i < og.d_Vertices.count(); i++){
-        d_adjacencyMatrix[i].add(new List<bool>());
-        for (int j = 0; j < og.d_Vertices.count(); j++){
-            d_adjacencyMatrix[el + i].add(false);
+    for (int i = 0; i < og.d_vertices.size(); i++){
+        d_adjacencyMatrix.push_back(std::vector<bool>());
+        for (int j = 0; j < og.d_vertices.size(); j++){
+            d_adjacencyMatrix[el + i].push_back(false);
         }
     }
-    for (int i = 0; i < og.d_Vertices.count(); i++){
-        for (int j = 0; j < og.d_Vertices.count(); j++){
+    for (int i = 0; i < og.d_vertices.size(); i++){
+        for (int j = 0; j < og.d_vertices.size(); j++){
             d_adjacencyMatrix[el + i][el + i] = og.d_adjacencyMatrix[i][j];
         }
     }
+    return true;
 }
 
 bool OrientedGraph::Delete (const std::string& i_vertex, bool i_isExpression){
@@ -271,15 +272,15 @@ bool OrientedGraph::Delete (const std::string& i_vertex, bool i_isExpression){
         v1 = getIndexOfWireName(i_vertex);
 
     if (v1 != -1){
-        for (int i = 0; i < d_vertices.count(), i++)
-            std::remove(d_adjacencyMatrix[i].begin(), d_adjacencyMatrix[i].end(), v1);
-        std::remove(d_adjacencyMatrix[i].begin(), d_adjacencyMatrix[i].end(), v1);
-        std::remove(d_vertices.begin(), d_vertices.end(), v1);
+        for (int i = 0; i < d_vertices.size(); i++)
+          d_adjacencyMatrix[i].erase(d_adjacencyMatrix[i].begin() + v1);
+        d_adjacencyMatrix.erase(d_adjacencyMatrix.begin() + v1);
+        d_vertices.erase(d_vertices.begin() + v1);
         return true;
     }
     return false;
 }
-
+/*
 bool OrientedGraph::Substitute(const std::string &vertexNew, const std::string &vertexOld, bool i_isExpression) {
     int v1 = -1;
     int v2 = -1;

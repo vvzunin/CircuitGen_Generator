@@ -423,7 +423,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int i_bits, bool i_overflowIn,
     return graph;
 }
 
-OrientedGraph SimpleGenerators::generatorСomparison(int i_bits, bool i_compare0, bool i_compare1, bool i_compare2, bool act)
+OrientedGraph SimpleGenerators::generatorComparison(int i_bits, bool i_compare0, bool i_compare1, bool i_compare2, bool act)
 {
     OrientedGraph graph;
 
@@ -977,7 +977,7 @@ OrientedGraph SimpleGenerators::generatorDecoder(int i_bits)
         {
             S[p] = std::to_string(p);
             graph.addVertex("x_a" + S[p], "input");
-            graph.addVertex("not a" + S[p], "not", "not a" + S[p]);
+            graph.addVertex("not (a" + S[p] + ")", "not", "na" + S[p]);
         }
 
         for (int i = 0; i <= i_bits - 1; i++)
@@ -993,14 +993,14 @@ OrientedGraph SimpleGenerators::generatorDecoder(int i_bits)
             for (int w = 0; w <= k - 1; w++)
             {
                 if (F[i].length() < w + 1)
-                    X[i] = std::string(K[i] + " and not a" + S[w]);
+                    X[i] = K[i] + " and na" + S[w];
                 else
                 {
                     std::string u = F[i].substr(len - w - 1, 1);
-                    if (u.compare("1"))
-                        X[i] = std::string(K[i] + " and a" + S[w]);
+                    if (u.compare("1") == 0)
+                        X[i] = K[i] + " and a" + S[w];
                     else
-                        X[i] = std::string(K[i] + " and not a" + S[w]);
+                        X[i] = K[i] + " and na" + S[w];
                 }
                 K[i] = X[i];
                 X[i] = "";
@@ -1020,23 +1020,23 @@ OrientedGraph SimpleGenerators::generatorDecoder(int i_bits)
             for (int w = 0; w <= k - 1; w++)
                 if (F[i].length() < w + 1)
                 {
-                    graph.addEdge(" a" + S[w], "not a" + S[w], false);
-                    graph.addEdge("not a" + S[w], "x" + Z[i], false);
-                    graph.addEdge("not a" + S[w], K[i], false);
+                    graph.addEdge(" a" + S[w], "na" + S[w], false);
+                    graph.addEdge("na" + S[w], "x" + Z[i], false);
+                    graph.addEdge("na" + S[w], K[i], false);
                 }
                 else
                 {
                     std::string u = F[i].substr(len - w - 1, 1);
-                    if (u.compare("1"))
+                    if (u.compare("1") == 0)
                     {
                         graph.addEdge("a" + S[w], "x" + Z[i], false);
                         graph.addEdge("a" + S[w], K[i], false);
                     }
                     else
                     {
-                        graph.addEdge(" a" + S[w], "not a" + S[w], false);
-                        graph.addEdge("not a" + S[w], "x" + Z[i], false);
-                        graph.addEdge("not a" + S[w], K[i], false);
+                        graph.addEdge(" a" + S[w], "na" + S[w], false);
+                        graph.addEdge("na" + S[w], "x" + Z[i], false);
+                        graph.addEdge("na" + S[w], K[i], false);
                     }
                 }
         }

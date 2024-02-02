@@ -28,9 +28,10 @@ public:
   std::vector<std::string> getVerticesByTypeToWireName(const std::string& i_type);
   std::vector<std::string> getLogicVerticesToWireName();
   std::vector<std::string> getVerticesByLevel(int i_level);
-  /*
-  void Extend(OrientedGraph og =  std::nullptr);
+  
+  bool Extend(OrientedGraph og = OrientedGraph());
   bool Delete (const std::string& i_vertex, bool i_isExpression = true);
+  /*
   bool Substitute(const std::string& vertexNew, const std::string& vertexOld, bool i_isExpression = true);
   */
   void updateLevels(bool i_isFull = true, int i_k = 0);
