@@ -51,8 +51,7 @@ then
             sudo $packageName install -y berkeley-abc;  
         fi
 
-        sudo echo "alias abc=berkeley-abc" >> ~/.bashrc
-        source ~/.bashrc
+        sudo link berkeley-abc abc
     else
         #if it's ubuntu
         lib = libreadline-dev
@@ -76,8 +75,7 @@ then
 
         chmod +x $path
 
-        sudo echo "alias abc=\"$path\"" >> ~/.bashrc
-        source ~/.bashrc
+        sudo link $path abc 
         cd ..
     fi
 else 
