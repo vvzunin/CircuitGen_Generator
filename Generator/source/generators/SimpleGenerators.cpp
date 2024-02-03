@@ -9,52 +9,61 @@
 
 namespace
 {
-    int maxValueInMap(const std::map<std::string, int> &i_map)
+int maxValueInMap(const std::map<std::string, int> &i_map)
+{
+    if (i_map.size() == 0)
     {
-        if (i_map.size() == 0)
-        {
-            return -1;
-        }
-        int res = (*i_map.begin()).second;
-
-        for (const auto &[key, value] : i_map)
-        {
-            res = std::max(res, value);
-        }
-        return res;
+        return -1;
     }
+    int res = (*i_map.begin()).second;
+
+    for (const auto &[key, value] : i_map)
+    {
+        res = std::max(res, value);
+    }
+    return res;
 }
 
-SimpleGenerators::SimpleGenerators() {}
 
-int SimpleGenerators::getRangomAndNumber() const
-{
-    return d_gatesInputsInfo.at("and")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("and").size())];
+// namespace end
 }
 
-int SimpleGenerators::getRangomOrNumber() const
+int SimpleGenerators::getRangomAndNumber() 
 {
-    return d_gatesInputsInfo.at("or")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("or").size())];
+    return d_gatesInputsInfo["and"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["and"].size())];
 }
 
-int SimpleGenerators::getRangomNandNumber() const
+int SimpleGenerators::getRangomOrNumber() 
 {
-    return d_gatesInputsInfo.at("nand")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("nand").size())];
+    return d_gatesInputsInfo["or"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["or"].size())];
 }
 
-int SimpleGenerators::getRangomNorNumber() const
+int SimpleGenerators::getRangomNandNumber() 
 {
-    return d_gatesInputsInfo.at("nor")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("nor").size())];
+    return d_gatesInputsInfo["nand"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["nand"].size())];
 }
 
-int SimpleGenerators::getRangomXorNumber() const
+int SimpleGenerators::getRangomNorNumber() 
 {
-    return d_gatesInputsInfo.at("xor")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("xor").size())];
+    return d_gatesInputsInfo["nor"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["nor"].size())];
 }
 
-int SimpleGenerators::getRangomXnorNumber() const
+int SimpleGenerators::getRangomXorNumber() 
 {
-    return d_gatesInputsInfo.at("xnor")[AuxMethods::getRandInt(0, d_gatesInputsInfo.at("xnor").size())];
+    return d_gatesInputsInfo["xor"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["xor"].size())];
+}
+
+int SimpleGenerators::getRangomXnorNumber() 
+{
+    return d_gatesInputsInfo["xnor"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["xnor"].size())];
+}
+
+SimpleGenerators::SimpleGenerators() {
+    d_randGenerator.setSeed(AuxMethods::getRandSeed());
+}
+
+SimpleGenerators::SimpleGenerators(int i_seed) {
+    d_randGenerator.setSeed(i_seed);
 }
 
 std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
@@ -135,11 +144,11 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
 {
     int maxLevel;
     if (i_maxLevel != 0)
-        maxLevel = AuxMethods::getRandInt(0, i_maxLevel) + 2; // TODO: Zunin , not +1?
+        maxLevel = d_randGenerator.getRandInt(0, i_maxLevel) + 2; // TODO: Zunin , not +1?
     else
         maxLevel = 2;
     std::vector<int> elemLevel(maxLevel + 1);
-    std::vector<std::string> logOper = d_settings->getLogicOperationsKeys();
+    auto [hasOneGate, logOper] = d_settings->getLogicOperationsWithGates();
     logOper.erase(std::find(logOper.begin(), logOper.end(), "input"));
     logOper.erase(std::find(logOper.begin(), logOper.end(), "output"));
     logOper.erase(std::find(logOper.begin(), logOper.end(), "const"));
@@ -150,7 +159,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
     for (int i = 1; i < maxLevel; ++i)
     {
         if (i_maxElements > 1)
-            elemLevel[i] = AuxMethods::getRandInt(2, i_maxElements, true);
+            elemLevel[i] = d_randGenerator.getRandInt(2, i_maxElements, true);
         else
             elemLevel[i] = 2;
     }
@@ -174,10 +183,10 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
         int position = 0;
         for (int j = 0; j < elemLevel[i]; ++j)
         {
-            choice = AuxMethods::getRandInt(0, logOper.size());
-            if (logOper[choice] == "not" || logOper[choice] == "buf")
+            choice = d_randGenerator.getRandInt(0, logOper.size());
+            if (hasOneGate[choice])
             {
-                child1 = AuxMethods::getRandInt(0, currIndex);
+                child1 = d_randGenerator.getRandInt(0, currIndex);
                 expr = d_settings->fromOperationsToName(logOper[choice]) + " (" +
                        graph.getVertice(child1).getLogicExpression() + ")";
 
@@ -190,8 +199,8 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
             {
                 // is child2 even needed?
                 // yes, it is important
-                child1 = AuxMethods::getRandInt(prevIndex, currIndex);
-                child2 = AuxMethods::getRandInt(prevIndex, currIndex);
+                child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
+                child2 = d_randGenerator.getRandInt(prevIndex, currIndex);
                 // child1 = (rand() % (currIndex - prevIndex)) + prevIndex;
                 // child2 = (rand() % (currIndex - prevIndex)) + prevIndex;
 
@@ -216,7 +225,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
 
     for (int i = 0; i < i_outputs; ++i)
     {
-        child1 = AuxMethods::getRandInt(prevIndex, currIndex);
+        child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
         expr = "f" + std::to_string(i + 1);
         graph.addVertex(expr, "output");
         graph.addEdge(graph.getVertice(child1).getLogicExpression(),
@@ -318,8 +327,8 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
 
             while (help.size() > 0 && nameOut.size() > 0)
             {
-                int R1 = AuxMethods::getRandInt(0, help.size());
-                int R2 = AuxMethods::getRandInt(0, nameOut.size());
+                int R1 = d_randGenerator.getRandInt(0, help.size());
+                int R2 = d_randGenerator.getRandInt(0, nameOut.size());
                 graph.addEdge(help[R1], nameOut[R2]);
                 levelName.erase(help[R1]);
                 help.erase(help.begin() + R1);
@@ -328,8 +337,8 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
         }
         else
         {
-            int R1 = AuxMethods::getRandInt(0, nameInput.size());
-            int R2 = AuxMethods::getRandInt(0, nameOut.size());
+            int R1 = d_randGenerator.getRandInt(0, nameInput.size());
+            int R2 = d_randGenerator.getRandInt(0, nameOut.size());
 
             graph.addEdge(nameInput[R1], nameOut[R2]);
             nameOut.erase(nameOut.begin() + R2);
@@ -352,7 +361,7 @@ std::map<std::string, int> SimpleGenerators::delNull(std::map<std::string, int> 
 
 std::string SimpleGenerators::randomGenerator(const std::map<std::string, int> &i_map)
 {
-    int i = AuxMethods::getRandInt(0, i_map.size());
+    int i = d_randGenerator.getRandInt(0, i_map.size());
 
     auto p = i_map.begin();
 

@@ -228,6 +228,16 @@ public:
         d_makeBench = i_makeBench;
     }
 
+    int getSeed() const
+    {
+        return d_seed;
+    }
+
+    void setSeed(int i_seed)
+    {
+        d_seed = i_seed;
+    }
+
     std::map<std::string, std::vector<int>> getGatesInputsInfo() const
     {
         return d_gatesInputsInfo;
@@ -278,6 +288,8 @@ private:
     bool d_makeFirrtl;
     bool d_makeBench;
     std::map<std::string, std::vector<int>> d_gatesInputsInfo;
+
+    int d_seed = 0;
 
     CNNFromTruthTableParameters d_cnfFromTruthTableParameters;
     GeneratorRandLevelParameters d_generatorRandLevelParameters;

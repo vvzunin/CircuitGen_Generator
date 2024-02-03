@@ -8,54 +8,56 @@
 #include <utility>
 
 #include "AuxiliaryMethods.h"
+#include "RandomGeneratorWithSeed.h"
 
 namespace
 {
-    // legacy
-    //
-    // int getRandInt(int i_lower, int i_upper)
-    // {
-    //     assert(i_lower <= i_upper);
-    //     int d = i_upper - i_lower + 1;
-    //     return (rand() % d) + i_lower;
-    // }
+// legacy
+//
+// int getRandInt(int i_lower, int i_upper)
+// {
+//     assert(i_lower <= i_upper);
+//     int d = i_upper - i_lower + 1;
+//     return (rand() % d) + i_lower;
+// }
 
-    std::vector<std::string> splitString(const std::string &s, char delimiter)
+std::vector<std::string> splitString(const std::string &s, char delimiter)
+{
+    std::vector<std::string> tokens;
+    std::stringstream ss(s);
+    std::string token;
+
+    while (std::getline(ss, token, delimiter))
     {
-        std::vector<std::string> tokens;
-        std::stringstream ss(s);
-        std::string token;
-
-        while (std::getline(ss, token, delimiter))
-        {
-            tokens.push_back(token);
-        }
-
-        return tokens;
+        tokens.push_back(token);
     }
 
-    std::minstd_rand gen;
+    return tokens;
 }
+
+RandomGeneratorWithSeed gen;
+
+// namespace end
+}
+
 
 void AuxMethods::setRandSeed(unsigned seed)
 {
-    gen.seed(seed);
+    gen.setSeed(seed);
 }
+
+int AuxMethods::getRandSeed() {
+    return gen.getSeed();
+}
+
 int AuxMethods::getRandInt(int lower, int upper, bool inclusively)
 {
-    if (!inclusively)
-        upper--;
-
-    if (upper < lower)
-        throw std::invalid_argument("AuxiliaryMethod random: upper boder is bigger than lower");
-
-    std::uniform_int_distribution<> dis(lower, upper);
-    return dis(gen);
+    return gen.getRandInt(lower, upper, inclusively);
 }
+
 double AuxMethods::getRandDouble(double lower, double upper)
 {
-    std::uniform_real_distribution<> dis(lower, upper);
-    return dis(gen);
+    gen.getRandDouble(lower, upper);
 }
 
 std::string AuxMethods::readAllFile(const std::string &filename)

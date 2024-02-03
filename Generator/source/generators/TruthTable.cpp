@@ -3,16 +3,28 @@
 #include <memory>
 
 #include "TruthTable.h"
-#include "AuxiliaryMethods/AuxiliaryMethods.h"
+#include <AuxiliaryMethods/AuxiliaryMethods.h>
 
 TruthTable::TruthTable()
 {
+    d_randGenerator.setSeed(AuxMethods::getRandSeed());
+    d_settings = Settings::getInstance("TruthTable");
+}
+
+TruthTable::TruthTable(int i_seed)
+{
+    d_randGenerator.setSeed(i_seed);
     d_settings = Settings::getInstance("TruthTable");
 }
 
 TruthTable::TruthTable(const Chronosome<TruthTableParameters> &i_chr)
 {
+    d_randGenerator.setSeed(AuxMethods::getRandSeed());
     d_settings = Settings::getInstance("TruthTable");
+}
+
+void TruthTable::setSeed(int i_seed) {
+    d_randGenerator.setSeed(i_seed);
 }
 
 void TruthTable::generateRandom(TruthTableParameters i_gp)
@@ -20,8 +32,8 @@ void TruthTable::generateRandom(TruthTableParameters i_gp)
     if (i_gp.getInputs() == 0)
     {
         i_gp = TruthTableParameters();
-        i_gp.setInputs(AuxMethods::getRandInt(0, d_settings->getMaxInputs()));
-        i_gp.setOutputs(AuxMethods::getRandInt(0, d_settings->getMaxOutputs()));
+        i_gp.setInputs(d_randGenerator.getRandInt(0, d_settings->getMaxInputs()));
+        i_gp.setOutputs(d_randGenerator.getRandInt(0, d_settings->getMaxOutputs()));
     }
 
     d_input = i_gp.getInputs();
@@ -35,7 +47,7 @@ void TruthTable::generateRandom(TruthTableParameters i_gp)
     {
         d_array[i].resize(i_gp.getOutputs());
         for (int j = 0; j < i_gp.getOutputs(); ++j)
-            d_array[i][j] = AuxMethods::getRandInt(0, 1, true) == 1;
+            d_array[i][j] = d_randGenerator.getRandInt(0, 1, true) == 1;
     }
 }
 
@@ -112,7 +124,7 @@ void TruthTable::generateTable(double i_p)
         {
             d_array[i].resize(d_output);
             for (int j = 0; j < d_output; ++j)
-                d_array[i][j] = AuxMethods::getRandInt(0, 1, true) == 1;
+                d_array[i][j] = d_randGenerator.getRandInt(0, 1, true) == 1;
         }
     }
     if (i_p > 0 && i_p <= 1)
