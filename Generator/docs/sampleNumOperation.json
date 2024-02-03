@@ -3,7 +3,7 @@
     "seed": 2,
     "dataset_id": "0",
     "id": 0,
-    "type_of_generation": "From Random Truth Table",
+    "type_of_generation": "Num operation",
     "min_in": 4,
     "max_in": 5,
     "min_out": 4,

@@ -51,8 +51,7 @@ then
             sudo $packageName install -y berkeley-abc;  
         fi
 
-        sudo echo "alias abc=berkeley-abc" >> ~/.bashrc
-        source ~/.bashrc
+        sudo link /usr/bin/berkeley-abc /usr/bin/abc
     else
         #if it's ubuntu
         lib = libreadline-dev
@@ -70,17 +69,15 @@ then
         mkdir abc
         git clone https://github.com/berkeley-abc/abc.git abc
         cd abc/
-        make
+        make -f 10
 
         path=$(get_abs_filename "abc")
 
         chmod +x $path
 
-        sudo echo "alias abc=\"$path\"" >> ~/.bashrc
-        source ~/.bashrc
+        sudo link $path /usr/bin/abc 
         cd ..
     fi
 else 
     echo "abc is already installed"
 fi
-
