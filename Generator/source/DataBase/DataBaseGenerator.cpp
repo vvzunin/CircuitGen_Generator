@@ -245,8 +245,8 @@ void DataBaseGenerator::generateDataBaseParity(const GenerationParameters &i_par
 void DataBaseGenerator::generateDataBaseDecoder(const GenerationParameters &i_param)
 {
     SimpleGenerators sg;
-    int bits = i_param.getInputs();
-    OrientedGraph graph = sg.generatorDecoder(bits);
+    int i_bits = i_param.getInputs();
+    OrientedGraph graph = sg.generatorDecoder(i_bits);
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
