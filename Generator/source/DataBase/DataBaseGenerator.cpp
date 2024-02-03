@@ -1,5 +1,6 @@
 #include <vector>
 #include <limits>
+#include <cstdint>
 #include <iostream>
 #include <algorithm>
 #include <filesystem>
@@ -67,13 +68,15 @@ void DataBaseGenerator::generateType(
         }
     }
 
-    std::vector<int> seeds(i_dbgp.getEachIteration());
+    std::vector<std::uint_fast32_t> seeds(i_dbgp.getEachIteration());
 
     auto randGeneratorLambda = [] () {
-        return AuxMethods::getRandInt(INT_MIN, INT_MAX);
+        return AuxMethods::getRandInt(0, INT_MAX);
     };
     // we create int sequence, wich would give us diffetent seeds for each repeat
     std::generate(seeds.begin(), seeds.end(), randGeneratorLambda);
+
+    ThreadPool pool(4);
 
     for (int i = i_dbgp.getMinInputs(); i <= i_dbgp.getMaxInputs(); ++i)
     {
@@ -85,8 +88,6 @@ void DataBaseGenerator::generateType(
 
             if (parallel)
             {
-                ThreadPool pool(4);
-
                 for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt)
                 {
                     d_parameters.setIteration(tt);

@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <cstdint>
 
 #include "./Genetic/GeneticParameters.h"
 
@@ -228,12 +229,12 @@ public:
         d_makeBench = i_makeBench;
     }
 
-    int getSeed() const
+    std::uint_fast32_t getSeed() const
     {
         return d_seed;
     }
 
-    void setSeed(int i_seed)
+    void setSeed(std::uint_fast32_t i_seed)
     {
         d_seed = i_seed;
     }
@@ -289,7 +290,7 @@ private:
     bool d_makeBench;
     std::map<std::string, std::vector<int>> d_gatesInputsInfo;
 
-    int d_seed = 0;
+    std::uint_fast32_t d_seed = 0;
 
     CNNFromTruthTableParameters d_cnfFromTruthTableParameters;
     GeneratorRandLevelParameters d_generatorRandLevelParameters;

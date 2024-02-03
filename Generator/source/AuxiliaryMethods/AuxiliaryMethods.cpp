@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include <utility>
+#include <cstdint>
 
 #include "AuxiliaryMethods.h"
 #include "RandomGeneratorWithSeed.h"
@@ -41,12 +42,12 @@ RandomGeneratorWithSeed gen;
 }
 
 
-void AuxMethods::setRandSeed(unsigned seed)
+void AuxMethods::setRandSeed(std::uint_fast32_t seed)
 {
     gen.setSeed(seed);
 }
 
-int AuxMethods::getRandSeed() {
+std::uint_fast32_t AuxMethods::getRandSeed() {
     return gen.getSeed();
 }
 
@@ -57,7 +58,7 @@ int AuxMethods::getRandInt(int lower, int upper, bool inclusively)
 
 double AuxMethods::getRandDouble(double lower, double upper)
 {
-    gen.getRandDouble(lower, upper);
+    return gen.getRandDouble(lower, upper);
 }
 
 std::string AuxMethods::readAllFile(const std::string &filename)

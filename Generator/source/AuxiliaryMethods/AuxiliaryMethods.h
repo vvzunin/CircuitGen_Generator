@@ -1,5 +1,6 @@
 #include <map>
 #include <vector>
+#include <cstdint>
 #include <fstream>
 #include <sstream>
 #include <utility>
@@ -8,8 +9,8 @@
 
 namespace AuxMethods
 {
-void setRandSeed(unsigned seed);
-int getRandSeed();
+void setRandSeed(std::uint_fast32_t seed);
+std::uint_fast32_t getRandSeed();
 
 int getRandInt(int lower, int upper, bool inclusively = false);
 double getRandDouble(double lower, double upper);

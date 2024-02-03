@@ -2,6 +2,7 @@
 #define RANDOM_GENERATION_WITH_SEED
 
 #include <random>
+#include <cstdint>
 #include <stdexcept>
 
 
@@ -9,7 +10,7 @@ class RandomGeneratorWithSeed {
     public:
 
     RandomGeneratorWithSeed() = default;
-    RandomGeneratorWithSeed(int i_seed) {
+    RandomGeneratorWithSeed(std::uint_fast32_t i_seed) {
         setSeed(i_seed);
     }
 
@@ -21,11 +22,11 @@ class RandomGeneratorWithSeed {
 
     RandomGeneratorWithSeed &operator=(RandomGeneratorWithSeed &&other) = default;
 
-    int getSeed() const {
+    std::uint_fast32_t getSeed() const {
         return d_seed;
     }
 
-    void setSeed(int i_seed) {
+    void setSeed(std::uint_fast32_t i_seed) {
         d_gen.seed(i_seed);
     }
 
@@ -49,7 +50,7 @@ class RandomGeneratorWithSeed {
     }
 
     private:
-    int d_seed;
+    std::uint_fast32_t d_seed;
     std::minstd_rand d_gen;
 };
 
