@@ -15,6 +15,7 @@ FilesToolsTests.cpp
 GraphVertexTests.cpp
 ParityTests.cpp
 DecoderTests.cpp
+ComparisonTests.cpp
 ../generators/SimpleGenerators.cpp
 )
 
