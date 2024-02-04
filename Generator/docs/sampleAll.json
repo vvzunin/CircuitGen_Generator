@@ -9,7 +9,7 @@
     "min_out": 4,
     "max_out": 5,
     "repeat_n": 3,    
-    "multithread": false,
+    "multithread": true,
     "calculate_stats_abc": true,
     "make_optimized_files": true,
     "make_firrtl": true,
