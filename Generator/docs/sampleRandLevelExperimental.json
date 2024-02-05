@@ -18,9 +18,9 @@
     "library_name": "sky130",
     
     "gates_inputs_info": {
-      "and": [2],
-      "nand": [2],
-      "or": [2],
+      "and": [2, 4],
+      "nand": [4, 7],
+      "or": [5, 6],
       "nor": [2, 4, 8],
       "xor": [2, 4],
       "xnor": [2, 3]
