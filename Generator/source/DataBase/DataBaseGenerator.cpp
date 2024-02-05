@@ -76,7 +76,7 @@ void DataBaseGenerator::generateType(
     // we create int sequence, wich would give us diffetent seeds for each repeat
     std::generate(seeds.begin(), seeds.end(), randGeneratorLambda);
 
-    ThreadPool pool(4);
+    ThreadPool pool(d_settings->getNumThread());
 
     for (int i = i_dbgp.getMinInputs(); i <= i_dbgp.getMaxInputs(); ++i)
     {

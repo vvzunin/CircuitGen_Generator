@@ -133,12 +133,17 @@ std::pair<std::vector<bool>, std::vector<std::string>> Settings::getLogicOperati
 {
     std::vector<std::string> res(d_logicOperations.size());
     std::vector<bool> oneGate(d_logicOperations.size());
+    
     for (const auto &[key, value] : d_logicOperations) {
         res.push_back(key);
         oneGate.push_back(key == "not" || key == "buf");
     }
 
     return std::make_pair(oneGate, res);
+}
+
+int Settings::getNumThread() const {
+    return d_numThreads;
 }
 
 std::string Settings::getPathNadezhda() const

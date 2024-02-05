@@ -34,9 +34,12 @@ class RandomGeneratorWithSeed {
     {
         if (!inclusively)
             upper--;
-
+        
+        if (upper == lower)
+            return upper;
+        
         if (upper < lower)
-            throw std::invalid_argument("AuxiliaryMethod random: upper boder is bigger than lower");
+            throw std::invalid_argument("RandomGeneratorWithSeed random int: upper boder is bigger than lower");
 
         std::uniform_int_distribution<> dis(lower, upper);
 

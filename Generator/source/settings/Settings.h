@@ -43,6 +43,7 @@ public:
     std::string getPathNadezhda() const;
     std::string getNadezhdaVar(const std::string &key) const;
     std::vector<std::string> fromOperationsToHierarchy(int key) const;
+    int getNumThread() const;
 
 private:
     void SaveSettings();

@@ -3,6 +3,7 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include <algorithm>
 
 #include <graph/OrientedGraph.h>
 #include <AuxiliaryMethods/RandomGeneratorWithSeed.h>
@@ -21,7 +22,14 @@ public:
     SimpleGenerators &operator=(SimpleGenerators &&other) = delete;
 
     std::vector<std::string> cnfFromTruthTable(const TruthTable &i_table, bool i_tp = true);
+    
     OrientedGraph generatorRandLevel(int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs);
+    OrientedGraph generatorRandLevelExperimental(
+    u_int32_t i_maxLevel, 
+    u_int32_t i_maxElements, 
+    u_int32_t i_inputs, 
+    u_int32_t i_outputs);
+
     OrientedGraph generatorNumOperation(
         int i_input,
         int i_output,
@@ -33,6 +41,14 @@ public:
 
     void setGatesInputsInfo(const std::map<std::string, std::vector<int>> &i_info) {
         d_gatesInputsInfo = i_info;
+
+        for (auto &[key, value] : d_gatesInputsInfo) {
+            d_maxGateNumber = *std::max_element(value.begin(), value.end()); 
+        }
+
+        // TODO is it a good idea to add here hew gates
+        d_gatesInputsInfo["not"] = {1};
+        d_gatesInputsInfo["buf"] = {1};
     }
 
     std::map<std::string, std::vector<int>> getGatesInputsInfo() const {
@@ -43,6 +59,9 @@ private:
     std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);
     std::string randomGenerator(const std::map<std::string, int> &i_map);
 
+    std::pair<std::string, int> getRandomElement();
+    std::pair<std::string, int> getRandomElement(u_int32_t i_gatesLimit);
+
     int getRangomAndNumber();
     int getRangomOrNumber();
     int getRangomNandNumber();
@@ -52,4 +71,5 @@ private:
 
     std::map<std::string, std::vector<int>> d_gatesInputsInfo;
     RandomGeneratorWithSeed d_randGenerator;
+    int d_maxGateNumber = 0;
 };
