@@ -413,23 +413,17 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists)
                 if (d_graph.getAdjacencyMatrix(i, j))
                     inps.push_back(i);
 
-            if (d_graph.getVertice(j).getOperation() != "output")
+            if (d_graph.getVertice(j).getOperation() != "output" && d_graph.getVertice(j).getOperation() != "const")
             {
-                if (d_graph.getVertice(j).getOperation() != "const")
-                {
-                    w << "\t" << d_graph.getVertice(j).getOperation() << " (" << d_graph.getVertice(j).getWireName();
-                    // TODO: on prev line add instance name
-                    for (auto k : inps)
-                        w << ", " << d_graph.getVertice(k).getWireName();
-                    w << ");" << std::endl;
-                }
+                w << "\t" << d_graph.getVertice(j).getOperation() << " ( " << d_graph.getVertice(j).getWireName();
+                // TODO: on prev line add instance name
+                for (auto k : inps)
+                    w << ", " << d_graph.getVertice(k).getWireName();
+                w << ");" << std::endl;
             }
-            else
+            else if (d_graph.getVertice(j).getOperation() == "output" && inps.size() > 0)
             {
-                if (inps.size() > 0)
-                {
-                    w << "\tassign " << d_graph.getVertice(j).getWireName() << " = " << d_graph.getVertice(inps[0]).getWireName() << ";" << std::endl;
-                }
+                w << "\tassign " << d_graph.getVertice(j).getWireName() << " = " << d_graph.getVertice(inps[0]).getWireName() << ";" << std::endl;
             }
         }
     }

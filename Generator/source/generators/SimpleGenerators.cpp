@@ -1,7 +1,8 @@
-#include <algorithm>
 #include <ctime>
-#include <iostream>
 #include <math.h>
+#include <cassert>
+#include <iostream>
+#include <algorithm>
 
 #include "SimpleGenerators.h"
 #include <graph/OrientedGraph.h>
@@ -267,10 +268,8 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     logOper.erase(std::find(logOper.begin(), logOper.end(), "output"));
     logOper.erase(std::find(logOper.begin(), logOper.end(), "const"));
 
-    int choice;
     std::string expr;
     OrientedGraph graph;
-    int child1, child2;
 
     for (int i = 0; i < i_inputs; ++i)
     {
@@ -280,38 +279,45 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
 
     int currIndex = i_inputs;
     int prevIndex = 0;
+    int c_max = i_maxElements > d_maxGateNumber ? d_maxGateNumber : 2;
 
     for (int i = 1; i < maxLevel; ++i)
     {
         int position = 0;
         // how many elements would be at this level
-        int elemLevel = i_maxElements > 1 ? d_randGenerator.getRandInt(2, i_maxElements, true) : 2;
+        int elemLevel = i_maxElements > 1 ? d_randGenerator.getRandInt(c_max, i_maxElements, true) : 2;
 
         for (int j = 0; j < elemLevel; ++j)
         {
-            choice = d_randGenerator.getRandInt(0, logOper.size());
-            if (hasOneGate[choice])
+            auto [operation, gatesNumber] = getRandomElement();
+            if (gatesNumber == 1)
             {
-                child1 = d_randGenerator.getRandInt(0, currIndex);
-                expr = d_settings->fromOperationsToName(logOper[choice]) + " (" +
+                int child1 = d_randGenerator.getRandInt(0, currIndex);
+                expr = d_settings->fromOperationsToName(operation) + " (" +
                        graph.getVertice(child1).getLogicExpression() + ")";
 
-                if (graph.addVertex(expr, logOper[choice]))
+                if (graph.addVertex(expr, operation))
                     graph.addEdge(graph.getVertice(child1).getLogicExpression(), graph.getVertice(currIndex + position).getLogicExpression());
-                else
+                else   
                     --position;
             }
             else
             {
-                child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
-                child2 = d_randGenerator.getRandInt(prevIndex, currIndex);
+                std::vector<std::string> children;
+                int idx = d_randGenerator.getRandInt(prevIndex, currIndex);
+                
+                children.push_back(graph.getVertice(idx).getLogicExpression());
+                expr = "(" + children.back() + ") ";
 
-                expr = "(" + graph.getVertice(child2).getLogicExpression() + " )" +
-                       d_settings->fromOperationsToName(logOper[choice]) + " (" + graph.getVertice(child1).getLogicExpression() + ")";
+                for (int i = 1; i < gatesNumber; ++i) {
+                    idx = d_randGenerator.getRandInt(prevIndex, currIndex);
+                    children.push_back(graph.getVertice(idx).getLogicExpression());
 
-                if (graph.addVertex(expr, logOper[choice]))
-                    graph.addDoubleEdge(graph.getVertice(child2).getLogicExpression(),
-                                        graph.getVertice(child1).getLogicExpression(),
+                    expr += d_settings->fromOperationsToName(operation) + " (" + children.back() + ")";
+                }
+
+                if (graph.addVertex(expr, operation))
+                    graph.addMultipleEdge(children,
                                         graph.getVertice(currIndex + position).getLogicExpression());
                 else
                     --position;
@@ -327,7 +333,7 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
 
     for (int i = 0; i < i_outputs; ++i)
     {
-        child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
+        int child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
         expr = "f" + std::to_string(i + 1);
         graph.addVertex(expr, "output");
         graph.addEdge(graph.getVertice(child1).getLogicExpression(),

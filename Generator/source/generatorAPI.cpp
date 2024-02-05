@@ -48,6 +48,8 @@ void runGenerationFromJson(std::string json_path)
       gt = GenerationTypes::FromRandomTruthTable;
     else if (data["type_of_generation"] == "Rand Level")
       gt = GenerationTypes::RandLevel;
+    else if (data["type_of_generation"] == "Rand Level Experimental")
+      gt = GenerationTypes::RandLevelExperimental;
     else if (data["type_of_generation"] == "Num Operation")
       gt = GenerationTypes::NumOperation;
     else if (data["type_of_generation"] == "Genetic")
@@ -181,7 +183,7 @@ void runGenerationFromJson(std::string json_path)
     }
 
     // Основные параметры для Rand Level
-    if (data["type_of_generation"] == "Rand Level")
+    if (static_cast<std::string>(data["type_of_generation"]).find("Rand Level") != std::string::npos)
     {
       if (!(data.contains("max_level") || data.contains("max_elem")))
         std::clog << "Parameters for selected generation type is not set. Parameters sets to default." << std::endl;

@@ -71,6 +71,8 @@ std::string DataBaseGeneratorParameters::getGenerationTypeString() const
         return "FromRandomTruthTable";
     if (d_generationTypes == GenerationTypes::RandLevel)
         return "RandLevel";
+    if (d_generationTypes == GenerationTypes::RandLevelExperimental)
+        return "RandLevelExperimental";
     if (d_generationTypes == GenerationTypes::NumOperation)
         return "NumOperation";
     if (d_generationTypes == GenerationTypes::Genetic)

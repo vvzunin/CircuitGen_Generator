@@ -1,9 +1,9 @@
 [
   {
     "seed": 2,
-    "dataset_id": "2",
+    "dataset_id": "3",
     "id": 0,
-    "type_of_generation": "Rand Level",
+    "type_of_generation": "Rand Level Experimental",
     "min_in": 20,
     "max_in": 20,
     "min_out": 20,

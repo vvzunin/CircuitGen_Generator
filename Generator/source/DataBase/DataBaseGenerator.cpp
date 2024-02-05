@@ -70,7 +70,8 @@ void DataBaseGenerator::generateType(
 
     std::vector<std::uint_fast32_t> seeds(i_dbgp.getEachIteration());
 
-    auto randGeneratorLambda = [] () {
+    auto randGeneratorLambda = []()
+    {
         return AuxMethods::getRandInt(0, INT_MAX);
     };
     // we create int sequence, wich would give us diffetent seeds for each repeat
@@ -121,7 +122,7 @@ void DataBaseGenerator::generateType(
                     param.setSeed(*iter);
 
                     generator(param);
-                    
+
                     ++d_dirCount;
                     ++iter;
                 }
@@ -146,7 +147,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
 
     if (i_param.getCNF().getCNFF())
         circs.push_back({"CNFF", tftt.cnfFromTruthTable(tt, false)});
-    
+
     for (const auto &[name, expr] : circs)
     {
         Parser pCNFT(expr);
@@ -173,10 +174,38 @@ void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters &i_
 
     std::vector<std::pair<std::string, OrientedGraph>> circs;
     circs.push_back({"RandLevel",
-                     generator.generatorRandLevel(i_param.getRandLevel().getMaxLevel(),
-                                                  i_param.getRandLevel().getMaxElements(),
-                                                  i_param.getInputs(),
-                                                  i_param.getOutputs())});
+                     generator.generatorRandLevel(
+                         i_param.getRandLevel().getMaxLevel(),
+                         i_param.getRandLevel().getMaxElements(),
+                         i_param.getInputs(),
+                         i_param.getOutputs())});
+
+    for (const auto &[name, graph] : circs)
+    {
+        Circuit c(graph);
+        c.setPath(d_mainPath);
+        c.setCircuitName(i_param.getName());
+        c.generate(
+            i_param.getMakeFirrtl(),
+            i_param.getMakeBench(),
+            i_param.getCalculateStatsAbc(),
+            i_param.getLibraryName(),
+            i_param.getMakeOptimizedFiles());
+    }
+}
+
+void DataBaseGenerator::generateDataBaseRandLevelExperimental(const GenerationParameters &i_param)
+{
+    SimpleGenerators generator(i_param.getSeed());
+    generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+    std::vector<std::pair<std::string, OrientedGraph>> circs;
+    circs.push_back({"RandLevel",
+                     generator.generatorRandLevelExperimental(
+                         i_param.getRandLevel().getMaxLevel(),
+                         i_param.getRandLevel().getMaxElements(),
+                         i_param.getInputs(),
+                         i_param.getOutputs())});
 
     for (const auto &[name, graph] : circs)
     {
@@ -297,6 +326,8 @@ std::function<void(const GenerationParameters &)> DataBaseGenerator::getGenerate
         return std::bind(&DataBaseGenerator::generateDataBaseFromRandomTruthTable, this, std::placeholders::_1);
     if (i_methodName == "RandLevel")
         return std::bind(&DataBaseGenerator::generateDataBaseRandLevel, this, std::placeholders::_1);
+    if (i_methodName == "RandLevelExperimental")
+        return std::bind(&DataBaseGenerator::generateDataBaseRandLevelExperimental, this, std::placeholders::_1);
     if (i_methodName == "NumOperation")
         return std::bind(&DataBaseGenerator::generateDataBaseNumOperations, this, std::placeholders::_1);
     if (i_methodName == "Genetic")
