@@ -589,10 +589,11 @@ OrientedGraph SimpleGenerators::generatorComparison(int i_bits, bool i_compare0,
     return graph;
 }
 
- OrientedGraph SimpleGenerators::generatorEncoder(int i_bits)
+OrientedGraph SimpleGenerators::generatorEncoder(int i_bits)
 {
     OrientedGraph graph ;
     int k = 0;
+    std::vector<std::string> X(pow(2, i_bits));
     for (int t = 0; t <= i_bits; t++)
         if (i_bits - 1 >= pow(2, t))
         {
@@ -601,7 +602,8 @@ OrientedGraph SimpleGenerators::generatorComparison(int i_bits, bool i_compare0,
     for (int l = 0; l <= i_bits - 1; l++)
     {
         std::string Z = std::to_string(l);
-        graph.addVertex("x" + Z, "input");
+        X[l] = "x" + Z;
+        graph.addVertex(X[l], "input");
     }
     if (i_bits > 1)
         for (int p = k - 1; p >= 0; p--)
@@ -617,9 +619,10 @@ OrientedGraph SimpleGenerators::generatorComparison(int i_bits, bool i_compare0,
                 for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
                     if (pow(2, p + 1) * i + t <= i_bits - 1)
                     {
-                        std::string R = std::to_string(pow(2, p + 1) * i + t);
-                        K = M + " or x" + R;
-                        L = P + " or x" + R;
+                        double r = pow(2, p + 1) * i + t;
+                        int R = int(r);
+                        K = M + " or " + X[R];
+                        L = P + " or " + X[R];
                         //graph.addEdge("x" + R, "a" + S, false);
                         P = L;
                         L = "";
@@ -632,8 +635,9 @@ OrientedGraph SimpleGenerators::generatorComparison(int i_bits, bool i_compare0,
                 for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
                     if (pow(2, p + 1) * i + t <= i_bits - 1)
                     {
-                        std::string R = std::to_string(pow(2, p + 1) * i + t);
-                        graph.addEdge("x" + R, P, false);
+                       double r = pow(2, p + 1) * i + t;
+                       int R = int(r);
+                        graph.addEdge(X[R], P, false);
                     }
             graph.addEdge(P, "a" + S, false);
         }
