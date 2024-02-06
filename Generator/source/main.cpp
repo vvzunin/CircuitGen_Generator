@@ -82,6 +82,9 @@ void runGenerationFromJson(std::string json_path)
         gt = GenerationTypes::Parity;
     if (data["type_of_generation"] == "Decoder")
         gt = GenerationTypes::Decoder;
+    if (data["type_of_generation"] == "Demultiplexer")
+        gt = GenerationTypes::Demultiplexer;
+        
     int requestIdINT = data["id"];
     std::string requestId = std::to_string(requestIdINT);
     assert(requestId != "");

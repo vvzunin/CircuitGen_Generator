@@ -1058,3 +1058,97 @@ OrientedGraph SimpleGenerators::generatorDecoder(int i_bits)
     }
     return graph;
 }
+
+OrientedGraph SimpleGenerators::generatorDemultiplexer(int i_bits)
+{
+    //i_bits - количество выходных сигналов, то есть количество х
+    //f - значение функции на входе
+    //k - количество адресных входов, то есть количество а
+    //F[] - массив для хранения индексов х в двоичном формате в строковом виде
+    //X[] - массив для создания и хранения строк, аналогичных "a0 and a1 and not a2 and f"
+    //K[] - вспомогательный массив для создания строк, аналогичных "a0 and a1 and not a2 and f"
+    //S[] - массив для стринговых индексов а 
+    //Z[] - массив для стринговых индексов х 
+    //len - количество символов в конкретной строке F[i], то есть двоичая разрядность числа хi
+    //u - переменная для чтения одного символа из строки F[i]
+    
+    OrientedGraph graph;
+    graph.addVertex("f","input");
+
+    int k = 0;
+    for (int t = 0; t <= i_bits; t++) {
+        if (i_bits - 1 >= std::pow(2, t))
+            k++;
+    }
+
+    std::vector<std::string> F(i_bits);
+    std::vector<std::string> X(i_bits);
+    std::vector<std::string> K(i_bits);
+    std::vector<std::string> S(k);
+    std::vector<std::string> Z(i_bits);
+
+    if (i_bits > 1) { 
+        for (int p = 0; p <= k - 1; p++) {
+            S[p] = std::to_string(p);
+            graph.addVertex("a" + S[p], "input");
+            graph.addVertex("not a" + S[p], "not", "not a" + S[p]);
+        }
+
+        for (int i = 0; i <= i_bits - 1; i++) {
+            Z[i] = std::to_string(i);
+            graph.addVertex("x" + Z[i], "output");
+            F[i] = std::bitset<8>(i).to_string();
+            int len = F[i].size();
+
+            for (int w = 0; w <= k - 1; w++) {
+                if (F[i].size() < w + 1) 
+                    X[i] = K[i] + " and not a" + S[w];
+                else {
+                    char u = F[i][len - w - 1];
+                    if (u == '1')
+                        X[i] = K[i] + " and a" + S[w];
+                    else
+                        X[i] = K[i] + " and not a" + S[w];
+                }
+                K[i] = X[i];
+                X[i] = "";
+            }
+            X[i] = K[i] + " and f";
+        }
+
+        for (int i = 0; i <= i_bits - 1; i++) {
+            if (!X[i].empty())
+                X[i].erase(0, 4);
+            graph.addVertex(X[i], "and", X[i]);
+            graph.addVertex(X[i], "and", "x" + Z[i]);
+            graph.addEdge("f", "x" + Z[i], false);
+            graph.addEdge("f", X[i], false);
+        }
+
+        for (int i = 0; i <= i_bits - 1; i++) {
+            int len = F[i].size();
+            for (int w = 0; w <= k - 1; w++) {
+                if (F[i].size() < w + 1) {
+                    graph.addEdge(" a" + S[w], "not a" + S[w], false);
+                    graph.addEdge("not a" + S[w], X[i], false);
+                    graph.addEdge("not a" + S[w], "x" + Z[i], false);
+                }
+                else {
+                    char u = F[i][len - w - 1];
+                    if (u == '1') {
+                        graph.addEdge("a" + S[w], X[i], false);
+                        graph.addEdge("a" + S[w], "x" + Z[i], false);
+                    }
+                    else {
+                        graph.addEdge(" a" + S[w], "not a" + S[w], false);
+                        graph.addEdge("not a" + S[w], X[i], false);
+                        graph.addEdge("not a" + S[w], "x" + Z[i], false);
+                    }
+                }
+            }
+        }
+    }
+    else
+        std::cout << "Недостаточно входных сигналов" << std::endl;
+    return graph;
+}

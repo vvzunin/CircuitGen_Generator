@@ -197,6 +197,8 @@ std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const
       return "CCGTCP";
   if (i_s == "Decoder")
       return "CCGTCD";
+  if (i_s == "Demultiplexer")
+      return "CCGTCDMP";
 
   std::cout << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
 

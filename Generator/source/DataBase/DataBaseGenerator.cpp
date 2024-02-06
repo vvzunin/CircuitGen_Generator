@@ -253,6 +253,17 @@ void DataBaseGenerator::generateDataBaseDecoder(const GenerationParameters &i_pa
     c.generate();
 }
 
+void DataBaseGenerator::generateDataBaseDemultiplexer(const GenerationParameters &i_param)
+{
+  SimpleGenerators generator;
+  int i_bits = i_param.getInputs();
+  OrientedGraph graph = generator.generatorDemultiplexer(i_bits);
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate();
+}
+
 std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateMethod(const std::string& i_methodName)
 {
   if (i_methodName == "FromRandomTruthTable")
@@ -277,7 +288,8 @@ std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateM
       return std::bind(&DataBaseGenerator::generateDataBaseParity, this, std::placeholders::_1);
   if (i_methodName == "Decoder")
       return std::bind(&DataBaseGenerator::generateDataBaseDecoder, this, std::placeholders::_1);
-  
+  if (i_methodName == "Demultiplexer")
+      return std::bind(&DataBaseGenerator::generateDataBaseDemultiplexer, this, std::placeholders::_1);
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;
   return std::bind(&DataBaseGenerator::generateDataBaseFromRandomTruthTable, this, std::placeholders::_1);
 
