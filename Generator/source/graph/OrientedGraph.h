@@ -73,7 +73,11 @@ public:
     }
     std::vector<std::vector<int>> d_listOfEdgesFromTo;
     std::vector<std::vector<int>> d_listOfEdgesToFrom;
+
     std::vector<GraphVertex> d_vertices;
+    std::map<std::string, int> d_verticesOperations;
+    std::map<std::string, int> d_verticesWires;
+
     std::vector<int> d_inputs;
     std::vector<int> d_outputs;
     std::vector<int> d_consts;

@@ -96,25 +96,33 @@ bool OrientedGraph::getAdjacencyMatrix(int i, int j) const
 
 int OrientedGraph::getIndexOfExpression(const std::string &i_expression)
 {
-    // TODO: провести поиск не по полномму совпадению, а по перестановкам.
-    for (int i = 0; i < d_vertices.size(); ++i)
-    {
-        if (d_vertices[i].getLogicExpression() == i_expression)
-            return i;
-    }
+    if (!d_verticesOperations.contains(i_expression))
+        return -1;
+    return d_verticesOperations[i_expression];
 
-    return -1;
+    // TODO: провести поиск не по полномму совпадению, а по перестановкам.
+    // for (int i = 0; i < d_vertices.size(); ++i)
+    // {
+    //     if (d_vertices[i].getLogicExpression() == i_expression)
+    //         return i;
+    // }
+
+    // return -1;
 }
 
 int OrientedGraph::getIndexOfWireName(const std::string &i_wireName)
 {
-    for (int i = 0; i < d_vertices.size(); ++i)
-    {
-        if (d_vertices[i].getWireName() == i_wireName)
-            return i;
-    }
+    if (!d_verticesWires.contains(i_wireName))
+        return -1;
+    return d_verticesWires[i_wireName];
 
-    return -1;
+    // for (int i = 0; i < d_vertices.size(); ++i)
+    // {
+    //     if (d_vertices[i].getWireName() == i_wireName)
+    //         return i;
+    // }
+
+    // return -1;
 }
 
 bool OrientedGraph::addVertex(const std::string &i_vertexName, const std::string &i_operation, const std::string &i_wireName)
@@ -126,6 +134,9 @@ bool OrientedGraph::addVertex(const std::string &i_vertexName, const std::string
         d_vertices.push_back(GraphVertex(i_vertexName, i_operation));
     else
         d_vertices.push_back(GraphVertex(i_vertexName, i_operation, false, i_wireName));
+    
+    d_verticesOperations[d_vertices.back().getLogicExpression()] = d_vertices.size() - 1;
+    d_verticesWires[d_vertices.back().getWireName()] = d_vertices.size() - 1;
 
     if (i_operation == "input")
     {

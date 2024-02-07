@@ -1,5 +1,6 @@
 #include <vector>
 #include <limits>
+#include <chrono>
 #include <cstdint>
 #include <iostream>
 #include <algorithm>
@@ -18,6 +19,7 @@
 
 #include "DataBaseGenerator.h"
 
+using namespace std::chrono;
 using namespace Threading;
 
 void DataBaseGenerator::generateType(
@@ -96,7 +98,7 @@ void DataBaseGenerator::generateType(
 
                     GenerationParameters param = d_parameters.getGenerationParameters();
                     param.setSeed(*iter);
-
+                    
                     auto runGenerator = [generator, param]()
                     {
                         generator(param);
@@ -200,6 +202,8 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(const GenerationPa
     generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
     std::vector<std::pair<std::string, OrientedGraph>> circs;
+    
+    auto start = high_resolution_clock::now();
     circs.push_back({"RandLevel",
                      generator.generatorRandLevelExperimental(
                          i_param.getRandLevel().getMaxLevel(),
@@ -207,9 +211,15 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(const GenerationPa
                          i_param.getInputs(),
                          i_param.getOutputs())});
 
-    for (const auto &[name, graph] : circs)
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    std::clog << "Time taken on experimental: " << duration.count() << " microseconds" << std::endl;
+
+    for (const auto [name, graph] : circs)
     {
+        std::clog << "Update started\n";
         Circuit c(graph);
+        std::clog << "Update ended\n";
         c.setPath(d_mainPath);
         c.setCircuitName(i_param.getName());
         c.generate(

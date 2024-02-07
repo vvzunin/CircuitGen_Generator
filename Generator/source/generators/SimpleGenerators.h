@@ -10,6 +10,8 @@
 
 #include "./TruthTable.h"
 
+using GatesInfo = std::map<std::string, std::vector<int>>;
+
 class SimpleGenerators
 {
 public:
@@ -43,7 +45,10 @@ public:
         d_gatesInputsInfo = i_info;
 
         for (auto &[key, value] : d_gatesInputsInfo) {
-            d_maxGateNumber = *std::max_element(value.begin(), value.end()); 
+            d_maxGateNumber = std::max(
+                *std::max_element(value.begin(), value.end()), 
+                d_maxGateNumber
+            );
         }
 
         // TODO is it a good idea to add here hew gates
@@ -51,7 +56,7 @@ public:
         d_gatesInputsInfo["buf"] = {1};
     }
 
-    std::map<std::string, std::vector<int>> getGatesInputsInfo() const {
+    GatesInfo getGatesInputsInfo() const {
         return d_gatesInputsInfo;
     }
 private:
@@ -59,7 +64,7 @@ private:
     std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);
     std::string randomGenerator(const std::map<std::string, int> &i_map);
 
-    std::pair<std::string, int> getRandomElement();
+    std::pair<std::string, int> getRandomElement(const GatesInfo &i_info);
     std::pair<std::string, int> getRandomElement(u_int32_t i_gatesLimit);
 
     int getRangomAndNumber();
@@ -69,7 +74,7 @@ private:
     int getRangomXorNumber();
     int getRangomXnorNumber();
 
-    std::map<std::string, std::vector<int>> d_gatesInputsInfo;
+    GatesInfo d_gatesInputsInfo;
     RandomGeneratorWithSeed d_randGenerator;
     int d_maxGateNumber = 0;
 };

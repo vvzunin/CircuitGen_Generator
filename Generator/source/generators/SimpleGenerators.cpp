@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 #include <algorithm>
+#include <functional>
 
 #include "SimpleGenerators.h"
 #include <graph/OrientedGraph.h>
@@ -58,29 +59,42 @@ int SimpleGenerators::getRangomXnorNumber()
     return d_gatesInputsInfo["xnor"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["xnor"].size())];
 }
 
-std::pair<std::string, int> SimpleGenerators::getRandomElement()
+std::pair<std::string, int> SimpleGenerators::getRandomElement(const GatesInfo &i_info)
 {
     // rand element of map
-    auto val = d_gatesInputsInfo.begin();
+    auto val = i_info.begin();
     std::advance(
         val,
-        d_randGenerator.getRandInt(0, d_gatesInputsInfo.size()));
+        d_randGenerator.getRandInt(0, i_info.size()));
 
     // random gate number from of random element
     return std::make_pair(
         val->first,
-        val->second[
-            d_randGenerator.getRandInt(0, val->second.size())
-        ]
-    );
+        val->second[d_randGenerator.getRandInt(0, val->second.size())]);
 }
 
 std::pair<std::string, int> SimpleGenerators::getRandomElement(u_int32_t i_gatesLimit)
 {
-    if (i_gatesLimit > 1)
-        return getRandomElement();
+    if (i_gatesLimit >= d_maxGateNumber)
+        return getRandomElement(d_gatesInputsInfo);
+
+    if (i_gatesLimit <= 1)
+        return std::make_pair(d_randGenerator.getRandInt(0, 2) ? "not" : "buf", 1);
+
+    GatesInfo info;
+    std::vector<int> subval;
+
+    for (auto [key, value] : d_gatesInputsInfo)
+    {
+        for (int i = 0; i < value.size() && value[i] <= i_gatesLimit; ++i)
+            subval.push_back(value[i]);
+        
+        if (subval.size())
+            info[key] = std::move(subval);
+        subval.clear();
+    }
     
-    return std::make_pair(d_randGenerator.getRandInt(0, 2) ? "not" : "buf", 1);
+    return getRandomElement(info);
 }
 
 SimpleGenerators::SimpleGenerators()
@@ -236,6 +250,8 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
 
         prevIndex += currIndex - prevIndex;
         currIndex += position;
+
+        std::clog << i / (float) maxLevel * 100 << "%" << std::endl;
     }
 
     // TODO: fix when elements less than outputs
@@ -252,9 +268,9 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
 }
 
 OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
-    u_int32_t i_maxLevel, 
-    u_int32_t i_maxElements, 
-    u_int32_t i_inputs, 
+    u_int32_t i_maxLevel,
+    u_int32_t i_maxElements,
+    u_int32_t i_inputs,
     u_int32_t i_outputs)
 {
     u_int32_t maxLevel;
@@ -271,14 +287,17 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     std::string expr;
     OrientedGraph graph;
 
+    std::vector<int> inputs;
     for (int i = 0; i < i_inputs; ++i)
     {
         expr = "x" + std::to_string(i);
         graph.addVertex(expr, "input");
+        inputs.push_back(i);
     }
 
     int currIndex = i_inputs;
     int prevIndex = 0;
+    int curLen = 0;
     int c_max = i_maxElements > d_maxGateNumber ? d_maxGateNumber : 2;
 
     for (int i = 1; i < maxLevel; ++i)
@@ -286,18 +305,22 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
         int position = 0;
         // how many elements would be at this level
         int elemLevel = i_maxElements > 1 ? d_randGenerator.getRandInt(c_max, i_maxElements, true) : 2;
-
+        // write allowed gates
         std::vector<int> curGates;
         for (int val = prevIndex; val < currIndex; ++val)
             curGates.push_back(val);
+        curLen += curGates.size();
 
         for (int j = 0; j < elemLevel; ++j)
         {
-            for (int k = 0; k < curGates.size(); ++k) {
+            // shuffle curGates
+            for (int k = 0; k < curGates.size(); ++k)
+            {
                 std::swap(curGates[k], curGates[d_randGenerator.getRandInt(0, curGates.size())]);
             }
 
-            auto [operation, gatesNumber] = getRandomElement();
+            // we use inputs only if we are not on the first level
+            auto [operation, gatesNumber] = getRandomElement(curLen);
 
             if (gatesNumber == 1)
             {
@@ -307,46 +330,67 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
 
                 if (graph.addVertex(expr, operation))
                     graph.addEdge(graph.getVertice(child1).getLogicExpression(), graph.getVertice(currIndex + position).getLogicExpression());
-                else   
+                else 
                     --position;
             }
             else
             {
                 std::vector<std::string> children;
-                auto start = curGates.begin();
-                int idx = *start;
-                ++start;
-                
-                children.push_back(graph.getVertice(idx).getLogicExpression());
-                expr = "(" + children.back() + ") ";
+                auto idx = curGates.begin();
 
-                for (int i = 1; i < gatesNumber; ++i) {
-                    if (start == curGates.end())
-                        start = curGates.begin();
-                    
-                    idx = *start;
-                    ++start;
+                // add first child
+                children.push_back(graph.getVertice(*idx).getLogicExpression());
+                expr = d_settings->fromOperationsToName(operation);
+                expr += "(" + children.back();
+                // move to second
+                ++idx;
 
-                    children.push_back(graph.getVertice(idx).getLogicExpression());
+                // add multiple child
+                for (int l = 1; l < gatesNumber; ++l, ++idx)
+                {
+                    // if we are at the end of vector
+                    if (idx == curGates.end())
+                    {   
+                        // and we added some verticies, e.g. we are not on the first level
+                        if (i > 1)
+                        {
+                            for (int k = 0; k < inputs.size(); ++k)
+                                std::swap(inputs[k], inputs[d_randGenerator.getRandInt(0, inputs.size())]);
 
-                    expr += d_settings->fromOperationsToName(operation) + " (" + children.back() + ")";
+                            idx = inputs.begin();
+                        }
+                        else
+                        {
+                            idx = curGates.begin();
+                        }
+                    }
+                    else if (idx == inputs.end())
+                        idx = curGates.begin();
+
+                    children.push_back(graph.getVertice(*idx).getLogicExpression());
+                    expr += children.back() + " ";
                 }
+                expr += " )";
+                std::size_t hashed = std::hash<std::string>{}(expr);
 
-                if (graph.addVertex(expr, operation))
+                if (graph.addVertex(std::to_string(hashed), operation))
                     graph.addMultipleEdge(children,
-                                        graph.getVertice(currIndex + position).getLogicExpression());
-                else
+                                          graph.getVertice(currIndex + position).getLogicExpression());
+                else {
                     --position;
+                }
             }
             ++position;
         }
 
         prevIndex += currIndex - prevIndex;
         currIndex += position;
+        curLen = inputs.size();
+
+        std::clog << (float) i / (float) maxLevel * 100 << "%" << std::endl;
     }
 
-    // TODO: fix when elements less than outputs
-
+    std::clog << "writting out gates" << std::endl;
     for (int i = 0; i < i_outputs; ++i)
     {
         int child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
@@ -355,6 +399,7 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
         graph.addEdge(graph.getVertice(child1).getLogicExpression(),
                       graph.getVertice(currIndex + i).getLogicExpression());
     }
+    std::clog << "writting out gates ended" << std::endl;
     return graph;
 }
 

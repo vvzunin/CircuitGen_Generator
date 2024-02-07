@@ -636,9 +636,11 @@ bool Circuit::generate(bool i_makeFirrtl, bool i_makeBench, bool i_getAbcStats, 
 
     // if (!i_pathExists)
     // d_path += d_circuitName;
-
+    std::clog << "Writing verilog for " << d_circuitName << std::endl; 
     if (!graphToVerilog(d_path, i_pathExists))
         return false;
+
+    std::clog << "Writing verilog ended " << d_circuitName << std::endl; 
 
     if (i_makeFirrtl)
     {
