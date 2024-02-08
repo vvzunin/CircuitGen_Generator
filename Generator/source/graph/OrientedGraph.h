@@ -12,13 +12,28 @@ class OrientedGraph
 {
 public:
     friend class Circuit;
-    OrientedGraph();
+    
+    OrientedGraph() = default;
+    OrientedGraph(const OrientedGraph &other) = default;
+    OrientedGraph &operator=(const OrientedGraph &other) = default;
+    OrientedGraph(OrientedGraph &&other);
+    OrientedGraph &operator=(OrientedGraph &&other);
+
+    ~OrientedGraph() = default;
+
     std::vector<GraphVertex> getVertices() const;
+    const std::vector<GraphVertex> &getVerticesReference() const;
     GraphVertex getVertice(int i) const;
-    int size() const;
+
+    size_t size() const;
+    size_t fullSize();
+
     bool empty() const;
     int getMaxLevel();
+
     std::vector<std::vector<bool>> getAdjacencyMatrix() const;
+    const std::vector<std::vector<bool>> &getAdjacencyMatrixReference() const;
+
     bool getAdjacencyMatrix(int i, int j) const;
     // void generateRandom(OrientedGraphParameters i_gp);
     int getIndexOfExpression(const std::string &i_expression);
@@ -71,6 +86,8 @@ public:
         }
         return vec_index;
     }
+
+
     std::vector<std::vector<int>> d_listOfEdgesFromTo;
     std::vector<std::vector<int>> d_listOfEdgesToFrom;
 

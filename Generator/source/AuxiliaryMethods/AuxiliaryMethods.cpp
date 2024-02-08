@@ -162,7 +162,8 @@ Circuit AuxMethods::parseVerilog(const std::string &i_filepath)
     const int OUTPUT_WORD_SIZE = 7;
     const int WIRE_WORD_SIZE = 5;
 
-    Circuit circuit({}, {});
+    OrientedGraph graph;
+    Circuit circuit(&graph, {});
     circuit.setPath(i_filepath);
 
     std::string verilog_module = readAllFile(i_filepath);

@@ -7,8 +7,109 @@
 #include "OrientedGraph.h"
 // #include "../Generators/SimpleGenerators.h"
 
-OrientedGraph::OrientedGraph()
+OrientedGraph::OrientedGraph(OrientedGraph &&other) 
 {
+    d_listOfEdgesFromTo = std::move(other.d_listOfEdgesFromTo);
+    d_listOfEdgesToFrom = std::move(other.d_listOfEdgesToFrom);
+    d_vertices = std::move(other.d_vertices);
+
+    d_verticesOperations = std::move(other.d_verticesOperations);
+    d_verticesWires = std::move(other.d_verticesWires);
+
+    d_inputs = std::move(other.d_inputs);
+    d_outputs = std::move(other.d_outputs);
+    d_consts = std::move(other.d_consts);
+
+    d_inputs_names = std::move(other.d_inputs_names);
+    d_outputs_names = std::move(other.d_outputs_names);
+
+    d_adjacencyMatrix = std::move(other.d_adjacencyMatrix);
+    d_error = std::move(other.d_error);
+
+    // Uncomment this code for fullSize tests
+    // other.d_listOfEdgesFromTo.clear();
+    // other.d_listOfEdgesToFrom.clear();
+    // other.d_vertices.clear();
+
+    // other.d_verticesOperations.clear();
+    // other.d_verticesWires.clear();
+
+    // other.d_inputs.clear();
+    // other.d_outputs.clear();
+    // other.d_consts.clear();
+
+    // other.d_inputs_names.clear();
+    // other.d_outputs_names.clear();
+
+    // other.d_adjacencyMatrix.clear();
+    // other.d_error.clear();
+
+    // other.d_listOfEdgesFromTo.shrink_to_fit();
+    // other.d_listOfEdgesToFrom.shrink_to_fit();
+    // other.d_vertices.shrink_to_fit();
+
+    // other.d_inputs.shrink_to_fit();
+    // other.d_outputs.shrink_to_fit();
+    // other.d_consts.shrink_to_fit();
+
+    // other.d_inputs_names.shrink_to_fit();
+    // other.d_outputs_names.shrink_to_fit();
+
+    // other.d_adjacencyMatrix.shrink_to_fit();
+
+    d_settings = other.d_settings;
+    other.d_settings = nullptr;
+}
+
+OrientedGraph &OrientedGraph::operator=(OrientedGraph &&other)
+{
+    if (this == &other)
+        return *this;
+
+    d_listOfEdgesFromTo = std::move(other.d_listOfEdgesFromTo);
+    d_listOfEdgesToFrom = std::move(other.d_listOfEdgesToFrom);
+    d_vertices = std::move(other.d_vertices);
+
+    d_verticesOperations = std::move(other.d_verticesOperations);
+    d_verticesWires = std::move(other.d_verticesWires);
+
+    d_inputs = std::move(other.d_inputs);
+    d_outputs = std::move(other.d_outputs);
+    d_consts = std::move(other.d_consts);
+
+    d_inputs_names = std::move(other.d_inputs_names);
+    d_outputs_names = std::move(other.d_outputs_names);
+
+    d_adjacencyMatrix = std::move(other.d_adjacencyMatrix);
+    d_error = std::move(other.d_error);
+
+    d_settings = other.d_settings;
+    other.d_settings = nullptr;
+
+    return *this;
+}
+
+size_t OrientedGraph::fullSize() {
+    size_t graphSize = 0;
+
+    graphSize += d_vertices.capacity();
+    graphSize += d_listOfEdgesFromTo.capacity();
+    graphSize += d_listOfEdgesToFrom.capacity();
+
+    graphSize += d_verticesOperations.size();
+    graphSize += d_verticesWires.size();
+
+    graphSize += d_inputs.capacity();
+    graphSize += d_outputs.capacity();
+    graphSize += d_consts.capacity();
+
+    graphSize += d_inputs_names.capacity();
+    graphSize += d_outputs_names.capacity();
+
+    graphSize += d_adjacencyMatrix.capacity();
+    graphSize += d_error.size();
+
+    return graphSize;
 }
 
 void OrientedGraph::numberVerticesCorrectly()
@@ -26,7 +127,12 @@ std::vector<GraphVertex> OrientedGraph::getVertices() const
     return d_vertices;
 }
 
-int OrientedGraph::size() const
+const std::vector<GraphVertex> &OrientedGraph::getVerticesReference() const
+{
+    return d_vertices;
+}
+
+size_t OrientedGraph::size() const
 {
     return d_vertices.size();
 }
@@ -56,6 +162,11 @@ int OrientedGraph::getMaxLevel()
 }
 
 std::vector<std::vector<bool>> OrientedGraph::getAdjacencyMatrix() const
+{
+    return d_adjacencyMatrix;
+}
+
+const std::vector<std::vector<bool>> &OrientedGraph::getAdjacencyMatrixReference() const
 {
     return d_adjacencyMatrix;
 }

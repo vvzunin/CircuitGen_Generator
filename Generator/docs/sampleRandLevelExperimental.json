@@ -1,6 +1,6 @@
 [
   {
-    "seed": 2,
+    "seed": 3,
     "dataset_id": "3",
     "id": 0,
     "type_of_generation": "Rand Level Experimental",
@@ -11,9 +11,9 @@
     "repeat_n": 1,    
     "multithread": true,
     "calculate_stats_abc": true,
-    "make_optimized_files": true,
-    "make_firrtl": true,
-    "make_bench": true,
+    "make_optimized_files": false,
+    "make_firrtl": false,
+    "make_bench": false,
     "create_id_directories": true,
     "library_name": "sky130",
     
@@ -26,7 +26,7 @@
       "xnor": [2, 16, 8]
     },
 
-    "max_level": 1000,
+    "max_level": 100,
     "max_elem": 1000
   }
 ]

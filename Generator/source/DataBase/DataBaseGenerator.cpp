@@ -98,7 +98,7 @@ void DataBaseGenerator::generateType(
 
                     GenerationParameters param = d_parameters.getGenerationParameters();
                     param.setSeed(*iter);
-                    
+
                     auto runGenerator = [generator, param]()
                     {
                         generator(param);
@@ -156,7 +156,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
         pCNFT.parseAll();
 
         OrientedGraph graph = pCNFT.getGraph();
-        Circuit c(graph, expr);
+        Circuit c(&graph, expr);
         c.setTable(tt);
         c.setPath(d_mainPath);
         c.setCircuitName(i_param.getName() + "_" + name);
@@ -174,26 +174,21 @@ void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters &i_
     SimpleGenerators generator(i_param.getSeed());
     generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    std::vector<std::pair<std::string, OrientedGraph>> circs;
-    circs.push_back({"RandLevel",
-                     generator.generatorRandLevel(
-                         i_param.getRandLevel().getMaxLevel(),
-                         i_param.getRandLevel().getMaxElements(),
-                         i_param.getInputs(),
-                         i_param.getOutputs())});
+    OrientedGraph graph = generator.generatorRandLevel(
+        i_param.getRandLevel().getMaxLevel(),
+        i_param.getRandLevel().getMaxElements(),
+        i_param.getInputs(),
+        i_param.getOutputs());
 
-    for (const auto &[name, graph] : circs)
-    {
-        Circuit c(graph);
-        c.setPath(d_mainPath);
-        c.setCircuitName(i_param.getName());
-        c.generate(
-            i_param.getMakeFirrtl(),
-            i_param.getMakeBench(),
-            i_param.getCalculateStatsAbc(),
-            i_param.getLibraryName(),
-            i_param.getMakeOptimizedFiles());
-    }
+    Circuit c(&graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate(
+        i_param.getMakeFirrtl(),
+        i_param.getMakeBench(),
+        i_param.getCalculateStatsAbc(),
+        i_param.getLibraryName(),
+        i_param.getMakeOptimizedFiles());
 }
 
 void DataBaseGenerator::generateDataBaseRandLevelExperimental(const GenerationParameters &i_param)
@@ -201,34 +196,30 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(const GenerationPa
     SimpleGenerators generator(i_param.getSeed());
     generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    std::vector<std::pair<std::string, OrientedGraph>> circs;
-    
     auto start = high_resolution_clock::now();
-    circs.push_back({"RandLevel",
-                     generator.generatorRandLevelExperimental(
+    OrientedGraph graph = generator.generatorRandLevelExperimental(
                          i_param.getRandLevel().getMaxLevel(),
                          i_param.getRandLevel().getMaxElements(),
                          i_param.getInputs(),
-                         i_param.getOutputs())});
+                         i_param.getOutputs());
 
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     std::clog << "Time taken on experimental: " << duration.count() << " microseconds" << std::endl;
 
-    for (const auto [name, graph] : circs)
-    {
-        std::clog << "Update started\n";
-        Circuit c(graph);
-        std::clog << "Update ended\n";
-        c.setPath(d_mainPath);
-        c.setCircuitName(i_param.getName());
-        c.generate(
-            i_param.getMakeFirrtl(),
-            i_param.getMakeBench(),
-            i_param.getCalculateStatsAbc(),
-            i_param.getLibraryName(),
-            i_param.getMakeOptimizedFiles());
-    }
+
+    std::clog << "Update started\n";
+    Circuit c(&graph);
+    std::clog << "Update ended\n";
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    
+    c.generate(
+        i_param.getMakeFirrtl(),
+        i_param.getMakeBench(),
+        i_param.getCalculateStatsAbc(),
+        i_param.getLibraryName(),
+        i_param.getMakeOptimizedFiles());
 }
 
 void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters &i_param)
@@ -244,9 +235,9 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
                          i_param.getNumOperations().getLogicOpers(),
                          i_param.getNumOperations().getLeaveEmptyOut())});
 
-    for (const auto &[name, graph] : circs)
+    for (auto [name, graph] : circs)
     {
-        Circuit c(graph);
+        Circuit c(&graph);
         c.setPath(d_mainPath);
         c.setCircuitName(i_param.getName());
         c.generate(
@@ -280,7 +271,7 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param)
     bool overflowOut = i_param.getSummator().OverFlowOut;
     bool minus = i_param.getSummator().minus;
     OrientedGraph graph = sg.generatorSummator(bits, overflowIn, overflowOut, minus);
-    Circuit c(graph);
+    Circuit c(&graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
     c.generate(
@@ -301,7 +292,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
     bool compare1 = i_param.getComparison().compare1;
     bool compare2 = i_param.getComparison().compare2;
     OrientedGraph graph = sg.generatorComparison(bits, compare0, compare1, compare2);
-    Circuit c(graph);
+    Circuit c(&graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
     c.generate(
@@ -319,7 +310,7 @@ void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_pa
 
     int bits = i_param.getInputs();
     OrientedGraph graph = sg.generatorEncoder(bits);
-    Circuit c(graph);
+    Circuit c(&graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
     c.generate(
