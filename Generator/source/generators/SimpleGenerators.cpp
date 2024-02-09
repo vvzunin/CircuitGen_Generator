@@ -838,6 +838,9 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
                     ABsum = "c" + IAN + IBP; //второй разряд, вход в сумматор от операции И
                 if (ib > 2)
                     ABsum = "sum" + IAN + IBP;//следующие разряды, вход в сумматор от результата др. сумматора
+                    if (ia == i_bits){
+                        ABsum = "pNext" + IA + IB; //для левых боковых сумматоров
+                    }
 
                 std::string nSum;
                 if (ia < i_bits)
@@ -845,54 +848,61 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
                 if (ia == i_bits)
                     nSum = IA + IBN; //по разряду b
 
-
-                if (ia == 1 || (ib==2 && ia==i_bits)){
+                if (ia == 1){
                     std::string N = std::to_string(n);
-                    if (ib==2 && ia==i_bits){
-                        graph.addVertex("(" + nowAB + " and pSum" + IA + IB + ")", "and", "pSum" + nSum);
-                        graph.addDoubleEdge(nowAB, "pSum" + IA + IB, "pSum" + nSum, false);
-                        graph.addVertex("(" + nowAB + " xor pSum" + IA + IB + ")", "xor", "sum" + IA + IB);
-                        graph.addDoubleEdge(nowAB, "pSum" + IA + IB, "sum" + IA + IB, false);
-                    }
-                    else {
-                        graph.addVertex("(" + nowAB + " and " + ABsum + ")", "and", "pSum" + nSum);
-                        graph.addDoubleEdge(nowAB, ABsum, "pSum" + nSum, false);
-                        graph.addVertex("(" + nowAB + " xor " + ABsum + ")", "xor", "sum" + IA + IB);
-                        graph.addDoubleEdge(nowAB, ABsum, "sum" + IA + IB, false);
-                    }
-                    if ((act && (ia==1)) || (act && (ib == i_bits)))
-                    {
+                    graph.addVertex("(" + nowAB + " and " + ABsum + ")", "and", "pSum" + nSum);
+                    graph.addDoubleEdge(nowAB, ABsum, "pSum" + nSum, false);
+                    graph.addVertex("(" + nowAB + " xor " + ABsum + ")", "xor", "sum" + IA + IB);
+                    graph.addDoubleEdge(nowAB, ABsum, "sum" + IA + IB, false);
+
+                    if (act){
                         graph.addVertex("(1 and sum" + IA + IB + ")", "and", "aluR" + N);
                         graph.addDoubleEdge("1", "sum" + IA + IB, "aluR" + N, false);
-
-                        if (ib == i_bits && ia==i_bits){
-                            n+=1;
-                            N = std::to_string(n);
-                            graph.addVertex("(1 and pSum" + nSum + ")", "and", "aluR" + N);
-                            graph.addDoubleEdge("1", "pSum" + nSum, "aluR" + N, false);
-                        }
                     }
-                    else
-                    {
+                    else{
                         graph.addVertex("m" + N, "output");
                         graph.addEdge("sum" + IA + IB, "m" + N, false);
-                        if (ib == i_bits && ia==i_bits){
-                            n+=1;
-                            N = std::to_string(n);
-
-                            graph.addVertex("m" + N, "output");
-                            graph.addEdge("pSum" + nSum, "m" + N, false);
-                        }
                     }
                     n+=1;
+                }
+                else if(ib == 2 && ia == i_bits){
+                    graph.addVertex("(" + nowAB + " and pSum" + IA + IB + ")", "and", "pNext" + nSum);
+                    graph.addDoubleEdge(nowAB, "pSum" + IA + IB, "pNext" + nSum, false);
+                    graph.addVertex("(" + nowAB + " xor pSum" + IA + IB + ")", "xor", "sum" + IA + IB);
+                    graph.addDoubleEdge(nowAB, "pSum" + IA + IB, "sum" + IA + IB, false);
+
+                    if (i_bits == 2){
+                        std::string N = std::to_string(n);
+                        if (act){
+                            graph.addVertex("(1 and sum" + IA + IB + ")", "and", "aluR" + N);
+                            graph.addDoubleEdge("1", "sum" + IA + IB, "aluR" + N, false);
+
+                            n+=1;
+                            std::string N = std::to_string(n);
+
+                            graph.addVertex("(1 and pNext" + nSum + ")", "and", "aluR" + N);
+                            graph.addDoubleEdge("1", "pNext" + nSum, "aluR" + N, false);
+                        }
+                        else{
+                            graph.addVertex("m" + N, "output");
+                            graph.addEdge("sum" + IA + IB, "m" + N, false);
+
+                            n+=1;
+                            std::string N = std::to_string(n);
+
+                            graph.addVertex("m" + N, "output");
+                            graph.addEdge("pNext" + nSum, "m" + N, false);
+                        }
+                        n+=1;
+                    }
                 }
                 else{
                     std::string x = nowAB;
                     std::string y = ABsum;
-                    std::string pi = "pSum" + IA + IB;
+                    std::string p; //создание переноса нынешнего сумматора в следующий
+                    std::string pi = "pSum" + IA + IB; //перенос из прошлого сумматора
 
                     std::string S = IA + IB;
-                    std::string N = std::to_string(n);
 
                     graph.addVertex("(" + x + " and " + y + ")", "and", "andab" + S);
                     graph.addVertex("(" + x + " and " + pi + ")", "and", "anda" + pi);
@@ -902,36 +912,27 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
                     graph.addDoubleEdge(x, pi, "anda" + pi, false);
                     graph.addDoubleEdge(y, pi, "andb" + pi, false);
 
-                    graph.addVertex("((andab" + S + ")" + " or " + "(anda" + pi + ")" + " or " + "(andb" + pi + "))", "or", "pSum" + nSum);
-                    graph.addEdge("andab" + S, "pSum" + nSum, false);
-                    graph.addEdge("anda" + pi, "pSum" + nSum, false);
-                    graph.addEdge("andb" + pi, "pSum" + nSum, false);
-                    if (ia == i_bits && ib==i_bits)
-                    {
-                        n += 1;
-                        N = std::to_string(n);
-                        if (act)
-                        {
-                            graph.addVertex("(1 and pSum" + nSum + ")", "and", "aluR" + N);
-                            graph.addDoubleEdge("1", "pSum" + nSum, "aluR" + N, false);
-                        }
-                        else
-                        {
-                            graph.addVertex("m" + N, "output");
-                            graph.addEdge("pSum" + nSum, "m" + N, false);
-                        }
-                        n -= 1;
+                    if (ia < i_bits){
+                        p = "pSum" + nSum; //для соседнего сумматора
                     }
-                    graph.addVertex("not (pSum" + nSum + ")", "not", "npSum" + nSum);
-                    graph.addEdge("pSum" + nSum, "npSum" + nSum, false);
+                    if (ia == i_bits){
+                        p = "pNext" + nSum; //для левых боковых сумматоров
+                    }
+                    graph.addVertex("((andab" + S + ") or (anda" + pi + ") or (andb" + pi + "))", "or", p);
+                    graph.addEdge("andab" + S, p, false);
+                    graph.addEdge("anda" + pi, p, false);
+                    graph.addEdge("andb" + pi, p, false);
+
+                    graph.addVertex("not (" + p + ")", "not", "n" + p);
+                    graph.addEdge(p, "n" + p, false);
 
                     graph.addVertex("(" + x + " or " + y + " or " + pi + ")", "or", "abpor" + S);
                     graph.addEdge(x, "abpor" + S, false);
                     graph.addEdge(y, "abpor" + S, false);
                     graph.addEdge(pi, "abpor" + S, false);
 
-                    graph.addVertex("(abpor" + S + " and npSum" + nSum + ")", "and", "andnp" + nSum);
-                    graph.addDoubleEdge("abpor" + S, "npSum" + nSum, "andnp" + nSum, false);
+                    graph.addVertex("(abpor" + S + " and n" + p + ")", "and", "andnp" + nSum);
+                    graph.addDoubleEdge("abpor" + S, "n" + p, "andnp" + nSum, false);
 
                     graph.addVertex("(" + x + " and " + y + " and " + pi + ")", "and", "abpand" + S);
                     graph.addEdge(x, "abpand" + S, false);
@@ -941,19 +942,30 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
                     graph.addVertex("(abpand" + S + " or " + "andnp" + nSum + ")", "or", "sum" + IA + IB);
                     graph.addDoubleEdge("abpand" + S, "andnp" + nSum, "sum" + IA + IB, false);
 
-                    N = std::to_string(n);
-
-                    if (act && (ib = i_bits))
-                    {
-                        graph.addVertex("(1 and sum" + IA + IB + ")", "and", "aluR" + N);
-                        graph.addDoubleEdge("1", "sum" + IA + IB, "aluR" + N, false);
+                    if (ib == i_bits){
+                        std::string N = std::to_string(n);
+                        if (act){
+                            graph.addVertex("(1 and sum" + IA + IB + ")", "and", "aluR" + N);
+                            graph.addDoubleEdge("1", "sum" + IA + IB, "aluR" + N, false);
+                        }
+                        else{
+                            graph.addVertex("m" + N, "output");
+                            graph.addEdge("sum" + IA + IB, "m" + N, false);
+                        }
+                        n+=1;
+                        if (ia == i_bits){
+                            N = std::to_string(n);
+                            if (act){
+                                graph.addVertex("(1 and " + p + ")", "and", "aluR" + N);
+                                graph.addDoubleEdge("1", p, "aluR" + N, false);
+                            }
+                            else{
+                                graph.addVertex("m" + N, "output");
+                                graph.addEdge(p, "m" + N, false);
+                            }
+                            n+=1;
+                        }
                     }
-                    if (!act && (ib == i_bits))
-                    {
-                        graph.addVertex("m" + N, "output");
-                        graph.addEdge("sum" + IA + IB, "m" + N, false);
-                    }
-
                 }
             }
         }
