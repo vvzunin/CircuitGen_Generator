@@ -193,8 +193,9 @@ void runGenerationFromJson(std::string json_path)
                 std::clog << "Parameters for selected generation type is not set. Parameters sets to default." << std::endl;
 
             int maxLevel = data.contains("max_level") ? (int)data["max_level"] : 0;
+            int minLevel = data.contains("min_level") ? (int)data["min_level"] : 0;
             int maxElement = data.contains("max_elem") ? (int)data["max_elem"] : 0;
-            gp.setRandLevelParameters(maxLevel, maxElement);
+            gp.setRandLevelParameters(minLevel, maxLevel, maxElement);
         }
 
         // Основные параметры для Num Operation

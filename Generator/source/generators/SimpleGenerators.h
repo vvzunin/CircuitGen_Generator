@@ -24,13 +24,19 @@ public:
     SimpleGenerators &operator=(SimpleGenerators &&other) = delete;
 
     std::vector<std::string> cnfFromTruthTable(const TruthTable &i_table, bool i_tp = true);
-    
-    OrientedGraph generatorRandLevel(int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs);
+
+    OrientedGraph generatorRandLevel(
+        int minLevel,
+        int i_maxLevel, 
+        int i_maxElements, 
+        int i_inputs, 
+        int i_outputs);
     OrientedGraph generatorRandLevelExperimental(
-    u_int32_t i_maxLevel, 
-    u_int32_t i_maxElements, 
-    u_int32_t i_inputs, 
-    u_int32_t i_outputs);
+        u_int32_t minLevel,
+        u_int32_t i_maxLevel,
+        u_int32_t i_maxElements,
+        u_int32_t i_inputs,
+        u_int32_t i_outputs);
 
     OrientedGraph generatorNumOperation(
         int i_input,
@@ -41,14 +47,15 @@ public:
     OrientedGraph generatorComparison(int bits, bool compare0, bool compare1, bool compare2, bool act = false);
     OrientedGraph generatorEncoder(int bits);
 
-    void setGatesInputsInfo(const std::map<std::string, std::vector<int>> &i_info) {
+    void setGatesInputsInfo(const std::map<std::string, std::vector<int>> &i_info)
+    {
         d_gatesInputsInfo = i_info;
 
-        for (auto &[key, value] : d_gatesInputsInfo) {
+        for (auto &[key, value] : d_gatesInputsInfo)
+        {
             d_maxGateNumber = std::max(
-                *std::max_element(value.begin(), value.end()), 
-                d_maxGateNumber
-            );
+                *std::max_element(value.begin(), value.end()),
+                d_maxGateNumber);
         }
 
         // TODO is it a good idea to add here hew gates
@@ -56,9 +63,11 @@ public:
         d_gatesInputsInfo["buf"] = {1};
     }
 
-    GatesInfo getGatesInputsInfo() const {
+    GatesInfo getGatesInputsInfo() const
+    {
         return d_gatesInputsInfo;
     }
+
 private:
     std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
     std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);

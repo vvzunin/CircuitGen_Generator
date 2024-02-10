@@ -2,6 +2,7 @@
 #include <math.h>
 #include <cassert>
 #include <iostream>
+#include <stdexcept>
 #include <algorithm>
 #include <functional>
 
@@ -181,11 +182,14 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
     return fun;
 }
 
-OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs)
+OrientedGraph SimpleGenerators::generatorRandLevel(int i_minLevel, int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs)
 {
     int maxLevel;
-    if (i_maxLevel != 0)
-        maxLevel = d_randGenerator.getRandInt(0, i_maxLevel, true) + 2; // TODO: Zunin , not +1?
+    if (i_minLevel > i_maxLevel)
+        throw std::invalid_argument("min level is biggert than max level");
+
+    if (i_maxLevel)
+        maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 2; // TODO: Zunin , not +1?
     else
         maxLevel = 2;
 
@@ -269,14 +273,18 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElem
 }
 
 OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
+    u_int32_t i_minLevel,
     u_int32_t i_maxLevel,
     u_int32_t i_maxElements,
     u_int32_t i_inputs,
     u_int32_t i_outputs)
 {
     u_int32_t maxLevel;
+    if (i_minLevel > i_maxLevel)
+        throw std::invalid_argument("min level is biggert than max level");
+    
     if (i_maxLevel)
-        maxLevel = d_randGenerator.getRandInt(0, i_maxLevel, true) + 2;
+        maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 2;
     else
         maxLevel = 2;
 

@@ -1,6 +1,6 @@
 [
   {
-    "seed": 3,
+    "seed": 2,
     "dataset_id": "3",
     "id": 0,
     "type_of_generation": "Rand Level Experimental",
@@ -26,7 +26,8 @@
       "xnor": [2, 16, 8]
     },
 
-    "max_level": 100,
+    "max_level": 1000,
+    "min_level": 500,
     "max_elem": 1000
   }
 ]

@@ -175,6 +175,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters &i_
     generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
     OrientedGraph graph = generator.generatorRandLevel(
+        i_param.getRandLevel().getMinLevel(),
         i_param.getRandLevel().getMaxLevel(),
         i_param.getRandLevel().getMaxElements(),
         i_param.getInputs(),
@@ -198,6 +199,7 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(const GenerationPa
 
     auto start = high_resolution_clock::now();
     OrientedGraph graph = generator.generatorRandLevelExperimental(
+                         i_param.getRandLevel().getMinLevel(),
                          i_param.getRandLevel().getMaxLevel(),
                          i_param.getRandLevel().getMaxElements(),
                          i_param.getInputs(),
