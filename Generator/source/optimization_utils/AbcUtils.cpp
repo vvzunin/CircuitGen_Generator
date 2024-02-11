@@ -44,6 +44,7 @@ CommandWorkResult AbcUtils::standartExecutor(
     {
         result += out;
     }
+    pclose(abcOutput);
 
     // looking for each i_command execution
     int firstPos = result.find(d_utilWord, 0);
@@ -59,13 +60,17 @@ CommandWorkResult AbcUtils::standartExecutor(
         for (auto currentCommand : i_info)
         {
             int secondPos = result.find(d_utilWord, firstPos + 1);
+            int delta = d_utilLen + currentCommand.sumLen;
 
             // if there was an error
-            if (secondPos == std::string::npos && currentCommand.info != "quit")
+            if (secondPos == std::string::npos && currentCommand.info != "quit" && delta + firstPos + 1 < result.size())
             {
                 std::string errText = "Something went wrong during files parsing in AbcUtils\n";
 
                 std::cerr << errText;
+                std::cerr << "Abc output:" << std::endl;
+                std::cerr << result;
+
                 workResult.commandsOutput.clear();
                 workResult.commandsOutput["error"] = errText;
                 
@@ -77,8 +82,6 @@ CommandWorkResult AbcUtils::standartExecutor(
             {
                 break;
             }
-
-            int delta = d_utilLen + currentCommand.sumLen;
 
             // Проверяем, что в команде мы не запрашивали вывод
             bool allowedToPrint = false;
@@ -131,7 +134,7 @@ CommandWorkResult AbcUtils::standartExecutor(
     }
     else
     {
-        std::string errText = "Something went wrong during files parsing in AbcUtils: \n";
+        std::string errText = "Something went wrong at start during files parsing in AbcUtils: \n";
         errText += result;
 
         std::cerr << errText;

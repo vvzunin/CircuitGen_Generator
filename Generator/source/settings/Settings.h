@@ -31,6 +31,7 @@ public:
     std::string getInstanceName() const;
     std::pair<std::string, int> getLogicOperation(const std::string &i_op);
     std::vector<std::string> getLogicOperationsKeys();
+    std::pair<std::vector<bool>, std::vector<std::string>> getLogicOperationsWithGates();
     std::string fromOperationsToName(const std::string &i_op) const;
     std::string getDatasetPath() const;
     std::string getGenerationMethodPrefix(const std::string &i_s) const;
@@ -42,6 +43,7 @@ public:
     std::string getPathNadezhda() const;
     std::string getNadezhdaVar(const std::string &key) const;
     std::vector<std::string> fromOperationsToHierarchy(int key) const;
+    int getNumThread() const;
 
 private:
     void SaveSettings();

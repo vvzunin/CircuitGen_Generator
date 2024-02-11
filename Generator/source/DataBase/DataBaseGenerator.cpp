@@ -1,4 +1,9 @@
+#include <vector>
+#include <limits>
+#include <chrono>
+#include <cstdint>
 #include <iostream>
+#include <algorithm>
 #include <filesystem>
 
 #include <filesTools/FilesTools.h>
@@ -9,10 +14,12 @@
 #include <circuits/CircuitsParameters.h>
 #include <generators/SimpleGenerators.h>
 #include <generators/Genetic/GenGenerator.h>
+#include <AuxiliaryMethods/AuxiliaryMethods.h>
 #include <generators/Genetic/GeneticParameters.h>
 
 #include "DataBaseGenerator.h"
 
+using namespace std::chrono;
 using namespace Threading;
 
 void DataBaseGenerator::generateType(
@@ -63,33 +70,44 @@ void DataBaseGenerator::generateType(
         }
     }
 
+    std::vector<std::uint_fast32_t> seeds(i_dbgp.getEachIteration());
+
+    auto randGeneratorLambda = []()
+    {
+        return AuxMethods::getRandInt(0, INT_MAX);
+    };
+    // we create int sequence, wich would give us diffetent seeds for each repeat
+    std::generate(seeds.begin(), seeds.end(), randGeneratorLambda);
+
+    ThreadPool pool(d_settings->getNumThread());
+
     for (int i = i_dbgp.getMinInputs(); i <= i_dbgp.getMaxInputs(); ++i)
     {
         for (int j = i_dbgp.getMinOutputs(); j <= i_dbgp.getMaxOutputs(); ++j)
         {
+            auto iter = seeds.begin();
             d_parameters.setInputs(i);
             d_parameters.setOutputs(j);
 
             if (parallel)
             {
-
-                // exit(1); //TODO: write to threadpool
-                ThreadPool pool(4);
-
-                // vector of threads with generators
-
                 for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt)
                 {
                     d_parameters.setIteration(tt);
                     d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount));
 
-                    auto runGenerator = [generator, param = d_parameters.getGenerationParameters()]()
+                    GenerationParameters param = d_parameters.getGenerationParameters();
+                    param.setSeed(*iter);
+
+                    auto runGenerator = [generator, param]()
                     {
                         generator(param);
                     };
 
                     pool.submit(runGenerator);
-                    d_dirCount++;
+
+                    ++d_dirCount;
+                    ++iter;
                 }
 
                 pool.wait();
@@ -102,8 +120,13 @@ void DataBaseGenerator::generateType(
                     d_parameters.setIteration(tt);
                     d_parameters.setName(d_settings->getGenerationMethodPrefix(s) + std::to_string(d_dirCount));
 
-                    generator(d_parameters.getGenerationParameters());
-                    d_dirCount++;
+                    GenerationParameters param = d_parameters.getGenerationParameters();
+                    param.setSeed(*iter);
+
+                    generator(param);
+
+                    ++d_dirCount;
+                    ++iter;
                 }
             }
         }
@@ -113,6 +136,7 @@ void DataBaseGenerator::generateType(
 void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationParameters &i_param)
 {
     TruthTable tt(i_param.getInputs(), i_param.getOutputs(), {});
+    tt.setSeed(i_param.getSeed());
     tt.generateRandom({i_param.getInputs(), i_param.getOutputs()});
 
     SimpleGenerators tftt;
@@ -132,7 +156,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
         pCNFT.parseAll();
 
         OrientedGraph graph = pCNFT.getGraph();
-        Circuit c(graph, expr);
+        Circuit c(&graph, expr);
         c.setTable(tt);
         c.setPath(d_mainPath);
         c.setCircuitName(i_param.getName() + "_" + name);
@@ -147,33 +171,62 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
 
 void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters &i_param)
 {
-    SimpleGenerators generator;
+    SimpleGenerators generator(i_param.getSeed());
     generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    std::vector<std::pair<std::string, OrientedGraph>> circs;
-    circs.push_back({"RandLevel",
-                     generator.generatorRandLevel(i_param.getRandLevel().getMaxLevel(),
-                                                  i_param.getRandLevel().getMaxElements(),
-                                                  i_param.getInputs(),
-                                                  i_param.getOutputs())});
+    OrientedGraph graph = generator.generatorRandLevel(
+        i_param.getRandLevel().getMinLevel(),
+        i_param.getRandLevel().getMaxLevel(),
+        i_param.getRandLevel().getMaxElements(),
+        i_param.getInputs(),
+        i_param.getOutputs());
 
-    for (const auto &[name, graph] : circs)
-    {
-        Circuit c(graph);
-        c.setPath(d_mainPath);
-        c.setCircuitName(i_param.getName());
-        c.generate(
-            i_param.getMakeFirrtl(),
-            i_param.getMakeBench(),
-            i_param.getCalculateStatsAbc(),
-            i_param.getLibraryName(),
-            i_param.getMakeOptimizedFiles());
-    }
+    Circuit c(&graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate(
+        i_param.getMakeFirrtl(),
+        i_param.getMakeBench(),
+        i_param.getCalculateStatsAbc(),
+        i_param.getLibraryName(),
+        i_param.getMakeOptimizedFiles());
+}
+
+void DataBaseGenerator::generateDataBaseRandLevelExperimental(const GenerationParameters &i_param)
+{
+    SimpleGenerators generator(i_param.getSeed());
+    generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+    auto start = high_resolution_clock::now();
+    OrientedGraph graph = generator.generatorRandLevelExperimental(
+                         i_param.getRandLevel().getMinLevel(),
+                         i_param.getRandLevel().getMaxLevel(),
+                         i_param.getRandLevel().getMaxElements(),
+                         i_param.getInputs(),
+                         i_param.getOutputs());
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    std::clog << "Time taken on experimental: " << duration.count() << " microseconds" << std::endl;
+
+
+    std::clog << "Update started\n";
+    Circuit c(&graph);
+    std::clog << "Update ended\n";
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    
+    c.generate(
+        i_param.getMakeFirrtl(),
+        i_param.getMakeBench(),
+        i_param.getCalculateStatsAbc(),
+        i_param.getLibraryName(),
+        i_param.getMakeOptimizedFiles());
 }
 
 void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters &i_param)
 {
-    SimpleGenerators generator;
+    SimpleGenerators generator(i_param.getSeed());
     generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
     std::vector<std::pair<std::string, OrientedGraph>> circs;
@@ -184,9 +237,9 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
                          i_param.getNumOperations().getLogicOpers(),
                          i_param.getNumOperations().getLeaveEmptyOut())});
 
-    for (const auto &[name, graph] : circs)
+    for (auto [name, graph] : circs)
     {
-        Circuit c(graph);
+        Circuit c(&graph);
         c.setPath(d_mainPath);
         c.setCircuitName(i_param.getName());
         c.generate(
@@ -212,7 +265,7 @@ void DataBaseGenerator::generateDataBaseGenetic(const GenerationParameters &i_pa
 
 void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param)
 {
-    SimpleGenerators sg;
+    SimpleGenerators sg(i_param.getSeed());
     sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
     int bits = i_param.getInputs();
@@ -220,7 +273,7 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param)
     bool overflowOut = i_param.getSummator().OverFlowOut;
     bool minus = i_param.getSummator().minus;
     OrientedGraph graph = sg.generatorSummator(bits, overflowIn, overflowOut, minus);
-    Circuit c(graph);
+    Circuit c(&graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
     c.generate(
@@ -233,7 +286,7 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param)
 
 void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i_param)
 {
-    SimpleGenerators sg;
+    SimpleGenerators sg(i_param.getSeed());
     sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
     int bits = i_param.getInputs();
@@ -241,7 +294,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
     bool compare1 = i_param.getComparison().compare1;
     bool compare2 = i_param.getComparison().compare2;
     OrientedGraph graph = sg.generatorComparison(bits, compare0, compare1, compare2);
-    Circuit c(graph);
+    Circuit c(&graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
     c.generate(
@@ -254,12 +307,12 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
 
 void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_param)
 {
-    SimpleGenerators sg;
+    SimpleGenerators sg(i_param.getSeed());
     sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
     int bits = i_param.getInputs();
     OrientedGraph graph = sg.generatorEncoder(bits);
-    Circuit c(graph);
+    Circuit c(&graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
     c.generate(
@@ -276,6 +329,8 @@ std::function<void(const GenerationParameters &)> DataBaseGenerator::getGenerate
         return std::bind(&DataBaseGenerator::generateDataBaseFromRandomTruthTable, this, std::placeholders::_1);
     if (i_methodName == "RandLevel")
         return std::bind(&DataBaseGenerator::generateDataBaseRandLevel, this, std::placeholders::_1);
+    if (i_methodName == "RandLevelExperimental")
+        return std::bind(&DataBaseGenerator::generateDataBaseRandLevelExperimental, this, std::placeholders::_1);
     if (i_methodName == "NumOperation")
         return std::bind(&DataBaseGenerator::generateDataBaseNumOperations, this, std::placeholders::_1);
     if (i_methodName == "Genetic")

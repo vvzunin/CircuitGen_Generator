@@ -129,6 +129,23 @@ std::vector<std::string> Settings::getLogicOperationsKeys()
     return res;
 }
 
+std::pair<std::vector<bool>, std::vector<std::string>> Settings::getLogicOperationsWithGates()
+{
+    std::vector<std::string> res(d_logicOperations.size());
+    std::vector<bool> oneGate(d_logicOperations.size());
+    
+    for (const auto &[key, value] : d_logicOperations) {
+        res.push_back(key);
+        oneGate.push_back(key == "not" || key == "buf");
+    }
+
+    return std::make_pair(oneGate, res);
+}
+
+int Settings::getNumThread() const {
+    return d_numThreads;
+}
+
 std::string Settings::getPathNadezhda() const
 {
     return d_pathToNadezhda;
@@ -196,6 +213,8 @@ std::string Settings::getGenerationMethodPrefix(const std::string &i_s) const
         return "CCGRTT";
     if (i_s == "RandLevel")
         return "CCGRCG";
+    if (i_s == "RandLevelExperimental")
+        return "CCGRCGE";
     if (i_s == "NumOperation")
         return "CCGRVC";
     if (i_s == "Genetic")

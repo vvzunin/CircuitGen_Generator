@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <cstdint>
 
 #include "./Genetic/GeneticParameters.h"
 
@@ -34,6 +35,16 @@ public:
         d_maxLevel = i_maxLevel;
     }
 
+    int getMinLevel() const
+    {
+        return d_minLevel;
+    }
+
+    void setMinLevel(int i_minLevel)
+    {
+        d_minLevel = i_minLevel;
+    }
+
     int getMaxElements() const
     {
         return d_maxElements;
@@ -46,6 +57,7 @@ public:
 
 private:
     int d_maxLevel = 0;
+    int d_minLevel = 0;
     int d_maxElements = 0;
 };
 
@@ -228,6 +240,16 @@ public:
         d_makeBench = i_makeBench;
     }
 
+    std::uint_fast32_t getSeed() const
+    {
+        return d_seed;
+    }
+
+    void setSeed(std::uint_fast32_t i_seed)
+    {
+        d_seed = i_seed;
+    }
+
     std::map<std::string, std::vector<int>> getGatesInputsInfo() const
     {
         return d_gatesInputsInfo;
@@ -248,10 +270,12 @@ public:
     void setCNFF(bool i_CNFF) { d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
     void setCNFT(bool i_CNFT) { d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
     void setLimit(bool i_limit) { d_cnfFromTruthTableParameters.setLimit(i_limit); }
-    void setRandLevelParameters(int i_maxLevel,
+    void setRandLevelParameters(int i_minLevel,
+                                int i_maxLevel,
                                 int i_maxElements)
     {
         d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
+        d_generatorRandLevelParameters.setMinLevel(i_minLevel);
         d_generatorRandLevelParameters.setMaxElements(i_maxElements);
     }
     void setNumOperationParameters(const std::map<std::string, int> &i_m, bool i_LeaveEmptyOut)
@@ -278,6 +302,8 @@ private:
     bool d_makeFirrtl;
     bool d_makeBench;
     std::map<std::string, std::vector<int>> d_gatesInputsInfo;
+
+    std::uint_fast32_t d_seed = 0;
 
     CNNFromTruthTableParameters d_cnfFromTruthTableParameters;
     GeneratorRandLevelParameters d_generatorRandLevelParameters;

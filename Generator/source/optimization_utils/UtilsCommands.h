@@ -15,10 +15,9 @@ static const char* resyn2Command =
     "&& echo \"refactor -z\" "
     "&& echo \"rewrite -z\" "
     "&& echo \"write_verilog %/%_RESYN2.aig\" "
+    "&& echo \"write_verilog %/%_RESYN2.v\" "
     "&& echo \"map\" "
-    "&& echo \"print_stats\" "
-    "&& echo \"unmap\" "
-    "&& echo \"write_verilog %/%_RESYN2.v\") | abc";
+    "&& echo \"print_stats\") | abc";
 
 static const char *balanceOptimizationCommand = 
     "(echo \"read_verilog %/%\" "
@@ -29,10 +28,9 @@ static const char *balanceOptimizationCommand =
     "&& echo \"balance -x\" "
     "&& echo \"rewrite -z\" "
     "&& echo \"write_verilog %/%_BALANCED.aig\" "
+    "&& echo \"write_verilog %/%_BALANCED.v\" "
     "&& echo \"map\" "
-    "&& echo \"print_stats\" "
-    "&& echo \"unmap\" "
-    "&& echo \"write_verilog %/%_BALANCED.v\") | abc";
+    "&& echo \"print_stats\") | abc";
 
 static const char *getStatsCommand = 
     "(echo \"read_verilog %/%\" "
@@ -43,7 +41,8 @@ static const char *getStatsCommand =
 static const char *convertVerilogToBench = 
     "cd % "
     "&& ((echo \"read_verilog %\" "
-    "&& echo \"write_bench %\") | abc)";
+    "&& echo \"write_bench %\" "
+    "&& echo \"quit\") | abc)";
 // namesapce end
 }
 

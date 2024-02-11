@@ -12,7 +12,8 @@
 class Circuit
 {
 public:
-    Circuit(const OrientedGraph &i_graph, const std::vector<std::string> &i_logExpressions = {});
+    Circuit(OrientedGraph *i_graph, const std::vector<std::string> &i_logExpressions = {});
+
     void computeHash();
     void updateCircuitsParameters(bool i_getAbcStats = false, std::string libraryName = "");
     bool graphToVerilog(const std::string &i_path, bool i_pathExists = false);
@@ -31,7 +32,7 @@ public:
     void setVerticeOperation(int i_vertice, const std::string &i_operation);
 
 private:
-    OrientedGraph d_graph;
+    OrientedGraph *d_graph = nullptr;
     std::vector<std::string> d_logExpressions;
     TruthTable d_tTable;
     std::string d_path;

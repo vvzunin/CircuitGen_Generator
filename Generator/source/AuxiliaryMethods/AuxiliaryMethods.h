@@ -1,26 +1,30 @@
+#include <map>
 #include <vector>
+#include <cstdint>
 #include <fstream>
 #include <sstream>
-#include <map>
 #include <utility>
 
 #include <circuits/Circuit.h>
 
 namespace AuxMethods
 {
-    void setRandSeed(unsigned seed);
-    int getRandInt(int lower, int upper, bool inclusively = false);
-    double getRandDouble(double lower, double upper);
+void setRandSeed(std::uint_fast32_t seed);
+std::uint_fast32_t getRandSeed();
 
-    std::string readAllFile(const std::string &filename);
-    std::vector<int> getRandomIntList(int i_n, int i_minNumber, int i_maxNumber, bool repite = false);
+int getRandInt(int lower, int upper, bool inclusively = false);
+double getRandDouble(double lower, double upper);
 
-    template <typename Key, typename Value>
-    std::vector<std::pair<Key, Value>> sortDictByValue(const std::map<Key, Value> &i_dict, bool up = true);
-    // TODO: ToEnum
-    // TODO: if need LineReader
-    std::string removeSpaces(const std::string &i_s);
-    int skipSpaces(const std::string &i_s, int i_start = 0);
-    // TODO: if need CopyDirectory
-    Circuit parseVerilog(const std::string &i_filepath);
+std::string readAllFile(const std::string &filename);
+std::vector<int> getRandomIntList(int i_n, int i_minNumber, int i_maxNumber, bool repite = false);
+
+template <typename Key, typename Value>
+std::vector<std::pair<Key, Value>> sortDictByValue(const std::map<Key, Value> &i_dict, bool up = true);
+// TODO: ToEnum
+// TODO: if need LineReader
+std::string removeSpaces(const std::string &i_s);
+int skipSpaces(const std::string &i_s, int i_start = 0);
+// TODO: if need CopyDirectory
+Circuit parseVerilog(const std::string &i_filepath);
+// namespace end
 }

@@ -5,6 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include <iomanip>
+#include <iostream>
 #include <filesystem>
 
 #include "Circuit.h"
@@ -14,10 +15,11 @@
 #include <filesTools/FilesTools.h>
 #include <AuxiliaryMethods/AuxiliaryMethods.h>
 
-Circuit::Circuit(const OrientedGraph &i_graph, const std::vector<std::string> &i_logExpressions)
+Circuit::Circuit(OrientedGraph *i_graph, const std::vector<std::string> &i_logExpressions)
 {
     d_graph = i_graph;
-    d_graph.updateLevels();
+    std::clog << "Graph moved, update begins" << std::endl;
+    d_graph->updateLevels();
     d_logExpressions = i_logExpressions;
 }
 
@@ -37,10 +39,10 @@ void Circuit::computeHash()
     stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_sensitivityFactor << '\n';
     stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_reliabilityPercent << '\n';
 
-    for (const auto &[key, value] : d_circuitParameters.d_numElementsOfEachType)
+    for (auto [key, value] : d_circuitParameters.d_numElementsOfEachType)
         stream << "\t\t\"" << key << "\": " << value << '\n';
 
-    for (const auto &[key, value] : d_circuitParameters.d_numEdgesOfEachType)
+    for (auto [key, value] : d_circuitParameters.d_numEdgesOfEachType)
         stream << "\t\t\"" << key.first << "-" << key.second << "\": " << value << '\n';
 
     {
@@ -91,71 +93,71 @@ int Circuit::calculateReliability(int inputs_size)
 
     int numberOfIncoincidences = 0;
     int pos = -1;
-    std::vector<int> vec_index = d_graph.getVertices("input");
+    std::vector<int> vec_index = d_graph->getVertices("input");
 
     for (u_int64_t i = 0; i < pow(2.0, float(inputs_size)); ++i)
     {
         // std::vector<bool> tmp = vec.back();
         // std::vector<bool> tmp_wrong = vec.back();
         if (pos != -1)
-            d_graph.d_vertices[pos].wrongVertex = false;
+            d_graph->d_vertices[pos].wrongVertex = false;
 
         // vec.pop_back()
         u_int64_t data = i;
         for (int j : vec_index)
         {
-            d_graph.d_vertices[j].setValue(data % 2);
+            d_graph->d_vertices[j].setValue(data % 2);
             data >>= 1;
         }
 
         //    std::vector<bool> res_1 = {};
-        for (int m = 1; m < d_graph.getMaxLevel(); m++)
+        for (int m = 1; m < d_graph->getMaxLevel(); m++)
         {
-            std::vector<int> vec_2 = d_graph.getVerticesByLevel_2(m);
+            std::vector<int> vec_2 = d_graph->getVerticesByLevel_2(m);
             for (int n : vec_2)
             {
-                std::vector<int> tmp_2 = d_graph.d_listOfEdgesToFrom[n];
+                std::vector<int> tmp_2 = d_graph->d_listOfEdgesToFrom[n];
                 std::vector<bool> vec_3(tmp_2.size());
 
                 for (int j : tmp_2)
                 {
-                    vec_3.push_back(d_graph.d_vertices[j].getValue());
+                    vec_3.push_back(d_graph->d_vertices[j].getValue());
                 }
 
-                d_graph.d_vertices[n].setValue(d_graph.calc(vec_3, (d_graph.d_vertices[n]).getOperation()));
-                //        res_1.push_back(d_graph.d_vertices[vec_2[n]].getValue());
+                d_graph->d_vertices[n].setValue(d_graph->calc(vec_3, (d_graph->d_vertices[n]).getOperation()));
+                //        res_1.push_back(d_graph->d_vertices[vec_2[n]].getValue());
             }
         }
 
-        std::vector<int> vec_outputs_indices_without_error = d_graph.getVertices("output");
+        std::vector<int> vec_outputs_indices_without_error = d_graph->getVertices("output");
         std::vector<bool> result_without_error(vec_outputs_indices_without_error.size());
         for (int j : vec_outputs_indices_without_error)
         {
-            bool cur_value = d_graph.d_vertices[(d_graph.d_listOfEdgesToFrom[j])[0]].getValue();
+            bool cur_value = d_graph->d_vertices[(d_graph->d_listOfEdgesToFrom[j])[0]].getValue();
 
-            d_graph.d_vertices[j].setValue(cur_value);
+            d_graph->d_vertices[j].setValue(cur_value);
             result_without_error.push_back(cur_value);
         }
 
         pos = -1;
 
         /* Working version
-for (int j = 0; j < d_graph.d_vertices.size(); j++)
+for (int j = 0; j < d_graph->d_vertices.size(); j++)
 {
-        if (d_graph.d_vertices[j].getOperation() != "input" && d_graph.d_vertices[j].getOperation() != "const" && d_graph.d_vertices[j].getOperation() != "output")
+        if (d_graph->d_vertices[j].getOperation() != "input" && d_graph->d_vertices[j].getOperation() != "const" && d_graph->d_vertices[j].getOperation() != "output")
         {
-                d_graph.d_vertices[j].wrongVertex = true;
+                d_graph->d_vertices[j].wrongVertex = true;
                 pos = j;
                 break;
         }
 }*/
 
         std::vector<int> indecies__(
-            d_graph.d_vertices.size() - d_graph.d_inputs.size() - d_graph.d_outputs.size() - d_graph.d_consts.size());
+            d_graph->d_vertices.size() - d_graph->d_inputs.size() - d_graph->d_outputs.size() - d_graph->d_consts.size());
 
-        for (auto j = 0; j < d_graph.d_vertices.size(); j++)
+        for (auto j = 0; j < d_graph->d_vertices.size(); j++)
         {
-            if (d_graph.d_vertices[j].getOperation() != "input" && d_graph.d_vertices[j].getOperation() != "output" && d_graph.d_vertices[j].getOperation() != "const")
+            if (d_graph->d_vertices[j].getOperation() != "input" && d_graph->d_vertices[j].getOperation() != "output" && d_graph->d_vertices[j].getOperation() != "const")
             {
                 indecies__.push_back(j);
             }
@@ -163,40 +165,40 @@ for (int j = 0; j < d_graph.d_vertices.size(); j++)
 
         // Choose random wrong vertex.
         int t = AuxMethods::getRandInt(0, indecies__.size());
-        d_graph.d_vertices[indecies__[t]].wrongVertex = true;
+        d_graph->d_vertices[indecies__[t]].wrongVertex = true;
         pos = indecies__[t];
 
         data = i;
         for (int j : vec_index)
         {
-            d_graph.d_vertices[j].setValue(data % 2);
+            d_graph->d_vertices[j].setValue(data % 2);
             data >>= 1;
         }
 
         //    std::vector<bool> res_1 = {};
-        for (int m = 1; m < d_graph.getMaxLevel(); m++)
+        for (int m = 1; m < d_graph->getMaxLevel(); m++)
         {
-            std::vector<int> vec_2 = d_graph.getVerticesByLevel_2(m);
+            std::vector<int> vec_2 = d_graph->getVerticesByLevel_2(m);
             for (int n : vec_2)
             {
-                std::vector<int> tmp_2 = d_graph.d_listOfEdgesToFrom[n];
+                std::vector<int> tmp_2 = d_graph->d_listOfEdgesToFrom[n];
                 std::vector<bool> vec_3(tmp_2.size());
                 for (int j : tmp_2)
                 {
-                    vec_3.push_back(d_graph.d_vertices[j].getValue());
+                    vec_3.push_back(d_graph->d_vertices[j].getValue());
                 }
-                d_graph.d_vertices[n].setValue(d_graph.calc(vec_3, (d_graph.d_vertices[n]).getOperation()));
-                //        res_1.push_back(d_graph.d_vertices[vec_2[n]].getValue());
+                d_graph->d_vertices[n].setValue(d_graph->calc(vec_3, (d_graph->d_vertices[n]).getOperation()));
+                //        res_1.push_back(d_graph->d_vertices[vec_2[n]].getValue());
             }
         }
 
-        std::vector<int> vec_outputs_indices_with_error = d_graph.getVertices("output");
+        std::vector<int> vec_outputs_indices_with_error = d_graph->getVertices("output");
         std::vector<bool> result_with_error(vec_outputs_indices_with_error.size());
         for (int j : vec_outputs_indices_with_error)
         {
-            bool cur_value = d_graph.d_vertices[(d_graph.d_listOfEdgesToFrom[j])[0]].getValue();
+            bool cur_value = d_graph->d_vertices[(d_graph->d_listOfEdgesToFrom[j])[0]].getValue();
 
-            d_graph.d_vertices[j].setValue(cur_value);
+            d_graph->d_vertices[j].setValue(cur_value);
             result_with_error.push_back(cur_value);
         }
 
@@ -212,7 +214,7 @@ for (int j = 0; j < d_graph.d_vertices.size(); j++)
         /*
         for (int j = 0; j < vec_outputs_indices.size(); j++)
         {
-                std::cout << "iteration number: " << i << d_graph.d_listOfEdgesToFrom[vec_outputs_indices[j]].size() << "\t value: " << d_graph.d_vertices[(d_graph.d_listOfEdgesToFrom[vec_outputs_indices[j]])[0]].getValue() << "\n";
+                std::cout << "iteration number: " << i << d_graph->d_listOfEdgesToFrom[vec_outputs_indices[j]].size() << "\t value: " << d_graph->d_vertices[(d_graph->d_listOfEdgesToFrom[vec_outputs_indices[j]])[0]].getValue() << "\n";
         }
         std::cout << "\n\n";
         */
@@ -223,16 +225,16 @@ for (int j = 0; j < d_graph.d_vertices.size(); j++)
 
 void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_libraryName)
 {
-    if (d_graph.size() == 0)
+    if (d_graph->size() == 0)
         return;
 
-    d_graph.updateLevels();
+    d_graph->updateLevels();
     std::clog << "Update ended, norm. calc started" << std::endl;
 
     d_circuitParameters.d_name = d_circuitName;
 
-    std::vector<std::string> inputs = d_graph.getVerticesByType("input");
-    std::vector<std::string> outputs = d_graph.getVerticesByType("output");
+    std::vector<std::string> inputs = d_graph->getVerticesByType("input");
+    std::vector<std::string> outputs = d_graph->getVerticesByType("output");
 
     d_circuitParameters.d_numInputs = 0;
     for (int i = 0; i < inputs.size(); ++i)
@@ -241,16 +243,16 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
 
     d_circuitParameters.d_numOutputs = outputs.size();
 
-    d_circuitParameters.d_maxLevel = d_graph.getMaxLevel();
+    d_circuitParameters.d_maxLevel = d_graph->getMaxLevel();
 
     d_circuitParameters.d_numEdges = 0;
-    for (const auto &row : d_graph.getAdjacencyMatrix())
-        for (const auto &el : row)
+    for (const auto &row : d_graph->getAdjacencyMatrixReference())
+        for (auto el : row)
             if (el)
                 d_circuitParameters.d_numEdges++;
 
-    Reliability R(d_graph, 0.5);
-    std::map<std::string, double> dict = R.runNadezhda(d_path, d_circuitName); // what? d_path
+    // Reliability R(d_graph, 0.5);
+    std::map<std::string, double> dict; // = R.runNadezhda(d_path, d_circuitName); // what? d_path
 
     if (inputs.size() <= 15)
         d_circuitParameters.d_reliability = 1 - calculateReliability(inputs.size()) / pow(2.0, float(inputs.size()));
@@ -268,12 +270,12 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
     d_circuitParameters.d_sensitiveAreaPercent = dict["sensitive_area_persent"];
 
     d_circuitParameters.d_numElementsOfEachType.clear();
-    std::vector<GraphVertex> gv = d_graph.getVertices();
+    const std::vector<GraphVertex> &gv = d_graph->getVerticesReference();
 
     for (const auto &[key, value] : d_settings->getLogicOperations())
         d_circuitParameters.d_numElementsOfEachType[key] = 0;
 
-    for (const auto v : gv)
+    for (const auto &v : gv)
         for (const auto &[key, value] : d_settings->getLogicOperations())
             if (v.getOperation() == key)
                 d_circuitParameters.d_numElementsOfEachType[v.getOperation()]++;
@@ -286,7 +288,7 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
 
     for (int i = 0; i < gv.size(); ++i)
         for (int j = 0; j < gv.size(); ++j)
-            if (d_graph.getAdjacencyMatrix(i, j))
+            if (d_graph->getAdjacencyMatrix(i, j))
                 d_circuitParameters.d_numEdgesOfEachType[std::make_pair(gv[i].getOperation(), gv[j].getOperation())]++;
 
     if (i_getAbcStats)
@@ -308,10 +310,10 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
 
 bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists)
 {
-    if (d_graph.empty())
+    if (d_graph->empty())
         return false;
 
-    d_graph.numberVerticesCorrectly();
+    d_graph->numberVerticesCorrectly();
 
     /* if (!i_pathExists) // TODO: work with directory
            if (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() + i_path))
@@ -325,9 +327,9 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists)
 
     filename = d_path + "/" + d_circuitName + ".v";
 
-    std::vector<std::string> inputs = d_graph.getVerticesByType("input");
-    std::vector<std::string> outputs = d_graph.getVerticesByType("output");
-    std::vector<std::string> consts = d_graph.getVerticesByType("const");
+    std::vector<std::string> inputs = d_graph->getVerticesByType("input");
+    std::vector<std::string> outputs = d_graph->getVerticesByType("output");
+    std::vector<std::string> consts = d_graph->getVerticesByType("const");
 
     int pos = (s.find_last_of('/')) + 1;
     int pos2 = (filename.find_last_of('/')) + 1;
@@ -381,11 +383,11 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists)
         w << inputModule << in << '\n';
     w << outputModule << out << ";\n";
 
-    if (d_graph.size() - inputs.size() - outputs.size() - consts.size() > 0)
+    if (d_graph->size() - inputs.size() - outputs.size() - consts.size() > 0)
     {
         w << "\n\twire";
         bool first = true;
-        for (const auto &vert : d_graph.getVertices())
+        for (const auto &vert : d_graph->getVertices())
         {
             if (vert.getOperation() != "input" && vert.getOperation() != "output" && vert.getOperation() != "const")
             {
@@ -404,32 +406,26 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists)
           << std::endl;
     }
 
-    for (int j = 0; j < d_graph.size(); ++j)
+    for (int j = 0; j < d_graph->size(); ++j)
     {
-        if (d_graph.getVertice(j).getOperation() != "input")
+        if (d_graph->getVertice(j).getOperation() != "input")
         {
             std::vector<int> inps;
-            for (int i = 0; i < d_graph.size(); ++i)
-                if (d_graph.getAdjacencyMatrix(i, j))
+            for (int i = 0; i < d_graph->size(); ++i)
+                if (d_graph->getAdjacencyMatrix(i, j))
                     inps.push_back(i);
 
-            if (d_graph.getVertice(j).getOperation() != "output")
+            if (d_graph->getVertice(j).getOperation() != "output" && d_graph->getVertice(j).getOperation() != "const")
             {
-                if (d_graph.getVertice(j).getOperation() != "const")
-                {
-                    w << "\t" << d_graph.getVertice(j).getOperation() << " (" << d_graph.getVertice(j).getWireName();
-                    // TODO: on prev line add instance name
-                    for (auto k : inps)
-                        w << ", " << d_graph.getVertice(k).getWireName();
-                    w << ");" << std::endl;
-                }
+                w << "\t" << d_graph->getVertice(j).getOperation() << " ( " << d_graph->getVertice(j).getWireName();
+                // TODO: on prev line add instance name
+                for (auto k : inps)
+                    w << ", " << d_graph->getVertice(k).getWireName();
+                w << ");" << std::endl;
             }
-            else
+            else if (d_graph->getVertice(j).getOperation() == "output" && inps.size() > 0)
             {
-                if (inps.size() > 0)
-                {
-                    w << "\tassign " << d_graph.getVertice(j).getWireName() << " = " << d_graph.getVertice(inps[0]).getWireName() << ";" << std::endl;
-                }
+                w << "\tassign " << d_graph->getVertice(j).getWireName() << " = " << d_graph->getVertice(inps[0]).getWireName() << ";" << std::endl;
             }
         }
     }
@@ -642,29 +638,25 @@ bool Circuit::generate(bool i_makeFirrtl, bool i_makeBench, bool i_getAbcStats, 
 
     // if (!i_pathExists)
     // d_path += d_circuitName;
-
+    std::clog << "Writing verilog for " << d_circuitName << std::endl;
     if (!graphToVerilog(d_path, i_pathExists))
         return false;
 
+    std::clog << "Writing verilog ended " << d_circuitName << std::endl;
+
     if (i_makeFirrtl)
     {
-        // Maybe we need to control thread, but now just detach it
-        std::thread(
-            YosysUtils::writeFirrtl,
+        YosysUtils::writeFirrtl(
             d_circuitName + ".v",
             d_circuitName + ".fir",
-            d_path)
-            .detach();
+            d_path);
     }
     if (i_makeBench)
     {
-        // Maybe we need to control thread, but now just detach it
-        std::thread(
-            AbcUtils::verilogToBench,
+        AbcUtils::verilogToBench(
             d_circuitName + ".v",
             d_circuitName + ".bench",
-            d_path)
-            .detach();
+            d_path);
     }
 
     if (i_generateAig)
@@ -696,7 +688,7 @@ bool Circuit::generate(bool i_makeFirrtl, bool i_makeBench, bool i_getAbcStats, 
         std::thread optimize1(
             saveOptimizationParameters,
             func);
-
+        
         func = AbcUtils::resyn2;
         std::thread optimize2(
             saveOptimizationParameters,
@@ -736,7 +728,6 @@ bool Circuit::generate(bool i_makeFirrtl, bool i_makeBench, bool i_getAbcStats, 
     }
     else
     {
-
         updateCircuitsParameters(i_getAbcStats, i_libraryName);
 
         if (!saveParameters(i_getAbcStats))
@@ -775,31 +766,31 @@ void Circuit::setCircuitName(const std::string &i_circName)
 
 bool Circuit::addVertex(const std::string i_vertexName, const std::string &i_operation, const std::string &i_wireName)
 {
-    return d_graph.addVertex(i_vertexName, i_operation, i_wireName);
+    return d_graph->addVertex(i_vertexName, i_operation, i_wireName);
 }
 
 int Circuit::getIndexOfWireName(const std::string &i_wireName)
 {
-    return d_graph.getIndexOfWireName(i_wireName);
+    return d_graph->getIndexOfWireName(i_wireName);
 }
 
 GraphVertex Circuit::getVertice(int i) const
 {
-    return d_graph.getVertice(i);
+    return d_graph->getVertice(i);
 }
 
 bool Circuit::addEdge(const std::string &i_vertexFrom, const std::string &i_vertexTo, bool i_isExpression)
 {
-    return d_graph.addEdge(i_vertexFrom, i_vertexTo, i_isExpression);
+    return d_graph->addEdge(i_vertexFrom, i_vertexTo, i_isExpression);
 }
 
 bool Circuit::addDoubleEdge(const std::string &i_vertexFromFirst, const std::string &i_vertexFromSecond, const std::string &i_vertexTo, bool i_isExpression)
 {
-    return d_graph.addDoubleEdge(i_vertexFromFirst, i_vertexFromSecond,
-                                 i_vertexTo, i_isExpression);
+    return d_graph->addDoubleEdge(i_vertexFromFirst, i_vertexFromSecond,
+                                  i_vertexTo, i_isExpression);
 }
 
 void Circuit::setVerticeOperation(int i_vertice, const std::string &i_operation)
 {
-    d_graph.setVerticeOperation(i_vertice, i_operation);
+    d_graph->setVerticeOperation(i_vertice, i_operation);
 }

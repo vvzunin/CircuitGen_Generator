@@ -1,9 +1,9 @@
 [
   {
     "seed": 2,
-    "dataset_id": "2",
+    "dataset_id": "3",
     "id": 0,
-    "type_of_generation": "Rand Level",
+    "type_of_generation": "Rand Level Experimental",
     "min_in": 2000,
     "max_in": 2000,
     "min_out": 2000,
@@ -11,22 +11,23 @@
     "repeat_n": 1,    
     "multithread": true,
     "calculate_stats_abc": true,
-    "make_optimized_files": true,
-    "make_firrtl": true,
-    "make_bench": true,
+    "make_optimized_files": false,
+    "make_firrtl": false,
+    "make_bench": false,
     "create_id_directories": true,
     "library_name": "sky130",
     
     "gates_inputs_info": {
-      "and": [2],
-      "nand": [2],
-      "or": [2],
-      "nor": [2, 4, 8],
-      "xor": [2, 4],
-      "xnor": [2, 3]
+      "and": [32, 4],
+      "nand": [2, 16, 8],
+      "or": [32, 8],
+      "nor": [16, 4, 8],
+      "xor": [2, 32, 4],
+      "xnor": [2, 16, 8]
     },
 
     "max_level": 1000,
+    "min_level": 500,
     "max_elem": 1000
   }
 ]
