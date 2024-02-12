@@ -4,10 +4,10 @@
     "dataset_id": "3",
     "id": 0,
     "type_of_generation": "Rand Level Experimental",
-    "min_in": 2000,
-    "max_in": 2000,
-    "min_out": 2000,
-    "max_out": 2000,
+    "min_in": 5000,
+    "max_in": 5000,
+    "min_out": 5000,
+    "max_out": 5000,
     "repeat_n": 1,    
     "multithread": true,
     "calculate_stats_abc": true,
@@ -26,8 +26,8 @@
       "xnor": [2, 16, 8]
     },
 
-    "max_level": 1000,
-    "min_level": 0,
-    "max_elem": 1000
+    "max_level": 50,
+    "min_level": 25,
+    "max_elem": 1500
   }
 ]

@@ -246,7 +246,8 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_minLevel, int i_maxLeve
                        d_settings->fromOperationsToName(logOper[choice]) + " (" + graph.getVertice(child1).getLogicExpression() + ")";
                 std::size_t hashed = std::hash<std::string>{}(expr);
 
-                if (graph.addVertex(std::to_string(hashed), logOper[choice]))
+                // if (graph.addVertex(std::to_string(hashed), logOper[choice]))
+                if (graph.addVertex(expr, logOper[choice]))
                     graph.addDoubleEdge(graph.getVertice(child2).getLogicExpression(),
                                         graph.getVertice(child1).getLogicExpression(),
                                         graph.getVertice(currIndex + position).getLogicExpression());
