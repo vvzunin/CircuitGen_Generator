@@ -19,7 +19,7 @@ Circuit::Circuit(OrientedGraph *i_graph, const std::vector<std::string> &i_logEx
 {
     d_graph = i_graph;
     std::clog << "Graph moved, update begins" << std::endl;
-    d_graph->updateLevels();
+    // d_graph->updateLevels();
     d_logExpressions = i_logExpressions;
 }
 
@@ -228,7 +228,7 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
     if (d_graph->size() == 0)
         return;
 
-    d_graph->updateLevels();
+    // d_graph->updateLevels();
     std::clog << "Update ended, norm. calc started" << std::endl;
 
     d_circuitParameters.d_name = d_circuitName;
@@ -236,10 +236,11 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
     std::vector<std::string> inputs = d_graph->getVerticesByType("input");
     std::vector<std::string> outputs = d_graph->getVerticesByType("output");
 
-    d_circuitParameters.d_numInputs = 0;
-    for (int i = 0; i < inputs.size(); ++i)
-        if (inputs[i].find("'b") == std::string::npos)
-            d_circuitParameters.d_numInputs++;
+    d_circuitParameters.d_numInputs = inputs.size();
+    // do we really need it?
+    // for (int i = 0; i < inputs.size(); ++i)
+    //     if (inputs[i].find("'b") == std::string::npos)
+    //         d_circuitParameters.d_numInputs++;
 
     d_circuitParameters.d_numOutputs = outputs.size();
 
@@ -431,6 +432,7 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists)
     }
 
     w << "endmodule" << std::endl;
+    w.close();
 
     return true;
 }

@@ -27,7 +27,7 @@
     },
 
     "max_level": 1000,
-    "min_level": 500,
+    "min_level": 0,
     "max_elem": 1000
   }
 ]
