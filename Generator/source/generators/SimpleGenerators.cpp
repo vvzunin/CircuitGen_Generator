@@ -194,10 +194,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_minLevel, int i_maxLeve
     else
         maxLevel = 2;
 
-    auto [hasOneGate, logOper] = d_settings->getLogicOperationsWithGates();
-    logOper.erase(std::find(logOper.begin(), logOper.end(), "input"));
-    logOper.erase(std::find(logOper.begin(), logOper.end(), "output"));
-    logOper.erase(std::find(logOper.begin(), logOper.end(), "const"));
+    auto [hasOneGate, logOper] = d_settings->getLogicOperationsWithGates({"input", "const", "output"});
 
     // maxLevel++ // what?
 
@@ -246,8 +243,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_minLevel, int i_maxLeve
                        d_settings->fromOperationsToName(logOper[choice]) + " (" + graph.getVertice(child1).getLogicExpression() + ")";
                 std::size_t hashed = std::hash<std::string>{}(expr);
 
-                // if (graph.addVertex(std::to_string(hashed), logOper[choice]))
-                if (graph.addVertex(expr, logOper[choice]))
+                if (graph.addVertex(std::to_string(hashed), logOper[choice]))
                     graph.addDoubleEdge(graph.getVertice(child2).getLogicExpression(),
                                         graph.getVertice(child1).getLogicExpression(),
                                         graph.getVertice(currIndex + position).getLogicExpression());
@@ -291,11 +287,6 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
         maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 2;
     else
         maxLevel = 2;
-
-    auto [hasOneGate, logOper] = d_settings->getLogicOperationsWithGates();
-    logOper.erase(std::find(logOper.begin(), logOper.end(), "input"));
-    logOper.erase(std::find(logOper.begin(), logOper.end(), "output"));
-    logOper.erase(std::find(logOper.begin(), logOper.end(), "const"));
 
     std::string expr;
     OrientedGraph graph;

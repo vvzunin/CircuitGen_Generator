@@ -4,10 +4,10 @@
     "dataset_id": "2",
     "id": 0,
     "type_of_generation": "Rand Level",
-    "min_in": 2000,
-    "max_in": 2000,
-    "min_out": 2000,
-    "max_out": 2000,
+    "min_in": 20,
+    "max_in": 20,
+    "min_out": 20,
+    "max_out": 20,
     "repeat_n": 1,    
     "multithread": true,
     "calculate_stats_abc": true,
@@ -18,7 +18,7 @@
     "library_name": "sky130",
 
     "max_level": 10,
-    "min_level": 0,
-    "max_elem": 100
+    "min_level": 5,
+    "max_elem": 10
   }
 ]

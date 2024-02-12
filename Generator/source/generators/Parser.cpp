@@ -127,7 +127,7 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(std::strin
                     lst.push_back(deleteExtraSpaces(newOp));
                     if (newOp == "not")
                         lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));
-                    else if (newOp == "buff")
+                    else if (newOp == "buf")
                         lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));
                     else if (newOp == "input")
                         lst.push_back(deleteExtraSpaces(i_expr));

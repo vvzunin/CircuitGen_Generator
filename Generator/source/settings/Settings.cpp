@@ -1,6 +1,7 @@
 #include <memory>
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 #include <filesystem>
 
 #include "Settings.h"
@@ -129,14 +130,16 @@ std::vector<std::string> Settings::getLogicOperationsKeys()
     return res;
 }
 
-std::pair<std::vector<bool>, std::vector<std::string>> Settings::getLogicOperationsWithGates()
+std::pair<std::vector<bool>, std::vector<std::string>> Settings::getLogicOperationsWithGates(std::vector<std::string> i_notIncluded)
 {
-    std::vector<std::string> res(d_logicOperations.size());
-    std::vector<bool> oneGate(d_logicOperations.size());
+    std::vector<std::string> res;
+    std::vector<bool> oneGate;
     
     for (const auto &[key, value] : d_logicOperations) {
-        res.push_back(key);
-        oneGate.push_back(key == "not" || key == "buf");
+        if (std::find(i_notIncluded.begin(), i_notIncluded.end(), key) == i_notIncluded.end()) {
+            res.push_back(key);
+            oneGate.push_back(key == "not" || key == "buf");
+        }
     }
 
     return std::make_pair(oneGate, res);
