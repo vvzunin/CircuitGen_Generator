@@ -6,6 +6,8 @@
 
 #include "SimpleGenerators.h"
 #include "../graph/OrientedGraph.h"
+#include "Parser.h"
+
 
 namespace {
   int maxValueInMap(const std::map<std::string, int>& i_map)
@@ -1151,4 +1153,192 @@ OrientedGraph SimpleGenerators::generatorDemultiplexer(int i_bits)
     else
         std::cout << "Недостаточно входных сигналов" << std::endl;
     return graph;
+}
+
+OrientedGraph SimpleGenerators::ALU(int i_bits, int i_outbits, bool ALL, bool SUM, bool SUB, bool NSUM, bool NSUB, bool MULT,
+                                    bool COM, bool AND, bool NAND, bool OR, bool NOR, bool XOR, bool XNOR, bool CNF){
+    OrientedGraph graph;
+    if (ALL){
+        SUM = true; SUB = true; NSUM = true; NSUB = true; MULT = true; COM = true; AND = true; OR = true; NOR = true; XOR = true; XNOR = true; CNF = true;
+    }
+
+    if (SUM){
+        graph.Extend(generatorSummator(i_bits, false, false, false, true));
+        graph.Extend(generatorSummator(i_bits, false, true, false, true));
+        graph.Extend(generatorSummator(i_bits, true, true, false, true));
+        graph.Extend(generatorSummator(i_bits, true, false, false, true));
+    }
+    /*
+    if (SUB){
+        graph.Extend(generatorSubtractor(i_bits, false, false, false, true));
+        graph.Extend(generatorSubtractor(i_bits, false, true, false, true));
+        graph.Extend(generatorSubtractor(i_bits, true, false, false, true));
+        graph.Extend(generatorSubtractor(i_bits, true, true, false, true));
+    }
+     */
+    if (NSUM)
+    {
+        graph.Extend(generatorSummator(i_bits, false, false, true, true));
+        graph.Extend(generatorSummator(i_bits, false, true, true, true));
+        graph.Extend(generatorSummator(i_bits, true, true, true, true));
+        graph.Extend(generatorSummator(i_bits, true, false, true, true));
+
+    }
+    /*
+    if (NSUB)
+    {
+        graph.Extend(generatorSubtractor(i_bits, false, false, true, true));
+        graph.Extend(generatorSubtractor(i_bits, false, true, true, true));
+        graph.Extend(generatorSubtractor(i_bits, true, false, true, true));
+        graph.Extend(generatorSubtractor(i_bits, true, true, true, true));
+    }
+     */
+    if (MULT)
+    {
+        graph.Extend(generatorMultiplier(i_bits, true));
+    }
+    if (COM)
+    {
+        graph.Extend(generatorComparison(i_bits, true, false, false, true));
+        graph.Extend(generatorComparison(i_bits, false, true, false, true));
+        graph.Extend(generatorComparison(i_bits, false, false, true, true));
+    }
+
+    //нужно проверить на корректность
+    if (CNF)
+    {
+        TruthTable tt = new TruthTable(i_bits, i_outbits, 0);
+        tt.generateRandom(new TruthTableParameters(i_bits, i_outbits));
+
+        SimpleGenerators tftt = new SimpleGenerators();
+
+        std::vector<std::string>  expr = tftt.cnfFromTruthTable(tt, true);
+        std::vector<std::string>  expt = tftt.cnfFromTruthTable(tt, false);
+        Parser pCNFT = new Parser(expr);
+        Parser pCNFF = new Parser(expt);
+        pCNFT.ParseAll();
+        pCNFF.ParseAll();
+        graph.Extend(pCNFT.Graph);
+        graph.Extend(pCNFF.Graph);
+    }
+
+    for (int i = 0; i < bits; i++)
+    {
+        std::string A = std::to_string(i);
+        graph.addVertex("xi" + A, "input");
+        graph.addVertex("xj" + A, "input");
+
+        /*
+        if (SUM)
+        {
+            graph.Substitute("xi" + A, "x_sumafff" + A, false);
+            graph.Substitute("xj" + A, "x_sumbfff" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumaftf" + A, false);
+            graph.Substitute("xj" + A, "x_sumbftf" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumattf" + A, false);
+            graph.Substitute("xj" + A, "x_sumbttf" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumatff" + A, false);
+            graph.Substitute("xj" + A, "x_sumbtff" + A, false);
+        }
+
+        if (SUB)
+        {
+            graph.Substitute("xi" + A, "x_subafff" + A, false);
+            graph.Substitute("xj" + A, "x_subbfff" + A, false);
+
+            graph.Substitute("xi" + A, "x_subaftf" + A, false);
+            graph.Substitute("xj" + A, "x_subbftf" + A, false);
+
+            graph.Substitute("xi" + A, "x_subatff" + A, false);
+            graph.Substitute("xj" + A, "x_subbtff" + A, false);
+
+            graph.Substitute("xi" + A, "x_subattf" + A, false);
+            graph.Substitute("xj" + A, "x_subbttf" + A, false);
+        }
+        if (NSUM)
+        {
+            graph.Substitute("xi" + A, "x_sumafft" + A, false);
+            graph.Substitute("xj" + A, "x_sumbfft" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumaftt" + A, false);
+            graph.Substitute("xj" + A, "x_sumbftt" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumattt" + A, false);
+            graph.Substitute("xj" + A, "x_sumbttt" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumatft" + A, false);
+            graph.Substitute("xj" + A, "x_sumbtft" + A, false);
+        }
+        if (NSUB)
+        {
+            graph.Substitute("xi" + A, "x_subafft" + A, false);
+            graph.Substitute("xj" + A, "x_subbfft" + A, false);
+
+            graph.Substitute("xi" + A, "x_subaftt" + A, false);
+            graph.Substitute("xj" + A, "x_subbftt" + A, false);
+
+            graph.Substitute("xi" + A, "x_subatft" + A, false);
+            graph.Substitute("xj" + A, "x_subbtft" + A, false);
+
+            graph.Substitute("xi" + A, "x_subattt" + A, false);
+            graph.Substitute("xj" + A, "x_subbttt" + A, false);
+        }
+        if (MULT)
+        {
+            graph.Substitute("xi" + A, "a" + A, false);
+            graph.Substitute("xj" + A, "b" + A, false);
+        }
+        if (COM)
+        {
+            graph.Substitute("xi" + A, "comatff" + A, false);
+            graph.Substitute("xj" + A, "combtff" + A, false);
+
+            graph.Substitute("xi" + A, "comaftf" + A, false);
+            graph.Substitute("xj" + A, "combftf" + A, false);
+
+            graph.Substitute("xi" + A, "comafft" + A, false);
+            graph.Substitute("xj" + A, "combfft" + A, false);
+        }
+        */
+        if (AND)
+        {
+            graph.addVertex("(i" + A + " and j" + A + ")", "and", "ij1_" + A);
+            graph.addDoubleEdge("xi" + A, "xj" + A, "ij1_" + A, false);
+        }
+        if (NAND)
+        {
+            graph.addVertex("(i" + A + " nand j" + A + ")", "nand", "ij2_" + A);
+            graph.addDoubleEdge("xi" + A, "xj" + A, "ij2_" + A, false);
+
+        }
+        if (OR)
+        {
+            graph.addVertex("(i" + A + " or j" + A + ")", "or", "ij3_" + A);
+            graph.addDoubleEdge("xi" + A, "xj" + A, "ij3_" + A, false);
+        }
+        if (XOR)
+        {
+            graph.addVertex("(i" + A + " xor j" + A + ")", "xor", "ij5_" + A);
+            graph.addDoubleEdge("xi" + A, "xj" + A, "ij5_" + A, false);
+
+        }
+        if (NOR)
+        {
+            graph.addVertex("(i" + A + " nor j" + A + ")", "nor", "ij4_" + A);
+            graph.addDoubleEdge("xi" + A, "xj" + A, "ij4_" + A, false);
+        }
+        if (XNOR)
+        {
+            graph.addVertex("(i" + A + " xnor j" + A + ")", "xnor", "ij6_" + A);
+            graph.addDoubleEdge("xi" + A, "xj" + A, "ij6_" + A, false);
+        }
+        if (CNF)
+        {
+            graph.Substitute("xi" + A, "xT" + A, false);
+            graph.Substitute("xi" + A, "xF" + A, false);
+        }
+    }
 }
