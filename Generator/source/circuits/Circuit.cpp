@@ -236,7 +236,8 @@ void Circuit::updateCircuitsParameters(bool i_getAbcStats, std::string i_library
     std::vector<std::string> inputs = d_graph->getVerticesByType("input");
     std::vector<std::string> outputs = d_graph->getVerticesByType("output");
 
-    d_circuitParameters.d_numInputs = 0;
+    d_circuitParameters.d_numInputs = 0; // inputs.size();
+    // do we really need it?
     for (int i = 0; i < inputs.size(); ++i)
         if (inputs[i].find("'b") == std::string::npos)
             d_circuitParameters.d_numInputs++;
@@ -431,6 +432,7 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists)
     }
 
     w << "endmodule" << std::endl;
+    w.close();
 
     return true;
 }
