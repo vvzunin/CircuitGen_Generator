@@ -1154,7 +1154,7 @@ OrientedGraph SimpleGenerators::generatorDemultiplexer(int i_bits)
         std::cout << "Недостаточно входных сигналов" << std::endl;
     return graph;
 }
-
+/*
 OrientedGraph SimpleGenerators::ALU(int i_bits, int i_outbits, bool ALL, bool SUM, bool SUB, bool NSUM, bool NSUB, bool MULT,
                                     bool COM, bool AND, bool NAND, bool OR, bool NOR, bool XOR, bool XNOR, bool CNF){
     OrientedGraph graph;
@@ -1168,14 +1168,14 @@ OrientedGraph SimpleGenerators::ALU(int i_bits, int i_outbits, bool ALL, bool SU
         graph.Extend(generatorSummator(i_bits, true, true, false, true));
         graph.Extend(generatorSummator(i_bits, true, false, false, true));
     }
-    /*
+
     if (SUB){
         graph.Extend(generatorSubtractor(i_bits, false, false, false, true));
         graph.Extend(generatorSubtractor(i_bits, false, true, false, true));
         graph.Extend(generatorSubtractor(i_bits, true, false, false, true));
         graph.Extend(generatorSubtractor(i_bits, true, true, false, true));
     }
-     */
+
     if (NSUM)
     {
         graph.Extend(generatorSummator(i_bits, false, false, true, true));
@@ -1184,7 +1184,7 @@ OrientedGraph SimpleGenerators::ALU(int i_bits, int i_outbits, bool ALL, bool SU
         graph.Extend(generatorSummator(i_bits, true, false, true, true));
 
     }
-    /*
+
     if (NSUB)
     {
         graph.Extend(generatorSubtractor(i_bits, false, false, true, true));
@@ -1192,7 +1192,7 @@ OrientedGraph SimpleGenerators::ALU(int i_bits, int i_outbits, bool ALL, bool SU
         graph.Extend(generatorSubtractor(i_bits, true, false, true, true));
         graph.Extend(generatorSubtractor(i_bits, true, true, true, true));
     }
-     */
+
     if (MULT)
     {
         graph.Extend(generatorMultiplier(i_bits, true));
@@ -1205,6 +1205,7 @@ OrientedGraph SimpleGenerators::ALU(int i_bits, int i_outbits, bool ALL, bool SU
     }
 
     //нужно проверить на корректность
+
     if (CNF)
     {
         TruthTable tt = new TruthTable(i_bits, i_outbits, 0);
@@ -1228,7 +1229,6 @@ OrientedGraph SimpleGenerators::ALU(int i_bits, int i_outbits, bool ALL, bool SU
         graph.addVertex("xi" + A, "input");
         graph.addVertex("xj" + A, "input");
 
-        /*
         if (SUM)
         {
             graph.Substitute("xi" + A, "x_sumafff" + A, false);
@@ -1302,7 +1302,6 @@ OrientedGraph SimpleGenerators::ALU(int i_bits, int i_outbits, bool ALL, bool SU
             graph.Substitute("xi" + A, "comafft" + A, false);
             graph.Substitute("xj" + A, "combfft" + A, false);
         }
-        */
         if (AND)
         {
             graph.addVertex("(i" + A + " and j" + A + ")", "and", "ij1_" + A);
@@ -1342,3 +1341,4 @@ OrientedGraph SimpleGenerators::ALU(int i_bits, int i_outbits, bool ALL, bool SU
         }
     }
 }
+*/
