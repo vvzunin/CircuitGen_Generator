@@ -218,7 +218,7 @@ JSON файл может содержать несколько наборов г
    |**num_\<type\>**|Количество логических элементов каждого типа из возможных: and, nand, or, nor, not, buf, xor, xnor;|int|&#9745;|-|"num_and": 1|
 </details>
 
-
+<!--
 <details>
 <summary><strong>4. Genetic:</strong></summary>
 
@@ -247,14 +247,7 @@ JSON файл может содержать несколько наборов г
    |**rec_num**|Количество рекомбинаций|int|&#9744;|1|"rec_num": 1|
    |**surv_num**|Количество выживших|int|&#9744;|-|"surv_num": 1|
 </details>
-
-      1) selection_type - тип отбора после мутации: Base;
-      2) population_size - int; размер начальной популяции;
-      3) cycles - int; максимальное количество циклов генерации;
-      4) out_ratio - float; значение критерия окончания работы генетического алгоритма;
-      5) mask_prob - float; RecombinationCrossingTriadic и CrossingUniform;
-      6) rec_num - int; количество рекомбинаций;
-      7) surv_num - int; количество выживших.
+-->
 </details>
 
 
