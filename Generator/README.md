@@ -145,94 +145,125 @@ JSON файл может содержать несколько наборов г
 ]
 ```
 Для каждого набора генерации необходимо задать набор параметров:
-1) Опциональные параметры:
-   1) seed - int; сид для генератора случайных чисел, -1 или отсутствие поля для псевдослучайного сида;
-   2) multithread - bool; флаг, отвечающий за запуск генерации в многопоточном режиме. В данный момент проблема гонки потоков и 
-   использования seed была решена, и теперь схемы являются идентичными при повторной генерации. 
-   По умолчанию - false, вычисления производятся последовательно.
-   3) calculate_stats_abc - bool;  флаг, отвечающий за проведение обсчета схема с использованием abc. По умолчанию - false, обсчет 
-   не производится
-   4) make_optimized_files - bool; флаг, отвечающий за генерацию файлов verilog и aig, которые содержат схемы с некоторыми 
-   оптимизациями, в частности resyn2 и balance. Файлы создаются в той же директории, что и сгенерированный verilog файл. 
-   По умолчанию - false, генерация не производится. 
-   5) library_name -  string; имя библиотеки, с использованием который abc производит обсчет схемы. Является обязательным при 
-   использовании флагов calculate_stats_abc и/или make_optimized_files.
-   6) make_firrtl - bool; флаг, отвечающий за генерацию firrtl файлов на основе verilog. По умолчанию - false, генерация не производится. 
-   7) create_id_directories - bool; флаг, отвечающий за создание директорий dataset_id и id самой генерации. По умолчанию - true.
-   8) gates_inputs_info - map (словарь); содержит количество возможных входов для логических элементов. ОБЯЗАТЕЛЬНЫМ является 
-   указание всех логических элементов, т.е. and, nand, or, nor, xor, xnor.
-   Указывается допустимое количество входов в виде массива int. Пример:
-   ```
-   "gates_inputs_info": {
-      "and": [2],
-      "nand": [2],
-      "or": [2],
-      "nor": [2, 4, 8],
-      "xor": [2, 10],
-      "xnor": [2, 3]
-   }
-   ```
-   В данном примере у всех элементов может быть два входа, кроме того, у nor может быть 4 или 8 входов, у nor - 10, у nor - 3.
-   По умолчанию имеет вид 
-   ```
-   "gates_inputs_info": {
-      "and": [2],
-      "nand": [2],
-      "or": [2],
-      "nor": [2],
-      "xor": [2],
-      "xnor": [2]
-   }
-   ```
-2) Определение пути генерации:
-   1) dataset_id - int; обозначение датасета схем;
-   2) id - int; обозначение подкатегории датасета;
-3) Общие параметры генерации:
-   1) min_in - int; минимальное количество входов;
-   2) max_in - int; максимальное количество входов;
-   3) min_out - int; минимальное количество выходов;
-   4) max_out - int; максимальное количество выходов;
-   5) repeat_n - int; количества повторений для каждого набора (num_in-num_out);
-4) Выбор типа генерации:
-   1) Выбор происходит путем указания в "type_of_generation" типа генерации:
-      1) From Random Truth Table;
-      2) Rand Level;
-      3) Num Operation;
-      4) Genetic;
-5) В зависимости от типа генерации необходимо описать требуемые параметры:
-   1) From Random Truth Table:
-      1) CNFF - bool; необходимо ли создать схему с использованием СДНФ;
-      2) CNFT - bool; необходимо ли создать схему с использованием СКНФ;
-   2) Rand Level:
-      1) max_level - int; максимальное количество уровней в схеме;
-      2) max_elem - int; максимальное количество элементов на каждом уровне;
-   3) Num Operation:
-      1) leave_empty_out - bool; оставлять ли пустые выходы;
-      2) num_<type> - int; количество элементов каждого типа из возможных: and, nand, or, nor, not, buf, xor, xnor;
-   4) Genetic:
-      1) chromosome_type - тип хромосомы из возможных: Truth Table;
-      2) playback_type - тип рекомбинации из возможных: CrossingEachExitInTurnMany, CrossingUniform, CrossingTriadic, CrossingReducedReplacement, CrossingShuffling;
-         1) selection_type_parent - тип отбора родителей: Panmixia, Inbringing, Outbrinding, Tournament, Roulette;
-         2) tourSize - int; размер турнира для Tournament;
-         3) ref_points - int; для CrossingEachExitInTurnMany
-      3) mut_type - тип мутации хромосом из возможных: Binary, Density, AccessionDel, InsertDel, Exchange, Delete;
-         1) mut_chance - float; шанс мутации;
-         2) swap_type - int (0, 1 или 2);
-         3) ratio_in_table - float; распределение 0 и 1 в таблице истинности;
-      4) selection_type - тип отбора после мутации: Base;
-      5) population_size - int; размер начальной популяции;
-      6) cycles - int; максимальное количество циклов генерации;
-      7) out_ratio - float; значение критерия окончания работы генетического алгоритма;
-      8) mask_prob - float; RecombinationCrossingTriadic и CrossingUniform;
-      9) rec_num - int; количество рекомбинаций;
-      10) surv_num - int; количество выживших.
+<details>
+<summary><strong>1. Опциональные параметры:</strong></summary>
+
+   | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
+   | :--- | :--- | :---: | :---: | :--- | :--- |
+   |**seed**|Сид для генератора случайных чисел|int|&#9744;|Псевдослучайное число|"seed": 2|
+   |**multithread**|Флаг, отвечающий за запуск генерации в многопоточном режиме.|bool|&#9744;|false|"multithread": true|
+   |**calculate_stats_abc**|Флаг, отвечающий за проведение обсчета схема с использованием abc.|bool|&#9744;|false|"calculate_stats_abc": true|
+   |**make_optimized_files**|Флаг, отвечающий за генерацию файлов verilog и aig, которые содержат схемы с некоторыми оптимизациями, в частности resyn2 и balance. Файлы создаются в той же директории, что и сгенерированный verilog файл.|bool|&#9744;|false|"make_optimized_files": true|
+   |**library_name**|Имя библиотеки, с использованием которой abc производит обсчет схемы. Является обязательным при использовании флагов calculate_stats_abc и/или make_optimized_files.|string|&#9745;|""|"library_name": "sky130"|
+   |**make_firrtl**|Флаг, отвечающий за генерацию firrtl файлов на основе Verilog.|bool|&#9744;|false|"make_firrtl": true|
+   |**make_bench**|Флаг, отвечающий за генерацию bench файлов на основе Verilog.|bool|&#9744;|false|"make_bench": true|
+   |**create_id_directories**|Флаг, отвечающий за создание директорий dataset_id и id самой генерации.|bool|&#9744;|true|"create_id_directories": true|
+   |**gates_inputs_info**|Содержит количество возможных входов для логических элементов. ОБЯЗАТЕЛЬНЫМ является указание всех логических элементов, т.е. and, nand, or, nor, xor, xnor. Указывается допустимое количество входов в виде массива int.|map<string, vector\<int>>|&#9745;|"gates_inputs_info": {<br/>&nbsp;&nbsp;"and": [2],<br/>&nbsp;&nbsp;"nand": [2],<br/>&nbsp;&nbsp;"or": [2],<br/>&nbsp;&nbsp;"nor": [2],<br/>&nbsp;&nbsp;"xor": [2],<br/>&nbsp;&nbsp;"xnor": [2]<br/>}|"gates_inputs_info": {<br/>&nbsp;&nbsp;"and": [2],<br/>&nbsp;&nbsp;"nand": [2],<br/>&nbsp;&nbsp;"or": [2, 4, 8],<br/>&nbsp;&nbsp;"nor": [2],<br/>&nbsp;&nbsp;"xor": [2, 10],<br/>&nbsp;&nbsp;"xnor": [2]<br/>}|\
+</details>
+
+<details>
+<summary><strong>2. Определение пути генерации:</strong></summary>
+
+   | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
+   | :--- | :--- | :---: | :---: | :--- | :--- |
+   |**dataset_id**|Обозначение датасета схем|int|&#9744;|0|"dataset_id": "0"|
+   |**id**|Обозначение подкатегории датасета|int|&#9744;|0|"id": 0|
+</details>
+
+<details>
+<summary><strong>3. Общие параметры генерации:</strong></summary>
+
+   | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
+   | :--- | :--- | :---: | :---: | :--- | :--- |
+   |**min_in**|Минимальное количество входов|int|&#9745;|-|"min_in": 5|
+   |**max_in**|Максимальное количество входов|int|&#9745;|-|"max_in": 5|
+   |**min_out**|Минимальное количество выходов|int|&#9745;|-|"min_out": 5|
+   |**max_out**|Максимальное количество выходов|int|&#9745;|-|"max_out": 5|
+   |**repeat_n**|Количество повторений для каждого набора (num_in-num_out)|int|&#9745;|-|"repeat_n": 5|
+</details>
+
+<details>
+<summary><strong>4. Выбор типа генерации:</strong></summary>
+
+   | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
+   | :--- | :--- | :---: | :---: | :--- | :--- |
+   |**type_of_generation**|Выбор используемого типа генерации|Одно из значений списка:<br/>"From Random Truth Table"<br/>"Rand Level"<br/>"Num Operation"<!--<br/>"Genetic"-->|&#9745;|-|"type_of_generation": "Rand Level"|
+
+В зависимости от типа генерации необходимо описать требуемые параметры:
+<details>
+<summary><strong>1. From Random Truth Table:</strong></summary>
+
+   | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
+   | :--- | :--- | :---: | :---: | :--- | :--- |
+   |**CNFF**|Необходимо ли создать схему с использованием СДНФ|bool|&#9744;|false|"CNFF": false|
+   |**CNFT**|Необходимо ли создать схему с использованием СКНФ|bool|&#9744;|false|"CNFT": false|
+</details>
+
+<details>
+<summary><strong>2. Rand Level:</strong></summary>
+
+   | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
+   | :--- | :--- | :---: | :---: | :--- | :--- |
+   |**min_level**|Минимальное количество уровней в схеме|int|&#9744;|0|"min_level": 1|
+   |**max_level**|Максимальное количество уровней в схеме|int|&#9744;|0|"max_level": 1|
+   |**max_elem**|Максимальное количество элементов на каждом уровне|int|&#9744;|0|"max_elem": 1|
+</details>
+
+<details>
+<summary><strong>3. Num Operation:</strong></summary>
+
+   | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
+   | :--- | :--- | :---: | :---: | :--- | :--- |
+   |**leave_empty_out**|Оставлять ли пустые выходы|bool|&#9745;|-|"leave_empty_out": true|
+   |**num_\<type\>**|Количество логических элементов каждого типа из возможных: and, nand, or, nor, not, buf, xor, xnor;|int|&#9745;|-|"num_and": 1|
+</details>
+
+
+<details>
+<summary><strong>4. Genetic:</strong></summary>
+
+   | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
+   | :--- | :--- | :---: | :---: | :--- | :--- |
+   |**chromosome_type**|Тип хромосомы из поддерживаемых|Одно из значений списка:<br/>"Truth Table"|&#9744;|-|"chromosome_type": "Truth Table"|
+   |||||||
+   |**playback_type**|Тип рекомбинации из поддерживаемых|Одно из значений списка:<br/>"CrossingEachExitInTurnMany"<br/>"CrossingUniform"<br/>"CrossingTriadic"<br/>"CrossingReducedReplacement"<br/>"CrossingShuffling"|&#9745;|-|"playback_type": "CrossingEachExitInTurnMany"|
+   |**ref_points**|Количество точек для CrossingEachExitInTurnMany|int|&#9744;|1|"ref_points": 1|
+   |||||||
+   |**selection_type_parent**|Тип отбора родителей|Одно из значений списка:<br/>"Panmixia"<br/>"Inbringing"<br/>"Outbrinding"<br/>"Tournament"<br/>"Roulette"|&#9745;|-|"selection_type_parent": "Panmixia"|
+   |**tourSize**|Размер турнира для Tournament |int|&#9744;|1|"tour_size": 1|   
+   |||||||
+   |**mut_type**|Тип мутации хромосом из поддерживаемых |Одно из значений списка:<br/>"Binary"<br/>"Density"<br/>"AccessionDel"<br/>"InsertDel"<br/>"Exchange"<br/>"Delete"|&#9745;|-|"mut_type": "Binary"|
+   |**mut_chance**|Шанс мутации |float|&#9744;|0.5|"mut_chance": 1.0|
+   |**swap_type**|Тип обмена |int (0, 1 или 2)|&#9744;|0|"swap_type": 0|
+   |**ratio_in_table**|Распределение 0 и 1 в таблице истинности|float|&#9744;|1.0|"ratio_in_table": 1.0|
+   |**chrom**|Тип хромосомы |Одно из значений списка:<br/>|&#9744;|-|"chrome": "Truth Table"|
+   |**chrom**|Тип хромосомы |Одно из значений списка:<br/>|&#9744;|-|"chrome": "Truth Table"|
+   |||||||
+   |**selection_type**|Тип отбора после мутации|Одно из значений списка:<br/>"Base"|&#9744;|-|"selection_type": "Base"|
+   |**population_size**|Размер начальной популяции|int|&#9744;|1|"population_size": 1|
+   |**cycles**|Максимальное количество циклов генерации|int|&#9744;|1|"cycles": 1|
+   |**out_ratio**|Значение критерия окончания работы генетического алгоритма|float|&#9744;|1.0|"out_ratio": 1.0|
+   |**mask_prob**|Вероятность для RecombinationCrossingTriadic и CrossingUniform|float|&#9744;|1.0|"mask_prob": 1.0|
+   |**rec_num**|Количество рекомбинаций|int|&#9744;|1|"rec_num": 1|
+   |**surv_num**|Количество выживших|int|&#9744;|-|"surv_num": 1|
+</details>
+
+      1) selection_type - тип отбора после мутации: Base;
+      2) population_size - int; размер начальной популяции;
+      3) cycles - int; максимальное количество циклов генерации;
+      4) out_ratio - float; значение критерия окончания работы генетического алгоритма;
+      5) mask_prob - float; RecombinationCrossingTriadic и CrossingUniform;
+      6) rec_num - int; количество рекомбинаций;
+      7) surv_num - int; количество выживших.
+</details>
+
 
 В [примере](docs/sampleAll.json) JSON файла указаны все возможные параметры генерации (кроме сида), что позволяет использовать его для всех параметров генерации с минимальными изменениями.
 В дополнении в той же папке имются индивидуальные JSON файлы под каждый тип генерации:
 1. [From Random Truth Table](docs/sampleTruthTable.json)
 2. [Rand Level](docs/sampleRandLevel.json)
 3. [Num Operation](docs/sampleNumOperation.json)
-4. [Genetic](docs/sampleGenetic.json)
+<!--4. [Genetic](docs/sampleGenetic.json) -->
 
 
 ### Файлы, созданные при генерации 
