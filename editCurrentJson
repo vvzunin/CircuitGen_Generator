@@ -1,2 +1,0 @@
-!#/bin/bash
-vi $(pwd)/Generator/source/test_data/wast/*.json

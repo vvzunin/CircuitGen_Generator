@@ -1,7 +1,6 @@
 data/Nadezhda
 data/Yosys
 data/.DS_Store
-Generator/source/build/*
 *.swp
 *.cmake
 Generator/source/generators/buil*
@@ -9,18 +8,8 @@ Generator/source/data/Nadezhda/*
 Generator/source/.DS_Store
 Generator/.DS_Store
 .DS_Store
-pyth
-db.sqlite3
-add_parameter/migrations
-make_dataset/migrations
 dataset/
-temp_for_json/
-package-lock.json
-jsons_for_generator/*
-launch.json
-settings.json
 .vscode/
-result_dataset/
 */*/.vscode
 .idea/*
 build

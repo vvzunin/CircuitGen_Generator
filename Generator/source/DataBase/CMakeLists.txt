@@ -1,2 +1,0 @@
-add_library(DataBaseGenerator SHARED DataBaseGenerator.cpp DataBaseGenerator.h DataBaseGeneratorParameters.cpp DataBaseGeneratorParameters.h)
-target_include_directories(DataBaseGenerator PUBLIC ${CMAKE_SOURCE_DIR})
