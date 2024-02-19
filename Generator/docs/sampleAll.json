@@ -29,7 +29,8 @@
     "CNFF": false,
     "CNFT": true,
     
-    "max_level": 1,
+    "min_level": 1,
+    "max_level": 2,
     "max_elem": 1,
 
     "leave_empty_out": true,
