@@ -219,14 +219,7 @@ JSON файл может содержать несколько наборов г
    |**max_level**|Максимальное количество уровней в схеме|int|&#9744;|0|"max_level": 1|
    |**min_elem**|Минимальное количество элементов в схеме|int|&#9744;|0|"min_elem": 1|
    |**max_elem**|Максимальное количество элементов на каждом уровне|int|&#9744;|0|"max_elem": 1|
-   |**gates_inputs_info**|Число входов для каждого логического элемента|map|&#9744;|0|"gates_inputs_info": {
-      "and": [32, 4],
-      "nand": [2, 16, 8],
-      "or": [32, 8],
-      "nor": [16, 4, 8],
-      "xor": [2, 32, 4],
-      "xnor": [2, 16, 8]
-    }|
+   |**gates_inputs_info**|Число входов для каждого логического элемента|map|&#9744;|0|"gates_inputs_info": {<br/>    "and": [32, 4],<br/>    "nand": [2, 16, 8],<br/>    "or": [32, 8],<br/>    "nor": [16, 4, 8],<br/>    "xor": [2, 32, 4],<br/>    "xnor": [2, 16, 8]<br/>}|
 </details>
 
 <details>
@@ -275,7 +268,8 @@ JSON файл может содержать несколько наборов г
 В дополнении в той же папке имются индивидуальные JSON файлы под каждый тип генерации:
 1. [From Random Truth Table](docs/sampleTruthTable.json)
 2. [Rand Level](docs/sampleRandLevel.json)
-3. [Num Operation](docs/sampleNumOperation.json)
+3. [Rand Level](docs/sampleRandLevelExperimental.json)
+4. [Num Operation](docs/sampleNumOperation.json)
 <!--4. [Genetic](docs/sampleGenetic.json) -->
 
 
