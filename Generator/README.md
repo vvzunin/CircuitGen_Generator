@@ -268,7 +268,7 @@ JSON файл может содержать несколько наборов г
 В дополнении в той же папке имются индивидуальные JSON файлы под каждый тип генерации:
 1. [From Random Truth Table](docs/sampleTruthTable.json)
 2. [Rand Level](docs/sampleRandLevel.json)
-3. [Rand Level](docs/sampleRandLevelExperimental.json)
+3. [Rand Level Experimental](docs/sampleRandLevelExperimental.json)
 4. [Num Operation](docs/sampleNumOperation.json)
 <!--4. [Genetic](docs/sampleGenetic.json) -->
 
