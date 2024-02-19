@@ -17,8 +17,9 @@
     "create_id_directories": true,
     "library_name": "sky130",
 
-    "max_level": 10,
     "min_level": 5,
+    "max_level": 10,
+    "min_elem": 5,
     "max_elem": 10
   }
 ]

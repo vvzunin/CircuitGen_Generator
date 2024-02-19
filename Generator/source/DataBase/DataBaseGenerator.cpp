@@ -177,6 +177,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters &i_
     OrientedGraph graph = generator.generatorRandLevel(
         i_param.getRandLevel().getMinLevel(),
         i_param.getRandLevel().getMaxLevel(),
+        i_param.getRandLevel().getMinElements(),
         i_param.getRandLevel().getMaxElements(),
         i_param.getInputs(),
         i_param.getOutputs());
@@ -199,23 +200,23 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(const GenerationPa
 
     auto start = high_resolution_clock::now();
     OrientedGraph graph = generator.generatorRandLevelExperimental(
-                         i_param.getRandLevel().getMinLevel(),
-                         i_param.getRandLevel().getMaxLevel(),
-                         i_param.getRandLevel().getMaxElements(),
-                         i_param.getInputs(),
-                         i_param.getOutputs());
+        i_param.getRandLevel().getMinLevel(),
+        i_param.getRandLevel().getMaxLevel(),
+        i_param.getRandLevel().getMinElements(),
+        i_param.getRandLevel().getMaxElements(),
+        i_param.getInputs(),
+        i_param.getOutputs());
 
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     std::clog << "Time taken on experimental: " << duration.count() << " microseconds" << std::endl;
-
 
     std::clog << "Update started\n";
     Circuit c(&graph);
     std::clog << "Update ended\n";
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    
+
     c.generate(
         i_param.getMakeFirrtl(),
         i_param.getMakeBench(),
