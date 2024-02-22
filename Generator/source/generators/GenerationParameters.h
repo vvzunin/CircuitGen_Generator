@@ -25,6 +25,16 @@ private:
 class GeneratorRandLevelParameters
 {
 public:
+    int getMinLevel() const
+    {
+        return d_minLevel;
+    }
+
+    void setMinLevel(int i_minLevel)
+    {
+        d_minLevel = i_minLevel;
+    }
+
     int getMaxLevel() const
     {
         return d_maxLevel;
@@ -35,14 +45,14 @@ public:
         d_maxLevel = i_maxLevel;
     }
 
-    int getMinLevel() const
+    int getMinElements() const
     {
-        return d_minLevel;
+        return d_minElements;
     }
 
-    void setMinLevel(int i_minLevel)
+    void setMinElements(int i_minElements)
     {
-        d_minLevel = i_minLevel;
+        d_minElements = i_minElements;
     }
 
     int getMaxElements() const
@@ -56,8 +66,9 @@ public:
     }
 
 private:
-    int d_maxLevel = 0;
     int d_minLevel = 0;
+    int d_maxLevel = 0;
+    int d_minElements = 0;
     int d_maxElements = 0;
 };
 
@@ -272,10 +283,12 @@ public:
     void setLimit(bool i_limit) { d_cnfFromTruthTableParameters.setLimit(i_limit); }
     void setRandLevelParameters(int i_minLevel,
                                 int i_maxLevel,
+                                int i_minElements,
                                 int i_maxElements)
     {
-        d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
         d_generatorRandLevelParameters.setMinLevel(i_minLevel);
+        d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
+        d_generatorRandLevelParameters.setMinElements(i_minElements);
         d_generatorRandLevelParameters.setMaxElements(i_maxElements);
     }
     void setNumOperationParameters(const std::map<std::string, int> &i_m, bool i_LeaveEmptyOut)

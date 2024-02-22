@@ -183,11 +183,19 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
     return fun;
 }
 
-OrientedGraph SimpleGenerators::generatorRandLevel(int i_minLevel, int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs)
+OrientedGraph SimpleGenerators::generatorRandLevel(
+    int i_minLevel,
+    int i_maxLevel,
+    int i_minElements,
+    int i_maxElements,
+    int i_inputs,
+    int i_outputs)
 {
     int maxLevel;
     if (i_minLevel > i_maxLevel)
         throw std::invalid_argument("min level is biggert than max level");
+    if (i_minElements > i_maxElements)
+        throw std::invalid_argument("min elem is biggert than max elem");
 
     if (i_maxLevel)
         maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 2;
@@ -275,6 +283,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(int i_minLevel, int i_maxLeve
 OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     u_int32_t i_minLevel,
     u_int32_t i_maxLevel,
+    u_int32_t i_minElements,
     u_int32_t i_maxElements,
     u_int32_t i_inputs,
     u_int32_t i_outputs)
@@ -282,6 +291,8 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     u_int32_t maxLevel;
     if (i_minLevel > i_maxLevel)
         throw std::invalid_argument("min level is biggert than max level");
+    if (i_minElements > i_maxElements)
+        throw std::invalid_argument("min elem is biggert than max elem");
 
     if (i_maxLevel)
         maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 2;
@@ -302,13 +313,13 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     int currIndex = i_inputs;
     int prevIndex = 0;
     int curLen = 0;
-    int c_max = i_maxElements > d_maxGateNumber ? d_maxGateNumber : 2;
+    u_int32_t c_max = i_maxElements > d_maxGateNumber ? std::max(d_maxGateNumber, (int)i_minElements) : i_minElements;
 
     for (int i = 1; i < maxLevel; ++i)
     {
         int position = 0;
         // how many elements would be at this level
-        int elemLevel = i_maxElements > 1 ? d_randGenerator.getRandInt(c_max, i_maxElements, true) : 2;
+        int elemLevel = i_maxElements > 1 ? d_randGenerator.getRandInt(c_max, i_maxElements, true) : i_minElements;
         // write allowed gates
         std::vector<int> curGates;
         for (int val = prevIndex; val < currIndex; ++val)

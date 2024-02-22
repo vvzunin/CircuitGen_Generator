@@ -187,7 +187,7 @@ JSON файл может содержать несколько наборов г
 
    | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
    | :--- | :--- | :---: | :---: | :--- | :--- |
-   |**type_of_generation**|Выбор используемого типа генерации|Одно из значений списка:<br/>"From Random Truth Table"<br/>"Rand Level"<br/>"Num Operation"<!--<br/>"Genetic"-->|&#9745;|-|"type_of_generation": "Rand Level"|
+   |**type_of_generation**|Выбор используемого типа генерации|Одно из значений списка:<br/>"From Random Truth Table"<br/>"Rand Level"<br/>"Rand Level Experimental"<br/>"Num Operation"<!--<br/>"Genetic"-->|&#9745;|-|"type_of_generation": "Rand Level"|
 
 В зависимости от типа генерации необходимо описать требуемые параметры:
 <details>
@@ -206,11 +206,24 @@ JSON файл может содержать несколько наборов г
    | :--- | :--- | :---: | :---: | :--- | :--- |
    |**min_level**|Минимальное количество уровней в схеме|int|&#9744;|0|"min_level": 1|
    |**max_level**|Максимальное количество уровней в схеме|int|&#9744;|0|"max_level": 1|
+   |**min_elem**|Минимальное количество элементов в схеме|int|&#9744;|0|"min_elem": 1|
    |**max_elem**|Максимальное количество элементов на каждом уровне|int|&#9744;|0|"max_elem": 1|
 </details>
 
 <details>
-<summary><strong>3. Num Operation:</strong></summary>
+<summary><strong>3. Rand Level Experimental:</strong></summary>
+
+   | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
+   | :--- | :--- | :---: | :---: | :--- | :--- |
+   |**min_level**|Минимальное количество уровней в схеме|int|&#9744;|0|"min_level": 1|
+   |**max_level**|Максимальное количество уровней в схеме|int|&#9744;|0|"max_level": 1|
+   |**min_elem**|Минимальное количество элементов в схеме|int|&#9744;|0|"min_elem": 1|
+   |**max_elem**|Максимальное количество элементов на каждом уровне|int|&#9744;|0|"max_elem": 1|
+   |**gates_inputs_info**|Число входов для каждого логического элемента|map|&#9744;|0|"gates_inputs_info": {<br/>    "and": [32, 4],<br/>    "nand": [2, 16, 8],<br/>    "or": [32, 8],<br/>    "nor": [16, 4, 8],<br/>    "xor": [2, 32, 4],<br/>    "xnor": [2, 16, 8]<br/>}|
+</details>
+
+<details>
+<summary><strong>4. Num Operation:</strong></summary>
 
    | Название | Описание | Тип | Обязательность | Значение по умолчанию | Пример |
    | :--- | :--- | :---: | :---: | :--- | :--- |
@@ -255,7 +268,8 @@ JSON файл может содержать несколько наборов г
 В дополнении в той же папке имются индивидуальные JSON файлы под каждый тип генерации:
 1. [From Random Truth Table](docs/sampleTruthTable.json)
 2. [Rand Level](docs/sampleRandLevel.json)
-3. [Num Operation](docs/sampleNumOperation.json)
+3. [Rand Level Experimental](docs/sampleRandLevelExperimental.json)
+4. [Num Operation](docs/sampleNumOperation.json)
 <!--4. [Genetic](docs/sampleGenetic.json) -->
 
 

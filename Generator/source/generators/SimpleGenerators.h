@@ -26,14 +26,16 @@ public:
     std::vector<std::string> cnfFromTruthTable(const TruthTable &i_table, bool i_tp = true);
 
     OrientedGraph generatorRandLevel(
-        int minLevel,
+        int i_minLevel,
         int i_maxLevel, 
+        int i_minElements, 
         int i_maxElements, 
         int i_inputs, 
         int i_outputs);
     OrientedGraph generatorRandLevelExperimental(
-        u_int32_t minLevel,
+        u_int32_t i_minLevel,
         u_int32_t i_maxLevel,
+        u_int32_t i_minElements,
         u_int32_t i_maxElements,
         u_int32_t i_inputs,
         u_int32_t i_outputs);
