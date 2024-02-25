@@ -280,7 +280,7 @@ bool OrientedGraph::Delete (const std::string& i_vertex, bool i_isExpression){
     }
     return false;
 }
-/*
+
 bool OrientedGraph::Substitute(const std::string &vertexNew, const std::string &vertexOld, bool i_isExpression) {
     int v1 = -1;
     int v2 = -1;
@@ -293,18 +293,18 @@ bool OrientedGraph::Substitute(const std::string &vertexNew, const std::string &
         v2 = getIndexOfWireName(vertexNew);
     }
     if (v1 != -1 && v2 != -1){
-        for (int i = 0; i < d_vertices.count(); i++)
+        for (int i = 0; i < d_vertices.size(); i++)
             if (i != v2)
-                d_adjacencyMatrix[v2][i] |= d_adjacencyMatrix[v1][i];
-        for (int i = 0; i < d_vertices.count(); i++)
+                d_adjacencyMatrix[v2][i] = d_adjacencyMatrix[v2][i] | d_adjacencyMatrix[v1][i];;
+        for (int i = 0; i < d_vertices.size(); i++)
             if (i != v2)
-                d_adjacencyMatrix[i][v2] |= d_adjacencyMatrix[i][v1];
+                d_adjacencyMatrix[i][v2] = d_adjacencyMatrix[i][v2] | d_adjacencyMatrix[i][v1];
         Delete(vertexOld);
         return true;
     }
     return false;
 }
-*/
+
 std::vector<int> OrientedGraph::getVerticesByLevel_2(int i_level)
 {
     std::vector<int> vec_index;
