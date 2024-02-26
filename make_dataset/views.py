@@ -64,7 +64,7 @@ def run_generator(parameters_of_generation, dataset_id):
 
     with open(f'jsons_for_generator/data_{dataset_id}.json', 'w', encoding='utf-8') as f:
         json.dump(parameters_of_generation, f, ensure_ascii=False, indent=4)
-    subprocess.Popen(f"./Generator/source/build/prog --json_path=./jsons_for_generator/data_{dataset_id}.json",
+    subprocess.Popen(f"./Generator/source/build/circuitgen --json_path=./jsons_for_generator/data_{dataset_id}.json",
                      shell=True).wait()
     obj = Dataset.objects.get(id=dataset_id)
     obj.ready = True
