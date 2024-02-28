@@ -19,6 +19,15 @@ private:
   bool d_CNFT = false;
 };
 
+class zhegalkinFromTruthTableParameters
+{
+public:
+  bool getZhegalkin() { return d_zhegalkin; }
+  void setZhegalkin(bool i_zhegalkin) { d_zhegalkin = i_zhegalkin; }
+private:
+  bool d_zhegalkin = false;
+};
+
 class GeneratorRandLevelParameters
 {
 public:
@@ -185,6 +194,7 @@ public:
 
   CNNFromTruthTableParameters getCNF() const { return d_cnfFromTruthTableParameters; }
   GeneratorRandLevelParameters getRandLevel() const { return d_generatorRandLevelParameters; }
+  zhegalkinFromTruthTableParameters getZhegalkin() const { return d_ZhegalkinFromTruthTableParameters; } 
   GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; }
   GeneratorSummatorParameters getSummator() const {return d_generatorSummatorParameters; }
   GeneratorComparisonParameters getComparison() const {return d_generatorComparisonParameters; }
@@ -192,6 +202,7 @@ public:
   void setCNFF(bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
   void setCNFT(bool i_CNFT){ d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
   void setLimit(bool i_limit){ d_cnfFromTruthTableParameters.setLimit(i_limit); }
+  void setZhegalkin(bool i_zhegalkin) { d_ZhegalkinFromTruthTableParameters.setZhegalkin(i_zhegalkin); }
   void setNumOperationParameters(const std::map<std::string, int>& i_m, bool i_LeaveEmptyOut)
   {
 	d_generatorNumOperationParameters.setLogicOper(i_m);
@@ -224,6 +235,7 @@ private:
 
   CNNFromTruthTableParameters d_cnfFromTruthTableParameters;
   GeneratorRandLevelParameters d_generatorRandLevelParameters;
+  zhegalkinFromTruthTableParameters d_ZhegalkinFromTruthTableParameters;
   GeneratorNumOperationParameters d_generatorNumOperationParameters;
   GeneratorSummatorParameters d_generatorSummatorParameters;
   GeneratorComparisonParameters d_generatorComparisonParameters;

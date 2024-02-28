@@ -8,6 +8,7 @@ class SimpleGenerators
 public:
   SimpleGenerators();
   std::vector<std::string> cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
+  std::vector<std::string> zhegalkinFromTruthTable(const TruthTable& i_table);
   OrientedGraph generatorRandLevel(int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs);
   OrientedGraph generatorNumOperation(
     int i_input,

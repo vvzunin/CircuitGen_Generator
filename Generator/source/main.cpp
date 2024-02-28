@@ -101,6 +101,7 @@ void runGenerationFromJson(std::string json_path)
     //  bool limit = data["limit_generation"];
     bool CNFF = data["CNFF"];
     bool CNFT = data["CNFT"];
+    bool Zhegalkin = data["Zhegalkin"];
     bool LeaveEmptyOut = data["leave_empty_out"];
     int numOfSurv = data["surv_num"];
     std::string datasetId = data["dataset_id"];
@@ -195,6 +196,7 @@ void runGenerationFromJson(std::string json_path)
     gp.setName(datasetId);
     gp.setCNFF(CNFF);
     gp.setCNFT(CNFT);
+    gp.setZhegalkin(Zhegalkin);
     //  gp.setLimit(limit);
     gp.setNumOperationParameters(m, LeaveEmptyOut);
     gp.setSummatorParameters(overflowIn, overflowOut, minus);

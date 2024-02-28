@@ -107,6 +107,54 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
   return fun;
 }
 
+std::vector<std::string> SimpleGenerators::zhegalkinFromTruthTable(const TruthTable& i_table) 
+{
+    std::vector<std::string> polynomial;
+    int num_inputs = i_table.getInput();
+    int num_outputs = i_table.getOutput();
+    int num_terms = std::pow(2, num_inputs);
+
+    for (int j = 0; j < num_outputs; ++j) {
+        std::vector<int> coefficients(num_terms, 0);
+
+        
+        for (int i = 0; i < i_table.size(); ++i) {
+            if (i_table.getOutTable(i, j)) {
+                coefficients[i] = 1;
+            }
+        }
+
+        std::string poly = "f" + std::to_string(j) + " = ";
+        bool first_term = true;
+        for (int term = 0; term < num_terms; ++term) {
+            if (coefficients[term] != 0) {
+                if (!first_term) {
+                    poly += " " + d_settings->getLogicOperation("xor").first + " ";
+                }
+                if (term == 0) {
+                    poly += "1";
+                } else {
+                    poly += "(";
+                    for (int i = 0; i < num_inputs; ++i) {
+                        if ((term >> (num_inputs - i - 1)) & 1) {
+                            poly += "x" + std::to_string(i);
+                        } else {
+                            poly +=  d_settings->getLogicOperation("not").first + " x" + std::to_string(i);
+                        }
+                        if (i != num_inputs - 1) {
+                            poly += " " + d_settings->getLogicOperation("and").first + " ";
+                        }
+                    }
+                    poly += ")";
+                }
+                first_term = false;
+            }
+        }
+        polynomial.push_back(poly);
+    }
+    return polynomial;  
+}
+
 OrientedGraph SimpleGenerators::generatorRandLevel(int i_maxLevel, int i_maxElements, int i_inputs, int i_outputs)
 {
   int maxLevel;
