@@ -7,13 +7,13 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(${PROJECT_NAME}
   AuxiliaryMethodsTests.cpp 
   AbcUtilsTests.cpp
-  #SettingsTests.cpp 
-  #SimpleGeneratorsTests.cpp 
-  #TruthTableTests.cpp 
-  #OrientedGraphTests.cpp 
-  #OrientedGraphSysTests.cpp 
-  #FilesToolsTests.cpp 
-  #GraphVertexTests.cpp
+  SettingsTests.cpp 
+  SimpleGeneratorsTests.cpp 
+  TruthTableTests.cpp 
+  OrientedGraphTests.cpp 
+  OrientedGraphSysTests.cpp 
+  FilesToolsTests.cpp 
+  GraphVertexTests.cpp
   )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC 
