@@ -14,7 +14,8 @@ add_executable(${PROJECT_NAME}
   OrientedGraphSysTests.cpp 
   FilesToolsTests.cpp 
   GraphVertexTests.cpp
-  )
+  YosysUtilsTests.cpp
+)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC 
 AuxiliaryMethods 
