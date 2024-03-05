@@ -49,8 +49,8 @@ TEST(GetStatsTest, ErrorWithInvalidLibraryPath) {
   std::string libPath = "incorrect_libpath";
   auto result = util.getStats("correct_filename.v", "lib130",
     "../../test_data/OpitmizationUtilits", libPath);
-  std::string errorText = "Incorrect map: Warning: The network was" 
-    "strashed and balanced before mapping.\nThe current library"
+  std::string errorText = "Incorrect map: Warning: The network was " 
+    "strashed and balanced before mapping.\nThe current library "
     "is not available.\nError: Mapping has failed.\n\n";
   std::string errorResult = result.commandsOutput["error"];
 
