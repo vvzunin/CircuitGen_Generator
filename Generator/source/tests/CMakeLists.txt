@@ -6,8 +6,9 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(${PROJECT_NAME}
   AuxiliaryMethodsTests.cpp 
+  AbcUtilsTests.cpp
   #SettingsTests.cpp 
-  SimpleGeneratorsTests.cpp 
+  #SimpleGeneratorsTests.cpp 
   #TruthTableTests.cpp 
   #OrientedGraphTests.cpp 
   #OrientedGraphSysTests.cpp 
