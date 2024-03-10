@@ -18,6 +18,14 @@ enum LibrariesTypes
     SKY_LIB
 };
 
+enum VertexTypes 
+{
+    input, 
+    output, 
+    constant, 
+    gate
+};
+
 enum Gates
 {
     GateAnd,
