@@ -9,52 +9,12 @@ TruthTable::TruthTable()
 {
 }
 
-/*
-void TruthTable::generateRandom(GeneticParameters* i_gp)
-{
-    if (i_gp->getInputs() == 0)
-    {
-        i_gp = new TruthTableParameters();
-        i_gp->setInputs(AuxMethods::getRandInt(0, d_settings->getMaxInputs()));
-        i_gp->setOutputs(AuxMethods::getRandInt(0, d_settings->getMaxOutputs()));
-    }
-
-    d_input = i_gp->getInputs();
-    d_output = i_gp->getOutputs();
-    d_size = 1u << d_input;
-
-    d_array.clear();
-    d_array.resize(d_size);
-
-    for (int i = 0; i < d_size; ++i)
-    {
-        d_array[i].resize(i_gp->getOutputs());
-        for (int j = 0; j < i_gp->getOutputs(); ++j)
-            d_array[i][j] = AuxMethods::getRandInt(0, 1, true) == 1;
-    }
-}
-*/
-
-std::vector<std::vector<bool>> TruthTable::convToBinary() const
-{
-    std::vector<std::vector<bool>> bin(d_size, std::vector<bool>(d_input));
-    for (int i = 0; i < d_size; ++i)
-    {
-        for (int j = d_input - 1, tmp = i; j >= 0; --j)
-        {
-            bin[i][j] = (tmp % 2) == 1;
-            tmp /= 2;
-        }
-    }
-    return bin;
-}
-
 TruthTable::TruthTable(int i_input, int i_output, const std::vector<std::vector<bool>> &i_array) : d_input(i_input),
                                                                                                    d_output(i_output)
 {
     d_size = 1u << d_input;
     if (i_array.size() == 0 || i_array.size() != d_size || i_array[0].size() != d_output)
-        generateRandom(new TruthTableParameters(d_input, d_output));
+        generateTable(0);
     else
         d_array = i_array;
 }
@@ -70,6 +30,20 @@ TruthTable::TruthTable(int i_input, int i_output, double i_p) : d_input(i_input)
 {
     d_size = (1u << i_input);
     generateTable(i_p);
+}
+
+std::vector<std::vector<bool>> TruthTable::convToBinary() const
+{
+    std::vector<std::vector<bool>> bin(d_size, std::vector<bool>(d_input));
+    for (int i = 0; i < d_size; ++i)
+    {
+        for (int j = d_input - 1, tmp = i; j >= 0; --j)
+        {
+            bin[i][j] = (tmp % 2) == 1;
+            tmp /= 2;
+        }
+    }
+    return bin;
 }
 
 int TruthTable::getInput() const

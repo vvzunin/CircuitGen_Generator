@@ -8,7 +8,7 @@ enum GenerationTypes
     FromRandomTruthTable,
     RandLevel,
     NumOperation,
-    Genetic,
+    //Genetic,
     Summator,
     Comparison,
     Encoder

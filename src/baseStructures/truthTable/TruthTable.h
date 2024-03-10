@@ -9,7 +9,6 @@ class TruthTable
 {
 public:
     TruthTable();
-    //virtual void generateRandom(GeneticParameters* i_gp) override;
     void generateTable(double i_p = 0);
     TruthTable(int i_input, int i_output, const std::vector<std::vector<bool>> &i_array = {});
     TruthTable(const TruthTable &i_tt, std::vector<std::vector<bool>> i_array = {});

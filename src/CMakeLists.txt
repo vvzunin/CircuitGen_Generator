@@ -26,7 +26,6 @@ set(
   Circuit
   DataBaseGenerator
   FilesTools
-  OptimisationUtils
   OrientedGraph
   Reliability
   Settings

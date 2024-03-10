@@ -73,8 +73,8 @@ std::string DataBaseGeneratorParameters::getGenerationTypeString() const
         return "RandLevel";
     if (d_generationTypes == GenerationTypes::NumOperation)
         return "NumOperation";
-    if (d_generationTypes == GenerationTypes::Genetic)
-        return "Genetic";
+    // if (d_generationTypes == GenerationTypes::Genetic)
+    //     return "Genetic";
     if (d_generationTypes == GenerationTypes::Summator)
         return "Summator";
     if (d_generationTypes == GenerationTypes::Comparison)

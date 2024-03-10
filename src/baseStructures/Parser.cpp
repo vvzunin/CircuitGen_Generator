@@ -127,7 +127,7 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(std::strin
                     lst.push_back(deleteExtraSpaces(newOp));
                     if (newOp == "not")
                         lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));
-                    else if (newOp == "buff")
+                    else if (newOp == "buf")
                         lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length())));
                     else if (newOp == "input")
                         lst.push_back(deleteExtraSpaces(i_expr));
@@ -150,51 +150,51 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(std::strin
 
 bool Parser::parse(const std::string &i_expr) // what? change true/false
 {
-    std::pair<int, std::vector<std::string>> t = splitLogicExpression(i_expr);
-    if (t.first == -1)
-        return false;
+    // std::pair<int, std::vector<std::string>> t = splitLogicExpression(i_expr);
+    // if (t.first == -1)
+    //     return false;
 
-    if (t.second[0] == "output")
-    {
-        std::vector<std::pair<int, int>> bl = createBrackets(t.second[2]).second;
-        for (auto tl : bl)
-            if (tl.first == 0 && tl.second == t.second[2].size() - 1)
-                t.second[2] = t.second[2].substr(1, t.second[2].size() - 2);
+    // if (t.second[0] == "output")
+    // {
+    //     std::vector<std::pair<int, int>> bl = createBrackets(t.second[2]).second;
+    //     for (auto tl : bl)
+    //         if (tl.first == 0 && tl.second == t.second[2].size() - 1)
+    //             t.second[2] = t.second[2].substr(1, t.second[2].size() - 2);
 
-        std::pair<int, std::vector<std::string>> tt = splitLogicExpression(t.second[2]);
-        if (tt.first == -1)
-            return false;
+    //     std::pair<int, std::vector<std::string>> tt = splitLogicExpression(t.second[2]);
+    //     if (tt.first == -1)
+    //         return false;
 
-        d_graph.addVertex(t.second[1], t.second[0]);
-        d_graph.addVertex(t.second[2], tt.second[0]);
-        d_graph.addEdge(t.second[2], t.second[1]);
+    //     d_graph.addVertex(t.second[1], t.second[0]);
+    //     d_graph.addVertex(t.second[2], tt.second[0]);
+    //     d_graph.addEdge(t.second[2], t.second[1]);
 
-        if (tt.second[0] != "input" && tt.second[0] != "const")
-            parse(t.second[2]);
-    }
-    else
-    {
-        d_graph.addVertex(i_expr, t.second[0]);
-        for (int i = 1; i < t.second.size(); ++i)
-        {
-            std::string part = t.second[i];
+    //     if (tt.second[0] != "input" && tt.second[0] != "const")
+    //         parse(t.second[2]);
+    // }
+    // else
+    // {
+    //     d_graph.addVertex(i_expr, t.second[0]);
+    //     for (int i = 1; i < t.second.size(); ++i)
+    //     {
+    //         std::string part = t.second[i];
 
-            std::vector<std::pair<int, int>> bl = createBrackets(part).second;
+    //         std::vector<std::pair<int, int>> bl = createBrackets(part).second;
 
-            for (auto tl : bl)
-                if (tl.first == 0 && tl.second == static_cast<int>(part.size()) - 1)
-                    part = part.substr(1, static_cast<int>(part.size()) - 2);
+    //         for (auto tl : bl)
+    //             if (tl.first == 0 && tl.second == static_cast<int>(part.size()) - 1)
+    //                 part = part.substr(1, static_cast<int>(part.size()) - 2);
 
-            std::pair<int, std::vector<std::string>> tt = splitLogicExpression(part);
-            if (tt.first == -1)
-                return false;
+    //         std::pair<int, std::vector<std::string>> tt = splitLogicExpression(part);
+    //         if (tt.first == -1)
+    //             return false;
 
-            d_graph.addVertex(part, tt.second[0]);
-            d_graph.addEdge(part, i_expr);
-            if (tt.second[0] != "input" && tt.second[0] != "const")
-                parse(part);
-        }
-    }
+    //         d_graph.addVertex(part, tt.second[0]);
+    //         d_graph.addEdge(part, i_expr);
+    //         if (tt.second[0] != "input" && tt.second[0] != "const")
+    //             parse(part);
+    //     }
+    // }
     return true;
 }
 

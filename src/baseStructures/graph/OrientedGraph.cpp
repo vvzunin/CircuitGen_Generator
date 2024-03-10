@@ -127,6 +127,7 @@ OrientedGraph* OrientedGraph::addSubGraph(const std::string i_name) {
 }
 
 bool OrientedGraph::addEdge(GraphVertexBase* from, GraphVertexBase* to) {
+  // TODO: Добавить проверку на разные baseGraph. Если from - output, то to - любой. Либо to - input, а from - любой.
   bool f = from->addVertexToOutConnections(to);
   int n = to->addVertexToInConnections(from);
   return f && (n > 0);

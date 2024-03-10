@@ -8,6 +8,7 @@
 class Parser
 {
 public:
+    // TODO: Переделать парсер под новую реализацию.
     Parser(const std::string &i_logExpression);
     Parser(const std::vector<std::string> &i_logExpressions);
     OrientedGraph getGraph() const;
