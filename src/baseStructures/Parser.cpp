@@ -28,13 +28,11 @@ namespace
 
 Parser::Parser(const std::string &i_logExpression)
 {
-    // d_graph.setVertexCount(0); TODO: wtf? https://github.com/RomeoMe5/CAD_Combinational_Circuits/blob/7ae1fe61eb61e1751147a8598b7a25c976d233b3/Generator/source/Generators/Parsing.cs#L29
     d_logExpressions.push_back(deleteDoubleSpaces(i_logExpression));
 }
 
 Parser::Parser(const std::vector<std::string> &i_logExpressions)
 {
-    // d_graph.setVertexCount(0); TODO: wtf? https://github.com/RomeoMe5/CAD_Combinational_Circuits/blob/7ae1fe61eb61e1751147a8598b7a25c976d233b3/Generator/source/Generators/Parsing.cs#L42
     for (const auto &expression : i_logExpressions)
         d_logExpressions.push_back(expression);
 }

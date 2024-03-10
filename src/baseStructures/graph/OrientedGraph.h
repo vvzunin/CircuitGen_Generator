@@ -63,7 +63,6 @@ public:
   size_t sumFullSize() const;
 
   std::string toVerilog(const std::string &i_path);
-  // toVerilog
   // toAdjencyMatrix
   // toGraphML
   // vizualize

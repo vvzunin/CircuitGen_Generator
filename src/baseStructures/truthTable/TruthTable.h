@@ -19,6 +19,7 @@ public:
     std::vector<std::vector<bool>> getOutTable() const;
     bool getOutTable(int i, int j) const;
     std::vector<std::vector<bool>> convToBinary() const;
+    // TODO: Добавить
     void printTable() const;
     bool operator==(const TruthTable &r) const;
 

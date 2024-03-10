@@ -174,6 +174,7 @@ GraphVertexBase* OrientedGraph::getVerticeByIndex(int idx) const {
 
 std::vector<GraphVertexBase*> OrientedGraph::getVerticesByLevel(const int i_level) {
   this->updateLevels();
+  // TODO: Реализовать
 }
 
 std::vector<GraphVertexBase*> OrientedGraph::getVerticesByType(const VertexTypes i_type, const std::string i_name, const bool i_addSubGraphs) const {
