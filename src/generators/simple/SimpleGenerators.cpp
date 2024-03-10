@@ -605,7 +605,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
         graph.addEdge(input_y, pi, andb);
 
         // TODO КАКОГО ЧЕРТА ВЕРШИНА ИДЕТ КАК РОДИТЕЛЬ, КОГДА ЕЁ ЕЩЁ НЕ СОЗДАЛИ
-        // ВЫ СОЗДАЛИ p1, А p0 ЕЩЁ НЕТ!
+        // ВЫ СОЗДАЛИ p1, А p0 ЕЩЁ НЕТ
         graph.addVertex("((andab" + S + ")" + " or " + "(anda" + pi + ")" + " or " + "(andb" + pi + "))", Gates::GateOr, "p" + NextS);
         graph.addEdge("andab" + S, "p" + NextS, false);
         graph.addEdge("anda" + pi, "p" + NextS, false);
