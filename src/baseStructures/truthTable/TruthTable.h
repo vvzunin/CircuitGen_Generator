@@ -4,16 +4,13 @@
 #include <memory>
 
 #include <settings/Settings.h>
-//#include "generators/genetic/GeneticParameters.h"
-#include "generators/genetic/Chromosome.h"
 
-class TruthTable //: Chromosome
+class TruthTable 
 {
 public:
     TruthTable();
     //virtual void generateRandom(GeneticParameters* i_gp) override;
     void generateTable(double i_p = 0);
-    TruthTable(const Chromosome* i_chr);
     TruthTable(int i_input, int i_output, const std::vector<std::vector<bool>> &i_array = {});
     TruthTable(const TruthTable &i_tt, std::vector<std::vector<bool>> i_array = {});
     TruthTable(int i_input, int i_output, double i_p = 0.5);

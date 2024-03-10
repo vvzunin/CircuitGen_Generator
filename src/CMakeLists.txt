@@ -10,55 +10,50 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(json)
 
 # Add all subdirectories for the project.
-# add_subdirectory(additional)
-# add_subdirectory(api)
+add_subdirectory(additional)
+add_subdirectory(api)
 add_subdirectory(baseStructures)
-# add_subdirectory(circuits)
-# add_subdirectory(database)
-# add_subdirectory(generators)
-# add_subdirectory(parameters)
+add_subdirectory(circuits)
+add_subdirectory(database)
+add_subdirectory(generators)
 add_subdirectory(settings)
 
 # Set all libraries, using in project.
 set(
   PROJECT_LIBS
   # Internal libraries
-  # AuxiliaryMethods
-  # Circuit
-  # DataBaseGenerator
-  # FilesTools
-  # OptimisationUtils
+  AuxiliaryMethods
+  Circuit
+  DataBaseGenerator
+  FilesTools
+  OptimisationUtils
   OrientedGraph
-  # Reliability
+  Reliability
   Settings
-  # ThreadPool
-  # TruthTable
+  ThreadPool
+  TruthTable
   # External libraries
   nlohmann_json::nlohmann_json
 )
 
 # Add source files
 set(SOURCES
-  # additional/AuxiliaryMethods.cpp
-  # additional/filesTools/FilesTools.cpp
-  # additional/threadPool/ThreadPool.cpp
-  # api/generatorAPI.cpp
+  additional/AuxiliaryMethods.cpp
+  additional/filesTools/FilesTools.cpp
+  additional/threadPool/ThreadPool.cpp
+  api/generatorAPI.cpp
   baseStructures/graph/GraphVertexBase.cpp  
   baseStructures/graph/GraphVertexConstant.cpp
   baseStructures/graph/GraphVertexInput.cpp
   baseStructures/graph/GraphVertexGates.cpp
   baseStructures/graph/GraphVertexOutput.cpp
-  baseStructures/graph/OrientedGraph.cpp
-  
-  # baseStructures/Parser.cpp
-  # baseStructures/truthTable/TruthTable.cpp
-  # circuits/Circuit.cpp
-  # database/DataBaseGenerator.cpp
-  # database/DataBaseGeneratorParameters.cpp
-  # generators/simple/SimpleGenerators.cpp
-  # parameters/optimisations/AbcUtils.cpp
-  # parameters/optimisations/YosysUtils.cpp
-  # parameters/reliability/Reliability.cpp
+  baseStructures/graph/OrientedGraph.cpp  
+  baseStructures/Parser.cpp
+  baseStructures/truthTable/TruthTable.cpp
+  circuits/Circuit.cpp
+  database/DataBaseGenerator.cpp
+  database/DataBaseGeneratorParameters.cpp
+  generators/simple/SimpleGenerators.cpp
   settings/Settings.cpp
 
   main.cpp

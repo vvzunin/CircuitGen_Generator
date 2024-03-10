@@ -155,7 +155,7 @@ int AuxMethods::skipSpaces(const std::string &i_s, int i_start)
 }
 
 Circuit AuxMethods::parseVerilog(const std::string &i_filepath)
-{
+{/*
     const int MODULE_WORD_SIZE = 7;
     const int INPUT_WORD_SIZE = 6;
     const int OUTPUT_WORD_SIZE = 7;
@@ -245,8 +245,8 @@ Circuit AuxMethods::parseVerilog(const std::string &i_filepath)
                         verilog_module.find('(') + 1, end - 2 - verilog_module.find('(')));
                 std::vector<std::string> wires = splitString(wireList, ',');
 
-                int tt = circuit.getIndexOfWireName(wires[0]);
-                if (tt != -1 && circuit.getVertice(tt).getOperation() == "output")
+                std::vector<GraphVertexBase*> tt = circuit.getIndexOfWireName(wires[0]);
+                if (tt.size() != 0 && circuit.getVertice(tt).getOperation() == "output")
                 {
                     std::string w = "ewr_" + std::to_string(n++);
                     circuit.addVertex(w, "none", w);
@@ -295,4 +295,5 @@ Circuit AuxMethods::parseVerilog(const std::string &i_filepath)
         }
     }
     return circuit;
+    */
 }

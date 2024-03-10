@@ -9,7 +9,7 @@
 
 #include <baseStructures/graph/enums.h>
 
-class OrientedGraph;
+class OrientedGraph; // Проблема циклического определения
 class GraphVertexBase {
 public:
   GraphVertexBase(
@@ -37,7 +37,7 @@ public:
   virtual char updateValue() = 0;
 
   // Get-Set для уровня
-  void setLevel(const unsigned i_name);
+  void setLevel(const unsigned i_level);
   unsigned getLevel() const;
 
   virtual void updateLevel();

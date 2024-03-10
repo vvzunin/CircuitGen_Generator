@@ -9,8 +9,8 @@
 #include <baseStructures/graph/enums.h>
 #include <settings/Settings.h>
 
-class GraphVertexBase;
-class OrientedGraph{
+class GraphVertexBase; // Проблема циклического определения
+class OrientedGraph {
 public:
   //friend class Circuit;
   OrientedGraph(const std::string i_name = "");
@@ -26,6 +26,7 @@ public:
   // Имеются ли в схеме какие-либо vertex
   bool isEmptyFull() const;
   
+  void setName(const std::string &i_name);
   std::string getName() const;
   bool needToUpdateLevel() const;
 
@@ -34,6 +35,7 @@ public:
   void setBaseGraph(OrientedGraph* const i_baseGraph);
   OrientedGraph* getBaseGraph() const;
 
+  // TODO: Заменить все const на const &
   GraphVertexBase* addInput(const std::string i_name = "");
   GraphVertexBase* addOutput(const std::string i_name = "");
   GraphVertexBase* addConst(const char i_value, const std::string i_name = "");
@@ -49,6 +51,7 @@ public:
   // toAdjencyMatrix
   // toGraphML
   // vizualize
+  // calcGraph
 
   // Сделать матрицу смежности для зранения и быстрого поиска связей?
 
@@ -62,10 +65,8 @@ private:
   
   std::string d_name;
 
+  // Пока не реализован функционал.
   bool d_needLevelUpdate = true;
-
-  std::vector<GraphVertexBase*> d_allBaseVertexes;
-  //std::vector<std::vector<std::pair<int, int>>> d_adjMatrix;
   
   std::vector<OrientedGraph*> d_subGraphs;
   std::map<VertexTypes, std::vector<GraphVertexBase*>> d_vertexes{

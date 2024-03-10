@@ -54,6 +54,10 @@ bool OrientedGraph::isEmptyFull() const {
   return f;
 }
 
+void setName(const std::string &i_name) {
+  d_name = i_name;
+}
+
 std::string OrientedGraph::getName() const {
   return d_name;
 }
@@ -81,16 +85,12 @@ GraphVertexBase* OrientedGraph::addInput(const std::string i_name) {
   GraphVertexBase* newVertex = new GraphVertexInput(i_name, this);
   d_vertexes[VertexTypes::input].push_back(newVertex);
 
-  d_allBaseVertexes.push_back(newVertex);
-
   return newVertex;
 }
 
 GraphVertexBase* OrientedGraph::addOutput(const std::string i_name) {
   GraphVertexBase* newVertex = new GraphVertexOutput(i_name, this);
   d_vertexes[VertexTypes::output].push_back(newVertex);
-
-  d_allBaseVertexes.push_back(newVertex);
 
   return newVertex;
 }
@@ -99,16 +99,12 @@ GraphVertexBase* OrientedGraph::addConst(const char i_value, const std::string i
   GraphVertexBase* newVertex = new GraphVertexConstant(i_value, i_name, this);
   d_vertexes[VertexTypes::constant].push_back(newVertex);
 
-  d_allBaseVertexes.push_back(newVertex);
-
   return newVertex;
 }
 
 GraphVertexBase* OrientedGraph::addGate(const Gates i_gate, const std::string i_name) {
   GraphVertexBase* newVertex = new GraphVertexGates(i_gate, i_name, this);
   d_vertexes[VertexTypes::gate].push_back(newVertex);
-
-  d_allBaseVertexes.push_back(newVertex);
 
   return newVertex;
 }
@@ -141,6 +137,12 @@ std::vector<OrientedGraph*> OrientedGraph::getSubGraphs() const {
 std::map<VertexTypes, std::vector<GraphVertexBase*>> OrientedGraph::getBaseVertexes() const {
   return d_vertexes;
 }
+
+std::vector<GraphVertexBase*> OrientedGraph::getVerticesByLevel(const int i_level) const {
+  this->updateLevels();
+
+}
+
 
 std::vector<GraphVertexBase*> OrientedGraph::getVerticesByType(const VertexTypes i_type) const {
   return d_vertexes.at(i_type);

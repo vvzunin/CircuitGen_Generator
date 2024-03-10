@@ -18,7 +18,6 @@ using namespace std::chrono;
 
 int main(int argc, char **argv)
 {
-
   OrientedGraph graph;
   graph.addInput("in1");
   graph.addInput("in2");

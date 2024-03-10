@@ -2,10 +2,8 @@ add_library(
   OrientedGraph 
   SHARED 
 
-  enums.h
-
-  GraphVertexBase.cpp
-  GraphVertexBase.h
+  OrientedGraph.cpp 
+  OrientedGraph.h
 
   GraphVertexConstant.cpp
   GraphVertexInput.cpp
@@ -13,8 +11,10 @@ add_library(
   GraphVertexGates.cpp
   GraphVertex.h
 
-  OrientedGraph.cpp 
-  OrientedGraph.h
+  enums.h
+
+  GraphVertexBase.cpp
+  GraphVertexBase.h  
 )
 
 target_include_directories(

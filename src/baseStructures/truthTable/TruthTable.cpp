@@ -7,13 +7,8 @@
 
 TruthTable::TruthTable()
 {
-    d_settings = Settings::getInstance("TruthTable");
 }
 
-TruthTable::TruthTable(const Chromosome* i_chr)
-{
-    d_settings = Settings::getInstance("TruthTable");
-}
 /*
 void TruthTable::generateRandom(GeneticParameters* i_gp)
 {
