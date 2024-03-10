@@ -73,6 +73,15 @@ void OrientedGraph::updateLevels() {
   // }
 }
 
+unsigned OrientedGraph::getMaxLevel() {
+  this->updateLevels();
+  unsigned mx = 0;
+  for (GraphVertexBase* vert : d_vertexes.at(VertexTypes::output)) {
+    mx = mx < vert->getLevel() ? mx : vert->getLevel();
+  }
+  return mx;
+}
+
 void OrientedGraph::setBaseGraph(OrientedGraph* const i_baseGraph) {
   d_baseGraph = i_baseGraph;
 }
@@ -172,4 +181,115 @@ std::vector<GraphVertexBase*> OrientedGraph::getVerticesByName(const std::string
       resVert.insert(resVert.end(), subResVert.begin(), subResVert.end());
     }
   return resVert;
+}
+
+std::string OrientedGraph::toVerilog(const std::string &i_path) {
+  //int previousSizeOfFileName = filename.size();
+  // filename = i_path;
+
+  // std::vector<std::string> inputs = d_graph->getVerticesByType("input");
+  // std::vector<std::string> outputs = d_graph->getVerticesByType("output");
+  // std::vector<std::string> consts = d_graph->getVerticesByType("const");
+
+  // int pos = (s.find_last_of('/')) + 1;
+  // int pos2 = (filename.find_last_of('/')) + 1;
+
+  // if (previousSizeOfFileName == 0)
+  //     s = std::filesystem::current_path().string() + "/" + filename; // static variable will be created one time and then will be used throught running of the program
+  // else
+  //     s.replace(pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName);
+
+  // bool f = std::filesystem::exists(s);
+
+  // std::ofstream w(filename);
+  // for (const auto &expr : d_logExpressions)
+  //     w << "//" << expr << '\n';
+
+  // w << "module " << d_circuitName << "(";
+
+  // std::string in = "";
+  // std::string out = "";
+
+  // const std::string inputModule = "\tinput";
+  // const std::string outputModule = "\toutput";
+
+  // for (const auto &in_i : inputs)
+  //     if (in_i.find("x") != std::string::npos)
+  //         in += " " + in_i + ",";
+
+  // if (in.length())
+  // {
+  //     w << in;
+  //     in[in.length() - 1] = ';';
+  // }
+
+  // bool first = true;
+  // for (const auto &output : outputs)
+  // {
+  //     if (first)
+  //     {
+  //         out += " ";
+  //         first = false;
+  //     }
+  //     else
+  //     {
+  //         out += ", ";
+  //     }
+  //     out += output;
+  // }
+  // w << out << " );\n\n";
+
+  // if (in.length())
+  //     w << inputModule << in << '\n';
+  // w << outputModule << out << ";\n";
+
+  // if (d_graph->size() - inputs.size() - outputs.size() - consts.size() > 0)
+  // {
+  //     w << "\n\twire";
+  //     bool first = true;
+  //     for (const auto &vert : d_graph->getVertices())
+  //     {
+  //         if (vert.getOperation() != "input" && vert.getOperation() != "output" && vert.getOperation() != "const")
+  //         {
+  //             if (first)
+  //             {
+  //                 w << " " << vert.getWireName();
+  //                 first = false;
+  //             }
+  //             else
+  //             {
+  //                 w << ", " << vert.getWireName();
+  //             }
+  //         }
+  //     }
+  //     w << ";\n"
+  //       << std::endl;
+  // }
+
+  // for (int j = 0; j < d_graph->size(); ++j)
+  // {
+  //     if (d_graph->getVertice(j).getOperation() != "input")
+  //     {
+  //         std::vector<int> inps;
+  //         for (int i = 0; i < d_graph->size(); ++i)
+  //             if (d_graph->getAdjacencyMatrix(i, j))
+  //                 inps.push_back(i);
+
+  //         if (d_graph->getVertice(j).getOperation() != "output" && d_graph->getVertice(j).getOperation() != "const")
+  //         {
+  //             w << "\t" << d_graph->getVertice(j).getOperation() << " ( " << d_graph->getVertice(j).getWireName();
+  //             // TODO: on prev line add instance name
+  //             for (auto k : inps)
+  //                 w << ", " << d_graph->getVertice(k).getWireName();
+  //             w << ");" << std::endl;
+  //         }
+  //         else if (d_graph->getVertice(j).getOperation() == "output" && inps.size() > 0)
+  //         {
+  //             w << "\tassign " << d_graph->getVertice(j).getWireName() << " = " << d_graph->getVertice(inps[0]).getWireName() << ";" << std::endl;
+  //         }
+  //     }
+  // }
+
+  // w << "endmodule" << std::endl;
+  // w.close();
 }

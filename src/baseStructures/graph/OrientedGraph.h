@@ -17,6 +17,10 @@ public:
 
   virtual ~OrientedGraph();
 
+  // TODO: Написать руками для полного копирования, а не только указателей.
+  OrientedGraph &operator=(const OrientedGraph &other) = default;
+  OrientedGraph &operator=(OrientedGraph &&other) = default;
+
   // Количество gate в графе, за исключением подграфов
   int baseSize() const;
   // Количество gate в графе, включая подграфы
@@ -31,6 +35,8 @@ public:
   bool needToUpdateLevel() const;
 
   void updateLevels();
+
+  unsigned getMaxLevel();
 
   void setBaseGraph(OrientedGraph* const i_baseGraph);
   OrientedGraph* getBaseGraph() const;
@@ -47,6 +53,8 @@ public:
 
   std::vector<OrientedGraph*> getSubGraphs() const;
   std::map<VertexTypes, std::vector<GraphVertexBase*>> getBaseVertexes() const;
+
+  std::string toVerilog(const std::string &i_path);
   // toVerilog
   // toAdjencyMatrix
   // toGraphML

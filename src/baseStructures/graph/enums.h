@@ -2,8 +2,6 @@
 
 #include <map>
 
-enum VertexTypes {input, output, constant, gate};
-
 const std::map<char, std::map<char, char>> tableAnd{
   {'0', {{'0', '0'}, {'1', '0'}, {'x', '0'}, {'z', '0'}}},
   {'1', {{'0', '0'}, {'1', '1'}, {'x', 'x'}, {'z', 'x'}}},
