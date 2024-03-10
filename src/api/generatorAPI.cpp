@@ -52,8 +52,8 @@ void runGenerationFromJson(std::string json_path)
       gt = GenerationTypes::RandLevel;
     else if (data["type_of_generation"] == "Num Operation")
       gt = GenerationTypes::NumOperation;
-    else if (data["type_of_generation"] == "Genetic")
-      gt = GenerationTypes::Genetic;
+    // else if (data["type_of_generation"] == "Genetic")
+    //   gt = GenerationTypes::Genetic;
     else {
       std::cerr << "Unsupported generation type" << std::endl;
       return;
@@ -94,20 +94,7 @@ void runGenerationFromJson(std::string json_path)
       std::cout << "repeat_n is not in json" << std::endl;
     }
 
-    // this is for ABC
-    bool calculateStatsAbc = 
-      data.contains("calculate_stats_abc") ? 
-      (bool)data["calculate_stats_abc"] : 
-      false;
-    bool makeOptimizedFiles = 
-      data.contains("make_optimized_files") ? 
-      (bool)data["make_optimized_files"] : 
-      false;
-    std::string libraryName = 
-      data.contains("library_name") ? 
-      (std::string)data["library_name"] : "";
-
-    // Считывание информации по логичсеким элементам.
+    // Считывание информации по логическим элементам.
     std::map<std::string, std::vector<int>> gatesInputsInfo;
 
     if (data.contains("gates_inputs_info"))
@@ -140,10 +127,7 @@ void runGenerationFromJson(std::string json_path)
         requestId,
         minInputs,
         minOutputs,
-        repeats,
-        libraryName,
-        calculateStatsAbc,
-        makeOptimizedFiles);
+        repeats);
 
     gp.setGatesInputInfo(gatesInputsInfo);
     // ------------------------------------------------------------------------  
@@ -191,9 +175,9 @@ void runGenerationFromJson(std::string json_path)
     }
 
     // Основные параметры для Genetic
-    if (data["type_of_generation"] == "Genetic") {
+    // if (data["type_of_generation"] == "Genetic") {
       
-      int numOfSurv = 1;
+    //   int numOfSurv = 1;
       /*
       if (data.contains("surv_num"))
         int numOfSurv = data["surv_num"];
@@ -335,7 +319,7 @@ void runGenerationFromJson(std::string json_path)
       //gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType, ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
 
       */
-    }
+    // }
     
     
     DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp);

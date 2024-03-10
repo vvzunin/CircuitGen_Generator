@@ -10,9 +10,3 @@ target_include_directories(
   PUBLIC 
   ${PROJECT_SOURCE_DIR}/src
 )
-
-target_link_libraries(
-  Circuit 
-  PUBLIC 
-  OptimisationUtils
-)

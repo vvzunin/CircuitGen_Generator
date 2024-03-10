@@ -15,4 +15,5 @@ target_link_libraries(
   PUBLIC 
   AuxiliaryMethods
   DataBaseGenerator
+  nlohmann_json::nlohmann_json
 )

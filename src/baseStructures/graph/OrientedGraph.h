@@ -15,11 +15,15 @@ public:
   //friend class Circuit;
   OrientedGraph(const std::string i_name = "");
 
+  // TODO: Добавить использование gates_inputs_info.
+
   virtual ~OrientedGraph();
 
   // TODO: Написать руками для полного копирования, а не только указателей.
   OrientedGraph &operator=(const OrientedGraph &other) = default;
   OrientedGraph &operator=(OrientedGraph &&other) = default;
+  OrientedGraph(const OrientedGraph &other) = default;
+  OrientedGraph(OrientedGraph &&other);
 
   // Количество gate в графе, за исключением подграфов
   int baseSize() const;
