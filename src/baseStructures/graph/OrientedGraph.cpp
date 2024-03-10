@@ -138,14 +138,25 @@ std::map<VertexTypes, std::vector<GraphVertexBase*>> OrientedGraph::getBaseVerte
   return d_vertexes;
 }
 
-std::vector<GraphVertexBase*> OrientedGraph::getVerticesByLevel(const int i_level) const {
+std::vector<GraphVertexBase*> OrientedGraph::getVerticesByLevel(const int i_level) {
   this->updateLevels();
-
 }
 
+std::vector<GraphVertexBase*> OrientedGraph::getVerticesByType(const VertexTypes i_type, const std::string i_name, const bool i_addSubGraphs) const {
+  if (i_name.size() != 0)
+    return d_vertexes.at(i_type);
 
-std::vector<GraphVertexBase*> OrientedGraph::getVerticesByType(const VertexTypes i_type) const {
-  return d_vertexes.at(i_type);
+  std::vector<GraphVertexBase*> resVert;
+  for (GraphVertexBase* vert : d_vertexes.at(i_type))
+    if (vert->getName() == i_name)
+      resVert.push_back(vert);
+  
+  if (i_addSubGraphs)
+    for (OrientedGraph* vert : d_subGraphs) {
+      std::vector<GraphVertexBase*> subResVert = vert->getVerticesByType(i_type, i_name, i_addSubGraphs);
+      resVert.insert(resVert.end(), subResVert.begin(), subResVert.end());
+    }
+  return resVert;
 }
 
 std::vector<GraphVertexBase*> OrientedGraph::getVerticesByName(const std::string i_name, const bool i_addSubGraphs) const {

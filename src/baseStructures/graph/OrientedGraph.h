@@ -55,8 +55,8 @@ public:
 
   // Сделать матрицу смежности для зранения и быстрого поиска связей?
 
-  std::vector<GraphVertexBase*> getVerticesByType(const VertexTypes i_type) const;
-  std::vector<GraphVertexBase*> getVerticesByLevel(const int i_level) const;
+  std::vector<GraphVertexBase*> getVerticesByType(const VertexTypes i_type, const std::string i_name = "", const bool i_addSubGraphs = false) const;
+  std::vector<GraphVertexBase*> getVerticesByLevel(const int i_level);
 
   std::vector<GraphVertexBase*> getVerticesByName(const std::string i_name, const bool i_addSubGraphs = false) const;
 
