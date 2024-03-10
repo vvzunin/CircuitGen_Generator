@@ -8,5 +8,5 @@ add_library(
 target_include_directories(
   Settings 
   PUBLIC
-  .
+  ${CMAKE_SOURCE_DIR}/src/settings
 )

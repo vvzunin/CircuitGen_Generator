@@ -10,74 +10,55 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(json)
 
 # Add all subdirectories for the project.
-add_subdirectory(additional)
+# add_subdirectory(additional)
+# add_subdirectory(api)
 add_subdirectory(baseStructures)
-add_subdirectory(circuits)
-add_subdirectory(database)
-add_subdirectory(generators)
-add_subdirectory(optimisations)
-add_subdirectory(parameters)
+# add_subdirectory(circuits)
+# add_subdirectory(database)
+# add_subdirectory(generators)
+# add_subdirectory(parameters)
 add_subdirectory(settings)
 
 # Set all libraries, using in project.
 set(
   PROJECT_LIBS
   # Internal libraries
-  AuxiliaryMethods
-  Circuit
-  DataBaseGenerator
-  FilesTools
-  GraphVertex
-  OptimisationUtils
+  # AuxiliaryMethods
+  # Circuit
+  # DataBaseGenerator
+  # FilesTools
+  # OptimisationUtils
   OrientedGraph
-  Reliability
+  # Reliability
   Settings
-  ThreadPool
-  TruthTable
+  # ThreadPool
+  # TruthTable
   # External libraries
   nlohmann_json::nlohmann_json
 )
 
 # Add source files
 set(SOURCES
-  additional/AuxiliaryMethods.cpp
-  additional/filesTools/FilesTools.cpp
-  additional/threadPool/ThreadPool.cpp
-  api/generatorAPI.cpp
+  # additional/AuxiliaryMethods.cpp
+  # additional/filesTools/FilesTools.cpp
+  # additional/threadPool/ThreadPool.cpp
+  # api/generatorAPI.cpp
   baseStructures/graph/GraphVertexBase.cpp  
   baseStructures/graph/GraphVertexConstant.cpp
   baseStructures/graph/GraphVertexInput.cpp
+  baseStructures/graph/GraphVertexGates.cpp
   baseStructures/graph/GraphVertexOutput.cpp
   baseStructures/graph/OrientedGraph.cpp
   
-
-
-  baseStructures/Parser.cpp
-  baseStructures/truthTable/TruthTable.cpp
-  circuits/Circuit.cpp
-  database/DataBaseGenerator.cpp
-  database/DataBaseGeneratorParameters.cpp
-  generators/GenerationParameters.cpp
-  generators/Genetic/Chromosome.cpp
-  generators/Genetic/ChromosomeType.cpp
-  # generators/Genetic/GeneticParameters.cpp
-  # generators/Genetic/GenGenerator.cpp
-  # generators/Genetic/Mutations/Mutation.cpp
-  # generators/Genetic/Mutations/MutationParameters.cpp
-  # generators/Genetic/Mutations/MutationTruthTable.cpp
-  # generators/Genetic/Parents/Parents.cpp
-  # generators/Genetic/Parents/ParentsParameters.cpp
-  # generators/Genetic/Parents/ParentsTruthTable.cpp
-  # generators/Genetic/Recombination/RecombinationParameters.cpp
-  # generators/Genetic/Recombination/Recombinations.cpp
-  # generators/Genetic/Recombination/RecombinationsTruthTable.cpp
-  # generators/Genetic/Selections/SelectionParameters.cpp
-  # generators/Genetic/Selections/Selections.cpp
-  # generators/Genetic/Selections/SelectionsTruthTable.cpp
-  generators/simple/SimpleGenerators.cpp
-  optimisations/AbcUtils.cpp
-  optimisations/YosysUtils.cpp
-  parameters/reliability/Reliability.cpp
+  # baseStructures/Parser.cpp
+  # baseStructures/truthTable/TruthTable.cpp
+  # circuits/Circuit.cpp
+  # database/DataBaseGenerator.cpp
+  # database/DataBaseGeneratorParameters.cpp
+  # generators/simple/SimpleGenerators.cpp
+  # parameters/optimisations/AbcUtils.cpp
+  # parameters/optimisations/YosysUtils.cpp
+  # parameters/reliability/Reliability.cpp
   settings/Settings.cpp
 
   main.cpp
@@ -92,9 +73,6 @@ add_executable(${MAIN_TARGET} ${SOURCES})
 
 # Add all internal libraries in the project
 target_link_libraries(${MAIN_TARGET} ${PROJECT_LIBS} Threads::Threads)
-
-
-
 
 # -----------------------------------------------------------------------------
 # Link to shared library

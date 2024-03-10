@@ -3,15 +3,24 @@
 #include <string>
 #include <vector>
 
-#include "Settings.h"
+#include "settings/Settings.h"
+
 #include "OrientedGraph.h"
 
-enum VertexTypes {input, output, constant, gate, graph};
+#include <baseStructures/graph/enums.h>
 
+class OrientedGraph;
 class GraphVertexBase {
 public:
-  GraphVertexBase(OrientedGraph* const i_baseGraph, const VertexTypes i_type, const std::string i_name);
-  GraphVertexBase(OrientedGraph* const i_baseGraph, VertexTypes i_type, const std::string i_name, int i_inputs, int i_outputs);
+  GraphVertexBase(
+    const VertexTypes i_type, 
+    OrientedGraph* const i_graph = nullptr);
+
+  GraphVertexBase(
+    const VertexTypes i_type, 
+    const std::string i_name, 
+    OrientedGraph* const i_graph = nullptr);
+
   virtual ~GraphVertexBase();
   
   // Get для типа вершины
@@ -34,24 +43,34 @@ public:
   virtual void updateLevel();
 
   // Get-Set для базового графа
-  void setBaseGraph(OrientedGraph* const i_baseGraph);
-  OrientedGraph* setBaseGraph() const;
+  // void setBaseGraph(OrientedGraph* const i_baseGraph);
+  OrientedGraph* getBaseGraph() const;
 
+  std::vector<GraphVertexBase*> getInConnections() const;
+  int addVertexToInConnections(GraphVertexBase* const i_vert);
+  bool removeVertexToInConnections(GraphVertexBase* const i_vert, bool i_full = false);
+
+  std::vector<GraphVertexBase*> getOutConnections() const;
+  bool addVertexToOutConnections(GraphVertexBase* const i_vert);
+  bool removeVertexToOutConnections(GraphVertexBase* const i_vert);
 
 protected:
 
-  OrientedGraph* d_baseGraph = nullptr;
+  GraphVertexBase* d_baseGraph = nullptr;
   
   std::string d_name;
   char d_value;
   unsigned d_level;
+  
   std::vector<GraphVertexBase*> d_inConnections;
   std::vector<GraphVertexBase*> d_outConnections;
 
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertexBase");
 private:
+
   // Определяем тип вершины: подграф, вход, выход, константа или одна из базовых логических операций.
   VertexTypes d_type;    
 
+  // Счетчик вершин для именования и подобного
   static uint_fast64_t d_count;
 };

@@ -1,10 +1,24 @@
 #include "GraphVertex.h"
 #include <iostream>
 
-GraphVertexGates::GraphVertexGates(OrientedGraph* i_baseGraph, int i_inputs, Gates i_gate) : GraphVertexBase{VertexTypes::gate, i_inputs, 1}
-{  
+GraphVertexGates::GraphVertexGates(
+  Gates i_gate, 
+  OrientedGraph* const i_baseGraph)
+: GraphVertexBase (
+    VertexTypes::gate,
+    i_baseGraph) {
   d_gate = i_gate;
-  d_baseGraph = i_baseGraph;
+}
+
+GraphVertexGates::GraphVertexGates(
+  Gates i_gate, 
+  const std::string i_name, 
+  OrientedGraph* const i_baseGraph)
+: GraphVertexBase(
+    VertexTypes::gate,
+    i_name,
+    i_baseGraph) {
+  d_gate = i_gate;
 }
 
 char GraphVertexGates::updateValue() {

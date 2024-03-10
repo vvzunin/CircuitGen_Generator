@@ -7,7 +7,7 @@
 #include "CircuitsParameters.h"
 #include <baseStructures/graph/OrientedGraph.h>
 #include <baseStructures/truthTable/TruthTable.h>
-#include <optimisations/StandartUtil.h>
+#include <parameters/optimisations/StandartUtil.h>
 
 class Circuit
 {

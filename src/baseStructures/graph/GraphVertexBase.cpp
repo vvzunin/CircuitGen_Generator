@@ -2,25 +2,27 @@
 
 #include "GraphVertexBase.h"
 
-int GraphVertexBase::d_count = 0;
+uint_fast64_t GraphVertexBase::d_count = 0;
 
-GraphVertexBase::GraphVertexBase(OrientedGraph* const i_baseGraph, const VertexTypes i_type, const std::string i_name) {
-  d_baseGraph = i_baseGraph;
-  d_type = i_type;
-  d_name = i_name;
+GraphVertexBase::GraphVertexBase(
+  const VertexTypes i_type, 
+  OrientedGraph* const i_graph) {
+  // d_baseGraph       = i_graph;
+  d_type            = i_type;
+  d_name            = this->getTypeName() + "_" + std::to_string(d_count++);
+  d_value           = 'x';
+  d_level           = 0;  
 }
 
-GraphVertexBase::GraphVertexBase( OrientedGraph* const i_baseGraph, 
-                                  VertexTypes i_type, 
-                                  const std::string i_name,
-                                  int i_inputs,
-                                  int i_outputs) : d_type{i_type} {
-  d_baseGraph = i_baseGraph;
-  d_name = this->getTypeName() + "_" + std::to_string(d_count++);
-  d_inConnections.resize(i_inputs >= 0 ? i_inputs : 0);
-  d_outConnections.resize(i_outputs >= 0 ? i_outputs : 0);
-  d_value = 'x';
-  d_level = 0;
+GraphVertexBase::GraphVertexBase(
+  const VertexTypes i_type,
+  const std::string i_name, 
+  OrientedGraph* const i_graph) {
+  // d_baseGraph       = i_graph;
+  d_type            = i_type;
+  d_name            = i_name;
+  d_value           = 'x';
+  d_level           = 0;
 }
 
 GraphVertexBase::~GraphVertexBase() {
@@ -41,8 +43,6 @@ std::string GraphVertexBase::getTypeName() const {
       return "const";
     case VertexTypes::gate:
       return "gate";
-    case VertexTypes::graph:
-      return "graph";
     default:
       return "";
   }
@@ -74,10 +74,58 @@ char GraphVertexBase::getValue() const {
   return d_value;
 }
 
-void GraphVertexBase::setBaseGraph(OrientedGraph* const i_baseGraph) {
-  d_baseGraph = i_baseGraph;
+OrientedGraph* GraphVertexBase::getBaseGraph() const {
+  return dynamic_cast<OrientedGraph*>(d_baseGraph);
 }
 
-OrientedGraph* GraphVertexBase::setBaseGraph() const {
-  return d_baseGraph;
+std::vector<GraphVertexBase*> GraphVertexBase::getInConnections() const {
+  return d_inConnections;
+}
+
+int GraphVertexBase::addVertexToInConnections(GraphVertexBase* const i_vert) {
+  d_inConnections.push_back(i_vert);
+  int n = 0;
+  for (GraphVertexBase* vert : d_inConnections)
+    n += (vert == i_vert);
+  return n;
+}
+
+bool GraphVertexBase::removeVertexToInConnections(GraphVertexBase* const i_vert, bool i_full) {
+  if (i_full) {
+    bool f = false;
+    for (int i = d_inConnections.size() - 1; i >= 0; i--) {
+      d_inConnections.erase(d_inConnections.begin() + i);
+      f = true;
+    }
+    return f;
+  } else {
+    for (int i = 0; i < d_inConnections.size(); i++) {
+      d_inConnections.erase(d_inConnections.begin() + i);
+      return true;
+    }
+    return false;
+  }
+}
+
+std::vector<GraphVertexBase*> GraphVertexBase::getOutConnections() const {
+  return d_outConnections;
+}
+
+bool GraphVertexBase::addVertexToOutConnections(GraphVertexBase* const i_vert) {  
+  int n = 0;
+  for (GraphVertexBase* vert : d_outConnections)
+    n += (vert == i_vert);
+  if (n == 0) {
+    d_outConnections.push_back(i_vert);
+    return true;
+  }
+  return false;
+}
+
+bool GraphVertexBase::removeVertexToOutConnections(GraphVertexBase* const i_vert) {
+  for (int i = 0; i < d_outConnections.size(); i++) {
+    d_outConnections.erase(d_outConnections.begin() + i);
+    return true;
+  }
+  return false;
 }

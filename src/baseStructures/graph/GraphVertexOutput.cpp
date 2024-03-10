@@ -1,7 +1,21 @@
 #include "GraphVertex.h"
 
-GraphVertexOutput::GraphVertexOutput() : GraphVertexBase{VertexTypes::output, 1, 0}
-{
+GraphVertexOutput::GraphVertexOutput(
+  OrientedGraph* const i_baseGraph)
+: GraphVertexBase(
+    VertexTypes::output, 
+    i_baseGraph) {
+  
+}
+
+GraphVertexOutput::GraphVertexOutput(
+  const std::string i_name,
+  OrientedGraph* const i_baseGraph)
+: GraphVertexBase(
+    VertexTypes::output,
+    i_name,
+    i_baseGraph) {
+  
 }
 
 char GraphVertexOutput::updateValue() {

@@ -5,15 +5,15 @@
 #include <memory>
 #include <map>
 
-#include "GraphVertex.h"
-#include <generators/Genetic/GeneticParameters.h>
+#include <baseStructures/graph/GraphVertexBase.h>
+#include <baseStructures/graph/enums.h>
+#include <settings/Settings.h>
 
-class GraphVertex;
-class OrientedGraph : protected GraphVertexBase {
+class GraphVertexBase;
+class OrientedGraph{
 public:
   //friend class Circuit;
-  OrientedGraph();
-  OrientedGraph(int i_inputs, int i_outputs);
+  OrientedGraph(const std::string i_name = "");
 
   virtual ~OrientedGraph();
 
@@ -26,31 +26,56 @@ public:
   // Имеются ли в схеме какие-либо vertex
   bool isEmptyFull() const;
   
-  virtual void updateLevel();
-  int getMaxLevel();
+  std::string getName() const;
+  bool needToUpdateLevel() const;
+
+  void updateLevels();
+
+  void setBaseGraph(OrientedGraph* const i_baseGraph);
+  OrientedGraph* getBaseGraph() const;
 
   GraphVertexBase* addInput(const std::string i_name = "");
-  GraphVertexBase* addOutput(const VertexTypes i_type);
-  GraphVertexBase* addConst(const VertexTypes i_type);
-  GraphVertexBase* addGate(const VertexTypes i_type);
+  GraphVertexBase* addOutput(const std::string i_name = "");
+  GraphVertexBase* addConst(const char i_value, const std::string i_name = "");
+  GraphVertexBase* addGate(const Gates i_gate, const std::string i_name = "");
+  OrientedGraph* addSubGraph(const std::string i_name = "");
 
   bool addEdge(GraphVertexBase* from, GraphVertexBase* to);
   bool addEdges(std::vector<GraphVertexBase*> from1, GraphVertexBase* to);
 
+  std::vector<OrientedGraph*> getSubGraphs() const;
+  std::map<VertexTypes, std::vector<GraphVertexBase*>> getBaseVertexes() const;
   // toVerilog
   // toAdjencyMatrix
   // toGraphML
-  // 
+  // vizualize
+
+  // Сделать матрицу смежности для зранения и быстрого поиска связей?
+
+  std::vector<GraphVertexBase*> getVerticesByType(const VertexTypes i_type) const;
+  std::vector<GraphVertexBase*> getVerticesByLevel(const int i_level) const;
+
+  std::vector<GraphVertexBase*> getVerticesByName(const std::string i_name, const bool i_addSubGraphs = false) const;
 
 private:
+  OrientedGraph* d_baseGraph = nullptr;
+  
+  std::string d_name;
+
   bool d_needLevelUpdate = true;
 
+  std::vector<GraphVertexBase*> d_allBaseVertexes;
+  //std::vector<std::vector<std::pair<int, int>>> d_adjMatrix;
+  
+  std::vector<OrientedGraph*> d_subGraphs;
   std::map<VertexTypes, std::vector<GraphVertexBase*>> d_vertexes{
     {VertexTypes::input, std::vector<GraphVertexBase*>()},
     {VertexTypes::output, std::vector<GraphVertexBase*>()},
     {VertexTypes::constant, std::vector<GraphVertexBase*>()},
-    {VertexTypes::graph, std::vector<GraphVertexBase*>()}
+    {VertexTypes::gate, std::vector<GraphVertexBase*>()}
   };
-  
-  std::shared_ptr<Settings> d_settings = Settings::getInstance("OrietedGraph");  
+
+  static uint_fast64_t d_countGraph;
+
+  std::shared_ptr<Settings> d_settings = Settings::getInstance("OrientedGraph");
 };

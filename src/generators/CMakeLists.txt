@@ -1,4 +1,3 @@
-add_subdirectory(genetic)
 add_subdirectory(simple)
 
 add_library(

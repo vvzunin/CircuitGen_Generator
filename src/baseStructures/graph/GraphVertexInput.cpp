@@ -1,12 +1,24 @@
 #include "GraphVertex.h"
 #include <iostream>
 
-GraphVertexInput::GraphVertexInput() : GraphVertexBase{nullptr, VertexTypes::input, 0, 1}
-{
+GraphVertexInput::GraphVertexInput(
+  OrientedGraph* const i_baseGraph,
+  const VertexTypes i_type)
+: GraphVertexBase(
+    i_type, 
+    i_baseGraph) {
+
 }
 
-GraphVertexInput::GraphVertexInput(VertexTypes i_type) : GraphVertexBase{i_type, 0, 1}
-{
+GraphVertexInput::GraphVertexInput(
+  const std::string i_name,
+  OrientedGraph* const i_baseGraph,
+  const VertexTypes i_type)
+: GraphVertexBase(
+    i_type, 
+    i_name, 
+    i_baseGraph) {
+
 }
 
 char GraphVertexInput::updateValue() {

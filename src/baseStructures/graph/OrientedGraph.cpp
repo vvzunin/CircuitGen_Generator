@@ -5,18 +5,17 @@
 #include <vector>
 
 #include "OrientedGraph.h"
-OrientedGraph::OrientedGraph() : 
-GraphVertexBase{VertexTypes::graph}
+#include <baseStructures/graph/GraphVertex.h>
+#include <baseStructures/graph/GraphVertexBase.h>
+
+uint_fast64_t OrientedGraph::d_countGraph = 0;
+
+OrientedGraph::OrientedGraph(const std::string i_name)
 {
-}
-
-
-// Переписать через addVertex
-OrientedGraph::OrientedGraph(int i_inputs, int i_outputs) : 
-GraphVertexBase{VertexTypes::graph}
-{  
-  d_vertexes[VertexTypes::input].resize(i_inputs);
-  d_vertexes[VertexTypes::output].resize(i_outputs);
+  if (i_name == "")
+    d_name = "graph_" + std::to_string(d_countGraph++);
+  else
+    d_name = i_name;
 }
 
 OrientedGraph::~OrientedGraph() {
@@ -24,6 +23,8 @@ OrientedGraph::~OrientedGraph() {
     for (GraphVertexBase* vert : value)
       vert->~GraphVertexBase();
   }
+  for (OrientedGraph* vert : d_subGraphs) 
+    vert->~OrientedGraph();
 }
 
 int OrientedGraph::baseSize() const {
@@ -32,8 +33,8 @@ int OrientedGraph::baseSize() const {
 
 int OrientedGraph::fullSize() const {
   int size = this->baseSize();
-  for (GraphVertexBase* vert : d_vertexes.at(VertexTypes::graph))
-    size += (dynamic_cast<OrientedGraph*>(vert))->fullSize();
+  for (OrientedGraph* vert : d_subGraphs)
+    size += vert->fullSize();
   return size;
 }
 
@@ -48,28 +49,114 @@ bool OrientedGraph::isEmptyFull() const {
   if (!f)
     return f;
   
-  for (GraphVertexBase* vert : d_vertexes.at(VertexTypes::graph))
-    f &= (dynamic_cast<OrientedGraph*>(vert))->isEmptyFull();
+  for (OrientedGraph* vert : d_subGraphs)
+    f &= vert->isEmptyFull();
   return f;
 }
 
-void OrientedGraph::updateLevel() {
-  for (GraphVertexBase* vert : d_vertexes.at(VertexTypes::output)) {
-    vert->updateLevel();
-    d_level = d_level > vert->getLevel() ? d_level : vert->getLevel();
-  }
+std::string OrientedGraph::getName() const {
+  return d_name;
 }
 
-int OrientedGraph::getMaxLevel() {
-  if (d_needLevelUpdate)
-    this->updateLevel();
-  int maxLevel = -1;
-  for (GraphVertexBase* vert : d_vertexes.at(VertexTypes::output))
-    maxLevel = vert->getLevel() > maxLevel ? vert->getLevel() : maxLevel;
-  return maxLevel;
+bool OrientedGraph::needToUpdateLevel() const {
+  return d_needLevelUpdate;
 }
 
-GraphVertexBase* OrientedGraph::addInput(const std::string i_name = "") {
-  GraphVertexBase* newVertex = new GraphVertexInput(this, i_name);
+void OrientedGraph::updateLevels() {
+  // for (GraphVertexBase* vert : d_vertexes.at(VertexTypes::output)) {
+  //   vert->updateLevel();
+  //   d_level = d_level > vert->getLevel() ? d_level : vert->getLevel();
+  // }
+}
+
+void OrientedGraph::setBaseGraph(OrientedGraph* const i_baseGraph) {
+  d_baseGraph = i_baseGraph;
+}
+
+OrientedGraph* OrientedGraph::getBaseGraph() const {
+  return d_baseGraph;
+}
+
+GraphVertexBase* OrientedGraph::addInput(const std::string i_name) {
+  GraphVertexBase* newVertex = new GraphVertexInput(i_name, this);
   d_vertexes[VertexTypes::input].push_back(newVertex);
+
+  d_allBaseVertexes.push_back(newVertex);
+
+  return newVertex;
+}
+
+GraphVertexBase* OrientedGraph::addOutput(const std::string i_name) {
+  GraphVertexBase* newVertex = new GraphVertexOutput(i_name, this);
+  d_vertexes[VertexTypes::output].push_back(newVertex);
+
+  d_allBaseVertexes.push_back(newVertex);
+
+  return newVertex;
+}
+
+GraphVertexBase* OrientedGraph::addConst(const char i_value, const std::string i_name) {
+  GraphVertexBase* newVertex = new GraphVertexConstant(i_value, i_name, this);
+  d_vertexes[VertexTypes::constant].push_back(newVertex);
+
+  d_allBaseVertexes.push_back(newVertex);
+
+  return newVertex;
+}
+
+GraphVertexBase* OrientedGraph::addGate(const Gates i_gate, const std::string i_name) {
+  GraphVertexBase* newVertex = new GraphVertexGates(i_gate, i_name, this);
+  d_vertexes[VertexTypes::gate].push_back(newVertex);
+
+  d_allBaseVertexes.push_back(newVertex);
+
+  return newVertex;
+}
+
+OrientedGraph* OrientedGraph::addSubGraph(const std::string i_name) {
+  OrientedGraph* newGraph = new OrientedGraph(i_name);
+  d_subGraphs.push_back(newGraph);
+  newGraph->setBaseGraph(this);
+
+  return newGraph;
+}
+
+bool OrientedGraph::addEdge(GraphVertexBase* from, GraphVertexBase* to) {
+  bool f = from->addVertexToOutConnections(to);
+  int n = to->addVertexToInConnections(from);
+  return f && (n > 0);
+}
+
+bool OrientedGraph::addEdges(std::vector<GraphVertexBase*> from1, GraphVertexBase* to) {
+  bool f = true;
+  for (GraphVertexBase* vert : from1)
+    f &= this->addEdge(vert, to);
+  return f;
+}
+
+std::vector<OrientedGraph*> OrientedGraph::getSubGraphs() const {
+  return d_subGraphs;
+}
+
+std::map<VertexTypes, std::vector<GraphVertexBase*>> OrientedGraph::getBaseVertexes() const {
+  return d_vertexes;
+}
+
+std::vector<GraphVertexBase*> OrientedGraph::getVerticesByType(const VertexTypes i_type) const {
+  return d_vertexes.at(i_type);
+}
+
+std::vector<GraphVertexBase*> OrientedGraph::getVerticesByName(const std::string i_name, const bool i_addSubGraphs) const {
+  std::vector<GraphVertexBase*> resVert;
+  for (const auto& [key, value] : d_vertexes) {
+    for (GraphVertexBase* vert : value)
+      if (vert->getName() == i_name)
+        resVert.push_back(vert);
+  }
+  if (i_addSubGraphs)
+    for (OrientedGraph* vert : d_subGraphs) {
+      std::vector<GraphVertexBase*> subResVert = vert->getVerticesByName(i_name, i_addSubGraphs);
+      resVert.insert(resVert.end(), subResVert.begin(), subResVert.end());
+    }
+  return resVert;
 }
