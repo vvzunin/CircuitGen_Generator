@@ -57,3 +57,26 @@ char GraphVertexGates::updateValue() {
   }
   return d_value;
 }
+
+std::string GraphVertexGates::calculateHash(bool recalculate) {
+  if (hashed != "" && !recalculate)
+    return hashed;
+  
+  if (d_type == VertexTypes::output && !d_baseGraph)
+    return "";
+  
+  hashed = "";
+  if (d_type == VertexTypes::constant)
+    hashed = d_outConnections.size() + d_value;
+  
+  else if (d_type == VertexTypes::gate)
+    hashed = std::to_string(d_outConnections.size()) + std::to_string(d_gate);
+  
+  for (auto &child : d_outConnections) {
+    hashed += child->calculateHash(recalculate);
+  }
+
+  hashed = std::to_string(std::hash<std::string>{}(hashed));
+
+  return hashed;
+}

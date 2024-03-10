@@ -78,7 +78,11 @@ public:
     OrientedGraph* const i_baseGraph = nullptr);
 
   virtual char updateValue();
+  std::string calculateHash(bool recalculate = false);
   
 private:
   Gates d_gate;
+  std::string hashed;
+  // Определяем тип вершины: подграф, вход, выход, константа или одна из базовых логических операций.
+  VertexTypes d_type;    
 };

@@ -216,6 +216,32 @@ size_t OrientedGraph::sumFullSize() const {
       d_vertexes.at(VertexTypes::output).size();
 }
 
+std::string OrientedGraph::calculateHash(bool recalculate) {
+  if (hashed != "" && !recalculate)
+    return hashed;
+  
+  hashed = "";
+  for (auto &input : d_vertexes[VertexTypes::input]) {
+    hashed += input->calculateHash(recalculate);
+  }
+
+  hashed = std::to_string(std::hash<std::string>{}(hashed));
+
+  return hashed;
+}
+
+bool OrientedGraph::operator== (const OrientedGraph& rhs) {
+  bool correct = rhs.d_vertexes.at(VertexTypes::input).size() != d_vertexes.at(VertexTypes::input).size();
+  correct &= rhs.d_vertexes.at(VertexTypes::output).size() != d_vertexes.at(VertexTypes::output).size();
+  correct &= rhs.d_vertexes.at(VertexTypes::constant).size() != d_vertexes.at(VertexTypes::constant).size();
+  correct &= rhs.d_vertexes.at(VertexTypes::gate).size() != d_vertexes.at(VertexTypes::gate).size();
+
+  if (!correct)
+    return false;
+  
+  return hashed == rhs.hashed && hashed.size();
+}
+
 std::string OrientedGraph::toVerilog(const std::string &i_path) {
   //int previousSizeOfFileName = filename.size();
   // filename = i_path;

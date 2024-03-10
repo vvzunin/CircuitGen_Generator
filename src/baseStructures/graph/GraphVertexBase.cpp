@@ -91,6 +91,26 @@ int GraphVertexBase::addVertexToInConnections(GraphVertexBase* const i_vert) {
   return n;
 }
 
+std::string GraphVertexBase::calculateHash(bool recalculate) {
+  if (hashed != "" && !recalculate)
+    return hashed;
+  
+  if (d_type == VertexTypes::output && !d_baseGraph)
+    return "";
+  
+  hashed = "";
+  if (d_type == VertexTypes::constant)
+    hashed = std::to_string(d_outConnections.size()) + d_value;
+  
+  for (auto &child : d_outConnections) {
+    hashed += child->calculateHash(recalculate);
+  }
+
+  hashed = std::to_string(std::hash<std::string>{}(hashed));
+
+  return hashed;
+}
+
 bool GraphVertexBase::removeVertexToInConnections(GraphVertexBase* const i_vert, bool i_full) {
   if (i_full) {
     bool f = false;

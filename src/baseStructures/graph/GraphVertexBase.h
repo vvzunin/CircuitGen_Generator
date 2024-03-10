@@ -54,6 +54,8 @@ public:
   bool addVertexToOutConnections(GraphVertexBase* const i_vert);
   bool removeVertexToOutConnections(GraphVertexBase* const i_vert);
 
+  std::string calculateHash(bool recalculate = false);
+
 protected:
 
   GraphVertexBase* d_baseGraph = nullptr;
@@ -73,4 +75,5 @@ private:
 
   // Счетчик вершин для именования и подобного
   static uint_fast64_t d_count;
+  std::string hashed = "";
 };

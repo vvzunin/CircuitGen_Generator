@@ -76,7 +76,11 @@ public:
 
   std::vector<GraphVertexBase*> getVerticesByName(const std::string i_name, const bool i_addSubGraphs = false) const;
 
+  bool operator==(const OrientedGraph& rhs);
+  std::string calculateHash(bool recalculate = false);
+
 private:
+  std::string hashed = "";
   OrientedGraph* d_baseGraph = nullptr;
   
   std::string d_name;
