@@ -1,4 +1,5 @@
 ﻿#include <algorithm>
+#include <stdexcept>
 #include <iostream>
 #include <cassert>
 #include <string>
@@ -147,6 +148,29 @@ std::map<VertexTypes, std::vector<GraphVertexBase*>> OrientedGraph::getBaseVerte
   return d_vertexes;
 }
 
+GraphVertexBase* OrientedGraph::getVerticeByIndex(int idx) const {
+  if (sumFullSize() >= idx || idx < 0)
+    throw std::invalid_argument("OrientedGraph getVerticeByIndex: invalid index");
+
+  // firstly - inputs, than - consts, than - gates, last - outputs
+  if (d_vertexes.at(VertexTypes::input).size() - 1 < idx)
+    return d_vertexes.at(VertexTypes::input).at(idx);
+  idx -= d_vertexes.at(VertexTypes::input).size();
+
+  // here const
+  if (d_vertexes.at(VertexTypes::constant).size() - 1 < idx)
+    return d_vertexes.at(VertexTypes::constant).at(idx);
+  idx -= d_vertexes.at(VertexTypes::constant).size();
+
+  // here gate
+  if (d_vertexes.at(VertexTypes::gate).size() - 1 < idx)
+    return d_vertexes.at(VertexTypes::gate).at(idx);
+  idx -= d_vertexes.at(VertexTypes::gate).size();
+
+  // here output
+  return d_vertexes.at(VertexTypes::output).at(idx);
+}
+
 std::vector<GraphVertexBase*> OrientedGraph::getVerticesByLevel(const int i_level) {
   this->updateLevels();
 }
@@ -181,6 +205,14 @@ std::vector<GraphVertexBase*> OrientedGraph::getVerticesByName(const std::string
       resVert.insert(resVert.end(), subResVert.begin(), subResVert.end());
     }
   return resVert;
+}
+
+size_t OrientedGraph::sumFullSize() const {
+  return 
+      d_vertexes.at(VertexTypes::input).size() + 
+      d_vertexes.at(VertexTypes::constant).size() + 
+      d_vertexes.at(VertexTypes::gate).size() + 
+      d_vertexes.at(VertexTypes::output).size();
 }
 
 std::string OrientedGraph::toVerilog(const std::string &i_path) {

@@ -64,6 +64,9 @@ public:
   std::string getNadezhdaVar(const std::string &key) const;
   std::vector<std::string> fromOperationsToHierarchy(int key) const;
   int getNumThread() const;
+  Gates parseStringToGate(std::string i_gate) const {
+    return stringToGate.at(i_gate);
+  }
 
 private:
   void SaveSettings();
@@ -97,6 +100,17 @@ private:
           {"xor", {"xor", 6}},
           {"xnor", {"xnor", 5}}
 
+  };
+
+  std::map<std::string, Gates> stringToGate = {
+          {"and",  Gates::GateAnd},
+          {"nand", Gates::GateNand},
+          {"or",   Gates::GateOr},
+          {"nor",  Gates::GateNor},
+          {"not",  Gates::GateNot},
+          {"buf",  Gates::GateBuf},
+          {"xor",  Gates::GateXor},
+          {"xnor", Gates::GateXnor}
   };
 
   std::vector<Gates> d_logicElements = {

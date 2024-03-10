@@ -85,6 +85,7 @@ std::vector<GraphVertexBase*> GraphVertexBase::getInConnections() const {
 int GraphVertexBase::addVertexToInConnections(GraphVertexBase* const i_vert) {
   d_inConnections.push_back(i_vert);
   int n = 0;
+  // TODO use map<GraphVertexBase*, int> instead of for
   for (GraphVertexBase* vert : d_inConnections)
     n += (vert == i_vert);
   return n;

@@ -32,35 +32,35 @@ namespace
 
 int SimpleGenerators::getRangomAndNumber()
 {
-    return d_gatesInputsInfo["and"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["and"].size())];
+    return d_gatesInputsInfo[Gates::GateAnd][d_randGenerator.getRandInt(0, d_gatesInputsInfo["and"].size())];
 }
 
 int SimpleGenerators::getRangomOrNumber()
 {
-    return d_gatesInputsInfo["or"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["or"].size())];
+    return d_gatesInputsInfo[Gates::GateOr][d_randGenerator.getRandInt(0, d_gatesInputsInfo["or"].size())];
 }
 
 int SimpleGenerators::getRangomNandNumber()
 {
-    return d_gatesInputsInfo["nand"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["nand"].size())];
+    return d_gatesInputsInfo[Gates::GateNand][d_randGenerator.getRandInt(0, d_gatesInputsInfo["nand"].size())];
 }
 
 int SimpleGenerators::getRangomNorNumber()
 {
-    return d_gatesInputsInfo["nor"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["nor"].size())];
+    return d_gatesInputsInfo[Gates::GateNor][d_randGenerator.getRandInt(0, d_gatesInputsInfo["nor"].size())];
 }
 
 int SimpleGenerators::getRangomXorNumber()
 {
-    return d_gatesInputsInfo["xor"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["xor"].size())];
+    return d_gatesInputsInfo[Gates::GateXor][d_randGenerator.getRandInt(0, d_gatesInputsInfo["xor"].size())];
 }
 
 int SimpleGenerators::getRangomXnorNumber()
 {
-    return d_gatesInputsInfo["xnor"][d_randGenerator.getRandInt(0, d_gatesInputsInfo["xnor"].size())];
+    return d_gatesInputsInfo[Gates::GateXnor][d_randGenerator.getRandInt(0, d_gatesInputsInfo["xnor"].size())];
 }
 
-std::pair<std::string, int> SimpleGenerators::getRandomElement(const GatesInfo &i_info)
+std::pair<Gates, int> SimpleGenerators::getRandomElement(const GatesInfo &i_info)
 {
     // rand element of map
     auto val = i_info.begin();
@@ -74,13 +74,13 @@ std::pair<std::string, int> SimpleGenerators::getRandomElement(const GatesInfo &
         val->second[d_randGenerator.getRandInt(0, val->second.size())]);
 }
 
-std::pair<std::string, int> SimpleGenerators::getRandomElement(u_int32_t i_gatesLimit)
+std::pair<Gates, int> SimpleGenerators::getRandomElement(u_int32_t i_gatesLimit)
 {
     if (i_gatesLimit >= d_maxGateNumber)
         return getRandomElement(d_gatesInputsInfo);
 
     if (i_gatesLimit <= 1)
-        return std::make_pair(d_randGenerator.getRandInt(0, 2) ? "not" : "buf", 1);
+        return std::make_pair(d_randGenerator.getRandInt(0, 2) ? Gates::GateNot : Gates::GateBuf, 1);
 
     GatesInfo info;
     std::vector<int> subval;
@@ -232,31 +232,20 @@ OrientedGraph SimpleGenerators::generatorRandLevel(
             if (hasOneGate[choice])
             {
                 child1 = d_randGenerator.getRandInt(0, currIndex);
-                expr = d_settings->fromOperationsToName(logOper[choice]) + " (" +
-                       graph.getVertice(child1).getLogicExpression() + ")";
 
-                GraphVertexBase* newVertex = graph.addGate(logOper[choice]);
-                graph.addEdge(graph.getVertice(child1).getLogicExpression(), graph.getVertice(currIndex + position).getLogicExpression());
-                else
-                    --position;
+                GraphVertexBase *newVertex = graph.addGate(logOper[choice]);
+                graph.addEdge(graph.getVerticeByIndex(child1), newVertex);
             }
             else
             {
                 child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
                 child2 = d_randGenerator.getRandInt(prevIndex, currIndex);
 
-                // TODO bad generation!!!!
-                // do not always write operation name
-                expr = "(" + graph.getVertice(child2).getLogicExpression() + " )" +
-                       d_settings->fromOperationsToName(logOper[choice]) + " (" + graph.getVertice(child1).getLogicExpression() + ")";
-                std::size_t hashed = std::hash<std::string>{}(expr);
-
-                if (graph.addVertex(std::to_string(hashed), logOper[choice]))
-                    graph.addDoubleEdge(graph.getVertice(child2).getLogicExpression(),
-                                        graph.getVertice(child1).getLogicExpression(),
-                                        graph.getVertice(currIndex + position).getLogicExpression());
-                else
-                    --position;
+                GraphVertexBase *newVertex = graph.addGate(logOper[choice]);
+                graph.addEdges(
+                    {graph.getVerticeByIndex(child2),
+                     graph.getVerticeByIndex(child1)},
+                    newVertex);
             }
             ++position;
         }
@@ -273,9 +262,10 @@ OrientedGraph SimpleGenerators::generatorRandLevel(
     {
         child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
         expr = "f" + std::to_string(i + 1);
-        graph.addVertex(expr, "output");
-        graph.addEdge(graph.getVertice(child1).getLogicExpression(),
-                      graph.getVertice(currIndex + i).getLogicExpression());
+        GraphVertexBase *newVertex = graph.addOutput(expr);
+        graph.addEdge(
+            graph.getVerticeByIndex(child1),
+            newVertex);
     }
     return graph;
 }
@@ -302,17 +292,24 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     std::string expr;
     OrientedGraph graph;
 
-    std::vector<int> inputs;
     for (int i = 0; i < i_inputs; ++i)
     {
         expr = "x" + std::to_string(i);
-        graph.addVertex(expr, "input");
-        inputs.push_back(i);
+        graph.addInput(expr);
     }
+    // we need it because we:
+    // a) can have less possible parents at current level, than is required by
+    // minimum gates number of a logical element, so we can use inputs in such case
+    // b) need to swap gates
+    std::vector<GraphVertexBase *> inputs = graph.getVerticesByType(VertexTypes::input);
+
+    // TODO what if we will need to use n-gate elements, should we add consts usgae?
 
     int currIndex = i_inputs;
     int prevIndex = 0;
     int curLen = 0;
+    // we need lowest border as d_maxGateNumber, and if it is possible, 
+    // we set it (it changes speed of generation)
     u_int32_t c_max = i_maxElements > d_maxGateNumber ? std::max(d_maxGateNumber, (int)i_minElements) : i_minElements;
 
     for (int i = 1; i < maxLevel; ++i)
@@ -320,17 +317,20 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
         int position = 0;
         // how many elements would be at this level
         int elemLevel = i_maxElements > 1 ? d_randGenerator.getRandInt(c_max, i_maxElements, true) : i_minElements;
-        // write allowed gates
-        std::vector<int> curGates;
+
+        // write allowed gates to be used as parent
+        std::vector<GraphVertexBase *> curGates;
         for (int val = prevIndex; val < currIndex; ++val)
-            curGates.push_back(val);
+            curGates.push_back(graph.getVerticeByIndex(val));
         curLen += curGates.size();
 
         for (int j = 0; j < elemLevel; ++j)
         {
             // we use inputs only if we are not on the first level
             auto [operation, gatesNumber] = getRandomElement(curLen);
-
+            // from which element we should start shuffle
+            // like we do not shuffle whole list, if it is possible
+            // but only it's part
             int fromWhichShuffle = d_randGenerator.getRandInt(0, std::max(0, (int)curGates.size() - gatesNumber));
             // shuffle curGates
             for (int k = fromWhichShuffle, stopVal = std::min(fromWhichShuffle + gatesNumber, (int)curGates.size());
@@ -342,37 +342,30 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
             if (gatesNumber == 1)
             {
                 int child1 = d_randGenerator.getRandInt(0, currIndex);
-                expr = d_settings->fromOperationsToName(operation) + " (" +
-                       graph.getVertice(child1).getLogicExpression() + ")";
 
-                if (graph.addVertex(expr, operation))
-                    graph.addEdge(graph.getVertice(child1).getLogicExpression(), graph.getVertice(currIndex + position).getLogicExpression());
-                else
-                    --position;
+                GraphVertexBase *newVertex = graph.addVertex(operation);
+                graph.addEdge(graph.getVerticeByIndex(child1), newVertex);
             }
             else
             {
-                // children vertexes to be added for a new one
-                std::vector<std::string> children;
+                // parents vertexes to be added for a new one
+                std::vector<GraphVertexBase *> parents;
                 // set memory (might be big, so we save time)
-                children.reserve(gatesNumber);
+                parents.reserve(gatesNumber);
                 auto idx = curGates.begin() + fromWhichShuffle;
 
-                // add first child
-                children.push_back(graph.getVertice(*idx).getLogicExpression());
-                expr = d_settings->fromOperationsToName(operation);
-                expr += "(" + children.back();
+                // add first parent
+                parents.push_back(*idx);
                 // move to second
                 // it's impossible to have 1-element vector here
                 // else we would have curLen = 1 and only buf/not
                 // so it's safe
                 ++idx;
 
-                // add multiple children
+                // add multiple parents
                 for (int l = 1; l < gatesNumber; ++l, ++idx)
                 {
-                    children.push_back(graph.getVertice(*idx).getLogicExpression());
-                    expr += children.back() + " ";
+                    parents.push_back(*idx);
 
                     // if we are at the end of vector
                     if (idx == curGates.end())
@@ -393,16 +386,11 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
                     else if (idx == inputs.end())
                         idx = curGates.begin();
                 }
-                expr += " )";
-                std::size_t hashed = std::hash<std::string>{}(expr);
 
-                if (graph.addVertex(std::to_string(hashed), operation))
-                    graph.addMultipleEdge(children,
-                                          graph.getVertice(currIndex + position).getLogicExpression());
-                else
-                {
-                    --position;
-                }
+                GraphVertexBase *newVertex = graph.addGate(std::to_string(hashed), operation);
+                graph.addEdges(
+                    parents,
+                    newVertex);
             }
             ++position;
         }
@@ -419,10 +407,13 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     {
         int child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
         expr = "f" + std::to_string(i + 1);
-        graph.addVertex(expr, "output");
-        graph.addEdge(graph.getVertice(child1).getLogicExpression(),
-                      graph.getVertice(currIndex + i).getLogicExpression());
+        GraphVertexBase *newVertex = graph.addOutput(expr);
+
+        graph.addEdge(
+            graph.getVerticeByIndex(child1).getLogicExpression(),
+            newVertex);
     }
+
     std::clog << "writting out gates ended" << std::endl;
     return graph;
 }
@@ -450,7 +441,9 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
     for (int i = 0; i < i_input; ++i)
     {
         name = "x" + std::to_string(i);
-        graph.addVertex(name, "input");
+        graph.addInput(name);
+
+        // TODO and how can it be changed?
         levelName[name] = graph.getVertice(graph.getIndexOfExpression(name)).getLevel();
         if (!i_leaveEmptyOut)
             nameInput.push_back(name);
@@ -459,7 +452,7 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
     for (int i = 0; i < i_output; ++i)
     {
         name = "f" + std::to_string(i);
-        graph.addVertex(name, "output");
+        graph.addOutput(name);
         nameOut.push_back(name);
     }
 
@@ -469,10 +462,11 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
     for (int i = 0; i < sumOper; ++i)
     {
         copyLogicOper = delNull(copyLogicOper); // TODO: optimize
+        // TODO change whole gen
         std::string oper = randomGenerator(copyLogicOper);
         copyLogicOper[oper]--;
 
-        if (oper == "not" || oper == "buf")
+        if (oper == Gates::GateNot || oper == "buf")
         {
             std::string ver1 = randomGenerator(levelName);
             name = d_settings->getLogicOperation(oper).first + "(" + ver1 + ")";
@@ -568,9 +562,9 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
 {
     OrientedGraph graph;
     if (overflowIn)
-        graph.addVertex("p0", "input");
+        graph.addInput("p0");
     if (act)
-        graph.addVertex("1", "const");
+        graph.addConst('1');
     std::string pi;
     std::string x;
     std::string y;
@@ -582,34 +576,37 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
         std::string S = std::to_string(i);
         x = "suma" + cond + S;
         y = "sumb" + cond + S;
-        graph.addVertex(x, "input");
-        graph.addVertex(y, "input");
+        GraphVertexBase* input_x = graph.addInput(x);
+        GraphVertexBase* input_y = graph.addInput(y);
         if (minus)
         {
-            graph.addVertex("not (" + x + ")", "not", "na" + S);
-            graph.addVertex("not (" + y + ")", "not", "nb" + S);
-            graph.addEdge(x, "na" + S, false);
-            graph.addEdge(y, "nb" + S, false);
+            GraphVertexBase* v1 = graph.addGate(Gates::GateNot, "na" + S);
+            GraphVertexBase* v2 = graph.addVertex(Gates::GateNot, "nb" + S);
+            graph.addEdge(input_x, v1, false);
+            graph.addEdge(input_y, v2, false);
             x = "na" + S;
             y = "nb" + S;
         }
         if (!act)
         {
-            graph.addVertex(z + S, "output");
+            graph.addOutput(z + S);
         }
 
-        graph.addVertex("(" + x + " and " + y + ")", "and", "andab" + S);
+        GraphVertexBase* andab = graph.addGate(Gates::GateAnd, "andab" + S);
 
         std::string NextS = std::to_string(i + 1);
         pi = "p" + S;
-        graph.addVertex("(" + x + " and " + pi + ")", "and", "anda" + pi);
-        graph.addVertex("(" + y + " and " + pi + ")", "and", "andb" + pi);
+        GraphVertexBase* anda = graph.addGate(Gates::GateAnd, "anda" + pi);
+        GraphVertexBase* andb = graph.addGate(Gates::GateAnd, "andb" + pi);
 
-        graph.addDoubleEdge(x, y, "andab" + S, false);
-        graph.addDoubleEdge(x, pi, "anda" + pi, false);
-        graph.addDoubleEdge(y, pi, "andb" + pi, false);
+        // PI ЗДЕСЬ НАДО ЗАМЕНИТЬ НА ССЫЛКУ НА НЕЁ
+        graph.addEdge(input_x, input_y, andab);
+        graph.addEdge(input_x, pi, anda);
+        graph.addEdge(input_y, pi, andb);
 
-        graph.addVertex("((andab" + S + ")" + " or " + "(anda" + pi + ")" + " or " + "(andb" + pi + "))", "or", "p" + NextS);
+        // TODO КАКОГО ЧЕРТА ВЕРШИНА ИДЕТ КАК РОДИТЕЛЬ, КОГДА ЕЁ ЕЩЁ НЕ СОЗДАЛИ
+        // ВЫ СОЗДАЛИ p1, А p0 ЕЩЁ НЕТ!
+        graph.addVertex("((andab" + S + ")" + " or " + "(anda" + pi + ")" + " or " + "(andb" + pi + "))", Gates::GateOr, "p" + NextS);
         graph.addEdge("andab" + S, "p" + NextS, false);
         graph.addEdge("anda" + pi, "p" + NextS, false);
         graph.addEdge("andb" + pi, "p" + NextS, false);
@@ -617,7 +614,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
         {
             if (act)
             {
-                graph.addVertex("(1 and p" + NextS + ")", "and", z + "and1_" + NextS);
+                graph.addVertex("(1 and p" + NextS + ")", Gates::GateAnd, z + "and1_" + NextS);
                 graph.addDoubleEdge("1", "p" + NextS, z + "and1_" + NextS, false);
             }
             else
@@ -626,27 +623,27 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
                 graph.addEdge("p" + NextS, z + std::to_string(bits), false);
             }
         }
-        graph.addVertex("not (p" + NextS + ")", "not", "np" + NextS);
+        graph.addVertex("not (p" + NextS + ")", Gates::GateNot, "np" + NextS);
         graph.addEdge("p" + NextS, "np" + NextS, false);
 
-        graph.addVertex("(" + x + " or " + y + " or " + pi + ")", "or", "abpor" + S);
+        graph.addVertex("(" + x + " or " + y + " or " + pi + ")", Gates::GateOr, "abpor" + S);
         graph.addEdge(x, "abpor" + S, false);
         graph.addEdge(y, "abpor" + S, false);
         graph.addEdge(pi, "abpor" + S, false);
 
-        graph.addVertex("(abpor" + S + " and np" + NextS + ")", "and", "andnp" + NextS);
+        graph.addVertex("(abpor" + S + " and np" + NextS + ")", Gates::GateAnd, "andnp" + NextS);
         graph.addDoubleEdge("abpor" + S, "np" + NextS, "andnp" + NextS, false);
 
-        graph.addVertex("(" + x + " and " + y + " and " + pi + ")", "and", "abpand" + S);
+        graph.addVertex("(" + x + " and " + y + " and " + pi + ")", Gates::GateAnd, "abpand" + S);
         graph.addEdge(x, "abpand" + S, false);
         graph.addEdge(y, "abpand" + S, false);
         graph.addEdge(pi, "abpand" + S, false);
 
-        graph.addVertex("(abpand" + S + " or " + "andnp" + NextS + ")", "or", "pS" + S);
+        graph.addVertex("(abpand" + S + " or " + "andnp" + NextS + ")", Gates::GateOr, "pS" + S);
         graph.addDoubleEdge("abpand" + S, "andnp" + NextS, "pS" + S, false);
         if (act)
         {
-            graph.addVertex("(1 and pS" + S + ")", "and", z + "and1_" + S);
+            graph.addVertex("(1 and pS" + S + ")", Gates::GateAnd, z + "and1_" + S);
             graph.addDoubleEdge("1", "pS" + S, z + "and1_" + S, false);
         }
         else
@@ -660,7 +657,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
 OrientedGraph SimpleGenerators::generatorComparison(int bits, bool compare0, bool compare1, bool compare2, bool act)
 {
     OrientedGraph graph;
-
+    GraphVertexBase* prev_pn_;
     std::string cond = std::string(compare0 ? "t" : "f") + (compare1 ? "t" : "f") + (compare2 ? "t" : "f");
     for (int i = bits - 1; i >= 0; i--)
     {
@@ -672,152 +669,158 @@ OrientedGraph SimpleGenerators::generatorComparison(int bits, bool compare0, boo
         {
             NextC = "X";
         }
-        graph.addVertex(x, "input");
-        graph.addVertex(y, "input");
-        graph.addVertex("not (" + y + C + ")", "not", "nb" + C);
-        graph.addEdge(y, "nb" + C, false);
-        graph.addVertex("not (" + x + C + ")", "not", "na" + C);
-        graph.addEdge(x, "na" + C, false);
+        GraphVertexBase* input_x = graph.addInput(x);
+        GraphVertexBase* input_y = graph.addInput(y);
+        GraphVertexBase* nb = graph.addGate(Gates::GateNot, "nb" + C);
+        graph.addEdge(input_y, "nb" + C);
+        GraphVertexBase* na = graph.addGate(Gates::GateNot, "na" + C);
+        graph.addEdge(input_x, "na" + C, false);
+
+        GraphVertexBase* const_1;
         if (act)
         {
-            graph.addVertex("1", "const");
+            const_1 = graph.addConst('1');
         }
+        GraphVertexBase* En_;
+        GraphVertexBase* pn_;
+        GraphVertexBase* Enand1_;
+        GraphVertexBase* pEn_;
         if (compare0)
         {
             if (!act)
             {
-                graph.addVertex("E0_" + C, "output");
+                // TODO this is made like for three times, is it 
+                // possible to move it in upper part?
+                En_ = graph.addOutput("E0_" + C);
             }
-            graph.addVertex("(na" + C + " and nb" + C + ")", "and", "nab" + C);
-            graph.addVertex("(" + x + C + " and " + y + C + ")", "and", "ab" + C);
-            graph.addVertex("(nab" + C + " or ab" + C + ")", "or", "p0_" + NextC);
-            graph.addDoubleEdge("na" + C, "nb" + C, "nab" + C, false);
-            graph.addDoubleEdge(x, y, "ab" + C, false);
-            graph.addDoubleEdge("nab" + C, "ab" + C, "p0_" + NextC, false);
+            GraphVertexBase* nab = graph.addGate(Gates::GateAnd, "nab" + C);
+            GraphVertexBase* ab = graph.addVertex(Gates::GateAnd, "ab" + C);
+            pn_ = graph.addVertex(Gates::GateOr, "p0_" + NextC);
+            graph.addEdges({na, nb}, nab);
+            graph.addEdges({input_x, input_y}, ab);
+            graph.addEdges({nab, ab}, pn_);
 
+            // in case of first iteration
             if (i == bits - 1)
             {
                 if (act)
                 {
-                    graph.addVertex("(1 and p0_" + NextC + ")", "and", "E0and1_" + C);
-                    graph.addDoubleEdge("1", "p0_" + NextC, "E0and1_" + C, false);
+                    Enand1_ = graph.addGate(Gates::GateAnd, "E0and1_" + C);
+                    graph.addEdges({const_1, pn_}, Enand1_);
                 }
                 else
                 {
-                    graph.addEdge("p0_" + NextC, "E0_" + C, false);
+                    graph.addEdge(pn_, En_);
                 }
             }
             else
             {
-                graph.addVertex("(p0_" + C + " and p0_" + NextC + ")", "and", "pE0_" + C);
-                graph.addDoubleEdge("p0_" + C, "p0_" + NextC, "pE0_" + C, false);
+                pEn_ = graph.addGate(Gates::GateAnd, "pE0_" + C);
+                graph.addEdge({prev_pn_, pn_}, pEn_);
                 if (act)
                 {
-                    graph.addVertex("(1 and pE0_" + C + ")", "and", "E0and1_" + C);
-                    graph.addDoubleEdge("1", "pE0_" + C, "E0and1_" + C, false);
+                    Enand1_ = graph.addGate(Gates::GateAnd, "E0and1_" + C);
+                    graph.addEdges({const_1, pEn_}, Enand1_);
                 }
                 else
                 {
-                    graph.addEdge("pE0_" + C, "E0_" + C, false);
+                    graph.addEdge(pEn_, En_);
                 }
             }
+            prev_pn_ = pn_;
         }
         if (compare1)
         {
-            if (act)
+            if (!act)
             {
-                graph.addVertex("1", "const");
-            }
-            else
-            {
-                graph.addVertex("E1_" + C, "output");
+                En_ = graph.addOutput("E1_" + C);
             }
 
-            graph.addVertex("(" + x + C + " and " + "(not (" + y + C + "))", "and", "p1_" + NextC);
-            graph.addDoubleEdge(x, "nb" + C, "p1_" + NextC, false);
+            pn_ = graph.addGate(Gates::GateAnd, "p1_" + NextC);
+            graph.addEdges({input_x, nb}, pn_);
 
+            // in case of first iteration
             if (i == bits - 1)
             {
                 if (act)
                 {
-                    graph.addVertex("(1 and p1_" + NextC + ")", "and", "E1and1_" + C);
-                    graph.addDoubleEdge("1", "p1_" + NextC, "E1and1_" + C, false);
+                    Enand1_ = graph.addVertex(Gates::GateAnd, "E1and1_" + C);
+                    graph.addEdges({const_1, pn_}, Enand1_);
                 }
                 else
                 {
-                    graph.addEdge("p1_" + NextC, "E1_" + C, false);
+                    graph.addEdge(pn_, En_);
                 }
             }
             else
             {
-                graph.addVertex("not (p1_" + C + ")", "not", "np1_" + C);
-                graph.addVertex("not (p1_" + NextC + ")", "not", "np1_" + NextC);
-                graph.addEdge("p1_" + C, "np1_" + C, false);
-                graph.addEdge("p1_" + NextC, "np1_" + NextC, false);
-                graph.addVertex("(np1_" + C + " and p1_" + NextC + ")", "and", "P11_" + C);
-                graph.addDoubleEdge("np1_" + C, "p1_" + NextC, "P11_", false);
-                graph.addVertex("(p1_" + C + " and np1_" + NextC + ")", "and", "P12_" + C);
-                graph.addDoubleEdge("p1_" + C, "np1_" + NextC, "P12_", false);
-                graph.addVertex("(P11_" + C + " or P12_" + C + ")", "or", "pE1_" + C);
-                graph.addDoubleEdge("P11_" + C, "P12_" + C, "pE1_" + C, false);
+                GraphVertexBase* np1_ = graph.addGate(Gates::GateNot, "np1_" + C);
+                GraphVertexBase* np1_next = graph.addGate(Gates::GateNot, "np1_" + NextC);
+                graph.addEdge(prev_pn_, np1_);
+                graph.addEdge(pn_, np1_next);
+                GraphVertexBase* P11_ = graph.addGate(Gates::GateAnd, "P11_" + C);
+                graph.addEdges({np1_, pn1_}, P11_);
+                GraphVertexBase* P12_ = graph.addGate(Gates::GateAnd, "P12_" + C);
+                graph.addEdges({prev_pn_, np1_next}, P12_);
+                pEn_ = graph.addGate(Gates::GateOr, "pE1_" + C);
+                graph.addEdges({P11_, P12_}, pEn_);
                 if (act)
                 {
-                    graph.addVertex("(1 and pE1_" + C + ")", "and", "E1and1_" + C);
-                    graph.addDoubleEdge("1", "pE1_" + C, "E1and1_" + C, false);
+                    Enand1_ = graph.addGate(Gates::GateAnd, "E1and1_" + C);
+                    graph.addEdges({const_1, pEn_}, Enand1_);
                 }
                 else
                 {
-                    graph.addEdge("pE1_" + C, "E1_" + C, false);
+                    graph.addEdge(pEn_, En_);
                 }
             }
+            prev_pn_ = pn_;
         }
         if (compare2)
         {
-            if (act)
+            if (!act)
             {
-                graph.addVertex("1", "const");
+                En_ = graph.addOutput("E2_" + C);
             }
-            else
-            {
-                graph.addVertex("E2_" + C, "output");
-            }
-            graph.addVertex("(" + y + C + " and " + "(not (" + x + C + "))", "and", "p2_" + NextC);
-            graph.addDoubleEdge(y, "na" + C, "p2_" + NextC, false);
+            pn_ = graph.addGate(Gates::GateAnd, "p2_" + NextC);
+            graph.addEdges(input_y, na, pn_);
 
+            // first iteration
             if (i == bits - 1)
             {
                 if (act)
                 {
-                    graph.addVertex("(1 and p2_" + NextC + ")", "and", "E2and1_" + C);
-                    graph.addDoubleEdge("1", "p2_" + NextC, "E2and1_" + C, false);
+                    Enand1_ = graph.addVertex(Gates::GateAnd, "E2and1_" + C);
+                    graph.addEdges({const_1, pn_}, Enand1_);
                 }
                 else
                 {
-                    graph.addEdge("p2_" + NextC, "E2_" + C, false);
+                    graph.addEdge(pn_, En_);
                 }
             }
             else
             {
-                graph.addVertex("not (p2_" + C + ")", "not", "np2_" + C);
-                graph.addVertex("not (p2_" + NextC + ")", "not", "np2_" + NextC);
-                graph.addEdge("p2_" + C, "np2_" + C, false);
-                graph.addEdge("p2_" + NextC, "np2_" + NextC, false);
-                graph.addVertex("(np2_" + C + " and p2_" + NextC + ")", "and", "P21_" + C);
-                graph.addDoubleEdge("np2_" + C, "p2_" + NextC, "P21_", false);
-                graph.addVertex("(p2_" + C + " and np2_" + NextC + ")", "and", "P22_" + C);
-                graph.addDoubleEdge("p2_" + C, "np2_" + NextC, "P22_", false);
-                graph.addVertex("(P21_" + C + " or P22_" + C + ")", "or", "pE2_" + C);
-                graph.addDoubleEdge("P21_" + C, "P22_" + C, "pE2_" + C, false);
+                GraphVertexBase* np2_ = graph.addGate(Gates::GateNot, "np2_" + C);
+                GraphVertexBase* np2_next = graph.addGate(Gates::GateNot, "np2_" + NextC);
+                graph.addEdge(prev_pn_, np2_);
+                graph.addEdge(pn_, np2_next);
+                GraphVertexBase* P21_ = graph.addVertex(Gates::GateAnd, "P21_" + C);
+                graph.addEdges({np2_, np2_next}, P21_);
+                GraphVertexBase* P22_ = graph.addVertex(Gates::GateAnd, "P22_" + C);
+                graph.addEdges({prev_pn_, np2_next}, P22_);
+                pEn_ = graph.addVertex(Gates::GateOr, "pE2_" + C);
+                graph.addEdges({P21_, P22_}, pEn_);
                 if (act)
                 {
-                    graph.addVertex("(1 and pE2_" + C + ")", "and", "E2and1_" + C);
-                    graph.addDoubleEdge("1", "pE2_" + C, "E2and1_" + C, false);
+                    Enand1_ = graph.addGate(Gates::GateAnd, "E2and1_" + C);
+                    graph.addEdges({const_1, pEn_}, Enand1_);
                 }
                 else
                 {
-                    graph.addEdge("pE2_" + C, "E2_" + C, false);
+                    graph.addEdge(pEn_, En_);
                 }
             }
+            prev_pn_ = pn_;
         }
     }
     return graph;
@@ -835,7 +838,7 @@ OrientedGraph SimpleGenerators::generatorEncoder(int bits)
     for (int l = 0; l <= bits - 1; l++)
     {
         std::string Z = std::to_string(l);
-        graph.addVertex("x" + Z, "input");
+        graph.addInput("x" + Z);
     }
     if (bits > 1)
         for (int p = k - 1; p >= 0; p--)
@@ -845,7 +848,7 @@ OrientedGraph SimpleGenerators::generatorEncoder(int bits)
             std::string M = "";
             std::string K = "";
             std::string S = std::to_string(p);
-            graph.addVertex("a" + S, "output");
+            GraphVertexBase *out = graph.addOutput("a" + S);
 
             for (int i = 0; i <= bits - 1; i++)
                 for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
@@ -861,15 +864,19 @@ OrientedGraph SimpleGenerators::generatorEncoder(int bits)
                         K = "";
                     }
             M = M.erase(0, 3);
-            graph.addVertex(M, "or", P);
+
+            // TODO solve this name strange thing
+            // GraphVertexBase *P_ref = graph.addVertex(M, Gates::GateOr, P);
+            GraphVertexBase *P_ref = graph.addVertex(Gates::GateOr, P);
             for (int i = 0; i <= bits - 1; i++)
                 for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
                     if (pow(2, p + 1) * i + t <= bits - 1)
                     {
                         std::string R = std::to_string(pow(2, p + 1) * i + t);
-                        graph.addEdge("x" + R, P, false);
+                        // here getting input number R
+                        graph.addEdge(graph.getVerticeByIndex(R), P_ref);
                     }
-            graph.addEdge(P, "a" + S, false);
+            graph.addEdge(P_ref, out);
         }
     else
         std::cout << "Недостаточно входных сигналов\n";

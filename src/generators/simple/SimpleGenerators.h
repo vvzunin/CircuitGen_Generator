@@ -3,13 +3,14 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include <limits.h>
 #include <algorithm>
 
 #include <baseStructures/graph/OrientedGraph.h>
 #include <baseStructures/truthTable/TruthTable.h>
 #include <additional/AuxiliaryMethods/RandomGeneratorWithSeed.h>
 
-using GatesInfo = std::map<std::string, std::vector<int>>;
+using GatesInfo = std::map<Gates, std::vector<int>>;
 
 class SimpleGenerators
 {
@@ -50,18 +51,23 @@ public:
 
     void setGatesInputsInfo(const std::map<std::string, std::vector<int>> &i_info)
     {
-        d_gatesInputsInfo = i_info;
+        d_minGateNumber = INT_MAX;
 
-        for (auto &[key, value] : d_gatesInputsInfo)
+        for (auto &[key, value] : i_info)
         {
             d_maxGateNumber = std::max(
                 *std::max_element(value.begin(), value.end()),
                 d_maxGateNumber);
+            d_minGateNumber = std::min(
+                *std::max_element(value.begin(), value.end()),
+                d_minGateNumber
+            );
+            d_gatesInputsInfo[d_settings->parseStringToGate(key)] = value;
         }
 
         // TODO is it a good idea to add here hew gates
-        d_gatesInputsInfo["not"] = {1};
-        d_gatesInputsInfo["buf"] = {1};
+        d_gatesInputsInfo[Gates::GateNot] = {1};
+        d_gatesInputsInfo[Gates::GateBuf] = {1};
     }
 
     GatesInfo getGatesInputsInfo() const
@@ -74,8 +80,8 @@ private:
     std::map<std::string, int> delNull(std::map<std::string, int> i_copyLogicOper);
     std::string randomGenerator(const std::map<std::string, int> &i_map);
 
-    std::pair<std::string, int> getRandomElement(const GatesInfo &i_info);
-    std::pair<std::string, int> getRandomElement(u_int32_t i_gatesLimit);
+    std::pair<Gates, int> getRandomElement(const GatesInfo &i_info);
+    std::pair<Gates, int> getRandomElement(u_int32_t i_gatesLimit);
 
     int getRangomAndNumber();
     int getRangomOrNumber();
@@ -87,4 +93,5 @@ private:
     GatesInfo d_gatesInputsInfo;
     RandomGeneratorWithSeed d_randGenerator;
     int d_maxGateNumber = 0;
+    int d_minGateNumber = 0;
 };

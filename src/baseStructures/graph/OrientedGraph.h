@@ -53,6 +53,10 @@ public:
 
   std::vector<OrientedGraph*> getSubGraphs() const;
   std::map<VertexTypes, std::vector<GraphVertexBase*>> getBaseVertexes() const;
+  GraphVertexBase* getVerticeByIndex(int idx) const;
+
+  // sum of gates, inputs, outputs and consts sizes
+  size_t sumFullSize() const;
 
   std::string toVerilog(const std::string &i_path);
   // toVerilog
