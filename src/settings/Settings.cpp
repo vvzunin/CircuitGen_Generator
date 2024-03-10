@@ -1,6 +1,7 @@
 #include <memory>
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 #include <filesystem>
 
 #include "Settings.h"
@@ -120,13 +121,24 @@ std::pair<std::string, int> Settings::getLogicOperation(const std::string &i_op)
     return d_logicOperations.at(i_op);
 }
 
-std::vector<std::string> Settings::getLogicOperationsKeys()
+std::vector<Gates> Settings::getLogicOperationsKeys()
 {
-    std::vector<std::string> res;
-    for (const auto &[key, value] : d_logicOperations)
-        res.push_back(key);
+    return d_logicElements;
+}
 
-    return res;
+std::pair<std::vector<bool>, std::vector<Gates>> Settings::getLogicOperationsWithGates()
+{
+    std::vector<bool> oneGate;
+    
+    for (const auto &key : d_logicElements) {
+        oneGate.push_back(key == Gates::GateBuf || key == Gates::GateNot);
+    }
+
+    return std::make_pair(oneGate, d_logicElements);
+}
+
+int Settings::getNumThread() const {
+    return d_numThreads;
 }
 
 std::string Settings::getPathNadezhda() const
@@ -196,6 +208,8 @@ std::string Settings::getGenerationMethodPrefix(const std::string &i_s) const
         return "CCGRTT";
     if (i_s == "RandLevel")
         return "CCGRCG";
+    if (i_s == "RandLevelExperimental")
+        return "CCGRCGE";
     if (i_s == "NumOperation")
         return "CCGRVC";
     if (i_s == "Genetic")

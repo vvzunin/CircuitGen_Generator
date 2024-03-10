@@ -54,7 +54,7 @@ bool OrientedGraph::isEmptyFull() const {
   return f;
 }
 
-void setName(const std::string &i_name) {
+void OrientedGraph::setName(const std::string &i_name) {
   d_name = i_name;
 }
 
