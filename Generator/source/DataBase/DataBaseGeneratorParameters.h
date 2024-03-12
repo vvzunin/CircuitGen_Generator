@@ -10,6 +10,7 @@ enum GenerationTypes
   NumOperation,
   Genetic,
   Summator,
+  Subtractor,
   Comparison,
   Encoder,
   Multiplier,

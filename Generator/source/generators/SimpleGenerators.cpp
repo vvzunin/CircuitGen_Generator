@@ -475,6 +475,98 @@ OrientedGraph SimpleGenerators::generatorSummator(int i_bits, bool i_overflowIn,
     return graph;
 }
 
+OrientedGraph SimpleGenerators::generatorSubtractor(int i_bits, bool i_overflowIn, bool i_overflowOut, bool i_minus, bool act)
+{
+    OrientedGraph graph;
+
+    if (i_overflowIn)
+        graph.addVertex("z0", "input");
+
+    if (act)
+        graph.addVertex("1", "const");
+
+    std::string cond = (i_overflowIn ? "t" : "f") + (i_overflowOut ? "t" : "f") + (sub ? "t" : "f");
+    std::string s = (sub ? "n" : "") + "d" + (!i_overflowIn && !i_overflowOut ? "0" : (!i_overflowIn && i_overflowOut ? "1" : (i_overflowIn && !i_overflowOut ? "2" : "3")));
+    std::string zi;
+    for (int i = 0; i < bits; i++)
+    {
+
+        std::string Z = std::to_string(i);
+        std::string x = "suba" + cond + Z;
+        std::string y = "subb" + cond + Z;
+        graph.addVertex(x, "input");
+        graph.addVertex(y, "input");
+        if (!act)
+        {
+            graph.addVertex(s + Z, "output");
+        }
+
+        graph.addVertex("(" + x + " xor " + y + ")", "xor", "abxor" + Z);
+        graph.addDoubleEdge(x, y, "abxor" + Z, false);
+
+        std::string NextZ = std::to_string(i + 1);
+        zi = "z" + Z;
+
+        graph.addVertex("(" + zi + "xor" + "abxor" + Z + ")", "xor", "d" + Z);
+        graph.addDoubleEdge(zi, "abxor" + Z, "d" + Z, false);
+
+        if (act)
+        {
+            graph.addVertex("(1 and " + "d" + Z + ")", "and", s + "and1_" + Z);
+            graph.addDoubleEdge("1", "d" + Z, s + "and1_" + Z, false);
+        }
+        else
+        {
+            graph.addEdge("d" + Z, s + Z, false);
+        }
+        graph.addVertex("(not (abxor" + Z + ")", "not", "nabxor" + Z);
+        graph.addEdge("abxor" + Z, "nabxor" + Z, false);
+
+        graph.addVertex("(" + zi + "and" + "nabxor" + Z + ")", "and", "nabxorz" + Z);
+        graph.addDoubleEdge(zi, "nabxor" + Z, "nabxorz" + Z, false);
+
+        if (!sub)
+        {
+            graph.addVertex("not (a" + Z + ")", "not", "na" + Z);
+            graph.addEdge(x, "na" + Z, false);
+
+            graph.addVertex("(na" + Z + "and b" + Z + ")", "and", "bna" + Z);
+            graph.addDoubleEdge("na" + Z, y, "bna" + Z, false);
+
+            graph.addVertex("(nabxorz" + Z + "or bna" + Z + ")", "or", "z" + NextZ);
+            graph.addDoubleEdge("nabxorz" + Z, "bna" + Z, "z" + NextZ, false);
+        }
+        if (sub)
+        {
+            graph.addVertex("not (b" + Z + ")", "not", "nb" + Z);
+            graph.addEdge(y, "nb" + Z, false);
+
+            graph.addVertex("(nb" + Z + "and a" + Z + ")", "and", "anb" + Z);
+            graph.addDoubleEdge("nb" + Z, x, "anb" + Z, false);
+
+            graph.addVertex("(nabxorz" + Z + "or anb" + Z + ")", "or", "z" + NextZ);
+            graph.addDoubleEdge("nabxorz" + Z, "anb" + Z, "z" + NextZ, false);
+        }
+
+        if (i_overflowOut && i + 1 == bits)
+        {
+            if (act)
+            {
+                graph.addVertex("(1 and " + "z" + NextZ + ")", "and", s + "and1_" + NextZ);
+                graph.addDoubleEdge("1", "z" + NextZ, s + "and1_" + NextZ, false);
+            }
+            else
+            {
+                graph.addVertex(s + std::to_string(bits), "output");
+                graph.addEdge("z" + NextZ, s + std::to_string(bits), false);
+            }
+
+        }
+    }
+    return graph;
+
+}
+
 OrientedGraph SimpleGenerators::generatorComparison(int i_bits, bool i_compare0, bool i_compare1, bool i_compare2, bool act)
 {
     OrientedGraph graph;

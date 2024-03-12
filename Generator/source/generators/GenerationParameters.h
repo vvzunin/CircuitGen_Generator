@@ -109,6 +109,20 @@ private:
     bool d_minus = false;
 };
 
+class GeneratorSubtractorParameters{
+public:
+    bool getOverFlowIn() {return d_OverFlowIn;}
+    bool getOverFlowOut() {return d_OverFlowOut;}
+    bool getMinus() {return d_minus;}
+    void setOverFlowIn(bool i_overflowIn) {d_OverFlowIn = i_overflowIn;}
+    void setOverFlowOut(bool i_overflowOut) {d_OverFlowOut = i_overflowOut;}
+    void setMinus(bool i_minus) {d_minus = i_minus;}
+private:
+    bool d_OverFlowIn = false;
+    bool d_OverFlowOut = false;
+    bool d_minus = false;
+};
+
 class GeneratorComparisonParameters
 {
   public:
@@ -197,6 +211,7 @@ public:
   zhegalkinFromTruthTableParameters getZhegalkin() const { return d_ZhegalkinFromTruthTableParameters; } 
   GeneratorNumOperationParameters getNumOperations() const { return d_generatorNumOperationParameters; }
   GeneratorSummatorParameters getSummator() const {return d_generatorSummatorParameters; }
+  GeneratorSubtractorParameters getSubtractor() const { return d_generatorSubtractorParameters; }
   GeneratorComparisonParameters getComparison() const {return d_generatorComparisonParameters; }
   GeneticParameters getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF){ d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
@@ -213,6 +228,12 @@ public:
       d_generatorSummatorParameters.setOverFlowIn(i_overflowIn);
       d_generatorSummatorParameters.setOverFlowOut(i_overflowOut);
       d_generatorSummatorParameters.setMinus(i_minus);
+  }
+  void setSubtractorParameters(bool i_overflowIn, bool i_overflowOut, bool i_minus)
+  {
+      d_generatorSubtractorParameters.setOverFlowIn(i_overflowIn);
+      d_generatorSubtractorParameters.setOverFlowOut(i_overflowOut);
+      d_generatorSubtractorParameters.setMinus(i_minus);
   }
   void setComparisonParameters(bool i_compare0, bool i_compare1, bool i_compare2)
   {
@@ -238,6 +259,7 @@ private:
   zhegalkinFromTruthTableParameters d_ZhegalkinFromTruthTableParameters;
   GeneratorNumOperationParameters d_generatorNumOperationParameters;
   GeneratorSummatorParameters d_generatorSummatorParameters;
+  GeneratorSubtractorParameters d_generatorSubtractorParameters;
   GeneratorComparisonParameters d_generatorComparisonParameters;
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };

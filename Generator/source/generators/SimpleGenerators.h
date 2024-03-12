@@ -17,6 +17,7 @@ public:
     bool i_leaveEmptyOut = true
   );
   OrientedGraph generatorSummator(int i_bits, bool i_overflowIn, bool i_overflowOut, bool i_minus, bool act = false);
+  OrientedGraph generatorSubtractor(int i_bits, bool i_overflowIn, bool i_overflowOut, bool i_minus, bool act = false);
   OrientedGraph generatorComparison(int i_bits, bool i_compare0, bool i_compare1, bool i_compare2, bool act = false);
   OrientedGraph generatorEncoder(int i_bits);
   OrientedGraph generatorMultiplier(int i_bits, bool act = false);

@@ -187,6 +187,19 @@ void DataBaseGenerator::generateDataBaseSummator(const GenerationParameters &i_p
     c.generate();
 }
 
+void DataBaseGenerator::generateDataBaseSubtractor(const GenerationParameters &i_param) {
+    SimpleGenerators generator;
+    int i_bits = i_param.getInputs();
+    bool i_overflowIn = i_param.getSubtractor().getOverFlowIn();
+    bool i_overflowOut = i_param.getSubtractor().getOverFlowOut();
+    bool i_minus = i_param.getSubtractor().getMinus();
+    OrientedGraph graph = generator.generatorSubtractor(i_bits, i_overflowIn, i_overflowOut, i_minus);
+    Circuit c (graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate();
+}
+
 void DataBaseGenerator::generateDataBaseComparison(const GenerationParameters &i_param)
 {
   SimpleGenerators sg;
@@ -278,6 +291,8 @@ std::function<void(const GenerationParameters&)> DataBaseGenerator::getGenerateM
     return std::bind(&DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1);
   if (i_methodName == "Summator")
       return std::bind(&DataBaseGenerator::generateDataBaseSummator, this, std::placeholders::_1);
+  if (i_methodName == "Subtractor")
+      return std::bind(&DataBaseGenerator::generateDataBaseSubtractor, this, std::placeholders::_1);
   if (i_methodName == "Multiplier")
       return std::bind(&DataBaseGenerator::generateDataBaseMultiplier, this, std::placeholders::_1);
   if (i_methodName == "Comparison")
