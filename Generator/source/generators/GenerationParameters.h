@@ -113,14 +113,14 @@ class GeneratorSubtractorParameters{
 public:
     bool getOverFlowIn() {return d_OverFlowIn;}
     bool getOverFlowOut() {return d_OverFlowOut;}
-    bool getMinus() {return d_minus;}
+    bool getSub() {return d_sub;}
     void setOverFlowIn(bool i_overflowIn) {d_OverFlowIn = i_overflowIn;}
     void setOverFlowOut(bool i_overflowOut) {d_OverFlowOut = i_overflowOut;}
-    void setMinus(bool i_minus) {d_minus = i_minus;}
+    void setSub(bool i_sub) {d_sub = i_sub;}
 private:
     bool d_OverFlowIn = false;
     bool d_OverFlowOut = false;
-    bool d_minus = false;
+    bool d_sub = false;
 };
 
 class GeneratorComparisonParameters
@@ -229,11 +229,11 @@ public:
       d_generatorSummatorParameters.setOverFlowOut(i_overflowOut);
       d_generatorSummatorParameters.setMinus(i_minus);
   }
-  void setSubtractorParameters(bool i_overflowIn, bool i_overflowOut, bool i_minus)
+  void setSubtractorParameters(bool i_overflowIn, bool i_overflowOut, bool i_sub)
   {
       d_generatorSubtractorParameters.setOverFlowIn(i_overflowIn);
       d_generatorSubtractorParameters.setOverFlowOut(i_overflowOut);
-      d_generatorSubtractorParameters.setMinus(i_minus);
+      d_generatorSubtractorParameters.setSub(i_sub);
   }
   void setComparisonParameters(bool i_compare0, bool i_compare1, bool i_compare2)
   {

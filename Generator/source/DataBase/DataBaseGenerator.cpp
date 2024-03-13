@@ -192,8 +192,8 @@ void DataBaseGenerator::generateDataBaseSubtractor(const GenerationParameters &i
     int i_bits = i_param.getInputs();
     bool i_overflowIn = i_param.getSubtractor().getOverFlowIn();
     bool i_overflowOut = i_param.getSubtractor().getOverFlowOut();
-    bool i_minus = i_param.getSubtractor().getMinus();
-    OrientedGraph graph = generator.generatorSubtractor(i_bits, i_overflowIn, i_overflowOut, i_minus);
+    bool i_sub = i_param.getSubtractor().getSub();
+    OrientedGraph graph = generator.generatorSubtractor(i_bits, i_overflowIn, i_overflowOut, i_sub);
     Circuit c (graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());

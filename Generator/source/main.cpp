@@ -178,6 +178,8 @@ void runGenerationFromJson(std::string json_path)
     bool compare1 = data["<"];
     bool compare2 = data[">"];
 
+    bool sub = data["sub"];
+
     std::map<std::string, int> m;
     std::vector<std::string> v =
         {"num_and", "num_nand", "num_or", "num_not",
@@ -202,7 +204,7 @@ void runGenerationFromJson(std::string json_path)
     //  gp.setLimit(limit);
     gp.setNumOperationParameters(m, LeaveEmptyOut);
     gp.setSummatorParameters(overflowIn, overflowOut, minus);
-    gp.setSubtractorParameters(overflowIn, overflowOut, minus);
+    gp.setSubtractorParameters(overflowIn, overflowOut, sub);
     gp.setComparisonParameters(compare0, compare1, compare2);
     gp.setPopulationSize(populationSize);
     gp.setNumOfCycles(numOfCycles);

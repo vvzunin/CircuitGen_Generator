@@ -46,7 +46,8 @@
 	"minus": false,
     "=": true,
     "<": true,
-    ">": false
+    ">": false,
+    "sub": false
   }
 ]
 
