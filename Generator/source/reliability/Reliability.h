@@ -6,6 +6,13 @@
 
 #include <graph/OrientedGraph.h>
 
+/// class Reliability
+/// @param d_graph An instance of the OrientedGraph class, which represents an oriented graph used to evaluate reliability
+/// @param d_p Probability of node error (the probability with which a node can transmit an incorrect value)
+/// @param d_settings The smart pointer std::shared_ptr<Settings>, which points to the Settings object containing the settings used to evaluate reliability.
+/// */
+
+
 class Reliability
 {
 public:

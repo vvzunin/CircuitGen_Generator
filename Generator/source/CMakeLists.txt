@@ -159,3 +159,36 @@ set_target_properties(${MAIN_LIBRARY} PROPERTIES PUBLIC_HEADER "${public_headers
 
 set_property(TARGET ${MAIN_LIBRARY} PROPERTY POSITION_INDEPENDENT_CODE ON)
 set_property(TARGET ${MAIN_LIBRARY} PROPERTY OUTPUT_NAME ${MAIN_LIBRARY})
+
+
+# Настройки для Doxygen
+find_package(Doxygen REQUIRED)
+
+# Настройка Doxygen
+set(DOXYGEN_INPUT_DIR ${"../../source"}/src) # Укажите путь к исходным файлам
+set(DOXYGEN_OUTPUT_DIR ${"../../docs"}/doc) # Укажите путь, куда сохранять документацию
+set(DOXYGEN_EXAMPLES YES) # Включить генерацию примеров
+set(DOXYGEN_RECURSIVE YES) # Рекурсивно обрабатывать поддиректории
+set(DOXYGEN_PROJECT_NAME "CombinationalCircuits") # Имя проекта для документации
+set(DOXYGEN_PROJECT_DESCRIPTION "Desc of Backeknd") # Описание проекта
+set(DOXYGEN_GENERATE_HTML YES) # Генерировать HTML
+set(DOXYGEN_GENERATE_MAN NO) # Не генерировать man-страницы
+set(DOXYGEN_EXTRACT_PRIVATE YES) # Извлекать приватные члены
+set(DOXYGEN_EXTRACT_STATIC YES) # Извлекать статические члены
+set(DOXYGEN_EXTRACT_LOCAL YES) # Извлекать локальные классы и функции
+set(DOXYGEN_EXTRACT_ALL YES) # Извлекать все члены (включая приватные)
+set(DOXYGEN_OUTPUT_LANGUAGE English) # Язык документации
+
+# Создание Doxyfile из Doxyfile.in
+configure_file(Doxyfile.in ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile @ONLY)
+
+# Создание цели для генерации документации
+add_custom_target(
+    doc
+    COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Generating API documentation with Doxygen"
+    VERBATIM
+)
+
+# Добавьте вашу цель сборки проекта здесь

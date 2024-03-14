@@ -8,8 +8,19 @@ enum ParentsTypes{
   Roulette
 };
 
+/// class ParentsParameters
+/// @param d_tournamentNumber Stores the number of participants in the tournament (tournament number) for the method of selecting parents using the tournament. This value indicates how many individuals will be selected from the population to participate in the tournament, from which the winner for the parent pair will be selected
+/// @param d_parentsType Stores the parents type for the genetic algorithm. This enumeration (ParentsTypes) represents various methods of choosing parents, such as random selection, tournament selection, rating selection, etc.
+/// 
+/// */
+
 class ParentsParameters {
 public:
+
+	/// @brief setParentsType
+	///
+	/// */
+
   void setParentsType(ParentsTypes i_parentsTypes);
   ParentsTypes getParentsType() const;
   void setTournamentNumber(int i_tournamentNumber);
