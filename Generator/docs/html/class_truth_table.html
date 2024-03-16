@@ -105,6 +105,9 @@ $(function(){initNavTree('class_truth_table.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
+<p>class <a class="el" href="class_truth_table.html" title="class TruthTable">TruthTable</a>  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_truth_table_8h_source.html">TruthTable.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for TruthTable:</div>
@@ -139,29 +142,51 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4f4cdab8cd3074113e9bce88ab255ed0" id="r_a4f4cdab8cd3074113e9bce88ab255ed0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f4cdab8cd3074113e9bce88ab255ed0">TruthTable</a> (<a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_input</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_output</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">double</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_p</a>=0.5)</td></tr>
 <tr class="separator:a4f4cdab8cd3074113e9bce88ab255ed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a630e4e16802cfc9c4d1c46853cdec9c4" id="r_a630e4e16802cfc9c4d1c46853cdec9c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630e4e16802cfc9c4d1c46853cdec9c4">setSeed</a> (<a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_seed</a>)</td></tr>
+<tr class="memdesc:a630e4e16802cfc9c4d1c46853cdec9c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">setSeed The method sets the seed for the random number generator used in the class.  <br /></td></tr>
 <tr class="separator:a630e4e16802cfc9c4d1c46853cdec9c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad92c9e6108b8e1638085b3e9677e9bcd" id="r_ad92c9e6108b8e1638085b3e9677e9bcd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad92c9e6108b8e1638085b3e9677e9bcd">generateRandom</a> (<a class="el" href="class_truth_table_parameters.html">TruthTableParameters</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_gp</a>) <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">override</a></td></tr>
+<tr class="memdesc:ad92c9e6108b8e1638085b3e9677e9bcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">generateRandom The method generates a random truth table for the combinational scheme based on the specified parameters or randomly selected parameters, if they are not specified  <br /></td></tr>
 <tr class="separator:ad92c9e6108b8e1638085b3e9677e9bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09de48ba6c97632625188dc32ffd944b" id="r_a09de48ba6c97632625188dc32ffd944b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09de48ba6c97632625188dc32ffd944b">generateTable</a> (<a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">double</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_p</a>=0)</td></tr>
+<tr class="memdesc:a09de48ba6c97632625188dc32ffd944b"><td class="mdescLeft">&#160;</td><td class="mdescRight">generateTable The method generates a truth table for a combinational circuit with a given probability i_p for each output value.  <br /></td></tr>
 <tr class="separator:a09de48ba6c97632625188dc32ffd944b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6eb629aa688eadb1cae6dfd194c6dbc" id="r_ae6eb629aa688eadb1cae6dfd194c6dbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6eb629aa688eadb1cae6dfd194c6dbc">getInput</a> () <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">const</a></td></tr>
+<tr class="memdesc:ae6eb629aa688eadb1cae6dfd194c6dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">getInput The method returns the number of input variables of the combinational scheme  <br /></td></tr>
 <tr class="separator:ae6eb629aa688eadb1cae6dfd194c6dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb78a875efe0387644940d4358c64181" id="r_abb78a875efe0387644940d4358c64181"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb78a875efe0387644940d4358c64181">getOutput</a> () <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">const</a></td></tr>
+<tr class="memdesc:abb78a875efe0387644940d4358c64181"><td class="mdescLeft">&#160;</td><td class="mdescRight">getOutput The method returns the number of output variables of the combinational scheme  <br /></td></tr>
 <tr class="separator:abb78a875efe0387644940d4358c64181"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41993558ddd3bdf5fc861f647910781f" id="r_a41993558ddd3bdf5fc861f647910781f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41993558ddd3bdf5fc861f647910781f">size</a> () <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">const</a></td></tr>
+<tr class="memdesc:a41993558ddd3bdf5fc861f647910781f"><td class="mdescLeft">&#160;</td><td class="mdescRight">size The method returns the size of the truth table, that is, the number of combinations of input variables  <br /></td></tr>
 <tr class="separator:a41993558ddd3bdf5fc861f647910781f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab71a41a53ce4167519b4d24f14cbac82" id="r_ab71a41a53ce4167519b4d24f14cbac82"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">bool</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab71a41a53ce4167519b4d24f14cbac82">getOutTable</a> () <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">const</a></td></tr>
+<tr class="memdesc:ab71a41a53ce4167519b4d24f14cbac82"><td class="mdescLeft">&#160;</td><td class="mdescRight">getOutTable The method returns a truth table in the form of a two-dimensional vector std::vector&lt;std::vector&lt;bool&gt;&gt;.  <br /></td></tr>
 <tr class="separator:ab71a41a53ce4167519b4d24f14cbac82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a382ca1e1b9c12c2489c04f126631838c" id="r_a382ca1e1b9c12c2489c04f126631838c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a382ca1e1b9c12c2489c04f126631838c">getOutTable</a> (<a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">j</a>) <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">const</a></td></tr>
+<tr class="memdesc:a382ca1e1b9c12c2489c04f126631838c"><td class="mdescLeft">&#160;</td><td class="mdescRight">getOutTable The method returns the value of the output variable for the specified combination of input variables  <br /></td></tr>
 <tr class="separator:a382ca1e1b9c12c2489c04f126631838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5790cc7c8fc0e04547d83e5f9384efe9" id="r_a5790cc7c8fc0e04547d83e5f9384efe9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">bool</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5790cc7c8fc0e04547d83e5f9384efe9">convToBinary</a> () <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">const</a></td></tr>
+<tr class="memdesc:a5790cc7c8fc0e04547d83e5f9384efe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">convToBinary The method converts indexes of combinations of input variables into their binary representation.  <br /></td></tr>
 <tr class="separator:a5790cc7c8fc0e04547d83e5f9384efe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a171580e29f9322e00464448382f6bf4e" id="r_a171580e29f9322e00464448382f6bf4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a171580e29f9322e00464448382f6bf4e">printTable</a> () <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">const</a></td></tr>
 <tr class="separator:a171580e29f9322e00464448382f6bf4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ec4a33fa7a9405b16c7c6c8b840f9ae" id="r_a1ec4a33fa7a9405b16c7c6c8b840f9ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ec4a33fa7a9405b16c7c6c8b840f9ae">operator==</a> (<a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">const</a> <a class="el" href="class_truth_table.html">TruthTable</a> &amp;<a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">r</a>) <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">const</a></td></tr>
 <tr class="separator:a1ec4a33fa7a9405b16c7c6c8b840f9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>class <a class="el" href="class_truth_table.html" title="class TruthTable">TruthTable</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d_input</td><td>The number of input variables of the combinational scheme, which determines the number of bits of the input vector </td></tr>
+    <tr><td class="paramname">d_output</td><td>The number of output variables of the combinational circuit, which determines the number of bits of the output vector </td></tr>
+    <tr><td class="paramname">d_size</td><td>The size of the truth table, which may differ from the total number of combinations of input values (usually equal to 2^d_input) </td></tr>
+    <tr><td class="paramname">d_array</td><td>A two-dimensional vector representing the truth table of a combinational scheme, where each element defines an output value for a specific combination of input variables </td></tr>
+    <tr><td class="paramname">d_setting</td><td>A pointer to an object of the settings class, which is probably used to control the behavior of the class or store some configuration parameters </td></tr>
+    <tr><td class="paramname">d_randGenerator</td><td>A grain-set random number generator that is used to create random truth tables *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a64055d97eb8b502567ad21c0d97fc659" name="a64055d97eb8b502567ad21c0d97fc659"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a64055d97eb8b502567ad21c0d97fc659">&#9670;&#160;</a></span>TruthTable() <span class="overload">[1/8]</span></h2>
 
@@ -352,6 +377,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>convToBinary The method converts indexes of combinations of input variables into their binary representation. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::vector&lt;bool&gt;&gt;: A two-dimensional vector where each internal vector represents a binary representation of the index of a combination of input variables<ul>
+<li></li>
+</ul>
+</dd></dl>
+
 </div>
 </div>
 <a id="ad92c9e6108b8e1638085b3e9677e9bcd" name="ad92c9e6108b8e1638085b3e9677e9bcd"></a>
@@ -377,6 +408,14 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>generateRandom The method generates a random truth table for the combinational scheme based on the specified parameters or randomly selected parameters, if they are not specified </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_gp</td><td>Parameters of the combinational scheme, including the number of input and output variables. If the number of input variables is 0, the method randomly selects values for the number of input and output variables within the set parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="class_chronosome.html#a32231b2710e77313fb86ab3df3fb493e">Chronosome&lt; TruthTableParameters &gt;</a>.</p>
 
 </div>
@@ -396,6 +435,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>generateTable The method generates a truth table for a combinational circuit with a given probability i_p for each output value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_p</td><td>The probability of generating a unit (true value) for each output bit. If i_p == 0, then all output values are randomly generated with equal probability. If i_p &gt; 0 and i_p &lt;= 1, then each output bit has a probability of i_p being equal to one. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ae6eb629aa688eadb1cae6dfd194c6dbc" name="ae6eb629aa688eadb1cae6dfd194c6dbc"></a>
@@ -412,6 +459,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>getInput The method returns the number of input variables of the combinational scheme </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of input variables of the combinational scheme </dd></dl>
 
 </div>
 </div>
@@ -430,6 +480,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>getOutput The method returns the number of output variables of the combinational scheme </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of output variables of the combinational circuit </dd></dl>
+
 </div>
 </div>
 <a id="ab71a41a53ce4167519b4d24f14cbac82" name="ab71a41a53ce4167519b4d24f14cbac82"></a>
@@ -446,6 +499,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>getOutTable The method returns a truth table in the form of a two-dimensional vector std::vector&lt;std::vector&lt;bool&gt;&gt;. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::vector&lt;bool&gt;&gt;: The truth table of the combinational scheme, where each internal vector represents the values of the output variables for the corresponding combination of input variables </dd></dl>
 
 </div>
 </div>
@@ -467,6 +523,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>getOutTable The method returns the value of the output variable for the specified combination of input variables </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>Index of the combination of input variables </td></tr>
+    <tr><td class="paramname">j</td><td>Index of the output variable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool: The value of the output variable for the specified combination of input variables </dd></dl>
 
 </div>
 </div>
@@ -569,6 +635,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>setSeed The method sets the seed for the random number generator used in the class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_seed</td><td>The value of the grain to be set for the random number generator </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a41993558ddd3bdf5fc861f647910781f" name="a41993558ddd3bdf5fc861f647910781f"></a>
@@ -585,6 +659,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>size The method returns the size of the truth table, that is, the number of combinations of input variables </p>
+<dl class="section return"><dt>Returns</dt><dd>The size of the truth table, that is, the number of combinations of input variables </dd></dl>
 
 </div>
 </div>
