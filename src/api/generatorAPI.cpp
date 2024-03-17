@@ -14,9 +14,9 @@
 #include "nlohmann/json.hpp"
 
 #include <additional/AuxiliaryMethods.h>
-#include <DataBase/DataBaseGenerator.h>
+#include <database/DataBaseGenerator.h>
 #include <generators/GenerationParameters.h>
-#include <DataBase/DataBaseGeneratorParameters.h>
+#include <database/DataBaseGeneratorParameters.h>
 
 #include "generatorAPI.h"
 

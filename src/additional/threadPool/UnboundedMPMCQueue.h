@@ -10,6 +10,7 @@
 #include <condition_variable>
 #include <optional>
 #include <cassert>
+#include <stdexcept>
 
 #ifndef PLACER_UNBOUNDEDMPMCQUEUE_H
 #define PLACER_UNBOUNDEDMPMCQUEUE_H
