@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "../optimization_utils/AbcUtils.h"
 #include "../circuits/Circuit.h"
 #include <filesystem>
 
@@ -8,11 +9,11 @@ TEST(CircuitTest, EmptyGraphTest) {
     OrientedGraph emptyGraph;
     Circuit emptyCircuit(&emptyGraph);
     emptyCircuit.setPath(currentPath);
-    emptyCircuit.setCircuitName("EmptyCircuit1");
+    emptyCircuit.setCircuitName("EmptyCircuit4");
 
     EXPECT_FALSE(emptyCircuit.graphToVerilog(currentPath, true));
 
-    std::string filename = currentPath + "/EmptyCircuit1.v";
+    std::string filename = currentPath + "/EmptyCircuit4.v";
 
     EXPECT_FALSE(std::filesystem::exists(filename));
 }
@@ -27,17 +28,17 @@ TEST(CircuitTest, InputsOutputsOnlyTest) {
     ioGraph.addVertex("3", "or", "Anything");
     Circuit ioCircuit(&ioGraph);
     ioCircuit.setPath(currentPath);
-    ioCircuit.setCircuitName("IOOnlyCircuit1");
-    // Вызываем функцию для генерации Verilog файла и проверяем, что она вернула true
+    ioCircuit.setCircuitName("IOOnlyCircuit4");
+
     EXPECT_TRUE(ioCircuit.graphToVerilog(currentPath, true));
 
-    // Путь к файлу Verilog
-    std::string filename = currentPath + "/IOOnlyCircuit1.v";
+    std::string filename = currentPath + "/IOOnlyCircuit4.v";
+
     EXPECT_TRUE(std::filesystem::exists(filename));
+    std::cout << "\n" << filename << "\n";;
+    std::filesystem::remove(filename);
 
-    //std::filesystem::remove(filename);
-
-    //EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(filename));
 }
 
 TEST(CircuitTest, GraphWithConstantsTest) {
@@ -48,17 +49,16 @@ TEST(CircuitTest, GraphWithConstantsTest) {
     constGraph.addEdge("3", "output", false);
     Circuit constCircuit(&constGraph);
     constCircuit.setPath(currentPath);
-    constCircuit.setCircuitName("ConstCircuit1");
+    constCircuit.setCircuitName("ConstCircuit4");
 
     EXPECT_TRUE(constCircuit.graphToVerilog(currentPath, true));
 
-    std::string filename = currentPath + "/ConstCircuit1.v";
+    std::string filename = currentPath + "/ConstCircuit4.v";
 
     EXPECT_TRUE(std::filesystem::exists(filename));
+    std::filesystem::remove(filename);
 
-    //std::filesystem::remove(filename);
-
-    //EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(filename));
 }
 
 TEST(CircuitTest, AndOperationGraphTest) {
@@ -73,17 +73,17 @@ TEST(CircuitTest, AndOperationGraphTest) {
     andGraph.addEdge("3", "output", false);
     Circuit andCircuit(&andGraph);
     andCircuit.setPath(currentPath);
-    andCircuit.setCircuitName("AndCircuit1");
+    andCircuit.setCircuitName("AndCircuit4");
 
     EXPECT_TRUE(andCircuit.graphToVerilog(currentPath, true));
 
-    std::string filename = currentPath + "/AndCircuit1.v";
+    std::string filename = currentPath + "/AndCircuit4.v";
 
     EXPECT_TRUE(std::filesystem::exists(filename));
 
-    //std::filesystem::remove(filename);
+    std::filesystem::remove(filename);
 
-    //EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(filename));
 }
 
 
@@ -99,17 +99,17 @@ TEST(CircuitTest, OrOperationGraphTest) {
     orGraph.addEdge("3", "output", false);
     Circuit orCircuit(&orGraph);
     orCircuit.setPath(currentPath);
-    orCircuit.setCircuitName("OrCircuit1");
+    orCircuit.setCircuitName("OrCircuit4");
 
     EXPECT_TRUE(orCircuit.graphToVerilog(currentPath, true));
 
-    std::string filename = currentPath + "/OrCircuit1.v";
+    std::string filename = currentPath + "/OrCircuit4.v";
 
     EXPECT_TRUE(std::filesystem::exists(filename));
 
-    //std::filesystem::remove(filename);
+    std::filesystem::remove(filename);
 
-    //EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(filename));
 }
 
 TEST(CircuitTest, XorOperationGraphTest) {
@@ -124,17 +124,17 @@ TEST(CircuitTest, XorOperationGraphTest) {
     xorGraph.addEdge("3", "output", false);
     Circuit xorCircuit(&xorGraph);
     xorCircuit.setPath(currentPath);
-    xorCircuit.setCircuitName("XorCircuit1");
+    xorCircuit.setCircuitName("XorCircuit4");
 
     EXPECT_TRUE(xorCircuit.graphToVerilog(currentPath, true));
 
-    std::string filename = currentPath + "/XorCircuit1.v";
+    std::string filename = currentPath + "/XorCircuit4.v";
 
     EXPECT_TRUE(std::filesystem::exists(filename));
 
-    //std::filesystem::remove(filename);
+    std::filesystem::remove(filename);
 
-    //EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(filename));
 }
 
 TEST(CircuitTest, NandOperationGraphTest) {
@@ -149,17 +149,17 @@ TEST(CircuitTest, NandOperationGraphTest) {
     nandGraph.addEdge("3", "output", false);
     Circuit nandCircuit(&nandGraph);
     nandCircuit.setPath(currentPath);
-    nandCircuit.setCircuitName("NandCircuit1");
+    nandCircuit.setCircuitName("NandCircuit4");
 
     EXPECT_TRUE(nandCircuit.graphToVerilog(currentPath, true));
 
-    std::string filename = currentPath + "/NandCircuit1.v";
+    std::string filename = currentPath + "/NandCircuit4.v";
 
     EXPECT_TRUE(std::filesystem::exists(filename));
 
-    //std::filesystem::remove(filename);
+    std::filesystem::remove(filename);
 
-    //EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(filename));
 }
 
 
@@ -175,17 +175,17 @@ TEST(CircuitTest, NorOperationGraphTest) {
     norGraph.addEdge("3", "output", false);
     Circuit norCircuit(&norGraph);
     norCircuit.setPath(currentPath);
-    norCircuit.setCircuitName("NorCircuit1");
+    norCircuit.setCircuitName("NorCircuit4");
 
     EXPECT_TRUE(norCircuit.graphToVerilog(currentPath, true));
 
-    std::string filename = currentPath + "/NorCircuit1.v";
+    std::string filename = currentPath + "/NorCircuit4.v";
 
     EXPECT_TRUE(std::filesystem::exists(filename));
 
-    //std::filesystem::remove(filename);
+    std::filesystem::remove(filename);
 
-    //EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(filename));
 }
 
 
@@ -205,15 +205,17 @@ TEST(CircuitTest, GraphToVerilogTest) {
     example.addVertex("const", "Anything", "Anything");
     Circuit circuit(&example);
     circuit.setPath(currentPath);
-    circuit.setCircuitName("TestCircuit1");
+    circuit.setCircuitName("TestCircuit4");
 
     EXPECT_TRUE(circuit.graphToVerilog(currentPath, true));
 
-    std::string filename = currentPath + "/TestCircuit1.v";
+    std::string filename = currentPath + "/TestCircuit4.v";
 
     EXPECT_TRUE(std::filesystem::exists(filename));
 
-    //std::filesystem::remove(filename);
+    // Удаляем созданный Verilog файл после проверки
+    std::filesystem::remove(filename);
 
-    //EXPECT_FALSE(std::filesystem::exists(filename));
+    // Убеждаемся, что файл был удалён
+    EXPECT_FALSE(std::filesystem::exists(filename));
 }
