@@ -130,7 +130,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(const GenerationPar
     Parser pCNFT(expr);
     pCNFT.parseAll();
 
-    OrientedGraph graph = pCNFT.getGraph();
+    OrientedGraph graph;// = pCNFT.getGraph();
     Circuit c(&graph, expr);
     c.setTable(tt);
     c.setPath(d_mainPath);
@@ -145,11 +145,13 @@ void DataBaseGenerator::generateDataBaseRandLevel(const GenerationParameters &i_
   generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   std::vector<std::pair<std::string, OrientedGraph>> circs;
-  circs.push_back({"RandLevel",
-                   generator.generatorRandLevel(i_param.getRandLevel().getMaxLevel(),
-                                                i_param.getRandLevel().getMaxElements(),
-                                                i_param.getInputs(),
-                                                i_param.getOutputs())});
+  // circs.push_back({"RandLevel",
+  //                  generator.generatorRandLevel(i_param.getRandLevel().getMinLevel(),
+  //                                               i_param.getRandLevel().getMaxLevel(),
+  //                                               i_param.getRandLevel().getMinElements(),
+  //                                               i_param.getRandLevel().getMaxElements(),
+  //                                               i_param.getInputs(),
+  //                                               i_param.getOutputs())});
 
   for (auto &[name, graph] : circs)
   {
@@ -166,12 +168,12 @@ void DataBaseGenerator::generateDataBaseNumOperations(const GenerationParameters
   generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   std::vector<std::pair<std::string, OrientedGraph>> circs;
-  circs.push_back({"NumOperation",
-                   generator.generatorNumOperation(
-                      i_param.getInputs(),
-                      i_param.getOutputs(),
-                      i_param.getNumOperations().getLogicOpers(),
-                      i_param.getNumOperations().getLeaveEmptyOut())});
+  // circs.push_back({"NumOperation",
+  //                  generator.generatorNumOperation(
+  //                     i_param.getInputs(),
+  //                     i_param.getOutputs(),
+  //                     i_param.getNumOperations().getLogicOpers(),
+  //                     i_param.getNumOperations().getLeaveEmptyOut())});
 
   for (auto &[name, graph] : circs)
   {
@@ -203,7 +205,7 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters &i_param)
   bool overflowIn = i_param.getSummator().OverFlowIn;
   bool overflowOut = i_param.getSummator().OverFlowOut;
   bool minus = i_param.getSummator().minus;
-  OrientedGraph graph = sg.generatorSummator(bits, overflowIn, overflowOut, minus);
+  OrientedGraph graph;// = sg.generatorSummator(bits, overflowIn, overflowOut, minus);
   Circuit c(&graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -219,7 +221,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(const GenerationParameters &i
   bool compare0 = i_param.getComparison().compare0;
   bool compare1 = i_param.getComparison().compare1;
   bool compare2 = i_param.getComparison().compare2;
-  OrientedGraph graph = sg.generatorComparison(bits, compare0, compare1, compare2);
+  OrientedGraph graph;// = sg.generatorComparison(bits, compare0, compare1, compare2);
   Circuit c(&graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -232,7 +234,7 @@ void DataBaseGenerator::GenerateDataBaseEncoder(const GenerationParameters &i_pa
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   int bits = i_param.getInputs();
-  OrientedGraph graph = sg.generatorEncoder(bits);
+  OrientedGraph graph;// = sg.generatorEncoder(bits);
   Circuit c(&graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());

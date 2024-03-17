@@ -10,9 +10,18 @@ class TruthTable
 public:
     TruthTable();
     void generateTable(double i_p = 0);
+    TruthTable(int seed);
+    TruthTable(const TruthTable &other) = default;
+    TruthTable &operator=(const TruthTable &other) = default;
+    TruthTable(TruthTable &&other) = default;
+    TruthTable &operator=(TruthTable &&other) = default;
     TruthTable(int i_input, int i_output, const std::vector<std::vector<bool>> &i_array = {});
     TruthTable(const TruthTable &i_tt, std::vector<std::vector<bool>> i_array = {});
     TruthTable(int i_input, int i_output, double i_p = 0.5);
+
+    void setSeed(int i_seed);
+    void generateRandom(TruthTableParameters i_gp) override;
+    void generateTable(double i_p = 0);
     int getInput() const;
     int getOutput() const;
     int size() const;
@@ -29,4 +38,5 @@ private:
     int d_size;
     std::vector<std::vector<bool>> d_array;
     std::shared_ptr<Settings> d_settings = Settings::getInstance("TruthTable");
+    RandomGeneratorWithSeed d_randGenerator;
 };

@@ -79,6 +79,7 @@ public:
 
   virtual char updateValue();
   std::string calculateHash(bool recalculate = false);
+  std::string getVerilogString() const;
   
 private:
   Gates d_gate;

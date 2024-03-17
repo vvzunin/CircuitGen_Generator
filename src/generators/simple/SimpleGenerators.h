@@ -8,7 +8,7 @@
 
 #include <baseStructures/graph/OrientedGraph.h>
 #include <baseStructures/truthTable/TruthTable.h>
-#include <additional/AuxiliaryMethods/RandomGeneratorWithSeed.h>
+#include <additional/RandomGeneratorWithSeed.h>
 
 using GatesInfo = std::map<Gates, std::vector<int>>;
 

@@ -7,6 +7,7 @@ enum GenerationTypes
 {
     FromRandomTruthTable,
     RandLevel,
+    RandLevelExperimental,
     NumOperation,
     //Genetic,
     Summator,

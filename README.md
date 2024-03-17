@@ -5,6 +5,7 @@
 - [Правила именования переменных](#rules_rus)
 - [Добавление нового генератора](#generator_add_rus)
 - [Сборка программы](#generator_build_rus)
+- [Сборка библиотеки](#generator_buildLib_rus)
 - [Запуск генерации комбинационных схем из командной строки](#generator_run_one_json_rus)
 - [JSON файлы](#JSON_files)
 
@@ -103,18 +104,26 @@ gp.setNewGeneratorNameParameters(...);
 
 ## Сборка программы
 <a name="generator_build_rus"></a> 
-Для сборки программы необходимо выполнить следующую команду из начальной директории:
+В первую очередь треубется установить все требуемые утилиты. Для этого выполните следующие команды: 
 ```
-./buildGenerator.sh
+chmod +x installUtils.sh
+sudo ./installUtils.sh
 ```
 
+Для сборки программы необходимо выполнить следующие команды из начальной директории:
+```
+chmod +x buildGenerator.sh
+./buildGenerator.sh
+>>>>>>> main
+```
+[&#8593; Contents](#content_rus)
+
 ## Сборка библиотеки (shared)
-<a name="generator_build_rus"></a> 
+<a name="generator_buildLib_rus"></a> 
 Для сборки библиотеки (shared) необходимо выполнить следующую команду из начальной директории:
 ```
 ./buildGeneratorLibrary.sh
 ```
-
 [&#8593; Contents](#content_rus)
 
 ## Запуск генерации комбинационных схем из командной строки

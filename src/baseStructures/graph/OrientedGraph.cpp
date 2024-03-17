@@ -4,6 +4,7 @@
 #include <cassert>
 #include <string>
 #include <vector>
+#include <fstream>
 
 #include "OrientedGraph.h"
 #include <baseStructures/graph/GraphVertex.h>
@@ -183,7 +184,7 @@ std::vector<GraphVertexBase*> OrientedGraph::getVerticesByType(const VertexTypes
 
   std::vector<GraphVertexBase*> resVert;
   for (GraphVertexBase* vert : d_vertexes.at(i_type))
-    if (vert->getName() == i_name)
+    if ((i_name == "") || (vert->getName() == i_name))
       resVert.push_back(vert);
   
   if (i_addSubGraphs)
@@ -243,113 +244,105 @@ bool OrientedGraph::operator== (const OrientedGraph& rhs) {
   return hashed == rhs.hashed && hashed.size();
 }
 
-std::string OrientedGraph::toVerilog(const std::string &i_path) {
-  //int previousSizeOfFileName = filename.size();
-  // filename = i_path;
+bool OrientedGraph::toVerilog(std::ofstream &i_fileStream) {
+  // В данном методе происходит только генерация одного графа. Без подграфов.
+  std::string verilogTab = "  ";
 
-  // std::vector<std::string> inputs = d_graph->getVerticesByType("input");
-  // std::vector<std::string> outputs = d_graph->getVerticesByType("output");
-  // std::vector<std::string> consts = d_graph->getVerticesByType("const");
+  i_fileStream << "module " << d_name << "();\n";
 
-  // int pos = (s.find_last_of('/')) + 1;
-  // int pos2 = (filename.find_last_of('/')) + 1;
+  if (d_vertexes.at(VertexTypes::input).size() > 0) {
+    i_fileStream << verilogTab + "// Declare inputs\n";
+    i_fileStream << verilogTab + "input ";
+    const std::vector<GraphVertexBase*> &verts = d_vertexes.at(VertexTypes::input);
+    for (int i = 0; i < verts.size() - 1; i++) {
+      const GraphVertexBase* vert = verts[i];
+      i_fileStream << vert->getName() + ", ";
+    }
+    i_fileStream << verts[verts.size() - 1]->getName() + ";\n";
+  }
 
-  // if (previousSizeOfFileName == 0)
-  //     s = std::filesystem::current_path().string() + "/" + filename; // static variable will be created one time and then will be used throught running of the program
-  // else
-  //     s.replace(pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName);
+  if (d_vertexes.at(VertexTypes::output).size() > 0) {
+    i_fileStream << verilogTab + "// Declare outputs\n";
+    i_fileStream << verilogTab + "output ";
+    const std::vector<GraphVertexBase*> &verts = d_vertexes.at(VertexTypes::output);
+    for (int i = 0; i < verts.size() - 1; i++) {
+      const GraphVertexBase* vert = verts[i];
+      i_fileStream << vert->getName() + ", ";
+    }
+    i_fileStream << verts[verts.size() - 1]->getName() + ";\n\n";
+  }
 
-  // bool f = std::filesystem::exists(s);
+  i_fileStream << verilogTab + "// Declare constants\n";
+  for (GraphVertexBase* vert : d_vertexes.at(VertexTypes::constant)) {
+    i_fileStream << verilogTab + "wire " + vert->getName() + " = 1'b" + vert->getValue() + ";\n";
+  }
+  i_fileStream << "\n";
+  
+  for (OrientedGraph* graph : d_subGraphs) {
 
-  // std::ofstream w(filename);
-  // for (const auto &expr : d_logExpressions)
-  //     w << "//" << expr << '\n';
+    i_fileStream << verilogTab + graph->getName() + " " + graph->getName() + "_inst(\n";
+    
+    {
+      const std::vector<GraphVertexBase*> &verts = graph->getVerticesByType(VertexTypes::input);    
+      if (verts.size() > 0) {  
+        std::string tab = verilogTab + verilogTab;    
+        i_fileStream << tab + "// inputs\n";   
 
-  // w << "module " << d_circuitName << "(";
+        for (int i = 0; i < verts.size() - 1; i++) {
+          const GraphVertexBase* vert = verts[i];
+          i_fileStream << tab + "." + vert->getName() + "(";
+          if (vert->getInConnections().size() > 0)
+            i_fileStream << vert->getInConnections()[0]->getName();            
+          i_fileStream << "),\n";
+        }
+        const GraphVertexBase* vert = verts[verts.size() - 1];
+        i_fileStream << tab + "." + vert->getName() + "(";
+          if (vert->getInConnections().size() > 0)
+            i_fileStream << vert->getInConnections()[0]->getName();            
+          i_fileStream << ")";  
+      }
+    }
+    {
+      const std::vector<GraphVertexBase*> &verts = graph->getVerticesByType(VertexTypes::output);    
+      if (verts.size() > 0) {  
+        i_fileStream << ",\n\n";
+        std::string tab = verilogTab + verilogTab;
+        i_fileStream << tab + "// outputs\n";     
 
-  // std::string in = "";
-  // std::string out = "";
+        for (int i = 0; i < verts.size() - 1; i++) {
+          const GraphVertexBase* vert = verts[i];
+          i_fileStream << tab + "." + vert->getName() + "(" + vert->getName() + "),\n";
+        }
+        const GraphVertexBase* vert = verts[verts.size() - 1];
+        i_fileStream << tab + "." + vert->getName() + "(" + graph->getName() + "_" + vert->getName() + ")";  
+      }
+    }
+    i_fileStream << "\n" + verilogTab + ");\n";
 
-  // const std::string inputModule = "\tinput";
-  // const std::string outputModule = "\toutput";
+    for (GraphVertexBase* vert : graph->getVerticesByType(VertexTypes::output))
+      i_fileStream << verilogTab + "wire " + graph->getName() + "_" + vert->getName() + ";\n";
+    i_fileStream << "\n";
+  }
 
-  // for (const auto &in_i : inputs)
-  //     if (in_i.find("x") != std::string::npos)
-  //         in += " " + in_i + ",";
 
-  // if (in.length())
-  // {
-  //     w << in;
-  //     in[in.length() - 1] = ';';
-  // }
+  for (GraphVertexBase* vert : d_vertexes.at(VertexTypes::gate)) {
+    std::string s = dynamic_cast<GraphVertexGates*>(vert)->getVerilogString();
+    if (s != "")
+      i_fileStream << verilogTab + "wire " + vert->getName() + " = " + s + ";\n";
+  }
 
-  // bool first = true;
-  // for (const auto &output : outputs)
-  // {
-  //     if (first)
-  //     {
-  //         out += " ";
-  //         first = false;
-  //     }
-  //     else
-  //     {
-  //         out += ", ";
-  //     }
-  //     out += output;
-  // }
-  // w << out << " );\n\n";
 
-  // if (in.length())
-  //     w << inputModule << in << '\n';
-  // w << outputModule << out << ";\n";
+  for (GraphVertexBase* vert : d_vertexes.at(VertexTypes::output)) {
+    for (GraphVertexBase* inVert : vert->getInConnections()) {
+      i_fileStream << verilogTab + "assign " + vert->getName() + " = ";
+      if (vert->getBaseGraph() == inVert->getBaseGraph())
+        i_fileStream << inVert->getName();
+      else
+        i_fileStream << inVert->getBaseGraph()->getName() + "_" + inVert->getName();
+    }
+    i_fileStream << ";\n";
+  }
 
-  // if (d_graph->size() - inputs.size() - outputs.size() - consts.size() > 0)
-  // {
-  //     w << "\n\twire";
-  //     bool first = true;
-  //     for (const auto &vert : d_graph->getVertices())
-  //     {
-  //         if (vert.getOperation() != "input" && vert.getOperation() != "output" && vert.getOperation() != "const")
-  //         {
-  //             if (first)
-  //             {
-  //                 w << " " << vert.getWireName();
-  //                 first = false;
-  //             }
-  //             else
-  //             {
-  //                 w << ", " << vert.getWireName();
-  //             }
-  //         }
-  //     }
-  //     w << ";\n"
-  //       << std::endl;
-  // }
-
-  // for (int j = 0; j < d_graph->size(); ++j)
-  // {
-  //     if (d_graph->getVertice(j).getOperation() != "input")
-  //     {
-  //         std::vector<int> inps;
-  //         for (int i = 0; i < d_graph->size(); ++i)
-  //             if (d_graph->getAdjacencyMatrix(i, j))
-  //                 inps.push_back(i);
-
-  //         if (d_graph->getVertice(j).getOperation() != "output" && d_graph->getVertice(j).getOperation() != "const")
-  //         {
-  //             w << "\t" << d_graph->getVertice(j).getOperation() << " ( " << d_graph->getVertice(j).getWireName();
-  //             // TODO: on prev line add instance name
-  //             for (auto k : inps)
-  //                 w << ", " << d_graph->getVertice(k).getWireName();
-  //             w << ");" << std::endl;
-  //         }
-  //         else if (d_graph->getVertice(j).getOperation() == "output" && inps.size() > 0)
-  //         {
-  //             w << "\tassign " << d_graph->getVertice(j).getWireName() << " = " << d_graph->getVertice(inps[0]).getWireName() << ";" << std::endl;
-  //         }
-  //     }
-  // }
-
-  // w << "endmodule" << std::endl;
-  // w.close();
+  i_fileStream << "endmodule\n";
+  return true;
 }

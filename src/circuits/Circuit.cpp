@@ -16,7 +16,6 @@
 Circuit::Circuit(OrientedGraph *const i_graph, const std::vector<std::string> &i_logExpressions)
 {
   d_graph = i_graph;
-  std::clog << "Graph moved, update begins" << std::endl;
   d_graph->updateLevels();
   d_logExpressions = i_logExpressions;
 }
@@ -94,25 +93,53 @@ void Circuit::updateCircuitsParameters()
   computeHash();
 }
 
+void Circuit::viewSubgraphs(std::string path, OrientedGraph *graph)
+{
+  for (OrientedGraph *gr : graph->getSubGraphs())
+  {
+    std::ofstream w(path + "/" + gr->getName() + ".v");
+    gr->toVerilog(w);
+    w.close();
+    viewSubgraphs(path, gr);
+  }
+}
+
 bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists)
 {
-  // TODO: Переделать
-  // if (d_graph->empty())
-    //     return false;
-
-    // d_graph->numberVerticesCorrectly();
-
+  if (d_graph->isEmpty())
+    return false;
 
   /* if (!i_pathExists) // TODO: work with directory
          if (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() + i_path))
              std::filesystem::create_directory(i_path);
      */
 
-  // static std::string filename;
-  
-  // filename = d_path + "/" + d_circuitName + ".v";
+  static std::string filename;
+  static std::string s;
 
-  // d_graph->toVerilog(filename);
+  int previousSizeOfFileName = filename.size();
+
+  std::string folderSubgraphs = d_path + "/submodules";
+  std::filesystem::create_directory(folderSubgraphs);
+  filename = d_path + "/" + d_circuitName + ".v";
+
+  int pos = (s.find_last_of('/')) + 1;
+  int pos2 = (filename.find_last_of('/')) + 1;
+
+  if (previousSizeOfFileName == 0)
+    s = std::filesystem::current_path().string() + "/" + filename; // static variable will be created one time and then will be used throught running of the program
+  else
+    s.replace(pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName);
+
+  bool f = std::filesystem::exists(s);
+
+  std::ofstream w(filename);
+
+  d_graph->toVerilog(w);
+
+  w.close();
+
+  viewSubgraphs(folderSubgraphs, d_graph);
 
   return true;
 }
@@ -223,7 +250,6 @@ bool Circuit::generate(bool i_pathExists)
 
   std::filesystem::create_directories(d_path);
 
-
   // if (!i_pathExists)
   // d_path += d_circuitName;
   std::clog << "Writing verilog for " << d_circuitName << std::endl;
@@ -231,7 +257,7 @@ bool Circuit::generate(bool i_pathExists)
     return false;
 
   std::clog << "Writing verilog ended " << d_circuitName << std::endl;
-  
+
   updateCircuitsParameters();
   // TODO: costul
   // if (checkExistingHash() || d_circuitParameters.d_reliability == 0 || d_circuitParameters.d_gates == 0)
@@ -265,7 +291,7 @@ void Circuit::setCircuitName(const std::string &i_circName)
   d_graph->setName(i_circName);
 }
 
-std::vector<GraphVertexBase*> Circuit::getIndexOfWireName(const std::string &i_wireName)
+std::vector<GraphVertexBase *> Circuit::getIndexOfWireName(const std::string &i_wireName)
 {
   return d_graph->getVerticesByName(i_wireName);
 }

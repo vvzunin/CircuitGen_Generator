@@ -20,6 +20,7 @@ private:
 
     void generateDataBaseFromRandomTruthTable(const GenerationParameters &i_params);
     void generateDataBaseRandLevel(const GenerationParameters &i_params);
+    void generateDataBaseRandLevelExperimental(const GenerationParameters &i_param);
     void generateDataBaseNumOperations(const GenerationParameters &i_param);
     void generateDataBaseGenetic(const GenerationParameters &i_param);
     void GenerateDataBaseSummator(GenerationParameters &i_param);

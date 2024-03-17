@@ -80,3 +80,55 @@ std::string GraphVertexGates::calculateHash(bool recalculate) {
 
   return hashed;
 }
+
+std::string GraphVertexGates::getVerilogString() const {
+  std::string s = "";
+
+  if (d_inConnections.size() > 0) {
+    if (this->d_baseGraph == d_inConnections[0]->getBaseGraph())
+      s = d_inConnections[0]->getName();
+    else
+      s = d_inConnections[0]->getBaseGraph()->getName() + "_" + d_inConnections[0]->getName();
+
+
+    if (d_gate == Gates::GateNot) 
+      s = "~" + s;
+    if ((d_gate == Gates::GateNand) || (d_gate == Gates::GateNor))
+      s = "~(" + s;
+    
+    for (int i = 1; i < d_inConnections.size(); i++) {
+      std::string name;
+      if (this->d_baseGraph == d_inConnections[i]->getBaseGraph())
+        name = d_inConnections[i]->getName();
+      else
+        name = d_inConnections[i]->getBaseGraph()->getName() + "_" + d_inConnections[i]->getName();
+      switch (d_gate) {
+        case(Gates::GateAnd):
+          s += " & " + name;
+          break;
+        case(Gates::GateNand):
+          s += " & " + name;
+          break;
+        case(Gates::GateOr):
+          s += " | " + name;
+          break;
+        case(Gates::GateNor):
+          s += " | " + name;
+          break;
+        case(Gates::GateXor):
+          s += " ^ " + name;
+          break;
+        case(Gates::GateXnor):
+          s += " ~^ " + name;
+          break;
+        default:
+          std::cerr << "Error" << std::endl;
+      }
+    }
+
+    if ((d_gate == Gates::GateNand) || (d_gate == Gates::GateNor))
+      s += ")";
+  }
+
+  return s;
+}

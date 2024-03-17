@@ -7,7 +7,7 @@ uint_fast64_t GraphVertexBase::d_count = 0;
 GraphVertexBase::GraphVertexBase(
   const VertexTypes i_type, 
   OrientedGraph* const i_graph) {
-  // d_baseGraph       = i_graph;
+  d_baseGraph       = i_graph;
   d_type            = i_type;
   d_name            = this->getTypeName() + "_" + std::to_string(d_count++);
   d_value           = 'x';
@@ -18,7 +18,7 @@ GraphVertexBase::GraphVertexBase(
   const VertexTypes i_type,
   const std::string i_name, 
   OrientedGraph* const i_graph) {
-  // d_baseGraph       = i_graph;
+  d_baseGraph       = i_graph;
   d_type            = i_type;
   d_name            = i_name;
   d_value           = 'x';
@@ -75,7 +75,7 @@ char GraphVertexBase::getValue() const {
 }
 
 OrientedGraph* GraphVertexBase::getBaseGraph() const {
-  return dynamic_cast<OrientedGraph*>(d_baseGraph);
+  return d_baseGraph;
 }
 
 std::vector<GraphVertexBase*> GraphVertexBase::getInConnections() const {

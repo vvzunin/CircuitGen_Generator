@@ -9,6 +9,8 @@
 #include <baseStructures/graph/enums.h>
 #include <settings/Settings.h>
 
+// TODO: Добавить проверку на имена файлов при доблении новых вершин
+
 class GraphVertexBase; // Проблема циклического определения
 class OrientedGraph {
 public:
@@ -20,8 +22,8 @@ public:
   virtual ~OrientedGraph();
 
   // TODO: Написать руками для полного копирования, а не только указателей.
-  OrientedGraph &operator=(const OrientedGraph &other) = default;
-  OrientedGraph &operator=(OrientedGraph &&other) = default;
+  OrientedGraph &operator=(const OrientedGraph &other) = default; // оператор копирующего присваивания
+  OrientedGraph &operator=(OrientedGraph &&other) = default; // оператор перемещающего присваивания
   OrientedGraph(const OrientedGraph &other) = default;
   OrientedGraph(OrientedGraph &&other) = default;
 
@@ -61,7 +63,7 @@ public:
   std::map<VertexTypes, std::vector<GraphVertexBase*>> getBaseVertexes() const;
   GraphVertexBase* getVerticeByIndex(int idx) const;
 
-  std::string toVerilog(const std::string &i_path);
+  bool toVerilog(std::ofstream &i_fileStream);
   // toAdjencyMatrix
   // toGraphML
   // vizualize

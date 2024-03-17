@@ -58,7 +58,7 @@ public:
 
 protected:
 
-  GraphVertexBase* d_baseGraph = nullptr;
+  OrientedGraph* d_baseGraph = nullptr;
   
   std::string d_name;
   char d_value;
