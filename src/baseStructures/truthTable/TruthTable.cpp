@@ -3,10 +3,28 @@
 #include <memory>
 
 #include "TruthTable.h"
-#include "additional/AuxiliaryMethods.h"
+#include <AuxiliaryMethods/AuxiliaryMethods.h>
 
 TruthTable::TruthTable()
 {
+    d_randGenerator.setSeed(AuxMethods::getRandSeed());
+    d_settings = Settings::getInstance("TruthTable");
+}
+
+TruthTable::TruthTable(int i_seed)
+{
+    d_randGenerator.setSeed(i_seed);
+    d_settings = Settings::getInstance("TruthTable");
+}
+
+TruthTable::TruthTable(const Chronosome<TruthTableParameters> &i_chr)
+{
+    d_randGenerator.setSeed(AuxMethods::getRandSeed());
+    d_settings = Settings::getInstance("TruthTable");
+}
+
+void TruthTable::setSeed(int i_seed) {
+    d_randGenerator.setSeed(i_seed);
 }
 
 TruthTable::TruthTable(int i_input, int i_output, const std::vector<std::vector<bool>> &i_array) : d_input(i_input),
@@ -82,7 +100,7 @@ void TruthTable::generateTable(double i_p)
         {
             d_array[i].resize(d_output);
             for (int j = 0; j < d_output; ++j)
-                d_array[i][j] = AuxMethods::getRandInt(0, 1, true) == 1;
+                d_array[i][j] = d_randGenerator.getRandInt(0, 1, true) == 1;
         }
     }
     if (i_p > 0 && i_p <= 1)

@@ -141,6 +141,25 @@ int Settings::getNumThread() const {
     return d_numThreads;
 }
 
+std::pair<std::vector<bool>, std::vector<std::string>> Settings::getLogicOperationsWithGates(std::vector<std::string> i_notIncluded)
+{
+    std::vector<std::string> res;
+    std::vector<bool> oneGate;
+    
+    for (const auto &[key, value] : d_logicOperations) {
+        if (std::find(i_notIncluded.begin(), i_notIncluded.end(), key) == i_notIncluded.end()) {
+            res.push_back(key);
+            oneGate.push_back(key == "not" || key == "buf");
+        }
+    }
+
+    return std::make_pair(oneGate, res);
+}
+
+int Settings::getNumThread() const {
+    return d_numThreads;
+}
+
 std::string Settings::getPathNadezhda() const
 {
     return d_pathToNadezhda;
