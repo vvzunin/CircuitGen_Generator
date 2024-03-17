@@ -27,7 +27,6 @@ set(
   DataBaseGenerator
   FilesTools
   OrientedGraph
-  Reliability
   Settings
   ThreadPool
   TruthTable

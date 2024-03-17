@@ -215,7 +215,7 @@ std::string Settings::getGenerationMethodPrefix(const std::string &i_s) const
     if (i_s == "Genetic")
         return "CCGGA";
 
-    std::cout << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
+    std::cerr << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
 
     return "ftt";
 }

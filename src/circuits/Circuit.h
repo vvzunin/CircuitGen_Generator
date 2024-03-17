@@ -33,4 +33,5 @@ private:
     std::shared_ptr<Settings> d_settings = Settings::getInstance("Circuit");
 
     bool checkExistingHash();
+    void viewSubgraphs(std::string path, OrientedGraph* graph);
 };
