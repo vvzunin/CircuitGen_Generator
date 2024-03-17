@@ -23,12 +23,14 @@ public:
   OrientedGraph &operator=(const OrientedGraph &other) = default;
   OrientedGraph &operator=(OrientedGraph &&other) = default;
   OrientedGraph(const OrientedGraph &other) = default;
-  OrientedGraph(OrientedGraph &&other);
+  OrientedGraph(OrientedGraph &&other) = default;
 
   // Количество gate в графе, за исключением подграфов
   int baseSize() const;
   // Количество gate в графе, включая подграфы
   int fullSize() const;
+  // sum of gates, inputs, outputs and consts sizes
+  size_t sumFullSize() const;
   // Имеются ли gate в схеме, включая подграфы
   bool isEmpty() const;
   // Имеются ли в схеме какие-либо vertex
@@ -58,9 +60,6 @@ public:
   std::vector<OrientedGraph*> getSubGraphs() const;
   std::map<VertexTypes, std::vector<GraphVertexBase*>> getBaseVertexes() const;
   GraphVertexBase* getVerticeByIndex(int idx) const;
-
-  // sum of gates, inputs, outputs and consts sizes
-  size_t sumFullSize() const;
 
   std::string toVerilog(const std::string &i_path);
   // toAdjencyMatrix
