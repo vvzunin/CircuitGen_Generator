@@ -1,7 +1,8 @@
 #!/bin/bash
-cd Generator/source
-mkdir build
+if [ ! -d "build" ]; then
+  mkdir build
+fi
 cd build
 cmake ..
 make -j 10
-cd ../../../
+cd ..

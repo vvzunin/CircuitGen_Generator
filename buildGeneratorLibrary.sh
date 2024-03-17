@@ -1,8 +1,9 @@
 #!/bin/bash
-cd Generator/source
-mkdir build
+if [ ! -d "build" ]; then
+  mkdir build
+fi
 cd build
 cmake ..
 cmake --build . --target cgen
-cp libcgen.so ../../../libcgen.so
-cd ../../../
+cp libcgen.so ../libcgen.so
+cd ../
