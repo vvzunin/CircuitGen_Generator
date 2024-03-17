@@ -126,17 +126,6 @@ std::vector<Gates> Settings::getLogicOperationsKeys()
     return d_logicElements;
 }
 
-std::pair<std::vector<bool>, std::vector<Gates>> Settings::getLogicOperationsWithGates()
-{
-    std::vector<bool> oneGate;
-    
-    for (const auto &key : d_logicElements) {
-        oneGate.push_back(key == Gates::GateBuf || key == Gates::GateNot);
-    }
-
-    return std::make_pair(oneGate, d_logicElements);
-}
-
 int Settings::getNumThread() const {
     return d_numThreads;
 }
@@ -154,20 +143,6 @@ std::pair<std::vector<bool>, std::vector<std::string>> Settings::getLogicOperati
     }
 
     return std::make_pair(oneGate, res);
-}
-
-int Settings::getNumThread() const {
-    return d_numThreads;
-}
-
-std::string Settings::getPathNadezhda() const
-{
-    return d_pathToNadezhda;
-}
-
-std::string Settings::getNadezhdaVar(const std::string &key) const
-{
-    return d_nadezhda.at(key);
 }
 
 std::vector<std::string> Settings::fromOperationsToHierarchy(int key) const

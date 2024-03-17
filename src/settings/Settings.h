@@ -51,7 +51,7 @@ public:
   std::string getInstanceName() const;
   std::pair<std::string, int> getLogicOperation(const std::string &i_op);
   std::vector<Gates> getLogicOperationsKeys();
-  std::pair<std::vector<bool>, std::vector<Gates>> getLogicOperationsWithGates();
+  std::pair<std::vector<bool>, std::vector<std::string>> getLogicOperationsWithGates(std::vector<std::string> i_notIncluded = {});
   std::string fromOperationsToName(const std::string &i_op) const;
   std::string getDatasetPath() const;
   std::string getGenerationMethodPrefix(const std::string &i_s) const;

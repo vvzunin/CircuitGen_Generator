@@ -57,8 +57,4 @@ class RandomGeneratorWithSeed {
     std::minstd_rand d_gen;
 };
 
-<<<<<<< HEAD:src/additional/RandomGeneratorWithSeed.h
 #endif
-=======
-#endif
->>>>>>> main:Generator/source/AuxiliaryMethods/RandomGeneratorWithSeed.h

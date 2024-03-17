@@ -4,12 +4,12 @@
 #include <memory>
 
 #include <settings/Settings.h>
+#include <additional/RandomGeneratorWithSeed.h>
 
 class TruthTable 
 {
 public:
     TruthTable();
-    void generateTable(double i_p = 0);
     TruthTable(int seed);
     TruthTable(const TruthTable &other) = default;
     TruthTable &operator=(const TruthTable &other) = default;
@@ -20,7 +20,6 @@ public:
     TruthTable(int i_input, int i_output, double i_p = 0.5);
 
     void setSeed(int i_seed);
-    void generateRandom(TruthTableParameters i_gp) override;
     void generateTable(double i_p = 0);
     int getInput() const;
     int getOutput() const;
