@@ -15,6 +15,7 @@ add_executable(${PROJECT_NAME}
   FilesToolsTests.cpp 
   GraphVertexTests.cpp
   YosysUtilsTests.cpp
+  CircuitTests.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC 
