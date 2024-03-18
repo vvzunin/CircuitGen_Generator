@@ -3,8 +3,12 @@
     "",
     "\\Generator",
     "\\Generator\\source",
-    "\\Generator\\source\\generators"
+    "\\Generator\\source\\circuits",
+    "\\Generator\\source\\DataBase",
+    "\\Generator\\source\\graph",
+    "\\Generator\\source\\optimization_utils",
+    "\\Generator\\source\\reliability"
   ],
-  "SelectedNode": "\\Generator\\source\\generators\\SimpleGenerators.h",
+  "SelectedNode": "\\Generator\\source\\circuits\\CircuitsParameters.h",
   "PreviewInSolutionExplorer": false
 }
