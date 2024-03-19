@@ -1,28 +1,25 @@
 #pragma once
 
+#include <baseStructures/graph/enums.h>
+
 #include <string>
 #include <vector>
 
+#include "OrientedGraph.h"
 #include "settings/Settings.h"
 
-#include "OrientedGraph.h"
-
-#include <baseStructures/graph/enums.h>
-
-class OrientedGraph; // Проблема циклического определения
+class OrientedGraph;  // Проблема циклического определения
 class GraphVertexBase {
-public:
-  GraphVertexBase(
-    const VertexTypes i_type, 
-    OrientedGraph* const i_graph = nullptr);
+ public:
+  GraphVertexBase(const VertexTypes i_type,
+                  OrientedGraph* const i_graph = nullptr);
 
-  GraphVertexBase(
-    const VertexTypes i_type, 
-    const std::string i_name, 
-    OrientedGraph* const i_graph = nullptr);
+  GraphVertexBase(const VertexTypes i_type, const std::string i_name,
+                  OrientedGraph* const i_graph = nullptr);
 
+  // TODO craches ad destructor call
   virtual ~GraphVertexBase();
-  
+
   // Get для типа вершины
   virtual VertexTypes getType() const final;
   // Get для типа вершины в фомате строки
@@ -48,7 +45,8 @@ public:
 
   std::vector<GraphVertexBase*> getInConnections() const;
   int addVertexToInConnections(GraphVertexBase* const i_vert);
-  bool removeVertexToInConnections(GraphVertexBase* const i_vert, bool i_full = false);
+  bool removeVertexToInConnections(GraphVertexBase* const i_vert,
+                                   bool i_full = false);
 
   std::vector<GraphVertexBase*> getOutConnections() const;
   bool addVertexToOutConnections(GraphVertexBase* const i_vert);
@@ -56,22 +54,23 @@ public:
 
   std::string calculateHash(bool recalculate = false);
 
-protected:
-
+ protected:
   OrientedGraph* d_baseGraph = nullptr;
-  
+
   std::string d_name;
   char d_value;
   unsigned d_level;
-  
+
   std::vector<GraphVertexBase*> d_inConnections;
   std::vector<GraphVertexBase*> d_outConnections;
 
-  std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertexBase");
-private:
+  std::shared_ptr<Settings> d_settings =
+      Settings::getInstance("GraphVertexBase");
 
-  // Определяем тип вершины: подграф, вход, выход, константа или одна из базовых логических операций.
-  VertexTypes d_type;    
+ private:
+  // Определяем тип вершины: подграф, вход, выход, константа или одна из базовых
+  // логических операций.
+  VertexTypes d_type;
 
   // Счетчик вершин для именования и подобного
   static uint_fast64_t d_count;

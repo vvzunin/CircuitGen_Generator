@@ -14,6 +14,8 @@ using GatesInfo = std::map<Gates, std::vector<int>>;
 
 class SimpleGenerators
 {
+using GatesInfo = std::map<Gates, std::vector<int>>;
+
 public:
     SimpleGenerators();
     SimpleGenerators(int i_seed);

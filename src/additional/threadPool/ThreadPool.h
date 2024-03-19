@@ -3,7 +3,7 @@
 //
 // ywx1235144 is Sergey Yakovlev, FCS student,
 // an excellent programmer and just a good person.
-// He has written this thread pool 
+// He has written this thread pool
 
 #pragma once
 
@@ -18,51 +18,51 @@ namespace Threading {
 /// It is not allowed to use thread pool in multiple threads.
 /// It is guaranteed tasks process-start times and ordered as their add time.
 class ThreadPool {
-public:
-    /// Create thread pool with specified number of threads.
-    explicit ThreadPool(size_t useThreads);
+ public:
+  /// Create thread pool with specified number of threads.
+  explicit ThreadPool(size_t useThreads);
 
-    // Not allow copy.
-    ThreadPool(const ThreadPool &other) = delete;
+  // Not allow copy.
+  ThreadPool(const ThreadPool &other) = delete;
 
-    ThreadPool &operator=(const ThreadPool &other) = delete;
+  ThreadPool &operator=(const ThreadPool &other) = delete;
 
-    // Not movable (FIX ME).
-    ThreadPool(ThreadPool &&other) = delete;
+  // Not movable (FIX ME).
+  ThreadPool(ThreadPool &&other) = delete;
 
-    // Not allow move-copy.
-    ThreadPool &operator=(ThreadPool &&other) = delete;
+  // Not allow move-copy.
+  ThreadPool &operator=(ThreadPool &&other) = delete;
 
-    using Task = std::function<void()>;
+  using Task = std::function<void()>;
 
-    /// Schedule task on execution.
-    void submit(Task task);
+  /// Schedule task on execution.
+  void submit(Task task);
 
-    /// Wait for all spawned for now tasks complete.
-    void wait();
+  /// Wait for all spawned for now tasks complete.
+  void wait();
 
-    /// Stop workers. Some tasks can be incomplete.
-    /// Blocks until every thread wont be stopped and destroyed.
-    /// After that, thread pool can not process new tasks.
-    void stop();
+  /// Stop workers. Some tasks can be incomplete.
+  /// Blocks until every thread wont be stopped and destroyed.
+  /// After that, thread pool can not process new tasks.
+  void stop();
 
-    /// Custom destructor which are to stop workers.
-    ~ThreadPool();
+  /// Custom destructor which are to stop workers.
+  ~ThreadPool();
 
-private:
-    // All multithreading is here.
-    void work();
+ private:
+  // All multithreading is here.
+  void work();
 
-    void spawnWorker();
+  void spawnWorker();
 
-    UnboundedMPMCQueue<Task> queue;
+  UnboundedMPMCQueue<Task> queue;
 
-    std::vector<std::thread> workers;
+  std::vector<std::thread> workers;
 
-    size_t notProcessed{0};
-    std::mutex mtx;
+  size_t notProcessed{0};
+  std::mutex mtx;
 
-    std::condition_variable processedAll;
+  std::condition_variable processedAll;
 };
 
-} // namespace Threading
+}  // namespace Threading
