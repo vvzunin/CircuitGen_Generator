@@ -212,7 +212,6 @@ OrientedGraph SimpleGenerators::generatorRandLevel(
         graph.addEdges(
             {graph.getVerticeByIndex(child2), graph.getVerticeByIndex(child1)},
             newVertex);
-        std::clog << graph.sumFullSize() << '\n';
       }
       ++position;
     }
