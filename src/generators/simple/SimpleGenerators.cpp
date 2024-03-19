@@ -11,22 +11,6 @@
 #include <iostream>
 #include <stdexcept>
 
-namespace {
-int maxValueInMap(const std::map<std::string, int> &i_map) {
-  if (i_map.size() == 0) {
-    return -1;
-  }
-  int res = (*i_map.begin()).second;
-
-  for (const auto &[key, value] : i_map) {
-    res = std::max(res, value);
-  }
-  return res;
-}
-
-// namespace end
-}  // namespace
-
 int SimpleGenerators::getRangomAndNumber() {
   return d_gatesInputsInfo[Gates::GateAnd][d_randGenerator.getRandInt(
       0, d_gatesInputsInfo[Gates::GateAnd].size())];
@@ -228,7 +212,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(
         graph.addEdges(
             {graph.getVerticeByIndex(child2), graph.getVerticeByIndex(child1)},
             newVertex);
-            std::clog << graph.sumFullSize() << '\n';
+        std::clog << graph.sumFullSize() << '\n';
       }
       ++position;
     }
@@ -389,142 +373,109 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
 }
 
 OrientedGraph SimpleGenerators::generatorNumOperation(
-    int i_input, int i_output, std::map<std::string, int> i_logicOper,
+    int i_input, int i_output, std::map<Gates, int> i_logicOper,
     bool i_leaveEmptyOut) {
-  // int sumOper = 0, maxLvl;
-  // std::string name;
-  // std::map<std::string, int> copyLogicOper, levelName;
-  // std::vector<std::string> nameOut, nameInput;
+  int sumOper = 0, maxLvl;
+  std::string name;
+  GraphVertexBase* name_ptr;
+  std::map<Gates, int> copyLogicOper;
+  std::map<GraphVertexBase*, int> levelName;
+  std::vector<GraphVertexBase*> nameOut, nameInput;
 
-  // for (const auto &elem : i_logicOper)
-  // {
-  //     std::cout << elem.first << " " << elem.second << "\n";
-  // }
+  for (const auto &elem : i_logicOper) {
+    std::cout << elem.first << " " << elem.second << "\n";
+  }
 
-  // copyLogicOper = i_logicOper;
+  copyLogicOper = i_logicOper;
 
   OrientedGraph graph;
 
-  // for (int i = 0; i < i_input; ++i)
-  // {
-  //     name = "x" + std::to_string(i);
-  //     graph.addInput(name);
+  for (int i = 0; i < i_input; ++i) {
+    name = "x" + std::to_string(i);
+    name_ptr = graph.addInput(name);
 
-  //     // TODO and how can it be changed?
-  //     levelName[name] =
-  //     graph.getVertice(graph.getIndexOfExpression(name)).getLevel(); if
-  //     (!i_leaveEmptyOut)
-  //         nameInput.push_back(name);
-  // }
+    // TODO and how can it be changed?
+    levelName[name_ptr] = name_ptr->getLevel();
+    if (!i_leaveEmptyOut) nameInput.push_back(name_ptr);
+  }
 
-  // for (int i = 0; i < i_output; ++i)
-  // {
-  //     name = "f" + std::to_string(i);
-  //     graph.addOutput(name);
-  //     nameOut.push_back(name);
-  // }
+  for (int i = 0; i < i_output; ++i) {
+    name = "f" + std::to_string(i);
+    name_ptr = graph.addOutput(name);
+    nameOut.push_back(name_ptr);
+  }
 
-  // for (const auto &[key, value] : copyLogicOper)
-  //     sumOper += value;
+  for (const auto &[key, value] : copyLogicOper) sumOper += value;
 
-  // for (int i = 0; i < sumOper; ++i)
-  // {
-  //     copyLogicOper = delNull(copyLogicOper); // TODO: optimize
-  //     // TODO change whole gen
-  //     std::string oper = randomGenerator(copyLogicOper);
-  //     copyLogicOper[oper]--;
+  copyLogicOper = delNull(copyLogicOper);
+  for (int i = 0; i < sumOper; ++i) {
+    // TODO: optimize
+    // TODO change whole gen
+    Gates oper = randomGenerator(copyLogicOper);
+    copyLogicOper[oper]--;
 
-  //     if (oper == Gates::GateNot || oper == "buf")
-  //     {
-  //         std::string ver1 = randomGenerator(levelName);
-  //         name = d_settings->getLogicOperation(oper).first + "(" + ver1 +
-  //         ")"; if (graph.addVertex(name, oper))
-  //         {
-  //             graph.addEdge(ver1, name);
-  //         }
-  //         else
-  //         {
-  //             copyLogicOper[oper]++;
-  //             sumOper++;
-  //         }
-  //     }
-  //     else
-  //     {
-  //         std::string ver1 = randomGenerator(levelName);
-  //         std::string ver2 = randomGenerator(levelName);
-  //         name = "(" + ver1 + ") " +
-  //         d_settings->getLogicOperation(oper).first + "(" + ver2 + ")";
-  //         std::string reserveName = "(" + ver2 + ") " +
-  //         d_settings->getLogicOperation(oper).first + "(" + ver1 + ")"; if
-  //         (graph.addVertex(name, oper))
-  //         {
-  //             graph.addDoubleEdge(ver1, ver2, name);
-  //             levelName[name] =
-  //             graph.getVertice(graph.getIndexOfExpression(name)).getLevel();
-  //         }
-  //         else
-  //         {
-  //             copyLogicOper[oper]++;
-  //             sumOper++;
-  //         }
-  //     }
-  // }
+    if (oper == Gates::GateNot || oper == Gates::GateBuf) {
+      GraphVertexBase* ver1 = randomGenerator(levelName);
+      // name = d_settings->getLogicOperation(oper).first + "(" + ver1 + ")";
+      name_ptr = graph.addGate(oper);
+      graph.addEdge(ver1, name_ptr);
+    } else {
+      GraphVertexBase* ver1 = randomGenerator(levelName);
+      GraphVertexBase* ver2 = randomGenerator(levelName);
+      // name = "(" + ver1 + ") " + d_settings->getLogicOperation(oper).first +
+      //        "(" + ver2 + ")";
 
-  // while ((nameOut.size() > 0) & ((levelName.size() > 0 || i_leaveEmptyOut ==
-  // false)))
-  // {
-  //     if (levelName.size() > 0)
-  //     {
-  //         std::vector<std::string> help;
-  //         maxLvl = maxValueInMap(levelName);
+      // WTF this is not used AT ALL
+      // std::string reserveName = "(" + ver2 + ") " +
+      //                           d_settings->getLogicOperation(oper).first +
+      //                           "(" + ver1 + ")";
+      
+      name_ptr = graph.addGate(oper);
+      graph.addEdges({ver1, ver2}, name_ptr);
+      levelName[name_ptr] = name_ptr->getLevel();
+    }
 
-  //         for (const auto &[key, value] : levelName)
-  //         {
-  //             if (value == maxLvl)
-  //                 help.push_back(key);
-  //         }
+    if (!copyLogicOper[oper])
+      copyLogicOper.erase(oper);
+  }
 
-  //         while (help.size() > 0 && nameOut.size() > 0)
-  //         {
-  //             int R1 = d_randGenerator.getRandInt(0, help.size());
-  //             int R2 = d_randGenerator.getRandInt(0, nameOut.size());
-  //             graph.addEdge(help[R1], nameOut[R2]);
-  //             levelName.erase(help[R1]);
-  //             help.erase(help.begin() + R1);
-  //             nameOut.erase(nameOut.begin() + R2);
-  //         }
-  //     }
-  //     else
-  //     {
-  //         int R1 = d_randGenerator.getRandInt(0, nameInput.size());
-  //         int R2 = d_randGenerator.getRandInt(0, nameOut.size());
+  while ((nameOut.size() > 0) &
+         ((levelName.size() > 0 || i_leaveEmptyOut == false))) {
+    if (levelName.size() > 0) {
+      std::vector<GraphVertexBase*> help;
+      maxLvl = maxValueInMap(levelName);
 
-  //         graph.addEdge(nameInput[R1], nameOut[R2]);
-  //         nameOut.erase(nameOut.begin() + R2);
-  //     }
-  // }
+      for (const auto &[key, value] : levelName) {
+        if (value == maxLvl) help.push_back(key);
+      }
+
+      while (help.size() > 0 && nameOut.size() > 0) {
+        int R1 = d_randGenerator.getRandInt(0, help.size());
+        int R2 = d_randGenerator.getRandInt(0, nameOut.size());
+        graph.addEdge(help[R1], nameOut[R2]);
+        levelName.erase(help[R1]);
+        help.erase(help.begin() + R1);
+        nameOut.erase(nameOut.begin() + R2);
+      }
+    } else {
+      int R1 = d_randGenerator.getRandInt(0, nameInput.size());
+      int R2 = d_randGenerator.getRandInt(0, nameOut.size());
+
+      graph.addEdge(nameInput[R1], nameOut[R2]);
+      nameOut.erase(nameOut.begin() + R2);
+    }
+  }
   return graph;
 }
 
-std::map<std::string, int> SimpleGenerators::delNull(
-    std::map<std::string, int> i_copyLogicOper) {
-  std::vector<std::string> delList;
+std::map<Gates, int> SimpleGenerators::delNull(
+    std::map<Gates, int> i_copyLogicOper) {
+  std::vector<Gates> delList;
   for (const auto &[key, value] : i_copyLogicOper)
     if (value == 0) delList.push_back(key);
 
   for (const auto &op : delList) i_copyLogicOper.erase(op);
   return i_copyLogicOper;
-}
-
-std::string SimpleGenerators::randomGenerator(
-    const std::map<std::string, int> &i_map) {
-  int i = d_randGenerator.getRandInt(0, i_map.size());
-
-  auto p = i_map.begin();
-
-  while (i--) p++;
-
-  return (*p).first;
 }
 
 OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn,

@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include <settings/Settings.h>
+
 class CNNFromTruthTableParameters {
  public:
   bool getCNFF() { return d_CNFF; }
@@ -46,18 +48,18 @@ class GeneratorRandLevelParameters {
 
 class GeneratorNumOperationParameters {
  public:
-  int getLogicOper(const std::string &i_op) const {
+  int getLogicOper(const Gates &i_op) const {
     if (d_logicOper.find(i_op) != d_logicOper.end())
       return d_logicOper.at(i_op);
     return -1;
   }
 
-  std::map<std::string, int> getLogicOpers() const { return d_logicOper; }
-  void setLogicOper(const std::pair<std::string, int> &i_p) {
+  std::map<Gates, int> getLogicOpers() const { return d_logicOper; }
+  void setLogicOper(const std::pair<Gates, int> &i_p) {
     d_logicOper[i_p.first] = i_p.second;
   }
 
-  void setLogicOper(const std::map<std::string, int> &i_p) {
+  void setLogicOper(const std::map<Gates, int> &i_p) {
     d_logicOper = i_p;
   }
 
@@ -66,7 +68,7 @@ class GeneratorNumOperationParameters {
   void setLeaveEmptyOut(bool i_leo) { d_leaveEmptyOut = i_leo; }
 
  private:
-  std::map<std::string, int> d_logicOper;
+  std::map<Gates, int> d_logicOper;
   bool d_leaveEmptyOut = true;
 };
 
@@ -170,7 +172,7 @@ class GenerationParameters {
     d_generatorRandLevelParameters.setMinElements(i_minElements);
     d_generatorRandLevelParameters.setMaxElements(i_maxElements);
   }
-  void setNumOperationParameters(const std::map<std::string, int> &i_m,
+  void setNumOperationParameters(const std::map<Gates, int> &i_m,
                                  bool i_LeaveEmptyOut) {
     d_generatorNumOperationParameters.setLogicOper(i_m);
     d_generatorNumOperationParameters.setLeaveEmptyOut(i_LeaveEmptyOut);

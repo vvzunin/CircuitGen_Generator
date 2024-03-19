@@ -22,7 +22,7 @@ OrientedGraph::OrientedGraph(const std::string i_name) {
 
 OrientedGraph::~OrientedGraph() {
   for (const auto& [key, value] : d_vertexes) {
-    for (GraphVertexBase* vert : value) {
+    for (auto vert : value) {
       if (vert != nullptr) delete vert;
     }
   }

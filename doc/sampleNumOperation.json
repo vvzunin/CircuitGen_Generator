@@ -4,11 +4,11 @@
     "dataset_id": "1",
     "id": 0,
     "type_of_generation": "Num Operation",
-    "min_in": 4,
+    "min_in": 5,
     "max_in": 5,
-    "min_out": 4,
+    "min_out": 5,
     "max_out": 5,
-    "repeat_n": 2,    
+    "repeat_n": 1,    
     "multithread": true,
     "calculate_stats_abc": true,
     "make_optimized_files": true,
@@ -16,24 +16,15 @@
     "make_bench": true,
     "create_id_directories": true,
     "library_name": "sky130",
-    
-    "gates_inputs_info": {
-      "and": [2],
-      "nand": [2],
-      "or": [2],
-      "nor": [2, 4, 8],
-      "xor": [2, 10],
-      "xnor": [2, 3]
-    },
 
     "leave_empty_out": true,
-    "num_and": 1,
-    "num_nand": 2,
-    "num_or": 1,
-    "num_not": 2,
-    "num_nor": 3,
-    "num_buf": 1,
-    "num_xor": 2,
-    "num_xnor": 5 
+    "num_and": 5000,
+    "num_nand": 5000,
+    "num_or": 5000,
+    "num_not": 5000,
+    "num_nor": 5000,
+    "num_buf": 0,
+    "num_xor": 5000,
+    "num_xnor": 5000 
   }
 ]

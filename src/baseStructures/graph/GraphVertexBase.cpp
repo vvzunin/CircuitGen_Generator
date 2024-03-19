@@ -26,7 +26,11 @@ GraphVertexBase::GraphVertexBase(const VertexTypes i_type,
   d_level = 0;
 }
 
-GraphVertexBase::~GraphVertexBase() {}
+GraphVertexBase::~GraphVertexBase() {
+  d_baseGraph = nullptr;
+  d_inConnections.clear();
+  d_outConnections.clear();
+}
 
 VertexTypes GraphVertexBase::getType() const { return d_type; }
 
