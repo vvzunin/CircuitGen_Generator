@@ -167,9 +167,9 @@ OrientedGraph SimpleGenerators::generatorRandLevel(
     throw std::invalid_argument("min elem is biggert than max elem");
 
   if (i_maxLevel)
-    maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 2;
+    maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 1;
   else
-    maxLevel = 2;
+    maxLevel = 1;
 
   auto [hasOneGate, logOper] = d_settings->getLogicOperationsWithGates();
 
@@ -244,9 +244,9 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     throw std::invalid_argument("min elem is biggert than max elem");
 
   if (i_maxLevel)
-    maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 2;
+    maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 1;
   else
-    maxLevel = 2;
+    maxLevel = 1;
 
   std::string expr;
   OrientedGraph graph;
