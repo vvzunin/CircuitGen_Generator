@@ -192,7 +192,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(
     int position = 0;
     // how many elements would be at this level
     int elemLevel = i_maxElements > 1
-                        ? d_randGenerator.getRandInt(2, i_maxElements, true)
+                        ? d_randGenerator.getRandInt(i_minElements, i_maxElements, true)
                         : 2;
 
     for (int j = 0; j < elemLevel; ++j) {

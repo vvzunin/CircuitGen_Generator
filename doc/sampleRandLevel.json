@@ -19,7 +19,7 @@
 
     "min_level": 5000,
     "max_level": 5000,
-    "min_elem": 5000,
-    "max_elem": 5000
+    "min_elem": 15000,
+    "max_elem": 15000
   }
 ]

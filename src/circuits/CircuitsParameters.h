@@ -13,6 +13,7 @@ class CircuitParameters {
   int d_numOutputs = 0;
   unsigned d_maxLevel = 0;
   int d_numEdges = 0;
+  int d_numGates = 0;
   double d_size = 0.;
   double d_area = 0.;
   std::string d_hashCode = "";

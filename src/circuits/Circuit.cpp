@@ -77,9 +77,11 @@ void Circuit::updateCircuitsParameters() {
   d_circuitParameters.d_numElementsOfEachType.clear();
   // const std::vector<GraphVertex> &gv = d_graph->getVerticesReference();
 
-  for (auto [key, value] : d_graph->getGatesCount())
+  for (auto [key, value] : d_graph->getGatesCount()) {
     d_circuitParameters
         .d_numElementsOfEachType[d_settings->parseGateToString(key)] = value;
+      d_circuitParameters.d_numGates += value;
+  }
 
   d_circuitParameters.d_numElementsOfEachType["input"] = inputs.size();
   d_circuitParameters.d_numElementsOfEachType["output"] = outputs.size();
@@ -212,6 +214,8 @@ bool Circuit::saveParameters(bool i_pathExists) const {
   outputFile << "\t\"maxLevel\": \"" << d_circuitParameters.d_maxLevel << "\","
              << std::endl;
   outputFile << "\t\"numEdges\": \"" << d_circuitParameters.d_numEdges << "\","
+             << std::endl;
+  outputFile << "\t\"numGates\": \"" << d_circuitParameters.d_numGates << "\","
              << std::endl;
   outputFile << "\t\"hash_code\": \"" << d_circuitParameters.d_hashCode << "\","
              << std::endl;
