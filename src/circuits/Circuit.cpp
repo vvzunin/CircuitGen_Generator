@@ -67,7 +67,7 @@ void Circuit::updateCircuitsParameters() {
 
   d_circuitParameters.d_maxLevel = d_graph->getMaxLevel();
 
-  d_circuitParameters.d_numEdges = 0;
+  d_circuitParameters.d_numEdges = d_graph->getEdgesCount();
   // TODO: Добавить корректную реализацию
   // for (const auto &row : d_graph->getAdjacencyMatrixReference())
   //     for (auto el : row)
@@ -168,6 +168,7 @@ bool Circuit::saveParameters(bool i_pathExists) const {
 
   // if (std::filesystem::exists(filename))
   //     std::remove(filename.c_str());
+  std::string hashed = d_graph->calculateHash();
 
   std::ofstream outputFile(filename);
 
@@ -176,6 +177,8 @@ bool Circuit::saveParameters(bool i_pathExists) const {
   outputFile << "{" << std::endl;
 
   outputFile << "\t\"name\": \"" << d_circuitParameters.d_name << "\","
+             << std::endl;
+  outputFile << "\t\"graph_hash\": \"" << hashed << "\","
              << std::endl;
   outputFile << "\t\"numInputs\": \"" << d_circuitParameters.d_numInputs
              << "\"," << std::endl;
@@ -224,7 +227,10 @@ bool Circuit::saveParameters(bool i_pathExists) const {
   }
   outputFile << std::endl;
 
-  outputFile << "\t}";
+  outputFile << "\t}" << std::endl;
+
+  // file end
+  outputFile << "}";
 
   return true;
 }
@@ -262,6 +268,9 @@ bool Circuit::generate(bool i_pathExists) {
   std::clog << "Writing verilog ended " << d_circuitName << std::endl;
 
   updateCircuitsParameters();
+
+  saveParameters();
+
   // TODO: costul
   // if (checkExistingHash() || d_circuitParameters.d_reliability == 0 ||
   // d_circuitParameters.d_gates == 0)

@@ -185,7 +185,7 @@ bool Parser::parse(const std::string &i_expr)  // what? change true/false
 }
 
 bool Parser::parseAll() {
-  OrientedGraph d_graph();
+  OrientedGraph d_graph("");
   for (auto exp : d_logExpressions)
     if (createBrackets(exp).first)
       if (!parse(exp)) return false;

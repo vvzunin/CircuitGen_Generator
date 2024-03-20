@@ -68,6 +68,8 @@ class OrientedGraph {
   bool addEdges(std::vector<std::shared_ptr<GraphVertexBase>> from1,
                 std::shared_ptr<GraphVertexBase> to);
 
+  size_t getEdgesCount(){return d_edgesCount;}
+
   std::vector<std::shared_ptr<OrientedGraph>> getSubGraphs() const;
   std::map<VertexTypes, std::vector<std::shared_ptr<GraphVertexBase>>>
   getBaseVertexes() const;
@@ -94,6 +96,7 @@ class OrientedGraph {
   std::string calculateHash(bool recalculate = false);
 
  private:
+  size_t d_edgesCount = 0;
   std::shared_ptr<OrientedGraph> this_ptr;
   std::string hashed = "";
   std::shared_ptr<OrientedGraph> d_baseGraph = nullptr;

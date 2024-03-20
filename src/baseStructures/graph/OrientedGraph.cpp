@@ -134,6 +134,8 @@ bool OrientedGraph::addEdge(std::shared_ptr<GraphVertexBase> from,
   // любой. Либо to - input, а from - любой.
   bool f = from->addVertexToOutConnections(to);
   int n = to->addVertexToInConnections(from);
+
+  ++d_edgesCount;
   return f && (n > 0);
 }
 
