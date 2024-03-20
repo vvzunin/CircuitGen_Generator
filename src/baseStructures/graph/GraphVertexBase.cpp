@@ -5,7 +5,7 @@
 uint_fast64_t GraphVertexBase::d_count = 0;
 
 GraphVertexBase::GraphVertexBase(const VertexTypes i_type,
-                                 OrientedGraph* const i_graph) {
+                                 std::shared_ptr<OrientedGraph> const i_graph) {
   d_baseGraph = i_graph;
   d_type = i_type;
   d_name = this->getTypeName() + "_" + std::to_string(d_count++);
@@ -15,7 +15,7 @@ GraphVertexBase::GraphVertexBase(const VertexTypes i_type,
 
 GraphVertexBase::GraphVertexBase(const VertexTypes i_type,
                                  const std::string i_name,
-                                 OrientedGraph* const i_graph) {
+                                 std::shared_ptr<OrientedGraph> const i_graph) {
   d_baseGraph = i_graph;
   d_type = i_type;
   if (i_name.size())
@@ -27,9 +27,7 @@ GraphVertexBase::GraphVertexBase(const VertexTypes i_type,
 }
 
 GraphVertexBase::~GraphVertexBase() {
-  d_baseGraph = nullptr;
-  d_inConnections.clear();
-  d_outConnections.clear();
+  
 }
 
 VertexTypes GraphVertexBase::getType() const { return d_type; }
@@ -60,23 +58,23 @@ void GraphVertexBase::setLevel(const unsigned i_level) { d_name = i_level; }
 unsigned GraphVertexBase::getLevel() const { return d_level; }
 
 void GraphVertexBase::updateLevel() {
-  for (GraphVertexBase* vert : d_inConnections)
+  for (std::shared_ptr<GraphVertexBase> vert : d_inConnections)
     d_level = (vert->getLevel() >= d_level) ? vert->getLevel() + 1 : d_level;
 }
 
 char GraphVertexBase::getValue() const { return d_value; }
 
-OrientedGraph* GraphVertexBase::getBaseGraph() const { return d_baseGraph; }
+std::shared_ptr<OrientedGraph> GraphVertexBase::getBaseGraph() const { return d_baseGraph; }
 
-std::vector<GraphVertexBase*> GraphVertexBase::getInConnections() const {
+std::vector<std::shared_ptr<GraphVertexBase>> GraphVertexBase::getInConnections() const {
   return d_inConnections;
 }
 
-int GraphVertexBase::addVertexToInConnections(GraphVertexBase* const i_vert) {
+int GraphVertexBase::addVertexToInConnections(std::shared_ptr<GraphVertexBase> const i_vert) {
   d_inConnections.push_back(i_vert);
   int n = 0;
-  // TODO use map<GraphVertexBase*, int> instead of for
-  for (GraphVertexBase* vert : d_inConnections) n += (vert == i_vert);
+  // TODO use map<std::shared_ptr<GraphVertexBase>, int> instead of for
+  for (std::shared_ptr<GraphVertexBase> vert : d_inConnections) n += (vert == i_vert);
   return n;
 }
 
@@ -98,7 +96,7 @@ std::string GraphVertexBase::calculateHash(bool recalculate) {
   return hashed;
 }
 
-bool GraphVertexBase::removeVertexToInConnections(GraphVertexBase* const i_vert,
+bool GraphVertexBase::removeVertexToInConnections(std::shared_ptr<GraphVertexBase> const i_vert,
                                                   bool i_full) {
   if (i_full) {
     bool f = false;
@@ -116,13 +114,13 @@ bool GraphVertexBase::removeVertexToInConnections(GraphVertexBase* const i_vert,
   }
 }
 
-std::vector<GraphVertexBase*> GraphVertexBase::getOutConnections() const {
+std::vector<std::shared_ptr<GraphVertexBase>> GraphVertexBase::getOutConnections() const {
   return d_outConnections;
 }
 
-bool GraphVertexBase::addVertexToOutConnections(GraphVertexBase* const i_vert) {
+bool GraphVertexBase::addVertexToOutConnections(std::shared_ptr<GraphVertexBase> const i_vert) {
   int n = 0;
-  for (GraphVertexBase* vert : d_outConnections) n += (vert == i_vert);
+  for (std::shared_ptr<GraphVertexBase> vert : d_outConnections) n += (vert == i_vert);
   if (n == 0) {
     d_outConnections.push_back(i_vert);
     return true;
@@ -131,7 +129,7 @@ bool GraphVertexBase::addVertexToOutConnections(GraphVertexBase* const i_vert) {
 }
 
 bool GraphVertexBase::removeVertexToOutConnections(
-    GraphVertexBase* const i_vert) {
+    std::shared_ptr<GraphVertexBase> const i_vert) {
   for (int i = 0; i < d_outConnections.size(); i++) {
     d_outConnections.erase(d_outConnections.begin() + i);
     return true;

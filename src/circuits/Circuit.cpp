@@ -14,7 +14,7 @@
 #include <sstream>
 #include <thread>
 
-Circuit::Circuit(OrientedGraph *const i_graph,
+Circuit::Circuit(OrientedGraph* const i_graph,
                  const std::vector<std::string> &i_logExpressions) {
   d_graph = i_graph;
   d_graph->updateLevels();
@@ -54,11 +54,11 @@ void Circuit::updateCircuitsParameters() {
 
   d_circuitParameters.d_name = d_circuitName;
 
-  std::vector<GraphVertexBase *> inputs =
+  std::vector<std::shared_ptr<GraphVertexBase>> inputs =
       d_graph->getVerticesByType(VertexTypes::input);
-  std::vector<GraphVertexBase *> constants =
+  std::vector<std::shared_ptr<GraphVertexBase>> constants =
       d_graph->getVerticesByType(VertexTypes::constant);
-  std::vector<GraphVertexBase *> outputs =
+  std::vector<std::shared_ptr<GraphVertexBase>> outputs =
       d_graph->getVerticesByType(VertexTypes::output);
 
   d_circuitParameters.d_numInputs = inputs.size();
@@ -102,12 +102,12 @@ void Circuit::updateCircuitsParameters() {
   computeHash();
 }
 
-void Circuit::viewSubgraphs(std::string path, OrientedGraph *graph) {
-  for (OrientedGraph *gr : graph->getSubGraphs()) {
+void Circuit::viewSubgraphs(std::string path, OrientedGraph* graph) {
+  for (std::shared_ptr<OrientedGraph>gr : graph->getSubGraphs()) {
     std::ofstream w(path + "/" + gr->getName() + ".v");
     gr->toVerilog(w);
     w.close();
-    viewSubgraphs(path, gr);
+    viewSubgraphs(path, gr.get());
   }
 }
 
@@ -288,7 +288,7 @@ void Circuit::setCircuitName(const std::string &i_circName) {
   d_graph->setName(i_circName);
 }
 
-std::vector<GraphVertexBase *> Circuit::getIndexOfWireName(
+std::vector<std::shared_ptr<GraphVertexBase>> Circuit::getIndexOfWireName(
     const std::string &i_wireName) {
   return d_graph->getVerticesByName(i_wireName);
 }

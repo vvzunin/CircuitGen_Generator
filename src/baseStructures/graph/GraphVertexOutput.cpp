@@ -1,10 +1,10 @@
 #include "GraphVertex.h"
 
-GraphVertexOutput::GraphVertexOutput(OrientedGraph* const i_baseGraph)
+GraphVertexOutput::GraphVertexOutput(std::shared_ptr<OrientedGraph> const i_baseGraph)
     : GraphVertexBase(VertexTypes::output, i_baseGraph) {}
 
 GraphVertexOutput::GraphVertexOutput(const std::string i_name,
-                                     OrientedGraph* const i_baseGraph)
+                                     std::shared_ptr<OrientedGraph> const i_baseGraph)
     : GraphVertexBase(VertexTypes::output, i_name, i_baseGraph) {}
 
 char GraphVertexOutput::updateValue() {
@@ -15,6 +15,6 @@ char GraphVertexOutput::updateValue() {
 }
 
 void GraphVertexOutput::updateLevel() {
-  for (GraphVertexBase* vert : d_inConnections)
+  for (std::shared_ptr<GraphVertexBase> vert : d_inConnections)
     d_level = (vert->getLevel() > d_level) ? vert->getLevel() : d_level;
 }

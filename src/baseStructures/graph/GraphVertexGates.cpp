@@ -3,13 +3,13 @@
 #include "GraphVertex.h"
 
 GraphVertexGates::GraphVertexGates(Gates i_gate,
-                                   OrientedGraph* const i_baseGraph)
+                                   std::shared_ptr<OrientedGraph> const i_baseGraph)
     : GraphVertexBase(VertexTypes::gate, i_baseGraph) {
   d_gate = i_gate;
 }
 
 GraphVertexGates::GraphVertexGates(Gates i_gate, const std::string i_name,
-                                   OrientedGraph* const i_baseGraph)
+                                   std::shared_ptr<OrientedGraph> const i_baseGraph)
     : GraphVertexBase(VertexTypes::gate, i_name, i_baseGraph) {
   d_gate = i_gate;
 }

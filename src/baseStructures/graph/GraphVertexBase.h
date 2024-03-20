@@ -2,6 +2,7 @@
 
 #include <baseStructures/graph/enums.h>
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -12,10 +13,10 @@ class OrientedGraph;  // Проблема циклического опреде�
 class GraphVertexBase {
  public:
   GraphVertexBase(const VertexTypes i_type,
-                  OrientedGraph* const i_graph = nullptr);
+                  std::shared_ptr<OrientedGraph> const i_graph = nullptr);
 
   GraphVertexBase(const VertexTypes i_type, const std::string i_name,
-                  OrientedGraph* const i_graph = nullptr);
+                  std::shared_ptr<OrientedGraph> const i_graph = nullptr);
 
   // TODO craches ad destructor call
   virtual ~GraphVertexBase();
@@ -40,29 +41,29 @@ class GraphVertexBase {
   virtual void updateLevel();
 
   // Get-Set для базового графа
-  // void setBaseGraph(OrientedGraph* const i_baseGraph);
-  OrientedGraph* getBaseGraph() const;
+  // void setBaseGraph(std::shared_ptr<OrientedGraph> const i_baseGraph);
+  std::shared_ptr<OrientedGraph> getBaseGraph() const;
 
-  std::vector<GraphVertexBase*> getInConnections() const;
-  int addVertexToInConnections(GraphVertexBase* const i_vert);
-  bool removeVertexToInConnections(GraphVertexBase* const i_vert,
+  std::vector<std::shared_ptr<GraphVertexBase>> getInConnections() const;
+  int addVertexToInConnections(std::shared_ptr<GraphVertexBase> const i_vert);
+  bool removeVertexToInConnections(std::shared_ptr<GraphVertexBase> const i_vert,
                                    bool i_full = false);
 
-  std::vector<GraphVertexBase*> getOutConnections() const;
-  bool addVertexToOutConnections(GraphVertexBase* const i_vert);
-  bool removeVertexToOutConnections(GraphVertexBase* const i_vert);
+  std::vector<std::shared_ptr<GraphVertexBase>> getOutConnections() const;
+  bool addVertexToOutConnections(std::shared_ptr<GraphVertexBase> const i_vert);
+  bool removeVertexToOutConnections(std::shared_ptr<GraphVertexBase> const i_vert);
 
   std::string calculateHash(bool recalculate = false);
 
  protected:
-  OrientedGraph* d_baseGraph = nullptr;
+  std::shared_ptr<OrientedGraph> d_baseGraph = nullptr;
 
   std::string d_name;
   char d_value;
   unsigned d_level;
 
-  std::vector<GraphVertexBase*> d_inConnections;
-  std::vector<GraphVertexBase*> d_outConnections;
+  std::vector<std::shared_ptr<GraphVertexBase>> d_inConnections;
+  std::vector<std::shared_ptr<GraphVertexBase>> d_outConnections;
 
   std::shared_ptr<Settings> d_settings =
       Settings::getInstance("GraphVertexBase");

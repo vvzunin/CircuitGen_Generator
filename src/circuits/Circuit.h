@@ -21,7 +21,7 @@ class Circuit {
   void setTable(const TruthTable &i_tt);
   void setPath(const std::string &i_path);
   void setCircuitName(const std::string &i_circName);
-  std::vector<GraphVertexBase *> getIndexOfWireName(
+  std::vector<std::shared_ptr<GraphVertexBase>> getIndexOfWireName(
       const std::string &i_wireName);
   void setVerticeOperation(int i_vertice, const std::string &i_operation);
 

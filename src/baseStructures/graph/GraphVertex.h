@@ -10,11 +10,11 @@
 
 class GraphVertexInput : public GraphVertexBase {
  public:
-  GraphVertexInput(OrientedGraph* const i_baseGraph = nullptr,
+  GraphVertexInput(std::shared_ptr<OrientedGraph> const i_baseGraph = nullptr,
                    const VertexTypes i_type = VertexTypes::input);
 
   GraphVertexInput(const std::string i_name,
-                   OrientedGraph* const i_baseGraph = nullptr,
+                   std::shared_ptr<OrientedGraph> const i_baseGraph = nullptr,
                    const VertexTypes i_type = VertexTypes::input);
 
   virtual char updateValue();
@@ -28,10 +28,10 @@ class GraphVertexInput : public GraphVertexBase {
 
 class GraphVertexConstant : public GraphVertexInput {
  public:
-  GraphVertexConstant(char i_const, OrientedGraph* const i_baseGraph = nullptr);
+  GraphVertexConstant(char i_const, std::shared_ptr<OrientedGraph> const i_baseGraph = nullptr);
 
   GraphVertexConstant(char i_const, const std::string i_name,
-                      OrientedGraph* const i_baseGraph = nullptr);
+                      std::shared_ptr<OrientedGraph> const i_baseGraph = nullptr);
 
   virtual void updateLevel();
 
@@ -40,10 +40,10 @@ class GraphVertexConstant : public GraphVertexInput {
 
 class GraphVertexOutput : public GraphVertexBase {
  public:
-  GraphVertexOutput(OrientedGraph* const i_baseGraph = nullptr);
+  GraphVertexOutput(std::shared_ptr<OrientedGraph> const i_baseGraph = nullptr);
 
   GraphVertexOutput(const std::string i_name,
-                    OrientedGraph* const i_baseGraph = nullptr);
+                    std::shared_ptr<OrientedGraph> const i_baseGraph = nullptr);
 
   virtual char updateValue();
   virtual void updateLevel();
@@ -53,10 +53,10 @@ class GraphVertexOutput : public GraphVertexBase {
 
 class GraphVertexGates : public GraphVertexBase {
  public:
-  GraphVertexGates(Gates i_gate, OrientedGraph* const i_baseGraph = nullptr);
+  GraphVertexGates(Gates i_gate, std::shared_ptr<OrientedGraph> const i_baseGraph = nullptr);
 
   GraphVertexGates(Gates i_gate, const std::string i_name,
-                   OrientedGraph* const i_baseGraph = nullptr);
+                   std::shared_ptr<OrientedGraph> const i_baseGraph = nullptr);
 
   virtual char updateValue();
   std::string calculateHash(bool recalculate = false);

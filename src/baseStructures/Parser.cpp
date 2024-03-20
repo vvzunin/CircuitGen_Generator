@@ -126,75 +126,66 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(
 bool Parser::parse(const std::string &i_expr)  // what? change true/false
 {
   std::pair<int, std::vector<std::string>> t = splitLogicExpression(i_expr);
-  if (t.first == -1)
-      return false;
+  if (t.first == -1) return false;
 
-  if (t.second[0] == "output")
-  {
-      std::vector<std::pair<int, int>> bl =
-      createBrackets(t.second[2]).second; for (auto tl : bl)
-          if (tl.first == 0 && tl.second == t.second[2].size() - 1)
-              t.second[2] = t.second[2].substr(1, t.second[2].size() - 2);
+  if (t.second[0] == "output") {
+    std::vector<std::pair<int, int>> bl = createBrackets(t.second[2]).second;
+    for (auto tl : bl)
+      if (tl.first == 0 && tl.second == t.second[2].size() - 1)
+        t.second[2] = t.second[2].substr(1, t.second[2].size() - 2);
 
-      std::pair<int, std::vector<std::string>> tt =
-      splitLogicExpression(t.second[2]); if (tt.first == -1)
-          return false;
+    std::pair<int, std::vector<std::string>> tt =
+        splitLogicExpression(t.second[2]);
+    if (tt.first == -1) return false;
 
-      GraphVertexBase *t1 = d_graph.addOutput(t.second[1]);
-      GraphVertexBase *t2;
+    std::shared_ptr<GraphVertexBase> t1 = d_graph.addOutput(t.second[1]);
+    std::shared_ptr<GraphVertexBase> t2;
+    if (tt.second[0] == "input")
+      t2 = d_graph.addInput(t.second[2]);
+    else if (tt.second[0] == "const")
+      t2 = d_graph.addConst(t.second[2][0], t.second[2]);
+    else
+      t2 = d_graph.addGate(d_settings->parseStringToGate(tt.second[0]));
+
+    d_graph.addEdge(t2, t1);
+
+    if (tt.second[0] != "input" && tt.second[0] != "const") parse(t.second[2]);
+  } else {
+    std::shared_ptr<GraphVertexBase> expr;
+    if (i_expr != "input")
+      expr = d_graph.addGate(d_settings->parseStringToGate(t.second[0]));
+    else
+      expr = d_graph.addInput(t.second[0]);
+
+    for (int i = 1; i < t.second.size(); ++i) {
+      std::string part = t.second[i];
+
+      std::vector<std::pair<int, int>> bl = createBrackets(part).second;
+
+      for (auto tl : bl)
+        if (tl.first == 0 && tl.second == static_cast<int>(part.size()) - 1)
+          part = part.substr(1, static_cast<int>(part.size()) - 2);
+
+      std::pair<int, std::vector<std::string>> tt = splitLogicExpression(part);
+      if (tt.first == -1) return false;
+
+      std::shared_ptr<GraphVertexBase> part_ptr;
       if (tt.second[0] == "input")
-        t2 = d_graph.addInput(t.second[2]);
+        part_ptr = d_graph.addInput(part);
       else if (tt.second[0] == "const")
-        t2 = d_graph.addConst(t.second[2][0], t.second[2]);
+        part_ptr = d_graph.addConst(part[0], part);
       else
-        t2 = d_graph.addGate(d_settings->parseStringToGate(tt.second[0]));
+        part_ptr = d_graph.addGate(d_settings->parseStringToGate(tt.second[0]));
 
-      d_graph.addEdge(t2, t1);
-
-      if (tt.second[0] != "input" && tt.second[0] != "const")
-          parse(t.second[2]);
-  }
-  else
-  {
-      GraphVertexBase *expr;
-      if (i_expr != "input") 
-        expr = d_graph.addGate(d_settings->parseStringToGate(t.second[0]));
-      else
-        expr = d_graph.addInput(t.second[0]);
-        
-      for (int i = 1; i < t.second.size(); ++i)
-      {
-          std::string part = t.second[i];
-
-          std::vector<std::pair<int, int>> bl = createBrackets(part).second;
-
-          for (auto tl : bl)
-              if (tl.first == 0 && tl.second == static_cast<int>(part.size())
-              - 1)
-                  part = part.substr(1, static_cast<int>(part.size()) - 2);
-
-          std::pair<int, std::vector<std::string>> tt =
-          splitLogicExpression(part); if (tt.first == -1)
-              return false;
-
-          GraphVertexBase *part_ptr;
-          if (tt.second[0] == "input")
-            part_ptr = d_graph.addInput(part);
-          else if (tt.second[0] == "const")
-            part_ptr = d_graph.addConst(part[0], part);
-          else
-            part_ptr = d_graph.addGate(d_settings->parseStringToGate(tt.second[0]));
-
-          d_graph.addEdge(part_ptr, expr);
-          if (tt.second[0] != "input" && tt.second[0] != "const")
-              parse(part);
-      }
+      d_graph.addEdge(part_ptr, expr);
+      if (tt.second[0] != "input" && tt.second[0] != "const") parse(part);
+    }
   }
   return true;
 }
 
 bool Parser::parseAll() {
-  d_graph = OrientedGraph();
+  OrientedGraph d_graph();
   for (auto exp : d_logExpressions)
     if (createBrackets(exp).first)
       if (!parse(exp)) return false;
