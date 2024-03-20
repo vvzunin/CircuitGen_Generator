@@ -24,7 +24,8 @@ enum Gates {
   GateXor,
   GateXnor,
   GateNot,
-  GateBuf
+  GateBuf,
+  GateDefault,
 };
 
 class Settings {
@@ -53,9 +54,8 @@ class Settings {
   std::string getNadezhdaVar(const std::string &key) const;
   std::vector<std::string> fromOperationsToHierarchy(int key) const;
   int getNumThread() const;
-  Gates parseStringToGate(std::string i_gate) const {
-    return stringToGate.at(i_gate);
-  }
+  Gates parseStringToGate(std::string i_gate) const;
+  std::string parseGateToString(Gates gate) const;
 
  private:
   void SaveSettings();
@@ -89,8 +89,16 @@ class Settings {
       {"not", Gates::GateNot}, {"buf", Gates::GateBuf},
       {"xor", Gates::GateXor}, {"xnor", Gates::GateXnor}};
 
-  std::vector<Gates> d_logicElements = {GateAnd, GateNand, GateOr,  GateNor,
-                                        GateXor, GateXnor, GateNot, GateBuf};
+  std::map<Gates, std::string> gateToString = {
+      {Gates::GateAnd, "and"}, {Gates::GateNand, "nand"},
+      {Gates::GateOr, "or"},   {Gates::GateNor, "nor"},
+      {Gates::GateNot, "not"}, {Gates::GateBuf, "buf"},
+      {Gates::GateXor, "xor"}, {Gates::GateXnor, "xnor"},
+      {Gates::GateDefault, "ERROR"}};
+
+  std::vector<Gates> d_logicElements = {
+      Gates::GateAnd, Gates::GateNand, Gates::GateOr,  Gates::GateNor,
+      Gates::GateXor, Gates::GateXnor, Gates::GateNot, Gates::GateBuf};
 
   std::map<int, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string> d_operationsToName;

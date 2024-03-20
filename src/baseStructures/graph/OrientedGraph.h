@@ -68,7 +68,7 @@ class OrientedGraph {
   bool addEdges(std::vector<std::shared_ptr<GraphVertexBase>> from1,
                 std::shared_ptr<GraphVertexBase> to);
 
-  size_t getEdgesCount(){return d_edgesCount;}
+  size_t getEdgesCount() { return d_edgesCount; }
 
   std::vector<std::shared_ptr<OrientedGraph>> getSubGraphs() const;
   std::map<VertexTypes, std::vector<std::shared_ptr<GraphVertexBase>>>
@@ -95,6 +95,9 @@ class OrientedGraph {
   bool operator==(const OrientedGraph& rhs);
   std::string calculateHash(bool recalculate = false);
 
+  std::map<Gates, int> getGatesCount() const;
+  std::map<Gates, std::map<Gates, int>> getEdgesGatesCount() const;
+
  private:
   size_t d_edgesCount = 0;
   std::shared_ptr<OrientedGraph> this_ptr;
@@ -117,6 +120,14 @@ class OrientedGraph {
           {VertexTypes::gate, std::vector<std::shared_ptr<GraphVertexBase>>()}};
 
   static uint_fast64_t d_countGraph;
+
+  // used for quick gates count
+  std::map<Gates, int> d_gatesCount = {
+      {Gates::GateAnd, 0}, {Gates::GateNand, 0}, {Gates::GateOr, 0},
+      {Gates::GateNor, 0}, {Gates::GateNot, 0},  {Gates::GateBuf, 0},
+      {Gates::GateXor, 0}, {Gates::GateXnor, 0}};
+  // used for quick edges of gate type count;
+  std::map<Gates, std::map<Gates, int>> d_edgesGatesCount;
 
   std::shared_ptr<Settings> d_settings = Settings::getInstance("OrientedGraph");
 };

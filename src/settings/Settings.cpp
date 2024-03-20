@@ -204,3 +204,11 @@ std::map<std::string, std::pair<std::string, int>>
 Settings::getLogicOperations() const {
   return d_logicOperations;
 }
+
+Gates Settings::parseStringToGate(std::string i_gate) const {
+  return stringToGate.at(i_gate);
+}
+
+std::string Settings::parseGateToString(Gates gate) const {
+  return gateToString.at(gate);
+}

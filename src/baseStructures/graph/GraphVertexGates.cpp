@@ -2,16 +2,21 @@
 
 #include "GraphVertex.h"
 
-GraphVertexGates::GraphVertexGates(Gates i_gate,
-                                   std::shared_ptr<OrientedGraph> const i_baseGraph)
+GraphVertexGates::GraphVertexGates(
+    Gates i_gate, std::shared_ptr<OrientedGraph> const i_baseGraph)
     : GraphVertexBase(VertexTypes::gate, i_baseGraph) {
   d_gate = i_gate;
 }
 
-GraphVertexGates::GraphVertexGates(Gates i_gate, const std::string i_name,
-                                   std::shared_ptr<OrientedGraph> const i_baseGraph)
+GraphVertexGates::GraphVertexGates(
+    Gates i_gate, const std::string i_name,
+    std::shared_ptr<OrientedGraph> const i_baseGraph)
     : GraphVertexBase(VertexTypes::gate, i_name, i_baseGraph) {
   d_gate = i_gate;
+}
+
+Gates GraphVertexGates::getGate() const {
+  return d_gate;
 }
 
 char GraphVertexGates::updateValue() {
@@ -56,12 +61,7 @@ std::string GraphVertexGates::calculateHash(bool recalculate) {
 
   if (d_type == VertexTypes::output && !d_baseGraph) return "";
 
-  hashed = "";
-  if (d_type == VertexTypes::constant)
-    hashed = d_outConnections.size() + d_value;
-
-  else if (d_type == VertexTypes::gate)
-    hashed = std::to_string(d_outConnections.size()) + std::to_string(d_gate);
+  hashed = std::to_string(d_outConnections.size()) + std::to_string(d_gate);
 
   for (auto& child : d_outConnections) {
     hashed += child->calculateHash(recalculate);

@@ -61,7 +61,7 @@ class GraphVertexGates : public GraphVertexBase {
   virtual char updateValue();
   std::string calculateHash(bool recalculate = false);
   std::string getVerilogString() const;
-
+  Gates getGate() const;
  private:
   Gates d_gate;
   std::string hashed;

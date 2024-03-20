@@ -13,15 +13,6 @@
 #include "RandomGeneratorWithSeed.h"
 
 namespace {
-// legacy
-//
-// int getRandInt(int i_lower, int i_upper)
-// {
-//     assert(i_lower <= i_upper);
-//     int d = i_upper - i_lower + 1;
-//     return (rand() % d) + i_lower;
-// }
-
 std::vector<std::string> splitString(const std::string &s, char delimiter) {
   std::vector<std::string> tokens;
   std::stringstream ss(s);

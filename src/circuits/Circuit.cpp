@@ -14,7 +14,7 @@
 #include <sstream>
 #include <thread>
 
-Circuit::Circuit(OrientedGraph* const i_graph,
+Circuit::Circuit(OrientedGraph *const i_graph,
                  const std::vector<std::string> &i_logExpressions) {
   d_graph = i_graph;
   d_graph->updateLevels();
@@ -77,33 +77,59 @@ void Circuit::updateCircuitsParameters() {
   d_circuitParameters.d_numElementsOfEachType.clear();
   // const std::vector<GraphVertex> &gv = d_graph->getVerticesReference();
 
-  for (const auto &[key, value] : d_settings->getLogicOperations())
-    d_circuitParameters.d_numElementsOfEachType[key] = 0;
-  // TODO: Добавить корректную реализацию
-  // for (const auto &v : gv)
-  //     for (const auto &[key, value] : d_settings->getLogicOperations())
-  //         if (v.getOperation() == key)
-  //             d_circuitParameters.d_numElementsOfEachType[v.getOperation()]++;
+  for (auto [key, value] : d_graph->getGatesCount())
+    d_circuitParameters
+        .d_numElementsOfEachType[d_settings->parseGateToString(key)] = value;
+
+  d_circuitParameters.d_numElementsOfEachType["input"] = inputs.size();
+  d_circuitParameters.d_numElementsOfEachType["output"] = outputs.size();
+  d_circuitParameters.d_numElementsOfEachType["const"] = constants.size();
 
   d_circuitParameters.d_numEdgesOfEachType.clear();
-  // TODO: Добавить корректную реализацию
-  // for (const auto &[key1, value1] : d_settings->getLogicOperations())
-  //     for (const auto &[key2, vluae2] : d_settings->getLogicOperations())
-  //         if (key1 != "output" && key2 != "input")
-  //             d_circuitParameters.d_numEdgesOfEachType[std::make_pair(key1,
-  //             key2)] = 0;
 
-  // for (int i = 0; i < gv.size(); ++i)
-  //     for (int j = 0; j < gv.size(); ++j)
-  //         if (d_graph->getAdjacencyMatrix(i, j))
-  //             d_circuitParameters.d_numEdgesOfEachType[std::make_pair(gv[i].getOperation(),
-  //             gv[j].getOperation())]++;
+  // calc gate-gate
+  for (auto [from, sub] : d_graph->getEdgesGatesCount()) {
+    for (auto [to, count] : sub) {
+      d_circuitParameters.d_numEdgesOfEachType[
+        {d_settings->parseGateToString(from), 
+         d_settings->parseGateToString(to)}
+      ] = count;
+    }
+  }
 
-  computeHash();
+  // iterate through inputs
+  for (auto inp : inputs) {
+    for (auto child : inp->getOutConnections()) {
+      ++d_circuitParameters.d_numEdgesOfEachType[
+        {"input", d_settings->parseGateToString(child->getGate())}
+      ];
+    }
+  }
+
+  // iterate through outputs
+  for (auto inp : outputs) {
+    for (auto child : inp->getInConnections()) {
+      ++d_circuitParameters.d_numEdgesOfEachType[
+        {d_settings->parseGateToString(child->getGate()), "output"}
+      ];
+    }
+  }
+
+  // iterate through constants
+  for (auto inp : constants) {
+    for (auto child : inp->getOutConnections()) {
+      ++d_circuitParameters.d_numEdgesOfEachType[
+        {"const", d_settings->parseGateToString(child->getGate())}
+      ];
+    }
+  }
+
+  d_circuitParameters.d_hashCode = d_graph->calculateHash();
+  // computeHash();
 }
 
-void Circuit::viewSubgraphs(std::string path, OrientedGraph* graph) {
-  for (std::shared_ptr<OrientedGraph>gr : graph->getSubGraphs()) {
+void Circuit::viewSubgraphs(std::string path, OrientedGraph *graph) {
+  for (std::shared_ptr<OrientedGraph> gr : graph->getSubGraphs()) {
     std::ofstream w(path + "/" + gr->getName() + ".v");
     gr->toVerilog(w);
     w.close();
@@ -168,7 +194,6 @@ bool Circuit::saveParameters(bool i_pathExists) const {
 
   // if (std::filesystem::exists(filename))
   //     std::remove(filename.c_str());
-  std::string hashed = d_graph->calculateHash();
 
   std::ofstream outputFile(filename);
 
@@ -177,8 +202,6 @@ bool Circuit::saveParameters(bool i_pathExists) const {
   outputFile << "{" << std::endl;
 
   outputFile << "\t\"name\": \"" << d_circuitParameters.d_name << "\","
-             << std::endl;
-  outputFile << "\t\"graph_hash\": \"" << hashed << "\","
              << std::endl;
   outputFile << "\t\"numInputs\": \"" << d_circuitParameters.d_numInputs
              << "\"," << std::endl;

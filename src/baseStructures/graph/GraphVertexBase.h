@@ -39,6 +39,7 @@ class GraphVertexBase {
   unsigned getLevel() const;
 
   virtual void updateLevel();
+  virtual Gates getGate() const {return Gates::GateDefault;};
 
   // Get-Set для базового графа
   // void setBaseGraph(std::shared_ptr<OrientedGraph> const i_baseGraph);

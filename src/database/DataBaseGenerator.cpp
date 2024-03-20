@@ -145,6 +145,8 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     pCNFT.parseAll();
 
     OrientedGraph graph = pCNFT.getGraph();
+    graph.setName(i_param.getName() + "_" + name);
+
     Circuit c(&graph, expr);
     c.setTable(tt);
     c.setPath(d_mainPath);

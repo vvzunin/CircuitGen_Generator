@@ -19,6 +19,11 @@ OrientedGraph::OrientedGraph(const std::string i_name) {
     d_name = "graph_" + std::to_string(d_countGraph++);
   else
     d_name = i_name;
+
+  // filling edges
+  for (auto cur_gate : d_settings->getLogicOperationsKeys()) {
+    d_edgesGatesCount[cur_gate] = d_gatesCount;
+  }
 }
 
 OrientedGraph::~OrientedGraph() {}
@@ -116,6 +121,8 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::addGate(
       new GraphVertexGates(i_gate, i_name, shared_from_this()));
   d_vertexes[VertexTypes::gate].push_back(newVertex);
 
+  ++d_gatesCount[i_gate];
+
   return newVertex;
 }
 
@@ -136,6 +143,10 @@ bool OrientedGraph::addEdge(std::shared_ptr<GraphVertexBase> from,
   int n = to->addVertexToInConnections(from);
 
   ++d_edgesCount;
+
+  if (from->getType() == VertexTypes::gate && to->getType() == VertexTypes::gate)
+    ++d_edgesGatesCount[from->getGate()][to->getGate()];
+
   return f && (n > 0);
 }
 
@@ -228,6 +239,15 @@ size_t OrientedGraph::sumFullSize() const {
          d_vertexes.at(VertexTypes::constant).size() +
          d_vertexes.at(VertexTypes::gate).size() +
          d_vertexes.at(VertexTypes::output).size();
+}
+
+std::map<Gates, int> OrientedGraph::getGatesCount() const {
+  return d_gatesCount;
+}
+
+std::map<Gates, std::map<Gates, int>> 
+    OrientedGraph::getEdgesGatesCount() const {
+  return d_edgesGatesCount;
 }
 
 std::string OrientedGraph::calculateHash(bool recalculate) {
