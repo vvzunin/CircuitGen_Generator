@@ -1,28 +1,26 @@
 #pragma once
 
+#include <baseStructures/graph/enums.h>
+
+#include <memory>
 #include <string>
 #include <vector>
 
+#include "OrientedGraph.h"
 #include "settings/Settings.h"
 
-#include "OrientedGraph.h"
-
-#include <baseStructures/graph/enums.h>
-
-class OrientedGraph; // Проблема циклического определения
+class OrientedGraph;  // Проблема циклического определения
 class GraphVertexBase {
-public:
-  GraphVertexBase(
-    const VertexTypes i_type, 
-    OrientedGraph* const i_graph = nullptr);
+ public:
+  GraphVertexBase(const VertexTypes i_type,
+                  std::shared_ptr<OrientedGraph> const i_graph = nullptr);
 
-  GraphVertexBase(
-    const VertexTypes i_type, 
-    const std::string i_name, 
-    OrientedGraph* const i_graph = nullptr);
+  GraphVertexBase(const VertexTypes i_type, const std::string i_name,
+                  std::shared_ptr<OrientedGraph> const i_graph = nullptr);
 
+  // TODO craches ad destructor call
   virtual ~GraphVertexBase();
-  
+
   // Get для типа вершины
   virtual VertexTypes getType() const final;
   // Get для типа вершины в фомате строки
@@ -41,37 +39,40 @@ public:
   unsigned getLevel() const;
 
   virtual void updateLevel();
+  virtual Gates getGate() const {return Gates::GateDefault;};
 
   // Get-Set для базового графа
-  // void setBaseGraph(OrientedGraph* const i_baseGraph);
-  OrientedGraph* getBaseGraph() const;
+  // void setBaseGraph(std::shared_ptr<OrientedGraph> const i_baseGraph);
+  std::shared_ptr<OrientedGraph> getBaseGraph() const;
 
-  std::vector<GraphVertexBase*> getInConnections() const;
-  int addVertexToInConnections(GraphVertexBase* const i_vert);
-  bool removeVertexToInConnections(GraphVertexBase* const i_vert, bool i_full = false);
+  std::vector<std::shared_ptr<GraphVertexBase>> getInConnections() const;
+  int addVertexToInConnections(std::shared_ptr<GraphVertexBase> const i_vert);
+  bool removeVertexToInConnections(std::shared_ptr<GraphVertexBase> const i_vert,
+                                   bool i_full = false);
 
-  std::vector<GraphVertexBase*> getOutConnections() const;
-  bool addVertexToOutConnections(GraphVertexBase* const i_vert);
-  bool removeVertexToOutConnections(GraphVertexBase* const i_vert);
+  std::vector<std::shared_ptr<GraphVertexBase>> getOutConnections() const;
+  bool addVertexToOutConnections(std::shared_ptr<GraphVertexBase> const i_vert);
+  bool removeVertexToOutConnections(std::shared_ptr<GraphVertexBase> const i_vert);
 
   std::string calculateHash(bool recalculate = false);
 
-protected:
+ protected:
+  std::shared_ptr<OrientedGraph> d_baseGraph = nullptr;
 
-  OrientedGraph* d_baseGraph = nullptr;
-  
   std::string d_name;
   char d_value;
   unsigned d_level;
-  
-  std::vector<GraphVertexBase*> d_inConnections;
-  std::vector<GraphVertexBase*> d_outConnections;
 
-  std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertexBase");
-private:
+  std::vector<std::shared_ptr<GraphVertexBase>> d_inConnections;
+  std::vector<std::shared_ptr<GraphVertexBase>> d_outConnections;
 
-  // Определяем тип вершины: подграф, вход, выход, константа или одна из базовых логических операций.
-  VertexTypes d_type;    
+  std::shared_ptr<Settings> d_settings =
+      Settings::getInstance("GraphVertexBase");
+
+ private:
+  // Определяем тип вершины: подграф, вход, выход, константа или одна из базовых
+  // логических операций.
+  VertexTypes d_type;
 
   // Счетчик вершин для именования и подобного
   static uint_fast64_t d_count;

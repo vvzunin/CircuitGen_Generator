@@ -2,12 +2,12 @@
   {
     "seed": 2,
     "dataset_id": "2",
-    "id": 0,
+    "id": 2,
     "type_of_generation": "Rand Level",
-    "min_in": 20,
-    "max_in": 20,
-    "min_out": 20,
-    "max_out": 20,
+    "min_in": 5000,
+    "max_in": 5000,
+    "min_out": 5000,
+    "max_out": 5000,
     "repeat_n": 1,    
     "multithread": true,
     "calculate_stats_abc": true,
@@ -17,9 +17,9 @@
     "create_id_directories": true,
     "library_name": "sky130",
 
-    "min_level": 5,
-    "max_level": 10,
-    "min_elem": 5,
-    "max_elem": 10
+    "min_level": 500,
+    "max_level": 500,
+    "min_elem": 1500,
+    "max_elem": 1500
   }
 ]

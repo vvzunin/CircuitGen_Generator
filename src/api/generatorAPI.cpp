@@ -1,46 +1,44 @@
-#include <map>
+#include "generatorAPI.h"
+
+#include <additional/AuxiliaryMethods.h>
+#include <database/DataBaseGenerator.h>
+#include <database/DataBaseGeneratorParameters.h>
+#include <generators/GenerationParameters.h>
+#include <getopt.h>
+#include <settings/Settings.h>
+#include <unistd.h>
+
+#include <algorithm>
 #include <array>
 #include <chrono>
-#include <vector>
-#include <string>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <algorithm>
-#include <filesystem>
-
-#include <unistd.h>
-#include <getopt.h>
+#include <map>
+#include <string>
+#include <vector>
 
 #include "nlohmann/json.hpp"
 
-#include <additional/AuxiliaryMethods.h>
-#include <DataBase/DataBaseGenerator.h>
-#include <generators/GenerationParameters.h>
-#include <DataBase/DataBaseGeneratorParameters.h>
-
-#include "generatorAPI.h"
-
 using namespace std::chrono;
 
-void runGenerationFromJson(std::string json_path)
-{
+void runGenerationFromJson(std::string json_path) {
   std::ifstream f(json_path);
   nlohmann::json DATA = nlohmann::json::parse(f);
   // Read all json objects in json file.
-  for (auto it = DATA.begin(); it != DATA.end(); it++)
-  {
+  for (auto it = DATA.begin(); it != DATA.end(); it++) {
     nlohmann::json data = *it;
 
     // Проверка на наличие типа генерации. Если его нет, то завершаем программу.
-    if (!data.contains("type_of_generation"))
-    {
+    if (!data.contains("type_of_generation")) {
       std::cerr << "No generation type!" << std::endl;
       return;
     }
 
     // Задаем сид рандомизации.
-    AuxMethods::setRandSeed(
-        !data.contains("seed") || data["seed"] == -1 ? static_cast<unsigned>(std::time(0)) : static_cast<unsigned>(data["seed"]));
+    AuxMethods::setRandSeed(!data.contains("seed") || data["seed"] == -1
+                                ? static_cast<unsigned>(std::time(0))
+                                : static_cast<unsigned>(data["seed"]));
 
     // Задаем основные параметры генерации
     GenerationTypes gt;
@@ -54,13 +52,14 @@ void runGenerationFromJson(std::string json_path)
       gt = GenerationTypes::NumOperation;
     // else if (data["type_of_generation"] == "Genetic")
     //   gt = GenerationTypes::Genetic;
-    else
-    {
+    else {
       std::cerr << "Unsupported generation type" << std::endl;
       return;
     }
 
-    std::string datasetId = data.contains("dataset_id") ? static_cast<std::string>(data["dataset_id"]) : "0";
+    std::string datasetId = data.contains("dataset_id")
+                                ? static_cast<std::string>(data["dataset_id"])
+                                : "0";
 
     int requestIdINT = data.contains("id") ? (int)data["id"] : 0;
 
@@ -72,52 +71,39 @@ void runGenerationFromJson(std::string json_path)
     int maxOutputs = 1;
     int repeats = 1;
 
-    if (data.contains("min_in"))
-    {
+    if (data.contains("min_in")) {
       minInputs = data["min_in"];
-    }
-    else
-    {
+    } else {
       std::clog << "min_in is not in json" << std::endl;
     }
-    if (data.contains("max_in"))
-    {
+    if (data.contains("max_in")) {
       maxInputs = data["max_in"];
-    }
-    else
-    {
+    } else {
       std::clog << "max_in is not in json" << std::endl;
     }
-    if (data.contains("min_out"))
-    {
+    if (data.contains("min_out")) {
       minOutputs = data["min_out"];
-    }
-    else
-    {
+    } else {
       std::clog << "min_out is not in json" << std::endl;
     }
-    if (data.contains("max_out"))
-    {
+    if (data.contains("max_out")) {
       maxOutputs = data["max_out"];
-    }
-    else
-    {
+    } else {
       std::clog << "max_out is not in json" << std::endl;
     }
-    if (data.contains("repeat_n"))
-    {
+    if (data.contains("repeat_n")) {
       repeats = data["repeat_n"];
-    }
-    else
-    {
+    } else {
       std::clog << "repeat_n is not in json" << std::endl;
     }
 
     // this is for ABC
-    bool calculateStatsAbc =
-        data.contains("calculate_stats_abc") ? (bool)data["calculate_stats_abc"] : false;
-    bool makeOptimizedFiles =
-        data.contains("make_optimized_files") ? (bool)data["make_optimized_files"] : false;
+    bool calculateStatsAbc = data.contains("calculate_stats_abc")
+                                 ? (bool)data["calculate_stats_abc"]
+                                 : false;
+    bool makeOptimizedFiles = data.contains("make_optimized_files")
+                                  ? (bool)data["make_optimized_files"]
+                                  : false;
     std::string libraryName =
         data.contains("library_name") ? (std::string)data["library_name"] : "";
     bool makeBench =
@@ -130,24 +116,20 @@ void runGenerationFromJson(std::string json_path)
     // Считывание информации по логичсеким элементам.
     std::map<std::string, std::vector<int>> gatesInputsInfo;
 
-    if (data.contains("gates_inputs_info"))
-    {
-      for (auto gate : data["gates_inputs_info"].items())
-      {
-        std::vector<int> gatesNumber = static_cast<std::vector<int>>(gate.value());
+    if (data.contains("gates_inputs_info")) {
+      for (auto gate : data["gates_inputs_info"].items()) {
+        std::vector<int> gatesNumber =
+            static_cast<std::vector<int>>(gate.value());
 
         // if vector is empty (suddenly), we add default gates number
-        if (!(int)gatesNumber.size())
-          gatesNumber.push_back(2);
+        if (!(int)gatesNumber.size()) gatesNumber.push_back(2);
         // else sorting data. It's important for fast generator work
         else
           std::sort(gatesNumber.begin(), gatesNumber.end());
 
         gatesInputsInfo[gate.key()] = gatesNumber;
       }
-    }
-    else
-    {
+    } else {
       // default init data
       gatesInputsInfo["and"] = {2};
       gatesInputsInfo["nand"] = {2};
@@ -159,27 +141,18 @@ void runGenerationFromJson(std::string json_path)
 
     // TODO:: make function that return DataBaseGeneratorParameters from json
     // Recording of json data to gp
-    GenerationParameters gp(
-        datasetId,
-        requestId,
-        minInputs,
-        minOutputs,
-        repeats,
-        libraryName,
-        calculateStatsAbc,
-        makeOptimizedFiles,
-        makeFirrtl,
-        makeBench);
+    GenerationParameters gp(datasetId, requestId, minInputs, minOutputs,
+                            repeats, libraryName, calculateStatsAbc,
+                            makeOptimizedFiles, makeFirrtl, makeBench);
 
     gp.setGatesInputInfo(gatesInputsInfo);
     // ------------------------------------------------------------------------
 
     // Основные параметры для From Random Truth Table
-    if (data["type_of_generation"] == "From Random Truth Table")
-    {
-      if (!(data.contains("CNFF") || data.contains("CNFT")))
-      {
-        std::cerr << "Parameters for selected generation type is not set." << std::endl;
+    if (data["type_of_generation"] == "From Random Truth Table") {
+      if (!(data.contains("CNFF") || data.contains("CNFT"))) {
+        std::cerr << "Parameters for selected generation type is not set."
+                  << std::endl;
         return;
       }
       gp.setCNFF(data.contains("CNFF") ? (bool)data["CNFF"] : false);
@@ -187,10 +160,12 @@ void runGenerationFromJson(std::string json_path)
     }
 
     // Основные параметры для Rand Level
-    if (static_cast<std::string>(data["type_of_generation"]).find("Rand Level") != std::string::npos)
-    {
+    if (static_cast<std::string>(data["type_of_generation"])
+            .find("Rand Level") != std::string::npos) {
       if (!(data.contains("max_level") || data.contains("max_elem")))
-        std::clog << "Parameters for selected generation type is not set. Parameters sets to default." << std::endl;
+        std::clog << "Parameters for selected generation type is not set. "
+                     "Parameters sets to default."
+                  << std::endl;
 
       int minLevel = data.contains("min_level") ? (int)data["min_level"] : 0;
       int maxLevel = data.contains("max_level") ? (int)data["max_level"] : 0;
@@ -200,18 +175,25 @@ void runGenerationFromJson(std::string json_path)
     }
 
     // Основные параметры для Num Operation
-    if (data["type_of_generation"] == "Num Operation")
-    {
-      std::map<std::string, int> m;
-      std::vector<std::string> v =
-          {"num_and", "num_nand", "num_or", "num_not",
-           "num_nor", "num_buf", "num_xor", "num_xnor"};
+    if (data["type_of_generation"] == "Num Operation") {
+      std::vector<std::string> v = {"num_and", "num_nand", "num_or",
+                                    "num_not", "num_nor",  "num_buf",
+                                    "num_xor", "num_xnor"};
 
-      for (auto &el : data.items())
-      {
-        if (std::find(v.begin(), v.end(), el.key()) != v.end())
-          m.insert({el.key().substr(4, 10), el.value()});
+      std::map<std::string, Gates> stringToGate = {
+          {"and", Gates::GateAnd}, {"nand", Gates::GateNand},
+          {"or", Gates::GateOr},   {"nor", Gates::GateNor},
+          {"not", Gates::GateNot}, {"buf", Gates::GateBuf},
+          {"xor", Gates::GateXor}, {"xnor", Gates::GateXnor}};
+
+      std::map<Gates, int> m;
+
+      for (auto &el : data.items()) {
+        if (std::find(v.begin(), v.end(), el.key()) != v.end()) {
+          m.insert({stringToGate[el.key().substr(4, 10)], el.value()});
+        }
       }
+
       bool LeaveEmptyOut = false;
       if (data.contains("leave_empty_out"))
         LeaveEmptyOut = data["leave_empty_out"];
@@ -365,14 +347,17 @@ void runGenerationFromJson(std::string json_path)
 
     //   gp.setPopulationSize(populationSize);
     //   gp.setNumOfCycles(numOfCycles);
-    //   gp.setRecombinationParameters(selecTypeParent, tourSize, recombType, refPoints, maskProb, recNum);
-    //   gp.setMutationParameters(mType, mutChance, exchangeType, probabilityTruthTable);
+    //   gp.setRecombinationParameters(selecTypeParent, tourSize, recombType,
+    //   refPoints, maskProb, recNum); gp.setMutationParameters(mType,
+    //   mutChance, exchangeType, probabilityTruthTable);
     //   gp.setSelectionParameters(selType, survNum);
     //   gp.setKeyEndProcessIndex(outRatio);
-    //   // gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType, ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
+    //   // gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType,
+    //   ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
     // }
 
-    DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp);
+    DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs,
+                                     maxOutputs, repeats, gt, gp);
 
     DataBaseGenerator generator(dbgp);
 
@@ -380,12 +365,14 @@ void runGenerationFromJson(std::string json_path)
 
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
     generator.generateType(
-        dbgp,
-        data.contains("multithread") ? (bool)data["multithread"] : false,
-        data.contains("create_id_directories") ? (bool)data["create_id_directories"] : true);
+        dbgp, data.contains("multithread") ? (bool)data["multithread"] : false,
+        data.contains("create_id_directories")
+            ? (bool)data["create_id_directories"]
+            : true);
 
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
-    std::clog << "Time taken: " << duration.count() << " microseconds" << std::endl;
+    std::clog << "Time taken: " << duration.count() << " microseconds"
+              << std::endl;
   }
 }

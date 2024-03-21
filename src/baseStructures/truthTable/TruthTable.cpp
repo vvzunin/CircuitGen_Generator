@@ -17,6 +17,12 @@ TruthTable::TruthTable(int i_seed)
     d_settings = Settings::getInstance("TruthTable");
 }
 
+// TruthTable::TruthTable(const Chronosome<TruthTableParameters> &i_chr)
+// {
+//     d_randGenerator.setSeed(AuxMethods::getRandSeed());
+//     d_settings = Settings::getInstance("TruthTable");
+// }
+
 void TruthTable::setSeed(int i_seed) {
     d_randGenerator.setSeed(i_seed);
 }

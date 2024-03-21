@@ -1,33 +1,22 @@
 #pragma once
 
-#include <string>
-#include <memory>
 #include <map>
+#include <memory>
+#include <string>
 #include <utility>
 #include <vector>
 
-enum generationTypes
-{
+enum generationTypes {
   none,
   truthTableToGraphWithoutOptimization,
   truthTableToGraphWithOptimization
 };
 
-enum LibrariesTypes
-{
-  SKY_LIB
-};
+enum LibrariesTypes { SKY_LIB };
 
-enum VertexTypes 
-{
-    input, 
-    output, 
-    constant, 
-    gate
-};
+enum VertexTypes { input, output, constant, gate };
 
-enum Gates
-{
+enum Gates {
   GateAnd,
   GateNand,
   GateOr,
@@ -35,15 +24,15 @@ enum Gates
   GateXor,
   GateXnor,
   GateNot,
-  GateBuf
+  GateBuf,
+  GateDefault,
 };
 
-class Settings
-{
-protected:
+class Settings {
+ protected:
   Settings(const std::string &i_path) : d_path(i_path) {}
 
-public:
+ public:
   Settings(Settings &other) = delete;
   void operator=(const Settings &) = delete;
   static std::shared_ptr<Settings> getInstance(const std::string &i_value);
@@ -51,7 +40,8 @@ public:
   std::string getInstanceName() const;
   std::pair<std::string, int> getLogicOperation(const std::string &i_op);
   std::vector<Gates> getLogicOperationsKeys();
-  std::pair<std::vector<bool>, std::vector<std::string>> getLogicOperationsWithGates(std::vector<std::string> i_notIncluded = {});
+  std::pair<std::vector<bool>, std::vector<Gates>>
+  getLogicOperationsWithGates();
   std::string fromOperationsToName(const std::string &i_op) const;
   std::string getDatasetPath() const;
   std::string getGenerationMethodPrefix(const std::string &i_s) const;
@@ -64,11 +54,10 @@ public:
   std::string getNadezhdaVar(const std::string &key) const;
   std::vector<std::string> fromOperationsToHierarchy(int key) const;
   int getNumThread() const;
-  Gates parseStringToGate(std::string i_gate) const {
-    return stringToGate.at(i_gate);
-  }
+  Gates parseStringToGate(std::string i_gate) const;
+  std::string parseGateToString(Gates gate) const;
 
-private:
+ private:
   void SaveSettings();
 
   std::string d_name;
@@ -86,43 +75,30 @@ private:
       {"reliability", "Nadezhda/Scripts/check_reliability.pyc"},
       {"liberty", "Nadezda/Test/Nangate.lib"}};
   int d_numThreads = 4;
-  std::map<std::string, std::pair<std::string, int>> d_logicOperations =
-      {
-          {"input", {"", 10}},
-          {"output", {"=", 0}},
-          {"const", {"1'b0", 9}},
-          {"and", {"and", 4}},
-          {"nand", {"nand", 3}},
-          {"or", {"or", 2}},
-          {"nor", {"nor", 1}},
-          {"not", {"not", 7}},
-          {"buf", {"buf", 8}},
-          {"xor", {"xor", 6}},
-          {"xnor", {"xnor", 5}}
+  std::map<std::string, std::pair<std::string, int>> d_logicOperations = {
+      {"input", {"", 10}}, {"output", {"=", 0}},  {"const", {"1'b0", 9}},
+      {"and", {"and", 4}}, {"nand", {"nand", 3}}, {"or", {"or", 2}},
+      {"nor", {"nor", 1}}, {"not", {"not", 7}},   {"buf", {"buf", 8}},
+      {"xor", {"xor", 6}}, {"xnor", {"xnor", 5}}
 
   };
 
   std::map<std::string, Gates> stringToGate = {
-          {"and",  Gates::GateAnd},
-          {"nand", Gates::GateNand},
-          {"or",   Gates::GateOr},
-          {"nor",  Gates::GateNor},
-          {"not",  Gates::GateNot},
-          {"buf",  Gates::GateBuf},
-          {"xor",  Gates::GateXor},
-          {"xnor", Gates::GateXnor}
-  };
+      {"and", Gates::GateAnd}, {"nand", Gates::GateNand},
+      {"or", Gates::GateOr},   {"nor", Gates::GateNor},
+      {"not", Gates::GateNot}, {"buf", Gates::GateBuf},
+      {"xor", Gates::GateXor}, {"xnor", Gates::GateXnor}};
+
+  std::map<Gates, std::string> gateToString = {
+      {Gates::GateAnd, "and"}, {Gates::GateNand, "nand"},
+      {Gates::GateOr, "or"},   {Gates::GateNor, "nor"},
+      {Gates::GateNot, "not"}, {Gates::GateBuf, "buf"},
+      {Gates::GateXor, "xor"}, {Gates::GateXnor, "xnor"},
+      {Gates::GateDefault, "ERROR"}};
 
   std::vector<Gates> d_logicElements = {
-    GateAnd,
-    GateNand,
-    GateOr,
-    GateNor,
-    GateXor,
-    GateXnor,
-    GateNot,
-    GateBuf
-  };
+      Gates::GateAnd, Gates::GateNand, Gates::GateOr,  Gates::GateNor,
+      Gates::GateXor, Gates::GateXnor, Gates::GateNot, Gates::GateBuf};
 
   std::map<int, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string> d_operationsToName;
