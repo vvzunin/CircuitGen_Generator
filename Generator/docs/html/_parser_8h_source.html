@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CombinationalCircuits<span id="projectnumber">&#160;ver.1.7</span>
+   <div id="projectname">CombinationalCircuits<span id="projectnumber">&#160;very early alpha</span>
    </div>
    <div id="projectbrief">Desc of Backeknd</div>
   </td>
@@ -108,37 +108,51 @@ $(function(){initNavTree('_parser_8h_source.html',''); initResizable(); });
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="_oriented_graph_8h.html">graph/OrientedGraph.h</a>&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_parser.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="class_parser.html">Parser</a></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_function" href="class_parser.html#a19e5fef79c5e703b18464e18acf3a2a4">Parser</a>(<span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_logExpression</a>);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_function" href="class_parser.html#a19e5fef79c5e703b18464e18acf3a2a4">Parser</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;<a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_logExpressions</a>);</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_class" href="class_oriented_graph.html">OrientedGraph</a> <a class="code hl_function" href="class_parser.html#a4cea924dba7f7975cd4c4644633ead5e">getGraph</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::pair&lt;int, std::vector&lt;std::string&gt;&gt; <a class="code hl_function" href="class_parser.html#a4fd50e46000940a154a27c8ac8010b30">splitLogicExpression</a>(std::string <a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_expr</a>);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_parser.html#a71c1a8dc870186065f5be80fcf521508">parse</a>(<span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_expr</a>);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_parser.html#a3602d3fde1e401b5fb352250232800b0">parseAll</a>();</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    std::vector&lt;std::string&gt; d_logExpressions;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_class" href="class_oriented_graph.html">OrientedGraph</a> d_graph;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    std::shared_ptr&lt;Settings&gt; d_settings = <a class="code hl_function" href="class_settings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;Parser&quot;</span>);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_parser.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="class_parser.html">Parser</a></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    std::pair&lt;bool, std::vector&lt;std::pair&lt;int, int&gt;&gt;&gt; createBrackets(<span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_expr</a>);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">bool</span> inBrackets(<span class="keyword">const</span> std::vector&lt;std::pair&lt;int, int&gt;&gt; &amp;<a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_brackets</a>, <span class="keywordtype">int</span> <a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_position</a>) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::string deleteExtraSpaces(std::string <a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_s</a>);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_function" href="class_parser.html#a19e5fef79c5e703b18464e18acf3a2a4">Parser</a>(<span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_logExpression</a>);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_function" href="class_parser.html#a19e5fef79c5e703b18464e18acf3a2a4">Parser</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;<a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_logExpressions</a>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_class" href="class_oriented_graph.html">OrientedGraph</a> <a class="code hl_function" href="class_parser.html#a4cea924dba7f7975cd4c4644633ead5e">getGraph</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::pair&lt;int, std::vector&lt;std::string&gt;&gt; <a class="code hl_function" href="class_parser.html#a4fd50e46000940a154a27c8ac8010b30">splitLogicExpression</a>(std::string <a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_expr</a>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_parser.html#a71c1a8dc870186065f5be80fcf521508">parse</a>(<span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_expr</a>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_parser.html#a3602d3fde1e401b5fb352250232800b0">parseAll</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    std::vector&lt;std::string&gt; d_logExpressions;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_class" href="class_oriented_graph.html">OrientedGraph</a> d_graph;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    std::shared_ptr&lt;Settings&gt; d_settings = <a class="code hl_function" href="class_settings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;Parser&quot;</span>);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    std::pair&lt;bool, std::vector&lt;std::pair&lt;int, int&gt;&gt;&gt; createBrackets(<span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_expr</a>);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">bool</span> inBrackets(<span class="keyword">const</span> std::vector&lt;std::pair&lt;int, int&gt;&gt; &amp;<a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_brackets</a>, <span class="keywordtype">int</span> <a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_position</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    std::string deleteExtraSpaces(std::string <a class="code hl_function" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_s</a>);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
 </div>
 <div class="ttc" id="a_oriented_graph_8h_html"><div class="ttname"><a href="_oriented_graph_8h.html">OrientedGraph.h</a></div></div>
 <div class="ttc" id="a_recombinations_8cpp_html_ae4e2ef42ba9e47a6c22a7befaf23c33e"><div class="ttname"><a href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">RecombinationType</a></div><div class="ttdeci">std::vector&lt; ChronosomeType&lt; Type, ParametersType &gt; &gt; RecombinationType(RecombinationParameters i_recombinationParameters, std::vector&lt; ChronosomeType&lt; Type, ParametersType &gt; &gt; i_population)</div><div class="ttdef"><b>Definition</b> Recombinations.cpp:10</div></div>
 <div class="ttc" id="aclass_oriented_graph_html"><div class="ttname"><a href="class_oriented_graph.html">OrientedGraph</a></div><div class="ttdoc">class OrientedGraph</div><div class="ttdef"><b>Definition</b> OrientedGraph.h:29</div></div>
-<div class="ttc" id="aclass_parser_html"><div class="ttname"><a href="class_parser.html">Parser</a></div><div class="ttdef"><b>Definition</b> Parser.h:9</div></div>
-<div class="ttc" id="aclass_parser_html_a19e5fef79c5e703b18464e18acf3a2a4"><div class="ttname"><a href="class_parser.html#a19e5fef79c5e703b18464e18acf3a2a4">Parser::Parser</a></div><div class="ttdeci">Parser(const std::string &amp;i_logExpression)</div><div class="ttdef"><b>Definition</b> Parser.cpp:29</div></div>
-<div class="ttc" id="aclass_parser_html_a3602d3fde1e401b5fb352250232800b0"><div class="ttname"><a href="class_parser.html#a3602d3fde1e401b5fb352250232800b0">Parser::parseAll</a></div><div class="ttdeci">bool parseAll()</div><div class="ttdef"><b>Definition</b> Parser.cpp:201</div></div>
+<div class="ttc" id="aclass_parser_html"><div class="ttname"><a href="class_parser.html">Parser</a></div><div class="ttdoc">class Parser</div><div class="ttdef"><b>Definition</b> Parser.h:17</div></div>
+<div class="ttc" id="aclass_parser_html_a19e5fef79c5e703b18464e18acf3a2a4"><div class="ttname"><a href="class_parser.html#a19e5fef79c5e703b18464e18acf3a2a4">Parser::Parser</a></div><div class="ttdeci">Parser(const std::string &amp;i_logExpression)</div><div class="ttdoc">Parser The Parser constructor accepts a single argument of type const std::string &amp;i_logExpression.</div><div class="ttdef"><b>Definition</b> Parser.cpp:29</div></div>
+<div class="ttc" id="aclass_parser_html_a3602d3fde1e401b5fb352250232800b0"><div class="ttname"><a href="class_parser.html#a3602d3fde1e401b5fb352250232800b0">Parser::parseAll</a></div><div class="ttdeci">bool parseAll()</div><div class="ttdoc">parseAll The method parses all logical expressions stored in the Parser object and builds a graph of ...</div><div class="ttdef"><b>Definition</b> Parser.cpp:201</div></div>
 <div class="ttc" id="aclass_parser_html_a4cea924dba7f7975cd4c4644633ead5e"><div class="ttname"><a href="class_parser.html#a4cea924dba7f7975cd4c4644633ead5e">Parser::getGraph</a></div><div class="ttdeci">OrientedGraph getGraph() const</div><div class="ttdef"><b>Definition</b> Parser.cpp:42</div></div>
 <div class="ttc" id="aclass_parser_html_a4fd50e46000940a154a27c8ac8010b30"><div class="ttname"><a href="class_parser.html#a4fd50e46000940a154a27c8ac8010b30">Parser::splitLogicExpression</a></div><div class="ttdeci">std::pair&lt; int, std::vector&lt; std::string &gt; &gt; splitLogicExpression(std::string i_expr)</div><div class="ttdef"><b>Definition</b> Parser.cpp:106</div></div>
-<div class="ttc" id="aclass_parser_html_a71c1a8dc870186065f5be80fcf521508"><div class="ttname"><a href="class_parser.html#a71c1a8dc870186065f5be80fcf521508">Parser::parse</a></div><div class="ttdeci">bool parse(const std::string &amp;i_expr)</div><div class="ttdef"><b>Definition</b> Parser.cpp:151</div></div>
+<div class="ttc" id="aclass_parser_html_a71c1a8dc870186065f5be80fcf521508"><div class="ttname"><a href="class_parser.html#a71c1a8dc870186065f5be80fcf521508">Parser::parse</a></div><div class="ttdeci">bool parse(const std::string &amp;i_expr)</div><div class="ttdoc">parse The method takes the string i_expr representing a Boolean expression and parses it to build an ...</div><div class="ttdef"><b>Definition</b> Parser.cpp:151</div></div>
 <div class="ttc" id="aclass_settings_html_a30ad5eb680e7894684c46fa5623870f3"><div class="ttname"><a href="class_settings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a></div><div class="ttdeci">static std::shared_ptr&lt; Settings &gt; getInstance(const std::string &amp;i_value)</div><div class="ttdoc">getInstance The method is a static method that returns a pointer to the Settings object using the Sin...</div><div class="ttdef"><b>Definition</b> Settings.cpp:11</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

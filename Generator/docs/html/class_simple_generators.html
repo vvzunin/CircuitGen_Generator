@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CombinationalCircuits<span id="projectnumber">&#160;ver.1.7</span>
+   <div id="projectname">CombinationalCircuits<span id="projectnumber">&#160;very early alpha</span>
    </div>
    <div id="projectbrief">Desc of Backeknd</div>
   </td>
@@ -105,6 +105,9 @@ $(function(){initNavTree('class_simple_generators.html',''); initResizable(); })
 </div><!--header-->
 <div class="contents">
 
+<p>class <a class="el" href="class_simple_generators.html" title="class SimpleGenerators">SimpleGenerators</a>  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_simple_generators_8h_source.html">SimpleGenerators.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -140,7 +143,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a966319874fc1e50594028533680ccbc1" id="r_a966319874fc1e50594028533680ccbc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_simple_generators_8h.html#ad3ec2496a5505dba560dc800a5eb882d">GatesInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a966319874fc1e50594028533680ccbc1">getGatesInputsInfo</a> () <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">const</a></td></tr>
 <tr class="separator:a966319874fc1e50594028533680ccbc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>class <a class="el" href="class_simple_generators.html" title="class SimpleGenerators">SimpleGenerators</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d_settings</td><td>A pointer to an object of the <a class="el" href="class_settings.html" title="class Settings">Settings</a> class, which is a singleton and is used to store settings associated with the vertices of the graph. </td></tr>
+    <tr><td class="paramname">d_gatesInputsInfo</td><td>The data structure represented as a display (std::map&lt;std::string, std::vector&lt;int&gt;&gt;), where the keys are strings (names of logical operations), and the values are vectors of integers representing information about the inputs (indexes) of gates associated with each logical operation. This is a general description*** </td></tr>
+    <tr><td class="paramname">d_randGenerator</td><td>An object of the Random Generator With Seed class, which is used to generate random numbers based on a given grain (seed). </td></tr>
+    <tr><td class="paramname">d_maxGateNumber</td><td>An integer value representing the maximum gate number in the system. This value is probably used to control the allocation of new gate numbers when creating new elements. *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2414b33a0e25130c1ba5629970135795" name="a2414b33a0e25130c1ba5629970135795"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2414b33a0e25130c1ba5629970135795">&#9670;&#160;</a></span>SimpleGenerators() <span class="overload">[1/4]</span></h2>
 
