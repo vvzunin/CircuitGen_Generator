@@ -111,16 +111,21 @@ $(function(){initNavTree('_parents_truth_table_8h.html',''); initResizable(); })
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a719420ca1e2f8bc7a5d6af8b877537a6" id="r_a719420ca1e2f8bc7a5d6af8b877537a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a719420ca1e2f8bc7a5d6af8b877537a6">GetHemming</a> (<a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_t</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="class_chronosome_type.html">ChronosomeType</a>&lt; <a class="el" href="class_truth_table.html">TruthTable</a>, <a class="el" href="class_truth_table_parameters.html">TruthTableParameters</a> &gt; &gt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_population</a>)</td></tr>
+<tr class="memdesc:a719420ca1e2f8bc7a5d6af8b877537a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetHemming This function calculates the Hamming distance between each element of the i_population vector and the bit string represented as a binary mask based on the value of i_t.  <br /></td></tr>
 <tr class="separator:a719420ca1e2f8bc7a5d6af8b877537a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92f596073b6bb5fd8984a6b46b231169" id="r_a92f596073b6bb5fd8984a6b46b231169"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92f596073b6bb5fd8984a6b46b231169">ParentsPanmixia</a> (<a class="el" href="class_parents_parameters.html">ParentsParameters</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_parentsParameters</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="class_chronosome_type.html">ChronosomeType</a>&lt; <a class="el" href="class_truth_table.html">TruthTable</a>, <a class="el" href="class_truth_table_parameters.html">TruthTableParameters</a> &gt; &gt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_population</a>)</td></tr>
+<tr class="memdesc:a92f596073b6bb5fd8984a6b46b231169"><td class="mdescLeft">&#160;</td><td class="mdescRight">ParentsPanmixia This method implements the selection of parents for a mixed (panmixia) reproduction scheme in a genetic algorithm.  <br /></td></tr>
 <tr class="separator:a92f596073b6bb5fd8984a6b46b231169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a9d4718a529a52871dbdd49794847eb" id="r_a4a9d4718a529a52871dbdd49794847eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a9d4718a529a52871dbdd49794847eb">ParentsInbrinding</a> (<a class="el" href="class_parents_parameters.html">ParentsParameters</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_parentsParameters</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="class_chronosome_type.html">ChronosomeType</a>&lt; <a class="el" href="class_truth_table.html">TruthTable</a>, <a class="el" href="class_truth_table_parameters.html">TruthTableParameters</a> &gt; &gt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_population</a>)</td></tr>
+<tr class="memdesc:a4a9d4718a529a52871dbdd49794847eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">ParentsInbrinding This function selects one parent randomly from the population and selects the second parent in such a way that it is the closest neighbor (by the smallest Hamming distance) to the first parent.  <br /></td></tr>
 <tr class="separator:a4a9d4718a529a52871dbdd49794847eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74112298d2080509a326c1534920e001" id="r_a74112298d2080509a326c1534920e001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74112298d2080509a326c1534920e001">ParentsOutbrinding</a> (<a class="el" href="class_parents_parameters.html">ParentsParameters</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_parentsParameters</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="class_chronosome_type.html">ChronosomeType</a>&lt; <a class="el" href="class_truth_table.html">TruthTable</a>, <a class="el" href="class_truth_table_parameters.html">TruthTableParameters</a> &gt; &gt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_population</a>)</td></tr>
+<tr class="memdesc:a74112298d2080509a326c1534920e001"><td class="mdescLeft">&#160;</td><td class="mdescRight">ParentsOutbrinding implements an approach to choosing parents, known as outbreeding.  <br /></td></tr>
 <tr class="separator:a74112298d2080509a326c1534920e001"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae26e9276b0f24958d53ee25fd7cb8e9b" id="r_ae26e9276b0f24958d53ee25fd7cb8e9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae26e9276b0f24958d53ee25fd7cb8e9b">ParentTournament</a> (<a class="el" href="class_parents_parameters.html">ParentsParameters</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_parentsParameters</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="class_chronosome_type.html">ChronosomeType</a>&lt; <a class="el" href="class_truth_table.html">TruthTable</a>, <a class="el" href="class_truth_table_parameters.html">TruthTableParameters</a> &gt; &gt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_population</a>)</td></tr>
 <tr class="separator:ae26e9276b0f24958d53ee25fd7cb8e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bef8b36bbdc341d7dfcc93f5b951f1b" id="r_a2bef8b36bbdc341d7dfcc93f5b951f1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bef8b36bbdc341d7dfcc93f5b951f1b">ParentsRoulette</a> (<a class="el" href="class_parents_parameters.html">ParentsParameters</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_parentsParameters</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="class_chronosome_type.html">ChronosomeType</a>&lt; <a class="el" href="class_truth_table.html">TruthTable</a>, <a class="el" href="class_truth_table_parameters.html">TruthTableParameters</a> &gt; &gt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_population</a>)</td></tr>
+<tr class="memdesc:a2bef8b36bbdc341d7dfcc93f5b951f1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ParentsRoulette implements an approach to choosing parents using the roulette method.  <br /></td></tr>
 <tr class="separator:a2bef8b36bbdc341d7dfcc93f5b951f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -143,6 +148,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>GetHemming This function calculates the Hamming distance between each element of the i_population vector and the bit string represented as a binary mask based on the value of i_t. </p>
+<p>The Hamming distance between two bit strings is defined as the number of positions in which the corresponding bits are different. P.S. Perhaps the calculation of the hamming distance is implemented incorrectly!!! </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_t</td><td>An integer value that defines the threshold value for searching for bit strings with a Hamming distance less than or equal to i_t </td></tr>
+    <tr><td class="paramname">i_population</td><td>A vector of objects of the ChronosomeType&lt;Truth Table, Truth Table Parameters&gt; type containing bit strings for which the Hamming distance from the bit string represented as a binary mask must be calculated </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of integers containing the Hamming distances between the bit strings from the input vector i_population and the bit string represented as a binary mask based on the value i_t </dd></dl>
+
 </div>
 </div>
 <a id="a4a9d4718a529a52871dbdd49794847eb" name="a4a9d4718a529a52871dbdd49794847eb"></a>
@@ -163,6 +178,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>ParentsInbrinding This function selects one parent randomly from the population and selects the second parent in such a way that it is the closest neighbor (by the smallest Hamming distance) to the first parent. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_parentsParameters</td><td>An object of the Parentparameters class containing parameters for selecting parents P.S. It is not used in this implementation!!! </td></tr>
+    <tr><td class="paramname">i_population</td><td>A vector of <a class="el" href="class_chronosome_type.html" title="class ChronosomeType">ChronosomeType</a> objects&lt;TruthTable, Truth Table Parameters&gt; containing bit strings from which the parents will be selected </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the indexes of two selected parents from the population. The first element of the vector is the index of the first parent, and the second element is the index of the second parent *&zwj;/ </dd></dl>
 
 </div>
 </div>
@@ -185,6 +210,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>ParentsOutbrinding implements an approach to choosing parents, known as outbreeding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_parentsParameters</td><td>An object of the Parentparameters class containing parameters for selecting parents. P.S. It is not used in this implementation!!! </td></tr>
+    <tr><td class="paramname">i_population</td><td>a vector of <a class="el" href="class_chronosome_type.html" title="class ChronosomeType">ChronosomeType</a> objects&lt;TruthTable, Truth Table Parameters&gt; containing bit strings from which the parents will be selected </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the indices of two selected parents from the population. The first element of the vector is the index of the first parent, and the second element is the index of the second parent *&zwj;/ </dd></dl>
+
 </div>
 </div>
 <a id="a92f596073b6bb5fd8984a6b46b231169" name="a92f596073b6bb5fd8984a6b46b231169"></a>
@@ -206,6 +241,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>ParentsPanmixia This method implements the selection of parents for a mixed (panmixia) reproduction scheme in a genetic algorithm. </p>
+<p>It randomly selects two different parents from a population of bit strings </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_parentsParameters</td><td>An object of the Parentparameters class containing parameters for selecting parents. P.S. It is not used in this implementation!!! </td></tr>
+    <tr><td class="paramname">i_population</td><td>a vector of <a class="el" href="class_chronosome_type.html" title="class ChronosomeType">ChronosomeType</a> objects&lt;TruthTable, Truth Table Parameters&gt; containing bit strings from which the parents will be selected </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the indices of two selected different parents from the population </dd></dl>
+
 </div>
 </div>
 <a id="a2bef8b36bbdc341d7dfcc93f5b951f1b" name="a2bef8b36bbdc341d7dfcc93f5b951f1b"></a>
@@ -226,6 +271,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>ParentsRoulette implements an approach to choosing parents using the roulette method. </p>
+<p>In this case, this function simply delegates the parents' choice to another Parent's Tournament function, which probably implements the parents' tournament choice *** </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_parentsParameters</td><td>An object of the Parentparameters class containing parameters for selecting parents P.S. It is not used in this implementation!!! </td></tr>
+    <tr><td class="paramname">i_population</td><td>A vector of <a class="el" href="class_chronosome_type.html" title="class ChronosomeType">ChronosomeType</a> objects&lt;TruthTable, Truth Table Parameters&gt; containing bit strings from which the parents will be selected </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the indices of two selected parents from the population *&zwj;/ </dd></dl>
 
 </div>
 </div>
