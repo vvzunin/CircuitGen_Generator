@@ -280,6 +280,7 @@ bool OrientedGraph::operator==(const OrientedGraph& rhs) {
 
 bool OrientedGraph::toVerilog(std::ofstream& i_fileStream) {
   // В данном методе происходит только генерация одного графа. Без подграфов.
+  std::cout << this->toGraphML() << std::endl;
   std::string verilogTab = "  ";
 
   i_fileStream << "module " << d_name << "();\n";
@@ -392,4 +393,56 @@ bool OrientedGraph::toVerilog(std::ofstream& i_fileStream) {
 
   i_fileStream << "endmodule\n";
   return true;
+}
+
+std::string OrientedGraph::toGraphML(std::string i_prefix) const {
+  const char* mainTemplate = R"(
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<key id="d0" for="node" attr.name="type" attr.type="string"/>
+%
+</graphml>
+)";
+
+  const char* graphTemplate = R"(
+<graph id="%" edgedefault="directed">
+%
+</graph>
+)";
+
+  const char* nodeTemplate = R"(
+<node id="%">
+<data key="d0">%</data>
+%
+</node>
+)";
+
+  const char* edgeTemplate = R"(
+<edge id="%" source="%" target="%"/>
+)";
+
+  std::string currentGraphName = i_prefix + d_name;
+  std::string nodes, edges, graph = format(graphTemplate, currentGraphName);
+
+  for (const auto& [vertexType, vertexVector] : d_vertexes) {
+    std::string vertexTypeName = d_settings->parseVertexToString(vertexType);
+    for (const auto& vertex : vertexVector) {
+      std::string vertexKindName = vertexTypeName == "g" ? d_settings->parseGateToString(vertex->getGate()) :
+                                   vertexTypeName == "constant" ? std::string(1, vertex->getValue()) :
+                                   vertexTypeName;
+        nodes += format(nodeTemplate, vertex->getName(), vertexKindName, "\r");
+        for (const auto& source : vertex->getInConnections()) {
+          std::string edgeId = format("%-%", source->getName(), vertex->getName());
+          edges += format(edgeTemplate, edgeId, source->getName(), vertex->getName());
+        }
+      }
+    }
+
+  std::string finalGraph = format(graph, nodes + edges);
+  if (!i_prefix.empty()) {
+    return format(mainTemplate, finalGraph);
+  }
+  // save(finalGraph);
+  return finalGraph;
 }

@@ -33,20 +33,7 @@ GraphVertexBase::~GraphVertexBase() {
 VertexTypes GraphVertexBase::getType() const { return d_type; }
 
 std::string GraphVertexBase::getTypeName() const {
-  switch (d_type) {
-    case VertexTypes::input:
-      return "input";
-    case VertexTypes::output:
-      return "ouput";
-    case VertexTypes::constant:
-      return "const";
-    // To make files smaller
-    case VertexTypes::gate:
-      return "g";
-    default:
-      return "";
-  }
-  return "";
+  return d_settings->parseVertexToString(d_type);
 }
 
 void GraphVertexBase::setName(const std::string i_name) { d_name = i_name; }
