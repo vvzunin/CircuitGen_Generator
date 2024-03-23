@@ -30,8 +30,6 @@ class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
   OrientedGraph(const OrientedGraph& other) = default;
   OrientedGraph(OrientedGraph&& other) = default;
 
-//   std::shared_ptr<OrientedGraph> shared_from_this();
-
   // Количество gate в графе, за исключением подграфов
   int baseSize() const;
   // Количество gate в графе, включая подграфы
@@ -81,7 +79,7 @@ class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
   // vizualize
   // calcGraph
 
-  // Сделать матрицу смежности для зранения и быстрого поиска связей?
+  // Сделать матрицу смежности для хранения и быстрого поиска связей?
 
   std::vector<std::shared_ptr<GraphVertexBase>> getVerticesByType(
       const VertexTypes i_type, const std::string i_name = "",
@@ -100,7 +98,6 @@ class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
 
  private:
   size_t d_edgesCount = 0;
-//   std::shared_ptr<OrientedGraph> this_ptr;
 
   std::string hashed = "";
   OrientedGraph *d_baseGraph = nullptr;

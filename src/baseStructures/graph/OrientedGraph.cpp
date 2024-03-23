@@ -26,14 +26,7 @@ OrientedGraph::OrientedGraph(const std::string i_name) {
   }
 }
 
-OrientedGraph::~OrientedGraph() {
-  // OrientedGraph *ptr = NULL;
-  // this_ptr.reset(ptr);
-}
-
-// std::shared_ptr<OrientedGraph> OrientedGraph::shared_from_this() {
-//   return this_ptr;
-// }
+OrientedGraph::~OrientedGraph() {}
 
 int OrientedGraph::baseSize() const {
   return d_vertexes.at(VertexTypes::gate).size();
@@ -82,14 +75,11 @@ unsigned OrientedGraph::getMaxLevel() {
   return mx;
 }
 
-void OrientedGraph::setBaseGraph(
-    OrientedGraph *i_baseGraph) {
+void OrientedGraph::setBaseGraph(OrientedGraph* i_baseGraph) {
   d_baseGraph = i_baseGraph;
 }
 
-OrientedGraph *OrientedGraph::getBaseGraph() const {
-  return d_baseGraph;
-}
+OrientedGraph* OrientedGraph::getBaseGraph() const { return d_baseGraph; }
 
 std::shared_ptr<GraphVertexBase> OrientedGraph::addInput(
     const std::string i_name) {
@@ -147,7 +137,8 @@ bool OrientedGraph::addEdge(std::shared_ptr<GraphVertexBase> from,
 
   ++d_edgesCount;
 
-  if (from->getType() == VertexTypes::gate && to->getType() == VertexTypes::gate)
+  if (from->getType() == VertexTypes::gate &&
+      to->getType() == VertexTypes::gate)
     ++d_edgesGatesCount[from->getGate()][to->getGate()];
 
   return f && (n > 0);
@@ -248,8 +239,8 @@ std::map<Gates, int> OrientedGraph::getGatesCount() const {
   return d_gatesCount;
 }
 
-std::map<Gates, std::map<Gates, int>> 
-    OrientedGraph::getEdgesGatesCount() const {
+std::map<Gates, std::map<Gates, int>> OrientedGraph::getEdgesGatesCount()
+    const {
   return d_edgesGatesCount;
 }
 
