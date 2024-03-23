@@ -1,10 +1,10 @@
 #include "GraphVertex.h"
 
-GraphVertexOutput::GraphVertexOutput(std::shared_ptr<OrientedGraph> const i_baseGraph)
+GraphVertexOutput::GraphVertexOutput(OrientedGraph *i_baseGraph)
     : GraphVertexBase(VertexTypes::output, i_baseGraph) {}
 
 GraphVertexOutput::GraphVertexOutput(const std::string i_name,
-                                     std::shared_ptr<OrientedGraph> const i_baseGraph)
+                                     OrientedGraph *i_baseGraph)
     : GraphVertexBase(VertexTypes::output, i_name, i_baseGraph) {}
 
 char GraphVertexOutput::updateValue() {

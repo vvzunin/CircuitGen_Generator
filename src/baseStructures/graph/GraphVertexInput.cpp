@@ -2,12 +2,12 @@
 
 #include "GraphVertex.h"
 
-GraphVertexInput::GraphVertexInput(std::shared_ptr<OrientedGraph> const i_baseGraph,
+GraphVertexInput::GraphVertexInput(OrientedGraph *i_baseGraph,
                                    const VertexTypes i_type)
     : GraphVertexBase(i_type, i_baseGraph) {}
 
 GraphVertexInput::GraphVertexInput(const std::string i_name,
-                                   std::shared_ptr<OrientedGraph> const i_baseGraph,
+                                   OrientedGraph *i_baseGraph,
                                    const VertexTypes i_type)
     : GraphVertexBase(i_type, i_name, i_baseGraph) {}
 

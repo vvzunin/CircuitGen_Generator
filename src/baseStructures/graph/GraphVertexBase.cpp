@@ -5,7 +5,7 @@
 uint_fast64_t GraphVertexBase::d_count = 0;
 
 GraphVertexBase::GraphVertexBase(const VertexTypes i_type,
-                                 std::shared_ptr<OrientedGraph> const i_graph) {
+                                 OrientedGraph *i_graph) {
   d_baseGraph = i_graph;
   d_type = i_type;
   d_name = this->getTypeName() + "_" + std::to_string(d_count++);
@@ -15,7 +15,7 @@ GraphVertexBase::GraphVertexBase(const VertexTypes i_type,
 
 GraphVertexBase::GraphVertexBase(const VertexTypes i_type,
                                  const std::string i_name,
-                                 std::shared_ptr<OrientedGraph> const i_graph) {
+                                 OrientedGraph *i_graph) {
   d_baseGraph = i_graph;
   d_type = i_type;
   if (i_name.size())
@@ -64,7 +64,7 @@ void GraphVertexBase::updateLevel() {
 
 char GraphVertexBase::getValue() const { return d_value; }
 
-std::shared_ptr<OrientedGraph> GraphVertexBase::getBaseGraph() const { return d_baseGraph; }
+OrientedGraph *GraphVertexBase::getBaseGraph() const { return d_baseGraph; }
 
 std::vector<std::shared_ptr<GraphVertexBase>> GraphVertexBase::getInConnections() const {
   return d_inConnections;
