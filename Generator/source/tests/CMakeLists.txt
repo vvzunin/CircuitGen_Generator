@@ -16,9 +16,12 @@ add_executable(${PROJECT_NAME}
   GraphVertexTests.cpp
   YosysUtilsTests.cpp
   CircuitTests.cpp
+  DataBaseGeneratorTests.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC 
+
+DataBaseGenerator
 AuxiliaryMethods 
 Circuit 
 Reliability
@@ -35,6 +38,7 @@ FilesTools
 Settings 
 OptimizationUtils 
 ThreadPool 
+Parser
 
 nlohmann_json::nlohmann_json
 gtest
