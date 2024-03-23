@@ -5,7 +5,6 @@
 
 #include <settings/Settings.h>
 #include <additional/RandomGeneratorWithSeed.h>
-#include <additional/RandomGeneratorWithSeed.h>
 
 class TruthTable 
 {
