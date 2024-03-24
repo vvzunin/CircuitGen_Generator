@@ -16,6 +16,7 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
+<<<<<<< HEAD
 include(../cmake/project-is-top-level.cmake)
 include(../cmake/folders.cmake)
 
@@ -63,18 +64,64 @@ target_include_directories(
   CircuitGenGenerator_test_AuxiliaryMethodsTests ${warning_guard}
     PUBLIC
     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+=======
+add_executable(${PROJECT_NAME}
+  ##src/additional/filesTools/FilesToolsTests.cpp
+  ##src/additional/AuxiliaryMethodsTests.cpp
+
+  #src/baseStructers/graph/GraphVertexTests.cpp
+  #src/baseStructers/graph/OrientedGraphTests.cpp
+  #src/baseStructers/graph/OrientedGraphSysTests.cpp
+  ##src/baseStructers/truthTable/TruthTableTests.cpp 
+
+  #src/circuits/CircuitTests.cpp
+
+  #src/database/DataBaseGeneratorTests.cpp
+
+  src/generators/simple/SimpleGeneratorsTests.cpp 
+
+  ##src/settings/SettingsTests.cpp
+
+  #AbcUtilsTests.cpp
+  #YosysUtilsTests.cpp
+>>>>>>> 442514d5a (commit before pull)
 )
 add_test(NAME AuxiliaryMethodsTests COMMAND CircuitGenGenerator_test_AuxiliaryMethodsTests)
 
 # Test FilesToolsTests
 add_executable(CircuitGenGenerator_test_FilesToolsTests src/additional/filesTools/FilesToolsTests.cpp ${NEW_SOURCES})
 
+<<<<<<< HEAD
 target_link_libraries(CircuitGenGenerator_test_FilesToolsTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
 target_compile_features(CircuitGenGenerator_test_FilesToolsTests PRIVATE cxx_std_17)
 target_include_directories(
   CircuitGenGenerator_test_FilesToolsTests ${warning_guard}
     PUBLIC
     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+=======
+DataBaseGenerator
+AuxiliaryMethods 
+Circuit 
+#Reliability
+SimpleGenerator
+TruthTable 
+OrientedGraph 
+#GeneticParameters
+#MutationParameters 
+#RecombinationParameters 
+#SelectionParameters 
+#ParentsParameters 
+#GraphVertex 
+FilesTools 
+Settings 
+#OptimizationUtils 
+ThreadPool 
+Parser
+
+nlohmann_json::nlohmann_json
+gtest
+gtest_main
+>>>>>>> 442514d5a (commit before pull)
 )
 add_test(NAME FilesToolsTests COMMAND CircuitGenGenerator_test_FilesToolsTests)
 

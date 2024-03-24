@@ -14,7 +14,12 @@ include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
 add_subdirectory(lib)
+<<<<<<< HEAD
 include_directories(lib)
+=======
+add_subdirectory(src)
+add_subdirectory(test)
+>>>>>>> 442514d5a (commit before pull)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
