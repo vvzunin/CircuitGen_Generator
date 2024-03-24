@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
-#include "../optimization_utils/AbcUtils.h"
+
+#include "optimization_utils/AbcUtils.h"
 
 TEST(GetStatsTest, ErrorWithInvalidLibraryName) {
   AbcUtils util;
@@ -56,4 +57,3 @@ TEST(GetStatsTest, ErrorWithInvalidLibraryPath) {
 
   EXPECT_EQ(errorResult, errorText);
 }
-
