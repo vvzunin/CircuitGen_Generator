@@ -2,6 +2,7 @@
 
 #include <baseStructures/graph/GraphVertex.h>
 #include <baseStructures/graph/GraphVertexBase.h>
+#include <baseStructures/graph/GraphMLTemplates.h>
 
 #include <algorithm>
 #include <cassert>
@@ -280,7 +281,6 @@ bool OrientedGraph::operator==(const OrientedGraph& rhs) {
 
 bool OrientedGraph::toVerilog(std::ofstream& i_fileStream) {
   // В данном методе происходит только генерация одного графа. Без подграфов.
-  std::cout << this->toGraphML() << std::endl;
   std::string verilogTab = "  ";
 
   i_fileStream << "module " << d_name << "();\n";
@@ -395,54 +395,39 @@ bool OrientedGraph::toVerilog(std::ofstream& i_fileStream) {
   return true;
 }
 
-std::string OrientedGraph::toGraphML(std::string i_prefix) const {
-  const char* mainTemplate = R"(
-<?xml version="1.0" encoding="UTF-8"?>
-<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
-<key id="d0" for="node" attr.name="type" attr.type="string"/>
-%
-</graphml>
-)";
+std::string OrientedGraph::toGraphML(int i_nesting) const {
+  const std::string spaces(i_nesting * 4, ' ');
 
-  const char* graphTemplate = R"(
-<graph id="%" edgedefault="directed">
-%
-</graph>
-)";
+  std::string graphTemplate = format(rawGraphTemplate, spaces, d_name, spaces);
+  std::string nodeTemplate = format(rawNodeTemplate, spaces, "%", spaces, "%", "%", spaces);
+  std::string edgeTemplate = format(rawEdgeTemplate, spaces);
 
-  const char* nodeTemplate = R"(
-<node id="%">
-<data key="d0">%</data>
-%
-</node>
-)";
-
-  const char* edgeTemplate = R"(
-<edge id="%" source="%" target="%"/>
-)";
-
-  std::string currentGraphName = i_prefix + d_name;
-  std::string nodes, edges, graph = format(graphTemplate, currentGraphName);
+  std::string nodes, edges, graphs;
 
   for (const auto& [vertexType, vertexVector] : d_vertexes) {
     std::string vertexTypeName = d_settings->parseVertexToString(vertexType);
     for (const auto& vertex : vertexVector) {
       std::string vertexKindName = vertexTypeName == "g" ? d_settings->parseGateToString(vertex->getGate()) :
-                                   vertexTypeName == "constant" ? std::string(1, vertex->getValue()) :
+                                   vertexTypeName == "const" ? std::string(1, vertex->getValue()) :
                                    vertexTypeName;
-        nodes += format(nodeTemplate, vertex->getName(), vertexKindName, "\r");
-        for (const auto& source : vertex->getInConnections()) {
-          std::string edgeId = format("%-%", source->getName(), vertex->getName());
-          edges += format(edgeTemplate, edgeId, source->getName(), vertex->getName());
-        }
+      nodes += format(nodeTemplate, vertex->getName(), vertexKindName, "");
+      for (const auto& source : vertex->getInConnections()) {
+        edges += format(edgeTemplate, source->getName(), vertex->getName());
       }
     }
-
-  std::string finalGraph = format(graph, nodes + edges);
-  if (!i_prefix.empty()) {
-    return format(mainTemplate, finalGraph);
   }
-  // save(finalGraph);
-  return finalGraph;
+  for (const auto& subGraph: d_subGraphs) {
+    graphs += subGraph->toGraphML(i_nesting + 1);
+  }
+
+  std::string finalGraph = format(graphTemplate, nodes + graphs + edges);
+  if (i_nesting != 0) {
+    return finalGraph;
+  }
+  return format(mainTemplate, finalGraph);
+}
+
+bool OrientedGraph::toGraphML(std::ofstream& i_fileStream) const {
+  i_fileStream << this->toGraphML();
+  return true;
 }

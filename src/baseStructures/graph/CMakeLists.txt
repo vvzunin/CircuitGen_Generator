@@ -12,6 +12,7 @@ add_library(
   GraphVertex.h
 
   enums.h
+  GraphMLTemplates.h
 
   GraphVertexBase.cpp
   GraphVertexBase.h  

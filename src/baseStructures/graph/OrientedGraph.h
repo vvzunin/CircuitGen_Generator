@@ -79,7 +79,8 @@ class OrientedGraph {
 
   bool toVerilog(std::ofstream& i_fileStream);
   // toAdjencyMatrix
-  std::string toGraphML(std::string i_prefix = "") const;
+  bool toGraphML(std::ofstream& i_fileStream) const;
+  std::string toGraphML(int i_nesting = 0) const;
   // vizualize
   // calcGraph
 
@@ -132,6 +133,7 @@ class OrientedGraph {
   std::map<Gates, std::map<Gates, int>> d_edgesGatesCount;
 
   std::shared_ptr<Settings> d_settings = Settings::getInstance("OrientedGraph");
+
 };
 
 template<class Tuple, std::size_t N>
