@@ -12,7 +12,7 @@
 // TODO: Добавить проверку на имена файлов при доблении новых вершин
 
 class GraphVertexBase;  // Проблема циклического определения
-class OrientedGraph {
+class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
  public:
   // friend class Circuit;
   OrientedGraph(const std::string i_name = "");
@@ -29,8 +29,6 @@ class OrientedGraph {
       default;  // оператор перемещающего присваивания
   OrientedGraph(const OrientedGraph& other) = default;
   OrientedGraph(OrientedGraph&& other) = default;
-
-  std::shared_ptr<OrientedGraph> shared_from_this();
 
   // Количество gate в графе, за исключением подграфов
   int baseSize() const;
@@ -51,8 +49,8 @@ class OrientedGraph {
 
   unsigned getMaxLevel();
 
-  void setBaseGraph(std::shared_ptr<OrientedGraph> const i_baseGraph);
-  std::shared_ptr<OrientedGraph> getBaseGraph() const;
+  void setBaseGraph(OrientedGraph *i_baseGraph);
+  OrientedGraph *getBaseGraph() const;
 
   // TODO: Заменить все const на const &
   std::shared_ptr<GraphVertexBase> addInput(const std::string i_name = "");
@@ -81,7 +79,7 @@ class OrientedGraph {
   // vizualize
   // calcGraph
 
-  // Сделать матрицу смежности для зранения и быстрого поиска связей?
+  // Сделать матрицу смежности для хранения и быстрого поиска связей?
 
   std::vector<std::shared_ptr<GraphVertexBase>> getVerticesByType(
       const VertexTypes i_type, const std::string i_name = "",
@@ -100,9 +98,9 @@ class OrientedGraph {
 
  private:
   size_t d_edgesCount = 0;
-  std::shared_ptr<OrientedGraph> this_ptr;
+
   std::string hashed = "";
-  std::shared_ptr<OrientedGraph> d_baseGraph = nullptr;
+  OrientedGraph *d_baseGraph = nullptr;
 
   std::string d_name;
 
