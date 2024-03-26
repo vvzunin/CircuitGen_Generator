@@ -264,7 +264,7 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
       graph.getVerticesByType(VertexTypes::input);
 
   // TODO what if we will need to use n-gate elements, should we add consts
-  // usgae?
+  // usage?
 
   int currIndex = i_inputs;
   int prevIndex = 0;
@@ -407,11 +407,12 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
   for (const auto &[key, value] : copyLogicOper) sumOper += value;
 
   copyLogicOper = delNull(copyLogicOper);
+  // TODO it is TOO slow
   for (int i = 0; i < sumOper; ++i) {
     // TODO: optimize
     // TODO change whole gen
     Gates oper = randomGenerator(copyLogicOper);
-    copyLogicOper[oper]--;
+    --copyLogicOper[oper];
 
     if (oper == Gates::GateNot || oper == Gates::GateBuf) {
       std::shared_ptr<GraphVertexBase> ver1 = randomGenerator(levelName);

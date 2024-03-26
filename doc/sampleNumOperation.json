@@ -18,13 +18,13 @@
     "library_name": "sky130",
 
     "leave_empty_out": true,
-    "num_and": 5000,
-    "num_nand": 5000,
-    "num_or": 5000,
-    "num_not": 5000,
-    "num_nor": 5000,
+    "num_and": 50,
+    "num_nand": 50,
+    "num_or": 50,
+    "num_not": 50,
+    "num_nor": 50,
     "num_buf": 0,
-    "num_xor": 5000,
-    "num_xnor": 5000 
+    "num_xor": 50,
+    "num_xnor": 50 
   }
 ]

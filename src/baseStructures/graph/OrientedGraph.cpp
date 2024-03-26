@@ -15,7 +15,7 @@
 uint_fast64_t OrientedGraph::d_countGraph = 0;
 
 OrientedGraph::OrientedGraph(const std::string i_name) {
-  this_ptr.reset(this);
+  // this_ptr.reset(this);
   if (i_name == "")
     d_name = "graph_" + std::to_string(d_countGraph++);
   else
@@ -28,10 +28,6 @@ OrientedGraph::OrientedGraph(const std::string i_name) {
 }
 
 OrientedGraph::~OrientedGraph() {}
-
-std::shared_ptr<OrientedGraph> OrientedGraph::shared_from_this() {
-  return this_ptr;
-}
 
 int OrientedGraph::baseSize() const {
   return d_vertexes.at(VertexTypes::gate).size();
@@ -80,19 +76,16 @@ unsigned OrientedGraph::getMaxLevel() {
   return mx;
 }
 
-void OrientedGraph::setBaseGraph(
-    std::shared_ptr<OrientedGraph> const i_baseGraph) {
+void OrientedGraph::setBaseGraph(OrientedGraph* i_baseGraph) {
   d_baseGraph = i_baseGraph;
 }
 
-std::shared_ptr<OrientedGraph> OrientedGraph::getBaseGraph() const {
-  return d_baseGraph;
-}
+OrientedGraph* OrientedGraph::getBaseGraph() const { return d_baseGraph; }
 
 std::shared_ptr<GraphVertexBase> OrientedGraph::addInput(
     const std::string i_name) {
   std::shared_ptr<GraphVertexBase> newVertex(
-      new GraphVertexInput(i_name, shared_from_this()));
+      new GraphVertexInput(i_name, this));
   d_vertexes[VertexTypes::input].push_back(newVertex);
 
   return newVertex;
@@ -101,7 +94,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::addInput(
 std::shared_ptr<GraphVertexBase> OrientedGraph::addOutput(
     const std::string i_name) {
   std::shared_ptr<GraphVertexBase> newVertex(
-      new GraphVertexOutput(i_name, shared_from_this()));
+      new GraphVertexOutput(i_name, this));
   d_vertexes[VertexTypes::output].push_back(newVertex);
 
   return newVertex;
@@ -110,7 +103,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::addOutput(
 std::shared_ptr<GraphVertexBase> OrientedGraph::addConst(
     const char i_value, const std::string i_name) {
   std::shared_ptr<GraphVertexBase> newVertex(
-      new GraphVertexConstant(i_value, i_name, shared_from_this()));
+      new GraphVertexConstant(i_value, i_name, this));
   d_vertexes[VertexTypes::constant].push_back(newVertex);
 
   return newVertex;
@@ -119,7 +112,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::addConst(
 std::shared_ptr<GraphVertexBase> OrientedGraph::addGate(
     const Gates i_gate, const std::string i_name) {
   std::shared_ptr<GraphVertexBase> newVertex(
-      new GraphVertexGates(i_gate, i_name, shared_from_this()));
+      new GraphVertexGates(i_gate, i_name, this));
   d_vertexes[VertexTypes::gate].push_back(newVertex);
 
   ++d_gatesCount[i_gate];
@@ -131,7 +124,7 @@ std::shared_ptr<OrientedGraph> OrientedGraph::addSubGraph(
     const std::string i_name) {
   std::shared_ptr<OrientedGraph> newGraph(new OrientedGraph(i_name));
   d_subGraphs.push_back(newGraph);
-  newGraph->setBaseGraph(shared_from_this());
+  newGraph->setBaseGraph(this);
 
   return newGraph;
 }
@@ -145,7 +138,8 @@ bool OrientedGraph::addEdge(std::shared_ptr<GraphVertexBase> from,
 
   ++d_edgesCount;
 
-  if (from->getType() == VertexTypes::gate && to->getType() == VertexTypes::gate)
+  if (from->getType() == VertexTypes::gate &&
+      to->getType() == VertexTypes::gate)
     ++d_edgesGatesCount[from->getGate()][to->getGate()];
 
   return f && (n > 0);
@@ -246,8 +240,8 @@ std::map<Gates, int> OrientedGraph::getGatesCount() const {
   return d_gatesCount;
 }
 
-std::map<Gates, std::map<Gates, int>> 
-    OrientedGraph::getEdgesGatesCount() const {
+std::map<Gates, std::map<Gates, int>> OrientedGraph::getEdgesGatesCount()
+    const {
   return d_edgesGatesCount;
 }
 

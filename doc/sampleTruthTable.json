@@ -17,15 +17,6 @@
     "create_id_directories": true,
     "library_name": "sky130",
     
-    "gates_inputs_info": {
-      "and": [2],
-      "nand": [2],
-      "or": [2],
-      "nor": [2, 4, 8],
-      "xor": [2, 10],
-      "xnor": [2, 3]
-    },
-
     "CNFF": false,
     "CNFT": true
   }

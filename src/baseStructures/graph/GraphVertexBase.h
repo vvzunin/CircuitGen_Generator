@@ -13,10 +13,10 @@ class OrientedGraph;  // Проблема циклического опреде�
 class GraphVertexBase {
  public:
   GraphVertexBase(const VertexTypes i_type,
-                  std::shared_ptr<OrientedGraph> const i_graph = nullptr);
+                  OrientedGraph *i_graph = nullptr);
 
   GraphVertexBase(const VertexTypes i_type, const std::string i_name,
-                  std::shared_ptr<OrientedGraph> const i_graph = nullptr);
+                  OrientedGraph *i_graph = nullptr);
 
   // TODO craches ad destructor call
   virtual ~GraphVertexBase();
@@ -39,25 +39,26 @@ class GraphVertexBase {
   unsigned getLevel() const;
 
   virtual void updateLevel();
-  virtual Gates getGate() const {return Gates::GateDefault;};
+  virtual Gates getGate() const { return Gates::GateDefault; };
 
   // Get-Set для базового графа
   // void setBaseGraph(std::shared_ptr<OrientedGraph> const i_baseGraph);
-  std::shared_ptr<OrientedGraph> getBaseGraph() const;
+  OrientedGraph *getBaseGraph() const;
 
   std::vector<std::shared_ptr<GraphVertexBase>> getInConnections() const;
   int addVertexToInConnections(std::shared_ptr<GraphVertexBase> const i_vert);
-  bool removeVertexToInConnections(std::shared_ptr<GraphVertexBase> const i_vert,
-                                   bool i_full = false);
+  bool removeVertexToInConnections(
+      std::shared_ptr<GraphVertexBase> const i_vert, bool i_full = false);
 
   std::vector<std::shared_ptr<GraphVertexBase>> getOutConnections() const;
   bool addVertexToOutConnections(std::shared_ptr<GraphVertexBase> const i_vert);
-  bool removeVertexToOutConnections(std::shared_ptr<GraphVertexBase> const i_vert);
+  bool removeVertexToOutConnections(
+      std::shared_ptr<GraphVertexBase> const i_vert);
 
   std::string calculateHash(bool recalculate = false);
 
  protected:
-  std::shared_ptr<OrientedGraph> d_baseGraph = nullptr;
+  OrientedGraph *d_baseGraph = nullptr;
 
   std::string d_name;
   char d_value;
