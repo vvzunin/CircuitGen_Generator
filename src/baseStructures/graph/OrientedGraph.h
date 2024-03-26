@@ -15,7 +15,7 @@ class GraphVertexBase;  // Проблема циклического опред�
 class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
  public:
   // friend class Circuit;
-  OrientedGraph(const std::string i_name = "");
+  OrientedGraph(const std::string& i_name = "");
 
   // TODO: Добавить использование gates_inputs_info.
 
@@ -53,13 +53,13 @@ class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
   OrientedGraph *getBaseGraph() const;
 
   // TODO: Заменить все const на const &
-  std::shared_ptr<GraphVertexBase> addInput(const std::string i_name = "");
-  std::shared_ptr<GraphVertexBase> addOutput(const std::string i_name = "");
-  std::shared_ptr<GraphVertexBase> addConst(const char i_value,
-                                            const std::string i_name = "");
-  std::shared_ptr<GraphVertexBase> addGate(const Gates i_gate,
-                                           const std::string i_name = "");
-  std::shared_ptr<OrientedGraph> addSubGraph(const std::string i_name = "");
+  std::shared_ptr<GraphVertexBase> addInput(const std::string& i_name = "");
+  std::shared_ptr<GraphVertexBase> addOutput(const std::string& i_name = "");
+  std::shared_ptr<GraphVertexBase> addConst(const char& i_value,
+                                            const std::string& i_name = "");
+  std::shared_ptr<GraphVertexBase> addGate(const Gates& i_gate,
+                                           const std::string& i_name = "");
+  std::shared_ptr<OrientedGraph> addSubGraph(const std::string& i_name = "");
 
   bool addEdge(std::shared_ptr<GraphVertexBase> from,
                std::shared_ptr<GraphVertexBase> to);
@@ -82,13 +82,13 @@ class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
   // Сделать матрицу смежности для хранения и быстрого поиска связей?
 
   std::vector<std::shared_ptr<GraphVertexBase>> getVerticesByType(
-      const VertexTypes i_type, const std::string i_name = "",
-      const bool i_addSubGraphs = false) const;
+      const VertexTypes& i_type, const std::string& i_name = "",
+      const bool& i_addSubGraphs = false) const;
   std::vector<std::shared_ptr<GraphVertexBase>> getVerticesByLevel(
-      const int i_level);
+      const int& i_level);
 
   std::vector<std::shared_ptr<GraphVertexBase>> getVerticesByName(
-      const std::string i_name, const bool i_addSubGraphs = false) const;
+      const std::string& i_name, const bool& i_addSubGraphs = false) const;
 
   bool operator==(const OrientedGraph& rhs);
   std::string calculateHash(bool recalculate = false);

@@ -13,7 +13,7 @@
 
 uint_fast64_t OrientedGraph::d_countGraph = 0;
 
-OrientedGraph::OrientedGraph(const std::string i_name) {
+OrientedGraph::OrientedGraph(const std::string& i_name) {
   // this_ptr.reset(this);
   if (i_name == "")
     d_name = "graph_" + std::to_string(d_countGraph++);
@@ -82,7 +82,7 @@ void OrientedGraph::setBaseGraph(OrientedGraph* i_baseGraph) {
 OrientedGraph* OrientedGraph::getBaseGraph() const { return d_baseGraph; }
 
 std::shared_ptr<GraphVertexBase> OrientedGraph::addInput(
-    const std::string i_name) {
+    const std::string& i_name) {
   std::shared_ptr<GraphVertexBase> newVertex(
       new GraphVertexInput(i_name, this));
   d_vertexes[VertexTypes::input].push_back(newVertex);
@@ -91,7 +91,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::addInput(
 }
 
 std::shared_ptr<GraphVertexBase> OrientedGraph::addOutput(
-    const std::string i_name) {
+    const std::string& i_name) {
   std::shared_ptr<GraphVertexBase> newVertex(
       new GraphVertexOutput(i_name, this));
   d_vertexes[VertexTypes::output].push_back(newVertex);
@@ -100,7 +100,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::addOutput(
 }
 
 std::shared_ptr<GraphVertexBase> OrientedGraph::addConst(
-    const char i_value, const std::string i_name) {
+    const char& i_value, const std::string& i_name) {
   std::shared_ptr<GraphVertexBase> newVertex(
       new GraphVertexConstant(i_value, i_name, this));
   d_vertexes[VertexTypes::constant].push_back(newVertex);
@@ -109,7 +109,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::addConst(
 }
 
 std::shared_ptr<GraphVertexBase> OrientedGraph::addGate(
-    const Gates i_gate, const std::string i_name) {
+    const Gates& i_gate, const std::string& i_name) {
   std::shared_ptr<GraphVertexBase> newVertex(
       new GraphVertexGates(i_gate, i_name, this));
   d_vertexes[VertexTypes::gate].push_back(newVertex);
@@ -120,7 +120,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::addGate(
 }
 
 std::shared_ptr<OrientedGraph> OrientedGraph::addSubGraph(
-    const std::string i_name) {
+    const std::string& i_name) {
   std::shared_ptr<OrientedGraph> newGraph(new OrientedGraph(i_name));
   d_subGraphs.push_back(newGraph);
   newGraph->setBaseGraph(this);
@@ -169,7 +169,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::getVerticeByIndex(
     throw std::invalid_argument(
         "OrientedGraph getVerticeByIndex: invalid index");
 
-  // firstly - inputs, than - consts, than - gates, last - outputs
+  // firstly - inputs, then - consts, then - gates, last - outputs
   if (d_vertexes.at(VertexTypes::input).size() > idx)
     return d_vertexes.at(VertexTypes::input).at(idx);
   idx -= d_vertexes.at(VertexTypes::input).size();
@@ -189,14 +189,14 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::getVerticeByIndex(
 }
 
 std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByLevel(
-    const int i_level) {
+    const int& i_level) {
   this->updateLevels();
   // TODO: Реализовать
 }
 
 std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByType(
-    const VertexTypes i_type, const std::string i_name,
-    const bool i_addSubGraphs) const {
+    const VertexTypes& i_type, const std::string& i_name,
+    const bool& i_addSubGraphs) const {
   if (i_name.size() != 0) return d_vertexes.at(i_type);
 
   std::vector<std::shared_ptr<GraphVertexBase>> resVert;
@@ -213,7 +213,7 @@ std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByType(
 }
 
 std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByName(
-    const std::string i_name, const bool i_addSubGraphs) const {
+    const std::string& i_name, const bool& i_addSubGraphs) const {
   std::vector<std::shared_ptr<GraphVertexBase>> resVert;
   for (const auto& [key, value] : d_vertexes) {
     for (std::shared_ptr<GraphVertexBase> vert : value)
