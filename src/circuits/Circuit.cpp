@@ -181,6 +181,12 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists) {
   return true;
 }
 
+bool Circuit::graphToGraphML(const std::string &i_path, bool i_pathExists) {
+  std::ofstream w(d_path + "/" + d_circuitName + ".graphml");
+  d_graph->toGraphML(w);
+  return true;
+}
+
 bool Circuit::saveParameters(bool i_pathExists) const {
   if (true) { /*
                  if
@@ -280,7 +286,7 @@ bool Circuit::checkExistingHash()  // TODO: is it really need return true when
   return false;
 }
 
-bool Circuit::generate(bool i_pathExists) {
+bool Circuit::generate(bool i_makeGraphML, bool i_pathExists) {
   // creating all files in sub directories
   std::string d_path_temp = d_path + d_circuitName;
   d_path += d_circuitName + "/";
@@ -292,7 +298,14 @@ bool Circuit::generate(bool i_pathExists) {
   std::clog << "Writing verilog for " << d_circuitName << std::endl;
   if (!graphToVerilog(d_path, i_pathExists)) return false;
 
-  std::clog << "Writing verilog ended " << d_circuitName << std::endl;
+  std::clog << "Writing verilog ended for " << d_circuitName << std::endl;
+
+  if (i_makeGraphML) {
+    std::clog << "Writing GraphML for " << d_circuitName << std::endl;
+    if (graphToGraphML(d_path, i_pathExists)) {
+      std::clog << "Writing GraphML ended for " << d_circuitName << std::endl;
+    }
+  }
 
   updateCircuitsParameters();
 

@@ -96,13 +96,20 @@ class GenerationParameters {
                        std::string i_libraryName = "",
                        bool i_calculateStatsAbc = false,
                        bool i_makeOptimizedFiles = false,
-                       bool i_makeFirrtl = false, bool i_makeBench = false)
-      : d_name(i_name),
-        d_requestId(i_requestId),
-        d_inputs(i_inputs),
-        d_outputs(i_outputs),
-        d_iteration(i_iteration),
-        d_libraryName(i_libraryName){};
+                       bool i_makeFirrtl = false,
+                       bool i_makeBench = false,
+                       bool i_makeGraphML = false) :
+    d_name(i_name),
+    d_requestId(i_requestId),
+    d_inputs(i_inputs),
+    d_outputs(i_outputs),
+    d_iteration(i_iteration),
+    d_libraryName(i_libraryName),
+    d_calculateStatsAbc(i_calculateStatsAbc),
+    d_makeOptimizedFiles(i_makeOptimizedFiles),
+    d_makeFirrtl(i_makeFirrtl),
+    d_makeBench(i_makeBench),
+    d_makeGraphML(i_makeGraphML){};
 
   std::string getName() const { return d_name; }
 
@@ -127,6 +134,8 @@ class GenerationParameters {
   int getIteration() const { return d_iteration; }
 
   void setIteration(int i_iteration) { d_iteration = i_iteration; }
+
+  bool getMakeGraphML() const { return d_makeGraphML; }
 
   std::uint_fast32_t getSeed() const { return d_seed; }
 
@@ -197,6 +206,11 @@ class GenerationParameters {
   int d_inputs = 0;
   int d_outputs = 0;
   int d_iteration = 0;
+  bool d_calculateStatsAbc;
+  bool d_makeOptimizedFiles;
+  bool d_makeFirrtl;
+  bool d_makeBench;
+  bool d_makeGraphML;
   std::map<std::string, std::vector<int>> d_gatesInputsInfo;
 
   std::uint_fast32_t d_seed = 0;

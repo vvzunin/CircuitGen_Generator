@@ -151,7 +151,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     c.setTable(tt);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName() + "_" + name);
-    c.generate();
+    c.generate(i_param.getMakeGraphML());
   }
 }
 
@@ -170,7 +170,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(
   Circuit c(&graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate();
+  c.generate(i_param.getMakeGraphML());
 }
 
 void DataBaseGenerator::generateDataBaseRandLevelExperimental(
@@ -197,7 +197,7 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
 
-  c.generate();
+  c.generate(i_param.getMakeGraphML());
 }
 
 void DataBaseGenerator::generateDataBaseNumOperations(
@@ -216,7 +216,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(
     Circuit c(&graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate();
+    c.generate(i_param.getMakeGraphML());
   }
   // TODO: remake all generates to return value and call graphToVerilog
 }
@@ -248,7 +248,7 @@ void DataBaseGenerator::GenerateDataBaseSummator(
   Circuit c(&graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate();
+  c.generate(i_param.getMakeGraphML());
 }
 
 void DataBaseGenerator::GenerateDataBaseComparison(
@@ -265,7 +265,7 @@ void DataBaseGenerator::GenerateDataBaseComparison(
   Circuit c(&graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate();
+  c.generate(i_param.getMakeGraphML());
 }
 
 void DataBaseGenerator::GenerateDataBaseEncoder(
@@ -278,7 +278,7 @@ void DataBaseGenerator::GenerateDataBaseEncoder(
   Circuit c(&graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate();
+  c.generate(i_param.getMakeGraphML());
 }
 
 std::function<void(const GenerationParameters &)>
