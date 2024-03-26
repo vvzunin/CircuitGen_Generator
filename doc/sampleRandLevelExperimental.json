@@ -14,6 +14,7 @@
     "make_optimized_files": false,
     "make_firrtl": false,
     "make_bench": false,
+    "make_graphml": true,
     "create_id_directories": true,
     "library_name": "sky130",
     
