@@ -398,19 +398,23 @@ bool OrientedGraph::toVerilog(std::ofstream& i_fileStream) {
 std::string OrientedGraph::toGraphML(int i_nesting) const {
   const std::string spaces(i_nesting * 4, ' ');
 
-  const std::string graphTemplate = format(rawGraphTemplate, spaces, d_name, spaces);
-  const std::string nodeTemplate = format(rawNodeTemplate, spaces, "%", spaces, "%", "%", spaces);
-  const std::string edgeTemplate = format(rawEdgeTemplate, spaces);
+  const std::string graphTemplate = format(
+    rawGraphTemplate, spaces, d_name, spaces, "%");
+  const std::string nodeTemplate = format(
+    rawNodeTemplate, spaces, "%", spaces, "%", "%", spaces);
+  const std::string edgeTemplate = format(
+    rawEdgeTemplate, spaces, "%", "%");
 
   std::string nodes, edges, graphs;
 
   for (const auto& [vertexType, vertexVector] : d_vertexes) {
-    const std::string vertexTypeName = d_settings->parseVertexToString(vertexType);
+    const std::string vertexTypeName =
+      d_settings->parseVertexToString(vertexType);
     for (const auto& vertex : vertexVector) {
       const std::string vertexKindName =
-        vertexTypeName == "g" ? d_settings->parseGateToString(vertex->getGate()) :
-        vertexTypeName == "const" ? std::string(1, vertex->getValue()) :
-        vertexTypeName;
+        vertexTypeName == "g" ? d_settings->parseGateToString(vertex->getGate())
+        : vertexTypeName == "const" ? std::string(1, vertex->getValue())
+        : vertexTypeName;
       
       nodes += format(nodeTemplate, vertex->getName(), vertexKindName, "");
       for (const auto& source : vertex->getInConnections()) {
@@ -419,9 +423,11 @@ std::string OrientedGraph::toGraphML(int i_nesting) const {
     }
   }
   for (const auto& subGraph: d_subGraphs) {
-    graphs += format(nodeTemplate, subGraph->getName() + "_subgraph", "graph", subGraph->toGraphML(i_nesting + 1));
+    graphs += format(nodeTemplate,
+                     subGraph->getName() + "_subgraph",
+                     "graph",
+                     subGraph->toGraphML(i_nesting + 1));
   }
-
   std::string finalGraph = format(graphTemplate, nodes + graphs + edges);
   if (i_nesting != 0) {
     return finalGraph;
