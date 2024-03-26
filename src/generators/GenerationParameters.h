@@ -88,6 +88,21 @@ class GeneratorComparisonParameters {
 
 class GeneratorEncoderParameters {};
 
+class GeneratorSubtractorParameters{
+public:
+    bool getOverFlowIn() {return d_OverFlowIn;}
+    bool getOverFlowOut() {return d_OverFlowOut;}
+    bool getSub() {return d_sub;}
+    void setOverFlowIn(bool i_overflowIn) {d_OverFlowIn = i_overflowIn;}
+    void setOverFlowOut(bool i_overflowOut) {d_OverFlowOut = i_overflowOut;}
+    void setSub(bool i_sub) {d_sub = i_sub;}
+private:
+    bool d_OverFlowIn = false;
+    bool d_OverFlowOut = false;
+    bool d_sub = false;
+};
+
+
 class GenerationParameters {
  public:
   GenerationParameters(const std::string &i_name,
@@ -159,6 +174,8 @@ class GenerationParameters {
   GeneratorEncoderParameters getEncoder() const {
     return d_generatorEncoderParameters;
   }
+  GeneratorSubtractorParameters getSubtractor() const {
+      return d_generatorSubtractorParameters; }
   // GeneticParameters getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF) { d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
   void setCNFT(bool i_CNFT) { d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
@@ -177,7 +194,14 @@ class GenerationParameters {
     d_generatorNumOperationParameters.setLogicOper(i_m);
     d_generatorNumOperationParameters.setLeaveEmptyOut(i_LeaveEmptyOut);
   }
-  // void setNumOfCycles(int i_numOfCycles) {
+    void setSubtractorParameters(bool i_overflowIn, bool i_overflowOut, bool i_sub)
+    {
+        d_generatorSubtractorParameters.setOverFlowIn(i_overflowIn);
+        d_generatorSubtractorParameters.setOverFlowOut(i_overflowOut);
+        d_generatorSubtractorParameters.setSub(i_sub);
+    }
+
+    // void setNumOfCycles(int i_numOfCycles) {
   // d_geneticParameters.setNumOfCycles(i_numOfCycles); } void
   // setPopulationSize(int i_populationSize) {
   // d_geneticParameters.setPopulationSize(i_populationSize); } void
@@ -207,5 +231,6 @@ class GenerationParameters {
   GeneratorSummatorParameters d_generatorSummatorParameters;
   GeneratorComparisonParameters d_generatorComparisonParameters;
   GeneratorEncoderParameters d_generatorEncoderParameters;
+  GeneratorSubtractorParameters d_generatorSubtractorParameters;
   // GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };
