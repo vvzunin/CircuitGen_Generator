@@ -58,7 +58,12 @@
     "swap_type": 0,
     "ratio_in_table": 1.0,
     "selection_type": "Base",
-    "surv_num": 1    
+    "surv_num": 1,
+    "overflowIn": false,
+    "overflowOut": false,
+
+    "minus": false,
+    "sub": false
   }
 ]
  

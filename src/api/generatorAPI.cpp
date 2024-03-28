@@ -52,6 +52,8 @@ void runGenerationFromJson(std::string json_path) {
       gt = GenerationTypes::NumOperation;
     else if (data["type_of_generation"] == "Summator")
       gt = GenerationTypes::Summator;
+    else if (data["type_of_generation"] == "Subtractor")
+        gt = GenerationTypes::Subtractor;
     // else if (data["type_of_generation"] == "Genetic")
     //   gt = GenerationTypes::Genetic;
     else {
@@ -203,6 +205,20 @@ void runGenerationFromJson(std::string json_path) {
         std::clog << "LeaveEmptyOut is not set." << std::endl;
 
       gp.setNumOperationParameters(m, LeaveEmptyOut);
+    }
+
+
+
+    if (static_cast<std::string>(data["type_of_generation"])
+                  .find("Subtractor") != std::string::npos) {
+        if (!(data.contains("overflowIn") || data.contains("overflowOut") || data.contains("sub")))
+            std::clog << "Parameters for selected generation type is not set. "
+                           "Parameters sets to default."<< std::endl;
+
+        bool overflowIn = data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
+        bool overflowOut = data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
+        bool sub = data.contains("sub") ? (bool)data["sub"] : false;
+        gp.setSubtractorParameters(overflowIn, overflowOut, sub);
     }
 
     // Основные параметры для Genetic
