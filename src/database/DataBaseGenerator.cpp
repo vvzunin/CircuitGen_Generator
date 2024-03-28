@@ -256,12 +256,12 @@ void DataBaseGenerator::GenerateDataBaseComparison(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int bits = i_param.getInputs();
-  bool compare0 = i_param.getComparison().compare0;
-  bool compare1 = i_param.getComparison().compare1;
-  bool compare2 = i_param.getComparison().compare2;
+  int i_bits = i_param.getInputs();
+  bool i_compare0 = i_param.getComparison().d_compare0;
+  bool i_compare1 = i_param.getComparison().d_compare1;
+  bool i_compare2 = i_param.getComparison().d_compare2;
   OrientedGraph graph =
-      sg.generatorComparison(bits, compare0, compare1, compare2);
+      sg.generatorComparison(i_bits, i_compare0, i_compare1, i_compare2);
   Circuit c(&graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -311,6 +311,9 @@ DataBaseGenerator::getGenerateMethod(const std::string &i_methodName) {
                      std::placeholders::_1);
   if (i_methodName == "Summator")
     return std::bind(&DataBaseGenerator::GenerateDataBaseSummator, this,
+                     std::placeholders::_1);
+  if (i_methodName == "Comparison")
+    return std::bind(&DataBaseGenerator::GenerateDataBaseComparison, this,
                      std::placeholders::_1);
   if (i_methodName == "Genetic")
     return std::bind(&DataBaseGenerator::generateDataBaseGenetic, this,

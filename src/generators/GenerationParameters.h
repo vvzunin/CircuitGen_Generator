@@ -87,9 +87,15 @@ class GeneratorSummatorParameters {
 
 class GeneratorComparisonParameters {
  public:
-  bool compare0 = false;
-  bool compare1 = false;
-  bool compare2 = false;
+  bool d_compare0 = false;
+  bool d_compare1 = false;
+  bool d_compare2 = false;
+  bool getCompare0() {return d_compare0;}
+  bool getCompare1() {return d_compare1;}
+  bool getCompare2() {return d_compare2;}
+  void setCompare0(bool i_compare0) {d_compare0 = i_compare0;}
+  void setCompare1(bool i_compare1) {d_compare1 = i_compare1;}
+  void setCompare2(bool i_compare2) {d_compare2 = i_compare2;}
 };
 
 class GeneratorEncoderParameters {};
@@ -206,12 +212,16 @@ class GenerationParameters {
         d_generatorSubtractorParameters.setOverFlowOut(i_overflowOut);
         d_generatorSubtractorParameters.setSub(i_sub);
     }
-  void setSummatorParameters(bool i_overflowIn, bool i_overflowOut, bool i_minus)
-    {
-        d_generatorSummatorParameters.setOverFlowIn(i_overflowIn);
-        d_generatorSummatorParameters.setOverFlowOut(i_overflowOut);
-        d_generatorSummatorParameters.setMinus(i_minus);
-    }
+  void setSummatorParameters(bool i_overflowIn, bool i_overflowOut, bool i_minus){
+    d_generatorSummatorParameters.setOverFlowIn(i_overflowIn);
+    d_generatorSummatorParameters.setOverFlowOut(i_overflowOut);
+    d_generatorSummatorParameters.setMinus(i_minus);
+  }
+  void setComparisonParameters(bool i_compare0, bool i_compare1, bool i_compare2){
+    d_generatorComparisonParameters.setCompare0(i_compare0);
+    d_generatorComparisonParameters.setCompare1(i_compare1);
+    d_generatorComparisonParameters.setCompare2(i_compare2);
+  }
   
     // void setNumOfCycles(int i_numOfCycles) {
   // d_geneticParameters.setNumOfCycles(i_numOfCycles); } void

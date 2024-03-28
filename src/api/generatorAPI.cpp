@@ -52,6 +52,8 @@ void runGenerationFromJson(std::string json_path) {
       gt = GenerationTypes::NumOperation;
     else if (data["type_of_generation"] == "Summator")
       gt = GenerationTypes::Summator;
+    else if (data["type_of_generation"] == "Comparison")
+      gt = GenerationTypes::Comparison;  
     else if (data["type_of_generation"] == "Subtractor")
         gt = GenerationTypes::Subtractor;
     // else if (data["type_of_generation"] == "Genetic")
@@ -233,7 +235,17 @@ void runGenerationFromJson(std::string json_path) {
         gp.setSummatorParameters(overflowIn, overflowOut, minus);
     }
 
+    if (static_cast<std::string>(data["type_of_generation"])
+                  .find("Comparison") != std::string::npos) {
+        if (!(data.contains("=") || data.contains("<") || data.contains(">")))
+            std::clog << "Parameters for selected generation type is not set. "
+                           "Parameters sets to default."<< std::endl;
 
+        bool compare0 = data.contains("=") ? (bool)data["="] : false;
+        bool compare1 = data.contains("<") ? (bool)data["<"] : false;
+        bool compare2 = data.contains(">") ? (bool)data[">"] : false;
+        gp.setComparisonParameters(compare0, compare1, compare2);
+    }
     // Основные параметры для Genetic
     // if (data["type_of_generation"] == "Genetic")
     // {
