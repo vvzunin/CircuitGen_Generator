@@ -370,6 +370,7 @@ bool OrientedGraph::toVerilog(std::ofstream& i_fileStream) {
       i_fileStream << verilogTab + "wire " + vert->getName() + ";\n";
       i_fileStream << verilogTab + "assign " + vert->getName() + " = " + s +
                           ";\n";
+    }
   }
 
   for (std::shared_ptr<GraphVertexBase> vert :
