@@ -83,7 +83,10 @@ std::string GraphVertexGates::getVerilogString() const {
           d_inConnections[0]->getName();
 
     if (d_gate == Gates::GateNot) s = "~" + s;
-    if ((d_gate == Gates::GateNand) || (d_gate == Gates::GateNor)) s = "~(" + s;
+    if ((d_gate == Gates::GateNand) || 
+        (d_gate == Gates::GateNor) || 
+        (d_gate == Gates::GateXnor))
+      s = "~(" + s;
 
     for (int i = 1; i < d_inConnections.size(); i++) {
       std::string name;
@@ -116,7 +119,10 @@ std::string GraphVertexGates::getVerilogString() const {
       }
     }
 
-    if ((d_gate == Gates::GateNand) || (d_gate == Gates::GateNor)) s += ")";
+    if ((d_gate == Gates::GateNand) || 
+        (d_gate == Gates::GateNor) || 
+        (d_gate == Gates::GateXnor))
+      s += ")";
   }
 
   return s;

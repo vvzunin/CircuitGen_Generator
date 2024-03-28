@@ -366,8 +366,9 @@ bool OrientedGraph::toVerilog(std::ofstream& i_fileStream) {
        d_vertexes.at(VertexTypes::gate)) {
     std::string s =
         std::static_pointer_cast<GraphVertexGates>(vert)->getVerilogString();
-    if (s != "")
-      i_fileStream << verilogTab + "wire " + vert->getName() + " = " + s +
+    if (s != "") {
+      i_fileStream << verilogTab + "wire " + vert->getName() + ";\n";
+      i_fileStream << verilogTab + "assign " + vert->getName() + " = " + s +
                           ";\n";
   }
 
