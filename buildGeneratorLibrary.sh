@@ -5,5 +5,5 @@ fi
 cd build
 cmake ..
 cmake --build . --target cgen
-cp libcgen.so ../libcgen.so
+cp src/libcgen.so ../libcgen.so
 cd ../
