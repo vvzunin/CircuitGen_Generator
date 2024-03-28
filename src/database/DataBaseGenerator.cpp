@@ -239,12 +239,12 @@ void DataBaseGenerator::GenerateDataBaseSummator(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int bits = i_param.getInputs();
-  bool overflowIn = i_param.getSummator().OverFlowIn;
-  bool overflowOut = i_param.getSummator().OverFlowOut;
-  bool minus = i_param.getSummator().minus;
+  int i_bits = i_param.getInputs();
+  bool i_overflowIn = i_param.getSummator().d_OverFlowIn;
+  bool i_overflowOut = i_param.getSummator().d_OverFlowOut;
+  bool i_minus = i_param.getSummator().d_minus;
   OrientedGraph graph =
-      sg.generatorSummator(bits, overflowIn, overflowOut, minus);
+      sg.generatorSummator(i_bits, i_overflowIn, i_overflowOut, i_minus);
   Circuit c(&graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());

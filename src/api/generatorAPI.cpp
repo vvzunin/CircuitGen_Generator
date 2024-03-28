@@ -230,7 +230,7 @@ void runGenerationFromJson(std::string json_path) {
         bool overflowIn = data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
         bool overflowOut = data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
         bool minus = data.contains("minus") ? (bool)data["minus"] : false;
-        gp.setSubtractorParameters(overflowIn, overflowOut, minus);
+        gp.setSummatorParameters(overflowIn, overflowOut, minus);
     }
 
 
