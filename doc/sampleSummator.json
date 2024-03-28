@@ -1,0 +1,25 @@
+[
+  {
+    "seed": 0,
+    "dataset_id": "SUM",
+    "id": 0,
+    "type_of_generation": "Summator",
+    "min_in": 4,
+    "max_in": 4,
+    "min_out": 4,
+    "max_out": 5,
+    "repeat_n": 1,
+    "multithread": true,
+    "calculate_stats_abc": true,
+    "make_optimized_files": true,
+    "make_firrtl": true,
+    "make_bench": true,
+    "create_id_directories": true,
+    "library_name": "sky130",
+
+    "overflowIn": false,
+    "overflowOut": false,
+    "minus": false
+  }
+]
+
