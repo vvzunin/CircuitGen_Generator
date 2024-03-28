@@ -60,7 +60,7 @@
     "selection_type": "Base",
     "surv_num": 1,
     "overflowIn": false,
-    "overflowOut": false,
+    "overflowOut": true,
 
     "minus": false,
     "sub": false

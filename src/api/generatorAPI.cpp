@@ -221,6 +221,19 @@ void runGenerationFromJson(std::string json_path) {
         gp.setSubtractorParameters(overflowIn, overflowOut, sub);
     }
 
+    if (static_cast<std::string>(data["type_of_generation"])
+                  .find("Summator") != std::string::npos) {
+        if (!(data.contains("overflowIn") || data.contains("overflowOut") || data.contains("minus")))
+            std::clog << "Parameters for selected generation type is not set. "
+                           "Parameters sets to default."<< std::endl;
+
+        bool overflowIn = data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
+        bool overflowOut = data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
+        bool minus = data.contains("minus") ? (bool)data["minus"] : false;
+        gp.setSubtractorParameters(overflowIn, overflowOut, minus);
+    }
+
+
     // Основные параметры для Genetic
     // if (data["type_of_generation"] == "Genetic")
     // {
