@@ -28,7 +28,7 @@ class DataBaseGenerator {
       const GenerationParameters &i_param);
   void generateDataBaseNumOperations(const GenerationParameters &i_param);
   void generateDataBaseGenetic(const GenerationParameters &i_param);
-  void GenerateDataBaseSummator(GenerationParameters &i_param);
+  void GenerateDataBaseSummator(const GenerationParameters &i_param);
   void GenerateDataBaseComparison(const GenerationParameters &i_param);
   void GenerateDataBaseEncoder(const GenerationParameters &i_param);
   void generateDataBaseSubtractor(const GenerationParameters &i_param);

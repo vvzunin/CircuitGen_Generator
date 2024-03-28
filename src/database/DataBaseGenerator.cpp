@@ -235,7 +235,7 @@ void DataBaseGenerator::generateDataBaseGenetic(
 }
 
 void DataBaseGenerator::GenerateDataBaseSummator(
-    GenerationParameters &i_param) {
+    const GenerationParameters &i_param) {
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
@@ -309,13 +309,16 @@ DataBaseGenerator::getGenerateMethod(const std::string &i_methodName) {
   if (i_methodName == "NumOperation")
     return std::bind(&DataBaseGenerator::generateDataBaseNumOperations, this,
                      std::placeholders::_1);
+  if (i_methodName == "Summator")
+    return std::bind(&DataBaseGenerator::GenerateDataBaseSummator, this,
+                     std::placeholders::_1);
   if (i_methodName == "Genetic")
     return std::bind(&DataBaseGenerator::generateDataBaseGenetic, this,
                      std::placeholders::_1);
   if (i_methodName == "Subtractor")
       return std::bind(&DataBaseGenerator::generateDataBaseSubtractor, this,
                        std::placeholders::_1);
-
+                       
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;
   return std::bind(&DataBaseGenerator::generateDataBaseFromRandomTruthTable,
                    this, std::placeholders::_1);

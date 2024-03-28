@@ -477,106 +477,98 @@ std::map<Gates, int> SimpleGenerators::delNull(
   return i_copyLogicOper;
 }
 
-OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn,
-                                                  bool overflowOut, bool minus,
-                                                  bool act) {
-  OrientedGraph graph;
-  // if (overflowIn)
-  //     graph.addInput("p0");
-  // if (act)
-  //     graph.addConst('1');
-  // std::string pi;
-  // std::string x;
-  // std::string y;
-  // std::string z;
-  // std::string cond = std::string(overflowIn ? "t" : "f") + (overflowOut ? "t"
-  // : "f") + (minus ? "t" : "f"); z = std::string(minus ? "n" : "") + "s" +
-  // (!overflowIn && !overflowOut ? "0" : (!overflowIn && overflowOut ? "1" :
-  // (overflowIn && !overflowOut ? "2" : "3"))); for (int i = 0; i < bits; i++)
-  // {
-  //     std::string S = std::to_string(i);
-  //     x = "suma" + cond + S;
-  //     y = "sumb" + cond + S;
-  //     std::shared_ptr<GraphVertexBase> input_x = graph.addInput(x);
-  //     std::shared_ptr<GraphVertexBase> input_y = graph.addInput(y);
-  //     if (minus)
-  //     {
-  //         std::shared_ptr<GraphVertexBase> v1 = graph.addGate(Gates::GateNot,
-  //         "na" + S); std::shared_ptr<GraphVertexBase> v2 =
-  //         graph.addVertex(Gates::GateNot, "nb" + S); graph.addEdge(input_x,
-  //         v1, false); graph.addEdge(input_y, v2, false); x = "na" + S; y =
-  //         "nb" + S;
-  //     }
-  //     if (!act)
-  //     {
-  //         graph.addOutput(z + S);
-  //     }
+OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, bool overflowOut, bool minus, bool act)
+{
+    OrientedGraph graph;
+    if (overflowIn)
+        graph.addInput("p0");
+    if (act)
+        graph.addConst('1', "1");
+    std::string pi;
+    std::string x;
+    std::string y;
+    std::string z;
+    std::string cond = std::string(overflowIn ? "t" : "f") + (overflowOut ? "t" : "f") + (minus ? "t" : "f");
+    z = std::string(minus ? "n" : "") + "s" + (!overflowIn && !overflowOut ? "0" : (!overflowIn && overflowOut ? "1" : (overflowIn && !overflowOut ? "2" : "3")));
+    for (int i = 0; i < bits; i++)
+    {
+        std::string S = std::to_string(i);
+        x = "x_suma" + cond + S;
+        y = "x_sumb" + cond + S;
+        std::shared_ptr<GraphVertexBase> input_x = graph.addInput(x);
+        std::shared_ptr<GraphVertexBase> input_y = graph.addInput(y);
+        if (minus)
+        {
+            std::shared_ptr<GraphVertexBase> v1 = graph.addGate(Gates::GateNot, "na" + S);
+            std::shared_ptr<GraphVertexBase> v2 = graph.addGate(Gates::GateNot, "nb" + S);
+            graph.addEdge(input_x, v1);
+            graph.addEdge(input_y, v2);
+            x = "na" + S;
+            y = "nb" + S;
+        }
+         if (!act)
+        {
+            graph.addOutput(z + S);
+        }
 
-  //     std::shared_ptr<GraphVertexBase> andab = graph.addGate(Gates::GateAnd,
-  //     "andab" + S);
+        std::shared_ptr<GraphVertexBase> andab = graph.addGate(Gates::GateAnd, "andab" + S);
 
-  //     std::string NextS = std::to_string(i + 1);
-  //     pi = "p" + S;
-  //     std::shared_ptr<GraphVertexBase> anda = graph.addGate(Gates::GateAnd,
-  //     "anda" + pi); std::shared_ptr<GraphVertexBase> andb =
-  //     graph.addGate(Gates::GateAnd, "andb" + pi);
+        std::string NextS = std::to_string(i + 1);
+        pi = "x_p" + S;
+        std::shared_ptr<GraphVertexBase> anda = graph.addGate(Gates::GateAnd, "anda" + pi);
+        std::shared_ptr<GraphVertexBase> andb = graph.addGate(Gates::GateAnd, "andb" + pi);
+        std::shared_ptr<GraphVertexBase> pi_vertex = graph.addGate(Gates::GateAnd, "andb" + pi);
 
-  //     // PI ЗДЕСЬ НАДО ЗАМЕНИТЬ НА ССЫЛКУ НА НЕЁ
-  //     graph.addEdge(input_x, input_y, andab);
-  //     graph.addEdge(input_x, pi, anda);
-  //     graph.addEdge(input_y, pi, andb);
+        graph.addEdges({input_x, input_y}, andab);
+        graph.addEdges({input_x, pi_vertex}, anda);
+        graph.addEdges({input_y, pi_vertex}, andb);
 
-  //     // TODO КАКОГО ЧЕРТА ВЕРШИНА ИДЕТ КАК РОДИТЕЛЬ, КОГДА ЕЁ ЕЩЁ НЕ СОЗДАЛИ
-  //     // ВЫ СОЗДАЛИ p1, А p0 ЕЩЁ НЕТ
-  //     graph.addVertex("((andab" + S + ")" + " or " + "(anda" + pi + ")" + "
-  //     or " + "(andb" + pi + "))", Gates::GateOr, "p" + NextS);
-  //     graph.addEdge("andab" + S, "p" + NextS, false);
-  //     graph.addEdge("anda" + pi, "p" + NextS, false);
-  //     graph.addEdge("andb" + pi, "p" + NextS, false);
-  //     if (overflowOut && i + 1 == bits)
-  //     {
-  //         if (act)
-  //         {
-  //             graph.addVertex("(1 and p" + NextS + ")", Gates::GateAnd, z +
-  //             "and1_" + NextS); graph.addDoubleEdge("1", "p" + NextS, z +
-  //             "and1_" + NextS, false);
-  //         }
-  //         else
-  //         {
-  //             graph.addVertex(z + std::to_string(bits), "output");
-  //             graph.addEdge("p" + NextS, z + std::to_string(bits), false);
-  //         }
-  //     }
-  //     graph.addVertex("not (p" + NextS + ")", Gates::GateNot, "np" + NextS);
-  //     graph.addEdge("p" + NextS, "np" + NextS, false);
+        std::shared_ptr<GraphVertexBase> or_vertex = graph.addGate(Gates::GateOr, "or" + NextS);
+        graph.addEdges({andab, anda, andb}, or_vertex);
+        graph.addOutput(or_vertex->getName());
 
-  //     graph.addVertex("(" + x + " or " + y + " or " + pi + ")",
-  //     Gates::GateOr, "abpor" + S); graph.addEdge(x, "abpor" + S, false);
-  //     graph.addEdge(y, "abpor" + S, false);
-  //     graph.addEdge(pi, "abpor" + S, false);
+        if (overflowOut && i + 1 == bits)
+        {
+            if (act)
+            {
+                
+                std::shared_ptr<GraphVertexBase> and_vertex = graph.addGate(Gates::GateAnd, z + "and1_" + NextS);
+                graph.addEdges({graph.getVerticesByName("1")[0], or_vertex}, and_vertex);
+                graph.addOutput(and_vertex->getName());
+            }
+            else
+            {
+                graph.addOutput(z + std::to_string(bits));
+                graph.addEdge(pi_vertex, graph.getVerticesByName(z + std::to_string(bits))[0]);
+            }
+        }
 
-  //     graph.addVertex("(abpor" + S + " and np" + NextS + ")", Gates::GateAnd,
-  //     "andnp" + NextS); graph.addDoubleEdge("abpor" + S, "np" + NextS,
-  //     "andnp" + NextS, false);
+        std::shared_ptr<GraphVertexBase> not_pi_vertex = graph.addGate(Gates::GateNot, "np" + NextS);
+        graph.addEdge(pi_vertex, not_pi_vertex);
 
-  //     graph.addVertex("(" + x + " and " + y + " and " + pi + ")",
-  //     Gates::GateAnd, "abpand" + S); graph.addEdge(x, "abpand" + S, false);
-  //     graph.addEdge(y, "abpand" + S, false);
-  //     graph.addEdge(pi, "abpand" + S, false);
+        std::shared_ptr<GraphVertexBase> or_vertex2 = graph.addGate(Gates::GateOr, "or2" + S);
+        graph.addEdges({input_x, input_y, pi_vertex}, or_vertex2);
 
-  //     graph.addVertex("(abpand" + S + " or " + "andnp" + NextS + ")",
-  //     Gates::GateOr, "pS" + S); graph.addDoubleEdge("abpand" + S, "andnp" +
-  //     NextS, "pS" + S, false); if (act)
-  //     {
-  //         graph.addVertex("(1 and pS" + S + ")", Gates::GateAnd, z + "and1_"
-  //         + S); graph.addDoubleEdge("1", "pS" + S, z + "and1_" + S, false);
-  //     }
-  //     else
-  //     {
-  //         graph.addEdge("pS" + S, z + S, false);
-  //     }
-  // }
-  return graph;
+        std::shared_ptr<GraphVertexBase> and_vertex2 = graph.addGate(Gates::GateAnd, "andnp" + NextS);
+        graph.addEdges({or_vertex2, not_pi_vertex}, and_vertex2);
+        graph.addOutput(and_vertex2->getName());
+
+        std::shared_ptr<GraphVertexBase> or_vertex3 = graph.addGate(Gates::GateOr, "or3" + S);
+        graph.addEdges({or_vertex, and_vertex2}, or_vertex3);
+
+        if (act)
+        {
+            std::shared_ptr<GraphVertexBase> and_vertex3 = graph.addGate(Gates::GateAnd, z + "and1_" + S);
+            graph.addEdges({graph.getVerticesByName("1")[0], or_vertex3}, and_vertex3);
+            graph.addOutput(and_vertex3->getName());
+        }
+        else
+        {
+            graph.addOutput(z + S);
+            graph.addEdge(or_vertex3, graph.getVerticesByName(z + S)[0]);
+        }
+    }
+    return graph;
 }
 
 OrientedGraph SimpleGenerators::generatorComparison(int bits, bool compare0,

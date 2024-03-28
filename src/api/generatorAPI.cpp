@@ -50,6 +50,8 @@ void runGenerationFromJson(std::string json_path) {
       gt = GenerationTypes::RandLevelExperimental;
     else if (data["type_of_generation"] == "Num Operation")
       gt = GenerationTypes::NumOperation;
+    else if (data["type_of_generation"] == "Summator")
+      gt = GenerationTypes::Summator;
     // else if (data["type_of_generation"] == "Genetic")
     //   gt = GenerationTypes::Genetic;
     else {

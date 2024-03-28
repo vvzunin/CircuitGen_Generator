@@ -180,6 +180,7 @@ std::string Settings::getGenerationMethodPrefix(const std::string &i_s) const {
   if (i_s == "RandLevel") return "CCGRCG";
   if (i_s == "RandLevelExperimental") return "CCGRCGE";
   if (i_s == "NumOperation") return "CCGRVC";
+  if (i_s == "Summator") return "CCGTCS";
   if (i_s == "Genetic") return "CCGGA";
   if (i_s == "Subtractor") return "CCGTCSUB";
 
