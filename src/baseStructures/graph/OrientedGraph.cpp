@@ -21,7 +21,7 @@ OrientedGraph::OrientedGraph(const std::string i_name) {
     d_name = i_name;
 
   // filling edges
-  for (auto cur_gate : d_settings->getLogicOperationsKeys()) {
+  for (auto cur_gate : d_logicElements) {
     d_edgesGatesCount[cur_gate] = d_gatesCount;
   }
 }

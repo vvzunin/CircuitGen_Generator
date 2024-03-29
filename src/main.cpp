@@ -41,6 +41,5 @@ int main(int argc, char **argv) {
   }
 
   // json_path = "../../doc/sampleAll.json";
-
   runGenerationFromJson(json_path);
 }

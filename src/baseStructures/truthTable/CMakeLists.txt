@@ -7,7 +7,7 @@ add_library(
 target_include_directories(
   TruthTable 
   PUBLIC 
-  ${PROJECT_SOURCE_DIR}/src)
+  "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>")
 
 target_link_libraries(
   TruthTable

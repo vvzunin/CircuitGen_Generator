@@ -1,4 +1,0 @@
-Name: ${PROJECT_NAME}
-Description: Generator for combinational circuits
-Version: ${PROJECT_VERSION}
-Cflags: -I${CMAKE_INSTALL_FULL_INCLUDEDIR}

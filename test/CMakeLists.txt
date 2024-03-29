@@ -39,7 +39,7 @@ Settings
 OptimizationUtils 
 ThreadPool 
 
-nlohmann_json::nlohmann_json
+Json
 gtest
 gtest_main
 )

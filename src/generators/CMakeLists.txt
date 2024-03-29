@@ -10,5 +10,5 @@ add_library(
 target_include_directories(
   GenerationParameters 
   PUBLIC 
-  ${PROJECT_SOURCE_DIR}/src
+  "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>"
 )

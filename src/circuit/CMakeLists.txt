@@ -1,18 +1,19 @@
 add_library(
-  SimpleGenerator 
+  Circuit 
   SHARED 
-  SimpleGenerators.cpp 
-  SimpleGenerators.h
-)
+  Circuit.cpp 
+  Circuit.h
+  CircuitParameters.h)
 
 target_include_directories(
-  SimpleGenerator 
+  Circuit 
   PUBLIC 
   "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>"
 )
 
 target_link_libraries(
-  SimpleGenerator
-  PUBLIC
-  baseStructures
+  Circuit 
+  PUBLIC 
+  TruthTable
+  OrientedGraph
 )

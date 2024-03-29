@@ -1,21 +1,14 @@
-add_subdirectory(filesTools)
-add_subdirectory(threadPool)
-
 add_library(
-  AuxiliaryMethods SHARED
+  additional SHARED
   AuxiliaryMethods.cpp
-  AuxiliaryMethods.h
-  RandomGeneratorWithSeed.h
+
+  filesTools/FilesTools.cpp
+
+  threadPool/ThreadPool.cpp
 )
 
 target_include_directories(
-  AuxiliaryMethods
+  additional
   PUBLIC
-  .
-)
-
-target_link_libraries(
-  AuxiliaryMethods 
-  PUBLIC 
-  Circuit
+  "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>"
 )

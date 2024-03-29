@@ -7,14 +7,14 @@
 #include <string>
 #include <vector>
 
-#include "CircuitsParameters.h"
+#include "CircuitParameters.h"
 
 class Circuit {
  public:
   Circuit(OrientedGraph *const i_graph,
           const std::vector<std::string> &i_logExpressions = {});
   void computeHash();
-  void updateCircuitsParameters();
+  void updateCircuitParameters();
   bool graphToVerilog(const std::string &i_path, bool i_pathExists = false);
   bool saveParameters(bool i_pathExists = false) const;
   bool generate(bool i_pathExists = false);
@@ -24,6 +24,7 @@ class Circuit {
   std::vector<std::shared_ptr<GraphVertexBase>> getIndexOfWireName(
       const std::string &i_wireName);
   void setVerticeOperation(int i_vertice, const std::string &i_operation);
+  Circuit fromVerilog(const std::string &i_filepath);
 
  private:
   OrientedGraph *d_graph;

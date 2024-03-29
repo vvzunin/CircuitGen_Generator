@@ -111,10 +111,6 @@ std::pair<std::string, int> Settings::getLogicOperation(
   return d_logicOperations.at(i_op);
 }
 
-std::vector<Gates> Settings::getLogicOperationsKeys() {
-  return d_logicElements;
-}
-
 std::pair<std::vector<bool>, std::vector<Gates>>
 Settings::getLogicOperationsWithGates() {
   std::vector<bool> oneGate;

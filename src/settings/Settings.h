@@ -39,7 +39,6 @@ class Settings {
   void loadSettings();
   std::string getInstanceName() const;
   std::pair<std::string, int> getLogicOperation(const std::string &i_op);
-  std::vector<Gates> getLogicOperationsKeys();
   std::pair<std::vector<bool>, std::vector<Gates>>
   getLogicOperationsWithGates();
   std::string fromOperationsToName(const std::string &i_op) const;
@@ -95,10 +94,6 @@ class Settings {
       {Gates::GateNot, "not"}, {Gates::GateBuf, "buf"},
       {Gates::GateXor, "xor"}, {Gates::GateXnor, "xnor"},
       {Gates::GateDefault, "ERROR"}};
-
-  std::vector<Gates> d_logicElements = {
-      Gates::GateAnd, Gates::GateNand, Gates::GateOr,  Gates::GateNor,
-      Gates::GateXor, Gates::GateXnor, Gates::GateNot, Gates::GateBuf};
 
   std::map<int, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string> d_operationsToName;

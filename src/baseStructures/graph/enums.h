@@ -46,3 +46,7 @@ const std::map<char, std::map<char, char>> tableXnor{
 
 const std::map<char, char> tableBuf{{'0', '0'}, {'1', '1'}, {'x', 'x'}, {'z', 'x'}};
 const std::map<char, char> tableNot{{'0', '1'}, {'1', '0'}, {'x', 'x'}, {'z', 'x'}};
+
+const std::vector<Gates> d_logicElements = {
+      Gates::GateAnd, Gates::GateNand, Gates::GateOr,  Gates::GateNor,
+      Gates::GateXor, Gates::GateXnor, Gates::GateNot, Gates::GateBuf};
