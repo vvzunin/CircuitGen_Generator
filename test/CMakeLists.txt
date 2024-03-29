@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.10.2)
-project(CircuitGenTest VERSION 0.0.0)
+cmake_minimum_required(VERSION 3.14)
+
+project(CircuitGenGeneratorTests LANGUAGES CXX)
+
 
 include(ExternalProject)
 include(FetchContent)
@@ -13,33 +15,30 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(${PROJECT_NAME} 
-  AuxiliaryMethodsTests.cpp 
-  SettingsTests.cpp 
-  TruthTableTests.cpp 
-  OrientedGraphTests.cpp 
-  OrientedGraphSysTests.cpp 
-  FilesToolsTests.cpp 
-  GraphVertexTests.cpp)
+include(../cmake/project-is-top-level.cmake)
+include(../cmake/folders.cmake)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
-AuxiliaryMethods 
-Circuit 
-Reliability 
-TruthTable 
-OrientedGraph 
-GeneticParameters
-MutationParameters 
-RecombinationParameters 
-SelectionParameters 
-ParentsParameters 
-GraphVertex 
-FilesTools 
-Settings 
-OptimizationUtils 
-ThreadPool 
+# ---- Dependencies ----
 
-Json
-gtest
-gtest_main
+if(PROJECT_IS_TOP_LEVEL)
+  find_package(CircuitGenGenerator REQUIRED)
+  enable_testing()
+endif()
+
+# ---- Tests ----
+
+set(SOURCES_TEST
+  src/additional/AuxiliaryMethodsTests.cpp
+  src/additional/filesTools/FilesToolsTests.cpp
+  src/settings/SettingsTests.cpp
 )
+
+add_executable(CircuitGenGenerator_test ${SOURCES_TEST})
+target_link_libraries(CircuitGenGenerator_test PRIVATE CircuitGenGenerator::CircuitGenGenerator)
+target_compile_features(CircuitGenGenerator_test PRIVATE cxx_std_17)
+
+add_test(NAME CircuitGenGenerator_test COMMAND CircuitGenGenerator_test)
+
+# ---- End-of-file commands ----
+
+add_folders(Test)

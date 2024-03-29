@@ -13,13 +13,8 @@ project(
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
-include(FetchContent)
-FetchContent_Declare(
-  json
-  GIT_REPOSITORY https://github.com/nlohmann/json
-  GIT_TAG v3.11.3
-)
-FetchContent_MakeAvailable(json)
+add_subdirectory(lib)
+include_directories(lib)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
@@ -38,7 +33,6 @@ set(
 set(
   EXTERNAL_LIBS
   # External libraries
-  nlohmann_json::nlohmann_json
   Threads::Threads
 )
 
@@ -76,6 +70,8 @@ generate_export_header(
     CUSTOM_CONTENT_FROM_VARIABLE pragma_suppress_c4251
 )
 
+set(BUILD_SHARED_LIBS NO)
+
 if(NOT BUILD_SHARED_LIBS)
   target_compile_definitions(CircuitGenGenerator_lib PUBLIC CIRCUITGENGENERATOR_STATIC_DEFINE)
 endif()
@@ -88,6 +84,7 @@ set_target_properties(
     SOVERSION "${PROJECT_VERSION_MAJOR}"
     EXPORT_NAME CircuitGenGenerator
     OUTPUT_NAME CircuitGenGenerator
+    PUBLIC_HEADER src/api/generatorAPI.h
 )
 
 target_include_directories(
