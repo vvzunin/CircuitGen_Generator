@@ -21,7 +21,7 @@ OrientedGraph::OrientedGraph(const std::string i_name) {
     d_name = i_name;
 
   // filling edges
-  for (auto cur_gate : d_logicElements) {
+  for (auto cur_gate : d_settings->getLogicOperationsKeys()) {
     d_edgesGatesCount[cur_gate] = d_gatesCount;
   }
 }
@@ -191,7 +191,9 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::getVerticeByIndex(
 std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByLevel(
     const int i_level) {
   this->updateLevels();
+  std::vector<std::shared_ptr<GraphVertexBase>> a;
   // TODO: Реализовать
+  return a;
 }
 
 std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByType(

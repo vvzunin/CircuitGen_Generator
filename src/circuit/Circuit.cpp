@@ -329,14 +329,14 @@ std::vector<std::shared_ptr<GraphVertexBase>> Circuit::getIndexOfWireName(
   return d_graph->getVerticesByName(i_wireName);
 }
 
-Circuit AuxMethods::parseVerilog(const std::string &i_filepath) {
+Circuit Circuit::fromVerilog(const std::string &i_filepath) {
   // const int MODULE_WORD_SIZE = 7;
   // const int INPUT_WORD_SIZE = 6;
   // const int OUTPUT_WORD_SIZE = 7;
   // const int WIRE_WORD_SIZE = 5;
 
-  // OrientedGraph graph;
-  // Circuit circuit(&graph, {});
+  OrientedGraph graph;
+  Circuit circuit(&graph, {});
   // circuit.setPath(i_filepath);
 
   // std::string verilog_module = readAllFile(i_filepath);
@@ -486,5 +486,5 @@ Circuit AuxMethods::parseVerilog(const std::string &i_filepath) {
   //         skipSpaces(verilog_module));
   //     }
   // }
-  // return circuit;
+  return circuit;
 }
