@@ -1,7 +1,0 @@
-add_subdirectory(additional)
-add_subdirectory(api)
-add_subdirectory(baseStructures)
-add_subdirectory(circuit)
-add_subdirectory(database)
-add_subdirectory(generators)
-add_subdirectory(settings)
