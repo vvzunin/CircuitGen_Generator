@@ -1,110 +1,149 @@
-# Set minimum version of cmake
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.14)
 
-# Define project name, version and description
-project(CircuitsGenerator
-  VERSION 0.1.0
-  DESCRIPTION "Program for circuits dataset generation"
-  HOMEPAGE_URL https://github.com/vvzunin/CAD_CombinationalCircuits
-  LANGUAGES CXX
+include(cmake/prelude.cmake)
+
+project(
+    CircuitGenGenerator
+    VERSION 0.1.0
+    DESCRIPTION "Program for circuits dataset generation"
+    HOMEPAGE_URL "https://github.com/vvzunin/CircuitGen_Generator"
+    LANGUAGES CXX
 )
 
-# Add path for .cmake files. Needed for "include" directive.
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+include(cmake/project-is-top-level.cmake)
+include(cmake/variables.cmake)
 
-# Define folder for external libraries
-set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
-
-# Define names of standalone binary and library.
-set(MAIN_TARGET circuitgen)
-set(MAIN_LIBRARY cgen)
-
-
-# Configuration file.
-configure_file(config.h.in config.h)
-
-# Define folder for external libraries
-set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/lib)
-
-option(GENERATOR_DEBUG "Extended debug printing" OFF)
-option(BUILD_SHARED_PROJECT_LIBS "Build using shared libraries" ON)
-
-# Auxiliary variable definitions
-# Define variables for coverage
-set(GCC_COVERAGE_COMPILE_FLAGS "-fprofile-arcs -ftest-coverage")
-set(GCC_COVERAGE_LINK_FLAGS "-lgcov")
-
-# Define main cmake project settings
-set(CMAKE_CXX_STANDARD 17)
-# set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_VERBOSE_MAKEFILE OFF)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_INIT} -std=c++17 -fPIC")
-set(CMAKE_CXX_FLAGS_RELEASE "-O0")
-set(CMAKE_BUILD_TYPE Debug)
-
-# Add all subdirectories for the project.
 add_subdirectory(lib)
-add_subdirectory(src)
-# add_subdirectory(test)
+include_directories(lib)
 
-# Doxygen support
-find_package(Doxygen)
-if (DOXYGEN_FOUND)
-  message("Doxygen is installed. Generating documentation...")
-  execute_process(COMMAND doxygen doc/Doxyfile)
-else ()
-  message("Can't find doxygen; to generate docs from sources please install it.")
-endif()
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
+# ---- Declare library ----
 
-##
-## INSTALL
-## install header files, generate and install cmake config files for find_package()
-##
-include(CMakePackageConfigHelpers)
-configure_file(
-    "cmake/CircuitGen_Generator_jsonConfigVersion.cmake.in"
-    ${CIRCUITGEN_GENERATOR_JSON_CMAKE_VERSION_CONFIG_FILE}
-    @ONLY
-)
-configure_file(
-    ${CIRCUITGEN_GENERATOR_CMAKE_CONFIG_TEMPLATE}
-    ${CIRCUITGEN_GENERATOR_CMAKE_PROJECT_CONFIG_FILE}
-    @ONLY
+set(
+  PROJECT_LIBS
+  # Internal libraries
+  additional
+  baseStructures
+  Circuit
+  DataBaseGenerator  
 )
 
-if(JSON_Install)
-    install(
-        DIRECTORY ${CIRCUITGEN_GENERATOR_JSON_INCLUDE_BUILD_DIR}
-        DESTINATION ${CIRCUITGEN_GENERATOR_JSON_INCLUDE_INSTALL_DIR}
-    )
-    install(
-        FILES ${CIRCUITGEN_GENERATOR_JSON_CMAKE_PROJECT_CONFIG_FILE} ${CIRCUITGEN_GENERATOR_JSON_CMAKE_VERSION_CONFIG_FILE}
-        DESTINATION ${CIRCUITGEN_GENERATOR_JSON_CONFIG_INSTALL_DIR}
-    )
-    if (CIRCUITGEN_GENERATOR_ADD_NATVIS)
-        install(
-            FILES ${CIRCUITGEN_GENERATOR_NATVIS_FILE}
-            DESTINATION .
-    )
-    endif()
-    export(
-        TARGETS ${CIRCUITGEN_GENERATOR_JSON_TARGET_NAME}
-        NAMESPACE ${PROJECT_NAME}::
-        FILE ${CIRCUITGEN_GENERATOR_JSON_CMAKE_PROJECT_TARGETS_FILE}
-    )
-    install(
-        TARGETS ${CIRCUITGEN_GENERATOR_JSON_TARGET_NAME}
-        EXPORT ${CIRCUITGEN_GENERATOR_JSON_TARGETS_EXPORT_NAME}
-        INCLUDES DESTINATION ${CIRCUITGEN_GENERATOR_JSON_INCLUDE_INSTALL_DIR}
-    )
-    install(
-        EXPORT ${CIRCUITGEN_GENERATOR_JSON_TARGETS_EXPORT_NAME}
-        NAMESPACE ${PROJECT_NAME}::
-        DESTINATION ${CIRCUITGEN_GENERATOR_JSON_CONFIG_INSTALL_DIR}
-    )
-    install(
-        FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc"
-        DESTINATION ${CIRCUITGEN_GENERATOR_JSON_PKGCONFIG_INSTALL_DIR}
-    )
+set(
+  EXTERNAL_LIBS
+  # External libraries
+  Threads::Threads
+)
+
+set(SOURCES
+  src/additional/AuxiliaryMethods.cpp
+  src/additional/filesTools/FilesTools.cpp
+  src/additional/threadPool/ThreadPool.cpp
+  src/api/generatorAPI.cpp
+  src/baseStructures/graph/GraphVertexBase.cpp  
+  src/baseStructures/graph/GraphVertexConstant.cpp
+  src/baseStructures/graph/GraphVertexInput.cpp
+  src/baseStructures/graph/GraphVertexGates.cpp
+  src/baseStructures/graph/GraphVertexOutput.cpp
+  src/baseStructures/graph/OrientedGraph.cpp  
+  src/baseStructures/Parser.cpp
+  src/baseStructures/truthTable/TruthTable.cpp
+  src/circuit/Circuit.cpp
+  src/database/DataBaseGenerator.cpp
+  src/database/DataBaseGeneratorParameters.cpp
+  src/generators/simple/SimpleGenerators.cpp
+  src/settings/Settings.cpp
+)
+
+add_library(
+    CircuitGenGenerator_lib OBJECT
+    ${SOURCES}
+)
+add_library(CircuitGenGenerator::CircuitGenGenerator ALIAS CircuitGenGenerator_lib)
+
+include(GenerateExportHeader)
+generate_export_header(
+  CircuitGenGenerator_lib
+    BASE_NAME CircuitGenGenerator
+    EXPORT_FILE_NAME export/CircuitGenGenerator/CircuitGenGenerator_export.hpp
+    CUSTOM_CONTENT_FROM_VARIABLE pragma_suppress_c4251
+)
+
+set(BUILD_SHARED_LIBS NO)
+
+if(NOT BUILD_SHARED_LIBS)
+  target_compile_definitions(CircuitGenGenerator_lib PUBLIC CIRCUITGENGENERATOR_STATIC_DEFINE)
 endif()
+
+set_target_properties(
+  CircuitGenGenerator_lib PROPERTIES
+    CXX_VISIBILITY_PRESET hidden
+    VISIBILITY_INLINES_HIDDEN YES
+    VERSION "${PROJECT_VERSION}"
+    SOVERSION "${PROJECT_VERSION_MAJOR}"
+    EXPORT_NAME CircuitGenGenerator
+    OUTPUT_NAME CircuitGenGenerator
+    PUBLIC_HEADER src/api/generatorAPI.h
+)
+
+target_include_directories(
+  CircuitGenGenerator_lib ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
+)
+
+target_include_directories(
+  CircuitGenGenerator_lib SYSTEM
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/export>"
+)
+
+target_link_libraries(CircuitGenGenerator_lib PRIVATE ${EXTERNAL_LIBS})
+
+target_include_directories(
+    CircuitGenGenerator_lib ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>"
+)
+
+target_compile_features(CircuitGenGenerator_lib PUBLIC cxx_std_17)
+
+# ---- Declare executable ----
+
+add_executable(CircuitGenGenerator_exe src/main.cpp)
+add_executable(CircuitGenGenerator::exe ALIAS CircuitGenGenerator_exe)
+
+set_property(TARGET CircuitGenGenerator_exe PROPERTY OUTPUT_NAME CircuitGenGenerator)
+
+target_compile_features(CircuitGenGenerator_exe PRIVATE cxx_std_17)
+
+target_link_libraries(CircuitGenGenerator_exe PRIVATE CircuitGenGenerator_lib)
+
+# ---- Install rules ----
+
+if(NOT CMAKE_SKIP_INSTALL_RULES)
+  include(cmake/install-rules.cmake)
+endif()
+
+# ---- Examples ----
+
+if(PROJECT_IS_TOP_LEVEL)
+  option(BUILD_EXAMPLES "Build examples tree." "${CircuitGenGenerator_DEVELOPER_MODE}")
+  if(BUILD_EXAMPLES)
+    add_subdirectory(example)
+  endif()
+endif()
+
+# ---- Developer mode ----
+
+if(NOT CircuitGenGenerator_DEVELOPER_MODE)
+  return()
+elseif(NOT PROJECT_IS_TOP_LEVEL)
+  message(
+      AUTHOR_WARNING
+      "Developer mode is intended for developers of CircuitGenGenerator"
+  )
+endif()
+
+include(cmake/dev-mode.cmake)

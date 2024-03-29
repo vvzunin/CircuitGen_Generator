@@ -18,7 +18,7 @@
 #include <string>
 #include <vector>
 
-#include "nlohmann/json.hpp"
+#include <nlohmann/json.hpp>
 
 using namespace std::chrono;
 
