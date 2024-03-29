@@ -1,0 +1,25 @@
+[
+  {
+    "seed": 2,
+    "dataset_id": "2",
+    "id": 2,
+    "type_of_generation": "Rand Level",
+    "min_in": 50,
+    "max_in": 50,
+    "min_out": 50,
+    "max_out": 50,
+    "repeat_n": 1,    
+    "multithread": true,
+    "calculate_stats_abc": true,
+    "make_optimized_files": true,
+    "make_firrtl": true,
+    "make_bench": true,
+    "create_id_directories": true,
+    "library_name": "sky130",
+
+    "min_level": 50,
+    "max_level": 50,
+    "min_elem": 150,
+    "max_elem": 150
+  }
+]
