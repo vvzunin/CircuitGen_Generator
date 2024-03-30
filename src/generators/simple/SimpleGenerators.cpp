@@ -481,9 +481,9 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
 {
     OrientedGraph graph;
     if (overflowIn)
-        graph.addInput("p0"); //где переменная std::shared_ptr<GraphVertexBase> для кода?
+        std::shared_ptr<GraphVertexBase> p0 = graph.addInput("p0"); 
     if (act)
-        graph.addConst('1', "1");//где переменная std::shared_ptr<GraphVertexBase> для кода?
+       std::shared_ptr<GraphVertexBase> const_1 = graph.addConst('1', "1");
     std::string pi;
     std::string x;
     std::string y;
@@ -508,7 +508,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
         }
          if (!act)
         {
-            graph.addOutput(z + S); //где переменная std::shared_ptr<GraphVertexBase> для кода?
+            std::shared_ptr<GraphVertexBase> output_z = graph.addOutput(z + S); 
         }
 
         std::shared_ptr<GraphVertexBase> andab = graph.addGate(Gates::GateAnd, "andab" + S);
@@ -525,8 +525,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
 
         std::shared_ptr<GraphVertexBase> or_vertex = graph.addGate(Gates::GateOr, "or" + NextS);
         graph.addEdges({andab, anda, andb}, or_vertex);
-        graph.addOutput(or_vertex->getName());//это еще что? просто написать имя выхода и соединить его с операцией через
-        //addEdge нельзя?
+        graph.addGate(Gates::GateDefault, "or" + NextS);
 
         if (overflowOut && i + 1 == bits)
         {
@@ -535,8 +534,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
                 
                 std::shared_ptr<GraphVertexBase> and_vertex = graph.addGate(Gates::GateAnd, z + "and1_" + NextS);
                 graph.addEdges({graph.getVerticesByName("1")[0], or_vertex}, and_vertex);//getVerticesByName не нужен, если просто дашь имя константе в коде
-                graph.addOutput(and_vertex->getName());//для актов не продумывались выходы.
-                //ALU генератор должен будет принять эти результаты как часть операции, то есть GateDefault
+                graph.addGate(Gates::GateDefault, z + "and1_" + NextS);
             }
             else
             {
@@ -553,7 +551,7 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
 
         std::shared_ptr<GraphVertexBase> and_vertex2 = graph.addGate(Gates::GateAnd, "andnp" + NextS);
         graph.addEdges({or_vertex2, not_pi_vertex}, and_vertex2);
-        graph.addOutput(and_vertex2->getName());//тот же вопрос
+        graph.addGate(Gates::GateDefault, "andnp" + NextS);
 
         std::shared_ptr<GraphVertexBase> or_vertex3 = graph.addGate(Gates::GateOr, "or3" + S);
         graph.addEdges({or_vertex, and_vertex2}, or_vertex3);
@@ -562,13 +560,12 @@ OrientedGraph SimpleGenerators::generatorSummator(int bits, bool overflowIn, boo
         {
             std::shared_ptr<GraphVertexBase> and_vertex3 = graph.addGate(Gates::GateAnd, z + "and1_" + S);
             graph.addEdges({graph.getVerticesByName("1")[0], or_vertex3}, and_vertex3);
-            graph.addOutput(and_vertex3->getName());//для актов не продумывались выходы.
-            //ALU генератор должен будет принять эти результаты как часть операции, то есть GateDefault
+            graph.addGate(Gates::GateDefault,  z + "and1_" + S);
         }
         else
         {
-            graph.addOutput(z + S);
-            graph.addEdge(or_vertex3, graph.getVerticesByName(z + S)[0]);
+            std::shared_ptr<GraphVertexBase> output_z = graph.addOutput(z + S);
+            graph.addEdge(or_vertex3, output_z);
         }
     }
     return graph;
