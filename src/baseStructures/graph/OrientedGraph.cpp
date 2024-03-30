@@ -192,7 +192,9 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::getVerticeByIndex(
 std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByLevel(
     const int i_level) {
   this->updateLevels();
+  std::vector<std::shared_ptr<GraphVertexBase>> a;
   // TODO: Реализовать
+  return a;
 }
 
 std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByType(
@@ -367,9 +369,11 @@ bool OrientedGraph::toVerilog(std::ofstream& i_fileStream) {
        d_vertexes.at(VertexTypes::gate)) {
     std::string s =
         std::static_pointer_cast<GraphVertexGates>(vert)->getVerilogString();
-    if (s != "")
-      i_fileStream << verilogTab + "wire " + vert->getName() + " = " + s +
+    if (s != "") {
+      i_fileStream << verilogTab + "wire " + vert->getName() + ";\n";
+      i_fileStream << verilogTab + "assign " + vert->getName() + " = " + s +
                           ";\n";
+    }
   }
 
   for (std::shared_ptr<GraphVertexBase> vert :

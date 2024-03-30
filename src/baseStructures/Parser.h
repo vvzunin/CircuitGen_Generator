@@ -1,6 +1,6 @@
 #pragma once
 
-#include <baseStructures/graph/OrientedGraph.h>
+#include "graph/OrientedGraph.h"
 
 #include <memory>
 #include <string>

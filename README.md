@@ -8,6 +8,7 @@
 - [Сборка библиотеки](#generator_buildLib_rus)
 - [Запуск генерации комбинационных схем из командной строки](#generator_run_one_json_rus)
 - [JSON файлы](#JSON_files)
+- [Лицензия](#license)
 
 Сборка и запуск производятся из операционной системы Linux.
 
@@ -104,11 +105,6 @@ gp.setNewGeneratorNameParameters(...);
 
 ## Сборка программы
 <a name="generator_build_rus"></a> 
-В первую очередь треубется установить все требуемые утилиты. Для этого выполните следующие команды: 
-```
-chmod +x installUtils.sh
-sudo ./installUtils.sh
-```
 
 Для сборки программы необходимо выполнить следующие команды из начальной директории:
 ```
@@ -205,5 +201,12 @@ JSON файл может содержать несколько наборов г
 2. [Rand Level](doc/sampleRandLevel.json)
 3. [Num Operation](doc/sampleNumOperation.json)
 4. [Genetic](doc/sampleGenetic.json)
+
+[&#8593; Contents](#content_rus)
+
+# Лицензия
+<a name="license"></a>
+
+Смотрите файл с [лицензией](LICENSE.md).
 
 [&#8593; Contents](#content_rus)

@@ -7,5 +7,5 @@ add_library(
 target_include_directories(
   FilesTools
   PUBLIC
-  .
+  "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>"
 )

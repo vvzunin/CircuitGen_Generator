@@ -2,8 +2,8 @@
 #include <additional/threadPool/ThreadPool.h>
 #include <baseStructures/Parser.h>
 #include <baseStructures/truthTable/TruthTable.h>
-#include <circuits/Circuit.h>
-#include <circuits/CircuitsParameters.h>
+#include <circuit/Circuit.h>
+#include <circuit/CircuitParameters.h>
 #include <generators/simple/SimpleGenerators.h>
 
 #include <algorithm>

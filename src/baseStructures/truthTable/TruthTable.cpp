@@ -92,7 +92,7 @@ bool TruthTable::getOutTable(int i, int j) const
 void TruthTable::generateTable(double i_p)
 {
 
-    if (i_p == 0)
+    if (i_p <= 0)
     {
         d_array.clear();
         d_array.resize(d_size);
@@ -102,6 +102,7 @@ void TruthTable::generateTable(double i_p)
             for (int j = 0; j < d_output; ++j)
                 d_array[i][j] = d_randGenerator.getRandInt(0, 1, true) == 1;
         }
+        return;
     }
     if (i_p > 0 && i_p <= 1)
     {
@@ -113,6 +114,7 @@ void TruthTable::generateTable(double i_p)
             for (int j = 0; j < d_output; ++j)
                 d_array[i][j] = AuxMethods::getRandDouble(0, 1) < i_p;
         }
+        return;
     }
 }
 

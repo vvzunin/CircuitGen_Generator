@@ -1,5 +1,3 @@
-#include <circuits/Circuit.h>
-
 #include <cstdint>
 #include <fstream>
 #include <map>
@@ -26,6 +24,6 @@ std::vector<std::pair<Key, Value>> sortDictByValue(
 std::string removeSpaces(const std::string &i_s);
 int skipSpaces(const std::string &i_s, int i_start = 0);
 // TODO: if need CopyDirectory
-Circuit parseVerilog(const std::string &i_filepath);
+
 // namespace end
 }  // namespace AuxMethods
