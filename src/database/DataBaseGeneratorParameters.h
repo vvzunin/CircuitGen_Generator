@@ -12,7 +12,8 @@ enum GenerationTypes {
   Summator,
   Comparison,
   Encoder,
-  Subtractor
+  Subtractor,
+  Multiplier
 };
 
 class DataBaseGeneratorParameters  // TODO: maybe it need heritance from

@@ -94,7 +94,7 @@ class Settings {
       {Gates::GateOr, "or"},   {Gates::GateNor, "nor"},
       {Gates::GateNot, "not"}, {Gates::GateBuf, "buf"},
       {Gates::GateXor, "xor"}, {Gates::GateXnor, "xnor"},
-      {Gates::GateDefault, "ERROR"}};
+      {Gates::GateDefault, "ERROR"}};  //возможно стоить заменить?
 
   std::vector<Gates> d_logicElements = {
       Gates::GateAnd, Gates::GateNand, Gates::GateOr,  Gates::GateNor,

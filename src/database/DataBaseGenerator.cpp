@@ -295,6 +295,17 @@ void DataBaseGenerator::generateDataBaseSubtractor(const GenerationParameters &i
     c.generate();
 }
 
+void DataBaseGenerator::generateDataBaseMultiplier(const GenerationParameters &i_param){
+    SimpleGenerators sg(i_param.getSeed());
+    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+    OrientedGraph graph = sg.generatorMultiplier(i_param.getInputs());
+    Circuit c(&graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate();
+}
+
 std::function<void(const GenerationParameters &)>
 DataBaseGenerator::getGenerateMethod(const std::string &i_methodName) {
   if (i_methodName == "FromRandomTruthTable")
@@ -320,6 +331,9 @@ DataBaseGenerator::getGenerateMethod(const std::string &i_methodName) {
                      std::placeholders::_1);
   if (i_methodName == "Subtractor")
       return std::bind(&DataBaseGenerator::generateDataBaseSubtractor, this,
+                       std::placeholders::_1);
+  if (i_methodName == "Multiplier")
+      return std::bind(&DataBaseGenerator::generateDataBaseMultiplier, this,
                        std::placeholders::_1);
                        
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;

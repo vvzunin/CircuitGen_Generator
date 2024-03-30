@@ -56,6 +56,8 @@ void runGenerationFromJson(std::string json_path) {
       gt = GenerationTypes::Comparison;  
     else if (data["type_of_generation"] == "Subtractor")
         gt = GenerationTypes::Subtractor;
+    else if (data["type_of_generation"] == "Multiplier")
+        gt = GenerationTypes::Multiplier;
     // else if (data["type_of_generation"] == "Genetic")
     //   gt = GenerationTypes::Genetic;
     else {
