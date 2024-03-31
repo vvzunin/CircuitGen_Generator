@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include <filesystem>
 
-#include "../optimization_utils/AbcUtils.h"
 #include "circuits/Circuit.h"
 
 // Test empty graph
@@ -31,23 +30,32 @@ TEST(CircuitTest, InputsOutputsOnlyTest) {
     ioCircuit.setPath(currentPath);
     ioCircuit.setCircuitName("IOOnlyCircuit4");
 
+    // Генерация Verilog
     EXPECT_TRUE(ioCircuit.graphToVerilog(currentPath, true));
 
-    std::string filename = currentPath + "/IOOnlyCircuit4.v";
+    // Проверка наличия файла Verilog
+    std::string verilogFilename = currentPath + "/IOOnlyCircuit4.v";
+    EXPECT_TRUE(std::filesystem::exists(verilogFilename));
 
-    EXPECT_TRUE(std::filesystem::exists(filename));
-    std::cout << "\n" << filename << "\n";;
-    std::filesystem::remove(filename);
+    // Сохранение параметров и проверка наличия JSON файла
+    EXPECT_TRUE(ioCircuit.saveParameters(false, false, true));
+    std::string jsonFilename = currentPath + "/IOOnlyCircuit4.json";
+    EXPECT_TRUE(std::filesystem::exists(jsonFilename));
 
-    EXPECT_FALSE(std::filesystem::exists(filename));
+    // Очистка созданных файлов
+    std::filesystem::remove(verilogFilename);
+    std::filesystem::remove(jsonFilename);
+    EXPECT_FALSE(std::filesystem::exists(verilogFilename));
+    EXPECT_FALSE(std::filesystem::exists(jsonFilename));
 }
+
 
 TEST(CircuitTest, GraphWithConstantsTest) {
     std::string currentPath = std::filesystem::current_path();
     OrientedGraph constGraph;
     constGraph.addVertex("1", "const", "1");
     constGraph.addVertex("2", "output", "");
-    constGraph.addEdge("3", "output", false);
+    constGraph.addEdge("1", "2", false);
     Circuit constCircuit(&constGraph);
     constCircuit.setPath(currentPath);
     constCircuit.setCircuitName("ConstCircuit4");
@@ -55,12 +63,18 @@ TEST(CircuitTest, GraphWithConstantsTest) {
     EXPECT_TRUE(constCircuit.graphToVerilog(currentPath, true));
 
     std::string filename = currentPath + "/ConstCircuit4.v";
-
     EXPECT_TRUE(std::filesystem::exists(filename));
-    std::filesystem::remove(filename);
 
+    EXPECT_TRUE(constCircuit.saveParameters(false, false, true));
+    std::string jsonFilename = currentPath + "/ConstCircuit4.json";
+    EXPECT_TRUE(std::filesystem::exists(jsonFilename));
+
+    std::filesystem::remove(filename);
+    std::filesystem::remove(jsonFilename);
     EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(jsonFilename));
 }
+
 
 TEST(CircuitTest, AndOperationGraphTest) {
     std::string currentPath = std::filesystem::current_path();
@@ -69,9 +83,9 @@ TEST(CircuitTest, AndOperationGraphTest) {
     andGraph.addVertex("2", "input", "");
     andGraph.addVertex("3", "and", "");
     andGraph.addVertex("4", "output", "");
-    andGraph.addEdge("1", "and", false);
-    andGraph.addEdge("2", "and", false);
-    andGraph.addEdge("3", "output", false);
+    andGraph.addEdge("1", "3", false);
+    andGraph.addEdge("2", "3", false);
+    andGraph.addEdge("3", "4", false);
     Circuit andCircuit(&andGraph);
     andCircuit.setPath(currentPath);
     andCircuit.setCircuitName("AndCircuit4");
@@ -79,12 +93,16 @@ TEST(CircuitTest, AndOperationGraphTest) {
     EXPECT_TRUE(andCircuit.graphToVerilog(currentPath, true));
 
     std::string filename = currentPath + "/AndCircuit4.v";
-
     EXPECT_TRUE(std::filesystem::exists(filename));
 
-    std::filesystem::remove(filename);
+    EXPECT_TRUE(andCircuit.saveParameters(false, false, true));
+    std::string jsonFilename = currentPath + "/AndCircuit4.json";
+    EXPECT_TRUE(std::filesystem::exists(jsonFilename));
 
+    std::filesystem::remove(filename);
+    std::filesystem::remove(jsonFilename);
     EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(jsonFilename));
 }
 
 
@@ -95,9 +113,9 @@ TEST(CircuitTest, OrOperationGraphTest) {
     orGraph.addVertex("2", "input", "");
     orGraph.addVertex("3", "or", "");
     orGraph.addVertex("4", "output", "");
-    orGraph.addEdge("1", "or", false);
-    orGraph.addEdge("2", "or", false);
-    orGraph.addEdge("3", "output", false);
+    orGraph.addEdge("1", "3", false);
+    orGraph.addEdge("2", "3", false);
+    orGraph.addEdge("3", "4", false);
     Circuit orCircuit(&orGraph);
     orCircuit.setPath(currentPath);
     orCircuit.setCircuitName("OrCircuit4");
@@ -105,13 +123,18 @@ TEST(CircuitTest, OrOperationGraphTest) {
     EXPECT_TRUE(orCircuit.graphToVerilog(currentPath, true));
 
     std::string filename = currentPath + "/OrCircuit4.v";
-
     EXPECT_TRUE(std::filesystem::exists(filename));
 
-    std::filesystem::remove(filename);
+    EXPECT_TRUE(orCircuit.saveParameters(false, false, true));
+    std::string jsonFilename = currentPath + "/OrCircuit4.json";
+    EXPECT_TRUE(std::filesystem::exists(jsonFilename));
 
+    std::filesystem::remove(filename);
+    std::filesystem::remove(jsonFilename);
     EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(jsonFilename));
 }
+
 
 TEST(CircuitTest, XorOperationGraphTest) {
     std::string currentPath = std::filesystem::current_path();
@@ -120,9 +143,9 @@ TEST(CircuitTest, XorOperationGraphTest) {
     xorGraph.addVertex("2", "input", "");
     xorGraph.addVertex("3", "xor", "");
     xorGraph.addVertex("4", "output", "");
-    xorGraph.addEdge("1", "xor", false);
-    xorGraph.addEdge("2", "xor", false);
-    xorGraph.addEdge("3", "output", false);
+    xorGraph.addEdge("1", "3", false);
+    xorGraph.addEdge("2", "3", false);
+    xorGraph.addEdge("3", "4", false);
     Circuit xorCircuit(&xorGraph);
     xorCircuit.setPath(currentPath);
     xorCircuit.setCircuitName("XorCircuit4");
@@ -130,13 +153,18 @@ TEST(CircuitTest, XorOperationGraphTest) {
     EXPECT_TRUE(xorCircuit.graphToVerilog(currentPath, true));
 
     std::string filename = currentPath + "/XorCircuit4.v";
-
     EXPECT_TRUE(std::filesystem::exists(filename));
 
-    std::filesystem::remove(filename);
+    EXPECT_TRUE(xorCircuit.saveParameters(false, false, true));
+    std::string jsonFilename = currentPath + "/XorCircuit4.json";
+    EXPECT_TRUE(std::filesystem::exists(jsonFilename));
 
+    std::filesystem::remove(filename);
+    std::filesystem::remove(jsonFilename);
     EXPECT_FALSE(std::filesystem::exists(filename));
+    EXPECT_FALSE(std::filesystem::exists(jsonFilename));
 }
+
 
 TEST(CircuitTest, NandOperationGraphTest) {
     std::string currentPath = std::filesystem::current_path();
