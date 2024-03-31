@@ -1,10 +1,11 @@
 #include <gtest/gtest.h>
 #include <filesystem>
 
-#include "../DataBase/DataBaseGenerator.h"
-#include "../DataBase/DataBaseGeneratorParameters.h"
+#include "database/DataBaseGenerator.h"
+#include "database/DataBaseGeneratorParameters.h"
 
-/*TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
+/*
+TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
   GenerationParameters gParams("FromRandomTruthTable", "1", 4, 4, 8,"Generator/libs/sky130.lib", true, true, true, true);
   DataBaseGeneratorParameters dbParams(1, 4, 1, 4, 8, FromRandomTruthTable, gParams);
   DataBaseGenerator generator(dbParams);

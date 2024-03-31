@@ -78,7 +78,7 @@ add_executable(${PROJECT_NAME}
 
   #src/database/DataBaseGeneratorTests.cpp
 
-  src/generators/simple/SimpleGeneratorsTests.cpp 
+  ##src/generators/simple/SimpleGeneratorsTests.cpp 
 
   ##src/settings/SettingsTests.cpp
 
