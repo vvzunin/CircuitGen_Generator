@@ -28,4 +28,5 @@ class Parser {
   bool inBrackets(const std::vector<std::pair<int, int>> &i_brackets,
                   int i_position) const;
   std::string deleteExtraSpaces(std::string i_s);
+  std::map<std::string, std::shared_ptr<GraphVertexBase>> inputsByNames;
 };
