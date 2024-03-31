@@ -57,6 +57,6 @@ std::string DataBaseGeneratorParameters::getGenerationTypeString() const {
   if (d_generationTypes == GenerationTypes::Comparison) return "Comparison";
   if (d_generationTypes == GenerationTypes::Encoder) return "Encoder";
   if (d_generationTypes == GenerationTypes::Subtractor) return "Subtractor";
-
+  if (d_generationTypes == GenerationTypes::Demultiplexer) return "Demultiplexer";
   return "Undefined";
 }
