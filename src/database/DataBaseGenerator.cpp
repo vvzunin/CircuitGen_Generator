@@ -344,16 +344,13 @@ DataBaseGenerator::getGenerateMethod(const std::string &i_methodName) {
   if (i_methodName == "Subtractor")
       return std::bind(&DataBaseGenerator::generateDataBaseSubtractor, this,
                        std::placeholders::_1);
-<<<<<<< HEAD
   if (i_methodName == "Demultiplexer")
     return std::bind(&DataBaseGenerator::generateDataBaseDemultiplexer, this, 
                        std::placeholders::_1);
-=======
   if (i_methodName == "Multiplier")
       return std::bind(&DataBaseGenerator::generateDataBaseMultiplier, this,
                        std::placeholders::_1);
                        
->>>>>>> a88078c588a9f05bcdf3222b388a0c4524e2fc21
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;
   return std::bind(&DataBaseGenerator::generateDataBaseFromRandomTruthTable,
                    this, std::placeholders::_1);
