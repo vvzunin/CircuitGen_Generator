@@ -180,11 +180,13 @@ std::string Settings::getGenerationMethodPrefix(const std::string &i_s) const {
   if (i_s == "RandLevel") return "CCGRCG";
   if (i_s == "RandLevelExperimental") return "CCGRCGE";
   if (i_s == "NumOperation") return "CCGRVC";
-  if (i_s == "Summator") return "CCGTCS";
+  if (i_s == "Summator") return "CCGTCSM";
   if (i_s == "Comparison") return "CCGTCC";
   if (i_s == "Genetic") return "CCGGA";
-  if (i_s == "Subtractor") return "CCGTCSUB";
+  if (i_s == "Subtractor") return "CCGTCSB";
+  if (i_s == "Multiplier") return "CCGTCM";
   if (i_s == "Demultiplexer") return "CCGTCDMP";
+  
   std::cerr << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
 
   return "ftt";

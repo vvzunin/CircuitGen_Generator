@@ -62,8 +62,13 @@ class SimpleGenerators {
   OrientedGraph generatorEncoder(int bits);
   OrientedGraph generatorSubtractor(int i_bits, bool i_overflowIn, bool i_overflowOut,
                                     bool i_sub, bool act = false);
+<<<<<<< HEAD
   OrientedGraph generatorDemultiplexer(int i_bits);
   
+=======
+  OrientedGraph generatorMultiplier(int i_bits, bool act = false);
+
+>>>>>>> a88078c588a9f05bcdf3222b388a0c4524e2fc21
   void setGatesInputsInfo(
       const std::map<std::string, std::vector<int>> &i_info) {
     d_minGateNumber = INT_MAX;
