@@ -2,4 +2,6 @@
 
 #include <string>
 
-void runGenerationFromJson(std::string json_path);
+namespace CircuitGenGenerator {
+  void runGenerationFromJson(std::string json_path);
+}

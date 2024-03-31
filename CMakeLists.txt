@@ -65,9 +65,9 @@ add_library(CircuitGenGenerator::CircuitGenGenerator ALIAS CircuitGenGenerator_l
 include(GenerateExportHeader)
 generate_export_header(
   CircuitGenGenerator_lib
-    BASE_NAME CircuitGenGenerator
-    EXPORT_FILE_NAME export/CircuitGenGenerator/CircuitGenGenerator_export.hpp
-    CUSTOM_CONTENT_FROM_VARIABLE pragma_suppress_c4251
+  BASE_NAME CircuitGenGenerator
+  EXPORT_FILE_NAME export/CircuitGenGenerator/CircuitGenGenerator_export.hpp
+  CUSTOM_CONTENT_FROM_VARIABLE pragma_suppress_c4251
 )
 
 set(BUILD_SHARED_LIBS NO)
@@ -84,7 +84,7 @@ set_target_properties(
     SOVERSION "${PROJECT_VERSION_MAJOR}"
     EXPORT_NAME CircuitGenGenerator
     OUTPUT_NAME CircuitGenGenerator
-    PUBLIC_HEADER src/api/generatorAPI.h
+    PUBLIC_HEADER ${PROJECT_SOURCE_DIR}/src/api/generatorAPI.h
 )
 
 target_include_directories(
