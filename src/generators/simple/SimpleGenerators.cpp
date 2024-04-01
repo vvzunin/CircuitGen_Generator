@@ -968,6 +968,12 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
 
     int n = 1;
 
+    for (int i = 1; i <= i_bits; i++){
+        std::string str_i = std::to_string(i);
+        input_xb = graph.addInput("xb" + str_i);
+        input_xa = graph.addInput("xa" + str_i);
+    }
+
     for (int ib = 1; ib <= i_bits; ib++) {
         std::string IB = std::to_string(ib); //IB - index b
         std::string IBP = std::to_string(ib - 1); //IBP - index b past
@@ -977,16 +983,16 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
             const_1 = graph.addConst('1');
         }
 
-        input_xb = graph.addInput("xb" + IB);
+        std::shared_ptr<GraphVertexBase> xb = graph.addGate(Gates::GateBuf, "xb" + IB);
 
         for (int ia = 1; ia <= i_bits; ia++){
             std::string IA = std::to_string(ia); //IA - index a
             std::string IAN = std::to_string(ia + 1); //IAN - index a next
 
-            input_xa = graph.addInput("xa" + IA);
+            std::shared_ptr<GraphVertexBase> xa = graph.addGate(Gates::GateBuf, "xa" + IA);
 
             c = graph.addGate(Gates::GateAnd, "c" + IA + IB);
-            graph.addEdges({input_xb, input_xa}, c);
+            graph.addEdges({xb, xa}, c);
 
             std::shared_ptr<GraphVertexBase> sum;
             std::shared_ptr<GraphVertexBase> pSum;
@@ -1020,6 +1026,10 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
                 if (ia == i_bits){
                     ABsum = graph.addGate(Gates::GateBuf, "pNext" + IA + IB);//для левых
                     // боковых сумматоров
+                    if (i_bits == 2){
+                        ABsum = graph.addGate(Gates::GateBuf, "pSum" + IA + IB);
+                    }
+
                     //ABsum = "pNext" + IA + IB;
                 }
 
@@ -1047,10 +1057,13 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
                     n+=1;
                 }
                 else if(ib == 2 && ia == i_bits){
+                    pSum = graph.addGate(Gates::GateBuf, "pSum" + IA + IB);
+
                     pNext = graph.addGate(Gates::GateAnd, "pNext" + nSum);
                     graph.addEdges({nowAB, pSum}, pNext);
                     sum = graph.addGate(Gates::GateXor, "sum" + IA + IB);
                     graph.addEdges({nowAB, pSum}, sum);
+
 
                     if (i_bits == 2){
                         std::string N = std::to_string(n);
