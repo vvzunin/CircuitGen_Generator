@@ -104,15 +104,9 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(
       // than it has xor. So, firstly we have been looking for or,
       // than xor. so, we can have two possible variants.
       // Check, if operation in fact is xor, not or, or just to
-      // find firstly xor, than or. At this moment I made first variant
+      // find firstly xor, than or. Was chosen second variant
       int index = i_expr.find(op);
       while (index != std::string::npos) {
-        // if we have xor in fact, go to next iteration
-        if (op == "or" && index > 0 && i_expr[index - 1] == 'x') {
-          index = i_expr.find(op, index + 1);
-          continue;
-        }
-
         std::pair<bool, std::vector<std::pair<int, int>>> brackets =
             createBrackets(i_expr);
         if (!inBrackets(brackets.second, index)) {

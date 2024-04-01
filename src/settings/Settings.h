@@ -77,9 +77,9 @@ class Settings {
   int d_numThreads = 4;
   std::map<std::string, std::pair<std::string, int>> d_logicOperations = {
       {"input", {"", 10}}, {"output", {"=", 0}},  {"const", {"1'b0", 9}},
-      {"and", {"and", 4}}, {"nand", {"nand", 3}}, {"or", {"or", 2}},
-      {"nor", {"nor", 1}}, {"not", {"not", 7}},   {"buf", {"buf", 8}},
-      {"xor", {"xor", 6}}, {"xnor", {"xnor", 5}}
+      {"and", {"and", 4}}, {"nand", {"nand", 3}}, {"or", {"or", 6}},
+      {"nor", {"nor", 5}}, {"not", {"not", 7}},   {"buf", {"buf", 8}},
+      {"xor", {"xor", 2}}, {"xnor", {"xnor", 1}}
 
   };
 
