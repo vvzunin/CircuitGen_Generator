@@ -1,4 +1,4 @@
-#include "generatorAPI.h"
+#include "CircuitGenGenerator/export.h"
 
 #include <additional/AuxiliaryMethods.h>
 #include <database/DataBaseGenerator.h>
@@ -22,6 +22,7 @@
 
 using namespace std::chrono;
 
+namespace CircuitGenGenerator {
 void runGenerationFromJson(std::string json_path) {
   std::ifstream f(json_path);
   nlohmann::json DATA = nlohmann::json::parse(f);
@@ -376,3 +377,4 @@ void runGenerationFromJson(std::string json_path) {
               << std::endl;
   }
 }
+} // namespace CircuitGenGenerator
