@@ -1,4 +1,4 @@
-#include <api/generatorAPI.h>
+#include "CircuitGenGenerator/CircuitGenGenerator.h"
 #include <getopt.h>
 #include <unistd.h>
 
@@ -41,5 +41,5 @@ int main(int argc, char **argv) {
   }
 
   // json_path = "../../doc/sampleAll.json";
-  runGenerationFromJson(json_path);
+  CircuitGenGenerator::runGenerationFromJson(json_path);
 }
