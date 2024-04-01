@@ -2,7 +2,5 @@
 if [ ! -d "build" ]; then
   mkdir build
 fi
-cd build
-cmake ..
-make -j 10
-cd ..
+cmake -S . -B build -D CMAKE_BUILD_TYPE=Release
+cmake --build build
