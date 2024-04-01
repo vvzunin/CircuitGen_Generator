@@ -96,12 +96,23 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(
   while (f && l <= d_settings->getLogicOperation("input").second) {
     std::vector<std::string> operations =
         d_settings->fromOperationsToHierarchy(l);
-    if (i_expr == "1'b1")
-      i_expr = i_expr;  // what?
 
     for (const auto& op : operations) {
+      // so, what was the problem
+      // here we have been looking for a substr in string, substr was
+      // an operation. Or has higher (I meen lower code number) priority,
+      // than it has xor. So, firstly we have been looking for or,
+      // than xor. so, we can have two possible variants.
+      // Check, if operation in fact is xor, not or, or just to
+      // find firstly xor, than or. At this moment I made first variant
       int index = i_expr.find(op);
-      while (index != i_expr.length() && index != std::string::npos) {
+      while (index != std::string::npos) {
+        // if we have xor in fact, go to next iteration
+        if (op == "or" && index > 0 && i_expr[index - 1] == 'x') {
+          index = i_expr.find(op, index + 1);
+          continue;
+        }
+
         std::pair<bool, std::vector<std::pair<int, int>>> brackets =
             createBrackets(i_expr);
         if (!inBrackets(brackets.second, index)) {
