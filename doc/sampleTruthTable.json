@@ -18,6 +18,7 @@
     "library_name": "sky130",
     
     "CNFF": false,
-    "CNFT": true
+    "CNFT": true,
+    "Zhegalkin": false
   }
 ]

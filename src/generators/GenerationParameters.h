@@ -21,6 +21,14 @@ class CNNFromTruthTableParameters {
   bool d_CNFT = false;
 };
 
+class zhegalkinFromTruthTableParameters{
+  public:
+    bool getZhegalkin() { return d_zhegalkin; }
+    void setZhegalkin(bool i_zhegalkin) { d_zhegalkin = i_zhegalkin; }
+  private:
+    bool d_zhegalkin = false;
+};
+
 class GeneratorRandLevelParameters {
  public:
   int getMinLevel() const { return d_minLevel; }
@@ -171,6 +179,9 @@ class GenerationParameters {
   CNNFromTruthTableParameters getCNF() const {
     return d_cnfFromTruthTableParameters;
   }
+  zhegalkinFromTruthTableParameters getZhegalkin() const { 
+    return d_ZhegalkinFromTruthTableParameters; 
+  } 
   GeneratorRandLevelParameters getRandLevel() const {
     return d_generatorRandLevelParameters;
   }
@@ -222,6 +233,9 @@ class GenerationParameters {
     d_generatorComparisonParameters.setCompare1(i_compare1);
     d_generatorComparisonParameters.setCompare2(i_compare2);
   }
+  void setZhegalkin(bool i_zhegalkin) { 
+    d_ZhegalkinFromTruthTableParameters.setZhegalkin(i_zhegalkin); 
+  }
   
     // void setNumOfCycles(int i_numOfCycles) {
   // d_geneticParameters.setNumOfCycles(i_numOfCycles); } void
@@ -248,6 +262,7 @@ class GenerationParameters {
   std::uint_fast32_t d_seed = 0;
 
   CNNFromTruthTableParameters d_cnfFromTruthTableParameters;
+  zhegalkinFromTruthTableParameters d_ZhegalkinFromTruthTableParameters;
   GeneratorRandLevelParameters d_generatorRandLevelParameters;
   GeneratorNumOperationParameters d_generatorNumOperationParameters;
   GeneratorSummatorParameters d_generatorSummatorParameters;

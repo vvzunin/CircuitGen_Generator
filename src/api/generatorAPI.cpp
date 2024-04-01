@@ -167,6 +167,7 @@ void runGenerationFromJson(std::string json_path) {
       }
       gp.setCNFF(data.contains("CNFF") ? (bool)data["CNFF"] : false);
       gp.setCNFT(data.contains("CNFT") ? (bool)data["CNFT"] : false);
+      gp.setZhegalkin(data.contains("Zhegalkin") ? (bool)data["Zhegalkin"] : false);
     }
 
     // Основные параметры для Rand Level

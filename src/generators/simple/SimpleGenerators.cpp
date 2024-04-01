@@ -157,6 +157,56 @@ std::vector<std::string> SimpleGenerators::cnfFromTruthTable(
   return fun;
 }
 
+std::vector<std::string> SimpleGenerators::zhegalkinFromTruthTable(const TruthTable& i_table) {
+    std::vector<std::string> polynomial;
+    int num_inputs = i_table.getInput();
+    int num_outputs = i_table.getOutput();
+
+    polynomial.reserve(num_outputs);
+    for (int j = 0; j < num_outputs; ++j) {
+        std::string poly = "f" + std::to_string(j) + " = ";
+
+        int mem = 0;
+        for (int i = 0; i < i_table.size(); ++i) {
+            mem += i_table.getOutTable(i, j);
+        }
+
+        if (mem == 0) {
+            poly += "1'b0";
+        } else if (mem == i_table.size()) {
+            poly += "1'b1";
+        } else {
+            bool first_term = true;
+            for (int term = 0; term < (1 << num_inputs); ++term) {
+                if (i_table.getOutTable(term, j)) {
+                    if (!first_term) {
+                        poly += " " + std::string("xor") + " ";
+                    }
+                    if (term == 0) {
+                        poly += "1'b0";
+                    } else {
+                        poly += "(";
+                        for (int i = 0; i < num_inputs; ++i) {
+                            if ((term >> (num_inputs - i - 1)) & 1) {
+                                poly += "x" + std::to_string(i);
+                            } else {
+                                poly += std::string("not") + " x" + std::to_string(i);
+                            }
+                            if (i != num_inputs - 1) {
+                                poly += " " + std::string("and") + " ";
+                            }
+                        }
+                        poly += ")";
+                    }
+                    first_term = false;
+                }
+            }
+        }
+        polynomial.push_back(poly);
+    }
+    return polynomial;
+}
+
 OrientedGraph SimpleGenerators::generatorRandLevel(
     int i_minLevel, int i_maxLevel, int i_minElements, int i_maxElements,
     int i_inputs, int i_outputs) {
