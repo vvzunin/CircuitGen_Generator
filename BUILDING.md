@@ -56,7 +56,7 @@ cmake --install build --config Release
 FetchContent_Declare(
   CircuitGen_Generator
   GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Generator
-  GIT_TAG 952692f007b8e70bb5233b0ff3b35e318fc141d8
+  GIT_TAG v1.0.0-alpha
 )
 FetchContent_MakeAvailable(CircuitGen_Generator)
 ```
