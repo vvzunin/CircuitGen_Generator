@@ -44,5 +44,39 @@ cmake --install build
 cmake --install build --config Release
 ```
 
+### Пакет CMake
+
+Этот проект экспортирует пакет CMake для использования с CMake командой [`find_package`][3]:
+
+* Package name: `CircuitGenGenerator`
+* Target name: `CircuitGenGenerator::CircuitGenGenerator`
+
+Пример подгрузки библиотеки:
+```cmake
+FetchContent_Declare(
+  CircuitGen_Generator
+  GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Generator
+  GIT_TAG 952692f007b8e70bb5233b0ff3b35e318fc141d8
+)
+FetchContent_MakeAvailable(CircuitGen_Generator)
+```
+
+> [!CAUTION]
+> В качестве GIT_TAG необходимо выбрать последнюю доступную версию проекта.
+
+
+Пример добавления библиотеки в проект:
+```cmake
+target_link_libraries(
+    app PRIVATE
+    CircuitGenGenerator::CircuitGenGenerator
+)
+```
+
+### Note to packagers
+
+Для `CMAKE_INSTALL_INCLUDEDIR` задан путь, отличный от просто `include`, если проект настроен как проект верхнего уровня, чтобы избежать косвенного включения других библиотек при установке с общим префиксом. Просмотрите файл [install-rules.cmake](cmake/install-rules.cmake) для получения полного набора правил установки.
+
 [1]: https://cmake.org/download/
 [2]: https://cmake.org/cmake/help/latest/manual/cmake.1.html#install-a-project
+[3]: https://cmake.org/cmake/help/latest/command/find_package.html
