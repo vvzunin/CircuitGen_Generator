@@ -26,7 +26,7 @@
       "hidden": true,
       "inherits": "cmake-pedantic",
       "cacheVariables": {
-        "CircuitGen_Generator_DEVELOPER_MODE": "ON"
+        "CircuitGenGenerator_DEVELOPER_MODE": "ON"
       }
     },
     {
