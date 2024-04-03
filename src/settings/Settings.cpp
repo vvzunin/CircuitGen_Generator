@@ -1,14 +1,14 @@
-#include "Settings.h"
-
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <memory>
 
+#include "Settings.h"
+
 std::shared_ptr<Settings> Settings::d_singleton = nullptr;
 
-std::shared_ptr<Settings> Settings::getInstance(const std::string &i_value) {
+std::shared_ptr<Settings> Settings::getInstance(const std::string& i_value) {
   /**
    * This is a safer way to create an instance. instance = new Singleton is
    * dangeruous in case two instance threads wants to access at the same time
@@ -21,14 +21,14 @@ std::shared_ptr<Settings> Settings::getInstance(const std::string &i_value) {
 }
 
 void Settings::loadSettings() {
-  for (const auto &[key, value] : d_logicOperations) {
+  for (const auto& [key, value] : d_logicOperations) {
     int i = value.second;
     if (d_operationsToHierarchy.find(i) == d_operationsToHierarchy.end())
       d_operationsToHierarchy[i] = {};
     d_operationsToHierarchy[i].push_back(value.first);
   }
 
-  for (const auto &[key, value] : d_logicOperations)
+  for (const auto& [key, value] : d_logicOperations)
     d_operationsToName[value.first] = key;
 
   if (std::filesystem::exists(d_fileName)) {
@@ -91,10 +91,10 @@ void Settings::loadSettings() {
       readFile >> fromName;
       if (fromName == "input") {
         fromName = "";
-        toName = "input";  // fromName take operation but the operation that
-                           // input have is empty string so it is gonna take
+        toName = "input";  // fromName take operation, but the operation that
+                           // input have, is an empty string so it is going to take
                            // directly input.
-      }                    // So that I check it out right here
+      }  // So that I check it out right here
       else
         readFile >> toName;
       d_operationsToName[fromName] = toName;
@@ -104,10 +104,12 @@ void Settings::loadSettings() {
   }
 }
 
-std::string Settings::getInstanceName() const { return d_name; }
+std::string Settings::getInstanceName() const {
+  return d_name;
+}
 
 std::pair<std::string, int> Settings::getLogicOperation(
-    const std::string &i_op) {
+    const std::string& i_op) {
   return d_logicOperations.at(i_op);
 }
 
@@ -119,18 +121,22 @@ std::pair<std::vector<bool>, std::vector<Gates>>
 Settings::getLogicOperationsWithGates() {
   std::vector<bool> oneGate;
 
-  for (const auto &key : d_logicElements) {
+  for (const auto& key : d_logicElements) {
     oneGate.push_back(key == Gates::GateBuf || key == Gates::GateNot);
   }
 
   return std::make_pair(oneGate, d_logicElements);
 }
 
-int Settings::getNumThread() const { return d_numThreads; }
+int Settings::getNumThread() const {
+  return d_numThreads;
+}
 
-std::string Settings::getPathNadezhda() const { return d_pathToNadezhda; }
+std::string Settings::getPathNadezhda() const {
+  return d_pathToNadezhda;
+}
 
-std::string Settings::getNadezhdaVar(const std::string &key) const {
+std::string Settings::getNadezhdaVar(const std::string& key) const {
   return d_nadezhda.at(key);
 }
 
@@ -138,7 +144,7 @@ std::vector<std::string> Settings::fromOperationsToHierarchy(int key) const {
   return d_operationsToHierarchy.at(key);
 }
 
-std::string Settings::fromOperationsToName(const std::string &i_op) const {
+std::string Settings::fromOperationsToName(const std::string& i_op) const {
   return d_operationsToName.at(i_op);
 }
 
@@ -148,39 +154,49 @@ void Settings::SaveSettings() {
             << d_pathToNadezhda << std::endl;
 
   writeFile << d_nadezhda.size() << std::endl;
-  for (const auto &[key, value] : d_nadezhda)
+  for (const auto& [key, value] : d_nadezhda)
     writeFile << key << ' ' << value << std::endl;
 
   writeFile << d_numThreads << std::endl;
 
   writeFile << d_logicOperations.size() << std::endl;
-  for (const auto &[key, value] : d_logicOperations)
+  for (const auto& [key, value] : d_logicOperations)
     writeFile << key << ' ' << value.first << ' ' << value.second << std::endl;
 
   writeFile << d_operationsToHierarchy.size() << std::endl;
-  for (const auto &[key, value] : d_operationsToHierarchy) {
+  for (const auto& [key, value] : d_operationsToHierarchy) {
     writeFile << key << ' ' << value.size() << std::endl;
-    for (const auto &operation : value) writeFile << operation << ' ';
+    for (const auto& operation : value)
+      writeFile << operation << ' ';
     writeFile << std::endl;
   }
 
   writeFile << d_operationsToName.size() << std::endl;
-  for (const auto &[key, value] : d_operationsToName)
+  for (const auto& [key, value] : d_operationsToName)
     writeFile << key << ' ' << value << std::endl;
 
   writeFile << d_maxInputs << ' ' << d_maxOutputs << std::endl;
 }
 
-std::string Settings::getDatasetPath() const { return d_datasetPath; }
+std::string Settings::getDatasetPath() const {
+  return d_datasetPath;
+}
 
-std::string Settings::getLibraryPath() const { return d_libraryPath; }
+std::string Settings::getLibraryPath() const {
+  return d_libraryPath;
+}
 
-std::string Settings::getGenerationMethodPrefix(const std::string &i_s) const {
-  if (i_s == "FromRandomTruthTable") return "CCGRTT";
-  if (i_s == "RandLevel") return "CCGRCG";
-  if (i_s == "RandLevelExperimental") return "CCGRCGE";
-  if (i_s == "NumOperation") return "CCGRVC";
-  if (i_s == "Genetic") return "CCGGA";
+std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const {
+  if (i_s == "FromRandomTruthTable")
+    return "CCGRTT";
+  if (i_s == "RandLevel")
+    return "CCGRCG";
+  if (i_s == "RandLevelExperimental")
+    return "CCGRCGE";
+  if (i_s == "NumOperation")
+    return "CCGRVC";
+  if (i_s == "Genetic")
+    return "CCGGA";
 
   std::cerr << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
 
@@ -188,7 +204,7 @@ std::string Settings::getGenerationMethodPrefix(const std::string &i_s) const {
 }
 
 std::string Settings::getLibraryNameFromEnum(
-    const LibrariesTypes &library) const {
+    const LibrariesTypes& library) const {
   switch (library) {
     case SKY_LIB:
     default:
@@ -196,9 +212,13 @@ std::string Settings::getLibraryNameFromEnum(
   }
 }
 
-int Settings::getMaxInputs() const { return d_maxInputs; }
+int Settings::getMaxInputs() const {
+  return d_maxInputs;
+}
 
-int Settings::getMaxOutputs() const { return d_maxOutputs; }
+int Settings::getMaxOutputs() const {
+  return d_maxOutputs;
+}
 
 std::map<std::string, std::pair<std::string, int>>
 Settings::getLogicOperations() const {

@@ -311,7 +311,7 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
         std::shared_ptr<GraphVertexBase>newVertex = graph.addGate(operation);
         graph.addEdge(graph.getVerticeByIndex(child1), newVertex);
       } else {
-        // parents vertexes to be added for a new one
+        // parents vertices to be added for a new one
         std::vector<std::shared_ptr<GraphVertexBase>> parents;
         // set memory (might be big, so we save time)
         parents.reserve(gatesNumber);
@@ -331,7 +331,7 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
 
           // if we are at the end of vector
           if (idx == curGates.end()) {
-            // and we added some verticies, e.g. we are not on the first level
+            // and we added some vertices, e.g. we are not on the first level
             if (i > 1) {
               for (int k = 0; k < inputs.size(); ++k)
                 std::swap(inputs[k],
@@ -358,7 +358,7 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     std::clog << (float)i / (float)maxLevel * 100 << "%" << std::endl;
   }
 
-  std::clog << "writting out gates" << std::endl;
+  std::clog << "writing out gates" << std::endl;
   for (int i = 0; i < i_outputs; ++i) {
     int child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
     expr = "f" + std::to_string(i + 1);
@@ -367,7 +367,7 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     graph.addEdge(graph.getVerticeByIndex(child1), newVertex);
   }
 
-  std::clog << "writting out gates ended" << std::endl;
+  std::clog << "writing out gates ended" << std::endl;
   return graph;
 }
 
