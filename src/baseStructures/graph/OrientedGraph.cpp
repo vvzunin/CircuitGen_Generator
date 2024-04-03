@@ -130,16 +130,30 @@ std::shared_ptr<OrientedGraph> OrientedGraph::addSubGraph(
 
 bool OrientedGraph::addEdge(std::shared_ptr<GraphVertexBase> from,
                             std::shared_ptr<GraphVertexBase> to) {
-  // TODO: Добавить проверку на разные baseGraph. Если from - output, то to -
-  // любой. Либо to - input, а from - любой.
-  bool f = from->addVertexToOutConnections(to);
-  int n = to->addVertexToInConnections(from);
-
-  ++d_edgesCount;
-
+  bool f;
+  int n;
+  if (from->getBaseGraph() == to->getBaseGraph()){
+      f = from->addVertexToOutConnections(to);
+      n = to->addVertexToInConnections(from);
+  }
+  else{
+      if (from->getType() == VertexTypes::output){
+          n = to->addVertexToInConnections(from);
+      }
+      else{
+          throw std::invalid_argument("Not allowed to add edge from one subgraph to another, if from vertex is not output");
+      }
+      if (to->getType() == VertexTypes::input){
+          f = from->addVertexToOutConnections(to);
+      }
+      else{
+          throw std::invalid_argument("Not allowed to add edge from one subgraph to another, if to vertex is not input");
+      }
+  }
+  d_edgesCount += f && (n > 0);
   if (from->getType() == VertexTypes::gate &&
-      to->getType() == VertexTypes::gate)
-    ++d_edgesGatesCount[from->getGate()][to->getGate()];
+  to->getType() == VertexTypes::gate)
+      ++d_edgesGatesCount[from->getGate()][to->getGate()];
 
   return f && (n > 0);
 }
