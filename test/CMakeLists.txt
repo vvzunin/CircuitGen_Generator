@@ -78,9 +78,9 @@ add_executable(${PROJECT_NAME}
 
   #src/database/DataBaseGeneratorTests.cpp
 
-  ##src/generators/simple/SimpleGeneratorsTests.cpp 
+  src/generators/simple/SimpleGeneratorsTests.cpp 
 
-  ##src/settings/SettingsTests.cpp
+  src/settings/SettingsTests.cpp
 
   #AbcUtilsTests.cpp
   #YosysUtilsTests.cpp
