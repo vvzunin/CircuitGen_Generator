@@ -8,7 +8,7 @@ TEST (CnfFromTruthTableTest, EqualWithTheSameParametrs) {
   SimpleGenerators thirdGenerator = SimpleGenerators(2);
   SimpleGenerators fourthGenerator = SimpleGenerators(2);
 
-  TruthTable table = TruthTable{ 1,  1 , std::vector<std::vector<bool>>({{1}, {1}}) };
+  TruthTable table = TruthTable{ 1,  1 , std::vector<std::vector<bool>>({{1},{1}}) };
   std::vector<std::string> firstCnf = firstGenerator.cnfFromTruthTable(table, true);
   std::vector<std::string> secondCnf = secondGenerator.cnfFromTruthTable(table, true);
   EXPECT_TRUE(firstCnf == secondCnf);
@@ -16,7 +16,7 @@ TEST (CnfFromTruthTableTest, EqualWithTheSameParametrs) {
   secondCnf = fourthGenerator.cnfFromTruthTable(table, true);
   EXPECT_TRUE(firstCnf == secondCnf);
 
-  table = TruthTable{ 2,  1 , std::vector<std::vector<bool>>({{1}, {1}, {1}, {0}}) };
+  table = TruthTable{ 2,  1 , std::vector<std::vector<bool>>({{1},{1} ,{1} , {0}}) };
   firstCnf = firstGenerator.cnfFromTruthTable(table, true);
   secondCnf = secondGenerator.cnfFromTruthTable(table, true);
   EXPECT_TRUE(firstCnf == secondCnf);
@@ -24,7 +24,7 @@ TEST (CnfFromTruthTableTest, EqualWithTheSameParametrs) {
   secondCnf = fourthGenerator.cnfFromTruthTable(table, true);
   EXPECT_TRUE(firstCnf == secondCnf);
 
-  table = TruthTable{ 2,  2 , std::vector<std::vector<bool>>({{1, 1}, {1, 1}, {1, 1}, {0, 0}}) };
+  table = TruthTable{ 2,  2 , std::vector<std::vector<bool>>({{1 , 1},{1 , 1} ,{1 , 1} , {0 , 0}}) };
   firstCnf = firstGenerator.cnfFromTruthTable(table, true);
   secondCnf = secondGenerator.cnfFromTruthTable(table, true);
   EXPECT_TRUE(firstCnf == secondCnf);
@@ -54,17 +54,25 @@ std::map<std::string, std::vector<int>> gatesInfo = {
 
   OrientedGraph firstGraph = firstGenerator.generatorRandLevel(1, 3, 1, 3, 3, 3);
   OrientedGraph secondGraph = secondGenerator.generatorRandLevel(1, 3, 1, 3, 3, 3);
-  EXPECT_TRUE(firstGraph == secondGraph);
+  std::string str1 = firstGraph.calculateHash();
+  std::string str2 = secondGraph.calculateHash();
+  EXPECT_EQ(str1, str2);
   firstGraph = thirdGenerator.generatorRandLevel(1, 3, 1, 3, 3, 3);
   secondGraph = fourthGenerator.generatorRandLevel(1, 3, 1, 3, 3, 3);
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();
+  EXPECT_EQ(str1, str2);
 
   firstGraph = firstGenerator.generatorRandLevel(2, 6, 2, 6, 4, 4);
   secondGraph = secondGenerator.generatorRandLevel(2, 6, 2, 6, 4, 4);
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();
+  EXPECT_EQ(str1, str2);
   firstGraph = thirdGenerator.generatorRandLevel(2, 6, 2, 6, 4, 4);
   secondGraph = fourthGenerator.generatorRandLevel(2, 6, 2, 6, 4, 4);
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();  
+  EXPECT_EQ(str1, str2);
 }
 
 TEST (GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
@@ -87,11 +95,15 @@ TEST (GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
   fourthGenerator.setGatesInputsInfo(gatesInfo);
 
   OrientedGraph firstGraph = firstGenerator.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
-  OrientedGraph secondGraph = firstGenerator.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
-  EXPECT_TRUE(firstGraph == secondGraph);
+  OrientedGraph secondGraph = secondGenerator.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
+  std::string str1 = firstGraph.calculateHash();
+  std::string str2 = secondGraph.calculateHash();
+  EXPECT_EQ(str1, str2);
   firstGraph = thirdGenerator.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
   secondGraph = fourthGenerator.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();
+  EXPECT_EQ(str1, str2);
 
   //firstGraph = firstGenerator.generatorRandLevelExperimental(1, 6, 1, 6, 4, 4);
   //secondGraph = secondGenerator.generatorRandLevelExperimental(1, 6, 1, 6, 4, 4);
@@ -115,12 +127,16 @@ TEST (GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
     {Gates::GateNot, 1}
   };
   OrientedGraph firstGraph = firstGenerator.generatorNumOperation(1, 1, logicOper, true);
-  EXPECT_TRUE(firstGraph == firstGraph);
-  OrientedGraph secondGraph = secondGenerator.generatorNumOperation(1, 1, logicOper, true);   
-  EXPECT_TRUE(firstGraph == secondGraph);
+  std::string str1 = firstGraph.calculateHash();
+  EXPECT_EQ(str1, str1);
+  OrientedGraph secondGraph = secondGenerator.generatorNumOperation(1, 1, logicOper, true);
+  std::string str2 = secondGraph.calculateHash();
+  EXPECT_EQ(str1, str2);
   firstGraph = thirdGenerator.generatorNumOperation(1, 1, logicOper, true);
   secondGraph = fourthGenerator.generatorNumOperation(1, 1, logicOper, true);   
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();  
+  EXPECT_EQ(str1, str2);
 
   logicOper = {
     {Gates::GateAnd, 5},
@@ -134,17 +150,27 @@ TEST (GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
 
   firstGraph = firstGenerator.generatorNumOperation(1, 1, logicOper, true);
   secondGraph = secondGenerator.generatorNumOperation(1, 1, logicOper, true);
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();  
+  EXPECT_EQ(str1, str2);
+
   firstGraph = thirdGenerator.generatorNumOperation(1, 1, logicOper, true);
   secondGraph = fourthGenerator.generatorNumOperation(1, 1, logicOper, true);   
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();  
+  EXPECT_EQ(str1, str2);
 
   firstGraph = firstGenerator.generatorNumOperation(5, 10, logicOper, true);
   secondGraph = secondGenerator.generatorNumOperation(5, 10, logicOper, true);
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();  
+  EXPECT_EQ(str1, str2);
+
   firstGraph = thirdGenerator.generatorNumOperation(5, 10, logicOper, true);
   secondGraph = fourthGenerator.generatorNumOperation(5, 10, logicOper, true);   
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();  
+  EXPECT_EQ(str1, str2);
 
   logicOper = {
     {Gates::GateAnd, 5},
@@ -158,15 +184,25 @@ TEST (GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
 
   firstGraph = firstGenerator.generatorNumOperation(1, 1, logicOper, false);
   secondGraph = secondGenerator.generatorNumOperation(1, 1, logicOper, false);
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();  
+  EXPECT_EQ(str1, str2);
+
   firstGraph = thirdGenerator.generatorNumOperation(1, 1, logicOper, false);
   secondGraph = fourthGenerator.generatorNumOperation(1, 1, logicOper, false);   
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();  
+  EXPECT_EQ(str1, str2);
 
   firstGraph = firstGenerator.generatorNumOperation(7, 9, logicOper, false);
   secondGraph = secondGenerator.generatorNumOperation(7, 9, logicOper, false);
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();  
+  EXPECT_EQ(str1, str2);
+
   firstGraph = thirdGenerator.generatorNumOperation(7, 9, logicOper, false);
   secondGraph = fourthGenerator.generatorNumOperation(7, 9, logicOper, false);   
-  EXPECT_TRUE(firstGraph == secondGraph);
+  str1 = firstGraph.calculateHash();
+  str2 = secondGraph.calculateHash();  
+  EXPECT_EQ(str1, str2);
 }
