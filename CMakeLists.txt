@@ -42,7 +42,6 @@ set(PUBLIC_HEADERS
 )
 
 set(SOURCES
-  ${PUBLIC_HEADERS}
   src/additional/AuxiliaryMethods.cpp
   src/additional/filesTools/FilesTools.cpp
   src/additional/threadPool/ThreadPool.cpp
@@ -59,11 +58,9 @@ set(SOURCES
   src/database/DataBaseGeneratorParameters.cpp
   src/generators/simple/SimpleGenerators.cpp
   src/settings/Settings.cpp
-  
-  src/CircuitGenGenerator.cpp
 )
 
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCES})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES src/CircuitGenGenerator.cpp ${SOURCES})
 
 add_library(
     CircuitGenGenerator_lib
@@ -118,11 +115,11 @@ set_target_properties(
 
 list(APPEND PUBLIC_HEADERS
     "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
-list(APPEND SOURCES
-    "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
+# list(APPEND SOURCES
+#     "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
 
 include(CMakePackageConfigHelpers)
-target_sources(CircuitGenGenerator_lib PRIVATE ${SOURCES})
+target_sources(CircuitGenGenerator_lib PRIVATE src/CircuitGenGenerator.cpp ${SOURCES})
 
 
 target_include_directories(
@@ -229,7 +226,7 @@ endif()
 if(PROJECT_IS_TOP_LEVEL)
   option(BUILD_EXAMPLES "Build examples tree." "${CircuitGenGenerator_DEVELOPER_MODE}")
   if(BUILD_EXAMPLES)
-    add_subdirectory(example)
+    add_subdirectory(examples)
   endif()
 endif()
 
