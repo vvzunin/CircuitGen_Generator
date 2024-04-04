@@ -1,8 +1,10 @@
 # Добавление нового генератора
 
 Для добавления новых генераторов необходимо внести корректировки в следующие файлы:
-## 1. [DataBaseGeneratorParameters.h](source/DataBase/DataBaseGeneratorParameters.h)
+## 1.1 [DataBaseGeneratorParameters.h](source/DataBase/DataBaseGeneratorParameters.h)
 В файле необходимо отредактировать перечисление типа **GenerationTypes**, добавив в него название генератора. В качестве примера назавем его **NewGeneratorName**.
+## 1.2 [DataBaseGeneratorParametrs.cpp] (src/DataBase/DataBaseGeneratorParametrs.cpp)
+Добавить соответствующую строку для перевода значения из enum в std::string в методе getGenerationTypeString.
 ## 2. [GeneratorParametrs.h](source/generators/GenerationParameters.h)
 В файле необходимо создать новый класс, в который нужно будет добавить дополнительные параметры для использования нового генератора. Название класса должно соответствовать требованию: **Generator** + <имя генератор> + **Parameters**. Используя генератор из примера, класс должен назвываться так: **GeneratorNewGeneratorNameParameters**.
 > [!IMPORTANT]

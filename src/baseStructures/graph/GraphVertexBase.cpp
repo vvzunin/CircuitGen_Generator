@@ -1,5 +1,6 @@
 #include "GraphVertexBase.h"
 
+#include <set>
 #include <string>
 
 uint_fast64_t GraphVertexBase::d_count = 0;
@@ -83,12 +84,16 @@ std::string GraphVertexBase::calculateHash(bool recalculate) {
 
   if (d_type == VertexTypes::output && !d_baseGraph) return "";
 
+  // autosorted struct
+  std::set<std::string> hashed_data;
   hashed = "";
-  if (d_type == VertexTypes::constant)
-    hashed = std::to_string(d_outConnections.size()) + d_value;
 
   for (auto& child : d_outConnections) {
-    hashed += child->calculateHash(recalculate);
+    hashed_data.insert(child->calculateHash(recalculate));
+  }
+
+  for (const auto& sub : hashed_data) {
+    hashed += sub;
   }
 
   hashed = std::to_string(std::hash<std::string>{}(hashed));
