@@ -1,4 +1,4 @@
-#include "GraphVertexBase.h"
+#include "GraphVertexBase.hpp"
 
 #include <set>
 #include <string>

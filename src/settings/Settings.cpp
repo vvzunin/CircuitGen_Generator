@@ -4,7 +4,7 @@
 #include <iostream>
 #include <memory>
 
-#include "Settings.h"
+#include "Settings.hpp"
 
 std::shared_ptr<Settings> Settings::d_singleton = nullptr;
 

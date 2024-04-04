@@ -1,4 +1,4 @@
-#include "GraphVertex.h"
+#include "GraphVertex.hpp"
 
 GraphVertexOutput::GraphVertexOutput(OrientedGraph *i_baseGraph)
     : GraphVertexBase(VertexTypes::output, i_baseGraph) {}

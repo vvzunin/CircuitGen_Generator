@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "GraphVertex.h"
+#include "GraphVertex.hpp"
 
 GraphVertexInput::GraphVertexInput(OrientedGraph *i_baseGraph,
                                    const VertexTypes i_type)

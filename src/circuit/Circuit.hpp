@@ -1,13 +1,13 @@
 #pragma once
 
-#include <baseStructures/graph/OrientedGraph.h>
-#include <baseStructures/truthTable/TruthTable.h>
+#include <baseStructures/graph/OrientedGraph.hpp>
+#include <baseStructures/truthTable/TruthTable.hpp>
 
 #include <memory>
 #include <string>
 #include <vector>
 
-#include "CircuitParameters.h"
+#include "CircuitParameters.hpp"
 
 class Circuit {
  public:

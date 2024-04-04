@@ -1,4 +1,4 @@
-#include "FilesTools.h"
+#include "FilesTools.hpp"
 
 namespace FilesTools {
 std::vector<std::string> getDirectories(std::string &path) {

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <utility>
 #include <algorithm>
-#include "additional/AuxiliaryMethods.h"
+#include "additional/AuxiliaryMethods.hpp"
 
 TEST(test_aux_methods, test_remove_spaces_without_spaces)
 {

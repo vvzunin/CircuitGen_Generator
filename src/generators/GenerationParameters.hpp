@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include <settings/Settings.h>
+#include <settings/Settings.hpp>
 
 class CNNFromTruthTableParameters {
  public:

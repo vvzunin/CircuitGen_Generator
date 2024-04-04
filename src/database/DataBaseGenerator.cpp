@@ -1,10 +1,10 @@
-#include <additional/filesTools/FilesTools.h>
-#include <additional/threadPool/ThreadPool.h>
-#include <baseStructures/Parser.h>
-#include <baseStructures/truthTable/TruthTable.h>
-#include <circuit/Circuit.h>
-#include <circuit/CircuitParameters.h>
-#include <generators/simple/SimpleGenerators.h>
+#include <additional/filesTools/FilesTools.hpp>
+#include <additional/threadPool/ThreadPool.hpp>
+#include <baseStructures/Parser.hpp>
+#include <baseStructures/truthTable/TruthTable.hpp>
+#include <circuit/Circuit.hpp>
+#include <circuit/CircuitParameters.hpp>
+#include <generators/simple/SimpleGenerators.hpp>
 
 #include <algorithm>
 #include <chrono>
@@ -13,11 +13,9 @@
 #include <iostream>
 #include <limits>
 #include <vector>
-// #include <generators/Genetic/GenGenerator.h>
-// #include <generators/Genetic/GeneticParameters.h>
-#include <additional/AuxiliaryMethods.h>
+#include <additional/AuxiliaryMethods.hpp>
 
-#include "DataBaseGenerator.h"
+#include "DataBaseGenerator.hpp"
 
 using namespace std::chrono;
 using namespace Threading;

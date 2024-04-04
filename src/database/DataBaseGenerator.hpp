@@ -1,11 +1,11 @@
 
 #pragma once
 
-#include <settings/Settings.h>
+#include <settings/Settings.hpp>
 
 #include <functional>
 
-#include "DataBaseGeneratorParameters.h"
+#include "DataBaseGeneratorParameters.hpp"
 
 class DataBaseGenerator {
  public:

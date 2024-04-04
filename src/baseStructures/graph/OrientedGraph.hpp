@@ -1,8 +1,8 @@
 #pragma once
 
-#include <baseStructures/graph/GraphVertexBase.h>
-#include <baseStructures/graph/enums.h>
-#include <settings/Settings.h>
+#include <baseStructures/graph/GraphVertexBase.hpp>
+#include <baseStructures/graph/enums.hpp>
+#include <settings/Settings.hpp>
 
 #include <map>
 #include <memory>

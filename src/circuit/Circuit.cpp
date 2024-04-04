@@ -1,8 +1,8 @@
-#include "Circuit.h"
+#include "Circuit.hpp"
 
-#include <additional/AuxiliaryMethods.h>
-#include <additional/filesTools/FilesTools.h>
-#include <baseStructures/graph/enums.h>
+#include <additional/AuxiliaryMethods.hpp>
+#include <additional/filesTools/FilesTools.hpp>
+#include <baseStructures/graph/enums.hpp>
 
 #include <cmath>
 #include <cstdio>

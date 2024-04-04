@@ -1,13 +1,13 @@
 #pragma once
 
-#include <baseStructures/graph/enums.h>
+#include <baseStructures/graph/enums.hpp>
 
 #include <memory>
 #include <string>
 #include <vector>
 
-#include "OrientedGraph.h"
-#include "settings/Settings.h"
+#include "OrientedGraph.hpp"
+#include "settings/Settings.hpp"
 
 class OrientedGraph;  // Проблема циклического определения
 class GraphVertexBase {

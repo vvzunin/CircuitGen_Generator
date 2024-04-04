@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "settings/Settings.h"
+#include "settings/Settings.hpp"
 #include <string>
 #include <exception>
 #include <memory>
@@ -16,17 +16,17 @@ TEST(test_settings, test_default_load_settings)
   std::shared_ptr<Settings> t = Settings::getInstance("test_default_load_settings");
 
   std::map<int, std::vector<std::string>> operToHierAns;
-  operToHierAns[0] = {"="};
-  operToHierAns[1] = {"nor"};
-  operToHierAns[2] = {"or"};
-  operToHierAns[3] = {"nand"};
-  operToHierAns[4] = {"and"};
-  operToHierAns[5] = {"xnor"};
-  operToHierAns[6] = {"xor"};
-  operToHierAns[7] = {"not"};
- // operToHierAns[8] = {"buf"};
-  operToHierAns[9] = {"1'b0"};
-  operToHierAns[10] = {""};
+  operToHierAns[0] = { "=" };
+  operToHierAns[1] = { "xnor" };
+  operToHierAns[2] = { "xor" };
+  operToHierAns[3] = { "nand" };
+  operToHierAns[4] = { "and" };
+  operToHierAns[5] = { "nor" };
+  operToHierAns[6] = { "or" };
+  operToHierAns[7] = { "not" };
+  operToHierAns[8] = {"buf"};
+  operToHierAns[9] = { "1'b0" };
+  operToHierAns[10] = { "" };
 
   std::map<std::string, std::string> operToNameAns;
 
@@ -38,7 +38,7 @@ TEST(test_settings, test_default_load_settings)
   operToNameAns["or"] = "or";
   operToNameAns["nor"] = "nor";
   operToNameAns["not"] = "not";
-//  operToNameAns["buf"] = "buf";
+  operToNameAns["buf"] = "buf";
   operToNameAns["xor"] = "xor";
   operToNameAns["xnor"] = "xnor";
 
@@ -55,87 +55,87 @@ TEST(test_settings, test_default_load_settings)
 
 TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectLogicOperation)
 {
-    if (!std::filesystem::exists(fileName))
+  if (!std::filesystem::exists(fileName))
+  {
+    std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
+    // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+    std::map <std::string, std::pair<std::string, int>> correctLogicOperations =
     {
-        std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
-        // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
-        std::map <std::string, std::pair<std::string, int>> correctLogicOperations =
-        {
-          {"input",  {"",     10}},
-          {"output", {"=",    0}},
-          {"const",  {"1'b0",  9}},
-          {"and",    {"and",  4}},
-          {"nand",   {"nand", 3}},
-          {"or",     {"or",   2}},
-          {"nor",    {"nor",  1}},
-          {"not",    {"not",  7}},
-     //     {"buf",    {"buf",  8}},
-          {"xor",    {"xor",  6}},
-          {"xnor",   {"xnor", 5}}
-        };
+      {"input",  {"",     10}},
+      {"output", {"=",    0}},
+      {"const",  {"1'b0",  9}},
+      {"and",    {"and",  4}},
+      {"nand",   {"nand", 3}},
+      {"or",     {"or",   6}},
+      {"nor",    {"nor",  5}},
+      {"not",    {"not",  7}},
+      {"buf",    {"buf",  8}},
+      {"xor",    {"xor",  2}},
+      {"xnor",   {"xnor", 1}}
+    };
 
-        for (auto const& [key, val] : correctLogicOperations)
-        {
-            EXPECT_EQ(correctLogicOperations[key], SetPtr->getLogicOperation(key));
-        }
+    for (auto const& [key, val] : correctLogicOperations)
+    {
+      EXPECT_EQ(correctLogicOperations[key], SetPtr->getLogicOperation(key));
     }
+  }
 }
 
 TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsToHierarchy)
 {
-    if (!std::filesystem::exists(fileName))
+  if (!std::filesystem::exists(fileName))
+  {
+    std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
+    // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+    std::map <int, std::vector<std::string>> correctOperationsToHierarchy =
     {
-        std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
-        // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
-        std::map <int, std::vector<std::string>> correctOperationsToHierarchy =
-        {
-          {10,      {""}},
-          {0,      {"="}},
-          {9,    {"1'b0"}},
-          {4,    {"and"}},
-          {3,  {"nand" }},
-          {2,    {"or" }},
-          {1,    {"nor"}},
-          {7,    {"not"}},
-    //      {8,    {"buf"}},
-          {6,    {"xor"}},
-          {5,   {"xnor"}}
-        };
+      {10,      {""}},
+      {0,      {"="}},
+      {9,    {"1'b0"}},
+      {4,    {"and"}},
+      {3,  {"nand" }},
+      {6,    {"or" }},
+      {5,    {"nor"}},
+      {7,    {"not"}},
+      {8,    {"buf"}},
+      {2,    {"xor"}},
+      {1,   {"xnor"}}
+    };
 
-        for (auto const& [key, val] : correctOperationsToHierarchy)
-        {
-            EXPECT_EQ(correctOperationsToHierarchy[key], SetPtr->fromOperationsToHierarchy(key));
-        }
+    for (auto const& [key, val] : correctOperationsToHierarchy)
+    {
+      EXPECT_EQ(correctOperationsToHierarchy[key], SetPtr->fromOperationsToHierarchy(key));
     }
+  }
 }
 
 TEST(SettingsTest, defaultInitializationWithLoadSettingsWriteCorrectOperationsToName)
 {
-    if (!std::filesystem::exists(fileName))
+  if (!std::filesystem::exists(fileName))
+  {
+    std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
+    // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+
+    std::map <std::string, std::string> correctOperationsToName =
     {
-        std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we call implicitly loadSettings.
-        // Below I gonna write down correc samples that I wanna use to compare with the output of the loadSettings
+        {"" , "input"},
+        {"=" , "output"},
+        {"1'b0" , "const"},
+        {"and" , "and"},
+        {"nand" , "nand"},
+        {"or" , "or"},
+        {"nor" , "nor"},
+        {"not" , "not"},
+        //     {"buf" , "buf"},
+             {"xor" , "xor"},
+             {"xnor" , "xnor"}
+    };
 
-        std::map <std::string, std::string> correctOperationsToName =
-        {
-            {"" , "input"},
-            {"=" , "output"},
-            {"1'b0" , "const"},
-            {"and" , "and"},
-            {"nand" , "nand"},
-            {"or" , "or"},
-            {"nor" , "nor"},
-            {"not" , "not"},
-       //     {"buf" , "buf"},
-            {"xor" , "xor"},
-            {"xnor" , "xnor"}
-        };
-
-        for (auto const& [key, val] : correctOperationsToName)
-        {
-            EXPECT_EQ(correctOperationsToName[key], SetPtr->fromOperationsToName(key));
-        }
+    for (auto const& [key, val] : correctOperationsToName)
+    {
+      EXPECT_EQ(correctOperationsToName[key], SetPtr->fromOperationsToName(key));
     }
+  }
 }
 /* This part of code is working just fine. It can be used when SaveSettings will be set as public
 TEST(SettingsTest, SaveSettingsNormalTest)

@@ -1,7 +1,7 @@
-#include "SimpleGenerators.h"
+#include "SimpleGenerators.hpp"
 
-#include <additional/AuxiliaryMethods.h>
-#include <baseStructures/graph/OrientedGraph.h>
+#include <additional/AuxiliaryMethods.hpp>
+#include <baseStructures/graph/OrientedGraph.hpp>
 #include <math.h>
 
 #include <algorithm>

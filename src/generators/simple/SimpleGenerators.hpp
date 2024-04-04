@@ -1,10 +1,10 @@
 #pragma once
 
-#include <additional/RandomGeneratorWithSeed.h>
-#include <baseStructures/graph/OrientedGraph.h>
-#include <baseStructures/truthTable/TruthTable.h>
+#include <additional/RandomGeneratorWithSeed.hpp>
+#include <baseStructures/graph/OrientedGraph.hpp>
+#include <baseStructures/truthTable/TruthTable.hpp>
 #include <limits.h>
-#include <settings/Settings.h>
+#include <settings/Settings.hpp>
 
 #include <algorithm>
 #include <map>

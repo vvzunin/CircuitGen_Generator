@@ -1,7 +1,7 @@
 #pragma once
 
 #include <map>
-#include "settings/Settings.h"
+#include "settings/Settings.hpp"
 
 const std::map<char, std::map<char, char>> tableAnd{
   {'0', {{'0', '0'}, {'1', '0'}, {'x', '0'}, {'z', '0'}}},

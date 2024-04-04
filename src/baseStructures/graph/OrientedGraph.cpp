@@ -1,8 +1,8 @@
-﻿#include "OrientedGraph.h"
+﻿#include "OrientedGraph.hpp"
 
-#include <baseStructures/graph/GraphVertex.h>
-#include <baseStructures/graph/GraphVertexBase.h>
-#include <baseStructures/graph/GraphMLTemplates.h>
+#include <baseStructures/graph/GraphVertex.hpp>
+#include <baseStructures/graph/GraphVertexBase.hpp>
+#include <baseStructures/graph/GraphMLTemplates.hpp>
 
 #include <algorithm>
 #include <cassert>

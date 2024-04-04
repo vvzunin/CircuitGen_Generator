@@ -1,7 +1,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "Parser.h"
+#include "Parser.hpp"
 
 namespace {
 std::string deleteDoubleSpaces(const std::string& s) {

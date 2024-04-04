@@ -3,8 +3,8 @@
 #include <vector>
 #include <memory>
 
-#include <settings/Settings.h>
-#include <additional/RandomGeneratorWithSeed.h>
+#include <settings/Settings.hpp>
+#include <additional/RandomGeneratorWithSeed.hpp>
 
 class TruthTable 
 {

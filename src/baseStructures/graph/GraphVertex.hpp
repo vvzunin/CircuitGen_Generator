@@ -6,7 +6,7 @@
 #include <utility>
 #include <vector>
 
-#include "GraphVertexBase.h"
+#include "GraphVertexBase.hpp"
 
 class GraphVertexInput : public GraphVertexBase {
  public:

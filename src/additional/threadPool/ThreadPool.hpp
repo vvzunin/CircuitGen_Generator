@@ -10,7 +10,7 @@
 #include <functional>
 #include <thread>
 
-#include "./UnboundedMPMCQueue.h"
+#include "UnboundedMPMCQueue.hpp"
 
 namespace Threading {
 

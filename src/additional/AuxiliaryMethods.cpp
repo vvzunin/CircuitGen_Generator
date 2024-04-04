@@ -1,4 +1,4 @@
-#include "AuxiliaryMethods.h"
+#include "AuxiliaryMethods.hpp"
 
 #include <algorithm>
 #include <cassert>
@@ -10,7 +10,7 @@
 #include <utility>
 #include <vector>
 
-#include "RandomGeneratorWithSeed.h"
+#include "RandomGeneratorWithSeed.hpp"
 
 namespace {
 std::vector<std::string> splitString(const std::string &s, char delimiter) {

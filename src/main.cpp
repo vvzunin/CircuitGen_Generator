@@ -1,4 +1,4 @@
-#include "CircuitGenGenerator/CircuitGenGenerator.h"
+#include "CircuitGenGenerator/CircuitGenGenerator.hpp"
 #include <getopt.h>
 #include <unistd.h>
 

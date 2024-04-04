@@ -1,6 +1,6 @@
 #include <memory>
 
-#include "GraphVertex.h"
+#include "GraphVertex.hpp"
 
 GraphVertexConstant::GraphVertexConstant(
     char i_const, OrientedGraph *i_baseGraph)

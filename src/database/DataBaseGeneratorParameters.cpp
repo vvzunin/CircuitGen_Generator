@@ -1,4 +1,4 @@
-#include "DataBaseGeneratorParameters.h"
+#include "DataBaseGeneratorParameters.hpp"
 
 DataBaseGeneratorParameters::DataBaseGeneratorParameters(
     int i_minInputs, int i_maxInputs, int i_minOutputs, int i_maxOutputs,

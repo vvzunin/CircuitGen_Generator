@@ -1,7 +1,7 @@
 #pragma once
 
-#include <generators/GenerationParameters.h>
-#include <settings/Settings.h>
+#include <generators/GenerationParameters.hpp>
+#include <settings/Settings.hpp>
 
 enum GenerationTypes {
   FromRandomTruthTable,

@@ -37,8 +37,8 @@ set(
 )
 
 set(PUBLIC_HEADERS
-  include/CircuitGenGenerator/export.h
-  include/CircuitGenGenerator/CircuitGenGenerator.h
+  include/CircuitGenGenerator/export.hpp
+  include/CircuitGenGenerator/CircuitGenGenerator.hpp
 )
 
 set(SOURCES
@@ -88,10 +88,10 @@ if(NOT BUILD_SHARED_LIBS)
   target_compile_definitions(CircuitGenGenerator_lib PUBLIC CircuitGenGenerator_STATIC_DEFINE)
 endif()
 
-set(export_file_name "export_shared.h")
+set(export_file_name "export_shared.hpp")
 
 if(NOT BUILD_SHARED_LIBS)
-    set(export_file_name "export_static.h")
+    set(export_file_name "export_static.hpp")
 endif()
 
 include(GenerateExportHeader)

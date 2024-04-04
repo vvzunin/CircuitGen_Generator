@@ -5,7 +5,7 @@
 // an excellent programmer and just a good person.
 // He has written this thread pool
 
-#include "ThreadPool.h"
+#include "ThreadPool.hpp"
 
 using namespace Threading;
 

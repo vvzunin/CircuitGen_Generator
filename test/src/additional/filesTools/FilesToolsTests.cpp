@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <algorithm>
-#include "additional/filesTools/FilesTools.h"
+#include "additional/filesTools/FilesTools.hpp"
 namespace fs = std::filesystem;
 using namespace FilesTools;
 //I check the using of getDirectories and I can confirm that in test we can let ourselves do not care about order of directories in the vector. Full understanding will come after  all commens below.

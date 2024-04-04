@@ -1,4 +1,4 @@
-#include "GenerationParameters.h"
+#include "GenerationParameters.hpp"
 
 #include <vector>
 /*

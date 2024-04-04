@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "GraphVertex.h"
+#include "GraphVertex.hpp"
 
 GraphVertexGates::GraphVertexGates(
     Gates i_gate, OrientedGraph *i_baseGraph)

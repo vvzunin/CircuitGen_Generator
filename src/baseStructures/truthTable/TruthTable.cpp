@@ -4,8 +4,8 @@
 #include <iostream>
 #include <iterator>
 
-#include "TruthTable.h"
-#include <additional/AuxiliaryMethods.h>
+#include "TruthTable.hpp"
+#include <additional/AuxiliaryMethods.hpp>
 
 TruthTable::TruthTable()
 {
