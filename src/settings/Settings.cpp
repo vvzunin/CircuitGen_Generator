@@ -93,7 +93,7 @@ void Settings::loadSettings() {
         fromName = "";
         toName   = "input";  // fromName take operation, but the operation that
                              // input have, is an empty string so it is going to
-                           // take directly input.
+                             // take directly input.
       }  // So that I check it out right here
       else
         readFile >> toName;
