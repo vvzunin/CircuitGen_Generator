@@ -66,6 +66,7 @@ class SimpleGenerators {
                                     bool i_sub, bool act = false);
   OrientedGraph generatorDemultiplexer(int i_bits);
   OrientedGraph generatorMultiplier(int i_bits, bool act = false);
+  OrientedGraph generatorDecoder(int i_bits);
 
   void setGatesInputsInfo(
       const std::map<std::string, std::vector<int>> &i_info) {

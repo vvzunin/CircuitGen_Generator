@@ -1030,6 +1030,75 @@ OrientedGraph SimpleGenerators::generatorDemultiplexer(int i_bits)
     return graph;
 }
 
+OrientedGraph SimpleGenerators::generatorDecoder(int i_bits)
+{
+    //bits - количество входов
+    //T[]- массив для текущего ряда узлов
+    //X[]- массив для предыдущего ряда узлов
+    //"хi" - входной бит
+    //F - функция на выходе
+    OrientedGraph graph;
+    if (i_bits > 1)
+    {
+        std::vector<std::shared_ptr<GraphVertexBase>> T(pow(2, i_bits));
+        std::vector<std::shared_ptr<GraphVertexBase>> X(pow(2, i_bits));
+        std::vector<std::shared_ptr<GraphVertexBase>> Out(pow(2, i_bits));
+        for (int i = 0; i < i_bits; i++)
+        {
+            std::string Z = std::to_string(i);
+            X[i] = graph.addInput("x" + Z);
+            X[i+i_bits] = graph.addGate(GateNot, "not (x"+ Z + ")");
+            graph.addEdge(X[i], X[i+i_bits]);
+        }
+        for (int i = 0; i < pow(2, i_bits); i++)
+        {
+            std::string Z = std::to_string(i);
+            Out[i] = graph.addOutput("f" + Z);
+        }
+        int p = i_bits;
+        for (int i = 0; i < pow(2, i_bits); i++)
+        {
+            T[i] = graph.addGate(GateAnd, "and" + std::to_string(i));
+            std::bitset<sizeof(int)*8> bs(i);
+            std::string bit_string = bs.to_string();
+            std::string res = bit_string.substr(bit_string.length()-i_bits);
+            for (int j = 0; j < res.length(); j++)
+            {
+                if (res[j] == '1')
+                {
+                    graph.addEdge(X[j], T[i]);
+                }
+                else
+                {
+                    graph.addEdge(X[j+i_bits], T[i]);
+                }
+            }
+        }
+        for (int i = 0; i < pow(2, i_bits); i++)
+        {
+            graph.addEdge(T[i], Out[i]);
+        }
+    }
+    else
+    {
+        std::shared_ptr<GraphVertexBase> x = graph.addInput("x");
+        std::shared_ptr<GraphVertexBase> not_x = graph.addGate(GateNot, "not (x)");
+        for (int i = 0; i < 2; i++)
+        {
+            std::shared_ptr<GraphVertexBase> out = graph.addOutput("f"+ std::to_string(i));
+            if (i == 0)
+            {
+                graph.addEdge(not_x, out);
+            }
+            else
+            {
+                graph.addEdge(x, out);
+            }
+        }
+    }
+    return graph;
+}
+
 OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
 {
     OrientedGraph graph;
@@ -1241,3 +1310,4 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
     }
     return graph;
 }
+
