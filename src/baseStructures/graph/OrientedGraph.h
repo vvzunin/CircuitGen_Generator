@@ -8,6 +8,8 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <sstream>
+#include <tuple>
 
 // TODO: Добавить проверку на имена файлов при доблении новых вершин
 
@@ -75,7 +77,8 @@ class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
 
   bool toVerilog(std::ofstream& i_fileStream);
   // toAdjencyMatrix
-  // toGraphML
+  bool toGraphML(std::ofstream& i_fileStream) const;
+  std::string toGraphML(int i_nesting = 0) const;
   // vizualize
   // calcGraph
 
@@ -128,4 +131,32 @@ class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
   std::map<Gates, std::map<Gates, int>> d_edgesGatesCount;
 
   std::shared_ptr<Settings> d_settings = Settings::getInstance("OrientedGraph");
+
 };
+
+template<class Tuple, std::size_t N>
+struct TuplePrinter {
+    static void print(const std::string& fmt, std::ostream& os, const Tuple& t) {
+        const size_t idx = fmt.find_last_of('%');
+        TuplePrinter<Tuple, N - 1>::print( std::string( fmt, 0, idx ), os, t );
+        os << std::get<N - 1>(t) << std::string( fmt, idx + 1 );
+    }
+};
+
+template<class Tuple>
+struct TuplePrinter<Tuple, 1>{
+    static void print(const std::string& fmt, std::ostream& os, const Tuple& t) {
+        const size_t idx = fmt.find_first_of('%');
+        os << std::string( fmt, 0, idx ) << std::get<0>(t) << std::string( fmt, idx + 1 );
+    }
+};
+
+template<class... Args>
+std::string format(const std::string& fmt, Args&&... args) {
+    std::stringstream ss;
+
+    const auto t = std::make_tuple(std::forward<Args>(args)...);
+
+    TuplePrinter<decltype(t), sizeof...(Args)>::print(fmt, ss, t);
+    return ss.str();
+}

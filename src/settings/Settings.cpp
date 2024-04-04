@@ -212,3 +212,7 @@ Gates Settings::parseStringToGate(std::string i_gate) const {
 std::string Settings::parseGateToString(Gates gate) const {
   return gateToString.at(gate);
 }
+
+std::string Settings::parseVertexToString(VertexTypes vertex) const {
+  return vertexToString.at(vertex);
+};

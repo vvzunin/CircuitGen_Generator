@@ -16,8 +16,9 @@ class Circuit {
   void computeHash();
   void updateCircuitParameters();
   bool graphToVerilog(const std::string &i_path, bool i_pathExists = false);
+  bool graphToGraphML(const std::string &i_path, bool i_pathExists = false);
   bool saveParameters(bool i_pathExists = false) const;
-  bool generate(bool i_pathExists = false);
+  bool generate(bool i_makeGraphML = false, bool i_pathExists = false);
   void setTable(const TruthTable &i_tt);
   void setPath(const std::string &i_path);
   void setCircuitName(const std::string &i_circName);

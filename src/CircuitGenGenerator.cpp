@@ -37,9 +37,9 @@ void runGenerationFromJson(std::string json_path) {
     }
 
     // Задаем сид рандомизации.
-    AuxMethods::setRandSeed(!data.contains("seed") || data["seed"] == -1
-                                ? static_cast<unsigned>(std::time(0))
-                                : static_cast<unsigned>(data["seed"]));
+    AuxMethods::setRandSeed(!data.contains("seed") || data["seed"] == -1 ?
+                            static_cast<unsigned>(std::time(0)) :
+                            static_cast<unsigned>(data["seed"]));
 
     // Задаем основные параметры генерации
     GenerationTypes gt;
@@ -58,9 +58,8 @@ void runGenerationFromJson(std::string json_path) {
       return;
     }
 
-    std::string datasetId = data.contains("dataset_id")
-                                ? static_cast<std::string>(data["dataset_id"])
-                                : "0";
+    std::string datasetId = data.contains("dataset_id") ?
+                            static_cast<std::string>(data["dataset_id"]) : "0";
 
     int requestIdINT = data.contains("id") ? (int)data["id"] : 0;
 
@@ -99,20 +98,22 @@ void runGenerationFromJson(std::string json_path) {
     }
 
     // this is for ABC
-    bool calculateStatsAbc = data.contains("calculate_stats_abc")
-                                 ? (bool)data["calculate_stats_abc"]
-                                 : false;
-    bool makeOptimizedFiles = data.contains("make_optimized_files")
-                                  ? (bool)data["make_optimized_files"]
-                                  : false;
+    bool calculateStatsAbc = data.contains("calculate_stats_abc") ?
+                             (bool)data["calculate_stats_abc"] : false;
+    bool makeOptimizedFiles = data.contains("make_optimized_files") ?
+                              (bool)data["make_optimized_files"] : false;
     std::string libraryName =
-        data.contains("library_name") ? (std::string)data["library_name"] : "";
+      data.contains("library_name") ? (std::string)data["library_name"] : "";
     bool makeBench =
-        data.contains("make_bench") ? (bool)data["make_bench"] : false;
+      data.contains("make_bench") ? (bool)data["make_bench"] : false;
 
     // and this is for Yosys
     bool makeFirrtl =
-        data.contains("make_firrtl") ? (bool)data["make_firrtl"] : false;
+      data.contains("make_firrtl") ? (bool)data["make_firrtl"] : false;
+    
+    // for GraphML
+    bool makeGraphML =
+      data.contains("make_graphml") ? (bool)data["make_graphml"] : false;
 
     // Считывание информации по логичсеким элементам.
     std::map<std::string, std::vector<int>> gatesInputsInfo;
@@ -144,7 +145,8 @@ void runGenerationFromJson(std::string json_path) {
     // Recording of json data to gp
     GenerationParameters gp(datasetId, requestId, minInputs, minOutputs,
                             repeats, libraryName, calculateStatsAbc,
-                            makeOptimizedFiles, makeFirrtl, makeBench);
+                            makeOptimizedFiles, makeFirrtl, makeBench,
+                            makeGraphML);
 
     gp.setGatesInputInfo(gatesInputsInfo);
     // ------------------------------------------------------------------------

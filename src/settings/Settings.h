@@ -56,6 +56,7 @@ class Settings {
   int getNumThread() const;
   Gates parseStringToGate(std::string i_gate) const;
   std::string parseGateToString(Gates gate) const;
+  std::string parseVertexToString(VertexTypes vertex) const;
 
  private:
   void SaveSettings();
@@ -99,6 +100,10 @@ class Settings {
   std::vector<Gates> d_logicElements = {
       Gates::GateAnd, Gates::GateNand, Gates::GateOr,  Gates::GateNor,
       Gates::GateXor, Gates::GateXnor, Gates::GateNot, Gates::GateBuf};
+
+  std::map<VertexTypes, std::string> vertexToString = {
+    {VertexTypes::input, "input"}, {VertexTypes::output, "output"},
+    {VertexTypes::constant, "const"},   {VertexTypes::gate, "g"}};
 
   std::map<int, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string> d_operationsToName;
