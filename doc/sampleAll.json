@@ -68,7 +68,22 @@
 
     "=": true,
     "<": true,
-    ">": false  
+    ">": false,
+
+    "ALL": false,
+    "SUM": false,
+    "SUB": false,
+    "NSUM": false,
+    "NSUB": false,
+    "MULT": false,
+    "COM": false,
+    "AND": false,
+    "NAND": false,
+    "OR": false,
+    "NOR": false,
+    "XOR": false,
+    "XNOR": false,
+    "CNF": false
   }
 ]
  

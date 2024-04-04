@@ -67,6 +67,8 @@ class SimpleGenerators {
   OrientedGraph generatorDemultiplexer(int i_bits);
   OrientedGraph generatorMultiplier(int i_bits, bool act = false);
   OrientedGraph generatorDecoder(int i_bits);
+  OrientedGraph generatorALU(int i_bits, int i_outbits, bool ALL, bool SUM, bool SUB, bool NSUM, bool NSUB, bool MULT,
+                             bool COM, bool AND, bool NAND, bool OR, bool NOR, bool XOR, bool XNOR, bool CNF);
 
   void setGatesInputsInfo(
       const std::map<std::string, std::vector<int>> &i_info) {
@@ -101,6 +103,9 @@ class SimpleGenerators {
 
   return val->first;
 }
+
+  OrientedGraph ALU(int i_bits, int i_outbits, bool ALL, bool SUM, bool SUB, bool NSUM, bool NSUB, bool MULT,
+                    bool COM, bool AND, bool NAND, bool OR, bool NOR, bool XOR, bool XNOR, bool CNF);
 
   std::pair<Gates, int> getRandomElement(const GatesInfo &i_info);
   std::pair<Gates, int> getRandomElement(u_int32_t i_gatesLimit);

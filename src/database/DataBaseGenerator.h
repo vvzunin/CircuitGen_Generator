@@ -35,6 +35,7 @@ class DataBaseGenerator {
   void generateDataBaseDemultiplexer(const GenerationParameters &i_param);
   void generateDataBaseMultiplier(const GenerationParameters &i_param);
   void generateDataBaseDecoder(const GenerationParameters &i_param);
+  void generateDataBaseALU(const GenerationParameters &i_param);
   std::function<void(const GenerationParameters &)> getGenerateMethod(
       const std::string &i_methodName);
 };

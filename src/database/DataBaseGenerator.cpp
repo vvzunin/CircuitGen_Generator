@@ -332,6 +332,22 @@ void DataBaseGenerator::generateDataBaseDecoder(const GenerationParameters &i_pa
   c.generate();
 }
 
+void DataBaseGenerator::generateDataBaseALU(const GenerationParameters &i_param){
+    SimpleGenerators sg(i_param.getSeed());
+    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+    OrientedGraph graph = sg.generatorALU(i_param.getInputs(), i_param.getOutputs(), i_param.getALU().getALL(),
+                                          i_param.getALU().getSUM(), i_param.getALU().getSUB(), i_param.getALU().getNSUM(),
+                                          i_param.getALU().getNSUB(), i_param.getALU().getMULT(), i_param.getALU().getCOM(),
+                                          i_param.getALU().getAND(), i_param.getALU().getNAND(), i_param.getALU().getOR(),
+                                          i_param.getALU().getNOR(), i_param.getALU().getXOR(), i_param.getALU().getXNOR(),
+                                          i_param.getALU().getCNF());
+    Circuit c(&graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate();
+}
+
 std::function<void(const GenerationParameters &)>
 DataBaseGenerator::getGenerateMethod(const std::string &i_methodName) {
   if (i_methodName == "FromRandomTruthTable")
@@ -366,6 +382,9 @@ DataBaseGenerator::getGenerateMethod(const std::string &i_methodName) {
                        std::placeholders::_1);
   if (i_methodName == "Decoder")
     return std::bind(&DataBaseGenerator::generateDataBaseDecoder, this,
+                       std::placeholders::_1);
+  if (i_methodName == "ALU")
+      return std::bind(&DataBaseGenerator::generateDataBaseALU, this,
                        std::placeholders::_1);
                        
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;

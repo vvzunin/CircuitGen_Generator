@@ -62,6 +62,9 @@ void runGenerationFromJson(std::string json_path) {
         gt = GenerationTypes::Multiplier;
     else if (data["type_of_generation"] == "Decoder")
         gt = GenerationTypes::Decoder;
+
+    else if (data["type_of_generation"] == "ALU")
+        gt = GenerationTypes::ALU;
     // else if (data["type_of_generation"] == "Genetic")
     //   gt = GenerationTypes::Genetic;
     else {
@@ -253,6 +256,33 @@ void runGenerationFromJson(std::string json_path) {
         bool compare2 = data.contains(">") ? (bool)data[">"] : false;
         gp.setComparisonParameters(compare0, compare1, compare2);
     }
+
+    if (static_cast<std::string>(data["type_of_generation"]).find("ALU") != std::string::npos) {
+        if (!(data.contains("ALL") || data.contains("SUM") || data.contains("SUB") ||
+        data.contains("NSUM") || data.contains("NSUB") || data.contains("MULT") ||
+        data.contains("COM") || data.contains("AND") || data.contains("NAND") ||
+        data.contains("OR") || data.contains("NOR") || data.contains("XOR") ||
+        data.contains("XNOR") || data.contains("CNF")))
+            std::clog << "Parameters for selected generation type is not set. "
+                           "Parameters sets to default."<< std::endl;
+
+        bool ALL = data.contains("ALL") ? (bool)data["ALL"] : false;
+        bool SUM = data.contains("SUM") ? (bool)data["SUM"] : false;
+        bool SUB = data.contains("SUB") ? (bool)data["SUB"] : false;
+        bool NSUM = data.contains("NSUM") ? (bool)data["NSUM"] : false;
+        bool NSUB = data.contains("NSUB") ? (bool)data["NSUB"] : false;
+        bool MULT = data.contains("MULT") ? (bool)data["MULT"] : false;
+        bool COM = data.contains("COM") ? (bool)data["COM"] : false;
+        bool AND = data.contains("AND") ? (bool)data["AND"] : false;
+        bool NAND = data.contains("NAND") ? (bool)data["NAND"] : false;
+        bool OR = data.contains("OR") ? (bool)data["OR"] : false;
+        bool NOR = data.contains("NOR") ? (bool)data["NOR"] : false;
+        bool XOR = data.contains("XOR") ? (bool)data["XOR"] : false;
+        bool XNOR = data.contains("XNOR") ? (bool)data["XNOR"] : false;
+        bool CNF = data.contains("CNF") ? (bool)data["CNF"] : false;
+        gp.setALUParameters(ALL, SUM, SUB, NSUM, NSUB, MULT, COM, AND, NAND, OR, NOR, XOR, XNOR, CNF);
+    }
+
     // Основные параметры для Genetic
     // if (data["type_of_generation"] == "Genetic")
     // {
