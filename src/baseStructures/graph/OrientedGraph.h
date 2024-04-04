@@ -51,8 +51,6 @@ class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
 
   void setBaseGraph(OrientedGraph *i_baseGraph);
   OrientedGraph *getBaseGraph() const;
-
-  // TODO: Заменить все const на const &
   std::shared_ptr<GraphVertexBase> addInput(const std::string& i_name = "");
   std::shared_ptr<GraphVertexBase> addOutput(const std::string& i_name = "");
   std::shared_ptr<GraphVertexBase> addConst(const char& i_value,
