@@ -5,7 +5,7 @@
 // an excellent programmer and just a good person.
 // He has written this thread pool
 
-#include "ThreadPool.h"
+#include "ThreadPool.hpp"
 
 using namespace Threading;
 
@@ -77,4 +77,6 @@ void ThreadPool::stop() {
   // Now thread pool is stopped.
 }
 
-ThreadPool::~ThreadPool() { stop(); }
+ThreadPool::~ThreadPool() {
+  stop();
+}

@@ -1,11 +1,11 @@
-#include "CircuitGenGenerator/export.h"
+#include "CircuitGenGenerator/export.hpp"
 
-#include <additional/AuxiliaryMethods.h>
-#include <database/DataBaseGenerator.h>
-#include <database/DataBaseGeneratorParameters.h>
-#include <generators/GenerationParameters.h>
+#include <additional/AuxiliaryMethods.hpp>
+#include <database/DataBaseGenerator.hpp>
+#include <database/DataBaseGeneratorParameters.hpp>
+#include <generators/GenerationParameters.hpp>
 #include <getopt.h>
-#include <settings/Settings.h>
+#include <settings/Settings.hpp>
 #include <unistd.h>
 
 #include <algorithm>

@@ -10,7 +10,7 @@
 #include <functional>
 #include <thread>
 
-#include "./UnboundedMPMCQueue.h"
+#include "UnboundedMPMCQueue.hpp"
 
 namespace Threading {
 
@@ -18,22 +18,22 @@ namespace Threading {
 /// It is not allowed to use thread pool in multiple threads.
 /// It is guaranteed tasks process-start times and ordered as their add time.
 class ThreadPool {
- public:
+public:
   /// Create thread pool with specified number of threads.
   explicit ThreadPool(size_t useThreads);
 
   // Not allow copy.
-  ThreadPool(const ThreadPool &other) = delete;
+  ThreadPool(const ThreadPool& other)            = delete;
 
-  ThreadPool &operator=(const ThreadPool &other) = delete;
+  ThreadPool& operator=(const ThreadPool& other) = delete;
 
   // Not movable (FIX ME).
-  ThreadPool(ThreadPool &&other) = delete;
+  ThreadPool(ThreadPool&& other)                 = delete;
 
   // Not allow move-copy.
-  ThreadPool &operator=(ThreadPool &&other) = delete;
+  ThreadPool& operator=(ThreadPool&& other)      = delete;
 
-  using Task = std::function<void()>;
+  using Task                                     = std::function<void()>;
 
   /// Schedule task on execution.
   void submit(Task task);
@@ -49,20 +49,20 @@ class ThreadPool {
   /// Custom destructor which are to stop workers.
   ~ThreadPool();
 
- private:
+private:
   // All multithreading is here.
-  void work();
+  void                     work();
 
-  void spawnWorker();
+  void                     spawnWorker();
 
   UnboundedMPMCQueue<Task> queue;
 
   std::vector<std::thread> workers;
 
-  size_t notProcessed{0};
-  std::mutex mtx;
+  size_t                   notProcessed {0};
+  std::mutex               mtx;
 
-  std::condition_variable processedAll;
+  std::condition_variable  processedAll;
 };
 
 }  // namespace Threading

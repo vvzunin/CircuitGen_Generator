@@ -1,17 +1,18 @@
 #include <iostream>
 
-#include "GraphVertex.h"
+#include "GraphVertex.hpp"
 
-GraphVertexGates::GraphVertexGates(
-    Gates i_gate, OrientedGraph *i_baseGraph)
-    : GraphVertexBase(VertexTypes::gate, i_baseGraph) {
+GraphVertexGates::GraphVertexGates(Gates i_gate, OrientedGraph* i_baseGraph) :
+  GraphVertexBase(VertexTypes::gate, i_baseGraph) {
   d_gate = i_gate;
 }
 
 GraphVertexGates::GraphVertexGates(
-    Gates i_gate, const std::string i_name,
-    OrientedGraph *i_baseGraph)
-    : GraphVertexBase(VertexTypes::gate, i_name, i_baseGraph) {
+    Gates             i_gate,
+    const std::string i_name,
+    OrientedGraph*    i_baseGraph
+) :
+  GraphVertexBase(VertexTypes::gate, i_name, i_baseGraph) {
   d_gate = i_gate;
 }
 
@@ -57,9 +58,11 @@ char GraphVertexGates::updateValue() {
 }
 
 std::string GraphVertexGates::calculateHash(bool recalculate) {
-  if (hashed != "" && !recalculate) return hashed;
+  if (hashed != "" && !recalculate)
+    return hashed;
 
-  if (d_type == VertexTypes::output && !d_baseGraph) return "";
+  if (d_type == VertexTypes::output && !d_baseGraph)
+    return "";
 
   hashed = std::to_string(d_outConnections.size()) + std::to_string(d_gate);
 
@@ -67,7 +70,7 @@ std::string GraphVertexGates::calculateHash(bool recalculate) {
     hashed += child->calculateHash(recalculate);
   }
 
-  hashed = std::to_string(std::hash<std::string>{}(hashed));
+  hashed = std::to_string(std::hash<std::string> {}(hashed));
 
   return hashed;
 }
@@ -79,13 +82,13 @@ std::string GraphVertexGates::getVerilogString() const {
     if (this->d_baseGraph == d_inConnections[0]->getBaseGraph())
       s = d_inConnections[0]->getName();
     else
-      s = d_inConnections[0]->getBaseGraph()->getName() + "_" +
-          d_inConnections[0]->getName();
+      s = d_inConnections[0]->getBaseGraph()->getName() + "_"
+        + d_inConnections[0]->getName();
 
-    if (d_gate == Gates::GateNot) s = "~" + s;
-    if ((d_gate == Gates::GateNand) || 
-        (d_gate == Gates::GateNor) || 
-        (d_gate == Gates::GateXnor))
+    if (d_gate == Gates::GateNot)
+      s = "~" + s;
+    if ((d_gate == Gates::GateNand) || (d_gate == Gates::GateNor)
+        || (d_gate == Gates::GateXnor))
       s = "~(" + s;
 
     for (int i = 1; i < d_inConnections.size(); i++) {
@@ -93,8 +96,8 @@ std::string GraphVertexGates::getVerilogString() const {
       if (this->d_baseGraph == d_inConnections[i]->getBaseGraph())
         name = d_inConnections[i]->getName();
       else
-        name = d_inConnections[i]->getBaseGraph()->getName() + "_" +
-               d_inConnections[i]->getName();
+        name = d_inConnections[i]->getBaseGraph()->getName() + "_"
+             + d_inConnections[i]->getName();
       switch (d_gate) {
         case (Gates::GateAnd):
           s += " & " + name;
@@ -119,9 +122,8 @@ std::string GraphVertexGates::getVerilogString() const {
       }
     }
 
-    if ((d_gate == Gates::GateNand) || 
-        (d_gate == Gates::GateNor) || 
-        (d_gate == Gates::GateXnor))
+    if ((d_gate == Gates::GateNand) || (d_gate == Gates::GateNor)
+        || (d_gate == Gates::GateXnor))
       s += ")";
   }
 

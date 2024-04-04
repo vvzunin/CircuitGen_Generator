@@ -10,20 +10,20 @@ public:
   RandomGeneratorWithSeed() = default;
   RandomGeneratorWithSeed(std::uint_fast32_t i_seed) { setSeed(i_seed); }
 
-  RandomGeneratorWithSeed(const RandomGeneratorWithSeed& other) = default;
+  RandomGeneratorWithSeed(const RandomGeneratorWithSeed& other)       = default;
 
-  RandomGeneratorWithSeed& operator=(const RandomGeneratorWithSeed& other) =
-      default;
+  RandomGeneratorWithSeed& operator=(const RandomGeneratorWithSeed& other
+  )                                                                   = default;
 
-  RandomGeneratorWithSeed(RandomGeneratorWithSeed&& other) = default;
+  RandomGeneratorWithSeed(RandomGeneratorWithSeed&& other)            = default;
 
   RandomGeneratorWithSeed& operator=(RandomGeneratorWithSeed&& other) = default;
 
-  std::uint_fast32_t getSeed() const { return d_seed; }
+  std::uint_fast32_t       getSeed() const { return d_seed; }
 
   void setSeed(std::uint_fast32_t i_seed) { d_gen.seed(i_seed); }
 
-  int getRandInt(int lower, int upper, bool inclusively = false) {
+  int  getRandInt(int lower, int upper, bool inclusively = false) {
     if (!inclusively)
       upper--;
 
@@ -33,7 +33,8 @@ public:
     if (upper < lower)
       throw std::invalid_argument(
           "RandomGeneratorWithSeed random int: upper: " + std::to_string(upper)
-          + " boder is bigger than lower: " + std::to_string(lower));
+          + " boder is bigger than lower: " + std::to_string(lower)
+      );
 
     std::uniform_int_distribution<> dis(lower, upper);
 
@@ -47,7 +48,7 @@ public:
 
 private:
   std::uint_fast32_t d_seed;
-  std::minstd_rand d_gen;
+  std::minstd_rand   d_gen;
 };
 
 #endif
