@@ -1,6 +1,6 @@
-#include "GenerationParameters.hpp"
-
 #include <vector>
+
+#include "GenerationParameters.hpp"
 /*
 void GenerationParameters::setRecombinationParameters(ParentsTypes
 i_parentsType, int i_tournamentSize, RecombinationTypes i_recombinationType, int

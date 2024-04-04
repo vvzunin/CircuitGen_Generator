@@ -77,4 +77,6 @@ void ThreadPool::stop() {
   // Now thread pool is stopped.
 }
 
-ThreadPool::~ThreadPool() { stop(); }
+ThreadPool::~ThreadPool() {
+  stop();
+}

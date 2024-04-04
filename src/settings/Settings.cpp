@@ -67,7 +67,7 @@ void Settings::loadSettings() {
     int operationHierarchyCount;
     readFile >> operationHierarchyCount;
     for (int i = 0; i < operationHierarchyCount; ++i) {
-      int operationId, operationHierarchyCount;
+      int                      operationId, operationHierarchyCount;
       std::vector<std::string> operations;
       readFile >> operationId >> operationHierarchyCount;
 
@@ -91,9 +91,9 @@ void Settings::loadSettings() {
       readFile >> fromName;
       if (fromName == "input") {
         fromName = "";
-        toName = "input";  // fromName take operation, but the operation that
-                           // input have, is an empty string so it is going to take
-                           // directly input.
+        toName   = "input";  // fromName take operation, but the operation that
+                             // input have, is an empty string so it is going to
+                           // take directly input.
       }  // So that I check it out right here
       else
         readFile >> toName;
@@ -108,8 +108,8 @@ std::string Settings::getInstanceName() const {
   return d_name;
 }
 
-std::pair<std::string, int> Settings::getLogicOperation(
-    const std::string& i_op) {
+std::pair<std::string, int> Settings::getLogicOperation(const std::string& i_op
+) {
   return d_logicOperations.at(i_op);
 }
 
@@ -118,7 +118,7 @@ std::vector<Gates> Settings::getLogicOperationsKeys() {
 }
 
 std::pair<std::vector<bool>, std::vector<Gates>>
-Settings::getLogicOperationsWithGates() {
+    Settings::getLogicOperationsWithGates() {
   std::vector<bool> oneGate;
 
   for (const auto& key : d_logicElements) {
@@ -203,8 +203,8 @@ std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const {
   return "ftt";
 }
 
-std::string Settings::getLibraryNameFromEnum(
-    const LibrariesTypes& library) const {
+std::string Settings::getLibraryNameFromEnum(const LibrariesTypes& library
+) const {
   switch (library) {
     case SKY_LIB:
     default:
@@ -220,8 +220,8 @@ int Settings::getMaxOutputs() const {
   return d_maxOutputs;
 }
 
-std::map<std::string, std::pair<std::string, int>>
-Settings::getLogicOperations() const {
+std::map<std::string, std::pair<std::string, int>> Settings::getLogicOperations(
+) const {
   return d_logicOperations;
 }
 
