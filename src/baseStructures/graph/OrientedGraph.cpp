@@ -8,6 +8,7 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#include <set>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -250,9 +251,15 @@ std::map<Gates, std::map<Gates, int>> OrientedGraph::getEdgesGatesCount()
 std::string OrientedGraph::calculateHash(bool recalculate) {
   if (hashed != "" && !recalculate) return hashed;
 
+  std::set<std::string> hashed_data;
   hashed = "";
+
   for (auto& input : d_vertexes[VertexTypes::input]) {
-    hashed += input->calculateHash(recalculate);
+    hashed_data.insert(input->calculateHash(recalculate));
+  }
+
+  for (const auto& sub : hashed_data) {
+    hashed += sub;
   }
 
   hashed = std::to_string(std::hash<std::string>{}(hashed));
