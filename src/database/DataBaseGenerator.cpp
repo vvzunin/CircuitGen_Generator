@@ -199,14 +199,14 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
       i_param.getOutputs()
   );
 
-  auto stop     = high_resolution_clock::now();
-  auto duration = duration_cast<microseconds>(stop - start);
-  std::clog << "Time taken on experimental: " << duration.count()
-            << " microseconds" << std::endl;
+  auto    stop     = high_resolution_clock::now();
+  auto    duration = duration_cast<microseconds>(stop - start);
+  // std::clog << "Time taken on experimental: " << duration.count()
+  //           << " microseconds" << std::endl;
 
-  std::clog << "Update started\n";
+  // std::clog << "Update started\n";
   Circuit c(&graph);
-  std::clog << "Update ended\n";
+  // std::clog << "Update ended\n";
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
 
