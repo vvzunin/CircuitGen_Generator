@@ -11,8 +11,8 @@
 class GraphVertexInput : public GraphVertexBase {
 public:
   GraphVertexInput(
-      OrientedGraph* i_baseGraph = nullptr,
-      const VertexTypes i_type   = VertexTypes::input
+      OrientedGraph*    i_baseGraph = nullptr,
+      const VertexTypes i_type      = VertexTypes::input
   );
 
   GraphVertexInput(

@@ -130,8 +130,8 @@ TEST(TestAuxiliarySortDictByValue, NormalTest) {
   EXPECT_EQ(correctAnswer, sortDictByValue(normalInput1, false));
   std::reverse(
       correctAnswer.begin(), correctAnswer.end()
-  );                      // reverse it because now I gonna check the result of
-                          // sortDictByValue(testDict1, true) when up == true
+  );  // reverse it because now I gonna check the result of
+      // sortDictByValue(testDict1, true) when up == true
   EXPECT_EQ(correctAnswer, sortDictByValue(normalInput1, true));
   correctAnswer.clear();  // Make it clear to fill it again with data which I
                           // expected from sortDictByValue(testDict2, true)

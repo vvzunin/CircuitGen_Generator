@@ -90,8 +90,8 @@ public:
 
   std::vector<std::shared_ptr<GraphVertexBase>> getVerticesByType(
       const VertexTypes i_type,
-      const std::string i_name  = "",
-      const bool i_addSubGraphs = false
+      const std::string i_name         = "",
+      const bool        i_addSubGraphs = false
   ) const;
   std::vector<std::shared_ptr<GraphVertexBase>> getVerticesByLevel(
       const int i_level

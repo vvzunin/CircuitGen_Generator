@@ -16,7 +16,7 @@ using namespace FilesTools;
 TEST(FileTools, OnlyDirectoriesNoFiles) {
   fs::path tmpPath =
       (fs::temp_directory_path() / "test"
-      );    // Created temporary guaranted directory to deal with
+      );  // Created temporary guaranted directory to deal with
   std::string
       tmp;  // This variable exist because otherwise we will not be able push
             // tmpPath.string() to method getDirectories(Here it is gonna be)

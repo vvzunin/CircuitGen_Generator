@@ -13,8 +13,8 @@ public:
     d_parameters(i_parameters) {};
   void generateType(
       const DataBaseGeneratorParameters& i_gp,
-      bool                               parallel = true,
-      bool createIdDirectories                    = true
+      bool                               parallel            = true,
+      bool                               createIdDirectories = true
   );
 
 private:

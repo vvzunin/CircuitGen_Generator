@@ -94,12 +94,12 @@ public:
       int                i_inputs,
       int                i_outputs,
       int                i_iteration,
-      std::string        i_libraryName = "",
-      bool i_calculateStatsAbc         = false,
-      bool i_makeOptimizedFiles        = false,
-      bool i_makeFirrtl                = false,
-      bool i_makeBench                 = false,
-      bool i_makeGraphML               = false
+      std::string        i_libraryName        = "",
+      bool               i_calculateStatsAbc  = false,
+      bool               i_makeOptimizedFiles = false,
+      bool               i_makeFirrtl         = false,
+      bool               i_makeBench          = false,
+      bool               i_makeGraphML        = false
   ) :
     d_name(i_name),
     d_requestId(i_requestId),
