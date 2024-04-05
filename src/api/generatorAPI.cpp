@@ -62,16 +62,13 @@ void runGenerationFromJson(std::string json_path) {
         gt = GenerationTypes::Multiplier;
     else if (data["type_of_generation"] == "Decoder")
         gt = GenerationTypes::Decoder;
-<<<<<<< HEAD
     else if (data["type_of_generation"] == "Genetic")
       gt = GenerationTypes::Genetic;
-=======
 
     else if (data["type_of_generation"] == "ALU")
         gt = GenerationTypes::ALU;
     // else if (data["type_of_generation"] == "Genetic")
     //   gt = GenerationTypes::Genetic;
->>>>>>> 00c92fb628bb3f1a4ae1ffb53dc97de64ec3185e
     else {
       std::cerr << "Unsupported generation type" << std::endl;
       return;

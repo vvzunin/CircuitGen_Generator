@@ -384,13 +384,11 @@ DataBaseGenerator::getGenerateMethod(const std::string &i_methodName) {
   if (i_methodName == "Decoder")
     return std::bind(&DataBaseGenerator::generateDataBaseDecoder, this,
                        std::placeholders::_1);
-<<<<<<< HEAD
   if (i_methodName == "Genetic")
     return std::bind(&DataBaseGenerator::generateDataBaseGenetic, this,
-=======
+                       std::placeholders::_1);
   if (i_methodName == "ALU")
       return std::bind(&DataBaseGenerator::generateDataBaseALU, this,
->>>>>>> 00c92fb628bb3f1a4ae1ffb53dc97de64ec3185e
                        std::placeholders::_1);
                        
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;

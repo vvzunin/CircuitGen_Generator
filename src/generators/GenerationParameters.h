@@ -369,10 +369,7 @@ class GenerationParameters {
   GeneratorEncoderParameters d_generatorEncoderParameters;
   GeneratorSubtractorParameters d_generatorSubtractorParameters;
   GeneratorDecoderParameters d_generatorDecoderParameters;
-<<<<<<< HEAD
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
-=======
   GeneratorALUParameters d_generatorALUParameters;
   // GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
->>>>>>> 00c92fb628bb3f1a4ae1ffb53dc97de64ec3185e
 };
