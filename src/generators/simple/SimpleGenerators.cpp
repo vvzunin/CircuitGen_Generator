@@ -1321,3 +1321,469 @@ OrientedGraph SimpleGenerators::generatorMultiplier(int i_bits, bool act)
     return graph;
 }
 
+
+OrientedGraph SimpleGenerators::ALU(int i_bits, int i_outbits, bool ALL, bool SUM, bool SUB, bool NSUM, bool NSUB, bool MULT,
+                                    bool COM, bool AND, bool NAND, bool OR, bool NOR, bool XOR, bool XNOR, bool CNF){
+    OrientedGraph graph;
+    if (ALL){
+        SUM = true; SUB = true; NSUM = true; NSUB = true; MULT = true; COM = true; AND = true; OR = true; NOR = true; XOR = true; XNOR = true; CNF = true;
+    }
+    /*
+    if (SUM){
+        graph.Extend(generatorSummator(i_bits, false, false, false, true));
+        graph.Extend(generatorSummator(i_bits, false, true, false, true));
+        graph.Extend(generatorSummator(i_bits, true, true, false, true));
+        graph.Extend(generatorSummator(i_bits, true, false, false, true));
+    }
+
+    if (SUB){
+
+        graph.Extend(generatorSubtractor(i_bits, false, false, false, true));
+        graph.Extend(generatorSubtractor(i_bits, false, true, false, true));
+        graph.Extend(generatorSubtractor(i_bits, true, false, false, true));
+        graph.Extend(generatorSubtractor(i_bits, true, true, false, true));
+
+    }
+
+    if (NSUM)
+    {
+        graph.Extend(generatorSummator(i_bits, false, false, true, true));
+        graph.Extend(generatorSummator(i_bits, false, true, true, true));
+        graph.Extend(generatorSummator(i_bits, true, true, true, true));
+        graph.Extend(generatorSummator(i_bits, true, false, true, true));
+
+    }
+
+    if (NSUB)
+    {
+
+        graph.Extend(generatorSubtractor(i_bits, false, false, true, true));
+        graph.Extend(generatorSubtractor(i_bits, false, true, true, true));
+        graph.Extend(generatorSubtractor(i_bits, true, false, true, true));
+        graph.Extend(generatorSubtractor(i_bits, true, true, true, true));
+
+    }
+
+    if (MULT)
+    {
+        graph.Extend(generatorMultiplier(i_bits, true));
+    }
+    if (COM)
+    {
+        graph.Extend(generatorComparison(i_bits, true, false, false, true));
+        graph.Extend(generatorComparison(i_bits, false, true, false, true));
+        graph.Extend(generatorComparison(i_bits, false, false, true, true));
+    }
+
+    if (CNF)
+    {
+        TruthTable tt(i_bits, i_outbits, {});
+        tt.generateRandom({i_bits, i_outbits});
+
+        SimpleGenerators tftt;
+
+        std::vector<std::pair<std::string, std::vector<std::string>>> circs;
+        circs.push_back({"CNFT", tftt.cnfFromTruthTable(tt, true)});
+        circs.push_back({"CNFF", tftt.cnfFromTruthTable(tt, false)});
+
+        for (const auto& [name, expr] : circs)
+        {
+            Parser pCNFT(expr);
+            pCNFT.parseAll();
+            graph.Extend(pCNFT.getGraph());
+        }
+
+    }
+    */
+    for (int i = 0; i < i_bits; i++)
+    {
+        std::string A = std::to_string(i);
+        std::shared_ptr<GraphVertexBase> xi = graph.addInput("xi" + A);
+        std::shared_ptr<GraphVertexBase> xj = graph.addInput("xj" + A);
+        /*
+        if (SUM)
+        {
+            graph.Substitute("xi" + A, "x_sumafff" + A, false);
+            graph.Substitute("xj" + A, "x_sumbfff" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumaftf" + A, false);
+            graph.Substitute("xj" + A, "x_sumbftf" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumattf" + A, false);
+            graph.Substitute("xj" + A, "x_sumbttf" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumatff" + A, false);
+            graph.Substitute("xj" + A, "x_sumbtff" + A, false);
+        }
+
+        if (SUB)
+        {
+
+            graph.Substitute("xi" + A, "x_subafff" + A, false);
+            graph.Substitute("xj" + A, "x_subbfff" + A, false);
+
+            graph.Substitute("xi" + A, "x_subaftf" + A, false);
+            graph.Substitute("xj" + A, "x_subbftf" + A, false);
+
+            graph.Substitute("xi" + A, "x_subatff" + A, false);
+            graph.Substitute("xj" + A, "x_subbtff" + A, false);
+
+            graph.Substitute("xi" + A, "x_subattf" + A, false);
+            graph.Substitute("xj" + A, "x_subbttf" + A, false);
+
+        }
+        if (NSUM)
+        {
+            graph.Substitute("xi" + A, "x_sumafft" + A, false);
+            graph.Substitute("xj" + A, "x_sumbfft" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumaftt" + A, false);
+            graph.Substitute("xj" + A, "x_sumbftt" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumattt" + A, false);
+            graph.Substitute("xj" + A, "x_sumbttt" + A, false);
+
+            graph.Substitute("xi" + A, "x_sumatft" + A, false);
+            graph.Substitute("xj" + A, "x_sumbtft" + A, false);
+        }
+        if (NSUB)
+        {
+
+            graph.Substitute("xi" + A, "x_subafft" + A, false);
+            graph.Substitute("xj" + A, "x_subbfft" + A, false);
+
+            graph.Substitute("xi" + A, "x_subaftt" + A, false);
+            graph.Substitute("xj" + A, "x_subbftt" + A, false);
+
+            graph.Substitute("xi" + A, "x_subatft" + A, false);
+            graph.Substitute("xj" + A, "x_subbtft" + A, false);
+
+            graph.Substitute("xi" + A, "x_subattt" + A, false);
+            graph.Substitute("xj" + A, "x_subbttt" + A, false);
+
+        }
+        if (MULT)
+        {
+            graph.Substitute("xi" + A, "xa" + A, false);
+            graph.Substitute("xj" + A, "xb" + A, false);
+        }
+        if (COM)
+        {
+            graph.Substitute("xi" + A, "comatffx_" + A, false);
+            graph.Substitute("xj" + A, "combtffx_" + A, false);
+
+            graph.Substitute("xi" + A, "comaftfx_" + A, false);
+            graph.Substitute("xj" + A, "combftfx_" + A, false);
+
+            graph.Substitute("xi" + A, "comafftx_" + A, false);
+            graph.Substitute("xj" + A, "combfftx_" + A, false);
+        }
+        */
+        if (AND)
+        {
+            std::shared_ptr<GraphVertexBase> and_ij = graph.addGate(Gates::GateAnd, "and_ij" + A);
+            graph.addEdges({xi, xj}, and_ij);
+        }
+        if (NAND)
+        {
+            std::shared_ptr<GraphVertexBase> nand_ij = graph.addGate(Gates::GateNand, "nand_ij" + A);
+            graph.addEdges({xi, xj}, nand_ij);
+
+        }
+        if (OR)
+        {
+            std::shared_ptr<GraphVertexBase> or_ij = graph.addGate(Gates::GateOr, "or_ij" + A);
+            graph.addEdges({xi, xj}, or_ij);
+        }
+        if (XOR)
+        {
+            std::shared_ptr<GraphVertexBase> xor_ij = graph.addGate(Gates::GateXor, "xor_ij" + A);
+            graph.addEdges({xi, xj}, xor_ij);
+
+        }
+        if (NOR)
+        {
+            std::shared_ptr<GraphVertexBase> nor_ij = graph.addGate(Gates::GateNor, "nor_ij" + A);
+            graph.addEdges({xi, xj}, nor_ij);
+        }
+        if (XNOR)
+        {
+            std::shared_ptr<GraphVertexBase> xnor_ij = graph.addGate(Gates::GateXnor, "xnor_ij" + A);
+            graph.addEdges({xi, xj}, xnor_ij);
+        }
+        /*
+        if (CNF)
+        {
+
+            graph.Substitute("xi" + A, "xT" + A, false);
+            graph.Substitute("xi" + A, "xF" + A, false);
+
+        }
+         */
+    }
+    return graph;
+}
+
+OrientedGraph SimpleGenerators::generatorALU(int i_bits, int i_outbits, bool ALL, bool SUM, bool SUB, bool NSUM, bool NSUB, bool MULT,
+                                             bool COM, bool AND, bool NAND, bool OR, bool NOR, bool XOR, bool XNOR, bool CNF){
+    OrientedGraph graph;
+    int x = 0;
+    if (ALL)
+    {
+        SUM = true; SUB = true; NSUM = true; NSUB = true; MULT = true; COM = true; AND = true; OR = true; XOR = true; XNOR = true; CNF = true;
+    }
+
+    /*
+
+    graph.Extend(ALU(i_bits, i_outbits, ALL, SUM, SUB, NSUM, NSUB, MULT, COM, AND, NAND, OR, NOR, XOR, XNOR, CNF));
+
+    x = x + (SUM ? 4 : 0) + (SUB ? 4 : 0) + (NSUM ? 4 : 0) + (NSUB ? 4 : 0) + (MULT ? 1 : 0) + (COM ? 3 : 0) + (AND ? 1 : 0) + (NAND ? 1 : 0) + (OR ? 1 : 0) + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0) + (CNF ? 2 : 0);
+
+    int size = i_bits;
+
+    size = MULT ? i_bits * 2 : (SUM || NSUM || SUB || NSUB ? i_bits + 1 : i_bits);
+    if (CNF)
+    {
+        graph.addVertex("0", "const");
+        if (MULT)
+        {
+            size = (i_outbits < i_bits * 2 ? i_bits * 2 : i_outbits);
+        }
+        else if (SUM || NSUM || SUB || NSUB)
+        {
+            size = (i_outbits < i_bits + 1 ? i_bits + 1 : i_outbits);
+        }
+        else if (i_outbits > i_bits)
+        {
+            size = i_outbits;
+        }
+    }
+    else if (MULT)
+    {
+        size = i_bits * 2;
+        graph.addVertex("0", "const");
+    }
+    else if (SUM || NSUM || SUB || NSUB)
+    {
+        size = i_bits + 1;
+        graph.addVertex("0", "const");
+    }
+    for (int j = 0; j < size; j++)
+    {
+        std::string T = std::to_string(j);
+        graph.Extend(generatorMultiplexer(x, T));
+        int c = 0;
+        if (SUM)
+        {
+            for (int i = c; i < 4; i++)
+            {
+                std::string T1 = std::to_string(c); std::string T01 = std::to_string(i);
+                c += 1;
+                if (MULT ? (j == i_bits && (i == 0 || i == 2)) || j > i_bits : j == i_bits && (i == 0 || i == 2))
+                {
+                    graph.Substitute("0", "x" + T + "_" + T1, false);
+                }
+                else
+                {
+                    graph.Substitute("s" + T01 + "and1_" + T, "x" + T + "_" + T1, false);
+                }
+
+            }
+
+        }
+        if (NSUM)
+        {
+            for (int i = c; i < 4; i++)
+            {
+                std::string T1 = std::to_string(c); std::string T01 = std::to_string(i);
+                c += 1;
+                if (MULT ? (j == i_bits && (i == 0 || i == 2)) || j > i_bits : j == i_bits && (i == 0 || i == 2))
+                {
+                    graph.Substitute("0", "x" + T + "_" + T1, false);
+                }
+                else
+                {
+                    graph.Substitute("ns" + T01 + "and1_" + T, "x" + T + "_" + T1, false);
+                }
+            }
+
+
+        }
+        if (SUB)
+        {
+            for (int i = c; i < 4; i++)
+            {
+                std::string T1 = std::to_string(c); std::string T01 = std::to_string(i);
+                c += 1;
+                if (MULT ? (j == i_bits && (i == 0 || i == 2)) || j > i_bits : j == i_bits && (i == 0 || i == 2))
+                {
+                    graph.Substitute("0", "x" + T + "_" + T1, false);
+                }
+                else
+                {
+                    graph.Substitute("d" + T01 + "and1_" + T, "x" + T + "_" + T1, false);
+                }
+            }
+        }
+        if (NSUB)
+        {
+            for (int i = c; i < 4; i++)
+            {
+                std::string T1 = std::to_string(c); std::string T01 = std::to_string(i);
+                c += 1;
+
+                if (MULT ? (j == i_bits && (i == 0 || i == 2)) || j > i_bits : j == i_bits && (i == 0 || i == 2))
+                {
+                    graph.Substitute("0", "x" + T + "_" + T1, false);
+                }
+                else
+                {
+                    graph.Substitute("nd" + T01 + "and1_" + T, "x" + T + "_" + T1, false);
+                }
+            }
+        }
+        if (MULT)
+        {
+
+            std::string T1 = std::to_string(c);
+            c += 1;
+            if (j >= i_bits * 2)
+            {
+                graph.Substitute("0", "x" + T + "_" + T1, false);
+            }
+            else
+            {
+                graph.Substitute("mand1_" + T, "x" + T + "_" + T1, false);
+            }
+
+        }
+        if (COM)
+        {
+            for (int i = c; i < 3; i++)
+            {
+                std::string T1 = std::to_string(c); std::string T01 = std::to_string(i);
+                c += 1;
+                if (j >= i_bits)
+                {
+                    graph.Substitute("0", "x" + T + "_" + T1, false);
+                }
+                else
+                {
+                    graph.Substitute("E" + T01 + "and1_" + T, "x" + T + "_" + T1, false);
+                }
+
+            }
+        }
+        if (AND)
+        {
+
+            std::string T1 = std::to_string(c);
+            if (j >= i_bits)
+            {
+                graph.Substitute("0", "x" + T + "_" + T1, false);
+            }
+            else
+            {
+                graph.Substitute("ij1_" + T, "x" + T + "_" + T1, false);
+            }
+
+            c += 1;
+
+        }
+        if (NAND)
+        {
+            std::string T1 = std::to_string(c);
+            if (j >= i_bits)
+            {
+                graph.Substitute("0", "x" + T + "_" + T1, false);
+            }
+            else
+            {
+                graph.Substitute("ij2_" + T, "x" + T + "_" + T1, false);
+            }
+
+            c += 1;
+
+        }
+        if (OR)
+        {
+
+            std::string T1 = std::to_string(c);
+            if (j >= i_bits)
+            {
+                graph.Substitute("0", "x" + T + "_" + T1, false);
+            }
+            else
+            {
+                graph.Substitute("ij3_" + T, "x" + T + "_" + T1, false);
+            }
+
+            c += 1;
+
+        }
+        if (XOR)
+        {
+            std::string T1 = std::to_string(c);
+            if (j >= i_bits)
+            {
+                graph.Substitute("0", "x" + T + "_" + T1, false);
+            }
+            else
+            {
+                graph.Substitute("ij5_" + T, "x" + T + "_" + T1, false);
+            }
+
+            c += 1;
+        }
+        if (NOR)
+        {
+            std::string T1 = std::to_string(c);
+            if (j >= i_bits)
+            {
+                graph.Substitute("0", "x" + T + "_" + T1, false);
+            }
+            else
+            {
+                graph.Substitute("ij4_" + T, "x" + T + "_" + T1, false);
+            }
+
+            c += 1;
+        }
+        if (XNOR)
+        {
+            std::string T1 = std::to_string(c);
+            if (j >= i_bits)
+            {
+                graph.Substitute("0", "x" + T + "_" + T1, false);
+            }
+            else
+            {
+                graph.Substitute("ij6_" + T, "x" + T + "_" + T1, false);
+            }
+
+            c += 1;
+        }
+        if (CNF)
+        {
+            std::string T1 = std::to_string(c);
+            if (j >= i_outbits)
+            {
+                graph.Substitute("0", "x" + T + "_" + T1, false);
+                c += 1;
+                T1 = std::to_string(c);
+                graph.Substitute("0", "x" + T + "_" + T1, false);
+            }
+            else
+            {
+                graph.Substitute("fT" + T, "x" + T + "_" + T1, false);
+                c += 1;
+                T1 = std::to_string(c);
+                graph.Substitute("fF" + T, "x" + T + "_" + T1, false);
+            }
+
+        }
+    }
+     */
+    return graph;
+}
+

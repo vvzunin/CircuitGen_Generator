@@ -125,6 +125,53 @@ private:
 
 class GeneratorDecoderParameters {};
 
+class GeneratorALUParameters{
+public:
+    bool getALL() {return d_ALL;}
+    bool getSUM() {return d_SUM;}
+    bool getSUB() {return d_SUB;}
+    bool getNSUM() {return d_NSUM;}
+    bool getNSUB() {return d_NSUB;}
+    bool getMULT() {return d_MULT;}
+    bool getCOM() {return d_COM;}
+    bool getAND() {return d_AND;}
+    bool getNAND() {return d_NAND;}
+    bool getOR() {return d_OR;}
+    bool getNOR() {return d_NOR;}
+    bool getXOR() {return d_XOR;}
+    bool getXNOR() {return d_XNOR;}
+    bool getCNF() {return d_CNF;}
+    void setALL(bool i_ALL) {d_ALL = i_ALL;}
+    void setSUM(bool i_SUM) {d_SUM = i_SUM;}
+    void setSUB(bool i_SUB) {d_SUB = i_SUB;}
+    void setNSUM(bool i_NSUM) {d_NSUM = i_NSUM;}
+    void setNSUB(bool i_NSUB) {d_NSUB = i_NSUB;}
+    void setMULT(bool i_MULT) {d_MULT = i_MULT;}
+    void setCOM(bool i_COM) {d_COM = i_COM;}
+    void setAND(bool i_AND) {d_AND = i_AND;}
+    void setNAND(bool i_NAND) {d_NAND = i_NAND;}
+    void setOR(bool i_OR) {d_OR = i_OR;}
+    void setNOR(bool i_NOR) {d_NOR = i_NOR;}
+    void setXOR(bool i_XOR) {d_XOR = i_XOR;}
+    void setXNOR(bool i_XNOR) {d_XNOR = i_XNOR;}
+    void setCNF(bool i_CNF) {d_CNF = i_CNF;}
+
+private:
+    bool d_ALL = false;
+    bool d_SUM = false;
+    bool d_SUB = false;
+    bool d_NSUM = false;
+    bool d_NSUB = false;
+    bool d_MULT = false;
+    bool d_COM = false;
+    bool d_AND = false;
+    bool d_NAND = false;
+    bool d_OR = false;
+    bool d_NOR = false;
+    bool d_XOR = false;
+    bool d_XNOR = false;
+    bool d_CNF = false;
+};
 
 class GenerationParameters {
  public:
@@ -206,6 +253,9 @@ class GenerationParameters {
   GeneratorDecoderParameters getDecoder() const{
     return d_generatorDecoderParameters;
   }
+  GeneratorALUParameters getALU() const{
+      return d_generatorALUParameters;
+  }
   
   GeneticParameters getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF) { d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
@@ -240,6 +290,23 @@ class GenerationParameters {
     d_generatorComparisonParameters.setCompare0(i_compare0);
     d_generatorComparisonParameters.setCompare1(i_compare1);
     d_generatorComparisonParameters.setCompare2(i_compare2);
+  }
+  void setALUParameters(bool i_ALL, bool i_SUM, bool i_SUB, bool i_NSUM, bool i_NSUB, bool i_MULT, bool i_COM,
+                        bool i_AND, bool i_NAND, bool i_OR, bool i_NOR, bool i_XOR, bool i_XNOR, bool i_CNF){
+      d_generatorALUParameters.setALL(i_ALL);
+      d_generatorALUParameters.setSUM(i_SUM);
+      d_generatorALUParameters.setSUB(i_SUB);
+      d_generatorALUParameters.setNSUM(i_NSUM);
+      d_generatorALUParameters.setNSUB(i_NSUB);
+      d_generatorALUParameters.setMULT(i_MULT);
+      d_generatorALUParameters.setCOM(i_COM);
+      d_generatorALUParameters.setAND(i_AND);
+      d_generatorALUParameters.setNAND(i_NAND);
+      d_generatorALUParameters.setOR(i_OR);
+      d_generatorALUParameters.setNOR(i_NOR);
+      d_generatorALUParameters.setXOR(i_XOR);
+      d_generatorALUParameters.setXNOR(i_XNOR);
+      d_generatorALUParameters.setCNF(i_CNF);
   }
   void setZhegalkin(bool i_zhegalkin) { 
     d_ZhegalkinFromTruthTableParameters.setZhegalkin(i_zhegalkin); 
@@ -302,5 +369,10 @@ class GenerationParameters {
   GeneratorEncoderParameters d_generatorEncoderParameters;
   GeneratorSubtractorParameters d_generatorSubtractorParameters;
   GeneratorDecoderParameters d_generatorDecoderParameters;
+<<<<<<< HEAD
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
+=======
+  GeneratorALUParameters d_generatorALUParameters;
+  // GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
+>>>>>>> 00c92fb628bb3f1a4ae1ffb53dc97de64ec3185e
 };

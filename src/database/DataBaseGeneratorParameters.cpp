@@ -59,6 +59,7 @@ std::string DataBaseGeneratorParameters::getGenerationTypeString() const {
   if (d_generationTypes == GenerationTypes::Demultiplexer) return "Demultiplexer";
   if (d_generationTypes == GenerationTypes::Multiplier) return "Multiplier";
   if (d_generationTypes == GenerationTypes::Decoder) return "Decoder";
+  if (d_generationTypes == GenerationTypes::ALU) return "ALU";
 
   return "Undefined";
 }
