@@ -60,10 +60,11 @@ jobs:
     - name: Process coverage info
       run: cmake --build build/coverage -t coverage
 
-    - name: Submit to codecov.io
-      uses: codecov/codecov-action@v4
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
       with:
-        file: build/coverage/coverage.info
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: vvzunin/CircuitGen_Generator
 
   sanitize:
     needs: [lint]
