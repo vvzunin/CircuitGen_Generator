@@ -115,7 +115,7 @@ std::string GraphVertexGates::getVerilogString() const {
           s += " ^ " + name;
           break;
         case (Gates::GateXnor):
-          s += " ~^ " + name;
+          s += " ^ " + name;
           break;
         default:
           std::cerr << "Error" << std::endl;

@@ -237,7 +237,7 @@ OrientedGraph SimpleGenerators::generatorRandLevel(
     prevIndex += currIndex - prevIndex;
     currIndex += position;
 
-    std::clog << i / (float)maxLevel * 100 << "%" << std::endl;
+    // std::clog << i / (float)maxLevel * 100 << "%" << std::endl;
   }
 
   // TODO: fix when elements less than outputs
@@ -385,10 +385,10 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     currIndex += position;
     curLen    = inputs.size();
 
-    std::clog << (float)i / (float)maxLevel * 100 << "%" << std::endl;
+    // std::clog << (float)i / (float)maxLevel * 100 << "%" << std::endl;
   }
 
-  std::clog << "writing out gates" << std::endl;
+  // std::clog << "writing out gates" << std::endl;
   for (int i = 0; i < i_outputs; ++i) {
     int child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
     expr       = "f" + std::to_string(i + 1);
@@ -397,7 +397,7 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
     graph.addEdge(graph.getVerticeByIndex(child1), newVertex);
   }
 
-  std::clog << "writing out gates ended" << std::endl;
+  // std::clog << "writing out gates ended" << std::endl;
   return graph;
 }
 
