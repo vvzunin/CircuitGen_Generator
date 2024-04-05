@@ -1,5 +1,6 @@
 # Генератор комбинационных схем
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/vvzunin/CircuitGen_Generator/graph/badge.svg?token=U88U82QFX8)](https://codecov.io/gh/vvzunin/CircuitGen_Generator)
 
 <font size="5">**Оглавление:**</font>
