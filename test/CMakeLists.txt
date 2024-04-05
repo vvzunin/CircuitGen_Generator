@@ -29,6 +29,32 @@ message(${NEW_SOURCES})
 # ---- Tests ----
 
 # Test AuxiliaryMethodsTests
+
+configure_file(
+  src/additional/testData_AuxiliaryMethodsTests/one_line_file.txt
+  src/additional/testData_AuxiliaryMethodsTests/one_line_file.txt
+  COPYONLY)
+
+configure_file(
+  src/additional/testData_AuxiliaryMethodsTests/test_empty_file.txt
+  src/additional/testData_AuxiliaryMethodsTests/test_empty_file.txt
+  COPYONLY)
+
+configure_file(
+  src/additional/testData_AuxiliaryMethodsTests/test_one_line_with_tab.txt
+  src/additional/testData_AuxiliaryMethodsTests/test_one_line_with_tab.txt
+  COPYONLY)
+
+configure_file(
+  src/additional/testData_AuxiliaryMethodsTests/test_two_line_with_tab.txt
+  src/additional/testData_AuxiliaryMethodsTests/test_two_line_with_tab.txt
+    COPYONLY)
+
+configure_file(
+  src/additional/testData_AuxiliaryMethodsTests/test_two_lines.txt
+  src/additional/testData_AuxiliaryMethodsTests/test_two_lines.txt
+  COPYONLY)
+
 add_executable(CircuitGenGenerator_test_AuxiliaryMethodsTests src/additional/AuxiliaryMethodsTests.cpp ${NEW_SOURCES})
 
 target_link_libraries(CircuitGenGenerator_test_AuxiliaryMethodsTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
