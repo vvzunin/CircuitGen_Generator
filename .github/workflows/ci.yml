@@ -154,7 +154,7 @@ jobs:
     # simply delete this job similarly to the coverage one.
     if: github.ref == 'refs/heads/main'
       && github.event_name == 'push'
-      && github.repository_owner == '<name>'
+      && github.repository_owner == 'vvzunin'
       && false
 
     steps:
