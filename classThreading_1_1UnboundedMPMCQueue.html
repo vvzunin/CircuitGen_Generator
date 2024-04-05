@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>CircuitGenGenerator namespace | CircuitGenGenerator</title>
+  <title>Threading::UnboundedMPMCQueue class | CircuitGenGenerator</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,29 +49,76 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          CircuitGenGenerator <span class="m-thin">namespace</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="CircuitGenGenerator_8hpp.html">&lt;CircuitGenGenerator/CircuitGenGenerator.hpp&gt;</a></div>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="UnboundedMPMCQueue_8hpp.html">&lt;UnboundedMPMCQueue.hpp&gt;</a></div>
+          <div class="m-doc-template">template&lt;typename T&gt;</div>
+          <span class="m-breadcrumb"><a href="namespaceThreading.html">Threading</a>::<wbr/></span>UnboundedMPMCQueue <span class="m-thin">class</span>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
             <li>
               Reference
               <ul>
-                <li><a href="#func-members">Functions</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
               </ul>
             </li>
           </ul>
         </div>
-        <section id="func-members">
-          <h2><a href="#func-members">Functions</a></h2>
+<p>Allows to add tasks and blocking wait for element appearance for multiple writers (producers) and multiple readers (consumers). User must guarantee no adding in the closed queue, else runtime error exception will be thrown.</p>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a41dfd9a88637c1961c7eebeec34025d2">
-              <span class="m-doc-wrap-bumper">auto <a href="#a41dfd9a88637c1961c7eebeec34025d2" class="m-doc-self">runGenerationFromJson</a>(</span><span class="m-doc-wrap">std::string json_path) -&gt; CIRCUITGENGENERATOR_EXPORT void</span>
+            <dt id="a7ac2f134e85fc2ca20d7aff2a574c0fa">
+              <span class="m-doc-wrap-bumper"><a href="#a7ac2f134e85fc2ca20d7aff2a574c0fa" class="m-doc-self">UnboundedMPMCQueue</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd>Create open queue, which will be ready to accept items.</dd>
+            <dt id="afa9f81c2d089bee0a22d975d173b3ab7">
+              <span class="m-doc-wrap-bumper"><a href="#afa9f81c2d089bee0a22d975d173b3ab7" class="m-doc-self">UnboundedMPMCQueue</a>(</span><span class="m-doc-wrap">const <a href="classThreading_1_1UnboundedMPMCQueue.html" class="m-doc">UnboundedMPMCQueue</a>&amp; other) <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aab90181c793d7d9c78c270387ddf85cb">
+              <span class="m-doc-wrap-bumper"><a href="#aab90181c793d7d9c78c270387ddf85cb" class="m-doc-self">UnboundedMPMCQueue</a>(</span><span class="m-doc-wrap"><a href="classThreading_1_1UnboundedMPMCQueue.html" class="m-doc">UnboundedMPMCQueue</a>&amp;&amp; other) <span class="m-label m-flat m-danger">deleted</span></span>
             </dt>
             <dd><span></span></dd>
           </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="a71245eeb06a3fd765cfda1a4b9590a38">
+              <span class="m-doc-wrap-bumper">auto <a href="#a71245eeb06a3fd765cfda1a4b9590a38" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classThreading_1_1UnboundedMPMCQueue.html" class="m-doc">UnboundedMPMCQueue</a>&amp; other) -&gt; <a href="classThreading_1_1UnboundedMPMCQueue.html" class="m-doc">UnboundedMPMCQueue</a>&amp; <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aae48c2b41f3243bd9e53209a65b8d610">
+              <span class="m-doc-wrap-bumper">auto <a href="#aae48c2b41f3243bd9e53209a65b8d610" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classThreading_1_1UnboundedMPMCQueue.html" class="m-doc">UnboundedMPMCQueue</a>&amp;&amp; other) -&gt; <a href="classThreading_1_1UnboundedMPMCQueue.html" class="m-doc">UnboundedMPMCQueue</a>&amp; <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a32414b07fa0442d4e1a60b405241a3da">
+              <span class="m-doc-wrap-bumper">void <a href="#a32414b07fa0442d4e1a60b405241a3da" class="m-doc-self">add</a>(</span><span class="m-doc-wrap">T item)</span>
+            </dt>
+            <dd>Add task.</dd>
+            <dt id="a210a8e95d243cc20f463a97fc7f97eb1">
+              <span class="m-doc-wrap-bumper">void <a href="#a210a8e95d243cc20f463a97fc7f97eb1" class="m-doc-self">close</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd>Close queue. All waiting threads will receive nullopt.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ad2618d4603cbf43abb9f1d823bed6aba" class="m-doc">take</a>(</span><span class="m-doc-wrap">) -&gt; std::optional&lt;T&gt;</span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="ad2618d4603cbf43abb9f1d823bed6aba"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::optional&lt;T&gt; Threading::<wbr />UnboundedMPMCQueue&lt;T&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad2618d4603cbf43abb9f1d823bed6aba" class="m-doc-self">take</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+<p>Block current thread until no item will appearance in the queue or queue will be closed.</p>
+          </div></section>
         </section>
       </div>
     </div>

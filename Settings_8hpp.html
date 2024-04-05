@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>CircuitGenGenerator</title>
+  <title>src/settings/Settings.hpp file | CircuitGenGenerator</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -30,7 +30,7 @@
                 <li><a href="about.html">About</a></li>
               </ol>
             </li>
-            <li><a href="namespaces.html" id="m-navbar-current">Namespaces</a></li>
+            <li><a href="namespaces.html">Namespaces</a></li>
           </ol>
           <ol class="m-col-t-6 m-col-m-none" start="3">
             <li><a href="annotated.html">Classes</a></li>
@@ -48,34 +48,65 @@
   <div class="m-container m-container-inflatable">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <h1>Namespaces</h1>
-        <ul class="m-doc">
-          <li>namespace <a href="namespace_0d2.html" class="m-doc">@2</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespace_0d21.html" class="m-doc">@21</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespace_0d36.html" class="m-doc">@36</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceAuxMethods.html" class="m-doc">AuxMethods</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceCircuitGenGenerator.html" class="m-doc">CircuitGenGenerator</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceFilesTools.html" class="m-doc">FilesTools</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespacestd.html" class="m-doc">std</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespacestd_1_1chrono.html" class="m-doc">std::chrono</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceThreading.html" class="m-doc">Threading</a> <span class="m-doc"><span></span></span></li>
-        </ul>
-        <script>
-        function toggle(e) {
-            e.parentElement.className = e.parentElement.className == 'm-doc-collapsible' ?
-                'm-doc-expansible' : 'm-doc-collapsible';
-            return false;
-        }
-        /* Collapse all nodes marked as such. Doing it via JS instead of
-           directly in markup so disabling it doesn't harm usability. The list
-           is somehow regenerated on every iteration and shrinks as I change
-           the classes. It's not documented anywhere and I'm not sure if this
-           is the same across browsers, so I am going backwards in that list to
-           be sure. */
-        var collapsed = document.getElementsByClassName("collapsed");
-        for(var i = collapsed.length - 1; i >= 0; --i)
-            collapsed[i].className = 'm-doc-expansible';
-        </script>
+        <h1>
+          <span class="m-breadcrumb"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a>/</span><span class="m-breadcrumb"><a href="dir_ded1f21a39ae19e27d2bdf7bc3638045.html">settings</a>/</span>Settings.hpp <span class="m-thin">file</span>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#nested-classes">Classes</a></li>
+                <li><a href="#enum-members">Enums</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="nested-classes">
+          <h2><a href="#nested-classes">Classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              class <a href="classSettings.html" class="m-doc">Settings</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="enum-members">
+          <h2><a href="#enum-members">Enums</a></h2>
+          <dl class="m-doc">
+            <dt id="a4860c7e5599644d59b0922af55520a53">
+              <span class="m-doc-wrap-bumper">enum <a href="#a4860c7e5599644d59b0922af55520a53" class="m-doc-self">generationTypes</a> { </span><span class="m-doc-wrap"><a href="#a4860c7e5599644d59b0922af55520a53ab7e4e0120a041dbe6528b050c04269e0" class="m-doc">none</a>,
+              <a href="#a4860c7e5599644d59b0922af55520a53a69c940b8aeb1dc0dff8d784f709e528f" class="m-doc">truthTableToGraphWithoutOptimization</a>,
+              <a href="#a4860c7e5599644d59b0922af55520a53a3cc79dca166a006504aa1e02859d3d23" class="m-doc">truthTableToGraphWithOptimization</a> }</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a71bf501f63160ba5aa5adb9552290dc9">
+              <span class="m-doc-wrap-bumper">enum <a href="#a71bf501f63160ba5aa5adb9552290dc9" class="m-doc-self">LibrariesTypes</a> { </span><span class="m-doc-wrap"><a href="#a71bf501f63160ba5aa5adb9552290dc9abb1eba077962bf4055f96f72d94e8cab" class="m-doc">SKY_LIB</a> }</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0205bad1987949fa63dc4d217e4e2e5d">
+              <span class="m-doc-wrap-bumper">enum <a href="#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc-self">VertexTypes</a> { </span><span class="m-doc-wrap"><a href="#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528" class="m-doc">input</a>,
+              <a href="#a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545" class="m-doc">output</a>,
+              <a href="#a0205bad1987949fa63dc4d217e4e2e5da995640a12d5339aabee76a933fb5f519" class="m-doc">constant</a>,
+              <a href="#a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516" class="m-doc">gate</a> }</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0963bd5066d6d6a58155d1ad79f56974">
+              <span class="m-doc-wrap-bumper">enum <a href="#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc-self">Gates</a> { </span><span class="m-doc-wrap"><a href="#a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680" class="m-doc">GateAnd</a>,
+              <a href="#a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69" class="m-doc">GateNand</a>,
+              <a href="#a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2" class="m-doc">GateOr</a>,
+              <a href="#a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec" class="m-doc">GateNor</a>,
+              <a href="#a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64" class="m-doc">GateXor</a>,
+              <a href="#a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba" class="m-doc">GateXnor</a>,
+              <a href="#a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45" class="m-doc">GateNot</a>,
+              <a href="#a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e" class="m-doc">GateBuf</a>,
+              <a href="#a0963bd5066d6d6a58155d1ad79f56974ac2976809a913c91ef0f17c57113a882a" class="m-doc">GateDefault</a> }</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
       </div>
     </div>
   </div>

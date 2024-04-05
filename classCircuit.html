@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>CircuitGenGenerator namespace | CircuitGenGenerator</title>
+  <title>Circuit class | CircuitGenGenerator</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,8 +49,8 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          CircuitGenGenerator <span class="m-thin">namespace</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="CircuitGenGenerator_8hpp.html">&lt;CircuitGenGenerator/CircuitGenGenerator.hpp&gt;</a></div>
+          Circuit <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Circuit_8hpp.html">&lt;Circuit.hpp&gt;</a></div>
         </h1>
         <p><span></span></p>
         <div class="m-block m-default">
@@ -59,16 +59,75 @@
             <li>
               Reference
               <ul>
-                <li><a href="#func-members">Functions</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
               </ul>
             </li>
           </ul>
         </div>
-        <section id="func-members">
-          <h2><a href="#func-members">Functions</a></h2>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a41dfd9a88637c1961c7eebeec34025d2">
-              <span class="m-doc-wrap-bumper">auto <a href="#a41dfd9a88637c1961c7eebeec34025d2" class="m-doc-self">runGenerationFromJson</a>(</span><span class="m-doc-wrap">std::string json_path) -&gt; CIRCUITGENGENERATOR_EXPORT void</span>
+            <dt id="ae8619e12f3eded4980b7066febdf1b3c">
+              <span class="m-doc-wrap-bumper"><a href="#ae8619e12f3eded4980b7066febdf1b3c" class="m-doc-self">Circuit</a>(</span><span class="m-doc-wrap"><a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a>*const i_graph,
+              const std::vector&lt;std::string&gt;&amp; i_logExpressions = {})</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="a15e8b0a5b0050f6e0c5feb9c500444b3">
+              <span class="m-doc-wrap-bumper">void <a href="#a15e8b0a5b0050f6e0c5feb9c500444b3" class="m-doc-self">computeHash</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6f056536665144be2cafd9c69ad13c9c">
+              <span class="m-doc-wrap-bumper">void <a href="#a6f056536665144be2cafd9c69ad13c9c" class="m-doc-self">updateCircuitParameters</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0fffbea37983706410ff674dd9eb08c9">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0fffbea37983706410ff674dd9eb08c9" class="m-doc-self">graphToVerilog</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path,
+              bool i_pathExists = false) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5f9e1a5b9117f6e8c6547cf5a261047e">
+              <span class="m-doc-wrap-bumper">auto <a href="#a5f9e1a5b9117f6e8c6547cf5a261047e" class="m-doc-self">graphToGraphML</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path,
+              bool i_pathExists = false) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0fdf36304f6881006bd1432ae6cdcc6e">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0fdf36304f6881006bd1432ae6cdcc6e" class="m-doc-self">saveParameters</a>(</span><span class="m-doc-wrap">bool i_pathExists = false) const -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ac07f64884fb0732102b39c0ec1c38896">
+              <span class="m-doc-wrap-bumper">auto <a href="#ac07f64884fb0732102b39c0ec1c38896" class="m-doc-self">generate</a>(</span><span class="m-doc-wrap">bool i_makeGraphML = false,
+              bool i_pathExists = false) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5afd009c717105e7f2c36c02e233661c">
+              <span class="m-doc-wrap-bumper">void <a href="#a5afd009c717105e7f2c36c02e233661c" class="m-doc-self">setTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_tt)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a71e323bb28864ea40f60fdc1fd693add">
+              <span class="m-doc-wrap-bumper">void <a href="#a71e323bb28864ea40f60fdc1fd693add" class="m-doc-self">setPath</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6b0bf9c0af70133d2389c6a2b9c81299">
+              <span class="m-doc-wrap-bumper">void <a href="#a6b0bf9c0af70133d2389c6a2b9c81299" class="m-doc-self">setCircuitName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_circName)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6d0f1678da06127a4587df5a3dae39e4">
+              <span class="m-doc-wrap-bumper">auto <a href="#a6d0f1678da06127a4587df5a3dae39e4" class="m-doc-self">getIndexOfWireName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_wireName) -&gt; std::vector&lt;std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt;&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3be6fbc1ba8457fc500bb7514d90f2db">
+              <span class="m-doc-wrap-bumper">void <a href="#a3be6fbc1ba8457fc500bb7514d90f2db" class="m-doc-self">setVerticeOperation</a>(</span><span class="m-doc-wrap">int i_vertice,
+              const std::string&amp; i_operation)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a37ae459501ff0ca329c0e0359f9e436d">
+              <span class="m-doc-wrap-bumper">auto <a href="#a37ae459501ff0ca329c0e0359f9e436d" class="m-doc-self">fromVerilog</a>(</span><span class="m-doc-wrap">const std::string&amp; i_filepath) -&gt; <a href="classCircuit.html" class="m-doc">Circuit</a></span>
             </dt>
             <dd><span></span></dd>
           </dl>
