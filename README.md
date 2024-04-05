@@ -1,5 +1,7 @@
 # Генератор комбинационных схем
 
+[![codecov](https://codecov.io/gh/vvzunin/CircuitGen_Generator/graph/badge.svg?token=U88U82QFX8)](https://codecov.io/gh/vvzunin/CircuitGen_Generator)
+
 <font size="5">**Оглавление:**</font>
 <a name="content_rus"></a> 
 - [Правила именования переменных](#hacking)

@@ -20,7 +20,7 @@ set(package CircuitGenGenerator)
 install(
     DIRECTORY
     include/
-    "${PROJECT_BINARY_DIR}/export/"
+    "${PROJECT_BINARY_DIR}/include/"
     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
     COMPONENT CircuitGenGenerator_Development
 )

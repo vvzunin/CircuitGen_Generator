@@ -20,7 +20,7 @@ public:
       OrientedGraph*    i_graph = nullptr
   );
 
-  // TODO craches ad destructor call
+  // TODO crashes add destructor call
   virtual ~GraphVertexBase();
 
   // Get для типа вершины

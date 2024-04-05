@@ -38,8 +38,7 @@ jobs:
     # edit the "<name>" placeholder to your GitHub name.
     # If you do not wish to use codecov, then simply delete this job from the
     # workflow.
-    if: github.repository_owner == '<name>'
-      && false
+    if: github.repository_owner == 'vvzunin'
 
     steps:
     - uses: actions/checkout@v4
@@ -61,10 +60,11 @@ jobs:
     - name: Process coverage info
       run: cmake --build build/coverage -t coverage
 
-    - name: Submit to codecov.io
-      uses: codecov/codecov-action@v4
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
       with:
-        file: build/coverage/coverage.info
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: vvzunin/CircuitGen_Generator
 
   sanitize:
     needs: [lint]
@@ -98,7 +98,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-12, ubuntu-22.04, windows-2022]
+        os: [ubuntu-22.04]
+        #os: [macos-12, ubuntu-22.04, windows-2022]
 
     runs-on: ${{ matrix.os }}
 

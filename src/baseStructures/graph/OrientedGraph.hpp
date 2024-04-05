@@ -83,7 +83,7 @@ public:
   // toAdjencyMatrix
   bool                             toGraphML(std::ofstream& i_fileStream) const;
   std::string                      toGraphML(int i_nesting = 0) const;
-  // vizualize
+  // visualize
   // calcGraph
 
   // Сделать матрицу смежности для хранения и быстрого поиска связей?

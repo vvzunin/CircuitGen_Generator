@@ -42,7 +42,7 @@ public:
   void wait();
 
   /// Stop workers. Some tasks can be incomplete.
-  /// Blocks until every thread wont be stopped and destroyed.
+  /// Blocks until every thread won't be stopped and destroyed.
   /// After that, thread pool can not process new tasks.
   void stop();
 
