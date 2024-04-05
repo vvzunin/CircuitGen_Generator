@@ -108,14 +108,11 @@ TEST(
 TEST(TestAuxiliarySortDictByValue, NormalTest) {
   // Just created some maps that gonna be input for  sortDictByValue
   std::map<std::string, int> normalInput1 = {
-      {"0", 0}, {"1", 1}, {"2", 2}, {"3", 3}
-  };
+      {"0", 0}, {"1", 1}, {"2", 2}, {"3", 3}};
   std::map<std::string, int> normalInput2 = {
-      {"0", 110}, {"1", 10}, {"2", 20}, {"3", 3}
-  };
+      {"0", 110}, {"1", 10}, {"2", 20}, {"3", 3}};
   std::map<std::string, int> normalInput3 = {
-      {"0", 1100}, {"1", 1}, {"2", 1}, {"3", 33}
-  };
+      {"0", 1100}, {"1", 1}, {"2", 1}, {"3", 33}};
   // Here I crated vector correctAnswer which I will use to compare with the
   // result of sortDictByValue
   std::vector<std::pair<std::string, int>> correctAnswer;
@@ -173,8 +170,7 @@ TEST(
 TEST(TestAuxiliarySortDictByValue, WhenThereTheSameValuesInDictionary) {
   // Just created a map that's gonna be input for  sortDictByValue
   std::map<std::string, int> TheSameElements = {
-      {"1", 1}, {"2", 1}, {"3", 1}, {"4", 1}, {"5", 1}
-  };
+      {"1", 1}, {"2", 1}, {"3", 1}, {"4", 1}, {"5", 1}};
   // Here I crated vector correctAnswer which I will use to compare with the
   // result of sortDictByValue
   std::vector<std::pair<std::string, int>> correctAnswer;

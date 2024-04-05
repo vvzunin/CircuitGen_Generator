@@ -123,12 +123,11 @@ private:
   std::map<VertexTypes, std::vector<std::shared_ptr<GraphVertexBase>>>
       d_vertexes {
           {VertexTypes::input, std::vector<std::shared_ptr<GraphVertexBase>>()},
-          {VertexTypes::output, std::vector<std::shared_ptr<GraphVertexBase>>()
-          },
+          {VertexTypes::output,
+           std::vector<std::shared_ptr<GraphVertexBase>>()},
           {VertexTypes::constant,
            std::vector<std::shared_ptr<GraphVertexBase>>()},
-          {VertexTypes::gate, std::vector<std::shared_ptr<GraphVertexBase>>()}
-      };
+          {VertexTypes::gate, std::vector<std::shared_ptr<GraphVertexBase>>()}};
 
   static uint_fast64_t d_countGraph;
 
@@ -141,8 +140,7 @@ private:
       {Gates::GateNot, 0},
       {Gates::GateBuf, 0},
       {Gates::GateXor, 0},
-      {Gates::GateXnor, 0}
-  };
+      {Gates::GateXnor, 0}};
   // used for quick edges of gate type count;
   std::map<Gates, std::map<Gates, int>> d_edgesGatesCount;
 
