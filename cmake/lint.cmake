@@ -6,7 +6,7 @@ macro(default name)
   endif()
 endmacro()
 
-default(FORMAT_COMMAND clang-format)
+default(FORMAT_COMMAND clang-format-15)
 default(
     PATTERNS
     src/*/*.cpp src/*/*.hpp
@@ -26,6 +26,7 @@ file(GLOB_RECURSE files ${PATTERNS})
 set(badly_formatted "")
 set(output "")
 string(LENGTH "${CMAKE_SOURCE_DIR}/" path_prefix_length)
+
 
 foreach(file IN LISTS files)
   execute_process(

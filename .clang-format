@@ -21,13 +21,13 @@ AlignConsecutiveDeclarations:
   Enabled: true
   AcrossEmptyLines: true
   AcrossComments: true
-  AlignFunctionPointers: true
+  #AlignFunctionPointers: true
   PadOperators: true
 AlignEscapedNewlines: DontAlign
 AlignOperands: AlignAfterOperator
-AlignTrailingComments:
-  Kind: Always
-  OverEmptyLines: 1
+AlignTrailingComments: true
+#  Kind: true
+#  OverEmptyLines: 1
 AllowAllArgumentsOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortEnumsOnASingleLine: false
@@ -108,7 +108,7 @@ InsertTrailingCommas: Wrapped
 JavaScriptQuotes: Double
 JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: false
-LineEnding: LF
+#LineEnding: LF
 MacroBlockBegin: ''
 MacroBlockEnd: ''
 MaxEmptyLinesToKeep: 1
@@ -160,7 +160,7 @@ RawStringFormats:
     BasedOnStyle: google
 ReflowComments: true
 SortIncludes: CaseInsensitive
-SortUsingDeclarations: LexicographicNumeric
+SortUsingDeclarations: true #LexicographicNumeric
 SpaceAfterCStyleCast: false
 SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: false
@@ -174,12 +174,13 @@ SpaceInEmptyBlock: false
 SpacesBeforeTrailingComments: 2
 SpacesInAngles: Never
 SpacesInContainerLiterals: false
-SpacesInParens: Custom
-SpacesInParensOptions:
-  InConditionalStatements: false
-  InCStyleCasts: false
-  InEmptyParentheses: false
-  Other: false  
+SpacesInParentheses: false
+#SpacesInParens: Custom
+#SpacesInParensOptions:
+#  InConditionalStatements: false
+#  InCStyleCasts: false
+#  InEmptyParentheses: false
+#  Other: false  
 SpacesInSquareBrackets: false
 SpaceBeforeSquareBrackets: false
 Standard:  c++17

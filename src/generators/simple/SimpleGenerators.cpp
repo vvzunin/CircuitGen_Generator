@@ -383,7 +383,7 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
 
     prevIndex += currIndex - prevIndex;
     currIndex += position;
-    curLen     = inputs.size();
+    curLen    = inputs.size();
 
     std::clog << (float)i / (float)maxLevel * 100 << "%" << std::endl;
   }

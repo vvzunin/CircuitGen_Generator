@@ -16,7 +16,7 @@ using namespace FilesTools;
 TEST(FileTools, OnlyDirectoriesNoFiles) {
   fs::path tmpPath =
       (fs::temp_directory_path() / "test"
-      );    // Created temporary guaranted directory to deal with
+      );  // Created temporary guaranted directory to deal with
   std::string
       tmp;  // This variable exist because otherwise we will not be able push
             // tmpPath.string() to method getDirectories(Here it is gonna be)
@@ -35,9 +35,8 @@ TEST(FileTools, OnlyDirectoriesNoFiles) {
   fs::create_directories(tmpPath / "1");
 
   std::vector<std::string> correctVec = {
-      "1", "2", "3", "4", "5", "6"
-  };  // Created vector that's gonna be compared with the result vector we wanna
-      // test
+      "1", "2", "3", "4", "5", "6"};  // Created vector that's gonna be compared
+                                      // with the result vector we wanna test
 
   tmp = tmpPath.string(
   );  // get the path to the current directory which contain created directories
@@ -133,9 +132,8 @@ TEST(FileTools, DirectoriesAndFilesExist) {
   fs::create_directories(tmpPath / "1");
 
   std::vector<std::string> correctVec = {
-      "1", "2", "3", "4", "5", "6"
-  };  // Created vector that's gonna be compared with the result vector we wanna
-      // test
+      "1", "2", "3", "4", "5", "6"};  // Created vector that's gonna be compared
+                                      // with the result vector we wanna test
 
   // Created ten empty txt files in the current directory to make sure that the
   // function does not count files.
