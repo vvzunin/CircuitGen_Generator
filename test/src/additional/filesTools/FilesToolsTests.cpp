@@ -9,7 +9,7 @@ using namespace FilesTools;
 // ourselves do not care about order of directories in the vector. Full
 // understanding will come after  all comments below.
 
-// There are differencies between software in terms of order of directories
+// There are differences between software in terms of order of directories
 // when we creating them through filesystem.
 //  So we will not care about the order of directories. The elements of the
 //  vectors that contain name of directories have to be the same. See below.

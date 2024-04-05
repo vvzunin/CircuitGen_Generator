@@ -114,9 +114,9 @@ std::vector<std::pair<Key, Value>>
   return pairs;
 }
 
-// explicit instatiation of sortDictByValue
+// explicit instantiation of sortDictByValue
 // if you want to use this func with other types, just add corresponding
-// instatiation below, compilation error otherwise.
+// instantiation below, compilation error otherwise.
 template std::vector<std::pair<int, int>>
     AuxMethods::sortDictByValue(const std::map<int, int>& i_dict, bool up);
 
