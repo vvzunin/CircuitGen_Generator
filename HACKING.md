@@ -34,7 +34,7 @@
     {
       "name": "dev",
       "binaryDir": "${sourceDir}/build/dev",
-      "inherits": ["dev-mode", "ci-<os>"],
+      "inherits": ["dev-mode", "ci-linux"],
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug"
       }
