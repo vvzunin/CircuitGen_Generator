@@ -38,6 +38,14 @@ set(
 set(SOURCES
   additional/AuxiliaryMethods.cpp
   additional/filesTools/FilesTools.cpp
+  generators/Genetic/Parents/ParentsParameters.cpp
+  generators/Genetic/Recombination/RecombinationParameters.cpp
+  generators/Genetic/Recombination/RecombinationsTruthTable.cpp
+  generators/Genetic/Mutations/MutationParameters.cpp
+  generators/Genetic/Mutations/MutationTruthTable.cpp
+  generators/Genetic/Mutations/Mutation.cpp
+  generators/Genetic/Selections/SelectionParameters.cpp
+  generators/Genetic/GeneticParameters.cpp
   additional/threadPool/ThreadPool.cpp
   api/generatorAPI.cpp
   baseStructures/graph/GraphVertexBase.cpp  

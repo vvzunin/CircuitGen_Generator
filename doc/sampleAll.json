@@ -1,13 +1,13 @@
 [
   {
     "seed": 0,
-    "dataset_id": "2",
+    "dataset_id": "4",
     "id": 1,
-    "type_of_generation": "Decoder",
+    "type_of_generation": "Genetic",
     "min_in": 1,
     "max_in": 4,
-    "min_out": 16,
-    "max_out": 16,
+    "min_out": 4,
+    "max_out": 6,
     "repeat_n": 1,    
     "multithread": true,
     "calculate_stats_abc": true,

@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <random>
 #include <stdexcept>
+#include <unordered_set>
 
 class RandomGeneratorWithSeed {
  public:
@@ -23,26 +24,12 @@ class RandomGeneratorWithSeed {
 
   void setSeed(std::uint_fast32_t i_seed) { d_gen.seed(i_seed); }
 
-  int getRandInt(int lower, int upper, bool inclusively = false) {
-    if (!inclusively) upper--;
-
-    if (upper == lower) return upper;
-
-    if (upper < lower)
-      throw std::invalid_argument(
-          "RandomGeneratorWithSeed random int: upper boder is bigger than "
-          "lower");
-
-    std::uniform_int_distribution<> dis(lower, upper);
-
-    return dis(d_gen);
-  }
-
-  double getRandDouble(double lower, double upper) {
-    std::uniform_real_distribution<> dis(lower, upper);
-    return dis(d_gen);
-  }
-
+  int getRandInt(int lower, int upper, bool inclusively = false);
+  std::vector<int> getRandomIntList(int i_n, int i_minNumber,
+                                    int i_maxNumber, bool repite = false);
+  
+  double getRandDouble(double lower, double upper);
+  
  private:
   std::uint_fast32_t d_seed;
   std::minstd_rand d_gen;

@@ -2,6 +2,8 @@
 #include <additional/threadPool/ThreadPool.h>
 #include <baseStructures/Parser.h>
 #include <baseStructures/truthTable/TruthTable.h>
+#include <generators/Genetic/GeneticParameters.h>
+#include <generators/Genetic/GenGenerator.h>
 #include <circuits/Circuit.h>
 #include <circuits/CircuitsParameters.h>
 #include <generators/simple/SimpleGenerators.h>
@@ -15,7 +17,7 @@
 #include <vector>
 // #include <generators/Genetic/GenGenerator.h>
 // #include <generators/Genetic/GeneticParameters.h>
-#include <additional/AuxiliaryMethods.h>
+// #include <additional/AuxiliaryMethods.h>
 
 #include "DataBaseGenerator.h"
 
@@ -226,15 +228,14 @@ void DataBaseGenerator::generateDataBaseNumOperations(
 
 void DataBaseGenerator::generateDataBaseGenetic(
     const GenerationParameters &i_param) {
-  // i_param.getGenetic().setInputs(i_param.getInputs());
-  // i_param.getGenetic().setOutputs(i_param.getOutputs());
+  i_param.getGenetic().setInputs(i_param.getInputs());
+  i_param.getGenetic().setOutputs(i_param.getOutputs());
 
-  // GeneticGenerator<TruthTable, TruthTableParameters>
-  // gg(GeneticParameters(i_param.getGenetic()),
-  //                                                       {i_param.getInputs(),
-  //                                                       i_param.getOutputs()},
-  //                                                       d_mainPath);
-  // gg.generate();
+  GeneticGenerator<TruthTable, TruthTableParameters> gg(GeneticParameters(i_param.getGenetic()),
+                                                        {i_param.getInputs(),
+                                                        i_param.getOutputs()},
+                                                        d_mainPath);
+  gg.generate();
 }
 
 void DataBaseGenerator::GenerateDataBaseSummator(
@@ -366,6 +367,9 @@ DataBaseGenerator::getGenerateMethod(const std::string &i_methodName) {
                        std::placeholders::_1);
   if (i_methodName == "Decoder")
     return std::bind(&DataBaseGenerator::generateDataBaseDecoder, this,
+                       std::placeholders::_1);
+  if (i_methodName == "Genetic")
+    return std::bind(&DataBaseGenerator::generateDataBaseGenetic, this,
                        std::placeholders::_1);
                        
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;

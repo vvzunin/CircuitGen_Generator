@@ -62,8 +62,8 @@ void runGenerationFromJson(std::string json_path) {
         gt = GenerationTypes::Multiplier;
     else if (data["type_of_generation"] == "Decoder")
         gt = GenerationTypes::Decoder;
-    // else if (data["type_of_generation"] == "Genetic")
-    //   gt = GenerationTypes::Genetic;
+    else if (data["type_of_generation"] == "Genetic")
+      gt = GenerationTypes::Genetic;
     else {
       std::cerr << "Unsupported generation type" << std::endl;
       return;
@@ -254,157 +254,157 @@ void runGenerationFromJson(std::string json_path) {
         gp.setComparisonParameters(compare0, compare1, compare2);
     }
     // Основные параметры для Genetic
-    // if (data["type_of_generation"] == "Genetic")
-    // {
+    if (data["type_of_generation"] == "Genetic")
+    {
 
-    //   int numOfSurv = 1;
-    //   if (data.contains("surv_num"))
-    //     int numOfSurv = data["surv_num"];
-    //   else
-    //     std::clog << "Parameter surv_num is not set." << std::endl;
+      int numOfSurv = 1;
+      if (data.contains("surv_num"))
+        int numOfSurv = data["surv_num"];
+      else
+        std::clog << "Parameter surv_num is not set." << std::endl;
 
-    //   MutationTypes mType;
-    //   if (data.contains("mut_type"))
-    //   {
-    //     std::string mutType = data["mut_type"];
+      MutationTypes mType;
+      if (data.contains("mut_type"))
+      {
+        std::string mutType = data["mut_type"];
 
-    //     if (mutType == "Binary")
-    //       mType = MutationTypes::Binary;
-    //     else if (mutType == "Density")
-    //       mType = MutationTypes::Density;
-    //     else if (mutType == "AccessionDel")
-    //       mType = MutationTypes::AccessionDel;
-    //     else if (mutType == "InsertDel")
-    //       mType = MutationTypes::InsertDel;
-    //     else if (mutType == "Exchange")
-    //       mType = MutationTypes::Exchange;
-    //     else if (mutType == "Delete")
-    //       mType = MutationTypes::Delete;
-    //     else
-    //     {
-    //       std::cerr << "Unsupported mutType." << std::endl;
-    //       return;
-    //     }
-    //   }
-    //   else
-    //   {
-    //     std::cerr << "Parameters for mutType is not set." << std::endl;
-    //     return;
-    //   }
+        if (mutType == "Binary")
+          mType = MutationTypes::Binary;
+        else if (mutType == "Density")
+          mType = MutationTypes::Density;
+        else if (mutType == "AccessionDel")
+          mType = MutationTypes::AccessionDel;
+        else if (mutType == "InsertDel")
+          mType = MutationTypes::InsertDel;
+        else if (mutType == "Exchange")
+          mType = MutationTypes::Exchange;
+        else if (mutType == "Delete")
+          mType = MutationTypes::Delete;
+        else
+        {
+          std::cerr << "Unsupported mutType." << std::endl;
+          return;
+        }
+      }
+      else
+      {
+        std::cerr << "Parameters for mutType is not set." << std::endl;
+        return;
+      }
 
-    //   double mutChance = 0.5;
-    //   if (data.contains("mut_chance"))
-    //     mutChance = data["mut_chance"];
-    //   else
-    //     std::clog << "Parameter mutChance is not set." << std::endl;
+      double mutChance = 0.5;
+      if (data.contains("mut_chance"))
+        mutChance = data["mut_chance"];
+      else
+        std::clog << "Parameter mutChance is not set." << std::endl;
 
-    //   int exchangeType = 0;
-    //   if (data.contains("swap_type"))
-    //     exchangeType = data["swap_type"];
-    //   else
-    //     std::clog << "Parameter swap_type is not set." << std::endl;
+      int exchangeType = 0;
+      if (data.contains("swap_type"))
+        exchangeType = data["swap_type"];
+      else
+        std::clog << "Parameter swap_type is not set." << std::endl;
 
-    //   double outRatio = 1.0;
-    //   if (data.contains("out_ratio"))
-    //     outRatio = data["out_ratio"];
-    //   else
-    //     std::clog << "Parameter out_ratio is not set." << std::endl;
+      double outRatio = 1.0;
+      if (data.contains("out_ratio"))
+        outRatio = data["out_ratio"];
+      else
+        std::clog << "Parameter out_ratio is not set." << std::endl;
 
-    //   double probabilityTruthTable = 1.0;
-    //   if (data.contains("ratio_in_table"))
-    //     probabilityTruthTable = data["ratio_in_table"];
-    //   else
-    //     std::clog << "Parameter ratio_in_table is not set." << std::endl;
+      double probabilityTruthTable = 1.0;
+      if (data.contains("ratio_in_table"))
+        probabilityTruthTable = data["ratio_in_table"];
+      else
+        std::clog << "Parameter ratio_in_table is not set." << std::endl;
 
-    //   int recNum = 1;
-    //   if (data.contains("rec_num"))
-    //     recNum = data["rec_num"];
-    //   else
-    //     std::clog << "Parameter rec_num is not set." << std::endl;
+      int recNum = 1;
+      if (data.contains("rec_num"))
+        recNum = data["rec_num"];
+      else
+        std::clog << "Parameter rec_num is not set." << std::endl;
 
-    //   int refPoints = 1;
-    //   if (data.contains("ref_points"))
-    //     refPoints = data["ref_points"];
-    //   else
-    //     std::clog << "Parameter ref_points is not set." << std::endl;
+      int refPoints = 1;
+      if (data.contains("ref_points"))
+        refPoints = data["ref_points"];
+      else
+        std::clog << "Parameter ref_points is not set." << std::endl;
 
-    //   int tourSize = 1;
-    //   if (data.contains("tour_size"))
-    //     tourSize = data["tour_size"];
-    //   else
-    //     std::clog << "Parameter tour_size is not set." << std::endl;
+      int tourSize = 1;
+      if (data.contains("tour_size"))
+        tourSize = data["tour_size"];
+      else
+        std::clog << "Parameter tour_size is not set." << std::endl;
 
-    //   std::string selectionTypeParent = data["selection_type_parent"];
-    //   ParentsTypes selecTypeParent;
-    //   if (selectionTypeParent == "Panmixia")
-    //     selecTypeParent = ParentsTypes::Panmixia;
-    //   else if (selectionTypeParent == "Inbringing")
-    //     selecTypeParent = ParentsTypes::Inbringing;
-    //   else if (selectionTypeParent == "Outbrinding")
-    //     selecTypeParent = ParentsTypes::Outbrinding;
-    //   else if (selectionTypeParent == "Tournament")
-    //     selecTypeParent = ParentsTypes::Tournament;
-    //   else if (selectionTypeParent == "Roulette")
-    //     selecTypeParent = ParentsTypes::Roulette;
-    //   else
-    //   {
-    //     std::cerr << "Unsupported selectionTypeParent." << std::endl;
-    //     return;
-    //   }
+      std::string selectionTypeParent = data["selection_type_parent"];
+      ParentsTypes selecTypeParent;
+      if (selectionTypeParent == "Panmixia")
+        selecTypeParent = ParentsTypes::Panmixia;
+      else if (selectionTypeParent == "Inbringing")
+        selecTypeParent = ParentsTypes::Inbringing;
+      else if (selectionTypeParent == "Outbrinding")
+        selecTypeParent = ParentsTypes::Outbrinding;
+      else if (selectionTypeParent == "Tournament")
+        selecTypeParent = ParentsTypes::Tournament;
+      else if (selectionTypeParent == "Roulette")
+        selecTypeParent = ParentsTypes::Roulette;
+      else
+      {
+        std::cerr << "Unsupported selectionTypeParent." << std::endl;
+        return;
+      }
 
-    //   std::string recombinationType = data["playback_type"];
-    //   RecombinationTypes recombType;
-    //   if (recombinationType == "CrossingEachExitInTurnMany")
-    //     recombType = RecombinationTypes::CrossingEachExitInTurnMany;
-    //   else if (recombinationType == "CrossingUniform")
-    //     recombType = RecombinationTypes::CrossingUniform;
-    //   else if (recombinationType == "CrossingTriadic")
-    //     recombType = RecombinationTypes::CrossingTriadic;
-    //   else if (recombinationType == "CrossingReducedReplacement")
-    //     recombType = RecombinationTypes::CrossingReducedReplacement;
-    //   else if (recombinationType == "CrossingShuffling")
-    //     recombType = RecombinationTypes::CrossingShuffling;
-    //   else
-    //   {
-    //     std::cerr << "Unsupported recombinationType." << std::endl;
-    //     return;
-    //   }
+      std::string recombinationType = data["playback_type"];
+      RecombinationTypes recombType;
+      if (recombinationType == "CrossingEachExitInTurnMany")
+        recombType = RecombinationTypes::CrossingEachExitInTurnMany;
+      else if (recombinationType == "CrossingUniform")
+        recombType = RecombinationTypes::CrossingUniform;
+      else if (recombinationType == "CrossingTriadic")
+        recombType = RecombinationTypes::CrossingTriadic;
+      else if (recombinationType == "CrossingReducedReplacement")
+        recombType = RecombinationTypes::CrossingReducedReplacement;
+      else if (recombinationType == "CrossingShuffling")
+        recombType = RecombinationTypes::CrossingShuffling;
+      else
+      {
+        std::cerr << "Unsupported recombinationType." << std::endl;
+        return;
+      }
 
-    //   double maskProb = 1.0;
-    //   if (data.contains("mask_prob"))
-    //     maskProb = data["mask_prob"];
-    //   else
-    //     std::clog << "Parameter mask_prob is not set." << std::endl;
+      double maskProb = 1.0;
+      if (data.contains("mask_prob"))
+        maskProb = data["mask_prob"];
+      else
+        std::clog << "Parameter mask_prob is not set." << std::endl;
 
-    //   int populationSize = 1;
-    //   if (data.contains("population_size"))
-    //     populationSize = data["population_size"];
-    //   else
-    //     std::clog << "Parameter population_size is not set." << std::endl;
+      int populationSize = 1;
+      if (data.contains("population_size"))
+        populationSize = data["population_size"];
+      else
+        std::clog << "Parameter population_size is not set." << std::endl;
 
-    //   int numOfCycles = 1;
-    //   if (data.contains("cycles"))
-    //     numOfCycles = data["cycles"];
-    //   else
-    //     std::clog << "Parameter cycles is not set." << std::endl;
+      int numOfCycles = 1;
+      if (data.contains("cycles"))
+        numOfCycles = data["cycles"];
+      else
+        std::clog << "Parameter cycles is not set." << std::endl;
 
-    //   std::string selectionType = data["selection_type"];
-    //   SelectionTypes selType;
-    //   if (selectionType == "Base")
-    //     selType = SelectionTypes::Base;
+      std::string selectionType = data["selection_type"];
+      SelectionTypes selType;
+      if (selectionType == "Base")
+        selType = SelectionTypes::Base;
 
-    //   int survNum = data["surv_num"];
+      int survNum = data["surv_num"];
 
-    //   gp.setPopulationSize(populationSize);
-    //   gp.setNumOfCycles(numOfCycles);
-    //   gp.setRecombinationParameters(selecTypeParent, tourSize, recombType,
-    //   refPoints, maskProb, recNum); gp.setMutationParameters(mType,
-    //   mutChance, exchangeType, probabilityTruthTable);
-    //   gp.setSelectionParameters(selType, survNum);
-    //   gp.setKeyEndProcessIndex(outRatio);
-    //   // gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType,
-    //   ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
-    // }
+      gp.setPopulationSize(populationSize);
+      gp.setNumOfCycles(numOfCycles);
+      gp.setRecombinationParameters(selecTypeParent, tourSize, recombType,
+                                    refPoints, maskProb, recNum);
+      gp.setMutationParameters(mType, mutChance, exchangeType, probabilityTruthTable);
+      gp.setSelectionParameters(selType, survNum);
+      gp.setKeyEndProcessIndex(outRatio);
+      // gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType,
+      // ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
+    }
 
     DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs,
                                      maxOutputs, repeats, gt, gp);

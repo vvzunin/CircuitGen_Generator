@@ -37,10 +37,17 @@ TruthTable::TruthTable(int i_input, int i_output, const std::vector<std::vector<
         d_array = i_array;
 }
 
-TruthTable::TruthTable(const TruthTable &i_tt, std::vector<std::vector<bool>> i_array) : d_input(i_tt.d_input),
-                                                                                         d_output(i_tt.d_output)
+TruthTable::TruthTable(const TruthTable& i_tt, std::vector<std::vector<bool>> i_array)
 {
-    d_size = 1u << d_input; // what?
+  d_input = i_tt.d_input;
+  d_output = i_tt.d_output;
+  d_size = i_tt.d_size;
+  if (i_array.empty() || i_array.size() != d_size || i_array[0].size() != d_output){
+    generateRandom( TruthTableParameters(d_input, d_output));
+  }
+  else{
+    d_array = i_array;
+  }
 }
 
 TruthTable::TruthTable(int i_input, int i_output, double i_p) : d_input(i_input),
@@ -87,6 +94,31 @@ std::vector<std::vector<bool>> TruthTable::getOutTable() const
 bool TruthTable::getOutTable(int i, int j) const
 {
     return d_array.at(i).at(j);
+}
+
+void TruthTable::generateRandom(TruthTableParameters i_gp)
+{
+  std::srand(std::time(0));
+  if (i_gp.getInputs() == 0)
+  {
+    i_gp = TruthTableParameters();
+    i_gp.setInputs(rand() % d_settings->getMaxInputs());
+    i_gp.setOutputs(rand() % d_settings->getMaxOutputs());
+  }
+
+  d_input = i_gp.getInputs();
+  d_output = i_gp.getOutputs();
+  d_size = 1u << d_input;
+
+  d_array.clear();
+  d_array.resize(d_size);
+
+  for (int i = 0; i < d_size; ++i)
+  {
+    d_array[i].resize(i_gp.getOutputs());
+    for (int j = 0; j < i_gp.getOutputs(); ++j)
+      d_array[i][j] = d_randGenerator.getRandInt(0, 1, true) == 1;
+  }
 }
 
 void TruthTable::generateTable(double i_p)

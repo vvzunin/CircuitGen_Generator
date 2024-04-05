@@ -6,6 +6,7 @@
 #include <vector>
 
 #include <settings/Settings.h>
+#include "./Genetic/GeneticParameters.h"
 
 class CNNFromTruthTableParameters {
  public:
@@ -206,7 +207,7 @@ class GenerationParameters {
     return d_generatorDecoderParameters;
   }
   
-  // GeneticParameters getGenetic() const { return d_geneticParameters; }
+  GeneticParameters getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF) { d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
   void setCNFT(bool i_CNFT) { d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
   void setLimit(bool i_limit) {
@@ -244,18 +245,42 @@ class GenerationParameters {
     d_ZhegalkinFromTruthTableParameters.setZhegalkin(i_zhegalkin); 
   }
   
-    // void setNumOfCycles(int i_numOfCycles) {
-  // d_geneticParameters.setNumOfCycles(i_numOfCycles); } void
-  // setPopulationSize(int i_populationSize) {
-  // d_geneticParameters.setPopulationSize(i_populationSize); } void
-  // setRecombinationParameters(ParentsTypes i_parentsTypes, int
-  // i_tournamentNumber, RecombinationTypes i_recombinationType, int
-  // i_refPoints, double maskProbability, int i_recombinationNumber); void
-  // setMutationParameters(MutationTypes i_mutationTipe, double
-  // i_probabilityGen, int i_exchangeType, double i_probabilityTruthTable); void
-  // setSelectionParameters(SelectionTypes i_selectionType, int
-  // i_numOfSurvivors); void setKeyEndProcessIndex(double i_keyEndProcessIndex)
-  // { d_geneticParameters.setKeyEndProcessIndex(i_keyEndProcessIndex); }
+  void setNumOfCycles(int i_numOfCycles) {
+    d_geneticParameters.setNumOfCycles(i_numOfCycles); 
+  } 
+  void setPopulationSize(int i_populationSize) {
+    d_geneticParameters.setPopulationSize(i_populationSize); 
+  } 
+  void setRecombinationParameters(ParentsTypes i_parentsTypes, int
+  i_tournamentNumber, RecombinationTypes i_recombinationType, int
+  i_refPoints, double maskProbability, int i_recombinationNumber) {
+    RecombinationParameters RP;
+    RP.setParentsParameters(i_parentsTypes, i_tournamentNumber);
+    RP.setRefPoints(i_refPoints);
+    RP.setRecombinationParameters(i_recombinationNumber);
+    RP.setRecombinationType(i_recombinationType);
+    RP.setMaskProbability(maskProbability);
+    d_geneticParameters.setRecombinationParameters(RP);
+  }
+  void setMutationParameters(MutationTypes i_mutationType, double
+  i_probabilityGen, int i_exchangeType, double i_probabilityTruthTable){
+    MutationParameters MP;
+    MP.setMutationType(i_mutationType);
+    MP.setProbabilityGen(i_probabilityGen);
+    MP.setExchangeType(i_exchangeType);
+    MP.setProbabilityTruthTable(i_probabilityTruthTable);
+    d_geneticParameters.setMutationParameters(MP);
+  }
+  void setSelectionParameters(SelectionTypes i_selectionType, int
+  i_numOfSurvivors) {
+    SelectionParameters SP;
+    SP.setSelectionType(i_selectionType);
+    SP.setNumOfSurvivors(i_numOfSurvivors);
+    d_geneticParameters.setSelectionParameters(SP);
+  }
+  void setKeyEndProcessIndex(double i_keyEndProcessIndex) {
+    d_geneticParameters.setKeyEndProcessIndex(i_keyEndProcessIndex);
+  }
 
  private:
   std::string d_name = "";
@@ -277,5 +302,5 @@ class GenerationParameters {
   GeneratorEncoderParameters d_generatorEncoderParameters;
   GeneratorSubtractorParameters d_generatorSubtractorParameters;
   GeneratorDecoderParameters d_generatorDecoderParameters;
-  // GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
+  GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };

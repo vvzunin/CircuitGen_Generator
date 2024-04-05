@@ -54,36 +54,9 @@ std::string AuxMethods::readAllFile(const std::string &filename) {
 }
 
 std::vector<int> AuxMethods::getRandomIntList(int i_n, int i_minNumber,
-                                              int i_maxNumber, bool repite) {
-  std::vector<int> lst;
-  bool flag = true;
-  // TODO: can we just rewrite it to simple while? and withour UB make flag =
-  // true before while?
-
-  while (flag) {
-    int i;
-    flag = false;
-    int k = i_n - lst.size();
-    for (i = 0; i < k; ++i)
-      lst.push_back(getRandInt(i_minNumber, i_maxNumber, true));
-
-    sort(lst.begin(), lst.end());
-
-    if (!repite) {
-      i = 1;
-      int insert = 0;
-      while (i < lst.size() - 1) {
-        if (lst[i] != lst[i - 1]) lst[insert++] = lst[i];
-        ++i;
-      }
-      if (insert != lst.size()) {
-        flag = true;
-        lst.resize(insert);
-      }
-    }
-  }
-
-  return lst;
+    int i_maxNumber, bool repite)
+{
+  return gen.getRandomIntList(i_n, i_minNumber, i_maxNumber, repite);
 }
 
 template <typename Key, typename Value>

@@ -1,4 +1,5 @@
 add_subdirectory(simple)
+add_subdirectory(Genetic)
 
 add_library(
   GenerationParameters 
