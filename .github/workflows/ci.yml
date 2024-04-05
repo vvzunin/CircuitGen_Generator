@@ -33,11 +33,7 @@ jobs:
     needs: [lint]
 
     runs-on: ubuntu-22.04
-
-    # To enable coverage, delete the last line from the conditional below and
-    # edit the "<name>" placeholder to your GitHub name.
-    # If you do not wish to use codecov, then simply delete this job from the
-    # workflow.
+    
     if: github.repository_owner == 'vvzunin'
 
     steps:
@@ -141,7 +137,8 @@ jobs:
 
     runs-on: ubuntu-22.04
 
-    if: github.event_name == 'push'
+    if: github.ref == 'refs/heads/main'
+      && github.event_name == 'push'
       && github.repository_owner == 'vvzunin'
 
     steps:
