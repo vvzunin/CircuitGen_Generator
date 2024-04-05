@@ -67,7 +67,7 @@ TEST(test_aux_methods, test_read_non_existent_file) {
 using namespace AuxMethods;
 
 TEST(TestAuxiliaryRemoveSpaces, NormalTest) {
-  // Created  instances of std::string which gonna be input for removeSpaces.
+  // Created  instances of std::string which going to be input for removeSpaces.
   std::string normalInput1 = "abcd  a";
   std::string normalInput2 = "a    v";
   std::string normalInput3 = "   a";
@@ -106,14 +106,14 @@ TEST(
 }
 
 TEST(TestAuxiliarySortDictByValue, NormalTest) {
-  // Just created some maps that gonna be input for  sortDictByValue
+  // Just created some maps that going to be input for  sortDictByValue
   std::map<std::string, int> normalInput1 = {
       {"0", 0}, {"1", 1}, {"2", 2}, {"3", 3}};
   std::map<std::string, int> normalInput2 = {
       {"0", 110}, {"1", 10}, {"2", 20}, {"3", 3}};
   std::map<std::string, int> normalInput3 = {
       {"0", 1100}, {"1", 1}, {"2", 1}, {"3", 33}};
-  // Here I crated vector correctAnswer which I will use to compare with the
+  // Here I created vector correctAnswer which I will use to compare with the
   // result of sortDictByValue
   std::vector<std::pair<std::string, int>> correctAnswer;
   // Here I fill the vector with expected from sortDictByValue(testDict1, false)
@@ -127,7 +127,7 @@ TEST(TestAuxiliarySortDictByValue, NormalTest) {
   EXPECT_EQ(correctAnswer, sortDictByValue(normalInput1, false));
   std::reverse(
       correctAnswer.begin(), correctAnswer.end()
-  );  // reverse it because now I gonna check the result of
+  );  // reverse it because now I going to check the result of
       // sortDictByValue(testDict1, true) when up == true
   EXPECT_EQ(correctAnswer, sortDictByValue(normalInput1, true));
   correctAnswer.clear();  // Make it clear to fill it again with data which I
@@ -155,7 +155,7 @@ TEST(
     TestAuxiliarySortDictByValue,
     SortDictByValueReturnEmptyVectorWhenThereEmptyDictionary
 ) {
-  // Just created a map that gonna be input for  sortDictByValue
+  // Just created a map that going to be input for  sortDictByValue
   std::map<std::string, int> EmptyMap = {};
   EXPECT_EQ(
       0, (sortDictByValue(EmptyMap, true)).size()
@@ -168,10 +168,10 @@ TEST(
 }
 
 TEST(TestAuxiliarySortDictByValue, WhenThereTheSameValuesInDictionary) {
-  // Just created a map that's gonna be input for  sortDictByValue
+  // Just created a map that's going to be input for  sortDictByValue
   std::map<std::string, int> TheSameElements = {
       {"1", 1}, {"2", 1}, {"3", 1}, {"4", 1}, {"5", 1}};
-  // Here I crated vector correctAnswer which I will use to compare with the
+  // Here I created vector correctAnswer which I will use to compare with the
   // result of sortDictByValue
   std::vector<std::pair<std::string, int>> correctAnswer;
   // Here I fill the vector with expected from sortDictByValue(testDict1, false)

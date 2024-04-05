@@ -166,7 +166,7 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
     std::shared_ptr<GraphVertexBase> t2;
     if (tt.second[0] == "input") {
       // we need to stop duplication
-      // that's why we create a map, wich do not declare input again
+      // that's why we create a map, which do not declare input again
       if (!inputsByNames.count(t.second[2])) {
         inputsByNames[t.second[2]] = d_graph.addInput(t.second[2]);
       }

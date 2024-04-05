@@ -163,7 +163,7 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
   if (previousSizeOfFileName == 0)
     s = std::filesystem::current_path().string() + "/"
       + filename;  // static variable will be created one time and then will be
-                   // used throught running of the program
+                   // used through running of the program
   else
     s.replace(
         pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName

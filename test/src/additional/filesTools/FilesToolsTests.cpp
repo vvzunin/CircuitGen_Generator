@@ -7,21 +7,21 @@ namespace fs = std::filesystem;
 using namespace FilesTools;
 // I check the using of getDirectories and I can confirm that in test we can let
 // ourselves do not care about order of directories in the vector. Full
-// understanding will come after  all commens below.
+// understanding will come after  all comments below.
 
-// There are differencies between softwares in terms of order of directories
+// There are differencies between software in terms of order of directories
 // when we creating them through filesystem.
 //  So we will not care about the order of directories. The elements of the
 //  vectors that contain name of directories have to be the same. See below.
 TEST(FileTools, OnlyDirectoriesNoFiles) {
   fs::path tmpPath =
       (fs::temp_directory_path() / "test"
-      );  // Created temporary guaranted directory to deal with
+      );  // Created temporary guaranteed directory to deal with
   std::string
       tmp;  // This variable exist because otherwise we will not be able push
-            // tmpPath.string() to method getDirectories(Here it is gonna be)
+            // tmpPath.string() to method getDirectories(Here it is going to be)
   std::fstream file;  // Created fstream variable to have the possibility to
-                      // create files into temp directory to test the fucntion
+                      // create files into temp directory to test the function
                       // on counting only directories.
 
   fs::create_directories(
@@ -35,13 +35,13 @@ TEST(FileTools, OnlyDirectoriesNoFiles) {
   fs::create_directories(tmpPath / "1");
 
   std::vector<std::string> correctVec = {
-      "1", "2", "3", "4", "5", "6"};  // Created vector that's gonna be compared
-                                      // with the result vector we wanna test
+      "1", "2", "3", "4", "5", "6"};  // Created vector that's going to be compared
+                                      // with the result vector we want to test
 
   tmp = tmpPath.string(
   );  // get the path to the current directory which contain created directories
   std::vector<std::string> resVec =
-      getDirectories(tmp);  // Vector which we wanna test
+      getDirectories(tmp);  // Vector which we want to test
 
   std::sort(
       correctVec.begin(), correctVec.end()
@@ -58,11 +58,11 @@ TEST(FileTools, OnlyDirectoriesNoFiles) {
 TEST(FileTools, NoDirectoriesNoFiles) {
   fs::path tmpPath =
       (fs::temp_directory_path() / "anotherOne"
-      );  // Created temporary guaranted directory to deal with
+      );  // Created temporary guaranteed directory to deal with
   std::string tmp = tmpPath.string();
   try {
     getDirectories(tmp);  // when there is no element in directory that we
-                          // pushed to getDirectories than it is gonna throw
+                          // pushed to getDirectories than it is going to throw
                           // exception. Here I handle that exception.
     EXPECT_EQ(0, 1);  // If the command at the line above throw exception this
                       // line will not be run and the test will not fail.
@@ -77,7 +77,7 @@ TEST(FileTools, NoDirectoriesNoFiles) {
 TEST(FileTools, NoDirectoriesOnlyFiles) {
   fs::path tmpPath =
       (fs::temp_directory_path() / "anotherOne"
-      );  // Created temporary guaranted directory to deal with
+      );  // Created temporary guaranteed directory to deal with
 
   std::string tmp = tmpPath.string(
   );  // to prevent some errors  about rvalue to non-const lvalue and so on
@@ -96,7 +96,7 @@ TEST(FileTools, NoDirectoriesOnlyFiles) {
 
   try {
     getDirectories(tmp);  // when there is no element in directory that we
-                          // pushed to getDirectories than it is gonna throw
+                          // pushed to getDirectories than it is going to throw
                           // exception. Here I handle that exception.
     EXPECT_EQ(0, 1);  // If the command at the line above throw exception this
                       // line will not be run and the test will not fail.
@@ -111,14 +111,14 @@ TEST(FileTools, NoDirectoriesOnlyFiles) {
 TEST(FileTools, DirectoriesAndFilesExist) {
   fs::path tmpPath =
       (fs::temp_directory_path() / "test"
-      );  // Created temporary guaranted directory to deal with
+      );  // Created temporary guaranteed directory to deal with
 
   std::string
       tmp;  // This variable exist because otherwise we will not be able push
-            // tmpPath.string() to method getDirectories(Here it is gonna be)
+            // tmpPath.string() to method getDirectories(Here it is going to be)
 
   std::fstream file;  // Created fstream variable to have the possibility to
-                      // create files into temp directory to test the fucntion
+                      // create files into temp directory to test the function
                       // on counting only directories.
 
   fs::create_directories(
@@ -132,8 +132,8 @@ TEST(FileTools, DirectoriesAndFilesExist) {
   fs::create_directories(tmpPath / "1");
 
   std::vector<std::string> correctVec = {
-      "1", "2", "3", "4", "5", "6"};  // Created vector that's gonna be compared
-                                      // with the result vector we wanna test
+      "1", "2", "3", "4", "5", "6"};  // Created vector that's going to be compared
+                                      // with the result vector we want to test
 
   // Created ten empty txt files in the current directory to make sure that the
   // function does not count files.
@@ -151,7 +151,7 @@ TEST(FileTools, DirectoriesAndFilesExist) {
   );  // get the path to the current directory which contain created directories
 
   std::vector<std::string> resVec =
-      getDirectories(tmp);  // Vector which we wanna test
+      getDirectories(tmp);  // Vector which we want to test
 
   std::sort(
       correctVec.begin(), correctVec.end()

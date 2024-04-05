@@ -78,7 +78,7 @@ void DataBaseGenerator::generateType(
   auto                            randGeneratorLambda = []() {
     return AuxMethods::getRandInt(0, INT_MAX);
   };
-  // we create int sequence, wich would give us diffetent seeds for each repeat
+  // we create int sequence, which would give us diffetent seeds for each repeat
   std::generate(seeds.begin(), seeds.end(), randGeneratorLambda);
 
   ThreadPool pool(d_settings->getNumThread());

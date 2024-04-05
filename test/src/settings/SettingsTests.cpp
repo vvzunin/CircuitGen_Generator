@@ -62,7 +62,7 @@ TEST(
   if (!std::filesystem::exists(fileName)) {
     std::shared_ptr<Settings> SetPtr =
         Settings::getInstance(" ");  // Here we call implicitly loadSettings.
-    // Below I gonna write down correc samples that I wanna use to compare with
+    // Below I going to write down correc samples that I want to use to compare with
     // the output of the loadSettings
     std::map<std::string, std::pair<std::string, int>> correctLogicOperations =
         {{"input", {"", 10}},
@@ -90,7 +90,7 @@ TEST(
   if (!std::filesystem::exists(fileName)) {
     std::shared_ptr<Settings> SetPtr =
         Settings::getInstance(" ");  // Here we call implicitly loadSettings.
-    // Below I gonna write down correc samples that I wanna use to compare with
+    // Below I going to write down correc samples that I want to use to compare with
     // the output of the loadSettings
     std::map<int, std::vector<std::string>> correctOperationsToHierarchy = {
         {10, {""}},
@@ -121,7 +121,7 @@ TEST(
   if (!std::filesystem::exists(fileName)) {
     std::shared_ptr<Settings> SetPtr =
         Settings::getInstance(" ");  // Here we call implicitly loadSettings.
-    // Below I gonna write down correc samples that I wanna use to compare with
+    // Below I going to write down correc samples that I want to use to compare with
     // the output of the loadSettings
 
     std::map<std::string, std::string> correctOperationsToName = {
@@ -151,7 +151,7 @@ be set as public TEST(SettingsTest, SaveSettingsNormalTest)
     std::vector<std::string> BeforeSaveSettings;
     std::vector<std::string> AfterSaveSettings;
     std::shared_ptr<Settings> SetPtr = Settings::getInstance(" ");// Here we
-implicitely called loadSettings() readFile.clear(); readFile.seekg(0);// Back to
+implicitly called loadSettings() readFile.clear(); readFile.seekg(0);// Back to
 the beginnigs of the file . std::string str;
 
     SetPtr->loadSettings();// Fill file with data

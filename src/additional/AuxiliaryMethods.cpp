@@ -65,7 +65,7 @@ std::vector<int> AuxMethods::getRandomIntList(
 ) {
   std::vector<int> lst;
   bool             flag = true;
-  // TODO: can we just rewrite it to simple while? and withour UB make flag =
+  // TODO: can we just rewrite it to simple while? and without UB make flag =
   // true before while?
 
   while (flag) {
