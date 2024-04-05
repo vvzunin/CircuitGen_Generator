@@ -1,7 +1,21 @@
 # Генератор комбинационных схем
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![License: MIT](https://img.shields.io/github/license/vvzunin/CircuitGen_Generator)
+![GitHub forks](https://img.shields.io/github/forks/vvzunin/CircuitGen_Generator)
+![GitHub Repo stars](https://img.shields.io/github/stars/vvzunin/CircuitGen_Generator)
+![GitHub watchers](https://img.shields.io/github/watchers/vvzunin/CircuitGen_Generator)
+
+![GitHub CI](https://github.com/vvzunin/CircuitGen_Generator/actions/workflows/ci.yml/badge.svg)
 [![codecov](https://codecov.io/gh/vvzunin/CircuitGen_Generator/graph/badge.svg?token=U88U82QFX8)](https://codecov.io/gh/vvzunin/CircuitGen_Generator)
+![GitHub Release](https://img.shields.io/github/v/release/vvzunin/CircuitGen_Generator)
+![GitHub Release Date](https://img.shields.io/github/release-date/vvzunin/CircuitGen_Generator)
+
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/vvzunin/CircuitGen_Generator)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/vvzunin/CircuitGen_Generator/latest)
+![GitHub last commit](https://img.shields.io/github/last-commit/vvzunin/CircuitGen_Generator)
+
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/vvzunin/CircuitGen_Generator)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/vvzunin/CircuitGen_Generator)
 
 <font size="5">**Оглавление:**</font>
 <a name="content_rus"></a> 
