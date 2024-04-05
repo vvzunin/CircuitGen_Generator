@@ -62,8 +62,8 @@ TEST(
   if (!std::filesystem::exists(fileName)) {
     std::shared_ptr<Settings> SetPtr =
         Settings::getInstance(" ");  // Here we call implicitly loadSettings.
-    // Below I going to write down correct samples that I want to use to compare with
-    // the output of the loadSettings
+    // Below I going to write down correct samples that I want to use to compare
+    // with the output of the loadSettings
     std::map<std::string, std::pair<std::string, int>> correctLogicOperations =
         {{"input", {"", 10}},
          {"output", {"=", 0}},
@@ -90,8 +90,8 @@ TEST(
   if (!std::filesystem::exists(fileName)) {
     std::shared_ptr<Settings> SetPtr =
         Settings::getInstance(" ");  // Here we call implicitly loadSettings.
-    // Below I going to write down correct samples that I want to use to compare with
-    // the output of the loadSettings
+    // Below I going to write down correct samples that I want to use to compare
+    // with the output of the loadSettings
     std::map<int, std::vector<std::string>> correctOperationsToHierarchy = {
         {10, {""}},
         {0, {"="}},
@@ -121,8 +121,8 @@ TEST(
   if (!std::filesystem::exists(fileName)) {
     std::shared_ptr<Settings> SetPtr =
         Settings::getInstance(" ");  // Here we call implicitly loadSettings.
-    // Below I going to write down correct samples that I want to use to compare with
-    // the output of the loadSettings
+    // Below I going to write down correct samples that I want to use to compare
+    // with the output of the loadSettings
 
     std::map<std::string, std::string> correctOperationsToName = {
         {"", "input"},

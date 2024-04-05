@@ -35,8 +35,13 @@ TEST(FileTools, OnlyDirectoriesNoFiles) {
   fs::create_directories(tmpPath / "1");
 
   std::vector<std::string> correctVec = {
-      "1", "2", "3", "4", "5", "6"};  // Created vector that's going to be compared
-                                      // with the result vector we want to test
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"};  // Created vector that's going to be compared
+             // with the result vector we want to test
 
   tmp = tmpPath.string(
   );  // get the path to the current directory which contain created directories
@@ -132,8 +137,13 @@ TEST(FileTools, DirectoriesAndFilesExist) {
   fs::create_directories(tmpPath / "1");
 
   std::vector<std::string> correctVec = {
-      "1", "2", "3", "4", "5", "6"};  // Created vector that's going to be compared
-                                      // with the result vector we want to test
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"};  // Created vector that's going to be compared
+             // with the result vector we want to test
 
   // Created ten empty txt files in the current directory to make sure that the
   // function does not count files.

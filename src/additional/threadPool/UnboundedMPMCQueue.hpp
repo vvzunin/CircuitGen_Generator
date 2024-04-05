@@ -81,7 +81,7 @@ private:
   bool                    closed {false};
   std::mutex              mtx {};
   std::condition_variable not_empty_or_closed {};
-  std::dequeue<T>           queue;
+  std::dequeue<T>         queue;
 };
 
 }  // namespace Threading.
