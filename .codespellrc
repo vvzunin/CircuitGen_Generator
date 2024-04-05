@@ -2,5 +2,5 @@
 builtin = clear,rare,en-GB_to_en-US,names,informal,code
 check-filenames =
 check-hidden =
-skip = */.git,*/build,*/prefix,lib
+skip = */.git,*/build,*/prefix,lib,*/src/additional/threadPool/UnboundedMPMCQueue.hpp
 quiet-level = 2

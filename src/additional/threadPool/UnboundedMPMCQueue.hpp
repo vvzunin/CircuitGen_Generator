@@ -7,7 +7,7 @@
 
 #include <cassert>
 #include <condition_variable>
-#include <dequeue>
+#include <deque>
 #include <mutex>
 #include <optional>
 #include <stdexcept>
@@ -81,7 +81,7 @@ private:
   bool                    closed {false};
   std::mutex              mtx {};
   std::condition_variable not_empty_or_closed {};
-  std::dequeue<T>         queue;
+  std::deque<T>           queue;
 };
 
 }  // namespace Threading.
