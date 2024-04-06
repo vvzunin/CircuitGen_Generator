@@ -8,6 +8,17 @@
 
 #include "GraphVertexBase.hpp"
 
+/// class GraphVertexInput Represents a vertex in a directed graph that
+/// serves as an input vertex. It inherits from the GraphVertexBase class
+/// and extends its functionality to work with input vertices
+/// @param i_baseGraph A pointer to the oriented graph to which this vertex
+/// belongs. It can be null ptr, which indicates the absence of a base graph
+/// @param i_type Vertex type (VertexTypes enumeration). By default, it is
+/// set to VertexTypes::input, indicating that this is the input vertex
+/// @param i_name The name of the vertex provided during creation. This is
+/// a string of type std::string that identifies a vertex
+/// */
+
 class GraphVertexInput : public GraphVertexBase {
 public:
   GraphVertexInput(
@@ -21,7 +32,15 @@ public:
       const VertexTypes i_type      = VertexTypes::input
   );
 
+  /// @brief updateValue A virtual function for updating the vertex value.
+  /// The implementation is provided in derived classes
+  /// @return the value of the vertex after its update
+
   virtual char updateValue();
+
+  /// @brief updateLevel It is designed to update the level of the current
+  /// vertex in a directed graph based on the levels of its input connections
+
   virtual void updateLevel();
 
 protected:
@@ -29,6 +48,10 @@ protected:
 
 private:
 };
+
+/// <summary>
+/// 
+/// </summary>
 
 class GraphVertexConstant : public GraphVertexInput {
 public:

@@ -5,6 +5,13 @@
 #include <random>
 #include <stdexcept>
 
+/// class RandomGeneratorWithSeed
+/// The Random Generator With Seed class is a C++ class designed to generate
+/// random numbers using a specified seed value
+/// @param d_seed Holds the current seed value.
+/// @param d_gen std::minstd_rand object used for generating random numbers.
+/// */
+
 class RandomGeneratorWithSeed {
 public:
   RandomGeneratorWithSeed() = default;
@@ -19,7 +26,16 @@ public:
 
   RandomGeneratorWithSeed& operator=(RandomGeneratorWithSeed&& other) = default;
 
+  /// @brief getSeed TO DO:
+  ///
+  ///
+  /// */
+
   std::uint_fast32_t       getSeed() const { return d_seed; }
+
+  /// @brief setSeed Method to set a new seed value.
+  ///
+  /// */
 
   void setSeed(std::uint_fast32_t i_seed) { d_gen.seed(i_seed); }
 
@@ -40,6 +56,18 @@ public:
 
     return dis(d_gen);
   }
+
+  /// @brief getRandInt Method to generate a random integer within a specified
+  /// range.
+  /// @param lower The lower limit of the range of random integers, inclusive,
+  /// from which to generate a number
+  /// @param upper The upper limit of the range of random integers, inclusive,
+  /// from which to generate a number
+  /// @param inclusively flag indicating whether the upper limit of the range is
+  /// inclusive. If set to true, the upper bound is also included in the range
+  /// of random numbers, otherwise it is excluded from the range
+  /// @return dis The generated integer in the range between lower and upper
+  /// */
 
   double getRandDouble(double lower, double upper) {
     std::uniform_real_distribution<> dis(lower, upper);
