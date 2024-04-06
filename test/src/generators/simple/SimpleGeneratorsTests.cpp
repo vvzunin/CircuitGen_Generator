@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "generators/simple/SimpleGenerators.h"
+#include "generators/simple/SimpleGenerators.hpp"
 
 TEST (CnfFromTruthTableTest, EqualWithTheSameParametrs) {
   SimpleGenerators firstGenerator = SimpleGenerators(1);
@@ -105,6 +105,7 @@ TEST (GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
   str2 = secondGraph.calculateHash();
   EXPECT_EQ(str1, str2);
 
+  //-error
   //firstGraph = firstGenerator.generatorRandLevelExperimental(1, 6, 1, 6, 4, 4);
   //secondGraph = secondGenerator.generatorRandLevelExperimental(1, 6, 1, 6, 4, 4);
   //EXPECT_TRUE(firstGraph == secondGraph);
