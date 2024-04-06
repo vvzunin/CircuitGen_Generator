@@ -26,3 +26,5 @@ result_dataset/
 build
 abc/*
 *.so
+.vs/*
+Generator/docs/html/*

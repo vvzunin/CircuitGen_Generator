@@ -113,6 +113,7 @@ $(function(){initNavTree('_parents_8cpp.html',''); initResizable(); });
 Functions</h2></td></tr>
 <tr class="memitem:ae3c5dec581c15543f4023872bfa16078" id="r_ae3c5dec581c15543f4023872bfa16078"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">typename</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">Type</a> , <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">typename</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">ParametersType</a> &gt; </td></tr>
 <tr class="memitem:ae3c5dec581c15543f4023872bfa16078"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">int</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae3c5dec581c15543f4023872bfa16078">ParentsTypesWorker</a> (<a class="el" href="class_parents_parameters.html">ParentsParameters</a> <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_parentsParameters</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">std::vector</a>&lt; <a class="el" href="class_chronosome_type.html">ChronosomeType</a>&lt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">Type</a>, <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">ParametersType</a> &gt; &gt; <a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7befaf23c33e">i_population</a>)</td></tr>
+<tr class="memdesc:ae3c5dec581c15543f4023872bfa16078"><td class="mdescLeft">&#160;</td><td class="mdescRight">ParentsTypesWorker There is a comment in the method //TODO: info about Parents Roulette, which involves adding processing of another type of parental choice - "roulette", but this case is not being processed yet! P.S.  <br /></td></tr>
 <tr class="separator:ae3c5dec581c15543f4023872bfa16078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -136,6 +137,20 @@ template&lt;<a class="el" href="_recombinations_8cpp.html#ae4e2ef42ba9e47a6c22a7
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>ParentsTypesWorker There is a comment in the method //TODO: info about Parents Roulette, which involves adding processing of another type of parental choice - "roulette", but this case is not being processed yet! P.S. </p>
+<p>Possible recommendations:</p><ol type="1">
+<li>There is no processing of all possible types of parent selection. If the type does not match any of the processed ones, an error message is displayed, but no value is returned, which may lead to undesirable behavior.</li>
+<li>There is no return value in case of successful execution of the function for all types of parent selection. <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_parentsParameters</td><td>This is an object of the Parent's Parameters class, which contains information about the type of parental choice*** </td></tr>
+    <tr><td class="paramname">i_population</td><td>containing a population of chromosomes for which parental selection will be made. Each element of the vector represents a chromosome of a certain type Type with the corresponding ParametersType parameters. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector representing the indices of the selected parents in the population. Depending on the chosen parental choice strategy, this vector contains chromosome indexes from i_population, which will be used to create new individuals in the next generation </dd></dl>
+</li>
+</ol>
 
 </div>
 </div>

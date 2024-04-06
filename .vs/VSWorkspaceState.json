@@ -3,12 +3,14 @@
     "",
     "\\Generator",
     "\\Generator\\source",
-    "\\Generator\\source\\circuits",
-    "\\Generator\\source\\DataBase",
-    "\\Generator\\source\\graph",
-    "\\Generator\\source\\optimization_utils",
-    "\\Generator\\source\\reliability"
+    "\\Generator\\source\\generators",
+    "\\Generator\\source\\generators\\Genetic",
+    "\\Generator\\source\\generators\\Genetic\\Mutations",
+    "\\Generator\\source\\generators\\Genetic\\Parents",
+    "\\Generator\\source\\generators\\Genetic\\Recombination",
+    "\\Generator\\source\\generators\\Genetic\\Selections",
+    "\\Generator\\source\\optimization_utils"
   ],
-  "SelectedNode": "\\Generator\\source\\circuits\\CircuitsParameters.h",
+  "SelectedNode": "\\Generator\\source\\generators\\Genetic\\Recombination\\RecombinationParameters.h",
   "PreviewInSolutionExplorer": false
 }

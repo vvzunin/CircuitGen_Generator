@@ -30,7 +30,7 @@ public:
         std::string i_fileDirectory = ".",
         std::string i_libDirectory = ".");
 
-    /// @brief resyn2 The method is designed to perform a resynthesis operation using the ABC tool
+   /// @brief resyn2 The method is designed to perform a resynthesis operation using the ABC tool
    /// @param i_inputFileName The path to the input file to be resynthesized
    /// @param i_libName The name of the library to be used in the process of resynthesis
    /// @param i_fileDirectory The directory where the input file is located. If this parameter is not specified, the operation will be performed in the current working directory
@@ -44,7 +44,7 @@ public:
         std::string i_fileDirectory = ".",
         std::string i_libDirectory = ".");
 
-    /// @brief optimizeWithLib The method is designed to perform an optimization operation using a given library using the ABC tool.
+   /// @brief optimizeWithLib The method is designed to perform an optimization operation using a given library using the ABC tool.
    /// @param i_inputFileName The path to the input file that will be used in the optimization process.
    /// @param i_libName The name of the library to be used in the optimization process
    /// @param i_fileDirectory The directory where the input file is located. If this parameter is not specified, the operation will be performed in the current working directory
@@ -58,7 +58,7 @@ public:
         std::string i_fileDirectory = ".",
         std::string i_libDirectory = ".");
 
-    /// @brief verilogToBench The method is designed to convert Verilog code into the BENCH format using the ABC tool
+   /// @brief verilogToBench The method is designed to convert Verilog code into the BENCH format using the ABC tool
    /// @param i_inputFileName The path to the input file in Verilog format, which will be converted to the BENCH format
    /// @param i_outputFileName The path to the output file where the code will be saved in the BENCH format after conversion
    /// @param i_libDirectory A directory containing libraries that can be used in the conversion process. This parameter may be empty if libraries are not used during conversion
@@ -70,7 +70,7 @@ public:
         std::string i_outputFileName,
         std::string i_libDirectory = ".");
 
-    /// @brief parseCommand The method is designed to analyze the command line of the FIZ and extract information about each command from this line.
+   /// @brief parseCommand The method is designed to analyze the command line of the FIZ and extract information about each command from this line.
    /// @param i_command a string representing the ABC command
    /// @return A vector of objects of the Standard Command Info type containing information about each command in a string
    /// */
@@ -80,7 +80,7 @@ public:
 
 protected:
 
-    /// @brief standartExecutor TO DO:
+   /// @brief standartExecutor TO DO:
    /// 
    /// </summary>
    /// <param name="i_command"></param>

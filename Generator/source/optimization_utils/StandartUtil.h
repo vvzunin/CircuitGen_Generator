@@ -8,6 +8,12 @@
 
 // so, this struct is used for sending info about multi-line commands
 // for abc, yosys etc
+
+/// struct StandartCommandInfo
+/// @param sumLen
+/// @param info
+/// */
+
 struct StandartCommandInfo
 {
     // длина команды

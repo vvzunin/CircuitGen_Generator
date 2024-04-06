@@ -3,6 +3,50 @@
   "WorkspaceRootPath": "C:\\course_3\\CircuitGen_Generator\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\RecombinationParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Recombination\\RecombinationParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\GeneticParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\GeneticParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\ChronosomeType.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\ChronosomeType.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Chronosome.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Chronosome.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\GenGenerator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\GenGenerator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\graph\\GraphVertex.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\graph\\GraphVertex.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\graph\\OrientedGraph.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\graph\\OrientedGraph.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Parser.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Parser.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\AbcUtils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\optimization_utils\\AbcUtils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\circuits\\Circuit.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\circuits\\Circuit.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\circuits\\CircuitsParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\circuits\\CircuitsParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -15,24 +59,84 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\DataBase\\DataBaseGeneratorParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Parents\\Parents.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Parents\\Parents.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Mutations\\MutationTruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Mutations\\MutationTruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\reliability\\Reliability.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\reliability\\Reliability.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Mutations\\Mutation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Mutations\\Mutation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Mutations\\MutationParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Mutations\\MutationParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\settings\\Settings.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\settings\\Settings.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\StandartUtil.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\optimization_utils\\StandartUtil.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\UtilsCommands.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\optimization_utils\\UtilsCommands.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\YosysUtils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\optimization_utils\\YosysUtils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\TruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\TruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\filesTools\\FilesTools.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\filesTools\\FilesTools.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\graph\\OrientedGraph.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\graph\\OrientedGraph.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Parents\\ParentsTruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Parents\\ParentsTruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\graph\\GraphVertex.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\graph\\GraphVertex.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Parents\\ParentsParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Parents\\ParentsParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\reliability\\Reliability.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\reliability\\Reliability.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\RecombinationsTruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Recombination\\RecombinationsTruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\SelectionsTruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Selections\\SelectionsTruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\Selections.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Selections\\Selections.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.cpp||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.cpp||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\thread_pool\\ThreadPool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -45,10 +149,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generatorAPI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generatorAPI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\TruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator\\source\\generators\\TruthTable.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\SimpleGenerators.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -69,71 +169,194 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CircuitsParameters.h",
-              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\circuits\\CircuitsParameters.h",
-              "RelativeDocumentMoniker": "Generator\\source\\circuits\\CircuitsParameters.h",
-              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\circuits\\CircuitsParameters.h",
-              "RelativeToolTip": "Generator\\source\\circuits\\CircuitsParameters.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-18T19:48:35.628Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DataBaseGenerator.h",
-              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGenerator.h",
-              "RelativeDocumentMoniker": "Generator\\source\\DataBase\\DataBaseGenerator.h",
-              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGenerator.h",
-              "RelativeToolTip": "Generator\\source\\DataBase\\DataBaseGenerator.h",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-18T19:48:30.197Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DataBaseGeneratorParameters.h",
-              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGeneratorParameters.h",
-              "RelativeDocumentMoniker": "Generator\\source\\DataBase\\DataBaseGeneratorParameters.h",
-              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGeneratorParameters.h",
-              "RelativeToolTip": "Generator\\source\\DataBase\\DataBaseGeneratorParameters.h",
+              "Title": "GeneticParameters.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\GeneticParameters.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\GeneticParameters.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\GeneticParameters.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\GeneticParameters.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-18T19:48:28.38Z",
+              "WhenOpened": "2024-03-29T20:26:26.875Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "DataBaseGeneratorParameters.cpp",
-              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp",
-              "RelativeDocumentMoniker": "Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp",
-              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp",
-              "RelativeToolTip": "Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp",
+              "Title": "ChronosomeType.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\ChronosomeType.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\ChronosomeType.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\ChronosomeType.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\ChronosomeType.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-03-18T19:48:26.962Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-29T20:26:23.216Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "FilesTools.h",
-              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\filesTools\\FilesTools.h",
-              "RelativeDocumentMoniker": "Generator\\source\\filesTools\\FilesTools.h",
-              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\filesTools\\FilesTools.h",
-              "RelativeToolTip": "Generator\\source\\filesTools\\FilesTools.h",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "Chronosome.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Chronosome.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Chronosome.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Chronosome.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Chronosome.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-18T19:48:21.736Z",
+              "WhenOpened": "2024-03-29T20:26:20.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GenGenerator.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\GenGenerator.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\GenGenerator.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\GenGenerator.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\GenGenerator.h",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-29T20:26:09.88Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Parser.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Parser.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Parser.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Parser.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Parser.h",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-29T20:25:41.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Recombinations.cpp",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.cpp",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.cpp",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.cpp",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-23T15:04:50.661Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Parents.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Parents\\Parents.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Parents\\Parents.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Parents\\Parents.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Parents\\Parents.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-23T13:12:33.608Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Recombinations.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Recombination\\Recombinations.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-22T16:29:55.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RecombinationParameters.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\RecombinationParameters.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Recombination\\RecombinationParameters.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\RecombinationParameters.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Recombination\\RecombinationParameters.h",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAADwAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-22T16:29:57.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MutationTruthTable.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Mutations\\MutationTruthTable.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Mutations\\MutationTruthTable.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Mutations\\MutationTruthTable.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Mutations\\MutationTruthTable.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-23T15:05:22.217Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Reliability.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\reliability\\Reliability.h",
+              "RelativeDocumentMoniker": "Generator\\source\\reliability\\Reliability.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\reliability\\Reliability.h",
+              "RelativeToolTip": "Generator\\source\\reliability\\Reliability.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-18T19:39:17.369Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Mutation.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Mutations\\Mutation.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Mutations\\Mutation.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Mutations\\Mutation.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Mutations\\Mutation.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-23T15:05:14.216Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DataBaseGeneratorParameters.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGeneratorParameters.h",
+              "RelativeDocumentMoniker": "Generator\\source\\DataBase\\DataBaseGeneratorParameters.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGeneratorParameters.h",
+              "RelativeToolTip": "Generator\\source\\DataBase\\DataBaseGeneratorParameters.h",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-18T19:48:28.38Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DataBaseGenerator.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGenerator.h",
+              "RelativeDocumentMoniker": "Generator\\source\\DataBase\\DataBaseGenerator.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGenerator.h",
+              "RelativeToolTip": "Generator\\source\\DataBase\\DataBaseGenerator.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-18T19:48:30.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "OrientedGraph.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\graph\\OrientedGraph.h",
+              "RelativeDocumentMoniker": "Generator\\source\\graph\\OrientedGraph.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\graph\\OrientedGraph.h",
+              "RelativeToolTip": "Generator\\source\\graph\\OrientedGraph.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-18T19:48:00.357Z",
               "EditorCaption": ""
             },
             {
@@ -144,40 +367,231 @@
               "RelativeDocumentMoniker": "Generator\\source\\graph\\GraphVertex.h",
               "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\graph\\GraphVertex.h",
               "RelativeToolTip": "Generator\\source\\graph\\GraphVertex.h",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-03-18T19:48:05.072Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "OrientedGraph.h",
-              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\graph\\OrientedGraph.h",
-              "RelativeDocumentMoniker": "Generator\\source\\graph\\OrientedGraph.h",
-              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\graph\\OrientedGraph.h",
-              "RelativeToolTip": "Generator\\source\\graph\\OrientedGraph.h",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 19,
+              "Title": "MutationParameters.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Mutations\\MutationParameters.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Mutations\\MutationParameters.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Mutations\\MutationParameters.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Mutations\\MutationParameters.h",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-18T19:48:00.357Z",
+              "WhenOpened": "2024-03-23T15:05:20.193Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Circuit.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\circuits\\Circuit.h",
+              "RelativeDocumentMoniker": "Generator\\source\\circuits\\Circuit.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\circuits\\Circuit.h",
+              "RelativeToolTip": "Generator\\source\\circuits\\Circuit.h",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-24T06:19:45.84Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AbcUtils.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\AbcUtils.h",
+              "RelativeDocumentMoniker": "Generator\\source\\optimization_utils\\AbcUtils.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\AbcUtils.h",
+              "RelativeToolTip": "Generator\\source\\optimization_utils\\AbcUtils.h",
+              "ViewState": "AQIAADMAAAAAAAAAAAAAACcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-24T06:15:30.681Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Reliability.h",
-              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\reliability\\Reliability.h",
-              "RelativeDocumentMoniker": "Generator\\source\\reliability\\Reliability.h",
-              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\reliability\\Reliability.h",
-              "RelativeToolTip": "Generator\\source\\reliability\\Reliability.h",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAowBcAAAAeAAAA",
+              "DocumentIndex": 20,
+              "Title": "Settings.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\settings\\Settings.h",
+              "RelativeDocumentMoniker": "Generator\\source\\settings\\Settings.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\settings\\Settings.h",
+              "RelativeToolTip": "Generator\\source\\settings\\Settings.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-18T19:39:17.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-24T06:02:14.268Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
+              "Title": "CircuitsParameters.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\circuits\\CircuitsParameters.h",
+              "RelativeDocumentMoniker": "Generator\\source\\circuits\\CircuitsParameters.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\circuits\\CircuitsParameters.h",
+              "RelativeToolTip": "Generator\\source\\circuits\\CircuitsParameters.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-18T19:48:35.628Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "StandartUtil.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\StandartUtil.h",
+              "RelativeDocumentMoniker": "Generator\\source\\optimization_utils\\StandartUtil.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\StandartUtil.h",
+              "RelativeToolTip": "Generator\\source\\optimization_utils\\StandartUtil.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-24T06:02:53.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "UtilsCommands.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\UtilsCommands.h",
+              "RelativeDocumentMoniker": "Generator\\source\\optimization_utils\\UtilsCommands.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\UtilsCommands.h",
+              "RelativeToolTip": "Generator\\source\\optimization_utils\\UtilsCommands.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-24T06:02:42.242Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "YosysUtils.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\YosysUtils.h",
+              "RelativeDocumentMoniker": "Generator\\source\\optimization_utils\\YosysUtils.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\optimization_utils\\YosysUtils.h",
+              "RelativeToolTip": "Generator\\source\\optimization_utils\\YosysUtils.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-24T06:02:33.138Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "TruthTable.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\TruthTable.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\TruthTable.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\TruthTable.h",
+              "RelativeToolTip": "Generator\\source\\generators\\TruthTable.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAF0AAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-16T15:46:39.317Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ParentsTruthTable.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Parents\\ParentsTruthTable.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Parents\\ParentsTruthTable.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Parents\\ParentsTruthTable.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Parents\\ParentsTruthTable.h",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAAC8AAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-22T17:24:48.784Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "FilesTools.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\filesTools\\FilesTools.h",
+              "RelativeDocumentMoniker": "Generator\\source\\filesTools\\FilesTools.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\filesTools\\FilesTools.h",
+              "RelativeToolTip": "Generator\\source\\filesTools\\FilesTools.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-18T19:48:21.736Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ParentsParameters.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Parents\\ParentsParameters.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Parents\\ParentsParameters.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Parents\\ParentsParameters.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Parents\\ParentsParameters.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAABgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-23T13:12:27.054Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Selections.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\Selections.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Selections\\Selections.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\Selections.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Selections\\Selections.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABAAAABPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-22T15:59:13.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "SelectionsTruthTable.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\SelectionsTruthTable.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Selections\\SelectionsTruthTable.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\SelectionsTruthTable.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Selections\\SelectionsTruthTable.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAcAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-22T16:15:37.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "RecombinationsTruthTable.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\RecombinationsTruthTable.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Recombination\\RecombinationsTruthTable.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Recombination\\RecombinationsTruthTable.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Recombination\\RecombinationsTruthTable.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-22T16:29:51.433Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "SelectionParameters.cpp",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.cpp",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.cpp",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.cpp",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.cpp",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-22T15:44:51.051Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "SelectionParameters.h",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.h",
+              "RelativeDocumentMoniker": "Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.h",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.h",
+              "RelativeToolTip": "Generator\\source\\generators\\Genetic\\Selections\\SelectionParameters.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-03-22T15:30:19.103Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "DataBaseGeneratorParameters.cpp",
+              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp",
+              "RelativeDocumentMoniker": "Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp",
+              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp",
+              "RelativeToolTip": "Generator\\source\\DataBase\\DataBaseGeneratorParameters.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-03-18T19:48:26.962Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
               "Title": "ThreadPool.h",
               "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\thread_pool\\ThreadPool.h",
               "RelativeDocumentMoniker": "Generator\\source\\thread_pool\\ThreadPool.h",
@@ -185,12 +599,11 @@
               "RelativeToolTip": "Generator\\source\\thread_pool\\ThreadPool.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-18T19:39:07.773Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-18T19:39:07.773Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 35,
               "Title": "UnboundedMPMCQueue.h",
               "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\thread_pool\\UnboundedMPMCQueue.h",
               "RelativeDocumentMoniker": "Generator\\source\\thread_pool\\UnboundedMPMCQueue.h",
@@ -198,12 +611,11 @@
               "RelativeToolTip": "Generator\\source\\thread_pool\\UnboundedMPMCQueue.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-18T19:39:03.203Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-18T19:39:03.203Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 36,
               "Title": "generatorAPI.h",
               "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generatorAPI.h",
               "RelativeDocumentMoniker": "Generator\\source\\generatorAPI.h",
@@ -211,12 +623,11 @@
               "RelativeToolTip": "Generator\\source\\generatorAPI.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-18T19:38:53.092Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-18T19:38:53.092Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 37,
               "Title": "SimpleGenerators.h",
               "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\SimpleGenerators.h",
               "RelativeDocumentMoniker": "Generator\\source\\generators\\SimpleGenerators.h",
@@ -228,20 +639,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "TruthTable.h",
-              "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\TruthTable.h",
-              "RelativeDocumentMoniker": "Generator\\source\\generators\\TruthTable.h",
-              "ToolTip": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\TruthTable.h",
-              "RelativeToolTip": "Generator\\source\\generators\\TruthTable.h",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAAAF0AAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-03-16T15:46:39.317Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 38,
               "Title": "GenerationParameters.h",
               "DocumentMoniker": "C:\\Project_1290_OLD\\Generator\\source\\generators\\GenerationParameters.h",
               "RelativeDocumentMoniker": "..\\..\\Project_1290_OLD\\Generator\\source\\generators\\GenerationParameters.h",
@@ -253,7 +651,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 39,
               "Title": "GenerationParameters.h",
               "DocumentMoniker": "C:\\course_3\\CircuitGen_Generator\\Generator\\source\\generators\\GenerationParameters.h",
               "RelativeDocumentMoniker": "Generator\\source\\generators\\GenerationParameters.h",
