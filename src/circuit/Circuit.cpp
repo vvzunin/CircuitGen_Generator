@@ -15,7 +15,7 @@
 #include <baseStructures/graph/enums.hpp>
 
 Circuit::Circuit(
-    OrientedGraph* const            i_graph,
+    GraphPtr const                  i_graph,
     const std::vector<std::string>& i_logExpressions
 ) {
   d_graph = i_graph;
@@ -82,7 +82,7 @@ void Circuit::updateCircuitParameters() {
 
   for (auto [key, value] : d_graph->getGatesCount()) {
     d_circuitParameters
-        .d_numElementsOfEachType[d_settings->parseGateToString(key)] = value;
+        .d_numElementsOfEachType[d_settings->parseGateToString(key)]  = value;
     d_circuitParameters.d_numGates                                   += value;
   }
 
@@ -96,8 +96,8 @@ void Circuit::updateCircuitParameters() {
   for (auto [from, sub] : d_graph->getEdgesGatesCount()) {
     for (auto [to, count] : sub) {
       d_circuitParameters.d_numEdgesOfEachType[{
-          d_settings->parseGateToString(from),
-          d_settings->parseGateToString(to)}] = count;
+          d_settings->parseGateToString(from), d_settings->parseGateToString(to)
+      }] = count;
     }
   }
 
@@ -105,7 +105,8 @@ void Circuit::updateCircuitParameters() {
   for (auto inp : inputs) {
     for (auto child : inp->getOutConnections()) {
       ++d_circuitParameters.d_numEdgesOfEachType[{
-          "input", d_settings->parseGateToString(child->getGate())}];
+          "input", d_settings->parseGateToString(child->getGate())
+      }];
     }
   }
 
@@ -113,7 +114,8 @@ void Circuit::updateCircuitParameters() {
   for (auto inp : outputs) {
     for (auto child : inp->getInConnections()) {
       ++d_circuitParameters.d_numEdgesOfEachType[{
-          d_settings->parseGateToString(child->getGate()), "output"}];
+          d_settings->parseGateToString(child->getGate()), "output"
+      }];
     }
   }
 
@@ -121,21 +123,13 @@ void Circuit::updateCircuitParameters() {
   for (auto inp : constants) {
     for (auto child : inp->getOutConnections()) {
       ++d_circuitParameters.d_numEdgesOfEachType[{
-          "const", d_settings->parseGateToString(child->getGate())}];
+          "const", d_settings->parseGateToString(child->getGate())
+      }];
     }
   }
 
   d_circuitParameters.d_hashCode = d_graph->calculateHash();
   // computeHash();
-}
-
-void Circuit::viewSubgraphs(std::string path, OrientedGraph* graph) {
-  for (std::shared_ptr<OrientedGraph> gr : graph->getSubGraphs()) {
-    std::ofstream w(path + "/" + gr->getName() + ".v");
-    gr->toVerilog(w);
-    w.close();
-    viewSubgraphs(path, gr.get());
-  }
 }
 
 bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
@@ -171,15 +165,7 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
 
   bool          f = std::filesystem::exists(s);
 
-  std::ofstream w(filename);
-
-  d_graph->toVerilog(w);
-
-  w.close();
-
-  viewSubgraphs(folderSubgraphs, d_graph);
-
-  return true;
+  return d_graph->toVerilog(d_path, d_circuitName + ".v").first;
 }
 
 bool Circuit::graphToGraphML(const std::string& i_path, bool i_pathExists) {
@@ -292,7 +278,7 @@ bool Circuit::checkExistingHash()  // TODO: is it really need return true when
 
 bool Circuit::generate(bool i_makeGraphML, bool i_pathExists) {
   // creating all files in sub directories
-  std::string d_path_temp = d_path + d_circuitName;
+  std::string d_path_temp  = d_path + d_circuitName;
   d_path                  += d_circuitName + "/";
 
   std::filesystem::create_directories(d_path);
@@ -359,8 +345,8 @@ Circuit Circuit::fromVerilog(const std::string& i_filepath) {
   // const int OUTPUT_WORD_SIZE = 7;
   // const int WIRE_WORD_SIZE = 5;
 
-  OrientedGraph graph;
-  Circuit       circuit(&graph, {});
+  GraphPtr graph;
+  Circuit  circuit(graph, {});
   // circuit.setPath(i_filepath);
 
   // std::string verilog_module = readAllFile(i_filepath);

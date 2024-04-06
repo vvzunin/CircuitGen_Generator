@@ -165,7 +165,7 @@ std::vector<std::string>
   return fun;
 }
 
-OrientedGraph SimpleGenerators::generatorRandLevel(
+GraphPtr SimpleGenerators::generatorRandLevel(
     int i_minLevel,
     int i_maxLevel,
     int i_minElements,
@@ -189,14 +189,14 @@ OrientedGraph SimpleGenerators::generatorRandLevel(
 
   // maxLevel++ // what?
 
-  int           choice;
-  std::string   expr;
-  OrientedGraph graph;
-  int           child1, child2;
+  int         choice;
+  std::string expr;
+  GraphPtr    graph(new OrientedGraph);
+  int         child1, child2;
 
   for (int i = 0; i < i_inputs; ++i) {
     expr = "x" + std::to_string(i);
-    graph.addInput(expr);
+    graph->addInput(expr);
   }
 
   int currIndex = i_inputs;
@@ -214,20 +214,19 @@ OrientedGraph SimpleGenerators::generatorRandLevel(
       choice = d_randGenerator.getRandInt(0, logOper.size());
 
       if (hasOneGate[choice]) {
-        child1 = d_randGenerator.getRandInt(0, currIndex);
+        child1              = d_randGenerator.getRandInt(0, currIndex);
 
-        std::shared_ptr<GraphVertexBase> newVertex =
-            graph.addGate(logOper[choice]);
-        graph.addEdge(graph.getVerticeByIndex(child1), newVertex);
+        VertexPtr newVertex = graph->addGate(logOper[choice]);
+        graph->addEdge(graph->getVerticeByIndex(child1), newVertex);
 
       } else {
-        child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
-        child2 = d_randGenerator.getRandInt(prevIndex, currIndex);
+        child1              = d_randGenerator.getRandInt(prevIndex, currIndex);
+        child2              = d_randGenerator.getRandInt(prevIndex, currIndex);
 
-        std::shared_ptr<GraphVertexBase> newVertex =
-            graph.addGate(logOper[choice]);
-        graph.addEdges(
-            {graph.getVerticeByIndex(child2), graph.getVerticeByIndex(child1)},
+        VertexPtr newVertex = graph->addGate(logOper[choice]);
+        graph->addEdges(
+            {graph->getVerticeByIndex(child2), graph->getVerticeByIndex(child1)
+            },
             newVertex
         );
       }
@@ -243,16 +242,16 @@ OrientedGraph SimpleGenerators::generatorRandLevel(
   // TODO: fix when elements less than outputs
 
   for (int i = 0; i < i_outputs; ++i) {
-    child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
-    expr   = "f" + std::to_string(i + 1);
-    std::shared_ptr<GraphVertexBase> newVertex = graph.addOutput(expr);
-    graph.addEdge(graph.getVerticeByIndex(child1), newVertex);
+    child1              = d_randGenerator.getRandInt(prevIndex, currIndex);
+    expr                = "f" + std::to_string(i + 1);
+    VertexPtr newVertex = graph->addOutput(expr);
+    graph->addEdge(graph->getVerticeByIndex(child1), newVertex);
   }
 
   return graph;
 }
 
-OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
+GraphPtr SimpleGenerators::generatorRandLevelExperimental(
     u_int32_t i_minLevel,
     u_int32_t i_maxLevel,
     u_int32_t i_minElements,
@@ -271,44 +270,43 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
   else
     maxLevel = 1;
 
-  std::string   expr;
-  OrientedGraph graph;
+  std::string expr;
+  GraphPtr    graph(new OrientedGraph);
 
   for (int i = 0; i < i_inputs; ++i) {
     expr = "x" + std::to_string(i);
-    graph.addInput(expr);
+    graph->addInput(expr);
   }
   // we need it because we:
   // a) can have less possible parents at current level, than is required by
   // minimum gates number of a logical element, so we can use inputs in such
   // case
   // b) need to swap gates
-  std::vector<std::shared_ptr<GraphVertexBase>> inputs =
-      graph.getVerticesByType(VertexTypes::input);
+  std::vector<VertexPtr> inputs = graph->getVerticesByType(VertexTypes::input);
 
   // TODO what if we will need to use n-gate elements, should we add consts
   // usage?
 
-  int       currIndex = i_inputs;
-  int       prevIndex = 0;
-  int       curLen    = 0;
+  int                    currIndex = i_inputs;
+  int                    prevIndex = 0;
+  int                    curLen    = 0;
   // we need lowest border as d_maxGateNumber, and if it is possible,
   // we set it (it changes speed of generation)
-  u_int32_t c_max     = i_maxElements > d_maxGateNumber
-                          ? std::max(d_maxGateNumber, (int)i_minElements)
-                          : i_minElements;
+  u_int32_t              c_max     = i_maxElements > d_maxGateNumber
+                                       ? std::max(d_maxGateNumber, (int)i_minElements)
+                                       : i_minElements;
 
   for (int i = 1; i < maxLevel; ++i) {
-    int                                           position  = 0;
+    int                    position  = 0;
     // how many elements would be at this level
-    int                                           elemLevel = i_maxElements > 1
-                                                                ? d_randGenerator.getRandInt(c_max, i_maxElements, true)
-                                                                : i_minElements;
+    int                    elemLevel = i_maxElements > 1
+                                         ? d_randGenerator.getRandInt(c_max, i_maxElements, true)
+                                         : i_minElements;
 
     // write allowed gates to be used as parent
-    std::vector<std::shared_ptr<GraphVertexBase>> curGates;
+    std::vector<VertexPtr> curGates;
     for (int val = prevIndex; val < currIndex; ++val)
-      curGates.push_back(graph.getVerticeByIndex(val));
+      curGates.push_back(graph->getVerticeByIndex(val));
     curLen += curGates.size();
 
     for (int j = 0; j < elemLevel; ++j) {
@@ -334,13 +332,13 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
       }
 
       if (gatesNumber == 1) {
-        int child1 = d_randGenerator.getRandInt(0, currIndex);
+        int       child1    = d_randGenerator.getRandInt(0, currIndex);
 
-        std::shared_ptr<GraphVertexBase> newVertex = graph.addGate(operation);
-        graph.addEdge(graph.getVerticeByIndex(child1), newVertex);
+        VertexPtr newVertex = graph->addGate(operation);
+        graph->addEdge(graph->getVerticeByIndex(child1), newVertex);
       } else {
         // parents vertices to be added for a new one
-        std::vector<std::shared_ptr<GraphVertexBase>> parents;
+        std::vector<VertexPtr> parents;
         // set memory (might be big, so we save time)
         parents.reserve(gatesNumber);
         auto idx = curGates.begin() + fromWhichShuffle;
@@ -375,44 +373,44 @@ OrientedGraph SimpleGenerators::generatorRandLevelExperimental(
             idx = curGates.begin();
         }
 
-        std::shared_ptr<GraphVertexBase> newVertex = graph.addGate(operation);
-        graph.addEdges(parents, newVertex);
+        VertexPtr newVertex = graph->addGate(operation);
+        graph->addEdges(parents, newVertex);
       }
       ++position;
     }
 
     prevIndex += currIndex - prevIndex;
     currIndex += position;
-    curLen    = inputs.size();
+    curLen     = inputs.size();
 
     // std::clog << (float)i / (float)maxLevel * 100 << "%" << std::endl;
   }
 
   // std::clog << "writing out gates" << std::endl;
   for (int i = 0; i < i_outputs; ++i) {
-    int child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
-    expr       = "f" + std::to_string(i + 1);
-    std::shared_ptr<GraphVertexBase> newVertex = graph.addOutput(expr);
+    int child1          = d_randGenerator.getRandInt(prevIndex, currIndex);
+    expr                = "f" + std::to_string(i + 1);
+    VertexPtr newVertex = graph->addOutput(expr);
 
-    graph.addEdge(graph.getVerticeByIndex(child1), newVertex);
+    graph->addEdge(graph->getVerticeByIndex(child1), newVertex);
   }
 
   // std::clog << "writing out gates ended" << std::endl;
   return graph;
 }
 
-OrientedGraph SimpleGenerators::generatorNumOperation(
+GraphPtr SimpleGenerators::generatorNumOperation(
     int                  i_input,
     int                  i_output,
     std::map<Gates, int> i_logicOper,
     bool                 i_leaveEmptyOut
 ) {
-  int                                             sumOper = 0, maxLvl;
-  std::string                                     name;
-  std::shared_ptr<GraphVertexBase>                name_ptr;
-  std::map<Gates, int>                            copyLogicOper;
-  std::map<std::shared_ptr<GraphVertexBase>, int> levelName;
-  std::vector<std::shared_ptr<GraphVertexBase>>   nameOut, nameInput;
+  int                      sumOper = 0, maxLvl;
+  std::string              name;
+  VertexPtr                name_ptr;
+  std::map<Gates, int>     copyLogicOper;
+  std::map<VertexPtr, int> levelName;
+  std::vector<VertexPtr>   nameOut, nameInput;
 
   for (const auto& elem : i_logicOper) {
     std::cout << elem.first << " " << elem.second << "\n";
@@ -420,11 +418,11 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
 
   copyLogicOper = i_logicOper;
 
-  OrientedGraph graph;
+  GraphPtr graph(new OrientedGraph());
 
   for (int i = 0; i < i_input; ++i) {
     name                = "x" + std::to_string(i);
-    name_ptr            = graph.addInput(name);
+    name_ptr            = graph->addInput(name);
 
     // TODO and how can it be changed?
     levelName[name_ptr] = name_ptr->getLevel();
@@ -434,7 +432,7 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
 
   for (int i = 0; i < i_output; ++i) {
     name     = "f" + std::to_string(i);
-    name_ptr = graph.addOutput(name);
+    name_ptr = graph->addOutput(name);
     nameOut.push_back(name_ptr);
   }
 
@@ -450,13 +448,13 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
     --copyLogicOper[oper];
 
     if (oper == Gates::GateNot || oper == Gates::GateBuf) {
-      std::shared_ptr<GraphVertexBase> ver1 = randomGenerator(levelName);
+      VertexPtr ver1 = randomGenerator(levelName);
       // name = d_settings->getLogicOperation(oper).first + "(" + ver1 + ")";
-      name_ptr                              = graph.addGate(oper);
-      graph.addEdge(ver1, name_ptr);
+      name_ptr       = graph->addGate(oper);
+      graph->addEdge(ver1, name_ptr);
     } else {
-      std::shared_ptr<GraphVertexBase> ver1 = randomGenerator(levelName);
-      std::shared_ptr<GraphVertexBase> ver2 = randomGenerator(levelName);
+      VertexPtr ver1 = randomGenerator(levelName);
+      VertexPtr ver2 = randomGenerator(levelName);
       // name = "(" + ver1 + ") " + d_settings->getLogicOperation(oper).first +
       //        "(" + ver2 + ")";
 
@@ -465,8 +463,8 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
       //                           d_settings->getLogicOperation(oper).first +
       //                           "(" + ver1 + ")";
 
-      name_ptr                              = graph.addGate(oper);
-      graph.addEdges({ver1, ver2}, name_ptr);
+      name_ptr       = graph->addGate(oper);
+      graph->addEdges({ver1, ver2}, name_ptr);
       levelName[name_ptr] = name_ptr->getLevel();
     }
 
@@ -477,7 +475,7 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
   while ((nameOut.size() > 0)
          & ((levelName.size() > 0 || i_leaveEmptyOut == false))) {
     if (levelName.size() > 0) {
-      std::vector<std::shared_ptr<GraphVertexBase>> help;
+      std::vector<VertexPtr> help;
       maxLvl = maxValueInMap(levelName);
 
       for (const auto& [key, value] : levelName) {
@@ -488,7 +486,7 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
       while (help.size() > 0 && nameOut.size() > 0) {
         int R1 = d_randGenerator.getRandInt(0, help.size());
         int R2 = d_randGenerator.getRandInt(0, nameOut.size());
-        graph.addEdge(help[R1], nameOut[R2]);
+        graph->addEdge(help[R1], nameOut[R2]);
         levelName.erase(help[R1]);
         help.erase(help.begin() + R1);
         nameOut.erase(nameOut.begin() + R2);
@@ -497,7 +495,7 @@ OrientedGraph SimpleGenerators::generatorNumOperation(
       int R1 = d_randGenerator.getRandInt(0, nameInput.size());
       int R2 = d_randGenerator.getRandInt(0, nameOut.size());
 
-      graph.addEdge(nameInput[R1], nameOut[R2]);
+      graph->addEdge(nameInput[R1], nameOut[R2]);
       nameOut.erase(nameOut.begin() + R2);
     }
   }
@@ -517,18 +515,18 @@ std::map<Gates, int> SimpleGenerators::delNull(
   return i_copyLogicOper;
 }
 
-OrientedGraph SimpleGenerators::generatorSummator(
+GraphPtr SimpleGenerators::generatorSummator(
     int  bits,
     bool overflowIn,
     bool overflowOut,
     bool minus,
     bool act
 ) {
-  OrientedGraph graph;
+  GraphPtr graph(new OrientedGraph());
   // if (overflowIn)
-  //     graph.addInput("p0");
+  //     graph->addInput("p0");
   // if (act)
-  //     graph.addConst('1');
+  //     graph->addConst('1');
   // std::string pi;
   // std::string x;
   // std::string y;
@@ -541,97 +539,97 @@ OrientedGraph SimpleGenerators::generatorSummator(
   //     std::string S = std::to_string(i);
   //     x = "suma" + cond + S;
   //     y = "sumb" + cond + S;
-  //     std::shared_ptr<GraphVertexBase> input_x = graph.addInput(x);
-  //     std::shared_ptr<GraphVertexBase> input_y = graph.addInput(y);
+  //     VertexPtr input_x = graph->addInput(x);
+  //     VertexPtr input_y = graph->addInput(y);
   //     if (minus)
   //     {
-  //         std::shared_ptr<GraphVertexBase> v1 = graph.addGate(Gates::GateNot,
-  //         "na" + S); std::shared_ptr<GraphVertexBase> v2 =
-  //         graph.addVertex(Gates::GateNot, "nb" + S); graph.addEdge(input_x,
-  //         v1, false); graph.addEdge(input_y, v2, false); x = "na" + S; y =
+  //         VertexPtr v1 = graph->addGate(Gates::GateNot,
+  //         "na" + S); VertexPtr v2 =
+  //         graph->addVertex(Gates::GateNot, "nb" + S); graph->addEdge(input_x,
+  //         v1, false); graph->addEdge(input_y, v2, false); x = "na" + S; y =
   //         "nb" + S;
   //     }
   //     if (!act)
   //     {
-  //         graph.addOutput(z + S);
+  //         graph->addOutput(z + S);
   //     }
 
-  //     std::shared_ptr<GraphVertexBase> andab = graph.addGate(Gates::GateAnd,
+  //     VertexPtr andab = graph->addGate(Gates::GateAnd,
   //     "andab" + S);
 
   //     std::string NextS = std::to_string(i + 1);
   //     pi = "p" + S;
-  //     std::shared_ptr<GraphVertexBase> anda = graph.addGate(Gates::GateAnd,
-  //     "anda" + pi); std::shared_ptr<GraphVertexBase> andb =
-  //     graph.addGate(Gates::GateAnd, "andb" + pi);
+  //     VertexPtr anda = graph->addGate(Gates::GateAnd,
+  //     "anda" + pi); VertexPtr andb =
+  //     graph->addGate(Gates::GateAnd, "andb" + pi);
 
   //     // PI ЗДЕСЬ НАДО ЗАМЕНИТЬ НА ССЫЛКУ НА НЕЁ
-  //     graph.addEdge(input_x, input_y, andab);
-  //     graph.addEdge(input_x, pi, anda);
-  //     graph.addEdge(input_y, pi, andb);
+  //     graph->addEdge(input_x, input_y, andab);
+  //     graph->addEdge(input_x, pi, anda);
+  //     graph->addEdge(input_y, pi, andb);
 
   //     // TODO КАКОГО ЧЕРТА ВЕРШИНА ИДЕТ КАК РОДИТЕЛЬ, КОГДА ЕЁ ЕЩЁ НЕ СОЗДАЛИ
   //     // ВЫ СОЗДАЛИ p1, А p0 ЕЩЁ НЕТ
-  //     graph.addVertex("((andab" + S + ")" + " or " + "(anda" + pi + ")" + "
+  //     graph->addVertex("((andab" + S + ")" + " or " + "(anda" + pi + ")" + "
   //     or " + "(andb" + pi + "))", Gates::GateOr, "p" + NextS);
-  //     graph.addEdge("andab" + S, "p" + NextS, false);
-  //     graph.addEdge("anda" + pi, "p" + NextS, false);
-  //     graph.addEdge("andb" + pi, "p" + NextS, false);
+  //     graph->addEdge("andab" + S, "p" + NextS, false);
+  //     graph->addEdge("anda" + pi, "p" + NextS, false);
+  //     graph->addEdge("andb" + pi, "p" + NextS, false);
   //     if (overflowOut && i + 1 == bits)
   //     {
   //         if (act)
   //         {
-  //             graph.addVertex("(1 and p" + NextS + ")", Gates::GateAnd, z +
-  //             "and1_" + NextS); graph.addDoubleEdge("1", "p" + NextS, z +
+  //             graph->addVertex("(1 and p" + NextS + ")", Gates::GateAnd, z +
+  //             "and1_" + NextS); graph->addDoubleEdge("1", "p" + NextS, z +
   //             "and1_" + NextS, false);
   //         }
   //         else
   //         {
-  //             graph.addVertex(z + std::to_string(bits), "output");
-  //             graph.addEdge("p" + NextS, z + std::to_string(bits), false);
+  //             graph->addVertex(z + std::to_string(bits), "output");
+  //             graph->addEdge("p" + NextS, z + std::to_string(bits), false);
   //         }
   //     }
-  //     graph.addVertex("not (p" + NextS + ")", Gates::GateNot, "np" + NextS);
-  //     graph.addEdge("p" + NextS, "np" + NextS, false);
+  //     graph->addVertex("not (p" + NextS + ")", Gates::GateNot, "np" + NextS);
+  //     graph->addEdge("p" + NextS, "np" + NextS, false);
 
-  //     graph.addVertex("(" + x + " or " + y + " or " + pi + ")",
-  //     Gates::GateOr, "abpor" + S); graph.addEdge(x, "abpor" + S, false);
-  //     graph.addEdge(y, "abpor" + S, false);
-  //     graph.addEdge(pi, "abpor" + S, false);
+  //     graph->addVertex("(" + x + " or " + y + " or " + pi + ")",
+  //     Gates::GateOr, "abpor" + S); graph->addEdge(x, "abpor" + S, false);
+  //     graph->addEdge(y, "abpor" + S, false);
+  //     graph->addEdge(pi, "abpor" + S, false);
 
-  //     graph.addVertex("(abpor" + S + " and np" + NextS + ")", Gates::GateAnd,
-  //     "andnp" + NextS); graph.addDoubleEdge("abpor" + S, "np" + NextS,
-  //     "andnp" + NextS, false);
+  //     graph->addVertex("(abpor" + S + " and np" + NextS + ")",
+  //     Gates::GateAnd, "andnp" + NextS); graph->addDoubleEdge("abpor" + S,
+  //     "np" + NextS, "andnp" + NextS, false);
 
-  //     graph.addVertex("(" + x + " and " + y + " and " + pi + ")",
-  //     Gates::GateAnd, "abpand" + S); graph.addEdge(x, "abpand" + S, false);
-  //     graph.addEdge(y, "abpand" + S, false);
-  //     graph.addEdge(pi, "abpand" + S, false);
+  //     graph->addVertex("(" + x + " and " + y + " and " + pi + ")",
+  //     Gates::GateAnd, "abpand" + S); graph->addEdge(x, "abpand" + S, false);
+  //     graph->addEdge(y, "abpand" + S, false);
+  //     graph->addEdge(pi, "abpand" + S, false);
 
-  //     graph.addVertex("(abpand" + S + " or " + "andnp" + NextS + ")",
-  //     Gates::GateOr, "pS" + S); graph.addDoubleEdge("abpand" + S, "andnp" +
+  //     graph->addVertex("(abpand" + S + " or " + "andnp" + NextS + ")",
+  //     Gates::GateOr, "pS" + S); graph->addDoubleEdge("abpand" + S, "andnp" +
   //     NextS, "pS" + S, false); if (act)
   //     {
-  //         graph.addVertex("(1 and pS" + S + ")", Gates::GateAnd, z + "and1_"
-  //         + S); graph.addDoubleEdge("1", "pS" + S, z + "and1_" + S, false);
+  //         graph->addVertex("(1 and pS" + S + ")", Gates::GateAnd, z + "and1_"
+  //         + S); graph->addDoubleEdge("1", "pS" + S, z + "and1_" + S, false);
   //     }
   //     else
   //     {
-  //         graph.addEdge("pS" + S, z + S, false);
+  //         graph->addEdge("pS" + S, z + S, false);
   //     }
   // }
   return graph;
 }
 
-OrientedGraph SimpleGenerators::generatorComparison(
+GraphPtr SimpleGenerators::generatorComparison(
     int  bits,
     bool compare0,
     bool compare1,
     bool compare2,
     bool act
 ) {
-  OrientedGraph graph;
-  // std::shared_ptr<GraphVertexBase> prev_pn_;
+  GraphPtr graph(new OrientedGraph());
+  // VertexPtr prev_pn_;
   // std::string cond = std::string(compare0 ? "t" : "f") + (compare1 ? "t" :
   // "f") + (compare2 ? "t" : "f"); for (int i = bits - 1; i >= 0; i--)
   // {
@@ -643,63 +641,63 @@ OrientedGraph SimpleGenerators::generatorComparison(
   //     {
   //         NextC = "X";
   //     }
-  //     std::shared_ptr<GraphVertexBase> input_x = graph.addInput(x);
-  //     std::shared_ptr<GraphVertexBase> input_y = graph.addInput(y);
-  //     std::shared_ptr<GraphVertexBase> nb = graph.addGate(Gates::GateNot,
-  //     "nb" + C); graph.addEdge(input_y, "nb" + C);
-  //     std::shared_ptr<GraphVertexBase> na = graph.addGate(Gates::GateNot,
-  //     "na" + C); graph.addEdge(input_x, "na" + C, false);
+  //     VertexPtr input_x = graph->addInput(x);
+  //     VertexPtr input_y = graph->addInput(y);
+  //     VertexPtr nb = graph->addGate(Gates::GateNot,
+  //     "nb" + C); graph->addEdge(input_y, "nb" + C);
+  //     VertexPtr na = graph->addGate(Gates::GateNot,
+  //     "na" + C); graph->addEdge(input_x, "na" + C, false);
 
-  //     std::shared_ptr<GraphVertexBase> const_1;
+  //     VertexPtr const_1;
   //     if (act)
   //     {
-  //         const_1 = graph.addConst('1');
+  //         const_1 = graph->addConst('1');
   //     }
-  //     std::shared_ptr<GraphVertexBase> En_;
-  //     std::shared_ptr<GraphVertexBase> pn_;
-  //     std::shared_ptr<GraphVertexBase> Enand1_;
-  //     std::shared_ptr<GraphVertexBase> pEn_;
+  //     VertexPtr En_;
+  //     VertexPtr pn_;
+  //     VertexPtr Enand1_;
+  //     VertexPtr pEn_;
   //     if (compare0)
   //     {
   //         if (!act)
   //         {
   //             // TODO this is made like for three times, is it
   //             // possible to move it in upper part?
-  //             En_ = graph.addOutput("E0_" + C);
+  //             En_ = graph->addOutput("E0_" + C);
   //         }
-  //         std::shared_ptr<GraphVertexBase> nab =
-  //         graph.addGate(Gates::GateAnd, "nab" + C);
-  //         std::shared_ptr<GraphVertexBase> ab =
-  //         graph.addVertex(Gates::GateAnd, "ab" + C); pn_ =
-  //         graph.addVertex(Gates::GateOr, "p0_" + NextC); graph.addEdges({na,
-  //         nb}, nab); graph.addEdges({input_x, input_y}, ab);
-  //         graph.addEdges({nab, ab}, pn_);
+  //         VertexPtr nab =
+  //         graph->addGate(Gates::GateAnd, "nab" + C);
+  //         VertexPtr ab =
+  //         graph->addVertex(Gates::GateAnd, "ab" + C); pn_ =
+  //         graph->addVertex(Gates::GateOr, "p0_" + NextC);
+  //         graph->addEdges({na, nb}, nab); graph->addEdges({input_x, input_y},
+  //         ab); graph->addEdges({nab, ab}, pn_);
 
   //         // in case of first iteration
   //         if (i == bits - 1)
   //         {
   //             if (act)
   //             {
-  //                 Enand1_ = graph.addGate(Gates::GateAnd, "E0and1_" + C);
-  //                 graph.addEdges({const_1, pn_}, Enand1_);
+  //                 Enand1_ = graph->addGate(Gates::GateAnd, "E0and1_" + C);
+  //                 graph->addEdges({const_1, pn_}, Enand1_);
   //             }
   //             else
   //             {
-  //                 graph.addEdge(pn_, En_);
+  //                 graph->addEdge(pn_, En_);
   //             }
   //         }
   //         else
   //         {
-  //             pEn_ = graph.addGate(Gates::GateAnd, "pE0_" + C);
-  //             graph.addEdge({prev_pn_, pn_}, pEn_);
+  //             pEn_ = graph->addGate(Gates::GateAnd, "pE0_" + C);
+  //             graph->addEdge({prev_pn_, pn_}, pEn_);
   //             if (act)
   //             {
-  //                 Enand1_ = graph.addGate(Gates::GateAnd, "E0and1_" + C);
-  //                 graph.addEdges({const_1, pEn_}, Enand1_);
+  //                 Enand1_ = graph->addGate(Gates::GateAnd, "E0and1_" + C);
+  //                 graph->addEdges({const_1, pEn_}, Enand1_);
   //             }
   //             else
   //             {
-  //                 graph.addEdge(pEn_, En_);
+  //                 graph->addEdge(pEn_, En_);
   //             }
   //         }
   //         prev_pn_ = pn_;
@@ -708,48 +706,48 @@ OrientedGraph SimpleGenerators::generatorComparison(
   //     {
   //         if (!act)
   //         {
-  //             En_ = graph.addOutput("E1_" + C);
+  //             En_ = graph->addOutput("E1_" + C);
   //         }
 
-  //         pn_ = graph.addGate(Gates::GateAnd, "p1_" + NextC);
-  //         graph.addEdges({input_x, nb}, pn_);
+  //         pn_ = graph->addGate(Gates::GateAnd, "p1_" + NextC);
+  //         graph->addEdges({input_x, nb}, pn_);
 
   //         // in case of first iteration
   //         if (i == bits - 1)
   //         {
   //             if (act)
   //             {
-  //                 Enand1_ = graph.addVertex(Gates::GateAnd, "E1and1_" + C);
-  //                 graph.addEdges({const_1, pn_}, Enand1_);
+  //                 Enand1_ = graph->addVertex(Gates::GateAnd, "E1and1_" + C);
+  //                 graph->addEdges({const_1, pn_}, Enand1_);
   //             }
   //             else
   //             {
-  //                 graph.addEdge(pn_, En_);
+  //                 graph->addEdge(pn_, En_);
   //             }
   //         }
   //         else
   //         {
-  //             std::shared_ptr<GraphVertexBase> np1_ =
-  //             graph.addGate(Gates::GateNot, "np1_" + C);
-  //             std::shared_ptr<GraphVertexBase> np1_next =
-  //             graph.addGate(Gates::GateNot, "np1_" + NextC);
-  //             graph.addEdge(prev_pn_, np1_); graph.addEdge(pn_, np1_next);
-  //             std::shared_ptr<GraphVertexBase> P11_ =
-  //             graph.addGate(Gates::GateAnd, "P11_" + C);
-  //             graph.addEdges({np1_, pn1_}, P11_);
-  //             std::shared_ptr<GraphVertexBase> P12_ =
-  //             graph.addGate(Gates::GateAnd, "P12_" + C);
-  //             graph.addEdges({prev_pn_, np1_next}, P12_);
-  //             pEn_ = graph.addGate(Gates::GateOr, "pE1_" + C);
-  //             graph.addEdges({P11_, P12_}, pEn_);
+  //             VertexPtr np1_ =
+  //             graph->addGate(Gates::GateNot, "np1_" + C);
+  //             VertexPtr np1_next =
+  //             graph->addGate(Gates::GateNot, "np1_" + NextC);
+  //             graph->addEdge(prev_pn_, np1_); graph->addEdge(pn_, np1_next);
+  //             VertexPtr P11_ =
+  //             graph->addGate(Gates::GateAnd, "P11_" + C);
+  //             graph->addEdges({np1_, pn1_}, P11_);
+  //             VertexPtr P12_ =
+  //             graph->addGate(Gates::GateAnd, "P12_" + C);
+  //             graph->addEdges({prev_pn_, np1_next}, P12_);
+  //             pEn_ = graph->addGate(Gates::GateOr, "pE1_" + C);
+  //             graph->addEdges({P11_, P12_}, pEn_);
   //             if (act)
   //             {
-  //                 Enand1_ = graph.addGate(Gates::GateAnd, "E1and1_" + C);
-  //                 graph.addEdges({const_1, pEn_}, Enand1_);
+  //                 Enand1_ = graph->addGate(Gates::GateAnd, "E1and1_" + C);
+  //                 graph->addEdges({const_1, pEn_}, Enand1_);
   //             }
   //             else
   //             {
-  //                 graph.addEdge(pEn_, En_);
+  //                 graph->addEdge(pEn_, En_);
   //             }
   //         }
   //         prev_pn_ = pn_;
@@ -758,47 +756,47 @@ OrientedGraph SimpleGenerators::generatorComparison(
   //     {
   //         if (!act)
   //         {
-  //             En_ = graph.addOutput("E2_" + C);
+  //             En_ = graph->addOutput("E2_" + C);
   //         }
-  //         pn_ = graph.addGate(Gates::GateAnd, "p2_" + NextC);
-  //         graph.addEdges(input_y, na, pn_);
+  //         pn_ = graph->addGate(Gates::GateAnd, "p2_" + NextC);
+  //         graph->addEdges(input_y, na, pn_);
 
   //         // first iteration
   //         if (i == bits - 1)
   //         {
   //             if (act)
   //             {
-  //                 Enand1_ = graph.addVertex(Gates::GateAnd, "E2and1_" + C);
-  //                 graph.addEdges({const_1, pn_}, Enand1_);
+  //                 Enand1_ = graph->addVertex(Gates::GateAnd, "E2and1_" + C);
+  //                 graph->addEdges({const_1, pn_}, Enand1_);
   //             }
   //             else
   //             {
-  //                 graph.addEdge(pn_, En_);
+  //                 graph->addEdge(pn_, En_);
   //             }
   //         }
   //         else
   //         {
-  //             std::shared_ptr<GraphVertexBase> np2_ =
-  //             graph.addGate(Gates::GateNot, "np2_" + C);
-  //             std::shared_ptr<GraphVertexBase> np2_next =
-  //             graph.addGate(Gates::GateNot, "np2_" + NextC);
-  //             graph.addEdge(prev_pn_, np2_); graph.addEdge(pn_, np2_next);
-  //             std::shared_ptr<GraphVertexBase> P21_ =
-  //             graph.addVertex(Gates::GateAnd, "P21_"
-  //             + C); graph.addEdges({np2_, np2_next}, P21_);
-  //             std::shared_ptr<GraphVertexBase> P22_ =
-  //             graph.addVertex(Gates::GateAnd, "P22_" + C);
-  //             graph.addEdges({prev_pn_, np2_next}, P22_);
-  //             pEn_ = graph.addVertex(Gates::GateOr, "pE2_" + C);
-  //             graph.addEdges({P21_, P22_}, pEn_);
+  //             VertexPtr np2_ =
+  //             graph->addGate(Gates::GateNot, "np2_" + C);
+  //             VertexPtr np2_next =
+  //             graph->addGate(Gates::GateNot, "np2_" + NextC);
+  //             graph->addEdge(prev_pn_, np2_); graph->addEdge(pn_, np2_next);
+  //             VertexPtr P21_ =
+  //             graph->addVertex(Gates::GateAnd, "P21_"
+  //             + C); graph->addEdges({np2_, np2_next}, P21_);
+  //             VertexPtr P22_ =
+  //             graph->addVertex(Gates::GateAnd, "P22_" + C);
+  //             graph->addEdges({prev_pn_, np2_next}, P22_);
+  //             pEn_ = graph->addVertex(Gates::GateOr, "pE2_" + C);
+  //             graph->addEdges({P21_, P22_}, pEn_);
   //             if (act)
   //             {
-  //                 Enand1_ = graph.addGate(Gates::GateAnd, "E2and1_" + C);
-  //                 graph.addEdges({const_1, pEn_}, Enand1_);
+  //                 Enand1_ = graph->addGate(Gates::GateAnd, "E2and1_" + C);
+  //                 graph->addEdges({const_1, pEn_}, Enand1_);
   //             }
   //             else
   //             {
-  //                 graph.addEdge(pEn_, En_);
+  //                 graph->addEdge(pEn_, En_);
   //             }
   //         }
   //         prev_pn_ = pn_;
@@ -807,8 +805,8 @@ OrientedGraph SimpleGenerators::generatorComparison(
   return graph;
 }
 
-OrientedGraph SimpleGenerators::generatorEncoder(int bits) {
-  OrientedGraph graph;
+GraphPtr SimpleGenerators::generatorEncoder(int bits) {
+  GraphPtr graph;
   // int k = 0;
   // for (int t = 0; t <= bits; t++)
   //     if (bits - 1 >= pow(2, t))
@@ -818,7 +816,7 @@ OrientedGraph SimpleGenerators::generatorEncoder(int bits) {
   // for (int l = 0; l <= bits - 1; l++)
   // {
   //     std::string Z = std::to_string(l);
-  //     graph.addInput("x" + Z);
+  //     graph->addInput("x" + Z);
   // }
   // if (bits > 1)
   //     for (int p = k - 1; p >= 0; p--)
@@ -828,7 +826,7 @@ OrientedGraph SimpleGenerators::generatorEncoder(int bits) {
   //         std::string M = "";
   //         std::string K = "";
   //         std::string S = std::to_string(p);
-  //         std::shared_ptr<GraphVertexBase>out = graph.addOutput("a" + S);
+  //         VertexPtrout = graph->addOutput("a" + S);
 
   //         for (int i = 0; i <= bits - 1; i++)
   //             for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
@@ -837,7 +835,7 @@ OrientedGraph SimpleGenerators::generatorEncoder(int bits) {
   //                     std::string R = std::to_string(pow(2, p + 1) * i + t);
   //                     K = M + " or x" + R;
   //                     L = P + "orx" + R;
-  //                     // graph.addEdge("x" + R, "a" + S, false);
+  //                     // graph->addEdge("x" + R, "a" + S, false);
   //                     P = L;
   //                     L = "";
   //                     M = K;
@@ -846,18 +844,18 @@ OrientedGraph SimpleGenerators::generatorEncoder(int bits) {
   //         M = M.erase(0, 3);
 
   //         // TODO solve this name strange thing
-  //         // std::shared_ptr<GraphVertexBase>P_ref = graph.addVertex(M,
-  //         Gates::GateOr, P); std::shared_ptr<GraphVertexBase>P_ref =
-  //         graph.addVertex(Gates::GateOr, P); for (int i = 0; i <= bits - 1;
+  //         // VertexPtrP_ref = graph->addVertex(M,
+  //         Gates::GateOr, P); VertexPtrP_ref =
+  //         graph->addVertex(Gates::GateOr, P); for (int i = 0; i <= bits - 1;
   //         i++)
   //             for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
   //                 if (pow(2, p + 1) * i + t <= bits - 1)
   //                 {
   //                     std::string R = std::to_string(pow(2, p + 1) * i + t);
   //                     // here getting input number R
-  //                     graph.addEdge(graph.getVerticeByIndex(R), P_ref);
+  //                     graph->addEdge(graph->getVerticeByIndex(R), P_ref);
   //                 }
-  //         graph.addEdge(P_ref, out);
+  //         graph->addEdge(P_ref, out);
   //     }
   // else
   //    std::cout << "Недостаточно входных сигналов\n";

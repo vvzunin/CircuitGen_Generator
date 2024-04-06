@@ -151,10 +151,10 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     Parser pCNFT(expr);
     pCNFT.parseAll();
 
-    OrientedGraph graph = pCNFT.getGraph();
-    graph.setName(i_param.getName() + "_" + name);
+    GraphPtr graph = pCNFT.getGraph();
+    graph->setName(i_param.getName() + "_" + name);
 
-    Circuit c(&graph, expr);
+    Circuit c(graph, expr);
     c.setTable(tt);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName() + "_" + name);
@@ -168,7 +168,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(
   SimpleGenerators generator(i_param.getSeed());
   generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  OrientedGraph graph = generator.generatorRandLevel(
+  GraphPtr graph = generator.generatorRandLevel(
       i_param.getRandLevel().getMinLevel(),
       i_param.getRandLevel().getMaxLevel(),
       i_param.getRandLevel().getMinElements(),
@@ -177,7 +177,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(
       i_param.getOutputs()
   );
 
-  Circuit c(&graph);
+  Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
@@ -190,7 +190,7 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
   generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   auto          start = high_resolution_clock::now();
-  OrientedGraph graph = generator.generatorRandLevelExperimental(
+  GraphPtr graph = generator.generatorRandLevelExperimental(
       i_param.getRandLevel().getMinLevel(),
       i_param.getRandLevel().getMaxLevel(),
       i_param.getRandLevel().getMinElements(),
@@ -205,7 +205,7 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
   //           << " microseconds" << std::endl;
 
   // std::clog << "Update started\n";
-  Circuit c(&graph);
+  Circuit c(graph);
   // std::clog << "Update ended\n";
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -219,7 +219,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(
   SimpleGenerators generator(i_param.getSeed());
   generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  std::vector<std::pair<std::string, OrientedGraph>> circs;
+  std::vector<std::pair<std::string, GraphPtr>> circs;
   circs.push_back(
       {"NumOperation",
        generator.generatorNumOperation(
@@ -231,7 +231,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(
   );
 
   for (auto [name, graph] : circs) {
-    Circuit c(&graph);
+    Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
     c.generate(i_param.getMakeGraphML());
@@ -262,9 +262,9 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters& i_param
   bool          overflowIn  = i_param.getSummator().OverFlowIn;
   bool          overflowOut = i_param.getSummator().OverFlowOut;
   bool          minus       = i_param.getSummator().minus;
-  OrientedGraph graph =
+  GraphPtr graph =
       sg.generatorSummator(bits, overflowIn, overflowOut, minus);
-  Circuit c(&graph);
+  Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
@@ -280,9 +280,9 @@ void DataBaseGenerator::GenerateDataBaseComparison(
   bool          compare0 = i_param.getComparison().compare0;
   bool          compare1 = i_param.getComparison().compare1;
   bool          compare2 = i_param.getComparison().compare2;
-  OrientedGraph graph =
+  GraphPtr graph =
       sg.generatorComparison(bits, compare0, compare1, compare2);
-  Circuit c(&graph);
+  Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
@@ -295,8 +295,8 @@ void DataBaseGenerator::GenerateDataBaseEncoder(
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   int           bits  = i_param.getInputs();
-  OrientedGraph graph = sg.generatorEncoder(bits);
-  Circuit       c(&graph);
+  GraphPtr graph = sg.generatorEncoder(bits);
+  Circuit       c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());

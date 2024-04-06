@@ -12,7 +12,7 @@
 class Circuit {
 public:
   Circuit(
-      OrientedGraph* const            i_graph,
+      GraphPtr const                  i_graph,
       const std::vector<std::string>& i_logExpressions = {}
   );
   void computeHash();
@@ -31,7 +31,7 @@ public:
   Circuit fromVerilog(const std::string& i_filepath);
 
 private:
-  OrientedGraph*            d_graph;
+  GraphPtr                  d_graph;
   std::vector<std::string>  d_logExpressions;
   TruthTable                d_tTable;
   std::string               d_path;
@@ -40,5 +40,4 @@ private:
   std::shared_ptr<Settings> d_settings = Settings::getInstance("Circuit");
 
   bool                      checkExistingHash();
-  void viewSubgraphs(std::string path, OrientedGraph* graph);
 };
