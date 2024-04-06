@@ -9,7 +9,7 @@ std::string deleteDoubleSpaces(const std::string& s) {
   bool        isPrevSpace = false;
   for (auto c : s) {
     if (c != ' ') {
-      isPrevSpace  = false;
+      isPrevSpace = false;
       res         += c;
     } else {
       if (!isPrevSpace)
