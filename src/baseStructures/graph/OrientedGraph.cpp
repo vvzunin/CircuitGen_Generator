@@ -343,6 +343,7 @@ std::string OrientedGraph::getGraphInstance() {
   // module_name module_name_inst_1 (
   std::string module_ver = verilogTab + d_name + " " + d_name + "_inst_"
                          + std::to_string(*verilogCount) + " (\n";
+
   for (size_t i = 0; i < d_vertexes[VertexTypes::input].size(); ++i) {
     auto inp = d_subGraphsInputsPtr[d_currentParentGraph][*verilogCount][i];
     std::string inp_name  = d_vertexes[VertexTypes::input][i]->getName();
@@ -394,9 +395,6 @@ std::pair<bool, std::string>
 
   fileStream << "module " << d_name << "(\n" << verilogTab;
 
-  std::vector<VertexPtr> outputByWireSize;
-  std::vector<VertexPtr> subGraphOutputsByWireSize;
-
   // here we are parsing inputs by their wire size
   for (auto inp : d_vertexes[VertexTypes::input]) {
     fileStream << inp->getName() << ", ";
@@ -419,7 +417,7 @@ std::pair<bool, std::string>
       fileStream << VertexUtils::vertexTypeToString(eachVertex.back()->getType()
       ) << " ";
     }
-    
+
     for (auto value : eachVertex) {
       fileStream << value->getName()
                  << (value != eachVertex.back() ? ", " : ";\n");
