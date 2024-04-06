@@ -15,6 +15,9 @@ include(cmake/variables.cmake)
 
 add_subdirectory(lib)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0b964be80 (Add SimpleGeneratorsTests to CMakeLists.txt)
 include_directories(lib)
 =======
 add_subdirectory(src)
