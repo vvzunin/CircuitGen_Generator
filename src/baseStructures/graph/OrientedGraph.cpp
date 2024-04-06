@@ -15,7 +15,7 @@
 
 uint_fast64_t OrientedGraph::d_countGraph = 0;
 
-OrientedGraph::OrientedGraph(const std::string i_name) {
+OrientedGraph::OrientedGraph(const std::string& i_name) {
   // this_ptr.reset(this);
   if (i_name == "")
     d_name = "graph_" + std::to_string(d_countGraph++);
@@ -96,7 +96,7 @@ OrientedGraph* OrientedGraph::getBaseGraph() const {
 }
 
 std::shared_ptr<GraphVertexBase> OrientedGraph::addInput(
-    const std::string i_name
+    const std::string& i_name
 ) {
   std::shared_ptr<GraphVertexBase> newVertex(new GraphVertexInput(i_name, this)
   );
@@ -106,7 +106,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::addInput(
 }
 
 std::shared_ptr<GraphVertexBase> OrientedGraph::addOutput(
-    const std::string i_name
+    const std::string& i_name
 ) {
   std::shared_ptr<GraphVertexBase> newVertex(new GraphVertexOutput(i_name, this)
   );
@@ -116,7 +116,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::addOutput(
 }
 
 std::shared_ptr<GraphVertexBase>
-    OrientedGraph::addConst(const char i_value, const std::string i_name) {
+    OrientedGraph::addConst(const char& i_value, const std::string& i_name) {
   std::shared_ptr<GraphVertexBase> newVertex(
       new GraphVertexConstant(i_value, i_name, this)
   );
@@ -126,7 +126,7 @@ std::shared_ptr<GraphVertexBase>
 }
 
 std::shared_ptr<GraphVertexBase>
-    OrientedGraph::addGate(const Gates i_gate, const std::string i_name) {
+    OrientedGraph::addGate(const Gates& i_gate, const std::string& i_name) {
   std::shared_ptr<GraphVertexBase> newVertex(
       new GraphVertexGates(i_gate, i_name, this)
   );
@@ -138,7 +138,7 @@ std::shared_ptr<GraphVertexBase>
 }
 
 std::shared_ptr<OrientedGraph> OrientedGraph::addSubGraph(
-    const std::string i_name
+    const std::string& i_name
 ) {
   std::shared_ptr<OrientedGraph> newGraph(new OrientedGraph(i_name));
   d_subGraphs.push_back(newGraph);
@@ -151,18 +151,32 @@ bool OrientedGraph::addEdge(
     std::shared_ptr<GraphVertexBase> from,
     std::shared_ptr<GraphVertexBase> to
 ) {
-  // TODO: Добавить проверку на разные baseGraph. Если from - output, то to -
-  // любой. Либо to - input, а from - любой.
-  bool f = from->addVertexToOutConnections(to);
-  int  n = to->addVertexToInConnections(from);
+    bool f;
+    int n;
+    if (from->getBaseGraph() == to->getBaseGraph()){
+        f = from->addVertexToOutConnections(to);
+        n = to->addVertexToInConnections(from);
+    }
+    else{
+        if (from->getType() == VertexTypes::output){
+            n = to->addVertexToInConnections(from);
+        }
+        else{
+            throw std::invalid_argument("Not allowed to add edge from one subgraph to another, if from vertex is not output");
+        }
+        if (to->getType() == VertexTypes::input){
+            f = from->addVertexToOutConnections(to);
+        }
+        else{
+            throw std::invalid_argument("Not allowed to add edge from one subgraph to another, if to vertex is not input");
+        }
+    }
+    d_edgesCount += f && (n > 0);
+    if (from->getType() == VertexTypes::gate &&
+        to->getType() == VertexTypes::gate)
+        ++d_edgesGatesCount[from->getGate()][to->getGate()];
 
-  ++d_edgesCount;
-
-  if (from->getType() == VertexTypes::gate
-      && to->getType() == VertexTypes::gate)
-    ++d_edgesGatesCount[from->getGate()][to->getGate()];
-
-  return f && (n > 0);
+    return f && (n > 0);;
 }
 
 bool OrientedGraph::addEdges(
@@ -211,7 +225,7 @@ std::shared_ptr<GraphVertexBase> OrientedGraph::getVerticeByIndex(int idx
 }
 
 std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByLevel(
-    const int i_level
+    const int& i_level
 ) {
   this->updateLevels();
   std::vector<std::shared_ptr<GraphVertexBase>> a;
@@ -220,9 +234,9 @@ std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByLevel(
 }
 
 std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByType(
-    const VertexTypes i_type,
-    const std::string i_name,
-    const bool        i_addSubGraphs
+    const VertexTypes& i_type,
+    const std::string& i_name,
+    const bool&        i_addSubGraphs
 ) const {
   if (i_name.size() != 0)
     return d_vertexes.at(i_type);
@@ -242,8 +256,8 @@ std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByType(
 }
 
 std::vector<std::shared_ptr<GraphVertexBase>> OrientedGraph::getVerticesByName(
-    const std::string i_name,
-    const bool        i_addSubGraphs
+    const std::string& i_name,
+    const bool&        i_addSubGraphs
 ) const {
   std::vector<std::shared_ptr<GraphVertexBase>> resVert;
   for (const auto& [key, value] : d_vertexes) {
