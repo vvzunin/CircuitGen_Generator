@@ -100,14 +100,11 @@ GraphPtr GraphVertexBase::getBaseGraph() const {
   return d_baseGraph;
 }
 
-std::vector<VertexPtr> GraphVertexBase::getInConnections(
-) const {
+std::vector<VertexPtr> GraphVertexBase::getInConnections() const {
   return d_inConnections;
 }
 
-int GraphVertexBase::addVertexToInConnections(
-    VertexPtr const i_vert
-) {
+int GraphVertexBase::addVertexToInConnections(VertexPtr const i_vert) {
   d_inConnections.push_back(i_vert);
   int n = 0;
   // TODO use map<VertexPtr, int> instead of for
@@ -142,7 +139,7 @@ std::string GraphVertexBase::calculateHash(bool recalculate) {
 
 bool GraphVertexBase::removeVertexToInConnections(
     VertexPtr const i_vert,
-    bool                                   i_full
+    bool            i_full
 ) {
   if (i_full) {
     bool f = false;
@@ -160,14 +157,11 @@ bool GraphVertexBase::removeVertexToInConnections(
   }
 }
 
-std::vector<VertexPtr>
-    GraphVertexBase::getOutConnections() const {
+std::vector<VertexPtr> GraphVertexBase::getOutConnections() const {
   return d_outConnections;
 }
 
-bool GraphVertexBase::addVertexToOutConnections(
-    VertexPtr const i_vert
-) {
+bool GraphVertexBase::addVertexToOutConnections(VertexPtr const i_vert) {
   int n = 0;
   for (VertexPtr vert : d_outConnections)
     n += (vert == i_vert);
@@ -178,9 +172,7 @@ bool GraphVertexBase::addVertexToOutConnections(
   return false;
 }
 
-bool GraphVertexBase::removeVertexToOutConnections(
-    VertexPtr const i_vert
-) {
+bool GraphVertexBase::removeVertexToOutConnections(VertexPtr const i_vert) {
   for (int i = 0; i < d_outConnections.size(); i++) {
     d_outConnections.erase(d_outConnections.begin() + i);
     return true;

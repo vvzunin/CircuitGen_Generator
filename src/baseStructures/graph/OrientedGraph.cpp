@@ -285,23 +285,23 @@ std::map<Gates, std::map<Gates, int>> OrientedGraph::getEdgesGatesCount(
 }
 
 std::string OrientedGraph::calculateHash(bool recalculate) {
-  if (hashed != "" && !recalculate)
-    return hashed;
+  if (d_hashed != "" && !recalculate)
+    return d_hashed;
 
   std::set<std::string> hashed_data;
-  hashed = "";
+  d_hashed = "";
 
   for (auto& input : d_vertexes[VertexTypes::input]) {
     hashed_data.insert(input->calculateHash(recalculate));
   }
 
   for (const auto& sub : hashed_data) {
-    hashed += sub;
+    d_hashed += sub;
   }
 
-  hashed = std::to_string(std::hash<std::string> {}(hashed));
+  d_hashed = std::to_string(std::hash<std::string> {}(d_hashed));
 
-  return hashed;
+  return d_hashed;
 }
 
 bool OrientedGraph::operator==(const OrientedGraph& rhs) {
@@ -317,7 +317,7 @@ bool OrientedGraph::operator==(const OrientedGraph& rhs) {
   if (!correct)
     return false;
 
-  return hashed == rhs.hashed && hashed.size();
+  return d_hashed == rhs.d_hashed && d_hashed.size();
 }
 
 void OrientedGraph::setCurrentParent(GraphPtr i_parent) {

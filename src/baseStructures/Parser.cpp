@@ -218,7 +218,8 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
       } else if (tt.second[0] == "const")
         part_ptr = d_graph->addConst(part[0], part);
       else
-        part_ptr = d_graph->addGate(d_settings->parseStringToGate(tt.second[0]));
+        part_ptr =
+            d_graph->addGate(d_settings->parseStringToGate(tt.second[0]));
 
       d_graph->addEdge(part_ptr, expr);
       if (tt.second[0] != "input" && tt.second[0] != "const")

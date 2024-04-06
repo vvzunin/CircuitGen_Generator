@@ -163,7 +163,7 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
         pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName
     );
 
-  bool          f = std::filesystem::exists(s);
+  bool f = std::filesystem::exists(s);
 
   return d_graph->toVerilog(d_path, d_circuitName + ".v").first;
 }

@@ -68,26 +68,24 @@ public:
   VertexPtr          addOutput(const std::string i_name = "");
   VertexPtr addConst(const char i_value, const std::string i_name = "");
   VertexPtr addGate(const Gates i_gate, const std::string i_name = "");
-  std::vector<VertexPtr> addSubGraph(
-      GraphPtr               i_subGraph,
-      std::vector<VertexPtr> i_inputs
-  );
+  std::vector<VertexPtr>
+         addSubGraph(GraphPtr i_subGraph, std::vector<VertexPtr> i_inputs);
 
-  bool                  addEdge(VertexPtr from, VertexPtr to);
-  bool                  addEdges(std::vector<VertexPtr> from1, VertexPtr to);
+  bool   addEdge(VertexPtr from, VertexPtr to);
+  bool   addEdges(std::vector<VertexPtr> from1, VertexPtr to);
 
-  size_t                getEdgesCount() { return d_edgesCount; }
+  size_t getEdgesCount() { return d_edgesCount; }
 
-  std::vector<GraphPtr> getSubGraphs() const;
+  std::vector<GraphPtr>                         getSubGraphs() const;
   std::map<VertexTypes, std::vector<VertexPtr>> getBaseVertexes() const;
   VertexPtr   getVerticeByIndex(int idx) const;
 
   std::string getGraphInstance();
   std::pair<bool, std::string>
-                         toVerilog(std::string i_path, std::string i_filename="");
+              toVerilog(std::string i_path, std::string i_filename = "");
   // toAdjencyMatrix
-  bool                   toGraphML(std::ofstream& i_fileStream) const;
-  std::string            toGraphML(int i_nesting = 0) const;
+  bool        toGraphML(std::ofstream& i_fileStream) const;
+  std::string toGraphML(int i_nesting = 0) const;
   // visualize
   // calcGraph
 
@@ -117,7 +115,7 @@ private:
   GraphPtr                     d_currentParentGraph;
   size_t                       d_edgesCount = 0;
 
-  std::string                  hashed       = "";
+  std::string                  d_hashed       = "";
   std::set<GraphPtr>           d_parentGraphs;
 
   std::string                  d_name;
@@ -126,7 +124,7 @@ private:
   bool                         d_needLevelUpdate = true;
 
   // also we need to now, was .v file for subgraph created, or not
-  bool                         d_alreadyParsed     = false;
+  bool                         d_alreadyParsed   = false;
   // We can add a subgraph multiple times
   // so we need to count instances to verilog.
   // We are counting to know, which inputs and outputs should we use now

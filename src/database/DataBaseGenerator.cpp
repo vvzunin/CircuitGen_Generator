@@ -189,7 +189,7 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
   SimpleGenerators generator(i_param.getSeed());
   generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  auto          start = high_resolution_clock::now();
+  auto     start = high_resolution_clock::now();
   GraphPtr graph = generator.generatorRandLevelExperimental(
       i_param.getRandLevel().getMinLevel(),
       i_param.getRandLevel().getMaxLevel(),
@@ -258,13 +258,12 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters& i_param
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int           bits        = i_param.getInputs();
-  bool          overflowIn  = i_param.getSummator().OverFlowIn;
-  bool          overflowOut = i_param.getSummator().OverFlowOut;
-  bool          minus       = i_param.getSummator().minus;
-  GraphPtr graph =
-      sg.generatorSummator(bits, overflowIn, overflowOut, minus);
-  Circuit c(graph);
+  int      bits        = i_param.getInputs();
+  bool     overflowIn  = i_param.getSummator().OverFlowIn;
+  bool     overflowOut = i_param.getSummator().OverFlowOut;
+  bool     minus       = i_param.getSummator().minus;
+  GraphPtr graph = sg.generatorSummator(bits, overflowIn, overflowOut, minus);
+  Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
@@ -276,13 +275,12 @@ void DataBaseGenerator::GenerateDataBaseComparison(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int           bits     = i_param.getInputs();
-  bool          compare0 = i_param.getComparison().compare0;
-  bool          compare1 = i_param.getComparison().compare1;
-  bool          compare2 = i_param.getComparison().compare2;
-  GraphPtr graph =
-      sg.generatorComparison(bits, compare0, compare1, compare2);
-  Circuit c(graph);
+  int      bits     = i_param.getInputs();
+  bool     compare0 = i_param.getComparison().compare0;
+  bool     compare1 = i_param.getComparison().compare1;
+  bool     compare2 = i_param.getComparison().compare2;
+  GraphPtr graph = sg.generatorComparison(bits, compare0, compare1, compare2);
+  Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
@@ -294,9 +292,9 @@ void DataBaseGenerator::GenerateDataBaseEncoder(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int           bits  = i_param.getInputs();
+  int      bits  = i_param.getInputs();
   GraphPtr graph = sg.generatorEncoder(bits);
-  Circuit       c(graph);
+  Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
