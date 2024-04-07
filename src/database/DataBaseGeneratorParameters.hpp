@@ -12,6 +12,7 @@ enum GenerationTypes {
   Summator,
   Comparison,
   Encoder,
+  Parity,
   Subtractor,
   Demultiplexer,
   Multiplier,

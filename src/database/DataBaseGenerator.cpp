@@ -303,6 +303,20 @@ void DataBaseGenerator::generateDataBaseEncoder(
   c.generate();
 }
 
+void DataBaseGenerator::generateDataBaseParity(
+        const GenerationParameters& i_param
+) {
+    SimpleGenerators sg(i_param.getSeed());
+    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+    int           bits  = i_param.getInputs();
+    OrientedGraph graph = sg.generatorParity(bits);
+    Circuit       c(&graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate();
+}
+
 void DataBaseGenerator::generateDataBaseSubtractor(
     const GenerationParameters& i_param
 ) {
@@ -452,11 +466,21 @@ std::function<void(const GenerationParameters&)>
     );
   if (i_methodName == "Decoder")
     return std::bind(
-        &DataBaseGenerator::generateDataBaseDecoder, this, std::placeholders::_1
+        &DataBaseGenerator::generateDataBaseDecoder,
+        this,
+        std::placeholders::_1
     );
+  if (i_methodName == "Parity")
+      return std::bind(
+              &DataBaseGenerator::generateDataBaseParity,
+              this,
+              std::placeholders::_1
+      );
   if (i_methodName == "ALU")
     return std::bind(
-        &DataBaseGenerator::generateDataBaseALU, this, std::placeholders::_1
+        &DataBaseGenerator::generateDataBaseALU,
+        this,
+        std::placeholders::_1
     );
 
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;

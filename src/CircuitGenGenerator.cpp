@@ -65,6 +65,8 @@ void runGenerationFromJson(std::string json_path) {
         gt = GenerationTypes::Multiplier;
     else if (data["type_of_generation"] == "Decoder")
         gt = GenerationTypes::Decoder;
+    else if (data["type_of_generation"] == "Parity")
+        gt = GenerationTypes::Parity;
 
     else if (data["type_of_generation"] == "ALU")
         gt = GenerationTypes::ALU;

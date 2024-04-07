@@ -84,6 +84,7 @@ public:
       bool act = false
   );
   OrientedGraph generatorEncoder(int bits);
+  OrientedGraph generatorParity(int i_bits);
   OrientedGraph generatorSubtractor(
       int  i_bits,
       bool i_overflowIn,
