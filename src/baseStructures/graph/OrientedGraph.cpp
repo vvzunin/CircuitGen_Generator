@@ -62,25 +62,29 @@ bool OrientedGraph::isConnected() {
   std::vector<GraphVertexBase*> passed;
   std::queue<GraphVertexBase*>  vertex_queue;
 
-  vertex_queue.push(d_vertexes[VertexTypes::input][0].get());
-  passed.push_back(d_vertexes[VertexTypes::input][0].get());
+  for (int i = 0; i < 3; i++) {
+    auto type_vert = static_cast<VertexTypes>(i);
+    vertex_queue.push(d_vertexes[type_vert][0].get());
+    passed.push_back(d_vertexes[type_vert][0].get());
 
-  while (!vertex_queue.empty()) {
-    GraphVertexBase* current_vertex  = vertex_queue.front();
-    auto             out_connections = current_vertex->getOutConnections();
+    while (!vertex_queue.empty()) {
+      GraphVertexBase* current_vertex  = vertex_queue.front();
+      auto             out_connections = current_vertex->getOutConnections();
 
-    for (auto out_edge_sh_ptr : out_connections) {
-      auto out_edge = out_edge_sh_ptr.get();
-      auto it = std::find(passed.begin(), passed.end(), out_edge);
-      if (it == passed.end()) {
-        //if (passed.find(out_edge) == passed.end()) {
-        passed.push_back(out_edge);
-        vertex_queue.push(out_edge);
+      for (auto out_edge_sh_ptr : out_connections) {
+        auto out_edge = out_edge_sh_ptr.get();
+        auto it       = std::find(passed.begin(), passed.end(), out_edge);
+        if (it == passed.end()) {
+          // if (passed.find(out_edge) == passed.end()) {
+          passed.push_back(out_edge);
+          vertex_queue.push(out_edge);
+        }
       }
-    }
-    vertex_queue.pop();
-  };
+      vertex_queue.pop();
+    };
 
+  }
+  
   return passed.size() == this->fullSize();
 }
 
