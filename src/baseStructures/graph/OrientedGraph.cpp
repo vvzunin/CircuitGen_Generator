@@ -414,7 +414,7 @@ std::pair<bool, std::string>
         d_vertexes[VertexTypes::output],
         d_allSubGraphsOutputs}) {
     if (eachVertex.size()) {
-      fileStream << VertexUtils::vertexTypeToString(eachVertex.back()->getType()
+      fileStream << VertexUtils::vertexTypeToVerilog(eachVertex.back()->getType()
       ) << " ";
     }
 

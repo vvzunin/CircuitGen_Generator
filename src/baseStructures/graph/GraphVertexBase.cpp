@@ -24,7 +24,7 @@ std::string   VertexUtils::gateToString(Gates i_type) {
   }
 }
 
-std::string VertexUtils::vertexTypeToString(VertexTypes i_type) {
+std::string VertexUtils::vertexTypeToVerilog(VertexTypes i_type) {
   switch (i_type) {
     case VertexTypes::input:
       return "input";
@@ -181,7 +181,7 @@ bool GraphVertexBase::removeVertexToOutConnections(VertexPtr const i_vert) {
 }
 
 std::string GraphVertexBase::getInstance() {
-  return VertexUtils::vertexTypeToString(d_type) + " " + d_name + ";";
+  return VertexUtils::vertexTypeToVerilog(d_type) + " " + d_name + ";";
 }
 
 std::string GraphVertexBase::toVerilog() {
