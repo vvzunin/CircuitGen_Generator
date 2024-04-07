@@ -15,7 +15,7 @@
 #include <baseStructures/graph/enums.hpp>
 
 Circuit::Circuit(
-    OrientedGraph* const            i_graph,
+    GraphPtr const                  i_graph,
     const std::vector<std::string>& i_logExpressions
 ) {
   d_graph = i_graph;
@@ -129,15 +129,6 @@ void Circuit::updateCircuitParameters() {
   // computeHash();
 }
 
-void Circuit::viewSubgraphs(std::string path, OrientedGraph* graph) {
-  for (std::shared_ptr<OrientedGraph> gr : graph->getSubGraphs()) {
-    std::ofstream w(path + "/" + gr->getName() + ".v");
-    gr->toVerilog(w);
-    w.close();
-    viewSubgraphs(path, gr.get());
-  }
-}
-
 bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
   if (d_graph->isEmpty())
     return false;
@@ -169,17 +160,9 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
         pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName
     );
 
-  bool          f = std::filesystem::exists(s);
+  bool f = std::filesystem::exists(s);
 
-  std::ofstream w(filename);
-
-  d_graph->toVerilog(w);
-
-  w.close();
-
-  viewSubgraphs(folderSubgraphs, d_graph);
-
-  return true;
+  return d_graph->toVerilog(d_path, d_circuitName + ".v").first;
 }
 
 bool Circuit::graphToGraphML(const std::string& i_path, bool i_pathExists) {
@@ -359,8 +342,8 @@ Circuit Circuit::fromVerilog(const std::string& i_filepath) {
   // const int OUTPUT_WORD_SIZE = 7;
   // const int WIRE_WORD_SIZE = 5;
 
-  OrientedGraph graph;
-  Circuit       circuit(&graph, {});
+  GraphPtr graph;
+  Circuit  circuit(graph, {});
   // circuit.setPath(i_filepath);
 
   // std::string verilog_module = readAllFile(i_filepath);

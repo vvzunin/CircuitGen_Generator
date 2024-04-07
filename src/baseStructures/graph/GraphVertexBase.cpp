@@ -5,10 +5,40 @@
 
 uint_fast64_t GraphVertexBase::d_count = 0;
 
-GraphVertexBase::GraphVertexBase(
-    const VertexTypes i_type,
-    OrientedGraph*    i_graph
-) {
+std::string   VertexUtils::gateToString(Gates i_type) {
+  switch (i_type) {
+    case Gates::GateNot:
+      return "~";
+    case Gates::GateAnd:
+    case Gates::GateNand:
+      return "&";
+    case Gates::GateOr:
+    case Gates::GateNor:
+      return "|";
+    case Gates::GateXor:
+    case Gates::GateXnor:
+      return "^";
+    // Buf, Default
+    default:
+      return "";
+  }
+}
+
+std::string VertexUtils::vertexTypeToVerilog(VertexTypes i_type) {
+  switch (i_type) {
+    case VertexTypes::input:
+      return "input";
+    case VertexTypes::output:
+      return "output";
+    case VertexTypes::constant:
+      return "localparam";
+    case VertexTypes::gate:
+      return "wire";
+  }
+  return "";
+}
+
+GraphVertexBase::GraphVertexBase(const VertexTypes i_type, GraphPtr i_graph) {
   d_baseGraph = i_graph;
   d_type      = i_type;
   d_name      = this->getTypeName() + "_" + std::to_string(d_count++);
@@ -19,7 +49,7 @@ GraphVertexBase::GraphVertexBase(
 GraphVertexBase::GraphVertexBase(
     const VertexTypes i_type,
     const std::string i_name,
-    OrientedGraph*    i_graph
+    GraphPtr          i_graph
 ) {
   d_baseGraph = i_graph;
   d_type      = i_type;
@@ -58,7 +88,7 @@ unsigned GraphVertexBase::getLevel() const {
 }
 
 void GraphVertexBase::updateLevel() {
-  for (std::shared_ptr<GraphVertexBase> vert : d_inConnections)
+  for (VertexPtr vert : d_inConnections)
     d_level = (vert->getLevel() >= d_level) ? vert->getLevel() + 1 : d_level;
 }
 
@@ -66,22 +96,19 @@ char GraphVertexBase::getValue() const {
   return d_value;
 }
 
-OrientedGraph* GraphVertexBase::getBaseGraph() const {
+GraphPtr GraphVertexBase::getBaseGraph() const {
   return d_baseGraph;
 }
 
-std::vector<std::shared_ptr<GraphVertexBase>> GraphVertexBase::getInConnections(
-) const {
+std::vector<VertexPtr> GraphVertexBase::getInConnections() const {
   return d_inConnections;
 }
 
-int GraphVertexBase::addVertexToInConnections(
-    std::shared_ptr<GraphVertexBase> const i_vert
-) {
+int GraphVertexBase::addVertexToInConnections(VertexPtr const i_vert) {
   d_inConnections.push_back(i_vert);
   int n = 0;
-  // TODO use map<std::shared_ptr<GraphVertexBase>, int> instead of for
-  for (std::shared_ptr<GraphVertexBase> vert : d_inConnections)
+  // TODO use map<VertexPtr, int> instead of for
+  for (VertexPtr vert : d_inConnections)
     n += (vert == i_vert);
   return n;
 }
@@ -111,8 +138,8 @@ std::string GraphVertexBase::calculateHash(bool recalculate) {
 }
 
 bool GraphVertexBase::removeVertexToInConnections(
-    std::shared_ptr<GraphVertexBase> const i_vert,
-    bool                                   i_full
+    VertexPtr const i_vert,
+    bool            i_full
 ) {
   if (i_full) {
     bool f = false;
@@ -130,16 +157,13 @@ bool GraphVertexBase::removeVertexToInConnections(
   }
 }
 
-std::vector<std::shared_ptr<GraphVertexBase>>
-    GraphVertexBase::getOutConnections() const {
+std::vector<VertexPtr> GraphVertexBase::getOutConnections() const {
   return d_outConnections;
 }
 
-bool GraphVertexBase::addVertexToOutConnections(
-    std::shared_ptr<GraphVertexBase> const i_vert
-) {
+bool GraphVertexBase::addVertexToOutConnections(VertexPtr const i_vert) {
   int n = 0;
-  for (std::shared_ptr<GraphVertexBase> vert : d_outConnections)
+  for (VertexPtr vert : d_outConnections)
     n += (vert == i_vert);
   if (n == 0) {
     d_outConnections.push_back(i_vert);
@@ -148,12 +172,21 @@ bool GraphVertexBase::addVertexToOutConnections(
   return false;
 }
 
-bool GraphVertexBase::removeVertexToOutConnections(
-    std::shared_ptr<GraphVertexBase> const i_vert
-) {
+bool GraphVertexBase::removeVertexToOutConnections(VertexPtr const i_vert) {
   for (int i = 0; i < d_outConnections.size(); i++) {
     d_outConnections.erase(d_outConnections.begin() + i);
     return true;
   }
   return false;
+}
+
+std::string GraphVertexBase::getInstance() {
+  return VertexUtils::vertexTypeToVerilog(d_type) + " " + d_name + ";";
+}
+
+std::string GraphVertexBase::toVerilog() {
+  if (d_type == VertexTypes::output) {
+    return "assign " + d_name + " = " + d_inConnections.back()->getName() + ";";
+  }
+  return "";
 }
