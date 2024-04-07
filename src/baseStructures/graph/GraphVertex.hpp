@@ -49,7 +49,7 @@ protected:
 private:
 };
 
-/// <summary>
+/// class GraphVertexConstant TO DO: Description
 /// 
 /// </summary>
 
@@ -67,6 +67,10 @@ public:
 
 private:
 };
+
+/// class GraphVertexOutput TO DO: Description
+/// 
+/// </summary>
 
 class GraphVertexOutput : public GraphVertexBase {
 public:
