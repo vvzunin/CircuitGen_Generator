@@ -43,9 +43,9 @@ public:
   SimpleGenerators& operator=(SimpleGenerators&& other)      = delete;
 
   std::vector<std::string>
-                cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
+           cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
 
-  OrientedGraph generatorRandLevel(
+  GraphPtr generatorRandLevel(
       int i_minLevel,
       int i_maxLevel,
       int i_minElements,
@@ -53,7 +53,7 @@ public:
       int i_inputs,
       int i_outputs
   );
-  OrientedGraph generatorRandLevelExperimental(
+  GraphPtr generatorRandLevelExperimental(
       u_int32_t i_minLevel,
       u_int32_t i_maxLevel,
       u_int32_t i_minElements,
@@ -62,27 +62,27 @@ public:
       u_int32_t i_outputs
   );
 
-  OrientedGraph generatorNumOperation(
+  GraphPtr generatorNumOperation(
       int                  i_input,
       int                  i_output,
       std::map<Gates, int> i_logicOper,
       bool                 i_leaveEmptyOut = true
   );
-  OrientedGraph generatorSummator(
+  GraphPtr generatorSummator(
       int  bits,
       bool overflowIn,
       bool overflowOut,
       bool minus,
       bool act = false
   );
-  OrientedGraph generatorComparison(
+  GraphPtr generatorComparison(
       int  bits,
       bool compare0,
       bool compare1,
       bool compare2,
       bool act = false
   );
-  OrientedGraph generatorEncoder(int bits);
+  GraphPtr generatorEncoder(int bits);
 
   void setGatesInputsInfo(const std::map<std::string, std::vector<int>>& i_info
   ) {

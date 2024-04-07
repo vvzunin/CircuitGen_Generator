@@ -3,14 +3,14 @@
 #include "GraphVertex.hpp"
 
 GraphVertexInput::GraphVertexInput(
-    OrientedGraph*    i_baseGraph,
+    GraphPtr          i_baseGraph,
     const VertexTypes i_type
 ) :
   GraphVertexBase(i_type, i_baseGraph) {}
 
 GraphVertexInput::GraphVertexInput(
     const std::string i_name,
-    OrientedGraph*    i_baseGraph,
+    GraphPtr          i_baseGraph,
     const VertexTypes i_type
 ) :
   GraphVertexBase(i_type, i_name, i_baseGraph) {}
@@ -32,6 +32,6 @@ char GraphVertexInput::updateValue() {
 }
 
 void GraphVertexInput::updateLevel() {
-  for (std::shared_ptr<GraphVertexBase> vert : d_inConnections)
+  for (VertexPtr vert : d_inConnections)
     d_level = (vert->getLevel() > d_level) ? vert->getLevel() : d_level;
 }
