@@ -87,15 +87,15 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a9665db3a68f8bdfa6da5829a529b89e2">
-              <span class="m-doc-wrap-bumper"><a href="#a9665db3a68f8bdfa6da5829a529b89e2" class="m-doc-self">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
-              <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a>* i_graph = nullptr)</span>
+            <dt id="a006319f36efca3d9a910e61e0271ed14">
+              <span class="m-doc-wrap-bumper"><a href="#a006319f36efca3d9a910e61e0271ed14" class="m-doc-self">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
+              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a7a5be39dee54983c341f2146415fe722">
-              <span class="m-doc-wrap-bumper"><a href="#a7a5be39dee54983c341f2146415fe722" class="m-doc-self">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
+            <dt id="a72ec39807323365997afe38d65ecf670">
+              <span class="m-doc-wrap-bumper"><a href="#a72ec39807323365997afe38d65ecf670" class="m-doc-self">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
               const std::string i_name,
-              <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a>* i_graph = nullptr)</span>
+              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span>
             </dt>
             <dd><span></span></dd>
             <dt id="a97d09e7b5904ecd715a5ac057b8d737b">
@@ -147,37 +147,45 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a1a69b367ea429636864e63c4cc9b6abc" class="m-doc-self">getGate</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a2fb628cdcd867cdd57daffe22b648199">
-              <span class="m-doc-wrap-bumper">auto <a href="#a2fb628cdcd867cdd57daffe22b648199" class="m-doc-self">getBaseGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a>*</span>
+            <dt id="a362b34dfea49de712aafcd5dd091ed8f">
+              <span class="m-doc-wrap-bumper">auto <a href="#a362b34dfea49de712aafcd5dd091ed8f" class="m-doc-self">getBaseGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
             </dt>
             <dd><span></span></dd>
-            <dt id="af3218ed1adcfe46a8ff7057a90c2d024">
-              <span class="m-doc-wrap-bumper">auto <a href="#af3218ed1adcfe46a8ff7057a90c2d024" class="m-doc-self">getInConnections</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt;&gt;</span>
+            <dt id="aa968f424c1a6470fe039edd539914076">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa968f424c1a6470fe039edd539914076" class="m-doc-self">getInConnections</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a6a051802895808920548a594234e41a3">
-              <span class="m-doc-wrap-bumper">auto <a href="#a6a051802895808920548a594234e41a3" class="m-doc-self">addVertexToInConnections</a>(</span><span class="m-doc-wrap">std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt; const i_vert) -&gt; int</span>
+            <dt id="a1af449356713ef8c178e7e40db4a92cc">
+              <span class="m-doc-wrap-bumper">auto <a href="#a1af449356713ef8c178e7e40db4a92cc" class="m-doc-self">addVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> const i_vert) -&gt; int</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="afa1d636b89fb61aaf69c5c1549d11789">
-              <span class="m-doc-wrap-bumper">auto <a href="#afa1d636b89fb61aaf69c5c1549d11789" class="m-doc-self">removeVertexToInConnections</a>(</span><span class="m-doc-wrap">std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt; const i_vert,
+            <dt id="a3155b7a45e7f2d01647f6ca91e39e323">
+              <span class="m-doc-wrap-bumper">auto <a href="#a3155b7a45e7f2d01647f6ca91e39e323" class="m-doc-self">removeVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> const i_vert,
               bool i_full = false) -&gt; bool</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a4a47909d99bd01a9fda7402d8fa86f2d">
-              <span class="m-doc-wrap-bumper">auto <a href="#a4a47909d99bd01a9fda7402d8fa86f2d" class="m-doc-self">getOutConnections</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt;&gt;</span>
+            <dt id="acba2074e04e2457be77680e218a0d45f">
+              <span class="m-doc-wrap-bumper">auto <a href="#acba2074e04e2457be77680e218a0d45f" class="m-doc-self">getOutConnections</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a53b277a16cccfb2ff8a9139035d08a4b">
-              <span class="m-doc-wrap-bumper">auto <a href="#a53b277a16cccfb2ff8a9139035d08a4b" class="m-doc-self">addVertexToOutConnections</a>(</span><span class="m-doc-wrap">std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt; const i_vert) -&gt; bool</span>
+            <dt id="a17df0101385c797403310d307a16ba89">
+              <span class="m-doc-wrap-bumper">auto <a href="#a17df0101385c797403310d307a16ba89" class="m-doc-self">addVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> const i_vert) -&gt; bool</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a8864ae4aa3f62a3a21c4d3a160628146">
-              <span class="m-doc-wrap-bumper">auto <a href="#a8864ae4aa3f62a3a21c4d3a160628146" class="m-doc-self">removeVertexToOutConnections</a>(</span><span class="m-doc-wrap">std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt; const i_vert) -&gt; bool</span>
+            <dt id="a06cd7969322a890b638e431f0bb1b7b9">
+              <span class="m-doc-wrap-bumper">auto <a href="#a06cd7969322a890b638e431f0bb1b7b9" class="m-doc-self">removeVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> const i_vert) -&gt; bool</span>
             </dt>
             <dd><span></span></dd>
             <dt id="a07f6737b3622f2e057963849dea1c018">
               <span class="m-doc-wrap-bumper">auto <a href="#a07f6737b3622f2e057963849dea1c018" class="m-doc-self">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) -&gt; std::string</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae4e70880a9cd7de29aa4a301ca208df6">
+              <span class="m-doc-wrap-bumper">auto <a href="#ae4e70880a9cd7de29aa4a301ca208df6" class="m-doc-self">getInstance</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a246bbb9dc5234c74fe538bec28627cee">
+              <span class="m-doc-wrap-bumper">auto <a href="#a246bbb9dc5234c74fe538bec28627cee" class="m-doc-self">toVerilog</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -185,8 +193,8 @@
         <section id="pro-attribs">
           <h2><a href="#pro-attribs">Protected variables</a></h2>
           <dl class="m-doc">
-            <dt id="a506ef21c98fbfbf0198eeab50d1eb6d4">
-              <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a>* <a href="#a506ef21c98fbfbf0198eeab50d1eb6d4" class="m-doc-self">d_baseGraph</a>
+            <dt id="a5230635ac9088d44ee94c58d147d8deb">
+              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> <a href="#a5230635ac9088d44ee94c58d147d8deb" class="m-doc-self">d_baseGraph</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a1c3745128ab685cb98f437781dfbaac8">
@@ -201,12 +209,12 @@
               unsigned <a href="#a4ceafa2d19e4425b9a88edaa76b1896a" class="m-doc-self">d_level</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="aca1d3e91823313ceb565287f83815911">
-              std::vector&lt;std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt;&gt; <a href="#aca1d3e91823313ceb565287f83815911" class="m-doc-self">d_inConnections</a>
+            <dt id="a4c2b115c573769f445d5bf730c06f974">
+              std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; <a href="#a4c2b115c573769f445d5bf730c06f974" class="m-doc-self">d_inConnections</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a83af1b82e99fe3530f604b8e087e8efc">
-              std::vector&lt;std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt;&gt; <a href="#a83af1b82e99fe3530f604b8e087e8efc" class="m-doc-self">d_outConnections</a>
+            <dt id="a5af02c2cb649c4413f5fea35a955360c">
+              std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; <a href="#a5af02c2cb649c4413f5fea35a955360c" class="m-doc-self">d_outConnections</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a05f5198fc2b7c9cb2806085bac5cf567">

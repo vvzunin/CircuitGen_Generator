@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>GraphVertexGates class | CircuitGenGenerator</title>
+  <title>VertexUtils namespace | CircuitGenGenerator</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,8 +49,8 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          GraphVertexGates <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GraphVertex_8hpp.html">&lt;GraphVertex.hpp&gt;</a></div>
+          VertexUtils <span class="m-thin">namespace</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GraphVertexBase_8hpp.html">&lt;src/baseStructures/graph/GraphVertexBase.hpp&gt;</a></div>
         </h1>
         <p><span></span></p>
         <div class="m-block m-default">
@@ -59,59 +59,20 @@
             <li>
               Reference
               <ul>
-                <li><a href="#base-classes">Base classes</a></li>
-                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#func-members">Functions</a></li>
               </ul>
             </li>
           </ul>
         </div>
-        <section id="base-classes">
-          <h2><a href="#base-classes">Base classes</a></h2>
+        <section id="func-members">
+          <h2><a href="#func-members">Functions</a></h2>
           <dl class="m-doc">
-            <dt>
-              class <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>
+            <dt id="a8140b975302d15b6226a4bfba79dd9d9">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8140b975302d15b6226a4bfba79dd9d9" class="m-doc-self">gateToString</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> i_type) -&gt; std::string</span>
             </dt>
             <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="typeless-methods">
-          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
-          <dl class="m-doc">
-            <dt id="a1fa14a181bc885aaf65d701f77dd1dd1">
-              <span class="m-doc-wrap-bumper"><a href="#a1fa14a181bc885aaf65d701f77dd1dd1" class="m-doc-self">GraphVertexGates</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> i_gate,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a16027575fa9f6b9546c09d7835f528e5">
-              <span class="m-doc-wrap-bumper"><a href="#a16027575fa9f6b9546c09d7835f528e5" class="m-doc-self">GraphVertexGates</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> i_gate,
-              const std::string i_name,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="aa23a50827498b0d74e8fd3245bc0c49f">
-              <span class="m-doc-wrap-bumper">auto <a href="#aa23a50827498b0d74e8fd3245bc0c49f" class="m-doc-self">updateValue</a>(</span><span class="m-doc-wrap">) -&gt; char <span class="m-label m-flat m-warning">virtual</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a910539228636bc20f5751611a87a5d47">
-              <span class="m-doc-wrap-bumper">auto <a href="#a910539228636bc20f5751611a87a5d47" class="m-doc-self">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) -&gt; std::string</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a83f145b69fafe9ed340c656aa1e82940">
-              <span class="m-doc-wrap-bumper">auto <a href="#a83f145b69fafe9ed340c656aa1e82940" class="m-doc-self">getVerilogString</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a5232bce8a15a40c4f3d19553b79a69a9">
-              <span class="m-doc-wrap-bumper">auto <a href="#a5232bce8a15a40c4f3d19553b79a69a9" class="m-doc-self">getGate</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> <span class="m-label m-flat m-warning">virtual</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a4d38ec95ed252a205cbcb08ed691941d">
-              <span class="m-doc-wrap-bumper">auto <a href="#a4d38ec95ed252a205cbcb08ed691941d" class="m-doc-self">toVerilog</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
+            <dt id="a58a8373cb1f0f5be90a30b7fc3b51abd">
+              <span class="m-doc-wrap-bumper">auto <a href="#a58a8373cb1f0f5be90a30b7fc3b51abd" class="m-doc-self">vertexTypeToVerilog</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type) -&gt; std::string</span>
             </dt>
             <dd><span></span></dd>
           </dl>
