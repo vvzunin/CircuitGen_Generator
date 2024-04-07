@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <queue>
 
 #include "OrientedGraph.hpp"
 
@@ -57,20 +58,23 @@ bool OrientedGraph::isEmptyFull() const {
   return f;
 }
 
-bool OrientedGraph::isConnected() const {
-  std::unordered_set<GraphVertexBase*> passed;
-  std::queue<GraphVertexBase*>         vertex_queue;
+bool OrientedGraph::isConnected() {
+  std::vector<GraphVertexBase*> passed;
+  std::queue<GraphVertexBase*>  vertex_queue;
 
-  vertex_queue.push(d_vertexes[0]);
-  passed.insert(d_vertexes[0]);
+  vertex_queue.push(d_vertexes[VertexTypes::input][0].get());
+  passed.push_back(d_vertexes[VertexTypes::input][0].get());
 
   while (!vertex_queue.empty()) {
     GraphVertexBase* current_vertex  = vertex_queue.front();
     auto             out_connections = current_vertex->getOutConnections();
 
-    for (GraphVertexBase* out_edge : out_connections) {
-      if (passed.find(out_edge) == passed.end()) {
-        passed.push(out_edge);
+    for (auto out_edge_sh_ptr : out_connections) {
+      auto out_edge = out_edge_sh_ptr.get();
+      auto it = std::find(passed.begin(), passed.end(), out_edge);
+      if (it == passed.end()) {
+        //if (passed.find(out_edge) == passed.end()) {
+        passed.push_back(out_edge);
         vertex_queue.push(out_edge);
       }
     }
