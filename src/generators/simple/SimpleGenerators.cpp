@@ -1173,12 +1173,47 @@ OrientedGraph SimpleGenerators::generatorParity(int i_bits){
     //X[]- массив для предыдущего ряда узлов
     //"хi" - входной бит
     //F - функция на выходе
+
     OrientedGraph graph;
-    std::shared_ptr<GraphVertexBase> output_f;
+    if (i_bits <= 1){
+        std::cout << "Недостаточно входных сигналов" << std::endl;
+        return graph;
+    }
+    std::shared_ptr<GraphVertexBase> output_f = graph.addOutput("F");
+    std::vector<std::shared_ptr<GraphVertexBase>> elem(i_bits);
+    std::vector<std::shared_ptr<GraphVertexBase>> xors;
+
+    for (int i = 0; i < i_bits; i++){
+        elem[i] = graph.addInput("x" + std::to_string(i));
+    }
+
+    int k = 0;
+    bool shift;
+    int count = i_bits;
+    while (count != 1){
+        count % 2 == 1 ? shift = true : shift = false;
+        xors.clear();
+        std::string str_k = std::to_string(k);
+        int n = 0;
+        for (int i = 1; i < count; i+=2){
+            std::string str_n = std::to_string(n);
+            std::shared_ptr<GraphVertexBase> Xor = graph.addGate(Gates::GateXor, "xor_" + str_k + "_" + str_n);
+            n++;
+            graph.addEdges({elem[i-1], elem[i]}, Xor);
+            xors.push_back(Xor);
+        }
+        if (shift)
+            xors.push_back(elem[count-1]);
+        count = xors.size();
+        k++;
+        elem = xors;
+    }
+    graph.addEdge(elem[0], output_f);
+    /*
     if (i_bits > 1)
     {
         std::vector<std::string> X(i_bits);
-        std::vector<std::shared_ptr<GraphVertexBase>> XI(i_bits);
+
         std::vector<std::string> T(i_bits);
         std::vector<std::shared_ptr<GraphVertexBase>> TI(i_bits);
 
@@ -1227,6 +1262,7 @@ OrientedGraph SimpleGenerators::generatorParity(int i_bits){
     }
     else
         std::cout << "Недостаточно входных сигналов" << std::endl;
+    */
     return graph;
 }
 
