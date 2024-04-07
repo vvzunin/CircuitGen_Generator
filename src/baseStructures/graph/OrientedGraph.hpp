@@ -42,6 +42,8 @@ public:
   bool                             isEmpty() const;
   // Имеются ли в схеме какие-либо vertex
   bool                             isEmptyFull() const;
+  // Проверяет, связный ли граф
+  bool                             isConnected() const;
 
   void                             setName(const std::string& i_name);
   std::string                      getName() const;
