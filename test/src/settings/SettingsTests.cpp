@@ -103,7 +103,8 @@ TEST(
         {7, {"not"}},
         {8, {"buf"}},
         {2, {"xor"}},
-        {1, {"xnor"}}};
+        {1, {"xnor"}}
+    };
 
     for (auto const& [key, val] : correctOperationsToHierarchy) {
       EXPECT_EQ(
@@ -135,7 +136,8 @@ TEST(
         {"not", "not"},
         //     {"buf" , "buf"},
         {"xor", "xor"},
-        {"xnor", "xnor"}};
+        {"xnor", "xnor"}
+    };
 
     for (auto const& [key, val] : correctOperationsToName) {
       EXPECT_EQ(

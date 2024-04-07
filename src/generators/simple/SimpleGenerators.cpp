@@ -225,8 +225,8 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
         VertexPtr newVertex = graph->addGate(logOper[choice]);
         graph->addEdges(
-            {graph->getVerticeByIndex(child2),
-             graph->getVerticeByIndex(child1)},
+            {graph->getVerticeByIndex(child2), graph->getVerticeByIndex(child1)
+            },
             newVertex
         );
       }
@@ -381,7 +381,7 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
 
     prevIndex += currIndex - prevIndex;
     currIndex += position;
-    curLen    = inputs.size();
+    curLen     = inputs.size();
 
     // std::clog << (float)i / (float)maxLevel * 100 << "%" << std::endl;
   }
