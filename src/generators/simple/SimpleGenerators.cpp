@@ -1169,9 +1169,8 @@ OrientedGraph SimpleGenerators::generatorDecoder(int i_bits) {
 
 OrientedGraph SimpleGenerators::generatorParity(int i_bits){
     //i_bits - количество входов
-    //T[]- массив для текущего ряда узлов
-    //X[]- массив для предыдущего ряда узлов
-    //"хi" - входной бит
+    //elem - массив для сохранения вершин
+    //xors - промежуточный массив для сохранения вершин
     //F - функция на выходе
 
     OrientedGraph graph;
@@ -1209,60 +1208,6 @@ OrientedGraph SimpleGenerators::generatorParity(int i_bits){
         elem = xors;
     }
     graph.addEdge(elem[0], output_f);
-    /*
-    if (i_bits > 1)
-    {
-        std::vector<std::string> X(i_bits);
-
-        std::vector<std::string> T(i_bits);
-        std::vector<std::shared_ptr<GraphVertexBase>> TI(i_bits);
-
-        std::vector<std::shared_ptr<GraphVertexBase>> XTxor(i_bits);
-
-        for (int l = 0; l <= i_bits - 1; l++)
-        {
-            std::string Z = std::to_string(l);
-            X[l] = "x" + Z;
-            XI[l] = graph.addInput(X[l]);
-        }
-        output_f = graph.addOutput("F");
-        int p = i_bits;
-        while (p > 1)
-        {
-            if (p % 2 == 1)
-            {
-                //graph.addVertex("not a" + S[p], "not", "not a" + S[p]);
-                //NSp[p] = graph.addGate(Gates::GateNot, "not_a" + S[p]);
-                T[p - 2] = X[p - 2] + " xor " + X[p - 1];
-                //graph.addVertex(T[p - 2], "xor", T[p - 2]);
-                XTxor[p-2] = graph.addGate(Gates::GateXor, T[p - 2]);
-                graph.addEdges({XI[p - 2], XI[p - 1]}, XTxor[p - 2]);
-                X[p - 2] = T[p - 2];
-                T[p - 2] = "";
-                XI[p - 2] = TI[p - 2];
-                p = p - 1;
-            }
-            p = p / 2;
-            for (int i = 0; i <= p - 1; i++)
-                T[i] = X[2 * i] + " xor " + X[2 * i + 1];
-            for (int i = 0; i <= p - 1; i++)
-            {
-                //graph.addVertex(T[i], "xor", T[i]);
-                XTxor[i] = graph.addGate(Gates::GateXor, T[i]);
-                graph.addEdges({XI[2 * i], XI[2 * i + 1]}, XTxor[i]);
-            }
-            for (int i = 0; i <= p - 1; i++)
-            {
-                X[i] = T[i];
-                T[i] = "";
-                XI[i] = TI[i];
-            }
-        }
-        graph.addEdge(XI[0], output_f);
-    }
-    else
-        std::cout << "Недостаточно входных сигналов" << std::endl;
-    */
     return graph;
 }
 
