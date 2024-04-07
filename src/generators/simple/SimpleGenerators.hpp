@@ -43,18 +43,17 @@ public:
   SimpleGenerators& operator=(SimpleGenerators&& other)      = delete;
 
   std::vector<std::string>
-                cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
-  std::vector<std::string>
-          zhegalkinFromTruthTable(const TruthTable& i_table);
+      cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
+  std::vector<std::string> zhegalkinFromTruthTable(const TruthTable& i_table);
 
-  OrientedGraph generatorRandLevel(
-      int i_minLevel,
-      int i_maxLevel,
-      int i_minElements,
-      int i_maxElements,
-      int i_inputs,
-      int i_outputs
-  );
+  OrientedGraph            generatorRandLevel(
+                 int i_minLevel,
+                 int i_maxLevel,
+                 int i_minElements,
+                 int i_maxElements,
+                 int i_inputs,
+                 int i_outputs
+             );
   OrientedGraph generatorRandLevelExperimental(
       u_int32_t i_minLevel,
       u_int32_t i_maxLevel,
@@ -86,38 +85,35 @@ public:
   );
   OrientedGraph generatorEncoder(int bits);
   OrientedGraph generatorSubtractor(
-          int i_bits,
-          bool i_overflowIn,
-          bool i_overflowOut,
-          bool i_sub,
-          bool act = false
+      int  i_bits,
+      bool i_overflowIn,
+      bool i_overflowOut,
+      bool i_sub,
+      bool act = false
   );
   OrientedGraph generatorDemultiplexer(int i_bits);
-  OrientedGraph generatorMultiplier(
-          int i_bits,
-          bool act = false
-  );
+  OrientedGraph generatorMultiplier(int i_bits, bool act = false);
   OrientedGraph generatorDecoder(int i_bits);
   OrientedGraph generatorALU(
-          int i_bits,
-          int i_outbits,
-          bool ALL,
-          bool SUM,
-          bool SUB,
-          bool NSUM,
-          bool NSUB,
-          bool MULT,
-          bool COM,
-          bool AND,
-          bool NAND,
-          bool OR,
-          bool NOR,
-          bool XOR,
-          bool XNOR,
-          bool CNF
+      int  i_bits,
+      int  i_outbits,
+      bool ALL,
+      bool SUM,
+      bool SUB,
+      bool NSUM,
+      bool NSUB,
+      bool MULT,
+      bool COM,
+      bool AND,
+      bool NAND,
+      bool OR,
+      bool NOR,
+      bool XOR,
+      bool XNOR,
+      bool CNF
   );
 
-    void setGatesInputsInfo(const std::map<std::string, std::vector<int>>& i_info
+  void setGatesInputsInfo(const std::map<std::string, std::vector<int>>& i_info
   ) {
     d_minGateNumber = INT_MAX;
 
@@ -153,26 +149,25 @@ private:
   }
 
   OrientedGraph ALU(
-          int i_bits,
-          int i_outbits,
-          bool ALL,
-          bool SUM,
-          bool SUB,
-          bool NSUM,
-          bool NSUB,
-          bool MULT,
-          bool COM,
-          bool AND,
-          bool NAND,
-          bool OR,
-          bool NOR,
-          bool XOR,
-          bool XNOR,
-          bool CNF
+      int  i_bits,
+      int  i_outbits,
+      bool ALL,
+      bool SUM,
+      bool SUB,
+      bool NSUM,
+      bool NSUB,
+      bool MULT,
+      bool COM,
+      bool AND,
+      bool NAND,
+      bool OR,
+      bool NOR,
+      bool XOR,
+      bool XNOR,
+      bool CNF
   );
 
-
-    std::pair<Gates, int>   getRandomElement(const GatesInfo& i_info);
+  std::pair<Gates, int>   getRandomElement(const GatesInfo& i_info);
   std::pair<Gates, int>   getRandomElement(u_int32_t i_gatesLimit);
 
   int                     getRangomAndNumber();

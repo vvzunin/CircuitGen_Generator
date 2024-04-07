@@ -151,32 +151,36 @@ bool OrientedGraph::addEdge(
     std::shared_ptr<GraphVertexBase> from,
     std::shared_ptr<GraphVertexBase> to
 ) {
-    bool f;
-    int n;
-    if (from->getBaseGraph() == to->getBaseGraph()){
-        f = from->addVertexToOutConnections(to);
-        n = to->addVertexToInConnections(from);
+  bool f;
+  int  n;
+  if (from->getBaseGraph() == to->getBaseGraph()) {
+    f = from->addVertexToOutConnections(to);
+    n = to->addVertexToInConnections(from);
+  } else {
+    if (from->getType() == VertexTypes::output) {
+      n = to->addVertexToInConnections(from);
+    } else {
+      throw std::invalid_argument(
+          "Not allowed to add edge from one subgraph to another, if from "
+          "vertex is not output"
+      );
     }
-    else{
-        if (from->getType() == VertexTypes::output){
-            n = to->addVertexToInConnections(from);
-        }
-        else{
-            throw std::invalid_argument("Not allowed to add edge from one subgraph to another, if from vertex is not output");
-        }
-        if (to->getType() == VertexTypes::input){
-            f = from->addVertexToOutConnections(to);
-        }
-        else{
-            throw std::invalid_argument("Not allowed to add edge from one subgraph to another, if to vertex is not input");
-        }
+    if (to->getType() == VertexTypes::input) {
+      f = from->addVertexToOutConnections(to);
+    } else {
+      throw std::invalid_argument(
+          "Not allowed to add edge from one subgraph to another, if to vertex "
+          "is not input"
+      );
     }
-    d_edgesCount += f && (n > 0);
-    if (from->getType() == VertexTypes::gate &&
-        to->getType() == VertexTypes::gate)
-        ++d_edgesGatesCount[from->getGate()][to->getGate()];
+  }
+  d_edgesCount += f && (n > 0);
+  if (from->getType() == VertexTypes::gate
+      && to->getType() == VertexTypes::gate)
+    ++d_edgesGatesCount[from->getGate()][to->getGate()];
 
-    return f && (n > 0);;
+  return f && (n > 0);
+  ;
 }
 
 bool OrientedGraph::addEdges(

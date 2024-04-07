@@ -254,114 +254,140 @@ void DataBaseGenerator::generateDataBaseGenetic(
 }
 
 void DataBaseGenerator::generateDataBaseSummator(
-        const GenerationParameters &i_param) {
-    SimpleGenerators sg(i_param.getSeed());
-    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    int i_bits = i_param.getInputs();
-    bool i_overflowIn = i_param.getSummator().d_OverFlowIn;
-    bool i_overflowOut = i_param.getSummator().d_OverFlowOut;
-    bool i_minus = i_param.getSummator().d_minus;
-    OrientedGraph graph =
-            sg.generatorSummator(i_bits, i_overflowIn, i_overflowOut, i_minus);
-    Circuit c(&graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate();
+  int           i_bits        = i_param.getInputs();
+  bool          i_overflowIn  = i_param.getSummator().d_OverFlowIn;
+  bool          i_overflowOut = i_param.getSummator().d_OverFlowOut;
+  bool          i_minus       = i_param.getSummator().d_minus;
+  OrientedGraph graph =
+      sg.generatorSummator(i_bits, i_overflowIn, i_overflowOut, i_minus);
+  Circuit c(&graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate();
 }
 
 void DataBaseGenerator::generateDataBaseComparison(
-        const GenerationParameters &i_param) {
-    SimpleGenerators sg(i_param.getSeed());
-    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    int i_bits = i_param.getInputs();
-    bool i_compare0 = i_param.getComparison().d_compare0;
-    bool i_compare1 = i_param.getComparison().d_compare1;
-    bool i_compare2 = i_param.getComparison().d_compare2;
-    OrientedGraph graph =
-            sg.generatorComparison(i_bits, i_compare0, i_compare1, i_compare2);
-    Circuit c(&graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate();
+  int           i_bits     = i_param.getInputs();
+  bool          i_compare0 = i_param.getComparison().d_compare0;
+  bool          i_compare1 = i_param.getComparison().d_compare1;
+  bool          i_compare2 = i_param.getComparison().d_compare2;
+  OrientedGraph graph =
+      sg.generatorComparison(i_bits, i_compare0, i_compare1, i_compare2);
+  Circuit c(&graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate();
 }
 
 void DataBaseGenerator::generateDataBaseEncoder(
-        const GenerationParameters &i_param) {
-    SimpleGenerators sg(i_param.getSeed());
-    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    int bits = i_param.getInputs();
-    OrientedGraph graph = sg.generatorEncoder(bits);
-    Circuit c(&graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate();
+  int           bits  = i_param.getInputs();
+  OrientedGraph graph = sg.generatorEncoder(bits);
+  Circuit       c(&graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate();
 }
 
-void DataBaseGenerator::generateDataBaseSubtractor(const GenerationParameters &i_param) {
-    SimpleGenerators sg(i_param.getSeed());
-    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+void DataBaseGenerator::generateDataBaseSubtractor(
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    OrientedGraph graph = sg.generatorSubtractor(i_param.getInputs(),
-                                                 i_param.getSubtractor().getOverFlowIn(),
-                                                 i_param.getSubtractor().getOverFlowOut(),
-                                                 i_param.getSubtractor().getSub());
-    Circuit c(&graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate();
+  OrientedGraph graph = sg.generatorSubtractor(
+      i_param.getInputs(),
+      i_param.getSubtractor().getOverFlowIn(),
+      i_param.getSubtractor().getOverFlowOut(),
+      i_param.getSubtractor().getSub()
+  );
+  Circuit c(&graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate();
 }
 
-void DataBaseGenerator::generateDataBaseDemultiplexer(const GenerationParameters &i_param) {
-    SimpleGenerators sg(i_param.getSeed());
-    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+void DataBaseGenerator::generateDataBaseDemultiplexer(
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    int i_bits = i_param.getOutputs();
-    OrientedGraph graph = sg.generatorDemultiplexer(i_bits);
-    Circuit c(&graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate();
+  int           i_bits = i_param.getOutputs();
+  OrientedGraph graph  = sg.generatorDemultiplexer(i_bits);
+  Circuit       c(&graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate();
 }
 
-void DataBaseGenerator::generateDataBaseMultiplier(const GenerationParameters &i_param){
-    SimpleGenerators sg(i_param.getSeed());
-    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+void DataBaseGenerator::generateDataBaseMultiplier(
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    OrientedGraph graph = sg.generatorMultiplier(i_param.getInputs());
-    Circuit c(&graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate();
+  OrientedGraph graph = sg.generatorMultiplier(i_param.getInputs());
+  Circuit       c(&graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate();
 }
 
-void DataBaseGenerator::generateDataBaseDecoder(const GenerationParameters &i_param){
-    SimpleGenerators sg(i_param.getSeed());
-    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+void DataBaseGenerator::generateDataBaseDecoder(
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    OrientedGraph graph = sg.generatorDecoder(i_param.getInputs());
-    Circuit c(&graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate();
+  OrientedGraph graph = sg.generatorDecoder(i_param.getInputs());
+  Circuit       c(&graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate();
 }
 
-void DataBaseGenerator::generateDataBaseALU(const GenerationParameters &i_param){
-    SimpleGenerators sg(i_param.getSeed());
-    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    OrientedGraph graph = sg.generatorALU(i_param.getInputs(), i_param.getOutputs(), i_param.getALU().getALL(),
-                                          i_param.getALU().getSUM(), i_param.getALU().getSUB(), i_param.getALU().getNSUM(),
-                                          i_param.getALU().getNSUB(), i_param.getALU().getMULT(), i_param.getALU().getCOM(),
-                                          i_param.getALU().getAND(), i_param.getALU().getNAND(), i_param.getALU().getOR(),
-                                          i_param.getALU().getNOR(), i_param.getALU().getXOR(), i_param.getALU().getXNOR(),
-                                          i_param.getALU().getCNF());
-    Circuit c(&graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate();
+  OrientedGraph graph = sg.generatorALU(
+      i_param.getInputs(),
+      i_param.getOutputs(),
+      i_param.getALU().getALL(),
+      i_param.getALU().getSUM(),
+      i_param.getALU().getSUB(),
+      i_param.getALU().getNSUM(),
+      i_param.getALU().getNSUB(),
+      i_param.getALU().getMULT(),
+      i_param.getALU().getCOM(),
+      i_param.getALU().getAND(),
+      i_param.getALU().getNAND(),
+      i_param.getALU().getOR(),
+      i_param.getALU().getNOR(),
+      i_param.getALU().getXOR(),
+      i_param.getALU().getXNOR(),
+      i_param.getALU().getCNF()
+  );
+  Circuit c(&graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate();
 }
 
 std::function<void(const GenerationParameters&)>
@@ -392,52 +418,46 @@ std::function<void(const GenerationParameters&)>
     );
   if (i_methodName == "Genetic")
     return std::bind(
-        &DataBaseGenerator::generateDataBaseGenetic,
+        &DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1
+    );
+  if (i_methodName == "Summator")
+    return std::bind(
+        &DataBaseGenerator::generateDataBaseSummator,
         this,
         std::placeholders::_1
     );
-  if (i_methodName == "Summator")
-      return std::bind(
-              &DataBaseGenerator::generateDataBaseSummator,
-              this,
-              std::placeholders::_1
-      );
   if (i_methodName == "Comparison")
-      return std::bind(
-              &DataBaseGenerator::generateDataBaseComparison,
-              this,
-              std::placeholders::_1
-      );
+    return std::bind(
+        &DataBaseGenerator::generateDataBaseComparison,
+        this,
+        std::placeholders::_1
+    );
   if (i_methodName == "Subtractor")
-      return std::bind(
-              &DataBaseGenerator::generateDataBaseSubtractor,
-              this,
-              std::placeholders::_1
-      );
+    return std::bind(
+        &DataBaseGenerator::generateDataBaseSubtractor,
+        this,
+        std::placeholders::_1
+    );
   if (i_methodName == "Demultiplexer")
-      return std::bind(
-              &DataBaseGenerator::generateDataBaseDemultiplexer,
-              this,
-              std::placeholders::_1
-      );
+    return std::bind(
+        &DataBaseGenerator::generateDataBaseDemultiplexer,
+        this,
+        std::placeholders::_1
+    );
   if (i_methodName == "Multiplier")
-      return std::bind(
-              &DataBaseGenerator::generateDataBaseMultiplier,
-              this,
-              std::placeholders::_1
-      );
+    return std::bind(
+        &DataBaseGenerator::generateDataBaseMultiplier,
+        this,
+        std::placeholders::_1
+    );
   if (i_methodName == "Decoder")
-      return std::bind(
-              &DataBaseGenerator::generateDataBaseDecoder,
-              this,
-              std::placeholders::_1
-      );
+    return std::bind(
+        &DataBaseGenerator::generateDataBaseDecoder, this, std::placeholders::_1
+    );
   if (i_methodName == "ALU")
-      return std::bind(
-              &DataBaseGenerator::generateDataBaseALU,
-              this,
-              std::placeholders::_1
-      );
+    return std::bind(
+        &DataBaseGenerator::generateDataBaseALU, this, std::placeholders::_1
+    );
 
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;
   return std::bind(
