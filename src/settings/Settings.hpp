@@ -81,7 +81,8 @@ private:
       {"python", "python3"},
       {"resynthesis", "Nadezhda/Scripts/resynthesis_local_rewriting.pyc"},
       {"reliability", "Nadezhda/Scripts/check_reliability.pyc"},
-      {"liberty", "Nadezda/Test/Nangate.lib"}};
+      {"liberty", "Nadezda/Test/Nangate.lib"}
+  };
   int                                                d_numThreads      = 4;
   std::map<std::string, std::pair<std::string, int>> d_logicOperations = {
       {"input", {"", 10}},
@@ -106,7 +107,8 @@ private:
       {"not", Gates::GateNot},
       {"buf", Gates::GateBuf},
       {"xor", Gates::GateXor},
-      {"xnor", Gates::GateXnor}};
+      {"xnor", Gates::GateXnor}
+  };
 
   std::map<Gates, std::string> gateToString = {
       {Gates::GateAnd, "and"},
@@ -117,7 +119,8 @@ private:
       {Gates::GateBuf, "buf"},
       {Gates::GateXor, "xor"},
       {Gates::GateXnor, "xnor"},
-      {Gates::GateDefault, "ERROR"}};
+      {Gates::GateDefault, "ERROR"}
+  };
 
   std::vector<Gates> d_logicElements = {
       Gates::GateAnd,
@@ -127,13 +130,15 @@ private:
       Gates::GateXor,
       Gates::GateXnor,
       Gates::GateNot,
-      Gates::GateBuf};
+      Gates::GateBuf
+  };
 
   std::map<VertexTypes, std::string> vertexToString = {
       {VertexTypes::input, "input"},
       {VertexTypes::output, "output"},
       {VertexTypes::constant, "const"},
-      {VertexTypes::gate, "g"}};
+      {VertexTypes::gate, "g"}
+  };
 
   std::map<int, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string>      d_operationsToName;

@@ -147,7 +147,7 @@ std::string GraphVertexGates::toVerilog() {
       || d_gate == Gates::GateXnor) {
     basic += "~ ( ";
 
-    end   = " )";
+    end    = " )";
   }
 
   for (size_t i = 0; i < d_inConnections.size() - 1; ++i) {
