@@ -189,6 +189,19 @@ target_include_directories(
 )
 add_test(NAME CircuitTests COMMAND CircuitGenGenerator_test_CircuitTests)
 
+# Test TruthTableTests
+add_executable(CircuitGenGenerator_test_TruthTableTests src/baseStructers/truthTable/TruthTableTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_TruthTableTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_TruthTableTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_TruthTableTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME TruthTableTests COMMAND CircuitGenGenerator_test_TruthTableTests)
+
+
 # ---- End-of-file commands ----
 
 add_folders(Test)
