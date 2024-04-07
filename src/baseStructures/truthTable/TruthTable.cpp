@@ -60,7 +60,7 @@ std::vector<std::vector<bool>> TruthTable::convToBinary() const {
   std::vector<std::vector<bool>> bin(d_size, std::vector<bool>(d_input));
   for (int i = 0; i < d_size; ++i) {
     for (int j = d_input - 1, tmp = i; j >= 0; --j) {
-      bin[i][j]  = (tmp % 2) == 1;
+      bin[i][j] = (tmp % 2) == 1;
       tmp       /= 2;
     }
   }

@@ -50,11 +50,9 @@ const std::map<char, char> tableBuf {
     {'0', '0'},
     {'1', '1'},
     {'x', 'x'},
-    {'z', 'x'}
-};
+    {'z', 'x'}};
 const std::map<char, char> tableNot {
     {'0', '1'},
     {'1', '0'},
     {'x', 'x'},
-    {'z', 'x'}
-};
+    {'z', 'x'}};
