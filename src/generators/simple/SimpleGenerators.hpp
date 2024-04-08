@@ -42,8 +42,7 @@ public:
   SimpleGenerators(SimpleGenerators&& other)                 = delete;
   SimpleGenerators& operator=(SimpleGenerators&& other)      = delete;
 
-  std::vector<std::string>
-           cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
+  GraphPtr cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
 
   GraphPtr generatorRandLevel(
       int i_minLevel,

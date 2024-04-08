@@ -177,7 +177,6 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
     } else {
       t2 = d_graph->addGate(d_settings->parseStringToGate(tt.second[0]));
     }
-
     d_graph->addEdge(t2, t1);
 
     if (tt.second[0] != "input" && tt.second[0] != "const")

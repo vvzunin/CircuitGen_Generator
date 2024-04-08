@@ -92,77 +92,92 @@ SimpleGenerators::SimpleGenerators(int i_seed) {
   d_randGenerator.setSeed(i_seed);
 }
 
-std::vector<std::string>
+GraphPtr
     SimpleGenerators::cnfFromTruthTable(const TruthTable& i_table, bool i_tp) {
-  // std::clog << getRangomAndNumber() << " ";
-  // std::clog << getRangomNandNumber() << " ";
-  // std::clog << getRangomOrNumber() << " ";
-  // std::clog << getRangomNorNumber() << " ";
-  // std::clog << getRangomXorNumber() << " ";
-  // std::clog << getRangomXnorNumber() << std::endl;
-
   std::vector<std::string> fun;
   fun.reserve(i_table.getOutput());
   std::vector<std::vector<bool>> bin = i_table.convToBinary();
 
+  GraphPtr                       graph(new OrientedGraph());
+  std::vector<VertexPtr>         inputs;
+  inputs.reserve(i_table.getInput());
+  for (int k = 0; k < i_table.getInput(); ++k) {
+    inputs.push_back(graph->addInput("x" + std::to_string(k)));
+  }
+
+  std::map<VertexPtr, VertexPtr> inputs_not;
+
   for (int j = 0; j < i_table.getOutput(); ++j) {
-    fun.push_back("f" + std::to_string(j) + " = ");
-    int mem = 0;
-    int tmp = 0;
+    VertexPtr out = graph->addOutput("f" + std::to_string(j));
+    // fun.push_back("f" + std::to_string(j) + " = ");
+    int       mem = 0;
+    int       tmp = 0;
 
     for (int i = 0; i < i_table.size(); ++i) {
       if (!(i_table.getOutTable(i, j) ^ i_tp))
         mem++;
     }
 
-    if (mem == 0) {
-      if (i_tp)
-        fun[j] += "1'b0";
-      else
-        fun[j] += "1'b1";
+    if (mem == 0 || mem == i_table.size()) {
+      if (i_tp && mem == 0 || !i_tp && mem == i_table.size()) {
+        // fun[j] += "1'b0";
+        VertexPtr constGate = graph->addConst('0');
+        graph->addEdge(constGate, out);
+      } else {
+        // fun[j] += "1'b1";
+        VertexPtr constGate = graph->addConst('1');
+        graph->addEdge(constGate, out);
+      }
       continue;
     }
 
-    if (mem == i_table.size()) {
-      if (i_tp)
-        fun[j] += "1'b1";
-      else
-        fun[j] += "1'b0";
-      continue;
-    }
+    // if (mem == i_table.size()) {
+    //   if (i_tp)
+    //     fun[j] += "1'b1";
+    //   else
+    //     fun[j] += "1'b0";
+    //   continue;
+    // }
 
+    VertexPtr mainOper = graph->addGate(i_tp ? Gates::GateOr : Gates::GateAnd);
     for (int i = 0; i < mem; ++i) {
-      fun[j] += '(';
+      // fun[j] += '(';
+      VertexPtr oper = graph->addGate(i_tp ? Gates::GateAnd : Gates::GateOr);
+
       while ((i_table.getOutTable(tmp, j) ^ i_tp) && tmp < i_table.size())
         tmp++;
 
       for (int k = 0; k < i_table.getInput(); ++k) {
-        if (bin[tmp][k] ^ i_tp)
-          fun[j] += d_settings->getLogicOperation("not").first + " ";
+        VertexPtr x_input = inputs[k];
 
-        fun[j] += 'x';
-        fun[j] += std::to_string(k);
+        if (bin[tmp][k] ^ i_tp) {
+          if (!inputs_not.count(x_input)) {
+            inputs_not[x_input] =
+                graph->addGate(Gates::GateNot, x_input->getName() + "_not");
+          }
 
-        if (k != i_table.getInput() - 1)
-          fun[j] += " "
-                  + (i_tp ? d_settings->getLogicOperation("and").first
-                          : d_settings->getLogicOperation("or").first)
-                  + " ";
+          x_input = inputs_not[x_input];
+          graph->addEdge(inputs[k], x_input);
+          // fun[j] += d_settings->getLogicOperation("not").first + " ";
+        }
+
+        graph->addEdge(x_input, oper);
       }
 
-      fun[j] += ')';
+      // fun[j] += ')';
 
-      if (i != mem - 1)
-        fun[j] += " "
-                + (i_tp ? d_settings->getLogicOperation("or").first
-                        : d_settings->getLogicOperation("and").first)
-                + " ";
-
+      // if (i != mem - 1)
+      //   fun[j] += " "
+      //           + (i_tp ? d_settings->getLogicOperation("or").first
+      //                   : d_settings->getLogicOperation("and").first)
+      //           + " ";
+      graph->addEdge(oper, mainOper);
       tmp++;
     }
+    graph->addEdge(mainOper, out);
   }
 
-  return fun;
+  return graph;
 }
 
 GraphPtr SimpleGenerators::generatorRandLevel(
@@ -225,8 +240,8 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
         VertexPtr newVertex = graph->addGate(logOper[choice]);
         graph->addEdges(
-            {graph->getVerticeByIndex(child2),
-             graph->getVerticeByIndex(child1)},
+            {graph->getVerticeByIndex(child2), graph->getVerticeByIndex(child1)
+            },
             newVertex
         );
       }
@@ -381,7 +396,7 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
 
     prevIndex += currIndex - prevIndex;
     currIndex += position;
-    curLen    = inputs.size();
+    curLen     = inputs.size();
 
     // std::clog << (float)i / (float)maxLevel * 100 << "%" << std::endl;
   }
