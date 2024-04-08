@@ -8,6 +8,10 @@
 
 #include "GraphVertexBase.hpp"
 
+/// @file GraphVertex.hpp
+/// TO DO: Maybe Description some virtual methods for Graph's classes,
+/// such as GraphVertexGates
+
 /// class GraphVertexInput Represents a vertex in a directed graph that
 /// serves as an input vertex. It inherits from the GraphVertexBase class
 /// and extends its functionality to work with input vertices
@@ -63,14 +67,17 @@ public:
       OrientedGraph*    i_baseGraph = nullptr
   );
 
+  /// @brief updateLevel updates the level of the current vertex in the graph
+  /// based on the levels of its incoming connections
+
   virtual void updateLevel();
 
 private:
 };
 
-/// class GraphVertexOutput TO DO: Description
-/// 
-/// </summary>
+/// class GraphVertexOutput It is a vertex of the graph, specially designed for
+/// data output. It inherits from the GraphVertexBase class and adds additional
+/// functionality related to data output
 
 class GraphVertexOutput : public GraphVertexBase {
 public:
@@ -81,7 +88,24 @@ public:
       OrientedGraph*    i_baseGraph = nullptr
   );
 
+  /// @brief updateValue updates the value of the current vertex of the graph
+  /// based on the values of its incoming connections and the type of logical
+  /// element (or "gate"). Depending on the type of gate and the values of the
+  /// incoming links, the method uses the truth tables to perform the
+  /// corresponding logical operation and sets a new value for the current
+  /// vertex
+  /// @return A char that represents the new value of the current vertex after
+  /// updating based on the values of its incoming connections and the type of
+  /// logical element (or "gate").
+
   virtual char updateValue();
+
+  /// @brief updateLevel updates the level of the current vertex in the graph
+  /// based on the levels of its incoming connections. If a vertex has incoming
+  /// connections, the method determines the highest level among all the
+  /// vertices to which it is connected, and sets the level of the current
+  /// vertex to one higher than the highest level
+
   virtual void updateLevel();
 
 private:
@@ -96,6 +120,7 @@ public:
       const std::string i_name,
       OrientedGraph*    i_baseGraph = nullptr
   );
+
 
   virtual char updateValue();
   std::string  calculateHash(bool recalculate = false);

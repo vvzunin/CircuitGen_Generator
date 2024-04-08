@@ -11,6 +11,9 @@
 #include <baseStructures/graph/GraphVertexBase.hpp>
 #include <settings/Settings.hpp>
 
+/// @file OrientedGraph.hpp
+/// TODO: Add a check for file names when adding new vertices
+
 // TODO: Добавить проверку на имена файлов при доблении новых вершин
 
 class GraphVertexBase;  // Проблема циклического определения
