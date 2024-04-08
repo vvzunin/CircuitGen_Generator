@@ -147,6 +147,9 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
   if (i_param.getCNF().getCNFF())
     circs.push_back({"CNFF", tftt.cnfFromTruthTable(tt, false)});
 
+  if (i_param.getZhegalkin().getZhegalkin())
+      circs.push_back({"Zhegalkin", tftt.zhegalkinFromTruthTable(tt)});
+
   for (const auto& [name, expr] : circs) {
     Parser pCNFT(expr);
     pCNFT.parseAll();

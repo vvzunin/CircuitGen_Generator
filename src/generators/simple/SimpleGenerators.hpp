@@ -44,6 +44,7 @@ public:
 
   std::vector<std::string>
            cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
+  std::vector<std::string> zhegalkinFromTruthTable(const TruthTable& i_table);
 
   GraphPtr generatorRandLevel(
       int i_minLevel,
