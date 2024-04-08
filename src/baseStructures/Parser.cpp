@@ -29,7 +29,7 @@ Parser::Parser(const std::vector<std::string>& i_logExpressions) {
     d_logExpressions.push_back(expression);
 }
 
-OrientedGraph Parser::getGraph() const {
+GraphPtr Parser::getGraph() const {
   return d_graph;
 }
 
@@ -162,34 +162,34 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
     if (tt.first == -1)
       return false;
 
-    std::shared_ptr<GraphVertexBase> t1 = d_graph.addOutput(t.second[1]);
+    std::shared_ptr<GraphVertexBase> t1 = d_graph->addOutput(t.second[1]);
     std::shared_ptr<GraphVertexBase> t2;
     if (tt.second[0] == "input") {
       // we need to stop duplication
       // that's why we create a map, which do not declare input again
       if (!inputsByNames.count(t.second[2])) {
-        inputsByNames[t.second[2]] = d_graph.addInput(t.second[2]);
+        inputsByNames[t.second[2]] = d_graph->addInput(t.second[2]);
       }
 
       t2 = inputsByNames[t.second[2]];
     } else if (tt.second[0] == "const") {
-      t2 = d_graph.addConst(t.second[2][0], t.second[2]);
+      t2 = d_graph->addConst(t.second[2][0], t.second[2]);
     } else {
-      t2 = d_graph.addGate(d_settings->parseStringToGate(tt.second[0]));
+      t2 = d_graph->addGate(d_settings->parseStringToGate(tt.second[0]));
     }
 
-    d_graph.addEdge(t2, t1);
+    d_graph->addEdge(t2, t1);
 
     if (tt.second[0] != "input" && tt.second[0] != "const")
       parse(t.second[2]);
   } else {
     std::shared_ptr<GraphVertexBase> expr;
     if (i_expr != "input")
-      expr = d_graph.addGate(d_settings->parseStringToGate(t.second[0]));
+      expr = d_graph->addGate(d_settings->parseStringToGate(t.second[0]));
     else {
       // saving us from duplicate input
       if (!inputsByNames.count(t.second[0]))
-        inputsByNames[t.second[0]] = d_graph.addInput(t.second[0]);
+        inputsByNames[t.second[0]] = d_graph->addInput(t.second[0]);
 
       expr = inputsByNames[t.second[0]];
     }
@@ -211,16 +211,17 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
       if (tt.second[0] == "input") {
         // same protection from multiple inputs
         if (!inputsByNames.count(part))
-          inputsByNames[part] = d_graph.addInput(part);
+          inputsByNames[part] = d_graph->addInput(part);
 
         part_ptr = inputsByNames[part];
 
       } else if (tt.second[0] == "const")
-        part_ptr = d_graph.addConst(part[0], part);
+        part_ptr = d_graph->addConst(part[0], part);
       else
-        part_ptr = d_graph.addGate(d_settings->parseStringToGate(tt.second[0]));
+        part_ptr =
+            d_graph->addGate(d_settings->parseStringToGate(tt.second[0]));
 
-      d_graph.addEdge(part_ptr, expr);
+      d_graph->addEdge(part_ptr, expr);
       if (tt.second[0] != "input" && tt.second[0] != "const")
         parse(part);
     }
@@ -229,6 +230,7 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
 }
 
 bool Parser::parseAll() {
+  d_graph.reset(new OrientedGraph);
   for (auto exp : d_logExpressions)
     if (createBrackets(exp).first)
       if (!parse(exp))

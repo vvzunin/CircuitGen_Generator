@@ -43,18 +43,17 @@ public:
   SimpleGenerators& operator=(SimpleGenerators&& other)      = delete;
 
   std::vector<std::string>
-      cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
-  std::vector<std::string> zhegalkinFromTruthTable(const TruthTable& i_table);
+           cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
 
-  OrientedGraph            generatorRandLevel(
-                 int i_minLevel,
-                 int i_maxLevel,
-                 int i_minElements,
-                 int i_maxElements,
-                 int i_inputs,
-                 int i_outputs
-             );
-  OrientedGraph generatorRandLevelExperimental(
+  GraphPtr generatorRandLevel(
+      int i_minLevel,
+      int i_maxLevel,
+      int i_minElements,
+      int i_maxElements,
+      int i_inputs,
+      int i_outputs
+  );
+  GraphPtr generatorRandLevelExperimental(
       u_int32_t i_minLevel,
       u_int32_t i_maxLevel,
       u_int32_t i_minElements,
@@ -63,39 +62,39 @@ public:
       u_int32_t i_outputs
   );
 
-  OrientedGraph generatorNumOperation(
+  GraphPtr generatorNumOperation(
       int                  i_input,
       int                  i_output,
       std::map<Gates, int> i_logicOper,
       bool                 i_leaveEmptyOut = true
   );
-  OrientedGraph generatorSummator(
+  GraphPtr generatorSummator(
       int  i_bits,
       bool i_overflowIn,
       bool i_overflowOut,
       bool i_minus,
-      bool i_act = false
+      bool act = false
   );
-  OrientedGraph generatorComparison(
+  GraphPtr generatorComparison(
       int  bits,
       bool compare0,
       bool compare1,
       bool compare2,
       bool act = false
   );
-  OrientedGraph generatorEncoder(int bits);
-  OrientedGraph generatorParity(int i_bits);
-  OrientedGraph generatorSubtractor(
+  GraphPtr generatorEncoder(int bits);
+  GraphPtr generatorParity(int i_bits);
+  GraphPtr generatorSubtractor(
       int  i_bits,
       bool i_overflowIn,
       bool i_overflowOut,
       bool i_sub,
       bool act = false
   );
-  OrientedGraph generatorDemultiplexer(int i_bits);
-  OrientedGraph generatorMultiplier(int i_bits, bool act = false);
-  OrientedGraph generatorDecoder(int i_bits);
-  OrientedGraph generatorALU(
+  GraphPtr generatorDemultiplexer(int i_bits);
+  GraphPtr generatorMultiplier(int i_bits, bool act = false);
+  GraphPtr generatorDecoder(int i_bits);
+  GraphPtr generatorALU(
       int  i_bits,
       int  i_outbits,
       bool ALL,
@@ -149,7 +148,7 @@ private:
     return val->first;
   }
 
-  OrientedGraph ALU(
+  GraphPtr ALU(
       int  i_bits,
       int  i_outbits,
       bool ALL,
