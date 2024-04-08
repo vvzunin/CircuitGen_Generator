@@ -14,6 +14,29 @@
 // TODO: Добавить проверку на имена файлов при доблении новых вершин
 
 class GraphVertexBase;  // Проблема циклического определения
+
+/// class OrientedGraph A oriented graph that can contain vertices of
+/// various types (input, output, constant, etc.) and edges between them
+/// @param d_edgesCount The number of edges in the graph
+/// @param hashed A string representing the calculated hash value of the graph
+/// @param d_baseGraph A pointer to a base graph if that graph is a subgraph
+/// of another
+/// @param d_name The name of the graph
+/// @param d_needLevelUpdate A flag indicating whether the vertex levels in
+/// the graph need to be updated
+/// @param d_subGraphs The vector of pointers to the subgraphs of this graph
+/// @param d_vertexes  A map containing lists of vertices of various types
+/// in a graph
+/// @param d_countGraph A static variable used to count the number of graphs
+/// created
+/// @param d_gatesCount A map containing the number of vertices of each type
+/// in the graph
+/// @param edgesGatesCount A map containing the number of edges between
+/// different types of gate vertices in the graph***
+/// @param d_settings A pointer to the object of the settings used for this
+/// graph
+/// 
+
 class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
 public:
   // friend class Circuit;
