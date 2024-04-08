@@ -731,23 +731,17 @@ OrientedGraph SimpleGenerators::generatorComparison(
       const_1 = graph.addConst('1');
     }
     std::shared_ptr<GraphVertexBase> En_;
-    if (!act) {
-      if (compare0)
-        En_ = graph.addOutput("E0_" + C);
-      if (compare1)
-        En_ = graph.addOutput("E1_" + C);
-      if (compare2)
-        En_ = graph.addOutput("E2_" + C);
-    }
     std::shared_ptr<GraphVertexBase> pn_;
     std::shared_ptr<GraphVertexBase> Enand1_;
     std::shared_ptr<GraphVertexBase> pEn_;
     if (compare0) {
+        if (!act)
+            En_ = graph.addOutput("E0_" + C);
       std::shared_ptr<GraphVertexBase> nab =
           graph.addGate(Gates::GateAnd, "nab" + C);
       std::shared_ptr<GraphVertexBase> ab =
           graph.addGate(Gates::GateAnd, "ab" + C);
-      std::shared_ptr<GraphVertexBase> pn_ =
+      pn_ =
           graph.addGate(Gates::GateOr, "p0_" + NextC);
       graph.addEdges({na, nb}, nab);
       graph.addEdges({input_x, input_y}, ab);
@@ -774,6 +768,8 @@ OrientedGraph SimpleGenerators::generatorComparison(
       prev_pn_ = pn_;
     }
     if (compare1) {
+        if (!act)
+            En_ = graph.addOutput("E1_" + C);
       pn_ = graph.addGate(Gates::GateAnd, "p1_" + NextC);
       graph.addEdges({input_x, nb}, pn_);
 
@@ -810,6 +806,8 @@ OrientedGraph SimpleGenerators::generatorComparison(
       prev_pn_ = pn_;
     }
     if (compare2) {
+        if (!act)
+            En_ = graph.addOutput("E2_" + C);
       pn_ = graph.addGate(Gates::GateAnd, "p2_" + NextC);
       graph.addEdges({input_y, na}, pn_);
 
@@ -1695,44 +1693,47 @@ OrientedGraph SimpleGenerators::generatorALU(
     CNF  = true;
   }
 
+  x = x + (SUM ? 4 : 0) + (SUB ? 4 : 0) + (NSUM ? 4 : 0) + (NSUB ? 4 : 0) +
+        (MULT ? 1 : 0) + (COM ? 3 : 0) + (AND ? 1 : 0) + (NAND ? 1 : 0) + (OR ? 1 : 0)
+        + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0) + (CNF ? 2 : 0);
+
+  int size = i_bits;
+    size = MULT ? i_bits * 2 : (SUM || NSUM || SUB || NSUB ? i_bits + 1 : i_bits);
+    if (CNF)
+    {
+        //graph.addVertex("0", "const");
+        if (MULT)
+        {
+            size = (i_outbits < i_bits * 2 ? i_bits * 2 : i_outbits);
+        }
+        else if (SUM || NSUM || SUB || NSUB)
+        {
+            size = (i_outbits < i_bits + 1 ? i_bits + 1 : i_outbits);
+        }
+        else if (i_outbits > i_bits)
+        {
+            size = i_outbits;
+        }
+    }
+    else if (MULT)
+    {
+        size = i_bits * 2;
+        //graph.addVertex("0", "const");
+    }
+    else if (SUM || NSUM || SUB || NSUB)
+    {
+        size = i_bits + 1;
+        //graph.addVertex("0", "const");
+    }
+
+
+
   /*
 
   graph.Extend(ALU(i_bits, i_outbits, ALL, SUM, SUB, NSUM, NSUB, MULT, COM, AND,
   NAND, OR, NOR, XOR, XNOR, CNF));
 
-  x = x + (SUM ? 4 : 0) + (SUB ? 4 : 0) + (NSUM ? 4 : 0) + (NSUB ? 4 : 0) +
-  (MULT ? 1 : 0) + (COM ? 3 : 0) + (AND ? 1 : 0) + (NAND ? 1 : 0) + (OR ? 1 : 0)
-  + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0) + (CNF ? 2 : 0);
 
-  int size = i_bits;
-
-  size = MULT ? i_bits * 2 : (SUM || NSUM || SUB || NSUB ? i_bits + 1 : i_bits);
-  if (CNF)
-  {
-      graph.addVertex("0", "const");
-      if (MULT)
-      {
-          size = (i_outbits < i_bits * 2 ? i_bits * 2 : i_outbits);
-      }
-      else if (SUM || NSUM || SUB || NSUB)
-      {
-          size = (i_outbits < i_bits + 1 ? i_bits + 1 : i_outbits);
-      }
-      else if (i_outbits > i_bits)
-      {
-          size = i_outbits;
-      }
-  }
-  else if (MULT)
-  {
-      size = i_bits * 2;
-      graph.addVertex("0", "const");
-  }
-  else if (SUM || NSUM || SUB || NSUB)
-  {
-      size = i_bits + 1;
-      graph.addVertex("0", "const");
-  }
   for (int j = 0; j < size; j++)
   {
       std::string T = std::to_string(j);
