@@ -98,28 +98,10 @@ std::string GraphVertexGates::getVerilogString() const {
       else
         name = d_inConnections[i]->getBaseGraph()->getName() + "_"
              + d_inConnections[i]->getName();
-      switch (d_gate) {
-        case (Gates::GateAnd):
-          s += " & " + name;
-          break;
-        case (Gates::GateNand):
-          s += " & " + name;
-          break;
-        case (Gates::GateOr):
-          s += " | " + name;
-          break;
-        case (Gates::GateNor):
-          s += " | " + name;
-          break;
-        case (Gates::GateXor):
-          s += " ^ " + name;
-          break;
-        case (Gates::GateXnor):
-          s += " ^ " + name;
-          break;
-        default:
-          std::cerr << "Error" << std::endl;
-      }
+
+      s += " " + VertexUtils::gateToString(d_gate) + " " + name;
+      if (d_gate == GateDefault)
+        std::cerr << "Error" << std::endl;
     }
 
     if ((d_gate == Gates::GateNand) || (d_gate == Gates::GateNor)
@@ -131,6 +113,10 @@ std::string GraphVertexGates::getVerilogString() const {
 }
 
 std::string GraphVertexGates::toVerilog() {
+  if (!d_inConnections.size()) {
+    std::cerr << "TODO: delete empty verticies" << std::endl;
+    return "";
+  }
   std::string basic = "assign " + d_name + " = ";
 
   std::string oper  = VertexUtils::gateToString(d_gate);
@@ -147,7 +133,7 @@ std::string GraphVertexGates::toVerilog() {
       || d_gate == Gates::GateXnor) {
     basic += "~ ( ";
 
-    end   = " )";
+    end    = " )";
   }
 
   for (size_t i = 0; i < d_inConnections.size() - 1; ++i) {
