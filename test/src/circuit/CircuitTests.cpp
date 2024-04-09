@@ -3,10 +3,9 @@
 #include "circuit/Circuit.hpp"
 #include "fstream"
 
-
 const std::string testDirectory = std::filesystem::current_path();
 
-TEST(Circuit, VerilogAndParametersFileCreationForEmptyGraph) {
+TEST(Circuit, TestingVerilogAndParametersForEmptyGraph) {
     auto* graph = new OrientedGraph("EmptyGraph");
     Circuit circuit(graph, {});
     circuit.setCircuitName("empty_graph");
@@ -30,7 +29,7 @@ TEST(Circuit, VerilogAndParametersFileCreationForEmptyGraph) {
     std::filesystem::remove(paramsFilePath);
 }
 
-TEST(Circuit, SimpleANDCircuit) {
+TEST(Circuit, TestingVerilogAndParametersSimpleANDCircuit) {
     OrientedGraph* graph = new OrientedGraph("SimpleAND");
     auto input1 = graph->addInput("input1");
     auto input2 = graph->addInput("input2");
@@ -62,7 +61,7 @@ TEST(Circuit, SimpleANDCircuit) {
     std::filesystem::remove(paramsFilePath);
 }
 
-TEST(Circuit, SimpleORGate) {
+TEST(Circuit, TestingVerilogAndParametersSimpleORGate) {
     auto* graph = new OrientedGraph("SimpleOR");
     auto input1 = graph->addInput("input1");
     auto input2 = graph->addInput("input2");
@@ -95,7 +94,7 @@ TEST(Circuit, SimpleORGate) {
 }
 
 
-TEST(Circuit, NOTGate) {
+TEST(Circuit, TestingVerilogAndParametersNOTGate) {
     auto* graph = new OrientedGraph("NOTGate");
     auto input = graph->addInput("input");
     auto notGate = graph->addGate(Gates::GateNot, "notGate");
@@ -126,7 +125,7 @@ TEST(Circuit, NOTGate) {
 }
 
 
-TEST(Circuit, ComplexLogicCircuit) {
+TEST(Circuit, TestingVerilogAndParametersComplexLogicCircuit) {
     auto* graph = new OrientedGraph("ComplexLogic");
     auto input1 = graph->addInput("input1");
     auto input2 = graph->addInput("input2");
@@ -166,7 +165,7 @@ TEST(Circuit, ComplexLogicCircuit) {
 }
 
 
-TEST(Circuit, MultipleOutputs) {
+TEST(Circuit, TestingVerilogAndParametersMultipleOutputs) {
     auto* graph = new OrientedGraph("MultipleOutputs");
     auto input = graph->addInput("input");
     auto notGate = graph->addGate(Gates::GateNot, "notGate");
@@ -200,7 +199,7 @@ TEST(Circuit, MultipleOutputs) {
 }
 
 
-TEST(Circuit, FeedbackLoop) {
+TEST(Circuit, TestingVerilogAndParametersFeedbackLoop) {
     auto* graph = new OrientedGraph("FeedbackLoop");
     auto input = graph->addInput("input");
     auto andGate = graph->addGate(Gates::GateAnd, "andGate");
