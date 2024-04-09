@@ -58,7 +58,8 @@ public:
     d_outputs(i_inout.second),
     d_mainPath(i_mainPath)
     {
-        std::string dataPath = "../." + d_settings->getDatasetPath() + "/Genetic";//TODO:: Make general function
+        std::string dataPath = d_settings->getDatasetPath() + "/Genetic";//TODO:: Make general function
+        std::cout << std::filesystem::current_path();
         if (FilesTools::isDirectoryExists(dataPath))
         {
             for (const auto& entry : std::filesystem::directory_iterator(dataPath))
