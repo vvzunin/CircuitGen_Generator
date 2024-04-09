@@ -184,10 +184,11 @@ bool GraphVertexBase::removeVertexToOutConnections(VertexPtr const i_vert) {
 }
 
 std::string GraphVertexBase::getInstance() {
-    if (!d_inConnections.size() || !d_outConnections.size()) {
-       std::cerr << "TODO: delete empty verticies instances" << std::endl;
-       return "";
-    }
+  if (!d_inConnections.size()) {
+    std::cerr << "TODO: delete empty verticies instances" << std::endl;
+    return "";
+  }
+
   return VertexUtils::vertexTypeToVerilog(d_type) + " " + d_name + ";";
 }
 
