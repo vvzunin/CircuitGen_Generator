@@ -147,10 +147,9 @@ private:
       {GenerationTypes::RandLevelExperimental, "CCGRCGE"},
       {GenerationTypes::NumOperation, "CCGRVC"},
       // {GenerationTypes::Genetic, "CCGGA"},
-      // {GenerationTypes::Summator, "??????"},
-      // {GenerationTypes::Comparison, "??????"},
-      // {GenerationTypes::Encoder, "??????"}
-      };
+      {GenerationTypes::Summator, "CCGSUM"},
+      {GenerationTypes::Comparison, "CCGCMP"},
+      {GenerationTypes::Encoder, "CCGENCD"}};
 
   std::map<int, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string>      d_operationsToName;

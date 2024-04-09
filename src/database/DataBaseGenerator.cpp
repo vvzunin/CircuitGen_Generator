@@ -300,38 +300,7 @@ void DataBaseGenerator::GenerateDataBaseEncoder(
   c.generate(i_param.getMakeGraphML());
 }
 
-// std::function<void(const GenerationParameters&)>
-//     DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
-//   if (i_methodType == GenerationTypes::FromRandomTruthTable)
-//     return std::bind(
-//         &DataBaseGenerator::generateDataBaseFromRandomTruthTable,
-//         this,
-//         std::placeholders::_1
-//     );
-//   if (i_methodType == GenerationTypes::RandLevel)
-//     return std::bind(
-//         &DataBaseGenerator::generateDataBaseRandLevel,
-//         this,
-//         std::placeholders::_1
-//     );
-//   if (i_methodType == GenerationTypes::RandLevelExperimental)
-//     return std::bind(
-//         &DataBaseGenerator::generateDataBaseRandLevelExperimental,
-//         this,
-//         std::placeholders::_1
-//     );
-//   if (i_methodType == GenerationTypes::NumOperation)
-//     return std::bind(
-//         &DataBaseGenerator::generateDataBaseNumOperations,
-//         this,
-//         std::placeholders::_1
-//     );
-//   if (i_methodType == GenerationTypes::Genetic)
-//     return std::bind(
-//         &DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1
-//     );
-// }
-
+//maybe this method should be rewritten using map with GenerationTypes and FuncAlias
 std::function<void(const GenerationParameters&)>
     DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
 
@@ -359,24 +328,21 @@ std::function<void(const GenerationParameters&)>
     //   generateMethodFunc =
     //     &DataBaseGenerator::generateDataBaseGenetic;
     //   break;
-
-    // dunno if this is needed so its commented
-
-    // case GenerationTypes::Summator:
-    //   generateMethodFunc =
-    //     &DataBaseGenerator::GenerateDataBaseSummator;
-    //   break;
-    // case GenerationTypes::Comparison:
-    //   generateMethodFunc =
-    //     &DataBaseGenerator::GenerateDataBaseComparison;
-    //   break;
-    // case GenerationTypes::Encoder:
-    //   generateMethodFunc =
-    //     &DataBaseGenerator::GenerateDataBaseEncoder;
-    //   break;
+    case GenerationTypes::Summator:
+      generateMethodFunc =
+        &DataBaseGenerator::GenerateDataBaseSummator;
+      break;
+    case GenerationTypes::Comparison:
+      generateMethodFunc =
+        &DataBaseGenerator::GenerateDataBaseComparison;
+      break;
+    case GenerationTypes::Encoder:
+      generateMethodFunc =
+        &DataBaseGenerator::GenerateDataBaseEncoder;
+      break;
 
     default:
-      std::clog << "An error occured while getting generation method. " <<
+      std::clog << "Something went wrong while getting generation method. " <<
         "\"FromRandomTruthTable\" is set as generation method." << std::endl;
       generateMethodFunc =
         &DataBaseGenerator::generateDataBaseFromRandomTruthTable;
