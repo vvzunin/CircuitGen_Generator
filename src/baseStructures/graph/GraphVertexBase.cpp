@@ -1,3 +1,4 @@
+#include <iostream>
 #include <set>
 #include <string>
 
@@ -18,9 +19,11 @@ std::string   VertexUtils::gateToString(Gates i_type) {
     case Gates::GateXor:
     case Gates::GateXnor:
       return "^";
-    // Buf, Default
-    default:
+    case Gates::GateBuf:
       return "";
+    // Default
+    default:
+      return "Error";
   }
 }
 
@@ -181,6 +184,10 @@ bool GraphVertexBase::removeVertexToOutConnections(VertexPtr const i_vert) {
 }
 
 std::string GraphVertexBase::getInstance() {
+    if (!d_inConnections.size() || !d_outConnections.size()) {
+       std::cerr << "TODO: delete empty verticies instances" << std::endl;
+       return "";
+    }
   return VertexUtils::vertexTypeToVerilog(d_type) + " " + d_name + ";";
 }
 

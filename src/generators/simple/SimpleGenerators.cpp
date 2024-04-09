@@ -354,7 +354,7 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
     // how many elements would be at this level
     int                    elemLevel = i_maxElements > 1
                                          ? d_randGenerator.getRandInt(c_max, i_maxElements, true)
-                                         : i_minElements;
+                                         : i_maxElements;
 
     // write allowed gates to be used as parent
     std::vector<VertexPtr> curGates;
@@ -432,9 +432,16 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
       ++position;
     }
 
-    prevIndex += currIndex - prevIndex;
-    currIndex += position;
-    curLen    = inputs.size();
+      // if something was added to graph, we move parent parts of
+      if (position) {
+          prevIndex += currIndex - prevIndex;
+          currIndex += position;
+      }
+      // at the beginnig it is zero. So, if it stayed zero, we are still using
+      // inputs as gates. So we do not change it's value
+      if (prevIndex) {
+          curLen = inputs.size();
+      }
 
     // std::clog << (float)i / (float)maxLevel * 100 << "%" << std::endl;
   }
