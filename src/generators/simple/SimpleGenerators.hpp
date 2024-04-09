@@ -88,12 +88,8 @@ public:
     d_minGateNumber = INT_MAX;
 
     for (auto& [key, value] : i_info) {
-      d_maxGateNumber = std::max(
-          *std::max_element(value.begin(), value.end()), d_maxGateNumber
-      );
-      d_minGateNumber = std::min(
-          *std::max_element(value.begin(), value.end()), d_minGateNumber
-      );
+      d_maxGateNumber = std::max(value.back(), d_maxGateNumber);
+      d_minGateNumber = std::min(value.back(), d_minGateNumber);
       d_gatesInputsInfo[d_settings->parseStringToGate(key)] = value;
     }
 
@@ -118,15 +114,21 @@ private:
     return val->first;
   }
 
-  std::pair<Gates, int>   getRandomElement(const GatesInfo& i_info);
-  std::pair<Gates, int>   getRandomElement(u_int32_t i_gatesLimit);
+  std::pair<Gates, int> getRandomElement(const GatesInfo& i_info);
+  std::pair<Gates, int> getRandomElement(u_int32_t i_gatesLimit);
 
-  int                     getRangomAndNumber();
-  int                     getRangomOrNumber();
-  int                     getRangomNandNumber();
-  int                     getRangomNorNumber();
-  int                     getRangomXorNumber();
-  int                     getRangomXnorNumber();
+  int                   getRangomAndNumber();
+  int                   getRangomOrNumber();
+  int                   getRangomNandNumber();
+  int                   getRangomNorNumber();
+  int                   getRangomXorNumber();
+  int                   getRangomXnorNumber();
+
+  VertexPtr             multipleVerteciesToOne(
+                  std::vector<VertexPtr> curLayout,
+                  Gates                  operation,
+                  GraphPtr               graph
+              );
 
   GatesInfo               d_gatesInputsInfo;
   RandomGeneratorWithSeed d_randGenerator;

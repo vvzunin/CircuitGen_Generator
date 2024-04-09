@@ -92,6 +92,72 @@ SimpleGenerators::SimpleGenerators(int i_seed) {
   d_randGenerator.setSeed(i_seed);
 }
 
+VertexPtr SimpleGenerators::multipleVerteciesToOne(
+    std::vector<VertexPtr> curLayout,
+    Gates                  operation,
+    GraphPtr               graph
+) {
+  std::vector<VertexPtr> nextLayout;
+  int32_t                curSize = 0;
+
+  // Here we add operations in brackets
+  while (curLayout.size() != 1) {
+    curSize       = 0;
+
+    size_t    pos = d_gatesInputsInfo[operation].size() - 1;
+    VertexPtr x_input;
+    VertexPtr oper;
+
+    oper = graph->addGate(operation);
+    // iterate through i layout
+    for (size_t k = 0; k < curLayout.size(); ++k) {
+      x_input = curLayout[k];
+
+      graph->addEdge(x_input, oper);
+      ++curSize;
+
+      if (d_gatesInputsInfo[operation][pos] == curSize) {
+        nextLayout.push_back(oper);
+
+        // if we will have only one gate
+        // we do not create a new operation
+        if (k == (curLayout.size() - 2)) {
+          oper = curLayout.back();
+          // we save curSize for saving us from add
+          // new edges to oper
+          break;
+        } else if (k < curLayout.size() - 1) {
+          oper = graph->addGate(operation);
+        }
+
+        // if we have less elements than we can add, and our logical element
+        // has too big gates number, move to lower
+        while (pos > 0
+               && (curLayout.size() - k) < d_gatesInputsInfo[operation][pos]) {
+          --pos;
+        }
+        curSize = 0;
+      }
+    }
+
+    if (curSize > 1) {
+      while (curSize < d_gatesInputsInfo[operation][pos]) {
+        graph->addEdge(x_input, oper);
+        ++curSize;
+      }
+    }
+
+    if (curSize)
+      nextLayout.push_back(oper);
+
+    // swap layouts
+    curLayout = nextLayout;
+    nextLayout.clear();
+  }
+
+  return curLayout.back();
+}
+
 GraphPtr
     SimpleGenerators::cnfFromTruthTable(const TruthTable& i_table, bool i_tp) {
   std::vector<std::string> fun;
@@ -105,11 +171,18 @@ GraphPtr
     inputs.push_back(graph->addInput("x" + std::to_string(k)));
   }
 
-  std::map<VertexPtr, VertexPtr> inputs_not;
+  // TODO make nand-or generation etc
+  if (!d_gatesInputsInfo.count(Gates::GateAnd)
+      && !d_gatesInputsInfo.count(Gates::GateOr)) {
+    d_gatesInputsInfo[Gates::GateAnd] = {(int32_t)inputs.size()};
+    d_gatesInputsInfo[Gates::GateOr]  = {(int32_t)inputs.size()};
+  }
 
-  for (int j = 0; j < i_table.getOutput(); ++j) {
+  std::map<VertexPtr, VertexPtr> inputs_not;
+  VertexPtr                      constGate_0(nullptr), constGate_1(nullptr);
+
+  for (size_t j = 0; j < i_table.getOutput(); ++j) {
     VertexPtr out = graph->addOutput("f" + std::to_string(j));
-    // fun.push_back("f" + std::to_string(j) + " = ");
     int       mem = 0;
     int       tmp = 0;
 
@@ -120,61 +193,60 @@ GraphPtr
 
     if (mem == 0 || mem == i_table.size()) {
       if (i_tp && mem == 0 || !i_tp && mem == i_table.size()) {
-        // fun[j] += "1'b0";
-        VertexPtr constGate = graph->addConst('0');
-        graph->addEdge(constGate, out);
+        if (constGate_0.get() == nullptr) {
+          constGate_0 = graph->addConst('0');
+        }
+        graph->addEdge(constGate_0, out);
       } else {
-        // fun[j] += "1'b1";
-        VertexPtr constGate = graph->addConst('1');
-        graph->addEdge(constGate, out);
+        if (constGate_1.get() == nullptr) {
+          constGate_1 = graph->addConst('1');
+        }
+        graph->addEdge(constGate_1, out);
       }
       continue;
     }
 
-    // if (mem == i_table.size()) {
-    //   if (i_tp)
-    //     fun[j] += "1'b1";
-    //   else
-    //     fun[j] += "1'b0";
-    //   continue;
-    // }
+    Gates                  exter   = i_tp ? Gates::GateOr : Gates::GateAnd;
+    Gates                  inter   = i_tp ? Gates::GateAnd : Gates::GateOr;
+    int32_t                curSize = 0;
 
-    VertexPtr mainOper = graph->addGate(i_tp ? Gates::GateOr : Gates::GateAnd);
+    std::vector<VertexPtr> nextLayoutExt;
+    std::vector<VertexPtr> nextLayout;
+
+    nextLayout.reserve(inputs.size());
+
+    // Here we create operations in brackets
     for (int i = 0; i < mem; ++i) {
-      // fun[j] += '(';
-      VertexPtr oper = graph->addGate(i_tp ? Gates::GateAnd : Gates::GateOr);
-
       while ((i_table.getOutTable(tmp, j) ^ i_tp) && tmp < i_table.size())
-        tmp++;
+        ++tmp;
 
-      for (int k = 0; k < i_table.getInput(); ++k) {
+      // create layout of "input"
+      for (size_t k = 0; k < inputs.size(); ++k) {
         VertexPtr x_input = inputs[k];
 
+        // add NOT
         if (bin[tmp][k] ^ i_tp) {
           if (!inputs_not.count(x_input)) {
             inputs_not[x_input] =
                 graph->addGate(Gates::GateNot, x_input->getName() + "_not");
           }
 
+          // Get NOT operation
           x_input = inputs_not[x_input];
           graph->addEdge(inputs[k], x_input);
-          // fun[j] += d_settings->getLogicOperation("not").first + " ";
         }
 
-        graph->addEdge(x_input, oper);
+        nextLayout.push_back(x_input);
       }
 
-      // fun[j] += ')';
+      nextLayoutExt.push_back(multipleVerteciesToOne(nextLayout, inter, graph));
 
-      // if (i != mem - 1)
-      //   fun[j] += " "
-      //           + (i_tp ? d_settings->getLogicOperation("or").first
-      //                   : d_settings->getLogicOperation("and").first)
-      //           + " ";
-      graph->addEdge(oper, mainOper);
-      tmp++;
+      nextLayout.clear();
+      ++tmp;
     }
-    graph->addEdge(mainOper, out);
+
+    // and here operations with brackets
+    graph->addEdge(multipleVerteciesToOne(nextLayoutExt, exter, graph), out);
   }
 
   return graph;
@@ -323,7 +395,7 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
     for (int val = prevIndex; val < currIndex; ++val)
       curGates.push_back(graph->getVerticeByIndex(val));
     curLen += curGates.size();
-    
+
     for (int j = 0; j < elemLevel; ++j) {
       // we use inputs only if we are not on the first level
       auto [operation, gatesNumber] = getRandomElement(curLen);
