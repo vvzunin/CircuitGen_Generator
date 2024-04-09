@@ -6,14 +6,101 @@
 #include <utility>
 #include <vector>
 
+/// namespace AuxMethods It was created to organize a set of auxiliary
+/// functions and methods that can be used in various parts of a
+/// software project
+/// Functions: Random number generation, Reading files,
+/// Data sorting and processing (includes methods for sorting
+/// dictionaries by their values and for working with spaces in strings)
+/// TO DO: list the other functions
+/// </summary>
+
 namespace AuxMethods {
+
+/// @brief setRandSeed Sets the grain to generate pseudorandom numbers
+/// @param seed A grain for generating random numbers. Must be a positive
+/// integer
+/// @code
+/// Setting the grain to generate random numbers
+/// AuxMethods::setRandSeed(42);
+/// @endcode
+
 void               setRandSeed(std::uint_fast32_t seed);
+
+/// @brief getRandSeed Returns the current grain for generating
+/// pseudo-random numbers
+/// @return Grain for generating random numbers
+
 std::uint_fast32_t getRandSeed();
 
+/// @brief getRandInt Returns a random integer in the specified range
+/// @param lower The lower limit of the range
+/// @param upper The upper limit of the range
+/// @param inclusively Indicates whether the upper limit of the range
+/// is included in the possible values
+/// @return A random integer in the specified range
+/// @code
+/// Generating a random number in the range [1, 100] inclusive
+/// int randomNumber = AuxMethods::getRandInt(1, 100, true);
+/// //randomNumber = 45;
+/// @endcode
+
 int                getRandInt(int lower, int upper, bool inclusively = false);
+
+/// @brief getRandDouble Returns a random floating point number in the
+/// specified range
+/// @param lower The lower limit of the range
+/// @param upper The upper limit of the range
+/// @return A random floating point number in the specified range
+/// @code
+/// Generating a random floating point number in the range [0.0, 1.0]
+/// double randomNumber = AuxMethods::getRandDouble(0.0, 1.0);
+/// // randomNumber = 0.35;
+/// @endcode
+
 double             getRandDouble(double lower, double upper);
 
+
+/// @brief readAllFile Reads the contents of the file and returns it as a
+/// string
+/// @param filename The name of the file to read
+/// @return The contents of the file as a string
+/// @code
+/// // Reading the contents "example.txt "
+/// std::string content = Auxiliary methods::Reading the entire
+/// file("example.txt ")
+/// std::cout << "File content:" << std::endl;
+/// std::cout << content << std::endl;
+/// @endcode
+/// @throws std::runtime_error if the file cannot be opened
+
 std::string        readAllFile(const std::string& filename);
+
+}
+
+/// @brief getRandomIntList Generates a list of random integers in a given
+/// range with certain restrictions on the number of elements and the
+/// presence of repetitions
+/// @param i_n An integer indicating the desired size of the list
+/// @param i_minNumber The lower limit of the range for generating random
+/// numbers
+/// @param i_maxNumber The upper limit of the range for generating random
+/// numbers
+/// @param repite A flag indicating whether the repetition of numbers in
+/// the list is allowed (true - allowed, false - not allowed). Default - false
+/// @return a vector<int> of random numbers according to the specified
+/// parameters
+/// @code
+/// std::vector<int>  randomList = getRandomIntList(10, 1, 100, false);
+/// std::cout << "Random list without repetition: ";
+/// for (int num : randomList)
+/// {
+///     std::cout << num << " ";
+/// }
+/// // Conclusion: the vector contains 10 integers in the range from 1 to 100
+/// // and they are all different.
+/// @endcode
+
 std::vector<int>   getRandomIntList(
       int  i_n,
       int  i_minNumber,
