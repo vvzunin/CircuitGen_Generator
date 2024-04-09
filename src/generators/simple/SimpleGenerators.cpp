@@ -339,12 +339,12 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 }
 
 GraphPtr SimpleGenerators::generatorRandLevelExperimental(
-    u_int32_t i_minLevel,
-    u_int32_t i_maxLevel,
-    u_int32_t i_minElements,
-    u_int32_t i_maxElements,
-    u_int32_t i_inputs,
-    u_int32_t i_outputs
+    uint32_t i_minLevel,
+    uint32_t i_maxLevel,
+    uint32_t i_minElements,
+    uint32_t i_maxElements,
+    uint32_t i_inputs,
+    uint32_t i_outputs
 ) {
   if (i_minLevel > i_maxLevel)
     throw std::invalid_argument("min level is biggert than max level");
