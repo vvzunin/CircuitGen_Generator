@@ -136,6 +136,7 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
 }
 
 // TODO rewrite to normal cnft generation
+// TODO JUST MAKE IT PARSING DATA IN () NOT REQURSIVE, ONLY () REQURSIVE
 bool Parser::parse(const std::string& i_expr)  // what? change true/false
 {
   std::pair<int32_t, std::vector<std::string>> t = splitLogicExpression(i_expr);
@@ -178,11 +179,11 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
     if (i_expr != "input") {
       if (t.second[0] == "not") {
         // same protection from multiple inputs
-        if (!notInputsByNames.count(t.second[1] + "_not"))
-          notInputsByNames[t.second[1] + "_not"] =
-              d_graph->addGate(Gates::GateNot, t.second[1] + "_not");
+        if (!notInputsByNames.count("not " + t.second[1]))
+          notInputsByNames["not " + t.second[1]] =
+              d_graph->addGate(Gates::GateNot, "not_" + t.second[1]);
 
-        expr = notInputsByNames[t.second[1] + "_not"];
+        expr = notInputsByNames["not " + t.second[1]];
       } else
         expr = d_graph->addGate(d_settings->parseStringToGate(t.second[0]));
     } else {
@@ -206,10 +207,6 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
           splitLogicExpression(part);
       if (tt.first == -1)
         return false;
-      // for (auto word : tt.second) {
-      //   std::clog << word + ", ";
-      // }
-      // std::clog << std::endl;
 
       if (tt.second[0] == "input") {
         // same protection from multiple inputs
@@ -220,17 +217,50 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
 
       } else if (tt.second[0] == "not") {
         // same protection from multiple inputs
-        if (!notInputsByNames.count(tt.second[1] + "_not"))
-          notInputsByNames[tt.second[1] + "_not"] =
-              d_graph->addGate(Gates::GateNot, tt.second[1] + "_not");
+        if (!notInputsByNames.count("not " + tt.second[1]))
+          notInputsByNames["not " + tt.second[1]] =
+              d_graph->addGate(Gates::GateNot, "not_" + tt.second[1]);
 
-        part_ptr = notInputsByNames[tt.second[1] + "_not"];
+        part_ptr = notInputsByNames["not " + tt.second[1]];
 
       } else if (tt.second[0] == "const")
         part_ptr = d_graph->addConst(part[0], part);
-      else
-        part_ptr =
-            d_graph->addGate(d_settings->parseStringToGate(tt.second[0]));
+      else {
+        for (auto word : tt.second) {
+          std::clog << word + ", ";
+        }
+        std::clog << std::endl;
+        std::clog << expr->getName() << "\n";
+        if (doneOperations.empty()) {
+          doneOperations.push(tt.second[0]);
+        }
+
+        if (doneOperations.top() == tt.second[0]) {
+          if (!operationByCreatedVertex.count(tt.second[0])) {
+            operationByCreatedVertex[tt.second[0]] = {};
+            inputsByCreatedVertex[tt.second[0]]    = {};
+          }
+
+          operationByCreatedVertex[tt.second[0]].push(
+              {d_graph->addGate(d_settings->parseStringToGate(tt.second[0]))}
+          );
+          inputsByCreatedVertex[tt.second[0]].push(inputsByNames[tt.second[1]]);
+
+          part_ptr = operationByCreatedVertex[tt.second[0]].top();
+
+          if (inputsByNames.count(tt.second[2])) {
+            inputsByCreatedVertex[tt.second[0]].push(inputsByNames[tt.second[2]]
+            );
+          }
+        } else {
+          std::string prev = doneOperations.top();
+
+          VertexPtr inp = inputsByCreatedVertex[prev].top();
+          while (!operationByCreatedVertex.empty()) {
+            
+          }
+        }
+      }
 
       d_graph->addEdge(part_ptr, expr);
       if (tt.second[0] != "input" && tt.second[0] != "const")

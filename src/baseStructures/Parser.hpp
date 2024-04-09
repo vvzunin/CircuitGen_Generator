@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include <stack>
 #include <memory>
 #include <string>
 #include <vector>
@@ -35,4 +36,8 @@ private:
   std::string deleteExtraSpaces(std::string i_s);
   std::map<std::string, VertexPtr> inputsByNames;
   std::map<std::string, VertexPtr> notInputsByNames;
+
+  std::map<std::string, std::stack<VertexPtr>> operationByCreatedVertex;
+  std::map<std::string, std::stack<VertexPtr>> inputsByCreatedVertex;
+  std::stack<std::string> doneOperations;
 };
