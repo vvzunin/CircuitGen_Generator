@@ -1,5 +1,6 @@
 #include <cassert>
 #include <iostream>
+#include <stack>
 
 #include "Parser.hpp"
 
@@ -9,7 +10,7 @@ std::string deleteDoubleSpaces(const std::string& s) {
   bool        isPrevSpace = false;
   for (auto c : s) {
     if (c != ' ') {
-      isPrevSpace = false;
+      isPrevSpace  = false;
       res         += c;
     } else {
       if (!isPrevSpace)
@@ -33,42 +34,35 @@ GraphPtr Parser::getGraph() const {
   return d_graph;
 }
 
-std::pair<bool, std::vector<std::pair<int, int>>> Parser::createBrackets(
-    const std::string& i_expr
-) {
-  std::vector<std::pair<int, int>> brackets;
-  for (int i = 0; i < i_expr.length(); ++i) {
+std::pair<bool, std::vector<std::pair<int32_t, int32_t>>>
+    Parser::createBrackets(const std::string& i_expr) {
+  std::vector<std::pair<int32_t, int32_t>> brackets;
+  std::stack<int32_t>                      bracketsStartPos;
+
+  for (int32_t i = 0; i < i_expr.length(); ++i) {
     if (i_expr[i] == '(') {
-      brackets.push_back({i, -1});
+      bracketsStartPos.push(i);
     }
     if (i_expr[i] == ')') {
-      int j = static_cast<int>(brackets.size()) - 1;
-      while (j >= 0 && brackets[j].second != -1)
-        --j;
-
-      if (j == -1)
+      if (bracketsStartPos.empty())
         return {false, {{-1, -1}}};
 
-      brackets[j] = {brackets[j].first, i};
+      brackets.push_back(std::make_pair(bracketsStartPos.top(), i));
+      bracketsStartPos.pop();
     }
   }
 
-  int u = static_cast<int>(brackets.size()) - 1;
-  // assert(u >= 0);
-  while (u >= 0 && brackets[u].second != -1)
-    --u;
-
-  if (u == -1)
+  if (bracketsStartPos.empty())
     return {true, brackets};
 
   return {false, {{-1, -1}}};
 }
 
 bool Parser::inBrackets(
-    const std::vector<std::pair<int, int>>& i_brackets,
-    int                                     i_position
+    const std::vector<std::pair<int32_t, int32_t>>& i_brackets,
+    int32_t                                         i_position
 ) const {
-  int i = static_cast<int>(i_brackets.size()) - 1;
+  int32_t i = static_cast<int32_t>(i_brackets.size()) - 1;
 
   while (i >= 0
          && !(
@@ -83,8 +77,8 @@ bool Parser::inBrackets(
 }
 
 std::string deleteExtraSpace(const std::string& i_s) {
-  int l = i_s.size(), r = static_cast<int>(i_s.size()) - 1;
-  for (int i = 0; i < i_s.size(); ++i) {
+  uint32_t l = i_s.size(), r = static_cast<int32_t>(i_s.size()) - 1;
+  for (uint32_t i = 0; i < i_s.size(); ++i) {
     if (i_s[i] != ' ') {
       l = std::min(l, i);
       r = i;
@@ -93,13 +87,12 @@ std::string deleteExtraSpace(const std::string& i_s) {
   return i_s.substr(l, r - l + 1);
 }
 
-std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(
+std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
     std::string i_expr
 ) {
-  bool f = true;
-  int  l = 0;
+  int32_t l = 0;
 
-  while (f && l <= d_settings->getLogicOperation("input").second) {
+  while (l <= d_settings->getLogicOperation("input").second) {
     std::vector<std::string> operations =
         d_settings->fromOperationsToHierarchy(l);
 
@@ -111,29 +104,27 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(
       // than xor. so, we can have two possible variants.
       // Check, if operation in fact is xor, not or, or just to
       // find firstly xor, than or. Was chosen second variant
-      int index = i_expr.find(op);
+      size_t index = i_expr.find(op);
+      std::pair<bool, std::vector<std::pair<int32_t, int32_t>>> brackets =
+          createBrackets(i_expr);
+      
       while (index != std::string::npos) {
-        std::pair<bool, std::vector<std::pair<int, int>>> brackets =
-            createBrackets(i_expr);
         if (!inBrackets(brackets.second, index)) {
           std::vector<std::string> lst;
           std::string              newOp = d_settings->fromOperationsToName(op);
           lst.push_back(deleteExtraSpaces(newOp));
-          if (newOp == "not")
+          
+          if (newOp == "not" || newOp == "buf")
             lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length()))
             );
-          else if (newOp == "buf")
-            lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length()))
-            );
-          else if (newOp == "input")
-            lst.push_back(deleteExtraSpaces(i_expr));
-          else if (newOp == "const")
+          else if (newOp == "input" || newOp == "const")
             lst.push_back(deleteExtraSpaces(i_expr));
           else {
             lst.push_back(deleteExtraSpaces(i_expr.substr(0, index)));
             lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length()))
             );
           }
+          
           return {index, lst};  // what?
         }
         index = i_expr.find(op, index + 1);
@@ -147,17 +138,18 @@ std::pair<int, std::vector<std::string>> Parser::splitLogicExpression(
 // TODO rewrite to normal cnft generation
 bool Parser::parse(const std::string& i_expr)  // what? change true/false
 {
-  std::pair<int, std::vector<std::string>> t = splitLogicExpression(i_expr);
+  std::pair<int32_t, std::vector<std::string>> t = splitLogicExpression(i_expr);
   if (t.first == -1)
     return false;
 
   if (t.second[0] == "output") {
-    std::vector<std::pair<int, int>> bl = createBrackets(t.second[2]).second;
+    std::vector<std::pair<int32_t, int32_t>> bl =
+        createBrackets(t.second[2]).second;
     for (auto tl : bl)
       if (tl.first == 0 && tl.second == t.second[2].size() - 1)
         t.second[2] = t.second[2].substr(1, t.second[2].size() - 2);
 
-    std::pair<int, std::vector<std::string>> tt =
+    std::pair<int32_t, std::vector<std::string>> tt =
         splitLogicExpression(t.second[2]);
     if (tt.first == -1)
       return false;
@@ -193,16 +185,17 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
       expr = inputsByNames[t.second[0]];
     }
 
-    for (int i = 1; i < t.second.size(); ++i) {
-      std::string                      part = t.second[i];
+    for (int32_t i = 1; i < t.second.size(); ++i) {
+      std::string                              part = t.second[i];
 
-      std::vector<std::pair<int, int>> bl   = createBrackets(part).second;
+      std::vector<std::pair<int32_t, int32_t>> bl = createBrackets(part).second;
 
       for (auto tl : bl)
-        if (tl.first == 0 && tl.second == static_cast<int>(part.size()) - 1)
-          part = part.substr(1, static_cast<int>(part.size()) - 2);
+        if (tl.first == 0 && tl.second == static_cast<int32_t>(part.size()) - 1)
+          part = part.substr(1, static_cast<int32_t>(part.size()) - 2);
 
-      std::pair<int, std::vector<std::string>> tt = splitLogicExpression(part);
+      std::pair<int32_t, std::vector<std::string>> tt =
+          splitLogicExpression(part);
       if (tt.first == -1)
         return false;
 
@@ -238,7 +231,7 @@ bool Parser::parseAll() {
 }
 
 std::string Parser::deleteExtraSpaces(std::string i_s) {
-  int i = 0;
+  int32_t i = 0;
   while (i_s[i] == ' ')
     ++i;
   i_s.erase(0, i);

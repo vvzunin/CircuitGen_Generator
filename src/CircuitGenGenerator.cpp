@@ -127,24 +127,25 @@ void runGenerationFromJson(std::string json_path) {
         std::vector<int> gatesNumber =
             static_cast<std::vector<int>>(gate.value());
 
-        // if vector is empty (suddenly), we add default gates number
-        if (!(int)gatesNumber.size())
-          gatesNumber.push_back(2);
-        // else sorting data. It's important for fast generator work
-        else
+        // sorting data. It's important for fast generator work
+        if (gatesNumber.size()) {
           std::sort(gatesNumber.begin(), gatesNumber.end());
 
-        gatesInputsInfo[gate.key()] = gatesNumber;
+          gatesInputsInfo[gate.key()] = gatesNumber;
+        }
       }
-    } else {
-      // default init data
-      gatesInputsInfo["and"]  = {2};
-      gatesInputsInfo["nand"] = {2};
-      gatesInputsInfo["or"]   = {2};
-      gatesInputsInfo["nor"]  = {2};
-      gatesInputsInfo["xor"]  = {2};
-      gatesInputsInfo["xnor"] = {2};
     }
+    // TODO: shell we fill gatesInpursInfo always? 
+    // // if gates_inputs_info in json was empty or there was no such data in json
+    // if (!gatesInputsInfo.size()) {
+    //   // default init data
+    //   gatesInputsInfo["and"]  = {2};
+    //   gatesInputsInfo["nand"] = {2};
+    //   gatesInputsInfo["or"]   = {2};
+    //   gatesInputsInfo["nor"]  = {2};
+    //   gatesInputsInfo["xor"]  = {2};
+    //   gatesInputsInfo["xnor"] = {2};
+    // }
 
     // TODO:: make function that return DataBaseGeneratorParameters from json
     // Recording of json data to gp
