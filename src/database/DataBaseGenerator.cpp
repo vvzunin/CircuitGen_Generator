@@ -25,9 +25,9 @@ void DataBaseGenerator::generateType(
     bool                               parallel,
     bool                               createIdDirectories
 ) {
-  std::string s = i_dbgp.getGenerationTypeString();
+  GenerationTypes gt = i_dbgp.getGenerationType();
   std::function<void(const GenerationParameters&)> generator =
-      getGenerateMethod(s);
+      getGenerateMethod(gt);
   // TODO: make normal code
   std::string dir = d_settings->getDatasetPath();
 
@@ -52,12 +52,12 @@ void DataBaseGenerator::generateType(
   if (std::filesystem::is_directory(dir)) {
     for (const auto item : FilesTools::getDirectories(dir)) {
       std::string s0  = item;
-      auto        pos = s0.find(d_settings->getGenerationMethodPrefix(s));
+      auto        pos = s0.find(d_settings->getGenerationMethodPrefix(gt));
 
       if (pos == std::string::npos)
         continue;
 
-      s0.replace(pos, d_settings->getGenerationMethodPrefix(s).size(), "");
+      s0.replace(pos, d_settings->getGenerationMethodPrefix(gt).size(), "");
 
       auto jk = std::min(s0.find("_"), s0.find("."));
       if (jk == std::string::npos) {
@@ -93,7 +93,7 @@ void DataBaseGenerator::generateType(
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           d_parameters.setIteration(tt);
           d_parameters.setName(
-              d_settings->getGenerationMethodPrefix(s)
+              d_settings->getGenerationMethodPrefix(gt)
               + std::to_string(d_dirCount)
           );
 
@@ -114,7 +114,7 @@ void DataBaseGenerator::generateType(
           // TODO: it is that Rustam told about iteration?
           d_parameters.setIteration(tt);
           d_parameters.setName(
-              d_settings->getGenerationMethodPrefix(s)
+              d_settings->getGenerationMethodPrefix(gt)
               + std::to_string(d_dirCount)
           );
 
@@ -253,7 +253,7 @@ void DataBaseGenerator::generateDataBaseGenetic(
   // gg.generate();
 }
 
-void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters& i_param
+void DataBaseGenerator::GenerateDataBaseSummator(const GenerationParameters& i_param
 ) {
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
@@ -300,41 +300,88 @@ void DataBaseGenerator::GenerateDataBaseEncoder(
   c.generate(i_param.getMakeGraphML());
 }
 
-std::function<void(const GenerationParameters&)>
-    DataBaseGenerator::getGenerateMethod(const std::string& i_methodName) {
-  if (i_methodName == "FromRandomTruthTable")
-    return std::bind(
-        &DataBaseGenerator::generateDataBaseFromRandomTruthTable,
-        this,
-        std::placeholders::_1
-    );
-  if (i_methodName == "RandLevel")
-    return std::bind(
-        &DataBaseGenerator::generateDataBaseRandLevel,
-        this,
-        std::placeholders::_1
-    );
-  if (i_methodName == "RandLevelExperimental")
-    return std::bind(
-        &DataBaseGenerator::generateDataBaseRandLevelExperimental,
-        this,
-        std::placeholders::_1
-    );
-  if (i_methodName == "NumOperation")
-    return std::bind(
-        &DataBaseGenerator::generateDataBaseNumOperations,
-        this,
-        std::placeholders::_1
-    );
-  if (i_methodName == "Genetic")
-    return std::bind(
-        &DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1
-    );
+// std::function<void(const GenerationParameters&)>
+//     DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
+//   if (i_methodType == GenerationTypes::FromRandomTruthTable)
+//     return std::bind(
+//         &DataBaseGenerator::generateDataBaseFromRandomTruthTable,
+//         this,
+//         std::placeholders::_1
+//     );
+//   if (i_methodType == GenerationTypes::RandLevel)
+//     return std::bind(
+//         &DataBaseGenerator::generateDataBaseRandLevel,
+//         this,
+//         std::placeholders::_1
+//     );
+//   if (i_methodType == GenerationTypes::RandLevelExperimental)
+//     return std::bind(
+//         &DataBaseGenerator::generateDataBaseRandLevelExperimental,
+//         this,
+//         std::placeholders::_1
+//     );
+//   if (i_methodType == GenerationTypes::NumOperation)
+//     return std::bind(
+//         &DataBaseGenerator::generateDataBaseNumOperations,
+//         this,
+//         std::placeholders::_1
+//     );
+//   if (i_methodType == GenerationTypes::Genetic)
+//     return std::bind(
+//         &DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1
+//     );
+// }
 
-  std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;
-  return std::bind(
-      &DataBaseGenerator::generateDataBaseFromRandomTruthTable,
-      this,
-      std::placeholders::_1
-  );
+std::function<void(const GenerationParameters&)>
+    DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
+
+  using FuncAlias = void (DataBaseGenerator::*)(const GenerationParameters&);
+  FuncAlias generateMethodFunc = nullptr;
+
+  switch (i_methodType) {
+    case GenerationTypes::FromRandomTruthTable:
+      generateMethodFunc =
+        &DataBaseGenerator::generateDataBaseFromRandomTruthTable;
+      break;
+    case GenerationTypes::RandLevel:
+      generateMethodFunc =
+        &DataBaseGenerator::generateDataBaseRandLevel;
+      break;
+    case GenerationTypes::RandLevelExperimental:
+      generateMethodFunc =
+        &DataBaseGenerator::generateDataBaseRandLevelExperimental;
+      break;
+    case GenerationTypes::NumOperation:
+      generateMethodFunc =
+        &DataBaseGenerator::generateDataBaseNumOperations;
+      break;
+    // case GenerationTypes::Genetic:
+    //   generateMethodFunc =
+    //     &DataBaseGenerator::generateDataBaseGenetic;
+    //   break;
+
+    // dunno if this is needed so its commented
+
+    // case GenerationTypes::Summator:
+    //   generateMethodFunc =
+    //     &DataBaseGenerator::GenerateDataBaseSummator;
+    //   break;
+    // case GenerationTypes::Comparison:
+    //   generateMethodFunc =
+    //     &DataBaseGenerator::GenerateDataBaseComparison;
+    //   break;
+    // case GenerationTypes::Encoder:
+    //   generateMethodFunc =
+    //     &DataBaseGenerator::GenerateDataBaseEncoder;
+    //   break;
+
+    default:
+      std::clog << "An error occured while getting generation method. " <<
+        "\"FromRandomTruthTable\" is set as generation method." << std::endl;
+      generateMethodFunc =
+        &DataBaseGenerator::generateDataBaseFromRandomTruthTable;
+      break;
+  }
+
+  return std::bind(generateMethodFunc, this, std::placeholders::_1);
 }

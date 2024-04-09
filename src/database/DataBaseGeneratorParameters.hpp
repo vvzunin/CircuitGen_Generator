@@ -3,17 +3,6 @@
 #include <generators/GenerationParameters.hpp>
 #include <settings/Settings.hpp>
 
-enum GenerationTypes {
-  FromRandomTruthTable,
-  RandLevel,
-  RandLevelExperimental,
-  NumOperation,
-  // Genetic,
-  Summator,
-  Comparison,
-  Encoder
-};
-
 class DataBaseGeneratorParameters  // TODO: maybe it need heritance from
                                    // GenerationParameters?
 {
@@ -38,8 +27,7 @@ public:
   int                  getMaxOutputs() const;
   int                  getEachIteration() const;
   GenerationParameters getGenerationParameters() const;
-
-  std::string          getGenerationTypeString() const;
+  GenerationTypes      getGenerationType() const;
 
 private:
   int             d_minInputs       = 0;

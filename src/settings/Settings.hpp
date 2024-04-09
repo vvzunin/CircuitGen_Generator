@@ -6,12 +6,6 @@
 #include <utility>
 #include <vector>
 
-enum generationTypes {
-  none,
-  truthTableToGraphWithoutOptimization,
-  truthTableToGraphWithOptimization
-};
-
 enum LibrariesTypes {
   SKY_LIB
 };
@@ -35,6 +29,17 @@ enum Gates {
   GateDefault,
 };
 
+enum GenerationTypes {
+  FromRandomTruthTable,
+  RandLevel,
+  RandLevelExperimental,
+  NumOperation,
+  // Genetic,
+  Summator,
+  Comparison,
+  Encoder
+};
+
 class Settings {
 protected:
   Settings(const std::string& i_path) : d_path(i_path) {}
@@ -51,7 +56,8 @@ public:
   );
   std::string fromOperationsToName(const std::string& i_op) const;
   std::string getDatasetPath() const;
-  std::string getGenerationMethodPrefix(const std::string& i_s) const;
+  std::string getGenerationMethodPrefix(const GenerationTypes i_methodType)
+  const;
   std::string getLibraryPath() const;
   std::string getLibraryNameFromEnum(const LibrariesTypes& library) const;
   int         getMaxInputs() const;
@@ -134,6 +140,17 @@ private:
       {VertexTypes::output, "output"},
       {VertexTypes::constant, "const"},
       {VertexTypes::gate, "g"}};
+  
+  std::map<GenerationTypes, std::string> generationTypeToPrefix = {
+      {GenerationTypes::FromRandomTruthTable, "CCGRTT"},
+      {GenerationTypes::RandLevel, "CCGRCG"},
+      {GenerationTypes::RandLevelExperimental, "CCGRCGE"},
+      {GenerationTypes::NumOperation, "CCGRVC"},
+      // {GenerationTypes::Genetic, "CCGGA"},
+      // {GenerationTypes::Summator, "??????"},
+      // {GenerationTypes::Comparison, "??????"},
+      // {GenerationTypes::Encoder, "??????"}
+      };
 
   std::map<int, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string>      d_operationsToName;

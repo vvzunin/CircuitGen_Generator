@@ -186,21 +186,9 @@ std::string Settings::getLibraryPath() const {
   return d_libraryPath;
 }
 
-std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const {
-  if (i_s == "FromRandomTruthTable")
-    return "CCGRTT";
-  if (i_s == "RandLevel")
-    return "CCGRCG";
-  if (i_s == "RandLevelExperimental")
-    return "CCGRCGE";
-  if (i_s == "NumOperation")
-    return "CCGRVC";
-  if (i_s == "Genetic")
-    return "CCGGA";
-
-  std::cerr << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
-
-  return "ftt";
+std::string Settings::getGenerationMethodPrefix(const GenerationTypes
+i_methodType) const {
+  return generationTypeToPrefix.at(i_methodType);
 }
 
 std::string Settings::getLibraryNameFromEnum(const LibrariesTypes& library
