@@ -42,9 +42,8 @@ public:
   SimpleGenerators(SimpleGenerators&& other)                 = delete;
   SimpleGenerators& operator=(SimpleGenerators&& other)      = delete;
 
-  std::vector<std::string>
-           cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
-  std::vector<std::string> zhegalkinFromTruthTable(const TruthTable& i_table);
+  GraphPtr cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
+  GraphPtr zhegalkinFromTruthTable(const TruthTable& i_table);
 
   GraphPtr generatorRandLevel(
       int i_minLevel,

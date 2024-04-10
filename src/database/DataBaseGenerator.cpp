@@ -141,6 +141,8 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
   SimpleGenerators tftt;
   tftt.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
+  GraphPtr graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFT());
+  /*
   std::vector<std::pair<std::string, std::vector<std::string>>> circs;
 
   if (i_param.getCNF().getCNFT())
@@ -155,16 +157,15 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
   for (const auto& [name, expr] : circs) {
     Parser pCNFT(expr);
     pCNFT.parseAll();
-
-    GraphPtr graph = pCNFT.getGraph();
-    graph->setName(i_param.getName() + "_" + name);
-
-    Circuit c(graph, expr);
-    c.setTable(tt);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName() + "_" + name);
-    c.generate(i_param.getMakeGraphML());
-  }
+*/
+  graph->setName(
+      i_param.getName() + "_" + (i_param.getCNF().getCNFT() ? "CNFT" : "CNFF")
+  );
+  Circuit c(graph);
+  c.setTable(tt);
+  c.setPath(d_mainPath);
+  c.setCircuitName(graph->getName());
+  c.generate(i_param.getMakeGraphML());
 }
 
 void DataBaseGenerator::generateDataBaseRandLevel(
