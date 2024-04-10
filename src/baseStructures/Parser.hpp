@@ -18,6 +18,7 @@ public:
       std::string i_expr
   );
   bool parse(const std::string& i_expr);
+  VertexPtr parseToVertex(const std::string& i_expr);
   bool parseAll();
 
 private:

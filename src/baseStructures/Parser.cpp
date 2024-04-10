@@ -255,10 +255,8 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
         } else {
           std::string prev = doneOperations.top();
 
-          VertexPtr inp = inputsByCreatedVertex[prev].top();
-          while (!operationByCreatedVertex.empty()) {
-            
-          }
+          VertexPtr   inp  = inputsByCreatedVertex[prev].top();
+          while (!operationByCreatedVertex.empty()) {}
         }
       }
 
@@ -268,6 +266,14 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
     }
   }
   return true;
+}
+
+VertexPtr Parser::parseToVertex(const std::string& i_expr) {
+  std::pair<int32_t, std::vector<std::string>> t = splitLogicExpression(i_expr);
+  if (t.first == -1)
+    return nullptr;
+  
+  
 }
 
 bool Parser::parseAll() {
