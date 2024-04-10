@@ -17,47 +17,49 @@ std::string fileName =
 // encapsulation.
 
 TEST(SettingsTest, TestingGetInstance) {
-    const std::string firstFileName = "first_settings.txt";
-    const std::string secondFileName = "second_settings.txt";
-    
-    std::ofstream firstFile(firstFileName);
-    firstFile << "Existing content";
-    firstFile.close();
+  const std::string firstFileName  = "first_settings.txt";
+  const std::string secondFileName = "second_settings.txt";
 
-    auto firstInstance = Settings::getInstance(firstFileName);
+  std::ofstream     firstFile(firstFileName);
+  firstFile << "Existing content";
+  firstFile.close();
 
-    std::ofstream secondFile(secondFileName);
-    secondFile << "Updated content";
-    secondFile.close();
+  auto          firstInstance = Settings::getInstance(firstFileName);
 
-    auto secondInstance = Settings::getInstance(secondFileName);
+  std::ofstream secondFile(secondFileName);
+  secondFile << "Updated content";
+  secondFile.close();
 
-    EXPECT_EQ(firstInstance, secondInstance);
+  auto secondInstance = Settings::getInstance(secondFileName);
 
-    std::remove(firstFileName.c_str());
-    std::remove(secondFileName.c_str());
+  EXPECT_EQ(firstInstance, secondInstance);
+
+  std::remove(firstFileName.c_str());
+  std::remove(secondFileName.c_str());
 }
 
 TEST(SettingsTest, LoadSettingsTest) {
-    // Путь к файлу настроек
-    std::string settingsPath = "settings123.dat";
+  // Путь к файлу настроек
+  std::string settingsPath = "settings123.dat";
 
-    // Убедимся, что файл настроек отсутствует
-    if (std::filesystem::exists(settingsPath)) {
-        std::filesystem::remove(settingsPath);
-    }
-
-    // Получаем экземпляр Settings
-    auto settings = Settings::getInstance("");
-
-    // Проверяем, что используются значения по умолчанию
-    EXPECT_EQ(settings->getNumThread(), 4); // Допустим, 4 — это значение по умолчанию
-
-    // Проверяем другие значения по умолчанию
-    EXPECT_EQ(settings->getPathNadezhda(), "./Generator/source/data/Nadezhda");
-
-    // После теста удаляем созданный файл настроек, если он появился
+  // Убедимся, что файл настроек отсутствует
+  if (std::filesystem::exists(settingsPath)) {
     std::filesystem::remove(settingsPath);
+  }
+
+  // Получаем экземпляр Settings
+  auto settings = Settings::getInstance("");
+
+  // Проверяем, что используются значения по умолчанию
+  EXPECT_EQ(
+      settings->getNumThread(), 4
+  );  // Допустим, 4 — это значение по умолчанию
+
+  // Проверяем другие значения по умолчанию
+  EXPECT_EQ(settings->getPathNadezhda(), "./Generator/source/data/Nadezhda");
+
+  // После теста удаляем созданный файл настроек, если он появился
+  std::filesystem::remove(settingsPath);
 }
 
 TEST(TestSettings, TestDefaultLoadSettings) {
