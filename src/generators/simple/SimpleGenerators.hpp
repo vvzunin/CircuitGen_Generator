@@ -61,9 +61,54 @@ public:
   SimpleGenerators(SimpleGenerators&& other)                 = delete;
   SimpleGenerators& operator=(SimpleGenerators&& other)      = delete;
 
+  /// @brief cnfFromTruthTable accepts a truth table as an input in the form of
+  /// a Truth Table object and returns a vector of rows representing an
+  /// expression in the form of a conjunctive normal form (KNF) that
+  /// corresponds to this truth table. The conjunctive normal form form
+  /// represents a logical expression in the form of a conjunction of
+  /// disjunctions
+  /// @param i_table This is an object of the Truth Table type, which is a
+  /// truth table. The truth table consists of a set of rows, where each row
+  /// represents a possible combination of variable values in a logical
+  /// expression, and each column represents the value of a variable in that
+  /// combination.
+  /// @param i_tp This is a Boolean flag (true/false) that indicates whether
+  /// to add negation before variables that have the value "False" in the
+  /// truth table. If i_tp is set to true, negation will be added to the
+  /// variables with the value "False". If i_tp is set to false, the
+  /// negation will not be added. This allows you to choose between the
+  /// representation of the truth table in KNF or in disjunctive normal
+  /// form (DNF)
+  /// @return a vector of strings representing an expression in the form of
+  /// conjunctive normal form (KNF) corresponding to the input truth table
+  /// @code
+  /// // TO DO: Examples
+  /// @endcode
+
   std::vector<std::string>
                 cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
-
+  
+  /// @brief generatorRandLevel creates an oriented graph (represented by
+  /// an OrientedGraph object) with a given level of complexity and number
+  /// of elements. The graph is a circuit consisting of logic gates, inputs
+  /// and outputs
+  /// The method starts by creating graph inputs (variables). Then he gradually
+  /// adds levels with valves to the graph, while the number of valves at each
+  /// level is randomly selected within the specified limits. For each valve,
+  /// the type of operation is randomly selected from a predefined set, then
+  /// the corresponding valve object is created and added to the graph. At the
+  /// end, the method adds outputs from the graph, connecting them to the last
+  /// level of the gates
+  /// @param i_minLevel The minimum level of complexity of the graph???
+  /// @param i_maxLevel The maximum level of complexity of the graph. If the
+  /// value is set to 0, only the minimum level will be used
+  /// @param i_minElements The minimum number of elements (valves) at each
+  /// level
+  /// @param i_maxElements The maximum number of elements (valves) at each
+  /// level
+  /// @param i_inputs The number of inputs to the graph
+  /// @param i_outputs The number of exits from the graph
+  
   OrientedGraph generatorRandLevel(
       int i_minLevel,
       int i_maxLevel,
