@@ -141,7 +141,49 @@ std::vector<std::pair<Key, Value>>
             sortDictByValue(const std::map<Key, Value>& i_dict, bool up = true);
 // TODO: ToEnum
 // TODO: if need LineReader
+
+/// @brief removeSpaces Removes spaces, tabs, and newline characters from a
+/// string
+/// @param i_s The string to remove the whitespace characters from
+/// @return A string without spaces
+/// @code
+/// // The original string with whitespace characters
+/// std::string inputString  = "  Hello\tWorld\n!";
+/// // Removing whitespace characters from a string
+/// std::string resultString = AuxMethods::removeSpaces(inputString);
+/// Output of the result
+/// std::cout << "Original string: " << inputString << std::endl;
+/// std::cout << "String without spaces: " << resultString << std::endl;
+/// @endcode
+
 std::string removeSpaces(const std::string& i_s);
+
+/// @brief skipSpaces Skips whitespace characters in the string starting
+/// from the specified position. By default - 0
+/// @param i_s The line in which to skip the whitespace characters
+/// @param i_start The starting position from which to start searching for
+/// whitespace characters.
+/// @return The index of the first character that is not whitespace, or the
+/// index outside the line,
+/// @code
+/// std::string str = "    \t\nHello, world!";
+/// int startIndex    = 0;
+/// // Skip the whitespace characters in the string
+/// int nonSpaceIndex = AuxMethods::skipSpaces(str, startIndex);
+/// // Output the result
+/// if (nonSpaceIndex < str.size())
+/// {
+///  std::cout << "The first non-whitespace character is found by the index: ";
+///  std::cout << nonSpaceIndex << std::endl;
+///  std::cout <<"Symbol: " << str[nonSpaceIndex] << std::endl;
+/// }
+/// else
+/// {
+///  std::cout << "The string consists entirely of whitespace characters.";
+///  std::endl;
+/// }
+/// @endcode
+
 int         skipSpaces(const std::string& i_s, int i_start = 0);
 // TODO: if need CopyDirectory
 
