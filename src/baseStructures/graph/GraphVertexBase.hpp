@@ -9,6 +9,9 @@
 #include "OrientedGraph.hpp"
 #include "settings/Settings.hpp"
 
+/// @file GraphVertexBase.hpp
+/// TODO: crashes add destructor call for virtual ~GraphVertexBase()
+
 class OrientedGraph;  // Проблема циклического определения
 
 /// class GraphVertexBase

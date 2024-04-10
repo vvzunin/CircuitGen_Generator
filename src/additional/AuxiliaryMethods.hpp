@@ -6,6 +6,11 @@
 #include <utility>
 #include <vector>
 
+/// @file AuxiliaryMethods.hpp
+/// TODO: ToEnum
+/// TODO: if need LineReader
+/// TODO: if need CopyDirectory
+
 /// namespace AuxMethods It was created to organize a set of auxiliary
 /// functions and methods that can be used in various parts of a
 /// software project
