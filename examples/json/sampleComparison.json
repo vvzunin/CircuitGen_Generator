@@ -5,7 +5,7 @@
     "id": 2,
     "type_of_generation": "Comparison",
     "min_in": 4,
-    "max_in": 5,
+    "max_in": 4,
     "min_out": 4,
     "max_out": 5,
     "repeat_n": 1,
