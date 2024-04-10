@@ -108,6 +108,34 @@ std::vector<int>   getRandomIntList(
       bool repite = false
   );
 
+/// @brief sortDictByValue Sorting the associative container by values and
+/// returning sorted key-value pairs as a vector. Sorting can be performed both
+/// in ascending and descending order of values
+/// @tparam Key The key type of the associative container
+/// @tparam Value The value type of the associative container
+/// @param i_dict A constant reference to an associative container that needs
+/// to be sorted by values
+/// @param up If `true`, the sorting takes place in ascending order, otherwise
+/// in descending order
+/// @return A vector of key-value pairs containing dictionary elements sorted
+/// by values
+/// @code
+/// std::map<std::string, int> myDict;
+/// myDict["apple"]  = 5;
+/// myDict["banana"] = 3;
+/// myDict["orange"] = 7;
+/// // Sorting the dictionary by values in ascending order
+/// std::vector<std::pair<std::string, int>> sortedPairs =
+/// AuxMethods::sortDictByValue(myDict, true);
+
+/// // Output sorted key-value pairs
+/// std::cout << "Sorted dictionary by value in ascending order:" << std::endl;
+/// for (const auto& pair : sortedPairs) {
+/// std::cout << pair.first << ": " << pair.second << std::endl;
+/// }
+/// @endcode
+
+
 template<typename Key, typename Value>
 std::vector<std::pair<Key, Value>>
             sortDictByValue(const std::map<Key, Value>& i_dict, bool up = true);
