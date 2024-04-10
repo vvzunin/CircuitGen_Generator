@@ -107,18 +107,18 @@ private:
             tt = ttp.getChronosomeType();
 
             SimpleGenerators tftt;
-            std::vector<std::pair<std::string, std::vector<std::string>>> circs;
+            std::vector<std::pair<std::string, GraphPtr>> circs;
             circs.push_back({ d_settings->getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, true) });
             circs.push_back({ d_settings->getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, false) });
 
             for (const auto& nameexpr : circs)
             {
                 std::string name = nameexpr.first;
-                std::vector<std::string> expr = nameexpr.second;
-                Parser pCNFT(expr);
-                pCNFT.parseAll();
-                GraphPtr graph = pCNFT.getGraph();
-                Circuit c(graph, expr);
+                GraphPtr graph = nameexpr.second;
+                // Parser pCNFT(expr);
+                // pCNFT.parseAll();
+                // GraphPtr graph = pCNFT.getGraph();
+                Circuit c(graph);
                 c.setTable(tt);
                 c.setPath(d_mainPath + "Genetic/");
                 c.setCircuitName(name);
