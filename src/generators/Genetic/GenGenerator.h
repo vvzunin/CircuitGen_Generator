@@ -108,8 +108,8 @@ private:
 
             SimpleGenerators tftt;
             std::vector<std::pair<std::string, std::vector<std::string>>> circs;
-            circs.push_back({ d_settings->getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, true) });
-            circs.push_back({ d_settings->getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, false) });
+            //circs.push_back({ d_settings->getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, true) });
+            //circs.push_back({ d_settings->getGenerationMethodPrefix("Genetic") + std::to_string(d_foldersCount++), tftt.cnfFromTruthTable(tt, false) });
 
             for (const auto& nameexpr : circs)
             {

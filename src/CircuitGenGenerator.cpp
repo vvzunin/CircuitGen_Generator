@@ -404,9 +404,6 @@ void runGenerationFromJson(std::string json_path) {
       // ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
     }
 
-    DataBaseGeneratorParameters dbgp(
-        minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp
-    );
     if (static_cast<std::string>(data["type_of_generation"])
                   .find("Subtractor") != std::string::npos) {
         if (!(data.contains("overflowIn") || data.contains("overflowOut") || data.contains("sub")))
