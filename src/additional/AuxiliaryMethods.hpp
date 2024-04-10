@@ -1,3 +1,5 @@
+#pragma once
+#include <circuit/Circuit.hpp>
 
 #include <cstdint>
 #include <fstream>

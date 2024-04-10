@@ -57,6 +57,22 @@ set(SOURCES
   src/database/DataBaseGenerator.cpp
   src/database/DataBaseGeneratorParameters.cpp
   src/generators/simple/SimpleGenerators.cpp
+  src/generators/Genetic/GeneticParameters.cpp
+  src/generators/Genetic/GenGenerator.h
+  src/generators/Genetic/Chronosome.h
+  src/generators/Genetic/ChronosomeType.h
+  src/generators/Genetic/Selections/Selections.h
+  src/generators/Genetic/Selections/SelectionParameters.cpp
+  src/generators/Genetic/Selections/SelectionsTruthTable.h
+  src/generators/Genetic/Recombination/Recombinations.h
+  src/generators/Genetic/Recombination/RecombinationParameters.cpp
+  src/generators/Genetic/Recombination/RecombinationsTruthTable.cpp
+  src/generators/Genetic/Parents/Parents.h
+  src/generators/Genetic/Parents/ParentsParameters.cpp
+  src/generators/Genetic/Parents/ParentsTruthTable.hpp
+  src/generators/Genetic/Mutations/Mutation.cpp
+  src/generators/Genetic/Mutations/MutationParameters.cpp
+  src/generators/Genetic/Mutations/MutationTruthTable.cpp
   src/settings/Settings.cpp
 )
 

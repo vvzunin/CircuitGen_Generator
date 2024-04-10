@@ -16,6 +16,8 @@
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
 #include <generators/simple/SimpleGenerators.hpp>
+#include <generators/Genetic/GenGenerator.h>
+#include <generators/Genetic/GeneticParameters.h>
 
 using namespace std::chrono;
 using namespace Threading;
@@ -243,17 +245,15 @@ void DataBaseGenerator::generateDataBaseNumOperations(
 }
 
 void DataBaseGenerator::generateDataBaseGenetic(
-    const GenerationParameters& i_param
-) {
-  // i_param.getGenetic().setInputs(i_param.getInputs());
-  // i_param.getGenetic().setOutputs(i_param.getOutputs());
+    const GenerationParameters &i_param) {
+  i_param.getGenetic().setInputs(i_param.getInputs());
+  i_param.getGenetic().setOutputs(i_param.getOutputs());
 
-  // GeneticGenerator<TruthTable, TruthTableParameters>
-  // gg(GeneticParameters(i_param.getGenetic()),
-  //                                                       {i_param.getInputs(),
-  //                                                       i_param.getOutputs()},
-  //                                                       d_mainPath);
-  // gg.generate();
+  GeneticGenerator<TruthTable, TruthTableParameters> gg(GeneticParameters(i_param.getGenetic()),
+                                                        {i_param.getInputs(),
+                                                        i_param.getOutputs()},
+                                                        d_mainPath);
+  gg.generate();
 }
 
 void DataBaseGenerator::generateDataBaseSummator(
