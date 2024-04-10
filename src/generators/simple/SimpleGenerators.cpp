@@ -132,15 +132,19 @@ VertexPtr SimpleGenerators::multipleVerteciesToOne(
 
         // if we have less elements than we can add, and our logical element
         // has too big gates number, move to lower
-        while (pos >= 0
-               && (curLayout.size() - k) < d_gatesInputsInfo[operation][pos]) {
-          --pos;
+        int npos = pos;
+        while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
+          --npos;
         }
-        pos     += pos == -1;
+        // move if is neccesary
+        npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
+        pos   = (npos < pos ? npos : pos);
+
         curSize = 0;
       }
     }
 
+    // if we did not fill all gates
     if (curSize > 1) {
       // if we have less elements than we can add, and our logical element
       // has too big gates number, move to lower
@@ -150,7 +154,7 @@ VertexPtr SimpleGenerators::multipleVerteciesToOne(
       }
       // move if is neccesary
       npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
-      pos  = (npos < pos ? npos : pos);
+      pos   = (npos < pos ? npos : pos);
 
       while (curSize < d_gatesInputsInfo[operation][pos]) {
         graph->addEdge(x_input, oper);
@@ -323,8 +327,8 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
         VertexPtr newVertex = graph->addGate(logOper[choice]);
         graph->addEdges(
-            {graph->getVerticeByIndex(child2),
-             graph->getVerticeByIndex(child1)},
+            {graph->getVerticeByIndex(child2), graph->getVerticeByIndex(child1)
+            },
             newVertex
         );
       }
