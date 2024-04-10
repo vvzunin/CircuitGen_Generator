@@ -11,6 +11,12 @@
 #include <limits.h>
 #include <settings/Settings.hpp>
 
+/// @file SimpleGenerators.hpp
+/// TO DO: Description generatorNumOperation
+///
+/// 
+
+
 using GatesInfo = std::map<Gates, std::vector<int>>;
 
 
@@ -117,6 +123,41 @@ public:
       int i_inputs,
       int i_outputs
   );
+
+  /// @brief generatorRandLevelExperimental The method generates a random level
+  /// of complexity of the graph within the specified boundaries. After that,
+  /// the method adds input vertices (variables) to the graph. Next, there is a
+  /// step-by-step addition of levels with gates (logical operations) to the
+  /// graph. Each level can contain a different number of gates, randomly
+  /// selected within the specified boundaries. Also, at each level, the type
+  /// of operation for each valve is randomly selected. The method uses some
+  /// additional algorithms to select parent vertices for each gate to provide
+  /// more diverse graphs. In particular, at each level, the algorithm randomly
+  /// selects parent vertices from existing vertices, and the vertices are
+  /// selected based on their location in the graph, which increases the
+  /// flexibility of generation. At the end, the method adds output vertices
+  /// (outputs) from the graph, connecting them to the last level of the gates
+  /// @param i_minLevel The minimum level of complexity of the graph.
+  /// The difficulty level determines the number of levels in the graph.
+  /// The more levels there are, the more complex the scheme becomes
+  /// @param i_maxLevel The maximum level of complexity of the graph.
+  /// If the value is set to 0, only the minimum level will be used
+  /// @param i_minElements The minimum number of elements (valves) at each
+  /// level
+  /// @param i_maxElements The maximum number of elements (valves) at each
+  /// level
+  /// @param i_inputs The number of inputs to the graph
+  /// @param i_outputs The number of exits from the graph
+  /// @return the created OrientedGraph, which is a circuit with logic gates,
+  /// inputs and outputs
+  /// @code
+  /// // TO DO: Examples
+  /// @endcode
+  /// @throw std::invalid_argument. The method starts by checking the input
+  /// parameters for correctness: if the minimum level is greater than the
+  /// maximum or the minimum number of elements is greater than the maximum,
+  /// the method throws an exception std::invalid_argument.
+
   OrientedGraph generatorRandLevelExperimental(
       u_int32_t i_minLevel,
       u_int32_t i_maxLevel,
@@ -125,6 +166,18 @@ public:
       u_int32_t i_inputs,
       u_int32_t i_outputs
   );
+
+  /// @brief generatorNumOperation TO DO: Description algorithm
+  /// 
+  /// @param i_input The number of input vertices (variables) in the graph
+  /// @param i_output The number of output vertices (functions) in the graph
+  /// @param i_logicOper A dictionary containing a set of logical operations
+  /// (gates) and their numbers that can be used to generate a graph
+  /// @param i_leaveEmptyOut A Boolean flag indicating whether to leave the
+  /// output vertices empty if the number of output vertices is greater than
+  /// the number of logical operations in the graph. If true, the remaining
+  /// output vertices will remain empty, if false, they will be deleted
+  /// @return the created OrientedGraph
 
   OrientedGraph generatorNumOperation(
       int                  i_input,
