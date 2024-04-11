@@ -14,6 +14,7 @@ enum GenerationTypes {
   Encoder,
   Parity,
   Subtractor,
+  Multiplexer,
   Demultiplexer,
   Multiplier,
   Decoder,

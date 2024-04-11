@@ -106,8 +106,6 @@ public:
   void setCompare2(bool i_compare2) { d_compare2 = i_compare2; }
 };
 
-class GeneratorEncoderParameters {};
-
 class GeneratorSubtractorParameters {
 public:
   bool getOverFlowIn() { return d_OverFlowIn; }
@@ -122,8 +120,6 @@ private:
   bool d_OverFlowOut = false;
   bool d_sub         = false;
 };
-
-class GeneratorDecoderParameters {};
 
 class GeneratorALUParameters {
 public:
@@ -258,14 +254,8 @@ public:
   GeneratorComparisonParameters getComparison() const {
     return d_generatorComparisonParameters;
   }
-  GeneratorEncoderParameters getEncoder() const {
-    return d_generatorEncoderParameters;
-  }
   GeneratorSubtractorParameters getSubtractor() const {
     return d_generatorSubtractorParameters;
-  }
-  GeneratorDecoderParameters getDecoder() const {
-    return d_generatorDecoderParameters;
   }
   GeneratorALUParameters getALU() const { return d_generatorALUParameters; }
   GeneticParameters getGenetic() const { return d_geneticParameters; }
@@ -412,9 +402,7 @@ private:
   GeneratorNumOperationParameters         d_generatorNumOperationParameters;
   GeneratorSummatorParameters             d_generatorSummatorParameters;
   GeneratorComparisonParameters           d_generatorComparisonParameters;
-  GeneratorEncoderParameters              d_generatorEncoderParameters;
   GeneratorSubtractorParameters           d_generatorSubtractorParameters;
-  GeneratorDecoderParameters              d_generatorDecoderParameters;
   GeneratorALUParameters                  d_generatorALUParameters;
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };

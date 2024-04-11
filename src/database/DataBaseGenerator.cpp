@@ -337,6 +337,20 @@ void DataBaseGenerator::generateDataBaseSubtractor(
   c.generate(i_param.getMakeGraphML());
 }
 
+void DataBaseGenerator::generateDataBaseMultiplexer(
+        const GenerationParameters& i_param
+) {
+    SimpleGenerators sg(i_param.getSeed());
+    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+    int           i_bits = i_param.getInputs();
+    GraphPtr graph  = sg.generatorMultiplexer(i_bits);
+    Circuit       c(graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(i_param.getName());
+    c.generate(i_param.getMakeGraphML());
+}
+
 void DataBaseGenerator::generateDataBaseDemultiplexer(
     const GenerationParameters& i_param
 ) {
@@ -453,6 +467,12 @@ std::function<void(const GenerationParameters&)>
         &DataBaseGenerator::generateDataBaseSubtractor,
         this,
         std::placeholders::_1
+    );
+  if (i_methodName == "Multiplexer")
+    return std::bind(
+            &DataBaseGenerator::generateDataBaseMultiplexer,
+            this,
+            std::placeholders::_1
     );
   if (i_methodName == "Demultiplexer")
     return std::bind(

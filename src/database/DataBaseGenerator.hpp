@@ -36,6 +36,7 @@ private:
   void generateDataBaseEncoder(const GenerationParameters& i_param);
   void generateDataBaseParity(const GenerationParameters& i_param);
   void generateDataBaseSubtractor(const GenerationParameters& i_param);
+  void generateDataBaseMultiplexer(const GenerationParameters& i_param);
   void generateDataBaseDemultiplexer(const GenerationParameters& i_param);
   void generateDataBaseMultiplier(const GenerationParameters& i_param);
   void generateDataBaseDecoder(const GenerationParameters& i_param);

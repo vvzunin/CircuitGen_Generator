@@ -91,6 +91,7 @@ public:
       bool i_sub,
       bool act = false
   );
+  GraphPtr generatorMultiplexer(int i_bits);
   GraphPtr generatorDemultiplexer(int i_bits);
   GraphPtr generatorMultiplier(int i_bits, bool act = false);
   GraphPtr generatorDecoder(int i_bits);

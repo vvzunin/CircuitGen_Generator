@@ -1041,6 +1041,68 @@ GraphPtr SimpleGenerators::generatorSubtractor(
   return graph;
 }
 
+GraphPtr SimpleGenerators::generatorMultiplexer(int i_bits){
+    GraphPtr    graph(new OrientedGraph);
+    VertexPtr output_f = graph->addOutput("f");
+    std::vector<VertexPtr> inputs_x;
+    int                              k       = 0;
+    for (int t = 0; t <= i_bits; t++) {
+        if (i_bits - 1 >= std::pow(2, t))
+            k++;
+    }
+
+    std::vector<std::string>                      F(i_bits);
+    std::vector<VertexPtr> ands(i_bits);
+    std::vector<std::string>                      S(k);
+    std::vector<VertexPtr> Sp(k);
+    std::vector<VertexPtr> NSp(k);
+    std::vector<std::string>                      Z(i_bits);
+    std::vector<VertexPtr> Zp(i_bits);
+
+    if (i_bits > 1) {
+        //механизм создания управляющих входов и их инверсий
+        for (int p = 0; p < k; p++) {
+            S[p]   = std::to_string(p);
+            Sp[p]  = graph->addInput("a" + S[p]);
+            // graph->addVertex("not a" + S[p], "not", "not a" + S[p]);
+            NSp[p] = graph->addGate(Gates::GateNot, "not_a" + S[p]);
+            graph->addEdge(Sp[p], NSp[p]);
+        }
+        //механизм создания входов
+        for (int i = 0; i < i_bits; i++) {
+            Z[i]  = std::to_string(i);
+            Zp[i] = graph->addInput("x" + Z[i]);
+            F[i]  = std::bitset<8>(i).to_string();
+        }
+        //механизм создания связей между входами и and
+        for (int i = 0; i < i_bits; i++) {
+            ands[i] = graph->addGate(Gates::GateAnd, "and_for_or_" + Z[i]);
+            graph->addEdge(Zp[i], ands[i]);
+        }
+
+        for (int i = 0; i < i_bits; i++) {
+            int len = F[i].size();
+            for (int w = 0; w < k; w++) {
+                if (len < w + 1) {
+                    graph->addEdge(NSp[w], ands[i]);
+                } else {
+                    char u = F[i][len - w - 1];
+                    if (u == '1') {
+                        graph->addEdge(Sp[w], ands[i]);
+                    } else {
+                        graph->addEdge(NSp[w], ands[i]);
+                    }
+                }
+            }
+        }
+        VertexPtr common_or = graph->addGate(Gates::GateOr, "or_for_output");
+        graph->addEdges(ands, common_or);
+        graph->addEdge(common_or, output_f);
+    } else
+        std::cout << "Недостаточно входных сигналов" << std::endl;
+    return graph;
+}
+
 GraphPtr SimpleGenerators::generatorDemultiplexer(int i_bits) {
   // i_bits - количество выходных сигналов, то есть количество х
   // f - значение функции на входе
@@ -1109,7 +1171,7 @@ GraphPtr SimpleGenerators::generatorDemultiplexer(int i_bits) {
       }
     }
   } else
-    std::cout << "Недостаточно входных сигналов" << std::endl;
+    std::cout << "Недостаточно выходных сигналов" << std::endl;
   return graph;
 }
 

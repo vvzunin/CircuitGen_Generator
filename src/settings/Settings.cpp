@@ -209,6 +209,8 @@ std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const {
     return "CCGTCM";
   if (i_s == "Demultiplexer")
     return "CCGTCDMP";
+  if (i_s == "Multiplexer")
+    return "CCGTCMP";
   if (i_s == "Decoder")
     return "CCGDCR";
   if (i_s == "Genetic")
