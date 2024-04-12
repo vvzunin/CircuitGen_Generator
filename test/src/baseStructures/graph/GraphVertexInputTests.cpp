@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 
 /*
-  Need to add calculateHashTest, another test UpdateLevelTest
+  Need to add calculateHashTest, another UpdateLevelTest
   Need to remake RemoveVertexToOutConnections
 */
 
@@ -102,6 +102,7 @@ TEST(TestUpdateValue, CorrectUpdate) {
   EXPECT_EQ(input1.getLevel(), 3);
 
   GraphVertexInput input5;
+  input1.addVertexToInConnections(std::make_shared<GraphVertexInput>(input5));
   input1.updateLevel();
   EXPECT_EQ(input1.getLevel(), 3);
 }
