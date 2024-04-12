@@ -5,7 +5,7 @@
 
 #include <gtest/gtest.h>
 /*
-  Need to add toGrapMl, toVerilog
+  Need to add toGrapMlTest, toVerilogTest
   Need to realize getVerticesByLevel, needToUpdateLevel, updateLevels,
   getMaxLevel
 
