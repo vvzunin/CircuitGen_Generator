@@ -106,7 +106,7 @@ TEST(TestUpdateValue, CorrectUpdate) {
   EXPECT_EQ(input1.getLevel(), 3);
 }
 
-// ----
+// -----
 
 TEST(TestSetName, InputCorrectName) {
   GraphVertexInput input;

@@ -225,6 +225,19 @@ target_include_directories(
 )
 add_test(NAME GraphVertexInputTests COMMAND CircuitGenGenerator_test_GraphVertexInputTests)
 
+# Test GraphVertexConstantTests
+add_executable(CircuitGenGenerator_test_GraphVertexConstantTests src/baseStructures/graph/GraphVertexConstantTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_GraphVertexConstantTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GraphVertexConstantTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_GraphVertexConstantTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GraphVertexConstantTests COMMAND CircuitGenGenerator_test_GraphVertexConstantTests)
+
+
 # ---- End-of-file commands ----
 
 add_folders(Test)
