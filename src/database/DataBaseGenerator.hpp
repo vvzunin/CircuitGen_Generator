@@ -4,6 +4,7 @@
 #include <functional>
 
 #include <settings/Settings.hpp>
+#include <additional/RandomGeneratorWithSeed.hpp>
 
 #include "DataBaseGeneratorParameters.hpp"
 
@@ -37,4 +38,6 @@ private:
   std::function<void(const GenerationParameters&)> getGenerateMethod(
       const std::string& i_methodName
   );
+
+  RandomGeneratorWithSeed d_randGenerator;
 };

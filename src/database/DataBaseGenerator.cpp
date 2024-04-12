@@ -8,7 +8,6 @@
 
 #include "DataBaseGenerator.hpp"
 
-#include <additional/AuxiliaryMethods.hpp>
 #include <additional/filesTools/FilesTools.hpp>
 #include <additional/threadPool/ThreadPool.hpp>
 #include <baseStructures/Parser.hpp>
@@ -75,8 +74,10 @@ void DataBaseGenerator::generateType(
 
   std::vector<std::uint_fast32_t> seeds(i_dbgp.getEachIteration());
 
-  auto                            randGeneratorLambda = []() {
-    return AuxMethods::getRandInt(0, INT_MAX);
+  d_randGenerator.setSeed(d_parameters.getGenerationParameters().getSeed());
+
+  auto randGeneratorLambda = [&]() {
+    return d_randGenerator.getRandInt(0, INT_MAX);
   };
   // we create int sequence, which would give us diffetent seeds for each repeat
   std::generate(seeds.begin(), seeds.end(), randGeneratorLambda);
@@ -107,8 +108,6 @@ void DataBaseGenerator::generateType(
           ++d_dirCount;
           ++iter;
         }
-
-        pool.wait();
       } else {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           // TODO: it is that Rustam told about iteration?
@@ -129,6 +128,8 @@ void DataBaseGenerator::generateType(
       }
     }
   }
+
+  pool.wait();
 }
 
 void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
@@ -136,7 +137,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
 ) {
   TruthTable       tt(i_param.getInputs(), i_param.getOutputs(), 0.0);
 
-  SimpleGenerators tftt;
+  SimpleGenerators tftt(i_param.getSeed());
   tftt.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   GraphPtr graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFT());
