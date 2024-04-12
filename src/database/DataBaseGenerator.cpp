@@ -15,9 +15,9 @@
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
-#include <generators/simple/SimpleGenerators.hpp>
-#include <generators/Genetic/GenGenerator.h>
 #include <generators/Genetic/GeneticParameters.h>
+#include <generators/Genetic/GenGenerator.h>
+#include <generators/simple/SimpleGenerators.hpp>
 
 using namespace std::chrono;
 using namespace Threading;
@@ -246,14 +246,16 @@ void DataBaseGenerator::generateDataBaseNumOperations(
 }
 
 void DataBaseGenerator::generateDataBaseGenetic(
-    const GenerationParameters &i_param) {
+    const GenerationParameters& i_param
+) {
   i_param.getGenetic().setInputs(i_param.getInputs());
   i_param.getGenetic().setOutputs(i_param.getOutputs());
 
-  GeneticGenerator<TruthTable, TruthTableParameters> gg(GeneticParameters(i_param.getGenetic()),
-                                                        {i_param.getInputs(),
-                                                        i_param.getOutputs()},
-                                                        d_mainPath);
+  GeneticGenerator<TruthTable, TruthTableParameters> gg(
+      GeneticParameters(i_param.getGenetic()),
+      {i_param.getInputs(), i_param.getOutputs()},
+      d_mainPath
+  );
   gg.generate();
 }
 
@@ -306,17 +308,17 @@ void DataBaseGenerator::generateDataBaseEncoder(
 }
 
 void DataBaseGenerator::generateDataBaseParity(
-        const GenerationParameters& i_param
+    const GenerationParameters& i_param
 ) {
-    SimpleGenerators sg(i_param.getSeed());
-    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    int           bits  = i_param.getInputs();
-    GraphPtr graph = sg.generatorParity(bits);
-    Circuit       c(graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate(i_param.getMakeGraphML());
+  int      bits  = i_param.getInputs();
+  GraphPtr graph = sg.generatorParity(bits);
+  Circuit  c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate(i_param.getMakeGraphML());
 }
 
 void DataBaseGenerator::generateDataBaseSubtractor(
@@ -338,17 +340,17 @@ void DataBaseGenerator::generateDataBaseSubtractor(
 }
 
 void DataBaseGenerator::generateDataBaseMultiplexer(
-        const GenerationParameters& i_param
+    const GenerationParameters& i_param
 ) {
-    SimpleGenerators sg(i_param.getSeed());
-    sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-    int           i_bits = i_param.getInputs();
-    GraphPtr graph  = sg.generatorMultiplexer(i_bits);
-    Circuit       c(graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate(i_param.getMakeGraphML());
+  int      i_bits = i_param.getInputs();
+  GraphPtr graph  = sg.generatorMultiplexer(i_bits);
+  Circuit  c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate(i_param.getMakeGraphML());
 }
 
 void DataBaseGenerator::generateDataBaseDemultiplexer(
@@ -357,9 +359,9 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int           i_bits = i_param.getOutputs();
+  int      i_bits = i_param.getOutputs();
   GraphPtr graph  = sg.generatorDemultiplexer(i_bits);
-  Circuit       c(graph);
+  Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
@@ -372,7 +374,7 @@ void DataBaseGenerator::generateDataBaseMultiplier(
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   GraphPtr graph = sg.generatorMultiplier(i_param.getInputs());
-  Circuit       c(graph);
+  Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
@@ -385,7 +387,7 @@ void DataBaseGenerator::generateDataBaseDecoder(
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   GraphPtr graph = sg.generatorDecoder(i_param.getInputs());
-  Circuit       c(graph);
+  Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
@@ -470,9 +472,9 @@ std::function<void(const GenerationParameters&)>
     );
   if (i_methodName == "Multiplexer")
     return std::bind(
-            &DataBaseGenerator::generateDataBaseMultiplexer,
-            this,
-            std::placeholders::_1
+        &DataBaseGenerator::generateDataBaseMultiplexer,
+        this,
+        std::placeholders::_1
     );
   if (i_methodName == "Demultiplexer")
     return std::bind(
@@ -488,21 +490,15 @@ std::function<void(const GenerationParameters&)>
     );
   if (i_methodName == "Decoder")
     return std::bind(
-        &DataBaseGenerator::generateDataBaseDecoder,
-        this,
-        std::placeholders::_1
+        &DataBaseGenerator::generateDataBaseDecoder, this, std::placeholders::_1
     );
   if (i_methodName == "Parity")
-      return std::bind(
-              &DataBaseGenerator::generateDataBaseParity,
-              this,
-              std::placeholders::_1
-      );
+    return std::bind(
+        &DataBaseGenerator::generateDataBaseParity, this, std::placeholders::_1
+    );
   if (i_methodName == "ALU")
     return std::bind(
-        &DataBaseGenerator::generateDataBaseALU,
-        this,
-        std::placeholders::_1
+        &DataBaseGenerator::generateDataBaseALU, this, std::placeholders::_1
     );
 
   std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;

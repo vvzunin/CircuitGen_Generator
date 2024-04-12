@@ -7,10 +7,12 @@
 // #include "../../../AuxiliaryMethods.h"
 
 // // std::vector<int> GetHemming(int i_t,
-// //                             std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population)
+// //                             std::vector<ChronosomeType<TruthTable,
+// TruthTableParameters>> i_population)
 // // {
 // //   int count = 0;
-// //   std::vector<std::vector<bool>> p1 = i_population[i_t].getChronosomeType().getOutTable();
+// //   std::vector<std::vector<bool>> p1 =
+// i_population[i_t].getChronosomeType().getOutTable();
 // //   std::map<int, int> dict;
 // //   std::vector<int> res;
 
@@ -19,7 +21,8 @@
 // //     if (i != i_t)
 // //     {
 // //       count = 0;
-// //       std::vector<std::vector<bool>> p2 = i_population[i].getChronosomeType().getOutTable();
+// //       std::vector<std::vector<bool>> p2 =
+// i_population[i].getChronosomeType().getOutTable();
 // //       for (int j = 0; j < p1.size(); ++j)
 // //       {
 // //         for (int k = 0; k < p1[0].size(); ++k)
@@ -32,8 +35,6 @@
 // //     }
 // //   }
 
-
-
 // //   for (const auto &[key, value] : AuxMethods::sortDictByValue(dict))
 // //     res.push_back(key);
 
@@ -44,12 +45,13 @@
 
 // // std::vector<int> ParentsPanmixia(
 // //   ParentsParameters i_parentsParameters,
-// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+// i_population
 // // )
 // // {
 // //   std::srand(std::time(0));
 // //   int parent1 = 0, parent2 = 0;
-  
+
 // //   while (i_population.size() > 2 && parent1 == parent2)
 // //   {
 // //     parent1 = rand() % i_population.size();
@@ -61,7 +63,8 @@
 
 // // std::vector<int> ParentsInbrinding(
 // //   ParentsParameters i_parentsParameters,
-// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+// i_population
 // // )
 // // {
 // //   std::srand(std::time(0));
@@ -74,7 +77,8 @@
 
 // // std::vector<int> ParentsOutbrinding(
 // //   ParentsParameters i_parentsParameters,
-// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+// i_population
 // // )
 // // {
 // //   std::srand(std::time(0));
@@ -87,7 +91,8 @@
 
 // // std::vector<int> ParentsTournament(
 // //   ParentsParameters i_parentsParameters,
-// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+// i_population
 // // )
 // // {
 // //   std::vector<int> beforeAdaptation = AuxMethods::getRandomIntList(
@@ -104,7 +109,8 @@
 
 // //   std::vector<int> res;
 
-// //   for (const auto &[key, value] : AuxMethods::sortDictByValue(adaptationIndex, false))
+// //   for (const auto &[key, value] :
+// AuxMethods::sortDictByValue(adaptationIndex, false))
 // //     res.push_back(key);
 // //   std::reverse(res.begin(), res.end());
 
@@ -114,7 +120,8 @@
 // // //TODO: is this ParentTournament???
 // // std::vector<int> ParentsRoulette(
 // //   ParentsParameters i_parentsParameters,
-// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+// i_population
 // // )
 // // {
 // //   return ParentsTournament(i_parentsParameters, i_population);

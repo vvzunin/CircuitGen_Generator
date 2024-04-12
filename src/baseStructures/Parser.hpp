@@ -11,7 +11,7 @@ public:
   // TODO: Переделать парсер под новую реализацию.
   Parser(const std::string& i_logExpression);
   Parser(const std::vector<std::string>& i_logExpressions);
-  GraphPtr                                 getGraph() const;
+  GraphPtr                                     getGraph() const;
   std::pair<int32_t, std::vector<std::string>> splitLogicExpression(
       std::string i_expr
   );
@@ -29,7 +29,7 @@ private:
   );
   bool inBrackets(
       const std::vector<std::pair<int32_t, int32_t>>& i_brackets,
-      int32_t                                     i_position
+      int32_t                                         i_position
   ) const;
   std::string deleteExtraSpaces(std::string i_s);
   std::map<std::string, std::shared_ptr<GraphVertexBase>> inputsByNames;

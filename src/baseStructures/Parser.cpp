@@ -10,7 +10,7 @@ std::string deleteDoubleSpaces(const std::string& s) {
   bool        isPrevSpace = false;
   for (auto c : s) {
     if (c != ' ') {
-      isPrevSpace  = false;
+      isPrevSpace = false;
       res         += c;
     } else {
       if (!isPrevSpace)
@@ -107,13 +107,13 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
       size_t index = i_expr.find(op);
       std::pair<bool, std::vector<std::pair<int32_t, int32_t>>> brackets =
           createBrackets(i_expr);
-      
+
       while (index != std::string::npos) {
         if (!inBrackets(brackets.second, index)) {
           std::vector<std::string> lst;
           std::string              newOp = d_settings->fromOperationsToName(op);
           lst.push_back(deleteExtraSpaces(newOp));
-          
+
           if (newOp == "not" || newOp == "buf")
             lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length()))
             );
@@ -124,7 +124,7 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
             lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length()))
             );
           }
-          
+
           return {index, lst};  // what?
         }
         index = i_expr.find(op, index + 1);

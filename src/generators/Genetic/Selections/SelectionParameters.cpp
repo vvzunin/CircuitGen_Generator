@@ -2,27 +2,23 @@
 
 #include "SelectionParameters.h"
 
-void SelectionParameters::setSelectionType (SelectionTypes i_selectionType)
-{
+void SelectionParameters::setSelectionType(SelectionTypes i_selectionType) {
   d_selectionType = i_selectionType;
 }
 
-SelectionTypes SelectionParameters::getSelectionType() const
-{
+SelectionTypes SelectionParameters::getSelectionType() const {
   return d_selectionType;
 }
 
-int SelectionParameters::getNumOfSurvivors() const
-{
+int SelectionParameters::getNumOfSurvivors() const {
   return d_numOfSurvivors;
 }
 
-void SelectionParameters::setNumOfSurvivors(int i_survivors)
-{
+void SelectionParameters::setNumOfSurvivors(int i_survivors) {
   d_numOfSurvivors = i_survivors;
 }
 
-bool SelectionParameters::operator== (const SelectionParameters& r) const
-{
-  return std::tie(d_selectionType, d_numOfSurvivors) == std::tie(r.d_selectionType, r.d_numOfSurvivors);
+bool SelectionParameters::operator==(const SelectionParameters& r) const {
+  return std::tie(d_selectionType, d_numOfSurvivors)
+      == std::tie(r.d_selectionType, r.d_numOfSurvivors);
 }

@@ -114,7 +114,7 @@ std::string GraphVertexGates::getVerilogString() const {
 
 std::string GraphVertexGates::toVerilog() {
   if (!d_inConnections.size()) {
-    std::cerr << "TODO: delete empty verticies" << std::endl;
+    std::cerr << "TODO: delete empty vertices" << std::endl;
     return "";
   }
   std::string basic = "assign " + d_name + " = ";
@@ -133,7 +133,7 @@ std::string GraphVertexGates::toVerilog() {
       || d_gate == Gates::GateXnor) {
     basic += "~ ( ";
 
-    end    = " )";
+    end   = " )";
   }
 
   for (size_t i = 0; i < d_inConnections.size() - 1; ++i) {

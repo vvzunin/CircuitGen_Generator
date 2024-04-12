@@ -42,19 +42,22 @@ public:
     return dis(d_gen);
   }
 
-  std::vector<int> getRandomIntList(int i_n, int i_minNumber,
-                                    int i_maxNumber, bool repite = false)
-  {
+  std::vector<int> getRandomIntList(
+      int  i_n,
+      int  i_minNumber,
+      int  i_maxNumber,
+      bool repite = false
+  ) {
     std::vector<int> randomNumbers;
 
     if (repite) {
       // Если повторения разрешены, просто генерируем числа.
       for (int i = 0; i < i_n; ++i) {
-              randomNumbers.push_back(getRandInt(i_minNumber, i_maxNumber, false));
+        randomNumbers.push_back(getRandInt(i_minNumber, i_maxNumber, false));
       }
-    } 
-    else {
-      // Если повторения запрещены, используем set для проверки существующих чисел.
+    } else {
+      // Если повторения запрещены, используем set для проверки существующих
+      // чисел.
       std::unordered_set<int> used;
       while (randomNumbers.size() < static_cast<size_t>(i_n)) {
         int number = getRandInt(i_minNumber, i_maxNumber, false);

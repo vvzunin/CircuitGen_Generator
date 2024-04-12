@@ -204,7 +204,7 @@ std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const {
   if (i_s == "Subtractor")
     return "CCGTCSB";
   if (i_s == "Parity")
-      return "CCGTCP";
+    return "CCGTCP";
   if (i_s == "Multiplier")
     return "CCGTCM";
   if (i_s == "Demultiplexer")

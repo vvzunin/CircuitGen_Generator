@@ -1,12 +1,14 @@
+#include <cmath>
 #include <string>
 #include <tuple>
-#include <cmath>
 
 #include "ChronosomeType.h"
+
 #include "../TruthTable.h"
 
 // template<typename Type, typename ParametersTypes>
-// ChronosomeType<Type, ParametersTypes>::ChronosomeType(const std::string i_name, const Type i_chronosome)
+// ChronosomeType<Type, ParametersTypes>::ChronosomeType(const std::string
+// i_name, const Type i_chronosome)
 // {
 //   this->d_chronosome = i_chronosome;
 //   this->d_name = i_name;
@@ -20,7 +22,8 @@
 // }
 
 // template<typename Type, typename ParametersTypes>
-// void ChronosomeType<Type, ParametersTypes>::setChronosomeType(const Type& i_chronosome)
+// void ChronosomeType<Type, ParametersTypes>::setChronosomeType(const Type&
+// i_chronosome)
 // {
 //   d_chronosome = i_chronosome;
 // }
@@ -35,7 +38,8 @@
 //       for (const auto& nucleosom : nucleosoms)
 //         if (nucleosom)
 //           numInt++;
-//     d_adaptationIndex = abs(0.5 - (numInt / (d_chronosome.size() * d_chronosome.getOutput())));
+//     d_adaptationIndex = abs(0.5 - (numInt / (d_chronosome.size() *
+//     d_chronosome.getOutput())));
 //   }
 // }
 
@@ -46,7 +50,8 @@
 // }
 
 // template<typename Type, typename ParametersTypes>
-// void ChronosomeType<Type, ParametersTypes>::setAdaptationIndex(double i_adaptationIndex)
+// void ChronosomeType<Type, ParametersTypes>::setAdaptationIndex(double
+// i_adaptationIndex)
 // {
 //   d_adaptationIndex = i_adaptationIndex;
 // }
@@ -58,7 +63,9 @@
 // }
 
 // template<typename Type, typename ParametersTypes>
-// bool ChronosomeType<Type, ParametersTypes>::operator== (const ChronosomeType<Type, ParametersTypes>& r) const
+// bool ChronosomeType<Type, ParametersTypes>::operator== (const
+// ChronosomeType<Type, ParametersTypes>& r) const
 // {
-//   return std::tie(d_adaptationIndex, d_chronosome, d_name) == std::tie(r.d_adaptationIndex, r.d_chronosome, r.d_name);
+//   return std::tie(d_adaptationIndex, d_chronosome, d_name) ==
+//   std::tie(r.d_adaptationIndex, r.d_chronosome, r.d_name);
 // }
