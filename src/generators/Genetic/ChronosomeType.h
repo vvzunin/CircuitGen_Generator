@@ -18,12 +18,12 @@ public:
     d_name = i_name;
     adaptationFunction();
   }
-  ChronosomeType(const ChronosomeType & r)
-    : d_chronosome(r.d_chronosome),
-      d_name(r.d_name),
-      d_adaptationIndex(r.d_adaptationIndex),
-      d_settings(Settings::getInstance("TruthTable"))
-  { }
+  // ChronosomeType(const ChronosomeType & r)
+  //   : d_chronosome(r.d_chronosome),
+  //     d_name(r.d_name),
+  //     d_adaptationIndex(r.d_adaptationIndex),
+  //     d_settings(Settings::getInstance("TruthTable"))
+  // { }
 
   const Type & getChronosomeType() const
   {
