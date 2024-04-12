@@ -138,7 +138,7 @@ VertexPtr SimpleGenerators::multipleVerteciesToOne(
         }
         // move if is neccesary
         npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
-        pos   = (npos < pos ? npos : pos);
+        pos  = (npos < pos ? npos : pos);
 
         curSize = 0;
       }
@@ -154,7 +154,7 @@ VertexPtr SimpleGenerators::multipleVerteciesToOne(
       }
       // move if is neccesary
       npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
-      pos   = (npos < pos ? npos : pos);
+      pos  = (npos < pos ? npos : pos);
 
       while (curSize < d_gatesInputsInfo[operation][pos]) {
         graph->addEdge(x_input, oper);
@@ -327,8 +327,8 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
         VertexPtr newVertex = graph->addGate(logOper[choice]);
         graph->addEdges(
-            {graph->getVerticeByIndex(child2), graph->getVerticeByIndex(child1)
-            },
+            {graph->getVerticeByIndex(child2),
+             graph->getVerticeByIndex(child1)},
             newVertex
         );
       }

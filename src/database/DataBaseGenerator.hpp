@@ -3,8 +3,8 @@
 
 #include <functional>
 
-#include <settings/Settings.hpp>
 #include <additional/RandomGeneratorWithSeed.hpp>
+#include <settings/Settings.hpp>
 
 #include "DataBaseGeneratorParameters.hpp"
 
