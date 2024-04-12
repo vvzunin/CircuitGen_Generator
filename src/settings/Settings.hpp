@@ -78,6 +78,27 @@ protected:
 public:
   Settings(Settings& other)                                   = delete;
   void                             operator=(const Settings&) = delete;
+
+  /// @getInstance Gets a single instance of the Settings class
+  /// The method provides creation and receipt of a single instance of the
+  /// Settings class with the specified value of the settings path. If an
+  /// instance already exists, the method returns a pointer to it,
+  /// otherwise it creates a new instance, loads the settings from the
+  /// file and returns a pointer to it.
+  /// @param i_value The value of the path to the settings
+  /// @return std::shared_ptr<Settings> A pointer to a single instance of
+  /// the Settings class
+  /// @code
+  /// // Creating a single instance of the Settings class, if it hasn't been
+  /// // created yet, and we get a pointer to it
+  /// std::shared_ptr<Settings>        settingsInstance =
+  /// Settings::getInstance("/path/to/settings");
+  /// // Now we can use the settings Instance object to access the methods
+  /// // and members of the Settings class
+  /// std::string datasetPath = settingsInstance->getDatasetPath();
+  /// std::cout << "Dataset path: " << datasetPath << std::endl;
+  /// @endcode
+
   static std::shared_ptr<Settings> getInstance(const std::string& i_value);
   void                             loadSettings();
   std::string                      getInstanceName() const;
