@@ -34,6 +34,10 @@ GraphPtr Parser::getGraph() const {
   return d_graph;
 }
 
+void Parser::setGatesInputsInfo(const GatesInfo& i_info) {
+  d_gatesInputsInfo = i_info;
+}
+
 std::pair<bool, std::vector<std::pair<int32_t, int32_t>>>
     Parser::createBrackets(const std::string& i_expr) {
   std::vector<std::pair<int32_t, int32_t>> brackets;
@@ -96,7 +100,7 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
     std::vector<std::string> operations =
         d_settings->fromOperationsToHierarchy(l);
 
-    for (const auto& op : operations) {
+    for (const auto& oper : operations) {
       // so, what was the problem
       // here we have been looking for a substr in string, substr was
       // an operation. Or has higher (I meen lower code number) priority,
@@ -104,32 +108,49 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
       // than xor. so, we can have two possible variants.
       // Check, if operation in fact is xor, not or, or just to
       // find firstly xor, than or. Was chosen second variant
-      size_t index = i_expr.find(op);
+      size_t index = i_expr.find(oper);
       std::pair<bool, std::vector<std::pair<int32_t, int32_t>>> brackets =
           createBrackets(i_expr);
+      std::vector<std::string> lst;
 
       while (index != std::string::npos) {
+        // if we have xor in fact, go to next iteration
+        if ((oper == "or" || oper == "nor") && index > 0
+            && i_expr[index - 1] == 'x') {
+          index = i_expr.find(oper, index + 1);
+          continue;
+        }
+
         if (!inBrackets(brackets.second, index)) {
-          std::vector<std::string> lst;
-          std::string              newOp = d_settings->fromOperationsToName(op);
+          std::string newOp = d_settings->fromOperationsToName(oper);
           lst.push_back(deleteExtraSpaces(newOp));
 
           if (newOp == "not" || newOp == "buf")
-            lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length()))
-            );
+            lst.push_back(deleteExtraSpaces(i_expr.substr(index + oper.length())
+            ));
           else if (newOp == "input" || newOp == "const")
             lst.push_back(deleteExtraSpaces(i_expr));
           else {
             lst.push_back(deleteExtraSpaces(i_expr.substr(0, index)));
-            lst.push_back(deleteExtraSpaces(i_expr.substr(index + op.length()))
-            );
+
+            i_expr = deleteExtraSpaces(i_expr.substr(index + oper.length()));
+            std::clog << i_expr.find(oper) << " " << i_expr << "\n";
+            int idx = i_expr.find(oper);
+            // now we are tyring to parse whole operations
+            if (idx != std::string::npos && !inBrackets(brackets.second, idx)) {
+              index = idx;
+              continue;
+            }
+            lst.push_back(i_expr);
           }
 
+          std::clog << newOp << "\n";
           return {index, lst};  // what?
         }
-        index = i_expr.find(op, index + 1);
+        index = i_expr.find(oper, index + 1);
       }
     }
+
     l++;
   }
   return {-1, {}};
@@ -208,6 +229,11 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
       if (tt.first == -1)
         return false;
 
+      for (auto i : tt.second) {
+        std::clog << i << ", ";
+      }
+      std::clog << "\n";
+
       if (tt.second[0] == "input") {
         // same protection from multiple inputs
         if (!inputsByNames.count(part))
@@ -268,12 +294,124 @@ bool Parser::parse(const std::string& i_expr)  // what? change true/false
   return true;
 }
 
+VertexPtr Parser::multipleVerteciesToOne(
+    std::vector<VertexPtr> curLayout,
+    Gates                  operation,
+    GraphPtr               graph
+) {
+  std::vector<VertexPtr> nextLayout;
+  int32_t                curSize = 0;
+
+  // Here we add operations in brackets
+  while (curLayout.size() != 1) {
+    curSize       = 0;
+
+    size_t    pos = d_gatesInputsInfo[operation].size() - 1;
+    VertexPtr x_input;
+    VertexPtr oper;
+
+    oper = graph->addGate(operation);
+    // iterate through i layout
+    for (size_t k = 0; k < curLayout.size(); ++k) {
+      x_input = curLayout[k];
+
+      graph->addEdge(x_input, oper);
+      ++curSize;
+
+      if (d_gatesInputsInfo[operation][pos] == curSize) {
+        nextLayout.push_back(oper);
+
+        // if we will have only one gate
+        // we do not create a new operation
+        if (k == (curLayout.size() - 2)) {
+          oper = curLayout.back();
+          // we save curSize for saving us from add
+          // new edges to oper
+          break;
+        } else if (k < curLayout.size() - 1) {
+          oper = graph->addGate(operation);
+        }
+
+        // if we have less elements than we can add, and our logical element
+        // has too big gates number, move to lower
+        int npos = pos;
+        while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
+          --npos;
+        }
+        // move if is neccesary
+        npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
+        pos   = (npos < pos ? npos : pos);
+
+        curSize = 0;
+      }
+    }
+
+    // if we did not fill all gates
+    if (curSize > 1) {
+      // if we have less elements than we can add, and our logical element
+      // has too big gates number, move to lower
+      int npos = pos;
+      while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
+        --npos;
+      }
+      // move if is neccesary
+      npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
+      pos   = (npos < pos ? npos : pos);
+
+      while (curSize < d_gatesInputsInfo[operation][pos]) {
+        graph->addEdge(x_input, oper);
+        ++curSize;
+      }
+    }
+
+    if (curSize)
+      nextLayout.push_back(oper);
+
+    // swap layouts
+    curLayout = nextLayout;
+    nextLayout.clear();
+  }
+
+  return curLayout.back();
+}
+
 VertexPtr Parser::parseToVertex(const std::string& i_expr) {
   std::pair<int32_t, std::vector<std::string>> t = splitLogicExpression(i_expr);
   if (t.first == -1)
     return nullptr;
-  
-  
+
+  if (t.second[0] == "output") {
+    std::vector<std::pair<int32_t, int32_t>> bl =
+        createBrackets(t.second[2]).second;
+    for (auto tl : bl)
+      if (tl.first == 0 && tl.second == t.second[2].size() - 1)
+        t.second[2] = t.second[2].substr(1, t.second[2].size() - 2);
+
+    std::pair<int32_t, std::vector<std::string>> tt =
+        splitLogicExpression(t.second[2]);
+    if (tt.first == -1)
+      return nullptr;
+
+    std::shared_ptr<GraphVertexBase> t1 = d_graph->addOutput(t.second[1]);
+    std::shared_ptr<GraphVertexBase> t2;
+    if (tt.second[0] == "input") {
+      // we need to stop duplication
+      // that's why we create a map, which do not declare input again
+      if (!inputsByNames.count(t.second[2])) {
+        inputsByNames[t.second[2]] = d_graph->addInput(t.second[2]);
+      }
+
+      t2 = inputsByNames[t.second[2]];
+    } else if (tt.second[0] == "const") {
+      t2 = d_graph->addConst(t.second[2][0], t.second[2]);
+    } else {
+      t2 = d_graph->addGate(d_settings->parseStringToGate(tt.second[0]));
+    }
+    d_graph->addEdge(t2, t1);
+
+    if (tt.second[0] != "input" && tt.second[0] != "const")
+      parse(t.second[2]);
+  }
 }
 
 bool Parser::parseAll() {
