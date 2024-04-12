@@ -83,7 +83,7 @@ std::string GraphVertexBase::getName() const {
 }
 
 void GraphVertexBase::setLevel(const unsigned i_level) {
-  d_name = i_level;
+  d_level = i_level;
 }
 
 unsigned GraphVertexBase::getLevel() const {
