@@ -27,6 +27,7 @@ endforeach(src ${SOURCES})
 
 message(${NEW_SOURCES})
 
+<<<<<<< HEAD
 # ---- Tests ----
 
 <<<<<<< HEAD
@@ -44,6 +45,8 @@ message(${NEW_SOURCES})
   #YosysUtilsTests.cpp
 
 >>>>>>> 0b964be80 (Add SimpleGeneratorsTests to CMakeLists.txt)
+=======
+>>>>>>> 02455df0c (Add GraphVertexOutputTests.cpp)
 # Test AuxiliaryMethodsTests
 
 configure_file(
@@ -236,6 +239,19 @@ target_include_directories(
     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
 )
 add_test(NAME GraphVertexConstantTests COMMAND CircuitGenGenerator_test_GraphVertexConstantTests)
+
+# Test GraphVertexOutputTests
+add_executable(CircuitGenGenerator_test_GraphVertexOutputTests src/baseStructures/graph/GraphVertexOutputTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_GraphVertexOutputTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GraphVertexOutputTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_GraphVertexOutputTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GraphVertexOutputTests COMMAND CircuitGenGenerator_test_GraphVertexOutputTests)
+
 
 
 # ---- End-of-file commands ----
