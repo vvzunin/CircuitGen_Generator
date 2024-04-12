@@ -168,9 +168,9 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationExchange(
         if (type == 0 || type == 2) {
           std::vector<std::vector<bool>> bin =
               i_population[z].getChronosomeType().getOutTable();
-          std::vector tmp = bin[k-1];
-          bin[k-1] = bin[k+1];
-          bin[k+1] = tmp;
+          std::vector tmp = bin[k - 1];
+          bin[k - 1]      = bin[k + 1];
+          bin[k + 1]      = tmp;
           i_population[z].setChronosomeType(TruthTable(
               i_population[z].getChronosomeType().getInput(),
               i_population[z].getChronosomeType().getOutput(),
