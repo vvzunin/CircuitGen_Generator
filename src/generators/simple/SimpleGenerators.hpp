@@ -23,6 +23,16 @@ using GatesInfo = std::map<Gates, std::vector<int>>;
 
 
 namespace {
+/// @addtogroup UnnamedNamespaces
+/// @{
+/// @file SimpleGenerators.hpp
+/// @brief maxValueInMap Find the maximum value in a map
+/// 
+/// @tparam T The type of the map keys
+/// @param i_map The map whose maximum value is to be found
+/// @return The maximum value in the map. If the map is empty, returns -1
+/// @note The function assumes that the map values are of type int
+/// @}
 template<typename T>
 int maxValueInMap(const std::map<T, int>& i_map) {
   if (i_map.size() == 0) {
