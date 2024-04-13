@@ -114,15 +114,15 @@ private:
     return val->first;
   }
 
-  std::pair<Gates, int> getRandomElement(const GatesInfo& i_info);
-  std::pair<Gates, int> getRandomElement(u_int32_t i_gatesLimit);
+  std::pair<Gates, int>   getRandomElement(const GatesInfo& i_info);
+  std::pair<Gates, int>   getRandomElement(u_int32_t i_gatesLimit);
 
-  int                   getRangomAndNumber();
-  int                   getRangomOrNumber();
-  int                   getRangomNandNumber();
-  int                   getRangomNorNumber();
-  int                   getRangomXorNumber();
-  int                   getRangomXnorNumber();
+  int                     getRangomAndNumber();
+  int                     getRangomOrNumber();
+  int                     getRangomNandNumber();
+  int                     getRangomNorNumber();
+  int                     getRangomXorNumber();
+  int                     getRangomXnorNumber();
 
   GatesInfo               d_gatesInputsInfo;
   RandomGeneratorWithSeed d_randGenerator;

@@ -254,8 +254,8 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
         VertexPtr newVertex = graph->addGate(logOper[choice]);
         graph->addEdges(
-            {graph->getVerticeByIndex(child2), graph->getVerticeByIndex(child1)
-            },
+            {graph->getVerticeByIndex(child2),
+             graph->getVerticeByIndex(child1)},
             newVertex
         );
       }
