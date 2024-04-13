@@ -12,6 +12,10 @@
 #include <optional>
 #include <stdexcept>
 
+/// @author Sergey Yakovlev, FCS student
+/// @file UnboundedMPMCQueue.hpp
+/// TODO: Description parameters from class UnboundedMPMCQueue
+
 #ifndef PLACER_UNBOUNDEDMPMCQUEUE_H
 #  define PLACER_UNBOUNDEDMPMCQUEUE_H
 
@@ -25,7 +29,12 @@ namespace Threading {
 /// class UnboundedMPMCQueue
 /// A thread-safe unbounded multiple producer multiple consumer (MPMC) queue
 /// @tparam T The type of items stored in the queue
-/// 
+/// @param closed Flag indicating whether the queue is closed
+/// @param mutex TO DO:
+/// @param not_empty_or_closed Condition variable for signaling queue status.
+/// A more detailed description
+/// [here](https://en.cppreference.com/w/cpp/thread/condition_variable).
+/// @param queue TO DO:
 template<typename T>
 class UnboundedMPMCQueue {
 public:
