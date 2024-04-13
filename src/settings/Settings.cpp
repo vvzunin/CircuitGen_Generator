@@ -186,8 +186,9 @@ std::string Settings::getLibraryPath() const {
   return d_libraryPath;
 }
 
-std::string Settings::getGenerationMethodPrefix(const GenerationTypes
-i_methodType) const {
+std::string Settings::getGenerationMethodPrefix(
+    const GenerationTypes i_methodType
+) const {
   return generationTypeToPrefix.at(i_methodType);
 }
 

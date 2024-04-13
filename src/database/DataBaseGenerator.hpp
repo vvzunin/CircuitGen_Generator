@@ -35,5 +35,6 @@ private:
   void GenerateDataBaseComparison(const GenerationParameters& i_param);
   void GenerateDataBaseEncoder(const GenerationParameters& i_param);
   std::function<void(const GenerationParameters&)> getGenerateMethod(
-      const GenerationTypes i_methodType);
+      const GenerationTypes i_methodType
+  );
 };

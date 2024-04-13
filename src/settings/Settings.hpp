@@ -56,8 +56,8 @@ public:
   );
   std::string fromOperationsToName(const std::string& i_op) const;
   std::string getDatasetPath() const;
-  std::string getGenerationMethodPrefix(const GenerationTypes i_methodType)
-  const;
+  std::string getGenerationMethodPrefix(const GenerationTypes i_methodType
+  ) const;
   std::string getLibraryPath() const;
   std::string getLibraryNameFromEnum(const LibrariesTypes& library) const;
   int         getMaxInputs() const;
@@ -140,7 +140,7 @@ private:
       {VertexTypes::output, "output"},
       {VertexTypes::constant, "const"},
       {VertexTypes::gate, "g"}};
-  
+
   std::map<GenerationTypes, std::string> generationTypeToPrefix = {
       {GenerationTypes::FromRandomTruthTable, "CCGRTT"},
       {GenerationTypes::RandLevel, "CCGRCG"},
