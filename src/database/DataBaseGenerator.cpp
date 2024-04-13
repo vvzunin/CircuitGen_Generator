@@ -108,7 +108,6 @@ void DataBaseGenerator::generateType(
           ++iter;
         }
 
-        pool.wait();
       } else {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           // TODO: it is that Rustam told about iteration?
@@ -129,6 +128,7 @@ void DataBaseGenerator::generateType(
       }
     }
   }
+  pool.wait();
 }
 
 void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
@@ -148,7 +148,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     circs.push_back({"CNFF", tftt.cnfFromTruthTable(tt, false)});
 
   for (const auto& [name, expr] : circs) {
-    Parser pCNFT(expr);
+    Parser pCNFT(expr, i_param.getGatesInputsInfo());
     pCNFT.parseAll();
 
     GraphPtr graph = pCNFT.getGraph();

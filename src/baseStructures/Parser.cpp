@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cassert>
 #include <iostream>
 #include <stack>
@@ -21,21 +22,33 @@ std::string deleteDoubleSpaces(const std::string& s) {
 }
 }  // namespace
 
-Parser::Parser(const std::string& i_logExpression) {
+Parser::Parser(
+    const std::string&                             i_logExpression,
+    const std::map<std::string, std::vector<int>>& i_info
+) {
   d_logExpressions.push_back(deleteDoubleSpaces(i_logExpression));
+  setGatesInputsInfo(i_info);
 }
 
-Parser::Parser(const std::vector<std::string>& i_logExpressions) {
+Parser::Parser(
+    const std::vector<std::string>&                i_logExpressions,
+    const std::map<std::string, std::vector<int>>& i_info
+) {
   for (const auto& expression : i_logExpressions)
     d_logExpressions.push_back(expression);
+    setGatesInputsInfo(i_info);
 }
 
 GraphPtr Parser::getGraph() const {
   return d_graph;
 }
 
-void Parser::setGatesInputsInfo(const GatesInfo& i_info) {
-  d_gatesInputsInfo = i_info;
+void Parser::setGatesInputsInfo(
+    const std::map<std::string, std::vector<int>>& i_info
+) {
+  for (auto& [key, value] : i_info) {
+    d_gatesInputsInfo[d_settings->parseStringToGate(key)] = value;
+  }
 }
 
 std::pair<bool, std::vector<std::pair<int32_t, int32_t>>>
@@ -123,19 +136,22 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
 
         if (!inBrackets(brackets.second, index)) {
           std::string newOp = d_settings->fromOperationsToName(oper);
-          lst.push_back(deleteExtraSpaces(newOp));
 
-          if (newOp == "not" || newOp == "buf")
+          if (lst.empty())
+            lst.push_back(deleteExtraSpaces(newOp));
+
+          if (newOp == "not" || newOp == "buf") {
             lst.push_back(deleteExtraSpaces(i_expr.substr(index + oper.length())
             ));
-          else if (newOp == "input" || newOp == "const")
+          } else if (newOp == "input" || newOp == "const") {
             lst.push_back(deleteExtraSpaces(i_expr));
-          else {
+          } else {
             lst.push_back(deleteExtraSpaces(i_expr.substr(0, index)));
 
-            i_expr = deleteExtraSpaces(i_expr.substr(index + oper.length()));
-            std::clog << i_expr.find(oper) << " " << i_expr << "\n";
-            int idx = i_expr.find(oper);
+            i_expr   = deleteExtraSpaces(i_expr.substr(index + oper.length()));
+            brackets = createBrackets(i_expr);
+
+            int idx  = i_expr.find(oper);
             // now we are tyring to parse whole operations
             if (idx != std::string::npos && !inBrackets(brackets.second, idx)) {
               index = idx;
@@ -143,8 +159,6 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
             }
             lst.push_back(i_expr);
           }
-
-          std::clog << newOp << "\n";
           return {index, lst};  // what?
         }
         index = i_expr.find(oper, index + 1);
@@ -154,144 +168,6 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
     l++;
   }
   return {-1, {}};
-}
-
-// TODO rewrite to normal cnft generation
-// TODO JUST MAKE IT PARSING DATA IN () NOT REQURSIVE, ONLY () REQURSIVE
-bool Parser::parse(const std::string& i_expr)  // what? change true/false
-{
-  std::pair<int32_t, std::vector<std::string>> t = splitLogicExpression(i_expr);
-  if (t.first == -1)
-    return false;
-
-  if (t.second[0] == "output") {
-    std::vector<std::pair<int32_t, int32_t>> bl =
-        createBrackets(t.second[2]).second;
-    for (auto tl : bl)
-      if (tl.first == 0 && tl.second == t.second[2].size() - 1)
-        t.second[2] = t.second[2].substr(1, t.second[2].size() - 2);
-
-    std::pair<int32_t, std::vector<std::string>> tt =
-        splitLogicExpression(t.second[2]);
-    if (tt.first == -1)
-      return false;
-
-    std::shared_ptr<GraphVertexBase> t1 = d_graph->addOutput(t.second[1]);
-    std::shared_ptr<GraphVertexBase> t2;
-    if (tt.second[0] == "input") {
-      // we need to stop duplication
-      // that's why we create a map, which do not declare input again
-      if (!inputsByNames.count(t.second[2])) {
-        inputsByNames[t.second[2]] = d_graph->addInput(t.second[2]);
-      }
-
-      t2 = inputsByNames[t.second[2]];
-    } else if (tt.second[0] == "const") {
-      t2 = d_graph->addConst(t.second[2][0], t.second[2]);
-    } else {
-      t2 = d_graph->addGate(d_settings->parseStringToGate(tt.second[0]));
-    }
-    d_graph->addEdge(t2, t1);
-
-    if (tt.second[0] != "input" && tt.second[0] != "const")
-      parse(t.second[2]);
-  } else {
-    VertexPtr expr, part_ptr;
-    if (i_expr != "input") {
-      if (t.second[0] == "not") {
-        // same protection from multiple inputs
-        if (!notInputsByNames.count("not " + t.second[1]))
-          notInputsByNames["not " + t.second[1]] =
-              d_graph->addGate(Gates::GateNot, "not_" + t.second[1]);
-
-        expr = notInputsByNames["not " + t.second[1]];
-      } else
-        expr = d_graph->addGate(d_settings->parseStringToGate(t.second[0]));
-    } else {
-      // saving us from duplicate input
-      if (!inputsByNames.count(t.second[0]))
-        inputsByNames[t.second[0]] = d_graph->addInput(t.second[0]);
-
-      expr = inputsByNames[t.second[0]];
-    }
-
-    for (int32_t i = 1; i < t.second.size(); ++i) {
-      std::string                              part = t.second[i];
-
-      std::vector<std::pair<int32_t, int32_t>> bl = createBrackets(part).second;
-
-      for (auto tl : bl)
-        if (tl.first == 0 && tl.second == (part.size() - 1))
-          part = part.substr(1, part.size() - 2);
-
-      std::pair<int32_t, std::vector<std::string>> tt =
-          splitLogicExpression(part);
-      if (tt.first == -1)
-        return false;
-
-      for (auto i : tt.second) {
-        std::clog << i << ", ";
-      }
-      std::clog << "\n";
-
-      if (tt.second[0] == "input") {
-        // same protection from multiple inputs
-        if (!inputsByNames.count(part))
-          inputsByNames[part] = d_graph->addInput(part);
-
-        part_ptr = inputsByNames[part];
-
-      } else if (tt.second[0] == "not") {
-        // same protection from multiple inputs
-        if (!notInputsByNames.count("not " + tt.second[1]))
-          notInputsByNames["not " + tt.second[1]] =
-              d_graph->addGate(Gates::GateNot, "not_" + tt.second[1]);
-
-        part_ptr = notInputsByNames["not " + tt.second[1]];
-
-      } else if (tt.second[0] == "const")
-        part_ptr = d_graph->addConst(part[0], part);
-      else {
-        for (auto word : tt.second) {
-          std::clog << word + ", ";
-        }
-        std::clog << std::endl;
-        std::clog << expr->getName() << "\n";
-        if (doneOperations.empty()) {
-          doneOperations.push(tt.second[0]);
-        }
-
-        if (doneOperations.top() == tt.second[0]) {
-          if (!operationByCreatedVertex.count(tt.second[0])) {
-            operationByCreatedVertex[tt.second[0]] = {};
-            inputsByCreatedVertex[tt.second[0]]    = {};
-          }
-
-          operationByCreatedVertex[tt.second[0]].push(
-              {d_graph->addGate(d_settings->parseStringToGate(tt.second[0]))}
-          );
-          inputsByCreatedVertex[tt.second[0]].push(inputsByNames[tt.second[1]]);
-
-          part_ptr = operationByCreatedVertex[tt.second[0]].top();
-
-          if (inputsByNames.count(tt.second[2])) {
-            inputsByCreatedVertex[tt.second[0]].push(inputsByNames[tt.second[2]]
-            );
-          }
-        } else {
-          std::string prev = doneOperations.top();
-
-          VertexPtr   inp  = inputsByCreatedVertex[prev].top();
-          while (!operationByCreatedVertex.empty()) {}
-        }
-      }
-
-      d_graph->addEdge(part_ptr, expr);
-      if (tt.second[0] != "input" && tt.second[0] != "const")
-        parse(part);
-    }
-  }
-  return true;
 }
 
 VertexPtr Parser::multipleVerteciesToOne(
@@ -375,50 +251,116 @@ VertexPtr Parser::multipleVerteciesToOne(
   return curLayout.back();
 }
 
+VertexPtr Parser::parseInputNot(std::string oper, std::string name) {
+  // saving us from duplicate input
+  if (!d_inputsByNames.count(name))
+    d_inputsByNames[name] = d_graph->addInput(name);
+
+  // same protection from multiple inputs
+  if (!d_notInputsByNames.count("not " + name)) {
+    d_notInputsByNames["not " + name] =
+        d_graph->addGate(Gates::GateNot, "not_" + name);
+
+    d_graph->addEdge(d_inputsByNames[name], d_notInputsByNames["not " + name]);
+  }
+
+  if (oper == "input")
+    return d_inputsByNames[name];
+
+  return d_notInputsByNames["not " + name];
+}
+
 VertexPtr Parser::parseToVertex(const std::string& i_expr) {
-  std::pair<int32_t, std::vector<std::string>> t = splitLogicExpression(i_expr);
-  if (t.first == -1)
+  std::pair<int32_t, std::vector<std::string>> splited =
+      splitLogicExpression(i_expr);
+  if (splited.first == -1)
     return nullptr;
 
-  if (t.second[0] == "output") {
-    std::vector<std::pair<int32_t, int32_t>> bl =
-        createBrackets(t.second[2]).second;
-    for (auto tl : bl)
-      if (tl.first == 0 && tl.second == t.second[2].size() - 1)
-        t.second[2] = t.second[2].substr(1, t.second[2].size() - 2);
+  VertexPtr                                    outputVert = nullptr;
+  std::pair<int32_t, std::vector<std::string>> splited_next;
 
-    std::pair<int32_t, std::vector<std::string>> tt =
-        splitLogicExpression(t.second[2]);
-    if (tt.first == -1)
+  // here create output for future parsing
+  if (splited.second[0] == "output") {
+    outputVert = d_graph->addOutput(splited.second[1]);
+
+    std::vector<std::pair<int32_t, int32_t>> brackets =
+        createBrackets(splited.second[2]).second;
+
+    for (auto tl : brackets) {
+      if (tl.first == 0 && tl.second == splited.second[2].size() - 1) {
+        splited.second[2] =
+            splited.second[2].substr(1, splited.second[2].size() - 2);
+        break;
+      }
+    }
+
+    // spliting left data
+    splited_next = splitLogicExpression(splited.second[2]);
+
+    if (splited_next.first == -1)
       return nullptr;
+  }
+  // if it is input (or not, for which it is neccesary to create an input),
+  // just create it and return
+  else if (splited.second[0] == "input" || splited.second[0] == "not") {
+    return parseInputNot(splited.second[0], splited.second[1]);
+  } else {
+    splited_next = splited;
+  }
 
-    std::shared_ptr<GraphVertexBase> t1 = d_graph->addOutput(t.second[1]);
-    std::shared_ptr<GraphVertexBase> t2;
-    if (tt.second[0] == "input") {
-      // we need to stop duplication
-      // that's why we create a map, which do not declare input again
-      if (!inputsByNames.count(t.second[2])) {
-        inputsByNames[t.second[2]] = d_graph->addInput(t.second[2]);
+  // if we are here, we have a gate or an output
+  // so we need to parse data further
+
+  std::vector<VertexPtr> allGates;
+  VertexPtr              outPtr;
+
+  // when we have input or not, return it
+  if (splited_next.second[0] == "input" || splited_next.second[0] == "not") {
+    return parseInputNot(splited_next.second[0], splited_next.second[1]);
+  }
+  // in case of const we also need to add gate to it
+  else if (splited_next.second[0] == "const") {
+    outPtr = d_graph->addConst(splited.second[2][0], splited.second[2]);
+  } else {
+    allGates.reserve(splited_next.second.size() - 1);
+
+    Gates oper = d_settings->parseStringToGate(splited_next.second[0]);
+    splited_next.second.erase(splited_next.second.begin());
+
+    for (auto futureVertex : splited_next.second) {
+      std::vector<std::pair<int32_t, int32_t>> brackets =
+          createBrackets(futureVertex).second;
+      for (auto tl : brackets) {
+        if (tl.first == 0 && tl.second == futureVertex.size() - 1) {
+          futureVertex = futureVertex.substr(1, futureVertex.size() - 2);
+          break;
+        }
       }
 
-      t2 = inputsByNames[t.second[2]];
-    } else if (tt.second[0] == "const") {
-      t2 = d_graph->addConst(t.second[2][0], t.second[2]);
-    } else {
-      t2 = d_graph->addGate(d_settings->parseStringToGate(tt.second[0]));
-    }
-    d_graph->addEdge(t2, t1);
+      VertexPtr ptr = parseToVertex(futureVertex);
+      if (!ptr)
+        return ptr;
 
-    if (tt.second[0] != "input" && tt.second[0] != "const")
-      parse(t.second[2]);
+      allGates.push_back(ptr);
+    }
+
+    // creating from vertex
+    outPtr = multipleVerteciesToOne(allGates, oper, d_graph);
   }
+
+  if (outputVert != nullptr) {
+    d_graph->addEdge(outPtr, outputVert);
+  }
+
+  return outPtr;
 }
 
 bool Parser::parseAll() {
   d_graph.reset(new OrientedGraph);
+
   for (auto exp : d_logExpressions)
     if (createBrackets(exp).first)
-      if (!parse(exp))
+      if (!parseToVertex(exp))
         return false;
   return true;
 }
