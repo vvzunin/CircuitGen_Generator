@@ -839,106 +839,82 @@ GraphPtr SimpleGenerators::generatorComparison(
 
 GraphPtr SimpleGenerators::generatorEncoder(int i_bits) {
   GraphPtr graph(new OrientedGraph);
-  if (i_bits > 1) {
-    std::vector<VertexPtr> T(pow(2, i_bits));
-    std::vector<VertexPtr> X(pow(2, i_bits));
-    std::vector<VertexPtr> Out(pow(2, i_bits));
+  if (i_bits < 2) {
+    std::cout << "Недостаточно входных сигналов" << std::endl;
+  } else {
+    int i_outbits = 0;
+    while (i_bits > pow(2, i_outbits))
+      i_outbits++;
+
+    std::vector<VertexPtr> inputs_x(i_bits);
+    std::vector<VertexPtr> not_x(i_bits);
+    std::vector<VertexPtr> ands(pow(2, i_outbits));
+
+    // создание инверсий входов
     for (int i = 0; i < i_bits; i++) {
-      std::string Z = std::to_string(i);
-      X[i]          = graph->addInput("x" + Z);
-      X[i + i_bits] = graph->addGate(GateNot, "not (x" + Z + ")");
-      graph->addEdge(X[i], X[i + i_bits]);
+      VertexPtr x = graph->addInput("x" + std::to_string(i + 1));
+      inputs_x[i] = x;
+      VertexPtr nx =
+          graph->addGate(Gates::GateNot, "nx" + std::to_string(i + 1));
+      graph->addEdge(x, nx);
+      not_x[i] = nx;
     }
-    for (int i = 0; i < pow(2, i_bits); i++) {
-      std::string Z = std::to_string(i);
-      Out[i]        = graph->addOutput("f" + Z);
-    }
-    int p = i_bits;
-    for (int i = 0; i < pow(2, i_bits); i++) {
-      T[i] = graph->addGate(GateAnd, "and" + std::to_string(i));
-      std::bitset<sizeof(int) * 8> bs(i);
-      std::string                  bit_string = bs.to_string();
-      std::string res = bit_string.substr(bit_string.length() - i_bits);
-      for (int j = 0; j < res.length(); j++) {
-        if (res[j] == '1') {
-          graph->addEdge(X[j], T[i]);
-        } else {
-          graph->addEdge(X[j + i_bits], T[i]);
+
+    int  shift = 1;
+    int  count = 0;
+    bool check = false;
+    for (int i = 0; i < pow(2, i_outbits); i++) {
+      VertexPtr and_xs =
+          graph->addGate(Gates::GateAnd, "and_for_or" + std::to_string(i + 1));
+      // создание массива значений для операций and
+      std::vector<VertexPtr> Xs(i_bits);
+      for (int j = 0; j < i_bits; j++) {
+        if (i < i_bits)
+          Xs[j] = (j == i) ? inputs_x[j] : not_x[j];
+        else {
+          check = true;
+          break;
         }
       }
-    }
-    for (int i = 0; i < pow(2, i_bits); i++) {
-      graph->addEdge(T[i], Out[i]);
-    }
-  } else {
-    VertexPtr x     = graph->addInput("x");
-    VertexPtr not_x = graph->addGate(GateNot, "not (x)");
-    for (int i = 0; i < 2; i++) {
-      VertexPtr out = graph->addOutput("f" + std::to_string(i));
-      if (i == 0) {
-        graph->addEdge(not_x, out);
-      } else {
-        graph->addEdge(x, out);
+      if (check) {
+        // если количество входных значений не было значением степени двойки, то
+        // подключается доп. функция, которая создает дополнительные варианты
+        // операции and для заполнения недостающих результатов для выходов
+        Xs[0]     = inputs_x[0];
+        Xs[shift] = inputs_x[shift];
+        for (int j = shift + 1; j < i_bits; j++)
+          Xs[j] = not_x[j];
+        for (int j = 1; j < shift; j++)
+          Xs[j] = (j <= count) ? inputs_x[j] : Xs[j] = not_x[j];
+        count++;
+        if (shift == count) {
+          count = 0;
+          shift++;
+        }
       }
+      graph->addEdges(Xs, and_xs);
+      ands[i] = and_xs;
+    }
+
+    int n = 1;
+    for (int i = 0; i < i_outbits; i++) {
+      VertexPtr or_xs = graph->addGate(
+          Gates::GateOr, "or_for_output" + std::to_string(i + 1)
+      );
+      std::vector<VertexPtr> ors;
+      for (int j = n; j < pow(2, i_outbits); j += n * 2) {
+        ors.insert(ors.end(), ands.begin() + j, ands.begin() + j + n);
+      }
+      graph->addEdges(ors, or_xs);
+      n           *= 2;
+
+      VertexPtr y = graph->addOutput("y" + std::to_string(i));
+      graph->addEdge(or_xs, y);
     }
   }
   return graph;
-
-  // int k = 0;
-  // for (int t = 0; t <= bits; t++)
-  //     if (bits - 1 >= pow(2, t))
-  //     {
-  //         k = k + 1;
-  //     }
-  // for (int l = 0; l <= bits - 1; l++)
-  // {
-  //     std::string Z = std::to_string(l);
-  //     graph->addInput("x" + Z);
-  // }
-  // if (bits > 1)
-  //     for (int p = k - 1; p >= 0; p--)
-  //     {
-  //         std::string L = "";
-  //         std::string P = "";
-  //         std::string M = "";
-  //         std::string K = "";
-  //         std::string S = std::to_string(p);
-  //         VertexPtrout = graph->addOutput("a" + S);
-
-  //         for (int i = 0; i <= bits - 1; i++)
-  //             for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
-  //                 if (pow(2, p + 1) * i + t <= bits - 1)
-  //                 {
-  //                     std::string R = std::to_string(pow(2, p + 1) * i + t);
-  //                     K = M + " or x" + R;
-  //                     L = P + "orx" + R;
-  //                     // graph->addEdge("x" + R, "a" + S, false);
-  //                     P = L;
-  //                     L = "";
-  //                     M = K;
-  //                     K = "";
-  //                 }
-  //         M = M.erase(0, 3);
-
-  //         // TODO solve this name strange thing
-  //         // VertexPtrP_ref = graph->addVertex(M,
-  //         Gates::GateOr, P); VertexPtrP_ref =
-  //         graph->addVertex(Gates::GateOr, P); for (int i = 0; i <= bits - 1;
-  //         i++)
-  //             for (double t = pow(2, p); t <= pow(2, p + 1) - 1; t++)
-  //                 if (pow(2, p + 1) * i + t <= bits - 1)
-  //                 {
-  //                     std::string R = std::to_string(pow(2, p + 1) * i + t);
-  //                     // here getting input number R
-  //                     graph->addEdge(graph->getVerticeByIndex(R), P_ref);
-  //                 }
-  //         graph->addEdge(P_ref, out);
-  //     }
-  // else
-  //    std::cout << "Недостаточно входных сигналов\n";
-
-  return graph;
 }
+
 GraphPtr SimpleGenerators::generatorSubtractor(
     int  i_bits,
     bool i_overflowIn,
@@ -1126,7 +1102,7 @@ GraphPtr SimpleGenerators::generatorMultiplexer(int i_bits) {
 GraphPtr SimpleGenerators::generatorDemultiplexer(int i_bits) {
   // i_bits - количество выходных сигналов, то есть количество х
   // f - значение функции на входе
-  // k - количество адресных входов, то есть количество а
+  // i_outbits - количество адресных входов, то есть количество а
   // F[] - массив для хранения индексов х в двоичном формате в строковом виде
   // S[] - массив для стринговых индексов а
   // Sp - вектор для указателей на входные сигналы

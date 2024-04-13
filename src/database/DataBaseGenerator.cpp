@@ -464,6 +464,10 @@ std::function<void(const GenerationParameters&)>
         this,
         std::placeholders::_1
     );
+  if (i_methodName == "Encoder")
+    return std::bind(
+        &DataBaseGenerator::generateDataBaseEncoder, this, std::placeholders::_1
+    );
   if (i_methodName == "Subtractor")
     return std::bind(
         &DataBaseGenerator::generateDataBaseSubtractor,
