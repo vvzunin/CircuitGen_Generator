@@ -9,6 +9,7 @@
 
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/graph/OrientedGraph.hpp>
+#include <baseStructures/Parser.hpp>
 #include <math.h>
 
 int SimpleGenerators::getRangomAndNumber() {
@@ -92,87 +93,6 @@ SimpleGenerators::SimpleGenerators(int i_seed) {
   d_randGenerator.setSeed(i_seed);
 }
 
-VertexPtr SimpleGenerators::multipleVerteciesToOne(
-    std::vector<VertexPtr> curLayout,
-    Gates                  operation,
-    GraphPtr               graph
-) {
-  std::vector<VertexPtr> nextLayout;
-  int32_t                curSize = 0;
-
-  // Here we add operations in brackets
-  while (curLayout.size() != 1) {
-    curSize       = 0;
-
-    size_t    pos = d_gatesInputsInfo[operation].size() - 1;
-    VertexPtr x_input;
-    VertexPtr oper;
-
-    oper = graph->addGate(operation);
-    // iterate through i layout
-    for (size_t k = 0; k < curLayout.size(); ++k) {
-      x_input = curLayout[k];
-
-      graph->addEdge(x_input, oper);
-      ++curSize;
-
-      if (d_gatesInputsInfo[operation][pos] == curSize) {
-        nextLayout.push_back(oper);
-
-        // if we will have only one gate
-        // we do not create a new operation
-        if (k == (curLayout.size() - 2)) {
-          oper = curLayout.back();
-          // we save curSize for saving us from add
-          // new edges to oper
-          break;
-        } else if (k < curLayout.size() - 1) {
-          oper = graph->addGate(operation);
-        }
-
-        // if we have less elements than we can add, and our logical element
-        // has too big gates number, move to lower
-        int npos = pos;
-        while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
-          --npos;
-        }
-        // move if is neccesary
-        npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
-        pos  = (npos < pos ? npos : pos);
-
-        curSize = 0;
-      }
-    }
-
-    // if we did not fill all gates
-    if (curSize > 1) {
-      // if we have less elements than we can add, and our logical element
-      // has too big gates number, move to lower
-      int npos = pos;
-      while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
-        --npos;
-      }
-      // move if is neccesary
-      npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
-      pos  = (npos < pos ? npos : pos);
-
-      while (curSize < d_gatesInputsInfo[operation][pos]) {
-        graph->addEdge(x_input, oper);
-        ++curSize;
-      }
-    }
-
-    if (curSize)
-      nextLayout.push_back(oper);
-
-    // swap layouts
-    curLayout = nextLayout;
-    nextLayout.clear();
-  }
-
-  return curLayout.back();
-}
-
 GraphPtr
     SimpleGenerators::cnfFromTruthTable(const TruthTable& i_table, bool i_tp) {
   std::vector<std::string> fun;
@@ -195,6 +115,9 @@ GraphPtr
 
   std::map<VertexPtr, VertexPtr> inputs_not;
   VertexPtr                      constGate_0(nullptr), constGate_1(nullptr);
+
+  Parser                         parserMany;
+  parserMany.setGatesInputsInfo(d_gatesInputsInfo);
 
   for (size_t j = 0; j < i_table.getOutput(); ++j) {
     VertexPtr out = graph->addOutput("f" + std::to_string(j));
@@ -254,14 +177,18 @@ GraphPtr
         nextLayout.push_back(x_input);
       }
 
-      nextLayoutExt.push_back(multipleVerteciesToOne(nextLayout, inter, graph));
+      nextLayoutExt.push_back(
+          parserMany.multipleVerteciesToOne(nextLayout, inter, graph)
+      );
 
       nextLayout.clear();
       ++tmp;
     }
 
     // and here operations with brackets
-    graph->addEdge(multipleVerteciesToOne(nextLayoutExt, exter, graph), out);
+    graph->addEdge(
+        parserMany.multipleVerteciesToOne(nextLayoutExt, exter, graph), out
+    );
   }
 
   return graph;
@@ -327,8 +254,8 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
         VertexPtr newVertex = graph->addGate(logOper[choice]);
         graph->addEdges(
-            {graph->getVerticeByIndex(child2),
-             graph->getVerticeByIndex(child1)},
+            {graph->getVerticeByIndex(child2), graph->getVerticeByIndex(child1)
+            },
             newVertex
         );
       }

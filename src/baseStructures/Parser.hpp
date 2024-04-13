@@ -20,7 +20,14 @@ public:
       const std::vector<std::string>&                i_logExpressions,
       const std::map<std::string, std::vector<int>>& i_info
   );
-  GraphPtr                                     getGraph() const;
+
+  Parser()                               = default;
+  Parser(const Parser& other)            = default;
+  Parser& operator=(const Parser& other) = default;
+  Parser(Parser&& other)                 = default;
+  Parser&  operator=(Parser&& other)     = default;
+
+  GraphPtr getGraph() const;
   std::pair<int32_t, std::vector<std::string>> splitLogicExpression(
       std::string i_expr
   );
@@ -35,6 +42,7 @@ public:
 
   void setGatesInputsInfo(const std::map<std::string, std::vector<int>>& i_info
   );
+  void setGatesInputsInfo(const GatesInfo& i_info);
 
 private:
   std::vector<std::string>  d_logExpressions;

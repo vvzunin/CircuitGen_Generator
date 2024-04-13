@@ -124,12 +124,6 @@ private:
   int                   getRangomXorNumber();
   int                   getRangomXnorNumber();
 
-  VertexPtr             multipleVerteciesToOne(
-                  std::vector<VertexPtr> curLayout,
-                  Gates                  operation,
-                  GraphPtr               graph
-              );
-
   GatesInfo               d_gatesInputsInfo;
   RandomGeneratorWithSeed d_randGenerator;
   int                     d_maxGateNumber = 0;

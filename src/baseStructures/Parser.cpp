@@ -36,7 +36,7 @@ Parser::Parser(
 ) {
   for (const auto& expression : i_logExpressions)
     d_logExpressions.push_back(expression);
-    setGatesInputsInfo(i_info);
+  setGatesInputsInfo(i_info);
 }
 
 GraphPtr Parser::getGraph() const {
@@ -49,6 +49,10 @@ void Parser::setGatesInputsInfo(
   for (auto& [key, value] : i_info) {
     d_gatesInputsInfo[d_settings->parseStringToGate(key)] = value;
   }
+}
+
+void Parser::setGatesInputsInfo(const GatesInfo& i_info) {
+  d_gatesInputsInfo = i_info;
 }
 
 std::pair<bool, std::vector<std::pair<int32_t, int32_t>>>
