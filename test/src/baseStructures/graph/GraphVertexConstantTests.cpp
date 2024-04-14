@@ -15,15 +15,16 @@ TEST(TestConstructorWithoutIName, WithoutDefaultInputParametrs) {
 }
 
 TEST(TestConstructorWithoutIName, WithDefaultInputParametrs) {
-  OrientedGraph       example;
+  GraphPtr            graphPtr = std::make_shared<OrientedGraph>();
+
   std::string         graphNum = std::to_string(1);
-  GraphVertexConstant constant('z', &example);
+  GraphVertexConstant constant('z', graphPtr);
   EXPECT_EQ(constant.getType(), VertexTypes::constant);
   EXPECT_EQ(constant.getTypeName(), "const");
   EXPECT_EQ(constant.getName(), "const_" + graphNum);
   EXPECT_EQ(constant.getLevel(), 0);
   EXPECT_EQ(constant.getValue(), 'z');
-  EXPECT_EQ(constant.getBaseGraph(), &example);
+  EXPECT_EQ(constant.getBaseGraph(), graphPtr);
   EXPECT_EQ(constant.getOutConnections().size(), 0);
 }
 
@@ -39,14 +40,15 @@ TEST(TestConstructorWithIName, WithoutDefaultInputParametrs) {
 }
 
 TEST(TestConstructorWithIName, WithDefaultInputParametrs) {
-  OrientedGraph       example;
-  GraphVertexConstant constant('z', "Anything", &example);
+  GraphPtr            graphPtr = std::make_shared<OrientedGraph>();
+
+  GraphVertexConstant constant('z', "Anything", graphPtr);
   EXPECT_EQ(constant.getType(), VertexTypes::constant);
   EXPECT_EQ(constant.getTypeName(), "const");
   EXPECT_EQ(constant.getName(), "Anything");
   EXPECT_EQ(constant.getLevel(), 0);
   EXPECT_EQ(constant.getValue(), 'z');
-  EXPECT_EQ(constant.getBaseGraph(), &example);
+  EXPECT_EQ(constant.getBaseGraph(), graphPtr);
   EXPECT_EQ(constant.getOutConnections().size(), 0);
 }
 

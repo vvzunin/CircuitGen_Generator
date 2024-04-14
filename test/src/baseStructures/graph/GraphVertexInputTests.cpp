@@ -22,15 +22,15 @@ TEST(TestConstructorWithoutIName, WithoutDefaultInputParametrs) {
 }
 
 TEST(TestConstructorWithoutIName, WithDefaultInputParametrs) {
-  OrientedGraph    example;
+  GraphPtr         graphPtr = std::make_shared<OrientedGraph>();
   std::string      graphNum = std::to_string(1);
-  GraphVertexInput input(&example, VertexTypes::input);
+  GraphVertexInput input(graphPtr, VertexTypes::input);
   EXPECT_EQ(input.getType(), VertexTypes::input);
   EXPECT_EQ(input.getTypeName(), "input");
   EXPECT_EQ(input.getName(), "input_" + graphNum);
   EXPECT_EQ(input.getLevel(), 0);
   EXPECT_EQ(input.getValue(), 'x');
-  EXPECT_EQ(input.getBaseGraph(), &example);
+  EXPECT_EQ(input.getBaseGraph(), graphPtr);
   EXPECT_EQ(input.getOutConnections().size(), 0);
 }
 
@@ -47,14 +47,14 @@ TEST(TestConstructorWithIName, WithoutDefaultInputParametrs) {
 }
 
 TEST(TestConstructorWithIName, WithDefaultInputParametrs) {
-  OrientedGraph    example;
-  GraphVertexInput input("Anything", &example, VertexTypes::input);
+  GraphPtr         graphPtr = std::make_shared<OrientedGraph>();
+  GraphVertexInput input("Anything", graphPtr, VertexTypes::input);
   EXPECT_EQ(input.getType(), VertexTypes::input);
   EXPECT_EQ(input.getTypeName(), "input");
   EXPECT_EQ(input.getName(), "Anything");
   EXPECT_EQ(input.getLevel(), 0);
   EXPECT_EQ(input.getValue(), 'x');
-  EXPECT_EQ(input.getBaseGraph(), &example);
+  EXPECT_EQ(input.getBaseGraph(), graphPtr);
   EXPECT_EQ(input.getOutConnections().size(), 0);
 }
 // -----OverrideMethodsTests
@@ -64,11 +64,11 @@ TEST(TestUpdateValue, ReturnDValueIfDInConnectionsSizeZero) {
   EXPECT_EQ(input.updateValue(), input.getValue());
 }
 
-// TEST(TestUpdateLevel, CorrectUpdate){}
+// // TEST(TestUpdateLevel, CorrectUpdate){}
 
 TEST(TestUpdateValue, CerrErrorIfThereIsBaseGraph) {
   OrientedGraph    graph;
-  GraphVertexInput input1(&graph);
+  GraphVertexInput input1(std::make_shared<OrientedGraph>(graph));
   GraphVertexInput input2;
 
   input1.addVertexToInConnections(std::make_shared<GraphVertexInput>(input2));
@@ -85,7 +85,7 @@ TEST(TestUpdateValue, CerrErrorIfThereIsBaseGraph) {
 
 TEST(TestUpdateValue, CorrectUpdate) {
   OrientedGraph    graph;
-  GraphVertexInput input1(&graph);
+  GraphVertexInput input1(std::make_shared<OrientedGraph>(graph));
   GraphVertexInput input2;
   input2.setLevel(1);
   input1.addVertexToInConnections(std::make_shared<GraphVertexInput>(input2));
@@ -107,7 +107,7 @@ TEST(TestUpdateValue, CorrectUpdate) {
   EXPECT_EQ(input1.getLevel(), 3);
 }
 
-// -----
+// // -----
 
 TEST(TestSetName, InputCorrectName) {
   GraphVertexInput input;
@@ -148,7 +148,7 @@ TEST(TestAddOutConnections, AddConnections) {
   EXPECT_EQ(input1.getOutConnections()[1], ptr2);
 }
 
-// need to remake realisition of method
-// TEST(TestRemoveVertexToOutConnections, RemoveConnecttions){}
+// // need to remake realisition of method
+// // TEST(TestRemoveVertexToOutConnections, RemoveConnecttions){}
 
-// TEST(TestCalculateHash, SameHashWhenEqualInputs) {}
+// // TEST(TestCalculateHash, SameHashWhenEqualInputs) {}
