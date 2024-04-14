@@ -59,7 +59,34 @@
     "swap_type": 0,
     "ratio_in_table": 1.0,
     "selection_type": "Base",
-    "surv_num": 1    
+    "surv_num": 1,
+
+    "overflowIn": true,
+    "overflowOut": true,
+
+    "sub": false,
+    "minus": false,
+
+    "=": true,
+    "<": true,
+    ">": true,
+
+    "ALL": false,
+    "SUM": false,
+    "SUB": false,
+    "NSUM": false,
+    "NSUB": false,
+    "MULT": false,
+    "COM": false,
+    "AND": false,
+    "NAND": false,
+    "OR": false,
+    "NOR": false,
+    "XOR": false,
+    "XNOR": false,
+    "CNF": false,
+    "RNL": false,
+    "NUM_OP": false
   }
 ]
  
