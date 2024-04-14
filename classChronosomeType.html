@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>CircuitGenGenerator</title>
+  <title>ChronosomeType class | CircuitGenGenerator</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -30,7 +30,7 @@
                 <li><a href="about.html">About</a></li>
               </ol>
             </li>
-            <li><a href="namespaces.html" id="m-navbar-current">Namespaces</a></li>
+            <li><a href="namespaces.html">Namespaces</a></li>
           </ol>
           <ol class="m-col-t-6 m-col-m-none" start="3">
             <li><a href="annotated.html">Classes</a></li>
@@ -48,39 +48,67 @@
   <div class="m-container m-container-inflatable">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <h1>Namespaces</h1>
-        <ul class="m-doc">
-          <li>namespace <a href="namespace_0d2.html" class="m-doc">@2</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespace_0d21.html" class="m-doc">@21</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespace_0d55.html" class="m-doc">@55</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespace_0d70.html" class="m-doc">@70</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceAuxMethods.html" class="m-doc">AuxMethods</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceCircuitGenGenerator.html" class="m-doc">CircuitGenGenerator</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceFilesTools.html" class="m-doc">FilesTools</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceMutationTruthTable.html" class="m-doc">MutationTruthTable</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceRecombinationsTruthTable.html" class="m-doc">RecombinationsTruthTable</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceSelectionsTruthTable.html" class="m-doc">SelectionsTruthTable</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespacestd.html" class="m-doc">std</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespacestd_1_1chrono.html" class="m-doc">std::chrono</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceThreading.html" class="m-doc">Threading</a> <span class="m-doc"><span></span></span></li>
-          <li>namespace <a href="namespaceVertexUtils.html" class="m-doc">VertexUtils</a> <span class="m-doc"><span></span></span></li>
-        </ul>
-        <script>
-        function toggle(e) {
-            e.parentElement.className = e.parentElement.className == 'm-doc-collapsible' ?
-                'm-doc-expansible' : 'm-doc-collapsible';
-            return false;
-        }
-        /* Collapse all nodes marked as such. Doing it via JS instead of
-           directly in markup so disabling it doesn't harm usability. The list
-           is somehow regenerated on every iteration and shrinks as I change
-           the classes. It's not documented anywhere and I'm not sure if this
-           is the same across browsers, so I am going backwards in that list to
-           be sure. */
-        var collapsed = document.getElementsByClassName("collapsed");
-        for(var i = collapsed.length - 1; i >= 0; --i)
-            collapsed[i].className = 'm-doc-expansible';
-        </script>
+        <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="ChronosomeType_8h.html">&lt;ChronosomeType.h&gt;</a></div>
+          <div class="m-doc-template">template&lt;typename Type, typename ParametersTypes&gt;</div>
+          ChronosomeType <span class="m-thin">class</span>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="a638e6638e406778d16f68251838327db">
+              <span class="m-doc-wrap-bumper"><a href="#a638e6638e406778d16f68251838327db" class="m-doc-self">ChronosomeType</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name,
+              const Type&amp; i_chronosome)</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="a996c885167165d279d3a4ec62486d959">
+              <span class="m-doc-wrap-bumper">auto <a href="#a996c885167165d279d3a4ec62486d959" class="m-doc-self">getChronosomeType</a>(</span><span class="m-doc-wrap">) const -&gt; const Type&amp;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a24b735f1f10d32864f40c13da31d9d2a">
+              <span class="m-doc-wrap-bumper">void <a href="#a24b735f1f10d32864f40c13da31d9d2a" class="m-doc-self">setChronosomeType</a>(</span><span class="m-doc-wrap">const Type&amp; i_chronosome)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a8e688b7977985f6f1365cccf96efa3ce">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8e688b7977985f6f1365cccf96efa3ce" class="m-doc-self">getAdaptationIndex</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab308a71e01a9cecec2ed35d6913a2a85">
+              <span class="m-doc-wrap-bumper">void <a href="#ab308a71e01a9cecec2ed35d6913a2a85" class="m-doc-self">setAdaptationIndex</a>(</span><span class="m-doc-wrap">double i_adaptationIndex)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a190ae781eb675e0d160e8405fe7b9118">
+              <span class="m-doc-wrap-bumper">auto <a href="#a190ae781eb675e0d160e8405fe7b9118" class="m-doc-self">getName</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="adef5d739aecc5a7874a07600bfac6a5f">
+              <span class="m-doc-wrap-bumper">void <a href="#adef5d739aecc5a7874a07600bfac6a5f" class="m-doc-self">adaptationFunction</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="afe982fc3b9e00e1d09804b54f7fdcc7a">
+              <span class="m-doc-wrap-bumper">auto <a href="#afe982fc3b9e00e1d09804b54f7fdcc7a" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;Type, ParametersTypes&gt;&amp; r) const -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
       </div>
     </div>
   </div>

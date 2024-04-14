@@ -68,12 +68,34 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a19e5fef79c5e703b18464e18acf3a2a4">
-              <span class="m-doc-wrap-bumper"><a href="#a19e5fef79c5e703b18464e18acf3a2a4" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression)</span>
+            <dt id="a50e4d814174c9b009e77181cd7abf209">
+              <span class="m-doc-wrap-bumper"><a href="#a50e4d814174c9b009e77181cd7abf209" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression,
+              const std::map&lt;std::string, std::vector&lt;int&gt;&gt;&amp; i_info)</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a3ddf263d00e942d9b296cf72ff77418b">
-              <span class="m-doc-wrap-bumper"><a href="#a3ddf263d00e942d9b296cf72ff77418b" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions)</span>
+            <dt id="a03e02d51f8ea1cd579d7558c184443f3">
+              <span class="m-doc-wrap-bumper"><a href="#a03e02d51f8ea1cd579d7558c184443f3" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions,
+              const std::map&lt;std::string, std::vector&lt;int&gt;&gt;&amp; i_info)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5208129b497bfdf7c8ecceeb70e4bba8">
+              <span class="m-doc-wrap-bumper"><a href="#a5208129b497bfdf7c8ecceeb70e4bba8" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a897165b179561270a2cd14ad39040256">
+              <span class="m-doc-wrap-bumper"><a href="#a897165b179561270a2cd14ad39040256" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const <a href="classParser.html" class="m-doc">Parser</a>&amp; other) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aaf729e2242d0c651412faea209cb879f">
+              <span class="m-doc-wrap-bumper"><a href="#aaf729e2242d0c651412faea209cb879f" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap"><a href="classParser.html" class="m-doc">Parser</a>&amp;&amp; other) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a19e5fef79c5e703b18464e18acf3a2a4" class="m-doc">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a3ddf263d00e942d9b296cf72ff77418b" class="m-doc">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions)</span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -81,23 +103,106 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="a6b489a7062dcddbb8e04b2a0f8e77ba1">
-              <span class="m-doc-wrap-bumper">auto <a href="#a6b489a7062dcddbb8e04b2a0f8e77ba1" class="m-doc-self">getGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            <dt id="a7f4e01f44059d19f58f99d9f1ae7a5c5">
+              <span class="m-doc-wrap-bumper">auto <a href="#a7f4e01f44059d19f58f99d9f1ae7a5c5" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classParser.html" class="m-doc">Parser</a>&amp; other) -&gt; <a href="classParser.html" class="m-doc">Parser</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a32a46aa1930b03db3f9386e7cd823eeb">
+              <span class="m-doc-wrap-bumper">auto <a href="#a32a46aa1930b03db3f9386e7cd823eeb" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classParser.html" class="m-doc">Parser</a>&amp;&amp; other) -&gt; <a href="classParser.html" class="m-doc">Parser</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4cea924dba7f7975cd4c4644633ead5e">
+              <span class="m-doc-wrap-bumper">auto <a href="#a4cea924dba7f7975cd4c4644633ead5e" class="m-doc-self">getGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
             </dt>
             <dd><span></span></dd>
             <dt id="a4fd50e46000940a154a27c8ac8010b30">
-              <span class="m-doc-wrap-bumper">auto <a href="#a4fd50e46000940a154a27c8ac8010b30" class="m-doc-self">splitLogicExpression</a>(</span><span class="m-doc-wrap">std::string i_expr) -&gt; std::pair&lt;int, std::vector&lt;std::string&gt;&gt;</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a4fd50e46000940a154a27c8ac8010b30" class="m-doc-self">splitLogicExpression</a>(</span><span class="m-doc-wrap">std::string i_expr) -&gt; std::pair&lt;int32_t, std::vector&lt;std::string&gt;&gt;</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a71c1a8dc870186065f5be80fcf521508">
-              <span class="m-doc-wrap-bumper">auto <a href="#a71c1a8dc870186065f5be80fcf521508" class="m-doc-self">parse</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr) -&gt; bool</span>
+            <dt id="ae2686bf3fdb12a709732363745943425">
+              <span class="m-doc-wrap-bumper">auto <a href="#ae2686bf3fdb12a709732363745943425" class="m-doc-self">multipleVerteciesToOne</a>(</span><span class="m-doc-wrap">std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; curLayout,
+              <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> operation,
+              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> graph) -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4d5f1bc99199b99ef027f0a3a698a99f">
+              <span class="m-doc-wrap-bumper">auto <a href="#a4d5f1bc99199b99ef027f0a3a698a99f" class="m-doc-self">parseToVertex</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr) -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
             </dt>
             <dd><span></span></dd>
             <dt id="a3602d3fde1e401b5fb352250232800b0">
               <span class="m-doc-wrap-bumper">auto <a href="#a3602d3fde1e401b5fb352250232800b0" class="m-doc-self">parseAll</a>(</span><span class="m-doc-wrap">) -&gt; bool</span>
             </dt>
             <dd><span></span></dd>
+            <dt id="a0ddde84ac4684442a5a4d222453887c1">
+              <span class="m-doc-wrap-bumper">void <a href="#a0ddde84ac4684442a5a4d222453887c1" class="m-doc-self">setGatesInputsInfo</a>(</span><span class="m-doc-wrap">const std::map&lt;std::string, std::vector&lt;int&gt;&gt;&amp; i_info)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa3aac879ba833cb3d0e637e04bca631c">
+              <span class="m-doc-wrap-bumper">void <a href="#aa3aac879ba833cb3d0e637e04bca631c" class="m-doc-self">setGatesInputsInfo</a>(</span><span class="m-doc-wrap">const <a href="Parser_8hpp.html#acc732d3a2c1ab5f7d94419a55affee08" class="m-doc">GatesInfo</a>&amp; i_info)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a4cea924dba7f7975cd4c4644633ead5e" class="m-doc">getGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a84c6d41d243f2cd350a160e244be6a44" class="m-doc">splitLogicExpression</a>(</span><span class="m-doc-wrap">std::string i_expr) -&gt; std::pair&lt;int, std::vector&lt;std::string&gt;&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a71c1a8dc870186065f5be80fcf521508" class="m-doc">parse</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3602d3fde1e401b5fb352250232800b0" class="m-doc">parseAll</a>(</span><span class="m-doc-wrap">) -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a19e5fef79c5e703b18464e18acf3a2a4"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a19e5fef79c5e703b18464e18acf3a2a4" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a3ddf263d00e942d9b296cf72ff77418b"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3ddf263d00e942d9b296cf72ff77418b" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a4cea924dba7f7975cd4c4644633ead5e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4cea924dba7f7975cd4c4644633ead5e" class="m-doc-self">getGraph</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a84c6d41d243f2cd350a160e244be6a44"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::pair&lt;int, std::vector&lt;std::string&gt;&gt; Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a84c6d41d243f2cd350a160e244be6a44" class="m-doc-self">splitLogicExpression</a>(</span><span class="m-doc-wrap">std::string i_expr)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a71c1a8dc870186065f5be80fcf521508"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a71c1a8dc870186065f5be80fcf521508" class="m-doc-self">parse</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a3602d3fde1e401b5fb352250232800b0"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3602d3fde1e401b5fb352250232800b0" class="m-doc-self">parseAll</a>(</span><span class="m-doc-wrap">)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
         </section>
       </div>
     </div>

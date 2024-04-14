@@ -155,6 +155,10 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a2f4ad9ff5987e4d4d3a658e2f10fef83" class="m-doc-self">getCNF</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classCNNFromTruthTableParameters.html" class="m-doc">CNNFromTruthTableParameters</a></span>
             </dt>
             <dd><span></span></dd>
+            <dt id="ad9124167a78b118d3ecfe254ebdd984a">
+              <span class="m-doc-wrap-bumper">auto <a href="#ad9124167a78b118d3ecfe254ebdd984a" class="m-doc-self">getZhegalkin</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classzhegalkinFromTruthTableParameters.html" class="m-doc">zhegalkinFromTruthTableParameters</a></span>
+            </dt>
+            <dd><span></span></dd>
             <dt id="a26921547cfbee88bd5a89cbebc109012">
               <span class="m-doc-wrap-bumper">auto <a href="#a26921547cfbee88bd5a89cbebc109012" class="m-doc-self">getRandLevel</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorRandLevelParameters.html" class="m-doc">GeneratorRandLevelParameters</a></span>
             </dt>
@@ -171,8 +175,16 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a2d8cea359034ed45dfff44f32b39904b" class="m-doc-self">getComparison</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorComparisonParameters.html" class="m-doc">GeneratorComparisonParameters</a></span>
             </dt>
             <dd><span></span></dd>
-            <dt id="acd95ef5883cfa0f21a01940096a26254">
-              <span class="m-doc-wrap-bumper">auto <a href="#acd95ef5883cfa0f21a01940096a26254" class="m-doc-self">getEncoder</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorEncoderParameters.html" class="m-doc">GeneratorEncoderParameters</a></span>
+            <dt id="af8dab16d88edadfb06af56786af3b37e">
+              <span class="m-doc-wrap-bumper">auto <a href="#af8dab16d88edadfb06af56786af3b37e" class="m-doc-self">getSubtractor</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorSubtractorParameters.html" class="m-doc">GeneratorSubtractorParameters</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a45496b83544a8d17202ae34b4b2ea308">
+              <span class="m-doc-wrap-bumper">auto <a href="#a45496b83544a8d17202ae34b4b2ea308" class="m-doc-self">getALU</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorALUParameters.html" class="m-doc">GeneratorALUParameters</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab66c082601d3c2e4fd3b664a66592b96">
+              <span class="m-doc-wrap-bumper">auto <a href="#ab66c082601d3c2e4fd3b664a66592b96" class="m-doc-self">getGenetic</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneticParameters.html" class="m-doc">GeneticParameters</a></span>
             </dt>
             <dd><span></span></dd>
             <dt id="a6a579996d93cf7232d818c48f8755eb3">
@@ -197,6 +209,78 @@
             <dt id="a99a8340e021fd0ca1265f71d94435412">
               <span class="m-doc-wrap-bumper">void <a href="#a99a8340e021fd0ca1265f71d94435412" class="m-doc-self">setNumOperationParameters</a>(</span><span class="m-doc-wrap">const std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, int&gt;&amp; i_m,
               bool i_LeaveEmptyOut)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5a57d13129ceb1b1994be37bc41d3a87">
+              <span class="m-doc-wrap-bumper">void <a href="#a5a57d13129ceb1b1994be37bc41d3a87" class="m-doc-self">setSubtractorParameters</a>(</span><span class="m-doc-wrap">bool i_overflowIn,
+              bool i_overflowOut,
+              bool i_sub)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4659e3014d366ff00d7e5c57011fa6c1">
+              <span class="m-doc-wrap-bumper">void <a href="#a4659e3014d366ff00d7e5c57011fa6c1" class="m-doc-self">setSummatorParameters</a>(</span><span class="m-doc-wrap">bool i_overflowIn,
+              bool i_overflowOut,
+              bool i_minus)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae3b6beac2abb151698fbd9dbc054ff64">
+              <span class="m-doc-wrap-bumper">void <a href="#ae3b6beac2abb151698fbd9dbc054ff64" class="m-doc-self">setComparisonParameters</a>(</span><span class="m-doc-wrap">bool i_compare0,
+              bool i_compare1,
+              bool i_compare2)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6086a9d0be6a0033bdbe77ae3864cc08">
+              <span class="m-doc-wrap-bumper">void <a href="#a6086a9d0be6a0033bdbe77ae3864cc08" class="m-doc-self">setALUParameters</a>(</span><span class="m-doc-wrap">bool i_ALL,
+              bool i_SUM,
+              bool i_SUB,
+              bool i_NSUM,
+              bool i_NSUB,
+              bool i_MULT,
+              bool i_COM,
+              bool i_AND,
+              bool i_NAND,
+              bool i_OR,
+              bool i_NOR,
+              bool i_XOR,
+              bool i_XNOR,
+              bool i_CNF)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aaa71d5307d34b8da2f64e45417c271b1">
+              <span class="m-doc-wrap-bumper">void <a href="#aaa71d5307d34b8da2f64e45417c271b1" class="m-doc-self">setZhegalkin</a>(</span><span class="m-doc-wrap">bool i_zhegalkin)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6c3913a0bad4bdfd4a82f933b527bdfd">
+              <span class="m-doc-wrap-bumper">void <a href="#a6c3913a0bad4bdfd4a82f933b527bdfd" class="m-doc-self">setNumOfCycles</a>(</span><span class="m-doc-wrap">int i_numOfCycles)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="af99346e7132aa975a89239acb1785d64">
+              <span class="m-doc-wrap-bumper">void <a href="#af99346e7132aa975a89239acb1785d64" class="m-doc-self">setPopulationSize</a>(</span><span class="m-doc-wrap">int i_populationSize)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a28ad7386a31878472ffee85207a0f226">
+              <span class="m-doc-wrap-bumper">void <a href="#a28ad7386a31878472ffee85207a0f226" class="m-doc-self">setRecombinationParameters</a>(</span><span class="m-doc-wrap"><a href="ParentsParameters_8h.html#a130c2b32927d9f98f3433218f8e84f75" class="m-doc">ParentsTypes</a> i_parentsTypes,
+              int i_tournamentNumber,
+              <a href="RecombinationParameters_8h.html#a5981086c64ece56169fab85e575fe548" class="m-doc">RecombinationTypes</a> i_recombinationType,
+              int i_refPoints,
+              double maskProbability,
+              int i_recombinationNumber)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3fb03417dc3919cb0d118f984e66cca5">
+              <span class="m-doc-wrap-bumper">void <a href="#a3fb03417dc3919cb0d118f984e66cca5" class="m-doc-self">setMutationParameters</a>(</span><span class="m-doc-wrap"><a href="MutationParameters_8h.html#a7b01179572d8f7532b68a5aa847f0ad8" class="m-doc">MutationTypes</a> i_mutationType,
+              double i_probabilityGen,
+              int i_exchangeType,
+              double i_probabilityTruthTable)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a74965933f5711f8110ee11e2dfe2ef35">
+              <span class="m-doc-wrap-bumper">void <a href="#a74965933f5711f8110ee11e2dfe2ef35" class="m-doc-self">setSelectionParameters</a>(</span><span class="m-doc-wrap"><a href="SelectionParameters_8h.html#a50daa29c84869b18e0b12d7456de94e2" class="m-doc">SelectionTypes</a> i_selectionType,
+              int i_numOfSurvivors)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3a8129ddff0a5f592c3046021f3c7daf">
+              <span class="m-doc-wrap-bumper">void <a href="#a3a8129ddff0a5f592c3046021f3c7daf" class="m-doc-self">setKeyEndProcessIndex</a>(</span><span class="m-doc-wrap">double i_keyEndProcessIndex)</span>
             </dt>
             <dd><span></span></dd>
           </dl>

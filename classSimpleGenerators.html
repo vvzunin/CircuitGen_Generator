@@ -97,9 +97,13 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a73f972dfd033b02eb4d71ef7bb2e3413" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classSimpleGenerators.html" class="m-doc">SimpleGenerators</a>&amp;&amp; other) -&gt; <a href="classSimpleGenerators.html" class="m-doc">SimpleGenerators</a>&amp; <span class="m-label m-flat m-danger">deleted</span></span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a96312d59d34334c15b83221d0dc0e2e1">
-              <span class="m-doc-wrap-bumper">auto <a href="#a96312d59d34334c15b83221d0dc0e2e1" class="m-doc-self">cnfFromTruthTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_table,
-              bool i_tp = true) -&gt; std::vector&lt;std::string&gt;</span>
+            <dt id="a5d4c910f51dbbb4a4c1c09923ca90147">
+              <span class="m-doc-wrap-bumper">auto <a href="#a5d4c910f51dbbb4a4c1c09923ca90147" class="m-doc-self">cnfFromTruthTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_table,
+              bool i_tp = true) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="abe2fb580fe65b11a84770b9f99ef3c99">
+              <span class="m-doc-wrap-bumper">auto <a href="#abe2fb580fe65b11a84770b9f99ef3c99" class="m-doc-self">zhegalkinFromTruthTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_table) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
             </dt>
             <dd><span></span></dd>
             <dt id="a662ceb370c15bcd152aa97f8fdf470a5">
@@ -127,11 +131,11 @@
               bool i_leaveEmptyOut = true) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a6017504b233d40c632e1a7b96e06dfaa">
-              <span class="m-doc-wrap-bumper">auto <a href="#a6017504b233d40c632e1a7b96e06dfaa" class="m-doc-self">generatorSummator</a>(</span><span class="m-doc-wrap">int bits,
-              bool overflowIn,
-              bool overflowOut,
-              bool minus,
+            <dt id="a10b468041369ca1b14679cc5c1e934f7">
+              <span class="m-doc-wrap-bumper">auto <a href="#a10b468041369ca1b14679cc5c1e934f7" class="m-doc-self">generatorSummator</a>(</span><span class="m-doc-wrap">int i_bits,
+              bool i_overflowIn,
+              bool i_overflowOut,
+              bool i_minus,
               bool act = false) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
             </dt>
             <dd><span></span></dd>
@@ -145,6 +149,54 @@
             <dd><span></span></dd>
             <dt id="a77dc012394d9d34162159256f438acc9">
               <span class="m-doc-wrap-bumper">auto <a href="#a77dc012394d9d34162159256f438acc9" class="m-doc-self">generatorEncoder</a>(</span><span class="m-doc-wrap">int bits) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a7688cca1d33fd676b0b5cf543b8ca2ee">
+              <span class="m-doc-wrap-bumper">auto <a href="#a7688cca1d33fd676b0b5cf543b8ca2ee" class="m-doc-self">generatorParity</a>(</span><span class="m-doc-wrap">int i_bits) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="abbe4f1df140ca1b7321d8b8e508d8f16">
+              <span class="m-doc-wrap-bumper">auto <a href="#abbe4f1df140ca1b7321d8b8e508d8f16" class="m-doc-self">generatorSubtractor</a>(</span><span class="m-doc-wrap">int i_bits,
+              bool i_overflowIn,
+              bool i_overflowOut,
+              bool i_sub,
+              bool act = false) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a544b3c8a6544ddfc3d684af7abd5eb1e">
+              <span class="m-doc-wrap-bumper">auto <a href="#a544b3c8a6544ddfc3d684af7abd5eb1e" class="m-doc-self">generatorMultiplexer</a>(</span><span class="m-doc-wrap">int i_bits) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aea7d8339b568125b52d0a500458a02f2">
+              <span class="m-doc-wrap-bumper">auto <a href="#aea7d8339b568125b52d0a500458a02f2" class="m-doc-self">generatorDemultiplexer</a>(</span><span class="m-doc-wrap">int i_bits) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a7b5739428f4b89a10f1577f1bbca4897">
+              <span class="m-doc-wrap-bumper">auto <a href="#a7b5739428f4b89a10f1577f1bbca4897" class="m-doc-self">generatorMultiplier</a>(</span><span class="m-doc-wrap">int i_bits,
+              bool act = false) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4e31a7ef1554b5f801b139869aff57aa">
+              <span class="m-doc-wrap-bumper">auto <a href="#a4e31a7ef1554b5f801b139869aff57aa" class="m-doc-self">generatorDecoder</a>(</span><span class="m-doc-wrap">int i_bits) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4dd5385fe63af1756e9a21edf0b2a695">
+              <span class="m-doc-wrap-bumper">auto <a href="#a4dd5385fe63af1756e9a21edf0b2a695" class="m-doc-self">generatorALU</a>(</span><span class="m-doc-wrap">int i_bits,
+              int i_outbits,
+              bool ALL,
+              bool SUM,
+              bool SUB,
+              bool NSUM,
+              bool NSUB,
+              bool MULT,
+              bool COM,
+              bool AND,
+              bool NAND,
+              bool OR,
+              bool NOR,
+              bool XOR,
+              bool XNOR,
+              bool CNF) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
             </dt>
             <dd><span></span></dd>
             <dt id="a88102287ac78993a56a18fe43ec9b6bb">
