@@ -17,27 +17,27 @@
 ## 3. [SimpleGenerators.hpp](src/generators/simple/SimpleGenerators.hpp) и [SimpleGenerators.cpp](src/generators/simple/SimpleGenerators.cpp)
 В данных файлах необходимо реализовать сам генератор (метод для генерации схемы). В **SimpleGenerators.h** необходимо добавить описание метода генерации:
 ```
-OrientedGraph generatorNewGeneratorName(...);
+GraphPtr generatorNewGeneratorName(...);
 ```
-В качестве результата метод должен возвращать сгенерированную схему в формате **OrientedGraph**. В качестве входных данных метод должен принимать все необходмые для его использования переменные.
+В качестве результата метод должен возвращать сгенерированную схему в формате **GraphPtr**, являющуюся, в свою очердедь, псевдонимом для типа **std::shared_ptr<OrientedGraph>**. В качестве входных данных метод должен принимать все необходмые для его использования переменные.
 > [!IMPORTANT]
 > Имена входных переменных должны начинаться с префикса **i_**.
 
 В **SimpleGenerators.cpp** необходимо реализовать сам генератор:
 ```
-OrientedGraph SimpleGenerators::generatorNewGeneratorName(...) {
+GraphPtr SimpleGenerators::generatorNewGeneratorName(...) {
    ...
 }
 ```
 ## 4. [DataBaseGenerator.hpp](src/database/DataBaseGenerator.hpp) и [DataBaseGenerator.cpp](src/database/DataBaseGenerator.cpp)
-В классе **DataBaseGenerator** необходимо реализовать метод, который будет на вход получать константную ссылку на параметры генерации *i_param*,  которая содержит все необходимые параметры генерации. В данном методе необходимо создать объект класса **SimpleGenerator** и запустить в нем ранее созданный метод, в который нужно передать все необходимые параметры из *i_param* в том же порядке, в котором они были описаны в реализации метода. Результат необходимо записать в переменную типа **OrientedGraph**. После этого необходимо создать переменную типа **Circuit** и в качестве параметра конструктора передать полученный граф. После этого необходимо задать путь генерации (setPath) в качестве которого выступает *d_mainPath*. Также нужно задать название схемы (setCircuitName) присутствующее в параметрах генерации (i_param.getName()). После этого необходимо запустить генерацию схемы в формате Verilog и обсчет параметров (generate), передав набор параметров: i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles().
+В классе **DataBaseGenerator** необходимо реализовать метод, который будет на вход получать константную ссылку на параметры генерации *i_param*,  которая содержит все необходимые параметры генерации. В данном методе необходимо создать объект класса **SimpleGenerator** и запустить в нем ранее созданный метод, в который нужно передать все необходимые параметры из *i_param* в том же порядке, в котором они были описаны в реализации метода. Результат необходимо записать в переменную типа **GraphPtr**. После этого необходимо создать переменную типа **Circuit** и в качестве параметра конструктора передать полученный граф. После этого необходимо задать путь генерации (setPath) в качестве которого выступает *d_mainPath*. Также нужно задать название схемы (setCircuitName) присутствующее в параметрах генерации (i_param.getName()). После этого необходимо запустить генерацию схемы в формате Verilog и обсчет параметров (generate), передав набор параметров: i_param.getCalculateStatsAbc(), i_param.getLibraryName(), i_param.getMakeOptimizedFiles().
 
 Используя привенные ранее примеры названий методов, поучиться следующий код дя реализации метода:
 ```
 void DataBaseGenerator::generateNewGeneratorName(GenerationParameters &i_param) {
   SimpleGenerators sg;
   ...
-  OrientedGraph graph = sg.generatorNewGeneratorName(...);
+  GraphPtr graph = sg.generatorNewGeneratorName(...);
   Circuit c (graph);\
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());

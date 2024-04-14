@@ -10,6 +10,7 @@
 
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/graph/OrientedGraph.hpp>
+#include <baseStructures/Parser.hpp>
 #include <math.h>
 
 int SimpleGenerators::getRangomAndNumber() {
@@ -106,11 +107,21 @@ GraphPtr
     inputs.push_back(graph->addInput("x" + std::to_string(k)));
   }
 
-  std::map<VertexPtr, VertexPtr> inputs_not;
+  // TODO make nand-or generation etc
+  if (!d_gatesInputsInfo.count(Gates::GateAnd)
+      && !d_gatesInputsInfo.count(Gates::GateOr)) {
+    d_gatesInputsInfo[Gates::GateAnd] = {(int32_t)inputs.size()};
+    d_gatesInputsInfo[Gates::GateOr]  = {(int32_t)inputs.size()};
+  }
 
-  for (int j = 0; j < i_table.getOutput(); ++j) {
+  std::map<VertexPtr, VertexPtr> inputs_not;
+  VertexPtr                      constGate_0(nullptr), constGate_1(nullptr);
+
+  Parser                         parserMany;
+  parserMany.setGatesInputsInfo(d_gatesInputsInfo);
+
+  for (size_t j = 0; j < i_table.getOutput(); ++j) {
     VertexPtr out = graph->addOutput("f" + std::to_string(j));
-    // fun.push_back("f" + std::to_string(j) + " = ");
     int       mem = 0;
     int       tmp = 0;
 
@@ -121,61 +132,64 @@ GraphPtr
 
     if (mem == 0 || mem == i_table.size()) {
       if (i_tp && mem == 0 || !i_tp && mem == i_table.size()) {
-        // fun[j] += "1'b0";
-        VertexPtr constGate = graph->addConst('0');
-        graph->addEdge(constGate, out);
+        if (constGate_0.get() == nullptr) {
+          constGate_0 = graph->addConst('0');
+        }
+        graph->addEdge(constGate_0, out);
       } else {
-        // fun[j] += "1'b1";
-        VertexPtr constGate = graph->addConst('1');
-        graph->addEdge(constGate, out);
+        if (constGate_1.get() == nullptr) {
+          constGate_1 = graph->addConst('1');
+        }
+        graph->addEdge(constGate_1, out);
       }
       continue;
     }
 
-    // if (mem == i_table.size()) {
-    //   if (i_tp)
-    //     fun[j] += "1'b1";
-    //   else
-    //     fun[j] += "1'b0";
-    //   continue;
-    // }
+    Gates                  exter   = i_tp ? Gates::GateOr : Gates::GateAnd;
+    Gates                  inter   = i_tp ? Gates::GateAnd : Gates::GateOr;
+    int32_t                curSize = 0;
 
-    VertexPtr mainOper = graph->addGate(i_tp ? Gates::GateOr : Gates::GateAnd);
+    std::vector<VertexPtr> nextLayoutExt;
+    std::vector<VertexPtr> nextLayout;
+
+    nextLayout.reserve(inputs.size());
+
+    // Here we create operations in brackets
     for (int i = 0; i < mem; ++i) {
-      // fun[j] += '(';
-      VertexPtr oper = graph->addGate(i_tp ? Gates::GateAnd : Gates::GateOr);
-
       while ((i_table.getOutTable(tmp, j) ^ i_tp) && tmp < i_table.size())
-        tmp++;
+        ++tmp;
 
-      for (int k = 0; k < i_table.getInput(); ++k) {
+      // create layout of "input"
+      for (size_t k = 0; k < inputs.size(); ++k) {
         VertexPtr x_input = inputs[k];
 
+        // add NOT
         if (bin[tmp][k] ^ i_tp) {
           if (!inputs_not.count(x_input)) {
             inputs_not[x_input] =
                 graph->addGate(Gates::GateNot, x_input->getName() + "_not");
           }
 
+          // Get NOT operation
           x_input = inputs_not[x_input];
           graph->addEdge(inputs[k], x_input);
-          // fun[j] += d_settings->getLogicOperation("not").first + " ";
         }
 
-        graph->addEdge(x_input, oper);
+        nextLayout.push_back(x_input);
       }
 
-      // fun[j] += ')';
+      nextLayoutExt.push_back(
+          parserMany.multipleVerteciesToOne(nextLayout, inter, graph)
+      );
 
-      // if (i != mem - 1)
-      //   fun[j] += " "
-      //           + (i_tp ? d_settings->getLogicOperation("or").first
-      //                   : d_settings->getLogicOperation("and").first)
-      //           + " ";
-      graph->addEdge(oper, mainOper);
-      tmp++;
+      nextLayout.clear();
+      ++tmp;
     }
-    graph->addEdge(mainOper, out);
+
+    // and here operations with brackets
+    graph->addEdge(
+        parserMany.multipleVerteciesToOne(nextLayoutExt, exter, graph), out
+    );
   }
 
   return graph;
@@ -320,12 +334,12 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 }
 
 GraphPtr SimpleGenerators::generatorRandLevelExperimental(
-    u_int32_t i_minLevel,
-    u_int32_t i_maxLevel,
-    u_int32_t i_minElements,
-    u_int32_t i_maxElements,
-    u_int32_t i_inputs,
-    u_int32_t i_outputs
+    uint32_t i_minLevel,
+    uint32_t i_maxLevel,
+    uint32_t i_minElements,
+    uint32_t i_maxElements,
+    uint32_t i_inputs,
+    uint32_t i_outputs
 ) {
   if (i_minLevel > i_maxLevel)
     throw std::invalid_argument("min level is biggert than max level");
