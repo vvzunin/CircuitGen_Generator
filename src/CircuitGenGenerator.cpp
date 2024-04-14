@@ -52,8 +52,29 @@ void runGenerationFromJson(std::string json_path) {
       gt = GenerationTypes::RandLevelExperimental;
     else if (data["type_of_generation"] == "Num Operation")
       gt = GenerationTypes::NumOperation;
-    // else if (data["type_of_generation"] == "Genetic")
-    //   gt = GenerationTypes::Genetic;
+    else if (data["type_of_generation"] == "Genetic")
+       gt = GenerationTypes::Genetic;
+    else if (data["type_of_generation"] == "Summator")
+      gt = GenerationTypes::Summator;
+    else if (data["type_of_generation"] == "Comparison")
+      gt = GenerationTypes::Comparison;
+    else if (data["type_of_generation"] == "Encoder")
+        gt = GenerationTypes::Encoder;
+    else if (data["type_of_generation"] == "Subtractor")
+      gt = GenerationTypes::Subtractor;
+    else if (data["type_of_generation"] == "Multiplexer")
+        gt = GenerationTypes::Multiplexer;
+    else if (data["type_of_generation"] == "Demultiplexer")
+      gt = GenerationTypes::Demultiplexer;
+    else if (data["type_of_generation"] == "Multiplier")
+        gt = GenerationTypes::Multiplier;
+    else if (data["type_of_generation"] == "Decoder")
+        gt = GenerationTypes::Decoder;
+    else if (data["type_of_generation"] == "Parity")
+        gt = GenerationTypes::Parity;
+
+    else if (data["type_of_generation"] == "ALU")
+        gt = GenerationTypes::ALU;
     else {
       std::cerr << "Unsupported generation type" << std::endl;
       return;
@@ -135,7 +156,7 @@ void runGenerationFromJson(std::string json_path) {
         }
       }
     }
-    // TODO: shell we fill gatesInpursInfo always? 
+    // TODO: shell we fill gatesInputsInfo always?
     // // if gates_inputs_info in json was empty or there was no such data in json
     // if (!gatesInputsInfo.size()) {
     //   // default init data
@@ -168,13 +189,14 @@ void runGenerationFromJson(std::string json_path) {
 
     // Основные параметры для From Random Truth Table
     if (data["type_of_generation"] == "From Random Truth Table") {
-      if (!(data.contains("CNFF") || data.contains("CNFT"))) {
+      if (!(data.contains("CNFF") || data.contains("CNFT") || data.contains("Zhegalkin"))) {
         std::cerr << "Parameters for selected generation type is not set."
                   << std::endl;
         return;
       }
       gp.setCNFF(data.contains("CNFF") ? (bool)data["CNFF"] : false);
       gp.setCNFT(data.contains("CNFT") ? (bool)data["CNFT"] : false);
+      gp.setZhegalkin(data.contains("Zhegalkin") ? (bool)data["Zhegalkin"] : false);
     }
 
     // Основные параметры для Rand Level
@@ -234,161 +256,221 @@ void runGenerationFromJson(std::string json_path) {
     }
 
     // Основные параметры для Genetic
-    // if (data["type_of_generation"] == "Genetic")
-    // {
+    if (data["type_of_generation"] == "Genetic")
+    {
 
-    //   int numOfSurv = 1;
-    //   if (data.contains("surv_num"))
-    //     int numOfSurv = data["surv_num"];
-    //   else
-    //     std::clog << "Parameter surv_num is not set." << std::endl;
+      int numOfSurv = 1;
+      if (data.contains("surv_num"))
+        int numOfSurv = data["surv_num"];
+      else
+        std::clog << "Parameter surv_num is not set." << std::endl;
 
-    //   MutationTypes mType;
-    //   if (data.contains("mut_type"))
-    //   {
-    //     std::string mutType = data["mut_type"];
+      MutationTypes mType;
+      if (data.contains("mut_type"))
+      {
+        std::string mutType = data["mut_type"];
 
-    //     if (mutType == "Binary")
-    //       mType = MutationTypes::Binary;
-    //     else if (mutType == "Density")
-    //       mType = MutationTypes::Density;
-    //     else if (mutType == "AccessionDel")
-    //       mType = MutationTypes::AccessionDel;
-    //     else if (mutType == "InsertDel")
-    //       mType = MutationTypes::InsertDel;
-    //     else if (mutType == "Exchange")
-    //       mType = MutationTypes::Exchange;
-    //     else if (mutType == "Delete")
-    //       mType = MutationTypes::Delete;
-    //     else
-    //     {
-    //       std::cerr << "Unsupported mutType." << std::endl;
-    //       return;
-    //     }
-    //   }
-    //   else
-    //   {
-    //     std::cerr << "Parameters for mutType is not set." << std::endl;
-    //     return;
-    //   }
+        if (mutType == "Binary")
+          mType = MutationTypes::Binary;
+        else if (mutType == "Density")
+          mType = MutationTypes::Density;
+        else if (mutType == "AccessionDel")
+          mType = MutationTypes::AccessionDel;
+        else if (mutType == "InsertDel")
+          mType = MutationTypes::InsertDel;
+        else if (mutType == "Exchange")
+          mType = MutationTypes::Exchange;
+        else if (mutType == "Delete")
+          mType = MutationTypes::Delete;
+        else
+        {
+          std::cerr << "Unsupported mutType." << std::endl;
+          return;
+        }
+      }
+      else
+      {
+        std::cerr << "Parameters for mutType is not set." << std::endl;
+        return;
+      }
 
-    //   double mutChance = 0.5;
-    //   if (data.contains("mut_chance"))
-    //     mutChance = data["mut_chance"];
-    //   else
-    //     std::clog << "Parameter mutChance is not set." << std::endl;
+      double mutChance = 0.5;
+      if (data.contains("mut_chance"))
+        mutChance = data["mut_chance"];
+      else
+        std::clog << "Parameter mutChance is not set." << std::endl;
 
-    //   int exchangeType = 0;
-    //   if (data.contains("swap_type"))
-    //     exchangeType = data["swap_type"];
-    //   else
-    //     std::clog << "Parameter swap_type is not set." << std::endl;
+      int exchangeType = 0;
+      if (data.contains("swap_type"))
+        exchangeType = data["swap_type"];
+      else
+        std::clog << "Parameter swap_type is not set." << std::endl;
 
-    //   double outRatio = 1.0;
-    //   if (data.contains("out_ratio"))
-    //     outRatio = data["out_ratio"];
-    //   else
-    //     std::clog << "Parameter out_ratio is not set." << std::endl;
+      double outRatio = 1.0;
+      if (data.contains("out_ratio"))
+        outRatio = data["out_ratio"];
+      else
+        std::clog << "Parameter out_ratio is not set." << std::endl;
 
-    //   double probabilityTruthTable = 1.0;
-    //   if (data.contains("ratio_in_table"))
-    //     probabilityTruthTable = data["ratio_in_table"];
-    //   else
-    //     std::clog << "Parameter ratio_in_table is not set." << std::endl;
+      double probabilityTruthTable = 1.0;
+      if (data.contains("ratio_in_table"))
+        probabilityTruthTable = data["ratio_in_table"];
+      else
+        std::clog << "Parameter ratio_in_table is not set." << std::endl;
 
-    //   int recNum = 1;
-    //   if (data.contains("rec_num"))
-    //     recNum = data["rec_num"];
-    //   else
-    //     std::clog << "Parameter rec_num is not set." << std::endl;
+      int recNum = 1;
+      if (data.contains("rec_num"))
+        recNum = data["rec_num"];
+      else
+        std::clog << "Parameter rec_num is not set." << std::endl;
 
-    //   int refPoints = 1;
-    //   if (data.contains("ref_points"))
-    //     refPoints = data["ref_points"];
-    //   else
-    //     std::clog << "Parameter ref_points is not set." << std::endl;
+      int refPoints = 1;
+      if (data.contains("ref_points"))
+        refPoints = data["ref_points"];
+      else
+        std::clog << "Parameter ref_points is not set." << std::endl;
 
-    //   int tourSize = 1;
-    //   if (data.contains("tour_size"))
-    //     tourSize = data["tour_size"];
-    //   else
-    //     std::clog << "Parameter tour_size is not set." << std::endl;
+      int tourSize = 1;
+      if (data.contains("tour_size"))
+        tourSize = data["tour_size"];
+      else
+        std::clog << "Parameter tour_size is not set." << std::endl;
 
-    //   std::string selectionTypeParent = data["selection_type_parent"];
-    //   ParentsTypes selecTypeParent;
-    //   if (selectionTypeParent == "Panmixia")
-    //     selecTypeParent = ParentsTypes::Panmixia;
-    //   else if (selectionTypeParent == "Inbringing")
-    //     selecTypeParent = ParentsTypes::Inbringing;
-    //   else if (selectionTypeParent == "Outbrinding")
-    //     selecTypeParent = ParentsTypes::Outbrinding;
-    //   else if (selectionTypeParent == "Tournament")
-    //     selecTypeParent = ParentsTypes::Tournament;
-    //   else if (selectionTypeParent == "Roulette")
-    //     selecTypeParent = ParentsTypes::Roulette;
-    //   else
-    //   {
-    //     std::cerr << "Unsupported selectionTypeParent." << std::endl;
-    //     return;
-    //   }
+      std::string selectionTypeParent = data["selection_type_parent"];
+      ParentsTypes selecTypeParent;
+      if (selectionTypeParent == "Panmixia")
+        selecTypeParent = ParentsTypes::Panmixia;
+      else if (selectionTypeParent == "Inbringing")
+        selecTypeParent = ParentsTypes::Inbringing;
+      else if (selectionTypeParent == "Outbrinding")
+        selecTypeParent = ParentsTypes::Outbrinding;
+      else if (selectionTypeParent == "Tournament")
+        selecTypeParent = ParentsTypes::Tournament;
+      else if (selectionTypeParent == "Roulette")
+        selecTypeParent = ParentsTypes::Roulette;
+      else
+      {
+        std::cerr << "Unsupported selectionTypeParent." << std::endl;
+        return;
+      }
 
-    //   std::string recombinationType = data["playback_type"];
-    //   RecombinationTypes recombType;
-    //   if (recombinationType == "CrossingEachExitInTurnMany")
-    //     recombType = RecombinationTypes::CrossingEachExitInTurnMany;
-    //   else if (recombinationType == "CrossingUniform")
-    //     recombType = RecombinationTypes::CrossingUniform;
-    //   else if (recombinationType == "CrossingTriadic")
-    //     recombType = RecombinationTypes::CrossingTriadic;
-    //   else if (recombinationType == "CrossingReducedReplacement")
-    //     recombType = RecombinationTypes::CrossingReducedReplacement;
-    //   else if (recombinationType == "CrossingShuffling")
-    //     recombType = RecombinationTypes::CrossingShuffling;
-    //   else
-    //   {
-    //     std::cerr << "Unsupported recombinationType." << std::endl;
-    //     return;
-    //   }
+      std::string recombinationType = data["playback_type"];
+      RecombinationTypes recombType;
+      if (recombinationType == "CrossingEachExitInTurnMany")
+        recombType = RecombinationTypes::CrossingEachExitInTurnMany;
+      else if (recombinationType == "CrossingUniform")
+        recombType = RecombinationTypes::CrossingUniform;
+      else if (recombinationType == "CrossingTriadic")
+        recombType = RecombinationTypes::CrossingTriadic;
+      else if (recombinationType == "CrossingReducedReplacement")
+        recombType = RecombinationTypes::CrossingReducedReplacement;
+      else if (recombinationType == "CrossingShuffling")
+        recombType = RecombinationTypes::CrossingShuffling;
+      else
+      {
+        std::cerr << "Unsupported recombinationType." << std::endl;
+        return;
+      }
 
-    //   double maskProb = 1.0;
-    //   if (data.contains("mask_prob"))
-    //     maskProb = data["mask_prob"];
-    //   else
-    //     std::clog << "Parameter mask_prob is not set." << std::endl;
+      double maskProb = 1.0;
+      if (data.contains("mask_prob"))
+        maskProb = data["mask_prob"];
+      else
+        std::clog << "Parameter mask_prob is not set." << std::endl;
 
-    //   int populationSize = 1;
-    //   if (data.contains("population_size"))
-    //     populationSize = data["population_size"];
-    //   else
-    //     std::clog << "Parameter population_size is not set." << std::endl;
+      int populationSize = 1;
+      if (data.contains("population_size"))
+        populationSize = data["population_size"];
+      else
+        std::clog << "Parameter population_size is not set." << std::endl;
 
-    //   int numOfCycles = 1;
-    //   if (data.contains("cycles"))
-    //     numOfCycles = data["cycles"];
-    //   else
-    //     std::clog << "Parameter cycles is not set." << std::endl;
+      int numOfCycles = 1;
+      if (data.contains("cycles"))
+        numOfCycles = data["cycles"];
+      else
+        std::clog << "Parameter cycles is not set." << std::endl;
 
-    //   std::string selectionType = data["selection_type"];
-    //   SelectionTypes selType;
-    //   if (selectionType == "Base")
-    //     selType = SelectionTypes::Base;
+      std::string selectionType = data["selection_type"];
+      SelectionTypes selType;
+      if (selectionType == "Base")
+        selType = SelectionTypes::Base;
 
-    //   int survNum = data["surv_num"];
+      int survNum = data["surv_num"];
 
-    //   gp.setPopulationSize(populationSize);
-    //   gp.setNumOfCycles(numOfCycles);
-    //   gp.setRecombinationParameters(selecTypeParent, tourSize, recombType,
-    //   refPoints, maskProb, recNum); gp.setMutationParameters(mType,
-    //   mutChance, exchangeType, probabilityTruthTable);
-    //   gp.setSelectionParameters(selType, survNum);
-    //   gp.setKeyEndProcessIndex(outRatio);
-    //   // gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType,
-    //   ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
-    // }
+      gp.setPopulationSize(populationSize);
+      gp.setNumOfCycles(numOfCycles);
+      gp.setRecombinationParameters(selecTypeParent, tourSize, recombType,
+      refPoints, maskProb, recNum); gp.setMutationParameters(mType,
+      mutChance, exchangeType, probabilityTruthTable);
+      gp.setSelectionParameters(selType, survNum);
+      gp.setKeyEndProcessIndex(outRatio);
+      // gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType,
+      // ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
+    }
 
-    DataBaseGeneratorParameters dbgp(
-        minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp
-    );
+    if (static_cast<std::string>(data["type_of_generation"])
+                  .find("Subtractor") != std::string::npos) {
+        if (!(data.contains("overflowIn") || data.contains("overflowOut") || data.contains("sub")))
+            std::clog << "Parameters for selected generation type is not set. "
+                           "Parameters sets to default."<< std::endl;
+
+        bool overflowIn = data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
+        bool overflowOut = data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
+        bool sub = data.contains("sub") ? (bool)data["sub"] : false;
+        gp.setSubtractorParameters(overflowIn, overflowOut, sub);
+    }
+
+    if (static_cast<std::string>(data["type_of_generation"])
+                  .find("Summator") != std::string::npos) {
+        if (!(data.contains("overflowIn") || data.contains("overflowOut") || data.contains("minus")))
+            std::clog << "Parameters for selected generation type is not set. "
+                           "Parameters sets to default."<< std::endl;
+
+        bool overflowIn = data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
+        bool overflowOut = data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
+        bool minus = data.contains("minus") ? (bool)data["minus"] : false;
+        gp.setSummatorParameters(overflowIn, overflowOut, minus);
+    }
+
+    if (static_cast<std::string>(data["type_of_generation"])
+                  .find("Comparison") != std::string::npos) {
+        if (!(data.contains("=") || data.contains("<") || data.contains(">")))
+            std::clog << "Parameters for selected generation type is not set. "
+                           "Parameters sets to default."<< std::endl;
+
+        bool compare0 = data.contains("=") ? (bool)data["="] : false;
+        bool compare1 = data.contains("<") ? (bool)data["<"] : false;
+        bool compare2 = data.contains(">") ? (bool)data[">"] : false;
+        gp.setComparisonParameters(compare0, compare1, compare2);
+    }
+
+    if (static_cast<std::string>(data["type_of_generation"]).find("ALU") != std::string::npos) {
+        if (!(data.contains("ALL") || data.contains("SUM") || data.contains("SUB") ||
+        data.contains("NSUM") || data.contains("NSUB") || data.contains("MULT") ||
+        data.contains("COM") || data.contains("AND") || data.contains("NAND") ||
+        data.contains("OR") || data.contains("NOR") || data.contains("XOR") ||
+        data.contains("XNOR") || data.contains("CNF")))
+            std::clog << "Parameters for selected generation type is not set. "
+                           "Parameters sets to default."<< std::endl;
+
+        bool ALL = data.contains("ALL") ? (bool)data["ALL"] : false;
+        bool SUM = data.contains("SUM") ? (bool)data["SUM"] : false;
+        bool SUB = data.contains("SUB") ? (bool)data["SUB"] : false;
+        bool NSUM = data.contains("NSUM") ? (bool)data["NSUM"] : false;
+        bool NSUB = data.contains("NSUB") ? (bool)data["NSUB"] : false;
+        bool MULT = data.contains("MULT") ? (bool)data["MULT"] : false;
+        bool COM = data.contains("COM") ? (bool)data["COM"] : false;
+        bool AND = data.contains("AND") ? (bool)data["AND"] : false;
+        bool NAND = data.contains("NAND") ? (bool)data["NAND"] : false;
+        bool OR = data.contains("OR") ? (bool)data["OR"] : false;
+        bool NOR = data.contains("NOR") ? (bool)data["NOR"] : false;
+        bool XOR = data.contains("XOR") ? (bool)data["XOR"] : false;
+        bool XNOR = data.contains("XNOR") ? (bool)data["XNOR"] : false;
+        bool CNF = data.contains("CNF") ? (bool)data["CNF"] : false;
+        gp.setALUParameters(ALL, SUM, SUB, NSUM, NSUB, MULT, COM, AND, NAND, OR, NOR, XOR, XNOR, CNF);
+    }
+    DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs,
+                                     maxOutputs, repeats, gt, gp);
 
     DataBaseGenerator generator(dbgp);
 

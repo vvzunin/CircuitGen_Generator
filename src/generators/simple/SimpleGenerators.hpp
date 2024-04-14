@@ -43,6 +43,7 @@ public:
   SimpleGenerators& operator=(SimpleGenerators&& other)      = delete;
 
   GraphPtr cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
+  GraphPtr zhegalkinFromTruthTable(const TruthTable& i_table);
 
   GraphPtr generatorRandLevel(
       int i_minLevel,
@@ -53,12 +54,12 @@ public:
       int i_outputs
   );
   GraphPtr generatorRandLevelExperimental(
-      uint32_t i_minLevel,
-      uint32_t i_maxLevel,
-      uint32_t i_minElements,
-      uint32_t i_maxElements,
-      uint32_t i_inputs,
-      uint32_t i_outputs
+      u_int32_t i_minLevel,
+      u_int32_t i_maxLevel,
+      u_int32_t i_minElements,
+      u_int32_t i_maxElements,
+      u_int32_t i_inputs,
+      u_int32_t i_outputs
   );
 
   GraphPtr generatorNumOperation(
@@ -68,10 +69,10 @@ public:
       bool                 i_leaveEmptyOut = true
   );
   GraphPtr generatorSummator(
-      int  bits,
-      bool overflowIn,
-      bool overflowOut,
-      bool minus,
+      int  i_bits,
+      bool i_overflowIn,
+      bool i_overflowOut,
+      bool i_minus,
       bool act = false
   );
   GraphPtr generatorComparison(
@@ -82,14 +83,48 @@ public:
       bool act = false
   );
   GraphPtr generatorEncoder(int bits);
+  GraphPtr generatorParity(int i_bits);
+  GraphPtr generatorSubtractor(
+      int  i_bits,
+      bool i_overflowIn,
+      bool i_overflowOut,
+      bool i_sub,
+      bool act = false
+  );
+  GraphPtr generatorMultiplexer(int i_bits);
+  GraphPtr generatorDemultiplexer(int i_bits);
+  GraphPtr generatorMultiplier(int i_bits, bool act = false);
+  GraphPtr generatorDecoder(int i_bits);
+  GraphPtr generatorALU(
+      int  i_bits,
+      int  i_outbits,
+      bool ALL,
+      bool SUM,
+      bool SUB,
+      bool NSUM,
+      bool NSUB,
+      bool MULT,
+      bool COM,
+      bool AND,
+      bool NAND,
+      bool OR,
+      bool NOR,
+      bool XOR,
+      bool XNOR,
+      bool CNF
+  );
 
   void setGatesInputsInfo(const std::map<std::string, std::vector<int>>& i_info
   ) {
     d_minGateNumber = INT_MAX;
 
     for (auto& [key, value] : i_info) {
-      d_maxGateNumber = std::max(value.back(), d_maxGateNumber);
-      d_minGateNumber = std::min(value.back(), d_minGateNumber);
+      d_maxGateNumber = std::max(
+          *std::max_element(value.begin(), value.end()), d_maxGateNumber
+      );
+      d_minGateNumber = std::min(
+          *std::max_element(value.begin(), value.end()), d_minGateNumber
+      );
       d_gatesInputsInfo[d_settings->parseStringToGate(key)] = value;
     }
 
@@ -113,6 +148,25 @@ private:
 
     return val->first;
   }
+
+  GraphPtr ALU(
+      int  i_bits,
+      int  i_outbits,
+      bool ALL,
+      bool SUM,
+      bool SUB,
+      bool NSUM,
+      bool NSUB,
+      bool MULT,
+      bool COM,
+      bool AND,
+      bool NAND,
+      bool OR,
+      bool NOR,
+      bool XOR,
+      bool XNOR,
+      bool CNF
+  );
 
   std::pair<Gates, int>   getRandomElement(const GatesInfo& i_info);
   std::pair<Gates, int>   getRandomElement(u_int32_t i_gatesLimit);

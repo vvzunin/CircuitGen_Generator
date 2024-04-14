@@ -8,10 +8,17 @@ enum GenerationTypes {
   RandLevel,
   RandLevelExperimental,
   NumOperation,
-  // Genetic,
+  Genetic,
   Summator,
   Comparison,
-  Encoder
+  Encoder,
+  Parity,
+  Subtractor,
+  Multiplexer,
+  Demultiplexer,
+  Multiplier,
+  Decoder,
+  ALU
 };
 
 class DataBaseGeneratorParameters  // TODO: maybe it need heritance from

@@ -2,7 +2,6 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
-#include <set>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -15,7 +14,7 @@
 
 uint_fast64_t OrientedGraph::d_countGraph = 0;
 
-OrientedGraph::OrientedGraph(const std::string i_name) {
+OrientedGraph::OrientedGraph(const std::string& i_name) {
   // this_ptr.reset(this);
   if (i_name == "")
     d_name = "graph_" + std::to_string(d_countGraph++);
@@ -94,14 +93,14 @@ std::set<GraphPtr> OrientedGraph::getParentGraphs() const {
   return d_parentGraphs;
 }
 
-VertexPtr OrientedGraph::addInput(const std::string i_name) {
+VertexPtr OrientedGraph::addInput(const std::string& i_name) {
   VertexPtr newVertex(new GraphVertexInput(i_name, shared_from_this()));
   d_vertexes[VertexTypes::input].push_back(newVertex);
 
   return newVertex;
 }
 
-VertexPtr OrientedGraph::addOutput(const std::string i_name) {
+VertexPtr OrientedGraph::addOutput(const std::string& i_name) {
   VertexPtr newVertex(new GraphVertexOutput(i_name, shared_from_this()));
   d_vertexes[VertexTypes::output].push_back(newVertex);
 
@@ -109,7 +108,7 @@ VertexPtr OrientedGraph::addOutput(const std::string i_name) {
 }
 
 VertexPtr
-    OrientedGraph::addConst(const char i_value, const std::string i_name) {
+    OrientedGraph::addConst(const char& i_value, const std::string& i_name) {
   VertexPtr newVertex(
       new GraphVertexConstant(i_value, i_name, shared_from_this())
   );
@@ -118,7 +117,8 @@ VertexPtr
   return newVertex;
 }
 
-VertexPtr OrientedGraph::addGate(const Gates i_gate, const std::string i_name) {
+VertexPtr
+    OrientedGraph::addGate(const Gates& i_gate, const std::string& i_name) {
   VertexPtr newVertex(new GraphVertexGates(i_gate, i_name, shared_from_this()));
   d_vertexes[VertexTypes::gate].push_back(newVertex);
 
@@ -166,12 +166,30 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
 }
 
 bool OrientedGraph::addEdge(VertexPtr from, VertexPtr to) {
-  // TODO: Добавить проверку на разные baseGraph. Если from - output, то to -
-  // любой. Либо to - input, а from - любой.
-  bool f = from->addVertexToOutConnections(to);
-  int  n = to->addVertexToInConnections(from);
-
-  ++d_edgesCount;
+  bool f;
+  int  n;
+  if (from->getBaseGraph() == to->getBaseGraph()) {
+    f = from->addVertexToOutConnections(to);
+    n = to->addVertexToInConnections(from);
+  } else {
+    if (from->getType() == VertexTypes::output) {
+      n = to->addVertexToInConnections(from);
+    } else {
+      throw std::invalid_argument(
+          "Not allowed to add edge from one subgraph to another, if from "
+          "vertex is not output"
+      );
+    }
+    if (to->getType() == VertexTypes::input) {
+      f = from->addVertexToOutConnections(to);
+    } else {
+      throw std::invalid_argument(
+          "Not allowed to add edge from one subgraph to another, if to vertex "
+          "is not input"
+      );
+    }
+  }
+  d_edgesCount += f && (n > 0);
 
   if (from->getType() == VertexTypes::gate
       && to->getType() == VertexTypes::gate)
@@ -220,7 +238,7 @@ VertexPtr OrientedGraph::getVerticeByIndex(int idx) const {
   return d_vertexes.at(VertexTypes::output).at(idx);
 }
 
-std::vector<VertexPtr> OrientedGraph::getVerticesByLevel(const int i_level) {
+std::vector<VertexPtr> OrientedGraph::getVerticesByLevel(const int& i_level) {
   this->updateLevels();
   std::vector<VertexPtr> a;
   // TODO: Реализовать
@@ -228,9 +246,9 @@ std::vector<VertexPtr> OrientedGraph::getVerticesByLevel(const int i_level) {
 }
 
 std::vector<VertexPtr> OrientedGraph::getVerticesByType(
-    const VertexTypes i_type,
-    const std::string i_name,
-    const bool        i_addSubGraphs
+    const VertexTypes& i_type,
+    const std::string& i_name,
+    const bool&        i_addSubGraphs
 ) const {
   if (i_name.size() != 0)
     return d_vertexes.at(i_type);
@@ -250,8 +268,8 @@ std::vector<VertexPtr> OrientedGraph::getVerticesByType(
 }
 
 std::vector<VertexPtr> OrientedGraph::getVerticesByName(
-    const std::string i_name,
-    const bool        i_addSubGraphs
+    const std::string& i_name,
+    const bool&        i_addSubGraphs
 ) const {
   std::vector<VertexPtr> resVert;
   for (const auto& [key, value] : d_vertexes) {
@@ -288,12 +306,13 @@ std::string OrientedGraph::calculateHash(bool recalculate) {
   if (d_hashed != "" && !recalculate)
     return d_hashed;
 
-  std::set<std::string> hashed_data;
+  std::vector<std::string> hashed_data;
   d_hashed = "";
 
   for (auto& input : d_vertexes[VertexTypes::input]) {
-    hashed_data.insert(input->calculateHash(recalculate));
+    hashed_data.push_back(input->calculateHash(recalculate));
   }
+  std::sort(hashed_data.begin(), hashed_data.end());
 
   for (const auto& sub : hashed_data) {
     d_hashed += sub;
