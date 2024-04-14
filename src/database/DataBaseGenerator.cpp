@@ -141,44 +141,20 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
   SimpleGenerators tftt;
   tftt.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  GraphPtr graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFT());
-  /*
-  std::vector<std::pair<std::string, std::vector<std::string>>> circs;
-
-  if (i_param.getCNF().getCNFT())
-    circs.push_back({"CNFT", tftt.cnfFromTruthTable(tt, true)});
-
-  if (i_param.getCNF().getCNFF())
-    circs.push_back({"CNFF", tftt.cnfFromTruthTable(tt, false)});
-
-  if (i_param.getZhegalkin().getZhegalkin())
-      circs.push_back({"Zhegalkin", tftt.zhegalkinFromTruthTable(tt)});
-
-  for (const auto& [name, expr] : circs) {
-    Parser pCNFT(expr);
-    pCNFT.parseAll();
-*/
-/*
   GraphPtr graph;
-  if (i_param.getCNF().getCNFT())
-  {
-    graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFT());
-    i_param.getName() + "_" + ("CNFT");
+  if (i_param.getZhegalkin().getZhegalkin()){
+    graph = tftt.zhegalkinFromTruthTable(tt);
+    graph->setName(i_param.getName() + "_" + "Zhegalkin");
   }
-  if (i_param.getCNF().getCNFF())
-  {
+  else if (i_param.getCNF().getCNFF()){
     graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFF());
-    i_param.getName() + "_" + ("CNFF");
+    graph->setName(i_param.getName() + "_" + "CNFF");
   }
-  if (i_param.getZhegalkin().getZhegalkin())
-  {
-    graph = tftt.cnfFromTruthTable(tt);
-    i_param.getName() + "_" + ("Zhegalkin");
+  else if (i_param.getCNF().getCNFT()){
+    graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFT());
+    graph->setName(i_param.getName() + "_" + "CNFT");
   }
-  */
-  graph->setName(
-      i_param.getName() + "_" + (i_param.getCNF().getCNFT() ? "CNFT" : "CNFF")
-  );
+
   Circuit c(graph);
   c.setTable(tt);
   c.setPath(d_mainPath);
