@@ -31,9 +31,16 @@ private:
   );
   void generateDataBaseNumOperations(const GenerationParameters& i_param);
   void generateDataBaseGenetic(const GenerationParameters& i_param);
-  void GenerateDataBaseSummator(const GenerationParameters& i_param);
-  void GenerateDataBaseComparison(const GenerationParameters& i_param);
-  void GenerateDataBaseEncoder(const GenerationParameters& i_param);
+  void generateDataBaseSummator(const GenerationParameters& i_param);
+  void generateDataBaseComparison(const GenerationParameters& i_param);
+  void generateDataBaseEncoder(const GenerationParameters& i_param);
+  void generateDataBaseParity(const GenerationParameters& i_param);
+  void generateDataBaseSubtractor(const GenerationParameters& i_param);
+  void generateDataBaseMultiplexer(const GenerationParameters& i_param);
+  void generateDataBaseDemultiplexer(const GenerationParameters& i_param);
+  void generateDataBaseMultiplier(const GenerationParameters& i_param);
+  void generateDataBaseDecoder(const GenerationParameters& i_param);
+  void generateDataBaseALU(const GenerationParameters& i_param);
   std::function<void(const GenerationParameters&)> getGenerateMethod(
       const GenerationTypes i_methodType
   );

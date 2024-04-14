@@ -23,7 +23,7 @@ std::shared_ptr<Settings> Settings::getInstance(const std::string& i_value) {
 void Settings::loadSettings() {
   for (const auto& [key, value] : d_logicOperations) {
     int i = value.second;
-    if (d_operationsToHierarchy.find(i) == d_operationsToHierarchy.end())
+    if (!d_operationsToHierarchy.count(i))
       d_operationsToHierarchy[i] = {};
     d_operationsToHierarchy[i].push_back(value.first);
   }

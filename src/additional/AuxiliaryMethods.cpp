@@ -8,7 +8,7 @@
 #include <utility>
 #include <vector>
 
-#include "AuxiliaryMethods.hpp"
+#include <additional/AuxiliaryMethods.hpp>
 
 #include "RandomGeneratorWithSeed.hpp"
 
@@ -51,9 +51,16 @@ std::string AuxMethods::readAllFile(const std::string& filename) {
   if (!file) {
     throw std::runtime_error("Failed to open file: " + filename);
   }
-
   std::stringstream buffer;
   buffer << file.rdbuf();
+  std::string str = buffer.str();
+  size_t      pos;
+  // Замена всех вхождений \r\n на \n
+  while ((pos = str.find("\r\n")) != std::string::npos) {
+    str.replace(pos, 2, "\n");
+  }
+  return str;
+
   return buffer.str();
 }
 
@@ -63,36 +70,7 @@ std::vector<int> AuxMethods::getRandomIntList(
     int  i_maxNumber,
     bool repite
 ) {
-  std::vector<int> lst;
-  bool             flag = true;
-  // TODO: can we just rewrite it to simple while? and without UB make flag =
-  // true before while?
-
-  while (flag) {
-    int i;
-    flag  = false;
-    int k = i_n - lst.size();
-    for (i = 0; i < k; ++i)
-      lst.push_back(getRandInt(i_minNumber, i_maxNumber, true));
-
-    sort(lst.begin(), lst.end());
-
-    if (!repite) {
-      i          = 1;
-      int insert = 0;
-      while (i < lst.size() - 1) {
-        if (lst[i] != lst[i - 1])
-          lst[insert++] = lst[i];
-        ++i;
-      }
-      if (insert != lst.size()) {
-        flag = true;
-        lst.resize(insert);
-      }
-    }
-  }
-
-  return lst;
+  return gen.getRandomIntList(i_n, i_minNumber, i_maxNumber, repite);
 }
 
 template<typename Key, typename Value>

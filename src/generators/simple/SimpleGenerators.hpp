@@ -42,8 +42,8 @@ public:
   SimpleGenerators(SimpleGenerators&& other)                 = delete;
   SimpleGenerators& operator=(SimpleGenerators&& other)      = delete;
 
-  std::vector<std::string>
-           cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
+  GraphPtr cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
+  GraphPtr zhegalkinFromTruthTable(const TruthTable& i_table);
 
   GraphPtr generatorRandLevel(
       int i_minLevel,
@@ -69,10 +69,10 @@ public:
       bool                 i_leaveEmptyOut = true
   );
   GraphPtr generatorSummator(
-      int  bits,
-      bool overflowIn,
-      bool overflowOut,
-      bool minus,
+      int  i_bits,
+      bool i_overflowIn,
+      bool i_overflowOut,
+      bool i_minus,
       bool act = false
   );
   GraphPtr generatorComparison(
@@ -83,6 +83,36 @@ public:
       bool act = false
   );
   GraphPtr generatorEncoder(int bits);
+  GraphPtr generatorParity(int i_bits);
+  GraphPtr generatorSubtractor(
+      int  i_bits,
+      bool i_overflowIn,
+      bool i_overflowOut,
+      bool i_sub,
+      bool act = false
+  );
+  GraphPtr generatorMultiplexer(int i_bits);
+  GraphPtr generatorDemultiplexer(int i_bits);
+  GraphPtr generatorMultiplier(int i_bits, bool act = false);
+  GraphPtr generatorDecoder(int i_bits);
+  GraphPtr generatorALU(
+      int  i_bits,
+      int  i_outbits,
+      bool ALL,
+      bool SUM,
+      bool SUB,
+      bool NSUM,
+      bool NSUB,
+      bool MULT,
+      bool COM,
+      bool AND,
+      bool NAND,
+      bool OR,
+      bool NOR,
+      bool XOR,
+      bool XNOR,
+      bool CNF
+  );
 
   void setGatesInputsInfo(const std::map<std::string, std::vector<int>>& i_info
   ) {
@@ -118,6 +148,25 @@ private:
 
     return val->first;
   }
+
+  GraphPtr ALU(
+      int  i_bits,
+      int  i_outbits,
+      bool ALL,
+      bool SUM,
+      bool SUB,
+      bool NSUM,
+      bool NSUB,
+      bool MULT,
+      bool COM,
+      bool AND,
+      bool NAND,
+      bool OR,
+      bool NOR,
+      bool XOR,
+      bool XNOR,
+      bool CNF
+  );
 
   std::pair<Gates, int>   getRandomElement(const GatesInfo& i_info);
   std::pair<Gates, int>   getRandomElement(u_int32_t i_gatesLimit);

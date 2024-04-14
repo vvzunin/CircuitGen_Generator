@@ -26,7 +26,7 @@ enum Gates {
   GateXnor,
   GateNot,
   GateBuf,
-  GateDefault,
+  GateDefault
 };
 
 enum GenerationTypes {
@@ -34,10 +34,17 @@ enum GenerationTypes {
   RandLevel,
   RandLevelExperimental,
   NumOperation,
-  // Genetic,
+  Genetic,
   Summator,
   Comparison,
-  Encoder
+  Encoder,
+  Subtractor,
+  Multiplexer,
+  Demultiplexer,
+  Multiplier,
+  Decoder,
+  Parity,
+  ALU
 };
 
 class Settings {
@@ -146,10 +153,17 @@ private:
       {GenerationTypes::RandLevel, "CCGRCG"},
       {GenerationTypes::RandLevelExperimental, "CCGRCGE"},
       {GenerationTypes::NumOperation, "CCGRVC"},
-      // {GenerationTypes::Genetic, "CCGGA"},
-      {GenerationTypes::Summator, "CCGSUM"},
-      {GenerationTypes::Comparison, "CCGCMP"},
-      {GenerationTypes::Encoder, "CCGENCD"}};
+      {GenerationTypes::Genetic, "CCGGA"},
+      {GenerationTypes::Summator, "CCGTCSM"},
+      {GenerationTypes::Comparison, "CCGTCC"},
+      {GenerationTypes::Encoder, "CCGECR"},
+      {GenerationTypes::Subtractor, "CCGTCSB"},
+      {GenerationTypes::Parity, "CCGTCP"},
+      {GenerationTypes::Multiplier, "CCGTCM"},
+      {GenerationTypes::Demultiplexer, "CCGTCDMP"},
+      {GenerationTypes::Multiplexer, "CCGTCMP"},
+      {GenerationTypes::Decoder, "CCGDCR"},
+      {GenerationTypes::ALU, "CCGALU"}};
 
   std::map<int, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string>      d_operationsToName;

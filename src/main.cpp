@@ -40,6 +40,6 @@ int main(int argc, char **argv) {
     }
   }
 
-  // json_path = "../../examples/json/sampleAll.json";
+  //json_path = "./examples/json/sampleAll.json";
   CircuitGenGenerator::runGenerationFromJson(json_path);
 }

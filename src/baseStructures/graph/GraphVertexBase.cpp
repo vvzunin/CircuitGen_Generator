@@ -1,3 +1,4 @@
+#include <iostream>
 #include <set>
 #include <string>
 
@@ -18,9 +19,11 @@ std::string   VertexUtils::gateToString(Gates i_type) {
     case Gates::GateXor:
     case Gates::GateXnor:
       return "^";
-    // Buf, Default
-    default:
+    case Gates::GateBuf:
       return "";
+      // Default
+    default:
+      return "Error";
   }
 }
 
@@ -80,7 +83,7 @@ std::string GraphVertexBase::getName() const {
 }
 
 void GraphVertexBase::setLevel(const unsigned i_level) {
-  d_name = i_level;
+  d_level = i_level;
 }
 
 unsigned GraphVertexBase::getLevel() const {
@@ -181,6 +184,11 @@ bool GraphVertexBase::removeVertexToOutConnections(VertexPtr const i_vert) {
 }
 
 std::string GraphVertexBase::getInstance() {
+  if (!d_inConnections.size()) {
+    std::cerr << "TODO: delete empty vertices instances" << std::endl;
+    return "";
+  }
+
   return VertexUtils::vertexTypeToVerilog(d_type) + " " + d_name + ";";
 }
 
