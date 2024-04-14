@@ -51,18 +51,25 @@ std::string AuxMethods::readAllFile(const std::string& filename) {
   if (!file) {
     throw std::runtime_error("Failed to open file: " + filename);
   }
-
   std::stringstream buffer;
   buffer << file.rdbuf();
+  std::string str = buffer.str();
+  size_t      pos;
+  // Замена всех вхождений \r\n на \n
+  while ((pos = str.find("\r\n")) != std::string::npos) {
+    str.replace(pos, 2, "\n");
+  }
+  return str;
+
   return buffer.str();
 }
 
 std::vector<int> AuxMethods::getRandomIntList(
-  int i_n,
-  int i_minNumber,
-  int i_maxNumber,
-  bool repite)
-{
+    int  i_n,
+    int  i_minNumber,
+    int  i_maxNumber,
+    bool repite
+) {
   return gen.getRandomIntList(i_n, i_minNumber, i_maxNumber, repite);
 }
 
@@ -72,7 +79,7 @@ std::vector<std::pair<Key, Value>>
   std::vector<std::pair<Key, Value>> pairs(i_dict.begin(), i_dict.end());
 
   // Define a lambda function to compare values
-  auto cmp = [](const std::pair<Key, Value>& lhs,
+  auto                               cmp = [](const std::pair<Key, Value>& lhs,
                 const std::pair<Key, Value>& rhs) {
     return lhs.second < rhs.second;
   };

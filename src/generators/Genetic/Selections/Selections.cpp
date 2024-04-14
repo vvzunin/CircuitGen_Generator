@@ -9,12 +9,13 @@
 // #include "SelectionsTruthTable.h"
 // #include "../ChronosomeType.h"
 
-
 // // template<>
-// // std::vector<ChronosomeType<TruthTable, TruthTableParameters>> SelectionType
+// // std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+// SelectionType
 // // (
 // //   SelectionParameters i_selectionParameters,
-// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+// //   std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+// i_population
 // // )
 // // {
 // //   if (i_selectionParameters.getSelectionType() == SelectionTypes::Base)

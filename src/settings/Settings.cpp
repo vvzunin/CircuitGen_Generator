@@ -201,10 +201,12 @@ std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const {
     return "CCGTCSM";
   if (i_s == "Comparison")
     return "CCGTCC";
+  if (i_s == "Encoder")
+    return "CCGECR";
   if (i_s == "Subtractor")
     return "CCGTCSB";
   if (i_s == "Parity")
-      return "CCGTCP";
+    return "CCGTCP";
   if (i_s == "Multiplier")
     return "CCGTCM";
   if (i_s == "Demultiplexer")

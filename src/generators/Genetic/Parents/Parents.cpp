@@ -1,13 +1,14 @@
-#include <vector>
-#include <string>
 #include <functional>
 #include <iostream>
+#include <string>
+#include <vector>
 
 #include "Parents.h"
 
 // template<typename Type, typename ParametersType>
 // std::vector<int> ParentsTypesWorker(ParentsParameters i_parentsParameters,
-//                               std::vector<ChronosomeType<Type, ParametersType>> i_population
+//                               std::vector<ChronosomeType<Type,
+//                               ParametersType>> i_population
 // )
 // {
 //   if (i_parentsParameters.getParentsType() == ParentsTypes::Panmixia)

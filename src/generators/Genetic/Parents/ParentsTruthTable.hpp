@@ -1,34 +1,33 @@
 #pragma once
 
-#include <vector>
-#include <map>
 #include <algorithm>
 #include <ctime>
+#include <map>
+#include <vector>
 
 #include <additional/AuxiliaryMethods.hpp>
-
 #include <baseStructures/truthTable/TruthTable.hpp>
+
 #include "../ChronosomeType.h"
 
-inline std::vector<int> GetHemming(int i_t,
-                            std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population)
-{
-  int count = 0;
-  std::vector<std::vector<bool>> p1 = i_population[i_t].getChronosomeType().getOutTable();
+inline std::vector<int> GetHemming(
+    int                                                           i_t,
+    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+) {
+  int                            count = 0;
+  std::vector<std::vector<bool>> p1 =
+      i_population[i_t].getChronosomeType().getOutTable();
   std::map<int, int> dict;
-  std::vector<int> res;
+  std::vector<int>   res;
 
-  for (int i = 0; i < i_population.size(); ++i)
-  {
-    if (i != i_t)
-    {
+  for (int i = 0; i < i_population.size(); ++i) {
+    if (i != i_t) {
       count = 0;
-      std::vector<std::vector<bool>> p2 = i_population[i].getChronosomeType().getOutTable();
-      for (int j = 0; j < p1.size(); ++j)
-      {
-        for (int k = 0; k < p1[0].size(); ++k)
-        {
-          if (p2[j][k] == p1[j][k]) // what? is it Hemming dist?
+      std::vector<std::vector<bool>> p2 =
+          i_population[i].getChronosomeType().getOutTable();
+      for (int j = 0; j < p1.size(); ++j) {
+        for (int k = 0; k < p1[0].size(); ++k) {
+          if (p2[j][k] == p1[j][k])  // what? is it Hemming dist?
             ++count;
         }
       }
@@ -36,9 +35,7 @@ inline std::vector<int> GetHemming(int i_t,
     }
   }
 
-
-
-  for (const auto &[key, value] : AuxMethods::sortDictByValue(dict))
+  for (const auto& [key, value] : AuxMethods::sortDictByValue(dict))
     res.push_back(key);
 
   std::reverse(res.begin(), res.end());
@@ -47,15 +44,13 @@ inline std::vector<int> GetHemming(int i_t,
 };
 
 inline std::vector<int> ParentsPanmixia(
-  ParentsParameters i_parentsParameters,
-  std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
-)
-{
+    ParentsParameters i_parentsParameters,
+    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+) {
   std::srand(std::time(0));
   int parent1 = 0, parent2 = 0;
-  
-  while (i_population.size() > 2 && parent1 == parent2)
-  {
+
+  while (i_population.size() > 2 && parent1 == parent2) {
     parent1 = rand() % i_population.size();
     parent2 = rand() % i_population.size();
   }
@@ -64,10 +59,9 @@ inline std::vector<int> ParentsPanmixia(
 }
 
 inline std::vector<int> ParentsInbrinding(
-  ParentsParameters i_parentsParameters,
-  std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
-)
-{
+    ParentsParameters i_parentsParameters,
+    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+) {
   std::srand(std::time(0));
 
   int parent1 = rand() % i_population.size();
@@ -77,10 +71,9 @@ inline std::vector<int> ParentsInbrinding(
 }
 
 inline std::vector<int> ParentsOutbrinding(
-  ParentsParameters i_parentsParameters,
-  std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
-)
-{
+    ParentsParameters i_parentsParameters,
+    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+) {
   std::srand(std::time(0));
 
   int parent1 = rand() % i_population.size();
@@ -90,15 +83,11 @@ inline std::vector<int> ParentsOutbrinding(
 }
 
 inline std::vector<int> ParentsTournament(
-  ParentsParameters i_parentsParameters,
-  std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
-)
-{
+    ParentsParameters i_parentsParameters,
+    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+) {
   std::vector<int> beforeAdaptation = AuxMethods::getRandomIntList(
-    i_parentsParameters.getTournamentNumber(),
-    0,
-    i_population.size(),
-    false
+      i_parentsParameters.getTournamentNumber(), 0, i_population.size(), false
   );
 
   std::map<int, double> adaptationIndex;
@@ -108,18 +97,18 @@ inline std::vector<int> ParentsTournament(
 
   std::vector<int> res;
 
-  for (const auto &[key, value] : AuxMethods::sortDictByValue(adaptationIndex, false))
+  for (const auto& [key, value] :
+       AuxMethods::sortDictByValue(adaptationIndex, false))
     res.push_back(key);
   std::reverse(res.begin(), res.end());
 
   return {res[0], res[1]};
 }
 
-//TODO: is this ParentTournament???
+// TODO: is this ParentTournament???
 inline std::vector<int> ParentsRoulette(
-  ParentsParameters i_parentsParameters,
-  std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
-)
-{
+    ParentsParameters i_parentsParameters,
+    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+) {
   return ParentsTournament(i_parentsParameters, i_population);
 }

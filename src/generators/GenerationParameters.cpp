@@ -2,8 +2,8 @@
 
 // #include "GenerationParameters.hpp"
 // void GenerationParameters::setRecombinationParameters(ParentsTypes
-// i_parentsType, int i_tournamentSize, RecombinationTypes i_recombinationType, int
-// i_refPoints, double i_maskProbability, int i_recombinationNumber)
+// i_parentsType, int i_tournamentSize, RecombinationTypes i_recombinationType,
+// int i_refPoints, double i_maskProbability, int i_recombinationNumber)
 // {
 //     RecombinationParameters RP;
 //     RP.setParentsParameters(i_parentsType, i_tournamentSize);
@@ -14,8 +14,9 @@
 //     d_geneticParameters.setRecombinationParameters(RP);
 // }
 
-// void GenerationParameters::setMutationParameters(MutationTypes i_mutationType,
-// double i_probabilityGen, int i_exchangeType, double i_probabilityTruthTable)
+// void GenerationParameters::setMutationParameters(MutationTypes
+// i_mutationType, double i_probabilityGen, int i_exchangeType, double
+// i_probabilityTruthTable)
 // {
 //     MutationParameters MP;
 //     MP.setMutationType(i_mutationType);

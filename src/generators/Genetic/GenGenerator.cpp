@@ -1,28 +1,30 @@
 
-#include "cstdlib"
 #include <algorithm>
 #include <filesystem>
+#include <iostream>
 #include <string>
 #include <utility>
-#include <iostream>
 
-#include <GenGenerator.h>
-#include <baseStructures/truthTable/TruthTable.h>
-#include <generators/simple/SimpleGenerators.h>
-#include <baseStructures/Parser.h>
-#include <circuits/Circuit.h>
 #include <additional/filesTools/FilesTools.h>
+#include <baseStructures/Parser.h>
+#include <baseStructures/truthTable/TruthTable.h>
+#include <circuits/Circuit.h>
+#include <generators/simple/SimpleGenerators.h>
+#include <GenGenerator.h>
 
-//Deleted anonymous namespace. And moved template function definition into header GenGenerator.h because otherwise it can not be compiled.
-// bool isNumber(const std::string& s)
-// {
-//   for (auto c : s)
-//   {
-//     if (!std::isdigit(c))
-//       return false;
-//   }
-//   return true;
-// }
+#include "cstdlib"
+
+// Deleted anonymous namespace. And moved template function definition into
+// header GenGenerator.h because otherwise it can not be compiled.
+//  bool isNumber(const std::string& s)
+//  {
+//    for (auto c : s)
+//    {
+//      if (!std::isdigit(c))
+//        return false;
+//    }
+//    return true;
+//  }
 
 // int getNumFolderFromString(const std::string& path)
 // {
@@ -38,5 +40,3 @@
 //     return 0;
 //   return std::stoi(lastDir);
 // }
-
-

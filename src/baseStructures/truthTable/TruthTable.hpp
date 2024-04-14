@@ -28,7 +28,7 @@ public:
   TruthTable(int i_input, int i_output, double i_p = 0.5);
 
   void                           setSeed(int i_seed);
-  void generateRandom(TruthTableParameters i_gp);
+  void                           generateRandom(TruthTableParameters i_gp);
   void                           generateTable(double i_p = 0);
   int                            getInput() const;
   int                            getOutput() const;
