@@ -162,16 +162,16 @@ add_test(NAME TruthTableTests COMMAND CircuitGenGenerator_test_TruthTableTests)
 #add_test(NAME CircuitTests COMMAND CircuitGenGenerator_test_CircuitTests)
 
 # Test DataBaseGeneratorTests
-#add_executable(CircuitGenGenerator_test_DataBaseGeneratorTests src/database/DataBaseGeneratorTests.cpp ${NEW_SOURCES})
+add_executable(CircuitGenGenerator_test_DataBaseGeneratorTests src/database/DataBaseGeneratorTests.cpp ${NEW_SOURCES})
 
-#target_link_libraries(CircuitGenGenerator_test_DataBaseGeneratorTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
-#target_compile_features(CircuitGenGenerator_test_DataBaseGeneratorTests PRIVATE cxx_std_17)
-#target_include_directories(
-#  CircuitGenGenerator_test_DataBaseGeneratorTests ${warning_guard}
-#    PUBLIC
-#    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
-#)
-#add_test(NAME DataBaseGeneratorsTests COMMAND CircuitGenGenerator_test_DataBaseGeneratorTests)
+target_link_libraries(CircuitGenGenerator_test_DataBaseGeneratorTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_DataBaseGeneratorTests PRIVATE cxx_std_17)
+target_include_directories(
+ CircuitGenGenerator_test_DataBaseGeneratorTests ${warning_guard}
+   PUBLIC
+   "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME DataBaseGeneratorsTests COMMAND CircuitGenGenerator_test_DataBaseGeneratorTests)
 
 # Test SimpleGeneratorsTests
 add_executable(CircuitGenGenerator_test_SimpleGeneratorsTests src/generators/simple/SimpleGeneratorsTests.cpp ${NEW_SOURCES})
