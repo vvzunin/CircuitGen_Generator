@@ -194,59 +194,73 @@ GraphPtr
 
   return graph;
 }
-/*
-std::vector<std::string> SimpleGenerators::zhegalkinFromTruthTable(
-    const TruthTable& i_table
-) {
-  std::vector<std::string> polynomial;
-  int                      num_inputs  = i_table.getInput();
-  int                      num_outputs = i_table.getOutput();
 
-  polynomial.reserve(num_outputs);
+GraphPtr SimpleGenerators::zhegalkinFromTruthTable(const TruthTable& i_table) {
+  int num_inputs = i_table.getInput();
+  int num_outputs = i_table.getOutput();
+
+  GraphPtr graph(new OrientedGraph());
+  std::vector<VertexPtr> inputs;
+  inputs.reserve(num_inputs);
+
+  for (int k = 0; k < num_inputs; ++k) {
+    inputs.push_back(graph->addInput("x" + std::to_string(k)));
+  }
+
   for (int j = 0; j < num_outputs; ++j) {
-    std::string poly = "f" + std::to_string(j) + " = ";
+    VertexPtr out = graph->addOutput("f" + std::to_string(j));
 
-    int         mem  = 0;
+    int mem = 0;
     for (int i = 0; i < i_table.size(); ++i) {
       mem += i_table.getOutTable(i, j);
     }
 
     if (mem == 0) {
-      poly += "1'b0";
+      VertexPtr constGate = graph->addConst('0');
+      graph->addEdge(constGate, out);
     } else if (mem == i_table.size()) {
-      poly += "1'b1";
+      VertexPtr constGate = graph->addConst('1');
+      graph->addEdge(constGate, out);
     } else {
       bool first_term = true;
+
       for (int term = 0; term < (1 << num_inputs); ++term) {
         if (i_table.getOutTable(term, j)) {
           if (!first_term) {
-            poly += " " + std::string("xor") + " ";
+            VertexPtr xorOper = graph->addGate(Gates::GateXor);
+            graph->addEdge(xorOper, out);
+            out = xorOper;
           }
+
           if (term == 0) {
-            poly += "1'b0";
+            VertexPtr constGate = graph->addConst('0');
+            graph->addEdge(constGate, out);
           } else {
-            poly += "(";
+            VertexPtr andOper = graph->addGate(Gates::GateAnd);
+
             for (int i = 0; i < num_inputs; ++i) {
-              if ((term >> (num_inputs - i - 1)) & 1) {
-                poly += "x" + std::to_string(i);
-              } else {
-                poly += std::string("not") + " x" + std::to_string(i);
+              VertexPtr x_input = inputs[i];
+              bool negated = ((term >> (num_inputs - i - 1)) & 1) == 0;
+
+              if (negated) {
+                VertexPtr notGate = graph->addGate(Gates::GateNot);
+                graph->addEdge(inputs[i], notGate);
+                x_input = notGate;
               }
-              if (i != num_inputs - 1) {
-                poly += " " + std::string("and") + " ";
-              }
+
+              graph->addEdge(x_input, andOper);
             }
-            poly += ")";
+
+            graph->addEdge(andOper, out);
           }
           first_term = false;
         }
       }
     }
-    polynomial.push_back(poly);
   }
-  return polynomial;
+  return graph;
 }
-*/
+
 GraphPtr SimpleGenerators::generatorRandLevel(
     int i_minLevel,
     int i_maxLevel,
@@ -334,12 +348,12 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 }
 
 GraphPtr SimpleGenerators::generatorRandLevelExperimental(
-    uint32_t i_minLevel,
-    uint32_t i_maxLevel,
-    uint32_t i_minElements,
-    uint32_t i_maxElements,
-    uint32_t i_inputs,
-    uint32_t i_outputs
+    u_int32_t i_minLevel,
+    u_int32_t i_maxLevel,
+    u_int32_t i_minElements,
+    u_int32_t i_maxElements,
+    u_int32_t i_inputs,
+    u_int32_t i_outputs
 ) {
   if (i_minLevel > i_maxLevel)
     throw std::invalid_argument("min level is biggert than max level");

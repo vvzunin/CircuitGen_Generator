@@ -158,6 +158,24 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     Parser pCNFT(expr);
     pCNFT.parseAll();
 */
+/*
+  GraphPtr graph;
+  if (i_param.getCNF().getCNFT())
+  {
+    graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFT());
+    i_param.getName() + "_" + ("CNFT");
+  }
+  if (i_param.getCNF().getCNFF())
+  {
+    graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFF());
+    i_param.getName() + "_" + ("CNFF");
+  }
+  if (i_param.getZhegalkin().getZhegalkin())
+  {
+    graph = tftt.cnfFromTruthTable(tt);
+    i_param.getName() + "_" + ("Zhegalkin");
+  }
+  */
   graph->setName(
       i_param.getName() + "_" + (i_param.getCNF().getCNFT() ? "CNFT" : "CNFF")
   );
