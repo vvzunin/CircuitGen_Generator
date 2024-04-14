@@ -39,6 +39,22 @@ Parser::Parser(
   setGatesInputsInfo(i_info);
 }
 
+Parser::Parser(const std::string& i_logExpression, const GatesInfo& i_info) {
+  d_logExpressions.push_back(deleteDoubleSpaces(i_logExpression));
+
+  d_gatesInputsInfo = i_info;
+}
+
+Parser::Parser(
+    const std::vector<std::string>& i_logExpressions,
+    const GatesInfo&                i_info
+) {
+  for (const auto& expression : i_logExpressions)
+    d_logExpressions.push_back(expression);
+
+  d_gatesInputsInfo = i_info;
+}
+
 GraphPtr Parser::getGraph() const {
   return d_graph;
 }
