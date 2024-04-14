@@ -412,7 +412,7 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
       prevIndex += currIndex - prevIndex;
       currIndex += position;
     }
-    // at the beginnig it is zero. So, if it stayed zero, we are still using
+    // at the beginning it is zero. So, if it stayed zero, we are still using
     // inputs as gates. So we do not change it's value
     if (prevIndex) {
       curLen = inputs.size();

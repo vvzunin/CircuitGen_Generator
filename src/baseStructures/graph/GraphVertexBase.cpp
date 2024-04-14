@@ -185,7 +185,7 @@ bool GraphVertexBase::removeVertexToOutConnections(VertexPtr const i_vert) {
 
 std::string GraphVertexBase::getInstance() {
   if (!d_inConnections.size()) {
-    std::cerr << "TODO: delete empty verticies instances" << std::endl;
+    std::cerr << "TODO: delete empty vertices instances" << std::endl;
     return "";
   }
 

@@ -11,7 +11,7 @@ std::string deleteDoubleSpaces(const std::string& s) {
   bool        isPrevSpace = false;
   for (auto c : s) {
     if (c != ' ') {
-      isPrevSpace = false;
+      isPrevSpace  = false;
       res         += c;
     } else {
       if (!isPrevSpace)
@@ -156,7 +156,7 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
             brackets = createBrackets(i_expr);
 
             int idx  = i_expr.find(oper);
-            // now we are tyring to parse whole operations
+            // now we are trying to parse whole operations
             if (idx != std::string::npos && !inBrackets(brackets.second, idx)) {
               index = idx;
               continue;
@@ -218,9 +218,9 @@ VertexPtr Parser::multipleVerteciesToOne(
         while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
           --npos;
         }
-        // move if is neccesary
+        // move if is necessary
         npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
-        pos  = (npos < pos ? npos : pos);
+        pos   = (npos < pos ? npos : pos);
 
         curSize = 0;
       }
@@ -234,9 +234,9 @@ VertexPtr Parser::multipleVerteciesToOne(
       while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
         --npos;
       }
-      // move if is neccesary
+      // move if is necessary
       npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
-      pos  = (npos < pos ? npos : pos);
+      pos   = (npos < pos ? npos : pos);
 
       while (curSize < d_gatesInputsInfo[operation][pos]) {
         graph->addEdge(x_input, oper);
@@ -275,41 +275,42 @@ VertexPtr Parser::parseInputNot(std::string oper, std::string name) {
 }
 
 VertexPtr Parser::parseToVertex(const std::string& i_expr) {
-  std::pair<int32_t, std::vector<std::string>> splited =
+  std::pair<int32_t, std::vector<std::string>> splited_expr =
       splitLogicExpression(i_expr);
-  if (splited.first == -1)
+  if (splited_expr.first == -1)
     return nullptr;
 
   VertexPtr                                    outputVert = nullptr;
-  std::pair<int32_t, std::vector<std::string>> splited_next;
+  std::pair<int32_t, std::vector<std::string>> splited_expr_next;
 
   // here create output for future parsing
-  if (splited.second[0] == "output") {
-    outputVert = d_graph->addOutput(splited.second[1]);
+  if (splited_expr.second[0] == "output") {
+    outputVert = d_graph->addOutput(splited_expr.second[1]);
 
     std::vector<std::pair<int32_t, int32_t>> brackets =
-        createBrackets(splited.second[2]).second;
+        createBrackets(splited_expr.second[2]).second;
 
     for (auto tl : brackets) {
-      if (tl.first == 0 && tl.second == splited.second[2].size() - 1) {
-        splited.second[2] =
-            splited.second[2].substr(1, splited.second[2].size() - 2);
+      if (tl.first == 0 && tl.second == splited_expr.second[2].size() - 1) {
+        splited_expr.second[2] =
+            splited_expr.second[2].substr(1, splited_expr.second[2].size() - 2);
         break;
       }
     }
 
-    // spliting left data
-    splited_next = splitLogicExpression(splited.second[2]);
+    // splitting left data
+    splited_expr_next = splitLogicExpression(splited_expr.second[2]);
 
-    if (splited_next.first == -1)
+    if (splited_expr_next.first == -1)
       return nullptr;
   }
-  // if it is input (or not, for which it is neccesary to create an input),
+  // if it is input (or not, for which it is necessary to create an input),
   // just create it and return
-  else if (splited.second[0] == "input" || splited.second[0] == "not") {
-    return parseInputNot(splited.second[0], splited.second[1]);
+  else if (splited_expr.second[0] == "input"
+           || splited_expr.second[0] == "not") {
+    return parseInputNot(splited_expr.second[0], splited_expr.second[1]);
   } else {
-    splited_next = splited;
+    splited_expr_next = splited_expr;
   }
 
   // if we are here, we have a gate or an output
@@ -319,19 +320,23 @@ VertexPtr Parser::parseToVertex(const std::string& i_expr) {
   VertexPtr              outPtr;
 
   // when we have input or not, return it
-  if (splited_next.second[0] == "input" || splited_next.second[0] == "not") {
-    return parseInputNot(splited_next.second[0], splited_next.second[1]);
+  if (splited_expr_next.second[0] == "input"
+      || splited_expr_next.second[0] == "not") {
+    return parseInputNot(
+        splited_expr_next.second[0], splited_expr_next.second[1]
+    );
   }
   // in case of const we also need to add gate to it
-  else if (splited_next.second[0] == "const") {
-    outPtr = d_graph->addConst(splited.second[2][0], splited.second[2]);
+  else if (splited_expr_next.second[0] == "const") {
+    outPtr =
+        d_graph->addConst(splited_expr.second[2][0], splited_expr.second[2]);
   } else {
-    allGates.reserve(splited_next.second.size() - 1);
+    allGates.reserve(splited_expr_next.second.size() - 1);
 
-    Gates oper = d_settings->parseStringToGate(splited_next.second[0]);
-    splited_next.second.erase(splited_next.second.begin());
+    Gates oper = d_settings->parseStringToGate(splited_expr_next.second[0]);
+    splited_expr_next.second.erase(splited_expr_next.second.begin());
 
-    for (auto futureVertex : splited_next.second) {
+    for (auto futureVertex : splited_expr_next.second) {
       std::vector<std::pair<int32_t, int32_t>> brackets =
           createBrackets(futureVertex).second;
       for (auto tl : brackets) {
