@@ -18,7 +18,7 @@
     "create_id_directories": true,
     "library_name": "sky130",
     
-    "CNFF": false,
+    "CNFF": true,
     "CNFT": true,
     "Zhegalkin": true
   }

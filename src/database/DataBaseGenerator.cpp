@@ -141,25 +141,35 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
   SimpleGenerators tftt;
   tftt.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  GraphPtr graph;
-  if (i_param.getZhegalkin().getZhegalkin()){
+  std::vector<GraphPtr> allGraphs;
+
+  GraphPtr              graph;
+  if (i_param.getZhegalkin().getZhegalkin()) {
     graph = tftt.zhegalkinFromTruthTable(tt);
     graph->setName(i_param.getName() + "_" + "Zhegalkin");
+
+    allGraphs.push_back(graph);
   }
-  else if (i_param.getCNF().getCNFF()){
-    graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFF());
+  if (i_param.getCNF().getCNFF()) {
+    graph = tftt.cnfFromTruthTable(tt, !i_param.getCNF().getCNFF());
     graph->setName(i_param.getName() + "_" + "CNFF");
+
+    allGraphs.push_back(graph);
   }
-  else if (i_param.getCNF().getCNFT()){
+  if (i_param.getCNF().getCNFT()) {
     graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFT());
     graph->setName(i_param.getName() + "_" + "CNFT");
+
+    allGraphs.push_back(graph);
   }
 
-  Circuit c(graph);
-  c.setTable(tt);
-  c.setPath(d_mainPath);
-  c.setCircuitName(graph->getName());
-  c.generate(i_param.getMakeGraphML());
+  for (auto curGraph : allGraphs) {
+    Circuit c(curGraph);
+    c.setTable(tt);
+    c.setPath(d_mainPath);
+    c.setCircuitName(curGraph->getName());
+    c.generate(i_param.getMakeGraphML());
+  }
 }
 
 void DataBaseGenerator::generateDataBaseRandLevel(

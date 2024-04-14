@@ -196,10 +196,10 @@ GraphPtr
 }
 
 GraphPtr SimpleGenerators::zhegalkinFromTruthTable(const TruthTable& i_table) {
-  int num_inputs = i_table.getInput();
-  int num_outputs = i_table.getOutput();
+  int                    num_inputs  = i_table.getInput();
+  int                    num_outputs = i_table.getOutput();
 
-  GraphPtr graph(new OrientedGraph());
+  GraphPtr               graph(new OrientedGraph());
   std::vector<VertexPtr> inputs;
   inputs.reserve(num_inputs);
 
@@ -210,7 +210,7 @@ GraphPtr SimpleGenerators::zhegalkinFromTruthTable(const TruthTable& i_table) {
   for (int j = 0; j < num_outputs; ++j) {
     VertexPtr out = graph->addOutput("f" + std::to_string(j));
 
-    int mem = 0;
+    int       mem = 0;
     for (int i = 0; i < i_table.size(); ++i) {
       mem += i_table.getOutTable(i, j);
     }
@@ -240,7 +240,7 @@ GraphPtr SimpleGenerators::zhegalkinFromTruthTable(const TruthTable& i_table) {
 
             for (int i = 0; i < num_inputs; ++i) {
               VertexPtr x_input = inputs[i];
-              bool negated = ((term >> (num_inputs - i - 1)) & 1) == 0;
+              bool      negated = ((term >> (num_inputs - i - 1)) & 1) == 0;
 
               if (negated) {
                 VertexPtr notGate = graph->addGate(Gates::GateNot);
