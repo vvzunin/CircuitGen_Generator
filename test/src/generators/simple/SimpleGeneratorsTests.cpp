@@ -3,53 +3,49 @@
 #include <gtest/gtest.h>
 
 TEST(CnfFromTruthTableTest, EqualWithTheSameParametrs) {
-  SimpleGenerators firstGenerator  = SimpleGenerators(1);
-  SimpleGenerators secondGenerator = SimpleGenerators(1);
-  SimpleGenerators thirdGenerator  = SimpleGenerators(2);
-  SimpleGenerators fourthGenerator = SimpleGenerators(2);
+  SimpleGenerators generator1 = SimpleGenerators(1);
+  SimpleGenerators generator2 = SimpleGenerators(1);
+  SimpleGenerators generator3 = SimpleGenerators(2);
+  SimpleGenerators generator4 = SimpleGenerators(2);
 
   TruthTable       table =
       TruthTable {1, 1, std::vector<std::vector<bool>>({{1}, {1}})};
-  std::shared_ptr<OrientedGraph> firstGraph =
-      firstGenerator.cnfFromTruthTable(table, true);
-  std::shared_ptr<OrientedGraph> secondGraph =
-      secondGenerator.cnfFromTruthTable(table, true);
-  std::string str1 = firstGraph->calculateHash();
-  std::string str2 = secondGraph->calculateHash();
+  GraphPtr    graphPtr1 = generator1.cnfFromTruthTable(table, true);
+  GraphPtr    graphPtr2 = generator2.cnfFromTruthTable(table, true);
+  std::string str1      = graphPtr1->calculateHash();
+  std::string str2      = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
-  firstGraph  = thirdGenerator.cnfFromTruthTable(table, true);
-  secondGraph = fourthGenerator.cnfFromTruthTable(table, true);
-  str1        = firstGraph->calculateHash(true);
-  str2        = secondGraph->calculateHash(true);
+  graphPtr1 = generator3.cnfFromTruthTable(table, true);
+  graphPtr2 = generator4.cnfFromTruthTable(table, true);
+  str1      = graphPtr1->calculateHash(true);
+  str2      = graphPtr2->calculateHash(true);
   EXPECT_EQ(str1, str2);
 
-  //   table =
-  //       TruthTable {2, 1, std::vector<std::vector<bool>>({{1}, {1}, {1},
-  //       {0}})};
-  //   firstGraph  = firstGenerator.cnfFromTruthTable(table, true);
-  //   secondGraph = secondGenerator.cnfFromTruthTable(table, true);
-  //   str1        = firstGraph->calculateHash(true);
-  //   str2        = secondGraph->calculateHash(true);
-  //   EXPECT_EQ(str1, str2);
-  //   firstGraph  = thirdGenerator.cnfFromTruthTable(table, true);
-  //   secondGraph = fourthGenerator.cnfFromTruthTable(table, true);
-  //   str1        = firstGraph->calculateHash(true);
-  //   str2        = secondGraph->calculateHash(true);
-  //   EXPECT_EQ(str1, str2);
+  table =
+      TruthTable {1, 1, std::vector<std::vector<bool>>({{1}, {1}, {1}, {0}})};
+  graphPtr1 = generator1.cnfFromTruthTable(table, false);
+  graphPtr2 = generator2.cnfFromTruthTable(table, true);
+  str1      = graphPtr1->calculateHash(true);
+  str2      = graphPtr2->calculateHash(true);
+  EXPECT_EQ(str1, str2);
+  graphPtr1 = generator3.cnfFromTruthTable(table, true);
+  graphPtr2 = generator4.cnfFromTruthTable(table, true);
+  str1      = graphPtr1->calculateHash(true);
+  str2      = graphPtr2->calculateHash(true);
+  EXPECT_EQ(str1, str2);
 
-  //   table = TruthTable {
-  //       2, 2, std::vector<std::vector<bool>>({{1, 1}, {1, 1}, {1, 1}, {0,
-  //       0}})};
-  //   firstGraph  = firstGenerator.cnfFromTruthTable(table, true);
-  //   secondGraph = secondGenerator.cnfFromTruthTable(table, true);
-  //   str1        = firstGraph->calculateHash(true);
-  //   str2        = secondGraph->calculateHash(true);
-  //   EXPECT_EQ(str1, str2);
-  //   firstGraph  = thirdGenerator.cnfFromTruthTable(table, true);
-  //   secondGraph = fourthGenerator.cnfFromTruthTable(table, true);
-  //   str1        = firstGraph->calculateHash(true);
-  //   str2        = secondGraph->calculateHash(true);
-  //   EXPECT_EQ(str1, str2);
+  table = TruthTable {
+      1, 1, std::vector<std::vector<bool>>({{1, 1}, {1, 1}, {1, 1}, {0, 0}})};
+  graphPtr1 = generator1.cnfFromTruthTable(table, true);
+  graphPtr2 = generator2.cnfFromTruthTable(table, true);
+  str1      = graphPtr1->calculateHash(true);
+  str2      = graphPtr2->calculateHash(true);
+  EXPECT_EQ(str1, str2);
+  graphPtr1 = generator3.cnfFromTruthTable(table, true);
+  graphPtr2 = generator4.cnfFromTruthTable(table, true);
+  str1      = graphPtr1->calculateHash(true);
+  str2      = graphPtr2->calculateHash(true);
+  EXPECT_EQ(str1, str2);
 }
 
 TEST(GeneratorRandLevelTest, EqualWithTheSameParametrs) {
@@ -61,37 +57,37 @@ TEST(GeneratorRandLevelTest, EqualWithTheSameParametrs) {
       {"xor", {2, 8, 4}},
       {"xnor", {2, 16, 8}}};
 
-  SimpleGenerators firstGenerator = SimpleGenerators(1);
-  firstGenerator.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators secondGenerator = SimpleGenerators(1);
-  secondGenerator.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators thirdGenerator = SimpleGenerators(2);
-  thirdGenerator.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators fourthGenerator = SimpleGenerators(2);
-  fourthGenerator.setGatesInputsInfo(gatesInfo);
+  SimpleGenerators generator1 = SimpleGenerators(1);
+  generator1.setGatesInputsInfo(gatesInfo);
+  SimpleGenerators generator2 = SimpleGenerators(1);
+  generator2.setGatesInputsInfo(gatesInfo);
+  SimpleGenerators generator3 = SimpleGenerators(2);
+  generator3.setGatesInputsInfo(gatesInfo);
+  SimpleGenerators generator4 = SimpleGenerators(2);
+  generator4.setGatesInputsInfo(gatesInfo);
 
-  std::shared_ptr<OrientedGraph> firstGraph =
-      firstGenerator.generatorRandLevel(1, 3, 1, 3, 3, 3);
-  std::shared_ptr<OrientedGraph> secondGraph =
-      secondGenerator.generatorRandLevel(1, 3, 1, 3, 3, 3);
-  std::string str1 = firstGraph->calculateHash();
-  std::string str2 = secondGraph->calculateHash();
+  std::shared_ptr<OrientedGraph> graphPtr1 =
+      generator1.generatorRandLevel(1, 3, 1, 3, 3, 3);
+  std::shared_ptr<OrientedGraph> graphPtr2 =
+      generator2.generatorRandLevel(1, 3, 1, 3, 3, 3);
+  std::string str1 = graphPtr1->calculateHash(true);
+  std::string str2 = graphPtr2->calculateHash(true);
   EXPECT_EQ(str1, str2);
-  firstGraph  = thirdGenerator.generatorRandLevel(1, 3, 1, 3, 3, 3);
-  secondGraph = fourthGenerator.generatorRandLevel(1, 3, 1, 3, 3, 3);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator3.generatorRandLevel(1, 3, 1, 3, 3, 3);
+  graphPtr2 = generator4.generatorRandLevel(1, 3, 1, 3, 3, 3);
+  str1      = graphPtr1->calculateHash(true);
+  str2      = graphPtr2->calculateHash(true);
   EXPECT_EQ(str1, str2);
 
-  firstGraph  = firstGenerator.generatorRandLevel(2, 6, 2, 6, 4, 4);
-  secondGraph = secondGenerator.generatorRandLevel(2, 6, 2, 6, 4, 4);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator1.generatorRandLevel(2, 6, 2, 6, 4, 4);
+  graphPtr2 = generator2.generatorRandLevel(2, 6, 2, 6, 4, 4);
+  str1      = graphPtr1->calculateHash(true);
+  str2      = graphPtr2->calculateHash(true);
   EXPECT_EQ(str1, str2);
-  firstGraph  = thirdGenerator.generatorRandLevel(2, 6, 2, 6, 4, 4);
-  secondGraph = fourthGenerator.generatorRandLevel(2, 6, 2, 6, 4, 4);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator3.generatorRandLevel(2, 6, 2, 6, 4, 4);
+  graphPtr2 = generator4.generatorRandLevel(2, 6, 2, 6, 4, 4);
+  str1      = graphPtr1->calculateHash(true);
+  str2      = graphPtr2->calculateHash(true);
   EXPECT_EQ(str1, str2);
 }
 
@@ -104,64 +100,61 @@ TEST(GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
       {"xor", {2, 8, 4}},
       {"xnor", {2, 16, 8}}};
 
-  SimpleGenerators firstGenerator = SimpleGenerators(1);
-  firstGenerator.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators secondGenerator = SimpleGenerators(1);
-  secondGenerator.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators thirdGenerator = SimpleGenerators(2);
-  thirdGenerator.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators fourthGenerator = SimpleGenerators(2);
-  fourthGenerator.setGatesInputsInfo(gatesInfo);
+  SimpleGenerators generator1 = SimpleGenerators(1);
+  generator1.setGatesInputsInfo(gatesInfo);
+  SimpleGenerators generator2 = SimpleGenerators(1);
+  generator2.setGatesInputsInfo(gatesInfo);
+  SimpleGenerators generator3 = SimpleGenerators(2);
+  generator3.setGatesInputsInfo(gatesInfo);
+  SimpleGenerators generator4 = SimpleGenerators(2);
+  generator4.setGatesInputsInfo(gatesInfo);
 
-  std::shared_ptr<OrientedGraph> firstGraph =
-      firstGenerator.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
-  std::shared_ptr<OrientedGraph> secondGraph =
-      secondGenerator.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
-  std::string str1 = firstGraph->calculateHash();
-  std::string str2 = secondGraph->calculateHash();
+  std::shared_ptr<OrientedGraph> graphPtr1 =
+      generator1.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
+  std::shared_ptr<OrientedGraph> graphPtr2 =
+      generator2.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
+  std::string str1 = graphPtr1->calculateHash(true);
+  std::string str2 = graphPtr2->calculateHash(true);
   EXPECT_EQ(str1, str2);
-  firstGraph = thirdGenerator.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
-  secondGraph =
-      fourthGenerator.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
-  str1 = firstGraph->calculateHash();
-  str2 = secondGraph->calculateHash();
+  graphPtr1 = generator3.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
+  graphPtr2 = generator4.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
+  str1      = graphPtr1->calculateHash(true);
+  str2      = graphPtr2->calculateHash(true);
   EXPECT_EQ(str1, str2);
 
   //-error
-  //   firstGraph = firstGenerator.generatorRandLevelExperimental(1, 6, 1, 6, 4,
-  //   4); secondGraph =
-  //       secondGenerator.generatorRandLevelExperimental(1, 6, 1, 6, 4, 4);
-  //   str1 = firstGraph->calculateHash();
-  //   str2 = secondGraph->calculateHash();
-  //   EXPECT_EQ(str1, str2);
-  //   firstGraph = thirdGenerator.generatorRandLevelExperimental(1, 6, 1, 6, 4,
-  //   4); secondGraph =
-  //       fourthGenerator.generatorRandLevelExperimental(1, 6, 1, 6, 4, 4);
-  //   str1 = firstGraph->calculateHash();
-  //   str2 = secondGraph->calculateHash();
-  //   EXPECT_EQ(str1, str2);
+  // graphPtr1 = generator1.generatorRandLevelExperimental(1, 6, 1, 6, 4, 4);
+  // graphPtr2 = generator2.generatorRandLevelExperimental(1, 6, 1, 6, 4, 4);
+  // str1      = graphPtr1->calculateHash();
+  // str2      = graphPtr2->calculateHash();
+  // EXPECT_EQ(str1, str2);
+  // graphPtr1 = generator3.generatorRandLevelExperimental(1, 6, 1, 6, 4, 4);
+  // graphPtr2 = generator4.generatorRandLevelExperimental(1, 6, 1, 6, 4, 4);
+  // str1      = graphPtr1->calculateHash();
+  // str2      = graphPtr2->calculateHash();
+  // EXPECT_EQ(str1, str2);
 }
 
 TEST(GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
-  SimpleGenerators     firstGenerator  = SimpleGenerators(1);
-  SimpleGenerators     secondGenerator = SimpleGenerators(1);
-  SimpleGenerators     thirdGenerator  = SimpleGenerators(2);
-  SimpleGenerators     fourthGenerator = SimpleGenerators(2);
+  SimpleGenerators     generator1 = SimpleGenerators(1);
+  SimpleGenerators     generator2 = SimpleGenerators(1);
+  SimpleGenerators     generator3 = SimpleGenerators(2);
+  SimpleGenerators     generator4 = SimpleGenerators(2);
 
-  std::map<Gates, int> logicOper       = {
+  std::map<Gates, int> logicOper  = {
       {Gates::GateAnd, 2}, {Gates::GateOr, 2}, {Gates::GateNot, 1}};
-  std::shared_ptr<OrientedGraph> firstGraph =
-      firstGenerator.generatorNumOperation(1, 1, logicOper, true);
-  std::string str1 = firstGraph->calculateHash();
+  std::shared_ptr<OrientedGraph> graphPtr1 =
+      generator1.generatorNumOperation(1, 1, logicOper, true);
+  std::string str1 = graphPtr1->calculateHash();
   EXPECT_EQ(str1, str1);
-  std::shared_ptr<OrientedGraph> secondGraph =
-      secondGenerator.generatorNumOperation(1, 1, logicOper, true);
-  std::string str2 = secondGraph->calculateHash();
+  std::shared_ptr<OrientedGraph> graphPtr2 =
+      generator2.generatorNumOperation(1, 1, logicOper, true);
+  std::string str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
-  firstGraph  = thirdGenerator.generatorNumOperation(1, 1, logicOper, true);
-  secondGraph = fourthGenerator.generatorNumOperation(1, 1, logicOper, true);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator3.generatorNumOperation(1, 1, logicOper, true);
+  graphPtr2 = generator4.generatorNumOperation(1, 1, logicOper, true);
+  str1      = graphPtr1->calculateHash();
+  str2      = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
   logicOper = {
@@ -173,28 +166,28 @@ TEST(GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
       {Gates::GateXnor, 1},
       {Gates::GateXor, 1}};
 
-  firstGraph  = firstGenerator.generatorNumOperation(1, 1, logicOper, true);
-  secondGraph = secondGenerator.generatorNumOperation(1, 1, logicOper, true);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator1.generatorNumOperation(1, 1, logicOper, true);
+  graphPtr2 = generator2.generatorNumOperation(1, 1, logicOper, true);
+  str1      = graphPtr1->calculateHash();
+  str2      = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
-  firstGraph  = thirdGenerator.generatorNumOperation(1, 1, logicOper, true);
-  secondGraph = fourthGenerator.generatorNumOperation(1, 1, logicOper, true);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator3.generatorNumOperation(1, 1, logicOper, true);
+  graphPtr2 = generator4.generatorNumOperation(1, 1, logicOper, true);
+  str1      = graphPtr1->calculateHash();
+  str2      = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
-  firstGraph  = firstGenerator.generatorNumOperation(5, 10, logicOper, true);
-  secondGraph = secondGenerator.generatorNumOperation(5, 10, logicOper, true);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator1.generatorNumOperation(5, 10, logicOper, true);
+  graphPtr2 = generator2.generatorNumOperation(5, 10, logicOper, true);
+  str1      = graphPtr1->calculateHash();
+  str2      = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
-  firstGraph  = thirdGenerator.generatorNumOperation(5, 10, logicOper, true);
-  secondGraph = fourthGenerator.generatorNumOperation(5, 10, logicOper, true);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator3.generatorNumOperation(5, 10, logicOper, true);
+  graphPtr2 = generator4.generatorNumOperation(5, 10, logicOper, true);
+  str1      = graphPtr1->calculateHash();
+  str2      = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
   logicOper = {
@@ -206,27 +199,27 @@ TEST(GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
       {Gates::GateXnor, 9},
       {Gates::GateXor, 12}};
 
-  firstGraph  = firstGenerator.generatorNumOperation(1, 1, logicOper, false);
-  secondGraph = secondGenerator.generatorNumOperation(1, 1, logicOper, false);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator1.generatorNumOperation(1, 1, logicOper, false);
+  graphPtr2 = generator2.generatorNumOperation(1, 1, logicOper, false);
+  str1      = graphPtr1->calculateHash();
+  str2      = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
-  firstGraph  = thirdGenerator.generatorNumOperation(1, 1, logicOper, false);
-  secondGraph = fourthGenerator.generatorNumOperation(1, 1, logicOper, false);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator3.generatorNumOperation(1, 1, logicOper, false);
+  graphPtr2 = generator4.generatorNumOperation(1, 1, logicOper, false);
+  str1      = graphPtr1->calculateHash();
+  str2      = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
-  firstGraph  = firstGenerator.generatorNumOperation(7, 9, logicOper, false);
-  secondGraph = secondGenerator.generatorNumOperation(7, 9, logicOper, false);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator1.generatorNumOperation(7, 9, logicOper, false);
+  graphPtr2 = generator2.generatorNumOperation(7, 9, logicOper, false);
+  str1      = graphPtr1->calculateHash();
+  str2      = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
-  firstGraph  = thirdGenerator.generatorNumOperation(7, 9, logicOper, false);
-  secondGraph = fourthGenerator.generatorNumOperation(7, 9, logicOper, false);
-  str1        = firstGraph->calculateHash();
-  str2        = secondGraph->calculateHash();
+  graphPtr1 = generator3.generatorNumOperation(7, 9, logicOper, false);
+  graphPtr2 = generator4.generatorNumOperation(7, 9, logicOper, false);
+  str1      = graphPtr1->calculateHash();
+  str2      = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 }
