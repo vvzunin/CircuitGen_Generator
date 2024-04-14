@@ -23,7 +23,7 @@ class GraphVertexBase;  // Проблема циклического опред�
 class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
 public:
   // friend class Circuit;
-  OrientedGraph(const std::string i_name = "");
+  OrientedGraph(const std::string& i_name = "");
 
   // TODO: Добавить использование gates_inputs_info.
 
@@ -64,10 +64,10 @@ public:
   void               resetCounters(GraphPtr where);
 
   // TODO: Заменить все const на const &
-  VertexPtr          addInput(const std::string i_name = "");
-  VertexPtr          addOutput(const std::string i_name = "");
-  VertexPtr addConst(const char i_value, const std::string i_name = "");
-  VertexPtr addGate(const Gates i_gate, const std::string i_name = "");
+  VertexPtr          addInput(const std::string& i_name = "");
+  VertexPtr          addOutput(const std::string& i_name = "");
+  VertexPtr addConst(const char& i_value, const std::string& i_name = "");
+  VertexPtr addGate(const Gates& i_gate, const std::string& i_name = "");
   std::vector<VertexPtr>
          addSubGraph(GraphPtr i_subGraph, std::vector<VertexPtr> i_inputs);
 
@@ -92,15 +92,15 @@ public:
   // Сделать матрицу смежности для хранения и быстрого поиска связей?
 
   std::vector<VertexPtr> getVerticesByType(
-      const VertexTypes i_type,
-      const std::string i_name         = "",
-      const bool        i_addSubGraphs = false
+      const VertexTypes& i_type,
+      const std::string& i_name         = "",
+      const bool&        i_addSubGraphs = false
   ) const;
-  std::vector<VertexPtr> getVerticesByLevel(const int i_level);
+  std::vector<VertexPtr> getVerticesByLevel(const int& i_level);
 
   std::vector<VertexPtr> getVerticesByName(
-      const std::string i_name,
-      const bool        i_addSubGraphs = false
+      const std::string& i_name,
+      const bool&        i_addSubGraphs = false
   ) const;
 
   bool                                  operator==(const OrientedGraph& rhs);

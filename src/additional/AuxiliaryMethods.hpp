@@ -1,10 +1,12 @@
-
+#pragma once
 #include <cstdint>
 #include <fstream>
 #include <map>
 #include <sstream>
 #include <utility>
 #include <vector>
+
+#include <circuit/Circuit.hpp>
 
 namespace AuxMethods {
 void               setRandSeed(std::uint_fast32_t seed);
