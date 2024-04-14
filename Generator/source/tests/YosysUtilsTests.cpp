@@ -12,8 +12,6 @@ TEST (WriteFirrtlTest, ErrorWithInvalidFileName) {
   std::string errorResult = result.commandsOutput["error"];
 
   EXPECT_EQ(errorResult, errorText);
-
-  std::remove("../../test_data/OpitmizationUtilits/aaa");
 }
 
 TEST (WriteFirrtlTest, ErrorWithInvalidFilePath) {

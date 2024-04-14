@@ -20,15 +20,16 @@ TEST(TestConstructorWithoutIName, WithoutDefaultInputParametrs) {
 }
 
 TEST(TestConstructorWithoutIName, WithDefaultInputParametrs) {
-  OrientedGraph     example;
+  OrientedGraph     graph;
+  GraphPtr          graphPtr = std::make_shared<OrientedGraph>(graph);
   std::string       graphNum = std::to_string(1);
-  GraphVertexOutput output(&example);
+  GraphVertexOutput output(graphPtr);
   EXPECT_EQ(output.getType(), VertexTypes::output);
   EXPECT_EQ(output.getTypeName(), "output");
   EXPECT_EQ(output.getName(), "output_" + graphNum);
   EXPECT_EQ(output.getLevel(), 0);
   EXPECT_EQ(output.getValue(), 'x');
-  EXPECT_EQ(output.getBaseGraph(), &example);
+  EXPECT_EQ(output.getBaseGraph(), graphPtr);
   EXPECT_EQ(output.getOutConnections().size(), 0);
 }
 
@@ -45,14 +46,15 @@ TEST(TestConstructorWithIName, WithoutDefaultInputParametrs) {
 }
 
 TEST(TestConstructorWithIName, WithDefaultInputParametrs) {
-  OrientedGraph     example;
-  GraphVertexOutput output("Anything", &example);
+  OrientedGraph     graph;
+  GraphPtr          graphPtr = std::make_shared<OrientedGraph>(graph);
+  GraphVertexOutput output("Anything", graphPtr);
   EXPECT_EQ(output.getType(), VertexTypes::output);
   EXPECT_EQ(output.getTypeName(), "output");
   EXPECT_EQ(output.getName(), "Anything");
   EXPECT_EQ(output.getLevel(), 0);
   EXPECT_EQ(output.getValue(), 'x');
-  EXPECT_EQ(output.getBaseGraph(), &example);
+  EXPECT_EQ(output.getBaseGraph(), graphPtr);
   EXPECT_EQ(output.getOutConnections().size(), 0);
 }
 // -----OverrideMethodsTests
@@ -66,7 +68,7 @@ TEST(TestUpdateValue, ReturnDValueIfDInConnectionsSizeZero) {
 
 TEST(TestUpdateValue, CerrErrorIfThereIsBaseGraph) {
   OrientedGraph    graph;
-  GraphVertexInput input1(&graph);
+  GraphVertexInput input1(std::make_shared<OrientedGraph>(graph));
   GraphVertexInput input2;
 
   input1.addVertexToInConnections(std::make_shared<GraphVertexInput>(input2));
@@ -83,7 +85,7 @@ TEST(TestUpdateValue, CerrErrorIfThereIsBaseGraph) {
 
 TEST(TestUpdateLevel, CorrectUpdate) {
   OrientedGraph     graph;
-  GraphVertexOutput output1(&graph);
+  GraphVertexOutput output1(std::make_shared<OrientedGraph>(graph));
   GraphVertexOutput output2;
   output2.setLevel(1);
   output1.addVertexToInConnections(std::make_shared<GraphVertexOutput>(output2)
