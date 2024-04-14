@@ -156,7 +156,7 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
             brackets = createBrackets(i_expr);
 
             int idx  = i_expr.find(oper);
-            // now we are tyring to parse whole operations
+            // now we are trying to parse whole operations
             if (idx != std::string::npos && !inBrackets(brackets.second, idx)) {
               index = idx;
               continue;
@@ -218,7 +218,7 @@ VertexPtr Parser::multipleVerteciesToOne(
         while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
           --npos;
         }
-        // move if is neccesary
+        // move if is necessary
         npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
         pos  = (npos < pos ? npos : pos);
 
@@ -234,7 +234,7 @@ VertexPtr Parser::multipleVerteciesToOne(
       while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
         --npos;
       }
-      // move if is neccesary
+      // move if is necessary
       npos += (curSize > d_gatesInputsInfo[operation][npos]) + (npos == -1);
       pos  = (npos < pos ? npos : pos);
 
@@ -298,13 +298,13 @@ VertexPtr Parser::parseToVertex(const std::string& i_expr) {
       }
     }
 
-    // spliting left data
+    // splitting left data
     splited_next = splitLogicExpression(splited.second[2]);
 
     if (splited_next.first == -1)
       return nullptr;
   }
-  // if it is input (or not, for which it is neccesary to create an input),
+  // if it is input (or not, for which it is necessary to create an input),
   // just create it and return
   else if (splited.second[0] == "input" || splited.second[0] == "not") {
     return parseInputNot(splited.second[0], splited.second[1]);
