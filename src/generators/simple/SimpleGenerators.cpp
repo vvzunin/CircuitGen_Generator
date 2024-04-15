@@ -1046,8 +1046,14 @@ GraphPtr SimpleGenerators::generatorMultiplexer(int i_bits) {
     VertexPtr common_or = graph->addGate(Gates::GateOr, "or_for_output");
     graph->addEdges(ands, common_or);
     graph->addEdge(common_or, output_f);
+  } else if (i_bits == 1){
+        Zp[0] = graph->addInput("x" + Z[0]);
+        graph->addEdge(Zp[0], output_f);
+//        VertexPtr self_and = graph->addGate(Gates::GateAnd, "self_and");
+//        graph->addEdges({Zp[0], Zp[0]}, self_and);
+//        graph->addEdge(self_and, output_f);
   } else
-    std::cout << "Недостаточно входных сигналов" << std::endl;
+      std::cout << "Недостаточно входных сигналов" << std::endl;
   return graph;
 }
 
@@ -1801,17 +1807,36 @@ GraphPtr SimpleGenerators::generatorALU(
         output_com = graph->addSubGraph(generatorComparison(i_bits, false,false, true), inputs);
         outputs_gens.push_back(output_com);
     }
+
+    int count = 0;
     for (int a = 0; a < outputs_gens.size(); a++){
         for (int b = 0; b < outputs_gens[a].size(); b++){
-            outputs_gens[a][b]->getName();
+            std::cout << a << " " << b << ":" << outputs_gens[a][b]->getName() << std::endl;
         }
     }
-    std::cout << outputs_gens[0][0]->getName() << std::endl;
+    std::cout << " " << std::endl;
+    int max = 0;
+    for (int i = 0; i < outputs_gens.size(); i++){
+        if (outputs_gens[i].size()>max){
+            max = outputs_gens[i].size();
+        }
+    }
+    for (int i = 0; i < outputs_gens.size(); i++){
+        if (outputs_gens[i].size()<max){
+            outputs_gens[i].resize(max, const_0);
+        }
+    }
+    for (int a = 0; a < outputs_gens.size(); a++){
+        for (int b = 0; b < outputs_gens[a].size(); b++){
+            std::cout << a << " " << b << ":" << outputs_gens[a][b]->getName() << std::endl;
+        }
+    }
     std::vector<std::vector<VertexPtr>> inputs_alu = AuxMethods::transpose(outputs_gens);
-    std::cout << outputs_gens[0][0]->getName() << std::endl;
+    std::cout << "1" << std::endl;
     std::vector<VertexPtr> outputs_alu;
 
     for (auto vertices : inputs_alu){
+        std::cout << vertices.size() << x << std::endl;
         outputs_alu.push_back(graph->addSubGraph(generatorMultiplexer(x), vertices).back());
     }
 
