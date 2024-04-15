@@ -144,12 +144,11 @@ bool TruthTable::operator==(const TruthTable& r) const {
       == std::tie(r.d_input, r.d_output, r.d_size, r.d_array);
 }
 
-// incompatible with multithread
 void TruthTable::printTable() const {
+  std::stringstream ss;
   for (const auto& row : d_array) {
-    std::copy(
-        row.begin(), row.end(), std::ostream_iterator<bool>(std::cout, " ")
-    );
-    std::cout << '\n';
+    std::copy(row.begin(), row.end(), std::ostream_iterator<bool>(ss, " "));
+    ss << '\n';
   }
+  std::cout << ss.str();
 }
