@@ -11,6 +11,7 @@
 #include <additional/AuxiliaryMethods.hpp>
 
 #include "RandomGeneratorWithSeed.hpp"
+#include "AuxiliaryMethods.hpp"
 
 namespace {
 std::vector<std::string> splitString(const std::string& s, char delimiter) {
@@ -92,6 +93,23 @@ std::vector<std::pair<Key, Value>>
   return pairs;
 }
 
+template <typename T>
+std::vector<std::vector<T>> transpose(const std::vector<std::vector<T>>& matrix) {
+    if (matrix.empty() || matrix[0].empty()) return matrix;
+    
+    std::vector<std::vector<T>> transposed(matrix[0].size(), std::vector<T>(matrix.size()));
+    
+    for (size_t i = 0; i < matrix.size(); ++i) {
+        for (size_t j = 0; j < matrix[i].size(); ++j) {
+            transposed[j][i] = matrix[i][j];
+        }
+    }
+    
+    return transposed;
+}
+
+template std::vector<std::vector<VertexPtr>>
+    AuxMethods::transpose(const std::vector<std::vector<VertexPtr>>& matrix);
 // explicit instantiation of sortDictByValue
 // if you want to use this func with other types, just add corresponding
 // instantiation below, compilation error otherwise.

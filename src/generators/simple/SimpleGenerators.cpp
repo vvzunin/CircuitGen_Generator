@@ -1801,6 +1801,7 @@ GraphPtr SimpleGenerators::generatorALU(
         output_com = graph->addSubGraph(generatorComparison(i_bits, false,false, true), inputs);
         outputs_gens.push_back(output_com);
     }
+    
 
 
 
