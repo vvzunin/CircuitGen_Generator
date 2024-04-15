@@ -31,6 +31,6 @@ std::vector<std::pair<Key, Value>>
 std::string removeSpaces(const std::string& i_s);
 int         skipSpaces(const std::string& i_s, int i_start = 0);
 // TODO: if need CopyDirectory
-
+std::string intToStringWithZeroes(int i_num, int i_totalDigits = 5);
 // namespace end
 }  // namespace AuxMethods
