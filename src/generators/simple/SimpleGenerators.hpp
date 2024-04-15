@@ -215,8 +215,7 @@ public:
       int  i_bits,
       bool i_overflowIn,
       bool i_overflowOut,
-      bool i_minus,
-      bool act = false
+      bool i_minus
   );
 
   /// @brief generatorComparison represents the generation of a combinational
@@ -242,8 +241,7 @@ public:
       int  i_bits,
       bool compare0,
       bool compare1,
-      bool compare2,
-      bool act = false
+      bool compare2
   );
 
   /// @brief generatorEncoder represents the generation of a combinational
@@ -282,8 +280,7 @@ public:
       int  i_bits,
       bool i_overflowIn,
       bool i_overflowOut,
-      bool i_sub,
-      bool act = false
+      bool i_sub
   );
 
   /// @brief generatorMultiplexer represents the generation of a combinational
@@ -345,7 +342,7 @@ public:
   /// (variables) in the graph.
   /// @return the created OrientedGraph
 
-  GraphPtr generatorMultiplier(int i_bits, bool act = false);
+  GraphPtr generatorMultiplier(int i_bits);
 
   /// @brief generatorALU represents the generation of a combinational circuit
   /// of an ALU (Arithmetic Logic Unit). It is a multi-structured graph

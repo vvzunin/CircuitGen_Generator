@@ -51,10 +51,10 @@ TEST(GeneratorParityTest, DifferentToEachOther) {
 TEST(GeneratorComparisonTest, EqualToEachOver) {
   SimpleGenerators S_gen_1(1);
   SimpleGenerators S_gen_2(1);
-  GraphPtr graph_1 = S_gen_1.generatorComparison(2, true, false, false);
-  GraphPtr graph_2 = S_gen_2.generatorComparison(2, true, false, false);
-  std::string str1 = graph_1->calculateHash();
-  std::string str2 = graph_2->calculateHash();
+  GraphPtr         graph_1 = S_gen_1.generatorComparison(2, true, false, false);
+  GraphPtr         graph_2 = S_gen_2.generatorComparison(2, true, false, false);
+  std::string      str1    = graph_1->calculateHash();
+  std::string      str2    = graph_2->calculateHash();
   EXPECT_TRUE(str1 == str2);
   graph_1 = S_gen_1.generatorComparison(10, false, false, true);
   graph_2 = S_gen_2.generatorComparison(10, false, false, true);
@@ -67,10 +67,10 @@ TEST(GeneratorComparisonTest, EqualToEachOver) {
 TEST(GeneratorComparisonTest, DifferentFromEachOther) {
   SimpleGenerators S_gen_1(1);
   SimpleGenerators S_gen_2(1);
-  GraphPtr graph_1 = S_gen_1.generatorComparison(4, true, false, false);
-  GraphPtr graph_2 = S_gen_2.generatorComparison(5, true, false, false);
-  std::string str1 = graph_1->calculateHash();
-  std::string str2 = graph_2->calculateHash();
+  GraphPtr         graph_1 = S_gen_1.generatorComparison(4, true, false, false);
+  GraphPtr         graph_2 = S_gen_2.generatorComparison(5, true, false, false);
+  std::string      str1    = graph_1->calculateHash();
+  std::string      str2    = graph_2->calculateHash();
   EXPECT_FALSE(str1 == str2);
   graph_1 = S_gen_1.generatorComparison(4, false, true, false);
   graph_2 = S_gen_2.generatorComparison(4, true, false, false);
@@ -128,10 +128,10 @@ TEST(GeneratorDecoderTest, DifferentFromEachOther) {
 TEST(GeneratorSummatorTest, EqualToEachOther) {
   SimpleGenerators S_gen_1(1);
   SimpleGenerators S_gen_2(1);
-  GraphPtr    graph_1 = S_gen_1.generatorSummator(2, true, false, false);
-  GraphPtr    graph_2 = S_gen_2.generatorSummator(2, true, false, false);
-  std::string str1    = graph_1->calculateHash();
-  std::string str2    = graph_2->calculateHash();
+  GraphPtr         graph_1 = S_gen_1.generatorSummator(2, true, false, false);
+  GraphPtr         graph_2 = S_gen_2.generatorSummator(2, true, false, false);
+  std::string      str1    = graph_1->calculateHash();
+  std::string      str2    = graph_2->calculateHash();
   EXPECT_TRUE(str1 == str2);
   graph_1 = S_gen_1.generatorSummator(10, false, true, true);
   graph_2 = S_gen_2.generatorSummator(10, false, true, true);
@@ -144,10 +144,10 @@ TEST(GeneratorSummatorTest, EqualToEachOther) {
 TEST(GeneratorSummatorTest, DifferentFromEachOther) {
   SimpleGenerators S_gen_1(1);
   SimpleGenerators S_gen_2(1);
-  GraphPtr    graph_1 = S_gen_1.generatorSummator(4, true, false, false);
-  GraphPtr    graph_2 = S_gen_2.generatorSummator(5, true, false, false);
-  std::string str1    = graph_1->calculateHash();
-  std::string str2    = graph_2->calculateHash();
+  GraphPtr         graph_1 = S_gen_1.generatorSummator(4, true, false, false);
+  GraphPtr         graph_2 = S_gen_2.generatorSummator(5, true, false, false);
+  std::string      str1    = graph_1->calculateHash();
+  std::string      str2    = graph_2->calculateHash();
   EXPECT_FALSE(str1 == str2);
   graph_1 = S_gen_1.generatorSummator(10, true, false, false);
   graph_2 = S_gen_2.generatorSummator(10, false, true, true);
@@ -161,12 +161,10 @@ TEST(GeneratorSummatorTest, NumOfElements) {
   SimpleGenerators S_gen_1(1);
   SimpleGenerators S_gen_2(1);
   int              bits = 1;
-  GraphPtr         graph_1 =
-      S_gen_1.generatorSummator(bits, false, false, false);
+  GraphPtr graph_1      = S_gen_1.generatorSummator(bits, false, false, false);
   EXPECT_EQ(graph_1->sumFullSize(), 6);
-  bits = 4;
-  GraphPtr graph_2 =
-      S_gen_2.generatorSummator(bits, false, false, false);
+  bits             = 4;
+  GraphPtr graph_2 = S_gen_2.generatorSummator(bits, false, false, false);
   EXPECT_EQ(graph_2->sumFullSize(), 30);
   graph_1->~OrientedGraph();
   graph_2->~OrientedGraph();
@@ -209,10 +207,10 @@ TEST(GeneratorEncoderTest, DifferentFromEachOther) {
 TEST(GeneratorSubtractorTest, EqualToEachOther) {
   SimpleGenerators S_gen_1(1);
   SimpleGenerators S_gen_2(1);
-  GraphPtr graph_1 = S_gen_1.generatorSubtractor(2, true, false, false);
-  GraphPtr graph_2 = S_gen_2.generatorSubtractor(2, true, false, false);
-  std::string str1 = graph_1->calculateHash();
-  std::string str2 = graph_2->calculateHash();
+  GraphPtr         graph_1 = S_gen_1.generatorSubtractor(2, true, false, false);
+  GraphPtr         graph_2 = S_gen_2.generatorSubtractor(2, true, false, false);
+  std::string      str1    = graph_1->calculateHash();
+  std::string      str2    = graph_2->calculateHash();
   EXPECT_TRUE(str1 == str2);
   graph_1 = S_gen_1.generatorSubtractor(10, false, true, true);
   graph_2 = S_gen_2.generatorSubtractor(10, false, true, true);
@@ -225,10 +223,10 @@ TEST(GeneratorSubtractorTest, EqualToEachOther) {
 TEST(GeneratorSubtractorTest, DifferentFromEachOther) {
   SimpleGenerators S_gen_1(1);
   SimpleGenerators S_gen_2(1);
-  GraphPtr graph_1 = S_gen_1.generatorSubtractor(4, true, false, false);
-  GraphPtr graph_2 = S_gen_2.generatorSubtractor(5, true, false, false);
-  std::string str1 = graph_1->calculateHash();
-  std::string str2 = graph_2->calculateHash();
+  GraphPtr         graph_1 = S_gen_1.generatorSubtractor(4, true, false, false);
+  GraphPtr         graph_2 = S_gen_2.generatorSubtractor(5, true, false, false);
+  std::string      str1    = graph_1->calculateHash();
+  std::string      str2    = graph_2->calculateHash();
   EXPECT_FALSE(str1 == str2);
   graph_1 = S_gen_1.generatorSubtractor(10, true, false, false);
   graph_2 = S_gen_2.generatorSubtractor(10, false, true, true);
