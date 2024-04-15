@@ -9,6 +9,7 @@
 
 #include "OrientedGraph.hpp"
 
+#include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/graph/GraphMLTemplates.hpp>
 #include <baseStructures/graph/GraphVertex.hpp>
 #include <baseStructures/graph/GraphVertexBase.hpp>
@@ -495,12 +496,14 @@ std::string OrientedGraph::toGraphML(int i_nesting) const {
   const std::string spaces(i_nesting * 4, ' ');
 
   const std::string graphTemplate =
-      format(rawGraphTemplate, spaces, d_name, spaces, "%");
-  const std::string nodeTemplate =
-      format(rawNodeTemplate, spaces, "%", spaces, "%", "%", spaces);
-  const std::string edgeTemplate = format(rawEdgeTemplate, spaces, "%", "%");
+      AuxMethods::format(rawGraphTemplate, spaces, d_name, spaces, "%");
+  const std::string nodeTemplate = AuxMethods::format(
+      rawNodeTemplate, spaces, "%", spaces, "%", "%", spaces
+  );
+  const std::string edgeTemplate =
+      AuxMethods::format(rawEdgeTemplate, spaces, "%", "%");
 
-  std::string       nodes, edges, graphs;
+  std::string nodes, edges, graphs;
 
   for (const auto& [VertexTypes, vertexVector] : d_vertexes) {
     const std::string vertexTypeName =
@@ -512,25 +515,30 @@ std::string OrientedGraph::toGraphML(int i_nesting) const {
           : vertexTypeName == "const" ? std::string(1, vertex->getValue())
                                       : vertexTypeName;
 
-      nodes += format(nodeTemplate, vertex->getName(), vertexKindName, "");
+      nodes += AuxMethods::format(
+          nodeTemplate, vertex->getName(), vertexKindName, ""
+      );
       for (const auto& source : vertex->getInConnections()) {
-        edges += format(edgeTemplate, source->getName(), vertex->getName());
+        edges += AuxMethods::format(
+            edgeTemplate, source->getName(), vertex->getName()
+        );
       }
     }
   }
   for (const auto& i_subGraph : d_subGraphs) {
-    graphs += format(
+    graphs += AuxMethods::format(
         nodeTemplate,
         i_subGraph->getName() + "_subgraph",
         "graph",
         i_subGraph->toGraphML(i_nesting + 1)
     );
   }
-  std::string finalGraph = format(graphTemplate, nodes + graphs + edges);
+  std::string finalGraph =
+      AuxMethods::format(graphTemplate, nodes + graphs + edges);
   if (i_nesting != 0) {
     return finalGraph;
   }
-  return format(mainTemplate, finalGraph);
+  return AuxMethods::format(mainTemplate, finalGraph);
 }
 
 bool OrientedGraph::toGraphML(std::ofstream& fileStream) const {

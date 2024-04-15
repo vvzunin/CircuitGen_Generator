@@ -96,7 +96,7 @@ void DataBaseGenerator::generateType(
           d_parameters.setIteration(tt);
           d_parameters.setName(
               d_settings->getGenerationMethodPrefix(gt)
-              + std::to_string(d_dirCount)
+              + AuxMethods::intToStringWithZeroes(d_dirCount)
           );
 
           GenerationParameters param = d_parameters.getGenerationParameters();
@@ -117,7 +117,7 @@ void DataBaseGenerator::generateType(
           d_parameters.setIteration(tt);
           d_parameters.setName(
               d_settings->getGenerationMethodPrefix(gt)
-              + std::to_string(d_dirCount)
+              + AuxMethods::intToStringWithZeroes(d_dirCount)
           );
 
           GenerationParameters param = d_parameters.getGenerationParameters();

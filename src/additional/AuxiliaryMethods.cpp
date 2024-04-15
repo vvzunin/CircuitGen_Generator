@@ -1,9 +1,11 @@
 #include <algorithm>
 #include <cassert>
 #include <cstdint>
+#include <iomanip>
 #include <iostream>
 #include <map>
 #include <random>
+#include <sstream>
 #include <string_view>
 #include <utility>
 #include <vector>
@@ -122,4 +124,12 @@ int AuxMethods::skipSpaces(const std::string& i_s, int i_start) {
              || i_s[res] == '\r'))
     ++res;
   return res;
+}
+
+std::string AuxMethods::intToStringWithZeroes(int i_num, int i_totalDigits) {
+  int numLength = std::to_string(i_num).length();
+  i_totalDigits = std::max(numLength, i_totalDigits);
+  std::stringstream ss;
+  ss << std::setw(i_totalDigits) << std::setfill('0') << i_num;
+  return ss.str();
 }
