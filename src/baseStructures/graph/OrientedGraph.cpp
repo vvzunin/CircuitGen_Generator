@@ -146,7 +146,7 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
   std::vector<VertexPtr> outputs;
 
   for (auto outVert : i_subGraph->getVerticesByType(VertexTypes::output)) {
-    VertexPtr newVertex(new GraphVertexOutput(shared_from_this()));
+    VertexPtr newVertex(new GraphVertexGates(Gates::GateBuf, shared_from_this()));
 
     outputs.push_back(newVertex);
     d_allSubGraphsOutputs.push_back(newVertex);

@@ -19,8 +19,8 @@
     "library_name": "sky130",
 
     "ALL": false,
-    "SUM": false,
-    "SUB": false,
+    "SUM": true,
+    "SUB": true,
     "NSUM": false,
     "NSUB": false,
     "MULT": false,

@@ -1802,7 +1802,7 @@ GraphPtr SimpleGenerators::generatorALU(
         outputs_gens.push_back(output_com);
     }
     for (int a = 0; a < outputs_gens.size(); a++){
-        for (int b = 0; a < outputs_gens.size(); b++){
+        for (int b = 0; b < outputs_gens[a].size(); b++){
             outputs_gens[a][b]->getName();
         }
     }
