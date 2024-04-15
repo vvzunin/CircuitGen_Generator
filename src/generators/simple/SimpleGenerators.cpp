@@ -1685,30 +1685,30 @@ GraphPtr SimpleGenerators::generatorALU(
         inputs.push_back(xi);
         inputs.push_back(xj);
 
-        if (AND) {
-            VertexPtr and_ij = graph->addGate(Gates::GateAnd, "and_ij" + A);
-            graph->addEdges({xi, xj}, and_ij);
-        }
-        if (NAND) {
-            VertexPtr nand_ij = graph->addGate(Gates::GateNand, "nand_ij" + A);
-            graph->addEdges({xi, xj}, nand_ij);
-        }
-        if (OR) {
-            VertexPtr or_ij = graph->addGate(Gates::GateOr, "or_ij" + A);
-            graph->addEdges({xi, xj}, or_ij);
-        }
-        if (XOR) {
-            VertexPtr xor_ij = graph->addGate(Gates::GateXor, "xor_ij" + A);
-            graph->addEdges({xi, xj}, xor_ij);
-        }
-        if (NOR) {
-            VertexPtr nor_ij = graph->addGate(Gates::GateNor, "nor_ij" + A);
-            graph->addEdges({xi, xj}, nor_ij);
-        }
-        if (XNOR) {
-            VertexPtr xnor_ij = graph->addGate(Gates::GateXnor, "xnor_ij" + A);
-            graph->addEdges({xi, xj}, xnor_ij);
-        }
+//        if (AND) {
+//            VertexPtr and_ij = graph->addGate(Gates::GateAnd, "and_ij" + A);
+//            graph->addEdges({xi, xj}, and_ij);
+//        }
+//        if (NAND) {
+//            VertexPtr nand_ij = graph->addGate(Gates::GateNand, "nand_ij" + A);
+//            graph->addEdges({xi, xj}, nand_ij);
+//        }
+//        if (OR) {
+//            VertexPtr or_ij = graph->addGate(Gates::GateOr, "or_ij" + A);
+//            graph->addEdges({xi, xj}, or_ij);
+//        }
+//        if (XOR) {
+//            VertexPtr xor_ij = graph->addGate(Gates::GateXor, "xor_ij" + A);
+//            graph->addEdges({xi, xj}, xor_ij);
+//        }
+//        if (NOR) {
+//            VertexPtr nor_ij = graph->addGate(Gates::GateNor, "nor_ij" + A);
+//            graph->addEdges({xi, xj}, nor_ij);
+//        }
+//        if (XNOR) {
+//            VertexPtr xnor_ij = graph->addGate(Gates::GateXnor, "xnor_ij" + A);
+//            graph->addEdges({xi, xj}, xnor_ij);
+//        }
     }
 
     VertexPtr add;
@@ -1800,6 +1800,11 @@ GraphPtr SimpleGenerators::generatorALU(
         outputs_gens.push_back(output_com);
         output_com = graph->addSubGraph(generatorComparison(i_bits, false,false, true), inputs);
         outputs_gens.push_back(output_com);
+    }
+
+    std::vector<std::vector<VertexPtr>> outputs_alu;
+    for (int a = 0; a < x; a++){
+
     }
 
 
