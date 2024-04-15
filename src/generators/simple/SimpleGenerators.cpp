@@ -1803,7 +1803,8 @@ GraphPtr SimpleGenerators::generatorALU(
     }
     
 
-    std::vector<std::vector<VertexPtr>> outputs_alu;
+
+    std::vector<std::vector<VertexPtr>> inputs_alu = AuxMethods::transpose(outputs_gens);
     for (int a = 0; a < x; a++){
 
     }
