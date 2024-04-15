@@ -17,6 +17,8 @@ TEST(GeneratorParityTest, EqualToEachOther) {
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_TRUE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 TEST(GeneratorParityTest, DifferentToEachOther)
 {
@@ -32,6 +34,8 @@ TEST(GeneratorParityTest, DifferentToEachOther)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_FALSE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 // TEST(GeneratorParityTest, NumOfElements)
 // {
@@ -58,6 +62,8 @@ TEST(GeneratorComparisonTest, EqualToEachOver)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_TRUE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 TEST(GeneratorComparisonTest, DifferentFromEachOther)
 {
@@ -73,6 +79,8 @@ TEST(GeneratorComparisonTest, DifferentFromEachOther)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_FALSE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 TEST(GeneratorComparisonTest, GraphSizeTest) {
     int bits = 1;  
@@ -81,8 +89,9 @@ TEST(GeneratorComparisonTest, GraphSizeTest) {
 
     ASSERT_NE(graph, nullptr);
 
-    size_t expectedVertexCount = 8;
+    int expectedVertexCount = 8;
     EXPECT_EQ(graph->sumFullSize(), expectedVertexCount);
+    graph->~OrientedGraph();
 }
 //Decoder 
 TEST(GeneratorDecoderTest, EqualToEachOver)
@@ -99,6 +108,8 @@ TEST(GeneratorDecoderTest, EqualToEachOver)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_TRUE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 TEST(GeneratorDecoderTest, DifferentFromEachOther)
 {
@@ -114,6 +125,8 @@ TEST(GeneratorDecoderTest, DifferentFromEachOther)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_FALSE(str1 == str2);  
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 // Summator
 TEST(GeneratorSummatorTest, EqualToEachOther)
@@ -130,6 +143,8 @@ TEST(GeneratorSummatorTest, EqualToEachOther)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_TRUE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 TEST(GeneratorSummatorTest, DifferentFromEachOther)
 {
@@ -144,7 +159,9 @@ TEST(GeneratorSummatorTest, DifferentFromEachOther)
     graph_2 = S_gen_2.generatorSummator(10, false, true, true, false);
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
-    EXPECT_FALSE(str1 == str2);  
+    EXPECT_FALSE(str1 == str2); 
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph(); 
 }
 TEST(GeneratorSummatorTest, NumOfElements)
 {
@@ -155,7 +172,9 @@ TEST(GeneratorSummatorTest, NumOfElements)
     EXPECT_EQ(graph_1->sumFullSize(), 6);    
     bits = 4;
     GraphPtr  graph_2 = S_gen_2.generatorSummator(bits, false, false, false, false);
-    EXPECT_EQ(graph_2->sumFullSize(), 30);  
+    EXPECT_EQ(graph_2->sumFullSize(), 30); 
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph(); 
 }
 
 //Encoder
@@ -173,6 +192,8 @@ TEST(GeneratorEncoderTest, EqualToEachOver)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_TRUE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 TEST(GeneratorEncoderTest, DifferentFromEachOther)
 {
@@ -187,7 +208,9 @@ TEST(GeneratorEncoderTest, DifferentFromEachOther)
     graph_2 = S_gen_2.generatorEncoder(2);
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
-    EXPECT_FALSE(str1 == str2);;  
+    EXPECT_FALSE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 // Subtractor
 TEST(GeneratorSubtractorTest, EqualToEachOther)
@@ -204,6 +227,8 @@ TEST(GeneratorSubtractorTest, EqualToEachOther)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_TRUE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 TEST(GeneratorSubtractorTest, DifferentFromEachOther)
 {
@@ -219,6 +244,8 @@ TEST(GeneratorSubtractorTest, DifferentFromEachOther)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_FALSE(str1 == str2);  
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 // Multiplexer
 TEST(GeneratorMultiplexerTest, EqualToEachOver)
@@ -235,6 +262,8 @@ TEST(GeneratorMultiplexerTest, EqualToEachOver)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_TRUE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 TEST(GeneratorMultiplexerTest, DifferentFromEachOther)
 {
@@ -250,6 +279,8 @@ TEST(GeneratorMultiplexerTest, DifferentFromEachOther)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_FALSE(str1 == str2);  
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 
 // Demultiplexer
@@ -266,7 +297,9 @@ TEST(GeneratorDemultiplexerTest, EqualToEachOver)
     graph_2 = S_gen_2.generatorDemultiplexer(10);
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
-    EXPECT_TRUE(str1 == str2);;
+    EXPECT_TRUE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 TEST(GeneratorDemultiplexerTest, DifferentFromEachOther)
 {
@@ -282,6 +315,8 @@ TEST(GeneratorDemultiplexerTest, DifferentFromEachOther)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_FALSE(str1 == str2);  
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 // Multiplier
 TEST(GeneratorMultiplierTest, EqualToEachOver)
@@ -298,6 +333,8 @@ TEST(GeneratorMultiplierTest, EqualToEachOver)
     str1 = graph_1->calculateHash();
     str2 = graph_2->calculateHash();
     EXPECT_TRUE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
 TEST(GeneratorMultiplierTest, DifferentFromEachOther)
 {
@@ -308,4 +345,6 @@ TEST(GeneratorMultiplierTest, DifferentFromEachOther)
     std::string str1 = graph_1->calculateHash();
     std::string str2 = graph_2->calculateHash();
     EXPECT_FALSE(str1 == str2);
+    graph_1->~OrientedGraph();
+    graph_2->~OrientedGraph();
 }
