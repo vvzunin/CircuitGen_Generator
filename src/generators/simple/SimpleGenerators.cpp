@@ -1788,15 +1788,21 @@ GraphPtr SimpleGenerators::generatorALU(
     if (MULT) {
         std::vector<VertexPtr> output_mult;
 
-        graph->addSubGraph(generatorMultiplier(i_bits), inputs);
+        output_mult = graph->addSubGraph(generatorMultiplier(i_bits), inputs);
+        outputs_gens.push_back(output_mult);
     }
     if (COM) {
         std::vector<VertexPtr> output_com;
-        graph->addSubGraph(generatorComparison(i_bits, true, false, false),
-                           inputs); graph->addSubGraph(generatorComparison(i_bits, false, true,
-                                                                           false), inputs); graph->addSubGraph(generatorComparison(i_bits, false,
-                                                                                                                                   false, true), inputs);
+
+        output_com = graph->addSubGraph(generatorComparison(i_bits, true, false, false),inputs);
+        outputs_gens.push_back(output_com);
+        output_com = graph->addSubGraph(generatorComparison(i_bits, false, true,false), inputs);
+        outputs_gens.push_back(output_com);
+        output_com = graph->addSubGraph(generatorComparison(i_bits, false,false, true), inputs);
+        outputs_gens.push_back(output_com);
     }
+
+
 
     //
     //
