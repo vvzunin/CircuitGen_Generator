@@ -50,7 +50,6 @@
       <div class="m-col-l-10 m-push-l-1">
         <h1>
           AuxMethods <span class="m-thin">namespace</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
         </h1>
         <p><span></span></p>
         <div class="m-block m-default">
@@ -59,60 +58,183 @@
             <li>
               Reference
               <ul>
+                <li><a href="#nested-classes">Classes</a></li>
                 <li><a href="#func-members">Functions</a></li>
               </ul>
             </li>
           </ul>
         </div>
+        <section id="nested-classes">
+          <h2><a href="#nested-classes">Classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <div class="m-doc-template">template&lt;class Tuple, std::size_t N&gt;</div>
+              struct <a href="structAuxMethods_1_1TuplePrinter.html" class="m-doc">TuplePrinter</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;class Tuple&gt;</div>
+              struct <a href="structAuxMethods_1_1TuplePrinter_3_01Tuple_00_011_01_4.html" class="m-doc">TuplePrinter&lt;Tuple, 1&gt;</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
         <section id="func-members">
           <h2><a href="#func-members">Functions</a></h2>
           <dl class="m-doc">
-            <dt id="a5bd15903dbc7db95cb089304ca9e0277">
-              <span class="m-doc-wrap-bumper">void <a href="#a5bd15903dbc7db95cb089304ca9e0277" class="m-doc-self">setRandSeed</a>(</span><span class="m-doc-wrap">std::uint_fast32_t seed)</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a5bd15903dbc7db95cb089304ca9e0277" class="m-doc">setRandSeed</a>(</span><span class="m-doc-wrap">std::uint_fast32_t seed)</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a1ff433f6adb27f95ad4859e8ee9732c6">
-              <span class="m-doc-wrap-bumper">auto <a href="#a1ff433f6adb27f95ad4859e8ee9732c6" class="m-doc-self">getRandSeed</a>(</span><span class="m-doc-wrap">) -&gt; std::uint_fast32_t</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1ff433f6adb27f95ad4859e8ee9732c6" class="m-doc">getRandSeed</a>(</span><span class="m-doc-wrap">) -&gt; std::uint_fast32_t</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a51fd6ff2ae8c02ab10d4e261236a7ba4">
-              <span class="m-doc-wrap-bumper">auto <a href="#a51fd6ff2ae8c02ab10d4e261236a7ba4" class="m-doc-self">getRandInt</a>(</span><span class="m-doc-wrap">int lower,
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a51fd6ff2ae8c02ab10d4e261236a7ba4" class="m-doc">getRandInt</a>(</span><span class="m-doc-wrap">int lower,
               int upper,
               bool inclusively = false) -&gt; int</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="ad1cd19afad4489d0c7eb4938e106ec42">
-              <span class="m-doc-wrap-bumper">auto <a href="#ad1cd19afad4489d0c7eb4938e106ec42" class="m-doc-self">getRandDouble</a>(</span><span class="m-doc-wrap">double lower,
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ad1cd19afad4489d0c7eb4938e106ec42" class="m-doc">getRandDouble</a>(</span><span class="m-doc-wrap">double lower,
               double upper) -&gt; double</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a9ea2f6dad8245c55cc658bb6a95a00dc">
-              <span class="m-doc-wrap-bumper">auto <a href="#a9ea2f6dad8245c55cc658bb6a95a00dc" class="m-doc-self">readAllFile</a>(</span><span class="m-doc-wrap">const std::string&amp; filename) -&gt; std::string</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a9ea2f6dad8245c55cc658bb6a95a00dc" class="m-doc">readAllFile</a>(</span><span class="m-doc-wrap">const std::string&amp; filename) -&gt; std::string</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="aa52eafa5760c853cb2b840c2015a8ded">
-              <span class="m-doc-wrap-bumper">auto <a href="#aa52eafa5760c853cb2b840c2015a8ded" class="m-doc-self">getRandomIntList</a>(</span><span class="m-doc-wrap">int i_n,
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aa52eafa5760c853cb2b840c2015a8ded" class="m-doc">getRandomIntList</a>(</span><span class="m-doc-wrap">int i_n,
               int i_minNumber,
               int i_maxNumber,
               bool repite = false) -&gt; std::vector&lt;int&gt;</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="af9218449b862b94608c0f3f567bace90">
+            <dt>
               <div class="m-doc-template">template&lt;typename Key, typename Value&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#af9218449b862b94608c0f3f567bace90" class="m-doc-self">sortDictByValue</a>(</span><span class="m-doc-wrap">const std::map&lt;Key, Value&gt;&amp; i_dict,
+              <span class="m-doc-wrap-bumper">auto <a href="#af9218449b862b94608c0f3f567bace90" class="m-doc">sortDictByValue</a>(</span><span class="m-doc-wrap">const std::map&lt;Key, Value&gt;&amp; i_dict,
               bool up = true) -&gt; std::vector&lt;std::pair&lt;Key, Value&gt;&gt;</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a43e549d87cd504b8bb0fc7546239b577">
-              <span class="m-doc-wrap-bumper">auto <a href="#a43e549d87cd504b8bb0fc7546239b577" class="m-doc-self">removeSpaces</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s) -&gt; std::string</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a43e549d87cd504b8bb0fc7546239b577" class="m-doc">removeSpaces</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s) -&gt; std::string</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="ad91e7d774694571db2a7b6b7238e5d13">
-              <span class="m-doc-wrap-bumper">auto <a href="#ad91e7d774694571db2a7b6b7238e5d13" class="m-doc-self">skipSpaces</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s,
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ad91e7d774694571db2a7b6b7238e5d13" class="m-doc">skipSpaces</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s,
               int i_start = 0) -&gt; int</span>
             </dt>
             <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a70047e78c6b1ffcad09caf149a8d9db4" class="m-doc">intToStringWithZeroes</a>(</span><span class="m-doc-wrap">int i_num,
+              int i_totalDigits = 5) -&gt; std::string</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;class... Args&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae8c22181f69d49df8f7eee60103fe48c" class="m-doc">format</a>(</span><span class="m-doc-wrap">const std::string&amp; fmt,
+              Args &amp;&amp; ... args) -&gt; std::string</span>
+            </dt>
+            <dd><span></span></dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a5bd15903dbc7db95cb089304ca9e0277"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5bd15903dbc7db95cb089304ca9e0277" class="m-doc-self">setRandSeed</a>(</span><span class="m-doc-wrap">std::uint_fast32_t seed)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a1ff433f6adb27f95ad4859e8ee9732c6"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::uint_fast32_t AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1ff433f6adb27f95ad4859e8ee9732c6" class="m-doc-self">getRandSeed</a>(</span><span class="m-doc-wrap">)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a51fd6ff2ae8c02ab10d4e261236a7ba4"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a51fd6ff2ae8c02ab10d4e261236a7ba4" class="m-doc-self">getRandInt</a>(</span><span class="m-doc-wrap">int lower,
+              int upper,
+              bool inclusively = false)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="ad1cd19afad4489d0c7eb4938e106ec42"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">double AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad1cd19afad4489d0c7eb4938e106ec42" class="m-doc-self">getRandDouble</a>(</span><span class="m-doc-wrap">double lower,
+              double upper)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a9ea2f6dad8245c55cc658bb6a95a00dc"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9ea2f6dad8245c55cc658bb6a95a00dc" class="m-doc-self">readAllFile</a>(</span><span class="m-doc-wrap">const std::string&amp; filename)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="aa52eafa5760c853cb2b840c2015a8ded"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::vector&lt;int&gt; AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa52eafa5760c853cb2b840c2015a8ded" class="m-doc-self">getRandomIntList</a>(</span><span class="m-doc-wrap">int i_n,
+              int i_minNumber,
+              int i_maxNumber,
+              bool repite = false)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="af9218449b862b94608c0f3f567bace90"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename Key, typename Value&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::vector&lt;std::pair&lt;Key, Value&gt;&gt; AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af9218449b862b94608c0f3f567bace90" class="m-doc-self">sortDictByValue</a>(</span><span class="m-doc-wrap">const std::map&lt;Key, Value&gt;&amp; i_dict,
+              bool up = true)</span></span>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a43e549d87cd504b8bb0fc7546239b577"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a43e549d87cd504b8bb0fc7546239b577" class="m-doc-self">removeSpaces</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="ad91e7d774694571db2a7b6b7238e5d13"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad91e7d774694571db2a7b6b7238e5d13" class="m-doc-self">skipSpaces</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s,
+              int i_start = 0)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a70047e78c6b1ffcad09caf149a8d9db4"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a70047e78c6b1ffcad09caf149a8d9db4" class="m-doc-self">intToStringWithZeroes</a>(</span><span class="m-doc-wrap">int i_num,
+              int i_totalDigits = 5)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="ae8c22181f69d49df8f7eee60103fe48c"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;class... Args&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::string AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae8c22181f69d49df8f7eee60103fe48c" class="m-doc-self">format</a>(</span><span class="m-doc-wrap">const std::string&amp; fmt,
+              Args &amp;&amp; ... args)</span></span>
+            </h3>
+            <p><span></span></p>
+          </div></section>
         </section>
       </div>
     </div>
