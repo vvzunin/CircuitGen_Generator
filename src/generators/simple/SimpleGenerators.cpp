@@ -1801,16 +1801,24 @@ GraphPtr SimpleGenerators::generatorALU(
         output_com = graph->addSubGraph(generatorComparison(i_bits, false,false, true), inputs);
         outputs_gens.push_back(output_com);
     }
-    
-
-
+    for (int a = 0; a < outputs_gens.size(); a++){
+        for (int b = 0; a < outputs_gens.size(); b++){
+            outputs_gens[a][b]->getName();
+        }
+    }
+    std::cout << outputs_gens[0][0]->getName() << std::endl;
     std::vector<std::vector<VertexPtr>> inputs_alu = AuxMethods::transpose(outputs_gens);
-    for (int a = 0; a < x; a++){
+    std::cout << outputs_gens[0][0]->getName() << std::endl;
+    std::vector<VertexPtr> outputs_alu;
 
+    for (auto vertices : inputs_alu){
+        outputs_alu.push_back(graph->addSubGraph(generatorMultiplexer(x), vertices).back());
     }
 
-
-
+    for (int a = 0; a < outputs_alu.size(); a++){
+        VertexPtr out_ALU = graph->addOutput("out_ALU" + std::to_string(a));
+        graph->addEdge(outputs_alu[a], out_ALU);
+    }
     //
     //
     //    graph.Extend(ALU(i_bits, i_outbits, ALL, SUM, SUB, NSUM, NSUB, MULT,

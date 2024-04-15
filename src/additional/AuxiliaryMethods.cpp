@@ -94,7 +94,7 @@ std::vector<std::pair<Key, Value>>
 }
 
 template <typename T>
-std::vector<std::vector<T>> transpose(const std::vector<std::vector<T>>& matrix) {
+std::vector<std::vector<T>> AuxMethods::transpose(const std::vector<std::vector<T>>& matrix) {
     if (matrix.empty() || matrix[0].empty()) return matrix;
     
     std::vector<std::vector<T>> transposed(matrix[0].size(), std::vector<T>(matrix.size()));
