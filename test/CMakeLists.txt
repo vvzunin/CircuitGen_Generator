@@ -90,6 +90,18 @@ target_include_directories(
 )
 add_test(NAME SettingsTests COMMAND CircuitGenGenerator_test_SettingsTests)
 
+# Test SimpleGeneratorsTests
+add_executable(CircuitGenGenerator_test_SimpleGeneratorsTests src/generators/simple/SimpleGeneratorsTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_SimpleGeneratorsTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_SimpleGeneratorsTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_SimpleGeneratorsTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"  
+)
+add_test(NAME SimpleGeneratorsTests COMMAND CircuitGenGenerator_test_SimpleGeneratorsTests)
+
 # ---- End-of-file commands ----
 
 add_folders(Test)
