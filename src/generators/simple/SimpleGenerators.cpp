@@ -1299,51 +1299,53 @@ GraphPtr SimpleGenerators::generatorParity(int i_bits) {
 }
 
 GraphPtr SimpleGenerators::generatorMultiplier(int i_bits, bool act) {
-  GraphPtr  graph(new OrientedGraph);
-  VertexPtr const_1;
+  GraphPtr               graph(new OrientedGraph);
+  VertexPtr              const_1;
 
-  VertexPtr input_xa;
+  VertexPtr              input_xa;
   // a - бит первого множителя
-  VertexPtr input_xb;
+  VertexPtr              input_xb;
   // b - бит второго множителя
-  VertexPtr c;
+  VertexPtr              c;
   // с - результат логического и
+  std::vector<VertexPtr> C_sum(i_bits);
+  // C_sum - хранит результаты вычислений прошлой итерации b
+  VertexPtr              sum;
   // sum - результат суммы
+  VertexPtr              pSum;
+  VertexPtr              pNext;
   // pSum - перенос между сумматорами одного уровня, pNext - разных уровней
-  VertexPtr m;
-  // m - бит полученного умножения
+  VertexPtr              m;
+  // m - бит полученного умножения, выход
 
-  int       n = 1;
-
-  for (int i = 1; i <= i_bits; i++) {
-    std::string str_i = std::to_string(i);
+  int                    n = 1;
+  // n - числовой порядок выходов
+  for (int ib = 1; ib <= i_bits; ib++) {
+    std::string str_i = std::to_string(ib);
     input_xb          = graph->addInput("xb" + str_i);
     input_xa          = graph->addInput("xa" + str_i);
-  }
 
-  for (int ib = 1; ib <= i_bits; ib++) {
-    std::string IB  = std::to_string(ib);      // IB - index b
-    std::string IBP = std::to_string(ib - 1);  // IBP - index b past
-    std::string IBN = std::to_string(ib + 1);  // IBN - index b next
+    std::string IB    = std::to_string(ib);      // IB - index b
+    std::string IBP   = std::to_string(ib - 1);  // IBP - index b past
+    std::string IBN   = std::to_string(ib + 1);  // IBN - index b next
 
     if (act) {
       const_1 = graph->addConst('1');
     }
 
-    VertexPtr xb = graph->addGate(Gates::GateBuf, "xb" + IB);
+    VertexPtr xb = input_xb;
+    VertexPtr ABsum;
 
     for (int ia = 1; ia <= i_bits; ia++) {
       std::string IA  = std::to_string(ia);      // IA - index a
       std::string IAN = std::to_string(ia + 1);  // IAN - index a next
 
-      VertexPtr   xa  = graph->addGate(Gates::GateBuf, "xa" + IA);
+      VertexPtr   xa  = input_xa;
 
       c               = graph->addGate(Gates::GateAnd, "c" + IA + IB);
       graph->addEdges({xb, xa}, c);
-
-      VertexPtr sum;
-      VertexPtr pSum;
-      VertexPtr pNext;
+      if (ib == 1)
+        C_sum[ia - 1] = c;
 
       if (ib == 1) {
         if (ia == 1) {
@@ -1359,28 +1361,25 @@ GraphPtr SimpleGenerators::generatorMultiplier(int i_bits, bool act) {
         }
       }
       if (ib > 1) {
-        const VertexPtr& nowAB = c;
-        VertexPtr        ABsum;
+        VertexPtr nowAB = c;
         if (ib == 2)
-          ABsum = graph->addGate(
-              Gates::GateBuf, "c" + IAN + IBP
-          );  // второй разряд,
+          if (ia < i_bits)
+            ABsum = C_sum[ia];
+        // второй разряд,
         // вход в сумматор от операции И
         // ABsum = "c" + IAN + IBP;
         if (ib > 2)
-          ABsum = graph->addGate(
-              Gates::GateBuf, "sum" + IAN + IBP
-          );  // Следующие разряды, вход
-        // в сумматор от результата др-> сумматора
+          if (ia < i_bits)
+            ABsum = C_sum[ia];
+        // Следующие разряды, вход
+        // в сумматор от результата другого сумматора
         // ABsum = "sum" + IAN + IBP;
-        if (ia == i_bits) {
-          ABsum = graph->addGate(Gates::GateBuf, "pNext" + IA + IB);  // для
-                                                                      // левых
-          // боковых сумматоров
-          if (i_bits == 2) {
-            ABsum = graph->addGate(Gates::GateBuf, "pSum" + IA + IB);
-          }
 
+        if (ia == i_bits) {
+          ABsum = pNext;  // для левых боковых сумматоров
+          if (i_bits == 2) {
+            ABsum = pSum;
+          }
           // ABsum = "pNext" + IA + IB;
         }
 
@@ -1406,12 +1405,11 @@ GraphPtr SimpleGenerators::generatorMultiplier(int i_bits, bool act) {
           }
           n += 1;
         } else if (ib == 2 && ia == i_bits) {
-          pSum  = graph->addGate(Gates::GateBuf, "pSum" + IA + IB);
-
           pNext = graph->addGate(Gates::GateAnd, "pNext" + nSum);
           graph->addEdges({nowAB, pSum}, pNext);
           sum = graph->addGate(Gates::GateXor, "sum" + IA + IB);
           graph->addEdges({nowAB, pSum}, sum);
+          C_sum[ia - 1] = sum;
 
           if (i_bits == 2) {
             std::string N = std::to_string(n);
@@ -1442,7 +1440,7 @@ GraphPtr SimpleGenerators::generatorMultiplier(int i_bits, bool act) {
           VertexPtr   p;
           std::string pi_str =
               "pSum" + IA + IB;  // перенос из прошлого сумматора
-          VertexPtr pi     = graph->addGate(Gates::GateBuf, pi_str);
+          VertexPtr pi     = pSum;
 
           VertexPtr andab  = graph->addGate(Gates::GateAnd, "andab" + S);
           VertexPtr andapi = graph->addGate(Gates::GateAnd, "anda" + pi_str);
@@ -1476,6 +1474,8 @@ GraphPtr SimpleGenerators::generatorMultiplier(int i_bits, bool act) {
 
           sum = graph->addGate(Gates::GateOr, "sum" + IA + IB);
           graph->addEdges({abpand, andnp}, sum);
+
+          C_sum[ia - 1] = sum;
 
           if (ib == i_bits) {
             std::string N = std::to_string(n);
