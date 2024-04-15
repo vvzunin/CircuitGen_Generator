@@ -168,7 +168,7 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
 bool OrientedGraph::addEdge(VertexPtr from, VertexPtr to) {
   bool f;
   int  n;
-  if (from->getBaseGraph() == to->getBaseGraph()) {
+  if (from->getBaseGraph().lock() == to->getBaseGraph().lock()) {
     f = from->addVertexToOutConnections(to);
     n = to->addVertexToInConnections(from);
   } else {
@@ -513,8 +513,12 @@ std::string OrientedGraph::toGraphML(int i_nesting) const {
                                       : vertexTypeName;
 
       nodes += format(nodeTemplate, vertex->getName(), vertexKindName, "");
-      for (const auto& source : vertex->getInConnections()) {
-        edges += format(edgeTemplate, source->getName(), vertex->getName());
+      for (auto source : vertex->getInConnections()) {
+        if (auto ptr = source.lock()) {
+          edges += format(edgeTemplate, ptr->getName(), vertex->getName());
+        } else {
+          throw std::invalid_argument("Dead pointer!");
+        }
       }
     }
   }

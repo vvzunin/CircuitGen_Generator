@@ -112,8 +112,12 @@ void Circuit::updateCircuitParameters() {
   // iterate through outputs
   for (auto inp : outputs) {
     for (auto child : inp->getInConnections()) {
-      ++d_circuitParameters.d_numEdgesOfEachType[{
-          d_settings->parseGateToString(child->getGate()), "output"}];
+      if (auto ptr = child.lock()) {
+        ++d_circuitParameters.d_numEdgesOfEachType[{
+            d_settings->parseGateToString(ptr->getGate()), "output"}];
+      } else {
+        throw std::invalid_argument("Dead pointer!");
+      }
     }
   }
 
@@ -126,7 +130,6 @@ void Circuit::updateCircuitParameters() {
   }
 
   d_circuitParameters.d_hashCode = d_graph->calculateHash();
-  std::clog << inputs.size();
   // computeHash();
 }
 
