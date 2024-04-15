@@ -23,7 +23,7 @@
 /// @param d_settings a smart pointer to an object of the Settings class that
 /// represents the settings for this schema. It is usually used to adjust the
 /// parameters of the vertices of the graph
-/// */ 
+/// */
 
 class Circuit {
 public:
@@ -158,7 +158,7 @@ public:
   void    setVerticeOperation(int i_vertice, const std::string& i_operation);
 
   /// @brief fromVerilog TO DO!!!
-  /// 
+  ///
   /// */
 
   Circuit fromVerilog(const std::string& i_filepath);

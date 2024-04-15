@@ -730,7 +730,7 @@ GraphPtr SimpleGenerators::generatorSummator(
 }
 
 GraphPtr SimpleGenerators::generatorComparison(
-    int  bits,
+    int  i_bits,
     bool compare0,
     bool compare1,
     bool compare2,
@@ -740,7 +740,7 @@ GraphPtr SimpleGenerators::generatorComparison(
   VertexPtr   prev_pn_;
   std::string cond = std::string(compare0 ? "t" : "f") + (compare1 ? "t" : "f")
                    + (compare2 ? "t" : "f");
-  for (int i = bits - 1; i >= 0; i--) {
+  for (int i = i_bits - 1; i >= 0; i--) {
     std::string C     = std::to_string(i);
     std::string NextC = std::to_string(i - 1);
     std::string x     = "coma" + cond + C;
@@ -774,7 +774,7 @@ GraphPtr SimpleGenerators::generatorComparison(
       graph->addEdges({nab, ab}, pn_);
 
       // in case of first iteration
-      if (i == bits - 1) {
+      if (i == i_bits - 1) {
         if (act) {
           Enand1_ = graph->addGate(Gates::GateAnd, "E0and1_" + C);
           graph->addEdges({const_1, pn_}, Enand1_);
@@ -800,7 +800,7 @@ GraphPtr SimpleGenerators::generatorComparison(
       graph->addEdges({input_x, nb}, pn_);
 
       // in case of first iteration
-      if (i == bits - 1) {
+      if (i == i_bits - 1) {
         if (act) {
           Enand1_ = graph->addGate(Gates::GateAnd, "E1and1_" + C);
           graph->addEdges({const_1, pn_}, Enand1_);
@@ -834,7 +834,7 @@ GraphPtr SimpleGenerators::generatorComparison(
       graph->addEdges({input_y, na}, pn_);
 
       // first iteration
-      if (i == bits - 1) {
+      if (i == i_bits - 1) {
         if (act) {
           Enand1_ = graph->addGate(Gates::GateAnd, "E2and1_" + C);
           graph->addEdges({const_1, pn_}, Enand1_);

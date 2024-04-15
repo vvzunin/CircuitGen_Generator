@@ -17,10 +17,7 @@
 /// generatorComparison and generatorEncoder
 ///
 
-
 using GatesInfo = std::map<Gates, std::vector<int>>;
-
-
 
 namespace {
 /// @addtogroup UnnamedNamespaces
@@ -48,7 +45,6 @@ int maxValueInMap(const std::map<T, int>& i_map) {
 
 // namespace end
 }  // namespace
-
 
 /// class SimpleGenerators
 /// @param d_settings A pointer to an object of the Settings class, which is a
@@ -100,7 +96,7 @@ public:
   /// conjunctive normal form (KNF) corresponding to the input truth table
   /// @code
   /// // TO DO: Examples
-  /// @endcode
+  /// @end_code
 
   GraphPtr cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
   GraphPtr zhegalkinFromTruthTable(const TruthTable& i_table);
@@ -135,39 +131,39 @@ public:
       int i_outputs
   );
 
-    /// @brief generatorRandLevelExperimental The method generates a random level
-    /// of complexity of the graph within the specified boundaries. After that,
-    /// the method adds input vertices (variables) to the graph. Next, there is a
-    /// step-by-step addition of levels with gates (logical operations) to the
-    /// graph. Each level can contain a different number of gates, randomly
-    /// selected within the specified boundaries. Also, at each level, the type
-    /// of operation for each valve is randomly selected. The method uses some
-    /// additional algorithms to select parent vertices for each gate to provide
-    /// more diverse graphs. In particular, at each level, the algorithm randomly
-    /// selects parent vertices from existing vertices, and the vertices are
-    /// selected based on their location in the graph, which increases the
-    /// flexibility of generation. At the end, the method adds output vertices
-    /// (outputs) from the graph, connecting them to the last level of the gates
-    /// @param i_minLevel The minimum level of complexity of the graph.
-    /// The difficulty level determines the number of levels in the graph.
-    /// The more levels there are, the more complex the scheme becomes
-    /// @param i_maxLevel The maximum level of complexity of the graph.
-    /// If the value is set to 0, only the minimum level will be used
-    /// @param i_minElements The minimum number of elements (valves) at each
-    /// level
-    /// @param i_maxElements The maximum number of elements (valves) at each
-    /// level
-    /// @param i_inputs The number of inputs to the graph
-    /// @param i_outputs The number of exits from the graph
-    /// @return the created OrientedGraph, which is a circuit with logic gates,
-    /// inputs and outputs
-    /// @code
-    /// // TO DO: Examples
-    /// @endcode
-    /// @throw std::invalid_argument. The method starts by checking the input
-    /// parameters for correctness: if the minimum level is greater than the
-    /// maximum or the minimum number of elements is greater than the maximum,
-    /// the method throws an exception std::invalid_argument.
+  /// @brief generatorRandLevelExperimental The method generates a random level
+  /// of complexity of the graph within the specified boundaries. After that,
+  /// the method adds input vertices (variables) to the graph. Next, there is a
+  /// step-by-step addition of levels with gates (logical operations) to the
+  /// graph. Each level can contain a different number of gates, randomly
+  /// selected within the specified boundaries. Also, at each level, the type
+  /// of operation for each valve is randomly selected. The method uses some
+  /// additional algorithms to select parent vertices for each gate to provide
+  /// more diverse graphs. In particular, at each level, the algorithm randomly
+  /// selects parent vertices from existing vertices, and the vertices are
+  /// selected based on their location in the graph, which increases the
+  /// flexibility of generation. At the end, the method adds output vertices
+  /// (outputs) from the graph, connecting them to the last level of the gates
+  /// @param i_minLevel The minimum level of complexity of the graph.
+  /// The difficulty level determines the number of levels in the graph.
+  /// The more levels there are, the more complex the scheme becomes
+  /// @param i_maxLevel The maximum level of complexity of the graph.
+  /// If the value is set to 0, only the minimum level will be used
+  /// @param i_minElements The minimum number of elements (valves) at each
+  /// level
+  /// @param i_maxElements The maximum number of elements (valves) at each
+  /// level
+  /// @param i_inputs The number of inputs to the graph
+  /// @param i_outputs The number of exits from the graph
+  /// @return the created OrientedGraph, which is a circuit with logic gates,
+  /// inputs and outputs
+  /// @code
+  /// // TO DO: Examples
+  /// @end_code
+  /// @throw std::invalid_argument. The method starts by checking the input
+  /// parameters for correctness: if the minimum level is greater than the
+  /// maximum or the minimum number of elements is greater than the maximum,
+  /// the method throws an exception std::invalid_argument.
 
   GraphPtr generatorRandLevelExperimental(
       u_int32_t i_minLevel,
@@ -190,13 +186,31 @@ public:
   /// output vertices will remain empty, if false, they will be deleted
   /// @return the created OrientedGraph
 
-
   GraphPtr generatorNumOperation(
       int                  i_input,
       int                  i_output,
       std::map<Gates, int> i_logicOper,
       bool                 i_leaveEmptyOut = true
   );
+
+  /// @brief generatorSummator represents the generation of a combinational
+  /// adder circuit. It is based on the arithmetic operation of addition in the
+  /// decimal system and creates a graph of logical elements for its
+  /// implementation. The number of bits fed into it is the length of the
+  /// numbers that are converted from decimal to binary notation to implement
+  /// the graph. Both the half-version and the full version are used as the
+  /// basis of the generation.
+  /// @param i_bits The number of bits, or in other words, input vertices
+  /// (variables), which will be twice as many in the graph
+  /// @param i_overflowIn A Boolean flag indicating whether to create an
+  /// additional input vertex (variable) in the graph at the beginning of
+  /// generation
+  /// @param i_overflowOut A Boolean flag indicating whether to create an
+  /// additional output vertex (variable) in the graph at the end of generation
+  /// @param i_minus A Boolean flag indicating whether it is worth adding
+  /// logical vertices of type NOT to the graph to select a negative sum
+  /// @return the created OrientedGraph
+
   GraphPtr generatorSummator(
       int  i_bits,
       bool i_overflowIn,
@@ -204,15 +218,66 @@ public:
       bool i_minus,
       bool act = false
   );
+
+  /// @brief generatorComparison represents the generation of a combinational
+  /// comparator circuit. It is able to compare the submitted data in three
+  /// variants: "equal", "less", "more". Reads the bits of numbers from larger
+  /// to smaller, taking into account the significance of the higher bits.
+  /// numbers that are converted from decimal to binary notation to implement
+  /// the graph
+  /// @param i_bits The number of bits, or in other words, input vertices
+  /// (variables), which will be twice as many in the graph
+  /// @param compare0 A Boolean flag indicating whether to perform the
+  /// "equality" ("=") comparison operation between two bits of different
+  /// numbers.
+  /// @param compare1 A Boolean flag indicating indicating whether to perform
+  /// the "less" ("<") comparison operation between two bits of different
+  /// numbers.
+  /// @param compare2 A Boolean flag indicating indicating whether to perform
+  /// the "more" (">") comparison operation between two bits of different
+  /// numbers.
+  /// @return the created OrientedGraph
+
   GraphPtr generatorComparison(
-      int  bits,
+      int  i_bits,
       bool compare0,
       bool compare1,
       bool compare2,
       bool act = false
   );
-  GraphPtr generatorEncoder(int bits);
-  GraphPtr generatorParity(int i_bits);
+
+  /// @brief generatorEncoder represents the generation of a combinational
+  /// scheme of a standard binary encoder. The number of incoming bits (n) must
+  /// be equal to two in degree (m), whose value is the number of outputs in the
+  /// graph. If the number n is not equal to two in any degree, then the power
+  /// of two is selected, at which the value will be the nearest and greater
+  /// than the value of n itself. If one bit is applied to the input, the
+  /// generation is canceled.
+  /// @param i_bits The number of bits, or in other words, input vertices
+  /// (variables) in the graph.
+  /// @return the created OrientedGraph
+
+  GraphPtr generatorEncoder(int i_bits);
+
+  /// @brief generatorSubtractor represents the generation of a combinational
+  /// subtractor scheme. It is based on the arithmetic difference operation,
+  /// implementing its logic through logical operations. The generation logic is
+  /// close to the logic of generatorSummator, with the difference that the user
+  /// can choose which input vertices will be the bits of the reduced and which
+  /// ones will be subtracted. Both the half-version and the full version are
+  /// used as the basis of the generation.
+  /// @param i_bits The number of bits, or in other words, input vertices
+  /// (variables), which will be twice as many in the graph
+  /// @param i_overflowIn A Boolean flag indicating whether to create an
+  /// additional input vertex (variable) in the graph at the beginning of
+  /// generation
+  /// @param i_overflowOut A Boolean flag indicating whether to create an
+  /// additional output vertex (variable) in the graph at the end of generation
+  /// @param i_sub A Boolean flag indicating which input vertices will be the
+  /// bits of the reduced and which bits of the subtracted (if false, then B-A
+  /// is executed, if true, then A-B)
+  /// @return the created OrientedGraph
+
   GraphPtr generatorSubtractor(
       int  i_bits,
       bool i_overflowIn,
@@ -220,10 +285,112 @@ public:
       bool i_sub,
       bool act = false
   );
+
+  /// @brief generatorMultiplexer represents the generation of a combinational
+  /// multiplexer circuit. When generating to the standard input vertices,
+  /// additional ones are created, which are control inputs in the multiplexer
+  /// circuit. Their number is a power of two, which is equal to or greater than
+  /// the number of input vertices, and is the closest to the number of input
+  /// vertices. There is always one output vertex. If the number of input
+  /// vertices is less than two, the generation will be rejected.
+  /// @param i_bits The number of bits, or in other words, input vertices
+  /// (variables) in the graph.
+  /// @return the created OrientedGraph
+
   GraphPtr generatorMultiplexer(int i_bits);
+
+  /// @brief generatorDemultiplexer represents the generation of the
+  /// combinational circuit of the demultiplexer. The generation logic almost
+  /// completely repeats the logic of generatorMultiplexer. The difference lies
+  /// in the use of logical operations and the fact that the user sets the
+  /// number of output vertices, while the input vertex is always one.
+  /// @param i_bits The number of bits, or in other words, input vertices
+  /// (variables) in the graph.
+  /// @return the created OrientedGraph
+
   GraphPtr generatorDemultiplexer(int i_bits);
-  GraphPtr generatorMultiplier(int i_bits, bool act = false);
+
+  /// @brief generatorDecoder represents the generation of a combinational
+  /// decoder circuit. The logic of generation is close to the logic of
+  /// generating an encoder, except for logical operations and the fact that the
+  /// number of input vertices is a power of two of the number of output
+  /// vertices. The number of input vertices can range from 1 to the desired
+  /// number by the user.
+  /// @param i_bits The number of bits, or in other words, input vertices
+  /// (variables) in the graph.
+  /// @return the created OrientedGraph
+
   GraphPtr generatorDecoder(int i_bits);
+
+  /// @brief generatorParity represents the generation of a combinational parity
+  /// check scheme. The graph is based on the logical XOR operation, which is
+  /// used to check the parity of the resulting number in binary form. The graph
+  /// can be generated from any number of supplied bits, if their number is at
+  /// least two. Otherwise, the generation will be canceled.
+  /// @param i_bits The number of bits, or in other words, input vertices
+  /// (variables) in the graph.
+  /// @return the created OrientedGraph
+
+  GraphPtr generatorParity(int i_bits);
+
+  /// @brief generatorMultiplier represents the generation of a combinational
+  /// multiplier circuit. It is based on the arithmetic multiplication operation
+  /// implemented through logical operations and generatorSummator. Arithmetic
+  /// multiplication consists of addition, so the logical implementation is
+  /// based on a semi- and full implementation of the generatorSummator. The
+  /// multiplier structure is a matrix of AND operations and adders, in which
+  /// all adders are interconnected through value transfers. The user cannot
+  /// influence the operation of the adders inside the multiplier.
+  /// @param i_bits The number of bits, or in other words, input vertices
+  /// (variables) in the graph.
+  /// @return the created OrientedGraph
+
+  GraphPtr generatorMultiplier(int i_bits, bool act = false);
+
+  /// @brief generatorALU represents the generation of a combinational circuit
+  /// of an ALU (Arithmetic Logic Unit). It is a multi-structured graph
+  /// consisting of a set of subgraphs selected by the user. The framework of
+  /// the ALU generator is a multiplexer, which is a subgraph. This subgraph is
+  /// connected to other subgraphs, which are almost all the declared generators
+  /// above. Their generation takes place at the user's choice and the output
+  /// vertices are connected to the input vertices of the multiplexer subgraph.
+  /// As a result, the ALU has one output vertex from each multiplexer, which
+  /// transmit the result to the output based on the signals of the control
+  /// input vertices.
+  /// @param i_bits The number of bits, which specifies for what size of input
+  /// values each generators should be.
+  /// @param i_outbits The number of bits, which specifies for what size of
+  /// output values each generators should be.
+  /// @param ALL A Boolean flag indicating whether it is worth selecting all
+  /// types of generation from the available ones
+  /// @param SUM A Boolean flag indicating whether to choose summator generation
+  /// with positive numbers
+  /// @param SUB A Boolean flag indicating whether it is worth choosing to
+  /// generate a subtractor with a choice of a reduced B and subtracted A
+  /// @param NSUM A Boolean flag indicating whether to choose summator
+  /// generation with negative numbers
+  /// @param NSUB A Boolean flag indicating whether it is worth choosing to
+  /// generate a subtractor with a choice of a reduced A and subtracted B
+  /// @param MULT A Boolean flag indicating whether to choose multiplier
+  /// generation
+  /// @param COM A Boolean flag indicating whether to choose the generation of
+  /// the comparator
+  /// @param AND A Boolean flag indicating whether to choose to generate a
+  /// logical operation AND
+  /// @param NAND A Boolean flag indicating whether to choose to generate a
+  /// logical operation NAND
+  /// @param OR A Boolean flag indicating whether to choose to generate a
+  /// logical operation OR
+  /// @param NOR A Boolean flag indicating whether to choose to generate a
+  /// logical operation NOR
+  /// @param XOR A Boolean flag indicating whether to choose to generate a
+  /// logical operation XOR
+  /// @param XNOR A Boolean flag indicating whether to choose to generate a
+  /// logical operation XNOR
+  /// @param CNF A Boolean flag indicating whether it is worth choosing to
+  /// generate a generator based on a Random Truth Table
+  /// @return the created OrientedGraph
+
   GraphPtr generatorALU(
       int  i_bits,
       int  i_outbits,
@@ -262,7 +429,7 @@ public:
   /// };
   /// // Set the input information for logic gates
   /// generators.setGatesInputsInfo(gateInputsInfo);
-  /// @endcode
+  /// @end_code
 
   void setGatesInputsInfo(const std::map<std::string, std::vector<int>>& i_info
   ) {

@@ -69,7 +69,7 @@ public:
   /// generation
   /// @param i_iteration An integer value representing the iteration number that
   /// must be set to generate the database
-  /// */ 
+  /// */
 
   void                 setIteration(int i_iteration);
 

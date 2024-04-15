@@ -97,7 +97,7 @@ public:
   /// // and members of the Settings class
   /// std::string datasetPath = settingsInstance->getDatasetPath();
   /// std::cout << "Dataset path: " << datasetPath << std::endl;
-  /// @endcode
+  /// @end_code
 
   static std::shared_ptr<Settings> getInstance(const std::string& i_value);
 
@@ -132,7 +132,7 @@ public:
   /// // Handle an exception if the operation is not found
   /// std::cerr << "Error: " << e.what() << std::endl;
   /// }
-  /// @endcode
+  /// @end_code
   /// @throws std::out_of_range If the passed operation name does not exist
   /// in the list of logical operations
 
@@ -147,8 +147,8 @@ public:
   /// @brief getLogicOperationsWithGates Returns logical operations along with
   /// information about the presence of a single input
   /// The method returns a pair of vectors: the first vector contains
-  /// information about whether each a logical operation has only one 
-  /// input(true if this is the case, false otherwise), 
+  /// information about whether each a logical operation has only one
+  /// input(true if this is the case, false otherwise),
   /// and the second vector contains the keys(enumerated values) of all
   /// available logical operations
   /// @return std::pair<std::vector<bool>, std::vector<Gates>> A pair of
@@ -180,7 +180,7 @@ public:
   /// }
   /// std::cout << std::endl;
   /// }
-  /// @endcode
+  /// @end_code
 
   std::pair<std::vector<bool>, std::vector<Gates>> getLogicOperationsWithGates(
   );
@@ -202,8 +202,9 @@ public:
   /// } catch (const std::out_of_range& e) {
   /// std::cerr << "Error: " << e.what() << std::endl;
   /// }
-  /// @endcode
-  /// @throw std::out_of_range If the passed operation does not exist in the list of operations
+  /// @end_code
+  /// @throw std::out_of_range If the passed operation does not exist in the
+  /// list of operations
 
   std::string fromOperationsToName(const std::string& i_op) const;
 
@@ -228,8 +229,9 @@ public:
   /// // Get the prefix of the generation method by its name
   /// std::string method = "RandLevel";
   /// std::string prefix = settingsInstance->getGenerationMethodPrefix(method);
-  /// std::cout << "Prefix for method " << method << ": " << prefix << std::endl;
-  /// @endcode
+  /// std::cout << "Prefix for method " << method << ": " << prefix <<
+  /// std::endl;
+  /// @end_code
 
   std::string getGenerationMethodPrefix(const std::string& i_s) const;
 
@@ -287,17 +289,19 @@ public:
   /// @return std::vector<std::string> The hierarchy associated with the
   /// operation key
   /// @code
-  /// // Creating an instance of the Settings class or getting it from an existing object
-  /// std::shared_ptr<Settings> settingsInstance = Settings::getInstance("/path/to/settings");
+  /// // Creating an instance of the Settings class or getting it from an
+  /// existing object std::shared_ptr<Settings> settingsInstance =
+  /// Settings::getInstance("/path/to/settings");
   /// // Get the hierarchy associated with the operation key 5
-  /// std::vector<std::string> operationHierarchy = settingsInstance->fromOperationsToHierarchy(5);
+  /// std::vector<std::string> operationHierarchy =
+  /// settingsInstance->fromOperationsToHierarchy(5);
   /// // Output the hierarchy
   /// for(const auto& element : operationHierarchy)
   /// {
   ///     std::cout << element << " ";
   /// }
   /// std::cout << std::endl;
-  /// @endcode
+  /// @end_code
   /// @throws std::out_of_range If the provided key does not exist in the
   /// internal map of operation keys to hierarchies
 
@@ -306,12 +310,13 @@ public:
   /// @brief getNumThread Retrieves the number of threads used for processing
   /// @return int The number of threads configured for processing
   /// @code
-  /// // Creating an instance of the Settings class or getting it from an existing object
-  /// std::shared_ptr<Settings> settingsInstance = Settings::getInstance("/path/to/settings");
+  /// // Creating an instance of the Settings class or getting it from an
+  /// existing object std::shared_ptr<Settings> settingsInstance =
+  /// Settings::getInstance("/path/to/settings");
   /// // Get the number of threads configured for processing
   /// int numThreads = settingsInstance->getNumThread();
   /// std::cout << "Number of threads: " << numThreads << std::endl;
-  /// @endcode
+  /// @end_code
 
   int                      getNumThread() const;
 
@@ -321,31 +326,34 @@ public:
   /// @return Gates The enum value corresponding to the provided string
   /// representation of the gate
   /// @code
-  /// // Creating an instance of the Settings class or getting it from an existing object
-  /// std::shared_ptr<Settings> settingsInstance = Settings::getInstance("/path/to/settings");
+  /// // Creating an instance of the Settings class or getting it from an
+  /// existing object std::shared_ptr<Settings> settingsInstance =
+  /// Settings::getInstance("/path/to/settings");
   /// // Convert the string representation "and" to its corresponding enum value
   /// Gates gate = settingsInstance->parseStringToGate("and");
   /// std::cout << "Enum value of 'and': " << gate << std::endl;
-  /// @endcode
+  /// @end_code
 
   Gates                    parseStringToGate(std::string i_gate) const;
 
   /// @brief parseGateToString Converts an enum value of a gate to its
   /// corresponding string representation
   /// @param gate The enum value representing the gate
-  /// @return std::string The string representation of the provided gate enum value
-  /// This method converts an enum value representing a gate to its
+  /// @return std::string The string representation of the provided gate enum
+  /// value This method converts an enum value representing a gate to its
   /// corresponding string representation.
   /// It retrieves the string representation from the internal map date
   /// ToString, which maps enum values of gates to their string
   /// representations.
   /// @code
-  /// // Creating an instance of the Settings class or getting it from an existing object
-  /// std::shared_ptr<Settings> settingsInstance = Settings::getInstance("/path/to/settings");
-  /// // Convert the enum value Gates::GateAnd to its corresponding string representation
-  /// std::string gateString = settingsInstance->parseGateToString(Gates::GateAnd);
-  /// std::cout << "String representation of Gates::GateAnd: " << gateString << std::endl;
-  /// @endcode
+  /// // Creating an instance of the Settings class or getting it from an
+  /// existing object std::shared_ptr<Settings> settingsInstance =
+  /// Settings::getInstance("/path/to/settings");
+  /// // Convert the enum value Gates::GateAnd to its corresponding string
+  /// representation std::string gateString =
+  /// settingsInstance->parseGateToString(Gates::GateAnd); std::cout << "String
+  /// representation of Gates::GateAnd: " << gateString << std::endl;
+  /// @end_code
 
   std::string              parseGateToString(Gates gate) const;
 
@@ -363,12 +371,11 @@ public:
   /// settingsInstance->parseVertexToString(VertexTypes::input); std::cout <<
   /// "String representation of VertexTypes::input: " << vertexString <<
   /// std::endl;
-  /// @endcode
+  /// @end_code
 
   std::string              parseVertexToString(VertexTypes vertex) const;
 
 private:
-
   /// @brief SaveSettings Saves the current settings to a file
   /// This method saves the current settings of the Settings object to a file
   /// specified by d_fileName. It writes various settings parameters, such as
@@ -381,7 +388,7 @@ private:
   /// Settings::getInstance("/path/to/settings");
   /// // Save the current settings to a file
   /// settingsInstance->SaveSettings();
-  /// @endcode
+  /// @end_code
 
   void                             SaveSettings();
 

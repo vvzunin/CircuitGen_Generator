@@ -54,7 +54,7 @@ private:
 };
 
 /// class GraphVertexConstant TO DO: Description
-/// 
+///
 /// </summary>
 
 class GraphVertexConstant : public GraphVertexInput {
@@ -118,7 +118,6 @@ public:
       const std::string i_name,
       GraphPtr          i_baseGraph = nullptr
   );
-
 
   virtual char updateValue();
   std::string  calculateHash(bool recalculate = false);

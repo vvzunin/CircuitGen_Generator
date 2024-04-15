@@ -286,11 +286,11 @@ void DataBaseGenerator::generateDataBaseComparison(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int      bits     = i_param.getInputs();
+  int      i_bits   = i_param.getInputs();
   bool     compare0 = i_param.getComparison().getCompare0();
   bool     compare1 = i_param.getComparison().getCompare1();
   bool     compare2 = i_param.getComparison().getCompare2();
-  GraphPtr graph = sg.generatorComparison(bits, compare0, compare1, compare2);
+  GraphPtr graph = sg.generatorComparison(i_bits, compare0, compare1, compare2);
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -303,8 +303,8 @@ void DataBaseGenerator::generateDataBaseEncoder(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int      bits  = i_param.getInputs();
-  GraphPtr graph = sg.generatorEncoder(bits);
+  int      i_bits = i_param.getInputs();
+  GraphPtr graph  = sg.generatorEncoder(i_bits);
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());

@@ -54,18 +54,18 @@ public:
 
   /// Add task.
 
-/// @brief add designed to add an item to the queue
-/// @param item the item to be added to the queue
-/// @code
-/// // Creating a queue for integers.
-/// Threading::UnboundedMPMCQueue<int> queue;
-/// // Adding items to the queue
-/// queue.add(42);
-/// queue.add(17);
-/// queue.add(99);
-/// @endcode
-/// @throw std::runtime_error. It is thrown out if an attempt is made to
-/// add an item to a closed queue
+  /// @brief add designed to add an item to the queue
+  /// @param item the item to be added to the queue
+  /// @code
+  /// // Creating a queue for integers.
+  /// Threading::UnboundedMPMCQueue<int> queue;
+  /// // Adding items to the queue
+  /// queue.add(42);
+  /// queue.add(17);
+  /// queue.add(99);
+  /// @endcode
+  /// @throw std::runtime_error. It is thrown out if an attempt is made to
+  /// add an item to a closed queue
 
   void                add(T item) {
     std::unique_lock lock(mtx);
@@ -80,13 +80,12 @@ public:
 
   /// Close queue. All waiting threads will receive nullopt.
 
-/// @brief close it is used to close the queue
-/// Example usage:
-/// @code
-/// // Closing the queue
-/// queue.close()
-/// @endcode
-
+  /// @brief close it is used to close the queue
+  /// Example usage:
+  /// @code
+  /// // Closing the queue
+  /// queue.close()
+  /// @endcode
 
   void close() {
     std::unique_lock lock(mtx);
