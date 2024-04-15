@@ -78,55 +78,10 @@ public:
   SimpleGenerators(SimpleGenerators&& other)                 = delete;
   SimpleGenerators& operator=(SimpleGenerators&& other)      = delete;
 
-  /// @brief cnfFromTruthTable accepts a truth table as an input in the form of
-  /// a Truth Table object and returns a vector of rows representing an
-  /// expression in the form of a conjunctive normal form (KNF) that
-  /// corresponds to this truth table. The conjunctive normal form form
-  /// represents a logical expression in the form of a conjunction of
-  /// disjunctions
-  /// @param i_table This is an object of the Truth Table type, which is a
-  /// truth table. The truth table consists of a set of rows, where each row
-  /// represents a possible combination of variable values in a logical
-  /// expression, and each column represents the value of a variable in that
-  /// combination.
-  /// @param i_tp This is a Boolean flag (true/false) that indicates whether
-  /// to add negation before variables that have the value "False" in the
-  /// truth table. If i_tp is set to true, negation will be added to the
-  /// variables with the value "False". If i_tp is set to false, the
-  /// negation will not be added. This allows you to choose between the
-  /// representation of the truth table in KNF or in disjunctive normal
-  /// form (DNF)
-  /// @return a vector of strings representing an expression in the form of
-  /// conjunctive normal form (KNF) corresponding to the input truth table
-  /// @code
-  /// // TO DO: Examples
-  /// @endcode
+  GraphPtr cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
+  GraphPtr zhegalkinFromTruthTable(const TruthTable& i_table);
 
-  std::vector<std::string>
-                cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
-  
-  /// @brief generatorRandLevel creates an oriented graph (represented by
-  /// an OrientedGraph object) with a given level of complexity and number
-  /// of elements. The graph is a circuit consisting of logic gates, inputs
-  /// and outputs
-  /// The method starts by creating graph inputs (variables). Then he gradually
-  /// adds levels with valves to the graph, while the number of valves at each
-  /// level is randomly selected within the specified limits. For each valve,
-  /// the type of operation is randomly selected from a predefined set, then
-  /// the corresponding valve object is created and added to the graph. At the
-  /// end, the method adds outputs from the graph, connecting them to the last
-  /// level of the gates
-  /// @param i_minLevel The minimum level of complexity of the graph???
-  /// @param i_maxLevel The maximum level of complexity of the graph. If the
-  /// value is set to 0, only the minimum level will be used
-  /// @param i_minElements The minimum number of elements (valves) at each
-  /// level
-  /// @param i_maxElements The maximum number of elements (valves) at each
-  /// level
-  /// @param i_inputs The number of inputs to the graph
-  /// @param i_outputs The number of exits from the graph
-  
-  OrientedGraph generatorRandLevel(
+  GraphPtr generatorRandLevel(
       int i_minLevel,
       int i_maxLevel,
       int i_minElements,
@@ -134,42 +89,7 @@ public:
       int i_inputs,
       int i_outputs
   );
-
-  /// @brief generatorRandLevelExperimental The method generates a random level
-  /// of complexity of the graph within the specified boundaries. After that,
-  /// the method adds input vertices (variables) to the graph. Next, there is a
-  /// step-by-step addition of levels with gates (logical operations) to the
-  /// graph. Each level can contain a different number of gates, randomly
-  /// selected within the specified boundaries. Also, at each level, the type
-  /// of operation for each valve is randomly selected. The method uses some
-  /// additional algorithms to select parent vertices for each gate to provide
-  /// more diverse graphs. In particular, at each level, the algorithm randomly
-  /// selects parent vertices from existing vertices, and the vertices are
-  /// selected based on their location in the graph, which increases the
-  /// flexibility of generation. At the end, the method adds output vertices
-  /// (outputs) from the graph, connecting them to the last level of the gates
-  /// @param i_minLevel The minimum level of complexity of the graph.
-  /// The difficulty level determines the number of levels in the graph.
-  /// The more levels there are, the more complex the scheme becomes
-  /// @param i_maxLevel The maximum level of complexity of the graph.
-  /// If the value is set to 0, only the minimum level will be used
-  /// @param i_minElements The minimum number of elements (valves) at each
-  /// level
-  /// @param i_maxElements The maximum number of elements (valves) at each
-  /// level
-  /// @param i_inputs The number of inputs to the graph
-  /// @param i_outputs The number of exits from the graph
-  /// @return the created OrientedGraph, which is a circuit with logic gates,
-  /// inputs and outputs
-  /// @code
-  /// // TO DO: Examples
-  /// @endcode
-  /// @throw std::invalid_argument. The method starts by checking the input
-  /// parameters for correctness: if the minimum level is greater than the
-  /// maximum or the minimum number of elements is greater than the maximum,
-  /// the method throws an exception std::invalid_argument.
-
-  OrientedGraph generatorRandLevelExperimental(
+  GraphPtr generatorRandLevelExperimental(
       u_int32_t i_minLevel,
       u_int32_t i_maxLevel,
       u_int32_t i_minElements,
@@ -178,39 +98,57 @@ public:
       u_int32_t i_outputs
   );
 
-  /// @brief generatorNumOperation TO DO: Description algorithm
-  /// 
-  /// @param i_input The number of input vertices (variables) in the graph
-  /// @param i_output The number of output vertices (functions) in the graph
-  /// @param i_logicOper A dictionary containing a set of logical operations
-  /// (gates) and their numbers that can be used to generate a graph
-  /// @param i_leaveEmptyOut A Boolean flag indicating whether to leave the
-  /// output vertices empty if the number of output vertices is greater than
-  /// the number of logical operations in the graph. If true, the remaining
-  /// output vertices will remain empty, if false, they will be deleted
-  /// @return the created OrientedGraph
-
-  OrientedGraph generatorNumOperation(
+  GraphPtr generatorNumOperation(
       int                  i_input,
       int                  i_output,
       std::map<Gates, int> i_logicOper,
       bool                 i_leaveEmptyOut = true
   );
-  OrientedGraph generatorSummator(
-      int  bits,
-      bool overflowIn,
-      bool overflowOut,
-      bool minus,
+  GraphPtr generatorSummator(
+      int  i_bits,
+      bool i_overflowIn,
+      bool i_overflowOut,
+      bool i_minus,
       bool act = false
   );
-  OrientedGraph generatorComparison(
+  GraphPtr generatorComparison(
       int  bits,
       bool compare0,
       bool compare1,
       bool compare2,
       bool act = false
   );
-  OrientedGraph generatorEncoder(int bits);
+  GraphPtr generatorEncoder(int bits);
+  GraphPtr generatorParity(int i_bits);
+  GraphPtr generatorSubtractor(
+      int  i_bits,
+      bool i_overflowIn,
+      bool i_overflowOut,
+      bool i_sub,
+      bool act = false
+  );
+  GraphPtr generatorMultiplexer(int i_bits);
+  GraphPtr generatorDemultiplexer(int i_bits);
+  GraphPtr generatorMultiplier(int i_bits, bool act = false);
+  GraphPtr generatorDecoder(int i_bits);
+  GraphPtr generatorALU(
+      int  i_bits,
+      int  i_outbits,
+      bool ALL,
+      bool SUM,
+      bool SUB,
+      bool NSUM,
+      bool NSUB,
+      bool MULT,
+      bool COM,
+      bool AND,
+      bool NAND,
+      bool OR,
+      bool NOR,
+      bool XOR,
+      bool XNOR,
+      bool CNF
+  );
 
   /// @brief setGatesInputsInfo It is designed to set information about the
   /// inputs for various logic gates. It takes as an argument a dictionary,
@@ -267,6 +205,25 @@ private:
 
     return val->first;
   }
+
+  GraphPtr ALU(
+      int  i_bits,
+      int  i_outbits,
+      bool ALL,
+      bool SUM,
+      bool SUB,
+      bool NSUM,
+      bool NSUB,
+      bool MULT,
+      bool COM,
+      bool AND,
+      bool NAND,
+      bool OR,
+      bool NOR,
+      bool XOR,
+      bool XNOR,
+      bool CNF
+  );
 
   std::pair<Gates, int>   getRandomElement(const GatesInfo& i_info);
   std::pair<Gates, int>   getRandomElement(u_int32_t i_gatesLimit);

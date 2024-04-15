@@ -100,40 +100,16 @@ private:
   /// */
 
   void generateDataBaseGenetic(const GenerationParameters& i_param);
-
-  /// @brief GenerateDataBaseSummator The method is designed to generate a
-  /// database using adders
-  /// @param i_param An object of the GenerationParameters class containing
-  /// parameters for generating a database using adders
-  /// */
-
-  void GenerateDataBaseSummator(GenerationParameters& i_param);
-
-  /// @brief GenerateDataBaseComparison The method is designed to generate a
-  /// database using comparators.
-  /// @param i_param An object of the Generation Parameters class containing
-  /// parameters for generating a database using comparators
-  /// */
-
-  void GenerateDataBaseComparison(const GenerationParameters& i_param);
-
-   /// @brief getGenerateMethod The method returns a function that corresponds to the specified database generation method. This method is used to dynamically select the generation method depending on the passed method name.
-   /// @param i_methodName a string containing the name of the database generation method
-   /// @return A function that accepts a Generation Parameters object and returns no value
-   /// */
-
-  void GenerateDataBaseEncoder(const GenerationParameters& i_param);
-
-  /// @brief getGenerateMethod The method returns a function that corresponds to
-  /// the specified database generation method. This method is used to
-  /// dynamically select the generation method depending on the passed method
-  /// name.
-  /// @param i_methodName a string containing the name of the database
-  /// generation method
-  /// @return A function that accepts a Generation Parameters object and returns
-  /// no value
-  /// */
-
+  void generateDataBaseSummator(const GenerationParameters& i_param);
+  void generateDataBaseComparison(const GenerationParameters& i_param);
+  void generateDataBaseEncoder(const GenerationParameters& i_param);
+  void generateDataBaseParity(const GenerationParameters& i_param);
+  void generateDataBaseSubtractor(const GenerationParameters& i_param);
+  void generateDataBaseMultiplexer(const GenerationParameters& i_param);
+  void generateDataBaseDemultiplexer(const GenerationParameters& i_param);
+  void generateDataBaseMultiplier(const GenerationParameters& i_param);
+  void generateDataBaseDecoder(const GenerationParameters& i_param);
+  void generateDataBaseALU(const GenerationParameters& i_param);
   std::function<void(const GenerationParameters&)> getGenerateMethod(
       const std::string& i_methodName
   );

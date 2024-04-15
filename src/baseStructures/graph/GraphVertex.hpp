@@ -26,13 +26,13 @@
 class GraphVertexInput : public GraphVertexBase {
 public:
   GraphVertexInput(
-      OrientedGraph*    i_baseGraph = nullptr,
+      GraphPtr          i_baseGraph = nullptr,
       const VertexTypes i_type      = VertexTypes::input
   );
 
   GraphVertexInput(
       const std::string i_name,
-      OrientedGraph*    i_baseGraph = nullptr,
+      GraphPtr          i_baseGraph = nullptr,
       const VertexTypes i_type      = VertexTypes::input
   );
 
@@ -59,18 +59,19 @@ private:
 
 class GraphVertexConstant : public GraphVertexInput {
 public:
-  GraphVertexConstant(char i_const, OrientedGraph* i_baseGraph = nullptr);
+  GraphVertexConstant(char i_const, GraphPtr i_baseGraph = nullptr);
 
   GraphVertexConstant(
       char              i_const,
       const std::string i_name,
-      OrientedGraph*    i_baseGraph = nullptr
+      GraphPtr          i_baseGraph = nullptr
   );
 
   /// @brief updateLevel updates the level of the current vertex in the graph
   /// based on the levels of its incoming connections
 
   virtual void updateLevel();
+  std::string  getInstance();
 
 private:
 };
@@ -81,12 +82,9 @@ private:
 
 class GraphVertexOutput : public GraphVertexBase {
 public:
-  GraphVertexOutput(OrientedGraph* i_baseGraph = nullptr);
+  GraphVertexOutput(GraphPtr i_baseGraph = nullptr);
 
-  GraphVertexOutput(
-      const std::string i_name,
-      OrientedGraph*    i_baseGraph = nullptr
-  );
+  GraphVertexOutput(const std::string i_name, GraphPtr i_baseGraph = nullptr);
 
   /// @brief updateValue updates the value of the current vertex of the graph
   /// based on the values of its incoming connections and the type of logical
@@ -113,12 +111,12 @@ private:
 
 class GraphVertexGates : public GraphVertexBase {
 public:
-  GraphVertexGates(Gates i_gate, OrientedGraph* i_baseGraph = nullptr);
+  GraphVertexGates(Gates i_gate, GraphPtr i_baseGraph = nullptr);
 
   GraphVertexGates(
       Gates             i_gate,
       const std::string i_name,
-      OrientedGraph*    i_baseGraph = nullptr
+      GraphPtr          i_baseGraph = nullptr
   );
 
 
@@ -126,6 +124,8 @@ public:
   std::string  calculateHash(bool recalculate = false);
   std::string  getVerilogString() const;
   Gates        getGate() const;
+
+  std::string  toVerilog();
 
 private:
   Gates       d_gate;

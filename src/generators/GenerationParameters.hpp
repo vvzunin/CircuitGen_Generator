@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include <generators/Genetic/GeneticParameters.h>
 #include <settings/Settings.hpp>
 
 /// class CNNFromTruthTableParameters
@@ -31,6 +32,15 @@ private:
   bool d_generateLimitations = false;
   bool d_CNFF                = false;
   bool d_CNFT                = false;
+};
+
+class zhegalkinFromTruthTableParameters {
+public:
+  bool getZhegalkin() { return d_zhegalkin; }
+  void setZhegalkin(bool i_zhegalkin) { d_zhegalkin = i_zhegalkin; }
+
+private:
+  bool d_zhegalkin = false;
 };
 
 /// class GeneratorRandLevelParameters
@@ -112,9 +122,15 @@ private:
 
 class GeneratorSummatorParameters {
 public:
-  bool OverFlowIn  = false;
-  bool OverFlowOut = false;
-  bool minus       = false;
+  bool d_OverFlowIn  = false;
+  bool d_OverFlowOut = false;
+  bool d_minus       = false;
+  bool getOverFlowIn() { return d_OverFlowIn; }
+  bool getOverFlowOut() { return d_OverFlowOut; }
+  bool getMinus() { return d_minus; }
+  void setOverFlowIn(bool i_overflowIn) { d_OverFlowIn = i_overflowIn; }
+  void setOverFlowOut(bool i_overflowOut) { d_OverFlowOut = i_overflowOut; }
+  void setMinus(bool i_minus) { d_minus = i_minus; }
 };
 
 /// class GeneratorComparisonParameters
@@ -132,17 +148,79 @@ public:
 
 class GeneratorComparisonParameters {
 public:
-  bool compare0 = false;
-  bool compare1 = false;
-  bool compare2 = false;
+  bool d_compare0 = false;
+  bool d_compare1 = false;
+  bool d_compare2 = false;
+  bool getCompare0() { return d_compare0; }
+  bool getCompare1() { return d_compare1; }
+  bool getCompare2() { return d_compare2; }
+  void setCompare0(bool i_compare0) { d_compare0 = i_compare0; }
+  void setCompare1(bool i_compare1) { d_compare1 = i_compare1; }
+  void setCompare2(bool i_compare2) { d_compare2 = i_compare2; }
 };
 
-/// class GeneratorEncoderParameters
-/// The existence of this class is unknown ???
-///
-/// */
+class GeneratorSubtractorParameters {
+public:
+  bool getOverFlowIn() { return d_OverFlowIn; }
+  bool getOverFlowOut() { return d_OverFlowOut; }
+  bool getSub() { return d_sub; }
+  void setOverFlowIn(bool i_overflowIn) { d_OverFlowIn = i_overflowIn; }
+  void setOverFlowOut(bool i_overflowOut) { d_OverFlowOut = i_overflowOut; }
+  void setSub(bool i_sub) { d_sub = i_sub; }
 
-class GeneratorEncoderParameters {};
+private:
+  bool d_OverFlowIn  = false;
+  bool d_OverFlowOut = false;
+  bool d_sub         = false;
+};
+
+class GeneratorALUParameters {
+public:
+  bool getALL() { return d_ALL; }
+  bool getSUM() { return d_SUM; }
+  bool getSUB() { return d_SUB; }
+  bool getNSUM() { return d_NSUM; }
+  bool getNSUB() { return d_NSUB; }
+  bool getMULT() { return d_MULT; }
+  bool getCOM() { return d_COM; }
+  bool getAND() { return d_AND; }
+  bool getNAND() { return d_NAND; }
+  bool getOR() { return d_OR; }
+  bool getNOR() { return d_NOR; }
+  bool getXOR() { return d_XOR; }
+  bool getXNOR() { return d_XNOR; }
+  bool getCNF() { return d_CNF; }
+  void setALL(bool i_ALL) { d_ALL = i_ALL; }
+  void setSUM(bool i_SUM) { d_SUM = i_SUM; }
+  void setSUB(bool i_SUB) { d_SUB = i_SUB; }
+  void setNSUM(bool i_NSUM) { d_NSUM = i_NSUM; }
+  void setNSUB(bool i_NSUB) { d_NSUB = i_NSUB; }
+  void setMULT(bool i_MULT) { d_MULT = i_MULT; }
+  void setCOM(bool i_COM) { d_COM = i_COM; }
+  void setAND(bool i_AND) { d_AND = i_AND; }
+  void setNAND(bool i_NAND) { d_NAND = i_NAND; }
+  void setOR(bool i_OR) { d_OR = i_OR; }
+  void setNOR(bool i_NOR) { d_NOR = i_NOR; }
+  void setXOR(bool i_XOR) { d_XOR = i_XOR; }
+  void setXNOR(bool i_XNOR) { d_XNOR = i_XNOR; }
+  void setCNF(bool i_CNF) { d_CNF = i_CNF; }
+
+private:
+  bool d_ALL  = false;
+  bool d_SUM  = false;
+  bool d_SUB  = false;
+  bool d_NSUM = false;
+  bool d_NSUB = false;
+  bool d_MULT = false;
+  bool d_COM  = false;
+  bool d_AND  = false;
+  bool d_NAND = false;
+  bool d_OR   = false;
+  bool d_NOR  = false;
+  bool d_XOR  = false;
+  bool d_XNOR = false;
+  bool d_CNF  = false;
+};
 
 /// class GenerationParameters
 /// @param d_name Generation name
@@ -236,6 +314,9 @@ public:
   CNNFromTruthTableParameters getCNF() const {
     return d_cnfFromTruthTableParameters;
   }
+  zhegalkinFromTruthTableParameters getZhegalkin() const {
+    return d_ZhegalkinFromTruthTableParameters;
+  }
   GeneratorRandLevelParameters getRandLevel() const {
     return d_generatorRandLevelParameters;
   }
@@ -248,10 +329,11 @@ public:
   GeneratorComparisonParameters getComparison() const {
     return d_generatorComparisonParameters;
   }
-  GeneratorEncoderParameters getEncoder() const {
-    return d_generatorEncoderParameters;
+  GeneratorSubtractorParameters getSubtractor() const {
+    return d_generatorSubtractorParameters;
   }
-  // GeneticParameters getGenetic() const { return d_geneticParameters; }
+  GeneratorALUParameters getALU() const { return d_generatorALUParameters; }
+  GeneticParameters      getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF) { d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
   void setCNFT(bool i_CNFT) { d_cnfFromTruthTableParameters.setCNFT(i_CNFT); }
   void setLimit(bool i_limit) {
@@ -275,18 +357,114 @@ public:
     d_generatorNumOperationParameters.setLogicOper(i_m);
     d_generatorNumOperationParameters.setLeaveEmptyOut(i_LeaveEmptyOut);
   }
-  // void setNumOfCycles(int i_numOfCycles) {
-  // d_geneticParameters.setNumOfCycles(i_numOfCycles); } void
-  // setPopulationSize(int i_populationSize) {
-  // d_geneticParameters.setPopulationSize(i_populationSize); } void
-  // setRecombinationParameters(ParentsTypes i_parentsTypes, int
-  // i_tournamentNumber, RecombinationTypes i_recombinationType, int
-  // i_refPoints, double maskProbability, int i_recombinationNumber); void
-  // setMutationParameters(MutationTypes i_mutationTipe, double
-  // i_probabilityGen, int i_exchangeType, double i_probabilityTruthTable); void
-  // setSelectionParameters(SelectionTypes i_selectionType, int
-  // i_numOfSurvivors); void setKeyEndProcessIndex(double i_keyEndProcessIndex)
-  // { d_geneticParameters.setKeyEndProcessIndex(i_keyEndProcessIndex); }
+  void setSubtractorParameters(
+      bool i_overflowIn,
+      bool i_overflowOut,
+      bool i_sub
+  ) {
+    d_generatorSubtractorParameters.setOverFlowIn(i_overflowIn);
+    d_generatorSubtractorParameters.setOverFlowOut(i_overflowOut);
+    d_generatorSubtractorParameters.setSub(i_sub);
+  }
+  void setSummatorParameters(
+      bool i_overflowIn,
+      bool i_overflowOut,
+      bool i_minus
+  ) {
+    d_generatorSummatorParameters.setOverFlowIn(i_overflowIn);
+    d_generatorSummatorParameters.setOverFlowOut(i_overflowOut);
+    d_generatorSummatorParameters.setMinus(i_minus);
+  }
+  void setComparisonParameters(
+      bool i_compare0,
+      bool i_compare1,
+      bool i_compare2
+  ) {
+    d_generatorComparisonParameters.setCompare0(i_compare0);
+    d_generatorComparisonParameters.setCompare1(i_compare1);
+    d_generatorComparisonParameters.setCompare2(i_compare2);
+  }
+  void setALUParameters(
+      bool i_ALL,
+      bool i_SUM,
+      bool i_SUB,
+      bool i_NSUM,
+      bool i_NSUB,
+      bool i_MULT,
+      bool i_COM,
+      bool i_AND,
+      bool i_NAND,
+      bool i_OR,
+      bool i_NOR,
+      bool i_XOR,
+      bool i_XNOR,
+      bool i_CNF
+  ) {
+    d_generatorALUParameters.setALL(i_ALL);
+    d_generatorALUParameters.setSUM(i_SUM);
+    d_generatorALUParameters.setSUB(i_SUB);
+    d_generatorALUParameters.setNSUM(i_NSUM);
+    d_generatorALUParameters.setNSUB(i_NSUB);
+    d_generatorALUParameters.setMULT(i_MULT);
+    d_generatorALUParameters.setCOM(i_COM);
+    d_generatorALUParameters.setAND(i_AND);
+    d_generatorALUParameters.setNAND(i_NAND);
+    d_generatorALUParameters.setOR(i_OR);
+    d_generatorALUParameters.setNOR(i_NOR);
+    d_generatorALUParameters.setXOR(i_XOR);
+    d_generatorALUParameters.setXNOR(i_XNOR);
+    d_generatorALUParameters.setCNF(i_CNF);
+  }
+  void setZhegalkin(bool i_zhegalkin) {
+    d_ZhegalkinFromTruthTableParameters.setZhegalkin(i_zhegalkin);
+  }
+  void setNumOfCycles(int i_numOfCycles) {
+    d_geneticParameters.setNumOfCycles(i_numOfCycles);
+  }
+  void setPopulationSize(int i_populationSize) {
+    d_geneticParameters.setPopulationSize(i_populationSize);
+  }
+  void setRecombinationParameters(
+      ParentsTypes       i_parentsTypes,
+      int                i_tournamentNumber,
+      RecombinationTypes i_recombinationType,
+      int                i_refPoints,
+      double             maskProbability,
+      int                i_recombinationNumber
+  ) {
+    RecombinationParameters RP;
+    RP.setParentsParameters(i_parentsTypes, i_tournamentNumber);
+    RP.setRefPoints(i_refPoints);
+    RP.setRecombinationParameters(i_recombinationNumber);
+    RP.setRecombinationType(i_recombinationType);
+    RP.setMaskProbability(maskProbability);
+    d_geneticParameters.setRecombinationParameters(RP);
+  }
+  void setMutationParameters(
+      MutationTypes i_mutationType,
+      double        i_probabilityGen,
+      int           i_exchangeType,
+      double        i_probabilityTruthTable
+  ) {
+    MutationParameters MP;
+    MP.setMutationType(i_mutationType);
+    MP.setProbabilityGen(i_probabilityGen);
+    MP.setExchangeType(i_exchangeType);
+    MP.setProbabilityTruthTable(i_probabilityTruthTable);
+    d_geneticParameters.setMutationParameters(MP);
+  }
+  void setSelectionParameters(
+      SelectionTypes i_selectionType,
+      int            i_numOfSurvivors
+  ) {
+    SelectionParameters SP;
+    SP.setSelectionType(i_selectionType);
+    SP.setNumOfSurvivors(i_numOfSurvivors);
+    d_geneticParameters.setSelectionParameters(SP);
+  }
+  void setKeyEndProcessIndex(double i_keyEndProcessIndex) {
+    d_geneticParameters.setKeyEndProcessIndex(i_keyEndProcessIndex);
+  }
 
 private:
   std::string                             d_name = "";
@@ -305,10 +483,12 @@ private:
   std::uint_fast32_t                      d_seed = 0;
 
   CNNFromTruthTableParameters             d_cnfFromTruthTableParameters;
+  zhegalkinFromTruthTableParameters       d_ZhegalkinFromTruthTableParameters;
   GeneratorRandLevelParameters            d_generatorRandLevelParameters;
   GeneratorNumOperationParameters         d_generatorNumOperationParameters;
   GeneratorSummatorParameters             d_generatorSummatorParameters;
   GeneratorComparisonParameters           d_generatorComparisonParameters;
-  GeneratorEncoderParameters              d_generatorEncoderParameters;
-  // GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
+  GeneratorSubtractorParameters           d_generatorSubtractorParameters;
+  GeneratorALUParameters                  d_generatorALUParameters;
+  GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };

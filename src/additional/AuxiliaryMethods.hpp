@@ -1,4 +1,4 @@
-
+#pragma once
 #include <cstdint>
 #include <fstream>
 #include <map>
@@ -19,6 +19,8 @@
 /// dictionaries by their values and for working with spaces in strings)
 /// TO DO: list the other functions
 /// </summary>
+
+#include <circuit/Circuit.hpp>
 
 namespace AuxMethods {
 

@@ -4,6 +4,7 @@
 #include <vector>
 
 #include <additional/RandomGeneratorWithSeed.hpp>
+#include <generators/Genetic/GeneticParameters.h>
 #include <settings/Settings.hpp>
 
 /// class TruthTable
@@ -28,7 +29,7 @@ public:
   TruthTable();
 
   TruthTable(int seed);
-  TruthTable(const TruthTable& other)            = default;
+  // TruthTable(const TruthTable& other)            = default;
   TruthTable& operator=(const TruthTable& other) = default;
   TruthTable(TruthTable&& other)                 = default;
   TruthTable& operator=(TruthTable&& other)      = default;
@@ -60,6 +61,7 @@ public:
   /// a probability of i_p being equal to one.
   /// */
 
+  void                           generateRandom(TruthTableParameters i_gp);
   void                           generateTable(double i_p = 0);
 
   /// @brief getInput The method returns the number of input variables of the

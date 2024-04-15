@@ -17,6 +17,8 @@
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/vvzunin/CircuitGen_Generator)
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/vvzunin/CircuitGen_Generator)
 
+![Alt](https://repobeats.axiom.co/api/embed/22944c53bda053bd3f0899dc855632dc9b8c38c2.svg "Repobeats analytics image")
+
 <font size="5">**Оглавление:**</font>
 <a name="content_rus"></a> 
 - [Правила именования переменных](#hacking)

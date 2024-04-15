@@ -2,7 +2,7 @@
 
 #include "GraphVertex.hpp"
 
-GraphVertexGates::GraphVertexGates(Gates i_gate, OrientedGraph* i_baseGraph) :
+GraphVertexGates::GraphVertexGates(Gates i_gate, GraphPtr i_baseGraph) :
   GraphVertexBase(VertexTypes::gate, i_baseGraph) {
   d_gate = i_gate;
 }
@@ -10,7 +10,7 @@ GraphVertexGates::GraphVertexGates(Gates i_gate, OrientedGraph* i_baseGraph) :
 GraphVertexGates::GraphVertexGates(
     Gates             i_gate,
     const std::string i_name,
-    OrientedGraph*    i_baseGraph
+    GraphPtr          i_baseGraph
 ) :
   GraphVertexBase(VertexTypes::gate, i_name, i_baseGraph) {
   d_gate = i_gate;
@@ -98,28 +98,10 @@ std::string GraphVertexGates::getVerilogString() const {
       else
         name = d_inConnections[i]->getBaseGraph()->getName() + "_"
              + d_inConnections[i]->getName();
-      switch (d_gate) {
-        case (Gates::GateAnd):
-          s += " & " + name;
-          break;
-        case (Gates::GateNand):
-          s += " & " + name;
-          break;
-        case (Gates::GateOr):
-          s += " | " + name;
-          break;
-        case (Gates::GateNor):
-          s += " | " + name;
-          break;
-        case (Gates::GateXor):
-          s += " ^ " + name;
-          break;
-        case (Gates::GateXnor):
-          s += " ^ " + name;
-          break;
-        default:
-          std::cerr << "Error" << std::endl;
-      }
+
+      s += " " + VertexUtils::gateToString(d_gate) + " " + name;
+      if (d_gate == GateDefault)
+        std::cerr << "Error" << std::endl;
     }
 
     if ((d_gate == Gates::GateNand) || (d_gate == Gates::GateNor)
@@ -128,4 +110,38 @@ std::string GraphVertexGates::getVerilogString() const {
   }
 
   return s;
+}
+
+std::string GraphVertexGates::toVerilog() {
+  if (!d_inConnections.size()) {
+    std::cerr << "TODO: delete empty vertices" << std::endl;
+    return "";
+  }
+  std::string basic = "assign " + d_name + " = ";
+
+  std::string oper  = VertexUtils::gateToString(d_gate);
+  if (d_inConnections.empty()) {
+    std::clog << d_name << std::endl;
+  }
+  if (d_gate == Gates::GateNot || d_gate == Gates::GateBuf) {
+    basic += oper + d_inConnections.back()->getName() + ";";
+
+    return basic;
+  }
+
+  std::string end = "";
+
+  if (d_gate == Gates::GateNand || d_gate == Gates::GateNor
+      || d_gate == Gates::GateXnor) {
+    basic += "~ ( ";
+
+    end   = " )";
+  }
+
+  for (size_t i = 0; i < d_inConnections.size() - 1; ++i) {
+    basic += d_inConnections[i]->getName() + " " + oper + " ";
+  }
+  basic += d_inConnections.back()->getName() + end + ";";
+
+  return basic;
 }

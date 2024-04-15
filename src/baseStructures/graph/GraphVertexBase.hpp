@@ -14,6 +14,16 @@
 
 class OrientedGraph;  // Проблема циклического определения
 
+#define GraphPtr  std::shared_ptr<OrientedGraph>
+#define VertexPtr std::shared_ptr<GraphVertexBase>
+
+namespace VertexUtils {
+std::string gateToString(Gates i_type);
+
+std::string vertexTypeToVerilog(VertexTypes i_type);
+}  // namespace VertexUtils
+
+
 /// class GraphVertexBase
 /// @param i_type The vertex type represented by the VertexTypes enumeration.
 /// Defines the type of the current vertex, for example, input, output,
@@ -26,12 +36,12 @@ class OrientedGraph;  // Проблема циклического опреде�
 
 class GraphVertexBase {
 public:
-  GraphVertexBase(const VertexTypes i_type, OrientedGraph* i_graph = nullptr);
+  GraphVertexBase(const VertexTypes i_type, GraphPtr i_graph = nullptr);
 
   GraphVertexBase(
       const VertexTypes i_type,
       const std::string i_name,
-      OrientedGraph*    i_graph = nullptr
+      GraphPtr          i_graph = nullptr
   );
 
   // TODO crashes add destructor call
@@ -102,13 +112,15 @@ public:
 
   // Get-Set для базового графа
   // void setBaseGraph(std::shared_ptr<OrientedGraph> const i_baseGraph);
+  GraphPtr               getBaseGraph() const;
 
-  /// @brief getBaseGraph returns a pointer to the underlying oriented
-  /// graph to which this vertex belongs
-  /// @return A pointer to the basic oriented graph to which this vertex 
-  /// belongs
+  std::vector<VertexPtr> getInConnections() const;
+  int                    addVertexToInConnections(VertexPtr const i_vert);
+  bool removeVertexToInConnections(VertexPtr const i_vert, bool i_full = false);
 
-  OrientedGraph*      getBaseGraph() const;
+  std::vector<VertexPtr> getOutConnections() const;
+  bool                   addVertexToOutConnections(VertexPtr const i_vert);
+  bool                   removeVertexToOutConnections(VertexPtr const i_vert);
 
   /// @brief getInConnections It is designed to receive all input connections
   /// (input vertices) of the current vertex. Returns a vector of pointers to
@@ -143,31 +155,7 @@ public:
       bool                                   i_full = false
   );
 
-  /// @brief getOutConnections Returns a vector of pointers to GraphVertexBase
-  /// objects representing outgoing connections of a given vertex
-  /// @return Vector of pointers to GraphVertexBase objects representing
-  /// outgoing connections of a given vertex
-
-  std::vector<std::shared_ptr<GraphVertexBase>> getOutConnections() const;
-
-  /// @brief addVertexToOutConnections designed to add an outgoing connection
-  /// to a given vertex
-  /// @param i_vert A pointer to a GraphVertexBase object representing an
-  /// @return The value is true if the connection was successfully added,
-  /// otherwise false.
-
-  bool addVertexToOutConnections(std::shared_ptr<GraphVertexBase> const i_vert);
-
-  /// @brief removeVertexToOutConnections designed to remove an outgoing
-  /// connection from the list of outgoing connections of the current vertex
-  /// @param i_vert A pointer to a GraphVertexBase object representing the
-  /// outgoing connection to be deleted
-  /// @return The value is true if the connection was successfully deleted,
-  /// otherwise false.
-
-  bool removeVertexToOutConnections(
-      std::shared_ptr<GraphVertexBase> const i_vert
-  );
+  virtual std::string    getInstance();
 
   /// @brief calculateHash It is designed to calculate the hash value of the
   /// current vertex of the graph and all its descendants
@@ -179,18 +167,19 @@ public:
   /// descendants
 
   std::string calculateHash(bool recalculate = false);
+  virtual std::string    toVerilog();
 
 protected:
-  OrientedGraph*                                d_baseGraph = nullptr;
+  GraphPtr                  d_baseGraph = nullptr;
 
-  std::string                                   d_name;
-  char                                          d_value;
-  unsigned                                      d_level;
+  std::string               d_name;
+  char                      d_value;
+  unsigned                  d_level;
 
-  std::vector<std::shared_ptr<GraphVertexBase>> d_inConnections;
-  std::vector<std::shared_ptr<GraphVertexBase>> d_outConnections;
+  std::vector<VertexPtr>    d_inConnections;
+  std::vector<VertexPtr>    d_outConnections;
 
-  std::shared_ptr<Settings>                     d_settings =
+  std::shared_ptr<Settings> d_settings =
       Settings::getInstance("GraphVertexBase");
 
 private:

@@ -2,6 +2,7 @@
 
 #include <map>
 #include <memory>
+#include <set>
 #include <sstream>
 #include <string>
 #include <tuple>
@@ -11,12 +12,17 @@
 #include <baseStructures/graph/GraphVertexBase.hpp>
 #include <settings/Settings.hpp>
 
+#define GraphPtr std::shared_ptr<OrientedGraph>
+
 /// @file OrientedGraph.hpp
 /// TODO: Add a check for file names when adding new vertices
 
 // TODO: Добавить проверку на имена файлов при доблении новых вершин
 
 class GraphVertexBase;  // Проблема циклического определения
+
+#define VertexPtr std::shared_ptr<GraphVertexBase>
+
 
 /// class OrientedGraph A oriented graph that can contain vertices of
 /// various types (input, output, constant, etc.) and edges between them
@@ -43,7 +49,7 @@ class GraphVertexBase;  // Проблема циклического опред�
 class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
 public:
   // friend class Circuit;
-  OrientedGraph(const std::string i_name = "");
+  OrientedGraph(const std::string& i_name = "");
 
   // TODO: Добавить использование gates_inputs_info.
 
@@ -133,127 +139,32 @@ public:
 
   unsigned                         getMaxLevel();
 
-  /// @brief setBaseGraph Used to set the base graph for the current graph.
-  /// This method sets the d_baseGraph pointer to the base graph passed as an
-  /// argument
-  /// @param i_baseGraph a pointer to an object of the OrientedGraph class as
-  /// an argument to i_baseGraph, which represents the base graph
+  void               addParentGraph(GraphPtr i_baseGraph);
+  std::set<GraphPtr> getParentGraphs() const;
 
-  void                             setBaseGraph(OrientedGraph* i_baseGraph);
-
-  /// @brief getBaseGraph Used to get a pointer to the base graph associated
-  /// with the current graph
-  /// @return a pointer to the base graph associated with the current graph.
-  /// There may be a null ptr if the base graph is not set
-
-  OrientedGraph*                   getBaseGraph() const;
+  void               setCurrentParent(GraphPtr parent);
+  void               resetCounters(GraphPtr where);
 
   // TODO: Заменить все const на const &
+  VertexPtr          addInput(const std::string& i_name = "");
+  VertexPtr          addOutput(const std::string& i_name = "");
+  VertexPtr addConst(const char& i_value, const std::string& i_name = "");
+  VertexPtr addGate(const Gates& i_gate, const std::string& i_name = "");
+  std::vector<VertexPtr>
+         addSubGraph(GraphPtr i_subGraph, std::vector<VertexPtr> i_inputs);
 
-  /// @brief addInput Used to add a new input vertex to the graph.
-  /// @param i_name name of the new input vertex
-  /// @return a pointer to the newly created input vertex
-
-  std::shared_ptr<GraphVertexBase> addInput(const std::string i_name = "");
-
-  /// @brief addOutput Used to add a new output vertex to the graph
-  /// @param i_name name of the new output vertex
-  /// @return pointer to the newly created output vertex
-
-  std::shared_ptr<GraphVertexBase> addOutput(const std::string i_name = "");
-
-  /// @brief addConst used to add a new constant vertex to the graph
-  /// @param i_value the value (char) of the constant that will be set for
-  /// the new constant vertex
-  /// @param i_name the name of the new constant vertex. By default, an empty
-  /// name will be assigned
-  /// @return a pointer to a newly created constant vertex
-
-  std::shared_ptr<GraphVertexBase>
-      addConst(const char i_value, const std::string i_name = "");
-
-  /// @brief addGate It is used to add a new vertex-gate to the graph
-  /// @param i_gate The Gates enumeration representing the type of gate to be
-  /// added to the graph
-  /// @param i_name the name of the new vertex is the valve
-  /// @return Pointer to the newly created vertex-gate
-
-  std::shared_ptr<GraphVertexBase>
-      addGate(const Gates i_gate, const std::string i_name = "");
-
-  /// @brief addSubGraph Used to add a new subgraph to the current graph
-  /// @param i_name name of the new subgraph
-  /// @return A pointer to the newly created subgraph
-
-  std::shared_ptr<OrientedGraph> addSubGraph(const std::string i_name = "");
-
-  /// @brief addEdge Used to add an edge (connection) between two vertices
-  /// in a graph
-  /// @param from A smart pointer of type std::shared_ptr<GraphVertexBase>
-  /// representing the vertex from which the edge originates
-  /// @param to A smart pointer of type std::shared_ptr<GraphVertexBase>
-  /// representing the vertex that the edge is included in
-  /// @return bool: true if the addition of links was successful, and false
-  /// otherwise
-
-  bool                           addEdge(
-                                std::shared_ptr<GraphVertexBase> from,
-                                std::shared_ptr<GraphVertexBase> to
-                            );
-
-  /// @brief addEdges It is used to add edges (links) between several vertices
-  /// and one target vertex in the graph
-  /// @param from1 A vector of smart pointers of type
-  /// std::shared_ptr<GraphVertexBase> representing the vertices from which
-  /// the edges originate
-  /// @param to A smart pointer of type std::shared_ptr<GraphVertexBase>,
-  /// representing a vertex that includes edges
-  /// @return bool: true if all edges were successfully added, and false
-  /// otherwise
-
-  bool addEdges(
-      std::vector<std::shared_ptr<GraphVertexBase>> from1,
-      std::shared_ptr<GraphVertexBase>              to
-  );
-  
-  /// @brief Returns the number of edges in the graph
-  /// @return The number of edges in the graph
+  bool   addEdge(VertexPtr from, VertexPtr to);
+  bool   addEdges(std::vector<VertexPtr> from1, VertexPtr to);
 
   size_t getEdgesCount() { return d_edgesCount; }
 
-  /// @brief getSubGraphs Returns a vector of pointers to subgraphs
-  /// of a given graph
-  /// @return std::vector<std::shared_ptr<OrientedGraph>>: Vector of smart
-  /// pointers to subgraphs of this graph
+  std::vector<GraphPtr>                         getSubGraphs() const;
+  std::map<VertexTypes, std::vector<VertexPtr>> getBaseVertexes() const;
+  VertexPtr   getVerticeByIndex(int idx) const;
 
-  std::vector<std::shared_ptr<OrientedGraph>> getSubGraphs() const;
-
-  /// @brief getBaseVertexes Returns a map containing a list of vertices of
-  /// the basic types of this graph
-  /// @return A map containing a list of vertices of the basic types of this
-  /// graph
-
-  std::map<VertexTypes, std::vector<std::shared_ptr<GraphVertexBase>>>
-                                   getBaseVertexes() const;
-
-  /// @brief getVerticeByIndex Returns the vertex of the graph at the
-  /// specified index
-  /// @param An integer value representing the index of the vertex to
-  /// be retrieved
-  /// @return A smart pointer to the top of the graph
-
-  std::shared_ptr<GraphVertexBase> getVerticeByIndex(int idx) const;
-
-  /// @brief toVerilog generates a description of the Verilog module
-  /// based on the graph structure
-  /// @i_fileStream A reference to the std::ofstream object, which
-  /// represents the file in which the description of the Verilog
-  /// module will be written
-  /// @return bool: Returns true if the Verilog description generation
-  /// of the module was successful, and false otherwise. In this case,
-  /// it always returns true.
-
-  bool                             toVerilog(std::ofstream& i_fileStream);
+  std::string getGraphInstance();
+  std::pair<bool, std::string>
+              toVerilog(std::string i_path, std::string i_filename = "");
   // toAdjencyMatrix
 
   /// @brief toGraphML Writes the graph structure in GraphML format to the
@@ -279,46 +190,16 @@ public:
 
   // Сделать матрицу смежности для хранения и быстрого поиска связей?
 
-  /// @brief getVerticesByType returns a list of vertices of a graph of a
-  /// certain type, taking into account the specified name and the
-  /// possibility of adding subgraphs
-  /// @param i_type The type of vertices to be obtained
-  /// (for example, input, output, gate elements, etc.)
-  /// @param i_name The name of the vertex to be filtered by. By default,
-  /// an empty string, which means that there is no filtering by name
-  /// @param i_addSubGraphs A flag that determines whether to include
-  /// vertices from subgraphs. By default, false.
-  /// @return A list of graph vertices of the specified type and, if
-  /// necessary, of subgraphs.
-
-  std::vector<std::shared_ptr<GraphVertexBase>> getVerticesByType(
-      const VertexTypes i_type,
-      const std::string i_name         = "",
-      const bool        i_addSubGraphs = false
+  std::vector<VertexPtr> getVerticesByType(
+      const VertexTypes& i_type,
+      const std::string& i_name         = "",
+      const bool&        i_addSubGraphs = false
   ) const;
+  std::vector<VertexPtr> getVerticesByLevel(const int& i_level);
 
-  /// @brief getVerticesByLevel TO DO: it is necessary to write the body
-  /// of the method
-  /// 
-  /// */
-
-  std::vector<std::shared_ptr<GraphVertexBase>> getVerticesByLevel(
-      const int i_level
-  );
-
-  /// @brief getVerticesByName it is designed to get all the vertices of a
-  /// graph with the specified name, with the possibility of including
-  /// vertices from subgraphs
-  /// @param i_name A string containing the name of the vertex to be found
-  /// in the graph
-  /// @param i_addSubGraphs A Boolean value that determines whether to include
-  /// vertices from subgraphs. By default, false.
-  /// @return Returns a vector containing pointers to all vertices with the
-  /// specified name in the graph and, if necessary, from subgraphs
-
-  std::vector<std::shared_ptr<GraphVertexBase>> getVerticesByName(
-      const std::string i_name,
-      const bool        i_addSubGraphs = false
+  std::vector<VertexPtr> getVerticesByName(
+      const std::string& i_name,
+      const bool&        i_addSubGraphs = false
   ) const;
 
   bool                                  operator==(const OrientedGraph& rhs);
@@ -348,25 +229,39 @@ public:
   std::map<Gates, std::map<Gates, int>> getEdgesGatesCount() const;
 
 private:
-  size_t                                      d_edgesCount = 0;
+  // as we can have multiple parents, we save
+  // for toVerilog current parent graph
+  GraphPtr                     d_currentParentGraph;
+  size_t                       d_edgesCount = 0;
 
-  std::string                                 hashed       = "";
-  OrientedGraph*                              d_baseGraph  = nullptr;
+  std::string                  d_hashed     = "";
+  std::set<GraphPtr>           d_parentGraphs;
 
-  std::string                                 d_name;
+  std::string                  d_name;
 
   // Пока не реализован функционал.
-  bool                                        d_needLevelUpdate = true;
+  bool                         d_needLevelUpdate = true;
 
-  std::vector<std::shared_ptr<OrientedGraph>> d_subGraphs;
-  std::map<VertexTypes, std::vector<std::shared_ptr<GraphVertexBase>>>
-      d_vertexes {
-          {VertexTypes::input, std::vector<std::shared_ptr<GraphVertexBase>>()},
-          {VertexTypes::output,
-           std::vector<std::shared_ptr<GraphVertexBase>>()},
-          {VertexTypes::constant,
-           std::vector<std::shared_ptr<GraphVertexBase>>()},
-          {VertexTypes::gate, std::vector<std::shared_ptr<GraphVertexBase>>()}};
+  // also we need to now, was .v file for subgraph created, or not
+  bool                         d_alreadyParsed   = false;
+  // We can add a subgraph multiple times
+  // so we need to count instances to verilog.
+  // We are counting to know, which inputs and outputs should we use now
+  std::map<GraphPtr, uint64_t> d_graphInstanceToVerilogCount;
+
+  // each subgraph has one or more outputs. We save them,
+  // depending on subgraph instance number
+  std::map<GraphPtr, std::vector<std::vector<VertexPtr>>> d_subGraphsOutputsPtr;
+  std::vector<VertexPtr>                                  d_allSubGraphsOutputs;
+  // we have such pairs: number of subragh instances,
+  std::map<GraphPtr, std::vector<std::vector<VertexPtr>>> d_subGraphsInputsPtr;
+
+  std::vector<GraphPtr>                                   d_subGraphs;
+  std::map<VertexTypes, std::vector<VertexPtr>>           d_vertexes {
+                {VertexTypes::input, std::vector<VertexPtr>()},
+                {VertexTypes::output, std::vector<VertexPtr>()},
+                {VertexTypes::constant, std::vector<VertexPtr>()},
+                {VertexTypes::gate, std::vector<VertexPtr>()}};
 
   static uint_fast64_t d_countGraph;
 
