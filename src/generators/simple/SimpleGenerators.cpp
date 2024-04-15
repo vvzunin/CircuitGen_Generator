@@ -108,10 +108,11 @@ GraphPtr
   }
 
   // TODO make nand-or generation etc
-  if (!d_gatesInputsInfo.count(Gates::GateAnd)
-      && !d_gatesInputsInfo.count(Gates::GateOr)) {
+  if (!d_gatesInputsInfo.count(Gates::GateAnd)) {
     d_gatesInputsInfo[Gates::GateAnd] = {(int32_t)inputs.size()};
-    d_gatesInputsInfo[Gates::GateOr]  = {(int32_t)inputs.size()};
+  }
+  if (!d_gatesInputsInfo.count(Gates::GateOr)) {
+    d_gatesInputsInfo[Gates::GateOr] = {(int32_t)inputs.size()};
   }
 
   std::map<VertexPtr, VertexPtr> inputs_not;

@@ -11,7 +11,6 @@ using GatesInfo = std::map<Gates, std::vector<int>>;
 
 class Parser {
 public:
-  // TODO: Переделать парсер под новую реализацию.
   Parser(
       const std::string&                             i_logExpression,
       const std::map<std::string, std::vector<int>>& i_info
@@ -19,6 +18,12 @@ public:
   Parser(
       const std::vector<std::string>&                i_logExpressions,
       const std::map<std::string, std::vector<int>>& i_info
+  );
+
+  Parser(const std::string& i_logExpression, const GatesInfo& i_info);
+  Parser(
+      const std::vector<std::string>& i_logExpressions,
+      const GatesInfo&                i_info
   );
 
   Parser()                               = default;
