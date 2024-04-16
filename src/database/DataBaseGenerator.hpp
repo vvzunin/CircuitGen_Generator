@@ -74,7 +74,7 @@ private:
 
   void generateDataBaseRandLevel(const GenerationParameters& i_params);
 
-    /// @brief generateDataBaseRandLevelExperimental The method is intended for
+  /// @brief generateDataBaseRandLevelExperimental The method is intended for
   /// experimental database generation based on randomly generated levels using
   /// an optimized algorithm
   /// @param i_param An object of the Generation Parameters class containing
@@ -98,8 +98,6 @@ private:
   /// @param i_param An object of the Generation Parameters class containing
   /// parameters for generating a database using genetic algorithms
   /// */
-
-
 
   void generateDataBaseRandLevelExperimental(const GenerationParameters& i_param
   );

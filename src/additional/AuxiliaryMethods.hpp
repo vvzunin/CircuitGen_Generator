@@ -30,7 +30,7 @@ namespace AuxMethods {
 /// @code
 /// Setting the grain to generate random numbers
 /// AuxMethods::setRandSeed(42);
-/// @endcode  
+/// @endcode
 void               setRandSeed(std::uint_fast32_t seed);
 
 /// @brief getRandSeed Returns the current grain for generating

@@ -31,7 +31,7 @@ public:
 
   void setSeed(std::uint_fast32_t i_seed) { d_gen.seed(i_seed); }
 
-    /// @brief getRandInt Method to generate a random integer within a specified
+  /// @brief getRandInt Method to generate a random integer within a specified
   /// range.
   /// @param lower The lower limit of the range of random integers, inclusive,
   /// from which to generate a number

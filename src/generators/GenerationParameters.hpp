@@ -243,7 +243,6 @@ private:
 ///
 /// */
 
-
 /// class GenerationParameters
 /// @param d_name Generation name
 /// @param d_requestId request ID

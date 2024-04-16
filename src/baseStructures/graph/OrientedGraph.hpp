@@ -114,7 +114,7 @@ public:
   bool               needToUpdateLevel() const;
 
   /// @brief updateLevels TO DO: the method body is commented out!!!
-  /// 
+  ///
   /// */
 
   void               updateLevels();
@@ -157,7 +157,6 @@ public:
   /// @return bool: Returns true if the graph structure has been successfully
   /// written in GraphML format, and false otherwise. In this case, it always
   /// returns true.
-
 
   bool        toGraphML(std::ofstream& i_fileStream) const;
   std::string toGraphML(int i_nesting = 0) const;

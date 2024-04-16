@@ -20,7 +20,6 @@ std::string gateToString(Gates i_type);
 std::string vertexTypeToVerilog(VertexTypes i_type);
 }  // namespace VertexUtils
 
-
 /// class GraphVertexBase
 /// @param i_type The vertex type represented by the VertexTypes enumeration.
 /// Defines the type of the current vertex, for example, input, output,
@@ -46,8 +45,6 @@ public:
 
   // Get для типа вершины
 
-  
-
   /// @brief calculateHash It is designed to calculate the hash value of the
   /// current vertex of the graph and all its descendants
   /// (outgoing connections)
@@ -57,22 +54,22 @@ public:
   /// @return Hash value of the current vertex of the graph and all its
   /// descendants
 
-  std::string calculateHash(bool recalculate = false);
+  std::string            calculateHash(bool recalculate = false);
 
-  /// @brief getTypeName Designed to get a string representation of the vertex type.
+  /// @brief getTypeName Designed to get a string representation of the vertex
+  /// type.
   /// @return String representation of the vertex type
 
   virtual VertexTypes    getType() const final;
 
   // Get для типа вершины в фомате строки
-  
 
   virtual std::string    getTypeName() const final;
 
   // Get-Set для имен входов
   /// @brief setName it is intended for setting the vertex name
   /// @param i_name The new vertex name to set
-  
+
   void                   setName(const std::string i_name);
   std::string            getName() const;
 
