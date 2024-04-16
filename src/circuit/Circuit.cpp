@@ -126,6 +126,7 @@ void Circuit::updateCircuitParameters() {
   }
 
   d_circuitParameters.d_hashCode = d_graph->calculateHash();
+  std::clog << inputs.size();
   // computeHash();
 }
 

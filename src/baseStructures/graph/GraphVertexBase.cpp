@@ -1,5 +1,5 @@
+#include <algorithm>
 #include <iostream>
-#include <set>
 #include <string>
 
 #include "GraphVertexBase.hpp"
@@ -124,12 +124,13 @@ std::string GraphVertexBase::calculateHash(bool recalculate) {
     return "";
 
   // autosorted struct
-  std::set<std::string> hashed_data;
+  std::vector<std::string> hashed_data;
   hashed = "";
 
   for (auto& child : d_outConnections) {
-    hashed_data.insert(child->calculateHash(recalculate));
+    hashed_data.push_back(child->calculateHash(recalculate));
   }
+  std::sort(hashed_data.begin(), hashed_data.end());
 
   for (const auto& sub : hashed_data) {
     hashed += sub;
@@ -185,7 +186,7 @@ bool GraphVertexBase::removeVertexToOutConnections(VertexPtr const i_vert) {
 
 std::string GraphVertexBase::getInstance() {
   if (!d_inConnections.size()) {
-    std::cerr << "TODO: delete empty vertices instances" << std::endl;
+    std::cerr << "TODO: delete empty vertex instance: " << d_name << std::endl;
     return "";
   }
 

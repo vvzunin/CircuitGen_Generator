@@ -2,7 +2,6 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
-#include <set>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -148,7 +147,8 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
   std::vector<VertexPtr> outputs;
 
   for (auto outVert : i_subGraph->getVerticesByType(VertexTypes::output)) {
-    VertexPtr newVertex(new GraphVertexOutput(shared_from_this()));
+    VertexPtr newVertex(new GraphVertexGates(Gates::GateBuf, shared_from_this())
+    );
 
     outputs.push_back(newVertex);
     d_allSubGraphsOutputs.push_back(newVertex);
@@ -308,12 +308,13 @@ std::string OrientedGraph::calculateHash(bool recalculate) {
   if (d_hashed != "" && !recalculate)
     return d_hashed;
 
-  std::set<std::string> hashed_data;
+  std::vector<std::string> hashed_data;
   d_hashed = "";
 
   for (auto& input : d_vertexes[VertexTypes::input]) {
-    hashed_data.insert(input->calculateHash(recalculate));
+    hashed_data.push_back(input->calculateHash(recalculate));
   }
+  std::sort(hashed_data.begin(), hashed_data.end());
 
   for (const auto& sub : hashed_data) {
     d_hashed += sub;
@@ -406,12 +407,14 @@ std::pair<bool, std::string>
   if (!i_filename.size()) {
     i_filename = d_name + ".v";
   }
-  std::string   path = i_path + (d_parentGraphs.size() ? "/submodule" : "");
+  std::string   path = i_path + (d_parentGraphs.size() ? "/submodules" : "");
 
   std::ofstream fileStream(path + "/" + i_filename);
 
-  if (!fileStream)
+  if (!fileStream) {
+    std::cerr << "cannot write file to " << path << std::endl;
     return std::make_pair(false, "");
+  }
 
   fileStream << "module " << d_name << "(\n" << verilogTab;
 

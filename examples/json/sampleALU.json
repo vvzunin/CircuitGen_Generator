@@ -1,7 +1,7 @@
 [
   {
     "seed": 20,
-    "dataset_id": "ALU",
+    "dataset_id": "1",
     "id": 0,
     "type_of_generation": "ALU",
     "min_in": 4,
@@ -25,13 +25,15 @@
     "NSUB": false,
     "MULT": false,
     "COM": false,
-    "AND": false,
+    "AND": true,
     "NAND": false,
     "OR": false,
     "NOR": false,
     "XOR": false,
     "XNOR": false,
-    "CNF": false
+    "CNF": false,
+    "RNL": false,
+    "NUM_OP": false
   }
 ]
  
