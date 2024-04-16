@@ -499,7 +499,7 @@ std::string OrientedGraph::toGraphML(int i_nesting) const {
   const std::string spaces(i_nesting * 4, ' ');
 
   const std::string graphTemplate =
-      AuxMethods::format(rawGraphTemplate, spaces, d_name, spaces, "%");
+      AuxMethods::format(rawGraphTemplate, spaces, d_name, "%", spaces);
   const std::string nodeTemplate = AuxMethods::format(
       rawNodeTemplate, spaces, "%", spaces, "%", "%", spaces
   );
@@ -533,7 +533,7 @@ std::string OrientedGraph::toGraphML(int i_nesting) const {
         nodeTemplate,
         i_subGraph->getName() + "_subgraph",
         "graph",
-        i_subGraph->toGraphML(i_nesting + 1)
+        '\n' + i_subGraph->toGraphML(i_nesting + 1)
     );
   }
   std::string finalGraph =
