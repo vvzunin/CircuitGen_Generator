@@ -20,6 +20,17 @@ std::string gateToString(Gates i_type);
 std::string vertexTypeToVerilog(VertexTypes i_type);
 }  // namespace VertexUtils
 
+
+/// class GraphVertexBase
+/// @param i_type The vertex type represented by the VertexTypes enumeration.
+/// Defines the type of the current vertex, for example, input, output,
+/// subgraph, or one of the basic logical operations
+/// @param i_name The name of the vertex. It is a string containing the name
+/// of a vertex
+/// @param i_graph A pointer to an object of the OrientedGraph class
+/// representing the oriented graph to which this vertex belongs. The default
+/// value is nullptr
+
 class GraphVertexBase {
 public:
   GraphVertexBase(const VertexTypes i_type, GraphPtr i_graph = nullptr);
@@ -34,11 +45,34 @@ public:
   virtual ~GraphVertexBase();
 
   // Get для типа вершины
+
+  
+
+  /// @brief calculateHash It is designed to calculate the hash value of the
+  /// current vertex of the graph and all its descendants
+  /// (outgoing connections)
+  /// @param recalculate A flag indicating whether the hash value needs to be
+  /// recalculated even if it has already been previously calculated.
+  /// The default value is false
+  /// @return Hash value of the current vertex of the graph and all its
+  /// descendants
+
+  std::string calculateHash(bool recalculate = false);
+
+  /// @brief getTypeName Designed to get a string representation of the vertex type.
+  /// @return String representation of the vertex type
+
   virtual VertexTypes    getType() const final;
+
   // Get для типа вершины в фомате строки
+  
+
   virtual std::string    getTypeName() const final;
 
   // Get-Set для имен входов
+  /// @brief setName it is intended for setting the vertex name
+  /// @param i_name The new vertex name to set
+  
   void                   setName(const std::string i_name);
   std::string            getName() const;
 
