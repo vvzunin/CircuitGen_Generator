@@ -146,7 +146,8 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
   std::vector<VertexPtr> outputs;
 
   for (auto outVert : i_subGraph->getVerticesByType(VertexTypes::output)) {
-    VertexPtr newVertex(new GraphVertexOutput(shared_from_this()));
+    VertexPtr newVertex(new GraphVertexGates(Gates::GateBuf, shared_from_this())
+    );
 
     outputs.push_back(newVertex);
     d_allSubGraphsOutputs.push_back(newVertex);
@@ -323,6 +324,12 @@ std::string OrientedGraph::calculateHash(bool recalculate) {
   return d_hashed;
 }
 
+std::set<GraphPtr> OrientedGraph::getSetSubGraphs() const {
+  std::set<GraphPtr> toParse(d_subGraphs.begin(), d_subGraphs.end());
+
+  return toParse;
+}
+
 bool OrientedGraph::operator==(const OrientedGraph& rhs) {
   bool correct = rhs.d_vertexes.at(VertexTypes::input).size()
               != d_vertexes.at(VertexTypes::input).size();
@@ -410,12 +417,14 @@ std::pair<bool, std::string>
   if (!i_filename.size()) {
     i_filename = d_name + ".v";
   }
-  std::string   path = i_path + (d_parentGraphs.size() ? "/submodule" : "");
+  std::string   path = i_path + (d_parentGraphs.size() ? "/submodules" : "");
 
   std::ofstream fileStream(path + "/" + i_filename);
 
-  if (!fileStream)
+  if (!fileStream) {
+    std::cerr << "cannot write file to " << path << std::endl;
     return std::make_pair(false, "");
+  }
 
   fileStream << "module " << d_name << "(\n" << verilogTab;
 

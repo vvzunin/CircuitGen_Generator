@@ -79,6 +79,7 @@ public:
   size_t getEdgesCount() { return d_edgesCount; }
 
   std::vector<GraphPtr>                         getSubGraphs() const;
+  std::set<GraphPtr>                            getSetSubGraphs() const;
   std::map<VertexTypes, std::vector<VertexPtr>> getBaseVertexes() const;
   VertexPtr   getVerticeByIndex(int idx) const;
 
