@@ -146,7 +146,8 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
   std::vector<VertexPtr> outputs;
 
   for (auto outVert : i_subGraph->getVerticesByType(VertexTypes::output)) {
-    VertexPtr newVertex(new GraphVertexGates(Gates::GateBuf, shared_from_this()));
+    VertexPtr newVertex(new GraphVertexGates(Gates::GateBuf, shared_from_this())
+    );
 
     outputs.push_back(newVertex);
     d_allSubGraphsOutputs.push_back(newVertex);
@@ -365,7 +366,7 @@ std::string OrientedGraph::getGraphInstance() {
 
   for (size_t i = 0; i < d_vertexes[VertexTypes::input].size(); ++i) {
     auto inp = d_subGraphsInputsPtr[d_currentParentGraph][*verilogCount][i];
-    std::string inp_name = d_vertexes[VertexTypes::input][i]->getName();
+    std::string inp_name  = d_vertexes[VertexTypes::input][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + inp_name + "( ";
     module_ver           += inp->getName() + " ),\n";
@@ -374,13 +375,13 @@ std::string OrientedGraph::getGraphInstance() {
   for (size_t i = 0; i < d_vertexes[VertexTypes::output].size() - 1; ++i) {
     VertexPtr out =
         d_subGraphsOutputsPtr[d_currentParentGraph][*verilogCount][i];
-    std::string out_name = d_vertexes[VertexTypes::output][i]->getName();
+    std::string out_name  = d_vertexes[VertexTypes::output][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
     module_ver           += out->getName() + " ),\n";
   }
 
-  std::string out_name = d_vertexes[VertexTypes::output].back()->getName();
+  std::string out_name  = d_vertexes[VertexTypes::output].back()->getName();
 
   module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
   module_ver += d_subGraphsOutputsPtr[d_currentParentGraph][*verilogCount]
@@ -405,12 +406,14 @@ std::pair<bool, std::string>
   if (!i_filename.size()) {
     i_filename = d_name + ".v";
   }
-  std::string   path = i_path + (d_parentGraphs.size() ? "/submodule" : "");
+  std::string   path = i_path + (d_parentGraphs.size() ? "/submodules" : "");
 
   std::ofstream fileStream(path + "/" + i_filename);
 
-  if (!fileStream)
+  if (!fileStream) {
+    std::cerr << "cannot write file to " << path << std::endl;
     return std::make_pair(false, "");
+  }
 
   fileStream << "module " << d_name << "(\n" << verilogTab;
 
