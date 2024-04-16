@@ -45,7 +45,7 @@ public:
   /// @param libraryName The name of the library associated with the Circuit.
   /// */
 
-  void updateCircuitParameters();
+  void updateCircuitParameters(GraphPtr i_graph);
 
   /// @brief graphToVerilog The graph To Verilog method in the Circuit class
   /// converts the combinational circuit into code in the Verilog hardware
@@ -84,7 +84,7 @@ public:
   /// latest in the JSON file
   /// */
 
-  bool saveParameters(bool i_pathExists = false) const;
+  bool saveParameters(GraphPtr i_subGraph, std::ofstream &i_outputFile, bool i_isSubGraph = false);
 
   /// @brief generate This generate method is designed to generate various
   /// representations of a digital circuit (for example, Verilog, RTL, Bench)

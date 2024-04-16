@@ -324,7 +324,13 @@ std::string OrientedGraph::calculateHash(bool recalculate) {
   return d_hashed;
 }
 
-bool OrientedGraph::operator==(const OrientedGraph& rhs) {
+std::set<GraphPtr> OrientedGraph::getSetSubGraphs() const {
+  std::set<GraphPtr> toParse(d_subGraphs.begin(), d_subGraphs.end());
+
+  return toParse;
+}
+
+bool               OrientedGraph::operator==(const OrientedGraph& rhs) {
   bool correct = rhs.d_vertexes.at(VertexTypes::input).size()
               != d_vertexes.at(VertexTypes::input).size();
   correct &= rhs.d_vertexes.at(VertexTypes::output).size()
