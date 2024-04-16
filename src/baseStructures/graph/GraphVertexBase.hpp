@@ -47,7 +47,7 @@ public:
 
   /// @brief calculateHash It is designed to calculate the hash value of the
   /// current vertex of the graph and all its descendants
-  /// (outgoing connections)
+  /// (outgoing connections)git
   /// @param recalculate A flag indicating whether the hash value needs to be
   /// recalculated even if it has already been previously calculated.
   /// The default value is false
@@ -95,8 +95,6 @@ public:
   std::vector<VertexPtr> getOutConnections() const;
   bool                   addVertexToOutConnections(VertexPtr const i_vert);
   bool                   removeVertexToOutConnections(VertexPtr const i_vert);
-
-  std::string            calculateHash(bool recalculate = false);
 
   virtual std::string    getInstance();
 
