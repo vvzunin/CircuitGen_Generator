@@ -2,7 +2,6 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
-#include <set>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -308,12 +307,13 @@ std::string OrientedGraph::calculateHash(bool recalculate) {
   if (d_hashed != "" && !recalculate)
     return d_hashed;
 
-  std::set<std::string> hashed_data;
+  std::vector<std::string> hashed_data;
   d_hashed = "";
 
   for (auto& input : d_vertexes[VertexTypes::input]) {
-    hashed_data.insert(input->calculateHash(recalculate));
+    hashed_data.push_back(input->calculateHash(recalculate));
   }
+  std::sort(hashed_data.begin(), hashed_data.end());
 
   for (const auto& sub : hashed_data) {
     d_hashed += sub;

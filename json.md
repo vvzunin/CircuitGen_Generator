@@ -33,6 +33,8 @@ JSON файл может содержать несколько наборов г
       2) Rand Level;
       3) Num Operation;
       4) Genetic;
+      5) ALU;
+      6) 
 5) В зависимости от типа генерации необходимо описать требуемые параметры:
    1) From Random Truth Table:
       1) CNFF - bool; необходимо ли создать схему с использованием СДНФ;
@@ -60,6 +62,35 @@ JSON файл может содержать несколько наборов г
       8) mask_prob - float; RecombinationCrossingTriadic и CrossingUniform;
       9) rec_num - int; количество рекомбинаций;
       10) surv_num - int; количество выживших.
+   5) Summator:
+      1) overflowIn - bool; необходимо ли создать дополнительный вход (первоначальный перенос) для первого разряда генерации;
+      2) overflowOut - bool; необходимо ли создать дополнительный выход (последний перенос) для последнего разряда генерации;
+      3) minus - bool; выбор отрицательной суммы.
+   6) Subtractor:
+      1) overflowIn - bool; необходимо ли создать дополнительный вход (первоначальный заем) для первого разряда генерации;
+      2) overflowOut - bool; необходимо ли создать дополнительный выход (последний заем) для последнего разряда генерации;
+      3) sub - bool; выбор вычитателя и вычитаемого (при false - B-A, при true - A-B).
+   7) Comparison:
+      1) "=" - bool; выбор операции сравнения: равенство;
+      2) "<" - bool; выбор операции сравнения: меньше;
+      3) ">" - bool; выбор операции сравнения: больше.
+   8) ALU:
+      1) "ALL" - bool; выбор всех типов генераций из доступных (все значения ниже будут true);
+      2) "SUM" - bool; выбор генерации Summator с положительной суммой; 
+      3) "SUB" - bool; выбор генерации Subtractor с выбором вычитаемого B и вычитателя A;
+      4) "NSUM" - bool; выбор генерации Summator с отрицательной суммой;
+      5) "NSUB" - bool; выбор генерации Subtractor с выбором вычитаемого A и вычитателя B;
+      6) "MULT" - bool; выбор генерации Multiplier;
+      7) "COM" - bool; выбор генерации Comparison;
+      8) "AND" - bool; выбор логической операции И;
+      9) "NAND" - bool; выбор логической операции НЕ-И;
+      10) "OR" - bool; выбор логической операции ИЛИ;
+      11) "NOR" - bool; выбор логической операции НЕ-ИЛИ;
+      12) "XOR" - bool; выбор логической операции Исключающее ИЛИ;
+      13) "XNOR" - bool; выбор логической операции Исключающее НЕ-ИЛИ;
+      14) "CNF" - bool; выбор генерации From Random Truth Table (CNFT, CNFF, Zhegalkin);
+      15) "RNL" - bool; выбор генерации Rand Level;
+      16) "NUM_OP" - bool; выбор генерации Num Operation.
 
 В [примере](examples/json/sampleAll.json) JSON файла указаны все возможные параметры генерации (кроме сида), что позволяет использовать его для всех параметров генерации с минимальными изменениями.
 В дополнении в той же папке имются индивидуальные JSON файлы под каждый тип генерации:
@@ -68,3 +99,13 @@ JSON файл может содержать несколько наборов г
 3. [Rand Level Experimental](examples/json/sampleRandLevelExperimental.json)
 4. [Num Operation](examples/json/sampleNumOperation.json)
 5. [Genetic](examples/json/sampleGenetic.json)
+6. [Summator](examples/json/sampleGenetic.json)
+7. [Comparison](examples/json/sampleComparison.json)
+8. [Encoder](examples/json/sampleEncoder.json)
+9. [Parity](examples/json/sampleParity.json)
+10. [Subtractor](examples/json/sampleSubtractor.json)
+11. [Multiplexer](examples/json/sampleMultiplexer.json)
+12. [Demultiplexer](examples/json/sampleDemultiplexer.json)
+13. [Multiplier](examples/json/sampleMultiplier.json)
+14. [Decoder](examples/json/sampleDecoder.json)
+15. [ALU](examples/json/sampleALU.json)

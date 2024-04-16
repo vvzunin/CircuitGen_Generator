@@ -108,10 +108,11 @@ GraphPtr
   }
 
   // TODO make nand-or generation etc
-  if (!d_gatesInputsInfo.count(Gates::GateAnd)
-      && !d_gatesInputsInfo.count(Gates::GateOr)) {
+  if (!d_gatesInputsInfo.count(Gates::GateAnd)) {
     d_gatesInputsInfo[Gates::GateAnd] = {(int32_t)inputs.size()};
-    d_gatesInputsInfo[Gates::GateOr]  = {(int32_t)inputs.size()};
+  }
+  if (!d_gatesInputsInfo.count(Gates::GateOr)) {
+    d_gatesInputsInfo[Gates::GateOr] = {(int32_t)inputs.size()};
   }
 
   std::map<VertexPtr, VertexPtr> inputs_not;
@@ -621,16 +622,13 @@ GraphPtr SimpleGenerators::generatorSummator(
     int  i_bits,
     bool i_overflowIn,
     bool i_overflowOut,
-    bool i_minus,
-    bool act
+    bool i_minus
 ) {
   GraphPtr    graph(new OrientedGraph);
   std::string str_x;
   std::string str_y;
 
   VertexPtr   const_1;
-  if (act)
-    const_1 = graph->addConst('1');
 
   std::string cond = std::string(i_overflowIn ? "t" : "f")
                    + (i_overflowOut ? "t" : "f") + (i_minus ? "t" : "f");
@@ -664,8 +662,7 @@ GraphPtr SimpleGenerators::generatorSummator(
     }
     VertexPtr output_sum;
 
-    if (!act)
-      output_sum = graph->addOutput(z + S);
+    output_sum      = graph->addOutput(z + S);
 
     VertexPtr xorab = graph->addGate(Gates::GateXor, "xorab" + S);
     graph->addEdges({i_minus ? nx : input_x, i_minus ? ny : input_y}, xorab);
@@ -679,11 +676,7 @@ GraphPtr SimpleGenerators::generatorSummator(
         VertexPtr xorabp = graph->addGate(Gates::GateXor, "xorabp" + S);
         graph->addEdges({xorab, curr_p}, xorabp);
 
-        if (act) {
-          VertexPtr and1_ = graph->addGate(Gates::GateAnd, z + "and1_" + S);
-          graph->addEdges({const_1, xorabp}, and1_);
-        } else
-          graph->addEdge(xorabp, output_sum);
+        graph->addEdge(xorabp, output_sum);
 
         VertexPtr andpxor = graph->addGate(Gates::GateAnd, "andpxor" + S);
         graph->addEdges({xorab, curr_p}, andpxor);
@@ -694,21 +687,13 @@ GraphPtr SimpleGenerators::generatorSummator(
         next_p = graph->addGate(Gates::GateBuf, "p" + NextS);
         graph->addEdge(andab, next_p);
 
-        if (act) {
-          VertexPtr and1_ = graph->addGate(Gates::GateAnd, z + "and1_" + S);
-          graph->addEdges({const_1, xorab}, and1_);
-        } else
-          graph->addEdge(xorab, output_sum);
+        graph->addEdge(xorab, output_sum);
       }
     }
     if (i > 0) {
       VertexPtr xorabp = graph->addGate(Gates::GateXor, "xorabp" + S);
       graph->addEdges({xorab, curr_p}, xorabp);
-      if (act) {
-        VertexPtr and1_ = graph->addGate(Gates::GateAnd, z + "and1_" + S);
-        graph->addEdges({const_1, xorabp}, and1_);
-      } else
-        graph->addEdge(xorabp, output_sum);
+      graph->addEdge(xorabp, output_sum);
 
       VertexPtr andpxor = graph->addGate(Gates::GateAnd, "andpxor" + S);
       graph->addEdges({xorab, curr_p}, andpxor);
@@ -718,11 +703,7 @@ GraphPtr SimpleGenerators::generatorSummator(
     }
     if (i_overflowOut && i + 1 == i_bits) {
       output_sum = graph->addOutput(z + NextS);
-      if (act) {
-        VertexPtr and1_ = graph->addGate(Gates::GateAnd, z + "and1_" + S);
-        graph->addEdges({const_1, next_p}, and1_);
-      } else
-        graph->addEdge(next_p, output_sum);
+      graph->addEdge(next_p, output_sum);
     }
     curr_p = next_p;
   }
@@ -730,17 +711,16 @@ GraphPtr SimpleGenerators::generatorSummator(
 }
 
 GraphPtr SimpleGenerators::generatorComparison(
-    int  bits,
+    int  i_bits,
     bool compare0,
     bool compare1,
-    bool compare2,
-    bool act
+    bool compare2
 ) {
   GraphPtr    graph(new OrientedGraph);
   VertexPtr   prev_pn_;
   std::string cond = std::string(compare0 ? "t" : "f") + (compare1 ? "t" : "f")
                    + (compare2 ? "t" : "f");
-  for (int i = bits - 1; i >= 0; i--) {
+  for (int i = i_bits - 1; i >= 0; i--) {
     std::string C     = std::to_string(i);
     std::string NextC = std::to_string(i - 1);
     std::string x     = "coma" + cond + C;
@@ -756,16 +736,12 @@ GraphPtr SimpleGenerators::generatorComparison(
     graph->addEdge(input_x, na);
 
     VertexPtr const_1;
-    if (act) {
-      const_1 = graph->addConst('1');
-    }
     VertexPtr En_;
     VertexPtr pn_;
     VertexPtr Enand1_;
     VertexPtr pEn_;
     if (compare0) {
-      if (!act)
-        En_ = graph->addOutput("E0_" + C);
+      En_           = graph->addOutput("E0_" + C);
       VertexPtr nab = graph->addGate(Gates::GateAnd, "nab" + C);
       graph->addEdges({na, nb}, nab);
       VertexPtr ab = graph->addGate(Gates::GateAnd, "ab" + C);
@@ -774,39 +750,23 @@ GraphPtr SimpleGenerators::generatorComparison(
       graph->addEdges({nab, ab}, pn_);
 
       // in case of first iteration
-      if (i == bits - 1) {
-        if (act) {
-          Enand1_ = graph->addGate(Gates::GateAnd, "E0and1_" + C);
-          graph->addEdges({const_1, pn_}, Enand1_);
-        } else {
-          graph->addEdge(pn_, En_);
-        }
+      if (i == i_bits - 1) {
+        graph->addEdge(pn_, En_);
       } else {
         pEn_ = graph->addGate(Gates::GateAnd, "pE0_" + C);
         graph->addEdges({prev_pn_, pn_}, pEn_);
-        if (act) {
-          Enand1_ = graph->addGate(Gates::GateAnd, "E0and1_" + C);
-          graph->addEdges({const_1, pEn_}, Enand1_);
-        } else {
-          graph->addEdge(pEn_, En_);
-        }
+        graph->addEdge(pEn_, En_);
       }
       prev_pn_ = pn_;
     }
     if (compare1) {
-      if (!act)
-        En_ = graph->addOutput("E1_" + C);
+      En_ = graph->addOutput("E1_" + C);
       pn_ = graph->addGate(Gates::GateAnd, "p1_" + NextC);
       graph->addEdges({input_x, nb}, pn_);
 
       // in case of first iteration
-      if (i == bits - 1) {
-        if (act) {
-          Enand1_ = graph->addGate(Gates::GateAnd, "E1and1_" + C);
-          graph->addEdges({const_1, pn_}, Enand1_);
-        } else {
-          graph->addEdge(pn_, En_);
-        }
+      if (i == i_bits - 1) {
+        graph->addEdge(pn_, En_);
       } else {
         VertexPtr np1_     = graph->addGate(Gates::GateNot, "np1_" + C);
         VertexPtr np1_next = graph->addGate(Gates::GateNot, "np1_" + NextC);
@@ -818,29 +778,18 @@ GraphPtr SimpleGenerators::generatorComparison(
         graph->addEdges({prev_pn_, np1_next}, P12_);
         pEn_ = graph->addGate(Gates::GateOr, "pE1_" + C);
         graph->addEdges({P11_, P12_}, pEn_);
-        if (act) {
-          Enand1_ = graph->addGate(Gates::GateAnd, "E1and1_" + C);
-          graph->addEdges({const_1, pEn_}, Enand1_);
-        } else {
-          graph->addEdge(pEn_, En_);
-        }
+        graph->addEdge(pEn_, En_);
       }
       prev_pn_ = pn_;
     }
     if (compare2) {
-      if (!act)
-        En_ = graph->addOutput("E2_" + C);
+      En_ = graph->addOutput("E2_" + C);
       pn_ = graph->addGate(Gates::GateAnd, "p2_" + NextC);
       graph->addEdges({input_y, na}, pn_);
 
       // first iteration
-      if (i == bits - 1) {
-        if (act) {
-          Enand1_ = graph->addGate(Gates::GateAnd, "E2and1_" + C);
-          graph->addEdges({const_1, pn_}, Enand1_);
-        } else {
-          graph->addEdge(pn_, En_);
-        }
+      if (i == i_bits - 1) {
+        graph->addEdge(pn_, En_);
       } else {
         VertexPtr np2_     = graph->addGate(Gates::GateNot, "np2_" + C);
         VertexPtr np2_next = graph->addGate(Gates::GateNot, "np2_" + NextC);
@@ -852,12 +801,7 @@ GraphPtr SimpleGenerators::generatorComparison(
         graph->addEdges({prev_pn_, np2_next}, P22_);
         pEn_ = graph->addGate(Gates::GateOr, "pE2_" + C);
         graph->addEdges({P21_, P22_}, pEn_);
-        if (act) {
-          Enand1_ = graph->addGate(Gates::GateAnd, "E2and1_" + C);
-          graph->addEdges({const_1, pEn_}, Enand1_);
-        } else {
-          graph->addEdge(pEn_, En_);
-        }
+        graph->addEdge(pEn_, En_);
       }
       prev_pn_ = pn_;
     }
@@ -947,13 +891,10 @@ GraphPtr SimpleGenerators::generatorSubtractor(
     int  i_bits,
     bool i_overflowIn,
     bool i_overflowOut,
-    bool i_sub,
-    bool act
+    bool i_sub
 ) {
-  GraphPtr  graph(new OrientedGraph);
-  VertexPtr const_1;
-  if (act)
-    const_1 = graph->addConst('1');
+  GraphPtr    graph(new OrientedGraph);
+  VertexPtr   const_1;
 
   std::string cond = std::string(i_overflowIn ? "t" : "f")
                    + (i_overflowOut ? "t" : "f") + (i_sub ? "t" : "f");
@@ -976,9 +917,8 @@ GraphPtr SimpleGenerators::generatorSubtractor(
     VertexPtr   input_x = graph->addInput(x);
     VertexPtr   input_y = graph->addInput(y);
     VertexPtr   output_sub;
-    if (!act) {
-      output_sub = graph->addOutput(s + Z);
-    }
+
+    output_sub      = graph->addOutput(s + Z);
 
     VertexPtr abxor = graph->addGate(Gates::GateXor, "abxor" + Z);
     graph->addEdges({input_x, input_y}, abxor);
@@ -1016,19 +956,12 @@ GraphPtr SimpleGenerators::generatorSubtractor(
 
       graph->addEdges({nabxorz, abandn}, next_z);  // перенос заема
       graph->addEdges({abxor, curr_z}, d);
-      if (act) {
-        VertexPtr and1_ = graph->addGate(Gates::GateAnd, s + "and1_" + Z);
-        graph->addEdges({const_1, d}, and1_);
-      } else
-        graph->addEdge(d, output_sub);
+
+      graph->addEdge(d, output_sub);
     }
     if (!i_overflowIn) {
       if (i == 0) {
-        if (act) {
-          VertexPtr and1_ = graph->addGate(Gates::GateAnd, s + "and1_" + Z);
-          graph->addEdges({const_1, abxor}, and1_);
-        } else
-          graph->addEdge(abxor, output_sub);
+        graph->addEdge(abxor, output_sub);
         next_z = graph->addGate(Gates::GateBuf, "z" + NextZ);
         graph->addEdge(abandn, next_z);
       }
@@ -1044,21 +977,12 @@ GraphPtr SimpleGenerators::generatorSubtractor(
 
         graph->addEdges({nabxorz, abandn}, next_z);  // перенос заема
         graph->addEdges({abxor, curr_z}, d);
-        if (act) {
-          VertexPtr and1_ = graph->addGate(Gates::GateAnd, s + "and1_" + Z);
-          graph->addEdges({const_1, d}, and1_);
-        } else
-          graph->addEdge(d, output_sub);
+        graph->addEdge(d, output_sub);
       }
     }
     if (i_overflowOut && i + 1 == i_bits) {
-      if (act) {
-        VertexPtr and1_ = graph->addGate(Gates::GateAnd, s + "and1_" + NextZ);
-        graph->addEdges({const_1, next_z}, and1_);
-      } else {
-        output_sub = graph->addOutput(s + NextZ);
-        graph->addEdge(next_z, output_sub);
-      }
+      output_sub = graph->addOutput(s + NextZ);
+      graph->addEdge(next_z, output_sub);
     }
     curr_z = next_z;
   }
@@ -1297,89 +1221,81 @@ GraphPtr SimpleGenerators::generatorParity(int i_bits) {
   return graph;
 }
 
-GraphPtr SimpleGenerators::generatorMultiplier(int i_bits, bool act) {
-  GraphPtr  graph(new OrientedGraph);
-  VertexPtr const_1;
+GraphPtr SimpleGenerators::generatorMultiplier(int i_bits) {
+  GraphPtr               graph(new OrientedGraph);
+  VertexPtr              const_1;
 
-  VertexPtr input_xa;
+  VertexPtr              input_xa;
   // a - бит первого множителя
-  VertexPtr input_xb;
+  VertexPtr              input_xb;
   // b - бит второго множителя
-  VertexPtr c;
+  VertexPtr              c;
   // с - результат логического и
+  std::vector<VertexPtr> C_sum(i_bits);
+  // C_sum - хранит результаты вычислений прошлой итерации b
+  VertexPtr              sum;
   // sum - результат суммы
+  VertexPtr              pSum;
+  VertexPtr              pNext;
   // pSum - перенос между сумматорами одного уровня, pNext - разных уровней
-  VertexPtr m;
-  // m - бит полученного умножения
+  VertexPtr              m;
+  // m - бит полученного умножения, выход
 
-  int       n = 1;
-
-  for (int i = 1; i <= i_bits; i++) {
-    std::string str_i = std::to_string(i);
+  int                    n = 1;
+  // n - числовой порядок выходов
+  for (int ib = 1; ib <= i_bits; ib++) {
+    std::string str_i = std::to_string(ib);
     input_xb          = graph->addInput("xb" + str_i);
     input_xa          = graph->addInput("xa" + str_i);
-  }
 
-  for (int ib = 1; ib <= i_bits; ib++) {
-    std::string IB  = std::to_string(ib);      // IB - index b
-    std::string IBP = std::to_string(ib - 1);  // IBP - index b past
-    std::string IBN = std::to_string(ib + 1);  // IBN - index b next
+    std::string IB    = std::to_string(ib);      // IB - index b
+    std::string IBP   = std::to_string(ib - 1);  // IBP - index b past
+    std::string IBN   = std::to_string(ib + 1);  // IBN - index b next
 
-    if (act) {
-      const_1 = graph->addConst('1');
-    }
-
-    VertexPtr xb = graph->addGate(Gates::GateBuf, "xb" + IB);
+    VertexPtr   xb    = input_xb;
+    VertexPtr   ABsum;
+    // ABsum - получает
+    // информацию о результате прошлой итерации b
 
     for (int ia = 1; ia <= i_bits; ia++) {
       std::string IA  = std::to_string(ia);      // IA - index a
       std::string IAN = std::to_string(ia + 1);  // IAN - index a next
 
-      VertexPtr   xa  = graph->addGate(Gates::GateBuf, "xa" + IA);
+      VertexPtr   xa  = input_xa;
 
       c               = graph->addGate(Gates::GateAnd, "c" + IA + IB);
       graph->addEdges({xb, xa}, c);
-
-      VertexPtr sum;
-      VertexPtr pSum;
-      VertexPtr pNext;
+      if (ib == 1)
+        C_sum[ia - 1] = c;
 
       if (ib == 1) {
         if (ia == 1) {
           std::string N = std::to_string(n);
-          if (act) {
-            VertexPtr ALU = graph->addGate(Gates::GateAnd, "aluR" + N);
-            graph->addEdges({const_1, c}, ALU);
-          } else {
-            m = graph->addOutput("m" + N);
-            graph->addEdge(c, m);
-          }
+          m             = graph->addOutput("m" + N);
+          graph->addEdge(c, m);
           n += 1;
         }
       }
       if (ib > 1) {
-        const VertexPtr& nowAB = c;
-        VertexPtr        ABsum;
+        VertexPtr nowAB = c;
         if (ib == 2)
-          ABsum = graph->addGate(
-              Gates::GateBuf, "c" + IAN + IBP
-          );  // второй разряд,
+          if (ia < i_bits)
+            ABsum = C_sum[ia];
+        // второй разряд,
         // вход в сумматор от операции И
         // ABsum = "c" + IAN + IBP;
         if (ib > 2)
-          ABsum = graph->addGate(
-              Gates::GateBuf, "sum" + IAN + IBP
-          );  // Следующие разряды, вход
-        // в сумматор от результата др-> сумматора
+          if (ia < i_bits)
+            ABsum = C_sum[ia];
+        // Следующие разряды, вход
+        // в сумматор от результата другого сумматора
         // ABsum = "sum" + IAN + IBP;
-        if (ia == i_bits) {
-          ABsum = graph->addGate(Gates::GateBuf, "pNext" + IA + IB);  // для
-                                                                      // левых
-          // боковых сумматоров
-          if (i_bits == 2) {
-            ABsum = graph->addGate(Gates::GateBuf, "pSum" + IA + IB);
-          }
 
+        if (ia == i_bits) {
+          ABsum = pNext;  // для левых боковых сумматоров
+          if (i_bits == 2) {
+            ABsum = pSum;
+          }
           // ABsum = "pNext" + IA + IB;
         }
 
@@ -1396,43 +1312,26 @@ GraphPtr SimpleGenerators::generatorMultiplier(int i_bits, bool act) {
           sum = graph->addGate(Gates::GateXor, "sum" + IA + IB);
           graph->addEdges({nowAB, ABsum}, sum);
 
-          if (act) {
-            VertexPtr ALU = graph->addGate(Gates::GateAnd, "aluR" + N);
-            graph->addEdges({const_1, sum}, ALU);
-          } else {
-            m = graph->addOutput("m" + N);
-            graph->addEdge(sum, m);
-          }
+          m = graph->addOutput("m" + N);
+          graph->addEdge(sum, m);
           n += 1;
         } else if (ib == 2 && ia == i_bits) {
-          pSum  = graph->addGate(Gates::GateBuf, "pSum" + IA + IB);
-
           pNext = graph->addGate(Gates::GateAnd, "pNext" + nSum);
           graph->addEdges({nowAB, pSum}, pNext);
           sum = graph->addGate(Gates::GateXor, "sum" + IA + IB);
           graph->addEdges({nowAB, pSum}, sum);
+          C_sum[ia - 1] = sum;
 
           if (i_bits == 2) {
             std::string N = std::to_string(n);
-            if (act) {
-              VertexPtr ALU = graph->addGate(Gates::GateAnd, "aluR" + N);
-              graph->addEdges({const_1, sum}, ALU);
+            m             = graph->addOutput("m" + N);
+            graph->addEdge(sum, m);
 
-              n   += 1;
-              N   = std::to_string(n);
+            n += 1;
+            N = std::to_string(n);
 
-              ALU = graph->addGate(Gates::GateAnd, "aluR" + N);
-              graph->addEdges({const_1, pNext}, ALU);
-            } else {
-              m = graph->addOutput("m" + N);
-              graph->addEdge(sum, m);
-
-              n += 1;
-              N = std::to_string(n);
-
-              m = graph->addOutput("m" + N);
-              graph->addEdge(pNext, m);
-            }
+            m = graph->addOutput("m" + N);
+            graph->addEdge(pNext, m);
           }
         } else {
           std::string S = IA + IB;
@@ -1441,7 +1340,7 @@ GraphPtr SimpleGenerators::generatorMultiplier(int i_bits, bool act) {
           VertexPtr   p;
           std::string pi_str =
               "pSum" + IA + IB;  // перенос из прошлого сумматора
-          VertexPtr pi     = graph->addGate(Gates::GateBuf, pi_str);
+          VertexPtr pi     = pSum;
 
           VertexPtr andab  = graph->addGate(Gates::GateAnd, "andab" + S);
           VertexPtr andapi = graph->addGate(Gates::GateAnd, "anda" + pi_str);
@@ -1476,27 +1375,18 @@ GraphPtr SimpleGenerators::generatorMultiplier(int i_bits, bool act) {
           sum = graph->addGate(Gates::GateOr, "sum" + IA + IB);
           graph->addEdges({abpand, andnp}, sum);
 
+          C_sum[ia - 1] = sum;
+
           if (ib == i_bits) {
             std::string N = std::to_string(n);
 
-            if (act) {
-              VertexPtr ALU = graph->addGate(Gates::GateAnd, "aluR" + N);
-              graph->addEdges({const_1, sum}, ALU);
-            } else {
-              m = graph->addOutput("m" + N);
-              graph->addEdge(sum, m);
-            }
+            m             = graph->addOutput("m" + N);
+            graph->addEdge(sum, m);
             n += 1;
             if (ia == i_bits) {
               N = std::to_string(n);
-
-              if (act) {
-                VertexPtr ALU = graph->addGate(Gates::GateAnd, "aluR" + N);
-                graph->addEdges({const_1, p}, ALU);
-              } else {
-                m = graph->addOutput("m" + N);
-                graph->addEdge(p, m);
-              }
+              m = graph->addOutput("m" + N);
+              graph->addEdge(p, m);
               n += 1;
             }
           }
@@ -1745,8 +1635,9 @@ GraphPtr SimpleGenerators::generatorALU(
     bool XNOR,
     bool CNF
 ) {
-  GraphPtr graph(new OrientedGraph);
-  int      x = 0;
+  GraphPtr  graph(new OrientedGraph);
+  VertexPtr const_0 = graph->addConst('0', "const_0");
+  int       x       = 0;
   if (ALL) {
     SUM  = true;
     SUB  = true;
@@ -1761,15 +1652,15 @@ GraphPtr SimpleGenerators::generatorALU(
     CNF  = true;
   }
 
+  // количество входов мультиплексора
   x = x + (SUM ? 4 : 0) + (SUB ? 4 : 0) + (NSUM ? 4 : 0) + (NSUB ? 4 : 0)
     + (MULT ? 1 : 0) + (COM ? 3 : 0) + (AND ? 1 : 0) + (NAND ? 1 : 0)
     + (OR ? 1 : 0) + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0)
-    + (CNF ? 2 : 0);
+    + (CNF ? 3 : 0);
 
   int size = i_bits;
   size = MULT ? i_bits * 2 : (SUM || NSUM || SUB || NSUB ? i_bits + 1 : i_bits);
   if (CNF) {
-    // graph.addVertex("0", "const");
     if (MULT) {
       size = (i_outbits < i_bits * 2 ? i_bits * 2 : i_outbits);
     } else if (SUM || NSUM || SUB || NSUB) {
@@ -1779,238 +1670,341 @@ GraphPtr SimpleGenerators::generatorALU(
     }
   } else if (MULT) {
     size = i_bits * 2;
-    // graph.addVertex("0", "const");
   } else if (SUM || NSUM || SUB || NSUB) {
     size = i_bits + 1;
-    // graph.addVertex("0", "const");
   }
 
-  /*
+  //  std::vector<VertexPtr>              inputs;
+  //  std::vector<std::vector<VertexPtr>> outputs_gens;
+  //
+  //  for (int a = 0; a < i_bits; a++) {
+  //    std::string A  = std::to_string(a);
+  //    VertexPtr   xi = graph->addInput("xi" + A);
+  //    VertexPtr   xj = graph->addInput("xj" + A);
+  //
+  //    inputs.push_back(xi);
+  //    inputs.push_back(xj);
+  //
+  //    if (AND) {
+  //      VertexPtr and_ij = graph->addGate(Gates::GateAnd, "and_ij" + A);
+  //      graph->addEdges({xi, xj}, and_ij);
+  //    }
+  //    if (NAND) {
+  //      VertexPtr nand_ij = graph->addGate(Gates::GateNand, "nand_ij" + A);
+  //      graph->addEdges({xi, xj}, nand_ij);
+  //    }
+  //    if (OR) {
+  //      VertexPtr or_ij = graph->addGate(Gates::GateOr, "or_ij" + A);
+  //      graph->addEdges({xi, xj}, or_ij);
+  //    }
+  //    if (XOR) {
+  //      VertexPtr xor_ij = graph->addGate(Gates::GateXor, "xor_ij" + A);
+  //      graph->addEdges({xi, xj}, xor_ij);
+  //    }
+  //    if (NOR) {
+  //      VertexPtr nor_ij = graph->addGate(Gates::GateNor, "nor_ij" + A);
+  //      graph->addEdges({xi, xj}, nor_ij);
+  //    }
+  //    if (XNOR) {
+  //      VertexPtr xnor_ij = graph->addGate(Gates::GateXnor, "xnor_ij" + A);
+  //      graph->addEdges({xi, xj}, xnor_ij);
+  //    }
+  //  }
+  //
+  //  VertexPtr add;
+  //
+  //  if (SUM) {
+  //    std::vector<VertexPtr> output_sum;
+  //
+  //    output_sum = graph->addSubGraph(
+  //        generatorSummator(i_bits, false, false, false), inputs
+  //    );
+  //    outputs_gens.push_back(output_sum);
+  //
+  //    graph->addSubGraph(generatorSummator(i_bits, false, true, false),
+  //    inputs); add = graph->addInput("ij_p0"); inputs.insert(inputs.begin() +
+  //    2, add); graph->addSubGraph(generatorSummator(i_bits, true, true,
+  //    false), inputs); graph->addSubGraph(generatorSummator(i_bits, true,
+  //    false, false), inputs); inputs.erase(inputs.begin() + 2);
+  //  }
+  //  if (SUB) {
+  //    std::vector<VertexPtr> output_sub;
+  //
+  //    graph->addSubGraph(
+  //        generatorSubtractor(i_bits, false, false, false), inputs
+  //    );
+  //    graph->addSubGraph(generatorSubtractor(i_bits, false, true, false),
+  //    inputs); add = graph->addInput("ij_z0"); inputs.insert(inputs.begin() +
+  //    2, add); graph->addSubGraph(generatorSubtractor(i_bits, true, true,
+  //    false), inputs); graph->addSubGraph(generatorSubtractor(i_bits, true,
+  //    false, false), inputs); inputs.erase(inputs.begin() + 2);
+  //  }
+  //  if (NSUM) {
+  //    std::vector<VertexPtr> output_nsum;
+  //
+  //    graph->addSubGraph(generatorSummator(i_bits, false, false, true),
+  //    inputs); graph->addSubGraph(generatorSummator(i_bits, false, true,
+  //    true), inputs); add = graph->addInput("ij_p0");
+  //    inputs.insert(inputs.begin() + 2, add);
+  //    graph->addSubGraph(generatorSummator(i_bits, true, true, true), inputs);
+  //    graph->addSubGraph(generatorSummator(i_bits, true, false, true),
+  //    inputs); inputs.erase(inputs.begin() + 2);
+  //  }
+  //  if (NSUB) {
+  //    std::vector<VertexPtr> output_nsub;
+  //
+  //    graph->addSubGraph(generatorSubtractor(i_bits, false, false, true),
+  //    inputs); graph->addSubGraph(generatorSubtractor(i_bits, false, true,
+  //    true), inputs); add = graph->addInput("ij_z0");
+  //    inputs.insert(inputs.begin() + 2, add);
+  //    graph->addSubGraph(generatorSubtractor(i_bits, true, true, true),
+  //    inputs); graph->addSubGraph(generatorSubtractor(i_bits, true, false,
+  //    true), inputs); inputs.erase(inputs.begin() + 2);
+  //  }
+  //  if (MULT) {
+  //    std::vector<VertexPtr> output_mult;
+  //    graph->addSubGraph(generatorMultiplier(i_bits), inputs);
+  //  }
+  //  if (COM) {
+  //    std::vector<VertexPtr> output_com;
+  //    graph->addSubGraph(generatorComparison(i_bits, true, false, false),
+  //    inputs); graph->addSubGraph(generatorComparison(i_bits, false, true,
+  //    false), inputs); graph->addSubGraph(generatorComparison(i_bits, false,
+  //    false, true), inputs);
+  //  }
 
-  graph.Extend(ALU(i_bits, i_outbits, ALL, SUM, SUB, NSUM, NSUB, MULT, COM, AND,
-  NAND, OR, NOR, XOR, XNOR, CNF));
-
-
-  for (int j = 0; j < size; j++)
-  {
-      std::string T = std::to_string(j);
-      graph.Extend(generatorMultiplexer(x, T));
-      int c = 0;
-      if (SUM)
-      {
-          for (int i = c; i < 4; i++)
-          {
-              std::string T1 = std::to_string(c); std::string T01 =
-  std::to_string(i); c += 1; if (MULT ? (j == i_bits && (i == 0 || i == 2)) || j
-  > i_bits : j == i_bits && (i == 0 || i == 2))
-              {
-                  graph.Substitute("0", "x" + T + "_" + T1, false);
-              }
-              else
-              {
-                  graph.Substitute("s" + T01 + "and1_" + T, "x" + T + "_" + T1,
-  false);
-              }
-
-          }
-
-      }
-      if (NSUM)
-      {
-          for (int i = c; i < 4; i++)
-          {
-              std::string T1 = std::to_string(c); std::string T01 =
-  std::to_string(i); c += 1; if (MULT ? (j == i_bits && (i == 0 || i == 2)) || j
-  > i_bits : j == i_bits && (i == 0 || i == 2))
-              {
-                  graph.Substitute("0", "x" + T + "_" + T1, false);
-              }
-              else
-              {
-                  graph.Substitute("ns" + T01 + "and1_" + T, "x" + T + "_" + T1,
-  false);
-              }
-          }
-
-
-      }
-      if (SUB)
-      {
-          for (int i = c; i < 4; i++)
-          {
-              std::string T1 = std::to_string(c); std::string T01 =
-  std::to_string(i); c += 1; if (MULT ? (j == i_bits && (i == 0 || i == 2)) || j
-  > i_bits : j == i_bits && (i == 0 || i == 2))
-              {
-                  graph.Substitute("0", "x" + T + "_" + T1, false);
-              }
-              else
-              {
-                  graph.Substitute("d" + T01 + "and1_" + T, "x" + T + "_" + T1,
-  false);
-              }
-          }
-      }
-      if (NSUB)
-      {
-          for (int i = c; i < 4; i++)
-          {
-              std::string T1 = std::to_string(c); std::string T01 =
-  std::to_string(i); c += 1;
-
-              if (MULT ? (j == i_bits && (i == 0 || i == 2)) || j > i_bits : j
-  == i_bits && (i == 0 || i == 2))
-              {
-                  graph.Substitute("0", "x" + T + "_" + T1, false);
-              }
-              else
-              {
-                  graph.Substitute("and" + T01 + "and1_" + T, "x" + T + "_" +
-  T1, false);
-              }
-          }
-      }
-      if (MULT)
-      {
-
-          std::string T1 = std::to_string(c);
-          c += 1;
-          if (j >= i_bits * 2)
-          {
-              graph.Substitute("0", "x" + T + "_" + T1, false);
-          }
-          else
-          {
-              graph.Substitute("mand1_" + T, "x" + T + "_" + T1, false);
-          }
-
-      }
-      if (COM)
-      {
-          for (int i = c; i < 3; i++)
-          {
-              std::string T1 = std::to_string(c); std::string T01 =
-  std::to_string(i); c += 1; if (j >= i_bits)
-              {
-                  graph.Substitute("0", "x" + T + "_" + T1, false);
-              }
-              else
-              {
-                  graph.Substitute("E" + T01 + "and1_" + T, "x" + T + "_" + T1,
-  false);
-              }
-
-          }
-      }
-      if (AND)
-      {
-
-          std::string T1 = std::to_string(c);
-          if (j >= i_bits)
-          {
-              graph.Substitute("0", "x" + T + "_" + T1, false);
-          }
-          else
-          {
-              graph.Substitute("ij1_" + T, "x" + T + "_" + T1, false);
-          }
-
-          c += 1;
-
-      }
-      if (NAND)
-      {
-          std::string T1 = std::to_string(c);
-          if (j >= i_bits)
-          {
-              graph.Substitute("0", "x" + T + "_" + T1, false);
-          }
-          else
-          {
-              graph.Substitute("ij2_" + T, "x" + T + "_" + T1, false);
-          }
-
-          c += 1;
-
-      }
-      if (OR)
-      {
-
-          std::string T1 = std::to_string(c);
-          if (j >= i_bits)
-          {
-              graph.Substitute("0", "x" + T + "_" + T1, false);
-          }
-          else
-          {
-              graph.Substitute("ij3_" + T, "x" + T + "_" + T1, false);
-          }
-
-          c += 1;
-
-      }
-      if (XOR)
-      {
-          std::string T1 = std::to_string(c);
-          if (j >= i_bits)
-          {
-              graph.Substitute("0", "x" + T + "_" + T1, false);
-          }
-          else
-          {
-              graph.Substitute("ij5_" + T, "x" + T + "_" + T1, false);
-          }
-
-          c += 1;
-      }
-      if (NOR)
-      {
-          std::string T1 = std::to_string(c);
-          if (j >= i_bits)
-          {
-              graph.Substitute("0", "x" + T + "_" + T1, false);
-          }
-          else
-          {
-              graph.Substitute("ij4_" + T, "x" + T + "_" + T1, false);
-          }
-
-          c += 1;
-      }
-      if (XNOR)
-      {
-          std::string T1 = std::to_string(c);
-          if (j >= i_bits)
-          {
-              graph.Substitute("0", "x" + T + "_" + T1, false);
-          }
-          else
-          {
-              graph.Substitute("ij6_" + T, "x" + T + "_" + T1, false);
-          }
-
-          c += 1;
-      }
-      if (CNF)
-      {
-          std::string T1 = std::to_string(c);
-          if (j >= i_outbits)
-          {
-              graph.Substitute("0", "x" + T + "_" + T1, false);
-              c += 1;
-              T1 = std::to_string(c);
-              graph.Substitute("0", "x" + T + "_" + T1, false);
-          }
-          else
-          {
-              graph.Substitute("fT" + T, "x" + T + "_" + T1, false);
-              c += 1;
-              T1 = std::to_string(c);
-              graph.Substitute("fF" + T, "x" + T + "_" + T1, false);
-          }
-
-      }
-  }
-   */
+  //
+  //
+  //    graph.Extend(ALU(i_bits, i_outbits, ALL, SUM, SUB, NSUM, NSUB, MULT,
+  //    COM, AND, NAND, OR, NOR, XOR, XNOR, CNF));
+  //
+  //
+  //    for (int j = 0; j < size; j++)
+  //    {
+  //        std::string T = std::to_string(j);
+  //        graph.Extend(generatorMultiplexer(x, T));
+  //        int c = 0;
+  //        if (SUM)
+  //        {
+  //            for (int i = c; i < 4; i++)
+  //            {
+  //                std::string T1 = std::to_string(c); std::string T01 =
+  //    std::to_string(i); c += 1; if (MULT ? (j == i_bits && (i == 0 || i ==
+  //    2)) || j > i_bits : j == i_bits && (i == 0 || i == 2))
+  //                {
+  //                    graph.Substitute("0", "x" + T + "_" + T1, false);
+  //                }
+  //                else
+  //                {
+  //                    graph.Substitute("s" + T01 + "and1_" + T, "x" + T + "_"
+  //                    + T1,
+  //    false);
+  //                }
+  //
+  //            }
+  //
+  //        }
+  //        if (NSUM)
+  //        {
+  //            for (int i = c; i < 4; i++)
+  //            {
+  //                std::string T1 = std::to_string(c); std::string T01 =
+  //    std::to_string(i); c += 1; if (MULT ? (j == i_bits && (i == 0 || i ==
+  //    2)) || j > i_bits : j == i_bits && (i == 0 || i == 2))
+  //                {
+  //                    graph.Substitute("0", "x" + T + "_" + T1, false);
+  //                }
+  //                else
+  //                {
+  //                    graph.Substitute("ns" + T01 + "and1_" + T, "x" + T + "_"
+  //                    + T1,
+  //    false);
+  //                }
+  //            }
+  //
+  //
+  //        }
+  //        if (SUB)
+  //        {
+  //            for (int i = c; i < 4; i++)
+  //            {
+  //                std::string T1 = std::to_string(c); std::string T01 =
+  //    std::to_string(i); c += 1; if (MULT ? (j == i_bits && (i == 0 || i ==
+  //    2)) || j > i_bits : j == i_bits && (i == 0 || i == 2))
+  //                {
+  //                    graph.Substitute("0", "x" + T + "_" + T1, false);
+  //                }
+  //                else
+  //                {
+  //                    graph.Substitute("d" + T01 + "and1_" + T, "x" + T + "_"
+  //                    + T1,
+  //    false);
+  //                }
+  //            }
+  //        }
+  //        if (NSUB)
+  //        {
+  //            for (int i = c; i < 4; i++)
+  //            {
+  //                std::string T1 = std::to_string(c); std::string T01 =
+  //    std::to_string(i); c += 1;
+  //
+  //                if (MULT ? (j == i_bits && (i == 0 || i == 2)) || j > i_bits
+  //                : j
+  //    == i_bits && (i == 0 || i == 2))
+  //                {
+  //                    graph.Substitute("0", "x" + T + "_" + T1, false);
+  //                }
+  //                else
+  //                {
+  //                    graph.Substitute("and" + T01 + "and1_" + T, "x" + T +
+  //                    "_" +
+  //    T1, false);
+  //                }
+  //            }
+  //        }
+  //        if (MULT)
+  //        {
+  //
+  //            std::string T1 = std::to_string(c);
+  //            c += 1;
+  //            if (j >= i_bits * 2)
+  //            {
+  //                graph.Substitute("0", "x" + T + "_" + T1, false);
+  //            }
+  //            else
+  //            {
+  //                graph.Substitute("mand1_" + T, "x" + T + "_" + T1, false);
+  //            }
+  //
+  //        }
+  //        if (COM)
+  //        {
+  //            for (int i = c; i < 3; i++)
+  //            {
+  //                std::string T1 = std::to_string(c); std::string T01 =
+  //    std::to_string(i); c += 1; if (j >= i_bits)
+  //                {
+  //                    graph.Substitute("0", "x" + T + "_" + T1, false);
+  //                }
+  //                else
+  //                {
+  //                    graph.Substitute("E" + T01 + "and1_" + T, "x" + T + "_"
+  //                    + T1,
+  //    false);
+  //                }
+  //
+  //            }
+  //        }
+  //        if (AND)
+  //        {
+  //
+  //            std::string T1 = std::to_string(c);
+  //            if (j >= i_bits)
+  //            {
+  //                graph.Substitute("0", "x" + T + "_" + T1, false);
+  //            }
+  //            else
+  //            {
+  //                graph.Substitute("ij1_" + T, "x" + T + "_" + T1, false);
+  //            }
+  //
+  //            c += 1;
+  //
+  //        }
+  //        if (NAND)
+  //        {
+  //            std::string T1 = std::to_string(c);
+  //            if (j >= i_bits)
+  //            {
+  //                graph.Substitute("0", "x" + T + "_" + T1, false);
+  //            }
+  //            else
+  //            {
+  //                graph.Substitute("ij2_" + T, "x" + T + "_" + T1, false);
+  //            }
+  //
+  //            c += 1;
+  //
+  //        }
+  //        if (OR)
+  //        {
+  //
+  //            std::string T1 = std::to_string(c);
+  //            if (j >= i_bits)
+  //            {
+  //                graph.Substitute("0", "x" + T + "_" + T1, false);
+  //            }
+  //            else
+  //            {
+  //                graph.Substitute("ij3_" + T, "x" + T + "_" + T1, false);
+  //            }
+  //
+  //            c += 1;
+  //
+  //        }
+  //        if (XOR)
+  //        {
+  //            std::string T1 = std::to_string(c);
+  //            if (j >= i_bits)
+  //            {
+  //                graph.Substitute("0", "x" + T + "_" + T1, false);
+  //            }
+  //            else
+  //            {
+  //                graph.Substitute("ij5_" + T, "x" + T + "_" + T1, false);
+  //            }
+  //
+  //            c += 1;
+  //        }
+  //        if (NOR)
+  //        {
+  //            std::string T1 = std::to_string(c);
+  //            if (j >= i_bits)
+  //            {
+  //                graph.Substitute("0", "x" + T + "_" + T1, false);
+  //            }
+  //            else
+  //            {
+  //                graph.Substitute("ij4_" + T, "x" + T + "_" + T1, false);
+  //            }
+  //
+  //            c += 1;
+  //        }
+  //        if (XNOR)
+  //        {
+  //            std::string T1 = std::to_string(c);
+  //            if (j >= i_bits)
+  //            {
+  //                graph.Substitute("0", "x" + T + "_" + T1, false);
+  //            }
+  //            else
+  //            {
+  //                graph.Substitute("ij6_" + T, "x" + T + "_" + T1, false);
+  //            }
+  //
+  //            c += 1;
+  //        }
+  //        if (CNF)
+  //        {
+  //            std::string T1 = std::to_string(c);
+  //            if (j >= i_outbits)
+  //            {
+  //                graph.Substitute("0", "x" + T + "_" + T1, false);
+  //                c += 1;
+  //                T1 = std::to_string(c);
+  //                graph.Substitute("0", "x" + T + "_" + T1, false);
+  //            }
+  //            else
+  //            {
+  //                graph.Substitute("fT" + T, "x" + T + "_" + T1, false);
+  //                c += 1;
+  //                T1 = std::to_string(c);
+  //                graph.Substitute("fF" + T, "x" + T + "_" + T1, false);
+  //            }
+  //
+  //        }
+  //    }
+  //
   return graph;
 }
