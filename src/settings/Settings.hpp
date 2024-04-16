@@ -226,12 +226,13 @@ public:
   std::string getDatasetPath() const;
 
   /// @brief getGenerationMethodPrefix Gets the prefix of the generation
-  /// method by its name
-  /// The method takes the name of the generation method and returns the
-  /// corresponding prefix. If the passed name does not match any of the
-  /// known methods, an error message is displayed, and the default value
-  /// "ftt" is returned.
-  /// @param i_s A string containing the name of the generation method
+  /// method by its corresponding GenerationTypes
+  /// The method takes the GenerationTypes type variable of the generation
+  /// method and returns the corresponding prefix. If the passed GenerationTypes
+  /// does not match any of the known methods, std::out_of_range exception is
+  /// thrown.
+  /// @param i_methodType A GenerationTypes variable containing the name of the
+  /// generation method
   /// @return std::string Prefix of the generation method
   /// @code
   /// // Creating an instance of the Settings class or getting it from an
@@ -239,7 +240,7 @@ public:
   /// std::shared_ptr<Settings> settingsInstance =
   /// Settings::getInstance("/path/to/settings");
   /// // Get the prefix of the generation method by its name
-  /// std::string method = "RandLevel";
+  /// GenerationTypes method = GenerationTypes::RandLevel;
   /// std::string prefix = settingsInstance->getGenerationMethodPrefix(method);
   /// std::cout << "Prefix for method " << method << ": " << prefix <<
   /// std::endl;

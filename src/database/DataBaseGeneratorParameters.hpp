@@ -106,9 +106,9 @@ public:
 
   GenerationParameters getGenerationParameters() const;
 
-  /// @brief getGenerationTypeString This method returns a string representation
-  /// of the database generation type
-  /// @return String representation of the database generation type
+  /// @brief getGenerationType This method returns a GenerationTypes type
+  /// variable representing the database generation type
+  /// @return GenerationTypes of the database generation type
   /// */
   GenerationTypes      getGenerationType() const;
 
