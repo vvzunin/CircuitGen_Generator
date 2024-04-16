@@ -1047,11 +1047,10 @@ GraphPtr SimpleGenerators::generatorMultiplexer(int i_bits) {
     graph->addEdges(ands, common_or);
     graph->addEdge(common_or, output_f);
   } else if (i_bits == 1){
-        Zp[0] = graph->addInput("x" + Z[0]);
-        graph->addEdge(Zp[0], output_f);
-//        VertexPtr self_and = graph->addGate(Gates::GateAnd, "self_and");
-//        graph->addEdges({Zp[0], Zp[0]}, self_and);
-//        graph->addEdge(self_and, output_f);
+      Zp[0] = graph->addInput("x" + Z[0]);
+      VertexPtr inBuf = graph->addGate(Gates::GateBuf, "buf");
+      graph->addEdge(Zp[0], inBuf);
+      graph->addEdge(inBuf, output_f);
   } else
       std::cout << "Недостаточно входных сигналов" << std::endl;
   return graph;
@@ -1680,41 +1679,95 @@ GraphPtr SimpleGenerators::generatorALU(
         size = i_bits + 1;
     }
 
+    int                    k = 0;
+    for (int t = 0; t <= x; t++) {
+        if (x - 1 >= std::pow(2, t))
+            k++;
+    }
+
+    std::vector<VertexPtr> controls(k);
+
+    for (int i = 0; i < k; i++) {
+        std::string s   = std::to_string(i);
+        controls[i]  = graph->addInput("cont_ALU" + s);
+    }
+
     std::vector<VertexPtr>              inputs;
+    std::vector<VertexPtr> inputs_A(i_bits);
+    std::vector<VertexPtr> inputs_B(i_bits);
     std::vector<std::vector<VertexPtr>> outputs_gens;
 
-    for (int a = 0; a < i_bits; a++) {
-        std::string A  = std::to_string(a);
-        VertexPtr   xi = graph->addInput("xi" + A);
-        VertexPtr   xj = graph->addInput("xj" + A);
+    for (int i = 0; i < i_bits; i++) {
+        std::string A  = std::to_string(i);
+        VertexPtr   A_alu = graph->addInput("A_alu" + A);
+        VertexPtr   B_alu = graph->addInput("B_alu" + A);
 
-        inputs.push_back(xi);
-        inputs.push_back(xj);
+        inputs_A[i] = A_alu;
+        inputs_B[i] = B_alu;
+        inputs.push_back(A_alu);
+        inputs.push_back(B_alu);
+    }
 
-//        if (AND) {
-//            VertexPtr and_ij = graph->addGate(Gates::GateAnd, "and_ij" + A);
-//            graph->addEdges({xi, xj}, and_ij);
-//        }
-//        if (NAND) {
-//            VertexPtr nand_ij = graph->addGate(Gates::GateNand, "nand_ij" + A);
-//            graph->addEdges({xi, xj}, nand_ij);
-//        }
-//        if (OR) {
-//            VertexPtr or_ij = graph->addGate(Gates::GateOr, "or_ij" + A);
-//            graph->addEdges({xi, xj}, or_ij);
-//        }
-//        if (XOR) {
-//            VertexPtr xor_ij = graph->addGate(Gates::GateXor, "xor_ij" + A);
-//            graph->addEdges({xi, xj}, xor_ij);
-//        }
-//        if (NOR) {
-//            VertexPtr nor_ij = graph->addGate(Gates::GateNor, "nor_ij" + A);
-//            graph->addEdges({xi, xj}, nor_ij);
-//        }
-//        if (XNOR) {
-//            VertexPtr xnor_ij = graph->addGate(Gates::GateXnor, "xnor_ij" + A);
-//            graph->addEdges({xi, xj}, xnor_ij);
-//        }
+    std::string A;
+    if (AND) {
+        std::vector<VertexPtr> ands;
+        for (int i = 0; i < i_bits; i++){
+            A = std::to_string(i);
+            VertexPtr and_ALU = graph->addGate(Gates::GateAnd, "and_ALU" + A);
+            graph->addEdges({inputs_A[i], inputs_B[i]}, and_ALU);
+            ands.push_back(and_ALU);
+        }
+        outputs_gens.push_back(ands);
+    }
+    if (NAND) {
+        std::vector<VertexPtr> nands;
+        for (int i = 0; i < i_bits; i++){
+            A = std::to_string(i);
+            VertexPtr nand_ALU = graph->addGate(Gates::GateNand, "nand_ALU" + A);
+            graph->addEdges({inputs_A[i], inputs_B[i]}, nand_ALU);
+            nands.push_back(nand_ALU);
+        }
+        outputs_gens.push_back(nands);
+    }
+    if (OR) {
+        std::vector<VertexPtr> ors;
+        for (int i = 0; i < i_bits; i++){
+            A = std::to_string(i);
+            VertexPtr or_ALU = graph->addGate(Gates::GateOr, "or_ALU" + A);
+            graph->addEdges({inputs_A[i], inputs_B[i]}, or_ALU);
+            ors.push_back(or_ALU);
+        }
+        outputs_gens.push_back(ors);
+    }
+    if (XOR) {
+        std::vector<VertexPtr> xors;
+        for (int i = 0; i < i_bits; i++){
+            A = std::to_string(i);
+            VertexPtr xor_ALU = graph->addGate(Gates::GateXor, "xor_ALU" + A);
+            graph->addEdges({inputs_A[i], inputs_B[i]}, xor_ALU);
+            xors.push_back(xor_ALU);
+        }
+        outputs_gens.push_back(xors);
+    }
+    if (NOR) {
+        std::vector<VertexPtr> nors;
+        for (int i = 0; i < i_bits; i++){
+            A = std::to_string(i);
+            VertexPtr nor_ALU = graph->addGate(Gates::GateNor, "nor_ALU" + A);
+            graph->addEdges({inputs_A[i], inputs_B[i]}, nor_ALU);
+            nors.push_back(nor_ALU);
+        }
+        outputs_gens.push_back(nors);
+    }
+    if (XNOR) {
+        std::vector<VertexPtr> xnors;
+        for (int i = 0; i < i_bits; i++){
+            A = std::to_string(i);
+            VertexPtr xnor_ALU = graph->addGate(Gates::GateXnor, "xnor_ALU" + A);
+            graph->addEdges({inputs_A[i], inputs_B[i]}, xnor_ALU);
+            xnors.push_back(xnor_ALU);
+        }
+        outputs_gens.push_back(xnors);
     }
 
     VertexPtr add;
@@ -1727,7 +1780,7 @@ GraphPtr SimpleGenerators::generatorALU(
         output_sum = graph->addSubGraph(generatorSummator(i_bits, false, true, false),inputs);
         outputs_gens.push_back(output_sum);
 
-        add = graph->addInput("ij_p0");
+        add = graph->addInput("sum_p0");
         inputs.insert(inputs.begin() + 2, add);
 
         output_sum = graph->addSubGraph(generatorSummator(i_bits, true, true,false), inputs);
@@ -1745,7 +1798,7 @@ GraphPtr SimpleGenerators::generatorALU(
         output_sub = graph->addSubGraph(generatorSubtractor(i_bits, false, true, false),inputs);
         outputs_gens.push_back(output_sub);
 
-        add = graph->addInput("ij_z0");
+        add = graph->addInput("sub_z0");
         inputs.insert(inputs.begin() + 2, add);
 
         output_sub = graph->addSubGraph(generatorSubtractor(i_bits, true, true,false), inputs);
@@ -1763,7 +1816,7 @@ GraphPtr SimpleGenerators::generatorALU(
         output_nsum = graph->addSubGraph(generatorSummator(i_bits, false, true,true), inputs);
         outputs_gens.push_back(output_nsum);
 
-        add = graph->addInput("ij_p0");
+        add = graph->addInput("nsum_p0");
         inputs.insert(inputs.begin() + 2, add);
 
         output_nsum = graph->addSubGraph(generatorSummator(i_bits, true, true, true), inputs);
@@ -1781,7 +1834,7 @@ GraphPtr SimpleGenerators::generatorALU(
         output_nsub = graph->addSubGraph(generatorSubtractor(i_bits, false, true,true), inputs);
         outputs_gens.push_back(output_nsub);
 
-        add = graph->addInput("ij_z0");
+        add = graph->addInput("nsub_z0");
         inputs.insert(inputs.begin() + 2, add);
 
         output_nsub = graph->addSubGraph(generatorSubtractor(i_bits, true, true, true),inputs);
@@ -1808,13 +1861,12 @@ GraphPtr SimpleGenerators::generatorALU(
         outputs_gens.push_back(output_com);
     }
 
-    int count = 0;
-    for (int a = 0; a < outputs_gens.size(); a++){
-        for (int b = 0; b < outputs_gens[a].size(); b++){
-            std::cout << a << " " << b << ":" << outputs_gens[a][b]->getName() << std::endl;
-        }
-    }
-    std::cout << " " << std::endl;
+//    int count = 0;
+//    for (int a = 0; a < outputs_gens.size(); a++){
+//        for (int b = 0; b < outputs_gens[a].size(); b++){
+//            std::cout << a << " " << b << ":" << outputs_gens[a][b]->getName() << std::endl;
+//        }
+//    }
     int max = 0;
     for (int i = 0; i < outputs_gens.size(); i++){
         if (outputs_gens[i].size()>max){
@@ -1826,23 +1878,27 @@ GraphPtr SimpleGenerators::generatorALU(
             outputs_gens[i].resize(max, const_0);
         }
     }
-    for (int a = 0; a < outputs_gens.size(); a++){
-        for (int b = 0; b < outputs_gens[a].size(); b++){
-            std::cout << a << " " << b << ":" << outputs_gens[a][b]->getName() << std::endl;
-        }
-    }
+//    for (int a = 0; a < outputs_gens.size(); a++){
+//        for (int b = 0; b < outputs_gens[a].size(); b++){
+//            std::cout << a << " " << b << ":" << outputs_gens[a][b]->getName() << std::endl;
+//        }
+//    }
     std::vector<std::vector<VertexPtr>> inputs_alu = AuxMethods::transpose(outputs_gens);
-    std::cout << "1" << std::endl;
     std::vector<VertexPtr> outputs_alu;
 
+    for (int i = 0; i < inputs_alu.size(); i++){
+        for (int j = 0; j < k; j++)
+            inputs_alu[i].push_back(controls[j]);
+    }
+
     for (auto vertices : inputs_alu){
-        std::cout << vertices.size() << x << std::endl;
+        //std::cout << vertices.size() << x << std::endl;
         outputs_alu.push_back(graph->addSubGraph(generatorMultiplexer(x), vertices).back());
     }
 
-    for (int a = 0; a < outputs_alu.size(); a++){
-        VertexPtr out_ALU = graph->addOutput("out_ALU" + std::to_string(a));
-        graph->addEdge(outputs_alu[a], out_ALU);
+    for (int i = 0; i < outputs_alu.size(); i++){
+        VertexPtr out_ALU = graph->addOutput("out_ALU" + std::to_string(i));
+        graph->addEdge(outputs_alu[i], out_ALU);
     }
     //
     //
