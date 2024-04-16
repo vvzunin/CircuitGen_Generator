@@ -463,25 +463,6 @@ private:
     return val->first;
   }
 
-  GraphPtr ALU(
-      int  i_bits,
-      int  i_outbits,
-      bool ALL,
-      bool SUM,
-      bool SUB,
-      bool NSUM,
-      bool NSUB,
-      bool MULT,
-      bool COM,
-      bool AND,
-      bool NAND,
-      bool OR,
-      bool NOR,
-      bool XOR,
-      bool XNOR,
-      bool CNF
-  );
-
   std::pair<Gates, int>   getRandomElement(const GatesInfo& i_info);
   std::pair<Gates, int>   getRandomElement(u_int32_t i_gatesLimit);
 
