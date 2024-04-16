@@ -93,15 +93,6 @@ private:
 
   void generateDataBaseNumOperations(const GenerationParameters& i_param);
 
-  /// @brief generateDataBaseGenetic The method is designed to generate a
-  /// database using genetic algorithms
-  /// @param i_param An object of the Generation Parameters class containing
-  /// parameters for generating a database using genetic algorithms
-  /// */
-
-  void generateDataBaseRandLevelExperimental(const GenerationParameters& i_param
-  );
-  void generateDataBaseNumOperations(const GenerationParameters& i_param);
 
   /// @brief generateDataBaseGenetic The method is designed to generate a
   /// database using genetic algorithms
