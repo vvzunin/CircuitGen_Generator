@@ -1,7 +1,7 @@
 [
   {
     "seed": 20,
-    "dataset_id": "1",
+    "dataset_id": "2",
     "id": 0,
     "type_of_generation": "ALU",
     "min_in": 5,
@@ -33,7 +33,22 @@
     "XNOR": false,
     "CNF": false,
     "RNL": false,
-    "NUM_OP": false
+    "NUM_OP": true,
+
+    "min_level": 50,
+    "max_level": 50,
+    "min_elem": 50,
+    "max_elem": 50,
+
+    "leave_empty_out": true,
+    "num_and": 50,
+    "num_nand": 50,
+    "num_or": 50,
+    "num_not": 50,
+    "num_nor": 50,
+    "num_buf": 0,
+    "num_xor": 50,
+    "num_xnor": 50 
   }
 ]
  

@@ -137,6 +137,14 @@ public:
   bool getXOR() { return d_XOR; }
   bool getXNOR() { return d_XNOR; }
   bool getCNF() { return d_CNF; }
+  bool getRNL() { return d_RNL; }
+  bool getNUMOP() { return d_NUM_OP; }
+  int getminLevel() { return d_minLevel; }
+  int getmaxLevel() { return d_maxLevel; }
+  int getminElement() { return d_minElement; }
+  int getmaxElement() { return d_maxElement; }
+  std::map<Gates, int> getm() { return d_m ; }
+  bool getLeaveEmptyOut() { return d_LeaveEmptyOut ; }
   void setALL(bool i_ALL) { d_ALL = i_ALL; }
   void setSUM(bool i_SUM) { d_SUM = i_SUM; }
   void setSUB(bool i_SUB) { d_SUB = i_SUB; }
@@ -151,6 +159,14 @@ public:
   void setXOR(bool i_XOR) { d_XOR = i_XOR; }
   void setXNOR(bool i_XNOR) { d_XNOR = i_XNOR; }
   void setCNF(bool i_CNF) { d_CNF = i_CNF; }
+  void setRNL(int i_RNL) {d_RNL = i_RNL; }
+  void setNUMOP(int i_NUM_OP) {d_NUM_OP = i_NUM_OP ; }
+  void setminLevel(int i_minLevel) {d_minLevel = i_minLevel ; }
+  void setmaxLevel(int i_maxLevel) {d_maxLevel = i_maxLevel ; }
+  void setminElement(int i_minElement) {d_minElement = i_minElement ; }
+  void setmaxElement(int i_maxElement) {d_maxElement = i_maxElement ; }
+  void setm(std::map<Gates, int> i_m) {d_m = i_m ; }
+  void setLeaveEmptyOut(bool i_LeaveEmptyOut) {d_LeaveEmptyOut = i_LeaveEmptyOut ; }
 
 private:
   bool d_ALL  = false;
@@ -167,6 +183,14 @@ private:
   bool d_XOR  = false;
   bool d_XNOR = false;
   bool d_CNF  = false;
+  bool d_RNL = false;
+  bool d_NUM_OP = false;
+  int d_minLevel;
+  int d_maxLevel;
+  int d_minElement;
+  int d_maxElement;
+  std::map<Gates, int> d_m;
+  bool d_LeaveEmptyOut;
 };
 
 class GenerationParameters {
@@ -323,7 +347,15 @@ public:
       bool i_NOR,
       bool i_XOR,
       bool i_XNOR,
-      bool i_CNF
+      bool i_CNF,
+      bool i_RNL,
+      bool i_NUM_OP,
+      int i_minLevel,
+      int i_maxLevel,
+      int i_minElement,
+      int i_maxElement,
+      std::map<Gates, int> i_m,
+      bool i_LeaveEmptyOut
   ) {
     d_generatorALUParameters.setALL(i_ALL);
     d_generatorALUParameters.setSUM(i_SUM);
@@ -339,7 +371,17 @@ public:
     d_generatorALUParameters.setXOR(i_XOR);
     d_generatorALUParameters.setXNOR(i_XNOR);
     d_generatorALUParameters.setCNF(i_CNF);
+    d_generatorALUParameters.setRNL(i_RNL);
+    d_generatorALUParameters.setNUMOP(i_NUM_OP);
+    d_generatorALUParameters.setminLevel(i_minLevel);
+    d_generatorALUParameters.setmaxLevel(i_maxLevel);
+    d_generatorALUParameters.setminElement(i_minElement);
+    d_generatorALUParameters.setmaxElement(i_maxElement);
+    d_generatorALUParameters.setm(i_m);
+    d_generatorALUParameters.setLeaveEmptyOut(i_LeaveEmptyOut);
   }
+
+
   void setZhegalkin(bool i_zhegalkin) {
     d_ZhegalkinFromTruthTableParameters.setZhegalkin(i_zhegalkin);
   }

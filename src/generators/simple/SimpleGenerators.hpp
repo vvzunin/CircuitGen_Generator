@@ -404,7 +404,15 @@ public:
       bool NOR,
       bool XOR,
       bool XNOR,
-      bool CNF
+      bool CNF,
+      bool RNL,
+      bool NUM_OP,
+      int minLevel,
+      int maxLevel,
+      int minElement,
+      int maxElement,
+      std::map<Gates, int> m,
+      bool LeaveEmptyOut
   );
 
   /// @brief setGatesInputsInfo It is designed to set information about the
