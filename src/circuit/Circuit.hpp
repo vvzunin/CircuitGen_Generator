@@ -84,7 +84,11 @@ public:
   /// latest in the JSON file
   /// */
 
-  bool saveParameters(GraphPtr i_subGraph, std::ofstream &i_outputFile, bool i_isSubGraph = false);
+  bool saveParameters(
+      GraphPtr       i_subGraph,
+      std::ofstream& i_outputFile,
+      bool           i_isSubGraph = false
+  );
 
   /// @brief generate This generate method is designed to generate various
   /// representations of a digital circuit (for example, Verilog, RTL, Bench)

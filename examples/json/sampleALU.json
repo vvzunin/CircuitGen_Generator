@@ -1,13 +1,13 @@
 [
   {
     "seed": 20,
-    "dataset_id": "2",
+    "dataset_id": "1",
     "id": 0,
     "type_of_generation": "ALU",
-    "min_in": 9,
+    "min_in": 10,
     "max_in": 10,
-    "min_out": 8,
-    "max_out": 9,
+    "min_out": 10,
+    "max_out": 10,
     "repeat_n": 1,
     "multithread": true,
     "calculate_stats_abc": true,
@@ -33,7 +33,7 @@
     "XNOR": false,
     "CNF": false,
     "RNL": false,
-    "NUM_OP": true,
+    "NUM_OP": false,
 
     "min_level": 50,
     "max_level": 50,

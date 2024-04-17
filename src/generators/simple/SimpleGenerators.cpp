@@ -11,9 +11,9 @@
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/graph/OrientedGraph.hpp>
 #include <baseStructures/Parser.hpp>
-#include <math.h>
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <generators/Genetic/GeneticParameters.h>
+#include <math.h>
 
 int SimpleGenerators::getRangomAndNumber() {
   return d_gatesInputsInfo[Gates::GateAnd][d_randGenerator.getRandInt(
@@ -1405,47 +1405,47 @@ GraphPtr SimpleGenerators::generatorMultiplier(int i_bits) {
 }
 
 GraphPtr SimpleGenerators::generatorALU(
-    int  i_bits,
-    int  i_outbits,
-    bool ALL,
-    bool SUM,
-    bool SUB,
-    bool NSUM,
-    bool NSUB,
-    bool MULT,
-    bool COM,
-    bool AND,
-    bool NAND,
-    bool OR,
-    bool NOR,
-    bool XOR,
-    bool XNOR,
-    bool CNF,
-    bool RNL,
-    bool NUM_OP,
-    int minLevel,
-    int maxLevel,
-    int minElement,
-    int maxElement,
+    int                  i_bits,
+    int                  i_outbits,
+    bool                 ALL,
+    bool                 SUM,
+    bool                 SUB,
+    bool                 NSUM,
+    bool                 NSUB,
+    bool                 MULT,
+    bool                 COM,
+    bool                 AND,
+    bool                 NAND,
+    bool                 OR,
+    bool                 NOR,
+    bool                 XOR,
+    bool                 XNOR,
+    bool                 CNF,
+    bool                 RNL,
+    bool                 NUM_OP,
+    int                  minLevel,
+    int                  maxLevel,
+    int                  minElement,
+    int                  maxElement,
     std::map<Gates, int> m,
-    bool LeaveEmptyOut
+    bool                 LeaveEmptyOut
 ) {
   GraphPtr  graph(new OrientedGraph);
   VertexPtr const_0 = graph->addConst('0', "const_0");
   int       x       = 0;
   if (ALL) {
-    SUM  = true;
-    SUB  = true;
-    NSUM = true;
-    NSUB = true;
-    MULT = true;
-    COM  = true;
-    AND  = true;
-    OR   = true;
-    XOR  = true;
-    XNOR = true;
-    CNF  = true;
-    RNL = true;
+    SUM    = true;
+    SUB    = true;
+    NSUM   = true;
+    NSUB   = true;
+    MULT   = true;
+    COM    = true;
+    AND    = true;
+    OR     = true;
+    XOR    = true;
+    XNOR   = true;
+    CNF    = true;
+    RNL    = true;
     NUM_OP = true;
   }
 
@@ -1455,7 +1455,7 @@ GraphPtr SimpleGenerators::generatorALU(
     + (OR ? 1 : 0) + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0)
     + (CNF ? 3 : 0) + (RNL ? 1 : 0) + (NUM_OP ? 1 : 0);
 
-  // размерность АЛУ
+  // размерность АЛУ (сколько генераций мультиплексоров необходимо выполнить)
   int size = i_bits;
   size = MULT ? i_bits * 2 : (SUM || NSUM || SUB || NSUB ? i_bits + 1 : i_bits);
   if (CNF || RNL || NUM_OP) {
@@ -1694,36 +1694,43 @@ GraphPtr SimpleGenerators::generatorALU(
   if (CNF) {
     std::vector<VertexPtr> output_cnf;
 
-    TruthTable gen;
-    TruthTableParameters d_parameters(i_bits, i_outbits);
-    
+    TruthTable             gen;
+    TruthTableParameters   d_parameters(i_bits, i_outbits);
+
     gen.generateRandom(d_parameters);
 
     output_cnf = graph->addSubGraph(zhegalkinFromTruthTable(gen), inputs_A);
     outputs_gens.push_back(output_cnf);
-    
+
     output_cnf = graph->addSubGraph(cnfFromTruthTable(gen, true), inputs_A);
     outputs_gens.push_back(output_cnf);
 
     output_cnf = graph->addSubGraph(cnfFromTruthTable(gen, false), inputs_A);
-    outputs_gens.push_back(output_cnf); 
+    outputs_gens.push_back(output_cnf);
   }
 
   if (RNL) {
     std::vector<VertexPtr> output_rnl;
 
-    output_rnl = graph->addSubGraph(generatorRandLevel(minLevel, maxLevel, minElement, maxElement, i_bits, i_outbits), inputs_A);
+    output_rnl = graph->addSubGraph(
+        generatorRandLevel(
+            minLevel, maxLevel, minElement, maxElement, i_bits, i_outbits
+        ),
+        inputs_A
+    );
     outputs_gens.push_back(output_rnl);
-
   }
-  // when generating Num Operation, a segmentation fault occurs when the number of outputs becomes greater than the number of inputs (this applies to both the minimum and maximum).
-  ///TODO: need to find the cause of the outs issue
+  /// when generating Num Operation, a segmentation fault occurs
+  /// when the number of outputs becomes greater than the number of
+  /// inputs (this applies to both the min and max).
+  /// TODO: need to find the cause of the outs issue
   if (NUM_OP) {
     std::vector<VertexPtr> output_num_op;
 
-    output_num_op = graph->addSubGraph(generatorNumOperation(i_bits, i_outbits, m, LeaveEmptyOut), inputs_A);
+    output_num_op = graph->addSubGraph(
+        generatorNumOperation(i_bits, i_outbits, m, LeaveEmptyOut), inputs_A
+    );
     outputs_gens.push_back(output_num_op);
-
   }
 
   int max = 0;
