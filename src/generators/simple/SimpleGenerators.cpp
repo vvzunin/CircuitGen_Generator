@@ -1716,7 +1716,8 @@ GraphPtr SimpleGenerators::generatorALU(
     outputs_gens.push_back(output_rnl);
 
   }
-
+  // when generating Num Operation, a segmentation fault occurs when the number of outputs becomes greater than the number of inputs (this applies to both the minimum and maximum).
+  ///TODO: need to find the cause of the outs issue
   if (NUM_OP) {
     std::vector<VertexPtr> output_num_op;
 
