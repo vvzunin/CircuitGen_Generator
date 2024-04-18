@@ -25,13 +25,11 @@ TEST(TestSetNameAndGetName, ReturnCorrectName) {
   EXPECT_EQ(graph1.getName(), "graph_0");
   EXPECT_EQ(graph2.getName(), "graph_1");
 
-  // // Should be names of copying graph and new grah the same
-  // OrientedGraph graph3(graph1);
-  // EXPECT_EQ(graph3.getName(), "graph_2");
+  OrientedGraph graph3(graph1);
+  EXPECT_EQ(graph3.getName(), "graph_0");
 
-  // // Should be names of copying graph and new grah the same
-  // OrientedGraph graph4 = graph1;
-  // EXPECT_EQ(graph4.getName(), "graph_3");
+  OrientedGraph graph4 = graph1;
+  EXPECT_EQ(graph4.getName(), "graph_0");
 
   graph1.setName("Cahnged");
   EXPECT_EQ(graph1.getName(), "Cahnged");
