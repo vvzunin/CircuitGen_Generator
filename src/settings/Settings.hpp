@@ -6,12 +6,6 @@
 #include <utility>
 #include <vector>
 
-enum generationTypes {
-  none,
-  truthTableToGraphWithoutOptimization,
-  truthTableToGraphWithOptimization
-};
-
 enum LibrariesTypes {
   SKY_LIB
 };
@@ -32,7 +26,25 @@ enum Gates {
   GateXnor,
   GateNot,
   GateBuf,
-  GateDefault,
+  GateDefault
+};
+
+enum GenerationTypes {
+  FromRandomTruthTable,
+  RandLevel,
+  RandLevelExperimental,
+  NumOperation,
+  Genetic,
+  Summator,
+  Comparison,
+  Encoder,
+  Subtractor,
+  Multiplexer,
+  Demultiplexer,
+  Multiplier,
+  Decoder,
+  Parity,
+  ALU
 };
 
 /// class Settings
@@ -214,12 +226,13 @@ public:
   std::string getDatasetPath() const;
 
   /// @brief getGenerationMethodPrefix Gets the prefix of the generation
-  /// method by its name
-  /// The method takes the name of the generation method and returns the
-  /// corresponding prefix. If the passed name does not match any of the
-  /// known methods, an error message is displayed, and the default value
-  /// "ftt" is returned.
-  /// @param i_s A string containing the name of the generation method
+  /// method by its corresponding GenerationTypes
+  /// The method takes the GenerationTypes type variable of the generation
+  /// method and returns the corresponding prefix. If the passed GenerationTypes
+  /// does not match any of the known methods, std::out_of_range exception is
+  /// thrown.
+  /// @param i_methodType A GenerationTypes variable containing the name of the
+  /// generation method
   /// @return std::string Prefix of the generation method
   /// @code
   /// // Creating an instance of the Settings class or getting it from an
@@ -227,13 +240,14 @@ public:
   /// std::shared_ptr<Settings> settingsInstance =
   /// Settings::getInstance("/path/to/settings");
   /// // Get the prefix of the generation method by its name
-  /// std::string method = "RandLevel";
+  /// GenerationTypes method = GenerationTypes::RandLevel;
   /// std::string prefix = settingsInstance->getGenerationMethodPrefix(method);
   /// std::cout << "Prefix for method " << method << ": " << prefix <<
   /// std::endl;
   /// @end_code
 
-  std::string getGenerationMethodPrefix(const std::string& i_s) const;
+  std::string getGenerationMethodPrefix(const GenerationTypes i_methodType
+  ) const;
 
   /// @brief getLibraryPath Returns the path to the library
   /// @return std::string Library path
@@ -458,6 +472,23 @@ private:
       {VertexTypes::output, "output"},
       {VertexTypes::constant, "const"},
       {VertexTypes::gate, "g"}};
+
+  std::map<GenerationTypes, std::string> generationTypeToPrefix = {
+      {GenerationTypes::FromRandomTruthTable, "CCGRTT"},
+      {GenerationTypes::RandLevel, "CCGRCG"},
+      {GenerationTypes::RandLevelExperimental, "CCGRCGE"},
+      {GenerationTypes::NumOperation, "CCGRVC"},
+      {GenerationTypes::Genetic, "CCGGA"},
+      {GenerationTypes::Summator, "CCGTCSM"},
+      {GenerationTypes::Comparison, "CCGTCC"},
+      {GenerationTypes::Encoder, "CCGECR"},
+      {GenerationTypes::Subtractor, "CCGTCSB"},
+      {GenerationTypes::Parity, "CCGTCP"},
+      {GenerationTypes::Multiplier, "CCGTCM"},
+      {GenerationTypes::Demultiplexer, "CCGTCDMP"},
+      {GenerationTypes::Multiplexer, "CCGTCMP"},
+      {GenerationTypes::Decoder, "CCGDCR"},
+      {GenerationTypes::ALU, "CCGALU"}};
 
   std::map<int, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string>      d_operationsToName;

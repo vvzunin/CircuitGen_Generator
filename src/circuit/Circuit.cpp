@@ -112,8 +112,12 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   // iterate through outputs
   for (auto inp : outputs) {
     for (auto child : inp->getInConnections()) {
-      ++d_circuitParameters.d_numEdgesOfEachType[{
-          d_settings->parseGateToString(child->getGate()), "output"}];
+      if (auto ptr = child.lock()) {
+        ++d_circuitParameters.d_numEdgesOfEachType[{
+            d_settings->parseGateToString(ptr->getGate()), "output"}];
+      } else {
+        throw std::invalid_argument("Dead pointer!");
+      }
     }
   }
 
@@ -297,19 +301,18 @@ bool Circuit::generate(bool i_makeGraphML, bool i_pathExists) {
 
   // if (!i_pathExists)
   // d_path += d_circuitName;
-  // std::clog << "Writing verilog for " << d_circuitName << std::endl;
+  std::clog << "Writing verilog for " << d_circuitName << std::endl;
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
 
-  // std::clog << "Writing verilog ended for " << d_circuitName << std::endl;
+  std::clog << "Writing verilog ended for " << d_circuitName << std::endl;
 
-  // if (i_makeGraphML) {
-  //   std::clog << "Writing GraphML for " << d_circuitName << std::endl;
-  //   if (graphToGraphML(d_path, i_pathExists)) {
-  //     std::clog << "Writing GraphML ended for " << d_circuitName <<
-  //     std::endl;
-  //   }
-  // }
+  if (i_makeGraphML) {
+    std::clog << "Writing GraphML for " << d_circuitName << std::endl;
+    if (graphToGraphML(d_path, i_pathExists)) {
+      std::clog << "Writing GraphML ended for " << d_circuitName << std::endl;
+    }
+  }
 
   updateCircuitParameters(d_graph);
 

@@ -3,24 +3,6 @@
 #include <generators/GenerationParameters.hpp>
 #include <settings/Settings.hpp>
 
-enum GenerationTypes {
-  FromRandomTruthTable,
-  RandLevel,
-  RandLevelExperimental,
-  NumOperation,
-  Genetic,
-  Summator,
-  Comparison,
-  Encoder,
-  Parity,
-  Subtractor,
-  Multiplexer,
-  Demultiplexer,
-  Multiplier,
-  Decoder,
-  ALU
-};
-
 /// class DataBaseGeneratorParameters
 /// @param d_minInputs Minimum number of input signals for database generation
 /// @param d_maxInputs The maximum number of input signals to generate a
@@ -124,12 +106,11 @@ public:
 
   GenerationParameters getGenerationParameters() const;
 
-  /// @brief getGenerationTypeString This method returns a string representation
-  /// of the database generation type
-  /// @return String representation of the database generation type
+  /// @brief getGenerationType This method returns a GenerationTypes type
+  /// variable representing the database generation type
+  /// @return GenerationTypes of the database generation type
   /// */
-
-  std::string          getGenerationTypeString() const;
+  GenerationTypes      getGenerationType() const;
 
 private:
   int             d_minInputs       = 0;

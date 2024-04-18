@@ -19,6 +19,9 @@ FetchContent_MakeAvailable(googletest)
 include(../cmake/project-is-top-level.cmake)
 include(../cmake/folders.cmake)
 
+add_compile_options(-fsanitize=address)
+add_link_options(-fsanitize=address)
+
 # ---- Set sources ----
 foreach (src ${SOURCES})
   list(APPEND NEW_SOURCES "../${src}")
