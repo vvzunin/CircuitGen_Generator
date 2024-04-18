@@ -134,7 +134,6 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
     GraphPtr               i_subGraph,
     std::vector<VertexPtr> i_inputs
 ) {
-  std::clog << d_name << std::endl;
   std::vector<VertexPtr> iGraph =
       i_subGraph->getVerticesByType(VertexTypes::input);
 
