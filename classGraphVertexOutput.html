@@ -52,7 +52,6 @@
           GraphVertexOutput <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GraphVertex_8hpp.html">&lt;GraphVertex.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -66,6 +65,7 @@
             </li>
           </ul>
         </div>
+<p>class <a href="classGraphVertexOutput.html" class="m-doc">GraphVertexOutput</a> It is a vertex of the graph, specially designed for data output. It inherits from the <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> class and adds additional functionality related to data output</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
@@ -92,15 +92,32 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="a68af7628ac372af632581f3a489e870e">
-              <span class="m-doc-wrap-bumper">auto <a href="#a68af7628ac372af632581f3a489e870e" class="m-doc-self">updateValue</a>(</span><span class="m-doc-wrap">) -&gt; char <span class="m-label m-flat m-warning">virtual</span></span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a68af7628ac372af632581f3a489e870e" class="m-doc">updateValue</a>(</span><span class="m-doc-wrap">) -&gt; char <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd><span></span></dd>
+            <dd>updateValue updates the value of the current vertex of the graph based on the values of its incoming connections and the type of logical element (or &quot;gate&quot;). Depending on the type of gate and the values of the incoming links, the method uses the truth tables to perform the corresponding logical operation and sets a new value for the current vertex</dd>
             <dt id="aac5e4e2c2b661cf879acacc9d38d5b62">
               <span class="m-doc-wrap-bumper">void <a href="#aac5e4e2c2b661cf879acacc9d38d5b62" class="m-doc-self">updateLevel</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd><span></span></dd>
+            <dd>updateLevel updates the level of the current vertex in the graph based on the levels of its incoming connections. If a vertex has incoming connections, the method determines the highest level among all the vertices to which it is connected, and sets the level of the current vertex to one higher than the highest level</dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a68af7628ac372af632581f3a489e870e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">char GraphVertexOutput::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a68af7628ac372af632581f3a489e870e" class="m-doc-self">updateValue</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <p>updateValue updates the value of the current vertex of the graph based on the values of its incoming connections and the type of logical element (or &quot;gate&quot;). Depending on the type of gate and the values of the incoming links, the method uses the truth tables to perform the corresponding logical operation and sets a new value for the current vertex</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>A char that represents the new value of the current vertex after updating based on the values of its incoming connections and the type of logical element (or &quot;gate&quot;).</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

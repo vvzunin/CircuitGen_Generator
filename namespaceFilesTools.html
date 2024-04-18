@@ -52,7 +52,6 @@
           FilesTools <span class="m-thin">namespace</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="FilesTools_8hpp.html">&lt;src/additional/filesTools/FilesTools.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -64,26 +63,122 @@
             </li>
           </ul>
         </div>
+<p>namespace <a href="namespaceFilesTools.html" class="m-doc">FilesTools</a> The Files Tools namespace contains a set of functions designed to work with the file system *&zwj;/</p>
         <section id="func-members">
           <h2><a href="#func-members">Functions</a></h2>
           <dl class="m-doc">
-            <dt id="a092635d608973c4d6e39bac79929fafd">
-              <span class="m-doc-wrap-bumper">auto <a href="#a092635d608973c4d6e39bac79929fafd" class="m-doc-self">getDirectories</a>(</span><span class="m-doc-wrap">std::string&amp; path) -&gt; std::vector&lt;std::string&gt;</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a092635d608973c4d6e39bac79929fafd" class="m-doc">getDirectories</a>(</span><span class="m-doc-wrap">std::string&amp; path) -&gt; std::vector&lt;std::string&gt;</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a3134b6be482f310550b6799650dcbec2">
-              <span class="m-doc-wrap-bumper">auto <a href="#a3134b6be482f310550b6799650dcbec2" class="m-doc-self">isDirectoryExists</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path) -&gt; bool</span>
+            <dd>getDirectories This function takes the path to a directory and returns a string vector containing the names of all subdirectories of that directory.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3134b6be482f310550b6799650dcbec2" class="m-doc">isDirectoryExists</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path) -&gt; bool</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a592ca8e24c83ff3f1cfc892fa9f8a67d">
-              <span class="m-doc-wrap-bumper">auto <a href="#a592ca8e24c83ff3f1cfc892fa9f8a67d" class="m-doc-self">getParentDirOf</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path) -&gt; std::string</span>
+            <dd>isDirectoryExists This method checks if the specified directory exists</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a592ca8e24c83ff3f1cfc892fa9f8a67d" class="m-doc">getParentDirOf</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path) -&gt; std::string</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a18803aaa48e9809e4d35c0f6defc131a">
-              <span class="m-doc-wrap-bumper">auto <a href="#a18803aaa48e9809e4d35c0f6defc131a" class="m-doc-self">loadStringFile</a>(</span><span class="m-doc-wrap">const std::filesystem::path&amp; p) -&gt; std::string</span>
+            <dd>getParentDirOf This method returns the parent directory for the specified path</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a18803aaa48e9809e4d35c0f6defc131a" class="m-doc">loadStringFile</a>(</span><span class="m-doc-wrap">const std::filesystem::path&amp; p) -&gt; std::string</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>loadStringFile This method loads the contents of the file as a string</dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a092635d608973c4d6e39bac79929fafd"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::vector&lt;std::string&gt; FilesTools::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a092635d608973c4d6e39bac79929fafd" class="m-doc-self">getDirectories</a>(</span><span class="m-doc-wrap">std::string&amp; path)</span></span>
+            </h3>
+            <p>getDirectories This function takes the path to a directory and returns a string vector containing the names of all subdirectories of that directory.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">path</td>
+                  <td>The path to the directory for which you want to get a list of subdirectories</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>A string vector containing the names of all subdirectories in the specified directory *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a3134b6be482f310550b6799650dcbec2"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool FilesTools::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3134b6be482f310550b6799650dcbec2" class="m-doc-self">isDirectoryExists</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path)</span></span>
+            </h3>
+            <p>isDirectoryExists This method checks if the specified directory exists</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_path</td>
+                  <td>The path to the directory to be checked for existence</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>true if the directory exists and it is a directory; otherwise false. *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a592ca8e24c83ff3f1cfc892fa9f8a67d"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string FilesTools::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a592ca8e24c83ff3f1cfc892fa9f8a67d" class="m-doc-self">getParentDirOf</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path)</span></span>
+            </h3>
+            <p>getParentDirOf This method returns the parent directory for the specified path</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_path</td>
+                  <td>The path to the file or directory to get the parent directory for</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>A string representing the path to the parent directory of the specified path *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a18803aaa48e9809e4d35c0f6defc131a"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string FilesTools::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a18803aaa48e9809e4d35c0f6defc131a" class="m-doc-self">loadStringFile</a>(</span><span class="m-doc-wrap">const std::filesystem::path&amp; p)</span></span>
+            </h3>
+            <p>loadStringFile This method loads the contents of the file as a string</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">p</td>
+                  <td>The path to the file whose contents you want to download</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>A string containing the contents of the file* *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

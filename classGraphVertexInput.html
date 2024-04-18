@@ -52,7 +52,6 @@
           GraphVertexInput <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GraphVertex_8hpp.html">&lt;GraphVertex.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -67,6 +66,7 @@
             </li>
           </ul>
         </div>
+<p>class <a href="classGraphVertexInput.html" class="m-doc">GraphVertexInput</a> Represents a vertex in a directed graph that serves as an input vertex. It inherits from the <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> class and extends its functionality to work with input vertices</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
@@ -82,7 +82,7 @@
             <dt>
               class <a href="classGraphVertexConstant.html" class="m-doc">GraphVertexConstant</a>
             </dt>
-            <dd><span></span></dd>
+            <dd></dd>
           </dl>
         </section>
         <section id="typeless-methods">
@@ -108,15 +108,32 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="af27b2c9067b9861882544ff172036be3">
-              <span class="m-doc-wrap-bumper">auto <a href="#af27b2c9067b9861882544ff172036be3" class="m-doc-self">updateValue</a>(</span><span class="m-doc-wrap">) -&gt; char <span class="m-label m-flat m-warning">virtual</span></span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#af27b2c9067b9861882544ff172036be3" class="m-doc">updateValue</a>(</span><span class="m-doc-wrap">) -&gt; char <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd><span></span></dd>
+            <dd>updateValue A virtual function for updating the vertex value. The implementation is provided in derived classes</dd>
             <dt id="a2fc1f6fbcf74f8670531d00173bc363c">
               <span class="m-doc-wrap-bumper">void <a href="#a2fc1f6fbcf74f8670531d00173bc363c" class="m-doc-self">updateLevel</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd><span></span></dd>
+            <dd>updateLevel It is designed to update the level of the current vertex in a directed graph based on the levels of its input connections</dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="af27b2c9067b9861882544ff172036be3"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">char GraphVertexInput::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af27b2c9067b9861882544ff172036be3" class="m-doc-self">updateValue</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <p>updateValue A virtual function for updating the vertex value. The implementation is provided in derived classes</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>the value of the vertex after its update</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

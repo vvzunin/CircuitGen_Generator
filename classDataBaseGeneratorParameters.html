@@ -52,7 +52,6 @@
           DataBaseGeneratorParameters <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="DataBaseGeneratorParameters_8hpp.html">&lt;DataBaseGeneratorParameters.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -65,6 +64,7 @@
             </li>
           </ul>
         </div>
+<p>class <a href="classDataBaseGeneratorParameters.html" class="m-doc">DataBaseGeneratorParameters</a></p>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
@@ -83,51 +83,220 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="a788c2c94a21b5b09ff560918db6c1238">
-              <span class="m-doc-wrap-bumper">void <a href="#a788c2c94a21b5b09ff560918db6c1238" class="m-doc-self">setInputs</a>(</span><span class="m-doc-wrap">int i_inputs)</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a788c2c94a21b5b09ff560918db6c1238" class="m-doc">setInputs</a>(</span><span class="m-doc-wrap">int i_inputs)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="abd2fd5e6b525cb0c06ce83cc787cb72a">
-              <span class="m-doc-wrap-bumper">void <a href="#abd2fd5e6b525cb0c06ce83cc787cb72a" class="m-doc-self">setOutputs</a>(</span><span class="m-doc-wrap">int i_outputs)</span>
+            <dd>setInputs The method sets the number of input signals to generate the database</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#abd2fd5e6b525cb0c06ce83cc787cb72a" class="m-doc">setOutputs</a>(</span><span class="m-doc-wrap">int i_outputs)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a9844eb915d0dd36bbfdec3763c656cb5">
-              <span class="m-doc-wrap-bumper">void <a href="#a9844eb915d0dd36bbfdec3763c656cb5" class="m-doc-self">setIteration</a>(</span><span class="m-doc-wrap">int i_iteration)</span>
+            <dd>setOutputs The method sets the number of output signals to generate the database</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a9844eb915d0dd36bbfdec3763c656cb5" class="m-doc">setIteration</a>(</span><span class="m-doc-wrap">int i_iteration)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a46539c9183d979e5b3e71f5e142e444e">
-              <span class="m-doc-wrap-bumper">void <a href="#a46539c9183d979e5b3e71f5e142e444e" class="m-doc-self">setName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name)</span>
+            <dd>setIteration The method sets the iteration number for database generation</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a46539c9183d979e5b3e71f5e142e444e" class="m-doc">setName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="ae89b30e205ebee39e944ff5e8fa32b16">
-              <span class="m-doc-wrap-bumper">auto <a href="#ae89b30e205ebee39e944ff5e8fa32b16" class="m-doc-self">getMinInputs</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
+            <dd>setName The method is used to set the name for database generation</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae89b30e205ebee39e944ff5e8fa32b16" class="m-doc">getMinInputs</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a45b37cc153e8a07c3788b2d1065f90d5">
-              <span class="m-doc-wrap-bumper">auto <a href="#a45b37cc153e8a07c3788b2d1065f90d5" class="m-doc-self">getMaxInputs</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
+            <dd>getMinInputs This method is used to get the minimum number of inputs set in the database generation parameters.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a45b37cc153e8a07c3788b2d1065f90d5" class="m-doc">getMaxInputs</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="ade71d00b271ceb1cff09ae3340044011">
-              <span class="m-doc-wrap-bumper">auto <a href="#ade71d00b271ceb1cff09ae3340044011" class="m-doc-self">getMinOutputs</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
+            <dd>getMaxInputs This method is used to get the maximum number of inputs set in the database generation parameters.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ade71d00b271ceb1cff09ae3340044011" class="m-doc">getMinOutputs</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a985864c3103c55fbd282f9aee04e5c04">
-              <span class="m-doc-wrap-bumper">auto <a href="#a985864c3103c55fbd282f9aee04e5c04" class="m-doc-self">getMaxOutputs</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
+            <dd>getMinOutputs This method is used to get the minimum number of outputs set in the database generation parameters.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a985864c3103c55fbd282f9aee04e5c04" class="m-doc">getMaxOutputs</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a1355f77edbb89c99465e7e297334d958">
-              <span class="m-doc-wrap-bumper">auto <a href="#a1355f77edbb89c99465e7e297334d958" class="m-doc-self">getEachIteration</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
+            <dd>getMaxOutputs This one is used to get the maximum number of outputs set in the database generation parameters.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1355f77edbb89c99465e7e297334d958" class="m-doc">getEachIteration</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a81be8dde9601f9d206e3b9096213cf1a">
-              <span class="m-doc-wrap-bumper">auto <a href="#a81be8dde9601f9d206e3b9096213cf1a" class="m-doc-self">getGenerationParameters</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGenerationParameters.html" class="m-doc">GenerationParameters</a></span>
+            <dd>getEachIteration This method is used to get the number of iterations that need to be performed for each combination of inputs and outputs when generating a database.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a81be8dde9601f9d206e3b9096213cf1a" class="m-doc">getGenerationParameters</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGenerationParameters.html" class="m-doc">GenerationParameters</a></span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="ae625717f1b80bd951b3ed965ed1e3d1e">
-              <span class="m-doc-wrap-bumper">auto <a href="#ae625717f1b80bd951b3ed965ed1e3d1e" class="m-doc-self">getGenerationTypeString</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
+            <dd>getGenerationParameters This method is used to get the database generation parameters</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae625717f1b80bd951b3ed965ed1e3d1e" class="m-doc">getGenerationTypeString</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>getGenerationTypeString This method returns a string representation of the database generation type</dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a788c2c94a21b5b09ff560918db6c1238"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a788c2c94a21b5b09ff560918db6c1238" class="m-doc-self">setInputs</a>(</span><span class="m-doc-wrap">int i_inputs)</span></span>
+            </h3>
+            <p>setInputs The method sets the number of input signals to generate the database</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_inputs</td>
+                  <td>An integer value representing the number of input signals that must be set to generate the database *&zwj;/</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="abd2fd5e6b525cb0c06ce83cc787cb72a"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abd2fd5e6b525cb0c06ce83cc787cb72a" class="m-doc-self">setOutputs</a>(</span><span class="m-doc-wrap">int i_outputs)</span></span>
+            </h3>
+            <p>setOutputs The method sets the number of output signals to generate the database</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_outputs</td>
+                  <td>An integer value representing the number of output signals that must be set to generate the database *&zwj;/</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a9844eb915d0dd36bbfdec3763c656cb5"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9844eb915d0dd36bbfdec3763c656cb5" class="m-doc-self">setIteration</a>(</span><span class="m-doc-wrap">int i_iteration)</span></span>
+            </h3>
+            <p>setIteration The method sets the iteration number for database generation</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_iteration</td>
+                  <td>An integer value representing the iteration number that must be set to generate the database *&zwj;/</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a46539c9183d979e5b3e71f5e142e444e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a46539c9183d979e5b3e71f5e142e444e" class="m-doc-self">setName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name)</span></span>
+            </h3>
+            <p>setName The method is used to set the name for database generation</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_name</td>
+                  <td>A string containing the name to be set to generate the database *&zwj;/</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ae89b30e205ebee39e944ff5e8fa32b16"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae89b30e205ebee39e944ff5e8fa32b16" class="m-doc-self">getMinInputs</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getMinInputs This method is used to get the minimum number of inputs set in the database generation parameters.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Minimum number of inputs for database generation *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a45b37cc153e8a07c3788b2d1065f90d5"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a45b37cc153e8a07c3788b2d1065f90d5" class="m-doc-self">getMaxInputs</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getMaxInputs This method is used to get the maximum number of inputs set in the database generation parameters.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Maximum number of inputs for database generation *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ade71d00b271ceb1cff09ae3340044011"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ade71d00b271ceb1cff09ae3340044011" class="m-doc-self">getMinOutputs</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getMinOutputs This method is used to get the minimum number of outputs set in the database generation parameters.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The minimum number of outputs for database generation. *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a985864c3103c55fbd282f9aee04e5c04"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a985864c3103c55fbd282f9aee04e5c04" class="m-doc-self">getMaxOutputs</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getMaxOutputs This one is used to get the maximum number of outputs set in the database generation parameters.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Maximum number of outputs for database generation *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a1355f77edbb89c99465e7e297334d958"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1355f77edbb89c99465e7e297334d958" class="m-doc-self">getEachIteration</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getEachIteration This method is used to get the number of iterations that need to be performed for each combination of inputs and outputs when generating a database.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The number of iterations for each combination of inputs and outputs during database generation. *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a81be8dde9601f9d206e3b9096213cf1a"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classGenerationParameters.html" class="m-doc">GenerationParameters</a> DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a81be8dde9601f9d206e3b9096213cf1a" class="m-doc-self">getGenerationParameters</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getGenerationParameters This method is used to get the database generation parameters</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Database Generation Parameters *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ae625717f1b80bd951b3ed965ed1e3d1e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string DataBaseGeneratorParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae625717f1b80bd951b3ed965ed1e3d1e" class="m-doc-self">getGenerationTypeString</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getGenerationTypeString This method returns a string representation of the database generation type</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>String representation of the database generation type *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

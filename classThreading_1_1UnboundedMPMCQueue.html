@@ -53,6 +53,17 @@
           <div class="m-doc-template">template&lt;typename T&gt;</div>
           <span class="m-breadcrumb"><a href="namespaceThreading.html">Threading</a>::<wbr/></span>UnboundedMPMCQueue <span class="m-thin">class</span>
         </h1>
+        <table class="m-table m-fullwidth m-flat">
+          <thead>
+            <tr><th colspan="2">Template parameters</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 1%">T</td>
+              <td>The type of items stored in the queue</td>
+            </tr>
+          </tbody>
+        </table>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -65,7 +76,7 @@
             </li>
           </ul>
         </div>
-<p>Allows to add tasks and blocking wait for element appearance for multiple writers (producers) and multiple readers (consumers). User must guarantee no adding in the closed queue, else runtime error exception will be thrown.</p>
+<p>Allows to add tasks and blocking wait for element appearance for multiple writers (producers) and multiple readers (consumers). User must guarantee no adding in the closed queue, else runtime error exception will be thrown. class <a href="classThreading_1_1UnboundedMPMCQueue.html" class="m-doc">UnboundedMPMCQueue</a> A thread-safe unbounded multiple producer multiple consumer (MPMC) queue</p>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
@@ -94,12 +105,12 @@
               <span class="m-doc-wrap-bumper">auto <a href="#aae48c2b41f3243bd9e53209a65b8d610" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classThreading_1_1UnboundedMPMCQueue.html" class="m-doc">UnboundedMPMCQueue</a>&amp;&amp; other) -&gt; <a href="classThreading_1_1UnboundedMPMCQueue.html" class="m-doc">UnboundedMPMCQueue</a>&amp; <span class="m-label m-flat m-danger">deleted</span></span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a32414b07fa0442d4e1a60b405241a3da">
-              <span class="m-doc-wrap-bumper">void <a href="#a32414b07fa0442d4e1a60b405241a3da" class="m-doc-self">add</a>(</span><span class="m-doc-wrap">T item)</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a32414b07fa0442d4e1a60b405241a3da" class="m-doc">add</a>(</span><span class="m-doc-wrap">T item)</span>
             </dt>
             <dd>Add task.</dd>
-            <dt id="a210a8e95d243cc20f463a97fc7f97eb1">
-              <span class="m-doc-wrap-bumper">void <a href="#a210a8e95d243cc20f463a97fc7f97eb1" class="m-doc-self">close</a>(</span><span class="m-doc-wrap">)</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a210a8e95d243cc20f463a97fc7f97eb1" class="m-doc">close</a>(</span><span class="m-doc-wrap">)</span>
             </dt>
             <dd>Close queue. All waiting threads will receive nullopt.</dd>
             <dt>
@@ -110,6 +121,52 @@
         </section>
         <section>
           <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a32414b07fa0442d4e1a60b405241a3da"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">void Threading::<wbr />UnboundedMPMCQueue&lt;T&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a32414b07fa0442d4e1a60b405241a3da" class="m-doc-self">add</a>(</span><span class="m-doc-wrap">T item)</span></span>
+            </h3>
+            <p>Add task.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">item</td>
+                  <td><p>the item to be added to the queue</p><pre class="m-code"><span class="c1">// Creating a queue for integers.</span>
+<span class="n">Threading</span><span class="o">::</span><span class="n">UnboundedMPMCQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">queue</span><span class="p">;</span>
+<span class="c1">// Adding items to the queue</span>
+<span class="n">queue</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="n">queue</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">17</span><span class="p">);</span>
+<span class="n">queue</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span></pre></td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>std::runtime_error.</td>
+                  <td>It is thrown out if an attempt is made to add an item to a closed queue</td>
+                </tr>
+              </tbody>
+            </table>
+<p>add designed to add an item to the queue</p>
+          </div></section>
+          <section class="m-doc-details" id="a210a8e95d243cc20f463a97fc7f97eb1"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename T&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">void Threading::<wbr />UnboundedMPMCQueue&lt;T&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a210a8e95d243cc20f463a97fc7f97eb1" class="m-doc-self">close</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <p>Close queue. All waiting threads will receive nullopt.</p>
+<p>close it is used to close the queue Example usage:</p><pre class="m-code"><span class="c1">// Closing the queue</span>
+<span class="n">queue</span><span class="p">.</span><span class="n">close</span><span class="p">()</span></pre>
+          </div></section>
           <section class="m-doc-details" id="ad2618d4603cbf43abb9f1d823bed6aba"><div>
             <h3>
               <div class="m-doc-template">
