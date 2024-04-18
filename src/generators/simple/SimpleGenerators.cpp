@@ -1755,9 +1755,11 @@ GraphPtr SimpleGenerators::generatorALU(
     );
   }
 
+  GraphPtr mult = generatorMultiplexer(x);
+
   for (auto vertices : inputs_alu) {
     outputs_alu.push_back(
-        graph->addSubGraph(generatorMultiplexer(x), vertices).back()
+        graph->addSubGraph(mult, vertices).back()
     );
   }
 

@@ -13,9 +13,11 @@
 #include <baseStructures/graph/GraphVertex.hpp>
 #include <baseStructures/graph/GraphVertexBase.hpp>
 
-uint_fast64_t OrientedGraph::d_countGraph = 0;
+uint_fast64_t OrientedGraph::d_countGraph            = 0;
+size_t        OrientedGraph::d_countNewGraphInstance = 0;
 
 OrientedGraph::OrientedGraph(const std::string& i_name) {
+  d_currentInstance = d_countNewGraphInstance++;
   // this_ptr.reset(this);
   if (i_name == "")
     d_name = "graph_" + std::to_string(d_countGraph++);
@@ -132,6 +134,7 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
     GraphPtr               i_subGraph,
     std::vector<VertexPtr> i_inputs
 ) {
+  std::clog << d_name << std::endl;
   std::vector<VertexPtr> iGraph =
       i_subGraph->getVerticesByType(VertexTypes::input);
 
@@ -155,8 +158,8 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
   }
 
   // here we save our inputs and outputs to instance number
-  i_subGraph->d_subGraphsInputsPtr[d_name].push_back(i_inputs);
-  i_subGraph->d_subGraphsOutputsPtr[d_name].push_back(outputs);
+  i_subGraph->d_subGraphsInputsPtr[d_currentInstance].push_back(i_inputs);
+  i_subGraph->d_subGraphsOutputsPtr[d_currentInstance].push_back(outputs);
 
   // here we use i_subGraph like an instance of BasicType,
   // and we call it's toVerilog, having in multiple instance
@@ -352,19 +355,22 @@ void OrientedGraph::setCurrentParent(GraphPtr i_parent) {
 }
 
 void OrientedGraph::resetCounters(GraphPtr i_where) {
-  d_graphInstanceToVerilogCount[i_where->getName()] = 0;
+  d_graphInstanceToVerilogCount[i_where->d_currentInstance] = 0;
 }
 
 std::string OrientedGraph::getGraphInstance() {
   uint64_t* verilogCount =
-      &d_graphInstanceToVerilogCount[d_currentParentGraph.lock()->getName()];
+      &d_graphInstanceToVerilogCount[d_currentParentGraph.lock()
+                                         ->d_currentInstance];
   uint64_t allCount =
-      d_subGraphsInputsPtr[d_currentParentGraph.lock()->getName()].size();
+      d_subGraphsInputsPtr[d_currentParentGraph.lock()->d_currentInstance].size(
+      );
 
   if (*verilogCount == allCount) {
     throw std::out_of_range(
-        "Incorrect getInstance call. All modules (" + std::to_string(allCount)
-        + ") were already parsed"
+        "Incorrect getInstance call. All modules of "
+        + d_currentParentGraph.lock()->getName() + " ("
+        + std::to_string(allCount) + ") were already parsed"
     );
   }
 
@@ -374,9 +380,10 @@ std::string OrientedGraph::getGraphInstance() {
                          + std::to_string(*verilogCount) + " (\n";
 
   for (size_t i = 0; i < d_vertexes[VertexTypes::input].size(); ++i) {
-    auto inp = d_subGraphsInputsPtr[d_currentParentGraph.lock()->getName()]
-                                   [*verilogCount][i];
-    std::string inp_name = d_vertexes[VertexTypes::input][i]->getName();
+    auto inp =
+        d_subGraphsInputsPtr[d_currentParentGraph.lock()->d_currentInstance]
+                            [*verilogCount][i];
+    std::string inp_name  = d_vertexes[VertexTypes::input][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + inp_name + "( ";
     module_ver           += inp->getName() + " ),\n";
@@ -384,22 +391,23 @@ std::string OrientedGraph::getGraphInstance() {
 
   for (size_t i = 0; i < d_vertexes[VertexTypes::output].size() - 1; ++i) {
     VertexPtr out =
-        d_subGraphsOutputsPtr[d_currentParentGraph.lock()->getName()]
+        d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_currentInstance]
                              [*verilogCount][i];
-    std::string out_name = d_vertexes[VertexTypes::output][i]->getName();
+    std::string out_name  = d_vertexes[VertexTypes::output][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
     module_ver           += out->getName() + " ),\n";
   }
 
-  std::string out_name = d_vertexes[VertexTypes::output].back()->getName();
+  std::string out_name  = d_vertexes[VertexTypes::output].back()->getName();
 
   module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
-  module_ver += d_subGraphsOutputsPtr[d_currentParentGraph.lock()->getName()]
-                                     [*verilogCount]
-                                         .back()
-                                         ->getName()
-              + " )\n";
+  module_ver +=
+      d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_currentInstance]
+                           [*verilogCount]
+                               .back()
+                               ->getName()
+      + " )\n";
   module_ver += verilogTab + "); \n";
 
   ++(*verilogCount);

@@ -18,6 +18,8 @@
     "create_id_directories": true,
     "library_name": "sky130",
 
+    "CNFF": true,
+
     "ALL": false,
     "SUM": false,
     "SUB": false,
