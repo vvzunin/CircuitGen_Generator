@@ -7,7 +7,7 @@ PROJECT_NAME = "@PROJECT_NAME@"
 PROJECT_NUMBER = "@PROJECT_VERSION@"
 
 # Add sources
-INPUT = "@PROJECT_SOURCE_DIR@/README.md" "@PROJECT_SOURCE_DIR@/include" "@PROJECT_SOURCE_DIR@/src" "@PROJECT_SOURCE_DIR@/docs/pages"
+INPUT = "@PROJECT_SOURCE_DIR@/*.md" "@PROJECT_SOURCE_DIR@/include" "@PROJECT_SOURCE_DIR@/src" "@PROJECT_SOURCE_DIR@/docs/pages"
 EXTRACT_ALL = YES
 RECURSIVE = YES
 OUTPUT_DIRECTORY = "@DOXYGEN_OUTPUT_DIRECTORY@"
@@ -23,6 +23,7 @@ STRIP_FROM_INC_PATH =
 # We use m.css to generate the html documentation, so we only need XML output
 GENERATE_XML = YES
 GENERATE_HTML = NO
+GENERATE_TREEVIEW = YES
 GENERATE_LATEX = NO
 XML_PROGRAMLISTING = NO
 CREATE_SUBDIRS = NO
@@ -30,3 +31,27 @@ CREATE_SUBDIRS = NO
 # Include all directories, files and namespaces in the documentation
 # Disable to include only explicitly documented objects
 M_SHOW_UNDOCUMENTED = YES
+
+
+# This tag implements a quasi-intelligent brief description abbreviator that is
+# used to form the text in various listings. Each string in this list, if found
+# as the leading text of the brief description, will be stripped from the text
+# and the result, after processing the whole list, is used as the annotated
+# text. Otherwise, the brief description is used as-is. If left blank, the
+# following values are used ($name is automatically replaced with the name of
+# the entity):The $name class, The $name widget, The $name file, is, provides,
+# specifies, contains, represents, a, an and the.
+
+ABBREVIATE_BRIEF       = "The $name class" \
+                         "The $name widget" \
+                         "The $name file" \
+                         is \
+                         provides \
+                         specifies \
+                         contains \
+                         represents \
+                         a \
+                         an \
+                         the
+
+TAB_SIZE               = 2

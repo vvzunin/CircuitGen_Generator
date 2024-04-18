@@ -58,23 +58,6 @@ GenerationParameters DataBaseGeneratorParameters::getGenerationParameters(
   return d_generationParameters;
 }
 
-std::string DataBaseGeneratorParameters::getGenerationTypeString() const {
-  if (d_generationTypes == GenerationTypes::FromRandomTruthTable)
-    return "FromRandomTruthTable";
-  if (d_generationTypes == GenerationTypes::RandLevel)
-    return "RandLevel";
-  if (d_generationTypes == GenerationTypes::RandLevelExperimental)
-    return "RandLevelExperimental";
-  if (d_generationTypes == GenerationTypes::NumOperation)
-    return "NumOperation";
-  // if (d_generationTypes == GenerationTypes::Genetic)
-  //     return "Genetic";
-  if (d_generationTypes == GenerationTypes::Summator)
-    return "Summator";
-  if (d_generationTypes == GenerationTypes::Comparison)
-    return "Comparison";
-  if (d_generationTypes == GenerationTypes::Encoder)
-    return "Encoder";
-
-  return "Undefined";
+GenerationTypes DataBaseGeneratorParameters::getGenerationType() const {
+  return d_generationTypes;
 }

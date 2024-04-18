@@ -4,6 +4,7 @@
 #include <vector>
 
 #include <additional/RandomGeneratorWithSeed.hpp>
+#include <generators/Genetic/GeneticParameters.h>
 #include <settings/Settings.hpp>
 
 class TruthTable {
@@ -11,7 +12,7 @@ public:
   TruthTable();
 
   TruthTable(int seed);
-  TruthTable(const TruthTable& other)            = default;
+  // TruthTable(const TruthTable& other)            = default;
   TruthTable& operator=(const TruthTable& other) = default;
   TruthTable(TruthTable&& other)                 = default;
   TruthTable& operator=(TruthTable&& other)      = default;
@@ -27,7 +28,7 @@ public:
   TruthTable(int i_input, int i_output, double i_p = 0.5);
 
   void                           setSeed(int i_seed);
-  // void generateRandom(TruthTableParameters i_gp) override;
+  void                           generateRandom(TruthTableParameters i_gp);
   void                           generateTable(double i_p = 0);
   int                            getInput() const;
   int                            getOutput() const;
@@ -35,7 +36,6 @@ public:
   std::vector<std::vector<bool>> getOutTable() const;
   bool                           getOutTable(int i, int j) const;
   std::vector<std::vector<bool>> convToBinary() const;
-  // TODO: Добавить
   void                           printTable() const;
   bool                           operator==(const TruthTable& r) const;
 
