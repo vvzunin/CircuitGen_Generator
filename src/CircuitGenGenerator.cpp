@@ -176,11 +176,6 @@ void runGenerationFromJson(std::string json_path) {
         minInputs,
         minOutputs,
         repeats,
-        libraryName,
-        calculateStatsAbc,
-        makeOptimizedFiles,
-        makeFirrtl,
-        makeBench,
         makeGraphML
     );
 

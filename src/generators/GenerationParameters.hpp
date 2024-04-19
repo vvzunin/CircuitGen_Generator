@@ -177,11 +177,6 @@ public:
       int                i_inputs,
       int                i_outputs,
       int                i_iteration,
-      std::string        i_libraryName        = "",
-      bool               i_calculateStatsAbc  = false,
-      bool               i_makeOptimizedFiles = false,
-      bool               i_makeFirrtl         = false,
-      bool               i_makeBench          = false,
       bool               i_makeGraphML        = false
   ) :
     d_name(i_name),
@@ -189,11 +184,6 @@ public:
     d_inputs(i_inputs),
     d_outputs(i_outputs),
     d_iteration(i_iteration),
-    d_libraryName(i_libraryName),
-    d_calculateStatsAbc(i_calculateStatsAbc),
-    d_makeOptimizedFiles(i_makeOptimizedFiles),
-    d_makeFirrtl(i_makeFirrtl),
-    d_makeBench(i_makeBench),
     d_makeGraphML(i_makeGraphML) {};
 
   std::string getName() const { return d_name; }
