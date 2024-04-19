@@ -192,12 +192,6 @@ public:
 
   std::string getRequestId() const { return d_requestId; }
 
-  std::string getLibraryName() const { return d_libraryName; }
-
-  void        setLibraryName(std::string i_libraryName) {
-    d_libraryName = i_libraryName;
-  }
-
   int  getInputs() const { return d_inputs; }
 
   void setInputs(int i_inputs) { d_inputs = i_inputs; }
@@ -388,10 +382,6 @@ private:
   int                                     d_inputs    = 0;
   int                                     d_outputs   = 0;
   int                                     d_iteration = 0;
-  bool                                    d_calculateStatsAbc;
-  bool                                    d_makeOptimizedFiles;
-  bool                                    d_makeFirrtl;
-  bool                                    d_makeBench;
   bool                                    d_makeGraphML;
   std::map<std::string, std::vector<int>> d_gatesInputsInfo;
 
