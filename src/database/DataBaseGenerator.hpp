@@ -111,6 +111,6 @@ private:
   void generateDataBaseDecoder(const GenerationParameters& i_param);
   void generateDataBaseALU(const GenerationParameters& i_param);
   std::function<void(const GenerationParameters&)> getGenerateMethod(
-      const std::string& i_methodName
+      const GenerationTypes i_methodType
   );
 };

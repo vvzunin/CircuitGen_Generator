@@ -48,39 +48,39 @@ void Circuit::computeHash() {
   }
 }
 
-void Circuit::updateCircuitParameters() {
-  if (d_graph->isEmptyFull())
+void Circuit::updateCircuitParameters(GraphPtr i_graph) {
+  if (i_graph->isEmptyFull())
     return;
 
-  d_graph->updateLevels();
+  i_graph->updateLevels();
   // std::clog << "Update ended, norm. calc started" << std::endl;
 
-  d_circuitParameters.d_name = d_circuitName;
+  d_circuitParameters.d_name = i_graph->getName();
 
   std::vector<std::shared_ptr<GraphVertexBase>> inputs =
-      d_graph->getVerticesByType(VertexTypes::input);
+      i_graph->getVerticesByType(VertexTypes::input);
   std::vector<std::shared_ptr<GraphVertexBase>> constants =
-      d_graph->getVerticesByType(VertexTypes::constant);
+      i_graph->getVerticesByType(VertexTypes::constant);
   std::vector<std::shared_ptr<GraphVertexBase>> outputs =
-      d_graph->getVerticesByType(VertexTypes::output);
+      i_graph->getVerticesByType(VertexTypes::output);
 
   d_circuitParameters.d_numInputs    = inputs.size();
   d_circuitParameters.d_numConstants = constants.size();
   d_circuitParameters.d_numOutputs   = outputs.size();
 
-  d_circuitParameters.d_maxLevel     = d_graph->getMaxLevel();
+  d_circuitParameters.d_maxLevel     = i_graph->getMaxLevel();
 
-  d_circuitParameters.d_numEdges     = d_graph->getEdgesCount();
+  d_circuitParameters.d_numEdges     = i_graph->getEdgesCount();
   // TODO: Добавить корректную реализацию
-  // for (const auto &row : d_graph->getAdjacencyMatrixReference())
+  // for (const auto &row : i_graph->getAdjacencyMatrixReference())
   //     for (auto el : row)
   //         if (el)
   //             d_circuitParameters.d_numEdges++;
 
   d_circuitParameters.d_numElementsOfEachType.clear();
-  // const std::vector<GraphVertex> &gv = d_graph->getVerticesReference();
+  // const std::vector<GraphVertex> &gv = i_graph->getVerticesReference();
 
-  for (auto [key, value] : d_graph->getGatesCount()) {
+  for (auto [key, value] : i_graph->getGatesCount()) {
     d_circuitParameters
         .d_numElementsOfEachType[d_settings->parseGateToString(key)] = value;
     d_circuitParameters.d_numGates                                   += value;
@@ -93,7 +93,7 @@ void Circuit::updateCircuitParameters() {
   d_circuitParameters.d_numEdgesOfEachType.clear();
 
   // calc gate-gate
-  for (auto [from, sub] : d_graph->getEdgesGatesCount()) {
+  for (auto [from, sub] : i_graph->getEdgesGatesCount()) {
     for (auto [to, count] : sub) {
       d_circuitParameters.d_numEdgesOfEachType[{
           d_settings->parseGateToString(from),
@@ -112,8 +112,12 @@ void Circuit::updateCircuitParameters() {
   // iterate through outputs
   for (auto inp : outputs) {
     for (auto child : inp->getInConnections()) {
-      ++d_circuitParameters.d_numEdgesOfEachType[{
-          d_settings->parseGateToString(child->getGate()), "output"}];
+      if (auto ptr = child.lock()) {
+        ++d_circuitParameters.d_numEdgesOfEachType[{
+            d_settings->parseGateToString(ptr->getGate()), "output"}];
+      } else {
+        throw std::invalid_argument("Dead pointer!");
+      }
     }
   }
 
@@ -125,8 +129,7 @@ void Circuit::updateCircuitParameters() {
     }
   }
 
-  d_circuitParameters.d_hashCode = d_graph->calculateHash();
-  std::clog << inputs.size();
+  d_circuitParameters.d_hashCode = i_graph->calculateHash();
   // computeHash();
 }
 
@@ -172,84 +175,99 @@ bool Circuit::graphToGraphML(const std::string& i_path, bool i_pathExists) {
   return true;
 }
 
-bool Circuit::saveParameters(bool i_pathExists) const {
-  if (true) { /*
-                 if
-                 (!FilesTools::isDirectoryExists(std::filesystem::current_path().string()
-                 + d_path)) // TODO: make function isDirectory exists
-                 {
-                     //std::filesystem::create_directory(d_path);
-                 }
-             */
-  }
-
-  std::string   filename = d_path + "/" + d_circuitName + ".json";
-
-  // if (std::filesystem::exists(filename))
-  //     std::remove(filename.c_str());
-
-  std::ofstream outputFile(filename);
-
-  if (!outputFile)
+bool Circuit::saveParameters(
+    GraphPtr       i_graph,
+    std::ofstream& i_outputFile,
+    bool           i_isSubGraph
+) {
+  std::string tab = i_isSubGraph ? "\t\t\t" : "\t";
+  if (!i_outputFile)
     return false;
 
-  outputFile << "{" << std::endl;
+  if (i_isSubGraph) {
+    i_outputFile << "\t\t" << '"' << i_graph->getName() << '"' << " : ";
+  }
 
-  outputFile << "\t\"name\": \"" << d_circuitParameters.d_name << "\","
-             << std::endl;
-  outputFile << "\t\"numInputs\": \"" << d_circuitParameters.d_numInputs
-             << "\"," << std::endl;
-  outputFile << "\t\"numConstants\": \"" << d_circuitParameters.d_numConstants
-             << "\"," << std::endl;
-  outputFile << "\t\"numOutputs\": \"" << d_circuitParameters.d_numOutputs
-             << "\"," << std::endl;
-  outputFile << "\t\"maxLevel\": \"" << d_circuitParameters.d_maxLevel << "\","
-             << std::endl;
-  outputFile << "\t\"numEdges\": \"" << d_circuitParameters.d_numEdges << "\","
-             << std::endl;
-  outputFile << "\t\"numGates\": \"" << d_circuitParameters.d_numGates << "\","
-             << std::endl;
-  outputFile << "\t\"hash_code\": \"" << d_circuitParameters.d_hashCode << "\","
-             << std::endl;
+  i_outputFile << "{" << std::endl;
 
-  outputFile << "\t\"numElementsOfEachType\": {" << std::endl;
+  i_outputFile << tab << "\"name\": \"" << d_circuitParameters.d_name << "\","
+               << std::endl;
+  i_outputFile << tab << "\"numInputs\": \"" << d_circuitParameters.d_numInputs
+               << "\"," << std::endl;
+  i_outputFile << tab << "\"numConstants\": \""
+               << d_circuitParameters.d_numConstants << "\"," << std::endl;
+  i_outputFile << tab << "\"numOutputs\": \""
+               << d_circuitParameters.d_numOutputs << "\"," << std::endl;
+  i_outputFile << tab << "\"maxLevel\": \"" << d_circuitParameters.d_maxLevel
+               << "\"," << std::endl;
+  i_outputFile << tab << "\"numEdges\": \"" << d_circuitParameters.d_numEdges
+               << "\"," << std::endl;
+  i_outputFile << tab << "\"numGates\": \"" << d_circuitParameters.d_numGates
+               << "\"," << std::endl;
+  i_outputFile << tab << "\"hash_code\": \"" << d_circuitParameters.d_hashCode
+               << "\"," << std::endl;
+
+  i_outputFile << tab << "\"numElementsOfEachType\": {" << std::endl;
 
   bool first = true;
   for (const auto& [key, value] : d_circuitParameters.d_numElementsOfEachType) {
     if (value != 0) {
       if (first) {
         first = false;
-        outputFile << "\t\t\"" << key << "\": " << value;
+        i_outputFile << tab << "\t\"" << key << "\": " << value;
       } else {
-        outputFile << "," << std::endl << "\t\t\"" << key << "\": " << value;
+        i_outputFile << "," << std::endl
+                     << tab << "\t\"" << key << "\": " << value;
       }
     }
   }
-  outputFile << std::endl;
+  i_outputFile << std::endl;
 
-  outputFile << "\t}," << std::endl;
+  i_outputFile << tab << "}," << std::endl;
 
-  outputFile << "\t\"numEdgesOfEachType\": {" << std::endl;
+  i_outputFile << tab << "\"numEdgesOfEachType\": {" << std::endl;
   first = true;
   for (const auto& [key, value] : d_circuitParameters.d_numEdgesOfEachType) {
     if (value != 0) {
       if (first) {
         first = false;
-        outputFile << "\t\t\"" << key.first << "-" << key.second
-                   << "\": " << value;
+        i_outputFile << tab << "\t\"" << key.first << "-" << key.second
+                     << "\": " << value;
       } else {
-        outputFile << "," << std::endl
-                   << "\t\t\"" << key.first << "-" << key.second
-                   << "\": " << value;
+        i_outputFile << "," << std::endl
+                     << tab << "\t\"" << key.first << "-" << key.second
+                     << "\": " << value;
       }
     }
   }
-  outputFile << std::endl;
 
-  outputFile << "\t}" << std::endl;
+  i_outputFile << std::endl << tab << "}";
+
+  if (!i_graph->getSubGraphs().empty()) {
+    i_outputFile << ',';
+  }
+
+  i_outputFile << std::endl;
+
+  if (!i_graph->getSubGraphs().empty()) {
+    i_outputFile << tab << "\"submodules\" : {" << std::endl;
+    std::set<GraphPtr> subSet = d_graph->getSetSubGraphs();
+    for (auto sub = subSet.begin(); sub != subSet.end();) {
+      updateCircuitParameters(*sub);
+
+      saveParameters(*sub, i_outputFile, true);
+      // HERE IS MOVE TO NEXT
+      if (++sub != subSet.end()) {
+        i_outputFile << ", ";
+      }
+      i_outputFile << std::endl;
+    }
+
+    i_outputFile << tab << "}" << std::endl;
+  }
 
   // file end
-  outputFile << "}";
+  i_outputFile << (i_isSubGraph ? "\t\t" : "") << "}";
 
   return true;
 }
@@ -283,23 +301,25 @@ bool Circuit::generate(bool i_makeGraphML, bool i_pathExists) {
 
   // if (!i_pathExists)
   // d_path += d_circuitName;
-  // std::clog << "Writing verilog for " << d_circuitName << std::endl;
+  std::clog << "Writing verilog for " << d_circuitName << std::endl;
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
 
-  // std::clog << "Writing verilog ended for " << d_circuitName << std::endl;
+  std::clog << "Writing verilog ended for " << d_circuitName << std::endl;
 
-  // if (i_makeGraphML) {
-  //   std::clog << "Writing GraphML for " << d_circuitName << std::endl;
-  //   if (graphToGraphML(d_path, i_pathExists)) {
-  //     std::clog << "Writing GraphML ended for " << d_circuitName <<
-  //     std::endl;
-  //   }
-  // }
+  if (i_makeGraphML) {
+    std::clog << "Writing GraphML for " << d_circuitName << std::endl;
+    if (graphToGraphML(d_path, i_pathExists)) {
+      std::clog << "Writing GraphML ended for " << d_circuitName << std::endl;
+    }
+  }
 
-  updateCircuitParameters();
+  updateCircuitParameters(d_graph);
 
-  saveParameters();
+  std::string   filename = d_path + "/" + d_circuitName + ".json";
+  std::ofstream i_outputFile(filename);
+
+  saveParameters(d_graph, i_outputFile);
 
   // TODO: costul
   // if (checkExistingHash() || d_circuitParameters.d_reliability == 0 ||

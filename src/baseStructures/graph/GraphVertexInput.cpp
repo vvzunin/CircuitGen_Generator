@@ -17,12 +17,23 @@ GraphVertexInput::GraphVertexInput(
 
 char GraphVertexInput::updateValue() {
   if (d_inConnections.size() > 0) {
-    if (!d_baseGraph) {
-      d_value = d_inConnections[0]->getValue();
+    if (!d_baseGraph.lock()) {
+      if (auto ptr = d_inConnections[0].lock()) {
+        d_value = ptr->getValue();
+      } else {
+        throw std::invalid_argument("Dead pointer!");
+        return 'x';
+      }
 
-      for (int i = 1; i < d_inConnections.size(); i++)
-        if (d_inConnections[i]->getValue() != d_value)
-          d_value = 'x';
+      for (int i = 1; i < d_inConnections.size(); i++) {
+        if (auto ptr = d_inConnections[i].lock()) {
+          if (ptr->getValue() != d_value) {
+            d_value = 'x';
+          }
+        } else {
+          throw std::invalid_argument("Dead pointer!");
+        }
+      }
 
     } else {
       std::cerr << "Error" << std::endl;
@@ -32,6 +43,11 @@ char GraphVertexInput::updateValue() {
 }
 
 void GraphVertexInput::updateLevel() {
-  for (VertexPtr vert : d_inConnections)
-    d_level = (vert->getLevel() > d_level) ? vert->getLevel() : d_level;
+  for (VertexPtrWeak vert : d_inConnections) {
+    if (auto ptr = vert.lock()) {
+      d_level = (ptr->getLevel() > d_level) ? ptr->getLevel() : d_level;
+    } else {
+      throw std::invalid_argument("Dead pointer!");
+    }
+  }
 }

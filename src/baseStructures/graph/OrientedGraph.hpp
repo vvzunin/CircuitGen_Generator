@@ -12,16 +12,15 @@
 #include <baseStructures/graph/GraphVertexBase.hpp>
 #include <settings/Settings.hpp>
 
-/// @file OrientedGraph.hpp
-/// TODO: Add a check for file names when adding new vertices
-
-#define GraphPtr std::shared_ptr<OrientedGraph>
-
 // TODO: Добавить проверку на имена файлов при доблении новых вершин
 
 class GraphVertexBase;  // Проблема циклического определения
 
-#define VertexPtr std::shared_ptr<GraphVertexBase>
+#define GraphPtr      std::shared_ptr<OrientedGraph>
+#define GraphPtrWeak  std::weak_ptr<OrientedGraph>
+
+#define VertexPtr     std::shared_ptr<GraphVertexBase>
+#define VertexPtrWeak std::weak_ptr<GraphVertexBase>
 
 /// class OrientedGraph A oriented graph that can contain vertices of
 /// various types (input, output, constant, etc.) and edges between them
@@ -119,17 +118,17 @@ public:
 
   void               updateLevels();
 
-  unsigned           getMaxLevel();
+  unsigned                  getMaxLevel();
 
-  void               addParentGraph(GraphPtr i_baseGraph);
-  std::set<GraphPtr> getParentGraphs() const;
+  void                      addParentGraph(GraphPtr i_baseGraph);
+  std::vector<GraphPtrWeak> getParentGraphs() const;
 
-  void               setCurrentParent(GraphPtr parent);
-  void               resetCounters(GraphPtr where);
+  void                      setCurrentParent(GraphPtr parent);
+  void                      resetCounters(GraphPtr where);
 
   // TODO: Заменить все const на const &
-  VertexPtr          addInput(const std::string& i_name = "");
-  VertexPtr          addOutput(const std::string& i_name = "");
+  VertexPtr                 addInput(const std::string& i_name = "");
+  VertexPtr                 addOutput(const std::string& i_name = "");
   VertexPtr addConst(const char& i_value, const std::string& i_name = "");
   VertexPtr addGate(const Gates& i_gate, const std::string& i_name = "");
   std::vector<VertexPtr>
@@ -141,6 +140,7 @@ public:
   size_t getEdgesCount() { return d_edgesCount; }
 
   std::vector<GraphPtr>                         getSubGraphs() const;
+  std::set<GraphPtr>                            getSetSubGraphs() const;
   std::map<VertexTypes, std::vector<VertexPtr>> getBaseVertexes() const;
   VertexPtr   getVerticeByIndex(int idx) const;
 
@@ -206,37 +206,39 @@ public:
 private:
   // as we can have multiple parents, we save
   // for toVerilog current parent graph
-  GraphPtr                     d_currentParentGraph;
-  size_t                       d_edgesCount = 0;
+  GraphPtrWeak                    d_currentParentGraph;
+  size_t                          d_edgesCount = 0;
 
-  std::string                  d_hashed     = "";
-  std::set<GraphPtr>           d_parentGraphs;
+  std::string                     d_hashed     = "";
+  std::vector<GraphPtrWeak>       d_parentGraphs;
 
-  std::string                  d_name;
+  std::string                     d_name;
 
   // Пока не реализован функционал.
-  bool                         d_needLevelUpdate = true;
+  bool                            d_needLevelUpdate = true;
 
   // also we need to now, was .v file for subgraph created, or not
-  bool                         d_alreadyParsed   = false;
+  bool                            d_alreadyParsed   = false;
   // We can add a subgraph multiple times
   // so we need to count instances to verilog.
   // We are counting to know, which inputs and outputs should we use now
-  std::map<GraphPtr, uint64_t> d_graphInstanceToVerilogCount;
+  std::map<std::string, uint64_t> d_graphInstanceToVerilogCount;
 
   // each subgraph has one or more outputs. We save them,
   // depending on subgraph instance number
-  std::map<GraphPtr, std::vector<std::vector<VertexPtr>>> d_subGraphsOutputsPtr;
-  std::vector<VertexPtr>                                  d_allSubGraphsOutputs;
+  std::map<std::string, std::vector<std::vector<VertexPtr>>>
+                         d_subGraphsOutputsPtr;
+  std::vector<VertexPtr> d_allSubGraphsOutputs;
   // we have such pairs: number of subragh instances,
-  std::map<GraphPtr, std::vector<std::vector<VertexPtr>>> d_subGraphsInputsPtr;
+  std::map<std::string, std::vector<std::vector<VertexPtr>>>
+                                                d_subGraphsInputsPtr;
 
-  std::vector<GraphPtr>                                   d_subGraphs;
-  std::map<VertexTypes, std::vector<VertexPtr>>           d_vertexes {
-                {VertexTypes::input, std::vector<VertexPtr>()},
-                {VertexTypes::output, std::vector<VertexPtr>()},
-                {VertexTypes::constant, std::vector<VertexPtr>()},
-                {VertexTypes::gate, std::vector<VertexPtr>()}};
+  std::vector<GraphPtr>                         d_subGraphs;
+  std::map<VertexTypes, std::vector<VertexPtr>> d_vertexes {
+      {VertexTypes::input, std::vector<VertexPtr>()},
+      {VertexTypes::output, std::vector<VertexPtr>()},
+      {VertexTypes::constant, std::vector<VertexPtr>()},
+      {VertexTypes::gate, std::vector<VertexPtr>()}};
 
   static uint_fast64_t d_countGraph;
 

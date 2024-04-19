@@ -186,43 +186,10 @@ std::string Settings::getLibraryPath() const {
   return d_libraryPath;
 }
 
-std::string Settings::getGenerationMethodPrefix(const std::string& i_s) const {
-  if (i_s == "FromRandomTruthTable")
-    return "CCGRTT";
-  if (i_s == "RandLevel")
-    return "CCGRCG";
-  if (i_s == "RandLevelExperimental")
-    return "CCGRCGE";
-  if (i_s == "NumOperation")
-    return "CCGRVC";
-  if (i_s == "Genetic")
-    return "CCGGA";
-  if (i_s == "Summator")
-    return "CCGTCSM";
-  if (i_s == "Comparison")
-    return "CCGTCC";
-  if (i_s == "Encoder")
-    return "CCGECR";
-  if (i_s == "Subtractor")
-    return "CCGTCSB";
-  if (i_s == "Parity")
-    return "CCGTCP";
-  if (i_s == "Multiplier")
-    return "CCGTCM";
-  if (i_s == "Demultiplexer")
-    return "CCGTCDMP";
-  if (i_s == "Multiplexer")
-    return "CCGTCMP";
-  if (i_s == "Decoder")
-    return "CCGDCR";
-  if (i_s == "Genetic")
-    return "CCGGEN";
-  if (i_s == "ALU")
-    return "CCGALU";
-
-  std::cerr << "UNDEFINED METHOD PREFIX << " << i_s << std::endl;
-
-  return "ftt";
+std::string Settings::getGenerationMethodPrefix(
+    const GenerationTypes i_methodType
+) const {
+  return generationTypeToPrefix.at(i_methodType);
 }
 
 std::string Settings::getLibraryNameFromEnum(const LibrariesTypes& library
