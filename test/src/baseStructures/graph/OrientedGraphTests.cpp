@@ -1,9 +1,12 @@
+#include <fstream>
 #include <string>
 #include <vector>
 
 #include "baseStructures/graph/OrientedGraph.hpp"
 
 #include <gtest/gtest.h>
+
+#include "additional/filesTools/FilesTools.hpp"
 /*
   Need to add toGrapMlTest, toVerilogTest, setCurrentParentTest,
     resetCountersTest, getGraphInstanceTest
@@ -388,6 +391,171 @@ TEST(TestGetVerticesByName, ReturnCorrectVertices) {
       graphPtr->getVerticesByName("Anything", true)[4]->getGate(),
       Gates::GateAnd
   );
+}
+
+TEST(TestToGraphMLStringReturn, ReturnCorrectStringWhenGrpahIsEmpty) {
+  GraphPtr graphPtr = std::make_shared<OrientedGraph>("Graph1");
+  EXPECT_EQ(graphPtr->isEmptyFull(), true);
+  EXPECT_EQ(
+      graphPtr->toGraphML(0),
+      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+      "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\" "
+      "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+      "xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns "
+      "http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n"
+      "  <key id=\"d0\" for=\"node\" attr.name=\"type\" "
+      "attr.type=\"string\"/>\n  "
+      "<graph id=\"Graph1\" edgedefault=\"directed\">\n"
+      "  </graph>\n</graphml>\n"
+  );
+}
+
+TEST(TestToGraphMLStringReturn, ReturnCorrectStringWhenThereAreNodes) {
+  GraphPtr graphPtr1 = std::make_shared<OrientedGraph>("Graph1");
+  graphPtr1->addGate(Gates::GateAnd, "gate1");
+  EXPECT_EQ(
+      graphPtr1->toGraphML(0),
+      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+      "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\" "
+      "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+      "xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns "
+      "http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n"
+      "  <key id=\"d0\" for=\"node\" attr.name=\"type\" "
+      "attr.type=\"string\"/>\n  "
+      "<graph id=\"Graph1\" edgedefault=\"directed\">\n"
+      "    <node id=\"gate1\">\n"
+      "      <data key=\"d0\">and</data>\n"
+      "    </node>\n  "
+      "</graph>\n"
+      "</graphml>\n"
+  );
+
+  graphPtr1->addGate(Gates::GateNot, "gate2");
+  EXPECT_EQ(
+      graphPtr1->toGraphML(0),
+      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+      "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\" "
+      "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+      "xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns "
+      "http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n"
+      "  <key id=\"d0\" for=\"node\" attr.name=\"type\" "
+      "attr.type=\"string\"/>\n"
+      "  <graph id=\"Graph1\" edgedefault=\"directed\">\n"
+      "    <node id=\"gate1\">\n"
+      "      <data key=\"d0\">and</data>\n"
+      "    </node>\n"
+      "    <node id=\"gate2\">\n"
+      "      <data key=\"d0\">not</data>\n"
+      "    </node>\n"
+      "  </graph>\n"
+      "</graphml>\n"
+  );
+}
+
+TEST(TestToGraphMLStringReturn, ReturnCorrectStringWhenThereAreSubGraphs) {
+  GraphPtr graphPtr1    = std::make_shared<OrientedGraph>("Graph1");
+  GraphPtr subGraphPtr1 = std::make_shared<OrientedGraph>("SubGraph1");
+  graphPtr1->addSubGraph(
+      subGraphPtr1, subGraphPtr1->getVerticesByType(VertexTypes::input)
+  );
+  EXPECT_EQ(
+      graphPtr1->toGraphML(0),
+      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+      "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\" "
+      "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+      "xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns "
+      "http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n"
+      "  <key id=\"d0\" for=\"node\" attr.name=\"type\" "
+      "attr.type=\"string\"/>\n"
+      "  <graph id=\"Graph1\" edgedefault=\"directed\">\n"
+      "    <node id=\"SubGraph1_subgraph\">\n"
+      "      <data key=\"d0\">graph</data>      <graph id=\"SubGraph1\" "
+      "edgedefault=\"directed\">\n"
+      "      </graph>\n"
+      "    </node>\n"
+      "  </graph>\n"
+      "</graphml>\n"
+  );
+
+  subGraphPtr1->addGate(Gates::GateAnd, "gate1");
+  EXPECT_EQ(
+      graphPtr1->toGraphML(0),
+      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+      "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\" "
+      "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+      "xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns "
+      "http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n"
+      "  <key id=\"d0\" for=\"node\" attr.name=\"type\" "
+      "attr.type=\"string\"/>\n"
+      "  <graph id=\"Graph1\" edgedefault=\"directed\">\n"
+      "    <node id=\"SubGraph1_subgraph\">\n"
+      "      <data key=\"d0\">graph</data>      <graph id=\"SubGraph1\" "
+      "edgedefault=\"directed\">\n"
+      "            <node id=\"gate1\">\n"
+      "          <data key=\"d0\">and</data>\n"
+      "        </node>\n"
+      "  </graph>\n"
+      "    </node>\n"
+      "  </graph>\n"
+      "</graphml>\n"
+  );
+}
+
+TEST(TestToGraphMLStringReturn, ReturnCorrectStringWhenThereAreSubEdges) {
+  GraphPtr graphPtr1 = std::make_shared<OrientedGraph>("Graph1");
+  auto     gate1     = graphPtr1->addGate(Gates::GateAnd, "gate1");
+  auto     input1    = graphPtr1->addInput("input1");
+  auto     input2    = graphPtr1->addInput("input2");
+
+  graphPtr1->addEdges({input1, input2}, gate1);
+  EXPECT_EQ(
+      graphPtr1->toGraphML(0),
+      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+      "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\" "
+      "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+      "xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns "
+      "http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n"
+      "  <key id=\"d0\" for=\"node\" attr.name=\"type\" "
+      "attr.type=\"string\"/>\n"
+      "  <graph id=\"Graph1\" edgedefault=\"directed\">\n"
+      "    <node id=\"input1\">\n"
+      "      <data key=\"d0\">input</data>\n"
+      "    </node>\n"
+      "    <node id=\"input2\">\n"
+      "      <data key=\"d0\">input</data>\n"
+      "    </node>\n"
+      "    <node id=\"gate1\">\n"
+      "      <data key=\"d0\">and</data>\n"
+      "    </node>\n"
+      "    <source=\"input1\" target=\"gate1\"/>\n"
+      "    <source=\"input2\" target=\"gate1\"/>\n"
+      "  </graph>\n"
+      "</graphml>\n"
+  );
+}
+
+TEST(TestToGraphMLBoolReturn, CorrectWriteToFile) {
+  // std::ifstream fileStream("ToGraphMLTest.txt");
+  // GraphPtr      graphPtr1    = std::make_shared<OrientedGraph>("Graph1");
+  // auto          gate1        = graphPtr1->addGate(Gates::GateAnd, "gate1");
+  // auto          input1       = graphPtr1->addInput("input1");
+  // auto          input2       = graphPtr1->addInput("input2");
+  // GraphPtr      subGraphPtr1 = std::make_shared<OrientedGraph>("SubGraph1");
+  // graphPtr1->addSubGraph(
+  //     subGraphPtr1, subGraphPtr1->getVerticesByType(VertexTypes::input)
+  // );
+  // graphPtr1->addEdges({input1, input2}, gate1);
+  // subGraphPtr1->addGate(Gates::GateAnd, "gate1");
+
+  // EXPECT_EQ(graphPtr1->toGraphML(fileStream), true);
+  // std::string line;
+  // std::string fileContents = "";
+  // while (std::getline(fileStream, line)) {
+  //   fileContents += line;
+  //   fileContents += '\n';  // Добавляем символ новой строки между строками
+  // }
+  // EXPECT_EQ(fileStream, "");
+  // fileStream.close();
 }
 
 TEST(TestCalculateHash, GraphsWithTheSameStructureHaveEqualHash) {
