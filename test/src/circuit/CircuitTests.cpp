@@ -9,8 +9,8 @@
 const std::string testDirectory = std::filesystem::current_path();
 
 TEST(Circuit, TestingVerilogAndParametersForEmptyGraph) {
-  auto*   graph = new OrientedGraph("EmptyGraph");
-  Circuit circuit(graph, {});
+  GraphPtr graphPtr = std::make_shared<OrientedGraph>("EmptyGraph");
+  Circuit  circuit(graphPtr, {});
   circuit.setCircuitName("empty_graph");
   circuit.setPath(testDirectory);
 
@@ -33,16 +33,16 @@ TEST(Circuit, TestingVerilogAndParametersForEmptyGraph) {
 }
 
 TEST(Circuit, TestingVerilogAndParametersSimpleANDCircuit) {
-  OrientedGraph* graph   = new OrientedGraph("SimpleAND");
-  auto           input1  = graph->addInput("input1");
-  auto           input2  = graph->addInput("input2");
-  auto           andGate = graph->addGate(Gates::GateAnd, "andGate");
-  auto           output  = graph->addOutput("output");
-  graph->addEdge(input1, andGate);
-  graph->addEdge(input2, andGate);
-  graph->addEdge(andGate, output);
+  GraphPtr graphPtr = std::make_shared<OrientedGraph>("SimpleAND");
+  auto     input1   = graphPtr->addInput("input1");
+  auto     input2   = graphPtr->addInput("input2");
+  auto     andGate  = graphPtr->addGate(Gates::GateAnd, "andGate");
+  auto     output   = graphPtr->addOutput("output");
+  graphPtr->addEdge(input1, andGate);
+  graphPtr->addEdge(input2, andGate);
+  graphPtr->addEdge(andGate, output);
 
-  Circuit circuit(graph, {});
+  Circuit circuit(graphPtr, {});
   circuit.setCircuitName("simple_and");
   circuit.setPath(testDirectory);
 
@@ -65,16 +65,16 @@ TEST(Circuit, TestingVerilogAndParametersSimpleANDCircuit) {
 }
 
 TEST(Circuit, TestingVerilogAndParametersSimpleORGate) {
-  auto* graph  = new OrientedGraph("SimpleOR");
-  auto  input1 = graph->addInput("input1");
-  auto  input2 = graph->addInput("input2");
-  auto  orGate = graph->addGate(Gates::GateOr, "orGate");
-  auto  output = graph->addOutput("output");
-  graph->addEdge(input1, orGate);
-  graph->addEdge(input2, orGate);
-  graph->addEdge(orGate, output);
+  GraphPtr graphPtr = std::make_shared<OrientedGraph>("SimpleOR");
+  auto     input1   = graphPtr->addInput("input1");
+  auto     input2   = graphPtr->addInput("input2");
+  auto     orGate   = graphPtr->addGate(Gates::GateOr, "orGate");
+  auto     output   = graphPtr->addOutput("output");
+  graphPtr->addEdge(input1, orGate);
+  graphPtr->addEdge(input2, orGate);
+  graphPtr->addEdge(orGate, output);
 
-  Circuit circuit(graph, {});
+  Circuit circuit(graphPtr, {});
   circuit.setCircuitName("simple_or_gate");
   circuit.setPath(testDirectory);
 
@@ -97,14 +97,14 @@ TEST(Circuit, TestingVerilogAndParametersSimpleORGate) {
 }
 
 TEST(Circuit, TestingVerilogAndParametersNOTGate) {
-  auto* graph   = new OrientedGraph("NOTGate");
-  auto  input   = graph->addInput("input");
-  auto  notGate = graph->addGate(Gates::GateNot, "notGate");
-  auto  output  = graph->addOutput("output");
-  graph->addEdge(input, notGate);
-  graph->addEdge(notGate, output);
+  GraphPtr graphPtr = std::make_shared<OrientedGraph>("NOTGate");
+  auto     input    = graphPtr->addInput("input");
+  auto     notGate  = graphPtr->addGate(Gates::GateNot, "notGate");
+  auto     output   = graphPtr->addOutput("output");
+  graphPtr->addEdge(input, notGate);
+  graphPtr->addEdge(notGate, output);
 
-  Circuit circuit(graph, {});
+  Circuit circuit(graphPtr, {});
   circuit.setCircuitName("not_gate");
   circuit.setPath(testDirectory);
 
@@ -127,23 +127,23 @@ TEST(Circuit, TestingVerilogAndParametersNOTGate) {
 }
 
 TEST(Circuit, TestingVerilogAndParametersComplexLogicCircuit) {
-  auto* graph    = new OrientedGraph("ComplexLogic");
-  auto  input1   = graph->addInput("input1");
-  auto  input2   = graph->addInput("input2");
-  auto  input3   = graph->addInput("input3");
-  auto  andGate1 = graph->addGate(Gates::GateAnd, "andGate1");
-  auto  orGate   = graph->addGate(Gates::GateOr, "orGate");
-  auto  notGate  = graph->addGate(Gates::GateNot, "notGate");
-  auto  output   = graph->addOutput("output");
+  GraphPtr graphPtr = std::make_shared<OrientedGraph>("ComplexLogic");
+  auto     input1   = graphPtr->addInput("input1");
+  auto     input2   = graphPtr->addInput("input2");
+  auto     input3   = graphPtr->addInput("input3");
+  auto     andGate1 = graphPtr->addGate(Gates::GateAnd, "andGate1");
+  auto     orGate   = graphPtr->addGate(Gates::GateOr, "orGate");
+  auto     notGate  = graphPtr->addGate(Gates::GateNot, "notGate");
+  auto     output   = graphPtr->addOutput("output");
 
-  graph->addEdge(input1, andGate1);
-  graph->addEdge(input2, andGate1);
-  graph->addEdge(andGate1, orGate);
-  graph->addEdge(input3, notGate);
-  graph->addEdge(notGate, orGate);
-  graph->addEdge(orGate, output);
+  graphPtr->addEdge(input1, andGate1);
+  graphPtr->addEdge(input2, andGate1);
+  graphPtr->addEdge(andGate1, orGate);
+  graphPtr->addEdge(input3, notGate);
+  graphPtr->addEdge(notGate, orGate);
+  graphPtr->addEdge(orGate, output);
 
-  Circuit circuit(graph, {});
+  Circuit circuit(graphPtr, {});
   circuit.setCircuitName("complex_logic_circuit");
   circuit.setPath(testDirectory);
 
@@ -166,17 +166,17 @@ TEST(Circuit, TestingVerilogAndParametersComplexLogicCircuit) {
 }
 
 TEST(Circuit, TestingVerilogAndParametersMultipleOutputs) {
-  auto* graph   = new OrientedGraph("MultipleOutputs");
-  auto  input   = graph->addInput("input");
-  auto  notGate = graph->addGate(Gates::GateNot, "notGate");
-  auto  output1 = graph->addOutput("output1");
-  auto  output2 = graph->addOutput("output2");
+  GraphPtr graphPtr = std::make_shared<OrientedGraph>("MultipleOutputs");
+  auto     input    = graphPtr->addInput("input");
+  auto     notGate  = graphPtr->addGate(Gates::GateNot, "notGate");
+  auto     output1  = graphPtr->addOutput("output1");
+  auto     output2  = graphPtr->addOutput("output2");
 
-  graph->addEdge(input, notGate);
-  graph->addEdge(notGate, output1);
-  graph->addEdge(input, output2);
+  graphPtr->addEdge(input, notGate);
+  graphPtr->addEdge(notGate, output1);
+  graphPtr->addEdge(input, output2);
 
-  Circuit circuit(graph, {});
+  Circuit circuit(graphPtr, {});
   circuit.setCircuitName("multiple_outputs");
   circuit.setPath(testDirectory);
 
@@ -199,15 +199,15 @@ TEST(Circuit, TestingVerilogAndParametersMultipleOutputs) {
 }
 
 TEST(Circuit, TestingVerilogAndParametersFeedbackLoop) {
-  auto* graph   = new OrientedGraph("FeedbackLoop");
-  auto  input   = graph->addInput("input");
-  auto  andGate = graph->addGate(Gates::GateAnd, "andGate");
-  auto  output  = graph->addOutput("output");
-  graph->addEdge(input, andGate);
-  graph->addEdge(andGate, output);
-  graph->addEdge(output, andGate);
+  GraphPtr graphPtr = std::make_shared<OrientedGraph>("FeedbackLoop");
+  auto     input    = graphPtr->addInput("input");
+  auto     andGate  = graphPtr->addGate(Gates::GateAnd, "andGate");
+  auto     output   = graphPtr->addOutput("output");
+  graphPtr->addEdge(input, andGate);
+  graphPtr->addEdge(andGate, output);
+  graphPtr->addEdge(output, andGate);
 
-  Circuit circuit(graph, {});
+  Circuit circuit(graphPtr, {});
   circuit.setCircuitName("feedback_loop");
   circuit.setPath(testDirectory);
 
