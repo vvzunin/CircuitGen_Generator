@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -8,7 +9,7 @@
 
 #include "additional/filesTools/FilesTools.hpp"
 /*
-  Need to add toGrapMlTest, toVerilogTest, setCurrentParentTest,
+  Need to add toVerilogTest, setCurrentParentTest,
     resetCountersTest, getGraphInstanceTest
   Need to realize getVerticesByLevel, needToUpdateLevel, updateLevels,
     getMaxLevel
@@ -23,19 +24,21 @@
 
 // Test is on top because it needs to contain the graph_0
 TEST(TestSetNameAndGetName, ReturnCorrectName) {
-  OrientedGraph graph1;
-  OrientedGraph graph2;
-  EXPECT_EQ(graph1.getName(), "graph_0");
-  EXPECT_EQ(graph2.getName(), "graph_1");
+  GraphPtr graphPtr1 = std::make_shared<OrientedGraph>();
+  GraphPtr graphPtr2 = std::make_shared<OrientedGraph>();
 
-  OrientedGraph graph3(graph1);
-  EXPECT_EQ(graph3.getName(), "graph_0");
+  EXPECT_EQ(graphPtr1->getName(), "graph_0");
+  EXPECT_EQ(graphPtr2->getName(), "graph_1");
 
-  OrientedGraph graph4 = graph1;
-  EXPECT_EQ(graph4.getName(), "graph_0");
+  GraphPtr graphPtr3 = std::make_shared<OrientedGraph>(*graphPtr1);
+  EXPECT_EQ(graphPtr3->getName(), "graph_0");
 
-  graph1.setName("Cahnged");
-  EXPECT_EQ(graph1.getName(), "Cahnged");
+  GraphPtr graphPtr4 = std::make_shared<OrientedGraph>();
+  graphPtr4          = graphPtr1;
+  EXPECT_EQ(graphPtr4->getName(), "graph_0");
+
+  graphPtr1->setName("Cahnged");
+  EXPECT_EQ(graphPtr1->getName(), "Cahnged");
 }
 
 TEST(TestBaseSizeAndFullSizeAndSumFullSize, ReturnCorrectSize) {
@@ -160,7 +163,7 @@ TEST(TestIsEmptyAndIsEmptyFull, ReturnCorrectSize) {
 
 }*/
 
-TEST(TestSetParentGraphAndGetParentGraph, CorrectWork) {
+TEST(TestAddParentGraphAndGetParentGraph, CorrectWork) {
   GraphPtr graphPtr1 = std::make_shared<OrientedGraph>();
   EXPECT_EQ(*(graphPtr1->getParentGraphs().begin()), nullptr);
 
@@ -535,27 +538,27 @@ TEST(TestToGraphMLStringReturn, ReturnCorrectStringWhenThereAreSubEdges) {
 }
 
 TEST(TestToGraphMLBoolReturn, CorrectWriteToFile) {
-  // std::ifstream fileStream("ToGraphMLTest.txt");
-  // GraphPtr      graphPtr1    = std::make_shared<OrientedGraph>("Graph1");
-  // auto          gate1        = graphPtr1->addGate(Gates::GateAnd, "gate1");
-  // auto          input1       = graphPtr1->addInput("input1");
-  // auto          input2       = graphPtr1->addInput("input2");
-  // GraphPtr      subGraphPtr1 = std::make_shared<OrientedGraph>("SubGraph1");
-  // graphPtr1->addSubGraph(
-  //     subGraphPtr1, subGraphPtr1->getVerticesByType(VertexTypes::input)
-  // );
-  // graphPtr1->addEdges({input1, input2}, gate1);
-  // subGraphPtr1->addGate(Gates::GateAnd, "gate1");
+  std::string   filename = "ToGraphMLTest.txt";
+  std::ofstream outF(filename);
+  GraphPtr      graphPtr1    = std::make_shared<OrientedGraph>("Graph1");
+  auto          gate1        = graphPtr1->addGate(Gates::GateAnd, "gate1");
+  auto          input1       = graphPtr1->addInput("input1");
+  auto          input2       = graphPtr1->addInput("input2");
+  GraphPtr      subGraphPtr1 = std::make_shared<OrientedGraph>("SubGraph1");
+  graphPtr1->addSubGraph(
+      subGraphPtr1, subGraphPtr1->getVerticesByType(VertexTypes::input)
+  );
+  graphPtr1->addEdges({input1, input2}, gate1);
+  subGraphPtr1->addGate(Gates::GateAnd, "gate1");
+  EXPECT_EQ(graphPtr1->toGraphML(outF), true);
 
-  // EXPECT_EQ(graphPtr1->toGraphML(fileStream), true);
-  // std::string line;
-  // std::string fileContents = "";
-  // while (std::getline(fileStream, line)) {
-  //   fileContents += line;
-  //   fileContents += '\n';  // Добавляем символ новой строки между строками
-  // }
-  // EXPECT_EQ(fileStream, "");
-  // fileStream.close();
+  std::ifstream inF(filename);
+  outF.close();
+  std::ostringstream contentStream;
+  contentStream << inF.rdbuf();
+  std::string stringF = contentStream.str();
+  inF.close();
+  EXPECT_EQ(stringF, graphPtr1->toGraphML(0));
 }
 
 TEST(TestCalculateHash, GraphsWithTheSameStructureHaveEqualHash) {

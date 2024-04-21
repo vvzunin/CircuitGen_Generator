@@ -20,7 +20,6 @@ int countFilesInDirectory(const std::string& directoryPath) {
 }
 
 TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
-  std::filesystem::remove_all("dataset/FromRandomTruthTable");
   GenerationParameters gParams1("FromRandomTruthTable", "1", 1, 1, 1);
   gParams1.setCNFT(true);
   DataBaseGeneratorParameters dbParams1(
@@ -82,10 +81,10 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
     );
     EXPECT_EQ(str1, str2);
   }
+  std::filesystem::remove_all("dataset/FromRandomTruthTable");
 }
 
 TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
-  std::filesystem::remove_all("dataset/RandLevel");
   GenerationParameters gParams1("RandLevel", "1", 5, 5, 1);
   gParams1.setRandLevelParameters(1, 5, 1, 5);
   DataBaseGeneratorParameters dbParams1(1, 5, 1, 5, 1, RandLevel, gParams1);
@@ -139,10 +138,11 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
     );
     EXPECT_EQ(str1, str2);
   }
+  std::filesystem::remove_all("dataset/RandLevel");
 }
 
+// Circuits have defferent hashes
 // TEST(generateDataBaseNumOperations, EqualWithTheSameSeeds) {
-//   std::filesystem::remove_all("dataset/NumOperations");
 //   GenerationParameters gParams1("NumOperations", "1", 5, 5, 1);
 //   std::map<Gates, int> logicOper = {
 //       {Gates::GateAnd, 5},
@@ -162,10 +162,11 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
 //   DataBaseGeneratorParameters dbParams2(1, 5, 1, 5, 1, NumOperation,
 //   gParams2); DataBaseGenerator           generator2(dbParams2);
 //   generator2.generateType(dbParams2);
+
+//   std::filesystem::remove_all("dataset/NumOperations");
 // }
 
 TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
-  std::filesystem::remove_all("dataset/RandLevelExperimental");
   GenerationParameters gParams1("RandLevelExperimental", "1", 5, 5, 1);
   gParams1.setRandLevelParameters(1, 5, 1, 5);
   DataBaseGeneratorParameters dbParams1(
@@ -227,4 +228,5 @@ TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
     );
     EXPECT_EQ(str1, str2);
   }
+  std::filesystem::remove_all("dataset/RandLevelExperimental");
 }
