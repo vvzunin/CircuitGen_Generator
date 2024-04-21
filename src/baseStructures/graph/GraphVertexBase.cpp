@@ -1,5 +1,5 @@
+#include <algorithm>
 #include <iostream>
-#include <set>
 #include <string>
 
 #include "GraphVertexBase.hpp"
@@ -21,7 +21,7 @@ std::string   VertexUtils::gateToString(Gates i_type) {
       return "^";
     case Gates::GateBuf:
       return "";
-    // Default
+      // Default
     default:
       return "Error";
   }
@@ -91,28 +91,35 @@ unsigned GraphVertexBase::getLevel() const {
 }
 
 void GraphVertexBase::updateLevel() {
-  for (VertexPtr vert : d_inConnections)
-    d_level = (vert->getLevel() >= d_level) ? vert->getLevel() + 1 : d_level;
+  for (VertexPtrWeak vert : d_inConnections) {
+    if (VertexPtr ptr = vert.lock()) {
+      d_level = (ptr->getLevel() >= d_level) ? ptr->getLevel() + 1 : d_level;
+    } else {
+      throw std::invalid_argument("Dead pointer!");
+    }
+  }
 }
 
 char GraphVertexBase::getValue() const {
   return d_value;
 }
 
-GraphPtr GraphVertexBase::getBaseGraph() const {
+GraphPtrWeak GraphVertexBase::getBaseGraph() const {
   return d_baseGraph;
 }
 
-std::vector<VertexPtr> GraphVertexBase::getInConnections() const {
+std::vector<VertexPtrWeak> GraphVertexBase::getInConnections() const {
   return d_inConnections;
 }
 
-int GraphVertexBase::addVertexToInConnections(VertexPtr const i_vert) {
-  d_inConnections.push_back(i_vert);
+int GraphVertexBase::addVertexToInConnections(VertexPtr i_vert) {
+  VertexPtrWeak vertWeak(i_vert);
+
+  d_inConnections.push_back(vertWeak);
   int n = 0;
   // TODO use map<VertexPtr, int> instead of for
-  for (VertexPtr vert : d_inConnections)
-    n += (vert == i_vert);
+  for (VertexPtrWeak vert : d_inConnections)
+    n += (vert.lock() == i_vert);
   return n;
 }
 
@@ -120,16 +127,17 @@ std::string GraphVertexBase::calculateHash(bool recalculate) {
   if (hashed != "" && !recalculate)
     return hashed;
 
-  if (d_type == VertexTypes::output && !d_baseGraph)
+  if (d_type == VertexTypes::output && !d_baseGraph.lock())
     return "";
 
   // autosorted struct
-  std::set<std::string> hashed_data;
+  std::vector<std::string> hashed_data;
   hashed = "";
 
   for (auto& child : d_outConnections) {
-    hashed_data.insert(child->calculateHash(recalculate));
+    hashed_data.push_back(child->calculateHash(recalculate));
   }
+  std::sort(hashed_data.begin(), hashed_data.end());
 
   for (const auto& sub : hashed_data) {
     hashed += sub;
@@ -141,9 +149,11 @@ std::string GraphVertexBase::calculateHash(bool recalculate) {
 }
 
 bool GraphVertexBase::removeVertexToInConnections(
-    VertexPtr const i_vert,
-    bool            i_full
+    VertexPtr i_vert,
+    bool      i_full
 ) {
+  VertexPtrWeak vert(i_vert);
+
   if (i_full) {
     bool f = false;
     for (int i = d_inConnections.size() - 1; i >= 0; i--) {
@@ -164,7 +174,7 @@ std::vector<VertexPtr> GraphVertexBase::getOutConnections() const {
   return d_outConnections;
 }
 
-bool GraphVertexBase::addVertexToOutConnections(VertexPtr const i_vert) {
+bool GraphVertexBase::addVertexToOutConnections(VertexPtr i_vert) {
   int n = 0;
   for (VertexPtr vert : d_outConnections)
     n += (vert == i_vert);
@@ -175,7 +185,7 @@ bool GraphVertexBase::addVertexToOutConnections(VertexPtr const i_vert) {
   return false;
 }
 
-bool GraphVertexBase::removeVertexToOutConnections(VertexPtr const i_vert) {
+bool GraphVertexBase::removeVertexToOutConnections(VertexPtr i_vert) {
   for (int i = 0; i < d_outConnections.size(); i++) {
     d_outConnections.erase(d_outConnections.begin() + i);
     return true;
@@ -185,7 +195,7 @@ bool GraphVertexBase::removeVertexToOutConnections(VertexPtr const i_vert) {
 
 std::string GraphVertexBase::getInstance() {
   if (!d_inConnections.size()) {
-    std::cerr << "TODO: delete empty vertices instances" << std::endl;
+    std::cerr << "TODO: delete empty vertex instance: " << d_name << std::endl;
     return "";
   }
 
@@ -194,7 +204,9 @@ std::string GraphVertexBase::getInstance() {
 
 std::string GraphVertexBase::toVerilog() {
   if (d_type == VertexTypes::output) {
-    return "assign " + d_name + " = " + d_inConnections.back()->getName() + ";";
+    if (VertexPtr ptr = d_inConnections.back().lock()) {
+      return "assign " + d_name + " = " + ptr->getName() + ";";
+    }
   }
   return "";
 }

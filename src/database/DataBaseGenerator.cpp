@@ -8,12 +8,15 @@
 
 #include "DataBaseGenerator.hpp"
 
+#include <additional/AuxiliaryMethods.hpp>
 #include <additional/filesTools/FilesTools.hpp>
 #include <additional/threadPool/ThreadPool.hpp>
 #include <baseStructures/Parser.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
+#include <generators/Genetic/GeneticParameters.h>
+#include <generators/Genetic/GenGenerator.h>
 #include <generators/simple/SimpleGenerators.hpp>
 
 using namespace std::chrono;
@@ -24,9 +27,9 @@ void DataBaseGenerator::generateType(
     bool                               parallel,
     bool                               createIdDirectories
 ) {
-  std::string s = i_dbgp.getGenerationTypeString();
+  GenerationTypes gt = i_dbgp.getGenerationType();
   std::function<void(const GenerationParameters&)> generator =
-      getGenerateMethod(s);
+      getGenerateMethod(gt);
   // TODO: make normal code
   std::string dir = d_settings->getDatasetPath();
 
@@ -51,12 +54,12 @@ void DataBaseGenerator::generateType(
   if (std::filesystem::is_directory(dir)) {
     for (const auto item : FilesTools::getDirectories(dir)) {
       std::string s0  = item;
-      auto        pos = s0.find(d_settings->getGenerationMethodPrefix(s));
+      auto        pos = s0.find(d_settings->getGenerationMethodPrefix(gt));
 
       if (pos == std::string::npos)
         continue;
 
-      s0.replace(pos, d_settings->getGenerationMethodPrefix(s).size(), "");
+      s0.replace(pos, d_settings->getGenerationMethodPrefix(gt).size(), "");
 
       auto jk = std::min(s0.find("_"), s0.find("."));
       if (jk == std::string::npos) {
@@ -74,10 +77,8 @@ void DataBaseGenerator::generateType(
 
   std::vector<std::uint_fast32_t> seeds(i_dbgp.getEachIteration());
 
-  d_randGenerator.setSeed(d_parameters.getGenerationParameters().getSeed());
-
-  auto randGeneratorLambda = [&]() {
-    return d_randGenerator.getRandInt(0, INT_MAX);
+  auto                            randGeneratorLambda = []() {
+    return AuxMethods::getRandInt(0, INT_MAX);
   };
   // we create int sequence, which would give us diffetent seeds for each repeat
   std::generate(seeds.begin(), seeds.end(), randGeneratorLambda);
@@ -94,8 +95,8 @@ void DataBaseGenerator::generateType(
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           d_parameters.setIteration(tt);
           d_parameters.setName(
-              d_settings->getGenerationMethodPrefix(s)
-              + std::to_string(d_dirCount)
+              d_settings->getGenerationMethodPrefix(gt)
+              + AuxMethods::intToStringWithZeroes(d_dirCount)
           );
 
           GenerationParameters param = d_parameters.getGenerationParameters();
@@ -108,13 +109,15 @@ void DataBaseGenerator::generateType(
           ++d_dirCount;
           ++iter;
         }
+
+        pool.wait();
       } else {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           // TODO: it is that Rustam told about iteration?
           d_parameters.setIteration(tt);
           d_parameters.setName(
-              d_settings->getGenerationMethodPrefix(s)
-              + std::to_string(d_dirCount)
+              d_settings->getGenerationMethodPrefix(gt)
+              + AuxMethods::intToStringWithZeroes(d_dirCount)
           );
 
           GenerationParameters param = d_parameters.getGenerationParameters();
@@ -128,8 +131,6 @@ void DataBaseGenerator::generateType(
       }
     }
   }
-
-  pool.wait();
 }
 
 void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
@@ -137,19 +138,38 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
 ) {
   TruthTable       tt(i_param.getInputs(), i_param.getOutputs(), 0.0);
 
-  SimpleGenerators tftt(i_param.getSeed());
+  SimpleGenerators tftt;
   tftt.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  GraphPtr graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFT());
+  std::vector<GraphPtr> allGraphs;
 
-  graph->setName(
-      i_param.getName() + "_" + (i_param.getCNF().getCNFT() ? "CNFT" : "CNFF")
-  );
-  Circuit c(graph);
-  c.setTable(tt);
-  c.setPath(d_mainPath);
-  c.setCircuitName(graph->getName());
-  c.generate(i_param.getMakeGraphML());
+  GraphPtr              graph;
+  if (i_param.getZhegalkin().getZhegalkin()) {
+    graph = tftt.zhegalkinFromTruthTable(tt);
+    graph->setName(i_param.getName() + "_" + "Zhegalkin");
+
+    allGraphs.push_back(graph);
+  }
+  if (i_param.getCNF().getCNFF()) {
+    graph = tftt.cnfFromTruthTable(tt, !i_param.getCNF().getCNFF());
+    graph->setName(i_param.getName() + "_" + "CNFF");
+
+    allGraphs.push_back(graph);
+  }
+  if (i_param.getCNF().getCNFT()) {
+    graph = tftt.cnfFromTruthTable(tt, i_param.getCNF().getCNFT());
+    graph->setName(i_param.getName() + "_" + "CNFT");
+
+    allGraphs.push_back(graph);
+  }
+
+  for (auto curGraph : allGraphs) {
+    Circuit c(curGraph);
+    c.setTable(tt);
+    c.setPath(d_mainPath);
+    c.setCircuitName(curGraph->getName());
+    c.generate(i_param.getMakeGraphML());
+  }
 }
 
 void DataBaseGenerator::generateDataBaseRandLevel(
@@ -232,26 +252,27 @@ void DataBaseGenerator::generateDataBaseNumOperations(
 void DataBaseGenerator::generateDataBaseGenetic(
     const GenerationParameters& i_param
 ) {
-  // i_param.getGenetic().setInputs(i_param.getInputs());
-  // i_param.getGenetic().setOutputs(i_param.getOutputs());
+  i_param.getGenetic().setInputs(i_param.getInputs());
+  i_param.getGenetic().setOutputs(i_param.getOutputs());
 
-  // GeneticGenerator<TruthTable, TruthTableParameters>
-  // gg(GeneticParameters(i_param.getGenetic()),
-  //                                                       {i_param.getInputs(),
-  //                                                       i_param.getOutputs()},
-  //                                                       d_mainPath);
-  // gg.generate();
+  GeneticGenerator<TruthTable, TruthTableParameters> gg(
+      GeneticParameters(i_param.getGenetic()),
+      {i_param.getInputs(), i_param.getOutputs()},
+      d_mainPath
+  );
+  gg.generate();
 }
 
-void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters& i_param
+void DataBaseGenerator::generateDataBaseSummator(
+    const GenerationParameters& i_param
 ) {
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   int      bits        = i_param.getInputs();
-  bool     overflowIn  = i_param.getSummator().OverFlowIn;
-  bool     overflowOut = i_param.getSummator().OverFlowOut;
-  bool     minus       = i_param.getSummator().minus;
+  bool     overflowIn  = i_param.getSummator().getOverFlowIn();
+  bool     overflowOut = i_param.getSummator().getOverFlowOut();
+  bool     minus       = i_param.getSummator().getMinus();
   GraphPtr graph = sg.generatorSummator(bits, overflowIn, overflowOut, minus);
   Circuit  c(graph);
   c.setPath(d_mainPath);
@@ -259,72 +280,224 @@ void DataBaseGenerator::GenerateDataBaseSummator(GenerationParameters& i_param
   c.generate(i_param.getMakeGraphML());
 }
 
-void DataBaseGenerator::GenerateDataBaseComparison(
+void DataBaseGenerator::generateDataBaseComparison(
     const GenerationParameters& i_param
 ) {
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int      bits     = i_param.getInputs();
-  bool     compare0 = i_param.getComparison().compare0;
-  bool     compare1 = i_param.getComparison().compare1;
-  bool     compare2 = i_param.getComparison().compare2;
-  GraphPtr graph = sg.generatorComparison(bits, compare0, compare1, compare2);
+  int      i_bits   = i_param.getInputs();
+  bool     compare0 = i_param.getComparison().getCompare0();
+  bool     compare1 = i_param.getComparison().getCompare1();
+  bool     compare2 = i_param.getComparison().getCompare2();
+  GraphPtr graph = sg.generatorComparison(i_bits, compare0, compare1, compare2);
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 }
 
-void DataBaseGenerator::GenerateDataBaseEncoder(
+void DataBaseGenerator::generateDataBaseEncoder(
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+  int      i_bits = i_param.getInputs();
+  GraphPtr graph  = sg.generatorEncoder(i_bits);
+  Circuit  c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate(i_param.getMakeGraphML());
+}
+
+void DataBaseGenerator::generateDataBaseParity(
     const GenerationParameters& i_param
 ) {
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   int      bits  = i_param.getInputs();
-  GraphPtr graph = sg.generatorEncoder(bits);
+  GraphPtr graph = sg.generatorParity(bits);
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 }
 
-std::function<void(const GenerationParameters&)>
-    DataBaseGenerator::getGenerateMethod(const std::string& i_methodName) {
-  if (i_methodName == "FromRandomTruthTable")
-    return std::bind(
-        &DataBaseGenerator::generateDataBaseFromRandomTruthTable,
-        this,
-        std::placeholders::_1
-    );
-  if (i_methodName == "RandLevel")
-    return std::bind(
-        &DataBaseGenerator::generateDataBaseRandLevel,
-        this,
-        std::placeholders::_1
-    );
-  if (i_methodName == "RandLevelExperimental")
-    return std::bind(
-        &DataBaseGenerator::generateDataBaseRandLevelExperimental,
-        this,
-        std::placeholders::_1
-    );
-  if (i_methodName == "NumOperation")
-    return std::bind(
-        &DataBaseGenerator::generateDataBaseNumOperations,
-        this,
-        std::placeholders::_1
-    );
-  if (i_methodName == "Genetic")
-    return std::bind(
-        &DataBaseGenerator::generateDataBaseGenetic, this, std::placeholders::_1
-    );
+void DataBaseGenerator::generateDataBaseSubtractor(
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  std::cout << "UNDEFINED FUNC << " << i_methodName << std::endl;
-  return std::bind(
-      &DataBaseGenerator::generateDataBaseFromRandomTruthTable,
-      this,
-      std::placeholders::_1
+  GraphPtr graph = sg.generatorSubtractor(
+      i_param.getInputs(),
+      i_param.getSubtractor().getOverFlowIn(),
+      i_param.getSubtractor().getOverFlowOut(),
+      i_param.getSubtractor().getSub()
   );
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate(i_param.getMakeGraphML());
+}
+
+void DataBaseGenerator::generateDataBaseMultiplexer(
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+  int      i_bits = i_param.getInputs();
+  GraphPtr graph  = sg.generatorMultiplexer(i_bits);
+  Circuit  c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate(i_param.getMakeGraphML());
+}
+
+void DataBaseGenerator::generateDataBaseDemultiplexer(
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+  int      i_bits = i_param.getOutputs();
+  GraphPtr graph  = sg.generatorDemultiplexer(i_bits);
+  Circuit  c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate(i_param.getMakeGraphML());
+}
+
+void DataBaseGenerator::generateDataBaseMultiplier(
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+  GraphPtr graph = sg.generatorMultiplier(i_param.getInputs());
+  Circuit  c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate(i_param.getMakeGraphML());
+}
+
+void DataBaseGenerator::generateDataBaseDecoder(
+    const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+  GraphPtr graph = sg.generatorDecoder(i_param.getInputs());
+  Circuit  c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate(i_param.getMakeGraphML());
+}
+
+void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
+) {
+  SimpleGenerators sg(i_param.getSeed());
+  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+
+  GraphPtr graph = sg.generatorALU(
+      i_param.getInputs(),
+      i_param.getOutputs(),
+      i_param.getALU().getALL(),
+      i_param.getALU().getSUM(),
+      i_param.getALU().getSUB(),
+      i_param.getALU().getNSUM(),
+      i_param.getALU().getNSUB(),
+      i_param.getALU().getMULT(),
+      i_param.getALU().getCOM(),
+      i_param.getALU().getAND(),
+      i_param.getALU().getNAND(),
+      i_param.getALU().getOR(),
+      i_param.getALU().getNOR(),
+      i_param.getALU().getXOR(),
+      i_param.getALU().getXNOR(),
+      i_param.getALU().getCNF(),
+      i_param.getALU().getRNL(),
+      i_param.getALU().getNUMOP(),
+      i_param.getALU().getminLevel(),
+      i_param.getALU().getmaxLevel(),
+      i_param.getALU().getminElement(),
+      i_param.getALU().getmaxElement(),
+      i_param.getALU().getm(),
+      i_param.getALU().getLeaveEmptyOut()
+  );
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate(i_param.getMakeGraphML());
+}
+
+// maybe this method should be rewritten using map with GenerationTypes and
+// FuncAlias
+std::function<void(const GenerationParameters&)>
+    DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
+  using FuncAlias = void (DataBaseGenerator::*)(const GenerationParameters&);
+  FuncAlias generateMethodFunc = nullptr;
+
+  switch (i_methodType) {
+    case GenerationTypes::FromRandomTruthTable:
+      generateMethodFunc =
+          &DataBaseGenerator::generateDataBaseFromRandomTruthTable;
+      break;
+    case GenerationTypes::RandLevel:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseRandLevel;
+      break;
+    case GenerationTypes::RandLevelExperimental:
+      generateMethodFunc =
+          &DataBaseGenerator::generateDataBaseRandLevelExperimental;
+      break;
+    case GenerationTypes::NumOperation:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseNumOperations;
+      break;
+    case GenerationTypes::Genetic:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseGenetic;
+      break;
+    case GenerationTypes::Summator:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseSummator;
+      break;
+    case GenerationTypes::Comparison:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseComparison;
+      break;
+    case GenerationTypes::Encoder:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseEncoder;
+      break;
+    case GenerationTypes::Subtractor:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseSubtractor;
+      break;
+    case GenerationTypes::Multiplexer:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseMultiplexer;
+      break;
+    case GenerationTypes::Demultiplexer:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseDemultiplexer;
+      break;
+    case GenerationTypes::Multiplier:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseMultiplier;
+      break;
+    case GenerationTypes::Decoder:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseDecoder;
+      break;
+    case GenerationTypes::Parity:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseParity;
+      break;
+    case GenerationTypes::ALU:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseALU;
+      break;
+
+    default:
+      std::clog << "Something went wrong while getting generation method. "
+                << "\"FromRandomTruthTable\" is set as generation method."
+                << std::endl;
+      generateMethodFunc =
+          &DataBaseGenerator::generateDataBaseFromRandomTruthTable;
+      break;
+  }
+
+  return std::bind(generateMethodFunc, this, std::placeholders::_1);
 }

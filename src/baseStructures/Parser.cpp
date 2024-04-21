@@ -321,6 +321,7 @@ VertexPtr Parser::parseToVertex(const std::string& i_expr) {
       return nullptr;
   }
   // if it is input (or not, for which it is necessary to create an input),
+  // if it is input (or not, for which it is necessary to create an input),
   // just create it and return
   else if (splited_expr.second[0] == "input"
            || splited_expr.second[0] == "not") {

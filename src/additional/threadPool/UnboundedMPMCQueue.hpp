@@ -12,6 +12,10 @@
 #include <optional>
 #include <stdexcept>
 
+/// @author Sergey Yakovlev, FCS student
+/// @file UnboundedMPMCQueue.hpp
+/// TODO: Description parameters from class UnboundedMPMCQueue
+
 #ifndef PLACER_UNBOUNDEDMPMCQUEUE_H
 #  define PLACER_UNBOUNDEDMPMCQUEUE_H
 
@@ -21,6 +25,16 @@ namespace Threading {
 /// for multiple writers (producers) and multiple readers (consumers).
 /// User must guarantee no adding in the closed queue,
 /// else runtime error exception will be thrown.
+
+/// class UnboundedMPMCQueue
+/// A thread-safe unbounded multiple producer multiple consumer (MPMC) queue
+/// @tparam T The type of items stored in the queue
+/// @param closed Flag indicating whether the queue is closed
+/// @param mutex TO DO:
+/// @param not_empty_or_closed Condition variable for signaling queue status.
+/// A more detailed description
+/// [here](https://en.cppreference.com/w/cpp/thread/condition_variable).
+/// @param queue TO DO:
 template<typename T>
 class UnboundedMPMCQueue {
 public:
@@ -39,6 +53,20 @@ public:
   UnboundedMPMCQueue& operator=(const UnboundedMPMCQueue&& other) = delete;
 
   /// Add task.
+
+  /// @brief add designed to add an item to the queue
+  /// @param item the item to be added to the queue
+  /// @code
+  /// // Creating a queue for integers.
+  /// Threading::UnboundedMPMCQueue<int> queue;
+  /// // Adding items to the queue
+  /// queue.add(42);
+  /// queue.add(17);
+  /// queue.add(99);
+  /// @endcode
+  /// @throw std::runtime_error. It is thrown out if an attempt is made to
+  /// add an item to a closed queue
+
   void                add(T item) {
     std::unique_lock lock(mtx);
     if (closed) {
@@ -51,6 +79,14 @@ public:
   }
 
   /// Close queue. All waiting threads will receive nullopt.
+
+  /// @brief close it is used to close the queue
+  /// Example usage:
+  /// @code
+  /// // Closing the queue
+  /// queue.close()
+  /// @endcode
+
   void close() {
     std::unique_lock lock(mtx);
     closed = true;
