@@ -38,26 +38,17 @@ TEST(SettingsTest, TestingGetInstance) {
 }
 
 TEST(SettingsTest, LoadSettingsTest) {
-  // Путь к файлу настроек
   std::string settingsPath = "settings123.dat";
-
-  // Убедимся, что файл настроек отсутствует
   if (std::filesystem::exists(settingsPath)) {
     std::filesystem::remove(settingsPath);
   }
 
-  // Получаем экземпляр Settings
   auto settings = Settings::getInstance("");
 
-  // Проверяем, что используются значения по умолчанию
   EXPECT_EQ(
       settings->getNumThread(), 4
-  );  // Допустим, 4 — это значение по умолчанию
-
-  // Проверяем другие значения по умолчанию
+  ); 
   EXPECT_EQ(settings->getPathNadezhda(), "./Generator/source/data/Nadezhda");
-
-  // После теста удаляем созданный файл настроек, если он появился
   std::filesystem::remove(settingsPath);
 }
 
