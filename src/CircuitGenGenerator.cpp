@@ -467,7 +467,43 @@ void runGenerationFromJson(std::string json_path) {
         bool XOR = data.contains("XOR") ? (bool)data["XOR"] : false;
         bool XNOR = data.contains("XNOR") ? (bool)data["XNOR"] : false;
         bool CNF = data.contains("CNF") ? (bool)data["CNF"] : false;
-        gp.setALUParameters(ALL, SUM, SUB, NSUM, NSUB, MULT, COM, AND, NAND, OR, NOR, XOR, XNOR, CNF);
+        bool RNL = data.contains("RNL") ? (bool)data["RNL"] : false;
+        bool NUM_OP = data.contains("NUM_OP") ? (bool)data["NUM_OP"] : false;
+        // для RNL
+        int minLevel   = data.contains("min_level") ? (int)data["min_level"] : 0;
+        int maxLevel   = data.contains("max_level") ? (int)data["max_level"] : 0;
+        int minElement = data.contains("min_elem") ? (int)data["min_elem"] : 0;
+        int maxElement = data.contains("max_elem") ? (int)data["max_elem"] : 0;
+        // для NUM_OP
+        std::vector<std::string> v = {
+          "num_and",
+          "num_nand",
+          "num_or",
+          "num_not",
+          "num_nor",
+          "num_buf",
+          "num_xor",
+          "num_xnor"
+        };
+        std::map<std::string, Gates> stringToGate = {
+          {"and", Gates::GateAnd},
+          {"nand", Gates::GateNand},
+          {"or", Gates::GateOr},
+          {"nor", Gates::GateNor},
+          {"not", Gates::GateNot},
+          {"buf", Gates::GateBuf},
+          {"xor", Gates::GateXor},
+          {"xnor", Gates::GateXnor}
+        };
+        std::map<Gates, int> m;
+        bool LeaveEmptyOut = false;
+        if (data.contains("leave_empty_out"))
+          LeaveEmptyOut = data["leave_empty_out"];
+        else
+          std::clog << "LeaveEmptyOut is not set." << std::endl;
+
+
+        gp.setALUParameters(ALL, SUM, SUB, NSUM, NSUB, MULT, COM, AND, NAND, OR, NOR, XOR, XNOR, CNF, RNL, NUM_OP, minLevel, maxLevel, minElement, maxElement, m, LeaveEmptyOut);
     }
     DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs,
                                      maxOutputs, repeats, gt, gp);

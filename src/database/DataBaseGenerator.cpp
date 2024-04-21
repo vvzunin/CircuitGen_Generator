@@ -418,7 +418,15 @@ void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
       i_param.getALU().getNOR(),
       i_param.getALU().getXOR(),
       i_param.getALU().getXNOR(),
-      i_param.getALU().getCNF()
+      i_param.getALU().getCNF(),
+      i_param.getALU().getRNL(),
+      i_param.getALU().getNUMOP(),
+      i_param.getALU().getminLevel(),
+      i_param.getALU().getmaxLevel(),
+      i_param.getALU().getminElement(),
+      i_param.getALU().getmaxElement(),
+      i_param.getALU().getm(),
+      i_param.getALU().getLeaveEmptyOut()
   );
   Circuit c(graph);
   c.setPath(d_mainPath);

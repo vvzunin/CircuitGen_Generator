@@ -4,7 +4,7 @@
     "dataset_id": "5",
     "id": 0,
     "type_of_generation": "Encoder",
-    "min_in": 4,
+    "min_in": 3,
     "max_in": 5,
     "min_out": 4,
     "max_out": 5,
