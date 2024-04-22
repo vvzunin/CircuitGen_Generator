@@ -72,13 +72,18 @@ std::string GraphVertexGates::calculateHash(bool recalculate) {
   if (hashed != "" && !recalculate)
     return hashed;
 
-  if (d_type == VertexTypes::output && !d_baseGraph.lock())
-    return "";
-
   hashed = std::to_string(d_outConnections.size()) + std::to_string(d_gate);
 
+  // futuire sorted struct
+  std::vector<std::string> hashed_data;
+
   for (auto& child : d_outConnections) {
-    hashed += child->calculateHash(recalculate);
+    hashed_data.push_back(child->calculateHash(recalculate));
+  }
+  std::sort(hashed_data.begin(), hashed_data.end());
+
+  for (const auto& sub : hashed_data) {
+    hashed += sub;
   }
 
   hashed = std::to_string(std::hash<std::string> {}(hashed));

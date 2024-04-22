@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <map>
 #include <memory>
 #include <string>
@@ -76,6 +77,34 @@ public:
 private:
 };
 
+/// class GraphVertexSubGraph It is a class, having a subGruph poiner
+/// inside. Is used for storing this pointer for providing Grpah
+/// connectivity
+class GraphVertexSubGraph : public GraphVertexBase {
+public:
+  GraphVertexSubGraph(GraphPtr i_subGraph, GraphPtr i_baseGraph = nullptr);
+
+  GraphVertexSubGraph(
+      GraphPtr           i_subGraph,
+      const std::string& i_name,
+      GraphPtr           i_baseGraph = nullptr
+  );
+
+  char        updateValue() override;
+
+  std::string toVerilog() override;
+  std::string getInstance() override;
+
+  std::string calculateHash(bool recalculate = false);
+
+  void        setSubGraph(GraphPtr i_subGraph);
+  GraphPtr    getSubGraph() const;
+
+private:
+  GraphPtr    d_subGraph;
+  std::string hashed;
+};
+
 /// class GraphVertexOutput It is a vertex of the graph, specially designed for
 /// data output. It inherits from the GraphVertexBase class and adds additional
 /// functionality related to data output
@@ -131,5 +160,4 @@ private:
   std::string hashed;
   // Определяем тип вершины: подграф, вход, выход, константа или одна из базовых
   // логических операций.
-  VertexTypes d_type;
 };

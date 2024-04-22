@@ -37,6 +37,8 @@ std::string VertexUtils::vertexTypeToVerilog(VertexTypes i_type) {
       return "localparam";
     case VertexTypes::gate:
       return "wire";
+    default:
+      return "Not callable";
   }
   return "";
 }
@@ -130,7 +132,7 @@ std::string GraphVertexBase::calculateHash(bool recalculate) {
   if (d_type == VertexTypes::output && !d_baseGraph.lock())
     return "";
 
-  // autosorted struct
+  // futuire sorted struct
   std::vector<std::string> hashed_data;
   hashed = "";
 

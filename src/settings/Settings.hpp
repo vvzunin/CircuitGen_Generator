@@ -14,7 +14,8 @@ enum VertexTypes {
   input,
   output,
   constant,
-  gate
+  gate,
+  subGraph
 };
 
 enum Gates {
@@ -471,6 +472,7 @@ private:
       {VertexTypes::input, "input"},
       {VertexTypes::output, "output"},
       {VertexTypes::constant, "const"},
+      {VertexTypes::subGraph, "subGraph"},
       {VertexTypes::gate, "g"}};
 
   std::map<GenerationTypes, std::string> generationTypeToPrefix = {

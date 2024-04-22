@@ -160,11 +160,20 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
   i_subGraph->d_subGraphsInputsPtr[d_currentInstance].push_back(i_inputs);
   i_subGraph->d_subGraphsOutputsPtr[d_currentInstance].push_back(outputs);
 
+  VertexPtr newGraph(new GraphVertexSubGraph(i_subGraph, shared_from_this()));
+  d_vertexes[VertexTypes::subGraph].push_back(newGraph);
+
+  // adding edges for subGraphs
+  addEdges(i_inputs, newGraph);
+  for (auto out : outputs) {
+    addEdge(newGraph, out);
+  }
+
   // here we use i_subGraph like an instance of BasicType,
   // and we call it's toVerilog, having in multiple instance
   // of one i_subGraph, so we can have many times "moduleName name (inp, out);"
   // having different names of module, inputs and outputs
-  d_subGraphs.push_back(i_subGraph);
+  d_subGraphs.insert(i_subGraph);
 
   return outputs;
 }
@@ -209,7 +218,7 @@ bool OrientedGraph::addEdges(std::vector<VertexPtr> from1, VertexPtr to) {
   return f;
 }
 
-std::vector<GraphPtr> OrientedGraph::getSubGraphs() const {
+std::set<GraphPtr> OrientedGraph::getSubGraphs() const {
   return d_subGraphs;
 }
 
@@ -294,7 +303,8 @@ size_t OrientedGraph::sumFullSize() const {
   return d_vertexes.at(VertexTypes::input).size()
        + d_vertexes.at(VertexTypes::constant).size()
        + d_vertexes.at(VertexTypes::gate).size()
-       + d_vertexes.at(VertexTypes::output).size();
+       + d_vertexes.at(VertexTypes::output).size()
+       + d_vertexes.at(VertexTypes::subGraph).size();
 }
 
 std::map<Gates, int> OrientedGraph::getGatesCount() const {
@@ -342,6 +352,8 @@ bool OrientedGraph::operator==(const OrientedGraph& rhs) {
           != d_vertexes.at(VertexTypes::constant).size();
   correct &= rhs.d_vertexes.at(VertexTypes::gate).size()
           != d_vertexes.at(VertexTypes::gate).size();
+  correct &= rhs.d_vertexes.at(VertexTypes::subGraph).size()
+          != d_vertexes.at(VertexTypes::subGraph).size();
 
   if (!correct)
     return false;
@@ -382,7 +394,7 @@ std::string OrientedGraph::getGraphInstance() {
     auto inp =
         d_subGraphsInputsPtr[d_currentParentGraph.lock()->d_currentInstance]
                             [*verilogCount][i];
-    std::string inp_name = d_vertexes[VertexTypes::input][i]->getName();
+    std::string inp_name  = d_vertexes[VertexTypes::input][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + inp_name + "( ";
     module_ver           += inp->getName() + " ),\n";
@@ -392,13 +404,13 @@ std::string OrientedGraph::getGraphInstance() {
     VertexPtr out =
         d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_currentInstance]
                              [*verilogCount][i];
-    std::string out_name = d_vertexes[VertexTypes::output][i]->getName();
+    std::string out_name  = d_vertexes[VertexTypes::output][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
     module_ver           += out->getName() + " ),\n";
   }
 
-  std::string out_name = d_vertexes[VertexTypes::output].back()->getName();
+  std::string out_name  = d_vertexes[VertexTypes::output].back()->getName();
 
   module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
   module_ver +=
@@ -478,7 +490,10 @@ std::pair<bool, std::string>
     fileStream << "\n";
   }
   // and all modules
-  for (auto sub : d_subGraphs) {
+  for (auto subPtr : d_vertexes[VertexTypes::subGraph]) {
+    auto sub =
+        std::static_pointer_cast<GraphVertexSubGraph>(subPtr)->getSubGraph();
+    
     sub->setCurrentParent(shared_from_this());
     std::pair<bool, std::string> val = sub->toVerilog(i_path);
     if (!val.first)
