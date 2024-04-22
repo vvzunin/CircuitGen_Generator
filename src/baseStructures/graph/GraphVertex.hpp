@@ -110,16 +110,16 @@ public:
   /// @param i_fileStream
   /// @return
   bool        toGraphML(std::ofstream& i_fileStream) const;
-  
+
   /// @brief This method is used as a substructure for
   /// OrientedGraph methods
-  /// @param i_nesting 
-  /// @return 
+  /// @param i_nesting
+  /// @return
   std::string toGraphML(int i_nesting = 0) const;
 
   /// @brief This method is used as a substructure for
   /// OrientedGraph methods
-  /// @return 
+  /// @return
   std::string getInstance() override;
 
   std::string calculateHash(bool recalculate = false);

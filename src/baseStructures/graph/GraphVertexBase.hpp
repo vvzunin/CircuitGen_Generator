@@ -21,6 +21,8 @@ namespace VertexUtils {
 std::string gateToString(Gates i_type);
 
 std::string vertexTypeToVerilog(VertexTypes i_type);
+
+std::string vertexTypeToComment(VertexTypes i_type);
 }  // namespace VertexUtils
 
 class GraphVertexBase {

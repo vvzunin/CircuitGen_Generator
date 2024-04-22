@@ -394,7 +394,7 @@ std::string OrientedGraph::getGraphInstance() {
     auto inp =
         d_subGraphsInputsPtr[d_currentParentGraph.lock()->d_currentInstance]
                             [*verilogCount][i];
-    std::string inp_name  = d_vertexes[VertexTypes::input][i]->getName();
+    std::string inp_name = d_vertexes[VertexTypes::input][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + inp_name + "( ";
     module_ver           += inp->getName() + " ),\n";
@@ -404,13 +404,13 @@ std::string OrientedGraph::getGraphInstance() {
     VertexPtr out =
         d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_currentInstance]
                              [*verilogCount][i];
-    std::string out_name  = d_vertexes[VertexTypes::output][i]->getName();
+    std::string out_name = d_vertexes[VertexTypes::output][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
     module_ver           += out->getName() + " ),\n";
   }
 
-  std::string out_name  = d_vertexes[VertexTypes::output].back()->getName();
+  std::string out_name = d_vertexes[VertexTypes::output].back()->getName();
 
   module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
   module_ver +=
@@ -461,14 +461,30 @@ std::pair<bool, std::string>
   }
   fileStream << ");\n" << verilogTab;
 
-  // parsing inputs, outputs and wires for subgraphs
+  // parsing inputs, outputs and wires for subgraphs. And wires for operations
+  // too
+  uint8_t count = 0;
   for (auto eachVertex :
        {d_vertexes[VertexTypes::input],
         d_vertexes[VertexTypes::output],
-        d_allSubGraphsOutputs}) {
+        d_allSubGraphsOutputs,
+        d_vertexes[VertexTypes::gate]}) {
     if (eachVertex.size()) {
-      fileStream << VertexUtils::vertexTypeToVerilog(eachVertex.back()->getType(
-      )) << " ";
+      auto usedType = eachVertex.back()->getType();
+
+      fileStream << VertexUtils::vertexTypeToComment(usedType);
+
+      switch (count) {
+        case 2:
+          fileStream << " for subGraphs outputs";
+          break;
+        case 3:
+          fileStream << " for main graph";
+          break;
+      }
+      fileStream << std::endl << verilogTab;
+
+      fileStream << VertexUtils::vertexTypeToVerilog(usedType) << " ";
     }
 
     for (auto value : eachVertex) {
@@ -476,6 +492,8 @@ std::pair<bool, std::string>
                  << (value != eachVertex.back() ? ", " : ";\n");
     }
     fileStream << verilogTab;
+
+    ++count;
   }
 
   if (d_vertexes[VertexTypes::constant].size()) {
@@ -504,7 +522,6 @@ std::pair<bool, std::string>
   }
   // and all operations
   for (auto oper : d_vertexes[VertexTypes::gate]) {
-    fileStream << verilogTab << oper->getInstance() << "\n";
     fileStream << verilogTab << oper->toVerilog() << "\n";
   }
 

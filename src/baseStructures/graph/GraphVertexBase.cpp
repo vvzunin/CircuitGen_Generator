@@ -43,6 +43,22 @@ std::string VertexUtils::vertexTypeToVerilog(VertexTypes i_type) {
   return "";
 }
 
+std::string VertexUtils::vertexTypeToComment(VertexTypes i_type) {
+  switch (i_type) {
+    case VertexTypes::input:
+      return "// Writing inputs";
+    case VertexTypes::output:
+      return "// Writing outputs";
+    case VertexTypes::constant:
+      return "// Writing consts";
+    case VertexTypes::gate:
+      return "// Writing gates";
+    default:
+      return "// Not writable vertex type";
+  }
+  return "// Unknown vertex";
+}
+
 GraphVertexBase::GraphVertexBase(const VertexTypes i_type, GraphPtr i_graph) {
   d_baseGraph = i_graph;
   d_type      = i_type;

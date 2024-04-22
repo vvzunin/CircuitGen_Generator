@@ -41,6 +41,8 @@ void runGenerationFromJson(std::string json_path) {
             ? static_cast<unsigned>(std::time(0))
             : static_cast<unsigned>(data["seed"])
     );
+    // EVERYWHERE seed from json is getting here. It is like a storage for seed 
+    // for all future usages`
 
     // Задаем основные параметры генерации
     GenerationTypes gt;
@@ -53,28 +55,28 @@ void runGenerationFromJson(std::string json_path) {
     else if (data["type_of_generation"] == "Num Operation")
       gt = GenerationTypes::NumOperation;
     else if (data["type_of_generation"] == "Genetic")
-       gt = GenerationTypes::Genetic;
+      gt = GenerationTypes::Genetic;
     else if (data["type_of_generation"] == "Summator")
       gt = GenerationTypes::Summator;
     else if (data["type_of_generation"] == "Comparison")
       gt = GenerationTypes::Comparison;
     else if (data["type_of_generation"] == "Encoder")
-        gt = GenerationTypes::Encoder;
+      gt = GenerationTypes::Encoder;
     else if (data["type_of_generation"] == "Subtractor")
       gt = GenerationTypes::Subtractor;
     else if (data["type_of_generation"] == "Multiplexer")
-        gt = GenerationTypes::Multiplexer;
+      gt = GenerationTypes::Multiplexer;
     else if (data["type_of_generation"] == "Demultiplexer")
       gt = GenerationTypes::Demultiplexer;
     else if (data["type_of_generation"] == "Multiplier")
-        gt = GenerationTypes::Multiplier;
+      gt = GenerationTypes::Multiplier;
     else if (data["type_of_generation"] == "Decoder")
-        gt = GenerationTypes::Decoder;
+      gt = GenerationTypes::Decoder;
     else if (data["type_of_generation"] == "Parity")
-        gt = GenerationTypes::Parity;
+      gt = GenerationTypes::Parity;
 
     else if (data["type_of_generation"] == "ALU")
-        gt = GenerationTypes::ALU;
+      gt = GenerationTypes::ALU;
     else {
       std::cerr << "Unsupported generation type" << std::endl;
       return;
@@ -157,8 +159,8 @@ void runGenerationFromJson(std::string json_path) {
       }
     }
     // TODO: shell we fill gatesInputsInfo always?
-    // // if gates_inputs_info in json was empty or there was no such data in json
-    // if (!gatesInputsInfo.size()) {
+    // // if gates_inputs_info in json was empty or there was no such data in
+    // json if (!gatesInputsInfo.size()) {
     //   // default init data
     //   gatesInputsInfo["and"]  = {2};
     //   gatesInputsInfo["nand"] = {2};
@@ -189,14 +191,17 @@ void runGenerationFromJson(std::string json_path) {
 
     // Основные параметры для From Random Truth Table
     if (data["type_of_generation"] == "From Random Truth Table") {
-      if (!(data.contains("CNFF") || data.contains("CNFT") || data.contains("Zhegalkin"))) {
+      if (!(data.contains("CNFF") || data.contains("CNFT")
+            || data.contains("Zhegalkin"))) {
         std::cerr << "Parameters for selected generation type is not set."
                   << std::endl;
         return;
       }
       gp.setCNFF(data.contains("CNFF") ? (bool)data["CNFF"] : false);
       gp.setCNFT(data.contains("CNFT") ? (bool)data["CNFT"] : false);
-      gp.setZhegalkin(data.contains("Zhegalkin") ? (bool)data["Zhegalkin"] : false);
+      gp.setZhegalkin(
+          data.contains("Zhegalkin") ? (bool)data["Zhegalkin"] : false
+      );
     }
 
     // Основные параметры для Rand Level
@@ -256,9 +261,7 @@ void runGenerationFromJson(std::string json_path) {
     }
 
     // Основные параметры для Genetic
-    if (data["type_of_generation"] == "Genetic")
-    {
-
+    if (data["type_of_generation"] == "Genetic") {
       int numOfSurv = 1;
       if (data.contains("surv_num"))
         int numOfSurv = data["surv_num"];
@@ -266,8 +269,7 @@ void runGenerationFromJson(std::string json_path) {
         std::clog << "Parameter surv_num is not set." << std::endl;
 
       MutationTypes mType;
-      if (data.contains("mut_type"))
-      {
+      if (data.contains("mut_type")) {
         std::string mutType = data["mut_type"];
 
         if (mutType == "Binary")
@@ -282,14 +284,11 @@ void runGenerationFromJson(std::string json_path) {
           mType = MutationTypes::Exchange;
         else if (mutType == "Delete")
           mType = MutationTypes::Delete;
-        else
-        {
+        else {
           std::cerr << "Unsupported mutType." << std::endl;
           return;
         }
-      }
-      else
-      {
+      } else {
         std::cerr << "Parameters for mutType is not set." << std::endl;
         return;
       }
@@ -336,7 +335,7 @@ void runGenerationFromJson(std::string json_path) {
       else
         std::clog << "Parameter tour_size is not set." << std::endl;
 
-      std::string selectionTypeParent = data["selection_type_parent"];
+      std::string  selectionTypeParent = data["selection_type_parent"];
       ParentsTypes selecTypeParent;
       if (selectionTypeParent == "Panmixia")
         selecTypeParent = ParentsTypes::Panmixia;
@@ -348,13 +347,12 @@ void runGenerationFromJson(std::string json_path) {
         selecTypeParent = ParentsTypes::Tournament;
       else if (selectionTypeParent == "Roulette")
         selecTypeParent = ParentsTypes::Roulette;
-      else
-      {
+      else {
         std::cerr << "Unsupported selectionTypeParent." << std::endl;
         return;
       }
 
-      std::string recombinationType = data["playback_type"];
+      std::string        recombinationType = data["playback_type"];
       RecombinationTypes recombType;
       if (recombinationType == "CrossingEachExitInTurnMany")
         recombType = RecombinationTypes::CrossingEachExitInTurnMany;
@@ -366,8 +364,7 @@ void runGenerationFromJson(std::string json_path) {
         recombType = RecombinationTypes::CrossingReducedReplacement;
       else if (recombinationType == "CrossingShuffling")
         recombType = RecombinationTypes::CrossingShuffling;
-      else
-      {
+      else {
         std::cerr << "Unsupported recombinationType." << std::endl;
         return;
       }
@@ -390,7 +387,7 @@ void runGenerationFromJson(std::string json_path) {
       else
         std::clog << "Parameter cycles is not set." << std::endl;
 
-      std::string selectionType = data["selection_type"];
+      std::string    selectionType = data["selection_type"];
       SelectionTypes selType;
       if (selectionType == "Base")
         selType = SelectionTypes::Base;
@@ -399,83 +396,99 @@ void runGenerationFromJson(std::string json_path) {
 
       gp.setPopulationSize(populationSize);
       gp.setNumOfCycles(numOfCycles);
-      gp.setRecombinationParameters(selecTypeParent, tourSize, recombType,
-      refPoints, maskProb, recNum); gp.setMutationParameters(mType,
-      mutChance, exchangeType, probabilityTruthTable);
+      gp.setRecombinationParameters(
+          selecTypeParent, tourSize, recombType, refPoints, maskProb, recNum
+      );
+      gp.setMutationParameters(
+          mType, mutChance, exchangeType, probabilityTruthTable
+      );
       gp.setSelectionParameters(selType, survNum);
       gp.setKeyEndProcessIndex(outRatio);
       // gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType,
       // ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
     }
 
-    if (static_cast<std::string>(data["type_of_generation"])
-                  .find("Subtractor") != std::string::npos) {
-        if (!(data.contains("overflowIn") || data.contains("overflowOut") || data.contains("sub")))
-            std::clog << "Parameters for selected generation type is not set. "
-                           "Parameters sets to default."<< std::endl;
+    if (static_cast<std::string>(data["type_of_generation"]).find("Subtractor")
+        != std::string::npos) {
+      if (!(data.contains("overflowIn") || data.contains("overflowOut")
+            || data.contains("sub")))
+        std::clog << "Parameters for selected generation type is not set. "
+                     "Parameters sets to default."
+                  << std::endl;
 
-        bool overflowIn = data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
-        bool overflowOut = data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
-        bool sub = data.contains("sub") ? (bool)data["sub"] : false;
-        gp.setSubtractorParameters(overflowIn, overflowOut, sub);
+      bool overflowIn =
+          data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
+      bool overflowOut =
+          data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
+      bool sub = data.contains("sub") ? (bool)data["sub"] : false;
+      gp.setSubtractorParameters(overflowIn, overflowOut, sub);
     }
 
-    if (static_cast<std::string>(data["type_of_generation"])
-                  .find("Summator") != std::string::npos) {
-        if (!(data.contains("overflowIn") || data.contains("overflowOut") || data.contains("minus")))
-            std::clog << "Parameters for selected generation type is not set. "
-                           "Parameters sets to default."<< std::endl;
+    if (static_cast<std::string>(data["type_of_generation"]).find("Summator")
+        != std::string::npos) {
+      if (!(data.contains("overflowIn") || data.contains("overflowOut")
+            || data.contains("minus")))
+        std::clog << "Parameters for selected generation type is not set. "
+                     "Parameters sets to default."
+                  << std::endl;
 
-        bool overflowIn = data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
-        bool overflowOut = data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
-        bool minus = data.contains("minus") ? (bool)data["minus"] : false;
-        gp.setSummatorParameters(overflowIn, overflowOut, minus);
+      bool overflowIn =
+          data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
+      bool overflowOut =
+          data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
+      bool minus = data.contains("minus") ? (bool)data["minus"] : false;
+      gp.setSummatorParameters(overflowIn, overflowOut, minus);
     }
 
-    if (static_cast<std::string>(data["type_of_generation"])
-                  .find("Comparison") != std::string::npos) {
-        if (!(data.contains("=") || data.contains("<") || data.contains(">")))
-            std::clog << "Parameters for selected generation type is not set. "
-                           "Parameters sets to default."<< std::endl;
+    if (static_cast<std::string>(data["type_of_generation"]).find("Comparison")
+        != std::string::npos) {
+      if (!(data.contains("=") || data.contains("<") || data.contains(">")))
+        std::clog << "Parameters for selected generation type is not set. "
+                     "Parameters sets to default."
+                  << std::endl;
 
-        bool compare0 = data.contains("=") ? (bool)data["="] : false;
-        bool compare1 = data.contains("<") ? (bool)data["<"] : false;
-        bool compare2 = data.contains(">") ? (bool)data[">"] : false;
-        gp.setComparisonParameters(compare0, compare1, compare2);
+      bool compare0 = data.contains("=") ? (bool)data["="] : false;
+      bool compare1 = data.contains("<") ? (bool)data["<"] : false;
+      bool compare2 = data.contains(">") ? (bool)data[">"] : false;
+      gp.setComparisonParameters(compare0, compare1, compare2);
     }
 
-    if (static_cast<std::string>(data["type_of_generation"]).find("ALU") != std::string::npos) {
-        if (!(data.contains("ALL") || data.contains("SUM") || data.contains("SUB") ||
-        data.contains("NSUM") || data.contains("NSUB") || data.contains("MULT") ||
-        data.contains("COM") || data.contains("AND") || data.contains("NAND") ||
-        data.contains("OR") || data.contains("NOR") || data.contains("XOR") ||
-        data.contains("XNOR") || data.contains("CNF")))
-            std::clog << "Parameters for selected generation type is not set. "
-                           "Parameters sets to default."<< std::endl;
+    if (static_cast<std::string>(data["type_of_generation"]).find("ALU")
+        != std::string::npos) {
+      if (!(data.contains("ALL") || data.contains("SUM") || data.contains("SUB")
+            || data.contains("NSUM") || data.contains("NSUB")
+            || data.contains("MULT") || data.contains("COM")
+            || data.contains("AND") || data.contains("NAND")
+            || data.contains("OR") || data.contains("NOR")
+            || data.contains("XOR") || data.contains("XNOR")
+            || data.contains("CNF")))
+        std::clog << "Parameters for selected generation type is not set. "
+                     "Parameters sets to default."
+                  << std::endl;
 
-        bool ALL = data.contains("ALL") ? (bool)data["ALL"] : false;
-        bool SUM = data.contains("SUM") ? (bool)data["SUM"] : false;
-        bool SUB = data.contains("SUB") ? (bool)data["SUB"] : false;
-        bool NSUM = data.contains("NSUM") ? (bool)data["NSUM"] : false;
-        bool NSUB = data.contains("NSUB") ? (bool)data["NSUB"] : false;
-        bool MULT = data.contains("MULT") ? (bool)data["MULT"] : false;
-        bool COM = data.contains("COM") ? (bool)data["COM"] : false;
-        bool AND = data.contains("AND") ? (bool)data["AND"] : false;
-        bool NAND = data.contains("NAND") ? (bool)data["NAND"] : false;
-        bool OR = data.contains("OR") ? (bool)data["OR"] : false;
-        bool NOR = data.contains("NOR") ? (bool)data["NOR"] : false;
-        bool XOR = data.contains("XOR") ? (bool)data["XOR"] : false;
-        bool XNOR = data.contains("XNOR") ? (bool)data["XNOR"] : false;
-        bool CNF = data.contains("CNF") ? (bool)data["CNF"] : false;
-        bool RNL = data.contains("RNL") ? (bool)data["RNL"] : false;
-        bool NUM_OP = data.contains("NUM_OP") ? (bool)data["NUM_OP"] : false;
-        // для RNL
-        int minLevel   = data.contains("min_level") ? (int)data["min_level"] : 0;
-        int maxLevel   = data.contains("max_level") ? (int)data["max_level"] : 0;
-        int minElement = data.contains("min_elem") ? (int)data["min_elem"] : 0;
-        int maxElement = data.contains("max_elem") ? (int)data["max_elem"] : 0;
-        // для NUM_OP
-        std::vector<std::string> v = {
+      bool ALL        = data.contains("ALL") ? (bool)data["ALL"] : false;
+      bool SUM        = data.contains("SUM") ? (bool)data["SUM"] : false;
+      bool SUB        = data.contains("SUB") ? (bool)data["SUB"] : false;
+      bool NSUM       = data.contains("NSUM") ? (bool)data["NSUM"] : false;
+      bool NSUB       = data.contains("NSUB") ? (bool)data["NSUB"] : false;
+      bool MULT       = data.contains("MULT") ? (bool)data["MULT"] : false;
+      bool COM        = data.contains("COM") ? (bool)data["COM"] : false;
+      bool AND        = data.contains("AND") ? (bool)data["AND"] : false;
+      bool NAND       = data.contains("NAND") ? (bool)data["NAND"] : false;
+      bool OR         = data.contains("OR") ? (bool)data["OR"] : false;
+      bool NOR        = data.contains("NOR") ? (bool)data["NOR"] : false;
+      bool XOR        = data.contains("XOR") ? (bool)data["XOR"] : false;
+      bool XNOR       = data.contains("XNOR") ? (bool)data["XNOR"] : false;
+      bool CNF        = data.contains("CNF") ? (bool)data["CNF"] : false;
+      bool RNL        = data.contains("RNL") ? (bool)data["RNL"] : false;
+      bool NUM_OP     = data.contains("NUM_OP") ? (bool)data["NUM_OP"] : false;
+      // для RNL
+      int  minLevel   = data.contains("min_level") ? (int)data["min_level"] : 0;
+      int  maxLevel   = data.contains("max_level") ? (int)data["max_level"] : 0;
+      int  minElement = data.contains("min_elem") ? (int)data["min_elem"] : 0;
+      int  maxElement = data.contains("max_elem") ? (int)data["max_elem"] : 0;
+      // для NUM_OP
+      std::vector<std::string> v = {
           "num_and",
           "num_nand",
           "num_or",
@@ -484,8 +497,8 @@ void runGenerationFromJson(std::string json_path) {
           "num_buf",
           "num_xor",
           "num_xnor"
-        };
-        std::map<std::string, Gates> stringToGate = {
+      };
+      std::map<std::string, Gates> stringToGate = {
           {"and", Gates::GateAnd},
           {"nand", Gates::GateNand},
           {"or", Gates::GateOr},
@@ -494,19 +507,42 @@ void runGenerationFromJson(std::string json_path) {
           {"buf", Gates::GateBuf},
           {"xor", Gates::GateXor},
           {"xnor", Gates::GateXnor}
-        };
-        std::map<Gates, int> m;
-        bool LeaveEmptyOut = false;
-        if (data.contains("leave_empty_out"))
-          LeaveEmptyOut = data["leave_empty_out"];
-        else
-          std::clog << "LeaveEmptyOut is not set." << std::endl;
+      };
+      std::map<Gates, int> m;
+      bool                 LeaveEmptyOut = false;
+      if (data.contains("leave_empty_out"))
+        LeaveEmptyOut = data["leave_empty_out"];
+      else
+        std::clog << "LeaveEmptyOut is not set." << std::endl;
 
-
-        gp.setALUParameters(ALL, SUM, SUB, NSUM, NSUB, MULT, COM, AND, NAND, OR, NOR, XOR, XNOR, CNF, RNL, NUM_OP, minLevel, maxLevel, minElement, maxElement, m, LeaveEmptyOut);
+      gp.setALUParameters(
+          ALL,
+          SUM,
+          SUB,
+          NSUM,
+          NSUB,
+          MULT,
+          COM,
+          AND,
+          NAND,
+          OR,
+          NOR,
+          XOR,
+          XNOR,
+          CNF,
+          RNL,
+          NUM_OP,
+          minLevel,
+          maxLevel,
+          minElement,
+          maxElement,
+          m,
+          LeaveEmptyOut
+      );
     }
-    DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs,
-                                     maxOutputs, repeats, gt, gp);
+    DataBaseGeneratorParameters dbgp(
+        minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp
+    );
 
     DataBaseGenerator generator(dbgp);
 
