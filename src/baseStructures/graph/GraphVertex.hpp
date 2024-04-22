@@ -77,7 +77,7 @@ public:
 private:
 };
 
-/// class GraphVertexSubGraph It is a class, having a subGruph poiner
+/// class GraphVertexSubGraph It is a class, having a subGruph pointer
 /// inside. Is used for storing this pointer for providing Grpah
 /// connectivity
 class GraphVertexSubGraph : public GraphVertexBase {
@@ -100,7 +100,7 @@ public:
   /// folder would be created there
   /// @param i_filename name of file to be created (default is same as grpah
   /// name)
-  /// @return pair, first is bool, meaning was file writing successfull or not
+  /// @return pair, first is bool, meaning was file writing successful or not
   /// and second is string, for graph is empty, for subgraph is module instance
   std::pair<bool, std::string>
               toVerilog(std::string i_path, std::string i_filename = "");
