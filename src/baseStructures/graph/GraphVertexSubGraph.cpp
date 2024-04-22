@@ -26,7 +26,29 @@ char GraphVertexSubGraph::updateValue() {
 
 // In fact is not needed
 std::string GraphVertexSubGraph::getInstance() {
-  return "DO NOT CALL IT";
+  return d_subGraph->getGraphInstance();
+}
+
+std::pair<bool, std::string> GraphVertexSubGraph::toVerilog(
+    std::string i_path,
+    std::string i_filename = ""
+) {
+  if (auto parentPtr = d_baseGraph.lock()) {
+    d_subGraph->setCurrentParent(parentPtr);
+  }
+  else {
+    throw std::invalid_argument("Dead pointer!"); 
+  }
+
+  return d_subGraph->toVerilog(i_path, i_filename);
+}
+
+bool GraphVertexSubGraph::toGraphML(std::ofstream& i_fileStream) const {
+  return d_subGraph->toGraphML(i_fileStream);
+}
+
+std::string GraphVertexSubGraph::toGraphML(int i_nesting = 0) const {
+  return d_subGraph->toGraphML(i_nesting);
 }
 
 std::string GraphVertexSubGraph::toVerilog() {

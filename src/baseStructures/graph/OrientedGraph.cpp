@@ -491,10 +491,8 @@ std::pair<bool, std::string>
   }
   // and all modules
   for (auto subPtr : d_vertexes[VertexTypes::subGraph]) {
-    auto sub =
-        std::static_pointer_cast<GraphVertexSubGraph>(subPtr)->getSubGraph();
-    
-    sub->setCurrentParent(shared_from_this());
+    auto sub = std::static_pointer_cast<GraphVertexSubGraph>(subPtr);
+
     std::pair<bool, std::string> val = sub->toVerilog(i_path);
     if (!val.first)
       return std::make_pair(false, "");

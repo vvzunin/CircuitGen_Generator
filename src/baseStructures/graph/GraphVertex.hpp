@@ -93,6 +93,33 @@ public:
   char        updateValue() override;
 
   std::string toVerilog() override;
+
+  /// @brief This method is used as a substructure for
+  /// OrientedGraph methods
+  /// @param i_path path to future file storing. Do not add submodule here,
+  /// folder would be created there
+  /// @param i_filename name of file to be created (default is same as grpah
+  /// name)
+  /// @return pair, first is bool, meaning was file writing successfull or not
+  /// and second is string, for graph is empty, for subgraph is module instance
+  std::pair<bool, std::string>
+              toVerilog(std::string i_path, std::string i_filename = "");
+
+  /// @brief This method is used as a substructure for
+  /// OrientedGraph methods
+  /// @param i_fileStream
+  /// @return
+  bool        toGraphML(std::ofstream& i_fileStream) const;
+  
+  /// @brief This method is used as a substructure for
+  /// OrientedGraph methods
+  /// @param i_nesting 
+  /// @return 
+  std::string toGraphML(int i_nesting = 0) const;
+
+  /// @brief This method is used as a substructure for
+  /// OrientedGraph methods
+  /// @return 
   std::string getInstance() override;
 
   std::string calculateHash(bool recalculate = false);
