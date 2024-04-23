@@ -31,10 +31,8 @@ public:
 
   virtual ~OrientedGraph();
 
-  // TODO: Написать руками для полного копирования, а не только указателей.
   OrientedGraph& operator=(const OrientedGraph& other
   ) = default;  // оператор копирующего присваивания
-  // TODO here can be some problems!!!
   OrientedGraph& operator=(OrientedGraph&& other
   ) = default;  // оператор перемещающего присваивания
   OrientedGraph(const OrientedGraph& other) = default;
@@ -78,7 +76,7 @@ public:
 
   size_t getEdgesCount() { return d_edgesCount; }
 
-  std::vector<GraphPtr>                         getSubGraphs() const;
+  std::set<GraphPtr>                            getSubGraphs() const;
   std::set<GraphPtr>                            getSetSubGraphs() const;
   std::map<VertexTypes, std::vector<VertexPtr>> getBaseVertexes() const;
   VertexPtr   getVerticeByIndex(int idx) const;
@@ -142,12 +140,13 @@ private:
   // we have such pairs: number of subragh instances,
   std::map<size_t, std::vector<std::vector<VertexPtr>>> d_subGraphsInputsPtr;
 
-  std::vector<GraphPtr>                                 d_subGraphs;
+  std::set<GraphPtr>                                    d_subGraphs;
   std::map<VertexTypes, std::vector<VertexPtr>>         d_vertexes {
               {VertexTypes::input, std::vector<VertexPtr>()},
               {VertexTypes::output, std::vector<VertexPtr>()},
               {VertexTypes::constant, std::vector<VertexPtr>()},
-              {VertexTypes::gate, std::vector<VertexPtr>()}};
+              {VertexTypes::gate, std::vector<VertexPtr>()},
+              {VertexTypes::subGraph, std::vector<VertexPtr>()}};
 
   static uint_fast64_t d_countGraph;
 

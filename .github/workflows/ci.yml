@@ -47,11 +47,11 @@ jobs:
       run: cmake --preset=ci-coverage
 
     - name: Build
-      run: cmake --build build/coverage -j 2
+      run: cmake --build build/coverage -j $(nproc)
 
     - name: Test
       working-directory: build/coverage
-      run: ctest --output-on-failure --no-tests=error -j 2
+      run: ctest --output-on-failure --no-tests=error -j $(nproc)
 
     - name: Process coverage info
       run: cmake --build build/coverage -t coverage
@@ -76,7 +76,7 @@ jobs:
       run: cmake --preset=ci-sanitize
 
     - name: Build
-      run: cmake --build build/sanitize -j 2
+      run: cmake --build build/sanitize -j $(nproc)
 
     - name: Test
       working-directory: build/sanitize
@@ -87,7 +87,7 @@ jobs:
           strict_init_order=1:\
           detect_leaks=1"
         UBSAN_OPTIONS: print_stacktrace=1
-      run: ctest --output-on-failure --no-tests=error -j 2
+      run: ctest --output-on-failure --no-tests=error -j $(nproc)
 
   test:
     needs: [lint]
@@ -122,14 +122,14 @@ jobs:
       run: cmake "--preset=ci-$("${{ matrix.os }}".split("-")[0])"
 
     - name: Build
-      run: cmake --build build --config Release -j 2
+      run: cmake --build build --config Release -j $(nproc)
 
     - name: Install
       run: cmake --install build --config Release --prefix prefix
 
     - name: Test
       working-directory: build
-      run: ctest --output-on-failure --no-tests=error -C Release -j 2
+      run: ctest --output-on-failure --no-tests=error -C Release -j $(nproc)
 
   docs:
     # Deploy docs only when builds succeed

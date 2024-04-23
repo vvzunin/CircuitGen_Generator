@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <map>
 #include <memory>
 #include <string>
@@ -76,6 +77,61 @@ public:
 private:
 };
 
+/// class GraphVertexSubGraph It is a class, having a subGruph pointer
+/// inside. Is used for storing this pointer for providing Grpah
+/// connectivity
+class GraphVertexSubGraph : public GraphVertexBase {
+public:
+  GraphVertexSubGraph(GraphPtr i_subGraph, GraphPtr i_baseGraph = nullptr);
+
+  GraphVertexSubGraph(
+      GraphPtr           i_subGraph,
+      const std::string& i_name,
+      GraphPtr           i_baseGraph = nullptr
+  );
+
+  char        updateValue() override;
+
+  std::string toVerilog() override;
+
+  /// @brief This method is used as a substructure for
+  /// OrientedGraph methods
+  /// @param i_path path to future file storing. Do not add submodule here,
+  /// folder would be created there
+  /// @param i_filename name of file to be created (default is same as grpah
+  /// name)
+  /// @return pair, first is bool, meaning was file writing successful or not
+  /// and second is string, for graph is empty, for subgraph is module instance
+  std::pair<bool, std::string>
+              toVerilog(std::string i_path, std::string i_filename = "");
+
+  /// @brief This method is used as a substructure for
+  /// OrientedGraph methods
+  /// @param i_fileStream
+  /// @return
+  bool        toGraphML(std::ofstream& i_fileStream) const;
+
+  /// @brief This method is used as a substructure for
+  /// OrientedGraph methods
+  /// @param i_nesting
+  /// @return
+  std::string toGraphML(int i_nesting = 0) const;
+
+  /// @brief This method is used as a substructure for
+  /// OrientedGraph methods
+  /// @return
+  std::string getInstance() override;
+
+  std::string calculateHash(bool recalculate = false);
+
+  void        setSubGraph(GraphPtr i_subGraph);
+  GraphPtr    getSubGraph() const;
+
+private:
+  GraphPtr    d_subGraph;
+  std::string hashed;
+};
+
 /// class GraphVertexOutput It is a vertex of the graph, specially designed for
 /// data output. It inherits from the GraphVertexBase class and adds additional
 /// functionality related to data output
@@ -131,5 +187,4 @@ private:
   std::string hashed;
   // Определяем тип вершины: подграф, вход, выход, константа или одна из базовых
   // логических операций.
-  VertexTypes d_type;
 };
