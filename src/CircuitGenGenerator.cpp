@@ -18,6 +18,7 @@
 #include <unistd.h>
 
 #include "CircuitGenGenerator/export.hpp"
+#include "CircuitGenGenerator/CircuitGenGenerator.hpp"
 
 using namespace std::chrono;
 
@@ -508,23 +509,34 @@ void runGenerationFromJson(std::string json_path) {
     DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs,
                                      maxOutputs, repeats, gt, gp);
 
-    DataBaseGenerator generator(dbgp);
-
-    auto              start = high_resolution_clock::now();
-
-    // Запускаем генерацию с учетом многопоточности и создания поддерикторий
-    generator.generateType(
-        dbgp,
-        data.contains("multithread") ? (bool)data["multithread"] : false,
-        data.contains("create_id_directories")
-            ? (bool)data["create_id_directories"]
-            : true
-    );
-
-    auto stop     = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop - start);
-    std::clog << "Time taken: " << duration.count() << " microseconds"
-              << std::endl;
+    runGenerationFromDbgp(dbgp,
+                          data.contains("multithread")
+                            ? (bool)data["multithread"]
+                            : false,
+                          data.contains("create_id_directories")
+                            ? (bool)data["create_id_directories"]
+                            : true
+                         );
   }
 }
+
+void runGenerationFromDbgp(DataBaseGeneratorParameters dbgp,
+  bool multithread, bool create_id_directories) {
+
+  DataBaseGenerator generator(dbgp);
+
+  auto start = high_resolution_clock::now();
+
+  // Запускаем генерацию с учетом многопоточности и создания поддерикторий
+  generator.generateType(
+    dbgp,
+    multithread,
+    create_id_directories
+  );
+
+  auto stop = high_resolution_clock::now();
+  auto duration = duration_cast<microseconds>(stop - start);
+  std::clog << "Time taken: " << duration.count() << " microseconds"
+            << std::endl;
+  }
 }  // namespace CircuitGenGenerator
