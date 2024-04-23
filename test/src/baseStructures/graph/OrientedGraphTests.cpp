@@ -37,8 +37,8 @@ TEST(TestSetNameAndGetName, ReturnCorrectName) {
   graphPtr4          = graphPtr1;
   EXPECT_EQ(graphPtr4->getName(), "graph_0");
 
-  graphPtr1->setName("Cahnged");
-  EXPECT_EQ(graphPtr1->getName(), "Cahnged");
+  graphPtr1->setName("Changed");
+  EXPECT_EQ(graphPtr1->getName(), "Changed");
 }
 
 TEST(TestBaseSizeAndFullSizeAndSumFullSize, ReturnCorrectSize) {

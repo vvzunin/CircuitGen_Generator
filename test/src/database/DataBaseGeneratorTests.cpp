@@ -147,7 +147,7 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
   std::filesystem::remove_all(mainDir + "/" + dir);
 }
 
-// // Circuits have defferent hashes
+// // Circuits have different hashes
 // TEST(generateDataBaseNumOperations, EqualWithTheSameSeeds) {
 //   std::string          mainDir   = "dataset";
 //   std::string          dir       = "NumOperations";
