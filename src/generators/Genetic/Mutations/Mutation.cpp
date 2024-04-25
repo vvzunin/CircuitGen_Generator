@@ -40,4 +40,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationType(
     );
 
   std::cout << "UNRECOGNIZED MtationType AT Mutation.cpp" << std::endl;
+
+  // default to remove warning 
+  return {};
 }
