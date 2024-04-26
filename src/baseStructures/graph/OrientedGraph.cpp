@@ -148,12 +148,20 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
 
   std::vector<VertexPtr> outputs;
 
+  VertexPtr newGraph(new GraphVertexSubGraph(i_subGraph, shared_from_this()));
+  d_vertexes[VertexTypes::subGraph].push_back(newGraph);
+
+  // adding edges for subGraphs
+  addEdges(i_inputs, newGraph);
+
   for (auto outVert : i_subGraph->getVerticesByType(VertexTypes::output)) {
     VertexPtr newVertex(new GraphVertexGates(Gates::GateBuf, shared_from_this())
     );
 
     outputs.push_back(newVertex);
     d_allSubGraphsOutputs.push_back(newVertex);
+
+    addEdge(newGraph, newVertex);
   }
 
   // here we save our inputs and outputs to instance number
@@ -164,7 +172,7 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
   // and we call it's toVerilog, having in multiple instance
   // of one i_subGraph, so we can have many times "moduleName name (inp, out);"
   // having different names of module, inputs and outputs
-  d_subGraphs.push_back(i_subGraph);
+  d_subGraphs.insert(i_subGraph);
 
   return outputs;
 }
@@ -209,7 +217,7 @@ bool OrientedGraph::addEdges(std::vector<VertexPtr> from1, VertexPtr to) {
   return f;
 }
 
-std::vector<GraphPtr> OrientedGraph::getSubGraphs() const {
+std::set<GraphPtr> OrientedGraph::getSubGraphs() const {
   return d_subGraphs;
 }
 
@@ -294,7 +302,8 @@ size_t OrientedGraph::sumFullSize() const {
   return d_vertexes.at(VertexTypes::input).size()
        + d_vertexes.at(VertexTypes::constant).size()
        + d_vertexes.at(VertexTypes::gate).size()
-       + d_vertexes.at(VertexTypes::output).size();
+       + d_vertexes.at(VertexTypes::output).size()
+       + d_vertexes.at(VertexTypes::subGraph).size();
 }
 
 std::map<Gates, int> OrientedGraph::getGatesCount() const {
@@ -342,6 +351,8 @@ bool OrientedGraph::operator==(const OrientedGraph& rhs) {
           != d_vertexes.at(VertexTypes::constant).size();
   correct &= rhs.d_vertexes.at(VertexTypes::gate).size()
           != d_vertexes.at(VertexTypes::gate).size();
+  correct &= rhs.d_vertexes.at(VertexTypes::subGraph).size()
+          != d_vertexes.at(VertexTypes::subGraph).size();
 
   if (!correct)
     return false;
@@ -449,14 +460,30 @@ std::pair<bool, std::string>
   }
   fileStream << ");\n" << verilogTab;
 
-  // parsing inputs, outputs and wires for subgraphs
+  // parsing inputs, outputs and wires for subgraphs. And wires for operations
+  // too
+  uint8_t count = 0;
   for (auto eachVertex :
        {d_vertexes[VertexTypes::input],
         d_vertexes[VertexTypes::output],
-        d_allSubGraphsOutputs}) {
+        d_allSubGraphsOutputs,
+        d_vertexes[VertexTypes::gate]}) {
     if (eachVertex.size()) {
-      fileStream << VertexUtils::vertexTypeToVerilog(eachVertex.back()->getType(
-      )) << " ";
+      auto usedType = eachVertex.back()->getType();
+
+      fileStream << VertexUtils::vertexTypeToComment(usedType);
+
+      switch (count) {
+        case 2:
+          fileStream << " for subGraphs outputs";
+          break;
+        case 3:
+          fileStream << " for main graph";
+          break;
+      }
+      fileStream << std::endl << verilogTab;
+
+      fileStream << VertexUtils::vertexTypeToVerilog(usedType) << " ";
     }
 
     for (auto value : eachVertex) {
@@ -464,6 +491,8 @@ std::pair<bool, std::string>
                  << (value != eachVertex.back() ? ", " : ";\n");
     }
     fileStream << verilogTab;
+
+    ++count;
   }
 
   if (d_vertexes[VertexTypes::constant].size()) {
@@ -478,8 +507,9 @@ std::pair<bool, std::string>
     fileStream << "\n";
   }
   // and all modules
-  for (auto sub : d_subGraphs) {
-    sub->setCurrentParent(shared_from_this());
+  for (auto subPtr : d_vertexes[VertexTypes::subGraph]) {
+    auto sub = std::static_pointer_cast<GraphVertexSubGraph>(subPtr);
+
     std::pair<bool, std::string> val = sub->toVerilog(i_path);
     if (!val.first)
       return std::make_pair(false, "");
@@ -491,7 +521,6 @@ std::pair<bool, std::string>
   }
   // and all operations
   for (auto oper : d_vertexes[VertexTypes::gate]) {
-    fileStream << verilogTab << oper->getInstance() << "\n";
     fileStream << verilogTab << oper->toVerilog() << "\n";
   }
 

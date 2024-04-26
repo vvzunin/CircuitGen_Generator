@@ -37,8 +37,26 @@ std::string VertexUtils::vertexTypeToVerilog(VertexTypes i_type) {
       return "localparam";
     case VertexTypes::gate:
       return "wire";
+    default:
+      return "Not callable";
   }
   return "";
+}
+
+std::string VertexUtils::vertexTypeToComment(VertexTypes i_type) {
+  switch (i_type) {
+    case VertexTypes::input:
+      return "// Writing inputs";
+    case VertexTypes::output:
+      return "// Writing outputs";
+    case VertexTypes::constant:
+      return "// Writing consts";
+    case VertexTypes::gate:
+      return "// Writing gates";
+    default:
+      return "// Not writable vertex type";
+  }
+  return "// Unknown vertex";
 }
 
 GraphVertexBase::GraphVertexBase(const VertexTypes i_type, GraphPtr i_graph) {
@@ -130,7 +148,7 @@ std::string GraphVertexBase::calculateHash(bool recalculate) {
   if (d_type == VertexTypes::output && !d_baseGraph.lock())
     return "";
 
-  // autosorted struct
+  // futuire sorted struct
   std::vector<std::string> hashed_data;
   hashed = "";
 

@@ -104,17 +104,26 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   // iterate through inputs
   for (auto inp : inputs) {
     for (auto child : inp->getOutConnections()) {
-      ++d_circuitParameters.d_numEdgesOfEachType[{
-          "input", d_settings->parseGateToString(child->getGate())}];
+      std::string to = child->getGate() != Gates::GateDefault
+                         ? d_settings->parseGateToString(child->getGate())
+                         : child->getTypeName();
+      ++d_circuitParameters.d_numEdgesOfEachType[{"input", to}];
     }
   }
 
   // iterate through outputs
-  for (auto inp : outputs) {
-    for (auto child : inp->getInConnections()) {
+  for (auto out : outputs) {
+    for (auto child : out->getInConnections()) {
       if (auto ptr = child.lock()) {
-        ++d_circuitParameters.d_numEdgesOfEachType[{
-            d_settings->parseGateToString(ptr->getGate()), "output"}];
+        // here we do not parse pair input-output
+        if (ptr->getType() == VertexTypes::input) {
+          continue;
+        }
+
+        std::string from = ptr->getGate() != Gates::GateDefault
+                             ? d_settings->parseGateToString(ptr->getGate())
+                             : ptr->getTypeName();
+        ++d_circuitParameters.d_numEdgesOfEachType[{from, "output"}];
       } else {
         throw std::invalid_argument("Dead pointer!");
       }
@@ -124,6 +133,10 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   // iterate through constants
   for (auto inp : constants) {
     for (auto child : inp->getOutConnections()) {
+      // here we do not parse pair const-output
+      if (child->getType() == VertexTypes::output) {
+        continue;
+      }
       ++d_circuitParameters.d_numEdgesOfEachType[{
           "const", d_settings->parseGateToString(child->getGate())}];
     }
@@ -134,7 +147,7 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
 }
 
 bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
-  if (d_graph->isEmpty())
+  if (d_graph->isEmptyFull())
     return false;
 
   /* if (!i_pathExists) // TODO: work with directory
@@ -148,8 +161,10 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
 
   int                previousSizeOfFileName = filename.size();
 
-  std::string        folderSubgraphs        = d_path + "/submodules";
-  std::filesystem::create_directory(folderSubgraphs);
+  if (!d_graph->getSubGraphs().empty()) {
+    std::string folderSubgraphs = d_path + "/submodules";
+    std::filesystem::create_directory(folderSubgraphs);
+  }
   filename = d_path + "/" + d_circuitName + ".v";
 
   int pos  = (s.find_last_of('/')) + 1;

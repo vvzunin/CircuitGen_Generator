@@ -27,4 +27,6 @@ inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>> SelectionTy
       i_selectionParameters,
       i_population
     );
+  // default to remove warning 
+  return {};
 }

@@ -59,4 +59,7 @@ inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>> Recombinati
       i_recombinationParameters,
       i_population
     );
+  
+  // default case
+  return {};
 }

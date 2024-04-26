@@ -21,6 +21,8 @@ namespace VertexUtils {
 std::string gateToString(Gates i_type);
 
 std::string vertexTypeToVerilog(VertexTypes i_type);
+
+std::string vertexTypeToComment(VertexTypes i_type);
 }  // namespace VertexUtils
 
 class GraphVertexBase {
@@ -33,7 +35,13 @@ public:
       GraphPtr          i_graph = nullptr
   );
 
-  // TODO crashes add destructor call
+  GraphVertexBase& operator=(const GraphVertexBase& other
+  ) = default;  // оператор копирующего присваивания
+  GraphVertexBase& operator=(GraphVertexBase&& other
+  ) = default;  // оператор перемещающего присваивания
+  GraphVertexBase(const GraphVertexBase& other) = default;
+  GraphVertexBase(GraphVertexBase&& other)      = default;
+
   virtual ~GraphVertexBase();
 
   // Get для типа вершины
@@ -68,7 +76,7 @@ public:
   bool                   addVertexToOutConnections(VertexPtr i_vert);
   bool                   removeVertexToOutConnections(VertexPtr i_vert);
 
-  std::string            calculateHash(bool recalculate = false);
+  virtual std::string    calculateHash(bool recalculate = false);
 
   virtual std::string    getInstance();
 
