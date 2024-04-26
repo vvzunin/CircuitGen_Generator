@@ -148,26 +148,25 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
 
   std::vector<VertexPtr> outputs;
 
+  VertexPtr newGraph(new GraphVertexSubGraph(i_subGraph, shared_from_this()));
+  d_vertexes[VertexTypes::subGraph].push_back(newGraph);
+
+  // adding edges for subGraphs
+  addEdges(i_inputs, newGraph);
+
   for (auto outVert : i_subGraph->getVerticesByType(VertexTypes::output)) {
     VertexPtr newVertex(new GraphVertexGates(Gates::GateBuf, shared_from_this())
     );
 
     outputs.push_back(newVertex);
     d_allSubGraphsOutputs.push_back(newVertex);
+
+    addEdge(newGraph, newVertex);
   }
 
   // here we save our inputs and outputs to instance number
   i_subGraph->d_subGraphsInputsPtr[d_currentInstance].push_back(i_inputs);
   i_subGraph->d_subGraphsOutputsPtr[d_currentInstance].push_back(outputs);
-
-  VertexPtr newGraph(new GraphVertexSubGraph(i_subGraph, shared_from_this()));
-  d_vertexes[VertexTypes::subGraph].push_back(newGraph);
-
-  // adding edges for subGraphs
-  addEdges(i_inputs, newGraph);
-  for (auto out : outputs) {
-    addEdge(newGraph, out);
-  }
 
   // here we use i_subGraph like an instance of BasicType,
   // and we call it's toVerilog, having in multiple instance
