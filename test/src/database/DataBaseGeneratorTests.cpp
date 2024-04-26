@@ -1,4 +1,4 @@
-#include <filesystem>|
+#include <filesystem>
 #include <string>
 
 #include "database/DataBaseGenerator.hpp"
