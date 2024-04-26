@@ -115,3 +115,158 @@ ctest --preset=dev
 
 [1]: https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
 [2]: https://cmake.org/download/
+
+### Правила документирования кода
+
+- 1: Все описания и комментирование кода/добавление TO DO пишутся в файлах с расширение .hpp
+- 2: Всё содержимое должно заключаться в ///
+```hpp
+#include <iostream>
+
+///
+///
+///
+```
+- 3: TO DO пишутся после подключения библиотек. Перед @file упоминается автор при необходимости
+```hpp
+#include <iostream>
+
+/// @author <Имя автора>
+/// @file <название файла.hpp>
+/// TO DO: <описание>
+
+```
+- 4: Для описание методов/функций указывается тег @brief
+```hpp
+#include <iostream>
+
+/// @file <название файла.hpp>
+/// TO DO: <описание>
+
+/// @brief sum
+/// <Описание функции>
+
+int sum (int a, int b);
+
+int main()
+{
+    
+}
+
+```
+- 5: Для описание классов, пространств имён указывается тег class, namespace
+```hpp
+/// namespace AuxMethods
+/// <описание пространства имён>
+
+namespace AuxMethods
+{
+    ...
+}
+
+
+/// class Graph
+/// <описание класса>
+
+class Graph
+{
+    ...
+}
+```
+- 6: Описание параметров классов, параметров функций/методов - тег @param <название переменной> <описание переменной>
+**Пример полного описания класса**
+```hpp
+
+/// class Graph
+/// <описание класса>
+/// @param v
+/// <описание параметра>
+/// @param adj
+/// <описание параметра>
+
+class Graph
+{
+private:
+    int V;
+    vector<vector<int>> adj;
+
+public:
+    Graph(int vertices)
+    {
+        V = vertices;
+        adj.resize(V);
+    }
+    
+    /// @brief addEdge
+    /// <описание метода>
+    /// @param v <описание параметра>
+    /// @param w <описание параметра>
+    
+    void addEdge(int v, int w);
+
+};
+```
+- 7: Возвращаемое значение, тег - @return
+```hpp
+/// @brief getAdjacencyList
+/// <описание метода>
+/// @param v
+/// <описание параметра>
+/// @return <описание возвращаемого значения>
+    vector<int> getAdjacencyList(int v) const
+    {
+        return adj[v];
+    }
+```
+- 8: Описание исключения, тег - @throw
+```hpp
+#include <iostream>
+#include <stdexcept>
+
+/// @brief Делит два числа.
+/// Функция divide выполняет деление двух чисел и возвращает результат.
+/// Если делитель равен нулю, функция бросает исключение runtime_error.
+
+/// @param dividend Делимое число.
+/// @param divisor Делитель.
+/// @return double Результат деления.
+///
+/// @throw runtime_error Если делитель равен нулю.
+
+double divide(double dividend, double divisor)
+{
+    if (divisor == 0) {
+        throw runtime_error("Деление на ноль недопустимо!");
+    }
+    return dividend / divisor;
+}
+```
+- 9: Добавление кода в документацию, код заключен в @code и @endcode соответственно
+**Пример полного описание функции**
+```
+#include <iostream>
+#include <stdexcept>
+
+/// @brief Делит два числа.
+/// 
+/// Функция divide выполняет деление двух чисел и возвращает результат.
+/// Если делитель равен нулю, функция бросает исключение runtime_error.
+
+/// @param dividend Делимое число.
+/// @param divisor Делитель.
+/// @return double Результат деления.
+/// @code
+/// double a = 10.0;
+/// double b = 2.0;
+/// double result = divide(a, b); // result будет равен 5.0
+/// @endcode
+/// @throw runtime_error Если делитель равен нулю.
+
+double divide(double dividend, double divisor)
+{
+    if (divisor == 0) {
+        throw runtime_error("Деление на ноль недопустимо!");
+    }
+    return dividend / divisor;
+}
+```
