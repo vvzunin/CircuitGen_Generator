@@ -182,6 +182,10 @@ std::string Settings::getDatasetPath() const {
   return d_datasetPath;
 }
 
+void Settings::setDatasetPath(const std::string& i_datasetPath) {
+  d_datasetPath = i_datasetPath;
+}
+
 std::string Settings::getLibraryPath() const {
   return d_libraryPath;
 }

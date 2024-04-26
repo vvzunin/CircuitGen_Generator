@@ -226,6 +226,11 @@ public:
 
   std::string getDatasetPath() const;
 
+  /// @brief setDatasetPath Sets the path to the dataset
+  /// @param i_datasetPath a string representing the path to the dataset
+
+  void        setDatasetPath(const std::string& i_datasetPath);
+
   /// @brief getGenerationMethodPrefix Gets the prefix of the generation
   /// method by its corresponding GenerationTypes
   /// The method takes the GenerationTypes type variable of the generation
