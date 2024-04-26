@@ -4,3 +4,4 @@ check-filenames =
 check-hidden =
 skip = */.git,*/build,*/prefix,lib,*/src/additional/threadPool/UnboundedMPMCQueue.hpp
 quiet-level = 2
+ignore-words-list = endcode

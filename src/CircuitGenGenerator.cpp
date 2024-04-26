@@ -546,6 +546,11 @@ void runGenerationFromJson(std::string json_path) {
 
     DataBaseGenerator generator(dbgp);
 
+    if (data.contains("dataset_path")) {
+      Settings::getInstance("CircuitGenGenerator")->
+        setDatasetPath(static_cast<std::string>(data["dataset_path"]));
+    }
+
     auto              start = high_resolution_clock::now();
 
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
