@@ -386,25 +386,54 @@ public:
   /// logical operation XNOR
   /// @param CNF A Boolean flag indicating whether it is worth choosing to
   /// generate a generator based on a Random Truth Table
+  /// @param RNL A Boolean flag indicating whether it is worth choosing to
+  /// type of generation Rand Level
+  /// @param NUM_OP A Boolean flag indicating whether it is worth choosing to
+  /// type of generation Num Operation
+  /// @param minLevel The minimum level of complexity of the graph from
+  /// generation based on Rand Level
+  /// @param maxLevel The maximum level of complexity of the graph from
+  /// generation based on Rand Level. If the value is set to 0, only the minimum
+  /// level will be used.
+  /// @param minElement The minimum number of elements (valves) at each
+  /// level from generation based on Rand Level
+  /// @param maxElement The maximum number of elements (valves) at each
+  /// level from generation based on Rand Level
+  /// @param m A dictionary containing a set of logical operations
+  /// (gates) and their numbers that can be used to generate a graph from
+  /// generation based on Num Operation
+  /// @param LeaveEmptyOut A Boolean flag indicating whether to leave the
+  /// output vertices empty if the number of output vertices is greater than
+  /// the number of logical operations in the graph from generation based on Num
+  /// Operation. If true, the remaining output vertices will remain empty, if
+  /// false, they will be deleted
   /// @return the created OrientedGraph
 
   GraphPtr generatorALU(
-      int  i_bits,
-      int  i_outbits,
-      bool ALL,
-      bool SUM,
-      bool SUB,
-      bool NSUM,
-      bool NSUB,
-      bool MULT,
-      bool COM,
-      bool AND,
-      bool NAND,
-      bool OR,
-      bool NOR,
-      bool XOR,
-      bool XNOR,
-      bool CNF
+      int                  i_bits,
+      int                  i_outbits,
+      bool                 ALL,
+      bool                 SUM,
+      bool                 SUB,
+      bool                 NSUM,
+      bool                 NSUB,
+      bool                 MULT,
+      bool                 COM,
+      bool                 AND,
+      bool                 NAND,
+      bool                 OR,
+      bool                 NOR,
+      bool                 XOR,
+      bool                 XNOR,
+      bool                 CNF,
+      bool                 RNL,
+      bool                 NUM_OP,
+      int                  minLevel,
+      int                  maxLevel,
+      int                  minElement,
+      int                  maxElement,
+      std::map<Gates, int> m,
+      bool                 LeaveEmptyOut
   );
 
   /// @brief setGatesInputsInfo It is designed to set information about the

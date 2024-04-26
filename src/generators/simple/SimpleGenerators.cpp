@@ -11,6 +11,8 @@
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/graph/OrientedGraph.hpp>
 #include <baseStructures/Parser.hpp>
+#include <baseStructures/truthTable/TruthTable.hpp>
+#include <generators/Genetic/GeneticParameters.h>
 #include <math.h>
 
 int SimpleGenerators::getRangomAndNumber() {
@@ -1403,50 +1405,60 @@ GraphPtr SimpleGenerators::generatorMultiplier(int i_bits) {
 }
 
 GraphPtr SimpleGenerators::generatorALU(
-    int  i_bits,
-    int  i_outbits,
-    bool ALL,
-    bool SUM,
-    bool SUB,
-    bool NSUM,
-    bool NSUB,
-    bool MULT,
-    bool COM,
-    bool AND,
-    bool NAND,
-    bool OR,
-    bool NOR,
-    bool XOR,
-    bool XNOR,
-    bool CNF
+    int                  i_bits,
+    int                  i_outbits,
+    bool                 ALL,
+    bool                 SUM,
+    bool                 SUB,
+    bool                 NSUM,
+    bool                 NSUB,
+    bool                 MULT,
+    bool                 COM,
+    bool                 AND,
+    bool                 NAND,
+    bool                 OR,
+    bool                 NOR,
+    bool                 XOR,
+    bool                 XNOR,
+    bool                 CNF,
+    bool                 RNL,
+    bool                 NUM_OP,
+    int                  minLevel,
+    int                  maxLevel,
+    int                  minElement,
+    int                  maxElement,
+    std::map<Gates, int> m,
+    bool                 LeaveEmptyOut
 ) {
   GraphPtr  graph(new OrientedGraph);
   VertexPtr const_0 = graph->addConst('0', "const_0");
   int       x       = 0;
   if (ALL) {
-    SUM  = true;
-    SUB  = true;
-    NSUM = true;
-    NSUB = true;
-    MULT = true;
-    COM  = true;
-    AND  = true;
-    OR   = true;
-    XOR  = true;
-    XNOR = true;
-    CNF  = true;
+    SUM    = true;
+    SUB    = true;
+    NSUM   = true;
+    NSUB   = true;
+    MULT   = true;
+    COM    = true;
+    AND    = true;
+    OR     = true;
+    XOR    = true;
+    XNOR   = true;
+    CNF    = true;
+    RNL    = true;
+    NUM_OP = true;
   }
 
   // количество входов мультиплексора
   x = x + (SUM ? 4 : 0) + (SUB ? 4 : 0) + (NSUM ? 4 : 0) + (NSUB ? 4 : 0)
     + (MULT ? 1 : 0) + (COM ? 3 : 0) + (AND ? 1 : 0) + (NAND ? 1 : 0)
     + (OR ? 1 : 0) + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0)
-    + (CNF ? 3 : 0);
+    + (CNF ? 3 : 0) + (RNL ? 1 : 0) + (NUM_OP ? 1 : 0);
 
-  // размерность АЛУ
+  // размерность АЛУ (сколько генераций мультиплексоров необходимо выполнить)
   int size = i_bits;
   size = MULT ? i_bits * 2 : (SUM || NSUM || SUB || NSUB ? i_bits + 1 : i_bits);
-  if (CNF) {
+  if (CNF || RNL || NUM_OP) {
     if (MULT) {
       size = (i_outbits < i_bits * 2 ? i_bits * 2 : i_outbits);
     } else if (SUM || NSUM || SUB || NSUB) {
@@ -1679,6 +1691,48 @@ GraphPtr SimpleGenerators::generatorALU(
     outputs_gens.push_back(output_com);
   }
 
+  if (CNF) {
+    std::vector<VertexPtr> output_cnf;
+
+    TruthTable             gen;
+    TruthTableParameters   d_parameters(i_bits, i_outbits);
+
+    gen.generateRandom(d_parameters);
+
+    output_cnf = graph->addSubGraph(zhegalkinFromTruthTable(gen), inputs_A);
+    outputs_gens.push_back(output_cnf);
+
+    output_cnf = graph->addSubGraph(cnfFromTruthTable(gen, true), inputs_A);
+    outputs_gens.push_back(output_cnf);
+
+    output_cnf = graph->addSubGraph(cnfFromTruthTable(gen, false), inputs_A);
+    outputs_gens.push_back(output_cnf);
+  }
+
+  if (RNL) {
+    std::vector<VertexPtr> output_rnl;
+
+    output_rnl = graph->addSubGraph(
+        generatorRandLevel(
+            minLevel, maxLevel, minElement, maxElement, i_bits, i_outbits
+        ),
+        inputs_A
+    );
+    outputs_gens.push_back(output_rnl);
+  }
+  /// when generating Num Operation, a segmentation fault occurs
+  /// when the number of outputs becomes greater than the number of
+  /// inputs (this applies to both the min and max).
+  /// TODO: need to find the cause of the outs issue
+  if (NUM_OP) {
+    std::vector<VertexPtr> output_num_op;
+
+    output_num_op = graph->addSubGraph(
+        generatorNumOperation(i_bits, i_outbits, m, LeaveEmptyOut), inputs_A
+    );
+    outputs_gens.push_back(output_num_op);
+  }
+
   int max = 0;
   for (int i = 0; i < outputs_gens.size(); i++) {
     if (outputs_gens[i].size() > max) {
@@ -1701,10 +1755,10 @@ GraphPtr SimpleGenerators::generatorALU(
     );
   }
 
+  GraphPtr mult = generatorMultiplexer(x);
+
   for (auto vertices : inputs_alu) {
-    outputs_alu.push_back(
-        graph->addSubGraph(generatorMultiplexer(x), vertices).back()
-    );
+    outputs_alu.push_back(graph->addSubGraph(mult, vertices).back());
   }
 
   for (int i = 0; i < outputs_alu.size(); i++) {

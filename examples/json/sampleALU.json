@@ -4,10 +4,10 @@
     "dataset_id": "1",
     "id": 0,
     "type_of_generation": "ALU",
-    "min_in": 5,
-    "max_in": 5,
-    "min_out": 5,
-    "max_out": 5,
+    "min_in": 10,
+    "max_in": 10,
+    "min_out": 10,
+    "max_out": 10,
     "repeat_n": 1,
     "multithread": true,
     "calculate_stats_abc": true,
@@ -17,6 +17,8 @@
     "make_graphml": true,
     "create_id_directories": true,
     "library_name": "sky130",
+
+    "CNFF": true,
 
     "ALL": false,
     "SUM": false,
@@ -33,7 +35,22 @@
     "XNOR": false,
     "CNF": false,
     "RNL": false,
-    "NUM_OP": false
+    "NUM_OP": false,
+
+    "min_level": 50,
+    "max_level": 50,
+    "min_elem": 50,
+    "max_elem": 50,
+
+    "leave_empty_out": true,
+    "num_and": 50,
+    "num_nand": 50,
+    "num_or": 50,
+    "num_not": 50,
+    "num_nor": 50,
+    "num_buf": 0,
+    "num_xor": 50,
+    "num_xnor": 50 
   }
 ]
  

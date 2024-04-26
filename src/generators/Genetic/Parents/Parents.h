@@ -30,4 +30,7 @@ inline std::vector<int> ParentsTypesWorker(ParentsParameters i_parentsParameters
     return ParentsTournament(i_parentsParameters, i_population);
   //TODO: info about ParentsRoulette
   std::cout << "UNUSUAL ParentTypes IN ParentsTypes" << std::endl;
+
+  // default to remove warning 
+  return {};
 }

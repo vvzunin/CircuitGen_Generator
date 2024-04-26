@@ -14,7 +14,8 @@ enum VertexTypes {
   input,
   output,
   constant,
-  gate
+  gate,
+  subGraph
 };
 
 enum Gates {
@@ -224,6 +225,11 @@ public:
   /// @return std::string The path to the dataset
 
   std::string getDatasetPath() const;
+
+  /// @brief setDatasetPath Sets the path to the dataset
+  /// @param i_datasetPath a string representing the path to the dataset
+
+  void        setDatasetPath(const std::string& i_datasetPath);
 
   /// @brief getGenerationMethodPrefix Gets the prefix of the generation
   /// method by its corresponding GenerationTypes
@@ -471,6 +477,7 @@ private:
       {VertexTypes::input, "input"},
       {VertexTypes::output, "output"},
       {VertexTypes::constant, "const"},
+      {VertexTypes::subGraph, "subGraph"},
       {VertexTypes::gate, "g"}};
 
   std::map<GenerationTypes, std::string> generationTypeToPrefix = {

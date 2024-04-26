@@ -47,6 +47,7 @@ set(SOURCES
   src/additional/threadPool/ThreadPool.cpp
   src/baseStructures/graph/GraphVertexBase.cpp  
   src/baseStructures/graph/GraphVertexConstant.cpp
+  src/baseStructures/graph/GraphVertexSubGraph.cpp
   src/baseStructures/graph/GraphVertexInput.cpp
   src/baseStructures/graph/GraphVertexGates.cpp
   src/baseStructures/graph/GraphVertexOutput.cpp

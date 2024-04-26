@@ -53,10 +53,8 @@ public:
 
   virtual ~OrientedGraph();
 
-  // TODO: Написать руками для полного копирования, а не только указателей.
   OrientedGraph& operator=(const OrientedGraph& other
   ) = default;  // оператор копирующего присваивания
-  // TODO here can be some problems!!!
   OrientedGraph& operator=(OrientedGraph&& other
   ) = default;  // оператор перемещающего присваивания
   OrientedGraph(const OrientedGraph& other) = default;
@@ -139,7 +137,7 @@ public:
 
   size_t getEdgesCount() { return d_edgesCount; }
 
-  std::vector<GraphPtr>                         getSubGraphs() const;
+  std::set<GraphPtr>                            getSubGraphs() const;
   std::set<GraphPtr>                            getSetSubGraphs() const;
   std::map<VertexTypes, std::vector<VertexPtr>> getBaseVertexes() const;
   VertexPtr   getVerticeByIndex(int idx) const;
@@ -204,41 +202,42 @@ public:
   std::map<Gates, std::map<Gates, int>> getEdgesGatesCount() const;
 
 private:
+  static size_t              d_countNewGraphInstance;
+  size_t                     d_currentInstance;
   // as we can have multiple parents, we save
   // for toVerilog current parent graph
-  GraphPtrWeak                    d_currentParentGraph;
-  size_t                          d_edgesCount = 0;
+  GraphPtrWeak               d_currentParentGraph;
+  size_t                     d_edgesCount = 0;
 
-  std::string                     d_hashed     = "";
-  std::vector<GraphPtrWeak>       d_parentGraphs;
+  std::string                d_hashed     = "";
+  std::vector<GraphPtrWeak>  d_parentGraphs;
 
-  std::string                     d_name;
+  std::string                d_name;
 
   // Пока не реализован функционал.
-  bool                            d_needLevelUpdate = true;
+  bool                       d_needLevelUpdate = true;
 
   // also we need to now, was .v file for subgraph created, or not
-  bool                            d_alreadyParsed   = false;
+  bool                       d_alreadyParsed   = false;
   // We can add a subgraph multiple times
   // so we need to count instances to verilog.
   // We are counting to know, which inputs and outputs should we use now
-  std::map<std::string, uint64_t> d_graphInstanceToVerilogCount;
+  std::map<size_t, uint64_t> d_graphInstanceToVerilogCount;
 
   // each subgraph has one or more outputs. We save them,
   // depending on subgraph instance number
-  std::map<std::string, std::vector<std::vector<VertexPtr>>>
-                         d_subGraphsOutputsPtr;
-  std::vector<VertexPtr> d_allSubGraphsOutputs;
+  std::map<size_t, std::vector<std::vector<VertexPtr>>> d_subGraphsOutputsPtr;
+  std::vector<VertexPtr>                                d_allSubGraphsOutputs;
   // we have such pairs: number of subragh instances,
-  std::map<std::string, std::vector<std::vector<VertexPtr>>>
-                                                d_subGraphsInputsPtr;
+  std::map<size_t, std::vector<std::vector<VertexPtr>>> d_subGraphsInputsPtr;
 
-  std::vector<GraphPtr>                         d_subGraphs;
-  std::map<VertexTypes, std::vector<VertexPtr>> d_vertexes {
-      {VertexTypes::input, std::vector<VertexPtr>()},
-      {VertexTypes::output, std::vector<VertexPtr>()},
-      {VertexTypes::constant, std::vector<VertexPtr>()},
-      {VertexTypes::gate, std::vector<VertexPtr>()}};
+  std::set<GraphPtr>                                    d_subGraphs;
+  std::map<VertexTypes, std::vector<VertexPtr>>         d_vertexes {
+              {VertexTypes::input, std::vector<VertexPtr>()},
+              {VertexTypes::output, std::vector<VertexPtr>()},
+              {VertexTypes::constant, std::vector<VertexPtr>()},
+              {VertexTypes::gate, std::vector<VertexPtr>()},
+              {VertexTypes::subGraph, std::vector<VertexPtr>()}};
 
   static uint_fast64_t d_countGraph;
 

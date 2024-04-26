@@ -77,8 +77,10 @@ void DataBaseGenerator::generateType(
 
   std::vector<std::uint_fast32_t> seeds(i_dbgp.getEachIteration());
 
-  auto                            randGeneratorLambda = []() {
-    return AuxMethods::getRandInt(0, INT_MAX);
+  d_randGenerator.setSeed(AuxMethods::getRandSeed());
+
+  auto randGeneratorLambda = [&]() {
+    return d_randGenerator.getRandInt(0, INT_MAX);
   };
   // we create int sequence, which would give us diffetent seeds for each repeat
   std::generate(seeds.begin(), seeds.end(), randGeneratorLambda);
@@ -109,8 +111,6 @@ void DataBaseGenerator::generateType(
           ++d_dirCount;
           ++iter;
         }
-
-        pool.wait();
       } else {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           // TODO: it is that Rustam told about iteration?
@@ -131,6 +131,7 @@ void DataBaseGenerator::generateType(
       }
     }
   }
+  pool.wait();
 }
 
 void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
@@ -138,7 +139,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
 ) {
   TruthTable       tt(i_param.getInputs(), i_param.getOutputs(), 0.0);
 
-  SimpleGenerators tftt;
+  SimpleGenerators tftt(i_param.getSeed());
   tftt.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
   std::vector<GraphPtr> allGraphs;
@@ -418,7 +419,15 @@ void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
       i_param.getALU().getNOR(),
       i_param.getALU().getXOR(),
       i_param.getALU().getXNOR(),
-      i_param.getALU().getCNF()
+      i_param.getALU().getCNF(),
+      i_param.getALU().getRNL(),
+      i_param.getALU().getNUMOP(),
+      i_param.getALU().getminLevel(),
+      i_param.getALU().getmaxLevel(),
+      i_param.getALU().getminElement(),
+      i_param.getALU().getmaxElement(),
+      i_param.getALU().getm(),
+      i_param.getALU().getLeaveEmptyOut()
   );
   Circuit c(graph);
   c.setPath(d_mainPath);
