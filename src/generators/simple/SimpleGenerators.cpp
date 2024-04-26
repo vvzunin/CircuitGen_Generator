@@ -324,8 +324,8 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
         VertexPtr newVertex = graph->addGate(logOper[choice]);
         graph->addEdges(
-            {graph->getVerticeByIndex(child2),
-             graph->getVerticeByIndex(child1)},
+            {graph->getVerticeByIndex(child2), graph->getVerticeByIndex(child1)
+            },
             newVertex
         );
       }
@@ -882,7 +882,7 @@ GraphPtr SimpleGenerators::generatorEncoder(int i_bits) {
       graph->addEdges(ors, or_xs);
       n           *= 2;
 
-      VertexPtr y = graph->addOutput("y" + std::to_string(i));
+      VertexPtr y  = graph->addOutput("y" + std::to_string(i));
       graph->addEdge(or_xs, y);
     }
   }
@@ -1335,9 +1335,9 @@ GraphPtr SimpleGenerators::generatorMultiplier(int i_bits) {
             graph->addEdge(sum, m);
 
             n += 1;
-            N = std::to_string(n);
+            N  = std::to_string(n);
 
-            m = graph->addOutput("m" + N);
+            m  = graph->addOutput("m" + N);
             graph->addEdge(pNext, m);
           }
         } else {

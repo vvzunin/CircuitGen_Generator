@@ -48,7 +48,8 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationBinary(
     }
     TruthTable tt = {i_population[i].getChronosomeType(), mutant};
     ChronosomeType<TruthTable, TruthTableParameters> tmp = {
-        i_population[i].getName(), tt};
+        i_population[i].getName(), tt
+    };
     mutants.push_back(tmp);
   }
   return mutants;
@@ -65,7 +66,8 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationDensity(
   TruthTable                             tt = {
       i_population[0].getChronosomeType().getInput(),
       i_population[0].getChronosomeType().getOutput(),
-      {}};
+      {}
+  };
   // std::vector<bool> bin = tt.getOutTable();
 
   for (int i = 0; i < i_population.size(); ++i) {
@@ -96,7 +98,8 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
   TruthTable tt   = {
       i_population[0].getChronosomeType().getInput(),
       i_population[0].getChronosomeType().getOutput(),
-      {}};
+      {}
+  };
   std::vector<std::vector<bool>> bin = tt.getOutTable();
 
   for (int i = 0; i < i_population.size(); ++i) {

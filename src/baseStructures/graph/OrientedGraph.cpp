@@ -393,7 +393,7 @@ std::string OrientedGraph::getGraphInstance() {
     auto inp =
         d_subGraphsInputsPtr[d_currentParentGraph.lock()->d_currentInstance]
                             [*verilogCount][i];
-    std::string inp_name = d_vertexes[VertexTypes::input][i]->getName();
+    std::string inp_name  = d_vertexes[VertexTypes::input][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + inp_name + "( ";
     module_ver           += inp->getName() + " ),\n";
@@ -403,13 +403,13 @@ std::string OrientedGraph::getGraphInstance() {
     VertexPtr out =
         d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_currentInstance]
                              [*verilogCount][i];
-    std::string out_name = d_vertexes[VertexTypes::output][i]->getName();
+    std::string out_name  = d_vertexes[VertexTypes::output][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
     module_ver           += out->getName() + " ),\n";
   }
 
-  std::string out_name = d_vertexes[VertexTypes::output].back()->getName();
+  std::string out_name  = d_vertexes[VertexTypes::output].back()->getName();
 
   module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
   module_ver +=

@@ -11,7 +11,7 @@ std::string deleteDoubleSpaces(const std::string& s) {
   bool        isPrevSpace = false;
   for (auto c : s) {
     if (c != ' ') {
-      isPrevSpace = false;
+      isPrevSpace  = false;
       res         += c;
     } else {
       if (!isPrevSpace)
@@ -236,7 +236,7 @@ VertexPtr Parser::multipleVerteciesToOne(
         }
         // move if is necessary
         npos += npos == -1 ? 1 : curSize > d_gatesInputsInfo[operation][npos];
-        pos  = (npos < pos ? npos : pos);
+        pos   = (npos < pos ? npos : pos);
 
         curSize = 0;
       }
@@ -252,7 +252,7 @@ VertexPtr Parser::multipleVerteciesToOne(
       }
       // move if is necessary
       npos += npos == -1 ? 1 : curSize > d_gatesInputsInfo[operation][npos];
-      pos  = (npos < pos ? npos : pos);
+      pos   = (npos < pos ? npos : pos);
 
       while (curSize < d_gatesInputsInfo[operation][pos]) {
         graph->addEdge(x_input, oper);

@@ -19,7 +19,8 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationType(
         i_mutationParameters, i_population
     );
 
-  else if (i_mutationParameters.getMutationType() == MutationTypes::AccessionDel)
+  else if (i_mutationParameters.getMutationType()
+           == MutationTypes::AccessionDel)
     return MutationTruthTable::MutationAccessionDel(
         i_mutationParameters, i_population
     );
