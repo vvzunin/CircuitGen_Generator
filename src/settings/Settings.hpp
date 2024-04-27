@@ -92,7 +92,7 @@ public:
   Settings(Settings& other)                                   = delete;
   void                             operator=(const Settings&) = delete;
 
-  /// @getInstance Gets a single instance of the Settings class
+  /// @brief getInstance Gets a single instance of the Settings class
   /// The method provides creation and receipt of a single instance of the
   /// Settings class with the specified value of the settings path. If an
   /// instance already exists, the method returns a pointer to it,
@@ -110,7 +110,7 @@ public:
   /// // and members of the Settings class
   /// std::string datasetPath = settingsInstance->getDatasetPath();
   /// std::cout << "Dataset path: " << datasetPath << std::endl;
-  /// @end_code
+  /// @endcode
 
   static std::shared_ptr<Settings> getInstance(const std::string& i_value);
 
@@ -145,7 +145,7 @@ public:
   /// // Handle an exception if the operation is not found
   /// std::cerr << "Error: " << e.what() << std::endl;
   /// }
-  /// @end_code
+  /// @endcode
   /// @throws std::out_of_range If the passed operation name does not exist
   /// in the list of logical operations
 
@@ -193,7 +193,7 @@ public:
   /// }
   /// std::cout << std::endl;
   /// }
-  /// @end_code
+  /// @endcode
 
   std::pair<std::vector<bool>, std::vector<Gates>> getLogicOperationsWithGates(
   );
@@ -215,7 +215,7 @@ public:
   /// } catch (const std::out_of_range& e) {
   /// std::cerr << "Error: " << e.what() << std::endl;
   /// }
-  /// @end_code
+  /// @endcode
   /// @throw std::out_of_range If the passed operation does not exist in the
   /// list of operations
 
@@ -250,7 +250,7 @@ public:
   /// std::string prefix = settingsInstance->getGenerationMethodPrefix(method);
   /// std::cout << "Prefix for method " << method << ": " << prefix <<
   /// std::endl;
-  /// @end_code
+  /// @endcode
 
   std::string getGenerationMethodPrefix(const GenerationTypes i_methodType
   ) const;
@@ -321,7 +321,7 @@ public:
   ///     std::cout << element << " ";
   /// }
   /// std::cout << std::endl;
-  /// @end_code
+  /// @endcode
   /// @throws std::out_of_range If the provided key does not exist in the
   /// internal map of operation keys to hierarchies
 
@@ -336,7 +336,7 @@ public:
   /// // Get the number of threads configured for processing
   /// int numThreads = settingsInstance->getNumThread();
   /// std::cout << "Number of threads: " << numThreads << std::endl;
-  /// @end_code
+  /// @endcode
 
   int                      getNumThread() const;
 
@@ -352,7 +352,7 @@ public:
   /// // Convert the string representation "and" to its corresponding enum value
   /// Gates gate = settingsInstance->parseStringToGate("and");
   /// std::cout << "Enum value of 'and': " << gate << std::endl;
-  /// @end_code
+  /// @endcode
 
   Gates                    parseStringToGate(std::string i_gate) const;
 
@@ -373,7 +373,7 @@ public:
   /// representation std::string gateString =
   /// settingsInstance->parseGateToString(Gates::GateAnd); std::cout << "String
   /// representation of Gates::GateAnd: " << gateString << std::endl;
-  /// @end_code
+  /// @endcode
 
   std::string              parseGateToString(Gates gate) const;
 
@@ -391,7 +391,7 @@ public:
   /// settingsInstance->parseVertexToString(VertexTypes::input); std::cout <<
   /// "String representation of VertexTypes::input: " << vertexString <<
   /// std::endl;
-  /// @end_code
+  /// @endcode
 
   std::string              parseVertexToString(VertexTypes vertex) const;
 
@@ -408,7 +408,7 @@ private:
   /// Settings::getInstance("/path/to/settings");
   /// // Save the current settings to a file
   /// settingsInstance->SaveSettings();
-  /// @end_code
+  /// @endcode
 
   void                             SaveSettings();
 
