@@ -65,7 +65,7 @@ public:
   /// @return An integer value representing the number of "gate" type vertices
   /// in the graph
 
-  int                baseSize() const;
+  int                       baseSize() const;
   // Количество gate в графе, включая подграфы
   /// @brief fullSize returns the total number of vertices in the graph,
   /// including vertices from all subgraphs. It recursively traverses all
@@ -73,48 +73,48 @@ public:
   /// @return An integer value representing the total number of vertices
   /// in the graph, including vertices from all subgraphs
 
-  int                fullSize() const;
+  int                       fullSize() const;
   // sum of gates, inputs, outputs and consts sizes
   /// @brief sumFullSize returns the total number of vertices of all types
   /// in the graph, including input vertices, constants, gates, and output
   /// vertices
   /// @return the size of all vertices in the graph, summing the number of
   /// vertices of each type
-  size_t             sumFullSize() const;
+  size_t                    sumFullSize() const;
 
   // Имеются ли gate в схеме, включая подграфы
-  bool               isEmpty() const;
+  bool                      isEmpty() const;
 
   /// @brief isEmptyFull It is used to check the emptiness of a graph,
   /// including all its subgraphs. It recursively traverses all the subgraphs
   /// and checks if they are empty
   /// @return bool - true if the graph and all its subgraphs are empty, and
   /// false if at least one of them contains vertice
-  bool               isEmptyFull() const;
+  bool                      isEmptyFull() const;
 
   /// @brief setName Used to set the name of the graph. It takes a string as
   /// an argument and sets the d_name field to this string
   /// @param i_name the new name of the graph
 
-  void               setName(const std::string& i_name);
+  void                      setName(const std::string& i_name);
 
   /// @brief getName Used to get the name of the graph
   /// @return the name of the graph
 
-  std::string        getName() const;
+  std::string               getName() const;
 
   /// @brief needToUpdateLevel it is used to check whether the vertex levels
   /// in the graph need to be updated
   /// @return bool - true if updating the vertex levels in the graph is
   /// required, and false if not required
 
-  bool               needToUpdateLevel() const;
+  bool                      needToUpdateLevel() const;
 
   /// @brief updateLevels TO DO: the method body is commented out!!!
   ///
   /// */
 
-  void               updateLevels();
+  void                      updateLevels();
 
   unsigned                  getMaxLevel();
 

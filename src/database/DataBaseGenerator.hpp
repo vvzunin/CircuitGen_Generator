@@ -115,8 +115,7 @@ private:
       const std::string& i_methodName
   );
 };
-=======
-
+== == == =
 #pragma once
 
 #include <functional>
@@ -125,7 +124,7 @@ private:
 
 #include "DataBaseGeneratorParameters.hpp"
 
-class DataBaseGenerator {
+    class DataBaseGenerator {
 public:
   DataBaseGenerator(const DataBaseGeneratorParameters& i_parameters) :
     d_parameters(i_parameters) {};
