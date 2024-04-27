@@ -28,6 +28,16 @@ public:
   TruthTable(int i_input, int i_output, double i_p = 0.5);
 
   void                           setSeed(int i_seed);
+  // void generateRandom(TruthTableParameters i_gp) override;
+
+  /// @brief generateTable The method generates a truth table for a
+  /// combinational circuit with a given probability i_p for each output value.
+  /// @param i_p The probability of generating a unit (true value) for each
+  /// output bit. If i_p == 0, then all output values are randomly generated
+  /// with equal probability. If i_p > 0 and i_p <= 1, then each output bit has
+  /// a probability of i_p being equal to one.
+  /// */
+
   void                           generateRandom(TruthTableParameters i_gp);
   void                           generateTable(double i_p = 0);
   int                            getInput() const;
