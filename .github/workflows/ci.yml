@@ -47,7 +47,7 @@ jobs:
       run: cmake --preset=ci-coverage
 
     - name: Build
-      run: cmake --build build/coverage -j $(nproc)
+      run: cmake --build build/coverage
 
     - name: Test
       working-directory: build/coverage
