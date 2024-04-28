@@ -92,17 +92,17 @@ target_include_directories(
 )
 add_test(NAME GraphVertexConstantTests COMMAND CircuitGenGenerator_test_GraphVertexConstantTests)
 
-# # Test GraphVertexGatesTests
-# add_executable(CircuitGenGenerator_test_GraphVertexGatesTests src/baseStructures/graph/GraphVertexGatesTests.cpp ${NEW_SOURCES})
+# Test GraphVertexGatesTests
+add_executable(CircuitGenGenerator_test_GraphVertexGatesTests src/baseStructures/graph/GraphVertexGatesTests.cpp ${NEW_SOURCES})
 
-# target_link_libraries(CircuitGenGenerator_test_GraphVertexGatesTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
-# target_compile_features(CircuitGenGenerator_test_GraphVertexGatesTests PRIVATE cxx_std_17)
-# target_include_directories(
-#  CircuitGenGenerator_test_GraphVertexGatesTests ${warning_guard}
-#    PUBLIC
-#    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
-# )
-# add_test(NAME GraphVertexGatesTests COMMAND CircuitGenGenerator_test_GraphVertexGatesTests)
+target_link_libraries(CircuitGenGenerator_test_GraphVertexGatesTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GraphVertexGatesTests PRIVATE cxx_std_17)
+target_include_directories(
+ CircuitGenGenerator_test_GraphVertexGatesTests ${warning_guard}
+   PUBLIC
+   "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GraphVertexGatesTests COMMAND CircuitGenGenerator_test_GraphVertexGatesTests)
 
 # Test GraphVertexInputTests
 add_executable(CircuitGenGenerator_test_GraphVertexInputTests src/baseStructures/graph/GraphVertexInputTests.cpp ${NEW_SOURCES})

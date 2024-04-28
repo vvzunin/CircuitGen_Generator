@@ -87,7 +87,7 @@ TEST(TestUpdateValue, ThrowInvalidArgumentIfDInConnectionsZeroIsNullptr) {
   EXPECT_THROW(output1.updateValue(), std::invalid_argument);
 }
 
-TEST(TestUpdateLevel, ThrowInvalidArgumentIfDInconnectionsNIzNullptr) {
+TEST(TestUpdateValue, ThrowInvalidArgumentIfDInconnectionsNIzNullptr) {
   GraphVertexInput output1;
   VertexPtr        outputPtr1 = std::make_shared<GraphVertexOutput>();
   VertexPtr        outputPtr2 = std::make_shared<GraphVertexOutput>();
@@ -122,7 +122,7 @@ TEST(TestUpdateLevel, CorrectUpdate) {
   EXPECT_EQ(output1.getLevel(), 3);
 }
 
-TEST(TestUpdateValue, ThrowInvalidArgumentIfDInconnectionsNIzNullptr) {
+TEST(TestUpdateLevel, ThrowInvalidArgumentIfDInconnectionsNIzNullptr) {
   GraphVertexOutput output1;
 
   VertexPtr         outputPtr1 = std::make_shared<GraphVertexOutput>();
