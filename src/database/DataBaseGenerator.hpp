@@ -2,11 +2,17 @@
 #pragma once
 
 #include <functional>
+#include <mutex>
+#include <string>
+#include <vector>
 
 #include <additional/RandomGeneratorWithSeed.hpp>
+#include <baseStructures/graph/OrientedGraph.hpp>
 #include <settings/Settings.hpp>
 
 #include "DataBaseGeneratorParameters.hpp"
+
+using Result = std::pair<std::string, std::vector<GraphPtr>>;
 
 /// class DataBaseGenerator
 /// @param d_mainPath A string containing the path to the main database
@@ -40,13 +46,16 @@ public:
   /// not.
   /// */
 
-  void generateType(
+  Result generateType(
       const DataBaseGeneratorParameters& i_gp,
       bool                               parallel            = true,
       bool                               createIdDirectories = true
   );
 
 private:
+  std::vector<GraphPtr>     d_generatedGraphs;
+  std::mutex                d_resWrite;
+
   std::string               d_mainPath = ".";
   std::shared_ptr<Settings> d_settings =
       Settings::getInstance("DataBaseGenerator");
