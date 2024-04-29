@@ -25,6 +25,16 @@ std::string vertexTypeToVerilog(VertexTypes i_type);
 std::string vertexTypeToComment(VertexTypes i_type);
 }  // namespace VertexUtils
 
+/// class GraphVertexBase
+/// @param i_type The vertex type represented by the VertexTypes enumeration.
+/// Defines the type of the current vertex, for example, input, output,
+/// subgraph, or one of the basic logical operations
+/// @param i_name The name of the vertex. It is a string containing the name
+/// of a vertex
+/// @param i_graph A pointer to an object of the OrientedGraph class
+/// representing the oriented graph to which this vertex belongs. The default
+/// value is nullptr
+
 class GraphVertexBase {
 public:
   GraphVertexBase(const VertexTypes i_type, GraphPtr i_graph = nullptr);

@@ -22,6 +22,28 @@ class GraphVertexBase;  // Проблема циклического опред�
 #define VertexPtr     std::shared_ptr<GraphVertexBase>
 #define VertexPtrWeak std::weak_ptr<GraphVertexBase>
 
+/// class OrientedGraph A oriented graph that can contain vertices of
+/// various types (input, output, constant, etc.) and edges between them
+/// @param d_edgesCount The number of edges in the graph
+/// @param hashed A string representing the calculated hash value of the graph
+/// @param d_baseGraph A pointer to a base graph if that graph is a subgraph
+/// of another
+/// @param d_name The name of the graph
+/// @param d_needLevelUpdate A flag indicating whether the vertex levels in
+/// the graph need to be updated
+/// @param d_subGraphs The vector of pointers to the subgraphs of this graph
+/// @param d_vertexes  A map containing lists of vertices of various types
+/// in a graph
+/// @param d_countGraph A static variable used to count the number of graphs
+/// created
+/// @param d_gatesCount A map containing the number of vertices of each type
+/// in the graph
+/// @param edgesGatesCount A map containing the number of edges between
+/// different types of gate vertices in the graph***
+/// @param d_settings A pointer to the object of the settings used for this
+/// graph
+///
+
 class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
 public:
   // friend class Circuit;
@@ -39,19 +61,58 @@ public:
   OrientedGraph(OrientedGraph&& other)      = default;
 
   // Количество gate в графе, за исключением подграфов
+  /// @brief baseSize returns the number of "gate" type vertices in the graph
+  /// @return An integer value representing the number of "gate" type vertices
+  /// in the graph
+
   int                       baseSize() const;
   // Количество gate в графе, включая подграфы
+  /// @brief fullSize returns the total number of vertices in the graph,
+  /// including vertices from all subgraphs. It recursively traverses all
+  /// the subgraphs and sums up the number of vertices in each of them
+  /// @return An integer value representing the total number of vertices
+  /// in the graph, including vertices from all subgraphs
+
   int                       fullSize() const;
   // sum of gates, inputs, outputs and consts sizes
+  /// @brief sumFullSize returns the total number of vertices of all types
+  /// in the graph, including input vertices, constants, gates, and output
+  /// vertices
+  /// @return the size of all vertices in the graph, summing the number of
+  /// vertices of each type
   size_t                    sumFullSize() const;
+
   // Имеются ли gate в схеме, включая подграфы
   bool                      isEmpty() const;
-  // Имеются ли в схеме какие-либо vertex
+
+  /// @brief isEmptyFull It is used to check the emptiness of a graph,
+  /// including all its subgraphs. It recursively traverses all the subgraphs
+  /// and checks if they are empty
+  /// @return bool - true if the graph and all its subgraphs are empty, and
+  /// false if at least one of them contains vertice
   bool                      isEmptyFull() const;
 
+  /// @brief setName Used to set the name of the graph. It takes a string as
+  /// an argument and sets the d_name field to this string
+  /// @param i_name the new name of the graph
+
   void                      setName(const std::string& i_name);
+
+  /// @brief getName Used to get the name of the graph
+  /// @return the name of the graph
+
   std::string               getName() const;
+
+  /// @brief needToUpdateLevel it is used to check whether the vertex levels
+  /// in the graph need to be updated
+  /// @return bool - true if updating the vertex levels in the graph is
+  /// required, and false if not required
+
   bool                      needToUpdateLevel() const;
+
+  /// @brief updateLevels TO DO: the method body is commented out!!!
+  ///
+  /// */
 
   void                      updateLevels();
 
@@ -85,6 +146,16 @@ public:
   std::pair<bool, std::string>
               toVerilog(std::string i_path, std::string i_filename = "");
   // toAdjencyMatrix
+
+  /// @brief toGraphML Writes the graph structure in GraphML format to the
+  /// specified output stream
+  /// @param i_fileStream A reference to the std::ofstream object, which
+  /// represents the file in which the graph structure will be written in
+  /// GraphML format
+  /// @return bool: Returns true if the graph structure has been successfully
+  /// written in GraphML format, and false otherwise. In this case, it always
+  /// returns true.
+
   bool        toGraphML(std::ofstream& i_fileStream) const;
   std::string toGraphML(int i_nesting = 0) const;
   // visualize
@@ -105,9 +176,29 @@ public:
   ) const;
 
   bool                                  operator==(const OrientedGraph& rhs);
+
+  /// @brief calculateHash calculates hash values for a graph based on the hash
+  /// values of its vertices
+  /// @param recalculate A Boolean value indicating whether the hash value
+  /// should be recalculated even if it has already been previously calculated.
+  /// By default, false.
+  /// @return A string representing the hash value of the graph
+
   std::string                           calculateHash(bool recalculate = false);
 
+  // @brief getGatesCount Returns a display containing the number of each gate
+  /// type in the graph
+  /// @return A display where each key is a type of gate (Gates), and the
+  /// corresponding value is the number of gates of this type in the graph
+
   std::map<Gates, int>                  getGatesCount() const;
+
+  /// @brief getEdgesGatesCount Returns a mapping containing the number of
+  /// edges between different types of gates in the graph
+  /// @return A mapping where each external key is a gate type, and the
+  /// corresponding value is an internal mapping containing the number of
+  /// edges between different types of gates in the graph
+
   std::map<Gates, std::map<Gates, int>> getEdgesGatesCount() const;
 
 private:

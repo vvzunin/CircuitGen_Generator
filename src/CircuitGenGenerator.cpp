@@ -22,10 +22,12 @@
 using namespace std::chrono;
 
 namespace CircuitGenGenerator {
-Result runGenerationFromJson(std::string json_path) {
-  std::ifstream  f(json_path);
-  nlohmann::json DATA = nlohmann::json::parse(f);
+std::vector<Result> runGenerationFromJson(std::string json_path) {
+  std::ifstream       f(json_path);
+  nlohmann::json      DATA = nlohmann::json::parse(f);
   // Read all json objects in json file.
+
+  std::vector<Result> finalRes;
   for (auto it = DATA.begin(); it != DATA.end(); it++) {
     nlohmann::json data = *it;
 
@@ -546,23 +548,30 @@ Result runGenerationFromJson(std::string json_path) {
 
     DataBaseGenerator generator(dbgp);
 
-    auto              start = high_resolution_clock::now();
+    if (data.contains("dataset_path")) {
+      Settings::getInstance("CircuitGenGenerator")
+          ->setDatasetPath(static_cast<std::string>(data["dataset_path"]));
+    }
+
+    auto start = high_resolution_clock::now();
 
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
-    auto              res   = generator.generateType(
+    finalRes.push_back(generator.generateType(
         dbgp,
         data.contains("multithread") ? (bool)data["multithread"] : false,
         data.contains("create_id_directories")
-                           ? (bool)data["create_id_directories"]
-                           : true
-    );
+            ? (bool)data["create_id_directories"]
+            : true
+    ));
 
     auto stop     = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     std::clog << "Time taken: " << duration.count() << " microseconds"
               << std::endl;
 
-    return res;
+    // TODO add multiple generation
   }
+
+  return finalRes;
 }
 }  // namespace CircuitGenGenerator
