@@ -40,16 +40,16 @@ public:
 
   /// @brief setSeed
   /// Set the seed for random number generation.
-  /// This method sets the seed for the random number generator used in generating the truth table.
-  /// Setting the seed allows for reproducible random number sequences.
+  /// This method sets the seed for the random number generator used in
+  /// generating the truth table. Setting the seed allows for reproducible
+  /// random number sequences.
   /// @param i_seed The seed for random number generation.
-  /// @code 
+  /// @code
   /// TruthTable table;
   /// table.setSeed(123);
   /// @endcode
   /// For the getSeed method there is getSeed in RandomGeneratorWithSeed.hpp
   /// @see RandomGeneratorWithSeed
-
 
   void                           setSeed(int i_seed);
   // void generateRandom(TruthTableParameters i_gp) override;
