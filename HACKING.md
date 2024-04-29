@@ -271,4 +271,18 @@ double divide(double dividend, double divisor)
 }
 ```
 - 10: При необходимости в описании какого-либо объекта нужно ссылаться на
-другой, например на метод другого класса - используется тег @see <название объектаю>
+другой, например на метод другого класса - используется тег @see <название объекта>
+- 11: При описании перечеслений необходимо использовать @brief и перед каждым полем дать характеристику
+**Пример описания enum**
+```
+/// @brief VertexTypes
+/// Enumeration of vertex types
+
+enum VertexTypes { ///  input vertex
+  input,           ///  output vertex
+  output,          /// constant vertex
+  constant,        /// vertex representing a logical element
+  gate,            /// subgraph that makes up the vertex
+  subGraph   
+};
+```

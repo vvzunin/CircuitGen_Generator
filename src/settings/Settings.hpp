@@ -10,23 +10,31 @@ enum LibrariesTypes {
   SKY_LIB
 };
 
-enum VertexTypes {
-  input,
-  output,
-  constant,
-  gate,
+/// @brief VertexTypes
+/// Enumeration of vertex types
+
+enum VertexTypes {  ///  input vertex
+  input,            ///  output vertex
+  output,           /// constant vertex
+  constant,         /// vertex representing a logical element
+  gate,             /// subgraph that makes up the vertex
   subGraph
 };
 
-enum Gates {
-  GateAnd,
-  GateNand,
-  GateOr,
-  GateNor,
-  GateXor,
-  GateXnor,
-  GateNot,
-  GateBuf,
+/// @brief Gates
+/// Enumeration of types of logical elements
+/// This enumeration defines the various types of logic elements that can be
+/// used in digital circuits.
+
+enum Gates {  /// logical element - "AND" (AND)
+  GateAnd,    /// logical element "AND-NOT" (NAND)
+  GateNand,   /// logical element - "OR" (OR)
+  GateOr,     /// logical element - "OR-NOT" (NOR)
+  GateNor,    /// lofical element - "Exclusive OR" (XOR)
+  GateXor,    /// logical element - XNOR
+  GateXnor,   /// logical element - NOT
+  GateNot,    /// logical element - Buffer
+  GateBuf,    /// default logical element
   GateDefault
 };
 
