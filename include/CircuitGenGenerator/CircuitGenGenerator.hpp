@@ -7,5 +7,7 @@
 #include <database/DataBaseGenerator.hpp>
 
 namespace CircuitGenGenerator {
-CIRCUITGENGENERATOR_EXPORT std::vector<Result> runGenerationFromJson(std::string json_path);
+CIRCUITGENGENERATOR_EXPORT std::vector<Result> runGenerationFromJson(
+    std::string json_path
+);
 }
