@@ -4,10 +4,9 @@
 #include <vector>
 
 #include <CircuitGenGenerator/export.hpp>
-#include <database/DataBaseGenerator.hpp>
+#include <CircuitGenGenerator/OrientedGraph.hpp>
 
 namespace CircuitGenGenerator {
-CIRCUITGENGENERATOR_EXPORT std::vector<Result> runGenerationFromJson(
-    std::string json_path
-);
+CIRCUITGENGENERATOR_EXPORT std::vector<std::pair<std::string, std::vector<GraphPtr>>>
+                           runGenerationFromJson(std::string json_path);
 }

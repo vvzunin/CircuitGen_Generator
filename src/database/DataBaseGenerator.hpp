@@ -7,7 +7,7 @@
 #include <vector>
 
 #include <additional/RandomGeneratorWithSeed.hpp>
-#include <baseStructures/graph/OrientedGraph.hpp>
+#include <CircuitGenGenerator/OrientedGraph.hpp>
 #include <settings/Settings.hpp>
 
 #include "DataBaseGeneratorParameters.hpp"

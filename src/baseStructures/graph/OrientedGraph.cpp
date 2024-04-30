@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "OrientedGraph.hpp"
+#include <CircuitGenGenerator/OrientedGraph.hpp>
 
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/graph/GraphMLTemplates.hpp>

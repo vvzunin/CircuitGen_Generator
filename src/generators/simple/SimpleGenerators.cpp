@@ -9,7 +9,7 @@
 #include "SimpleGenerators.hpp"
 
 #include <additional/AuxiliaryMethods.hpp>
-#include <baseStructures/graph/OrientedGraph.hpp>
+#include <CircuitGenGenerator/OrientedGraph.hpp>
 #include <baseStructures/Parser.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <generators/Genetic/GeneticParameters.h>

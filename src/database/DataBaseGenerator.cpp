@@ -132,8 +132,7 @@ Result DataBaseGenerator::generateType(
     }
   }
   pool.wait();
-
-  return {d_mainPath, d_generatedGraphs};
+  return std::make_pair(d_mainPath, d_generatedGraphs);
 }
 
 void DataBaseGenerator::generateDataBaseFromRandomTruthTable(

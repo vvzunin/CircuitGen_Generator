@@ -571,7 +571,7 @@ std::vector<Result> runGenerationFromJson(std::string json_path) {
 
     // TODO add multiple generation
   }
-
+  
   return finalRes;
 }
 }  // namespace CircuitGenGenerator
