@@ -76,8 +76,17 @@ std::string vertexTypeToComment(VertexTypes i_type);
 
 class GraphVertexBase {
 public:
+  /// @brief GraphVertexBase
+  /// Constructs a GraphVertexBase object with the specified vertex type and optional graph
+  /// @param i_type The type of the vertex (from the VertexTypes enum).
+  /// @param i_graph Optional pointer to the graph containing the vertex
   GraphVertexBase(const VertexTypes i_type, GraphPtr i_graph = nullptr);
 
+  /// @brief GraphVertexBase
+  /// Constructs a GraphVertexBase object with the specified vertex type, name, and optional graph.
+  /// @param i_type The type of the vertex (from the VertexTypes enum)
+  /// @param i_name The name of the vertex.
+  /// @param i_graph Optional pointer to the graph containing the vertex.
   GraphVertexBase(
       const VertexTypes i_type,
       const std::string i_name,
@@ -93,22 +102,107 @@ public:
 
   virtual ~GraphVertexBase();
 
-  // Get для типа вершины
+  /// @brief getType
+  /// This method returns the type of the vertex as a value of the VertexTypes
+  /// enum
+  /// @return The type of the vertex (from the VertexTypes enum).
+  /// @code
+  /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
+  /// VertexTypes type = vertex.getType();
+  /// std::cout << "Type of the vertex: " << type << std::endl;
+  /// @endcode
+
   virtual VertexTypes        getType() const final;
+
   // Get для типа вершины в фомате строки
+
+  /// @brief getTypeName
+  /// This method returns the string representation of the vertex type by
+  /// parsing the vertex type enum value using the settings object
+  /// associated with the vertex
+  /// @return The string representation of the vertex type.
+  /// @code
+  /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
+  /// std::string typeName = vertex.getTypeName();
+  /// std::cout << "String representation of the vertex type: " << typeName;
+  /// @endcode
+
   virtual std::string        getTypeName() const final;
 
   // Get-Set для имен входов
+
+  /// @brief setName
+  /// This method sets the name of the vertex to the specified string.
+  /// @param i_name The new name for the vertex.
+  /// @code
+  /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
+  /// vertex.setName("new_vertex_name");
+  /// std::cout << "New name of the vertex: " << vertex.getName() << std::endl;
+  /// @endcode
+
   void                       setName(const std::string i_name);
+
+  /// @brief getName
+  /// Returns the name of the vertex
+  /// @return The name of the vertex.
+  /// @code
+  /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
+  /// std::string name = vertex.getName();
+  /// std::cout << "Name of the vertex: " << name << std::endl;
+  /// @endcode
+
   std::string                getName() const;
 
   // Get для значения вершины
+  /// @brief getValue
+  /// Returns the value of the vertex.
+  /// @return The value of the vertex.
+  /// @code
+  /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
+  /// char value = vertex.getValue();
+  /// std::cout << "Value of the vertex: " << value << std::endl;
+  /// @endcode
+
   virtual char               getValue() const;
+
+  /// @brief updateValue
+  /// TO DO:
+
   virtual char               updateValue() = 0;
 
   // Get-Set для уровня
+
+  /// @brief setLevel
+  /// Sets the level of the vertex
+  /// @param i_level The new level for the vertex
+  /// @code
+  /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
+  /// vertex.setLevel(2);
+  /// std::cout << "New level of the vertex: " << vertex.getLevel() << '\n';
+  /// @endcode
+
   void                       setLevel(const unsigned i_level);
+
+  /// @brief getLevel
+  /// Returns the level of the vertex
+  /// @return The level of the vertex
+  /// @code
+  /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
+  /// unsigned level = vertex.getLevel();
+  /// std::cout << "Level of the vertex: " << level << std::endl;
+  /// @endcode
+
   unsigned                   getLevel() const;
+
+  /// @brief updateLevel
+  /// This method updates the level of the vertex based on the levels of its
+  /// input connections. It iterates through each input connection and sets
+  /// the vertex level to the maximum level of its input connections plus one.
+  /// @code
+  /// TO DO:
+  /// @endcode
+  /// @throws std::invalid_argument if any of the input connections are invalid
+  /// (i.e., null pointers)
 
   virtual void               updateLevel();
   virtual Gates              getGate() const { return Gates::GateDefault; };
