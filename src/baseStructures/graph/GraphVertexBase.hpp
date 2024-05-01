@@ -64,14 +64,20 @@ std::string vertexTypeToComment(VertexTypes i_type);
 }  // namespace VertexUtils
 
 /// class GraphVertexBase
-/// @param i_type The vertex type represented by the VertexTypes enumeration.
-/// Defines the type of the current vertex, for example, input, output,
-/// subgraph, or one of the basic logical operations
+/// @param d_baseGraph A weak pointer to the base graph containing this vertex
 /// @param i_name The name of the vertex. It is a string containing the name
 /// of a vertex
-/// @param i_graph A pointer to an object of the OrientedGraph class
-/// representing the oriented graph to which this vertex belongs. The default
-/// value is nullptr
+/// @param d_value The value of the vertex
+/// @param d_level The vertex level is represented by the unsigned type
+/// @param d_inConnections vector of weak pointers to input connections with
+/// other vertices
+/// @param d_outConnections vector of strong pointers to output connections
+/// with other vertices
+/// @param d_settings A pointer to the settings object for this vertex
+/// @param d_type Vertex Type - Defined by the VertexTypes enumeration
+/// @param d_count Vertex counter for naming and other purposes.
+/// Represented by the uint_fast64_t type
+/// @param hashed A string containing the calculated hash value for the vertex
 
 class GraphVertexBase {
 public:
@@ -207,7 +213,6 @@ public:
 
   virtual void               updateLevel();
 
-
   /// @brief getGate
   /// Returns the type of the basic logic gate represented by this vertex. If
   /// the vertex does not correspond to any basic logic gate, it returns Gate
@@ -223,7 +228,6 @@ public:
   // Get-Set для базового графа
   // void setBaseGraph(std::shared_ptr<OrientedGraph> const i_baseGraph);
 
-
   /// @brief getBaseGraph
   /// @return a weak pointer to the base graph associated with this vertex.
   /// @code
@@ -232,7 +236,6 @@ public:
 
   GraphPtrWeak               getBaseGraph() const;
 
-  
   /// @brief getInConnections
   /// @return A vector of weak pointers to the input connections of this vertex
   /// @code
@@ -245,14 +248,14 @@ public:
   /// {
   /// // Checking if the connection is valid
   ///   if (!connection.expired())
-    /// {
-        /// // Getting shared_ptr from weak_ptr
-        /// VertexPtr inputVertex = connection.lock();
-        /// if (inputVertex)
-        /// {
-        ///   // Doing something with the input Vertex
-        /// }
-    /// }
+  /// {
+  /// // Getting shared_ptr from weak_ptr
+  /// VertexPtr inputVertex = connection.lock();
+  /// if (inputVertex)
+  /// {
+  ///   // Doing something with the input Vertex
+  /// }
+  /// }
   /// }
   /// @endcode
 
@@ -268,12 +271,14 @@ public:
   /// // Creating an instance of the GraphVertexBase class
   /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
   /// // Creating another vertex
-  /// VertexPtr anotherVertex = std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex2");
+  /// VertexPtr anotherVertex =
+  /// std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex2");
   /// // Add the second vertex to the input connections of the first vertex
   /// // and get the number of occurrences
   /// int count = vertex.addVertexToInConnections(anotherVertex);
   /// // Output the result
-  /// std::cout << "The number of occurrences of the second vertex in the input connections of the first vertex: " << count << std::endl;
+  /// std::cout << "The number of occurrences of the second vertex in the input
+  /// connections of the first vertex: " << count << std::endl;
   /// @endcode
 
   /// @brief addVertexToInConnections
@@ -286,48 +291,51 @@ public:
   /// // Creating an instance of the GraphVertexBase class
   /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
   /// // Creating another vertex
-  /// VertexPtr anotherVertex = std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex2");
+  /// VertexPtr anotherVertex =
+  /// std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex2");
   /// // Adding a second vertex to the input connections of the first vertex
   /// and getting the number of occurrences
   /// int occurrences = vertex.addVertexToInConnections(anotherVertex);
   /// // Output of the result
-  /// std::cout << "The number of occurrences of the second vertex in the input connections of the first vertex: " << occurrences << std::endl;
+  /// std::cout << "The number of occurrences of the second vertex in the input
+  /// connections of the first vertex: " << occurrences << std::endl;
   /// @endcode
 
   int                        addVertexToInConnections(VertexPtr i_vert);
-
-
 
   /// @brief removeVertexToInConnections
   /// Removes a vertex from the input connections of this vertex.
   /// @param i_vert The vertex to be removed from the input connections.
   /// @param i_full lag indicating whether to remove all occurrences of the
   /// vertex from the input connections.
-  /// If true, all occurrences will be removed. If false, only the first 
+  /// If true, all occurrences will be removed. If false, only the first
   /// occurrence will be removed. Default - false
   /// @return true if the vertex was successfully removed, false otherwise.
   /// @code
   /// // Creating an instance of the GraphVertexBase class
   /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
   /// // Creating another vertex
-  /// VertexPtr anotherVertex = std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex2");
+  /// VertexPtr anotherVertex =
+  /// std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex2");
   /// // Adding a second vertex to the input connections of the first vertex
   /// vertex.addVertexToInConnections(anotherVertex);
-  /// // Removing the second vertex from the input connections of the first vertex
-  /// bool removed = vertex.removeVertexToInConnections(anotherVertex, false);
+  /// // Removing the second vertex from the input connections of the first
+  /// vertex bool removed = vertex.removeVertexToInConnections(anotherVertex,
+  /// false);
   /// // Output of the result
   /// if (removed)
   /// {
-  ///    std::cout << "The second vertex has been successfully removed from the input connections of the first vertex" << std::endl;
-  /// } 
+  ///    std::cout << "The second vertex has been successfully removed from the
+  ///    input connections of the first vertex" << std::endl;
+  /// }
   /// else
   /// {
-  ///    std::cout << "The second vertex was not found in the input connections of the first vertex" << std::endl;
+  ///    std::cout << "The second vertex was not found in the input connections
+  ///    of the first vertex" << std::endl;
   /// }
   /// @endcode
 
   bool removeVertexToInConnections(VertexPtr i_vert, bool i_full = false);
-
 
   /// @brief getOutConnections
   /// @return A vector of shared pointers to the output connections of this
@@ -336,7 +344,8 @@ public:
   /// // Creating an instance of the GraphVertexBase class
   /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
   /// // Creating another vertex
-  /// VertexPtr anotherVertex = std::make_shared<GraphVertexBase>(VertexTypes::output, "vertex2");
+  /// VertexPtr anotherVertex =
+  /// std::make_shared<GraphVertexBase>(VertexTypes::output, "vertex2");
   /// // Adding the second vertex to the output connections of the first vertex
   /// vertex.addVertexToOutConnections(anotherVertex);
   /// // get the vector of the output connections of the first vertex
@@ -363,13 +372,95 @@ public:
 
   bool                   addVertexToOutConnections(VertexPtr i_vert);
 
+  /// @brief removeVertexToOutConnections
+  /// Removes a vertex from the output connections of this vertex.
+  /// @param i_vert The vertex to be removed from the output connections.
+  /// @return true if the vertex was successfully removed, false otherwise.
+  /// @code
+  /// // Creating an instance of the GraphVertexBase class
+  /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
+  /// // Creating another vertex
+  /// VertexPtr anotherVertex =
+  /// std::make_shared<GraphVertexBase>(VertexTypes::output, "vertex2");
+  /// // Adding the second vertex to the output connections of the first vertex
+  /// vertex.addVertexToOutConnections(anotherVertex);
+  /// // Removing the second vertex from the output connections of the first vertex
+  /// bool removed = vertex.removeVertexToOutConnections(anotherVertex);
+  /// // Output of the result
+  /// if (removed)
+  /// {
+  ///   std::cout << "Вторая вершина успешно удалена из выходных соединений первой вершины." << std::endl;
+  /// } 
+  /// else 
+  /// {
+  ///   std::cout << "Вторая вершина не найдена в выходных соединениях первой вершины." << std::endl;
+  /// }
+  /// @endcode
 
 
   bool                   removeVertexToOutConnections(VertexPtr i_vert);
 
+  /// @brief calculateHash
+  /// Calculates the hash value for the vertex based on its outgoing
+  /// connections.
+  /// @param recalculate Flag indicating whether to recalculate the hash
+  /// value even if it has already been calculated.
+  /// If true, the hash value will be recalculated.
+  /// If false and the hash value has already been calculated,
+  /// the cached hash value will be returned without recalculation.
+  /// @return The hash value of the vertex based on its outgoing connections.
+  /// @code
+  /// // Creating an instance of the GraphVertexBase class
+  /// GraphVertexBase vertex(VertexTypes::output, "vertex1");
+  /// // Creating two more vertices
+  /// VertexPtr vertex2 = std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex2");
+  /// VertexPtr vertex3 = std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex3");
+  /// // Adding the second and third vertices to the output connections of the first vertex
+  /// vertex.addVertexToOutConnections(vertex2);
+  /// vertex.addVertexToOutConnections(vertex3);
+  /// // Calculating the hash for the first vertex
+  /// std::string hashValue = vertex.calculateHash();
+  /// // Output of the result
+  /// std::cout << "Hash for the first vertex: " << hashValue << std::endl;
+  /// @endcode
+
   virtual std::string    calculateHash(bool recalculate = false);
 
+
+
+  /// @brief getInstance
+  /// Generates an instance declaration for the vertex in Verilog format.
+  /// @return A string containing the instance declaration for the vertex
+  /// in Verilog format.
+  /// @code
+  /// // Creating an instance of the GraphVertexBase class
+  /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
+  /// // Generating an instance for a vertex in Verilog format
+  /// std::string instanceDeclaration = vertex.getInstance();
+  /// // Displaying the instance on the screen
+  /// std::cout << "Instance declaration for vertex: " << instanceDeclaration << std::endl;
+  /// @endcode
+
   virtual std::string    getInstance();
+
+  /// @brief toVerilog
+  /// Generates Verilog code for the vertex
+  /// @return A string containing Verilog code for the vertex, or an empty
+  /// string if the vertex type is not "output" or if the incoming connection
+  /// is invalid
+  /// @code
+  /// // Creating an instance of the GraphVertexBase class with the type
+  /// "output" and the name "output_vertex"
+  /// GraphVertexBase outputVertex(VertexTypes::output, "output_vertex");
+  /// // Creating another vertex with the type "input" and the name "input_vertex"
+  /// VertexPtr inputVertex = std::make_shared<GraphVertexBase>(VertexTypes::input, "input_vertex");
+  /// // Setting the input connection for the vertex "output_vertex"
+  /// outputVertex.addVertexToInConnections(inputVertex);
+  /// // Generating the Verilog code for the vertex "output_vertex"
+  /// std::string verilogCode = outputVertex.toVerilog();
+  /// // Display the generated Verilog code on the screen
+  /// std::cout << "Generated Verilog code:\n" << verilogCode << std::endl;
+  /// @endcode
 
   virtual std::string    toVerilog();
 
