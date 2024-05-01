@@ -115,7 +115,7 @@ public:
   /// OrientedGraph methods
   /// @param i_nesting
   /// @return
-  std::string toGraphML(int i_nesting = 0) const;
+  std::string toGraphML(int i_nesting = 0, std::string i_prefix = "") const;
 
   /// @brief This method is used as a substructure for
   /// OrientedGraph methods
