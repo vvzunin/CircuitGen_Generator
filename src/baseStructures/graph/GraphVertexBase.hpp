@@ -17,11 +17,50 @@ class OrientedGraph;  // Проблема циклического опреде�
 #define VertexPtr     std::shared_ptr<GraphVertexBase>
 #define VertexPtrWeak std::weak_ptr<GraphVertexBase>
 
+/// @brief VertexUtils
+/// Namespace containing utility functions for working with vertices
+
 namespace VertexUtils {
+/// @brief gateToString
+/// Converts a gate type enum value to its string representation
+/// @param i_type The gate type enum value
+/// @return The string representation of the gate type.
+/// @code
+/// Gates gateType = Gates::GateAnd;
+/// std::string gateString = VertexUtils::gateToString(gateType);
+/// std::cout << "String representation of gate type: " << gateString << std::endl;
+/// gateType = Gates::GateNot;
+/// gateString = VertexUtils::gateToString(gateType);
+/// std::cout << "String representation of gate type: " << gateString << std::endl;
+/// @endcode
 std::string gateToString(Gates i_type);
 
+
+/// @brief vertexTypeToComment
+/// Converts a vertex type enum value to its Verilog representation
+/// @param i_type The vertex type enum value.
+/// @return The Verilog representation of the vertex type
+/// @code
+/// VertexTypes vertexType = VertexTypes::Input;
+/// std::string verilogType = VertexUtils::vertexTypeToVerilog(vertexType);
+/// std::cout << "Verilog representation of vertex type: " << verilogType << std::endl;
+/// @endcode
 std::string vertexTypeToVerilog(VertexTypes i_type);
 
+
+
+/// @brief vertexTypeToComment
+/// Converts a vertex type enum value to its comment representation
+/// This function takes a vertex type enum value (from the VertexTypes enum) and returns 
+/// its corresponding comment representation. The comment representation is based 
+/// on the vertex type and is used for generating comments or documentation
+/// @param i_type The vertex type enum value (from the VertexTypes enum)
+/// @return The comment representation of the vertex type.
+/// @code
+/// VertexTypes vertexType = VertexTypes::Input;
+/// std::string comment = VertexUtils::vertexTypeToComment(vertexType);
+/// std::cout << "Comment for input vertex type: " << comment << std::endl;
+/// @endcode
 std::string vertexTypeToComment(VertexTypes i_type);
 }  // namespace VertexUtils
 
