@@ -92,6 +92,8 @@ public:
 
   virtual std::string    toVerilog();
 
+  virtual GraphPtr       getSubGraph() const { return nullptr; };
+
 protected:
   GraphPtrWeak               d_baseGraph;
 
