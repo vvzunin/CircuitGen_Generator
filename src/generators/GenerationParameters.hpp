@@ -7,6 +7,7 @@
 
 #include <generators/Genetic/GeneticParameters.h>
 #include <settings/Settings.hpp>
+#include "dummy.hpp"
 
 /// class CNNFromTruthTableParameters
 /// @param d_generateLimitations It may refer to conditions or restrictions that

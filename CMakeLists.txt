@@ -41,6 +41,7 @@ set(PUBLIC_HEADERS
   include/CircuitGenGenerator/export.hpp
   include/CircuitGenGenerator/CircuitGenGenerator.hpp
   include/CircuitGenGenerator/OrientedGraph.hpp
+  include/dummy.hpp
 )
 
 set(SOURCES

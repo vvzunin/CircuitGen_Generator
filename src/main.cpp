@@ -1,4 +1,5 @@
 #include "CircuitGenGenerator/CircuitGenGenerator.hpp"
+#include "dummy.hpp"
 #include <getopt.h>
 #include <unistd.h>
 
@@ -14,10 +15,16 @@
 
 using namespace std::chrono;
 
+INITIALIZE_EASYLOGGINGPP
+
+
 int main(int argc, char **argv) {
+  el::Configurations conf("./include/path/to/my-conf.conf");
+  el::Loggers::reconfigureLogger("default", conf);
+  el::Loggers::reconfigureAllLoggers(conf);
+  LOG(INFO) << "Launch of generation.";
   std::string json_path;
   // Use getopt to parse command line arguments
-
   const char *const short_opts = "j:n:";
   const option long_opts[] = {{"json_path", required_argument, nullptr, 'j'},
                               {"num_nodes", required_argument, nullptr, 'n'}};
@@ -43,6 +50,7 @@ int main(int argc, char **argv) {
   // json_path = "../../examples/json/sampleALU.json";
   // std::clog << std::filesystem::current_path() << std::endl;
   CircuitGenGenerator::runGenerationFromJson(json_path);
+<<<<<<< HEAD
 
   return 0;
 }

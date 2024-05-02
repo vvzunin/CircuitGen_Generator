@@ -1,3 +1,5 @@
+#pragma once
+
 #include <algorithm>
 #include <array>
 #include <chrono>
@@ -19,8 +21,22 @@
 #include <unistd.h>
 
 #include "CircuitGenGenerator/export.hpp"
+#include "dummy.hpp"
 
 using namespace std::chrono;
+
+
+inline MAKE_LOGGABLE(GenerationParameters, obj, os)
+{
+	os << obj.getDataForLogging();
+	return os;
+}
+
+inline MAKE_LOGGABLE(DataBaseGeneratorParameters, obj, os) 
+{
+	os << obj.getDataForLogging();
+	return osl
+}
 
 void runGeneration(
     std::string json_path,
@@ -194,6 +210,8 @@ void runGeneration(
         makeBench,
         makeGraphML
     );
+
+    LOG(INFO) << "GenerationParameters: " << gp;
 
     gp.setGatesInputInfo(gatesInputsInfo);
     // ------------------------------------------------------------------------
@@ -553,13 +571,15 @@ void runGeneration(
         minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp
     );
 
+    LOG(INFO) << "DataBaseGeneratorParameters: " << dbgp;
+
     DataBaseGenerator generator(dbgp);
 
     if (data.contains("dataset_path")) {
       Settings::getInstance("CircuitGenGenerator")
           ->setDatasetPath(static_cast<std::string>(data["dataset_path"]));
     }
-
+	
     auto start = high_resolution_clock::now();
 
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
@@ -616,6 +636,7 @@ std::vector<ResultPath> runGenerationFromJsonForPath(std::string json_path) {
 
   return finalRes;
 }
+<<<<<<< HEAD
 
 void runGenerationFromJson(std::string json_path) {
   auto runGeneratorForGraph = [](DataBaseGenerator&                 generator,
@@ -628,3 +649,6 @@ void runGenerationFromJson(std::string json_path) {
   runGeneration(json_path, runGeneratorForGraph);
 }
 }  // namespace CircuitGenGenerator
+=======
+}  // namespace CircuitGenGenerator
+>>>>>>> Add log for GenerationParameters and DataBaseGeneratorParameters in file.
