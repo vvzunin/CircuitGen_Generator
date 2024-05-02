@@ -1,5 +1,5 @@
 #include "CircuitGenGenerator/CircuitGenGenerator.hpp"
-#include "dummy.hpp"
+#include "easylogger.hpp"
 #include <getopt.h>
 #include <unistd.h>
 

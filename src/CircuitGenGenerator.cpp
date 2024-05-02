@@ -21,7 +21,7 @@
 #include <unistd.h>
 
 #include "CircuitGenGenerator/export.hpp"
-#include "dummy.hpp"
+#include "easylogger.hpp"
 
 using namespace std::chrono;
 

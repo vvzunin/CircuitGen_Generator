@@ -13,3 +13,6 @@
 2024-05-02 16:24:07,424 Launch of generation.
 2024-05-02 16:24:07,426 GenerationParameters: { inputs: 4, outputs: 4, iterations: 1 }
 2024-05-02 16:24:07,426 DataBaseGeneratorParameters: { minInputs: 4, maxInputs: 5, minOutputs: 4, maxOutputs: 5, eachIteration: 1, generationParameters: { inputs: 4, outputs: 4, iterations: 1 } }
+2024-05-02 16:55:18,607 Launch of generation.
+2024-05-02 16:55:18,608 GenerationParameters: { inputs: 4, outputs: 4, iterations: 1 }
+2024-05-02 16:55:18,608 DataBaseGeneratorParameters: { minInputs: 4, maxInputs: 5, minOutputs: 4, maxOutputs: 5, eachIteration: 1, generationParameters: { inputs: 4, outputs: 4, iterations: 1 } }
