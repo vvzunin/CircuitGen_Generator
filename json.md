@@ -2,7 +2,8 @@
 Для генерации комбинационных схем с использованием командной строки необходимо создать JSON файл.
 
 Набор использованных методов описан в следующих статьях:
-1) V. V. Zunin, A. Y. Romanov, Solovyev R. Developing Methods for Combinational Circuit Generation, in: 2022 International Russian Automation Conference (RusAutoCon). IEEE, 2022. [doi](https://doi.org/10.1109/RusAutoCon54946.2022.9896390)
+1) V.V. Zunin, A.Y. Romanov, R.A. Solovyev Developing Methods for Combinational Circuit Generation, in: 2022 International Russian Automation Conference (RusAutoCon). IEEE, 2022. P. 842-846. [doi](https://doi.org/10.1109/RusAutoCon54946.2022.9896390)
+2) D.A. Miachin, V.P. Pugach, S.S. Avdeiuk, V.V. Zunin, A.Y. Romanov. The Open System for Storing and Processing of a Dataset of Combinational Circuits // Proceedings of the Institute for System Programming of the RAS. 2023. Vol. 35. No. 5. P. 81-90. [doi](http://doi.org/10.15514/ISPRAS-2022-35(5)-6)
 
 JSON файл может содержать несколько наборов генерации:
 ```
