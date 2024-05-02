@@ -384,19 +384,20 @@ public:
   /// std::make_shared<GraphVertexBase>(VertexTypes::output, "vertex2");
   /// // Adding the second vertex to the output connections of the first vertex
   /// vertex.addVertexToOutConnections(anotherVertex);
-  /// // Removing the second vertex from the output connections of the first vertex
-  /// bool removed = vertex.removeVertexToOutConnections(anotherVertex);
+  /// // Removing the second vertex from the output connections of the first
+  /// vertex bool removed = vertex.removeVertexToOutConnections(anotherVertex);
   /// // Output of the result
   /// if (removed)
   /// {
-  ///   std::cout << "Вторая вершина успешно удалена из выходных соединений первой вершины." << std::endl;
-  /// } 
-  /// else 
+  ///   std::cout << "Вторая вершина успешно удалена из выходных соединений
+  ///   первой вершины." << std::endl;
+  /// }
+  /// else
   /// {
-  ///   std::cout << "Вторая вершина не найдена в выходных соединениях первой вершины." << std::endl;
+  ///   std::cout << "Вторая вершина не найдена в выходных соединениях первой
+  ///   вершины." << std::endl;
   /// }
   /// @endcode
-
 
   bool                   removeVertexToOutConnections(VertexPtr i_vert);
 
@@ -413,10 +414,11 @@ public:
   /// // Creating an instance of the GraphVertexBase class
   /// GraphVertexBase vertex(VertexTypes::output, "vertex1");
   /// // Creating two more vertices
-  /// VertexPtr vertex2 = std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex2");
-  /// VertexPtr vertex3 = std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex3");
-  /// // Adding the second and third vertices to the output connections of the first vertex
-  /// vertex.addVertexToOutConnections(vertex2);
+  /// VertexPtr vertex2 = std::make_shared<GraphVertexBase>(VertexTypes::input,
+  /// "vertex2"); VertexPtr vertex3 =
+  /// std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex3");
+  /// // Adding the second and third vertices to the output connections of the
+  /// first vertex vertex.addVertexToOutConnections(vertex2);
   /// vertex.addVertexToOutConnections(vertex3);
   /// // Calculating the hash for the first vertex
   /// std::string hashValue = vertex.calculateHash();
@@ -425,8 +427,6 @@ public:
   /// @endcode
 
   virtual std::string    calculateHash(bool recalculate = false);
-
-
 
   /// @brief getInstance
   /// Generates an instance declaration for the vertex in Verilog format.
@@ -438,7 +438,8 @@ public:
   /// // Generating an instance for a vertex in Verilog format
   /// std::string instanceDeclaration = vertex.getInstance();
   /// // Displaying the instance on the screen
-  /// std::cout << "Instance declaration for vertex: " << instanceDeclaration << std::endl;
+  /// std::cout << "Instance declaration for vertex: " << instanceDeclaration <<
+  /// std::endl;
   /// @endcode
 
   virtual std::string    getInstance();
@@ -452,8 +453,9 @@ public:
   /// // Creating an instance of the GraphVertexBase class with the type
   /// "output" and the name "output_vertex"
   /// GraphVertexBase outputVertex(VertexTypes::output, "output_vertex");
-  /// // Creating another vertex with the type "input" and the name "input_vertex"
-  /// VertexPtr inputVertex = std::make_shared<GraphVertexBase>(VertexTypes::input, "input_vertex");
+  /// // Creating another vertex with the type "input" and the name
+  /// "input_vertex" VertexPtr inputVertex =
+  /// std::make_shared<GraphVertexBase>(VertexTypes::input, "input_vertex");
   /// // Setting the input connection for the vertex "output_vertex"
   /// outputVertex.addVertexToInConnections(inputVertex);
   /// // Generating the Verilog code for the vertex "output_vertex"
