@@ -553,33 +553,35 @@ std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
   std::string       nodes, edges, graphs, vertexKindName;
 
   for (const auto& [vertexType, vertexVector] : d_vertexes) {
-    // skipping subgraphs, will be parsed later
-    if (vertexType == VertexTypes::subGraph) {
-      continue;
+    switch (vertexType) {
+      // skipping subgraphs, will be parsed later
+      case VertexTypes::subGraph:
+        continue;
+      case VertexTypes::input:
+      case VertexTypes::output:
+        vertexKindName = d_settings->parseVertexToString(vertexType);
+        break;
     }
-    vertexKindName =
-        d_settings->parseVertexToString(vertexType);  // input, output
+
     for (const auto& v : vertexVector) {
       // every "gate" and "const" vertex has subtypes
-      if (vertexType == VertexTypes::constant) {
-        vertexKindName = std::string(1, v->getValue());
-      } else if (vertexType == VertexTypes::gate) {
-        vertexKindName = d_settings->parseGateToString(v->getGate());
+      switch (vertexType) {
+        case VertexTypes::constant:
+          vertexKindName = std::string(1, v->getValue());
+          break;
+        case VertexTypes::gate:
+          vertexKindName = d_settings->parseGateToString(v->getGate());
+          break;
       }
 
       nodes +=
           format(nodeTemplate, v->getName(i_prefix), vertexKindName, "", "");
 
-      for (const auto& source : v->getInConnections()) {
-        auto ptr = source.lock();
-        if (!ptr) {
-          throw std::invalid_argument("Dead pointer!");
-        }
-
+      for (const auto& sink : v->getOutConnections()) {
         // parsing edges not related to subGraphs
-        if (!ptr->isSubgraphBuffer()) {
+        if (sink->getType() != VertexTypes::subGraph) {
           edges += format(
-              edgeTemplate, ptr->getName(i_prefix), v->getName(i_prefix)
+              edgeTemplate, v->getName(i_prefix), sink->getName(i_prefix)
           );
         }
       }
