@@ -44,9 +44,9 @@ bool GraphVertexSubGraph::toGraphML(std::ofstream& i_fileStream) const {
   return d_subGraph->toGraphML(i_fileStream);
 }
 
-std::string GraphVertexSubGraph::toGraphML(int i_nesting, std::string i_prefix)
+std::string GraphVertexSubGraph::toGraphML(int i_indent, std::string i_prefix)
     const {
-  return d_subGraph->toGraphML(i_nesting, i_prefix);
+  return d_subGraph->toGraphML(i_indent, i_prefix);
 }
 
 std::string GraphVertexSubGraph::toVerilog() {
@@ -55,10 +55,6 @@ std::string GraphVertexSubGraph::toVerilog() {
 
 void GraphVertexSubGraph::setSubGraph(GraphPtr i_subGraph) {
   d_subGraph = i_subGraph;
-}
-
-GraphPtr GraphVertexSubGraph::getSubGraph() const {
-  return d_subGraph;
 }
 
 std::string GraphVertexSubGraph::calculateHash(bool recalculate) {

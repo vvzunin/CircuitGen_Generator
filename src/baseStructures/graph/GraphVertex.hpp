@@ -113,9 +113,9 @@ public:
 
   /// @brief This method is used as a substructure for
   /// OrientedGraph methods
-  /// @param i_nesting
+  /// @param i_indent
   /// @return
-  std::string toGraphML(int i_nesting = 0, std::string i_prefix = "") const;
+  std::string toGraphML(int i_indent = 0, std::string i_prefix = "") const;
 
   /// @brief This method is used as a substructure for
   /// OrientedGraph methods
@@ -125,7 +125,6 @@ public:
   std::string calculateHash(bool recalculate = false);
 
   void        setSubGraph(GraphPtr i_subGraph);
-  GraphPtr    getSubGraph() const;
 
 private:
   GraphPtr    d_subGraph;
@@ -181,6 +180,8 @@ public:
   Gates        getGate() const;
 
   std::string  toVerilog();
+
+  bool         isSubgraphBuffer() const override;
 
 private:
   Gates       d_gate;

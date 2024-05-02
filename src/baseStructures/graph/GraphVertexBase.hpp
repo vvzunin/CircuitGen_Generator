@@ -62,6 +62,7 @@ public:
   // Get-Set для имен входов
   void                       setName(const std::string i_name);
   std::string                getName() const;
+  std::string                getName(const std::string& i_prefix) const;
 
   // Get для значения вершины
   virtual char               getValue() const;
@@ -92,7 +93,7 @@ public:
 
   virtual std::string    toVerilog();
 
-  virtual GraphPtr       getSubGraph() const { return nullptr; };
+  virtual bool           isSubgraphBuffer() const { return false; }
 
 protected:
   GraphPtrWeak               d_baseGraph;

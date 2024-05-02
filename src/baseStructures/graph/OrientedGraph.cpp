@@ -538,36 +538,27 @@ std::pair<bool, std::string>
   return std::make_pair(true, "");
 }
 
-std::string OrientedGraph::toGraphML(int i_nesting, std::string i_prefix)
+std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
     const {
   using namespace AuxMethods;  // format() and replacer()
 
-  const std::string spaces(i_nesting, ' ');
+  const std::string spaces(i_indent, ' ');
 
   const std::string graphTemplate =
-      format(rawGraphTemplate, spaces, i_nesting ? "%:" : "%", "%", spaces);
+      format(rawGraphTemplate, spaces, i_indent ? "%:" : "%", "%", spaces);
   const std::string nodeTemplate =
       format(rawNodeTemplate, spaces, "%", spaces, "%", "%%", spaces);
   const std::string edgeTemplate = format(rawEdgeTemplate, spaces, "%", "%");
 
   std::string       nodes, edges, graphs, vertexKindName;
-  std::map<size_t, std::string> parsedSubGraphs;
-  size_t                        sgCount = 0;
-
-  // parsing unique subGraphs
-  for (const auto& subGraph : d_subGraphs) {
-    parsedSubGraphs[subGraph->d_graphID] = format(
-        nodeTemplate,
-        "%",
-        "subGraph",
-        "\n",
-        subGraph->toGraphML(i_nesting + 4, i_prefix + "%::")
-    );
-  }
 
   for (const auto& [vertexType, vertexVector] : d_vertexes) {
+    // skipping subgraphs, will be parsed later
+    if (vertexType == VertexTypes::subGraph) {
+      continue;
+    }
     vertexKindName =
-        d_settings->parseVertexToString(vertexType);  // input, output, subGraph
+        d_settings->parseVertexToString(vertexType);  // input, output
     for (const auto& v : vertexVector) {
       // every "gate" and "const" vertex has subtypes
       if (vertexType == VertexTypes::constant) {
@@ -576,61 +567,74 @@ std::string OrientedGraph::toGraphML(int i_nesting, std::string i_prefix)
         vertexKindName = d_settings->parseGateToString(v->getGate());
       }
 
-      if (vertexType != VertexTypes::subGraph) {
-        nodes += format(
-            nodeTemplate, i_prefix + v->getName(), vertexKindName, "", ""
-        );
-      } else {
-        // currentSubGraph, vertexInputs, vertexOutputs,
-        // graphInputs, graphOutputs
-        const auto& csg = v->getSubGraph();
-        const auto& vi  = csg->d_subGraphsInputsPtr[d_graphID][sgCount];
-        const auto& vo  = csg->d_subGraphsOutputsPtr[d_graphID][sgCount++];
-        const auto& gi  = csg->d_vertexes.at(VertexTypes::input);
-        const auto& go  = csg->d_vertexes.at(VertexTypes::output);
-
-        // element->subGraph edges
-        for (size_t i = 0; i < vi.size(); ++i)
-          edges += format(
-              edgeTemplate,
-              i_prefix + vi[i]->getName(),
-              format("%%::%", i_prefix, v->getName(), gi[i]->getName())
-          );
-        // subGraph->element edges (skipping buffer)
-        for (size_t i = 0; i < vo.size(); ++i)
-          edges += format(
-              edgeTemplate,
-              format("%%::%", i_prefix, v->getName(), go[i]->getName()),
-              i_prefix + vo[i]->getOutConnections()[0]->getName()
-          );
-        // parsing duplicate subGraphs
-        graphs += replacer(
-            parsedSubGraphs.at(csg->d_graphID), i_prefix + v->getName()
-        );
-      }
+      nodes +=
+          format(nodeTemplate, v->getName(i_prefix), vertexKindName, "", "");
 
       for (const auto& source : v->getInConnections()) {
         auto ptr = source.lock();
         if (!ptr) {
           throw std::invalid_argument("Dead pointer!");
         }
-        bool isSubgraphBuffer = ptr->getGate() == Gates::GateBuf
-                             && ptr->getInConnections()[0].lock()->getType()
-                                    == VertexTypes::subGraph;
-        bool isSubgraph = v->getType() == VertexTypes::subGraph;
 
         // parsing edges not related to subGraphs
-        if (!(isSubgraphBuffer || isSubgraph)) {
+        if (!ptr->isSubgraphBuffer()) {
           edges += format(
-              edgeTemplate, i_prefix + ptr->getName(), i_prefix + v->getName()
+              edgeTemplate, ptr->getName(i_prefix), v->getName(i_prefix)
           );
         }
       }
     }
   }
 
+  std::string currentSubGraphTemplate, sgName;
+
+  for (const auto& sg : d_subGraphs) {
+    // preparing template for subGraphs as vertexes
+    currentSubGraphTemplate = format(
+        nodeTemplate,
+        "%",
+        "subGraph",
+        "\n",
+        sg->toGraphML(i_indent + 4, i_prefix + "%::")
+    );
+
+    // vertexesInputs, vertexesOutputs, graphInputs, graphOutputs
+    const auto& gInputs  = sg->d_vertexes.at(VertexTypes::input);
+    const auto& gOutputs = sg->d_vertexes.at(VertexTypes::output);
+    const auto& vInputs  = sg->d_subGraphsInputsPtr.at(d_graphID);
+    const auto& vOutputs = sg->d_subGraphsOutputsPtr.at(d_graphID);
+
+    for (size_t i = 0; i < vOutputs.size(); ++i) {
+      // getting name of current subGraph vertex
+      sgName = vOutputs[i][0]->getInConnections()[0].lock()->getName(i_prefix);
+
+      // element->subGraph edges
+      for (size_t j = 0; j < gInputs.size(); ++j) {
+        edges += format(
+            edgeTemplate,
+            vInputs[i][j]->getName(i_prefix),
+            gInputs[j]->getName(sgName + "::")
+        );
+      }
+      // subGraph->element edges (skipping buffer)
+      for (size_t j = 0; j < gOutputs.size(); ++j) {
+        if (vOutputs[i][j]->getOutConnections().empty()) {
+          continue;
+        }
+        edges += format(
+            edgeTemplate,
+            gOutputs[j]->getName(sgName + "::"),
+            vOutputs[i][j]->getOutConnections()[0]->getName(i_prefix)
+        );
+      }
+
+      // parsing subGraphs as vertexes
+      graphs += replacer(currentSubGraphTemplate, sgName);
+    }
+  }
+
   std::string finalGraph = format(graphTemplate, "%", nodes + graphs + edges);
-  if (i_nesting != 0) {
+  if (i_indent != 0) {
     return finalGraph;
   }
   return format(mainTemplate, format(finalGraph, d_name));

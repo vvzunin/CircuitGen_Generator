@@ -157,7 +157,8 @@ public:
   /// returns true.
 
   bool        toGraphML(std::ofstream& i_fileStream) const;
-  std::string toGraphML(int i_nesting = 0, std::string i_prefix = "") const;
+  std::string toGraphML(int i_indent = 0, const std::string& i_prefix = "")
+      const;
   // visualize
   // calcGraph
 
