@@ -106,6 +106,13 @@ public:
 
   GenerationParameters getGenerationParameters() const;
 
+  /// @brief getGenerationParameters This method is used to get the database
+  /// generation parameters pointer
+  /// @return Database Generation Parameters
+  /// */
+
+  GenerationParameters* getGenerationParametersPointer();
+
   /// @brief getGenerationType This method returns a GenerationTypes type
   /// variable representing the database generation type
   /// @return GenerationTypes of the database generation type

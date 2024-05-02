@@ -58,6 +58,11 @@ GenerationParameters DataBaseGeneratorParameters::getGenerationParameters(
   return d_generationParameters;
 }
 
+GenerationParameters* DataBaseGeneratorParameters::getGenerationParametersPointer(
+) {
+  return &d_generationParameters;
+}
+
 GenerationTypes DataBaseGeneratorParameters::getGenerationType() const {
   return d_generationTypes;
 }

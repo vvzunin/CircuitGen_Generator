@@ -174,16 +174,10 @@ public:
   GenerationParameters(
       const std::string& i_name,
       const std::string& i_requestId,
-      int                i_inputs,
-      int                i_outputs,
-      int                i_iteration,
       bool               i_makeGraphML        = false
   ) :
     d_name(i_name),
     d_requestId(i_requestId),
-    d_inputs(i_inputs),
-    d_outputs(i_outputs),
-    d_iteration(i_iteration),
     d_makeGraphML(i_makeGraphML) {};
 
   std::string getName() const { return d_name; }

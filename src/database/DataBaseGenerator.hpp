@@ -9,10 +9,10 @@
 
 class DataBaseGenerator {
 public:
-  DataBaseGenerator(const DataBaseGeneratorParameters& i_parameters) :
-    d_parameters(i_parameters) {};
+  DataBaseGenerator();
+
   void generateType(
-      const DataBaseGeneratorParameters& i_gp,
+      const DataBaseGeneratorParameters& i_dbgp,
       bool                               parallel            = true,
       bool                               createIdDirectories = true
   );
@@ -21,7 +21,6 @@ private:
   std::string               d_mainPath = ".";
   std::shared_ptr<Settings> d_settings =
       Settings::getInstance("DataBaseGenerator");
-  DataBaseGeneratorParameters d_parameters;  // why we need this var?
   int                         d_dirCount = 0;
 
   void generateDataBaseFromRandomTruthTable(const GenerationParameters& i_params

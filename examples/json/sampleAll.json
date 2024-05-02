@@ -1,92 +1,155 @@
 [
   {
-    "seed": 20,
-    "dataset_id": "0",
-    "id": 0,
-    "type_of_generation": "Genetic",
-    "min_in": 4,
-    "max_in": 5,
-    "min_out": 4,
-    "max_out": 5,
-    "repeat_n": 1,    
-    "multithread": true,
-    "calculate_stats_abc": true,
-    "make_optimized_files": true,
-    "make_firrtl": true,
-    "make_bench": true,
-    "make_graphml": true,
-    "create_id_directories": true,
-    "library_name": "sky130",
+    "GenerationParameters": {
+      "seed": 20,
+      
+      "type_of_generation": "Genetic",
+      
+      "min_in": 4,
+      "max_in": 5,
+      "min_out": 4,
+      "max_out": 5,
+      "repeat_n": 1,
+      "multithread": true,
+      "gates_inputs_info": {
+        "and": [2, 8],
+        "nand": [2],
+        "or": [2, 4, 8],
+        "nor": [2, 4, 8],
+        "xor": [2, 10],
+        "xnor": [2, 3]
+      }
+    },
     
-    "gates_inputs_info": {
-      "and": [2, 8],
-      "nand": [2],
-      "or": [2, 4, 8],
-      "nor": [2, 4, 8],
-      "xor": [2, 10],
-      "xnor": [2, 3]
+    "OutputParameters": {
+      "create_id_directories": true,
+      "dataset_id": "0",
+      "id": 0,
+      "make_graphml": true
     },
 
-    "CNFF": false,
-    "CNFT": true,
+    "FromTruthTable": {
+      "CNFF": false,
+      "CNFT": true,
+      "Zhegalkin": true
+    },
+
+    "RandLevel": {
+      "min_level": 1,
+      "max_level": 2,
+      "min_elem": 1,
+      "max_elem": 1
+    },
+
+    "RandLevelExperimental": {
+      "min_level": 1,
+      "max_level": 2,
+      "min_elem": 1,
+      "max_elem": 1
+    },
+
+    "NumOperation": {      
+      "num_and": 1,
+      "num_nand": 2,
+      "num_or": 1,
+      "num_not": 2,
+      "num_nor": 3,
+      "num_buf": 1,
+      "num_xor": 2,
+      "num_xnor": 5,
+      "leave_empty_out": true
+    },
+
+    "Summator": {
+      "overflowIn": true,
+      "overflowOut": true,
+      "minus": false
+    },
     
-    "min_level": 1,
-    "max_level": 2,
-    "max_elem": 1,
+    "Subtractor": {
+      "overflowIn": true,
+      "overflowOut": true,
+      "sub": false
+    },
 
-    "leave_empty_out": true,
-    "num_and": 1,
-    "num_nand": 2,
-    "num_or": 1,
-    "num_not": 2,
-    "num_nor": 3,
-    "num_buf": 1,
-    "num_xor": 2,
-    "num_xnor": 5,
+    "Comparison": {
+      "=": true,
+      "<": true,
+      ">": true
+    },
+    
+    "Encoder": {
 
-    "population_size": 1,
-    "cycles": 1,
-    "out_ratio": 1.0,
-    "chromosome_type": "Truth Table",
-    "selection_type_parent": "Panmixia",
-    "tour_size": 1,
-    "playback_type": "CrossingEachExitInTurnMany",
-    "ref_points": 1,
-    "mask_prob": 1.0,
-    "rec_num": 1,
-    "mut_type": "Binary",
-    "mut_chance": 1.0,
-    "swap_type": 0,
-    "ratio_in_table": 1.0,
-    "selection_type": "Base",
-    "surv_num": 1,
+    },
 
-    "overflowIn": true,
-    "overflowOut": true,
+    "Decoder": {
 
-    "sub": false,
-    "minus": false,
+    },
+    
+    "Multiplexer": {
 
-    "=": true,
-    "<": true,
-    ">": true,
+    },
+    
+    "Demultiplexer": {
 
-    "ALL": false,
-    "SUM": false,
-    "SUB": false,
-    "NSUM": false,
-    "NSUB": false,
-    "MULT": false,
-    "COM": false,
-    "AND": false,
-    "NAND": false,
-    "OR": false,
-    "NOR": false,
-    "XOR": false,
-    "XNOR": false,
-    "CNF": false,
-    "RNL": false,
-    "NUM_OP": false
+    },
+    
+    "Parity": {
+
+    },
+
+    "Multiplier": {
+
+    },
+
+    "ALU": {
+      "ALL": false,
+      "SUM": false,
+      "SUB": false,
+      "NSUM": false,
+      "NSUB": false,
+      "MULT": false,
+      "COM": false,
+      "AND": false,
+      "NAND": false,
+      "OR": false,
+      "NOR": false,
+      "XOR": false,
+      "XNOR": false,
+      "CNF": false,
+      "RNL": false,
+      "NUM_OP": false
+    },
+
+    "Genetic": {
+      "Mutations": {
+        "mut_type": "Binary",
+        "mut_chance": 1.0,
+        "swap_type": 0,
+        "ratio_in_table": 1.0
+      },
+
+      "Recombination": {
+        "rec_num": 1,
+        "ref_points": 1,
+        "mask_prob": 1.0,
+        "playback_type": "CrossingEachExitInTurnMany",
+        "Parents": {
+          "selection_type_parent": "Panmixia",
+          "tour_size": 1          
+        }
+      },
+
+      "Selection": {
+        "selection_type": "Base",
+        "surv_num": 1  
+      },
+
+      "population_size": 1,
+      "cycles": 1,
+      "out_ratio": 1.0,
+      "chromosome_type": "Truth Table"
+    } 
   }
 ]
  

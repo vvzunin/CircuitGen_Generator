@@ -88,18 +88,18 @@ void DataBaseGenerator::generateType(
   for (int i = i_dbgp.getMinInputs(); i <= i_dbgp.getMaxInputs(); ++i) {
     for (int j = i_dbgp.getMinOutputs(); j <= i_dbgp.getMaxOutputs(); ++j) {
       auto iter = seeds.begin();
-      d_parameters.setInputs(i);
-      d_parameters.setOutputs(j);
+      i_dbgp.setInputs(i);
+      i_dbgp.setOutputs(j);
 
       if (parallel) {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
-          d_parameters.setIteration(tt);
-          d_parameters.setName(
+          i_dbgp.setIteration(tt);
+          i_dbgp.setName(
               d_settings->getGenerationMethodPrefix(gt)
               + AuxMethods::intToStringWithZeroes(d_dirCount)
           );
 
-          GenerationParameters param = d_parameters.getGenerationParameters();
+          GenerationParameters param = i_dbgp.getGenerationParameters();
           param.setSeed(*iter);
 
           auto runGenerator = [generator, param]() { generator(param); };
@@ -114,13 +114,13 @@ void DataBaseGenerator::generateType(
       } else {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           // TODO: it is that Rustam told about iteration?
-          d_parameters.setIteration(tt);
-          d_parameters.setName(
+          i_dbgp.setIteration(tt);
+          i_dbgp.setName(
               d_settings->getGenerationMethodPrefix(gt)
               + AuxMethods::intToStringWithZeroes(d_dirCount)
           );
 
-          GenerationParameters param = d_parameters.getGenerationParameters();
+          GenerationParameters param = i_dbgp.getGenerationParameters();
           param.setSeed(*iter);
 
           generator(param);

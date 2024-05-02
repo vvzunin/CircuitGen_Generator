@@ -83,6 +83,8 @@ enum GenerationTypes {
 ///
 ///
 
+
+// TODO: Сделать считывание и сохранение из JSON файла.
 class Settings {
 protected:
   Settings(const std::string& i_path) : d_path(i_path) {}
@@ -473,6 +475,7 @@ private:
       {VertexTypes::constant, "const"},
       {VertexTypes::gate, "g"}};
 
+  // TODO: Перенести во входной JSON???
   std::map<GenerationTypes, std::string> generationTypeToPrefix = {
       {GenerationTypes::FromRandomTruthTable, "CCGRTT"},
       {GenerationTypes::RandLevel, "CCGRCG"},
