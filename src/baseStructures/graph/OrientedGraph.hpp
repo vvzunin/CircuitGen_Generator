@@ -22,27 +22,47 @@ class GraphVertexBase;  // Проблема циклического опред�
 #define VertexPtr     std::shared_ptr<GraphVertexBase>
 #define VertexPtrWeak std::weak_ptr<GraphVertexBase>
 
-/// class OrientedGraph A oriented graph that can contain vertices of
-/// various types (input, output, constant, etc.) and edges between them
+/// class OrientedGraph
+///
+/// @param d_countNewGraphInstance Static variable to count new graph instances
+/// @param d_currentInstance Current instance count
+/// @param d_currentParentGraph Weak pointer to the current parent graph
 /// @param d_edgesCount The number of edges in the graph
-/// @param hashed A string representing the calculated hash value of the graph
-/// @param d_baseGraph A pointer to a base graph if that graph is a subgraph
-/// of another
+/// @param d_hashed Hashed value of the graph
+/// @param d_parentGraphs Vector of weak pointers to parent graphs
 /// @param d_name The name of the graph
 /// @param d_needLevelUpdate A flag indicating whether the vertex levels in
 /// the graph need to be updated
-/// @param d_subGraphs The vector of pointers to the subgraphs of this graph
-/// @param d_vertexes  A map containing lists of vertices of various types
-/// in a graph
-/// @param d_countGraph A static variable used to count the number of graphs
-/// created
-/// @param d_gatesCount A map containing the number of vertices of each type
-/// in the graph
-/// @param edgesGatesCount A map containing the number of edges between
-/// different types of gate vertices in the graph***
-/// @param d_settings A pointer to the object of the settings used for this
-/// graph
-///
+/// @param d_alreadyParsed TO DO:
+/// @param d_graphInstanceToVerilogCount Map to count instances to Verilog
+/// This map is used to count how many times each subgraph instance has been
+/// converted to Verilog. The key represents the instance number of the
+/// subgraph, and the value represents the count of how many times it has been
+/// converted to Verilog
+/// @param d_subGraphsOutputsPtr Map storing outputs of subgraphs
+/// This map stores the outputs of subgraphs. It maps the instance number of
+/// the subgraph to a vector of vectors of VertexPtr. The outer vector
+/// represents the subgraph instances, and the inner vector represents the
+/// outputs of each instance of the subgraph.
+/// @param d_allSubGraphsOutputs Vector storing all outputs of subgraphs
+/// @param d_subGraphsInputsPtr Map storing inputs of subgraphs
+/// This map stores the inputs of subgraphs. It maps the instance number of
+/// the subgraph to a vector of vectors of VertexPtr. The outer vector
+/// represents the subgraph instances, and the inner vector represents the
+/// inputs of each instance of the subgraph.
+/// @param d_subGraphs Set of subgraphs
+/// This set stores the subgraphs present in the graph. It is used to keep
+/// track of all the subgraphs associated with the current graph instance
+/// @param d_vertexes Map of vertex types to vectors of vertex pointers
+/// @param d_countGraph Static counter for the total number of graphs
+/// @param d_gatesCount Map for quick gates count
+/// This map is used for quick counting of gates in the graph. It maps each
+/// gate type (Gates) to the count of gates of that type present in the graph.
+/// @param d_edgesGatesCount Map for quick count of edges of gate type
+/// This map is used for quick counting of edges between different types of
+/// gates in the graph. It maps each gate type (Gates) to another map, where
+/// the inner map maps gate types to the count of edges between them.
+/// @param d_settings Shared pointer to Settings instance
 
 class OrientedGraph : public std::enable_shared_from_this<OrientedGraph> {
 public:
