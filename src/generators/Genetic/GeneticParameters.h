@@ -4,14 +4,58 @@
 #include "./Recombination/RecombinationParameters.h"
 #include "./Mutations/MutationParameters.h"
 
+/// @todo: fill in the description of the class fields
+/// @class GeneticParameters
+/// Class representing genetic algorithm parameters
+/// @param d_inputs Number of inputs
+/// @param d_outputs Number of outputs
+/// @param d_populationSize Population size
+/// @param d_numOfCycles Number of cycles
+/// @param d_selectionParameters
+/// @param d_recombinationParameters
+/// @param d_mutationParameters
+/// @param d_keyEndProcessIndex
+
 class GeneticParameters
 {
 public:
+
+  /// @brief GeneticParameters
+  /// 
+  /// @param i_inputs Number of inputs
+  /// @param outs Number of outputs
+
   GeneticParameters(int i_inputs = 0, int outs = 0);
+
+
+  /// @brief getInputs
+  /// Get the number of inputs
+  /// @return The number of inputs
+
   int getInputs() const;
+
+
+  /// @brief setInputs
+  /// Set the number of inputs
+  /// @param i_inputs The number of inputs
+
   void setInputs(int i_inputs);
+
+
+  /// @brief getOutputs
+  /// Get the number of outputs
+  /// @return The number of outputs
+
   int getOutputs() const;
+
+
+  /// @brief setOutputs
+  /// Set the number of outputs
+  /// @param i_outputs The number of outputs
+
   void setOutputs(int i_outputs);
+
+
   SelectionParameters getSelectionParameters() const;
   void setSelectionParameters(const SelectionParameters& i_sp);
   RecombinationParameters getRecombinationParameters() const;
@@ -36,7 +80,7 @@ protected:
   double d_keyEndProcessIndex = 0;
 };
 
-//TODO: is it really need to place it there and not in ../../graph/OrientedGraph.h?
+/// @todo : is it really need to place it there and not in ../../graph/OrientedGraph.h?
 class OrientedGraphParameters : public GeneticParameters
 {
 public:
@@ -50,7 +94,7 @@ private:
 };
 
 
-/// @brief TruthTableParameters
+/// @class TruthTableParameters
 /// Parameters for generating truth tables
 /// The class provides the parameters needed to generate truth tables.
 /// These parameters include the number of entries and exits, population size,
