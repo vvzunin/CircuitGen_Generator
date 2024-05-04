@@ -61,7 +61,7 @@ PROJECT_BRIEF          = "Desc of Backeknd"
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
 
-PROJECT_LOGO           =
+PROJECT_LOGO           = C:/course_3/CircuitGen_Generator/docs/logo_1.png
 
 # With the PROJECT_ICON tag one can specify an icon that is included in the tabs
 # when the HTML document is shown. Doxygen will copy the logo to the output
@@ -952,19 +952,15 @@ WARN_LOGFILE           =
 INPUT                  = ../src \
                          @PROJECT_SOURCE_DIR@/src \
                          @PROJECT_SOURCE_DIR@/docs/pages \
-                         ../docs/pages 
-
-# Adding README.md as an additional description file
-
-INPUT                  += ../README.md \
-                          ../HACKING.md \
-                          ../CONTRIBUTING.md \
-                          ../CODE_OF_CONDUCT.md \
-                          ../NewGenerator.md \
-                          ../json.md \
-                          ../BUILDING.md \
-                          ../docs/CodeStyle.md 
-
+                         ../docs/pages \
+                         ../README.md \
+                         ../HACKING.md \
+                         ../CONTRIBUTING.md \
+                         ../CODE_OF_CONDUCT.md \
+                         ../NewGenerator.md \
+                         ../json.md \
+                         ../BUILDING.md \
+                         ../docs/CodeStyle.md
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
