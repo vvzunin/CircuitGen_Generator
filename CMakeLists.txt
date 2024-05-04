@@ -122,8 +122,8 @@ generate_export_header(
 
 set_target_properties(
   CircuitGenGenerator_lib PROPERTIES
-    CXX_VISIBILITY_PRESET hidden
-    VISIBILITY_INLINES_HIDDEN YES
+    # CXX_VISIBILITY_PRESET hidden
+    # VISIBILITY_INLINES_HIDDEN YES
     VERSION "${PROJECT_VERSION}"
     SOVERSION "${PROJECT_VERSION_MAJOR}"
     EXPORT_NAME CircuitGenGenerator
