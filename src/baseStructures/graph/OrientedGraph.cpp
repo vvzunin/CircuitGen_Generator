@@ -501,6 +501,7 @@ std::pair<bool, std::string>
   // writing consts
   for (auto oper : d_vertexes[VertexTypes::constant]) {
     fileStream << verilogTab << oper->getInstance() << "\n";
+    fileStream << verilogTab << oper->toVerilog() << "\n";
   }
 
   if (d_subGraphs.size()) {

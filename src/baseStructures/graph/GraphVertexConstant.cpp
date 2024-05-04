@@ -20,5 +20,9 @@ void GraphVertexConstant::updateLevel() {
 }
 
 std::string GraphVertexConstant::getInstance() {
-  return "wire " + d_name + " = 1'b" + d_value + ";";
+  return "wire " + d_name + ";";
+}
+
+std::string GraphVertexConstant::toVerilog() {
+  return "assign " + d_name + " = 1'b" + d_value + ";";
 }
