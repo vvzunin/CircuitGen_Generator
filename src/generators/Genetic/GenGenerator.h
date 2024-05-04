@@ -150,6 +150,14 @@ private:
             }
         }
     }
+
+  /// @brief createPopulation
+  /// Creates the initial genetic population
+  /// The method clears the current population and then generates a new
+  /// population of a given size. For each individual in the population, a
+  /// random chromosome of Type is generated using passed parameters. 
+  /// Individuals are added to a population and then the population is maintained
+
   void createPopulation()
   {
     d_population.clear();
@@ -163,6 +171,15 @@ private:
     }
     savePopulation(d_population);
   }
+  
+
+  /// @brief endProcessFunction
+  /// Calculates the value of the process termination function
+  /// The method goes through the entire current population and calculates the maximum value
+  /// adaptation index among all individuals. This value is used to determine
+  /// completion of the process of evolution of the genetic population.
+  /// @return The maximum value of the adaptation index in the population
+
   double endProcessFunction() const
   {
     double max = 0;
