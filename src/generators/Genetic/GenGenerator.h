@@ -44,6 +44,19 @@ int getNumFolderFromString(const std::string& path)
   return std::stoi(lastDir);
 }
 
+/// @brief GeneticGenerator
+/// Template class for generating genetic populations
+/// @tparam Type Type of chromosome in a genetic population
+/// @tparam ParametersType Type of parameters used to generate genetics
+/// @param d_inputs Number of inputs for genetic population
+/// @param d_outputs Number of outputs for a genetic population
+/// @param d_numCross Number of intersections for genetic operations
+/// @param d_population Genetic population
+/// @param d_settings Pointer to a settings instance
+/// @param d_parameters Parameters for genetic generation
+/// @param d_mainPath Main path for storing data
+/// @param d_foldersCount Data folder counter
+
 template<typename Type, typename ParametersType>
 class GeneticGenerator
 {
