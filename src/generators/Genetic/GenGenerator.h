@@ -85,6 +85,17 @@ public:
             std::exit(0);
         }
     }
+
+  /// @brief generate
+  /// Generates a genetic population and carries out evolutionary processes
+  /// The method creates an initial population, calculates the value of the
+  /// process end function, and in a cycle performs the operations of
+  /// recombination, mutation and selection until reaching criterion for
+  /// completing a process or reaching the maximum number of cycles. On each
+  /// iteration preserves the population. Upon completion, returns the final
+  /// population.
+  /// @return Final genetic population
+
   std::vector<ChronosomeType<Type, ParametersType>> generate()
   {
     createPopulation();
