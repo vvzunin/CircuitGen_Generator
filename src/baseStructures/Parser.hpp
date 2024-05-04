@@ -18,7 +18,10 @@ using GatesInfo = std::map<Gates, std::vector<int>>;
 /// graph used to represent relationships between logical expressions.
 /// @param d_settings A pointer to an object of the Settings class, which is a
 /// singleton and is used to store settings related to the "Parser"
-/// */
+/// @param d_gatesInputsInfo Map storing information about gates inputs
+/// @param d_inputsByNames Map associating input names with their corresponding vertices
+/// @param d_notInputsByNames Map associating input names with their corresponding "not" vertices
+
 
 class Parser {
 public:
@@ -137,14 +140,71 @@ private:
   GraphPtr                  d_graph;
   std::shared_ptr<Settings> d_settings = Settings::getInstance("Parser");
 
+  /// @brief createBrackets
+  /// Creates pairs of bracket positions within a given logical expression
+  /// @param i_expr The logical expression to analyze
+  /// @return A pair indicating whether the expression has balanced brackets
+  /// and a vector of pairs representing the positions of opening and closing brackets
+  /// @code
+  /// TO DO:
+  /// @endcode
+
   std::pair<bool, std::vector<std::pair<int32_t, int32_t>>> createBrackets(
       const std::string& i_expr
   );
+  /// @brief inBrackets
+  /// Checks if a given position is within any pair of brackets
+  /// @param i_brackets The vector of pairs representing the positions of
+  /// opening and closing brackets
+  /// @param i_position The position to check if it falls within any pair
+  /// of brackets
+  /// @return True if the specified position is within any pair of brackets,
+  /// false otherwise
+  /// @code
+  /// Parser parser;
+  /// std::vector<std::pair<int32_t, int32_t>> brackets = {{0, 3}, {5, 8}, {12, 15}};
+  /// int32_t position1 = 2;
+  /// int32_t position2 = 6;
+  /// bool result1 = parser.inBrackets(brackets, position1);
+  /// bool result2 = parser.inBrackets(brackets, position2);
+  /// std::cout << "Position " << position1 << " is within any pair of brackets: " << std::boolalpha << result1 << "\n";
+  /// std::cout << "Position " << position2 << " is within any pair of brackets: " << std::boolalpha << result2 << "\n";
+  /// @endcode
+
   bool inBrackets(
       const std::vector<std::pair<int32_t, int32_t>>& i_brackets,
       int32_t                                         i_position
   ) const;
+
+
+
+  /// @brief parseInputNot
+  /// Parses an input variable with or without the NOT operation and returns
+  /// its corresponding vertex
+  /// @param oper The operation associated with the input variable ('input' for no operation, 'not' for the NOT operation)
+  /// @param name The name of the input variable
+  /// @return A pointer to the vertex representing the parsed input variable,
+  /// with or without the NOT operation
+  /// @code
+  /// TO DO:
+  /// @endcode
+
   VertexPtr   parseInputNot(std::string oper, std::string name);
+
+
+
+  /// @brief deleteExtraSpaces
+  /// Deletes extra spaces from the beginning and end of a string
+  /// @param i_s The string from which to delete extra spaces
+  /// @return The input string with leading and trailing spaces removed
+  /// @code
+  /// Parser parser;
+  /// std::string input = "   Hello,   World!   ";
+  /// std::string cleanedString = parser.deleteExtraSpaces(input);
+  ///
+  /// std::cout << "Original string: '" << input << "'\n";
+  /// std::cout << "Cleaned string: '" << cleanedString << "'\n";
+  /// @endcode
 
   std::string deleteExtraSpaces(std::string i_s);
   std::map<std::string, VertexPtr> d_inputsByNames;
