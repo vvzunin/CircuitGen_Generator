@@ -49,12 +49,43 @@ private:
   int d_maxElements = 0;
 };
 
+
+/// @brief TruthTableParameters
+/// Parameters for generating truth tables
+/// The class provides the parameters needed to generate truth tables.
+/// These parameters include the number of entries and exits, population size,
+/// parameters for selection, recombination and mutation operations, as well as
+/// termination criteria truth table generation process
+
 class TruthTableParameters : public GeneticParameters
 {
 public:
+
+
+  /// @brief TruthTableParameters
+  /// @param i_inputs Number of truth table inputs
+  /// @param i_outputs Number of truth table outputs
   TruthTableParameters(int i_inputs = 0, int i_outputs = 0);
+
+  /// @brief TruthTableParameters
+  /// @param i_gp Genetic parameters used to generate the truth table
   TruthTableParameters(const GeneticParameters& i_gp);
+
+
+  /// @brief getPopulationSize
+  /// @todo: Why is this method needed if there is a size
+  /// @return truth table population size
   int getPopulationSize() { return size(); }
+
+  /// @brief size
+  /// Returns the size of the truth table population
+  /// @return truth table population size
+
   int size() const;
+
+
+  /// @brief Overloaded comparison operator for Truth Table Parameters
+  /// @param r Truth table parameters for comparison
+  /// @return true if the parameters are equal, otherwise false
   bool operator== (const TruthTableParameters& r);
 };
