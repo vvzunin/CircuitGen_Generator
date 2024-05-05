@@ -591,7 +591,7 @@ std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
   std::string currentSubGraphTemplate, sgName;
 
   for (const auto& sg : d_subGraphs) {
-    // preparing template for subGraphs as vertexes
+    // preparing template for subGraphs as vertices
     currentSubGraphTemplate = format(
         nodeTemplate,
         "%",
@@ -630,7 +630,7 @@ std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
         );
       }
 
-      // parsing subGraphs as vertexes
+      // parsing subGraphs as vertices
       graphs += replacer(currentSubGraphTemplate, sgName);
     }
   }
