@@ -26,11 +26,23 @@
 
 class GraphVertexInput : public GraphVertexBase {
 public:
+  /// @brief GraphVertexInput
+  /// Initializes the GraphVertexInput object with the provided base graph
+  /// pointer and type
+  /// @param i_baseGraph Pointer to the base graph. Default is nullptr.
+  /// @param i_type i_type Type of the vertex. Default is VertexTypes::input.
+
   GraphVertexInput(
       GraphPtr          i_baseGraph = nullptr,
       const VertexTypes i_type      = VertexTypes::input
   );
 
+  /// @brief GraphVertexInput
+  /// Initializes the GraphVertexInput object with the provided name, base
+  /// graph pointer, and type
+  /// @param i_name Name of the vertex.
+  /// @param i_baseGraph Pointer to the base graph.
+  /// @param i_type Type of the vertex.
   GraphVertexInput(
       const std::string i_name,
       GraphPtr          i_baseGraph = nullptr,
@@ -40,6 +52,10 @@ public:
   /// @brief updateValue A virtual function for updating the vertex value.
   /// The implementation is provided in derived classes
   /// @return the value of the vertex after its update
+  /// @code
+  /// TO DO:
+  /// @endcode
+  /// @throws std::invalid_argument if any input connection is invalid
 
   virtual char updateValue();
 
@@ -55,6 +71,7 @@ private:
 };
 
 /// class GraphVertexConstant TO DO: Description
+///
 ///
 /// </summary>
 
@@ -72,6 +89,10 @@ public:
   /// based on the levels of its incoming connections
 
   virtual void updateLevel();
+
+  /// @brief getInstance
+  /// TO DO:
+
   std::string  getInstance();
 
 private:
@@ -80,6 +101,8 @@ private:
 /// class GraphVertexSubGraph It is a class, having a subGruph pointer
 /// inside. Is used for storing this pointer for providing Grpah
 /// connectivity
+/// @param d_subGraph Pointer to the subgraph associated with this vertex
+/// @param hashed Cached hash value of the vertex
 class GraphVertexSubGraph : public GraphVertexBase {
 public:
   GraphVertexSubGraph(GraphPtr i_subGraph, GraphPtr i_baseGraph = nullptr);
@@ -107,8 +130,8 @@ public:
 
   /// @brief This method is used as a substructure for
   /// OrientedGraph methods
-  /// @param i_fileStream
-  /// @return
+  /// @param i_fileStream TO DO:
+  /// @return TO DO:
   bool        toGraphML(std::ofstream& i_fileStream) const;
 
   /// @brief This method is used as a substructure for
@@ -165,6 +188,9 @@ public:
 private:
 };
 
+/// @brief GraphVertexGates
+/// Class representing a vertex in a graph with gates
+
 class GraphVertexGates : public GraphVertexBase {
 public:
   GraphVertexGates(Gates i_gate, GraphPtr i_baseGraph = nullptr);
@@ -175,10 +201,54 @@ public:
       GraphPtr          i_baseGraph = nullptr
   );
 
+  /// @brief updateValue
+  /// Updates the value of the vertex
+  /// @return The updated value of the vertex
+  /// @code
+  /// TO DO:
+  /// @endcode
+  /// @throws std::invalid_argument if any of the input connections point
+  /// to a nullptr
+
   virtual char updateValue();
+
+  /// @brief calculateHash
+  /// Calculates the hash value of the vertex
+  /// @param recalculate Flag indicating whether to recalculate the hash value
+  /// (default false)
+  /// @throws None.
+  /// @code
+  /// TO DO:
+  /// @endcode
+  /// @return The calculated hash value as a string
+
   std::string  calculateHash(bool recalculate = false);
+
+  /// @brief getVerilogString
+  /// Gets a string in Verilog format representing the current vertex
+  /// @return A string in Verilog format representing the current vertex
+  /// @throws std::invalid_argument if any input connection is invalid
+
   std::string  getVerilogString() const;
+
+  /// @brief getGate
+  /// Returns the type of valve associated with the current vertex
+  /// @return The type of valve associated with the current vertex
+  /// @code
+  /// GraphVertexGates vertex(Gates::GateAnd);
+  /// Gates gateType = vertex.getGate();
+  /// std:: cout << "Gate type : " << gateType << std::endl;
+  /// @endcode
+
   Gates        getGate() const;
+
+  /// @brief toVerilog
+  /// generates a string in Verilog format for the current vertex,
+  /// representing the valve according to its type and input connections.
+  /// If a vertex has no input connections, an empty string is returned.
+  /// If any input connection is invalid, an exception is thrown.
+  /// @return A Verilog format string for the current vertex
+  /// @throws std::invalid_argument if any input connection is invalid
 
   std::string  toVerilog();
 

@@ -34,6 +34,10 @@ private:
   bool d_CNFT                = false;
 };
 
+/// @todo: describe the class and what it is for?
+/// @brief zhegalkinFromTruthTableParameters
+/// @param d_zhegalkin
+
 class zhegalkinFromTruthTableParameters {
 public:
   bool getZhegalkin() { return d_zhegalkin; }
@@ -48,7 +52,6 @@ private:
 /// structure that the level generator generates.
 /// @param d_maxElements It can mean the maximum number of logical elements or
 /// notes that can be created at each level of the graph structure
-/// */
 
 class GeneratorRandLevelParameters {
 public:
@@ -146,6 +149,7 @@ public:
 ///
 /// */
 
+/// @todo: Desc class
 class GeneratorComparisonParameters {
 public:
   bool d_compare0 = false;
@@ -159,6 +163,7 @@ public:
   void setCompare2(bool i_compare2) { d_compare2 = i_compare2; }
 };
 
+/// @todo: Desc class
 class GeneratorSubtractorParameters {
 public:
   bool getOverFlowIn() { return d_OverFlowIn; }
@@ -174,6 +179,7 @@ private:
   bool d_sub         = false;
 };
 
+/// @todo: Desc class
 class GeneratorALUParameters {
 public:
   bool                 getALL() { return d_ALL; }
@@ -248,6 +254,7 @@ private:
   bool                 d_LeaveEmptyOut;
 };
 
+/// @todo: To add desc some fields
 /// class GenerationParameters
 /// @param d_name Generation name
 /// @param d_requestId request ID
@@ -269,6 +276,7 @@ private:
 ///
 /// */
 
+/// @todo: To add desc some fields
 /// class GenerationParameters
 /// @param d_name Generation name
 /// @param d_requestId request ID
