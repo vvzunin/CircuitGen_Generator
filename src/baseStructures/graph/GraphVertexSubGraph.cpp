@@ -57,6 +57,10 @@ void GraphVertexSubGraph::setSubGraph(GraphPtr i_subGraph) {
   d_subGraph = i_subGraph;
 }
 
+GraphPtr GraphVertexSubGraph::getSubGraph() const {
+  return d_subGraph;
+}
+
 std::string GraphVertexSubGraph::calculateHash(bool recalculate) {
   if (hashed != "" && !recalculate)
     return hashed;

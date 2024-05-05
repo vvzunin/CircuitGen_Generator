@@ -125,6 +125,7 @@ public:
   std::string calculateHash(bool recalculate = false);
 
   void        setSubGraph(GraphPtr i_subGraph);
+  GraphPtr    getSubGraph() const;
 
 private:
   GraphPtr    d_subGraph;
