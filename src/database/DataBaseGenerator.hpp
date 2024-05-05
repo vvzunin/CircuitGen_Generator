@@ -12,7 +12,15 @@
 
 #include "DataBaseGeneratorParameters.hpp"
 
-using Result = std::pair<std::string, std::vector<GraphPtr>>;
+using ResultGraph = std::pair<std::string, std::vector<GraphPtr>>;
+using ResultPath  = std::pair<std::string, std::vector<std::string>>;
+
+enum ReturnType {
+  DEFAULT,
+  GRAPH,
+  PATH,
+  FUNCTION
+};
 
 /// class DataBaseGenerator
 /// @param d_mainPath A string containing the path to the main database
@@ -33,9 +41,9 @@ public:
   DataBaseGenerator(const DataBaseGeneratorParameters& i_parameters) :
     d_parameters(i_parameters) {};
 
-  /// @brief generateType The generate Type method of the DataBase Generator
-  /// class is responsible for generating a database of a certain type based on
-  /// the passed parameters.
+  /// @brief generateTypeForGraph The generate Type method of the DataBase
+  /// Generator class is responsible for generating a database of a certain type
+  /// based on the passed parameters.
   /// @param i_gp An object of the DataBase Generator Parameters class
   /// containing parameters for generating a database
   /// @param parallel A flag indicating whether the generation should be
@@ -46,7 +54,19 @@ public:
   /// not.
   /// */
 
-  Result generateType(
+  ResultGraph generateTypeForGraph(
+      const DataBaseGeneratorParameters& i_gp,
+      bool                               parallel            = true,
+      bool                               createIdDirectories = true
+  );
+
+  ResultPath generateTypeForPath(
+      const DataBaseGeneratorParameters& i_gp,
+      bool                               parallel            = true,
+      bool                               createIdDirectories = true
+  );
+
+  void generateTypeDefault(
       const DataBaseGeneratorParameters& i_gp,
       bool                               parallel            = true,
       bool                               createIdDirectories = true
@@ -54,6 +74,7 @@ public:
 
 private:
   std::vector<GraphPtr>     d_generatedGraphs;
+  std::vector<std::string>  d_generatedGraphsNames;
   std::mutex                d_resWrite;
 
   std::string               d_mainPath = ".";
@@ -71,6 +92,12 @@ private:
   /// parameters for generating a database
   ///
   /// */
+
+  void                        runGeneratorByDefault(
+                             const DataBaseGeneratorParameters& i_gp,
+                             bool                               parallel = true,
+                             bool                               createIdDirectories = true
+                         );
 
   void generateDataBaseFromRandomTruthTable(const GenerationParameters& i_params
   );
@@ -124,5 +151,9 @@ private:
       const GenerationTypes i_methodType
   );
 
+  void                    addDataToReturn(GraphPtr graph);
+
   RandomGeneratorWithSeed d_randGenerator;
+
+  ReturnType              d_type = ReturnType::DEFAULT;
 };

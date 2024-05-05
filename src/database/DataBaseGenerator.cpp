@@ -22,7 +22,7 @@
 using namespace std::chrono;
 using namespace Threading;
 
-Result DataBaseGenerator::generateType(
+void DataBaseGenerator::runGeneratorByDefault(
     const DataBaseGeneratorParameters& i_dbgp,
     bool                               parallel,
     bool                               createIdDirectories
@@ -41,16 +41,7 @@ Result DataBaseGenerator::generateType(
 
   d_mainPath = dir + "/";
   d_dirCount = 0;
-  // std::cout << "Inside of generateType: " << std::endl;
-  // std::cout << "dir = " << dir << std::endl;
-  // std::cout << "i_dbgp.getGenerationParameters().getRequestId() returned: "
-  // << i_dbgp.getGenerationParameters().getRequestId() << std::endl; std::cout
-  // << "i_dbgp.getMaxInputs() returned: " << i_dbgp.getMaxInputs() <<
-  // std::endl; std::cout << "i_dbgp.getMinInputs() returned: " <<
-  // i_dbgp.getMinInputs() << std::endl; std::cout << "i_dbgp.getMaxOutputs()
-  // returned: " << i_dbgp.getMaxOutputs() << std::endl; std::cout <<
-  // "i_dbgp.getMinOutsputs() returned: " << i_dbgp.getMinOutputs() <<
-  // std::endl;
+
   if (std::filesystem::is_directory(dir)) {
     for (const auto item : FilesTools::getDirectories(dir)) {
       std::string s0  = item;
@@ -132,7 +123,55 @@ Result DataBaseGenerator::generateType(
     }
   }
   pool.wait();
+}
+
+ResultGraph DataBaseGenerator::generateTypeForGraph(
+    const DataBaseGeneratorParameters& i_dbgp,
+    bool                               parallel,
+    bool                               createIdDirectories
+) {
+  d_type = ReturnType::GRAPH;
+
+  runGeneratorByDefault(i_dbgp, parallel, createIdDirectories);
+
   return std::make_pair(d_mainPath, d_generatedGraphs);
+}
+
+ResultPath DataBaseGenerator::generateTypeForPath(
+    const DataBaseGeneratorParameters& i_dbgp,
+    bool                               parallel,
+    bool                               createIdDirectories
+) {
+  d_type = ReturnType::PATH;
+
+  runGeneratorByDefault(i_dbgp, parallel, createIdDirectories);
+
+  return std::make_pair(d_mainPath, d_generatedGraphsNames);
+}
+
+void DataBaseGenerator::generateTypeDefault(
+    const DataBaseGeneratorParameters& i_dbgp,
+    bool                               parallel,
+    bool                               createIdDirectories
+) {
+  d_type = ReturnType::DEFAULT;
+
+  runGeneratorByDefault(i_dbgp, parallel, createIdDirectories);
+}
+
+void DataBaseGenerator::addDataToReturn(GraphPtr graph) {
+  d_resWrite.lock();
+  switch (d_type) {
+    case ReturnType::GRAPH:
+      d_generatedGraphs.push_back(graph);
+      break;
+    case ReturnType::PATH:
+      d_generatedGraphsNames.push_back(graph->getName());
+      break;
+    default:
+      break;
+  }
+  d_resWrite.unlock();
 }
 
 void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
@@ -172,9 +211,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     c.setCircuitName(curGraph->getName());
     c.generate(i_param.getMakeGraphML());
 
-    d_resWrite.lock();
-    d_generatedGraphs.push_back(curGraph);
-    d_resWrite.unlock();
+    addDataToReturn(curGraph);
   }
 }
 
@@ -198,9 +235,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseRandLevelExperimental(
@@ -232,9 +267,7 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
 
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseNumOperations(
@@ -260,9 +293,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(
     c.setCircuitName(i_param.getName());
     c.generate(i_param.getMakeGraphML());
 
-    d_resWrite.lock();
-    d_generatedGraphs.push_back(graph);
-    d_resWrite.unlock();
+    addDataToReturn(graph);
   }
   // TODO: remake all generates to return value and call graphToVerilog
 }
@@ -298,9 +329,7 @@ void DataBaseGenerator::generateDataBaseSummator(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+      addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseComparison(
@@ -319,9 +348,7 @@ void DataBaseGenerator::generateDataBaseComparison(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+      addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseEncoder(
@@ -337,9 +364,7 @@ void DataBaseGenerator::generateDataBaseEncoder(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+      addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseParity(
@@ -355,9 +380,7 @@ void DataBaseGenerator::generateDataBaseParity(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+      addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseSubtractor(
@@ -377,9 +400,7 @@ void DataBaseGenerator::generateDataBaseSubtractor(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+      addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseMultiplexer(
@@ -395,9 +416,7 @@ void DataBaseGenerator::generateDataBaseMultiplexer(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+      addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseDemultiplexer(
@@ -413,9 +432,7 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+      addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseMultiplier(
@@ -430,9 +447,7 @@ void DataBaseGenerator::generateDataBaseMultiplier(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+      addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseDecoder(
@@ -447,9 +462,7 @@ void DataBaseGenerator::generateDataBaseDecoder(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+      addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
@@ -488,9 +501,7 @@ void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-  d_resWrite.lock();
-  d_generatedGraphs.push_back(graph);
-  d_resWrite.unlock();
+      addDataToReturn(graph);
 }
 
 // maybe this method should be rewritten using map with GenerationTypes and
