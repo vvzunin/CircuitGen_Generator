@@ -5,8 +5,8 @@
 #include <vector>
 
 #include <baseStructures/graph/enums.hpp>
-
 #include <CircuitGenGenerator/OrientedGraph.hpp>
+
 #include "settings/Settings.hpp"
 
 class OrientedGraph;  // Проблема циклического определения

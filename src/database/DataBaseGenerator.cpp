@@ -329,7 +329,7 @@ void DataBaseGenerator::generateDataBaseSummator(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-      addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseComparison(
@@ -348,7 +348,7 @@ void DataBaseGenerator::generateDataBaseComparison(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-      addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseEncoder(
@@ -364,7 +364,7 @@ void DataBaseGenerator::generateDataBaseEncoder(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-      addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseParity(
@@ -380,7 +380,7 @@ void DataBaseGenerator::generateDataBaseParity(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-      addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseSubtractor(
@@ -400,7 +400,7 @@ void DataBaseGenerator::generateDataBaseSubtractor(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-      addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseMultiplexer(
@@ -416,7 +416,7 @@ void DataBaseGenerator::generateDataBaseMultiplexer(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-      addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseDemultiplexer(
@@ -432,7 +432,7 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-      addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseMultiplier(
@@ -447,7 +447,7 @@ void DataBaseGenerator::generateDataBaseMultiplier(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-      addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseDecoder(
@@ -462,7 +462,7 @@ void DataBaseGenerator::generateDataBaseDecoder(
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-      addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
@@ -501,7 +501,7 @@ void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
   c.setCircuitName(i_param.getName());
   c.generate(i_param.getMakeGraphML());
 
-      addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 // maybe this method should be rewritten using map with GenerationTypes and

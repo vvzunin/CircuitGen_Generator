@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-#include <CircuitGenGenerator/OrientedGraph.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
+#include <CircuitGenGenerator/OrientedGraph.hpp>
 
 #include "CircuitParameters.hpp"
 
