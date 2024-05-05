@@ -19,8 +19,8 @@
 
 /// @todo: maybe it need heritance from
 /// GenerationParameters?
-class DataBaseGeneratorParameters  // @todo: maybe it need heritance from
-                                   // GenerationParameters?
+class DataBaseGeneratorParameters  
+                                   
 {
 public:
   DataBaseGeneratorParameters(
