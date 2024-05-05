@@ -195,6 +195,9 @@ std::vector<std::vector<T>> transpose(const std::vector<std::vector<T>>& matrix
 // TODO: if need CopyDirectory
 std::string intToStringWithZeroes(int i_num, int i_totalDigits = 5);
 
+std::string replacer(const std::string& i_s, const std::string& i_r);
+
+// code from here https://gist.github.com/en4bz/f07ef13706c3ae3a4fb2
 template<class Tuple, std::size_t N>
 struct TuplePrinter {
   static void print(const std::string& fmt, std::ostream& os, const Tuple& t) {

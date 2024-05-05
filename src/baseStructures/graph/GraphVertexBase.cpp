@@ -100,6 +100,10 @@ std::string GraphVertexBase::getName() const {
   return d_name;
 }
 
+std::string GraphVertexBase::getName(const std::string& i_prefix) const {
+  return i_prefix + d_name;
+}
+
 void GraphVertexBase::setLevel(const unsigned i_level) {
   d_level = i_level;
 }

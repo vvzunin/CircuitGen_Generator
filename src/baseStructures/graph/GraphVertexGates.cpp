@@ -185,3 +185,10 @@ std::string GraphVertexGates::toVerilog() {
 
   return basic;
 }
+
+bool GraphVertexGates::isSubgraphBuffer() const {
+  if (d_gate != Gates::GateBuf || d_inConnections.empty()) {
+    return false;
+  }
+  return d_inConnections[0].lock()->getType() == VertexTypes::subGraph;
+}

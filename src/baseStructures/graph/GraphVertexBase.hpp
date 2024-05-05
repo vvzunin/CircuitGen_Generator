@@ -159,6 +159,7 @@ public:
   /// @endcode
 
   std::string                getName() const;
+  std::string                getName(const std::string& i_prefix) const;
 
   // Get для значения вершины
   /// @brief getValue
@@ -465,6 +466,8 @@ public:
   /// @endcode
 
   virtual std::string    toVerilog();
+
+  virtual bool           isSubgraphBuffer() const { return false; }
 
 protected:
   GraphPtrWeak               d_baseGraph;
