@@ -2,6 +2,7 @@
 
 #include <string>
 
+/// @todo: to add desc fields of the class
 /// class CircuitParameters
 ///
 /// This is the detailed one. More details
@@ -38,7 +39,7 @@ class CircuitParameters {
 public:
   CircuitParameters()                                               = default;
 
-  // TODO: rewrite getters and setters
+  /// @todo: rewrite getters and setters
   std::string                                        d_name         = "";
   int                                                d_numInputs    = 0;
   int                                                d_numConstants = 0;

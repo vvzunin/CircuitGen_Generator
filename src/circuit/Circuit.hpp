@@ -161,9 +161,10 @@ public:
 
   void    setVerticeOperation(int i_vertice, const std::string& i_operation);
 
-  /// @brief fromVerilog TO DO!!!
-  ///
-  /// */
+  /// @todo: description fromVerilog
+  /// @brief fromVerilog
+  /// 
+  /// @param i_filepath
 
   Circuit fromVerilog(const std::string& i_filepath);
 
@@ -176,5 +177,8 @@ private:
   CircuitParameters         d_circuitParameters;
   std::shared_ptr<Settings> d_settings = Settings::getInstance("Circuit");
 
+  /// @todo: This method has some questions, maybe need rewriting
+  /// @brief checkExistingHash
+  /// @return 
   bool                      checkExistingHash();
 };
