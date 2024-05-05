@@ -19,8 +19,7 @@
 /// configure database generation
 /// @param d_dirCount An integer value representing the number of directories
 /// created during database generation
-///
-/// */
+/// @param d_randGenerator Random number generator with seed
 
 class DataBaseGenerator {
 public:
@@ -38,7 +37,7 @@ public:
   /// @param createIdDirectories A flag indicating whether to create directories
   /// with IDs. If set to true, directories with IDs will be created, otherwise
   /// not.
-  /// */
+  /// 
 
   void generateType(
       const DataBaseGeneratorParameters& i_gp,
@@ -193,7 +192,7 @@ private:
   /// generation type
   /// @param i_methodType The type of generation method to retrieve
   /// @return Function pointer to the corresponding database generation method
-  
+
   std::function<void(const GenerationParameters&)> getGenerateMethod(
       const GenerationTypes i_methodType
   );
