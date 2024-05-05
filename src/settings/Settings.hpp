@@ -6,48 +6,64 @@
 #include <utility>
 #include <vector>
 
+/// @file Settings.hpp
+
 enum LibrariesTypes {
   SKY_LIB
 };
 
-enum VertexTypes {
-  input,
-  output,
-  constant,
-  gate,
+/// @brief VertexTypes
+/// Enumeration of vertex types
+
+enum VertexTypes {  ///  input vertex
+  input,            ///  output vertex
+  output,           /// constant vertex
+  constant,         /// vertex representing a logical element
+  gate,             /// subgraph that makes up the vertex
   subGraph
 };
 
-enum Gates {
-  GateAnd,
-  GateNand,
-  GateOr,
-  GateNor,
-  GateXor,
-  GateXnor,
-  GateNot,
-  GateBuf,
+/// @brief Gates
+/// Enumeration of types of logical elements
+/// This enumeration defines the various types of logic elements that can be
+/// used in digital circuits.
+
+enum Gates {  /// logical element - "AND" (AND)
+  GateAnd,    /// logical element "AND-NOT" (NAND)
+  GateNand,   /// logical element - "OR" (OR)
+  GateOr,     /// logical element - "OR-NOT" (NOR)
+  GateNor,    /// lofical element - "Exclusive OR" (XOR)
+  GateXor,    /// logical element - XNOR
+  GateXnor,   /// logical element - NOT
+  GateNot,    /// logical element - Buffer
+  GateBuf,    /// default logical element
   GateDefault
 };
 
-enum GenerationTypes {
-  FromRandomTruthTable,
-  RandLevel,
-  RandLevelExperimental,
-  NumOperation,
-  Genetic,
-  Summator,
-  Comparison,
-  Encoder,
-  Subtractor,
-  Multiplexer,
-  Demultiplexer,
-  Multiplier,
-  Decoder,
-  Parity,
+/// @brief GenerationTypes
+/// Enumeration of the types of digital circuit generation.
+/// This enumeration defines the various types of digital circuit generation
+/// that can be used to create a variety of logic circuits.
+
+enum GenerationTypes {    /// Generating a circuit from a random truth table
+  FromRandomTruthTable,   /// Random level (experimental)
+  RandLevel,              /// Experimental random level generation
+  RandLevelExperimental,  /// Generating a circuit with numerical operations
+  NumOperation,           /// Genetic generation of the circuit
+  Genetic,                /// Adder
+  Summator,               /// The comparison block
+  Comparison,             /// The encoder
+  Encoder,                /// Subtractor
+  Subtractor,             /// Multiplexer
+  Multiplexer,            /// Demultiplexer
+  Demultiplexer,          /// Multiplier
+  Multiplier,             /// Decoder
+  Decoder,                /// Parity
+  Parity,                 /// Arithmetic Logic Unit (ALU)
   ALU
 };
 
+/// @todo: To add Description some fields
 /// class Settings
 ///
 /// This is the detailed one. More details. Private...
@@ -92,7 +108,7 @@ public:
   Settings(Settings& other)                                   = delete;
   void                             operator=(const Settings&) = delete;
 
-  /// @getInstance Gets a single instance of the Settings class
+  /// @brief getInstance Gets a single instance of the Settings class
   /// The method provides creation and receipt of a single instance of the
   /// Settings class with the specified value of the settings path. If an
   /// instance already exists, the method returns a pointer to it,
@@ -110,7 +126,7 @@ public:
   /// // and members of the Settings class
   /// std::string datasetPath = settingsInstance->getDatasetPath();
   /// std::cout << "Dataset path: " << datasetPath << std::endl;
-  /// @end_code
+  /// @endcode
 
   static std::shared_ptr<Settings> getInstance(const std::string& i_value);
 
@@ -145,7 +161,7 @@ public:
   /// // Handle an exception if the operation is not found
   /// std::cerr << "Error: " << e.what() << std::endl;
   /// }
-  /// @end_code
+  /// @endcode
   /// @throws std::out_of_range If the passed operation name does not exist
   /// in the list of logical operations
 
@@ -193,7 +209,7 @@ public:
   /// }
   /// std::cout << std::endl;
   /// }
-  /// @end_code
+  /// @endcode
 
   std::pair<std::vector<bool>, std::vector<Gates>> getLogicOperationsWithGates(
   );
@@ -215,7 +231,7 @@ public:
   /// } catch (const std::out_of_range& e) {
   /// std::cerr << "Error: " << e.what() << std::endl;
   /// }
-  /// @end_code
+  /// @endcode
   /// @throw std::out_of_range If the passed operation does not exist in the
   /// list of operations
 
@@ -250,7 +266,7 @@ public:
   /// std::string prefix = settingsInstance->getGenerationMethodPrefix(method);
   /// std::cout << "Prefix for method " << method << ": " << prefix <<
   /// std::endl;
-  /// @end_code
+  /// @endcode
 
   std::string getGenerationMethodPrefix(const GenerationTypes i_methodType
   ) const;
@@ -321,7 +337,7 @@ public:
   ///     std::cout << element << " ";
   /// }
   /// std::cout << std::endl;
-  /// @end_code
+  /// @endcode
   /// @throws std::out_of_range If the provided key does not exist in the
   /// internal map of operation keys to hierarchies
 
@@ -336,7 +352,7 @@ public:
   /// // Get the number of threads configured for processing
   /// int numThreads = settingsInstance->getNumThread();
   /// std::cout << "Number of threads: " << numThreads << std::endl;
-  /// @end_code
+  /// @endcode
 
   int                      getNumThread() const;
 
@@ -352,7 +368,7 @@ public:
   /// // Convert the string representation "and" to its corresponding enum value
   /// Gates gate = settingsInstance->parseStringToGate("and");
   /// std::cout << "Enum value of 'and': " << gate << std::endl;
-  /// @end_code
+  /// @endcode
 
   Gates                    parseStringToGate(std::string i_gate) const;
 
@@ -373,7 +389,7 @@ public:
   /// representation std::string gateString =
   /// settingsInstance->parseGateToString(Gates::GateAnd); std::cout << "String
   /// representation of Gates::GateAnd: " << gateString << std::endl;
-  /// @end_code
+  /// @endcode
 
   std::string              parseGateToString(Gates gate) const;
 
@@ -391,7 +407,7 @@ public:
   /// settingsInstance->parseVertexToString(VertexTypes::input); std::cout <<
   /// "String representation of VertexTypes::input: " << vertexString <<
   /// std::endl;
-  /// @end_code
+  /// @endcode
 
   std::string              parseVertexToString(VertexTypes vertex) const;
 
@@ -408,7 +424,7 @@ private:
   /// Settings::getInstance("/path/to/settings");
   /// // Save the current settings to a file
   /// settingsInstance->SaveSettings();
-  /// @end_code
+  /// @endcode
 
   void                             SaveSettings();
 

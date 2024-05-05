@@ -17,9 +17,9 @@
 /// method
 /// */
 
-class DataBaseGeneratorParameters  // TODO: maybe it need heritance from
-                                   // GenerationParameters?
-{
+/// @todo: maybe it need heritance from
+/// GenerationParameters?
+class DataBaseGeneratorParameters {
 public:
   DataBaseGeneratorParameters(
       int                  i_minInputs,
