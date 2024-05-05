@@ -163,7 +163,7 @@ public:
 
   /// @todo: description fromVerilog
   /// @brief fromVerilog
-  /// 
+  ///
   /// @param i_filepath
 
   Circuit fromVerilog(const std::string& i_filepath);
@@ -179,6 +179,6 @@ private:
 
   /// @todo: This method has some questions, maybe need rewriting
   /// @brief checkExistingHash
-  /// @return 
+  /// @return
   bool                      checkExistingHash();
 };

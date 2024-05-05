@@ -63,7 +63,7 @@ enum GenerationTypes {    /// Generating a circuit from a random truth table
   ALU
 };
 
-/// @todo: To add Description some fields 
+/// @todo: To add Description some fields
 /// class Settings
 ///
 /// This is the detailed one. More details. Private...

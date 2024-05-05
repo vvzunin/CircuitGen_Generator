@@ -24,8 +24,8 @@
 class DataBaseGenerator {
 public:
   /// @todo: description default constructor
-  /// @brief DataBaseGenerator 
-  /// @param i_parameters 
+  /// @brief DataBaseGenerator
+  /// @param i_parameters
 
   DataBaseGenerator(const DataBaseGeneratorParameters& i_parameters) :
     d_parameters(i_parameters) {};
@@ -41,7 +41,7 @@ public:
   /// @param createIdDirectories A flag indicating whether to create directories
   /// with IDs. If set to true, directories with IDs will be created, otherwise
   /// not.
-  /// 
+  ///
 
   void generateType(
       const DataBaseGeneratorParameters& i_gp,
@@ -109,14 +109,12 @@ private:
 
   void generateDataBaseGenetic(const GenerationParameters& i_param);
 
-
   /// @brief generateDataBaseSummator
   /// Generates a database representing a summator circuit
   /// @param i_param An object of the GenerationParameters class containing
   /// parameters for generating the summator circuit database
 
   void generateDataBaseSummator(const GenerationParameters& i_param);
-
 
   /// @brief generateDataBaseComparison
   /// Generates a database representing a comparison circuit
@@ -125,14 +123,12 @@ private:
 
   void generateDataBaseComparison(const GenerationParameters& i_param);
 
-
   /// @brief generateDataBaseEncoder
   /// Generates a database representing a comparison circuit
   /// @param i_param An object of the GenerationParameters class containing
   /// parameters for generating the comparison circuit database
 
   void generateDataBaseEncoder(const GenerationParameters& i_param);
-
 
   /// @brief generateDataBaseParity
   /// Generates a database representing a parity circuit
@@ -141,14 +137,12 @@ private:
 
   void generateDataBaseParity(const GenerationParameters& i_param);
 
-
   /// @brief generateDataBaseSubtractor
   /// Generates a database representing a subtractor circuit
   /// @param i_param An object of the GenerationParameters class containing
   /// parameters for generating the subtractor circuit database
 
   void generateDataBaseSubtractor(const GenerationParameters& i_param);
-
 
   /// @brief generateDataBaseMultiplexer
   /// Generates a database representing a multiplexer circuit
@@ -157,14 +151,12 @@ private:
 
   void generateDataBaseMultiplexer(const GenerationParameters& i_param);
 
-
   /// @brief generateDataBaseDemultiplexer
   /// Generates a database representing a demultiplexer circuit
   /// @param i_param An object of the GenerationParameters class containing
   /// parameters for generating the demultiplexer circuit database
 
   void generateDataBaseDemultiplexer(const GenerationParameters& i_param);
-
 
   /// @brief generateDataBaseMultiplier
   /// Generates a database representing a multiplier circuit
@@ -173,7 +165,6 @@ private:
 
   void generateDataBaseMultiplier(const GenerationParameters& i_param);
 
-
   /// @brief generateDataBaseDecoder
   /// Generates a database representing a decoder circuit
   /// @param i_param An object of the GenerationParameters class containing
@@ -181,14 +172,12 @@ private:
 
   void generateDataBaseDecoder(const GenerationParameters& i_param);
 
-
   /// @brief generateDataBaseALU
   /// Generates a database representing an Arithmetic Logic Unit (ALU) circuit
   /// @param i_param An object of the GenerationParameters class containing
   /// parameters for generating the ALU circuit database
 
   void generateDataBaseALU(const GenerationParameters& i_param);
-
 
   /// @brief getGenerateMethod
   /// Retrieves a method for generating a database based on the provided

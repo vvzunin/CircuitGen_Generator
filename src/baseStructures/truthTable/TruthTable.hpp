@@ -141,7 +141,7 @@ public:
   /// The position (i, j) corresponds to the i-th row and j-th column of the
   /// output table, representing a specific combination of input variables.
   /// @param i The row index of the output table.
-  /// @param j The column index of the ouput table.
+  /// @param j @todo
   /// @return The truth value at the specified position.
   /// @code
   /// // Assuming a truth table with 3 input variables and 2 output variable

@@ -163,7 +163,6 @@ public:
   void setCompare2(bool i_compare2) { d_compare2 = i_compare2; }
 };
 
-
 /// @todo: Desc class
 class GeneratorSubtractorParameters {
 public:
@@ -179,7 +178,6 @@ private:
   bool d_OverFlowOut = false;
   bool d_sub         = false;
 };
-
 
 /// @todo: Desc class
 class GeneratorALUParameters {
