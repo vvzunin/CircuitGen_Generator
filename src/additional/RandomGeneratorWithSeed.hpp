@@ -27,6 +27,12 @@ public:
 
   RandomGeneratorWithSeed& operator=(RandomGeneratorWithSeed&& other) = default;
 
+  /// @brief getSeed
+  /// Get the current seed value
+  /// This method returns the current seed value used to initialize the random
+  /// number generator
+  /// @return The seed value as a 32-bit unsigned integer.
+
   std::uint_fast32_t       getSeed() const { return d_seed; }
 
   void setSeed(std::uint_fast32_t i_seed) { d_gen.seed(i_seed); }

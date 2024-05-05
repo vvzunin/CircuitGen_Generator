@@ -95,8 +95,8 @@ public:
   /// @return a vector of strings representing an expression in the form of
   /// conjunctive normal form (KNF) corresponding to the input truth table
   /// @code
-  /// // TO DO: Examples
-  /// @end_code
+  /// // @todo: Examples
+  /// @endcode
 
   GraphPtr cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
   GraphPtr zhegalkinFromTruthTable(const TruthTable& i_table);
@@ -158,7 +158,7 @@ public:
   /// @return the created OrientedGraph, which is a circuit with logic gates,
   /// inputs and outputs
   /// @code
-  /// // TO DO: Examples
+  /// // @todo: Examples
   /// @end_code
   /// @throw std::invalid_argument. The method starts by checking the input
   /// parameters for correctness: if the minimum level is greater than the
@@ -174,7 +174,8 @@ public:
       u_int32_t i_outputs
   );
 
-  /// @brief generatorNumOperation TO DO: Description algorithm
+  /// @todo: Description algorithm
+  /// @brief generatorNumOperation
   ///
   /// @param i_input The number of input vertices (variables) in the graph
   /// @param i_output The number of output vertices (functions) in the graph
@@ -455,7 +456,7 @@ public:
   /// };
   /// // Set the input information for logic gates
   /// generators.setGatesInputsInfo(gateInputsInfo);
-  /// @end_code
+  /// @endcode
 
   void setGatesInputsInfo(const std::map<std::string, std::vector<int>>& i_info
   ) {

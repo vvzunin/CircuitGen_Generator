@@ -44,6 +44,19 @@ int getNumFolderFromString(const std::string& path)
   return std::stoi(lastDir);
 }
 
+/// @brief GeneticGenerator
+/// Template class for generating genetic populations
+/// @tparam Type Type of chromosome in a genetic population
+/// @tparam ParametersType Type of parameters used to generate genetics
+/// @param d_inputs Number of inputs for genetic population
+/// @param d_outputs Number of outputs for a genetic population
+/// @param d_numCross Number of intersections for genetic operations
+/// @param d_population Genetic population
+/// @param d_settings Pointer to a settings instance
+/// @param d_parameters Parameters for genetic generation
+/// @param d_mainPath Main path for storing data
+/// @param d_foldersCount Data folder counter
+
 template<typename Type, typename ParametersType>
 class GeneticGenerator
 {
@@ -72,6 +85,17 @@ public:
             std::exit(0);
         }
     }
+
+  /// @brief generate
+  /// Generates a genetic population and carries out evolutionary processes
+  /// The method creates an initial population, calculates the value of the
+  /// process end function, and in a cycle performs the operations of
+  /// recombination, mutation and selection until reaching criterion for
+  /// completing a process or reaching the maximum number of cycles. On each
+  /// iteration preserves the population. Upon completion, returns the final
+  /// population.
+  /// @return Final genetic population
+
   std::vector<ChronosomeType<Type, ParametersType>> generate()
   {
     createPopulation();
@@ -126,6 +150,14 @@ private:
             }
         }
     }
+
+  /// @brief createPopulation
+  /// Creates the initial genetic population
+  /// The method clears the current population and then generates a new
+  /// population of a given size. For each individual in the population, a
+  /// random chromosome of Type is generated using passed parameters. 
+  /// Individuals are added to a population and then the population is maintained
+
   void createPopulation()
   {
     d_population.clear();
@@ -139,6 +171,15 @@ private:
     }
     savePopulation(d_population);
   }
+  
+
+  /// @brief endProcessFunction
+  /// Calculates the value of the process termination function
+  /// The method goes through the entire current population and calculates the maximum value
+  /// adaptation index among all individuals. This value is used to determine
+  /// completion of the process of evolution of the genetic population.
+  /// @return The maximum value of the adaptation index in the population
+
   double endProcessFunction() const
   {
     double max = 0;
