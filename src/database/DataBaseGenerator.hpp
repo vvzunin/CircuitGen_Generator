@@ -23,6 +23,10 @@
 
 class DataBaseGenerator {
 public:
+  /// @todo: description default constructor
+  /// @brief DataBaseGenerator 
+  /// @param i_parameters 
+
   DataBaseGenerator(const DataBaseGeneratorParameters& i_parameters) :
     d_parameters(i_parameters) {};
 
@@ -56,7 +60,6 @@ private:
   /// Random Truth Table method of the DataBase Generator class is responsible
   /// for generating a database from random truth tables based on the passed
   /// parameters
-  ///
   /// @param i_param An object of the Generation Parameters class containing
   /// parameters for generating a database
   ///

@@ -6,6 +6,8 @@
 #include <utility>
 #include <vector>
 
+/// @file Settings.hpp
+
 enum LibrariesTypes {
   SKY_LIB
 };
@@ -43,25 +45,25 @@ enum Gates {  /// logical element - "AND" (AND)
 /// This enumeration defines the various types of digital circuit generation
 /// that can be used to create a variety of logic circuits.
 
-
-enum GenerationTypes {  /// Generating a circuit from a random truth table
-  FromRandomTruthTable, /// Random level (experimental)
-  RandLevel,            /// Experimental random level generation
-  RandLevelExperimental,/// Generating a circuit with numerical operations
-  NumOperation,         /// Genetic generation of the circuit
-  Genetic,              /// Adder
-  Summator,             /// The comparison block
-  Comparison,           /// The encoder
-  Encoder,              /// Subtractor
-  Subtractor,           /// Multiplexer
-  Multiplexer,          /// Demultiplexer
-  Demultiplexer,        /// Multiplier
-  Multiplier,           /// Decoder
-  Decoder,              /// Parity
-  Parity,               /// Arithmetic Logic Unit (ALU)
+enum GenerationTypes {    /// Generating a circuit from a random truth table
+  FromRandomTruthTable,   /// Random level (experimental)
+  RandLevel,              /// Experimental random level generation
+  RandLevelExperimental,  /// Generating a circuit with numerical operations
+  NumOperation,           /// Genetic generation of the circuit
+  Genetic,                /// Adder
+  Summator,               /// The comparison block
+  Comparison,             /// The encoder
+  Encoder,                /// Subtractor
+  Subtractor,             /// Multiplexer
+  Multiplexer,            /// Demultiplexer
+  Demultiplexer,          /// Multiplier
+  Multiplier,             /// Decoder
+  Decoder,                /// Parity
+  Parity,                 /// Arithmetic Logic Unit (ALU)
   ALU
 };
 
+/// @todo: To add Description some fields 
 /// class Settings
 ///
 /// This is the detailed one. More details. Private...

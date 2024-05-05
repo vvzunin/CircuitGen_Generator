@@ -165,7 +165,6 @@ public:
   /// @endcode
   void                      addParentGraph(GraphPtr i_baseGraph);
 
-
   /// @brief getParentGraphs
   /// Retrieves the parent graphs of the current graph
   /// @return A vector containing weak pointers to the parent graphs
@@ -174,12 +173,13 @@ public:
   /// auto graph = std::make_shared<OrientedGraph>("ExampleGraph");
   /// // Add some parent graphs to the current graph (omitted for brevity)
   /// // Retrieve the parent graphs of the current graph
-  /// std::vector<std::weak_ptr<OrientedGraph>> parentGraphs = graph->getParentGraphs();
-  /// // Iterate over the parent graphs and perform operations (omitted for brevity)
+  /// std::vector<std::weak_ptr<OrientedGraph>> parentGraphs =
+  /// graph->getParentGraphs();
+  /// // Iterate over the parent graphs and perform operations (omitted for
+  /// brevity)
   /// @endcode
 
   std::vector<GraphPtrWeak> getParentGraphs() const;
-
 
   /// @brief setCurrentParent
   /// Sets the current parent graph of the current graph
@@ -188,15 +188,13 @@ public:
   /// @code
   /// // Create an instance of OrientedGraph
   /// auto graph = std::make_shared<OrientedGraph>("ExampleGraph");
-  /// // Create another instance of OrientedGraph to be set as the current parent
-  /// auto parentGraph = std::make_shared<OrientedGraph>("ParentGraph");
+  /// // Create another instance of OrientedGraph to be set as the current
+  /// parent auto parentGraph = std::make_shared<OrientedGraph>("ParentGraph");
   /// // Set parentGraph as the current parent of graph
   /// graph->setCurrentParent(parentGraph);
   /// // Now parentGraph is set as the current parent of graph
   /// @endcode
   void                      setCurrentParent(GraphPtr parent);
-
-
 
   /// @brief resetCounters
   /// Resets counters associated with a specific graph instance
@@ -205,7 +203,6 @@ public:
   void                      resetCounters(GraphPtr where);
 
   // TODO: Заменить все const на const &
-
 
   /// @brief addInput
   /// Adds an input vertex to the current graph
@@ -221,7 +218,6 @@ public:
 
   VertexPtr                 addInput(const std::string& i_name = "");
 
-
   /// @brief addOutput
   /// Adds an output vertex to the current graph
   /// @param i_name The name of the output vertex to be added
@@ -236,7 +232,6 @@ public:
 
   VertexPtr                 addOutput(const std::string& i_name = "");
 
-
   /// @brief addConst
   /// Adds a constant vertex to the current graph
   /// @param i_value The value of the constant vertex to be added
@@ -247,12 +242,11 @@ public:
   /// auto graph = std::make_shared<OrientedGraph>("ExampleGraph");
   /// // Add a constant vertex to the graph with value 'A' and name "Constant1"
   /// auto constantVertex = graph->addConst('A', "Constant1");
-  /// // Now constantVertex is a shared pointer to the newly added constant vertex
+  /// // Now constantVertex is a shared pointer to the newly added constant
+  /// vertex
   /// @endcode
 
   VertexPtr addConst(const char& i_value, const std::string& i_name = "");
-
-
 
   /// @brief addGate
   /// Adds a gate vertex to the current graph
@@ -269,7 +263,6 @@ public:
 
   VertexPtr addGate(const Gates& i_gate, const std::string& i_name = "");
 
-  
   /// @brief addSubGraph
   /// Adds a subgraph to the current graph
   /// @param i_subGraph A shared pointer to the subgraph to be added
@@ -285,8 +278,8 @@ public:
   /// std::vector<VertexPtr> subGraphInputs;
   /// for (int i = 0; i < 3; ++i)
   /// {
-  ///   auto inputVertex = graph->addInput("SubGraphInput" + std::to_string(i+1));
-  ///   subGraphInputs.push_back(inputVertex);
+  ///   auto inputVertex = graph->addInput("SubGraphInput" +
+  ///   std::to_string(i+1)); subGraphInputs.push_back(inputVertex);
   /// }
   /// // Add the subgraph to the graph with its inputs
   /// auto subGraphOutputs = graph->addSubGraph(subGraph, subGraphInputs);
@@ -297,7 +290,6 @@ public:
 
   std::vector<VertexPtr>
          addSubGraph(GraphPtr i_subGraph, std::vector<VertexPtr> i_inputs);
-
 
   /// @brief addEdge
   /// Adds an edge between two vertices in the current graph
@@ -315,19 +307,18 @@ public:
   /// if (edgeAdded)
   /// {
   ///   std::cout << "Edge successfully added between Vertex1 and Vertex2\n";
-  /// } 
+  /// }
   /// else
   /// {
   ///   std::cerr << "Failed to add edge between Vertex1 and Vertex2\n";
   /// }
   /// @endcode
   /// @throws std::invalid_argument if attempting to add an edge from one
-  ///subgraph to another when the 'from' vertex is not an output, or when
+  /// subgraph to another when the 'from' vertex is not an output, or when
   /// attempting to add an edge to another subgraph when the 'to' vertex is
   /// not an input
 
   bool   addEdge(VertexPtr from, VertexPtr to);
-
 
   /// @brief addEdges
   /// Adds multiple edges from a vector of source vertices to a target vertex
@@ -353,16 +344,17 @@ public:
   /// bool edgesAdded = graph->addEdges(sources, target);
   /// if (edgesAdded)
   /// {
-  ///   std::cout << "Edges successfully added from all sources to the target\n";
-  /// } 
+  ///   std::cout << "Edges successfully added from all sources to the
+  ///   target\n";
+  /// }
   /// else
   /// {
-  ///   std::cerr << "Failed to add edges from one or more sources to the target\n";
+  ///   std::cerr << "Failed to add edges from one or more sources to the
+  ///   target\n";
   /// }
   /// @endcode
 
   bool   addEdges(std::vector<VertexPtr> from1, VertexPtr to);
-
 
   /// @brief getEdgesCount
   /// Retrieves the total number of edges in the graph

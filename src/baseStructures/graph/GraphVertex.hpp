@@ -26,7 +26,6 @@
 
 class GraphVertexInput : public GraphVertexBase {
 public:
-
   /// @brief GraphVertexInput
   /// Initializes the GraphVertexInput object with the provided base graph
   /// pointer and type
@@ -37,7 +36,7 @@ public:
       GraphPtr          i_baseGraph = nullptr,
       const VertexTypes i_type      = VertexTypes::input
   );
-  
+
   /// @brief GraphVertexInput
   /// Initializes the GraphVertexInput object with the provided name, base
   /// graph pointer, and type
@@ -54,10 +53,7 @@ public:
   /// The implementation is provided in derived classes
   /// @return the value of the vertex after its update
   /// @code
-  /// GraphPtr baseGraph = std::make_shared_<Graph>();
-  /// GraphVertexInput inputVertex("input_vertex", baseGraph, VertexTypes::input);
-  /// // Added input connections
-  /// inputVertex.addInputConnection(conn)
+  /// TO DO:
   /// @endcode
   /// @throws std::invalid_argument if any input connection is invalid
 
@@ -245,6 +241,14 @@ public:
   /// @endcode
 
   Gates        getGate() const;
+
+  /// @brief toVerilog
+  /// generates a string in Verilog format for the current vertex,
+  /// representing the valve according to its type and input connections.
+  /// If a vertex has no input connections, an empty string is returned.
+  /// If any input connection is invalid, an exception is thrown.
+  /// @return A Verilog format string for the current vertex
+  /// @throws std::invalid_argument if any input connection is invalid
 
   std::string  toVerilog();
 
