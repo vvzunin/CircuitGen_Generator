@@ -4,7 +4,7 @@
 
 #include "GraphVertexBase.hpp"
 
-uint_fast64_t GraphVertexBase::d_count = 0;
+std::atomic_uint64_t GraphVertexBase::d_count = 0;
 
 std::string   VertexUtils::gateToString(Gates i_type) {
   switch (i_type) {

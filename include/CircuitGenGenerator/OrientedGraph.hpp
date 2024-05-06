@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <map>
 #include <memory>
 #include <set>
@@ -427,7 +428,7 @@ public:
   std::map<Gates, std::map<Gates, int>> getEdgesGatesCount() const;
 
 private:
-  static size_t              d_countNewGraphInstance;
+  static std::atomic_size_t  d_countNewGraphInstance;
   size_t                     d_graphID;
   // as we can have multiple parents, we save
   // for toVerilog current parent graph
@@ -462,12 +463,13 @@ private:
               {VertexTypes::output, std::vector<VertexPtr>()},
               {VertexTypes::constant, std::vector<VertexPtr>()},
               {VertexTypes::gate, std::vector<VertexPtr>()},
-              {VertexTypes::subGraph, std::vector<VertexPtr>()}};
+              {VertexTypes::subGraph, std::vector<VertexPtr>()}
+  };
 
-  static uint_fast64_t d_countGraph;
+  static std::atomic_size_t d_countGraph;
 
   // used for quick gates count
-  std::map<Gates, int> d_gatesCount = {
+  std::map<Gates, int>      d_gatesCount = {
       {Gates::GateAnd, 0},
       {Gates::GateNand, 0},
       {Gates::GateOr, 0},
@@ -475,7 +477,8 @@ private:
       {Gates::GateNot, 0},
       {Gates::GateBuf, 0},
       {Gates::GateXor, 0},
-      {Gates::GateXnor, 0}};
+      {Gates::GateXnor, 0}
+  };
   // used for quick edges of gate type count;
   std::map<Gates, std::map<Gates, int>> d_edgesGatesCount;
 
