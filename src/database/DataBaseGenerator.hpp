@@ -2,11 +2,17 @@
 #pragma once
 
 #include <functional>
+#include <mutex>
+#include <string>
+#include <vector>
 
 #include <additional/RandomGeneratorWithSeed.hpp>
+#include <baseStructures/graph/OrientedGraph.hpp>
 #include <settings/Settings.hpp>
 
 #include "DataBaseGeneratorParameters.hpp"
+
+using Result = std::pair<std::string, std::vector<GraphPtr>>;
 
 /// class DataBaseGenerator
 /// @param d_mainPath A string containing the path to the main database
@@ -19,11 +25,14 @@
 /// configure database generation
 /// @param d_dirCount An integer value representing the number of directories
 /// created during database generation
-///
-/// */
+/// @param d_randGenerator Random number generator with seed
 
 class DataBaseGenerator {
 public:
+  /// @todo: description default constructor
+  /// @brief DataBaseGenerator
+  /// @param i_parameters
+
   DataBaseGenerator(const DataBaseGeneratorParameters& i_parameters) :
     d_parameters(i_parameters) {};
 
@@ -38,15 +47,18 @@ public:
   /// @param createIdDirectories A flag indicating whether to create directories
   /// with IDs. If set to true, directories with IDs will be created, otherwise
   /// not.
-  /// */
+  ///
 
-  void generateType(
+  Result generateType(
       const DataBaseGeneratorParameters& i_gp,
       bool                               parallel            = true,
       bool                               createIdDirectories = true
   );
 
 private:
+  std::vector<GraphPtr>     d_generatedGraphs;
+  std::mutex                d_resWrite;
+
   std::string               d_mainPath = ".";
   std::shared_ptr<Settings> d_settings =
       Settings::getInstance("DataBaseGenerator");
@@ -57,7 +69,6 @@ private:
   /// Random Truth Table method of the DataBase Generator class is responsible
   /// for generating a database from random truth tables based on the passed
   /// parameters
-  ///
   /// @param i_param An object of the Generation Parameters class containing
   /// parameters for generating a database
   ///
@@ -100,17 +111,89 @@ private:
   /// parameters for generating a database using genetic algorithms
   /// */
 
+  /// @brief generateDataBaseGenetic
+  /// Generates a database using genetic algorithms
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating a database using genetic algorithms
+
   void generateDataBaseGenetic(const GenerationParameters& i_param);
+
+  /// @brief generateDataBaseSummator
+  /// Generates a database representing a summator circuit
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the summator circuit database
+
   void generateDataBaseSummator(const GenerationParameters& i_param);
+
+  /// @brief generateDataBaseComparison
+  /// Generates a database representing a comparison circuit
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the comparison circuit database
+
   void generateDataBaseComparison(const GenerationParameters& i_param);
+
+  /// @brief generateDataBaseEncoder
+  /// Generates a database representing a comparison circuit
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the comparison circuit database
+
   void generateDataBaseEncoder(const GenerationParameters& i_param);
+
+  /// @brief generateDataBaseParity
+  /// Generates a database representing a parity circuit
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the parity circuit database
+
   void generateDataBaseParity(const GenerationParameters& i_param);
+
+  /// @brief generateDataBaseSubtractor
+  /// Generates a database representing a subtractor circuit
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the subtractor circuit database
+
   void generateDataBaseSubtractor(const GenerationParameters& i_param);
+
+  /// @brief generateDataBaseMultiplexer
+  /// Generates a database representing a multiplexer circuit
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the multiplexer circuit database
+
   void generateDataBaseMultiplexer(const GenerationParameters& i_param);
+
+  /// @brief generateDataBaseDemultiplexer
+  /// Generates a database representing a demultiplexer circuit
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the demultiplexer circuit database
+
   void generateDataBaseDemultiplexer(const GenerationParameters& i_param);
+
+  /// @brief generateDataBaseMultiplier
+  /// Generates a database representing a multiplier circuit
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the multiplier circuit database
+
   void generateDataBaseMultiplier(const GenerationParameters& i_param);
+
+  /// @brief generateDataBaseDecoder
+  /// Generates a database representing a decoder circuit
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the decoder circuit database
+
   void generateDataBaseDecoder(const GenerationParameters& i_param);
+
+  /// @brief generateDataBaseALU
+  /// Generates a database representing an Arithmetic Logic Unit (ALU) circuit
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the ALU circuit database
+
   void generateDataBaseALU(const GenerationParameters& i_param);
+
+  /// @brief getGenerateMethod
+  /// Retrieves a method for generating a database based on the provided
+  /// generation type
+  /// @param i_methodType The type of generation method to retrieve
+  /// @return Function pointer to the corresponding database generation method
+
   std::function<void(const GenerationParameters&)> getGenerateMethod(
       const GenerationTypes i_methodType
   );

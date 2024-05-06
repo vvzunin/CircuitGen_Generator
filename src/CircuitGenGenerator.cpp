@@ -22,17 +22,19 @@
 using namespace std::chrono;
 
 namespace CircuitGenGenerator {
-void runGenerationFromJson(std::string json_path) {
-  std::ifstream  f(json_path);
-  nlohmann::json DATA = nlohmann::json::parse(f);
+std::vector<Result> runGenerationFromJson(std::string json_path) {
+  std::ifstream       f(json_path);
+  nlohmann::json      DATA = nlohmann::json::parse(f);
   // Read all json objects in json file.
+
+  std::vector<Result> finalRes;
   for (auto it = DATA.begin(); it != DATA.end(); it++) {
     nlohmann::json data = *it;
 
     // Проверка на наличие типа генерации. Если его нет, то завершаем программу.
     if (!data.contains("type_of_generation")) {
       std::cerr << "No generation type!" << std::endl;
-      return;
+      return {};
     }
 
     // Задаем сид рандомизации.
@@ -41,7 +43,7 @@ void runGenerationFromJson(std::string json_path) {
             ? static_cast<unsigned>(std::time(0))
             : static_cast<unsigned>(data["seed"])
     );
-    // EVERYWHERE seed from json is getting here. It is like a storage for seed 
+    // EVERYWHERE seed from json is getting here. It is like a storage for seed
     // for all future usages`
 
     // Задаем основные параметры генерации
@@ -79,7 +81,7 @@ void runGenerationFromJson(std::string json_path) {
       gt = GenerationTypes::ALU;
     else {
       std::cerr << "Unsupported generation type" << std::endl;
-      return;
+      return {};
     }
 
     std::string datasetId    = data.contains("dataset_id")
@@ -195,7 +197,7 @@ void runGenerationFromJson(std::string json_path) {
             || data.contains("Zhegalkin"))) {
         std::cerr << "Parameters for selected generation type is not set."
                   << std::endl;
-        return;
+        return {};
       }
       gp.setCNFF(data.contains("CNFF") ? (bool)data["CNFF"] : false);
       gp.setCNFT(data.contains("CNFT") ? (bool)data["CNFT"] : false);
@@ -286,11 +288,11 @@ void runGenerationFromJson(std::string json_path) {
           mType = MutationTypes::Delete;
         else {
           std::cerr << "Unsupported mutType." << std::endl;
-          return;
+          return {};
         }
       } else {
         std::cerr << "Parameters for mutType is not set." << std::endl;
-        return;
+        return {};
       }
 
       double mutChance = 0.5;
@@ -349,7 +351,7 @@ void runGenerationFromJson(std::string json_path) {
         selecTypeParent = ParentsTypes::Roulette;
       else {
         std::cerr << "Unsupported selectionTypeParent." << std::endl;
-        return;
+        return {};
       }
 
       std::string        recombinationType = data["playback_type"];
@@ -366,7 +368,7 @@ void runGenerationFromJson(std::string json_path) {
         recombType = RecombinationTypes::CrossingShuffling;
       else {
         std::cerr << "Unsupported recombinationType." << std::endl;
-        return;
+        return {};
       }
 
       double maskProb = 1.0;
@@ -547,25 +549,29 @@ void runGenerationFromJson(std::string json_path) {
     DataBaseGenerator generator(dbgp);
 
     if (data.contains("dataset_path")) {
-      Settings::getInstance("CircuitGenGenerator")->
-        setDatasetPath(static_cast<std::string>(data["dataset_path"]));
+      Settings::getInstance("CircuitGenGenerator")
+          ->setDatasetPath(static_cast<std::string>(data["dataset_path"]));
     }
 
-    auto              start = high_resolution_clock::now();
+    auto start = high_resolution_clock::now();
 
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
-    generator.generateType(
+    finalRes.push_back(generator.generateType(
         dbgp,
         data.contains("multithread") ? (bool)data["multithread"] : false,
         data.contains("create_id_directories")
             ? (bool)data["create_id_directories"]
             : true
-    );
+    ));
 
     auto stop     = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     std::clog << "Time taken: " << duration.count() << " microseconds"
               << std::endl;
+
+    // TODO add multiple generation
   }
+
+  return finalRes;
 }
 }  // namespace CircuitGenGenerator
