@@ -4,7 +4,8 @@
 #include <vector>
 
 #include <CircuitGenGenerator/export.hpp>
-#include <CircuitGenGenerator/OrientedGraph.hpp>
+
+#include "OrientedGraph.hpp"
 
 namespace CircuitGenGenerator {
 // TODO add some other export functions

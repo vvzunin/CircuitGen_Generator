@@ -94,6 +94,7 @@ void DataBaseGenerator::runGeneratorByDefault(
 
           GenerationParameters param = d_parameters.getGenerationParameters();
           param.setSeed(*iter);
+          ++*iter;
 
           auto runGenerator = [generator, param]() { generator(param); };
 
