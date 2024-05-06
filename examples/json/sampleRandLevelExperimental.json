@@ -27,9 +27,9 @@
       "xnor": [2, 16, 8]
     },
 
-    "min_level": 50,
-    "max_level": 50,
-    "min_elem": 100,
-    "max_elem": 100
+    "min_level": 100,
+    "max_level": 100,
+    "min_elem": 1000,
+    "max_elem": 1000
   }
 ]

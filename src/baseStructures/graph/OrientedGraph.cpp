@@ -6,12 +6,11 @@
 #include <string>
 #include <vector>
 
-#include "OrientedGraph.hpp"
-
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/graph/GraphMLTemplates.hpp>
 #include <baseStructures/graph/GraphVertex.hpp>
 #include <baseStructures/graph/GraphVertexBase.hpp>
+#include <CircuitGenGenerator/OrientedGraph.hpp>
 
 uint_fast64_t OrientedGraph::d_countGraph            = 0;
 size_t        OrientedGraph::d_countNewGraphInstance = 0;
@@ -497,6 +496,7 @@ std::pair<bool, std::string>
   // writing consts
   for (auto oper : d_vertexes[VertexTypes::constant]) {
     fileStream << verilogTab << oper->getInstance() << "\n";
+    fileStream << verilogTab << oper->toVerilog() << "\n";
   }
 
   if (d_subGraphs.size()) {

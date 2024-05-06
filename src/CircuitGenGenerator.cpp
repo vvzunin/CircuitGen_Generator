@@ -3,6 +3,7 @@
 #include <chrono>
 #include <filesystem>
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <map>
 #include <string>
@@ -21,20 +22,26 @@
 
 using namespace std::chrono;
 
-namespace CircuitGenGenerator {
-std::vector<Result> runGenerationFromJson(std::string json_path) {
-  std::ifstream       f(json_path);
-  nlohmann::json      DATA = nlohmann::json::parse(f);
+void runGeneration(
+    std::string json_path,
+    std::function<void(
+        DataBaseGenerator&,
+        const DataBaseGeneratorParameters&,
+        bool,
+        bool
+    )>          callable
+) {
+  std::ifstream  f(json_path);
+  nlohmann::json DATA = nlohmann::json::parse(f);
   // Read all json objects in json file.
 
-  std::vector<Result> finalRes;
   for (auto it = DATA.begin(); it != DATA.end(); it++) {
     nlohmann::json data = *it;
 
     // Проверка на наличие типа генерации. Если его нет, то завершаем программу.
     if (!data.contains("type_of_generation")) {
       std::cerr << "No generation type!" << std::endl;
-      return {};
+      return;
     }
 
     // Задаем сид рандомизации.
@@ -81,7 +88,7 @@ std::vector<Result> runGenerationFromJson(std::string json_path) {
       gt = GenerationTypes::ALU;
     else {
       std::cerr << "Unsupported generation type" << std::endl;
-      return {};
+      return;
     }
 
     std::string datasetId    = data.contains("dataset_id")
@@ -197,7 +204,7 @@ std::vector<Result> runGenerationFromJson(std::string json_path) {
             || data.contains("Zhegalkin"))) {
         std::cerr << "Parameters for selected generation type is not set."
                   << std::endl;
-        return {};
+        return;
       }
       gp.setCNFF(data.contains("CNFF") ? (bool)data["CNFF"] : false);
       gp.setCNFT(data.contains("CNFT") ? (bool)data["CNFT"] : false);
@@ -288,11 +295,11 @@ std::vector<Result> runGenerationFromJson(std::string json_path) {
           mType = MutationTypes::Delete;
         else {
           std::cerr << "Unsupported mutType." << std::endl;
-          return {};
+          return;
         }
       } else {
         std::cerr << "Parameters for mutType is not set." << std::endl;
-        return {};
+        return;
       }
 
       double mutChance = 0.5;
@@ -351,7 +358,7 @@ std::vector<Result> runGenerationFromJson(std::string json_path) {
         selecTypeParent = ParentsTypes::Roulette;
       else {
         std::cerr << "Unsupported selectionTypeParent." << std::endl;
-        return {};
+        return;
       }
 
       std::string        recombinationType = data["playback_type"];
@@ -368,7 +375,7 @@ std::vector<Result> runGenerationFromJson(std::string json_path) {
         recombType = RecombinationTypes::CrossingShuffling;
       else {
         std::cerr << "Unsupported recombinationType." << std::endl;
-        return {};
+        return;
       }
 
       double maskProb = 1.0;
@@ -556,22 +563,68 @@ std::vector<Result> runGenerationFromJson(std::string json_path) {
     auto start = high_resolution_clock::now();
 
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
-    finalRes.push_back(generator.generateType(
+    callable(
+        generator,
         dbgp,
         data.contains("multithread") ? (bool)data["multithread"] : false,
         data.contains("create_id_directories")
             ? (bool)data["create_id_directories"]
             : true
-    ));
+    );
 
     auto stop     = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     std::clog << "Time taken: " << duration.count() << " microseconds"
               << std::endl;
-
-    // TODO add multiple generation
   }
+}
+
+namespace CircuitGenGenerator {
+std::vector<ResultGraph> runGenerationFromJsonForGraph(std::string json_path) {
+  std::vector<ResultGraph> finalRes;
+
+  auto                     runGeneratorForGraph = [&finalRes](
+                                  DataBaseGenerator&                 generator,
+                                  const DataBaseGeneratorParameters& dbgp,
+                                  bool multithread,
+                                  bool create_id_directories
+                              ) {
+    finalRes.push_back(
+        generator.generateTypeForGraph(dbgp, multithread, create_id_directories)
+    );
+  };
+
+  runGeneration(json_path, runGeneratorForGraph);
+  return finalRes;
+}
+
+std::vector<ResultPath> runGenerationFromJsonForPath(std::string json_path) {
+  std::vector<ResultPath> finalRes;
+
+  auto                    runGeneratorForGraph = [&finalRes](
+                                  DataBaseGenerator&                 generator,
+                                  const DataBaseGeneratorParameters& dbgp,
+                                  bool multithread,
+                                  bool create_id_directories
+                              ) {
+    finalRes.push_back(
+        generator.generateTypeForPath(dbgp, multithread, create_id_directories)
+    );
+  };
+
+  runGeneration(json_path, runGeneratorForGraph);
 
   return finalRes;
+}
+
+void runGenerationFromJson(std::string json_path) {
+  auto runGeneratorForGraph = [](DataBaseGenerator&                 generator,
+                                 const DataBaseGeneratorParameters& dbgp,
+                                 bool                               multithread,
+                                 bool create_id_directories) {
+    generator.generateTypeDefault(dbgp, multithread, create_id_directories);
+  };
+
+  runGeneration(json_path, runGeneratorForGraph);
 }
 }  // namespace CircuitGenGenerator

@@ -89,6 +89,7 @@ public:
   /// based on the levels of its incoming connections
 
   virtual void updateLevel();
+  std::string  toVerilog() override;
 
   /// @brief getInstance
   /// TO DO:

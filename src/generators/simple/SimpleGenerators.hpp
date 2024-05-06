@@ -6,8 +6,8 @@
 #include <vector>
 
 #include <additional/RandomGeneratorWithSeed.hpp>
-#include <baseStructures/graph/OrientedGraph.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
+#include <CircuitGenGenerator/OrientedGraph.hpp>
 #include <limits.h>
 #include <settings/Settings.hpp>
 
