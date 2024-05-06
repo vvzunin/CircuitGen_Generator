@@ -463,8 +463,7 @@ private:
               {VertexTypes::output, std::vector<VertexPtr>()},
               {VertexTypes::constant, std::vector<VertexPtr>()},
               {VertexTypes::gate, std::vector<VertexPtr>()},
-              {VertexTypes::subGraph, std::vector<VertexPtr>()}
-  };
+              {VertexTypes::subGraph, std::vector<VertexPtr>()}};
 
   static std::atomic_size_t d_countGraph;
 
@@ -477,8 +476,7 @@ private:
       {Gates::GateNot, 0},
       {Gates::GateBuf, 0},
       {Gates::GateXor, 0},
-      {Gates::GateXnor, 0}
-  };
+      {Gates::GateXnor, 0}};
   // used for quick edges of gate type count;
   std::map<Gates, std::map<Gates, int>> d_edgesGatesCount;
 

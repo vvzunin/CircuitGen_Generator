@@ -316,11 +316,11 @@ bool Circuit::generate(bool i_makeGraphML, bool i_pathExists) {
 
   // if (!i_pathExists)
   // d_path += d_circuitName;
-  std::clog << "Writing verilog for " << d_circuitName << std::endl;
+  // std::clog << "Writing verilog for " << d_circuitName << std::endl;
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
 
-  std::clog << "Writing verilog ended for " << d_circuitName << std::endl;
+  // std::clog << "Writing verilog ended for " << d_circuitName << std::endl;
 
   if (i_makeGraphML) {
     std::clog << "Writing GraphML for " << d_circuitName << std::endl;
