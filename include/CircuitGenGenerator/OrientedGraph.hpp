@@ -381,7 +381,8 @@ public:
   /// returns true.
 
   bool        toGraphML(std::ofstream& i_fileStream) const;
-  std::string toGraphML(int i_nesting = 0) const;
+  std::string toGraphML(int i_indent = 0, const std::string& i_prefix = "")
+      const;
   // visualize
   // calcGraph
 
@@ -427,7 +428,7 @@ public:
 
 private:
   static size_t              d_countNewGraphInstance;
-  size_t                     d_currentInstance;
+  size_t                     d_graphID;
   // as we can have multiple parents, we save
   // for toVerilog current parent graph
   GraphPtrWeak               d_currentParentGraph;

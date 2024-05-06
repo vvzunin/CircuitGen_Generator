@@ -16,7 +16,7 @@ uint_fast64_t OrientedGraph::d_countGraph            = 0;
 size_t        OrientedGraph::d_countNewGraphInstance = 0;
 
 OrientedGraph::OrientedGraph(const std::string& i_name) {
-  d_currentInstance = d_countNewGraphInstance++;
+  d_graphID = d_countNewGraphInstance++;
   // this_ptr.reset(this);
   if (i_name == "")
     d_name = "graph_" + std::to_string(d_countGraph++);
@@ -164,8 +164,8 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
   }
 
   // here we save our inputs and outputs to instance number
-  i_subGraph->d_subGraphsInputsPtr[d_currentInstance].push_back(i_inputs);
-  i_subGraph->d_subGraphsOutputsPtr[d_currentInstance].push_back(outputs);
+  i_subGraph->d_subGraphsInputsPtr[d_graphID].push_back(i_inputs);
+  i_subGraph->d_subGraphsOutputsPtr[d_graphID].push_back(outputs);
 
   // here we use i_subGraph like an instance of BasicType,
   // and we call it's toVerilog, having in multiple instance
@@ -364,16 +364,14 @@ void OrientedGraph::setCurrentParent(GraphPtr i_parent) {
 }
 
 void OrientedGraph::resetCounters(GraphPtr i_where) {
-  d_graphInstanceToVerilogCount[i_where->d_currentInstance] = 0;
+  d_graphInstanceToVerilogCount[i_where->d_graphID] = 0;
 }
 
 std::string OrientedGraph::getGraphInstance() {
   uint64_t* verilogCount =
-      &d_graphInstanceToVerilogCount[d_currentParentGraph.lock()
-                                         ->d_currentInstance];
+      &d_graphInstanceToVerilogCount[d_currentParentGraph.lock()->d_graphID];
   uint64_t allCount =
-      d_subGraphsInputsPtr[d_currentParentGraph.lock()->d_currentInstance].size(
-      );
+      d_subGraphsInputsPtr[d_currentParentGraph.lock()->d_graphID].size();
 
   if (*verilogCount == allCount) {
     throw std::out_of_range(
@@ -389,9 +387,8 @@ std::string OrientedGraph::getGraphInstance() {
                          + std::to_string(*verilogCount) + " (\n";
 
   for (size_t i = 0; i < d_vertexes[VertexTypes::input].size(); ++i) {
-    auto inp =
-        d_subGraphsInputsPtr[d_currentParentGraph.lock()->d_currentInstance]
-                            [*verilogCount][i];
+    auto inp = d_subGraphsInputsPtr[d_currentParentGraph.lock()->d_graphID]
+                                   [*verilogCount][i];
     std::string inp_name = d_vertexes[VertexTypes::input][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + inp_name + "( ";
@@ -400,7 +397,7 @@ std::string OrientedGraph::getGraphInstance() {
 
   for (size_t i = 0; i < d_vertexes[VertexTypes::output].size() - 1; ++i) {
     VertexPtr out =
-        d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_currentInstance]
+        d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_graphID]
                              [*verilogCount][i];
     std::string out_name = d_vertexes[VertexTypes::output][i]->getName();
 
@@ -411,12 +408,11 @@ std::string OrientedGraph::getGraphInstance() {
   std::string out_name = d_vertexes[VertexTypes::output].back()->getName();
 
   module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
-  module_ver +=
-      d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_currentInstance]
-                           [*verilogCount]
-                               .back()
-                               ->getName()
-      + " )\n";
+  module_ver += d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_graphID]
+                                     [*verilogCount]
+                                         .back()
+                                         ->getName()
+              + " )\n";
   module_ver += verilogTab + "); \n";
 
   ++(*verilogCount);
@@ -542,57 +538,108 @@ std::pair<bool, std::string>
   return std::make_pair(true, "");
 }
 
-std::string OrientedGraph::toGraphML(int i_nesting) const {
-  const std::string spaces(i_nesting * 4, ' ');
+std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
+    const {
+  using namespace AuxMethods;  // format() and replacer()
+
+  const std::string spaces(i_indent, ' ');
 
   const std::string graphTemplate =
-      AuxMethods::format(rawGraphTemplate, spaces, d_name, "%", spaces);
-  const std::string nodeTemplate = AuxMethods::format(
-      rawNodeTemplate, spaces, "%", spaces, "%", "%", spaces
-  );
-  const std::string edgeTemplate =
-      AuxMethods::format(rawEdgeTemplate, spaces, "%", "%");
+      format(rawGraphTemplate, spaces, i_indent ? "%:" : "%", "%", spaces);
+  const std::string nodeTemplate =
+      format(rawNodeTemplate, spaces, "%", spaces, "%", "%%", spaces);
+  const std::string edgeTemplate = format(rawEdgeTemplate, spaces, "%", "%");
 
-  std::string nodes, edges, graphs;
+  std::string       nodes, edges, graphs, vertexKindName;
 
-  for (const auto& [VertexTypes, vertexVector] : d_vertexes) {
-    const std::string vertexTypeName =
-        d_settings->parseVertexToString(VertexTypes);
-    for (const auto& vertex : vertexVector) {
-      const std::string vertexKindName =
-          vertexTypeName == "g"
-              ? d_settings->parseGateToString(vertex->getGate())
-          : vertexTypeName == "const" ? std::string(1, vertex->getValue())
-                                      : vertexTypeName;
+  for (const auto& [vertexType, vertexVector] : d_vertexes) {
+    switch (vertexType) {
+      // skipping subgraphs, will be parsed later
+      case VertexTypes::subGraph:
+        continue;
+      case VertexTypes::input:
+      case VertexTypes::output:
+        vertexKindName = d_settings->parseVertexToString(vertexType);
+        break;
+    }
 
-      nodes += AuxMethods::format(
-          nodeTemplate, vertex->getName(), vertexKindName, ""
-      );
-      for (const auto& source : vertex->getInConnections()) {
-        if (auto ptr = source.lock()) {
-          edges += AuxMethods::format(
-              edgeTemplate, ptr->getName(), vertex->getName()
+    for (const auto& v : vertexVector) {
+      // every "gate" and "const" vertex has subtypes
+      switch (vertexType) {
+        case VertexTypes::constant:
+          vertexKindName = std::string(1, v->getValue());
+          break;
+        case VertexTypes::gate:
+          vertexKindName = d_settings->parseGateToString(v->getGate());
+          break;
+      }
+
+      nodes +=
+          format(nodeTemplate, v->getName(i_prefix), vertexKindName, "", "");
+
+      for (const auto& sink : v->getOutConnections()) {
+        // parsing edges not related to subGraphs
+        if (sink->getType() != VertexTypes::subGraph) {
+          edges += format(
+              edgeTemplate, v->getName(i_prefix), sink->getName(i_prefix)
           );
-        } else {
-          throw std::invalid_argument("Dead pointer!");
         }
       }
     }
   }
-  for (const auto& i_subGraph : d_subGraphs) {
-    graphs += AuxMethods::format(
+
+  std::string currentSubGraphTemplate, sgName;
+
+  for (const auto& sg : d_subGraphs) {
+    // preparing template for subGraphs as vertices
+    currentSubGraphTemplate = format(
         nodeTemplate,
-        i_subGraph->getName() + "_subgraph",
-        "graph",
-        '\n' + i_subGraph->toGraphML(i_nesting + 1)
+        "%",
+        "subGraph",
+        "\n",
+        sg->toGraphML(i_indent + 4, i_prefix + "%::")
     );
+
+    // vertexesInputs, vertexesOutputs, graphInputs, graphOutputs
+    const auto& gInputs  = sg->d_vertexes.at(VertexTypes::input);
+    const auto& gOutputs = sg->d_vertexes.at(VertexTypes::output);
+    const auto& vInputs  = sg->d_subGraphsInputsPtr.at(d_graphID);
+    const auto& vOutputs = sg->d_subGraphsOutputsPtr.at(d_graphID);
+
+    for (size_t i = 0; i < vOutputs.size(); ++i) {
+      // getting name of current subGraph vertex
+      sgName = vOutputs[i][0]->getInConnections()[0].lock()->getName(i_prefix);
+
+      // element->subGraph edges
+      for (size_t j = 0; j < gInputs.size(); ++j) {
+        edges += format(
+            edgeTemplate,
+            vInputs[i][j]->getName(i_prefix),
+            gInputs[j]->getName(sgName + "::")
+        );
+      }
+      // subGraph->element edges (skipping buffer)
+      for (size_t j = 0; j < gOutputs.size(); ++j) {
+        if (vOutputs[i][j]->getOutConnections().empty()) {
+          continue;
+        }
+        edges += format(
+            edgeTemplate,
+            gOutputs[j]->getName(sgName + "::"),
+            vOutputs[i][j]->getOutConnections()[0]->getName(i_prefix)
+        );
+      }
+
+      // parsing subGraphs as vertices
+      graphs += replacer(currentSubGraphTemplate, sgName);
+    }
   }
-  std::string finalGraph =
-      AuxMethods::format(graphTemplate, nodes + graphs + edges);
-  if (i_nesting != 0) {
+
+  std::string finalGraph = format(graphTemplate, "%", nodes + graphs + edges);
+  if (i_indent != 0) {
     return finalGraph;
   }
-  return AuxMethods::format(mainTemplate, finalGraph);
+  return format(mainTemplate, format(finalGraph, d_name));
 }
 
 bool OrientedGraph::toGraphML(std::ofstream& fileStream) const {

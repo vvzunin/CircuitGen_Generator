@@ -137,9 +137,9 @@ public:
 
   /// @brief This method is used as a substructure for
   /// OrientedGraph methods
-  /// @param i_nesting
+  /// @param i_indent
   /// @return
-  std::string toGraphML(int i_nesting = 0) const;
+  std::string toGraphML(int i_indent = 0, std::string i_prefix = "") const;
 
   /// @brief This method is used as a substructure for
   /// OrientedGraph methods
@@ -252,6 +252,8 @@ public:
   /// @throws std::invalid_argument if any input connection is invalid
 
   std::string  toVerilog();
+
+  bool         isSubgraphBuffer() const override;
 
 private:
   Gates       d_gate;
