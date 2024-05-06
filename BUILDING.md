@@ -80,11 +80,14 @@ target_link_libraries(
 #include <CircuitGenGenerator/CircuitGenGenerator.hpp>
 ```
 
-#### RunGenerationFromJson
+#### runGenerationFromJson
 На вход получает путь до json файла. Не возвращает ничего
-#### RunGenerationFromJsonForGraph
+#### runGenerationFromJsonForGraph
 Аналогично, получает на вход путь до файла json. В отличие от предыдущей функции, возвращает следующую структуру:
-`std::vector<>
+`std::vector<std::pair<std::string, std::vector<GraphPtr>>>`. Для `std::pair<std::string, std::vector<GraphPtr>>` существует псевдоним ResultGraph. 
+Первым значением в паре является путь до папки, где находятся сгенерированные verilog-файлы. Второе значение пары, вектор, содержит ссылки на графы, сгенерированные по данному пути.
+#### runGenerationFromJsonForPath
+Аналогично, получает на вход путь до файла json. Возвращает `std::vector<std::pair<std::string, std::vector<std::string>>>`. В отличие от предыдущей функции, вместо графов возвращаются их имена, используемые как имена папок с созданными Verilog-файлами соответствующих графов, а также в качестве имен файлов. 
 
 ### Note to packagers
 
