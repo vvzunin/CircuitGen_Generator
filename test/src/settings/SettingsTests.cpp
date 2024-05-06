@@ -15,7 +15,42 @@ std::string fileName =
 // only way to test LoadSettings when file does not exists without breaking
 // encapsulation.
 
-TEST(test_settings, test_default_load_settings) {
+TEST(SettingsTest, TestingGetInstance) {
+  const std::string firstFileName  = "first_settings.txt";
+  const std::string secondFileName = "second_settings.txt";
+
+  std::ofstream     firstFile(firstFileName);
+  firstFile << "Existing content";
+  firstFile.close();
+
+  auto          firstInstance = Settings::getInstance(firstFileName);
+
+  std::ofstream secondFile(secondFileName);
+  secondFile << "Updated content";
+  secondFile.close();
+
+  auto secondInstance = Settings::getInstance(secondFileName);
+
+  EXPECT_EQ(firstInstance, secondInstance);
+
+  std::remove(firstFileName.c_str());
+  std::remove(secondFileName.c_str());
+}
+
+TEST(SettingsTest, LoadSettingsTest) {
+  std::string settingsPath = "settings123.dat";
+  if (std::filesystem::exists(settingsPath)) {
+    std::filesystem::remove(settingsPath);
+  }
+
+  auto settings = Settings::getInstance("");
+
+  EXPECT_EQ(settings->getNumThread(), 4);
+  EXPECT_EQ(settings->getPathNadezhda(), "./Generator/source/data/Nadezhda");
+  std::filesystem::remove(settingsPath);
+}
+
+TEST(TestSettings, TestDefaultLoadSettings) {
   std::shared_ptr<Settings> t =
       Settings::getInstance("test_default_load_settings");
 
@@ -57,7 +92,7 @@ TEST(test_settings, test_default_load_settings) {
 
 TEST(
     SettingsTest,
-    defaultInitializationWithLoadSettingsWriteCorrectLogicOperation
+    DefaultInitializationWithLoadSettingsWriteCorrectLogicOperation
 ) {
   if (!std::filesystem::exists(fileName)) {
     std::shared_ptr<Settings> SetPtr =
@@ -85,7 +120,7 @@ TEST(
 
 TEST(
     SettingsTest,
-    defaultInitializationWithLoadSettingsWriteCorrectOperationsToHierarchy
+    DefaultInitializationWithLoadSettingsWriteCorrectOperationsToHierarchy
 ) {
   if (!std::filesystem::exists(fileName)) {
     std::shared_ptr<Settings> SetPtr =
@@ -116,7 +151,7 @@ TEST(
 
 TEST(
     SettingsTest,
-    defaultInitializationWithLoadSettingsWriteCorrectOperationsToName
+    DefaultInitializationWithLoadSettingsWriteCorrectOperationsToName
 ) {
   if (!std::filesystem::exists(fileName)) {
     std::shared_ptr<Settings> SetPtr =
