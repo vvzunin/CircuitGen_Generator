@@ -12,8 +12,8 @@
 #include <baseStructures/graph/GraphVertexBase.hpp>
 #include <CircuitGenGenerator/OrientedGraph.hpp>
 
-uint_fast64_t OrientedGraph::d_countGraph            = 0;
-size_t        OrientedGraph::d_countNewGraphInstance = 0;
+std::atomic_size_t OrientedGraph::d_countGraph            = 0;
+std::atomic_size_t OrientedGraph::d_countNewGraphInstance = 0;
 
 OrientedGraph::OrientedGraph(const std::string& i_name) {
   d_graphID = d_countNewGraphInstance++;

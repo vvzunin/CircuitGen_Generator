@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <memory>
 #include <string>
 #include <vector>
@@ -485,9 +486,9 @@ protected:
 private:
   // Определяем тип вершины: подграф, вход, выход, константа или одна из базовых
   // логических операций.
-  VertexTypes          d_type;
+  VertexTypes                 d_type;
 
   // Счетчик вершин для именования и подобного
-  static uint_fast64_t d_count;
-  std::string          hashed = "";
+  static std::atomic_uint64_t d_count;
+  std::string                 hashed = "";
 };

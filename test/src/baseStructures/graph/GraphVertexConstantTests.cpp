@@ -63,7 +63,7 @@ TEST(TestUpdateLevel, CorrectUpdate) {
 
 TEST(TestGetInstance, ReturnCorrectInstance) {
   GraphVertexConstant constant1('z', "Anything");
-  EXPECT_EQ(constant1.getInstance(), "wire Anything = 1'bz;");
+  EXPECT_EQ(constant1.getInstance(), "wire Anything;");
 }
 
 // -------------------------------------
