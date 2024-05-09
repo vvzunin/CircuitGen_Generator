@@ -77,7 +77,7 @@ void DataBaseGenerator::runGeneratorByDefault(
   std::generate(seeds.begin(), seeds.end(), randGeneratorLambda);
 
   ThreadPool pool(parallel);
-  
+
   for (int i = i_dbgp.getMinInputs(); i <= i_dbgp.getMaxInputs(); ++i) {
     for (int j = i_dbgp.getMinOutputs(); j <= i_dbgp.getMaxOutputs(); ++j) {
       auto iter = seeds.begin();
