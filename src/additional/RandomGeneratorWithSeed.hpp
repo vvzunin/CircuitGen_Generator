@@ -35,7 +35,10 @@ public:
 
   std::uint_fast32_t       getSeed() const { return d_seed; }
 
-  void setSeed(std::uint_fast32_t i_seed) { d_gen.seed(i_seed); }
+  void                     setSeed(std::uint_fast32_t i_seed) {
+    d_gen.seed(i_seed);
+    d_seed = i_seed;
+  }
 
   /// @brief getRandInt Method to generate a random integer within a specified
   /// range.
@@ -49,7 +52,7 @@ public:
   /// @return dis The generated integer in the range between lower and upper
   /// */
 
-  int  getRandInt(int lower, int upper, bool inclusively = false) {
+  int getRandInt(int lower, int upper, bool inclusively = false) {
     if (!inclusively)
       upper--;
 
