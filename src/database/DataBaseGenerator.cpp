@@ -10,11 +10,11 @@
 
 #include <additional/AuxiliaryMethods.hpp>
 #include <additional/filesTools/FilesTools.hpp>
-#include <additional/threadPool/ThreadPool.hpp>
 #include <baseStructures/Parser.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
+#include <CircuitGenGenerator/ThreadPool.hpp>
 #include <generators/Genetic/GeneticParameters.h>
 #include <generators/Genetic/GenGenerator.h>
 #include <generators/simple/SimpleGenerators.hpp>
