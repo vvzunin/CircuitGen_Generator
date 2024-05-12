@@ -50,7 +50,6 @@ int main(int argc, char **argv) {
   // json_path = "../../examples/json/sampleALU.json";
   // std::clog << std::filesystem::current_path() << std::endl;
   CircuitGenGenerator::runGenerationFromJson(json_path);
-<<<<<<< HEAD
 
   return 0;
 }

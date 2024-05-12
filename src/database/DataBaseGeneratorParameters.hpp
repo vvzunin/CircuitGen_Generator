@@ -69,6 +69,9 @@ public:
 
   int                  getMinInputs() const;
 
+  /// @brief getDataForLogging This method is used to get all needed data for about this class Log file.
+  std::string getDataForLogging() const;
+
   /// @brief getMaxInputs This method is used to get the maximum number of
   /// inputs set in the database generation parameters.
   /// @return Maximum number of inputs for database generation

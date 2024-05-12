@@ -56,6 +56,21 @@ private:
 
 class GeneratorRandLevelParameters {
 public:
+  std::string getDataForLogging() const {
+  	std::vector<std::string> result = {};
+	result.push_back("minLevel: " + std::to_string(d_minLevel));
+	result.push_back("maxLevel: " + std::to_string(d_maxLevel));
+	result.push_back("minElements: " + std::to_string(d_minLevel));
+	result.push_back("maxElements: " + std::to_string(d_maxElements));
+	std::string concat = "";
+	for(const auto& s: result)
+		if (concat.empty())
+			concat = s;
+		else
+			concat += ";" + s;
+	return concat;
+  }
+
   int  getMinLevel() const { return d_minLevel; }
 
   void setMinLevel(int i_minLevel) { d_minLevel = i_minLevel; }
@@ -536,6 +551,27 @@ public:
   }
   void setKeyEndProcessIndex(double i_keyEndProcessIndex) {
     d_geneticParameters.setKeyEndProcessIndex(i_keyEndProcessIndex);
+  }
+  std::string getDataForLogging() const {
+  	std::vector<std::string> result = {};
+	result.push_back(std::string("name: ") + d_name);
+	result.push_back(std::string("requestId: ") + d_requestId);
+	result.push_back(std::string("libraryName: ") + d_libraryName);
+	result.push_back(std::string("inputs: ") + std::to_string(d_inputs));
+	result.push_back(std::string("outputs: ") + std::to_string(d_outputs));
+	result.push_back(std::string("iteration: ") + std::to_string(d_iteration));
+	result.push_back(std::string("calculateStatsAbc: ") + (d_calculateStatsAbc ? "true" : "false"));
+	result.push_back(std::string("makeOptimizedFiles: ") + (d_makeOptimizedFiles ? "true" : "false"));
+	result.push_back(std::string("makeFirrtl: ") + (d_makeFirrtl ? "true" : "false"));
+	result.push_back(std::string("makeBench: ") + (d_makeBench ? "true" : "false") );
+	result.push_back(std::string("makeGraphML: ") + (d_makeGraphML ? "true" : "false"));
+	std::string concat = "";
+	for(const auto& s: result)
+		if (concat.empty())
+			concat = s;
+		else
+			concat += ";" + s;
+	return concat;
   }
 
 private:

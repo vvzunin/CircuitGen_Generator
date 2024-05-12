@@ -16,3 +16,9 @@
 2024-05-02 16:55:18,607 Launch of generation.
 2024-05-02 16:55:18,608 GenerationParameters: { inputs: 4, outputs: 4, iterations: 1 }
 2024-05-02 16:55:18,608 DataBaseGeneratorParameters: { minInputs: 4, maxInputs: 5, minOutputs: 4, maxOutputs: 5, eachIteration: 1, generationParameters: { inputs: 4, outputs: 4, iterations: 1 } }
+2024-05-12 03:30:54,567 Launch of generation.
+2024-05-12 03:30:54,570 GenerationParameters: name: 15;requestId: 0;libraryName: sky130;inputs: 4;outputs: 4;iteration: 1;calculateStatsAbc: true;makeOptimizedFiles: true;makeFirrtl: true;makeBench: true;makeGraphML: true
+2024-05-12 03:30:54,570 DataBaseGeneratorParameters: minInputs: 4;maxInputs: 5;minOutputs: 4;maxOutputs: 5;eachIteration: 1;generationParameters: { name: 15;requestId: 0;libraryName: sky130;inputs: 4;outputs: 4;iteration: 1;calculateStatsAbc: true;makeOptimizedFiles: true;makeFirrtl: true;makeBench: true;makeGraphML: true }
+2024-05-12 03:32:41,671 Launch of generation.
+2024-05-12 03:32:41,671 GenerationParameters: name: 15;requestId: 0;libraryName: sky130;inputs: 4;outputs: 4;iteration: 1;calculateStatsAbc: true;makeOptimizedFiles: true;makeFirrtl: true;makeBench: true;makeGraphML: true
+2024-05-12 03:32:41,671 DataBaseGeneratorParameters: minInputs: 4;maxInputs: 5;minOutputs: 4;maxOutputs: 5;eachIteration: 1;generationParameters: { name: 15;requestId: 0;libraryName: sky130;inputs: 4;outputs: 4;iteration: 1;calculateStatsAbc: true;makeOptimizedFiles: true;makeFirrtl: true;makeBench: true;makeGraphML: true }

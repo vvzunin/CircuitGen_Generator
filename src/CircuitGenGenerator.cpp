@@ -35,7 +35,7 @@ inline MAKE_LOGGABLE(GenerationParameters, obj, os)
 inline MAKE_LOGGABLE(DataBaseGeneratorParameters, obj, os) 
 {
 	os << obj.getDataForLogging();
-	return osl
+	return os;
 }
 
 void runGeneration(
@@ -636,7 +636,6 @@ std::vector<ResultPath> runGenerationFromJsonForPath(std::string json_path) {
 
   return finalRes;
 }
-<<<<<<< HEAD
 
 void runGenerationFromJson(std::string json_path) {
   auto runGeneratorForGraph = [](DataBaseGenerator&                 generator,
@@ -649,6 +648,3 @@ void runGenerationFromJson(std::string json_path) {
   runGeneration(json_path, runGeneratorForGraph);
 }
 }  // namespace CircuitGenGenerator
-=======
-}  // namespace CircuitGenGenerator
->>>>>>> Add log for GenerationParameters and DataBaseGeneratorParameters in file.

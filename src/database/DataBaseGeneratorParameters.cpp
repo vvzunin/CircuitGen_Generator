@@ -1,3 +1,6 @@
+#pragma once
+
+#include <string>
 #include "DataBaseGeneratorParameters.hpp"
 
 DataBaseGeneratorParameters::DataBaseGeneratorParameters(
@@ -16,6 +19,24 @@ DataBaseGeneratorParameters::DataBaseGeneratorParameters(
   d_eachIteration(i_eachIteration),
   d_generationTypes(i_gt),
   d_generationParameters(i_gp) {};
+
+std::string DataBaseGeneratorParameters::getDataForLogging() const {
+	std::vector<std::string> result = {};
+	result.push_back(std::string("minInputs: ") + std::to_string(d_minInputs));
+	result.push_back(std::string("maxInputs: ") + std::to_string(d_maxInputs));
+	result.push_back(std::string("minOutputs: ") + std::to_string(d_minOutputs));
+	result.push_back(std::string("maxOutputs: ") + std::to_string(d_maxOutputs));
+	result.push_back(std::string("eachIteration: ") + std::to_string(d_eachIteration));
+	result.push_back(std::string("generationParameters: { ") + d_generationParameters.getDataForLogging() + " }");
+	std::string concat = "";
+	for(const auto& s: result)
+		if (concat.empty())
+			concat += s;
+		else
+			concat += ";" + s;
+	return concat;
+}
+
 
 void DataBaseGeneratorParameters::setInputs(int i_inputs) {
   d_generationParameters.setInputs(i_inputs);
