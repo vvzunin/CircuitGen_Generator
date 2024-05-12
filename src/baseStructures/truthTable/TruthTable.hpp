@@ -38,6 +38,30 @@ public:
   );
   TruthTable(int i_input, int i_output, double i_p = 0.5);
 
+  /// @brief getDataForLogging This method returns all needed data for log file
+  std::string getDataForLogging() const {
+      std::ostringstream log;
+
+      log << "Input Variables: " << d_input << "\n";
+      log << "Output Variables: " << d_output << "\n";
+      log << "Table Size: " << d_size << "\n";
+
+      if (d_settings)
+          log << "Settings: " << d_settings->getDataForLogging() << "\n";
+
+
+      log << "Random Generator State: " << d_randGenerator.getDataForLogging() << "\n";
+
+      log << "Truth Table:" << "\n";
+      for (const auto& row : d_array) {
+          for (bool value : row)
+              log << (value ? "true" : "false") << " ";
+          log << "\n";
+      }
+
+      return log.str();
+    }
+
   /// @brief setSeed
   /// Set the seed for random number generation.
   /// This method sets the seed for the random number generator used in

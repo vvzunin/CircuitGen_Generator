@@ -101,6 +101,22 @@ public:
       GraphPtr          i_graph = nullptr
   );
 
+  /// @brief getDataForLogging This method returns all needed data for log file.
+  std::string getDataForLogging() const {
+    std::ostringstream log;
+
+    log << "Vertex Type: " << VertexUtils::vertexTypeToComment(d_type) << "\n";
+    log << "Name: " << d_name << "\n";
+    log << "Value: " << d_value << "\n";
+    log << "Level: " << d_level << "\n"; 
+    log << "Number of Input Connections: " << d_inConnections.size() << "\n"; 
+    log << "Number of Output Connections: " << d_outConnections.size() << "\n";
+    log << "Settings: " << d_settings->getDataForLogging() << "\n";
+    log << "Hash: " << hashed << "\n";
+
+    return log.str();
+  }
+
   GraphVertexBase& operator=(const GraphVertexBase& other
   ) = default;  // оператор копирующего присваивания
   GraphVertexBase& operator=(GraphVertexBase&& other

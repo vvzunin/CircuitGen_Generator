@@ -5,6 +5,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <sstream>
 
 /// @file Settings.hpp
 
@@ -107,6 +108,51 @@ protected:
 public:
   Settings(Settings& other)                                   = delete;
   void                             operator=(const Settings&) = delete;
+
+  /// @brief getDataForLogging This method return all needed data for log file
+  std::string getDataForLogging() const {
+      std::ostringstream logData;
+
+      logData << "Name: " << d_name << "\n";
+      logData << "Path: " << d_path << "\n";
+      logData << "Dataset Path: " << d_datasetPath << "\n";
+      logData << "Library Path: " << d_libraryPath << "\n";
+      logData << "Path to Nadezhda: " << d_pathToNadezhda << "\n";
+      logData << "CSV Dataset: " << d_csvdataset << "\n";
+      logData << "Settings File Name: " << d_fileName << "\n";
+
+      logData << "Max Inputs: " << d_maxInputs << "\n";
+      logData << "Max Outputs: " << d_maxOutputs << "\n";
+
+      logData << "Number of Threads: " << d_numThreads << "\n";
+
+      logData << "Nadezhda Dictionary: \n";
+      for (const auto& entry : d_nadezhda) {
+          logData << "  " << entry.first << ": " << entry.second << "\n";
+      }
+
+      logData << "Logic Operations: \n";
+      for (const auto& op : d_logicOperations) {
+          logData << "  " << op.first << ": {" << op.second.first << ", " << op.second.second << "}\n";
+      }
+
+      logData << "Gate to String Mapping: \n";
+      for (const auto& gate : gateToString) {
+          logData << "  " << gate.first << ": " << gate.second << "\n";
+      }
+
+      logData << "Generation Types to Prefixes: \n";
+      for (const auto& genType : generationTypeToPrefix) {
+          logData << "  " << genType.first << ": " << genType.second << "\n";
+      }
+
+      logData << "Vertex Types to String: \n";
+      for (const auto& vtx : vertexToString) {
+          logData << "  " << vtx.first << ": " << vtx.second << "\n";
+      }
+
+      return logData.str();
+    }
 
   /// @brief getInstance Gets a single instance of the Settings class
   /// The method provides creation and receipt of a single instance of the

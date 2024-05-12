@@ -67,7 +67,7 @@ public:
 		if (concat.empty())
 			concat = s;
 		else
-			concat += ";" + s;
+			concat += "; " + s;
 	return concat;
   }
 
@@ -570,7 +570,7 @@ public:
 		if (concat.empty())
 			concat = s;
 		else
-			concat += ";" + s;
+			concat += "; " + s;
 	return concat;
   }
 

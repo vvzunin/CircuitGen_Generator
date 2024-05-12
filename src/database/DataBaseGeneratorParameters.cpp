@@ -33,7 +33,7 @@ std::string DataBaseGeneratorParameters::getDataForLogging() const {
 		if (concat.empty())
 			concat += s;
 		else
-			concat += ";" + s;
+			concat += "; " + s;
 	return concat;
 }
 

@@ -152,6 +152,9 @@ public:
       const std::string& i_wireName
   );
 
+  // /// @brief This method returns all data needed for log file
+  // std::string getDataForLogging() const;
+
   /// @brief setVerticeOperation This method sets up an operation for a given
   /// vertex in the graph.
   /// @param i_vertice Index of the vertex to set the operation for
@@ -168,6 +171,8 @@ public:
 
   Circuit fromVerilog(const std::string& i_filepath);
 
+  // /// @brief getDataForLogging This method get all needed data for log file.
+  // std::string getDataForLogging() const;
 private:
   GraphPtr                  d_graph;
   std::vector<std::string>  d_logExpressions;

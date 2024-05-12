@@ -14,6 +14,8 @@
 #include <additional/filesTools/FilesTools.hpp>
 #include <baseStructures/graph/enums.hpp>
 
+
+
 Circuit::Circuit(
     GraphPtr const                  i_graph,
     const std::vector<std::string>& i_logExpressions
@@ -47,6 +49,37 @@ void Circuit::computeHash() {
     // TODO: write logic of get SHA256
   }
 }
+
+// std::string Circuit::getDataForLogging() const {
+//   std::ostringstream log;
+
+//   log << "Circuit Name: " << d_circuitName << "\n";
+//   log << "Path: " << d_path << "\n";
+
+//   log << "Truth Table: \n" << d_tTable.getDataForLogging() << "\n";
+
+//   log << "Circuit Parameters: \n" << d_circuitParameters.getDataForLogging() << "\n";
+  
+//   if (!d_logExpressions.empty()) {
+//       log << "Logical Expressions:\n";
+//       for (const auto& expr : d_logExpressions) {
+//           log << "  " << expr << "\n";
+//       }
+//   }
+
+//   if (d_settings) {
+//       log << "Settings: \n" << d_settings->getDataForLogging() << "\n";
+//   }
+
+//   if (d_graph) {
+//       log << "Graph Details: \n" << d_graph->getDataForLogging() << "\n";
+//   } else {
+//       log << "Graph: Not initialized\n";
+//   }
+
+//   return log.str();
+// }
+
 
 void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   if (i_graph->isEmptyFull())

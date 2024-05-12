@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <sstream>
 
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/graph/GraphMLTemplates.hpp>
@@ -40,6 +41,46 @@ int OrientedGraph::fullSize() const {
   for (GraphPtr vert : d_subGraphs)
     size += vert->fullSize();
   return size;
+}
+
+std::string OrientedGraph::getDataForLogging() const {
+  std::ostringstream log;
+
+  log << "Graph Name: " << d_name << "\n";
+  log << "Graph ID: " << d_graphID << "\n";
+  log << "Number of Edges: " << d_edgesCount << "\n";
+  log << "Need Level Update: " << (d_needLevelUpdate ? "Yes" : "No") << "\n";
+  log << "Already Parsed: " << (d_alreadyParsed ? "Yes" : "No") << "\n";
+  if (!d_hashed.empty()) {
+      log << "Hashed: " << d_hashed << "\n";
+  }
+
+  log << "Number of Parent Graphs: " << d_parentGraphs.size() << "\n";
+  log << "Number of Subgraphs: " << d_subGraphs.size() << "\n";
+  log << "Stored Vertex Types and Counts:\n";
+  for (const auto& pair : d_vertexes) {
+      log << "  " << VertexUtils::vertexTypeToComment(pair.first)
+          << ": " << pair.second.size() << "\n";
+  }
+  log << "Gate Types and Counts:\n";
+  for (const auto& pair : d_gatesCount) {
+      log << "  " << VertexUtils::gateToString(pair.first)
+          << ": " << pair.second << "\n";
+  }
+  log << "Edges Between Gates Counts:\n";
+  for (const auto& outer_pair : d_edgesGatesCount) {
+      for (const auto& inner_pair : outer_pair.second) {
+          log << "  From " << VertexUtils::gateToString(outer_pair.first)
+              << " to " << VertexUtils::gateToString(inner_pair.first)
+              << ": " << inner_pair.second << "\n";
+      }
+  }
+
+  if (d_settings) {
+      log << "Settings: " << d_settings->getDataForLogging() << "\n";
+  }
+
+  return log.str();
 }
 
 bool OrientedGraph::isEmpty() const {

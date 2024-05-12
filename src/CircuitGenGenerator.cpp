@@ -25,19 +25,6 @@
 
 using namespace std::chrono;
 
-
-inline MAKE_LOGGABLE(GenerationParameters, obj, os)
-{
-	os << obj.getDataForLogging();
-	return os;
-}
-
-inline MAKE_LOGGABLE(DataBaseGeneratorParameters, obj, os) 
-{
-	os << obj.getDataForLogging();
-	return os;
-}
-
 void runGeneration(
     std::string json_path,
     std::function<void(
@@ -211,7 +198,7 @@ void runGeneration(
         makeGraphML
     );
 
-    LOG(INFO) << "GenerationParameters: " << gp;
+    LOG(INFO) << "GenerationParameters: " << gp.getDataForLogging();
 
     gp.setGatesInputInfo(gatesInputsInfo);
     // ------------------------------------------------------------------------
@@ -571,7 +558,7 @@ void runGeneration(
         minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp
     );
 
-    LOG(INFO) << "DataBaseGeneratorParameters: " << dbgp;
+    LOG(INFO) << "DataBaseGeneratorParameters: " << dbgp.getDataForLogging();
 
     DataBaseGenerator generator(dbgp);
 
@@ -579,6 +566,7 @@ void runGeneration(
       Settings::getInstance("CircuitGenGenerator")
           ->setDatasetPath(static_cast<std::string>(data["dataset_path"]));
     }
+    LOG(INFO) << "DataBaseGenerator: " << dbgp.getDataForLogging();
 	
     auto start = high_resolution_clock::now();
 

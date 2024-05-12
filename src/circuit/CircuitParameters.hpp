@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <sstream>
 
 /// @todo: to add desc fields of the class
 /// class CircuitParameters
@@ -39,6 +40,46 @@ class CircuitParameters {
 public:
   CircuitParameters()                                               = default;
 
+  std::string getDataForLogging() const {
+    std::vector<std::string> result = {};
+    result.push_back(std::string("name: ") + d_name);
+    result.push_back(std::string("numInputs: ") + std::to_string(d_numInputs));
+    result.push_back(std::string("numConstants: ") + std::to_string(d_numConstants));
+    result.push_back(std::string("numOutputs: ") + std::to_string(d_numOutputs));
+    result.push_back(std::string("maxLevel: ") + std::to_string(d_maxLevel));
+    result.push_back(std::string("numEdges: ") + std::to_string(d_numEdges));
+    result.push_back(std::string("numGates: ") + std::to_string(d_numGates));
+    result.push_back(std::string("size: ") + std::to_string(d_size));
+    result.push_back(std::string("area: ") + std::to_string(d_area));
+    result.push_back(std::string("hashCode: ") + d_hashCode);
+    std::stringstream ss;
+    ss << "{";
+    for(auto it = d_numElementsOfEachType.begin(); it != d_numElementsOfEachType.end(); ++it) {
+        if (it != d_numElementsOfEachType.begin()) {
+            ss << ", "; 
+        }
+        ss << "\"" << it->first << "\": " << it->second;
+    }
+    ss << "}";
+    result.push_back(ss.str());
+    std::string tmp = "{";
+    for (const auto& item : d_numEdgesOfEachType) {
+        const auto& key = item.first;
+        int value = item.second;
+        tmp += "(" + key.first + ", " + key.second + "): " + std::to_string(value) + ", ";
+    }
+    if (!d_numEdgesOfEachType.empty())
+        tmp.pop_back();
+    tmp += "}";
+    result.push_back(tmp);
+    std::string concat = "";
+    for(const auto& s: result)
+      if (concat.empty())
+        concat = s;
+      else
+        concat += ";" + s;
+    return concat;
+  }
   /// @todo: rewrite getters and setters
   std::string                                        d_name         = "";
   int                                                d_numInputs    = 0;

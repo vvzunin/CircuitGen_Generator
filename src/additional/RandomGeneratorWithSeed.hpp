@@ -100,6 +100,10 @@ public:
     return dis(d_gen);
   }
 
+  std::string getDataForLogging() const {
+    return std::string("seed: ") + std::to_string(d_seed);
+  }
+
 private:
   std::uint_fast32_t d_seed;
   std::minstd_rand   d_gen;

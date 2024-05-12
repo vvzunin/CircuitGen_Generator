@@ -124,6 +124,9 @@ public:
 
   std::string               getName() const;
 
+  /// @brief getDataForLogging This method returns all needed data for log file
+  std::string getDataForLogging() const;
+
   /// @brief needToUpdateLevel it is used to check whether the vertex levels
   /// in the graph need to be updated
   /// @return bool - true if updating the vertex levels in the graph is
