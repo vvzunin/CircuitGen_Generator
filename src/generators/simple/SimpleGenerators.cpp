@@ -381,31 +381,33 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
   // minimum gates number of a logical element, so we can use inputs in such
   // case
   // b) need to swap gates
-  std::vector<VertexPtr> inputs = graph->getVerticesByType(VertexTypes::input);
+  std::vector<VertexPtrWeak> inputs;
+  inputs.reserve(i_inputs);
+
+  for (auto i : graph->getVerticesByType(VertexTypes::input)) {
+    inputs.push_back(i);
+  }
+  auto      curGates(inputs);
 
   // TODO what if we will need to use n-gate elements, should we add consts
   // usage?
 
-  int                    currIndex = i_inputs;
-  int                    prevIndex = 0;
-  int                    curLen    = 0;
+  int       currIndex = i_inputs;
+  int       curLen    = 0;
   // we need lowest border as d_maxGateNumber, and if it is possible,
   // we set it (it changes speed of generation)
-  u_int32_t              c_max     = i_maxElements > d_maxGateNumber
-                                       ? std::max(d_maxGateNumber, (int)i_minElements)
-                                       : i_minElements;
+  u_int32_t c_max     = i_maxElements > d_maxGateNumber
+                          ? std::max(d_maxGateNumber, (int)i_minElements)
+                          : i_minElements;
 
   for (int i = 1; i < maxLevel; ++i) {
-    int                    position  = 0;
     // how many elements would be at this level
-    int                    elemLevel = i_maxElements > 1
-                                         ? d_randGenerator.getRandInt(c_max, i_maxElements, true)
-                                         : i_maxElements;
+    int                        elemLevel = i_maxElements > 1
+                                             ? d_randGenerator.getRandInt(c_max, i_maxElements, true)
+                                             : i_maxElements;
 
     // write allowed gates to be used as parent
-    std::vector<VertexPtr> curGates;
-    for (int val = prevIndex; val < currIndex; ++val)
-      curGates.push_back(graph->getVerticeByIndex(val));
+    std::vector<VertexPtrWeak> futureGates;
     curLen += curGates.size();
 
     for (int j = 0; j < elemLevel; ++j) {
@@ -430,10 +432,11 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
         );
       }
 
-      if (gatesNumber == 1) {
-        int       child1    = d_randGenerator.getRandInt(0, currIndex);
+      VertexPtr newVertex = graph->addGate(operation);
 
-        VertexPtr newVertex = graph->addGate(operation);
+      if (gatesNumber == 1) {
+        int child1 = d_randGenerator.getRandInt(0, currIndex);
+
         graph->addEdge(graph->getVerticeByIndex(child1), newVertex);
       } else {
         // parents vertices to be added for a new one
@@ -443,7 +446,7 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
         auto idx = curGates.begin() + fromWhichShuffle;
 
         // add first parent
-        parents.push_back(*idx);
+        parents.push_back((*idx).lock());
         // move to second
         // it's impossible to have 1-element vector here
         // else we would have curLen = 1 and only buf/not
@@ -452,8 +455,6 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
 
         // add multiple parents
         for (int l = 1; l < gatesNumber; ++l, ++idx) {
-          parents.push_back(*idx);
-
           // if we are at the end of vector
           if (idx == curGates.end()) {
             // and we added some vertices, e.g. we are not on the first level
@@ -468,36 +469,37 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
             } else {
               idx = curGates.begin();
             }
-          } else if (idx == inputs.end())
+          } else if (idx == inputs.end()) {
             idx = curGates.begin();
+          }
+
+          parents.push_back((*idx).lock());
         }
 
-        VertexPtr newVertex = graph->addGate(operation);
         graph->addEdges(parents, newVertex);
       }
-      ++position;
+      futureGates.push_back(newVertex);
     }
-    // if something was added to graph, we move parent parts of
-    if (position) {
-      prevIndex += currIndex - prevIndex;
-      currIndex += position;
-    }
-    // at the beginning it is zero. So, if it stayed zero, we are still using
+
+    // at the beginning it is one. So, if it stayed zero, we are still using
     // inputs as gates. So we do not change it's value
-    if (prevIndex) {
+    if (!(i ^ 1)) {
       curLen = inputs.size();
     }
 
+    curGates = futureGates;
+    futureGates.clear();
     // std::clog << (float)i / (float)maxLevel * 100 << "%" << std::endl;
   }
 
   // std::clog << "writing out gates" << std::endl;
   for (int i = 0; i < i_outputs; ++i) {
-    int child1          = d_randGenerator.getRandInt(prevIndex, currIndex);
+    auto child1 =
+        curGates[d_randGenerator.getRandInt(0, curGates.size())].lock();
     expr                = "f" + std::to_string(i + 1);
     VertexPtr newVertex = graph->addOutput(expr);
 
-    graph->addEdge(graph->getVerticeByIndex(child1), newVertex);
+    graph->addEdge(child1, newVertex);
   }
 
   // std::clog << "writing out gates ended" << std::endl;
@@ -510,12 +512,13 @@ GraphPtr SimpleGenerators::generatorNumOperation(
     std::map<Gates, int> i_logicOper,
     bool                 i_leaveEmptyOut
 ) {
-  int                      sumOper = 0, maxLvl;
-  std::string              name;
-  VertexPtr                name_ptr;
-  std::map<Gates, int>     copyLogicOper;
-  std::map<VertexPtr, int> levelName;
-  std::vector<VertexPtr>   nameOut, nameInput;
+  int                              sumOper = 0, maxLvl;
+  std::string                      name;
+  VertexPtr                        name_ptr;
+  std::map<Gates, int>             copyLogicOper;
+  std::map<std::string, int>       levelName;
+  std::map<std::string, VertexPtr> levelNamePtr;
+  std::vector<VertexPtr>           nameOut, nameInput;
 
   for (const auto& elem : i_logicOper) {
     std::cout << elem.first << " " << elem.second << "\n";
@@ -526,11 +529,12 @@ GraphPtr SimpleGenerators::generatorNumOperation(
   GraphPtr graph(new OrientedGraph());
 
   for (int i = 0; i < i_input; ++i) {
-    name                = "x" + std::to_string(i);
-    name_ptr            = graph->addInput(name);
+    name                              = "x" + std::to_string(i);
+    name_ptr                          = graph->addInput(name);
 
     // TODO and how can it be changed?
-    levelName[name_ptr] = name_ptr->getLevel();
+    levelName[name_ptr->getName()]    = name_ptr->getLevel();
+    levelNamePtr[name_ptr->getName()] = name_ptr;
     if (!i_leaveEmptyOut)
       nameInput.push_back(name_ptr);
   }
@@ -553,13 +557,17 @@ GraphPtr SimpleGenerators::generatorNumOperation(
     --copyLogicOper[oper];
 
     if (oper == Gates::GateNot || oper == Gates::GateBuf) {
-      VertexPtr ver1 = randomGenerator(levelName);
+      std::string ver1_name = randomGenerator(levelName);
+      auto        ver1      = levelNamePtr[ver1_name];
+
       // name = d_settings->getLogicOperation(oper).first + "(" + ver1 + ")";
-      name_ptr       = graph->addGate(oper);
+      name_ptr              = graph->addGate(oper);
       graph->addEdge(ver1, name_ptr);
     } else {
-      VertexPtr ver1 = randomGenerator(levelName);
-      VertexPtr ver2 = randomGenerator(levelName);
+      std::string ver1_name = randomGenerator(levelName);
+      std::string ver2_name = randomGenerator(levelName);
+      VertexPtr   ver1      = levelNamePtr[ver1_name];
+      VertexPtr   ver2      = levelNamePtr[ver2_name];
       // name = "(" + ver1 + ") " + d_settings->getLogicOperation(oper).first +
       //        "(" + ver2 + ")";
 
@@ -568,9 +576,10 @@ GraphPtr SimpleGenerators::generatorNumOperation(
       //                           d_settings->getLogicOperation(oper).first +
       //                           "(" + ver1 + ")";
 
-      name_ptr       = graph->addGate(oper);
+      name_ptr              = graph->addGate(oper);
       graph->addEdges({ver1, ver2}, name_ptr);
-      levelName[name_ptr] = name_ptr->getLevel();
+      levelName[name_ptr->getName()]    = name_ptr->getLevel();
+      levelNamePtr[name_ptr->getName()] = name_ptr;
     }
 
     if (!copyLogicOper[oper])
@@ -580,7 +589,7 @@ GraphPtr SimpleGenerators::generatorNumOperation(
   while ((nameOut.size() > 0)
          & ((levelName.size() > 0 || i_leaveEmptyOut == false))) {
     if (levelName.size() > 0) {
-      std::vector<VertexPtr> help;
+      std::vector<std::string> help;
       maxLvl = maxValueInMap(levelName);
 
       for (const auto& [key, value] : levelName) {
@@ -591,7 +600,7 @@ GraphPtr SimpleGenerators::generatorNumOperation(
       while (help.size() > 0 && nameOut.size() > 0) {
         int R1 = d_randGenerator.getRandInt(0, help.size());
         int R2 = d_randGenerator.getRandInt(0, nameOut.size());
-        graph->addEdge(help[R1], nameOut[R2]);
+        graph->addEdge(levelNamePtr[help[R1]], nameOut[R2]);
         levelName.erase(help[R1]);
         help.erase(help.begin() + R1);
         nameOut.erase(nameOut.begin() + R2);

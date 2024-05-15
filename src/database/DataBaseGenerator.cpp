@@ -10,11 +10,11 @@
 
 #include <additional/AuxiliaryMethods.hpp>
 #include <additional/filesTools/FilesTools.hpp>
-#include <additional/threadPool/ThreadPool.hpp>
 #include <baseStructures/Parser.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
+#include <CircuitGenGenerator/ThreadPool.hpp>
 #include <generators/Genetic/GeneticParameters.h>
 #include <generators/Genetic/GenGenerator.h>
 #include <generators/simple/SimpleGenerators.hpp>
@@ -24,7 +24,7 @@ using namespace Threading;
 
 void DataBaseGenerator::runGeneratorByDefault(
     const DataBaseGeneratorParameters& i_dbgp,
-    bool                               parallel,
+    uint8_t                            parallel,
     bool                               createIdDirectories
 ) {
   GenerationTypes gt = i_dbgp.getGenerationType();
@@ -76,7 +76,7 @@ void DataBaseGenerator::runGeneratorByDefault(
   // we create int sequence, which would give us diffetent seeds for each repeat
   std::generate(seeds.begin(), seeds.end(), randGeneratorLambda);
 
-  ThreadPool pool(d_settings->getNumThread());
+  ThreadPool pool(parallel);
 
   for (int i = i_dbgp.getMinInputs(); i <= i_dbgp.getMaxInputs(); ++i) {
     for (int j = i_dbgp.getMinOutputs(); j <= i_dbgp.getMaxOutputs(); ++j) {
@@ -84,7 +84,7 @@ void DataBaseGenerator::runGeneratorByDefault(
       d_parameters.setInputs(i);
       d_parameters.setOutputs(j);
 
-      if (parallel) {
+      if (parallel > 1) {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           d_parameters.setIteration(tt);
           d_parameters.setName(
@@ -93,8 +93,7 @@ void DataBaseGenerator::runGeneratorByDefault(
           );
 
           GenerationParameters param = d_parameters.getGenerationParameters();
-          param.setSeed(*iter);
-          ++*iter;
+          param.setSeed(*iter + i + j);
 
           auto runGenerator = [generator, param]() { generator(param); };
 
@@ -128,7 +127,7 @@ void DataBaseGenerator::runGeneratorByDefault(
 
 ResultGraph DataBaseGenerator::generateTypeForGraph(
     const DataBaseGeneratorParameters& i_dbgp,
-    bool                               parallel,
+    uint8_t                            parallel,
     bool                               createIdDirectories
 ) {
   d_type = ReturnType::GRAPH;
@@ -140,7 +139,7 @@ ResultGraph DataBaseGenerator::generateTypeForGraph(
 
 ResultPath DataBaseGenerator::generateTypeForPath(
     const DataBaseGeneratorParameters& i_dbgp,
-    bool                               parallel,
+    uint8_t                            parallel,
     bool                               createIdDirectories
 ) {
   d_type = ReturnType::PATH;
@@ -152,7 +151,7 @@ ResultPath DataBaseGenerator::generateTypeForPath(
 
 void DataBaseGenerator::generateTypeDefault(
     const DataBaseGeneratorParameters& i_dbgp,
-    bool                               parallel,
+    uint8_t                            parallel,
     bool                               createIdDirectories
 ) {
   d_type = ReturnType::DEFAULT;

@@ -27,7 +27,7 @@ void runGeneration(
     std::function<void(
         DataBaseGenerator&,
         const DataBaseGeneratorParameters&,
-        bool,
+        uint8_t,
         bool
     )>          callable
 ) {
@@ -560,13 +560,18 @@ void runGeneration(
           ->setDatasetPath(static_cast<std::string>(data["dataset_path"]));
     }
 
-    auto start = high_resolution_clock::now();
-
+    auto    start = high_resolution_clock::now();
+    uint8_t parallel =
+        data.contains("multithread") ? (uint8_t) data["multithread"] : 1;
+    if (!parallel) {
+      parallel = 1;
+    }
+    
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
     callable(
         generator,
         dbgp,
-        data.contains("multithread") ? (bool)data["multithread"] : false,
+        parallel,
         data.contains("create_id_directories")
             ? (bool)data["create_id_directories"]
             : true
@@ -586,8 +591,8 @@ std::vector<ResultGraph> runGenerationFromJsonForGraph(std::string json_path) {
   auto                     runGeneratorForGraph = [&finalRes](
                                   DataBaseGenerator&                 generator,
                                   const DataBaseGeneratorParameters& dbgp,
-                                  bool multithread,
-                                  bool create_id_directories
+                                  uint8_t multithread,
+                                  bool    create_id_directories
                               ) {
     finalRes.push_back(
         generator.generateTypeForGraph(dbgp, multithread, create_id_directories)
@@ -604,8 +609,8 @@ std::vector<ResultPath> runGenerationFromJsonForPath(std::string json_path) {
   auto                    runGeneratorForGraph = [&finalRes](
                                   DataBaseGenerator&                 generator,
                                   const DataBaseGeneratorParameters& dbgp,
-                                  bool multithread,
-                                  bool create_id_directories
+                                  uint8_t multithread,
+                                  bool    create_id_directories
                               ) {
     finalRes.push_back(
         generator.generateTypeForPath(dbgp, multithread, create_id_directories)
@@ -620,7 +625,7 @@ std::vector<ResultPath> runGenerationFromJsonForPath(std::string json_path) {
 void runGenerationFromJson(std::string json_path) {
   auto runGeneratorForGraph = [](DataBaseGenerator&                 generator,
                                  const DataBaseGeneratorParameters& dbgp,
-                                 bool                               multithread,
+                                 uint8_t                            multithread,
                                  bool create_id_directories) {
     generator.generateTypeDefault(dbgp, multithread, create_id_directories);
   };

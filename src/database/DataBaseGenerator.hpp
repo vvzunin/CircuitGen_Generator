@@ -59,19 +59,19 @@ public:
 
   ResultGraph generateTypeForGraph(
       const DataBaseGeneratorParameters& i_gp,
-      bool                               parallel            = true,
+      uint8_t                            parallel            = 1,
       bool                               createIdDirectories = true
   );
 
   ResultPath generateTypeForPath(
       const DataBaseGeneratorParameters& i_gp,
-      bool                               parallel            = true,
+      uint8_t                            parallel            = 1,
       bool                               createIdDirectories = true
   );
 
   void generateTypeDefault(
       const DataBaseGeneratorParameters& i_gp,
-      bool                               parallel            = true,
+      uint8_t                            parallel            = 1,
       bool                               createIdDirectories = true
   );
 
@@ -97,7 +97,7 @@ private:
 
   void                        runGeneratorByDefault(
                              const DataBaseGeneratorParameters& i_gp,
-                             bool                               parallel = true,
+                             uint8_t                            parallel = 1,
                              bool                               createIdDirectories = true
                          );
 
