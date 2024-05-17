@@ -56,6 +56,31 @@ private:
   int d_maxElements = 0;
 };
 
+class GeneratorRandLevelExperimentalParameters {
+public:
+  int  getMinLevel() const { return d_minLevel; }
+
+  void setMinLevel(int i_minLevel) { d_minLevel = i_minLevel; }
+
+  int  getMaxLevel() const { return d_maxLevel; }
+
+  void setMaxLevel(int i_maxLevel) { d_maxLevel = i_maxLevel; }
+
+  int  getMinElements() const { return d_minElements; }
+
+  void setMinElements(int i_minElements) { d_minElements = i_minElements; }
+
+  int  getMaxElements() const { return d_maxElements; }
+
+  void setMaxElements(int i_maxElements) { d_maxElements = i_maxElements; }
+
+private:
+  int d_minLevel    = 0;
+  int d_maxLevel    = 0;
+  int d_minElements = 0;
+  int d_maxElements = 0;
+};
+
 class GeneratorNumOperationParameters {
 public:
   int getLogicOper(const Gates& i_op) const {
@@ -174,11 +199,9 @@ public:
   GenerationParameters(
       const std::string& i_name,
       const std::string& i_requestId,
-      bool               i_makeGraphML        = false
+      bool               i_makeGraphML = false
   ) :
-    d_name(i_name),
-    d_requestId(i_requestId),
-    d_makeGraphML(i_makeGraphML) {};
+    d_name(i_name), d_requestId(i_requestId), d_makeGraphML(i_makeGraphML) {};
 
   std::string getName() const { return d_name; }
 
@@ -186,19 +209,19 @@ public:
 
   std::string getRequestId() const { return d_requestId; }
 
-  int  getInputs() const { return d_inputs; }
+  int         getInputs() const { return d_inputs; }
 
-  void setInputs(int i_inputs) { d_inputs = i_inputs; }
+  void        setInputs(int i_inputs) { d_inputs = i_inputs; }
 
-  int  getOutputs() const { return d_outputs; }
+  int         getOutputs() const { return d_outputs; }
 
-  void setOutputs(int i_outputs) { d_outputs = i_outputs; }
+  void        setOutputs(int i_outputs) { d_outputs = i_outputs; }
 
-  int  getIteration() const { return d_iteration; }
+  int         getIteration() const { return d_iteration; }
 
-  void setIteration(int i_iteration) { d_iteration = i_iteration; }
+  void        setIteration(int i_iteration) { d_iteration = i_iteration; }
 
-  bool getMakeGraphML() const { return d_makeGraphML; }
+  bool        getMakeGraphML() const { return d_makeGraphML; }
 
   std::uint_fast32_t getSeed() const { return d_seed; }
 
@@ -222,6 +245,9 @@ public:
   }
   GeneratorRandLevelParameters getRandLevel() const {
     return d_generatorRandLevelParameters;
+  }
+  GeneratorRandLevelExperimentalParameters getRandLevelExperimental() const {
+    return d_generatorRandLevelExperimentalParameters;
   }
   GeneratorNumOperationParameters getNumOperations() const {
     return d_generatorNumOperationParameters;
@@ -252,6 +278,17 @@ public:
     d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
     d_generatorRandLevelParameters.setMinElements(i_minElements);
     d_generatorRandLevelParameters.setMaxElements(i_maxElements);
+  }
+  void setRandLevelExperimentalParameters(
+      int i_minLevel,
+      int i_maxLevel,
+      int i_minElements,
+      int i_maxElements
+  ) {
+    d_generatorRandLevelExperimentalParameters.setMinLevel(i_minLevel);
+    d_generatorRandLevelExperimentalParameters.setMaxLevel(i_maxLevel);
+    d_generatorRandLevelExperimentalParameters.setMinElements(i_minElements);
+    d_generatorRandLevelExperimentalParameters.setMaxElements(i_maxElements);
   }
   void setNumOperationParameters(
       const std::map<Gates, int>& i_m,
@@ -384,10 +421,12 @@ private:
   CNNFromTruthTableParameters             d_cnfFromTruthTableParameters;
   zhegalkinFromTruthTableParameters       d_ZhegalkinFromTruthTableParameters;
   GeneratorRandLevelParameters            d_generatorRandLevelParameters;
-  GeneratorNumOperationParameters         d_generatorNumOperationParameters;
-  GeneratorSummatorParameters             d_generatorSummatorParameters;
-  GeneratorComparisonParameters           d_generatorComparisonParameters;
-  GeneratorSubtractorParameters           d_generatorSubtractorParameters;
-  GeneratorALUParameters                  d_generatorALUParameters;
-  GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
+  GeneratorRandLevelExperimentalParameters
+                                  d_generatorRandLevelExperimentalParameters;
+  GeneratorNumOperationParameters d_generatorNumOperationParameters;
+  GeneratorSummatorParameters     d_generatorSummatorParameters;
+  GeneratorComparisonParameters   d_generatorComparisonParameters;
+  GeneratorSubtractorParameters   d_generatorSubtractorParameters;
+  GeneratorALUParameters          d_generatorALUParameters;
+  GeneticParameters               d_geneticParameters = GeneticParameters(2, 3);
 };

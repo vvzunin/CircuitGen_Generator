@@ -24,22 +24,12 @@ inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>> Recombinati
 )
 {
   RecombinationTypes help_1 = i_recombinationParameters.getRecombinationType();
-  RecombinationTypes help_2 = CrossingEachExitInTurnMany;
-  if (help_1 == CrossingEachExitInTurnMany){
-    std::cout << "1" << std::endl;
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> newPopulation = RecombinationsTruthTable::RecombinationCrossingEachExitInTurnMany(i_recombinationParameters, i_population);
-
+  if (i_recombinationParameters.getRecombinationType() == RecombinationTypes::CrossingEachExitInTurnMany)
     return RecombinationsTruthTable::RecombinationCrossingEachExitInTurnMany(
       i_recombinationParameters,
       i_population
     );
-  }
-  else {
-    std::cout << "2"<< std::endl;
-  }
-  std::cout << "3"<< std::endl;
-    
-  if (i_recombinationParameters.getRecombinationType() == RecombinationTypes::CrossingUniform)
+  else if (i_recombinationParameters.getRecombinationType() == RecombinationTypes::CrossingUniform)
     return RecombinationsTruthTable::RecombinationCrossingUniform(
       i_recombinationParameters,
       i_population
@@ -59,4 +49,7 @@ inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>> Recombinati
       i_recombinationParameters,
       i_population
     );
+
+  std::clog << "UNUSUAL RecombinationType IN RecombinationTypes" << std::endl;
+  exit(1);
 }

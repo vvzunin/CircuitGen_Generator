@@ -39,5 +39,6 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationType(
         i_mutationParameters, i_population
     );
 
-  std::cout << "UNRECOGNIZED MtationType AT Mutation.cpp" << std::endl;
+  std::cout << "UNRECOGNIZED MutationType at Mutation.cpp" << std::endl;
+  exit(1);
 }

@@ -4,7 +4,7 @@ include(cmake/prelude.cmake)
 
 project(
     CircuitGenGenerator
-    VERSION 0.1.0
+    VERSION 1.1.0
     DESCRIPTION "Program for circuits dataset generation"
     HOMEPAGE_URL "https://github.com/vvzunin/CircuitGen_Generator"
     LANGUAGES CXX
@@ -42,6 +42,8 @@ set(PUBLIC_HEADERS
 )
 
 set(SOURCES
+  src/CircuitGenGenerator.cpp
+
   src/additional/AuxiliaryMethods.cpp
   src/additional/filesTools/FilesTools.cpp
   src/additional/threadPool/ThreadPool.cpp
@@ -76,7 +78,7 @@ set(SOURCES
   src/settings/Settings.cpp
 )
 
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES src/CircuitGenGenerator.cpp ${SOURCES})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCES})
 
 add_library(
     CircuitGenGenerator_lib
@@ -135,7 +137,7 @@ list(APPEND PUBLIC_HEADERS
 #     "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
 
 include(CMakePackageConfigHelpers)
-target_sources(CircuitGenGenerator_lib PRIVATE src/CircuitGenGenerator.cpp ${SOURCES})
+target_sources(CircuitGenGenerator_lib PRIVATE ${SOURCES})
 
 
 target_include_directories(

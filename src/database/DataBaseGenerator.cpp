@@ -23,9 +23,9 @@ using namespace std::chrono;
 using namespace Threading;
 
 void DataBaseGenerator::generateType(
-    const DataBaseGeneratorParameters& i_dbgp,
-    bool                               parallel,
-    bool                               createIdDirectories
+    DataBaseGeneratorParameters& i_dbgp,
+    bool                         parallel,
+    bool                         createIdDirectories
 ) {
   GenerationTypes gt = i_dbgp.getGenerationType();
   std::function<void(const GenerationParameters&)> generator =
@@ -201,10 +201,10 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
 
   auto     start = high_resolution_clock::now();
   GraphPtr graph = generator.generatorRandLevelExperimental(
-      i_param.getRandLevel().getMinLevel(),
-      i_param.getRandLevel().getMaxLevel(),
-      i_param.getRandLevel().getMinElements(),
-      i_param.getRandLevel().getMaxElements(),
+      i_param.getRandLevelExperimental().getMinLevel(),
+      i_param.getRandLevelExperimental().getMaxLevel(),
+      i_param.getRandLevelExperimental().getMinElements(),
+      i_param.getRandLevelExperimental().getMaxElements(),
       i_param.getInputs(),
       i_param.getOutputs()
   );

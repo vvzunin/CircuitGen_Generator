@@ -83,7 +83,6 @@ enum GenerationTypes {
 ///
 ///
 
-
 // TODO: Сделать считывание и сохранение из JSON файла.
 class Settings {
 protected:

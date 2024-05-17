@@ -27,4 +27,7 @@ inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>> SelectionTy
       i_selectionParameters,
       i_population
     );
+
+  std::clog << "UNUSUAL SelectionType IN SelectionTypes" << std::endl;
+  exit(1);
 }

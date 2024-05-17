@@ -1,16 +1,16 @@
 [
   {
+    "multithread": true,
+
     "GenerationParameters": {
-      "seed": 20,
-      
-      "type_of_generation": "Genetic",
-      
+      "seed": 20,      
+      "type_of_generation": "Genetic",      
       "min_in": 4,
       "max_in": 5,
       "min_out": 4,
       "max_out": 5,
       "repeat_n": 1,
-      "multithread": true,
+      
       "gates_inputs_info": {
         "and": [2, 8],
         "nand": [2],
@@ -28,7 +28,7 @@
       "make_graphml": true
     },
 
-    "FromTruthTable": {
+    "FromRandomTruthTable": {
       "CNFF": false,
       "CNFT": true,
       "Zhegalkin": true
