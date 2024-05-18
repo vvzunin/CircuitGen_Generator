@@ -600,7 +600,7 @@ std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
         sg->toGraphML(i_indent + 4, i_prefix + "%::")
     );
 
-    // vertexesInputs, vertexesOutputs, graphInputs, graphOutputs
+    // verticesInputs, verticesOutputs, graphInputs, graphOutputs
     const auto& gInputs  = sg->d_vertexes.at(VertexTypes::input);
     const auto& gOutputs = sg->d_vertexes.at(VertexTypes::output);
     const auto& vInputs  = sg->d_subGraphsInputsPtr.at(d_graphID);
@@ -643,6 +643,137 @@ std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
 }
 
 bool OrientedGraph::toGraphML(std::ofstream& fileStream) const {
-  fileStream << this->toGraphML();
+  fileStream << this->toGraphMLABCD();
   return true;
+}
+
+std::string OrientedGraph::toGraphMLPseudoABCD() const {
+  using namespace AuxMethods;  // format() and replacer()
+
+  if (!d_vertexes.at(VertexTypes::subGraph).empty()) {
+    throw std::invalid_argument(
+        "GraphMLPseudoABCD: subGraphs are not allowed in this format yet."
+    );
+  }
+
+  std::string                     nodes, edges, nodeType, actualName, sinkName;
+  std::map<std::string, uint32_t> nodeNames;
+  uint32_t                        nodeCounter = 0;
+
+  for (const auto& [vertexType, vertexVector] : d_vertexes) {
+    switch (vertexType) {
+      case VertexTypes::input:
+        nodeType = "0";
+        break;
+      case VertexTypes::output:
+        nodeType = "1";
+        break;
+    }
+
+    for (const auto& v : vertexVector) {
+      // every "gate" and "const" vertex has subtypes
+      switch (vertexType) {
+        case VertexTypes::constant:
+          nodeType = "100" + std::string(1, v->getValue());
+          break;
+        case VertexTypes::gate:
+          nodeType = gateToABCDType.at(v->getGate());
+          break;
+      }
+      actualName = v->getName();
+      if (nodeNames.find(actualName) == nodeNames.end()) {
+        nodeNames[actualName] = nodeCounter++;
+      }
+      nodes += format(
+          pseudoABCDNodeTemplate, nodeNames.at(actualName), actualName, nodeType
+      );
+
+      for (const auto& sink : v->getOutConnections()) {
+        sinkName = sink->getName();
+        if (nodeNames.find(sinkName) == nodeNames.end()) {
+          nodeNames[sinkName] = nodeCounter++;
+        }
+
+        edges += format(
+            pseudoABCDEdgeTemplate,
+            nodeNames.at(actualName),
+            nodeNames.at(sinkName)
+        );
+      }
+    }
+  }
+
+  return format(pseudoABCDMainTemplate, nodes + edges);
+}
+
+std::string OrientedGraph::toGraphMLABCD() const {
+  using namespace AuxMethods;  // format() and replacer()
+
+  if (!d_vertexes.at(VertexTypes::subGraph).empty()) {
+    throw std::invalid_argument(
+        "GraphMLABCD: subGraphs are not allowed in this format yet."
+    );
+  }
+
+  std::string                     nodes, edges, nodeType, actualName, sinkName;
+  std::map<std::string, uint32_t> nodeNames;
+  uint32_t                        nodeCounter = 0;
+
+  for (const auto& [vertexType, vertexVector] : d_vertexes) {
+    switch (vertexType) {
+      case VertexTypes::input:
+        nodeType = "0";
+        break;
+      case VertexTypes::output:
+        nodeType = "1";
+        break;
+    }
+
+    for (const auto& v : vertexVector) {
+      // every "gate" and "const" vertex has subtypes
+      switch (vertexType) {
+        case VertexTypes::constant:
+          nodeType = "100" + std::string(1, v->getValue());
+          break;
+        case VertexTypes::gate:
+          Gates vGate = v->getGate();
+          if (vGate == Gates::GateBuf || vGate == Gates::GateNot) {
+            continue;
+          }
+          nodeType = gateToABCDType.at(vGate);
+          break;
+      }
+
+      actualName = v->getName();
+      if (nodeNames.find(actualName) == nodeNames.end()) {
+        nodeNames[actualName] = nodeCounter++;
+      }
+
+      for (const auto& sink : v->getOutConnections()) {
+        Gates sinkGate = sink->getGate();
+        if (sinkGate == Gates::GateBuf || sinkGate == Gates::GateNot) {
+          continue;
+        }
+        else {
+          sinkName = sink->getName();
+          if (nodeNames.find(sinkName) == nodeNames.end()) {
+            nodeNames[sinkName] = nodeCounter++;
+          }
+
+          edges += format(
+              ABCDEdgeTemplate,
+              nodeNames.at(actualName),
+              nodeNames.at(sinkName)
+          );
+        }
+      }
+
+            nodes += format(
+          ABCDNodeTemplate, nodeNames.at(actualName), actualName, nodeType
+      );
+
+    }
+  }
+
+  return format(ABCDMainTemplate, nodes + edges);
 }

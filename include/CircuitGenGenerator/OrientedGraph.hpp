@@ -384,6 +384,8 @@ public:
   bool        toGraphML(std::ofstream& i_fileStream) const;
   std::string toGraphML(int i_indent = 0, const std::string& i_prefix = "")
       const;
+  std::string            toGraphMLPseudoABCD() const;
+  std::string            toGraphMLABCD() const;
   // visualize
   // calcGraph
 
