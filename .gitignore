@@ -12,3 +12,5 @@ CMakeLists.txt.user
 CMakeUserPresets.json
 dataset/
 settings.json
+run.sh
+include/path/
