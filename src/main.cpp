@@ -16,13 +16,26 @@
 using namespace std::chrono;
 
 INITIALIZE_EASYLOGGINGPP
-
+std::string array_pop(char**& array, int& size);
+using namespace CircuitGenGenerator;
+void set_flag(const std::string& i_flag);
 
 int main(int argc, char **argv) {
-  el::Configurations conf("./include/path/to/my-conf.conf");
-  el::Loggers::reconfigureLogger("default", conf);
-  el::Loggers::reconfigureAllLoggers(conf);
-  LOG(INFO) << "Launch of generation.";
+  set_flag(array_pop(argv, argc));
+  el::Configurations logger_config_for_database_generator_parameters;
+  logger_config_for_database_generator_parameters.setToDefault();
+  logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::Filename, "./include/path/to/log_for_database_generator_parameters.log");
+  logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::Format, "%datetime %level %msg");
+  el::Logger* logger_for_database_generator_parameters = el::Loggers::getLogger("logger_for_database_generator_parameters");
+  logger_for_database_generator_parameters->configure(logger_config_for_database_generator_parameters);
+  // Logging for GenerationParameters
+  el::Configurations logger_config_for_generation_parameters;
+  logger_config_for_generation_parameters.setToDefault();
+  logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::Filename, "./include/path/to/log_for_generation_parameters.log");
+  logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::Format, "%datetime %level %msg");
+  el::Logger* logger_for_generation_parameters = el::Loggers::getLogger("logger_for_generation_parameters");
+  logger_for_generation_parameters->configure(logger_config_for_generation_parameters);
+
   std::string json_path;
   // Use getopt to parse command line arguments
   const char *const short_opts = "j:n:";

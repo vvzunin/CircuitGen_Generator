@@ -32,7 +32,8 @@ void runGeneration(
         const DataBaseGeneratorParameters&,
         bool,
         bool
-    )>          callable
+    )>          callable,
+    const std::string& flag = ""
 ) {
   std::ifstream  f(json_path);
   nlohmann::json DATA = nlohmann::json::parse(f);
@@ -198,8 +199,9 @@ void runGeneration(
         makeGraphML
     );
 
-    LOG(INFO) << "GenerationParameters: " << gp.getDataForLogging();
-
+    //LOG(INFO) << "GenerationParameters: " << gp.getDataForLogging();
+    if (flag == "INFO") 
+      CLOG(INFO, "logger_for_generation_parameters") << gp.getDataForLogging();
     gp.setGatesInputInfo(gatesInputsInfo);
     // ------------------------------------------------------------------------
 
@@ -558,15 +560,18 @@ void runGeneration(
         minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp
     );
 
-    LOG(INFO) << "DataBaseGeneratorParameters: " << dbgp.getDataForLogging();
-
+    //LOG(INFO) << "DataBaseGeneratorParameters: " << dbgp.getDataForLogging();
+    if (flag == "INFO") 
+      CLOG(INFO, "logger_for_database_generator_parameters") << dbgp.getDataForLogging();
+    
     DataBaseGenerator generator(dbgp);
 
     if (data.contains("dataset_path")) {
       Settings::getInstance("CircuitGenGenerator")
           ->setDatasetPath(static_cast<std::string>(data["dataset_path"]));
     }
-    LOG(INFO) << "DataBaseGenerator: " << dbgp.getDataForLogging();
+    
+    //LOG(INFO) << "DataBaseGenerator: " << dbgp.getDataForLogging();
 	
     auto start = high_resolution_clock::now();
 
@@ -587,7 +592,10 @@ void runGeneration(
   }
 }
 
+
 namespace CircuitGenGenerator {
+  static std::string flag = "";
+  
 std::vector<ResultGraph> runGenerationFromJsonForGraph(std::string json_path) {
   std::vector<ResultGraph> finalRes;
 
@@ -625,6 +633,7 @@ std::vector<ResultPath> runGenerationFromJsonForPath(std::string json_path) {
   return finalRes;
 }
 
+// Why did we create redundant function runGeneration if we just can union both of them and get runGenerationFromJson?
 void runGenerationFromJson(std::string json_path) {
   auto runGeneratorForGraph = [](DataBaseGenerator&                 generator,
                                  const DataBaseGeneratorParameters& dbgp,
@@ -633,6 +642,20 @@ void runGenerationFromJson(std::string json_path) {
     generator.generateTypeDefault(dbgp, multithread, create_id_directories);
   };
 
-  runGeneration(json_path, runGeneratorForGraph);
+  runGeneration(json_path, runGeneratorForGraph, flag);
 }
 }  // namespace CircuitGenGenerator
+
+std::string array_pop(char**& array, int& size) {
+    char **without_last_element = new char*[size - 1];
+    for (int i = 0; i < size - 1; i++)
+        without_last_element[i] = array[i];
+    
+    std::string flag = array[size - 1];
+    array = without_last_element;
+    size = size - 1;
+    return flag;
+}  
+void set_flag(const std::string& i_flag) {
+        CircuitGenGenerator::flag = i_flag;
+    }
