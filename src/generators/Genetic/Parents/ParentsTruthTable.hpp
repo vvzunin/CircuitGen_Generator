@@ -10,23 +10,23 @@
 
 #include "../ChronosomeType.h"
 
-inline std::vector<int> GetHemming(
-    int                                                           i_t,
+inline std::vector<int32_t> GetHemming(
+    int32_t                                                       i_t,
     std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
-  int                            count = 0;
+  int32_t                        count = 0;
   std::vector<std::vector<bool>> p1 =
       i_population[i_t].getChronosomeType().getOutTable();
-  std::map<int, int> dict;
-  std::vector<int>   res;
+  std::map<int32_t, int32_t> dict;
+  std::vector<int32_t>       res;
 
-  for (int i = 0; i < i_population.size(); ++i) {
+  for (size_t i = 0; i < i_population.size(); ++i) {
     if (i != i_t) {
       count = 0;
       std::vector<std::vector<bool>> p2 =
           i_population[i].getChronosomeType().getOutTable();
-      for (int j = 0; j < p1.size(); ++j) {
-        for (int k = 0; k < p1[0].size(); ++k) {
+      for (size_t j = 0; j < p1.size(); ++j) {
+        for (size_t k = 0; k < p1[0].size(); ++k) {
           if (p2[j][k] == p1[j][k])  // what? is it Hemming dist?
             ++count;
         }
@@ -43,12 +43,12 @@ inline std::vector<int> GetHemming(
   return res;
 };
 
-inline std::vector<int> ParentsPanmixia(
+inline std::vector<int32_t> ParentsPanmixia(
     ParentsParameters i_parentsParameters,
     std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   std::srand(std::time(0));
-  int parent1 = 0, parent2 = 0;
+  int32_t parent1 = 0, parent2 = 0;
 
   while (i_population.size() > 2 && parent1 == parent2) {
     parent1 = rand() % i_population.size();
@@ -58,44 +58,44 @@ inline std::vector<int> ParentsPanmixia(
   return {parent1, parent2};
 }
 
-inline std::vector<int> ParentsInbrinding(
+inline std::vector<int32_t> ParentsInbrinding(
     ParentsParameters i_parentsParameters,
     std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   std::srand(std::time(0));
 
-  int parent1 = rand() % i_population.size();
-  int parent2 = GetHemming(parent1, i_population).back();
+  int32_t parent1 = rand() % i_population.size();
+  int32_t parent2 = GetHemming(parent1, i_population).back();
 
   return {parent1, parent2};
 }
 
-inline std::vector<int> ParentsOutbrinding(
+inline std::vector<int32_t> ParentsOutbrinding(
     ParentsParameters i_parentsParameters,
     std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   std::srand(std::time(0));
 
-  int parent1 = rand() % i_population.size();
-  int parent2 = GetHemming(parent1, i_population).front();
+  int32_t parent1 = rand() % i_population.size();
+  int32_t parent2 = GetHemming(parent1, i_population).front();
 
   return {parent1, parent2};
 }
 
-inline std::vector<int> ParentsTournament(
+inline std::vector<int32_t> ParentsTournament(
     ParentsParameters i_parentsParameters,
     std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
-  std::vector<int> beforeAdaptation = AuxMethods::getRandomIntList(
+  std::vector<int32_t> beforeAdaptation = AuxMethods::getRandomIntList(
       i_parentsParameters.getTournamentNumber(), 0, i_population.size(), false
   );
 
-  std::map<int, double> adaptationIndex;
+  std::map<int32_t, double> adaptationIndex;
 
   for (const auto& k : beforeAdaptation)
     adaptationIndex[k] = i_population[k].getAdaptationIndex();
 
-  std::vector<int> res;
+  std::vector<int32_t> res;
 
   for (const auto& [key, value] :
        AuxMethods::sortDictByValue(adaptationIndex, false))
@@ -106,7 +106,7 @@ inline std::vector<int> ParentsTournament(
 }
 
 // TODO: is this ParentTournament???
-inline std::vector<int> ParentsRoulette(
+inline std::vector<int32_t> ParentsRoulette(
     ParentsParameters i_parentsParameters,
     std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 ) {

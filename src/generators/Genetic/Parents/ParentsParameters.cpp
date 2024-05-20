@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <tuple>
 
 #include "ParentsParameters.h"
@@ -10,11 +11,11 @@ ParentsTypes ParentsParameters::getParentsType() const {
   return d_parentsType;
 }
 
-void ParentsParameters::setTournamentNumber(int i_tournamentNumber) {
+void ParentsParameters::setTournamentNumber(int32_t i_tournamentNumber) {
   d_tournamentNumber = i_tournamentNumber;
 }
 
-int ParentsParameters::getTournamentNumber() const {
+int32_t ParentsParameters::getTournamentNumber() const {
   return d_tournamentNumber;
 }
 
