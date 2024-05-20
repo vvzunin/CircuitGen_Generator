@@ -177,8 +177,8 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
 }
 
 bool OrientedGraph::addEdge(VertexPtr from, VertexPtr to) {
-  bool f;
-  int  n;
+  bool     f;
+  uint32_t n;
   if (from->getBaseGraph().lock() == to->getBaseGraph().lock()) {
     f = from->addVertexToOutConnections(to);
     n = to->addVertexToInConnections(from);

@@ -277,7 +277,7 @@ public:
   /// std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex2");
   /// // Add the second vertex to the input connections of the first vertex
   /// // and get the number of occurrences
-  /// int count = vertex.addVertexToInConnections(anotherVertex);
+  /// uint32_t count = vertex.addVertexToInConnections(anotherVertex);
   /// // Output the result
   /// std::cout << "The number of occurrences of the second vertex in the input
   /// connections of the first vertex: " << count << std::endl;
@@ -297,13 +297,13 @@ public:
   /// std::make_shared<GraphVertexBase>(VertexTypes::input, "vertex2");
   /// // Adding a second vertex to the input connections of the first vertex
   /// and getting the number of occurrences
-  /// int occurrences = vertex.addVertexToInConnections(anotherVertex);
+  /// uint32_t occurrences = vertex.addVertexToInConnections(anotherVertex);
   /// // Output of the result
   /// std::cout << "The number of occurrences of the second vertex in the input
   /// connections of the first vertex: " << occurrences << std::endl;
   /// @endcode
 
-  int                        addVertexToInConnections(VertexPtr i_vert);
+  uint32_t                   addVertexToInConnections(VertexPtr i_vert);
 
   /// @brief removeVertexToInConnections
   /// Removes a vertex from the input connections of this vertex.
