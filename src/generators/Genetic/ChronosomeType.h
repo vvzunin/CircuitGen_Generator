@@ -49,7 +49,7 @@ public:
   {
     if constexpr (std::is_same_v<Type, TruthTable>)
     {
-      int numInt = 0;
+      uint32_t numInt = 0;
       for (const auto& nucleosoms : d_chronosome.getOutTable())
         for (const auto& nucleosom : nucleosoms)
           if (nucleosom)
