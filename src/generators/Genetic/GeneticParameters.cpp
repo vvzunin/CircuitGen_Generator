@@ -1,5 +1,6 @@
-#include <tuple>
 #include <cstdint>
+#include <tuple>
+
 #include "GeneticParameters.h"
 
 void GeneticParameters::setKeyEndProcessIndex(double i_keyEndProcessIndex) {
