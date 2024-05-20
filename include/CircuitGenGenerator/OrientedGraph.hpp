@@ -394,7 +394,7 @@ public:
       const std::string& i_name         = "",
       const bool&        i_addSubGraphs = false
   ) const;
-  std::vector<VertexPtr> getVerticesByLevel(const int32_t& i_level);
+  std::vector<VertexPtr> getVerticesByLevel(const uint32_t& i_level);
 
   std::vector<VertexPtr> getVerticesByName(
       const std::string& i_name,

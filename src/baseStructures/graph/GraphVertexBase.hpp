@@ -475,7 +475,7 @@ protected:
 
   std::string                d_name;
   char                       d_value;
-  unsigned                   d_level;
+  uint32_t                   d_level;
 
   std::vector<VertexPtrWeak> d_inConnections;
   std::vector<VertexPtr>     d_outConnections;

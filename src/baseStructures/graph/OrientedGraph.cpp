@@ -249,7 +249,7 @@ VertexPtr OrientedGraph::getVerticeByIndex(size_t idx) const {
   return d_vertexes.at(VertexTypes::output).at(idx);
 }
 
-std::vector<VertexPtr> OrientedGraph::getVerticesByLevel(const int32_t& i_level
+std::vector<VertexPtr> OrientedGraph::getVerticesByLevel(const uint32_t& i_level
 ) {
   this->updateLevels();
   std::vector<VertexPtr> a;
