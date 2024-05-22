@@ -80,9 +80,7 @@ public:
         }
         else
         {
-            std::cout << "Folder for data not exists, you need to create Directory \""
-                << dataPath << "\"" << std::endl;
-            std::exit(0);
+            std::filesystem::create_directories(dataPath);
         }
     }
 

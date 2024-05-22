@@ -112,7 +112,7 @@ void DataBaseGenerator::runGeneratorByDefault(
           );
 
           GenerationParameters param = d_parameters.getGenerationParameters();
-          param.setSeed(*iter);
+          param.setSeed(*iter + i + j);
 
           generator(param);
 
