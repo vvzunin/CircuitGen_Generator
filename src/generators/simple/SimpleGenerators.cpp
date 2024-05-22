@@ -51,7 +51,8 @@ int32_t SimpleGenerators::getRangomXnorNumber() {
   )];
 }
 
-std::pair<Gates, int32_t> SimpleGenerators::getRandomElement(const GatesInfo& i_info
+std::pair<Gates, int32_t> SimpleGenerators::getRandomElement(
+    const GatesInfo& i_info
 ) {
   // rand element of map
   auto val = i_info.begin();
@@ -63,7 +64,8 @@ std::pair<Gates, int32_t> SimpleGenerators::getRandomElement(const GatesInfo& i_
   );
 }
 
-std::pair<Gates, int32_t> SimpleGenerators::getRandomElement(u_int32_t i_gatesLimit
+std::pair<Gates, int32_t> SimpleGenerators::getRandomElement(
+    u_int32_t i_gatesLimit
 ) {
   if (i_gatesLimit >= d_maxGateNumber)
     return getRandomElement(d_gatesInputsInfo);
@@ -73,7 +75,7 @@ std::pair<Gates, int32_t> SimpleGenerators::getRandomElement(u_int32_t i_gatesLi
         d_randGenerator.getRandInt(0, 2) ? Gates::GateNot : Gates::GateBuf, 1
     );
 
-  GatesInfo        info;
+  GatesInfo            info;
   std::vector<int32_t> subval;
 
   for (auto [key, value] : d_gatesInputsInfo) {
@@ -125,8 +127,8 @@ GraphPtr
 
   for (size_t j = 0; j < i_table.getOutput(); ++j) {
     VertexPtr out = graph->addOutput("f" + std::to_string(j));
-    int32_t       mem = 0;
-    int32_t       tmp = 0;
+    int32_t   mem = 0;
+    int32_t   tmp = 0;
 
     for (int32_t i = 0; i < i_table.size(); ++i) {
       if (!(i_table.getOutTable(i, j) ^ i_tp))
@@ -199,8 +201,8 @@ GraphPtr
 }
 
 GraphPtr SimpleGenerators::zhegalkinFromTruthTable(const TruthTable& i_table) {
-  int32_t                    num_inputs  = i_table.getInput();
-  int32_t                    num_outputs = i_table.getOutput();
+  int32_t                num_inputs  = i_table.getInput();
+  int32_t                num_outputs = i_table.getOutput();
 
   GraphPtr               graph(new OrientedGraph());
   std::vector<VertexPtr> inputs;
@@ -213,7 +215,7 @@ GraphPtr SimpleGenerators::zhegalkinFromTruthTable(const TruthTable& i_table) {
   for (int32_t j = 0; j < num_outputs; ++j) {
     VertexPtr out = graph->addOutput("f" + std::to_string(j));
 
-    int32_t       mem = 0;
+    int32_t   mem = 0;
     for (int32_t i = 0; i < i_table.size(); ++i) {
       mem += i_table.getOutTable(i, j);
     }
@@ -288,10 +290,10 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
   // maxLevel++ // what?
 
-  int32_t         choice;
+  int32_t     choice;
   std::string expr;
   GraphPtr    graph(new OrientedGraph);
-  int32_t         child1, child2;
+  int32_t     child1, child2;
 
   for (int32_t i = 0; i < i_inputs; ++i) {
     expr = "x" + std::to_string(i);
@@ -392,8 +394,8 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
   // TODO what if we will need to use n-gate elements, should we add consts
   // usage?
 
-  int32_t       currIndex = i_inputs;
-  int32_t       curLen    = 0;
+  int32_t   currIndex = i_inputs;
+  int32_t   curLen    = 0;
   // we need lowest border as d_maxGateNumber, and if it is possible,
   // we set it (it changes speed of generation)
   u_int32_t c_max     = i_maxElements > d_maxGateNumber
@@ -402,9 +404,10 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
 
   for (int32_t i = 1; i < maxLevel; ++i) {
     // how many elements would be at this level
-    int32_t                        elemLevel = i_maxElements > 1
-                                             ? d_randGenerator.getRandInt(c_max, i_maxElements, true)
-                                             : i_maxElements;
+    int32_t elemLevel =
+        i_maxElements > 1
+            ? d_randGenerator.getRandInt(c_max, i_maxElements, true)
+            : i_maxElements;
 
     // write allowed gates to be used as parent
     std::vector<VertexPtrWeak> futureGates;
@@ -416,14 +419,14 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
       // from which element we should start shuffle
       // like we do not shuffle whole list, if it is possible
       // but only it's part
-      int32_t fromWhichShuffle          = d_randGenerator.getRandInt(
+      int32_t fromWhichShuffle      = d_randGenerator.getRandInt(
           0, std::max(1, (int32_t)curGates.size() - gatesNumber)
       );
       // shuffle curGates
       for (int32_t k       = fromWhichShuffle,
-               stopVal = std::min(
-                   fromWhichShuffle + gatesNumber, (int32_t)curGates.size()
-               );
+                   stopVal = std::min(
+                       fromWhichShuffle + gatesNumber, (int32_t)curGates.size()
+                   );
            k < stopVal;
            ++k) {
         std::swap(
@@ -507,16 +510,16 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
 }
 
 GraphPtr SimpleGenerators::generatorNumOperation(
-    uint32_t                  i_input,
-    uint32_t                  i_output,
+    uint32_t                 i_input,
+    uint32_t                 i_output,
     std::map<Gates, int32_t> i_logicOper,
-    bool                 i_leaveEmptyOut
+    bool                     i_leaveEmptyOut
 ) {
-  int32_t                              sumOper = 0, maxLvl;
+  int32_t                          sumOper = 0, maxLvl;
   std::string                      name;
   VertexPtr                        name_ptr;
-  std::map<Gates, int32_t>             copyLogicOper;
-  std::map<std::string, int32_t>       levelName;
+  std::map<Gates, int32_t>         copyLogicOper;
+  std::map<std::string, int32_t>   levelName;
   std::map<std::string, VertexPtr> levelNamePtr;
   std::vector<VertexPtr>           nameOut, nameInput;
 
@@ -630,10 +633,10 @@ std::map<Gates, int32_t> SimpleGenerators::delNull(
 }
 
 GraphPtr SimpleGenerators::generatorSummator(
-    uint32_t  i_bits,
-    bool i_overflowIn,
-    bool i_overflowOut,
-    bool i_minus
+    uint32_t i_bits,
+    bool     i_overflowIn,
+    bool     i_overflowOut,
+    bool     i_minus
 ) {
   GraphPtr    graph(new OrientedGraph);
   std::string str_x;
@@ -722,10 +725,10 @@ GraphPtr SimpleGenerators::generatorSummator(
 }
 
 GraphPtr SimpleGenerators::generatorComparison(
-    uint32_t  i_bits,
-    bool compare0,
-    bool compare1,
-    bool compare2
+    uint32_t i_bits,
+    bool     compare0,
+    bool     compare1,
+    bool     compare2
 ) {
   GraphPtr    graph(new OrientedGraph);
   VertexPtr   prev_pn_;
@@ -843,9 +846,9 @@ GraphPtr SimpleGenerators::generatorEncoder(uint32_t i_bits) {
       not_x[i] = nx;
     }
 
-    int32_t  shift = 1;
-    int32_t  count = 0;
-    bool check = false;
+    int32_t shift = 1;
+    int32_t count = 0;
+    bool    check = false;
     for (int32_t i = 0; i < pow(2, i_outbits); i++) {
       VertexPtr and_xs =
           graph->addGate(Gates::GateAnd, "and_for_or" + std::to_string(i + 1));
@@ -899,10 +902,10 @@ GraphPtr SimpleGenerators::generatorEncoder(uint32_t i_bits) {
 }
 
 GraphPtr SimpleGenerators::generatorSubtractor(
-    uint32_t  i_bits,
-    bool i_overflowIn,
-    bool i_overflowOut,
-    bool i_sub
+    uint32_t i_bits,
+    bool     i_overflowIn,
+    bool     i_overflowOut,
+    bool     i_sub
 ) {
   GraphPtr    graph(new OrientedGraph);
   VertexPtr   const_1;
@@ -1004,7 +1007,7 @@ GraphPtr SimpleGenerators::generatorMultiplexer(uint32_t i_bits) {
   GraphPtr               graph(new OrientedGraph);
   VertexPtr              output_f = graph->addOutput("f");
   std::vector<VertexPtr> inputs_x;
-  int32_t                    k = 0;
+  int32_t                k = 0;
   for (uint32_t t = 0; t <= i_bits; t++) {
     if (i_bits - 1 >= std::pow(2, t))
       k++;
@@ -1084,7 +1087,7 @@ GraphPtr SimpleGenerators::generatorDemultiplexer(uint32_t i_bits) {
   GraphPtr  graph(new OrientedGraph);
   VertexPtr input_f = graph->addInput("f");
 
-  int32_t       k       = 0;
+  int32_t   k       = 0;
   for (uint32_t t = 0; t <= i_bits; t++) {
     if (i_bits - 1 >= std::pow(2, t))
       k++;
@@ -1164,7 +1167,7 @@ GraphPtr SimpleGenerators::generatorDecoder(uint32_t i_bits) {
     for (int32_t i = 0; i < pow(2, i_bits); i++) {
       T[i] = graph->addGate(GateAnd, "and" + std::to_string(i));
       std::bitset<sizeof(int32_t) * 8> bs(i);
-      std::string                  bit_string = bs.to_string();
+      std::string                      bit_string = bs.to_string();
       std::string res = bit_string.substr(bit_string.length() - i_bits);
       for (int32_t j = 0; j < res.length(); j++) {
         if (res[j] == '1') {
@@ -1211,14 +1214,14 @@ GraphPtr SimpleGenerators::generatorParity(uint32_t i_bits) {
     elem[i] = graph->addInput("x" + std::to_string(i));
   }
 
-  int32_t  k = 0;
-  bool shift;
-  int32_t  count = i_bits;
+  int32_t k = 0;
+  bool    shift;
+  int32_t count = i_bits;
   while (count != 1) {
     count % 2 == 1 ? shift = true : shift = false;
     xors.clear();
     std::string str_k = std::to_string(k);
-    int32_t         n     = 0;
+    int32_t     n     = 0;
     for (int32_t i = 1; i < count; i += 2) {
       std::string str_n = std::to_string(n);
       VertexPtr   Xor =
@@ -1257,7 +1260,7 @@ GraphPtr SimpleGenerators::generatorMultiplier(uint32_t i_bits) {
   VertexPtr              m;
   // m - бит полученного умножения, выход
 
-  int32_t                    n = 1;
+  int32_t                n = 1;
   // n - числовой порядок выходов
   for (int32_t ib = 1; ib <= i_bits; ib++) {
     std::string str_i = std::to_string(ib);
@@ -1416,32 +1419,32 @@ GraphPtr SimpleGenerators::generatorMultiplier(uint32_t i_bits) {
 GraphPtr SimpleGenerators::generatorALU(
     int32_t                  i_bits,
     int32_t                  i_outbits,
-    bool                 ALL,
-    bool                 SUM,
-    bool                 SUB,
-    bool                 NSUM,
-    bool                 NSUB,
-    bool                 MULT,
-    bool                 COM,
-    bool                 AND,
-    bool                 NAND,
-    bool                 OR,
-    bool                 NOR,
-    bool                 XOR,
-    bool                 XNOR,
-    bool                 CNF,
-    bool                 RNL,
-    bool                 NUM_OP,
-    uint32_t                  minLevel,
-    uint32_t                  maxLevel,
-    uint32_t                  minElement,
-    uint32_t                  maxElement,
+    bool                     ALL,
+    bool                     SUM,
+    bool                     SUB,
+    bool                     NSUM,
+    bool                     NSUB,
+    bool                     MULT,
+    bool                     COM,
+    bool                     AND,
+    bool                     NAND,
+    bool                     OR,
+    bool                     NOR,
+    bool                     XOR,
+    bool                     XNOR,
+    bool                     CNF,
+    bool                     RNL,
+    bool                     NUM_OP,
+    uint32_t                 minLevel,
+    uint32_t                 maxLevel,
+    uint32_t                 minElement,
+    uint32_t                 maxElement,
     std::map<Gates, int32_t> m,
-    bool                 LeaveEmptyOut
+    bool                     LeaveEmptyOut
 ) {
   GraphPtr  graph(new OrientedGraph);
   VertexPtr const_0 = graph->addConst('0', "const_0");
-  int32_t       x       = 0;
+  int32_t   x       = 0;
   if (ALL) {
     SUM    = true;
     SUB    = true;

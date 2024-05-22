@@ -65,7 +65,7 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
   //   );
   // }
 
-  for (int i = 0; i < part1.size(); ++i) {
+  for (size_t i = 0; i < part1.size(); ++i) {
     EXPECT_EQ(part1[i]->calculateHash(), part2[i]->calculateHash());
   }
 
@@ -94,7 +94,7 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
   // ASSERT_EQ(jsons1.empty(), false);
   // ASSERT_EQ(jsons1.size(), jsons2.size());
 
-  for (int i = 0; i < part3.size(); ++i) {
+  for (size_t i = 0; i < part3.size(); ++i) {
     EXPECT_EQ(part3[i]->calculateHash(), part4[i]->calculateHash());
   }
   std::filesystem::remove_all(mainDir + "/" + dir);
@@ -123,7 +123,7 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
   ASSERT_EQ(jsons1.empty(), false);
   ASSERT_EQ(jsons1.size(), jsons2.size());
 
-  for (int i = 0; i < jsons1.size(); ++i) {
+  for (size_t i = 0; i < jsons1.size(); ++i) {
     EXPECT_EQ(
         FilesTools::loadStringFile(jsons1[i]),
         FilesTools::loadStringFile(jsons2[i])
@@ -149,7 +149,7 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
   ASSERT_EQ(jsons1.empty(), false);
   ASSERT_EQ(jsons1.size(), jsons2.size());
 
-  for (int i = 0; i < jsons1.size(); ++i) {
+  for (size_t i = 0; i < jsons1.size(); ++i) {
     EXPECT_EQ(
         FilesTools::loadStringFile(jsons1[i]),
         FilesTools::loadStringFile(jsons2[i])
@@ -229,7 +229,7 @@ TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
   ASSERT_EQ(jsons1.empty(), false);
   ASSERT_EQ(jsons1.size(), jsons2.size());
 
-  for (int i = 0; i < jsons1.size(); ++i) {
+  for (size_t i = 0; i < jsons1.size(); ++i) {
     EXPECT_EQ(
         FilesTools::loadStringFile(jsons1[i]),
         FilesTools::loadStringFile(jsons2[i])
@@ -259,7 +259,7 @@ TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
   ASSERT_EQ(jsons1.empty(), false);
   ASSERT_EQ(jsons1.size(), jsons2.size());
 
-  for (int i = 0; i < jsons1.size(); ++i) {
+  for (size_t i = 0; i < jsons1.size(); ++i) {
     EXPECT_EQ(
         FilesTools::loadStringFile(jsons1[i]),
         FilesTools::loadStringFile(jsons2[i])

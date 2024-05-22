@@ -67,7 +67,7 @@ void Settings::loadSettings() {
     int32_t operationHierarchyCount;
     readFile >> operationHierarchyCount;
     for (int32_t i = 0; i < operationHierarchyCount; ++i) {
-      int32_t                      operationId, operationHierarchyCount;
+      int32_t                  operationId, operationHierarchyCount;
       std::vector<std::string> operations;
       readFile >> operationId >> operationHierarchyCount;
 
@@ -108,7 +108,8 @@ std::string Settings::getInstanceName() const {
   return d_name;
 }
 
-std::pair<std::string, int32_t> Settings::getLogicOperation(const std::string& i_op
+std::pair<std::string, int32_t> Settings::getLogicOperation(
+    const std::string& i_op
 ) {
   return d_logicOperations.at(i_op);
 }
@@ -140,7 +141,8 @@ std::string Settings::getNadezhdaVar(const std::string& key) const {
   return d_nadezhda.at(key);
 }
 
-std::vector<std::string> Settings::fromOperationsToHierarchy(int32_t key) const {
+std::vector<std::string> Settings::fromOperationsToHierarchy(int32_t key
+) const {
   return d_operationsToHierarchy.at(key);
 }
 
@@ -213,8 +215,8 @@ uint32_t Settings::getMaxOutputs() const {
   return d_maxOutputs;
 }
 
-std::map<std::string, std::pair<std::string, int32_t>> Settings::getLogicOperations(
-) const {
+std::map<std::string, std::pair<std::string, int32_t>>
+    Settings::getLogicOperations() const {
   return d_logicOperations;
 }
 
