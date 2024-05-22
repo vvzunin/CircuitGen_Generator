@@ -67,7 +67,7 @@ class SimpleGenerators {
 
 public:
   SimpleGenerators();
-  SimpleGenerators(int i_seed);
+  SimpleGenerators(uint_fast32_t i_seed);
 
   SimpleGenerators(const SimpleGenerators& other)            = delete;
   SimpleGenerators& operator=(const SimpleGenerators& other) = delete;
@@ -411,8 +411,8 @@ public:
   /// @return the created OrientedGraph
 
   GraphPtr generatorALU(
-      int                  i_bits,
-      int                  i_outbits,
+      int32_t                  i_bits,
+      int32_t                  i_outbits,
       bool                 ALL,
       bool                 SUM,
       bool                 SUB,
@@ -429,11 +429,11 @@ public:
       bool                 CNF,
       bool                 RNL,
       bool                 NUM_OP,
-      int                  minLevel,
-      int                  maxLevel,
-      int                  minElement,
-      int                  maxElement,
-      std::map<Gates, int> m,
+      uint32_t                  minLevel,
+      uint32_t                  maxLevel,
+      uint32_t                  minElement,
+      uint32_t                  maxElement,
+      std::map<Gates, int32_t> m,
       bool                 LeaveEmptyOut
   );
 
