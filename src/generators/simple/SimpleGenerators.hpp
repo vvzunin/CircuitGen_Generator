@@ -17,7 +17,7 @@
 /// generatorComparison and generatorEncoder
 ///
 
-using GatesInfo = std::map<Gates, std::vector<int>>;
+using GatesInfo = std::map<Gates, std::vector<int32_t>>;
 
 namespace {
 /// @addtogroup UnnamedNamespaces
@@ -28,14 +28,14 @@ namespace {
 /// @tparam T The type of the map keys
 /// @param i_map The map whose maximum value is to be found
 /// @return The maximum value in the map. If the map is empty, returns -1
-/// @note The function assumes that the map values are of type int
+/// @note The function assumes that the map values are of type int32_t
 /// @}
 template<typename T>
-int maxValueInMap(const std::map<T, int>& i_map) {
+int32_t maxValueInMap(const std::map<T, int32_t>& i_map) {
   if (i_map.size() == 0) {
     return -1;
   }
-  int res = (*i_map.begin()).second;
+  int32_t res = (*i_map.begin()).second;
 
   for (const auto& [key, value] : i_map) {
     res = std::max(res, value);
@@ -51,7 +51,7 @@ int maxValueInMap(const std::map<T, int>& i_map) {
 /// singleton and is used to store settings associated with the vertices of the
 /// graph.
 /// @param d_gatesInputsInfo The data structure represented as a display
-/// (std::map<std::string, std::vector<int>>), where the keys are strings (names
+/// (std::map<std::string, std::vector<int32_t>>), where the keys are strings (names
 /// of logical operations), and the values are vectors of integers representing
 /// information about the inputs (indexes) of gates associated with each logical
 /// operation. This is a general description***
@@ -63,7 +63,7 @@ int maxValueInMap(const std::map<T, int>& i_map) {
 /// */
 
 class SimpleGenerators {
-  using GatesInfo = std::map<Gates, std::vector<int>>;
+  using GatesInfo = std::map<Gates, std::vector<int32_t>>;
 
 public:
   SimpleGenerators();
@@ -123,12 +123,12 @@ public:
   /// @param i_outputs The number of exits from the graph
 
   GraphPtr generatorRandLevel(
-      int i_minLevel,
-      int i_maxLevel,
-      int i_minElements,
-      int i_maxElements,
-      int i_inputs,
-      int i_outputs
+      uint32_t i_minLevel,
+      uint32_t i_maxLevel,
+      uint32_t i_minElements,
+      uint32_t i_maxElements,
+      uint32_t i_inputs,
+      uint32_t i_outputs
   );
 
   /// @brief generatorRandLevelExperimental The method generates a random level
@@ -166,12 +166,12 @@ public:
   /// the method throws an exception std::invalid_argument.
 
   GraphPtr generatorRandLevelExperimental(
-      u_int32_t i_minLevel,
-      u_int32_t i_maxLevel,
-      u_int32_t i_minElements,
-      u_int32_t i_maxElements,
-      u_int32_t i_inputs,
-      u_int32_t i_outputs
+      uint32_t i_minLevel,
+      uint32_t i_maxLevel,
+      uint32_t i_minElements,
+      uint32_t i_maxElements,
+      uint32_t i_inputs,
+      uint32_t i_outputs
   );
 
   /// @todo: Description algorithm
@@ -188,9 +188,9 @@ public:
   /// @return the created OrientedGraph
 
   GraphPtr generatorNumOperation(
-      int                  i_input,
-      int                  i_output,
-      std::map<Gates, int> i_logicOper,
+      uint32_t                  i_input,
+      uint32_t                  i_output,
+      std::map<Gates, int32_t> i_logicOper,
       bool                 i_leaveEmptyOut = true
   );
 
@@ -213,7 +213,7 @@ public:
   /// @return the created OrientedGraph
 
   GraphPtr generatorSummator(
-      int  i_bits,
+      uint32_t  i_bits,
       bool i_overflowIn,
       bool i_overflowOut,
       bool i_minus
@@ -239,7 +239,7 @@ public:
   /// @return the created OrientedGraph
 
   GraphPtr generatorComparison(
-      int  i_bits,
+      uint32_t  i_bits,
       bool compare0,
       bool compare1,
       bool compare2
@@ -256,7 +256,7 @@ public:
   /// (variables) in the graph.
   /// @return the created OrientedGraph
 
-  GraphPtr generatorEncoder(int i_bits);
+  GraphPtr generatorEncoder(uint32_t i_bits);
 
   /// @brief generatorSubtractor represents the generation of a combinational
   /// subtractor scheme. It is based on the arithmetic difference operation,
@@ -278,7 +278,7 @@ public:
   /// @return the created OrientedGraph
 
   GraphPtr generatorSubtractor(
-      int  i_bits,
+      uint32_t  i_bits,
       bool i_overflowIn,
       bool i_overflowOut,
       bool i_sub
@@ -295,7 +295,7 @@ public:
   /// (variables) in the graph.
   /// @return the created OrientedGraph
 
-  GraphPtr generatorMultiplexer(int i_bits);
+  GraphPtr generatorMultiplexer(uint32_t i_bits);
 
   /// @brief generatorDemultiplexer represents the generation of the
   /// combinational circuit of the demultiplexer. The generation logic almost
@@ -306,7 +306,7 @@ public:
   /// (variables) in the graph.
   /// @return the created OrientedGraph
 
-  GraphPtr generatorDemultiplexer(int i_bits);
+  GraphPtr generatorDemultiplexer(uint32_t i_bits);
 
   /// @brief generatorDecoder represents the generation of a combinational
   /// decoder circuit. The logic of generation is close to the logic of
@@ -318,7 +318,7 @@ public:
   /// (variables) in the graph.
   /// @return the created OrientedGraph
 
-  GraphPtr generatorDecoder(int i_bits);
+  GraphPtr generatorDecoder(uint32_t i_bits);
 
   /// @brief generatorParity represents the generation of a combinational parity
   /// check scheme. The graph is based on the logical XOR operation, which is
@@ -329,7 +329,7 @@ public:
   /// (variables) in the graph.
   /// @return the created OrientedGraph
 
-  GraphPtr generatorParity(int i_bits);
+  GraphPtr generatorParity(uint32_t i_bits);
 
   /// @brief generatorMultiplier represents the generation of a combinational
   /// multiplier circuit. It is based on the arithmetic multiplication operation
@@ -343,7 +343,7 @@ public:
   /// (variables) in the graph.
   /// @return the created OrientedGraph
 
-  GraphPtr generatorMultiplier(int i_bits);
+  GraphPtr generatorMultiplier(uint32_t i_bits);
 
   /// @brief generatorALU represents the generation of a combinational circuit
   /// of an ALU (Arithmetic Logic Unit). It is a multi-structured graph
@@ -447,7 +447,7 @@ public:
   /// @code
   /// SimpleGenerators generators;
   /// // Define input information for logic gates
-  /// std::map<std::string, std::vector<int>> gateInputsInfo =
+  /// std::map<std::string, std::vector<int32_t>> gateInputsInfo =
   /// {
   /// {"AND", {2, 3}},
   /// {"OR", {2, 3}},
@@ -458,7 +458,7 @@ public:
   /// generators.setGatesInputsInfo(gateInputsInfo);
   /// @endcode
 
-  void setGatesInputsInfo(const std::map<std::string, std::vector<int>>& i_info
+  void setGatesInputsInfo(const std::map<std::string, std::vector<int32_t>>& i_info
   ) {
     d_minGateNumber = INT_MAX;
 
@@ -481,11 +481,11 @@ public:
 
 private:
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
-  std::map<Gates, int>      delNull(std::map<Gates, int> i_copyLogicOper);
+  std::map<Gates, int32_t>      delNull(std::map<Gates, int32_t> i_copyLogicOper);
 
   // moved it here, because we need to use templates
   template<typename T>
-  T randomGenerator(const std::map<T, int>& i_map) {
+  T randomGenerator(const std::map<T, int32_t>& i_map) {
     // rand element of map
     auto val = i_map.begin();
     std::advance(val, d_randGenerator.getRandInt(0, i_map.size()));
@@ -493,8 +493,8 @@ private:
     return val->first;
   }
 
-  std::pair<Gates, int>   getRandomElement(const GatesInfo& i_info);
-  std::pair<Gates, int>   getRandomElement(u_int32_t i_gatesLimit);
+  std::pair<Gates, int32_t>   getRandomElement(const GatesInfo& i_info);
+  std::pair<Gates, int32_t>   getRandomElement(u_int32_t i_gatesLimit);
 
   /// @brief getRangomAndNumber The getRangomAndNumber method returns a random
   /// value from the list of possible input ports for the "AND" operator.
@@ -502,7 +502,7 @@ private:
   /// operator.
   /// */
 
-  int                     getRangomAndNumber();
+  int32_t                     getRangomAndNumber();
 
   /// @brief getRangomOrNumber method is a random value from the list of
   /// possible input ports for the "OR" operator
@@ -510,7 +510,7 @@ private:
   /// operator.
   /// */
 
-  int                     getRangomOrNumber();
+  int32_t                     getRangomOrNumber();
 
   /// @brief getRangomNandNumber The method returns a random value from the list
   /// of possible input ports for the "NAND" operator.
@@ -518,7 +518,7 @@ private:
   /// operator
   /// */
 
-  int                     getRangomNandNumber();
+  int32_t                     getRangomNandNumber();
 
   /// @brief getRangomNorNumber The method returns a random value from the list
   /// of possible input ports for the "NOR" operator.
@@ -526,7 +526,7 @@ private:
   /// operator
   /// */
 
-  int                     getRangomNorNumber();
+  int32_t                     getRangomNorNumber();
 
   /// @brief getRangomXorNumber The method returns a random value from the list
   /// of possible input ports for the "XOR" operator.
@@ -534,7 +534,7 @@ private:
   /// operator.
   /// */
 
-  int                     getRangomXorNumber();
+  int32_t                     getRangomXorNumber();
 
   /// @brief The method returns a random value from the list of possible input
   /// ports for the "XNOR" operator.
@@ -542,10 +542,10 @@ private:
   /// operator
   /// */
 
-  int                     getRangomXnorNumber();
+  int32_t                     getRangomXnorNumber();
 
   GatesInfo               d_gatesInputsInfo;
   RandomGeneratorWithSeed d_randGenerator;
-  int                     d_maxGateNumber = 0;
-  int                     d_minGateNumber = 0;
+  int32_t                     d_maxGateNumber = 0;
+  int32_t                     d_minGateNumber = 0;
 };

@@ -265,12 +265,12 @@ GraphPtr SimpleGenerators::zhegalkinFromTruthTable(const TruthTable& i_table) {
 }
 
 GraphPtr SimpleGenerators::generatorRandLevel(
-    int32_t i_minLevel,
-    int32_t i_maxLevel,
-    int32_t i_minElements,
-    int32_t i_maxElements,
-    int32_t i_inputs,
-    int32_t i_outputs
+    uint32_t i_minLevel,
+    uint32_t i_maxLevel,
+    uint32_t i_minElements,
+    uint32_t i_maxElements,
+    uint32_t i_inputs,
+    uint32_t i_outputs
 ) {
   int32_t maxLevel;
 
@@ -507,8 +507,8 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
 }
 
 GraphPtr SimpleGenerators::generatorNumOperation(
-    int32_t                  i_input,
-    int32_t                  i_output,
+    uint32_t                  i_input,
+    uint32_t                  i_output,
     std::map<Gates, int32_t> i_logicOper,
     bool                 i_leaveEmptyOut
 ) {
@@ -630,7 +630,7 @@ std::map<Gates, int32_t> SimpleGenerators::delNull(
 }
 
 GraphPtr SimpleGenerators::generatorSummator(
-    int32_t  i_bits,
+    uint32_t  i_bits,
     bool i_overflowIn,
     bool i_overflowOut,
     bool i_minus
@@ -722,7 +722,7 @@ GraphPtr SimpleGenerators::generatorSummator(
 }
 
 GraphPtr SimpleGenerators::generatorComparison(
-    int32_t  i_bits,
+    uint32_t  i_bits,
     bool compare0,
     bool compare1,
     bool compare2
@@ -820,7 +820,7 @@ GraphPtr SimpleGenerators::generatorComparison(
   return graph;
 }
 
-GraphPtr SimpleGenerators::generatorEncoder(int32_t i_bits) {
+GraphPtr SimpleGenerators::generatorEncoder(uint32_t i_bits) {
   GraphPtr graph(new OrientedGraph);
   if (i_bits < 2) {
     std::cout << "Недостаточно входных сигналов" << std::endl;
@@ -834,7 +834,7 @@ GraphPtr SimpleGenerators::generatorEncoder(int32_t i_bits) {
     std::vector<VertexPtr> ands(pow(2, i_outbits));
 
     // создание инверсий входов
-    for (int32_t i = 0; i < i_bits; i++) {
+    for (uint32_t i = 0; i < i_bits; i++) {
       VertexPtr x = graph->addInput("x" + std::to_string(i + 1));
       inputs_x[i] = x;
       VertexPtr nx =
@@ -899,7 +899,7 @@ GraphPtr SimpleGenerators::generatorEncoder(int32_t i_bits) {
 }
 
 GraphPtr SimpleGenerators::generatorSubtractor(
-    int32_t  i_bits,
+    uint32_t  i_bits,
     bool i_overflowIn,
     bool i_overflowOut,
     bool i_sub
@@ -920,7 +920,7 @@ GraphPtr SimpleGenerators::generatorSubtractor(
   VertexPtr next_z;  // следующий заем
   VertexPtr curr_z;  // нынешний заём
 
-  for (int32_t i = 0; i < i_bits; i++) {
+  for (uint32_t i = 0; i < i_bits; i++) {
     std::string Z = std::to_string(i);          // нынешний индекс
     std::string NextZ = std::to_string(i + 1);  // следующий индекс
     std::string x       = "suba" + cond + Z;
@@ -1000,12 +1000,12 @@ GraphPtr SimpleGenerators::generatorSubtractor(
   return graph;
 }
 
-GraphPtr SimpleGenerators::generatorMultiplexer(int32_t i_bits) {
+GraphPtr SimpleGenerators::generatorMultiplexer(uint32_t i_bits) {
   GraphPtr               graph(new OrientedGraph);
   VertexPtr              output_f = graph->addOutput("f");
   std::vector<VertexPtr> inputs_x;
   int32_t                    k = 0;
-  for (int32_t t = 0; t <= i_bits; t++) {
+  for (uint32_t t = 0; t <= i_bits; t++) {
     if (i_bits - 1 >= std::pow(2, t))
       k++;
   }
@@ -1067,7 +1067,7 @@ GraphPtr SimpleGenerators::generatorMultiplexer(int32_t i_bits) {
   return graph;
 }
 
-GraphPtr SimpleGenerators::generatorDemultiplexer(int32_t i_bits) {
+GraphPtr SimpleGenerators::generatorDemultiplexer(uint32_t i_bits) {
   // i_bits - количество выходных сигналов, то есть количество х
   // f - значение функции на входе
   // i_outbits - количество адресных входов, то есть количество а
@@ -1085,7 +1085,7 @@ GraphPtr SimpleGenerators::generatorDemultiplexer(int32_t i_bits) {
   VertexPtr input_f = graph->addInput("f");
 
   int32_t       k       = 0;
-  for (int32_t t = 0; t <= i_bits; t++) {
+  for (uint32_t t = 0; t <= i_bits; t++) {
     if (i_bits - 1 >= std::pow(2, t))
       k++;
   }
@@ -1139,7 +1139,7 @@ GraphPtr SimpleGenerators::generatorDemultiplexer(int32_t i_bits) {
   return graph;
 }
 
-GraphPtr SimpleGenerators::generatorDecoder(int32_t i_bits) {
+GraphPtr SimpleGenerators::generatorDecoder(uint32_t i_bits) {
   // bits - количество входов
   // T[]- массив для текущего ряда узлов
   // X[]- массив для предыдущего ряда узлов
@@ -1192,7 +1192,7 @@ GraphPtr SimpleGenerators::generatorDecoder(int32_t i_bits) {
   return graph;
 }
 
-GraphPtr SimpleGenerators::generatorParity(int32_t i_bits) {
+GraphPtr SimpleGenerators::generatorParity(uint32_t i_bits) {
   // i_bits - количество входов
   // elem - массив для сохранения вершин
   // xors - промежуточный массив для сохранения вершин
@@ -1207,7 +1207,7 @@ GraphPtr SimpleGenerators::generatorParity(int32_t i_bits) {
   std::vector<VertexPtr> elem(i_bits);
   std::vector<VertexPtr> xors;
 
-  for (int32_t i = 0; i < i_bits; i++) {
+  for (uint32_t i = 0; i < i_bits; i++) {
     elem[i] = graph->addInput("x" + std::to_string(i));
   }
 
@@ -1237,7 +1237,7 @@ GraphPtr SimpleGenerators::generatorParity(int32_t i_bits) {
   return graph;
 }
 
-GraphPtr SimpleGenerators::generatorMultiplier(int32_t i_bits) {
+GraphPtr SimpleGenerators::generatorMultiplier(uint32_t i_bits) {
   GraphPtr               graph(new OrientedGraph);
   VertexPtr              const_1;
 
