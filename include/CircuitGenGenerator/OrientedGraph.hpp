@@ -145,12 +145,12 @@ public:
   ///  OrientedGraph graph("ExampleGraph");
   /// // Add vertices and edges to the graph (omitted for brevity)
   /// // Calculate the maximum level of output vertices
-  /// unsigned maxLevel = graph.getMaxLevel();
+  /// uint32_t maxLevel = graph.getMaxLevel();
   /// // Output the result
   /// std::cout << "Maximum level of output vertices: " << maxLevel << '\n';
   /// @endcode
 
-  unsigned                  getMaxLevel();
+  uint32_t                  getMaxLevel();
 
   /// @brief addParentGraph
   /// Adds a parent graph to the current graph

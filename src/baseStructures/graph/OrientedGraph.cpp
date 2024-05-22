@@ -78,9 +78,9 @@ void OrientedGraph::updateLevels() {
   // }
 }
 
-unsigned OrientedGraph::getMaxLevel() {
+uint32_t OrientedGraph::getMaxLevel() {
   this->updateLevels();
-  unsigned mx = 0;
+  uint32_t mx = 0;
   for (VertexPtr vert : d_vertexes.at(VertexTypes::output)) {
     mx = mx < vert->getLevel() ? mx : vert->getLevel();
   }

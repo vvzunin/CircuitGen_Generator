@@ -104,11 +104,11 @@ std::string GraphVertexBase::getName(const std::string& i_prefix) const {
   return i_prefix + d_name;
 }
 
-void GraphVertexBase::setLevel(const unsigned i_level) {
+void GraphVertexBase::setLevel(const uint32_t i_level) {
   d_level = i_level;
 }
 
-unsigned GraphVertexBase::getLevel() const {
+uint32_t GraphVertexBase::getLevel() const {
   return d_level;
 }
 

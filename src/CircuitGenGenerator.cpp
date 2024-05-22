@@ -47,8 +47,8 @@ void runGeneration(
     // Задаем сид рандомизации.
     AuxMethods::setRandSeed(
         !data.contains("seed") || data["seed"] == -1
-            ? static_cast<unsigned>(std::time(0))
-            : static_cast<unsigned>(data["seed"])
+            ? static_cast<uint_fast32_t>(std::time(0))
+            : static_cast<uint_fast32_t>(data["seed"])
     );
     // EVERYWHERE seed from json is getting here. It is like a storage for seed
     // for all future usages`

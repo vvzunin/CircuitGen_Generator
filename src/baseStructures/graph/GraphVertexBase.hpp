@@ -69,7 +69,7 @@ std::string vertexTypeToComment(VertexTypes i_type);
 /// @param i_name The name of the vertex. It is a string containing the name
 /// of a vertex
 /// @param d_value The value of the vertex
-/// @param d_level The vertex level is represented by the unsigned type
+/// @param d_level The vertex level is represented by the uint32_t type
 /// @param d_inConnections vector of weak pointers to input connections with
 /// other vertices
 /// @param d_outConnections vector of strong pointers to output connections
@@ -190,18 +190,18 @@ public:
   /// std::cout << "New level of the vertex: " << vertex.getLevel() << '\n';
   /// @endcode
 
-  void                       setLevel(const unsigned i_level);
+  void                       setLevel(const uint32_t i_level);
 
   /// @brief getLevel
   /// Returns the level of the vertex
   /// @return The level of the vertex
   /// @code
   /// GraphVertexBase vertex(VertexTypes::input, "vertex1");
-  /// unsigned level = vertex.getLevel();
+  /// uint32_t level = vertex.getLevel();
   /// std::cout << "Level of the vertex: " << level << std::endl;
   /// @endcode
 
-  unsigned                   getLevel() const;
+  uint32_t                   getLevel() const;
 
   /// @brief updateLevel
   /// This method updates the level of the vertex based on the levels of its
