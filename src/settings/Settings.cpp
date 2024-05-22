@@ -22,7 +22,7 @@ std::shared_ptr<Settings> Settings::getInstance(const std::string& i_value) {
 
 void Settings::loadSettings() {
   for (const auto& [key, value] : d_logicOperations) {
-    int i = value.second;
+    int32_t i = value.second;
     if (!d_operationsToHierarchy.count(i))
       d_operationsToHierarchy[i] = {};
     d_operationsToHierarchy[i].push_back(value.first);
@@ -36,9 +36,9 @@ void Settings::loadSettings() {
 
     readFile >> d_csvdataset >> d_fileName >> d_datasetPath >> d_pathToNadezhda;
 
-    int nadezhdaPathsCount;
+    uint32_t nadezhdaPathsCount;
     readFile >> nadezhdaPathsCount;
-    for (int i = 0; i < nadezhdaPathsCount; ++i) {
+    for (uint32_t i = 0; i < nadezhdaPathsCount; ++i) {
       std::string tool, path;
       readFile >> tool >> path;
       d_nadezhda[tool] = path;
@@ -46,9 +46,9 @@ void Settings::loadSettings() {
 
     readFile >> d_numThreads;
 
-    int logicOperationCount;
+    uint32_t logicOperationCount;
     readFile >> logicOperationCount;
-    for (int i = 0; i < logicOperationCount; ++i) {
+    for (uint32_t i = 0; i < logicOperationCount; ++i) {
       std::string operation, operationName, operationId;
       readFile >> operation;  // When it comes to input    there have to be
                               // empty string at operationName,    so it is
@@ -64,15 +64,15 @@ void Settings::loadSettings() {
       d_logicOperations[operation] = {operationName, std::stoi(operationId)};
     }
 
-    int operationHierarchyCount;
+    int32_t operationHierarchyCount;
     readFile >> operationHierarchyCount;
-    for (int i = 0; i < operationHierarchyCount; ++i) {
-      int                      operationId, operationHierarchyCount;
+    for (int32_t i = 0; i < operationHierarchyCount; ++i) {
+      int32_t                      operationId, operationHierarchyCount;
       std::vector<std::string> operations;
       readFile >> operationId >> operationHierarchyCount;
 
       std::string operation;
-      for (int j = 0; j < operationHierarchyCount; ++j) {
+      for (int32_t j = 0; j < operationHierarchyCount; ++j) {
         if (operationId == 10)
           operation = "";  // If we get the index 10 it means we deal with input
                            // that have empty string as operation and so that we
@@ -84,9 +84,9 @@ void Settings::loadSettings() {
       d_operationsToHierarchy[operationId] = operations;
     }
 
-    int operationsCount;
+    uint32_t operationsCount;
     readFile >> operationsCount;
-    for (int i = 0; i < operationsCount; ++i) {
+    for (uint32_t i = 0; i < operationsCount; ++i) {
       std::string fromName, toName;
       readFile >> fromName;
       if (fromName == "input") {
@@ -108,7 +108,7 @@ std::string Settings::getInstanceName() const {
   return d_name;
 }
 
-std::pair<std::string, int> Settings::getLogicOperation(const std::string& i_op
+std::pair<std::string, int32_t> Settings::getLogicOperation(const std::string& i_op
 ) {
   return d_logicOperations.at(i_op);
 }
@@ -128,7 +128,7 @@ std::pair<std::vector<bool>, std::vector<Gates>>
   return std::make_pair(oneGate, d_logicElements);
 }
 
-int Settings::getNumThread() const {
+uint16_t Settings::getNumThread() const {
   return d_numThreads;
 }
 
@@ -140,7 +140,7 @@ std::string Settings::getNadezhdaVar(const std::string& key) const {
   return d_nadezhda.at(key);
 }
 
-std::vector<std::string> Settings::fromOperationsToHierarchy(int key) const {
+std::vector<std::string> Settings::fromOperationsToHierarchy(int32_t key) const {
   return d_operationsToHierarchy.at(key);
 }
 
@@ -205,15 +205,15 @@ std::string Settings::getLibraryNameFromEnum(const LibrariesTypes& library
   }
 }
 
-int Settings::getMaxInputs() const {
+uint32_t Settings::getMaxInputs() const {
   return d_maxInputs;
 }
 
-int Settings::getMaxOutputs() const {
+uint32_t Settings::getMaxOutputs() const {
   return d_maxOutputs;
 }
 
-std::map<std::string, std::pair<std::string, int>> Settings::getLogicOperations(
+std::map<std::string, std::pair<std::string, int32_t>> Settings::getLogicOperations(
 ) const {
   return d_logicOperations;
 }
