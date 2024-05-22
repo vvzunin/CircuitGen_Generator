@@ -65,7 +65,7 @@ std::pair<Gates, int32_t> SimpleGenerators::getRandomElement(
 }
 
 std::pair<Gates, int32_t> SimpleGenerators::getRandomElement(
-    u_int32_t i_gatesLimit
+    uint32_t i_gatesLimit
 ) {
   if (i_gatesLimit >= d_maxGateNumber)
     return getRandomElement(d_gatesInputsInfo);
@@ -353,19 +353,19 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 }
 
 GraphPtr SimpleGenerators::generatorRandLevelExperimental(
-    u_int32_t i_minLevel,
-    u_int32_t i_maxLevel,
-    u_int32_t i_minElements,
-    u_int32_t i_maxElements,
-    u_int32_t i_inputs,
-    u_int32_t i_outputs
+    uint32_t i_minLevel,
+    uint32_t i_maxLevel,
+    uint32_t i_minElements,
+    uint32_t i_maxElements,
+    uint32_t i_inputs,
+    uint32_t i_outputs
 ) {
   if (i_minLevel > i_maxLevel)
     throw std::invalid_argument("min level is biggert than max level");
   if (i_minElements > i_maxElements)
     throw std::invalid_argument("min elem is biggert than max elem");
 
-  u_int32_t maxLevel;
+  uint32_t maxLevel;
   if (i_maxLevel)
     maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 1;
   else
@@ -389,18 +389,18 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
   for (auto i : graph->getVerticesByType(VertexTypes::input)) {
     inputs.push_back(i);
   }
-  auto      curGates(inputs);
+  auto     curGates(inputs);
 
   // TODO what if we will need to use n-gate elements, should we add consts
   // usage?
 
-  int32_t   currIndex = i_inputs;
-  int32_t   curLen    = 0;
+  int32_t  currIndex = i_inputs;
+  int32_t  curLen    = 0;
   // we need lowest border as d_maxGateNumber, and if it is possible,
   // we set it (it changes speed of generation)
-  u_int32_t c_max     = i_maxElements > d_maxGateNumber
-                          ? std::max(d_maxGateNumber, (int32_t)i_minElements)
-                          : i_minElements;
+  uint32_t c_max     = i_maxElements > d_maxGateNumber
+                         ? std::max(d_maxGateNumber, (int32_t)i_minElements)
+                         : i_minElements;
 
   for (int32_t i = 1; i < maxLevel; ++i) {
     // how many elements would be at this level

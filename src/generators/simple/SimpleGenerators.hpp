@@ -495,7 +495,7 @@ private:
   }
 
   std::pair<Gates, int32_t> getRandomElement(const GatesInfo& i_info);
-  std::pair<Gates, int32_t> getRandomElement(u_int32_t i_gatesLimit);
+  std::pair<Gates, int32_t> getRandomElement(uint32_t i_gatesLimit);
 
   /// @brief getRangomAndNumber The getRangomAndNumber method returns a random
   /// value from the list of possible input ports for the "AND" operator.
