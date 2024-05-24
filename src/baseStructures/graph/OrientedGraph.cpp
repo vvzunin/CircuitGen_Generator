@@ -2,6 +2,7 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#include <stack>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -652,28 +653,32 @@ bool OrientedGraph::isConnected() {
   if (d_connected) {
     return d_connected + 1;
   }
+
   size_t size = sumFullSize();
-  if (size == 0 || size == 1) {
+  if (size <= 1) {
     return (d_connected = 1);
   }
+
   size_t subGraphsBuffersCount = 0;
   for (auto subGraph : d_vertexes[VertexTypes::subGraph]) {
     subGraphsBuffersCount += subGraph->getOutConnections().size();
-    if (!static_cast<GraphVertexSubGraph*>(subGraph.get())
-             ->getSubGraph()
-             ->isConnected()) {
+    auto subGraphPtr      = static_cast<GraphVertexSubGraph*>(subGraph.get());
+    if (!subGraphPtr->getSubGraph()->isConnected()) {
       return (d_connected = -1) + 1;
     }
   }
+
   std::unordered_set<VertexPtr> visited;
-  VertexPtr                     firstVertex;
-  for (auto [k, v] : d_vertexes) {
-    if (!d_vertexes[k].empty()) {
-      firstVertex = d_vertexes[k][0];
+  VertexPtr                     firstVertex = nullptr;
+  for (auto& [type, vertices] : d_vertexes) {
+    if (!vertices.empty()) {
+      firstVertex = vertices[0];
       break;
     }
   }
+
   dfs(firstVertex, visited);
+
   if (visited.size() == size - subGraphsBuffersCount) {
     return (d_connected = 1);
   } else {
@@ -681,23 +686,51 @@ bool OrientedGraph::isConnected() {
   }
 }
 
+// void OrientedGraph::dfs(
+//     VertexPtr                      i_v,
+//     std::unordered_set<VertexPtr>& i_visited
+// ) {
+//   i_visited.insert(i_v);
+//   for (auto v : i_v->getOutConnections()) {
+//     if (i_visited.find(v) == i_visited.end()) {
+//       dfs(v, i_visited);
+//     }
+//   }
+//   for (auto v : i_v->getInConnections()) {
+//     auto ptr = v.lock();
+//     if (!ptr) {
+//       throw std::invalid_argument("Dead pointer!");
+//     }
+//     if (i_visited.find(ptr) == i_visited.end()) {
+//       dfs(ptr, i_visited);
+//     }
+//   }
+// }
+
 void OrientedGraph::dfs(
-    VertexPtr                      i_v,
+    VertexPtr                      i_startVertex,
     std::unordered_set<VertexPtr>& i_visited
 ) {
-  i_visited.insert(i_v);
-  for (auto v : i_v->getOutConnections()) {
-    if (i_visited.find(v) == i_visited.end()) {
-      dfs(v, i_visited);
-    }
-  }
-  for (auto v : i_v->getInConnections()) {
-    auto ptr = v.lock();
-    if (!ptr) {
-      throw std::invalid_argument("Dead pointer!");
-    }
-    if (i_visited.find(ptr) == i_visited.end()) {
-      dfs(ptr, i_visited);
+  std::stack<VertexPtr> stck;
+  stck.push(i_startVertex);
+
+  while (!stck.empty()) {
+    VertexPtr current = stck.top();
+    stck.pop();
+
+    if (i_visited.find(current) == i_visited.end()) {
+      i_visited.insert(current);
+
+      for (auto v : current->getOutConnections()) {
+        stck.push(v);
+      }
+      for (auto v : current->getInConnections()) {
+        auto ptr = v.lock();
+        if (!ptr) {
+          throw std::invalid_argument("Dead pointer!");
+        }
+        stck.push(ptr);
+      }
     }
   }
 }
