@@ -425,6 +425,7 @@ std::pair<bool, std::string>
   if (d_alreadyParsed && d_parentGraphs.size()) {
     return std::make_pair(true, getGraphInstance());
   }
+  std::cout << isConnected() << std::endl;
   // В данном методе происходит только генерация одного графа. Без подграфов.
   std::string verilogTab = "  ";
 
@@ -645,4 +646,58 @@ std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
 bool OrientedGraph::toGraphML(std::ofstream& fileStream) const {
   fileStream << this->toGraphML();
   return true;
+}
+
+bool OrientedGraph::isConnected() {
+  if (d_connected) {
+    return d_connected + 1;
+  }
+  size_t size = sumFullSize();
+  if (size == 0 || size == 1) {
+    return (d_connected = 1);
+  }
+  size_t subGraphsBuffersCount = 0;
+  for (auto subGraph : d_vertexes[VertexTypes::subGraph]) {
+    subGraphsBuffersCount += subGraph->getOutConnections().size();
+    if (!static_cast<GraphVertexSubGraph*>(subGraph.get())
+             ->getSubGraph()
+             ->isConnected()) {
+      return (d_connected = -1) + 1;
+    }
+  }
+  std::unordered_set<VertexPtr> visited;
+  VertexPtr                     firstVertex;
+  for (auto [k, v] : d_vertexes) {
+    if (!d_vertexes[k].empty()) {
+      firstVertex = d_vertexes[k][0];
+      break;
+    }
+  }
+  dfs(firstVertex, visited);
+  if (visited.size() == size - subGraphsBuffersCount) {
+    return (d_connected = 1);
+  } else {
+    return (d_connected = -1) + 1;
+  }
+}
+
+void OrientedGraph::dfs(
+    VertexPtr                      i_v,
+    std::unordered_set<VertexPtr>& i_visited
+) {
+  i_visited.insert(i_v);
+  for (auto v : i_v->getOutConnections()) {
+    if (i_visited.find(v) == i_visited.end()) {
+      dfs(v, i_visited);
+    }
+  }
+  for (auto v : i_v->getInConnections()) {
+    auto ptr = v.lock();
+    if (!ptr) {
+      throw std::invalid_argument("Dead pointer!");
+    }
+    if (i_visited.find(ptr) == i_visited.end()) {
+      dfs(ptr, i_visited);
+    }
+  }
 }

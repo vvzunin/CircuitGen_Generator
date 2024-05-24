@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 #include <tuple>
+#include <unordered_set>
 #include <vector>
 
 #include <baseStructures/graph/enums.hpp>
@@ -427,24 +428,30 @@ public:
 
   std::map<Gates, std::map<Gates, int>> getEdgesGatesCount() const;
 
+  bool                                  isConnected();
+
 private:
-  static std::atomic_size_t  d_countNewGraphInstance;
-  size_t                     d_graphID;
+  static std::atomic_size_t d_countNewGraphInstance;
+  size_t                    d_graphID;
   // as we can have multiple parents, we save
   // for toVerilog current parent graph
-  GraphPtrWeak               d_currentParentGraph;
-  size_t                     d_edgesCount = 0;
+  GraphPtrWeak              d_currentParentGraph;
+  size_t                    d_edgesCount = 0;
 
-  std::string                d_hashed     = "";
-  std::vector<GraphPtrWeak>  d_parentGraphs;
+  std::string               d_hashed     = "";
+  std::vector<GraphPtrWeak> d_parentGraphs;
 
-  std::string                d_name;
+  std::string               d_name;
 
   // Пока не реализован функционал.
-  bool                       d_needLevelUpdate = true;
+  bool                      d_needLevelUpdate = true;
 
   // also we need to now, was .v file for subgraph created, or not
-  bool                       d_alreadyParsed   = false;
+  bool                      d_alreadyParsed   = false;
+
+  // -1 if false, 0 if undefined, 1 if true
+  int8_t                    d_connected       = 0;
+  void dfs(VertexPtr i_v, std::unordered_set<VertexPtr>& i_visited);
   // We can add a subgraph multiple times
   // so we need to count instances to verilog.
   // We are counting to know, which inputs and outputs should we use now
