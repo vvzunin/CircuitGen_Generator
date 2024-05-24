@@ -426,7 +426,6 @@ std::pair<bool, std::string>
   if (d_alreadyParsed && d_parentGraphs.size()) {
     return std::make_pair(true, getGraphInstance());
   }
-  std::cout << isConnected() << std::endl;
   // В данном методе происходит только генерация одного графа. Без подграфов.
   std::string verilogTab = "  ";
 
@@ -649,8 +648,8 @@ bool OrientedGraph::toGraphML(std::ofstream& fileStream) const {
   return true;
 }
 
-bool OrientedGraph::isConnected() {
-  if (d_connected) {
+bool OrientedGraph::isConnected(bool i_recalculate) {
+  if (d_connected && !i_recalculate) {
     return d_connected + 1;
   }
 
@@ -669,15 +668,15 @@ bool OrientedGraph::isConnected() {
   }
 
   std::unordered_set<VertexPtr> visited;
-  VertexPtr                     firstVertex = nullptr;
+  VertexPtr                     startVertex = nullptr;
   for (auto& [type, vertices] : d_vertexes) {
     if (!vertices.empty()) {
-      firstVertex = vertices[0];
+      startVertex = vertices[0];
       break;
     }
   }
 
-  dfs(firstVertex, visited);
+  dfs(startVertex, visited);
 
   if (visited.size() == size - subGraphsBuffersCount) {
     return (d_connected = 1);

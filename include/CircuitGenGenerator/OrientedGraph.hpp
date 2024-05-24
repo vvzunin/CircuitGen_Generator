@@ -428,7 +428,7 @@ public:
 
   std::map<Gates, std::map<Gates, int>> getEdgesGatesCount() const;
 
-  bool                                  isConnected();
+  bool                                  isConnected(bool i_recalculate = false);
 
 private:
   static std::atomic_size_t d_countNewGraphInstance;
@@ -451,7 +451,7 @@ private:
 
   // -1 if false, 0 if undefined, 1 if true
   int8_t                    d_connected       = 0;
-  void dfs(VertexPtr i_v, std::unordered_set<VertexPtr>& i_visited);
+  void dfs(VertexPtr i_startVertex, std::unordered_set<VertexPtr>& i_visited);
   // We can add a subgraph multiple times
   // so we need to count instances to verilog.
   // We are counting to know, which inputs and outputs should we use now
