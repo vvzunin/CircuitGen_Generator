@@ -530,8 +530,8 @@ TEST(TestToGraphMLStringReturn, ReturnCorrectStringWhenThereAreSubEdges) {
       "    <node id=\"gate1\">\n"
       "      <data key=\"d0\">and</data>\n"
       "    </node>\n"
-      "    <source=\"input1\" target=\"gate1\"/>\n"
-      "    <source=\"input2\" target=\"gate1\"/>\n"
+      "    <edge source=\"input1\" target=\"gate1\"/>\n"
+      "    <edge source=\"input2\" target=\"gate1\"/>\n"
       "  </graph>\n"
       "</graphml>\n"
   );
