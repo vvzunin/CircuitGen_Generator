@@ -100,7 +100,7 @@ private:
 };
 
 /// class GraphVertexSubGraph It is a class, having a subGruph pointer
-/// inside. Is used for storing this pointer for providing Grpah
+/// inside. Is used for storing this pointer for providing graph
 /// connectivity
 /// @param d_subGraph Pointer to the subgraph associated with this vertex
 /// @param hashed Cached hash value of the vertex
@@ -122,7 +122,7 @@ public:
   /// OrientedGraph methods
   /// @param i_path path to future file storing. Do not add submodule here,
   /// folder would be created there
-  /// @param i_filename name of file to be created (default is same as grpah
+  /// @param i_filename name of file to be created (default is same as graph
   /// name)
   /// @return pair, first is bool, meaning was file writing successful or not
   /// and second is string, for graph is empty, for subgraph is module instance
