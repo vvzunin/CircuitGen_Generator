@@ -12,6 +12,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <thread>
 
 using namespace std::chrono;
 
@@ -21,21 +22,8 @@ using namespace CircuitGenGenerator;
 void set_flag(const std::string& i_flag);
 
 int main(int argc, char **argv) {
+  
   set_flag(array_pop(argv, argc));
-  el::Configurations logger_config_for_database_generator_parameters;
-  logger_config_for_database_generator_parameters.setToDefault();
-  logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::Filename, "./include/path/to/log_for_database_generator_parameters.log");
-  logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::Format, "%datetime %level %msg");
-  el::Logger* logger_for_database_generator_parameters = el::Loggers::getLogger("logger_for_database_generator_parameters");
-  logger_for_database_generator_parameters->configure(logger_config_for_database_generator_parameters);
-  // Logging for GenerationParameters
-  el::Configurations logger_config_for_generation_parameters;
-  logger_config_for_generation_parameters.setToDefault();
-  logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::Filename, "./include/path/to/log_for_generation_parameters.log");
-  logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::Format, "%datetime %level %msg");
-  el::Logger* logger_for_generation_parameters = el::Loggers::getLogger("logger_for_generation_parameters");
-  logger_for_generation_parameters->configure(logger_config_for_generation_parameters);
-
   std::string json_path;
   // Use getopt to parse command line arguments
   const char *const short_opts = "j:n:";
@@ -63,6 +51,5 @@ int main(int argc, char **argv) {
   // json_path = "../../examples/json/sampleALU.json";
   // std::clog << std::filesystem::current_path() << std::endl;
   CircuitGenGenerator::runGenerationFromJson(json_path);
-
   return 0;
 }

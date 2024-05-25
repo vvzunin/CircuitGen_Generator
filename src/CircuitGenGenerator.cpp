@@ -10,6 +10,8 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <thread>
+#include <pthread.h>
 
 #include <additional/AuxiliaryMethods.hpp>
 #include <database/DataBaseGenerator.hpp>
@@ -25,6 +27,10 @@
 
 using namespace std::chrono;
 
+const char * build_C_style_string(const std::string& s, unsigned int num, const std::string& extention = "") {
+    return (s + std::string("_with_thread_id_") + std::to_string(num) + extention).c_str();
+};
+
 void runGeneration(
     std::string json_path,
     std::function<void(
@@ -35,6 +41,43 @@ void runGeneration(
     )>          callable,
     const std::string& flag = ""
 ) {
+   
+  unsigned int thread_id = static_cast<unsigned int>(pthread_self());
+  thread_local std::filesystem::path folderPath = std::string("./include/path/to/") + std::to_string(thread_id);
+  std::filesystem::create_directories(folderPath);
+
+  thread_local std::string path = build_C_style_string("/include/path/to/", thread_id, "/");
+  thread_local std::string path_to_log_for_database_generator_parameters = path + "logger_for_database_generator_parameters.log";
+  thread_local std::string path_to_log_for_generation_parameters         = path + "logger_for_generation_parameters.log";
+  thread_local bool has_run_once = false;
+  thread_local el::Configurations logger_config_for_database_generator_parameters;
+  thread_local el::Configurations logger_config_for_generation_parameters;
+  thread_local el::Logger* logger_for_database_generator_parameters = nullptr;
+  thread_local el::Logger* logger_for_generation_parameters = nullptr;
+
+
+  if(!has_run_once) {
+    std::filesystem::create_directories(folderPath);
+    
+    logger_config_for_database_generator_parameters.setToDefault();
+    logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::Filename, std::string("./include/path/to/") + std::to_string(thread_id) + "/log_for_database_generator_parameters.log");
+    logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::Format, "%datetime %level %msg");
+    logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::ToStandardOutput, "false");
+    logger_for_database_generator_parameters = el::Loggers::getLogger("logger_for_database_generator_parameters");
+    logger_config_for_generation_parameters.setToDefault();
+    logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::Filename, std::string("./include/path/to/") + std::to_string(thread_id) + "/log_for_generation_parameters.log");
+    logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::Format, "%datetime %level %msg");
+    logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::ToStandardOutput, "false");
+    logger_for_generation_parameters = el::Loggers::getLogger("logger_for_generation_parameters");
+
+    el::Loggers::reconfigureLogger("logger_for_database_generator_parameters", logger_config_for_database_generator_parameters);
+    el::Loggers::reconfigureLogger("logger_for_generation_parameters", logger_config_for_generation_parameters);
+
+    has_run_once = true;
+  }
+  
+  
+
   std::ifstream  f(json_path);
   nlohmann::json DATA = nlohmann::json::parse(f);
   // Read all json objects in json file.
@@ -560,6 +603,7 @@ void runGeneration(
         minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp
     );
 
+    size_t thread_id = std::hash<std::thread::id>{}(std::this_thread::get_id());
     //LOG(INFO) << "DataBaseGeneratorParameters: " << dbgp.getDataForLogging();
     if (flag == "INFO") 
       CLOG(INFO, "logger_for_database_generator_parameters") << dbgp.getDataForLogging();
