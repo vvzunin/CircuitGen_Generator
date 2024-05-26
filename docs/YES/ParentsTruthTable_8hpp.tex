@@ -1,0 +1,147 @@
+\hypertarget{ParentsTruthTable_8hpp}{}\doxysection{/mnt/c/course\+\_\+3/\+Circuit\+Gen\+\_\+\+Generator/src/generators/\+Genetic/\+Parents/\+Parents\+Truth\+Table.hpp File Reference}
+\label{ParentsTruthTable_8hpp}\index{/mnt/c/course\_3/CircuitGen\_Generator/src/generators/Genetic/Parents/ParentsTruthTable.hpp@{/mnt/c/course\_3/CircuitGen\_Generator/src/generators/Genetic/Parents/ParentsTruthTable.hpp}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$additional/\+Auxiliary\+Methods.\+hpp$>$}\newline
+{\ttfamily \#include $<$base\+Structures/truth\+Table/\+Truth\+Table.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}../\+Chronosome\+Type.\+h\char`\"{}}\newline
+Include dependency graph for Parents\+Truth\+Table.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParentsTruthTable_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParentsTruthTable_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{ParentsTruthTable_8hpp_a4367b06f52c9cb104d52e482e5583acf}{Get\+Hemming}} (int i\+\_\+t, std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$ i\+\_\+population)
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{ParentsTruthTable_8hpp_ae40903b10e5c241e6e55cf222a675e90}{Parents\+Panmixia}} (\mbox{\hyperlink{classParentsParameters}{Parents\+Parameters}} i\+\_\+parents\+Parameters, std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$ i\+\_\+population)
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{ParentsTruthTable_8hpp_a93dd9341a8ba45096d052fd8b90339e6}{Parents\+Inbrinding}} (\mbox{\hyperlink{classParentsParameters}{Parents\+Parameters}} i\+\_\+parents\+Parameters, std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$ i\+\_\+population)
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{ParentsTruthTable_8hpp_afe4cc8bbdefa0725ebb0f0741a373dc8}{Parents\+Outbrinding}} (\mbox{\hyperlink{classParentsParameters}{Parents\+Parameters}} i\+\_\+parents\+Parameters, std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$ i\+\_\+population)
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{ParentsTruthTable_8hpp_a353557dcdc022c62d7fd01e5e2d64d72}{Parents\+Tournament}} (\mbox{\hyperlink{classParentsParameters}{Parents\+Parameters}} i\+\_\+parents\+Parameters, std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$ i\+\_\+population)
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{ParentsTruthTable_8hpp_a5d49e81477e73349ae89b49c266a063e}{Parents\+Roulette}} (\mbox{\hyperlink{classParentsParameters}{Parents\+Parameters}} i\+\_\+parents\+Parameters, std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$ i\+\_\+population)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ParentsTruthTable_8hpp_a4367b06f52c9cb104d52e482e5583acf}\label{ParentsTruthTable_8hpp_a4367b06f52c9cb104d52e482e5583acf}} 
+\index{ParentsTruthTable.hpp@{ParentsTruthTable.hpp}!GetHemming@{GetHemming}}
+\index{GetHemming@{GetHemming}!ParentsTruthTable.hpp@{ParentsTruthTable.hpp}}
+\doxysubsubsection{\texorpdfstring{GetHemming()}{GetHemming()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Get\+Hemming (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+t,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$}]{i\+\_\+population }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParentsTruthTable_8hpp_a4367b06f52c9cb104d52e482e5583acf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParentsTruthTable_8hpp_a4367b06f52c9cb104d52e482e5583acf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{ParentsTruthTable_8hpp_a93dd9341a8ba45096d052fd8b90339e6}\label{ParentsTruthTable_8hpp_a93dd9341a8ba45096d052fd8b90339e6}} 
+\index{ParentsTruthTable.hpp@{ParentsTruthTable.hpp}!ParentsInbrinding@{ParentsInbrinding}}
+\index{ParentsInbrinding@{ParentsInbrinding}!ParentsTruthTable.hpp@{ParentsTruthTable.hpp}}
+\doxysubsubsection{\texorpdfstring{ParentsInbrinding()}{ParentsInbrinding()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Parents\+Inbrinding (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classParentsParameters}{Parents\+Parameters}}}]{i\+\_\+parents\+Parameters,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$}]{i\+\_\+population }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParentsTruthTable_8hpp_a93dd9341a8ba45096d052fd8b90339e6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{ParentsTruthTable_8hpp_a93dd9341a8ba45096d052fd8b90339e6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{ParentsTruthTable_8hpp_afe4cc8bbdefa0725ebb0f0741a373dc8}\label{ParentsTruthTable_8hpp_afe4cc8bbdefa0725ebb0f0741a373dc8}} 
+\index{ParentsTruthTable.hpp@{ParentsTruthTable.hpp}!ParentsOutbrinding@{ParentsOutbrinding}}
+\index{ParentsOutbrinding@{ParentsOutbrinding}!ParentsTruthTable.hpp@{ParentsTruthTable.hpp}}
+\doxysubsubsection{\texorpdfstring{ParentsOutbrinding()}{ParentsOutbrinding()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Parents\+Outbrinding (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classParentsParameters}{Parents\+Parameters}}}]{i\+\_\+parents\+Parameters,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$}]{i\+\_\+population }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParentsTruthTable_8hpp_afe4cc8bbdefa0725ebb0f0741a373dc8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{ParentsTruthTable_8hpp_afe4cc8bbdefa0725ebb0f0741a373dc8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{ParentsTruthTable_8hpp_ae40903b10e5c241e6e55cf222a675e90}\label{ParentsTruthTable_8hpp_ae40903b10e5c241e6e55cf222a675e90}} 
+\index{ParentsTruthTable.hpp@{ParentsTruthTable.hpp}!ParentsPanmixia@{ParentsPanmixia}}
+\index{ParentsPanmixia@{ParentsPanmixia}!ParentsTruthTable.hpp@{ParentsTruthTable.hpp}}
+\doxysubsubsection{\texorpdfstring{ParentsPanmixia()}{ParentsPanmixia()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Parents\+Panmixia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classParentsParameters}{Parents\+Parameters}}}]{i\+\_\+parents\+Parameters,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$}]{i\+\_\+population }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{ParentsTruthTable_8hpp_ae40903b10e5c241e6e55cf222a675e90_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{ParentsTruthTable_8hpp_a5d49e81477e73349ae89b49c266a063e}\label{ParentsTruthTable_8hpp_a5d49e81477e73349ae89b49c266a063e}} 
+\index{ParentsTruthTable.hpp@{ParentsTruthTable.hpp}!ParentsRoulette@{ParentsRoulette}}
+\index{ParentsRoulette@{ParentsRoulette}!ParentsTruthTable.hpp@{ParentsTruthTable.hpp}}
+\doxysubsubsection{\texorpdfstring{ParentsRoulette()}{ParentsRoulette()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Parents\+Roulette (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classParentsParameters}{Parents\+Parameters}}}]{i\+\_\+parents\+Parameters,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$}]{i\+\_\+population }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParentsTruthTable_8hpp_a5d49e81477e73349ae89b49c266a063e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{ParentsTruthTable_8hpp_a353557dcdc022c62d7fd01e5e2d64d72}\label{ParentsTruthTable_8hpp_a353557dcdc022c62d7fd01e5e2d64d72}} 
+\index{ParentsTruthTable.hpp@{ParentsTruthTable.hpp}!ParentsTournament@{ParentsTournament}}
+\index{ParentsTournament@{ParentsTournament}!ParentsTruthTable.hpp@{ParentsTruthTable.hpp}}
+\doxysubsubsection{\texorpdfstring{ParentsTournament()}{ParentsTournament()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Parents\+Tournament (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classParentsParameters}{Parents\+Parameters}}}]{i\+\_\+parents\+Parameters,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ \mbox{\hyperlink{classTruthTable}{Truth\+Table}}, \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} $>$$>$}]{i\+\_\+population }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParentsTruthTable_8hpp_a353557dcdc022c62d7fd01e5e2d64d72_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{ParentsTruthTable_8hpp_a353557dcdc022c62d7fd01e5e2d64d72_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,5 @@
+<map id="GeneticGenerator::generate" name="GeneticGenerator::generate">
+<area shape="rect" id="Node000001" title="generate Generates a genetic population and carries out evolutionary processes The method creates an ..." alt="" coords="227,13,408,40"/>
+<area shape="rect" id="Node000002" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="5,5,179,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,29,179,29,179,24,211,24"/>
+</map>

@@ -1,0 +1,72 @@
+\hypertarget{SimpleGenerators_8hpp}{}\doxysection{/mnt/c/course\+\_\+3/\+Circuit\+Gen\+\_\+\+Generator/src/generators/simple/\+Simple\+Generators.hpp File Reference}
+\label{SimpleGenerators_8hpp}\index{/mnt/c/course\_3/CircuitGen\_Generator/src/generators/simple/SimpleGenerators.hpp@{/mnt/c/course\_3/CircuitGen\_Generator/src/generators/simple/SimpleGenerators.hpp}}
+
+
+TO DO\+: Description generator\+Num\+Operation TO DO\+: check and change the body if necessary generator\+Summator, generator\+Comparison and generator\+Encoder.  
+
+
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$additional/\+Random\+Generator\+With\+Seed.\+hpp$>$}\newline
+{\ttfamily \#include $<$base\+Structures/truth\+Table/\+Truth\+Table.\+hpp$>$}\newline
+{\ttfamily \#include $<$Circuit\+Gen\+Generator/\+Oriented\+Graph.\+hpp$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$settings/\+Settings.\+hpp$>$}\newline
+Include dependency graph for Simple\+Generators.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{SimpleGenerators_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{SimpleGenerators_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}}
+\begin{DoxyCompactList}\small\item\em class \mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{SimpleGenerators_8hpp_acc732d3a2c1ab5f7d94419a55affee08}{Gates\+Info}} = std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, std\+::vector$<$ int $>$ $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+TO DO\+: Description generator\+Num\+Operation TO DO\+: check and change the body if necessary generator\+Summator, generator\+Comparison and generator\+Encoder. 
+
+max\+Value\+In\+Map Find the maximum value in a map
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the map keys \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+map} & The map whose maximum value is to be found \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum value in the map. If the map is empty, returns -\/1 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The function assumes that the map values are of type int 
+\end{DoxyNote}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{SimpleGenerators_8hpp_acc732d3a2c1ab5f7d94419a55affee08}\label{SimpleGenerators_8hpp_acc732d3a2c1ab5f7d94419a55affee08}} 
+\index{SimpleGenerators.hpp@{SimpleGenerators.hpp}!GatesInfo@{GatesInfo}}
+\index{GatesInfo@{GatesInfo}!SimpleGenerators.hpp@{SimpleGenerators.hpp}}
+\doxysubsubsection{\texorpdfstring{GatesInfo}{GatesInfo}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{Parser_8hpp_acc732d3a2c1ab5f7d94419a55affee08}{Gates\+Info}} =  std\+::map$<$\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, std\+::vector$<$int$>$ $>$}
+

@@ -1,0 +1,970 @@
+\hypertarget{classGenerationParameters}{}\doxysection{Generation\+Parameters Class Reference}
+\label{classGenerationParameters}\index{GenerationParameters@{GenerationParameters}}
+
+
+{\ttfamily \#include $<$Generation\+Parameters.\+hpp$>$}
+
+
+
+Collaboration diagram for Generation\+Parameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGenerationParameters_a8560ed456f9fc9eb900712fae67fffa8}{Generation\+Parameters}} (const std\+::string \&i\+\_\+name, const std\+::string \&i\+\_\+request\+Id, int i\+\_\+inputs, int i\+\_\+outputs, int i\+\_\+iteration, std\+::string i\+\_\+library\+Name=\char`\"{}\char`\"{}, bool i\+\_\+calculate\+Stats\+Abc=false, bool i\+\_\+make\+Optimized\+Files=false, bool i\+\_\+make\+Firrtl=false, bool i\+\_\+make\+Bench=false, bool i\+\_\+make\+Graph\+ML=false)
+\item 
+std\+::string \mbox{\hyperlink{classGenerationParameters_a3220cd863174ccbfd31f4a7965759350}{get\+Name}} () const
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a07db704beeefe9fb8958bd625ad6a6ad}{set\+Name}} (const std\+::string \&i\+\_\+name)
+\item 
+std\+::string \mbox{\hyperlink{classGenerationParameters_ab5c7b845f70600bdfb9cca6109aba209}{get\+Request\+Id}} () const
+\item 
+std\+::string \mbox{\hyperlink{classGenerationParameters_a0d2b502fd59b086ef1c517e4dd34a81a}{get\+Library\+Name}} () const
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a77c0e941d7137026253f4069b9021b88}{set\+Library\+Name}} (std\+::string i\+\_\+library\+Name)
+\item 
+int \mbox{\hyperlink{classGenerationParameters_ab1e4bb546c125555d3fc577b5dbd2c06}{get\+Inputs}} () const
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a3e705c98f0e7bf135647f48e88bbb62c}{set\+Inputs}} (int i\+\_\+inputs)
+\item 
+int \mbox{\hyperlink{classGenerationParameters_a3f4738cdc5830e3f5554df5ad726313a}{get\+Outputs}} () const
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a48ead551de59bfab492bc8940e8fc022}{set\+Outputs}} (int i\+\_\+outputs)
+\item 
+int \mbox{\hyperlink{classGenerationParameters_a7ad28031cb4316fc7a69462f011dd000}{get\+Iteration}} () const
+\item 
+void \mbox{\hyperlink{classGenerationParameters_aa8086051fa4847240493bdae77c00443}{set\+Iteration}} (int i\+\_\+iteration)
+\item 
+bool \mbox{\hyperlink{classGenerationParameters_afe40a79b145ba89c81ad07db21c949ab}{get\+Make\+Graph\+ML}} () const
+\item 
+std\+::uint\+\_\+fast32\+\_\+t \mbox{\hyperlink{classGenerationParameters_a07806a196e5976fce356ff2f3d91f822}{get\+Seed}} () const
+\item 
+void \mbox{\hyperlink{classGenerationParameters_adc3ea9fd2752d5631c44ead12ec97007}{set\+Seed}} (std\+::uint\+\_\+fast32\+\_\+t i\+\_\+seed)
+\item 
+std\+::map$<$ std\+::string, std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{classGenerationParameters_abe52488727e2afd682f8d75e2b4925a1}{get\+Gates\+Inputs\+Info}} () const
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a0f5236476e05c1a5c338a8cedba31c33}{set\+Gates\+Input\+Info}} (const std\+::map$<$ std\+::string, std\+::vector$<$ int $>$$>$ \&i\+\_\+gates\+Inputs\+Info)
+\item 
+\mbox{\hyperlink{classCNNFromTruthTableParameters}{CNNFrom\+Truth\+Table\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a2f4ad9ff5987e4d4d3a658e2f10fef83}{get\+CNF}} () const
+\item 
+\mbox{\hyperlink{classzhegalkinFromTruthTableParameters}{zhegalkin\+From\+Truth\+Table\+Parameters}} \mbox{\hyperlink{classGenerationParameters_ad9124167a78b118d3ecfe254ebdd984a}{get\+Zhegalkin}} () const
+\item 
+\mbox{\hyperlink{classGeneratorRandLevelParameters}{Generator\+Rand\+Level\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a26921547cfbee88bd5a89cbebc109012}{get\+Rand\+Level}} () const
+\item 
+\mbox{\hyperlink{classGeneratorNumOperationParameters}{Generator\+Num\+Operation\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a81882d5f752dd8a621483f38befab80a}{get\+Num\+Operations}} () const
+\item 
+\mbox{\hyperlink{classGeneratorSummatorParameters}{Generator\+Summator\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a903b41beefe6e8295235ed8a7eb8aae6}{get\+Summator}} () const
+\item 
+\mbox{\hyperlink{classGeneratorComparisonParameters}{Generator\+Comparison\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a2d8cea359034ed45dfff44f32b39904b}{get\+Comparison}} () const
+\item 
+\mbox{\hyperlink{classGeneratorSubtractorParameters}{Generator\+Subtractor\+Parameters}} \mbox{\hyperlink{classGenerationParameters_af8dab16d88edadfb06af56786af3b37e}{get\+Subtractor}} () const
+\item 
+\mbox{\hyperlink{classGeneratorALUParameters}{Generator\+ALUParameters}} \mbox{\hyperlink{classGenerationParameters_a45496b83544a8d17202ae34b4b2ea308}{get\+ALU}} () const
+\item 
+\mbox{\hyperlink{classGeneticParameters}{Genetic\+Parameters}} \mbox{\hyperlink{classGenerationParameters_ab66c082601d3c2e4fd3b664a66592b96}{get\+Genetic}} () const
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a6a579996d93cf7232d818c48f8755eb3}{set\+CNFF}} (bool i\+\_\+\+CNFF)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a1555432e7175794ef8a0c447496ddf9b}{set\+CNFT}} (bool i\+\_\+\+CNFT)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_aa67f35e786d343ffcbeae198332093cd}{set\+Limit}} (bool i\+\_\+limit)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a79a66fdae906957bf7d4e25d4962ee3e}{set\+Rand\+Level\+Parameters}} (int i\+\_\+min\+Level, int i\+\_\+max\+Level, int i\+\_\+min\+Elements, int i\+\_\+max\+Elements)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a99a8340e021fd0ca1265f71d94435412}{set\+Num\+Operation\+Parameters}} (const std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \&i\+\_\+m, bool i\+\_\+\+Leave\+Empty\+Out)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87}{set\+Subtractor\+Parameters}} (bool i\+\_\+overflow\+In, bool i\+\_\+overflow\+Out, bool i\+\_\+sub)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1}{set\+Summator\+Parameters}} (bool i\+\_\+overflow\+In, bool i\+\_\+overflow\+Out, bool i\+\_\+minus)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64}{set\+Comparison\+Parameters}} (bool i\+\_\+compare0, bool i\+\_\+compare1, bool i\+\_\+compare2)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_ac0633464bc50fd748f243e77f82c151d}{set\+ALUParameters}} (bool i\+\_\+\+ALL, bool i\+\_\+\+SUM, bool i\+\_\+\+SUB, bool i\+\_\+\+NSUM, bool i\+\_\+\+NSUB, bool i\+\_\+\+MULT, bool i\+\_\+\+COM, bool i\+\_\+\+AND, bool i\+\_\+\+NAND, bool i\+\_\+\+OR, bool i\+\_\+\+NOR, bool i\+\_\+\+XOR, bool i\+\_\+\+XNOR, bool i\+\_\+\+CNF, bool i\+\_\+\+RNL, bool i\+\_\+\+NUM\+\_\+\+OP, int i\+\_\+min\+Level, int i\+\_\+max\+Level, int i\+\_\+min\+Element, int i\+\_\+max\+Element, std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ i\+\_\+m, bool i\+\_\+\+Leave\+Empty\+Out)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1}{set\+Zhegalkin}} (bool i\+\_\+zhegalkin)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a6c3913a0bad4bdfd4a82f933b527bdfd}{set\+Num\+Of\+Cycles}} (int i\+\_\+num\+Of\+Cycles)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_af99346e7132aa975a89239acb1785d64}{set\+Population\+Size}} (int i\+\_\+population\+Size)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a28ad7386a31878472ffee85207a0f226}{set\+Recombination\+Parameters}} (\mbox{\hyperlink{ParentsParameters_8h_a130c2b32927d9f98f3433218f8e84f75}{Parents\+Types}} i\+\_\+parents\+Types, int i\+\_\+tournament\+Number, \mbox{\hyperlink{RecombinationParameters_8h_a5981086c64ece56169fab85e575fe548}{Recombination\+Types}} i\+\_\+recombination\+Type, int i\+\_\+ref\+Points, double mask\+Probability, int i\+\_\+recombination\+Number)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a3fb03417dc3919cb0d118f984e66cca5}{set\+Mutation\+Parameters}} (\mbox{\hyperlink{MutationParameters_8h_a7b01179572d8f7532b68a5aa847f0ad8}{Mutation\+Types}} i\+\_\+mutation\+Type, double i\+\_\+probability\+Gen, int i\+\_\+exchange\+Type, double i\+\_\+probability\+Truth\+Table)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a74965933f5711f8110ee11e2dfe2ef35}{set\+Selection\+Parameters}} (\mbox{\hyperlink{SelectionParameters_8h_a50daa29c84869b18e0b12d7456de94e2}{Selection\+Types}} i\+\_\+selection\+Type, int i\+\_\+num\+Of\+Survivors)
+\item 
+void \mbox{\hyperlink{classGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf}{set\+Key\+End\+Process\+Index}} (double i\+\_\+key\+End\+Process\+Index)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classGenerationParameters_a4f5a434e76f4f2d9806cf25666d918e2}{d\+\_\+name}} = \char`\"{}\char`\"{}
+\item 
+std\+::string \mbox{\hyperlink{classGenerationParameters_a0f843e685a83b353b2909b1d5c2f4152}{d\+\_\+request\+Id}}
+\item 
+std\+::string \mbox{\hyperlink{classGenerationParameters_adb32381abde1415880d1e6b039269e61}{d\+\_\+library\+Name}}
+\item 
+int \mbox{\hyperlink{classGenerationParameters_a5abfe42d43bf94c65b70b28f76e37c82}{d\+\_\+inputs}} = 0
+\item 
+int \mbox{\hyperlink{classGenerationParameters_ab64567a36426b7974dfa9add05cc90d4}{d\+\_\+outputs}} = 0
+\item 
+int \mbox{\hyperlink{classGenerationParameters_a0ea932c3a3f627c218436484a793b21c}{d\+\_\+iteration}} = 0
+\item 
+bool \mbox{\hyperlink{classGenerationParameters_a6b0279b96d5377b5d1139672965a4ea2}{d\+\_\+calculate\+Stats\+Abc}}
+\item 
+bool \mbox{\hyperlink{classGenerationParameters_ab8477b8b5433b5dcbb49b20ea9120c56}{d\+\_\+make\+Optimized\+Files}}
+\item 
+bool \mbox{\hyperlink{classGenerationParameters_a40831d5d3695741419e1929abe359e91}{d\+\_\+make\+Firrtl}}
+\item 
+bool \mbox{\hyperlink{classGenerationParameters_a69ae405f9343694eea1a107fc26c8525}{d\+\_\+make\+Bench}}
+\item 
+bool \mbox{\hyperlink{classGenerationParameters_acba8b7b7ace2c554b2bc0da97637bd13}{d\+\_\+make\+Graph\+ML}}
+\item 
+std\+::map$<$ std\+::string, std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{classGenerationParameters_a955bf82112428b2f01e91edeafd037fd}{d\+\_\+gates\+Inputs\+Info}}
+\item 
+std\+::uint\+\_\+fast32\+\_\+t \mbox{\hyperlink{classGenerationParameters_a2ca04c8afd44be06f1b17b3132394503}{d\+\_\+seed}} = 0
+\item 
+\mbox{\hyperlink{classCNNFromTruthTableParameters}{CNNFrom\+Truth\+Table\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a1dabfecada6012d10562a8f1ebc67195}{d\+\_\+cnf\+From\+Truth\+Table\+Parameters}}
+\item 
+\mbox{\hyperlink{classzhegalkinFromTruthTableParameters}{zhegalkin\+From\+Truth\+Table\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a704bba4d8ab5c89d98dac94c6031ecff}{d\+\_\+\+Zhegalkin\+From\+Truth\+Table\+Parameters}}
+\item 
+\mbox{\hyperlink{classGeneratorRandLevelParameters}{Generator\+Rand\+Level\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a80ba5d709b75e68c17694f4be9c3c7b6}{d\+\_\+generator\+Rand\+Level\+Parameters}}
+\item 
+\mbox{\hyperlink{classGeneratorNumOperationParameters}{Generator\+Num\+Operation\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a2d7d08d03c87b94182efa41dc6472ba8}{d\+\_\+generator\+Num\+Operation\+Parameters}}
+\item 
+\mbox{\hyperlink{classGeneratorSummatorParameters}{Generator\+Summator\+Parameters}} \mbox{\hyperlink{classGenerationParameters_af87aa9cbcf8464aebce237a5765607de}{d\+\_\+generator\+Summator\+Parameters}}
+\item 
+\mbox{\hyperlink{classGeneratorComparisonParameters}{Generator\+Comparison\+Parameters}} \mbox{\hyperlink{classGenerationParameters_ac535c1713c98821642a90a8fb280720b}{d\+\_\+generator\+Comparison\+Parameters}}
+\item 
+\mbox{\hyperlink{classGeneratorSubtractorParameters}{Generator\+Subtractor\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a1ca73198f6b93339fe8270adea2c2fe7}{d\+\_\+generator\+Subtractor\+Parameters}}
+\item 
+\mbox{\hyperlink{classGeneratorALUParameters}{Generator\+ALUParameters}} \mbox{\hyperlink{classGenerationParameters_aac0abd8cf4d1da6816551c65977c0735}{d\+\_\+generator\+ALUParameters}}
+\item 
+\mbox{\hyperlink{classGeneticParameters}{Genetic\+Parameters}} \mbox{\hyperlink{classGenerationParameters_a152d1bb6843b402bd5b6c90ea5f8b6b9}{d\+\_\+genetic\+Parameters}} = \mbox{\hyperlink{classGeneticParameters}{Genetic\+Parameters}}(2, 3)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000012}{Todo}}]\+: To add desc some fields class \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \end{DoxyRefDesc}
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+name} & Generation name \\
+\hline
+{\em d\+\_\+request\+Id} & request ID \\
+\hline
+{\em d\+\_\+library\+Name} & library name$\ast$$\ast$$\ast$ \\
+\hline
+{\em d\+\_\+inputs} & number of inputs \\
+\hline
+{\em d\+\_\+outputs} & number of outputs \\
+\hline
+{\em d\+\_\+iteration} & ??? \\
+\hline
+{\em d\+\_\+calculate\+Stats\+Abc} & A Boolean value indicating whether ABC statistics should be calculated \\
+\hline
+{\em d\+\_\+make\+Optimized\+Files} & A Boolean value indicating whether optimized files should be created \\
+\hline
+{\em d\+\_\+make\+Firrtl} & A Boolean value indicating whether FIRRTL files should be created \\
+\hline
+{\em d\+\_\+make\+Bench} & A Boolean value indicating whether to create Bench files \\
+\hline
+{\em d\+\_\+gates\+Inputs\+Info} & A mapping where the key is a string representing information about the inputs, and the value is a vector of integers representing information about the inputs for the gates$\ast$$\ast$$\ast$\\
+\hline
+\end{DoxyParams}
+$\ast$/ \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000013}{Todo}}]\+: To add desc some fields class \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \end{DoxyRefDesc}
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+name} & Generation name \\
+\hline
+{\em d\+\_\+request\+Id} & request ID \\
+\hline
+{\em d\+\_\+library\+Name} & library name$\ast$$\ast$$\ast$ \\
+\hline
+{\em d\+\_\+inputs} & number of inputs \\
+\hline
+{\em d\+\_\+outputs} & number of outputs \\
+\hline
+{\em d\+\_\+iteration} & ??? \\
+\hline
+{\em d\+\_\+calculate\+Stats\+Abc} & A Boolean value indicating whether ABC statistics should be calculated \\
+\hline
+{\em d\+\_\+make\+Optimized\+Files} & A Boolean value indicating whether optimized files should be created \\
+\hline
+{\em d\+\_\+make\+Firrtl} & A Boolean value indicating whether FIRRTL files should be created \\
+\hline
+{\em d\+\_\+make\+Bench} & A Boolean value indicating whether to create Bench files \\
+\hline
+{\em d\+\_\+gates\+Inputs\+Info} & A mapping where the key is a string representing information about the inputs, and the value is a vector of integers representing information about the inputs for the gates$\ast$$\ast$$\ast$\\
+\hline
+\end{DoxyParams}
+$\ast$/ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGenerationParameters_a8560ed456f9fc9eb900712fae67fffa8}\label{classGenerationParameters_a8560ed456f9fc9eb900712fae67fffa8}} 
+\index{GenerationParameters@{GenerationParameters}!GenerationParameters@{GenerationParameters}}
+\index{GenerationParameters@{GenerationParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{GenerationParameters()}{GenerationParameters()}}
+{\footnotesize\ttfamily Generation\+Parameters\+::\+Generation\+Parameters (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+name,  }\item[{const std\+::string \&}]{i\+\_\+request\+Id,  }\item[{int}]{i\+\_\+inputs,  }\item[{int}]{i\+\_\+outputs,  }\item[{int}]{i\+\_\+iteration,  }\item[{std\+::string}]{i\+\_\+library\+Name = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{i\+\_\+calculate\+Stats\+Abc = {\ttfamily false},  }\item[{bool}]{i\+\_\+make\+Optimized\+Files = {\ttfamily false},  }\item[{bool}]{i\+\_\+make\+Firrtl = {\ttfamily false},  }\item[{bool}]{i\+\_\+make\+Bench = {\ttfamily false},  }\item[{bool}]{i\+\_\+make\+Graph\+ML = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGenerationParameters_a45496b83544a8d17202ae34b4b2ea308}\label{classGenerationParameters_a45496b83544a8d17202ae34b4b2ea308}} 
+\index{GenerationParameters@{GenerationParameters}!getALU@{getALU}}
+\index{getALU@{getALU}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getALU()}{getALU()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorALUParameters}{Generator\+ALUParameters}} Generation\+Parameters\+::get\+ALU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a45496b83544a8d17202ae34b4b2ea308_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a2f4ad9ff5987e4d4d3a658e2f10fef83}\label{classGenerationParameters_a2f4ad9ff5987e4d4d3a658e2f10fef83}} 
+\index{GenerationParameters@{GenerationParameters}!getCNF@{getCNF}}
+\index{getCNF@{getCNF}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getCNF()}{getCNF()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCNNFromTruthTableParameters}{CNNFrom\+Truth\+Table\+Parameters}} Generation\+Parameters\+::get\+CNF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a2f4ad9ff5987e4d4d3a658e2f10fef83_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a2d8cea359034ed45dfff44f32b39904b}\label{classGenerationParameters_a2d8cea359034ed45dfff44f32b39904b}} 
+\index{GenerationParameters@{GenerationParameters}!getComparison@{getComparison}}
+\index{getComparison@{getComparison}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getComparison()}{getComparison()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorComparisonParameters}{Generator\+Comparison\+Parameters}} Generation\+Parameters\+::get\+Comparison (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a2d8cea359034ed45dfff44f32b39904b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_abe52488727e2afd682f8d75e2b4925a1}\label{classGenerationParameters_abe52488727e2afd682f8d75e2b4925a1}} 
+\index{GenerationParameters@{GenerationParameters}!getGatesInputsInfo@{getGatesInputsInfo}}
+\index{getGatesInputsInfo@{getGatesInputsInfo}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getGatesInputsInfo()}{getGatesInputsInfo()}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, std\+::vector$<$int$>$ $>$ Generation\+Parameters\+::get\+Gates\+Inputs\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_abe52488727e2afd682f8d75e2b4925a1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_ab66c082601d3c2e4fd3b664a66592b96}\label{classGenerationParameters_ab66c082601d3c2e4fd3b664a66592b96}} 
+\index{GenerationParameters@{GenerationParameters}!getGenetic@{getGenetic}}
+\index{getGenetic@{getGenetic}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getGenetic()}{getGenetic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneticParameters}{Genetic\+Parameters}} Generation\+Parameters\+::get\+Genetic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_ab66c082601d3c2e4fd3b664a66592b96_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_ab1e4bb546c125555d3fc577b5dbd2c06}\label{classGenerationParameters_ab1e4bb546c125555d3fc577b5dbd2c06}} 
+\index{GenerationParameters@{GenerationParameters}!getInputs@{getInputs}}
+\index{getInputs@{getInputs}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getInputs()}{getInputs()}}
+{\footnotesize\ttfamily int Generation\+Parameters\+::get\+Inputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_ab1e4bb546c125555d3fc577b5dbd2c06_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a7ad28031cb4316fc7a69462f011dd000}\label{classGenerationParameters_a7ad28031cb4316fc7a69462f011dd000}} 
+\index{GenerationParameters@{GenerationParameters}!getIteration@{getIteration}}
+\index{getIteration@{getIteration}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getIteration()}{getIteration()}}
+{\footnotesize\ttfamily int Generation\+Parameters\+::get\+Iteration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a0d2b502fd59b086ef1c517e4dd34a81a}\label{classGenerationParameters_a0d2b502fd59b086ef1c517e4dd34a81a}} 
+\index{GenerationParameters@{GenerationParameters}!getLibraryName@{getLibraryName}}
+\index{getLibraryName@{getLibraryName}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getLibraryName()}{getLibraryName()}}
+{\footnotesize\ttfamily std\+::string Generation\+Parameters\+::get\+Library\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classGenerationParameters_afe40a79b145ba89c81ad07db21c949ab}\label{classGenerationParameters_afe40a79b145ba89c81ad07db21c949ab}} 
+\index{GenerationParameters@{GenerationParameters}!getMakeGraphML@{getMakeGraphML}}
+\index{getMakeGraphML@{getMakeGraphML}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getMakeGraphML()}{getMakeGraphML()}}
+{\footnotesize\ttfamily bool Generation\+Parameters\+::get\+Make\+Graph\+ML (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_afe40a79b145ba89c81ad07db21c949ab_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a3220cd863174ccbfd31f4a7965759350}\label{classGenerationParameters_a3220cd863174ccbfd31f4a7965759350}} 
+\index{GenerationParameters@{GenerationParameters}!getName@{getName}}
+\index{getName@{getName}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Generation\+Parameters\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a3220cd863174ccbfd31f4a7965759350_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a81882d5f752dd8a621483f38befab80a}\label{classGenerationParameters_a81882d5f752dd8a621483f38befab80a}} 
+\index{GenerationParameters@{GenerationParameters}!getNumOperations@{getNumOperations}}
+\index{getNumOperations@{getNumOperations}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getNumOperations()}{getNumOperations()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorNumOperationParameters}{Generator\+Num\+Operation\+Parameters}} Generation\+Parameters\+::get\+Num\+Operations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a81882d5f752dd8a621483f38befab80a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a3f4738cdc5830e3f5554df5ad726313a}\label{classGenerationParameters_a3f4738cdc5830e3f5554df5ad726313a}} 
+\index{GenerationParameters@{GenerationParameters}!getOutputs@{getOutputs}}
+\index{getOutputs@{getOutputs}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getOutputs()}{getOutputs()}}
+{\footnotesize\ttfamily int Generation\+Parameters\+::get\+Outputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a3f4738cdc5830e3f5554df5ad726313a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a26921547cfbee88bd5a89cbebc109012}\label{classGenerationParameters_a26921547cfbee88bd5a89cbebc109012}} 
+\index{GenerationParameters@{GenerationParameters}!getRandLevel@{getRandLevel}}
+\index{getRandLevel@{getRandLevel}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getRandLevel()}{getRandLevel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorRandLevelParameters}{Generator\+Rand\+Level\+Parameters}} Generation\+Parameters\+::get\+Rand\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a26921547cfbee88bd5a89cbebc109012_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_ab5c7b845f70600bdfb9cca6109aba209}\label{classGenerationParameters_ab5c7b845f70600bdfb9cca6109aba209}} 
+\index{GenerationParameters@{GenerationParameters}!getRequestId@{getRequestId}}
+\index{getRequestId@{getRequestId}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getRequestId()}{getRequestId()}}
+{\footnotesize\ttfamily std\+::string Generation\+Parameters\+::get\+Request\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_ab5c7b845f70600bdfb9cca6109aba209_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a07806a196e5976fce356ff2f3d91f822}\label{classGenerationParameters_a07806a196e5976fce356ff2f3d91f822}} 
+\index{GenerationParameters@{GenerationParameters}!getSeed@{getSeed}}
+\index{getSeed@{getSeed}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getSeed()}{getSeed()}}
+{\footnotesize\ttfamily std\+::uint\+\_\+fast32\+\_\+t Generation\+Parameters\+::get\+Seed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a07806a196e5976fce356ff2f3d91f822_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_af8dab16d88edadfb06af56786af3b37e}\label{classGenerationParameters_af8dab16d88edadfb06af56786af3b37e}} 
+\index{GenerationParameters@{GenerationParameters}!getSubtractor@{getSubtractor}}
+\index{getSubtractor@{getSubtractor}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getSubtractor()}{getSubtractor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorSubtractorParameters}{Generator\+Subtractor\+Parameters}} Generation\+Parameters\+::get\+Subtractor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_af8dab16d88edadfb06af56786af3b37e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a903b41beefe6e8295235ed8a7eb8aae6}\label{classGenerationParameters_a903b41beefe6e8295235ed8a7eb8aae6}} 
+\index{GenerationParameters@{GenerationParameters}!getSummator@{getSummator}}
+\index{getSummator@{getSummator}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getSummator()}{getSummator()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorSummatorParameters}{Generator\+Summator\+Parameters}} Generation\+Parameters\+::get\+Summator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a903b41beefe6e8295235ed8a7eb8aae6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_ad9124167a78b118d3ecfe254ebdd984a}\label{classGenerationParameters_ad9124167a78b118d3ecfe254ebdd984a}} 
+\index{GenerationParameters@{GenerationParameters}!getZhegalkin@{getZhegalkin}}
+\index{getZhegalkin@{getZhegalkin}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{getZhegalkin()}{getZhegalkin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classzhegalkinFromTruthTableParameters}{zhegalkin\+From\+Truth\+Table\+Parameters}} Generation\+Parameters\+::get\+Zhegalkin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_ad9124167a78b118d3ecfe254ebdd984a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_ac0633464bc50fd748f243e77f82c151d}\label{classGenerationParameters_ac0633464bc50fd748f243e77f82c151d}} 
+\index{GenerationParameters@{GenerationParameters}!setALUParameters@{setALUParameters}}
+\index{setALUParameters@{setALUParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setALUParameters()}{setALUParameters()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+ALUParameters (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+ALL,  }\item[{bool}]{i\+\_\+\+SUM,  }\item[{bool}]{i\+\_\+\+SUB,  }\item[{bool}]{i\+\_\+\+NSUM,  }\item[{bool}]{i\+\_\+\+NSUB,  }\item[{bool}]{i\+\_\+\+MULT,  }\item[{bool}]{i\+\_\+\+COM,  }\item[{bool}]{i\+\_\+\+AND,  }\item[{bool}]{i\+\_\+\+NAND,  }\item[{bool}]{i\+\_\+\+OR,  }\item[{bool}]{i\+\_\+\+NOR,  }\item[{bool}]{i\+\_\+\+XOR,  }\item[{bool}]{i\+\_\+\+XNOR,  }\item[{bool}]{i\+\_\+\+CNF,  }\item[{bool}]{i\+\_\+\+RNL,  }\item[{bool}]{i\+\_\+\+NUM\+\_\+\+OP,  }\item[{int}]{i\+\_\+min\+Level,  }\item[{int}]{i\+\_\+max\+Level,  }\item[{int}]{i\+\_\+min\+Element,  }\item[{int}]{i\+\_\+max\+Element,  }\item[{std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$}]{i\+\_\+m,  }\item[{bool}]{i\+\_\+\+Leave\+Empty\+Out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classGenerationParameters_ac0633464bc50fd748f243e77f82c151d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_ac0633464bc50fd748f243e77f82c151d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a6a579996d93cf7232d818c48f8755eb3}\label{classGenerationParameters_a6a579996d93cf7232d818c48f8755eb3}} 
+\index{GenerationParameters@{GenerationParameters}!setCNFF@{setCNFF}}
+\index{setCNFF@{setCNFF}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setCNFF()}{setCNFF()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+CNFF (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+CNFF }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a6a579996d93cf7232d818c48f8755eb3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a6a579996d93cf7232d818c48f8755eb3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a1555432e7175794ef8a0c447496ddf9b}\label{classGenerationParameters_a1555432e7175794ef8a0c447496ddf9b}} 
+\index{GenerationParameters@{GenerationParameters}!setCNFT@{setCNFT}}
+\index{setCNFT@{setCNFT}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setCNFT()}{setCNFT()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+CNFT (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+CNFT }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a1555432e7175794ef8a0c447496ddf9b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a1555432e7175794ef8a0c447496ddf9b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64}\label{classGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64}} 
+\index{GenerationParameters@{GenerationParameters}!setComparisonParameters@{setComparisonParameters}}
+\index{setComparisonParameters@{setComparisonParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setComparisonParameters()}{setComparisonParameters()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Comparison\+Parameters (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+compare0,  }\item[{bool}]{i\+\_\+compare1,  }\item[{bool}]{i\+\_\+compare2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a0f5236476e05c1a5c338a8cedba31c33}\label{classGenerationParameters_a0f5236476e05c1a5c338a8cedba31c33}} 
+\index{GenerationParameters@{GenerationParameters}!setGatesInputInfo@{setGatesInputInfo}}
+\index{setGatesInputInfo@{setGatesInputInfo}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setGatesInputInfo()}{setGatesInputInfo()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Gates\+Input\+Info (\begin{DoxyParamCaption}\item[{const std\+::map$<$ std\+::string, std\+::vector$<$ int $>$$>$ \&}]{i\+\_\+gates\+Inputs\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a0f5236476e05c1a5c338a8cedba31c33_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a3e705c98f0e7bf135647f48e88bbb62c}\label{classGenerationParameters_a3e705c98f0e7bf135647f48e88bbb62c}} 
+\index{GenerationParameters@{GenerationParameters}!setInputs@{setInputs}}
+\index{setInputs@{setInputs}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setInputs()}{setInputs()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Inputs (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+inputs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a3e705c98f0e7bf135647f48e88bbb62c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_aa8086051fa4847240493bdae77c00443}\label{classGenerationParameters_aa8086051fa4847240493bdae77c00443}} 
+\index{GenerationParameters@{GenerationParameters}!setIteration@{setIteration}}
+\index{setIteration@{setIteration}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setIteration()}{setIteration()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Iteration (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+iteration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_aa8086051fa4847240493bdae77c00443_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf}\label{classGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf}} 
+\index{GenerationParameters@{GenerationParameters}!setKeyEndProcessIndex@{setKeyEndProcessIndex}}
+\index{setKeyEndProcessIndex@{setKeyEndProcessIndex}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setKeyEndProcessIndex()}{setKeyEndProcessIndex()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Key\+End\+Process\+Index (\begin{DoxyParamCaption}\item[{double}]{i\+\_\+key\+End\+Process\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a77c0e941d7137026253f4069b9021b88}\label{classGenerationParameters_a77c0e941d7137026253f4069b9021b88}} 
+\index{GenerationParameters@{GenerationParameters}!setLibraryName@{setLibraryName}}
+\index{setLibraryName@{setLibraryName}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setLibraryName()}{setLibraryName()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Library\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{i\+\_\+library\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classGenerationParameters_aa67f35e786d343ffcbeae198332093cd}\label{classGenerationParameters_aa67f35e786d343ffcbeae198332093cd}} 
+\index{GenerationParameters@{GenerationParameters}!setLimit@{setLimit}}
+\index{setLimit@{setLimit}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setLimit()}{setLimit()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Limit (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+limit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_aa67f35e786d343ffcbeae198332093cd_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a3fb03417dc3919cb0d118f984e66cca5}\label{classGenerationParameters_a3fb03417dc3919cb0d118f984e66cca5}} 
+\index{GenerationParameters@{GenerationParameters}!setMutationParameters@{setMutationParameters}}
+\index{setMutationParameters@{setMutationParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setMutationParameters()}{setMutationParameters()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Mutation\+Parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{MutationParameters_8h_a7b01179572d8f7532b68a5aa847f0ad8}{Mutation\+Types}}}]{i\+\_\+mutation\+Type,  }\item[{double}]{i\+\_\+probability\+Gen,  }\item[{int}]{i\+\_\+exchange\+Type,  }\item[{double}]{i\+\_\+probability\+Truth\+Table }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a3fb03417dc3919cb0d118f984e66cca5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a3fb03417dc3919cb0d118f984e66cca5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a07db704beeefe9fb8958bd625ad6a6ad}\label{classGenerationParameters_a07db704beeefe9fb8958bd625ad6a6ad}} 
+\index{GenerationParameters@{GenerationParameters}!setName@{setName}}
+\index{setName@{setName}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a07db704beeefe9fb8958bd625ad6a6ad_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a6c3913a0bad4bdfd4a82f933b527bdfd}\label{classGenerationParameters_a6c3913a0bad4bdfd4a82f933b527bdfd}} 
+\index{GenerationParameters@{GenerationParameters}!setNumOfCycles@{setNumOfCycles}}
+\index{setNumOfCycles@{setNumOfCycles}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setNumOfCycles()}{setNumOfCycles()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Num\+Of\+Cycles (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+num\+Of\+Cycles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a6c3913a0bad4bdfd4a82f933b527bdfd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a6c3913a0bad4bdfd4a82f933b527bdfd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a99a8340e021fd0ca1265f71d94435412}\label{classGenerationParameters_a99a8340e021fd0ca1265f71d94435412}} 
+\index{GenerationParameters@{GenerationParameters}!setNumOperationParameters@{setNumOperationParameters}}
+\index{setNumOperationParameters@{setNumOperationParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setNumOperationParameters()}{setNumOperationParameters()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Num\+Operation\+Parameters (\begin{DoxyParamCaption}\item[{const std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \&}]{i\+\_\+m,  }\item[{bool}]{i\+\_\+\+Leave\+Empty\+Out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a99a8340e021fd0ca1265f71d94435412_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a99a8340e021fd0ca1265f71d94435412_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a48ead551de59bfab492bc8940e8fc022}\label{classGenerationParameters_a48ead551de59bfab492bc8940e8fc022}} 
+\index{GenerationParameters@{GenerationParameters}!setOutputs@{setOutputs}}
+\index{setOutputs@{setOutputs}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setOutputs()}{setOutputs()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Outputs (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+outputs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a48ead551de59bfab492bc8940e8fc022_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_af99346e7132aa975a89239acb1785d64}\label{classGenerationParameters_af99346e7132aa975a89239acb1785d64}} 
+\index{GenerationParameters@{GenerationParameters}!setPopulationSize@{setPopulationSize}}
+\index{setPopulationSize@{setPopulationSize}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setPopulationSize()}{setPopulationSize()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Population\+Size (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+population\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_af99346e7132aa975a89239acb1785d64_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_af99346e7132aa975a89239acb1785d64_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a79a66fdae906957bf7d4e25d4962ee3e}\label{classGenerationParameters_a79a66fdae906957bf7d4e25d4962ee3e}} 
+\index{GenerationParameters@{GenerationParameters}!setRandLevelParameters@{setRandLevelParameters}}
+\index{setRandLevelParameters@{setRandLevelParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setRandLevelParameters()}{setRandLevelParameters()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Rand\+Level\+Parameters (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+min\+Level,  }\item[{int}]{i\+\_\+max\+Level,  }\item[{int}]{i\+\_\+min\+Elements,  }\item[{int}]{i\+\_\+max\+Elements }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a79a66fdae906957bf7d4e25d4962ee3e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a79a66fdae906957bf7d4e25d4962ee3e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a28ad7386a31878472ffee85207a0f226}\label{classGenerationParameters_a28ad7386a31878472ffee85207a0f226}} 
+\index{GenerationParameters@{GenerationParameters}!setRecombinationParameters@{setRecombinationParameters}}
+\index{setRecombinationParameters@{setRecombinationParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setRecombinationParameters()}{setRecombinationParameters()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Recombination\+Parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ParentsParameters_8h_a130c2b32927d9f98f3433218f8e84f75}{Parents\+Types}}}]{i\+\_\+parents\+Types,  }\item[{int}]{i\+\_\+tournament\+Number,  }\item[{\mbox{\hyperlink{RecombinationParameters_8h_a5981086c64ece56169fab85e575fe548}{Recombination\+Types}}}]{i\+\_\+recombination\+Type,  }\item[{int}]{i\+\_\+ref\+Points,  }\item[{double}]{mask\+Probability,  }\item[{int}]{i\+\_\+recombination\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a28ad7386a31878472ffee85207a0f226_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a28ad7386a31878472ffee85207a0f226_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_adc3ea9fd2752d5631c44ead12ec97007}\label{classGenerationParameters_adc3ea9fd2752d5631c44ead12ec97007}} 
+\index{GenerationParameters@{GenerationParameters}!setSeed@{setSeed}}
+\index{setSeed@{setSeed}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setSeed()}{setSeed()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Seed (\begin{DoxyParamCaption}\item[{std\+::uint\+\_\+fast32\+\_\+t}]{i\+\_\+seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_adc3ea9fd2752d5631c44ead12ec97007_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a74965933f5711f8110ee11e2dfe2ef35}\label{classGenerationParameters_a74965933f5711f8110ee11e2dfe2ef35}} 
+\index{GenerationParameters@{GenerationParameters}!setSelectionParameters@{setSelectionParameters}}
+\index{setSelectionParameters@{setSelectionParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setSelectionParameters()}{setSelectionParameters()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Selection\+Parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SelectionParameters_8h_a50daa29c84869b18e0b12d7456de94e2}{Selection\+Types}}}]{i\+\_\+selection\+Type,  }\item[{int}]{i\+\_\+num\+Of\+Survivors }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a74965933f5711f8110ee11e2dfe2ef35_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a74965933f5711f8110ee11e2dfe2ef35_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87}\label{classGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87}} 
+\index{GenerationParameters@{GenerationParameters}!setSubtractorParameters@{setSubtractorParameters}}
+\index{setSubtractorParameters@{setSubtractorParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setSubtractorParameters()}{setSubtractorParameters()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Subtractor\+Parameters (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+overflow\+In,  }\item[{bool}]{i\+\_\+overflow\+Out,  }\item[{bool}]{i\+\_\+sub }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1}\label{classGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1}} 
+\index{GenerationParameters@{GenerationParameters}!setSummatorParameters@{setSummatorParameters}}
+\index{setSummatorParameters@{setSummatorParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setSummatorParameters()}{setSummatorParameters()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Summator\+Parameters (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+overflow\+In,  }\item[{bool}]{i\+\_\+overflow\+Out,  }\item[{bool}]{i\+\_\+minus }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1}\label{classGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1}} 
+\index{GenerationParameters@{GenerationParameters}!setZhegalkin@{setZhegalkin}}
+\index{setZhegalkin@{setZhegalkin}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{setZhegalkin()}{setZhegalkin()}}
+{\footnotesize\ttfamily void Generation\+Parameters\+::set\+Zhegalkin (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+zhegalkin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGenerationParameters_a6b0279b96d5377b5d1139672965a4ea2}\label{classGenerationParameters_a6b0279b96d5377b5d1139672965a4ea2}} 
+\index{GenerationParameters@{GenerationParameters}!d\_calculateStatsAbc@{d\_calculateStatsAbc}}
+\index{d\_calculateStatsAbc@{d\_calculateStatsAbc}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_calculateStatsAbc}{d\_calculateStatsAbc}}
+{\footnotesize\ttfamily bool Generation\+Parameters\+::d\+\_\+calculate\+Stats\+Abc\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a1dabfecada6012d10562a8f1ebc67195}\label{classGenerationParameters_a1dabfecada6012d10562a8f1ebc67195}} 
+\index{GenerationParameters@{GenerationParameters}!d\_cnfFromTruthTableParameters@{d\_cnfFromTruthTableParameters}}
+\index{d\_cnfFromTruthTableParameters@{d\_cnfFromTruthTableParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_cnfFromTruthTableParameters}{d\_cnfFromTruthTableParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCNNFromTruthTableParameters}{CNNFrom\+Truth\+Table\+Parameters}} Generation\+Parameters\+::d\+\_\+cnf\+From\+Truth\+Table\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a955bf82112428b2f01e91edeafd037fd}\label{classGenerationParameters_a955bf82112428b2f01e91edeafd037fd}} 
+\index{GenerationParameters@{GenerationParameters}!d\_gatesInputsInfo@{d\_gatesInputsInfo}}
+\index{d\_gatesInputsInfo@{d\_gatesInputsInfo}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_gatesInputsInfo}{d\_gatesInputsInfo}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, std\+::vector$<$int$>$ $>$ Generation\+Parameters\+::d\+\_\+gates\+Inputs\+Info\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_aac0abd8cf4d1da6816551c65977c0735}\label{classGenerationParameters_aac0abd8cf4d1da6816551c65977c0735}} 
+\index{GenerationParameters@{GenerationParameters}!d\_generatorALUParameters@{d\_generatorALUParameters}}
+\index{d\_generatorALUParameters@{d\_generatorALUParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_generatorALUParameters}{d\_generatorALUParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorALUParameters}{Generator\+ALUParameters}} Generation\+Parameters\+::d\+\_\+generator\+ALUParameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_ac535c1713c98821642a90a8fb280720b}\label{classGenerationParameters_ac535c1713c98821642a90a8fb280720b}} 
+\index{GenerationParameters@{GenerationParameters}!d\_generatorComparisonParameters@{d\_generatorComparisonParameters}}
+\index{d\_generatorComparisonParameters@{d\_generatorComparisonParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_generatorComparisonParameters}{d\_generatorComparisonParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorComparisonParameters}{Generator\+Comparison\+Parameters}} Generation\+Parameters\+::d\+\_\+generator\+Comparison\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a2d7d08d03c87b94182efa41dc6472ba8}\label{classGenerationParameters_a2d7d08d03c87b94182efa41dc6472ba8}} 
+\index{GenerationParameters@{GenerationParameters}!d\_generatorNumOperationParameters@{d\_generatorNumOperationParameters}}
+\index{d\_generatorNumOperationParameters@{d\_generatorNumOperationParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_generatorNumOperationParameters}{d\_generatorNumOperationParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorNumOperationParameters}{Generator\+Num\+Operation\+Parameters}} Generation\+Parameters\+::d\+\_\+generator\+Num\+Operation\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a80ba5d709b75e68c17694f4be9c3c7b6}\label{classGenerationParameters_a80ba5d709b75e68c17694f4be9c3c7b6}} 
+\index{GenerationParameters@{GenerationParameters}!d\_generatorRandLevelParameters@{d\_generatorRandLevelParameters}}
+\index{d\_generatorRandLevelParameters@{d\_generatorRandLevelParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_generatorRandLevelParameters}{d\_generatorRandLevelParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorRandLevelParameters}{Generator\+Rand\+Level\+Parameters}} Generation\+Parameters\+::d\+\_\+generator\+Rand\+Level\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a1ca73198f6b93339fe8270adea2c2fe7}\label{classGenerationParameters_a1ca73198f6b93339fe8270adea2c2fe7}} 
+\index{GenerationParameters@{GenerationParameters}!d\_generatorSubtractorParameters@{d\_generatorSubtractorParameters}}
+\index{d\_generatorSubtractorParameters@{d\_generatorSubtractorParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_generatorSubtractorParameters}{d\_generatorSubtractorParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorSubtractorParameters}{Generator\+Subtractor\+Parameters}} Generation\+Parameters\+::d\+\_\+generator\+Subtractor\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_af87aa9cbcf8464aebce237a5765607de}\label{classGenerationParameters_af87aa9cbcf8464aebce237a5765607de}} 
+\index{GenerationParameters@{GenerationParameters}!d\_generatorSummatorParameters@{d\_generatorSummatorParameters}}
+\index{d\_generatorSummatorParameters@{d\_generatorSummatorParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_generatorSummatorParameters}{d\_generatorSummatorParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneratorSummatorParameters}{Generator\+Summator\+Parameters}} Generation\+Parameters\+::d\+\_\+generator\+Summator\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a152d1bb6843b402bd5b6c90ea5f8b6b9}\label{classGenerationParameters_a152d1bb6843b402bd5b6c90ea5f8b6b9}} 
+\index{GenerationParameters@{GenerationParameters}!d\_geneticParameters@{d\_geneticParameters}}
+\index{d\_geneticParameters@{d\_geneticParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_geneticParameters}{d\_geneticParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGeneticParameters}{Genetic\+Parameters}} Generation\+Parameters\+::d\+\_\+genetic\+Parameters = \mbox{\hyperlink{classGeneticParameters}{Genetic\+Parameters}}(2, 3)\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a5abfe42d43bf94c65b70b28f76e37c82}\label{classGenerationParameters_a5abfe42d43bf94c65b70b28f76e37c82}} 
+\index{GenerationParameters@{GenerationParameters}!d\_inputs@{d\_inputs}}
+\index{d\_inputs@{d\_inputs}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_inputs}{d\_inputs}}
+{\footnotesize\ttfamily int Generation\+Parameters\+::d\+\_\+inputs = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a0ea932c3a3f627c218436484a793b21c}\label{classGenerationParameters_a0ea932c3a3f627c218436484a793b21c}} 
+\index{GenerationParameters@{GenerationParameters}!d\_iteration@{d\_iteration}}
+\index{d\_iteration@{d\_iteration}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_iteration}{d\_iteration}}
+{\footnotesize\ttfamily int Generation\+Parameters\+::d\+\_\+iteration = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_adb32381abde1415880d1e6b039269e61}\label{classGenerationParameters_adb32381abde1415880d1e6b039269e61}} 
+\index{GenerationParameters@{GenerationParameters}!d\_libraryName@{d\_libraryName}}
+\index{d\_libraryName@{d\_libraryName}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_libraryName}{d\_libraryName}}
+{\footnotesize\ttfamily std\+::string Generation\+Parameters\+::d\+\_\+library\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a69ae405f9343694eea1a107fc26c8525}\label{classGenerationParameters_a69ae405f9343694eea1a107fc26c8525}} 
+\index{GenerationParameters@{GenerationParameters}!d\_makeBench@{d\_makeBench}}
+\index{d\_makeBench@{d\_makeBench}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_makeBench}{d\_makeBench}}
+{\footnotesize\ttfamily bool Generation\+Parameters\+::d\+\_\+make\+Bench\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a40831d5d3695741419e1929abe359e91}\label{classGenerationParameters_a40831d5d3695741419e1929abe359e91}} 
+\index{GenerationParameters@{GenerationParameters}!d\_makeFirrtl@{d\_makeFirrtl}}
+\index{d\_makeFirrtl@{d\_makeFirrtl}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_makeFirrtl}{d\_makeFirrtl}}
+{\footnotesize\ttfamily bool Generation\+Parameters\+::d\+\_\+make\+Firrtl\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_acba8b7b7ace2c554b2bc0da97637bd13}\label{classGenerationParameters_acba8b7b7ace2c554b2bc0da97637bd13}} 
+\index{GenerationParameters@{GenerationParameters}!d\_makeGraphML@{d\_makeGraphML}}
+\index{d\_makeGraphML@{d\_makeGraphML}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_makeGraphML}{d\_makeGraphML}}
+{\footnotesize\ttfamily bool Generation\+Parameters\+::d\+\_\+make\+Graph\+ML\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_ab8477b8b5433b5dcbb49b20ea9120c56}\label{classGenerationParameters_ab8477b8b5433b5dcbb49b20ea9120c56}} 
+\index{GenerationParameters@{GenerationParameters}!d\_makeOptimizedFiles@{d\_makeOptimizedFiles}}
+\index{d\_makeOptimizedFiles@{d\_makeOptimizedFiles}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_makeOptimizedFiles}{d\_makeOptimizedFiles}}
+{\footnotesize\ttfamily bool Generation\+Parameters\+::d\+\_\+make\+Optimized\+Files\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a4f5a434e76f4f2d9806cf25666d918e2}\label{classGenerationParameters_a4f5a434e76f4f2d9806cf25666d918e2}} 
+\index{GenerationParameters@{GenerationParameters}!d\_name@{d\_name}}
+\index{d\_name@{d\_name}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_name}{d\_name}}
+{\footnotesize\ttfamily std\+::string Generation\+Parameters\+::d\+\_\+name = \char`\"{}\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_ab64567a36426b7974dfa9add05cc90d4}\label{classGenerationParameters_ab64567a36426b7974dfa9add05cc90d4}} 
+\index{GenerationParameters@{GenerationParameters}!d\_outputs@{d\_outputs}}
+\index{d\_outputs@{d\_outputs}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_outputs}{d\_outputs}}
+{\footnotesize\ttfamily int Generation\+Parameters\+::d\+\_\+outputs = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a0f843e685a83b353b2909b1d5c2f4152}\label{classGenerationParameters_a0f843e685a83b353b2909b1d5c2f4152}} 
+\index{GenerationParameters@{GenerationParameters}!d\_requestId@{d\_requestId}}
+\index{d\_requestId@{d\_requestId}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_requestId}{d\_requestId}}
+{\footnotesize\ttfamily std\+::string Generation\+Parameters\+::d\+\_\+request\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a2ca04c8afd44be06f1b17b3132394503}\label{classGenerationParameters_a2ca04c8afd44be06f1b17b3132394503}} 
+\index{GenerationParameters@{GenerationParameters}!d\_seed@{d\_seed}}
+\index{d\_seed@{d\_seed}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_seed}{d\_seed}}
+{\footnotesize\ttfamily std\+::uint\+\_\+fast32\+\_\+t Generation\+Parameters\+::d\+\_\+seed = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGenerationParameters_a704bba4d8ab5c89d98dac94c6031ecff}\label{classGenerationParameters_a704bba4d8ab5c89d98dac94c6031ecff}} 
+\index{GenerationParameters@{GenerationParameters}!d\_ZhegalkinFromTruthTableParameters@{d\_ZhegalkinFromTruthTableParameters}}
+\index{d\_ZhegalkinFromTruthTableParameters@{d\_ZhegalkinFromTruthTableParameters}!GenerationParameters@{GenerationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_ZhegalkinFromTruthTableParameters}{d\_ZhegalkinFromTruthTableParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classzhegalkinFromTruthTableParameters}{zhegalkin\+From\+Truth\+Table\+Parameters}} Generation\+Parameters\+::d\+\_\+\+Zhegalkin\+From\+Truth\+Table\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+

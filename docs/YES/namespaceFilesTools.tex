@@ -1,0 +1,117 @@
+\hypertarget{namespaceFilesTools}{}\doxysection{Files\+Tools Namespace Reference}
+\label{namespaceFilesTools}\index{FilesTools@{FilesTools}}
+
+
+namespace \mbox{\hyperlink{namespaceFilesTools}{Files\+Tools}} The Files Tools namespace contains a set of functions designed to work with the file system $\ast$/  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespaceFilesTools_a092635d608973c4d6e39bac79929fafd}{get\+Directories}} (std\+::string \&path)
+\begin{DoxyCompactList}\small\item\em get\+Directories This function takes the path to a directory and returns a string vector containing the names of all subdirectories of that directory. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespaceFilesTools_a3134b6be482f310550b6799650dcbec2}{is\+Directory\+Exists}} (const std\+::string \&i\+\_\+path)
+\begin{DoxyCompactList}\small\item\em is\+Directory\+Exists This method checks if the specified directory exists \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceFilesTools_a592ca8e24c83ff3f1cfc892fa9f8a67d}{get\+Parent\+Dir\+Of}} (const std\+::string \&i\+\_\+path)
+\begin{DoxyCompactList}\small\item\em get\+Parent\+Dir\+Of This method returns the parent directory for the specified path \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceFilesTools_a18803aaa48e9809e4d35c0f6defc131a}{load\+String\+File}} (const std\+::filesystem\+::path \&p)
+\begin{DoxyCompactList}\small\item\em load\+String\+File This method loads the contents of the file as a string \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+namespace \mbox{\hyperlink{namespaceFilesTools}{Files\+Tools}} The Files Tools namespace contains a set of functions designed to work with the file system $\ast$/ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceFilesTools_a092635d608973c4d6e39bac79929fafd}\label{namespaceFilesTools_a092635d608973c4d6e39bac79929fafd}} 
+\index{FilesTools@{FilesTools}!getDirectories@{getDirectories}}
+\index{getDirectories@{getDirectories}!FilesTools@{FilesTools}}
+\doxysubsubsection{\texorpdfstring{getDirectories()}{getDirectories()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Files\+Tools\+::get\+Directories (\begin{DoxyParamCaption}\item[{std\+::string \&}]{path }\end{DoxyParamCaption})}
+
+
+
+get\+Directories This function takes the path to a directory and returns a string vector containing the names of all subdirectories of that directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the directory for which you want to get a list of subdirectories \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string vector containing the names of all subdirectories in the specified directory $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFilesTools_a092635d608973c4d6e39bac79929fafd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceFilesTools_a592ca8e24c83ff3f1cfc892fa9f8a67d}\label{namespaceFilesTools_a592ca8e24c83ff3f1cfc892fa9f8a67d}} 
+\index{FilesTools@{FilesTools}!getParentDirOf@{getParentDirOf}}
+\index{getParentDirOf@{getParentDirOf}!FilesTools@{FilesTools}}
+\doxysubsubsection{\texorpdfstring{getParentDirOf()}{getParentDirOf()}}
+{\footnotesize\ttfamily std\+::string Files\+Tools\+::get\+Parent\+Dir\+Of (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+get\+Parent\+Dir\+Of This method returns the parent directory for the specified path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+path} & The path to the file or directory to get the parent directory for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing the path to the parent directory of the specified path $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFilesTools_a592ca8e24c83ff3f1cfc892fa9f8a67d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceFilesTools_a3134b6be482f310550b6799650dcbec2}\label{namespaceFilesTools_a3134b6be482f310550b6799650dcbec2}} 
+\index{FilesTools@{FilesTools}!isDirectoryExists@{isDirectoryExists}}
+\index{isDirectoryExists@{isDirectoryExists}!FilesTools@{FilesTools}}
+\doxysubsubsection{\texorpdfstring{isDirectoryExists()}{isDirectoryExists()}}
+{\footnotesize\ttfamily bool Files\+Tools\+::is\+Directory\+Exists (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+is\+Directory\+Exists This method checks if the specified directory exists 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+path} & The path to the directory to be checked for existence \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the directory exists and it is a directory; otherwise false. $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFilesTools_a3134b6be482f310550b6799650dcbec2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceFilesTools_a18803aaa48e9809e4d35c0f6defc131a}\label{namespaceFilesTools_a18803aaa48e9809e4d35c0f6defc131a}} 
+\index{FilesTools@{FilesTools}!loadStringFile@{loadStringFile}}
+\index{loadStringFile@{loadStringFile}!FilesTools@{FilesTools}}
+\doxysubsubsection{\texorpdfstring{loadStringFile()}{loadStringFile()}}
+{\footnotesize\ttfamily std\+::string Files\+Tools\+::load\+String\+File (\begin{DoxyParamCaption}\item[{const std\+::filesystem\+::path \&}]{p }\end{DoxyParamCaption})}
+
+
+
+load\+String\+File This method loads the contents of the file as a string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The path to the file whose contents you want to download \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string containing the contents of the file$\ast$ $\ast$/ 
+\end{DoxyReturn}

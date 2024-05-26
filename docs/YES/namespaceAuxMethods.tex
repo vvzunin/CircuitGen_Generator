@@ -1,0 +1,391 @@
+\hypertarget{namespaceAuxMethods}{}\doxysection{Aux\+Methods Namespace Reference}
+\label{namespaceAuxMethods}\index{AuxMethods@{AuxMethods}}
+
+
+namespace \mbox{\hyperlink{namespaceAuxMethods}{Aux\+Methods}} It was created to organize a set of auxiliary functions and methods that can be used in various parts of a software project Functions\+: Random number generation, Reading files, Data sorting and processing (includes methods for sorting dictionaries by their values and for working with spaces in strings) TO DO\+: list the other functions  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structAuxMethods_1_1TuplePrinter}{Tuple\+Printer}}
+\item 
+struct \mbox{\hyperlink{structAuxMethods_1_1TuplePrinter_3_01Tuple_00_011_01_4}{Tuple\+Printer$<$ Tuple, 1 $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespaceAuxMethods_a5bd15903dbc7db95cb089304ca9e0277}{set\+Rand\+Seed}} (std\+::uint\+\_\+fast32\+\_\+t seed)
+\begin{DoxyCompactList}\small\item\em set\+Rand\+Seed Sets the grain to generate pseudorandom numbers \end{DoxyCompactList}\item 
+std\+::uint\+\_\+fast32\+\_\+t \mbox{\hyperlink{namespaceAuxMethods_a1ff433f6adb27f95ad4859e8ee9732c6}{get\+Rand\+Seed}} ()
+\begin{DoxyCompactList}\small\item\em get\+Rand\+Seed Returns the current grain for generating pseudo-\/random numbers \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespaceAuxMethods_a51fd6ff2ae8c02ab10d4e261236a7ba4}{get\+Rand\+Int}} (int lower, int upper, bool inclusively=false)
+\begin{DoxyCompactList}\small\item\em get\+Rand\+Int Returns a random integer in the specified range \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespaceAuxMethods_ad1cd19afad4489d0c7eb4938e106ec42}{get\+Rand\+Double}} (double lower, double upper)
+\begin{DoxyCompactList}\small\item\em specified range \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceAuxMethods_a9ea2f6dad8245c55cc658bb6a95a00dc}{read\+All\+File}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em read\+All\+File Reads the contents of the file and returns it as a string \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{namespaceAuxMethods_aa52eafa5760c853cb2b840c2015a8ded}{get\+Random\+Int\+List}} (int i\+\_\+n, int i\+\_\+min\+Number, int i\+\_\+max\+Number, bool repite=false)
+\begin{DoxyCompactList}\small\item\em get\+Random\+Int\+List Generates a list of random integers in a given range with certain restrictions on the number of elements and the presence of repetitions \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Key , typename Value $>$ }\\std\+::vector$<$ std\+::pair$<$ Key, Value $>$ $>$ \mbox{\hyperlink{namespaceAuxMethods_af9218449b862b94608c0f3f567bace90}{sort\+Dict\+By\+Value}} (const std\+::map$<$ Key, Value $>$ \&i\+\_\+dict, bool up=true)
+\begin{DoxyCompactList}\small\item\em sort\+Dict\+By\+Value Sorting the associative container by values and returning sorted key-\/value pairs as a vector. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceAuxMethods_a43e549d87cd504b8bb0fc7546239b577}{remove\+Spaces}} (const std\+::string \&i\+\_\+s)
+\begin{DoxyCompactList}\small\item\em remove\+Spaces Removes spaces, tabs, and newline characters from a string \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespaceAuxMethods_ad91e7d774694571db2a7b6b7238e5d13}{skip\+Spaces}} (const std\+::string \&i\+\_\+s, int i\+\_\+start=0)
+\begin{DoxyCompactList}\small\item\em skip\+Spaces Skips whitespace characters in the string starting from the specified position. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{namespaceAuxMethods_af91905c8bf7e07464a2906f5b3a4a89a}{transpose}} (const std\+::vector$<$ std\+::vector$<$ T $>$$>$ \&matrix)
+\item 
+std\+::string \mbox{\hyperlink{namespaceAuxMethods_a70047e78c6b1ffcad09caf149a8d9db4}{int\+To\+String\+With\+Zeroes}} (int i\+\_\+num, int i\+\_\+total\+Digits=5)
+\item 
+std\+::string \mbox{\hyperlink{namespaceAuxMethods_a59e455754cc12afc07d1cf3eba904ac7}{replacer}} (const std\+::string \&i\+\_\+s, const std\+::string \&i\+\_\+r)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\std\+::string \mbox{\hyperlink{namespaceAuxMethods_ae8c22181f69d49df8f7eee60103fe48c}{format}} (const std\+::string \&fmt, Args \&\&... args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+namespace \mbox{\hyperlink{namespaceAuxMethods}{Aux\+Methods}} It was created to organize a set of auxiliary functions and methods that can be used in various parts of a software project Functions\+: Random number generation, Reading files, Data sorting and processing (includes methods for sorting dictionaries by their values and for working with spaces in strings) TO DO\+: list the other functions 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceAuxMethods_ae8c22181f69d49df8f7eee60103fe48c}\label{namespaceAuxMethods_ae8c22181f69d49df8f7eee60103fe48c}} 
+\index{AuxMethods@{AuxMethods}!format@{format}}
+\index{format@{format}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{format()}{format()}}
+{\footnotesize\ttfamily template$<$class... Args$>$ \\
+std\+::string Aux\+Methods\+::format (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fmt,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceAuxMethods_ad1cd19afad4489d0c7eb4938e106ec42}\label{namespaceAuxMethods_ad1cd19afad4489d0c7eb4938e106ec42}} 
+\index{AuxMethods@{AuxMethods}!getRandDouble@{getRandDouble}}
+\index{getRandDouble@{getRandDouble}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{getRandDouble()}{getRandDouble()}}
+{\footnotesize\ttfamily double Aux\+Methods\+::get\+Rand\+Double (\begin{DoxyParamCaption}\item[{double}]{lower,  }\item[{double}]{upper }\end{DoxyParamCaption})}
+
+
+
+specified range 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower} & The lower limit of the range \\
+\hline
+{\em upper} & The upper limit of the range \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random floating point number in the specified range 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Generating a random floating point number in the range [0.0, 1.0]}
+\DoxyCodeLine{\textcolor{keywordtype}{double} randomNumber = \mbox{\hyperlink{namespaceAuxMethods_ad1cd19afad4489d0c7eb4938e106ec42}{AuxMethods::getRandDouble}}(0.0, 1.0);}
+\DoxyCodeLine{\textcolor{comment}{// randomNumber = 0.35;}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceAuxMethods_ad1cd19afad4489d0c7eb4938e106ec42_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceAuxMethods_a51fd6ff2ae8c02ab10d4e261236a7ba4}\label{namespaceAuxMethods_a51fd6ff2ae8c02ab10d4e261236a7ba4}} 
+\index{AuxMethods@{AuxMethods}!getRandInt@{getRandInt}}
+\index{getRandInt@{getRandInt}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{getRandInt()}{getRandInt()}}
+{\footnotesize\ttfamily int Aux\+Methods\+::get\+Rand\+Int (\begin{DoxyParamCaption}\item[{int}]{lower,  }\item[{int}]{upper,  }\item[{bool}]{inclusively = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+get\+Rand\+Int Returns a random integer in the specified range 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower} & The lower limit of the range \\
+\hline
+{\em upper} & The upper limit of the range \\
+\hline
+{\em inclusively} & Indicates whether the upper limit of the range is included in the possible values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random integer in the specified range 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Generating a random number in the range [1, 100] inclusive}
+\DoxyCodeLine{\textcolor{keywordtype}{int} randomNumber = \mbox{\hyperlink{namespaceAuxMethods_a51fd6ff2ae8c02ab10d4e261236a7ba4}{AuxMethods::getRandInt}}(1, 100, \textcolor{keyword}{true});}
+\DoxyCodeLine{\textcolor{comment}{//randomNumber = 45;}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceAuxMethods_aa52eafa5760c853cb2b840c2015a8ded}\label{namespaceAuxMethods_aa52eafa5760c853cb2b840c2015a8ded}} 
+\index{AuxMethods@{AuxMethods}!getRandomIntList@{getRandomIntList}}
+\index{getRandomIntList@{getRandomIntList}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{getRandomIntList()}{getRandomIntList()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ Aux\+Methods\+::get\+Random\+Int\+List (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+n,  }\item[{int}]{i\+\_\+min\+Number,  }\item[{int}]{i\+\_\+max\+Number,  }\item[{bool}]{repite = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+get\+Random\+Int\+List Generates a list of random integers in a given range with certain restrictions on the number of elements and the presence of repetitions 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+n} & An integer indicating the desired size of the list \\
+\hline
+{\em i\+\_\+min\+Number} & The lower limit of the range for generating random numbers \\
+\hline
+{\em i\+\_\+max\+Number} & The upper limit of the range for generating random numbers \\
+\hline
+{\em repite} & A flag indicating whether the repetition of numbers in the list is allowed (true -\/ allowed, false -\/ not allowed). Default -\/ false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector$<$int$>$ of random numbers according to the specified parameters 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::vector<int>  randomList = \mbox{\hyperlink{namespaceAuxMethods_aa52eafa5760c853cb2b840c2015a8ded}{getRandomIntList}}(10, 1, 100, \textcolor{keyword}{false});}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Random list without repetition: "{}};}
+\DoxyCodeLine{\textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} num : randomList)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    std::cout << num << \textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{// Conclusion: the vector contains 10 integers in the range from 1 to 100}}
+\DoxyCodeLine{\textcolor{comment}{// and they are all different.}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceAuxMethods_aa52eafa5760c853cb2b840c2015a8ded_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceAuxMethods_a1ff433f6adb27f95ad4859e8ee9732c6}\label{namespaceAuxMethods_a1ff433f6adb27f95ad4859e8ee9732c6}} 
+\index{AuxMethods@{AuxMethods}!getRandSeed@{getRandSeed}}
+\index{getRandSeed@{getRandSeed}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{getRandSeed()}{getRandSeed()}}
+{\footnotesize\ttfamily std\+::uint\+\_\+fast32\+\_\+t Aux\+Methods\+::get\+Rand\+Seed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Rand\+Seed Returns the current grain for generating pseudo-\/random numbers 
+
+\begin{DoxyReturn}{Returns}
+Grain for generating random numbers 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceAuxMethods_a1ff433f6adb27f95ad4859e8ee9732c6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceAuxMethods_a70047e78c6b1ffcad09caf149a8d9db4}\label{namespaceAuxMethods_a70047e78c6b1ffcad09caf149a8d9db4}} 
+\index{AuxMethods@{AuxMethods}!intToStringWithZeroes@{intToStringWithZeroes}}
+\index{intToStringWithZeroes@{intToStringWithZeroes}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{intToStringWithZeroes()}{intToStringWithZeroes()}}
+{\footnotesize\ttfamily std\+::string Aux\+Methods\+::int\+To\+String\+With\+Zeroes (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+num,  }\item[{int}]{i\+\_\+total\+Digits = {\ttfamily 5} }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceAuxMethods_a70047e78c6b1ffcad09caf149a8d9db4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceAuxMethods_a9ea2f6dad8245c55cc658bb6a95a00dc}\label{namespaceAuxMethods_a9ea2f6dad8245c55cc658bb6a95a00dc}} 
+\index{AuxMethods@{AuxMethods}!readAllFile@{readAllFile}}
+\index{readAllFile@{readAllFile}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{readAllFile()}{readAllFile()}}
+{\footnotesize\ttfamily std\+::string Aux\+Methods\+::read\+All\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+read\+All\+File Reads the contents of the file and returns it as a string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The contents of the file as a string 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Reading the contents "{}example.txt "{}}}
+\DoxyCodeLine{std::string content = Auxiliary methods::Reading the entire}
+\DoxyCodeLine{file(\textcolor{stringliteral}{"{}example.txt "{}})}
+\DoxyCodeLine{std::cout << "{}File content:"{} << std::endl;}
+\DoxyCodeLine{std::cout << content << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the file cannot be opened \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{namespaceAuxMethods_a43e549d87cd504b8bb0fc7546239b577}\label{namespaceAuxMethods_a43e549d87cd504b8bb0fc7546239b577}} 
+\index{AuxMethods@{AuxMethods}!removeSpaces@{removeSpaces}}
+\index{removeSpaces@{removeSpaces}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{removeSpaces()}{removeSpaces()}}
+{\footnotesize\ttfamily std\+::string Aux\+Methods\+::remove\+Spaces (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+s }\end{DoxyParamCaption})}
+
+
+
+remove\+Spaces Removes spaces, tabs, and newline characters from a string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+s} & The string to remove the whitespace characters from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string without spaces 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// The original string with whitespace characters}}
+\DoxyCodeLine{std::string inputString  = \textcolor{stringliteral}{"{}  Hello\(\backslash\)tWorld\(\backslash\)n!"{}};}
+\DoxyCodeLine{\textcolor{comment}{// Removing whitespace characters from a string}}
+\DoxyCodeLine{std::string resultString = \mbox{\hyperlink{namespaceAuxMethods_a43e549d87cd504b8bb0fc7546239b577}{AuxMethods::removeSpaces}}(inputString);}
+\DoxyCodeLine{Output of the result}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Original string: "{}} << inputString << std::endl;}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}String without spaces: "{}} << resultString << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceAuxMethods_a59e455754cc12afc07d1cf3eba904ac7}\label{namespaceAuxMethods_a59e455754cc12afc07d1cf3eba904ac7}} 
+\index{AuxMethods@{AuxMethods}!replacer@{replacer}}
+\index{replacer@{replacer}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{replacer()}{replacer()}}
+{\footnotesize\ttfamily std\+::string Aux\+Methods\+::replacer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+s,  }\item[{const std\+::string \&}]{i\+\_\+r }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceAuxMethods_a5bd15903dbc7db95cb089304ca9e0277}\label{namespaceAuxMethods_a5bd15903dbc7db95cb089304ca9e0277}} 
+\index{AuxMethods@{AuxMethods}!setRandSeed@{setRandSeed}}
+\index{setRandSeed@{setRandSeed}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{setRandSeed()}{setRandSeed()}}
+{\footnotesize\ttfamily void Aux\+Methods\+::set\+Rand\+Seed (\begin{DoxyParamCaption}\item[{std\+::uint\+\_\+fast32\+\_\+t}]{seed }\end{DoxyParamCaption})}
+
+
+
+set\+Rand\+Seed Sets the grain to generate pseudorandom numbers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seed} & A grain for generating random numbers. Must be a positive integer 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{Setting the grain to generate random numbers}
+\DoxyCodeLine{\mbox{\hyperlink{namespaceAuxMethods_a5bd15903dbc7db95cb089304ca9e0277}{AuxMethods::setRandSeed}}(42);}
+
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceAuxMethods_a5bd15903dbc7db95cb089304ca9e0277_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceAuxMethods_ad91e7d774694571db2a7b6b7238e5d13}\label{namespaceAuxMethods_ad91e7d774694571db2a7b6b7238e5d13}} 
+\index{AuxMethods@{AuxMethods}!skipSpaces@{skipSpaces}}
+\index{skipSpaces@{skipSpaces}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{skipSpaces()}{skipSpaces()}}
+{\footnotesize\ttfamily int Aux\+Methods\+::skip\+Spaces (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+s,  }\item[{int}]{i\+\_\+start = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+skip\+Spaces Skips whitespace characters in the string starting from the specified position. 
+
+By default -\/ 0 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+s} & The line in which to skip the whitespace characters \\
+\hline
+{\em i\+\_\+start} & The starting position from which to start searching for whitespace characters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the first character that is not whitespace, or the index outside the line, 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::string str = \textcolor{stringliteral}{"{}    \(\backslash\)t\(\backslash\)nHello, world!"{}};}
+\DoxyCodeLine{\textcolor{keywordtype}{int} startIndex    = 0;}
+\DoxyCodeLine{\textcolor{comment}{// Skip the whitespace characters in the string}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} nonSpaceIndex = \mbox{\hyperlink{namespaceAuxMethods_ad91e7d774694571db2a7b6b7238e5d13}{AuxMethods::skipSpaces}}(str, startIndex);}
+\DoxyCodeLine{\textcolor{comment}{// Output the result}}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (nonSpaceIndex < str.size())}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{ std::cout << \textcolor{stringliteral}{"{}The first non-\/whitespace character is found by the index: "{}};}
+\DoxyCodeLine{ std::cout << nonSpaceIndex << std::endl;}
+\DoxyCodeLine{ std::cout <<\textcolor{stringliteral}{"{}Symbol: "{}} << str[nonSpaceIndex] << std::endl;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{ std::cout << \textcolor{stringliteral}{"{}The string consists entirely of whitespace characters."{}};}
+\DoxyCodeLine{ std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceAuxMethods_af9218449b862b94608c0f3f567bace90}\label{namespaceAuxMethods_af9218449b862b94608c0f3f567bace90}} 
+\index{AuxMethods@{AuxMethods}!sortDictByValue@{sortDictByValue}}
+\index{sortDictByValue@{sortDictByValue}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{sortDictByValue()}{sortDictByValue()}}
+{\footnotesize\ttfamily template$<$typename Key , typename Value $>$ \\
+std\+::vector$<$ std\+::pair$<$ Key, Value $>$ $>$ Aux\+Methods\+::sort\+Dict\+By\+Value (\begin{DoxyParamCaption}\item[{const std\+::map$<$ Key, Value $>$ \&}]{i\+\_\+dict,  }\item[{bool}]{up = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+sort\+Dict\+By\+Value Sorting the associative container by values and returning sorted key-\/value pairs as a vector. 
+
+Sorting can be performed both in ascending and descending order of values 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Key} & The key type of the associative container \\
+\hline
+{\em Value} & The value type of the associative container \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+dict} & A constant reference to an associative container that needs to be sorted by values \\
+\hline
+{\em up} & If {\ttfamily true}, the sorting takes place in ascending order, otherwise in descending order \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of key-\/value pairs containing dictionary elements sorted by values 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::map<std::string, int> myDict;}
+\DoxyCodeLine{myDict[\textcolor{stringliteral}{"{}apple"{}}]  = 5;}
+\DoxyCodeLine{myDict[\textcolor{stringliteral}{"{}banana"{}}] = 3;}
+\DoxyCodeLine{myDict[\textcolor{stringliteral}{"{}orange"{}}] = 7;}
+\DoxyCodeLine{\textcolor{comment}{// Sorting the dictionary by values in ascending order}}
+\DoxyCodeLine{std::vector<std::pair<std::string, int>> sortedPairs =}
+\DoxyCodeLine{\mbox{\hyperlink{namespaceAuxMethods_af9218449b862b94608c0f3f567bace90}{AuxMethods::sortDictByValue}}(myDict, \textcolor{keyword}{true});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Output sorted key-\/value pairs}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Sorted dictionary by value in ascending order:"{}} << std::endl;}
+\DoxyCodeLine{\textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& pair : sortedPairs) \{}
+\DoxyCodeLine{std::cout << pair.first << \textcolor{stringliteral}{"{}: "{}} << pair.second << std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceAuxMethods_af9218449b862b94608c0f3f567bace90_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceAuxMethods_af91905c8bf7e07464a2906f5b3a4a89a}\label{namespaceAuxMethods_af91905c8bf7e07464a2906f5b3a4a89a}} 
+\index{AuxMethods@{AuxMethods}!transpose@{transpose}}
+\index{transpose@{transpose}!AuxMethods@{AuxMethods}}
+\doxysubsubsection{\texorpdfstring{transpose()}{transpose()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$ std\+::vector$<$ T $>$ $>$ Aux\+Methods\+::transpose (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ T $>$$>$ \&}]{matrix }\end{DoxyParamCaption})}
+

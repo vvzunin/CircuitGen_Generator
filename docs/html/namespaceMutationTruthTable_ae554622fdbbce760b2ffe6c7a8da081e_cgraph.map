@@ -1,0 +1,6 @@
+<map id="MutationTruthTable::MutationAccessionDel" name="MutationTruthTable::MutationAccessionDel">
+<area shape="rect" id="node1" title=" " alt="" coords="5,49,180,90"/>
+<area shape="rect" id="node2" href="$classTruthTable.html#ae6eb629aa688eadb1cae6dfd194c6dbc" title="getInput Get the number of input variables in the truth table." alt="" coords="240,5,391,32"/>
+<area shape="rect" id="node3" href="$classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82" title="getOutTable Get the output table." alt="" coords="228,56,403,83"/>
+<area shape="rect" id="node4" href="$classMutationParameters.html#a53c3019a35847c1adfd5c542ce8cb775" title=" " alt="" coords="238,107,393,149"/>
+</map>

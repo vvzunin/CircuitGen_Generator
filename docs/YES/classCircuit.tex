@@ -1,0 +1,454 @@
+\hypertarget{classCircuit}{}\doxysection{Circuit Class Reference}
+\label{classCircuit}\index{Circuit@{Circuit}}
+
+
+class \mbox{\hyperlink{classCircuit}{Circuit}}  
+
+
+
+
+{\ttfamily \#include $<$Circuit.\+hpp$>$}
+
+
+
+Collaboration diagram for Circuit\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classCircuit__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCircuit_a88e02d7334ce8e82c5314391ea00e7d0}{Circuit}} (\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} const i\+\_\+graph, const std\+::vector$<$ std\+::string $>$ \&i\+\_\+log\+Expressions=\{\})
+\item 
+void \mbox{\hyperlink{classCircuit_a15e8b0a5b0050f6e0c5feb9c500444b3}{compute\+Hash}} ()
+\begin{DoxyCompactList}\small\item\em compute\+Hash A method for calculating the hash of a combinational scheme $\ast$/ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCircuit_ae9c9469260b96d79be75ef5491e1d626}{update\+Circuit\+Parameters}} (\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+graph)
+\begin{DoxyCompactList}\small\item\em update\+Circuits\+Parameters A method for updating the parameters of a combinational circuit \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCircuit_a0fffbea37983706410ff674dd9eb08c9}{graph\+To\+Verilog}} (const std\+::string \&i\+\_\+path, bool i\+\_\+path\+Exists=false)
+\begin{DoxyCompactList}\small\item\em graph\+To\+Verilog The graph To Verilog method in the \mbox{\hyperlink{classCircuit}{Circuit}} class converts the combinational circuit into code in the Verilog hardware description language and writes it to a file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCircuit_a5f9e1a5b9117f6e8c6547cf5a261047e}{graph\+To\+Graph\+ML}} (const std\+::string \&i\+\_\+path, bool i\+\_\+path\+Exists=false)
+\begin{DoxyCompactList}\small\item\em save\+Parameters The save Parameters method in the \mbox{\hyperlink{classCircuit}{Circuit}} class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d}{save\+Parameters}} (\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+sub\+Graph, std\+::ofstream \&i\+\_\+output\+File, bool i\+\_\+is\+Sub\+Graph=false)
+\begin{DoxyCompactList}\small\item\em save\+Additional\+Stats This save Additional Stats method is designed to save additional statistics related to the execution of the ABC command (a program for synthesizing digital circuits) in a JSON file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCircuit_ac07f64884fb0732102b39c0ec1c38896}{generate}} (bool i\+\_\+make\+Graph\+ML=false, bool i\+\_\+path\+Exists=false)
+\begin{DoxyCompactList}\small\item\em generate This generate method is designed to generate various representations of a digital circuit (for example, Verilog, RTL, Bench) and perform optimizations using the ABC program (if necessary), as well as save digital circuit parameters and additional statistics \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCircuit_a5afd009c717105e7f2c36c02e233661c}{set\+Table}} (const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&i\+\_\+tt)
+\begin{DoxyCompactList}\small\item\em set\+Table This method is designed to set up a truth table for a digital circuit. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCircuit_a71e323bb28864ea40f60fdc1fd693add}{set\+Path}} (const std\+::string \&i\+\_\+path)
+\begin{DoxyCompactList}\small\item\em set\+Path This method is designed to set the path where the files associated with the digital circuit will be saved. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCircuit_a6b0bf9c0af70133d2389c6a2b9c81299}{set\+Circuit\+Name}} (const std\+::string \&i\+\_\+circ\+Name)
+\begin{DoxyCompactList}\small\item\em set\+Circuit\+Name This method is used to set the name of the digital circuit. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} $>$ $>$ \mbox{\hyperlink{classCircuit_a6d0f1678da06127a4587df5a3dae39e4}{get\+Index\+Of\+Wire\+Name}} (const std\+::string \&i\+\_\+wire\+Name)
+\begin{DoxyCompactList}\small\item\em get\+Index\+Of\+Wire\+Name This method is designed to get the index of the vertex in the graph by the name of the wire. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCircuit_a3be6fbc1ba8457fc500bb7514d90f2db}{set\+Vertice\+Operation}} (int i\+\_\+vertice, const std\+::string \&i\+\_\+operation)
+\begin{DoxyCompactList}\small\item\em set\+Vertice\+Operation This method sets up an operation for a given vertex in the graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCircuit}{Circuit}} \mbox{\hyperlink{classCircuit_a37ae459501ff0ca329c0e0359f9e436d}{from\+Verilog}} (const std\+::string \&i\+\_\+filepath)
+\begin{DoxyCompactList}\small\item\em from\+Verilog \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classCircuit_a36b3c7e5b6bb762b227620677aa05a4b}{check\+Existing\+Hash}} ()
+\begin{DoxyCompactList}\small\item\em check\+Existing\+Hash \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} \mbox{\hyperlink{classCircuit_ac340800d917fd745ec19ce5ddef32468}{d\+\_\+graph}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classCircuit_a3a46b7ad58c43e820bbe46e9a4aece58}{d\+\_\+log\+Expressions}}
+\item 
+\mbox{\hyperlink{classTruthTable}{Truth\+Table}} \mbox{\hyperlink{classCircuit_a35309993631f48e78a703c62a9dee312}{d\+\_\+t\+Table}}
+\item 
+std\+::string \mbox{\hyperlink{classCircuit_a8224db52877ef17a42c215a69f039565}{d\+\_\+path}}
+\item 
+std\+::string \mbox{\hyperlink{classCircuit_aea762822371bd9474e73c4365436cd87}{d\+\_\+circuit\+Name}}
+\item 
+\mbox{\hyperlink{classCircuitParameters}{Circuit\+Parameters}} \mbox{\hyperlink{classCircuit_afa2a505e49cef1af3c52a461159b9327}{d\+\_\+circuit\+Parameters}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ \mbox{\hyperlink{classCircuit_abb9e88f260f291cd40be7990d470d445}{d\+\_\+settings}} = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Circuit\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classCircuit}{Circuit}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Oriented\+Graph} & pointer to a Oriented graph = nullptr \\
+\hline
+{\em d\+\_\+log\+Expressions} & A string vector containing logical expressions associated with a given \mbox{\hyperlink{classCircuit}{Circuit}} \\
+\hline
+{\em d\+\_\+t\+Table} & an object of the Truth Table class representing the truth table for the \mbox{\hyperlink{classCircuit}{Circuit}}. \\
+\hline
+{\em d\+\_\+path} & A string containing the path to the \mbox{\hyperlink{classCircuit}{Circuit}} files \\
+\hline
+{\em d\+\_\+circuit\+Name} & A string containing the \mbox{\hyperlink{classCircuit}{Circuit}} name. \\
+\hline
+{\em d\+\_\+circuit\+Parameters} & An object of the \mbox{\hyperlink{classCircuit}{Circuit}} Parameters class containing circuit parameters such as the number of inputs, number of outputs, maximum level, etc. \\
+\hline
+{\em d\+\_\+settings} & a smart pointer to an object of the \mbox{\hyperlink{classSettings}{Settings}} class that represents the settings for this schema. It is usually used to adjust the parameters of the vertices of the graph $\ast$/ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCircuit_a88e02d7334ce8e82c5314391ea00e7d0}\label{classCircuit_a88e02d7334ce8e82c5314391ea00e7d0}} 
+\index{Circuit@{Circuit}!Circuit@{Circuit}}
+\index{Circuit@{Circuit}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{Circuit()}{Circuit()}}
+{\footnotesize\ttfamily Circuit\+::\+Circuit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} const}]{i\+\_\+graph,  }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{i\+\_\+log\+Expressions = {\ttfamily \{\}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCircuit_a36b3c7e5b6bb762b227620677aa05a4b}\label{classCircuit_a36b3c7e5b6bb762b227620677aa05a4b}} 
+\index{Circuit@{Circuit}!checkExistingHash@{checkExistingHash}}
+\index{checkExistingHash@{checkExistingHash}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{checkExistingHash()}{checkExistingHash()}}
+{\footnotesize\ttfamily bool Circuit\+::check\+Existing\+Hash (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+check\+Existing\+Hash 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]\+: This method has some questions, maybe need rewriting \end{DoxyRefDesc}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_a36b3c7e5b6bb762b227620677aa05a4b_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classCircuit_a15e8b0a5b0050f6e0c5feb9c500444b3}\label{classCircuit_a15e8b0a5b0050f6e0c5feb9c500444b3}} 
+\index{Circuit@{Circuit}!computeHash@{computeHash}}
+\index{computeHash@{computeHash}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{computeHash()}{computeHash()}}
+{\footnotesize\ttfamily void Circuit\+::compute\+Hash (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+compute\+Hash A method for calculating the hash of a combinational scheme $\ast$/ 
+
+\mbox{\Hypertarget{classCircuit_a37ae459501ff0ca329c0e0359f9e436d}\label{classCircuit_a37ae459501ff0ca329c0e0359f9e436d}} 
+\index{Circuit@{Circuit}!fromVerilog@{fromVerilog}}
+\index{fromVerilog@{fromVerilog}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{fromVerilog()}{fromVerilog()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCircuit}{Circuit}} Circuit\+::from\+Verilog (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+filepath }\end{DoxyParamCaption})}
+
+
+
+from\+Verilog 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]\+: description from\+Verilog \end{DoxyRefDesc}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+filepath} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCircuit_ac07f64884fb0732102b39c0ec1c38896}\label{classCircuit_ac07f64884fb0732102b39c0ec1c38896}} 
+\index{Circuit@{Circuit}!generate@{generate}}
+\index{generate@{generate}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily bool Circuit\+::generate (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+make\+Graph\+ML = {\ttfamily false},  }\item[{bool}]{i\+\_\+path\+Exists = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+generate This generate method is designed to generate various representations of a digital circuit (for example, Verilog, RTL, Bench) and perform optimizations using the ABC program (if necessary), as well as save digital circuit parameters and additional statistics 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+make\+Firrtl} & A flag indicating whether to create a FIRRTL representation for a digital circuit \\
+\hline
+{\em i\+\_\+make\+Bench} & A flag indicating whether to create a Bench view for a digital circuit. \\
+\hline
+{\em i\+\_\+get\+Abc\+Stats} & A flag indicating whether to receive statistics from the ABC program after performing optimizations. \\
+\hline
+{\em library\+Name} & The name of the library used for optimization using the ABC program \\
+\hline
+{\em i\+\_\+generate\+Aig} & A flag indicating whether to generate an AIG (And-\/\+Inverter Graph) after performing optimizations. \\
+\hline
+{\em i\+\_\+path\+Exists} & A flag indicating whether there is already a path to save the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The method returns true if the generation and saving were successful $\ast$/ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_ac07f64884fb0732102b39c0ec1c38896_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_ac07f64884fb0732102b39c0ec1c38896_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classCircuit_a6d0f1678da06127a4587df5a3dae39e4}\label{classCircuit_a6d0f1678da06127a4587df5a3dae39e4}} 
+\index{Circuit@{Circuit}!getIndexOfWireName@{getIndexOfWireName}}
+\index{getIndexOfWireName@{getIndexOfWireName}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{getIndexOfWireName()}{getIndexOfWireName()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} $>$ $>$ Circuit\+::get\+Index\+Of\+Wire\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+wire\+Name }\end{DoxyParamCaption})}
+
+
+
+get\+Index\+Of\+Wire\+Name This method is designed to get the index of the vertex in the graph by the name of the wire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+wire\+Name} & A string containing the name of the wire for which you want to get the vertex index in the graph of the circuit\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer value representing the index of a vertex in a graph of a digital circuit. If the vertex with the specified wire name is not found, the method returns -\/1. $\ast$/ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCircuit_a5f9e1a5b9117f6e8c6547cf5a261047e}\label{classCircuit_a5f9e1a5b9117f6e8c6547cf5a261047e}} 
+\index{Circuit@{Circuit}!graphToGraphML@{graphToGraphML}}
+\index{graphToGraphML@{graphToGraphML}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{graphToGraphML()}{graphToGraphML()}}
+{\footnotesize\ttfamily bool Circuit\+::graph\+To\+Graph\+ML (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+path,  }\item[{bool}]{i\+\_\+path\+Exists = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+save\+Parameters The save Parameters method in the \mbox{\hyperlink{classCircuit}{Circuit}} class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+get\+Abc\+Stats} & A flag indicating whether statistics from the ABC program should also be saved \\
+\hline
+{\em i\+\_\+generate\+Aig} & A flag indicating whether to generate an AIG (And-\/\+Inverter Graph). \\
+\hline
+{\em i\+\_\+path\+Exists} & A flag indicating whether there is already a path to save the file return The file is closed, and the method returns true if the parameters are saved successfully. $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_a5f9e1a5b9117f6e8c6547cf5a261047e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classCircuit_a0fffbea37983706410ff674dd9eb08c9}\label{classCircuit_a0fffbea37983706410ff674dd9eb08c9}} 
+\index{Circuit@{Circuit}!graphToVerilog@{graphToVerilog}}
+\index{graphToVerilog@{graphToVerilog}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{graphToVerilog()}{graphToVerilog()}}
+{\footnotesize\ttfamily bool Circuit\+::graph\+To\+Verilog (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+path,  }\item[{bool}]{i\+\_\+path\+Exists = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+graph\+To\+Verilog The graph To Verilog method in the \mbox{\hyperlink{classCircuit}{Circuit}} class converts the combinational circuit into code in the Verilog hardware description language and writes it to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+path} & The path to the file where the Verilog code will be written. \\
+\hline
+{\em i\+\_\+path\+Exists} & A flag indicating whether the path to the file already exists. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true, indicating the successful completion of the operation. $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_a0fffbea37983706410ff674dd9eb08c9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d}\label{classCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d}} 
+\index{Circuit@{Circuit}!saveParameters@{saveParameters}}
+\index{saveParameters@{saveParameters}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{saveParameters()}{saveParameters()}}
+{\footnotesize\ttfamily bool Circuit\+::save\+Parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+sub\+Graph,  }\item[{std\+::ofstream \&}]{i\+\_\+output\+File,  }\item[{bool}]{i\+\_\+is\+Sub\+Graph = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+save\+Additional\+Stats This save Additional Stats method is designed to save additional statistics related to the execution of the ABC command (a program for synthesizing digital circuits) in a JSON file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+res} & The result of the ABC command, containing the output of the command and information about the correctness of execution$\ast$$\ast$$\ast$ \\
+\hline
+{\em i\+\_\+optimization\+Name} & The name of the optimization or type of statistics to be saved \\
+\hline
+{\em i\+\_\+last\+Data} & A flag indicating whether the current statistics are the latest in the JSON file $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classCircuit_a6b0bf9c0af70133d2389c6a2b9c81299}\label{classCircuit_a6b0bf9c0af70133d2389c6a2b9c81299}} 
+\index{Circuit@{Circuit}!setCircuitName@{setCircuitName}}
+\index{setCircuitName@{setCircuitName}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{setCircuitName()}{setCircuitName()}}
+{\footnotesize\ttfamily void Circuit\+::set\+Circuit\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+circ\+Name }\end{DoxyParamCaption})}
+
+
+
+set\+Circuit\+Name This method is used to set the name of the digital circuit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+circ\+Name} & A string containing a new name for the digital circuit $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_a6b0bf9c0af70133d2389c6a2b9c81299_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classCircuit_a71e323bb28864ea40f60fdc1fd693add}\label{classCircuit_a71e323bb28864ea40f60fdc1fd693add}} 
+\index{Circuit@{Circuit}!setPath@{setPath}}
+\index{setPath@{setPath}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{setPath()}{setPath()}}
+{\footnotesize\ttfamily void Circuit\+::set\+Path (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+set\+Path This method is designed to set the path where the files associated with the digital circuit will be saved. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+path} & A string containing the path to the directory where the digital circuit files will be saved $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_a71e323bb28864ea40f60fdc1fd693add_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classCircuit_a5afd009c717105e7f2c36c02e233661c}\label{classCircuit_a5afd009c717105e7f2c36c02e233661c}} 
+\index{Circuit@{Circuit}!setTable@{setTable}}
+\index{setTable@{setTable}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{setTable()}{setTable()}}
+{\footnotesize\ttfamily void Circuit\+::set\+Table (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&}]{i\+\_\+tt }\end{DoxyParamCaption})}
+
+
+
+set\+Table This method is designed to set up a truth table for a digital circuit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+tt} & The Truth Table, which must be installed for the digital circuit. $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_a5afd009c717105e7f2c36c02e233661c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classCircuit_a3be6fbc1ba8457fc500bb7514d90f2db}\label{classCircuit_a3be6fbc1ba8457fc500bb7514d90f2db}} 
+\index{Circuit@{Circuit}!setVerticeOperation@{setVerticeOperation}}
+\index{setVerticeOperation@{setVerticeOperation}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{setVerticeOperation()}{setVerticeOperation()}}
+{\footnotesize\ttfamily void Circuit\+::set\+Vertice\+Operation (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+vertice,  }\item[{const std\+::string \&}]{i\+\_\+operation }\end{DoxyParamCaption})}
+
+
+
+set\+Vertice\+Operation This method sets up an operation for a given vertex in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+vertice} & Index of the vertex to set the operation for \\
+\hline
+{\em i\+\_\+operation} & A string representing the operation to be set for the vertex $\ast$/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCircuit_ae9c9469260b96d79be75ef5491e1d626}\label{classCircuit_ae9c9469260b96d79be75ef5491e1d626}} 
+\index{Circuit@{Circuit}!updateCircuitParameters@{updateCircuitParameters}}
+\index{updateCircuitParameters@{updateCircuitParameters}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{updateCircuitParameters()}{updateCircuitParameters()}}
+{\footnotesize\ttfamily void Circuit\+::update\+Circuit\+Parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+graph }\end{DoxyParamCaption})}
+
+
+
+update\+Circuits\+Parameters A method for updating the parameters of a combinational circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+get\+Abc\+Stats} & A flag indicating whether to receive statistics from the ABC program (a program for synthesizing digital circuits). \\
+\hline
+{\em library\+Name} & The name of the library associated with the \mbox{\hyperlink{classCircuit}{Circuit}}. $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCircuit_ae9c9469260b96d79be75ef5491e1d626_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classCircuit_aea762822371bd9474e73c4365436cd87}\label{classCircuit_aea762822371bd9474e73c4365436cd87}} 
+\index{Circuit@{Circuit}!d\_circuitName@{d\_circuitName}}
+\index{d\_circuitName@{d\_circuitName}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{d\_circuitName}{d\_circuitName}}
+{\footnotesize\ttfamily std\+::string Circuit\+::d\+\_\+circuit\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classCircuit_afa2a505e49cef1af3c52a461159b9327}\label{classCircuit_afa2a505e49cef1af3c52a461159b9327}} 
+\index{Circuit@{Circuit}!d\_circuitParameters@{d\_circuitParameters}}
+\index{d\_circuitParameters@{d\_circuitParameters}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{d\_circuitParameters}{d\_circuitParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCircuitParameters}{Circuit\+Parameters}} Circuit\+::d\+\_\+circuit\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classCircuit_ac340800d917fd745ec19ce5ddef32468}\label{classCircuit_ac340800d917fd745ec19ce5ddef32468}} 
+\index{Circuit@{Circuit}!d\_graph@{d\_graph}}
+\index{d\_graph@{d\_graph}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{d\_graph}{d\_graph}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} Circuit\+::d\+\_\+graph\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classCircuit_a3a46b7ad58c43e820bbe46e9a4aece58}\label{classCircuit_a3a46b7ad58c43e820bbe46e9a4aece58}} 
+\index{Circuit@{Circuit}!d\_logExpressions@{d\_logExpressions}}
+\index{d\_logExpressions@{d\_logExpressions}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{d\_logExpressions}{d\_logExpressions}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Circuit\+::d\+\_\+log\+Expressions\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classCircuit_a8224db52877ef17a42c215a69f039565}\label{classCircuit_a8224db52877ef17a42c215a69f039565}} 
+\index{Circuit@{Circuit}!d\_path@{d\_path}}
+\index{d\_path@{d\_path}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{d\_path}{d\_path}}
+{\footnotesize\ttfamily std\+::string Circuit\+::d\+\_\+path\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classCircuit_abb9e88f260f291cd40be7990d470d445}\label{classCircuit_abb9e88f260f291cd40be7990d470d445}} 
+\index{Circuit@{Circuit}!d\_settings@{d\_settings}}
+\index{d\_settings@{d\_settings}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{d\_settings}{d\_settings}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSettings}{Settings}}$>$ Circuit\+::d\+\_\+settings = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Circuit\char`\"{})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classCircuit_a35309993631f48e78a703c62a9dee312}\label{classCircuit_a35309993631f48e78a703c62a9dee312}} 
+\index{Circuit@{Circuit}!d\_tTable@{d\_tTable}}
+\index{d\_tTable@{d\_tTable}!Circuit@{Circuit}}
+\doxysubsubsection{\texorpdfstring{d\_tTable}{d\_tTable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTruthTable}{Truth\+Table}} Circuit\+::d\+\_\+t\+Table\hspace{0.3cm}{\ttfamily [private]}}
+

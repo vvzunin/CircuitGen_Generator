@@ -1,0 +1,8 @@
+<map id="SelectionType" name="SelectionType">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,109,32"/>
+<area shape="rect" id="Node000002" href="$Recombinations_8h.html#ae4e2ef42ba9e47a6c22a7befaf23c33e" title=" " alt="" coords="347,5,482,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,14,157,12,299,12,332,13,331,18,299,17,157,17,109,19"/>
+<area shape="rect" id="Node000003" href="$namespaceSelectionsTruthTable.html#a5cf82884bef80fd5abe84219d3bb9780" title=" " alt="" coords="157,27,299,69"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="110,25,142,31,141,36,109,30"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="299,34,331,29,332,34,300,39"/>
+</map>

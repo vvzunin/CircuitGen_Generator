@@ -1,0 +1,731 @@
+\hypertarget{classDataBaseGenerator}{}\doxysection{Data\+Base\+Generator Class Reference}
+\label{classDataBaseGenerator}\index{DataBaseGenerator@{DataBaseGenerator}}
+
+
+class \mbox{\hyperlink{classDataBaseGenerator}{Data\+Base\+Generator}}  
+
+
+
+
+{\ttfamily \#include $<$Data\+Base\+Generator.\+hpp$>$}
+
+
+
+Collaboration diagram for Data\+Base\+Generator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDataBaseGenerator_a00481fbb8c06d03bda84618f1423df59}{Data\+Base\+Generator}} (const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&i\+\_\+parameters)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classDataBaseGenerator}{Data\+Base\+Generator}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{DataBaseGenerator_8hpp_af365e9276e78fb465d972f19c76ddea1}{Result\+Graph}} \mbox{\hyperlink{classDataBaseGenerator_a8a484283ff64d7c1836052d608881440}{generate\+Type\+For\+Graph}} (const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&i\+\_\+gp, bool parallel=true, bool create\+Id\+Directories=true)
+\begin{DoxyCompactList}\small\item\em generate\+Type\+For\+Graph The generate Type method of the Data\+Base Generator class is responsible for generating a database of a certain type based on the passed parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{DataBaseGenerator_8hpp_a142eeb582b980f0e5e1283e0ea989e99}{Result\+Path}} \mbox{\hyperlink{classDataBaseGenerator_a29b9fdffd9923608d7d6521ec7e81332}{generate\+Type\+For\+Path}} (const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&i\+\_\+gp, bool parallel=true, bool create\+Id\+Directories=true)
+\item 
+void \mbox{\hyperlink{classDataBaseGenerator_aa2046793f1452eabf54ca938ee3c6042}{generate\+Type\+Default}} (const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&i\+\_\+gp, bool parallel=true, bool create\+Id\+Directories=true)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classDataBaseGenerator_af2d3442c4257a0da57658a12110adbdc}{run\+Generator\+By\+Default}} (const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&i\+\_\+gp, bool parallel=true, bool create\+Id\+Directories=true)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+From\+Random\+Truth\+Table The generate Data\+Base From Random Truth Table method of the Data\+Base Generator class is responsible for generating a database from random truth tables based on the passed parameters \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_af4c8c81c72bf2699c55832c0c4ded764}{generate\+Data\+Base\+From\+Random\+Truth\+Table}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+params)
+\item 
+void \mbox{\hyperlink{classDataBaseGenerator_a92191749f74f8660972e648f10611a8c}{generate\+Data\+Base\+Rand\+Level}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+params)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Rand\+Level The method is responsible for generating a database based on randomly generated levels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_aaba6c929833cb121a88f0fd3acf5e406}{generate\+Data\+Base\+Rand\+Level\+Experimental}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Rand\+Level\+Experimental The method is intended for experimental database generation based on randomly generated levels using an optimized algorithm \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_a71cb26ca84dd54145b5a95fbfc0da79b}{generate\+Data\+Base\+Num\+Operations}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Num\+Operations The method is designed to generate a database based on a given number of logical operations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_abcc5179735a139280f4341be7ac54aff}{generate\+Data\+Base\+Genetic}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Genetic The method is designed to generate a database using genetic algorithms \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_a6909e6cc8fee10beec59ce359bc228d0}{generate\+Data\+Base\+Summator}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Summator Generates a database representing a summator circuit \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_a4b1033cbc2af5a721072a85619b9e0c7}{generate\+Data\+Base\+Comparison}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Comparison Generates a database representing a comparison circuit \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_a6fce34b3a9d87af732768c49b0d5ae3b}{generate\+Data\+Base\+Encoder}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Encoder Generates a database representing a comparison circuit \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_a73bfb370cd36cea369075ad9f8d3ff38}{generate\+Data\+Base\+Parity}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Parity Generates a database representing a parity circuit \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_a65e14be0b8a4b3e35985a538387bbd6e}{generate\+Data\+Base\+Subtractor}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Subtractor Generates a database representing a subtractor circuit \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_a3a26033dd14934db127063caf0025175}{generate\+Data\+Base\+Multiplexer}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Multiplexer Generates a database representing a multiplexer circuit \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_a896a7600daa183c018b39eebf9136800}{generate\+Data\+Base\+Demultiplexer}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Demultiplexer Generates a database representing a demultiplexer circuit \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_ad9bf82876e4be785552b5d7ac1e04caa}{generate\+Data\+Base\+Multiplier}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Multiplier Generates a database representing a multiplier circuit \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_ace40cd423c891d122179fa9c2638291e}{generate\+Data\+Base\+Decoder}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+Decoder Generates a database representing a decoder circuit \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_aa9f09aaf0e167ce319d120f7a9b8826e}{generate\+Data\+Base\+ALU}} (const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&i\+\_\+param)
+\begin{DoxyCompactList}\small\item\em generate\+Data\+Base\+ALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit \end{DoxyCompactList}\item 
+std\+::function$<$ void(const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&)$>$ \mbox{\hyperlink{classDataBaseGenerator_a25632c1511ff0efd653809da5b9a004f}{get\+Generate\+Method}} (const \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}} i\+\_\+method\+Type)
+\begin{DoxyCompactList}\small\item\em get\+Generate\+Method Retrieves a method for generating a database based on the provided generation type \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGenerator_a94466568c48188b9c520c4d2756f5a8e}{add\+Data\+To\+Return}} (\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} graph)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} $>$ \mbox{\hyperlink{classDataBaseGenerator_a20a0ae116aa56aedbb99dab6c87e8fb1}{d\+\_\+generated\+Graphs}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classDataBaseGenerator_a9bec85b2044cdb7d11d6413a07cf3988}{d\+\_\+generated\+Graphs\+Names}}
+\item 
+std\+::mutex \mbox{\hyperlink{classDataBaseGenerator_a2d2e7a067c713a8ced70dd181a8bc169}{d\+\_\+res\+Write}}
+\item 
+std\+::string \mbox{\hyperlink{classDataBaseGenerator_a7a9deffc7172454afd25ec87a6bc21b2}{d\+\_\+main\+Path}} = \char`\"{}.\char`\"{}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ \mbox{\hyperlink{classDataBaseGenerator_a7356615dd0de27b0fb6533bb9e98b27b}{d\+\_\+settings}}
+\item 
+\mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \mbox{\hyperlink{classDataBaseGenerator_a4fd8be40259f9e1821ef9ee1c7730dc5}{d\+\_\+parameters}}
+\item 
+int \mbox{\hyperlink{classDataBaseGenerator_a9a0da504a7ad66c0adf36c9b5b74dafd}{d\+\_\+dir\+Count}} = 0
+\item 
+\mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \mbox{\hyperlink{classDataBaseGenerator_ad6a0a845b1a61e4d5073251c22adb556}{d\+\_\+rand\+Generator}}
+\item 
+\mbox{\hyperlink{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cc}{Return\+Type}} \mbox{\hyperlink{classDataBaseGenerator_a0fd2564f211d7a82ccd2311772921743}{d\+\_\+type}} = \mbox{\hyperlink{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cca88ec7d5086d2469ba843c7fcceade8a6}{Return\+Type\+::\+DEFAULT}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classDataBaseGenerator}{Data\+Base\+Generator}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+main\+Path} & A string containing the path to the main database directory. The default value is \char`\"{}.\char`\"{}, which means the current working directory \\
+\hline
+{\em d\+\_\+settings} & A smart pointer to an object of the \mbox{\hyperlink{classSettings}{Settings}} class representing the settings for the database generator \\
+\hline
+{\em d\+\_\+parameters} & An object of the Data\+Base Generator Parameters class containing parameters for generating a database. This object is used to configure database generation \\
+\hline
+{\em d\+\_\+dir\+Count} & An integer value representing the number of directories created during database generation \\
+\hline
+{\em d\+\_\+rand\+Generator} & Random number generator with seed \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDataBaseGenerator_a00481fbb8c06d03bda84618f1423df59}\label{classDataBaseGenerator_a00481fbb8c06d03bda84618f1423df59}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!DataBaseGenerator@{DataBaseGenerator}}
+\index{DataBaseGenerator@{DataBaseGenerator}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{DataBaseGenerator()}{DataBaseGenerator()}}
+{\footnotesize\ttfamily Data\+Base\+Generator\+::\+Data\+Base\+Generator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&}]{i\+\_\+parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\mbox{\hyperlink{classDataBaseGenerator}{Data\+Base\+Generator}}. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000006}{Todo}}]\+: description default constructor \end{DoxyRefDesc}
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+parameters} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDataBaseGenerator_a94466568c48188b9c520c4d2756f5a8e}\label{classDataBaseGenerator_a94466568c48188b9c520c4d2756f5a8e}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!addDataToReturn@{addDataToReturn}}
+\index{addDataToReturn@{addDataToReturn}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{addDataToReturn()}{addDataToReturn()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::add\+Data\+To\+Return (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{graph }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGenerator_aa9f09aaf0e167ce319d120f7a9b8826e}\label{classDataBaseGenerator_aa9f09aaf0e167ce319d120f7a9b8826e}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseALU@{generateDataBaseALU}}
+\index{generateDataBaseALU@{generateDataBaseALU}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseALU()}{generateDataBaseALU()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+ALU (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+ALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating the ALU circuit database \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classDataBaseGenerator_aa9f09aaf0e167ce319d120f7a9b8826e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_aa9f09aaf0e167ce319d120f7a9b8826e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a4b1033cbc2af5a721072a85619b9e0c7}\label{classDataBaseGenerator_a4b1033cbc2af5a721072a85619b9e0c7}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseComparison@{generateDataBaseComparison}}
+\index{generateDataBaseComparison@{generateDataBaseComparison}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseComparison()}{generateDataBaseComparison()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Comparison (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Comparison Generates a database representing a comparison circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating the comparison circuit database \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a4b1033cbc2af5a721072a85619b9e0c7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a4b1033cbc2af5a721072a85619b9e0c7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_ace40cd423c891d122179fa9c2638291e}\label{classDataBaseGenerator_ace40cd423c891d122179fa9c2638291e}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseDecoder@{generateDataBaseDecoder}}
+\index{generateDataBaseDecoder@{generateDataBaseDecoder}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseDecoder()}{generateDataBaseDecoder()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Decoder (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Decoder Generates a database representing a decoder circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating the decoder circuit database \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_ace40cd423c891d122179fa9c2638291e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_ace40cd423c891d122179fa9c2638291e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a896a7600daa183c018b39eebf9136800}\label{classDataBaseGenerator_a896a7600daa183c018b39eebf9136800}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseDemultiplexer@{generateDataBaseDemultiplexer}}
+\index{generateDataBaseDemultiplexer@{generateDataBaseDemultiplexer}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseDemultiplexer()}{generateDataBaseDemultiplexer()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Demultiplexer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Demultiplexer Generates a database representing a demultiplexer circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating the demultiplexer circuit database \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a896a7600daa183c018b39eebf9136800_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a896a7600daa183c018b39eebf9136800_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a6fce34b3a9d87af732768c49b0d5ae3b}\label{classDataBaseGenerator_a6fce34b3a9d87af732768c49b0d5ae3b}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseEncoder@{generateDataBaseEncoder}}
+\index{generateDataBaseEncoder@{generateDataBaseEncoder}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseEncoder()}{generateDataBaseEncoder()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Encoder (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Encoder Generates a database representing a comparison circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating the comparison circuit database \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a6fce34b3a9d87af732768c49b0d5ae3b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a6fce34b3a9d87af732768c49b0d5ae3b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_af4c8c81c72bf2699c55832c0c4ded764}\label{classDataBaseGenerator_af4c8c81c72bf2699c55832c0c4ded764}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseFromRandomTruthTable@{generateDataBaseFromRandomTruthTable}}
+\index{generateDataBaseFromRandomTruthTable@{generateDataBaseFromRandomTruthTable}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseFromRandomTruthTable()}{generateDataBaseFromRandomTruthTable()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+From\+Random\+Truth\+Table (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+params }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_af4c8c81c72bf2699c55832c0c4ded764_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_af4c8c81c72bf2699c55832c0c4ded764_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_abcc5179735a139280f4341be7ac54aff}\label{classDataBaseGenerator_abcc5179735a139280f4341be7ac54aff}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseGenetic@{generateDataBaseGenetic}}
+\index{generateDataBaseGenetic@{generateDataBaseGenetic}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseGenetic()}{generateDataBaseGenetic()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Genetic (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Genetic The method is designed to generate a database using genetic algorithms 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the Generation Parameters class containing parameters for generating a database using genetic algorithms $\ast$/\\
+\hline
+\end{DoxyParams}
+generate\+Data\+Base\+Genetic Generates a database using genetic algorithms 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating a database using genetic algorithms \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_abcc5179735a139280f4341be7ac54aff_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_abcc5179735a139280f4341be7ac54aff_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a3a26033dd14934db127063caf0025175}\label{classDataBaseGenerator_a3a26033dd14934db127063caf0025175}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseMultiplexer@{generateDataBaseMultiplexer}}
+\index{generateDataBaseMultiplexer@{generateDataBaseMultiplexer}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseMultiplexer()}{generateDataBaseMultiplexer()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Multiplexer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Multiplexer Generates a database representing a multiplexer circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating the multiplexer circuit database \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a3a26033dd14934db127063caf0025175_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a3a26033dd14934db127063caf0025175_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_ad9bf82876e4be785552b5d7ac1e04caa}\label{classDataBaseGenerator_ad9bf82876e4be785552b5d7ac1e04caa}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseMultiplier@{generateDataBaseMultiplier}}
+\index{generateDataBaseMultiplier@{generateDataBaseMultiplier}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseMultiplier()}{generateDataBaseMultiplier()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Multiplier (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Multiplier Generates a database representing a multiplier circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating the multiplier circuit database \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_ad9bf82876e4be785552b5d7ac1e04caa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_ad9bf82876e4be785552b5d7ac1e04caa_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a71cb26ca84dd54145b5a95fbfc0da79b}\label{classDataBaseGenerator_a71cb26ca84dd54145b5a95fbfc0da79b}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseNumOperations@{generateDataBaseNumOperations}}
+\index{generateDataBaseNumOperations@{generateDataBaseNumOperations}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseNumOperations()}{generateDataBaseNumOperations()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Num\+Operations (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Num\+Operations The method is designed to generate a database based on a given number of logical operations. 
+
+Here is its description and parameters\+: 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the Generation Parameters class containing parameters for generating a database. $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a71cb26ca84dd54145b5a95fbfc0da79b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a71cb26ca84dd54145b5a95fbfc0da79b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a73bfb370cd36cea369075ad9f8d3ff38}\label{classDataBaseGenerator_a73bfb370cd36cea369075ad9f8d3ff38}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseParity@{generateDataBaseParity}}
+\index{generateDataBaseParity@{generateDataBaseParity}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseParity()}{generateDataBaseParity()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Parity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Parity Generates a database representing a parity circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating the parity circuit database \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a73bfb370cd36cea369075ad9f8d3ff38_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a73bfb370cd36cea369075ad9f8d3ff38_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a92191749f74f8660972e648f10611a8c}\label{classDataBaseGenerator_a92191749f74f8660972e648f10611a8c}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseRandLevel@{generateDataBaseRandLevel}}
+\index{generateDataBaseRandLevel@{generateDataBaseRandLevel}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseRandLevel()}{generateDataBaseRandLevel()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Rand\+Level (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+params }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Rand\+Level The method is responsible for generating a database based on randomly generated levels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the Generation Parameters class containing parameters for generating a database $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a92191749f74f8660972e648f10611a8c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a92191749f74f8660972e648f10611a8c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_aaba6c929833cb121a88f0fd3acf5e406}\label{classDataBaseGenerator_aaba6c929833cb121a88f0fd3acf5e406}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseRandLevelExperimental@{generateDataBaseRandLevelExperimental}}
+\index{generateDataBaseRandLevelExperimental@{generateDataBaseRandLevelExperimental}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseRandLevelExperimental()}{generateDataBaseRandLevelExperimental()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Rand\+Level\+Experimental (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Rand\+Level\+Experimental The method is intended for experimental database generation based on randomly generated levels using an optimized algorithm 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the Generation Parameters class containing parameters for generating a database $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_aaba6c929833cb121a88f0fd3acf5e406_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_aaba6c929833cb121a88f0fd3acf5e406_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a65e14be0b8a4b3e35985a538387bbd6e}\label{classDataBaseGenerator_a65e14be0b8a4b3e35985a538387bbd6e}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseSubtractor@{generateDataBaseSubtractor}}
+\index{generateDataBaseSubtractor@{generateDataBaseSubtractor}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseSubtractor()}{generateDataBaseSubtractor()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Subtractor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Subtractor Generates a database representing a subtractor circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating the subtractor circuit database \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a65e14be0b8a4b3e35985a538387bbd6e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a65e14be0b8a4b3e35985a538387bbd6e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a6909e6cc8fee10beec59ce359bc228d0}\label{classDataBaseGenerator_a6909e6cc8fee10beec59ce359bc228d0}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateDataBaseSummator@{generateDataBaseSummator}}
+\index{generateDataBaseSummator@{generateDataBaseSummator}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateDataBaseSummator()}{generateDataBaseSummator()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Data\+Base\+Summator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&}]{i\+\_\+param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+Summator Generates a database representing a summator circuit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} class containing parameters for generating the summator circuit database \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a6909e6cc8fee10beec59ce359bc228d0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a6909e6cc8fee10beec59ce359bc228d0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_aa2046793f1452eabf54ca938ee3c6042}\label{classDataBaseGenerator_aa2046793f1452eabf54ca938ee3c6042}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateTypeDefault@{generateTypeDefault}}
+\index{generateTypeDefault@{generateTypeDefault}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateTypeDefault()}{generateTypeDefault()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::generate\+Type\+Default (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&}]{i\+\_\+gp,  }\item[{bool}]{parallel = {\ttfamily true},  }\item[{bool}]{create\+Id\+Directories = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_aa2046793f1452eabf54ca938ee3c6042_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a8a484283ff64d7c1836052d608881440}\label{classDataBaseGenerator_a8a484283ff64d7c1836052d608881440}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateTypeForGraph@{generateTypeForGraph}}
+\index{generateTypeForGraph@{generateTypeForGraph}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateTypeForGraph()}{generateTypeForGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{DataBaseGenerator_8hpp_af365e9276e78fb465d972f19c76ddea1}{Result\+Graph}} Data\+Base\+Generator\+::generate\+Type\+For\+Graph (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&}]{i\+\_\+gp,  }\item[{bool}]{parallel = {\ttfamily true},  }\item[{bool}]{create\+Id\+Directories = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+generate\+Type\+For\+Graph The generate Type method of the Data\+Base Generator class is responsible for generating a database of a certain type based on the passed parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+gp} & An object of the Data\+Base Generator Parameters class containing parameters for generating a database \\
+\hline
+{\em parallel} & A flag indicating whether the generation should be performed in parallel. If set to true, generation will occur in parallel; otherwise, generation will be sequential \\
+\hline
+{\em create\+Id\+Directories} & A flag indicating whether to create directories with IDs. If set to true, directories with IDs will be created, otherwise not. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a8a484283ff64d7c1836052d608881440_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a29b9fdffd9923608d7d6521ec7e81332}\label{classDataBaseGenerator_a29b9fdffd9923608d7d6521ec7e81332}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!generateTypeForPath@{generateTypeForPath}}
+\index{generateTypeForPath@{generateTypeForPath}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{generateTypeForPath()}{generateTypeForPath()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{DataBaseGenerator_8hpp_a142eeb582b980f0e5e1283e0ea989e99}{Result\+Path}} Data\+Base\+Generator\+::generate\+Type\+For\+Path (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&}]{i\+\_\+gp,  }\item[{bool}]{parallel = {\ttfamily true},  }\item[{bool}]{create\+Id\+Directories = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_a29b9fdffd9923608d7d6521ec7e81332_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_a25632c1511ff0efd653809da5b9a004f}\label{classDataBaseGenerator_a25632c1511ff0efd653809da5b9a004f}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!getGenerateMethod@{getGenerateMethod}}
+\index{getGenerateMethod@{getGenerateMethod}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{getGenerateMethod()}{getGenerateMethod()}}
+{\footnotesize\ttfamily std\+::function$<$ void(const \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \&)$>$ Data\+Base\+Generator\+::get\+Generate\+Method (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}}}]{i\+\_\+method\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+get\+Generate\+Method Retrieves a method for generating a database based on the provided generation type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+method\+Type} & The type of generation method to retrieve \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Function pointer to the corresponding database generation method 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classDataBaseGenerator_a25632c1511ff0efd653809da5b9a004f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGenerator_af2d3442c4257a0da57658a12110adbdc}\label{classDataBaseGenerator_af2d3442c4257a0da57658a12110adbdc}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!runGeneratorByDefault@{runGeneratorByDefault}}
+\index{runGeneratorByDefault@{runGeneratorByDefault}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{runGeneratorByDefault()}{runGeneratorByDefault()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+::run\+Generator\+By\+Default (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&}]{i\+\_\+gp,  }\item[{bool}]{parallel = {\ttfamily true},  }\item[{bool}]{create\+Id\+Directories = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+generate\+Data\+Base\+From\+Random\+Truth\+Table The generate Data\+Base From Random Truth Table method of the Data\+Base Generator class is responsible for generating a database from random truth tables based on the passed parameters 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+param} & An object of the Generation Parameters class containing parameters for generating a database\\
+\hline
+\end{DoxyParams}
+$\ast$/ Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGenerator_af2d3442c4257a0da57658a12110adbdc_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classDataBaseGenerator_a9a0da504a7ad66c0adf36c9b5b74dafd}\label{classDataBaseGenerator_a9a0da504a7ad66c0adf36c9b5b74dafd}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!d\_dirCount@{d\_dirCount}}
+\index{d\_dirCount@{d\_dirCount}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{d\_dirCount}{d\_dirCount}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+::d\+\_\+dir\+Count = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGenerator_a20a0ae116aa56aedbb99dab6c87e8fb1}\label{classDataBaseGenerator_a20a0ae116aa56aedbb99dab6c87e8fb1}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!d\_generatedGraphs@{d\_generatedGraphs}}
+\index{d\_generatedGraphs@{d\_generatedGraphs}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{d\_generatedGraphs}{d\_generatedGraphs}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}$>$ Data\+Base\+Generator\+::d\+\_\+generated\+Graphs\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGenerator_a9bec85b2044cdb7d11d6413a07cf3988}\label{classDataBaseGenerator_a9bec85b2044cdb7d11d6413a07cf3988}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!d\_generatedGraphsNames@{d\_generatedGraphsNames}}
+\index{d\_generatedGraphsNames@{d\_generatedGraphsNames}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{d\_generatedGraphsNames}{d\_generatedGraphsNames}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Data\+Base\+Generator\+::d\+\_\+generated\+Graphs\+Names\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGenerator_a7a9deffc7172454afd25ec87a6bc21b2}\label{classDataBaseGenerator_a7a9deffc7172454afd25ec87a6bc21b2}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!d\_mainPath@{d\_mainPath}}
+\index{d\_mainPath@{d\_mainPath}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{d\_mainPath}{d\_mainPath}}
+{\footnotesize\ttfamily std\+::string Data\+Base\+Generator\+::d\+\_\+main\+Path = \char`\"{}.\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGenerator_a4fd8be40259f9e1821ef9ee1c7730dc5}\label{classDataBaseGenerator_a4fd8be40259f9e1821ef9ee1c7730dc5}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!d\_parameters@{d\_parameters}}
+\index{d\_parameters@{d\_parameters}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{d\_parameters}{d\_parameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} Data\+Base\+Generator\+::d\+\_\+parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGenerator_ad6a0a845b1a61e4d5073251c22adb556}\label{classDataBaseGenerator_ad6a0a845b1a61e4d5073251c22adb556}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!d\_randGenerator@{d\_randGenerator}}
+\index{d\_randGenerator@{d\_randGenerator}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{d\_randGenerator}{d\_randGenerator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} Data\+Base\+Generator\+::d\+\_\+rand\+Generator\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGenerator_a2d2e7a067c713a8ced70dd181a8bc169}\label{classDataBaseGenerator_a2d2e7a067c713a8ced70dd181a8bc169}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!d\_resWrite@{d\_resWrite}}
+\index{d\_resWrite@{d\_resWrite}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{d\_resWrite}{d\_resWrite}}
+{\footnotesize\ttfamily std\+::mutex Data\+Base\+Generator\+::d\+\_\+res\+Write\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGenerator_a7356615dd0de27b0fb6533bb9e98b27b}\label{classDataBaseGenerator_a7356615dd0de27b0fb6533bb9e98b27b}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!d\_settings@{d\_settings}}
+\index{d\_settings@{d\_settings}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{d\_settings}{d\_settings}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSettings}{Settings}}$>$ Data\+Base\+Generator\+::d\+\_\+settings\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{      \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}DataBaseGenerator"{}})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classDataBaseGenerator_a0fd2564f211d7a82ccd2311772921743}\label{classDataBaseGenerator_a0fd2564f211d7a82ccd2311772921743}} 
+\index{DataBaseGenerator@{DataBaseGenerator}!d\_type@{d\_type}}
+\index{d\_type@{d\_type}!DataBaseGenerator@{DataBaseGenerator}}
+\doxysubsubsection{\texorpdfstring{d\_type}{d\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cc}{Return\+Type}} Data\+Base\+Generator\+::d\+\_\+type = \mbox{\hyperlink{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cca88ec7d5086d2469ba843c7fcceade8a6}{Return\+Type\+::\+DEFAULT}}\hspace{0.3cm}{\ttfamily [private]}}
+

@@ -1,0 +1,4 @@
+<map id="SimpleGenerators::getRangomXorNumber" name="SimpleGenerators::getRangomXorNumber">
+<area shape="rect" id="node1" title="getRangomXorNumber The method returns a random value from the list of possible input ports for the &quot;X..." alt="" coords="5,5,228,47"/>
+<area shape="rect" id="node2" href="$classRandomGeneratorWithSeed.html#af94dddcdccd1ed551b1a6e6b3fdaedd6" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="276,5,479,47"/>
+</map>

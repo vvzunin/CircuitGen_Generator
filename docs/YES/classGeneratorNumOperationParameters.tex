@@ -1,0 +1,136 @@
+\hypertarget{classGeneratorNumOperationParameters}{}\doxysection{Generator\+Num\+Operation\+Parameters Class Reference}
+\label{classGeneratorNumOperationParameters}\index{GeneratorNumOperationParameters@{GeneratorNumOperationParameters}}
+
+
+class \mbox{\hyperlink{classGeneratorNumOperationParameters}{Generator\+Num\+Operation\+Parameters}}  
+
+
+
+
+{\ttfamily \#include $<$Generation\+Parameters.\+hpp$>$}
+
+
+
+Collaboration diagram for Generator\+Num\+Operation\+Parameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{classGeneratorNumOperationParameters__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classGeneratorNumOperationParameters_a6fd0362eb94528156625d1caf1733703}{get\+Logic\+Oper}} (const \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} \&i\+\_\+op) const
+\item 
+std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \mbox{\hyperlink{classGeneratorNumOperationParameters_acbdbabf2817bae30131f94b6d0d07279}{get\+Logic\+Opers}} () const
+\item 
+void \mbox{\hyperlink{classGeneratorNumOperationParameters_a5759dcc876c06bdf43136b68477b535e}{set\+Logic\+Oper}} (const std\+::pair$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \&i\+\_\+p)
+\item 
+void \mbox{\hyperlink{classGeneratorNumOperationParameters_abe11cc16ea44d7044bc9c28bb78d07b5}{set\+Logic\+Oper}} (const std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \&i\+\_\+p)
+\item 
+bool \mbox{\hyperlink{classGeneratorNumOperationParameters_a1111cb30b7e292729eb900ff9ff5833e}{get\+Leave\+Empty\+Out}} () const
+\item 
+void \mbox{\hyperlink{classGeneratorNumOperationParameters_a129c291513df4fb9aa2b9331a2a2b91a}{set\+Leave\+Empty\+Out}} (bool i\+\_\+leo)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \mbox{\hyperlink{classGeneratorNumOperationParameters_aa58274603567a3cfb8fa16bf38194f66}{d\+\_\+logic\+Oper}}
+\item 
+bool \mbox{\hyperlink{classGeneratorNumOperationParameters_a753f2c44f304dc8edbd0986ccf18b84d}{d\+\_\+leave\+Empty\+Out}} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classGeneratorNumOperationParameters}{Generator\+Num\+Operation\+Parameters}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+logic\+Oper} & This is used to store information about logical operations that can be used to generate combinational circuits. Map $<$name\+\_\+log\+\_\+\+Op, key(value)$>$ \\
+\hline
+{\em d\+\_\+leave\+Empty\+Out} & A Boolean value indicating whether to leave an empty output node (for example, if it is not associated with any logical operation) $\ast$/ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGeneratorNumOperationParameters_a1111cb30b7e292729eb900ff9ff5833e}\label{classGeneratorNumOperationParameters_a1111cb30b7e292729eb900ff9ff5833e}} 
+\index{GeneratorNumOperationParameters@{GeneratorNumOperationParameters}!getLeaveEmptyOut@{getLeaveEmptyOut}}
+\index{getLeaveEmptyOut@{getLeaveEmptyOut}!GeneratorNumOperationParameters@{GeneratorNumOperationParameters}}
+\doxysubsubsection{\texorpdfstring{getLeaveEmptyOut()}{getLeaveEmptyOut()}}
+{\footnotesize\ttfamily bool Generator\+Num\+Operation\+Parameters\+::get\+Leave\+Empty\+Out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorNumOperationParameters_a1111cb30b7e292729eb900ff9ff5833e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorNumOperationParameters_a6fd0362eb94528156625d1caf1733703}\label{classGeneratorNumOperationParameters_a6fd0362eb94528156625d1caf1733703}} 
+\index{GeneratorNumOperationParameters@{GeneratorNumOperationParameters}!getLogicOper@{getLogicOper}}
+\index{getLogicOper@{getLogicOper}!GeneratorNumOperationParameters@{GeneratorNumOperationParameters}}
+\doxysubsubsection{\texorpdfstring{getLogicOper()}{getLogicOper()}}
+{\footnotesize\ttfamily int Generator\+Num\+Operation\+Parameters\+::get\+Logic\+Oper (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} \&}]{i\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classGeneratorNumOperationParameters_acbdbabf2817bae30131f94b6d0d07279}\label{classGeneratorNumOperationParameters_acbdbabf2817bae30131f94b6d0d07279}} 
+\index{GeneratorNumOperationParameters@{GeneratorNumOperationParameters}!getLogicOpers@{getLogicOpers}}
+\index{getLogicOpers@{getLogicOpers}!GeneratorNumOperationParameters@{GeneratorNumOperationParameters}}
+\doxysubsubsection{\texorpdfstring{getLogicOpers()}{getLogicOpers()}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int$>$ Generator\+Num\+Operation\+Parameters\+::get\+Logic\+Opers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorNumOperationParameters_acbdbabf2817bae30131f94b6d0d07279_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorNumOperationParameters_a129c291513df4fb9aa2b9331a2a2b91a}\label{classGeneratorNumOperationParameters_a129c291513df4fb9aa2b9331a2a2b91a}} 
+\index{GeneratorNumOperationParameters@{GeneratorNumOperationParameters}!setLeaveEmptyOut@{setLeaveEmptyOut}}
+\index{setLeaveEmptyOut@{setLeaveEmptyOut}!GeneratorNumOperationParameters@{GeneratorNumOperationParameters}}
+\doxysubsubsection{\texorpdfstring{setLeaveEmptyOut()}{setLeaveEmptyOut()}}
+{\footnotesize\ttfamily void Generator\+Num\+Operation\+Parameters\+::set\+Leave\+Empty\+Out (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+leo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorNumOperationParameters_a129c291513df4fb9aa2b9331a2a2b91a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorNumOperationParameters_abe11cc16ea44d7044bc9c28bb78d07b5}\label{classGeneratorNumOperationParameters_abe11cc16ea44d7044bc9c28bb78d07b5}} 
+\index{GeneratorNumOperationParameters@{GeneratorNumOperationParameters}!setLogicOper@{setLogicOper}}
+\index{setLogicOper@{setLogicOper}!GeneratorNumOperationParameters@{GeneratorNumOperationParameters}}
+\doxysubsubsection{\texorpdfstring{setLogicOper()}{setLogicOper()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Generator\+Num\+Operation\+Parameters\+::set\+Logic\+Oper (\begin{DoxyParamCaption}\item[{const std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \&}]{i\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classGeneratorNumOperationParameters_a5759dcc876c06bdf43136b68477b535e}\label{classGeneratorNumOperationParameters_a5759dcc876c06bdf43136b68477b535e}} 
+\index{GeneratorNumOperationParameters@{GeneratorNumOperationParameters}!setLogicOper@{setLogicOper}}
+\index{setLogicOper@{setLogicOper}!GeneratorNumOperationParameters@{GeneratorNumOperationParameters}}
+\doxysubsubsection{\texorpdfstring{setLogicOper()}{setLogicOper()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Generator\+Num\+Operation\+Parameters\+::set\+Logic\+Oper (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \&}]{i\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorNumOperationParameters_a5759dcc876c06bdf43136b68477b535e_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGeneratorNumOperationParameters_a753f2c44f304dc8edbd0986ccf18b84d}\label{classGeneratorNumOperationParameters_a753f2c44f304dc8edbd0986ccf18b84d}} 
+\index{GeneratorNumOperationParameters@{GeneratorNumOperationParameters}!d\_leaveEmptyOut@{d\_leaveEmptyOut}}
+\index{d\_leaveEmptyOut@{d\_leaveEmptyOut}!GeneratorNumOperationParameters@{GeneratorNumOperationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_leaveEmptyOut}{d\_leaveEmptyOut}}
+{\footnotesize\ttfamily bool Generator\+Num\+Operation\+Parameters\+::d\+\_\+leave\+Empty\+Out = true\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorNumOperationParameters_aa58274603567a3cfb8fa16bf38194f66}\label{classGeneratorNumOperationParameters_aa58274603567a3cfb8fa16bf38194f66}} 
+\index{GeneratorNumOperationParameters@{GeneratorNumOperationParameters}!d\_logicOper@{d\_logicOper}}
+\index{d\_logicOper@{d\_logicOper}!GeneratorNumOperationParameters@{GeneratorNumOperationParameters}}
+\doxysubsubsection{\texorpdfstring{d\_logicOper}{d\_logicOper}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int$>$ Generator\+Num\+Operation\+Parameters\+::d\+\_\+logic\+Oper\hspace{0.3cm}{\ttfamily [private]}}
+

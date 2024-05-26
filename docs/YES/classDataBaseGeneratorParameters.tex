@@ -1,0 +1,373 @@
+\hypertarget{classDataBaseGeneratorParameters}{}\doxysection{Data\+Base\+Generator\+Parameters Class Reference}
+\label{classDataBaseGeneratorParameters}\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+
+
+class \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}}  
+
+
+
+
+{\ttfamily \#include $<$Data\+Base\+Generator\+Parameters.\+hpp$>$}
+
+
+
+Collaboration diagram for Data\+Base\+Generator\+Parameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDataBaseGeneratorParameters_a45dc4c1dcb04b2a98daec15aa959647d}{Data\+Base\+Generator\+Parameters}} (int i\+\_\+min\+Inputs, int i\+\_\+max\+Inputs, int i\+\_\+min\+Outputs, int i\+\_\+max\+Outputs, int i\+\_\+each\+Iteration, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}} i\+\_\+gt, \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} i\+\_\+gp)
+\item 
+void \mbox{\hyperlink{classDataBaseGeneratorParameters_a788c2c94a21b5b09ff560918db6c1238}{set\+Inputs}} (int i\+\_\+inputs)
+\begin{DoxyCompactList}\small\item\em set\+Inputs The method sets the number of input signals to generate the database \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGeneratorParameters_abd2fd5e6b525cb0c06ce83cc787cb72a}{set\+Outputs}} (int i\+\_\+outputs)
+\begin{DoxyCompactList}\small\item\em set\+Outputs The method sets the number of output signals to generate the database \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGeneratorParameters_a9844eb915d0dd36bbfdec3763c656cb5}{set\+Iteration}} (int i\+\_\+iteration)
+\begin{DoxyCompactList}\small\item\em set\+Iteration The method sets the iteration number for database generation \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataBaseGeneratorParameters_a46539c9183d979e5b3e71f5e142e444e}{set\+Name}} (const std\+::string \&i\+\_\+name)
+\begin{DoxyCompactList}\small\item\em set\+Name The method is used to set the name for database generation \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDataBaseGeneratorParameters_ae89b30e205ebee39e944ff5e8fa32b16}{get\+Min\+Inputs}} () const
+\begin{DoxyCompactList}\small\item\em get\+Min\+Inputs This method is used to get the minimum number of inputs set in the database generation parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDataBaseGeneratorParameters_a45b37cc153e8a07c3788b2d1065f90d5}{get\+Max\+Inputs}} () const
+\begin{DoxyCompactList}\small\item\em get\+Max\+Inputs This method is used to get the maximum number of inputs set in the database generation parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDataBaseGeneratorParameters_ade71d00b271ceb1cff09ae3340044011}{get\+Min\+Outputs}} () const
+\begin{DoxyCompactList}\small\item\em get\+Min\+Outputs This method is used to get the minimum number of outputs set in the database generation parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDataBaseGeneratorParameters_a985864c3103c55fbd282f9aee04e5c04}{get\+Max\+Outputs}} () const
+\begin{DoxyCompactList}\small\item\em get\+Max\+Outputs This one is used to get the maximum number of outputs set in the database generation parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDataBaseGeneratorParameters_a1355f77edbb89c99465e7e297334d958}{get\+Each\+Iteration}} () const
+\begin{DoxyCompactList}\small\item\em get\+Each\+Iteration This method is used to get the number of iterations that need to be performed for each combination of inputs and outputs when generating a database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \mbox{\hyperlink{classDataBaseGeneratorParameters_a81be8dde9601f9d206e3b9096213cf1a}{get\+Generation\+Parameters}} () const
+\begin{DoxyCompactList}\small\item\em get\+Generation\+Parameters This method is used to get the database generation parameters \end{DoxyCompactList}\item 
+\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}} \mbox{\hyperlink{classDataBaseGeneratorParameters_a9d9a0679c5a3f2cd447a1e44c13e9bed}{get\+Generation\+Type}} () const
+\begin{DoxyCompactList}\small\item\em get\+Generation\+Type This method returns a Generation\+Types type variable representing the database generation type \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classDataBaseGeneratorParameters_a281deb0afb3b74a66f910416dacbbf89}{d\+\_\+min\+Inputs}} = 0
+\item 
+int \mbox{\hyperlink{classDataBaseGeneratorParameters_a2e8dc6313187b6a09323d01f31c09e98}{d\+\_\+max\+Inputs}} = 0
+\item 
+int \mbox{\hyperlink{classDataBaseGeneratorParameters_a7a331f608ec9dde0ba786268b7037745}{d\+\_\+min\+Outputs}} = 0
+\item 
+int \mbox{\hyperlink{classDataBaseGeneratorParameters_ac1a67ff6b7fbc1b15332e1aff0429c3c}{d\+\_\+max\+Outputs}} = 0
+\item 
+int \mbox{\hyperlink{classDataBaseGeneratorParameters_a04e7bb67d4f25ef758809e18809af84f}{d\+\_\+each\+Iteration}} = 0
+\item 
+\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}} \mbox{\hyperlink{classDataBaseGeneratorParameters_a59ec2eb731237424b8b521569ac018b2}{d\+\_\+generation\+Types}} = \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d}{Generation\+Types\+::\+From\+Random\+Truth\+Table}}
+\item 
+\mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} \mbox{\hyperlink{classDataBaseGeneratorParameters_af734319d6441c13b18626ce6a9d0124f}{d\+\_\+generation\+Parameters}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+min\+Inputs} & Minimum number of input signals for database generation \\
+\hline
+{\em d\+\_\+max\+Inputs} & The maximum number of input signals to generate a database. \\
+\hline
+{\em d\+\_\+min\+Outputs} & Minimum number of output signals for database generation \\
+\hline
+{\em d\+\_\+max\+Outputs} & The maximum number of output signals for database generation \\
+\hline
+{\em d\+\_\+each\+Iteration} & The number of generation iterations for each combination of input and output signals \\
+\hline
+{\em d\+\_\+generation\+Types} & Type of database generation \\
+\hline
+{\em d\+\_\+generation\+Parameters} & Parameters for a specific database generation method $\ast$/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000007}{Todo}}]\+: maybe it need heritance from \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}}? \end{DoxyRefDesc}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a45dc4c1dcb04b2a98daec15aa959647d}\label{classDataBaseGeneratorParameters_a45dc4c1dcb04b2a98daec15aa959647d}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{DataBaseGeneratorParameters()}{DataBaseGeneratorParameters()}}
+{\footnotesize\ttfamily Data\+Base\+Generator\+Parameters\+::\+Data\+Base\+Generator\+Parameters (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+min\+Inputs,  }\item[{int}]{i\+\_\+max\+Inputs,  }\item[{int}]{i\+\_\+min\+Outputs,  }\item[{int}]{i\+\_\+max\+Outputs,  }\item[{int}]{i\+\_\+each\+Iteration,  }\item[{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}}}]{i\+\_\+gt,  }\item[{\mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}}}]{i\+\_\+gp }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a1355f77edbb89c99465e7e297334d958}\label{classDataBaseGeneratorParameters_a1355f77edbb89c99465e7e297334d958}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!getEachIteration@{getEachIteration}}
+\index{getEachIteration@{getEachIteration}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{getEachIteration()}{getEachIteration()}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+Parameters\+::get\+Each\+Iteration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Each\+Iteration This method is used to get the number of iterations that need to be performed for each combination of inputs and outputs when generating a database. 
+
+\begin{DoxyReturn}{Returns}
+The number of iterations for each combination of inputs and outputs during database generation. $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_a1355f77edbb89c99465e7e297334d958_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a81be8dde9601f9d206e3b9096213cf1a}\label{classDataBaseGeneratorParameters_a81be8dde9601f9d206e3b9096213cf1a}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!getGenerationParameters@{getGenerationParameters}}
+\index{getGenerationParameters@{getGenerationParameters}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{getGenerationParameters()}{getGenerationParameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} Data\+Base\+Generator\+Parameters\+::get\+Generation\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Generation\+Parameters This method is used to get the database generation parameters 
+
+\begin{DoxyReturn}{Returns}
+Database Generation Parameters $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_a81be8dde9601f9d206e3b9096213cf1a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a9d9a0679c5a3f2cd447a1e44c13e9bed}\label{classDataBaseGeneratorParameters_a9d9a0679c5a3f2cd447a1e44c13e9bed}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!getGenerationType@{getGenerationType}}
+\index{getGenerationType@{getGenerationType}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{getGenerationType()}{getGenerationType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}} Data\+Base\+Generator\+Parameters\+::get\+Generation\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Generation\+Type This method returns a Generation\+Types type variable representing the database generation type 
+
+\begin{DoxyReturn}{Returns}
+Generation\+Types of the database generation type $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_a9d9a0679c5a3f2cd447a1e44c13e9bed_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a45b37cc153e8a07c3788b2d1065f90d5}\label{classDataBaseGeneratorParameters_a45b37cc153e8a07c3788b2d1065f90d5}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!getMaxInputs@{getMaxInputs}}
+\index{getMaxInputs@{getMaxInputs}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{getMaxInputs()}{getMaxInputs()}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+Parameters\+::get\+Max\+Inputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Max\+Inputs This method is used to get the maximum number of inputs set in the database generation parameters. 
+
+\begin{DoxyReturn}{Returns}
+Maximum number of inputs for database generation $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_a45b37cc153e8a07c3788b2d1065f90d5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a985864c3103c55fbd282f9aee04e5c04}\label{classDataBaseGeneratorParameters_a985864c3103c55fbd282f9aee04e5c04}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!getMaxOutputs@{getMaxOutputs}}
+\index{getMaxOutputs@{getMaxOutputs}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{getMaxOutputs()}{getMaxOutputs()}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+Parameters\+::get\+Max\+Outputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Max\+Outputs This one is used to get the maximum number of outputs set in the database generation parameters. 
+
+\begin{DoxyReturn}{Returns}
+Maximum number of outputs for database generation $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_a985864c3103c55fbd282f9aee04e5c04_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_ae89b30e205ebee39e944ff5e8fa32b16}\label{classDataBaseGeneratorParameters_ae89b30e205ebee39e944ff5e8fa32b16}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!getMinInputs@{getMinInputs}}
+\index{getMinInputs@{getMinInputs}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{getMinInputs()}{getMinInputs()}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+Parameters\+::get\+Min\+Inputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Min\+Inputs This method is used to get the minimum number of inputs set in the database generation parameters. 
+
+\begin{DoxyReturn}{Returns}
+Minimum number of inputs for database generation $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_ae89b30e205ebee39e944ff5e8fa32b16_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_ade71d00b271ceb1cff09ae3340044011}\label{classDataBaseGeneratorParameters_ade71d00b271ceb1cff09ae3340044011}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!getMinOutputs@{getMinOutputs}}
+\index{getMinOutputs@{getMinOutputs}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{getMinOutputs()}{getMinOutputs()}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+Parameters\+::get\+Min\+Outputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Min\+Outputs This method is used to get the minimum number of outputs set in the database generation parameters. 
+
+\begin{DoxyReturn}{Returns}
+The minimum number of outputs for database generation. $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_ade71d00b271ceb1cff09ae3340044011_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a788c2c94a21b5b09ff560918db6c1238}\label{classDataBaseGeneratorParameters_a788c2c94a21b5b09ff560918db6c1238}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!setInputs@{setInputs}}
+\index{setInputs@{setInputs}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{setInputs()}{setInputs()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+Parameters\+::set\+Inputs (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+inputs }\end{DoxyParamCaption})}
+
+
+
+set\+Inputs The method sets the number of input signals to generate the database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+inputs} & An integer value representing the number of input signals that must be set to generate the database $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_a788c2c94a21b5b09ff560918db6c1238_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a9844eb915d0dd36bbfdec3763c656cb5}\label{classDataBaseGeneratorParameters_a9844eb915d0dd36bbfdec3763c656cb5}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!setIteration@{setIteration}}
+\index{setIteration@{setIteration}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{setIteration()}{setIteration()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+Parameters\+::set\+Iteration (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+iteration }\end{DoxyParamCaption})}
+
+
+
+set\+Iteration The method sets the iteration number for database generation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+iteration} & An integer value representing the iteration number that must be set to generate the database $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_a9844eb915d0dd36bbfdec3763c656cb5_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a46539c9183d979e5b3e71f5e142e444e}\label{classDataBaseGeneratorParameters_a46539c9183d979e5b3e71f5e142e444e}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!setName@{setName}}
+\index{setName@{setName}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+Parameters\+::set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+set\+Name The method is used to set the name for database generation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+name} & A string containing the name to be set to generate the database $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_a46539c9183d979e5b3e71f5e142e444e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_abd2fd5e6b525cb0c06ce83cc787cb72a}\label{classDataBaseGeneratorParameters_abd2fd5e6b525cb0c06ce83cc787cb72a}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!setOutputs@{setOutputs}}
+\index{setOutputs@{setOutputs}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{setOutputs()}{setOutputs()}}
+{\footnotesize\ttfamily void Data\+Base\+Generator\+Parameters\+::set\+Outputs (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+outputs }\end{DoxyParamCaption})}
+
+
+
+set\+Outputs The method sets the number of output signals to generate the database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+outputs} & An integer value representing the number of output signals that must be set to generate the database $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDataBaseGeneratorParameters_abd2fd5e6b525cb0c06ce83cc787cb72a_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a04e7bb67d4f25ef758809e18809af84f}\label{classDataBaseGeneratorParameters_a04e7bb67d4f25ef758809e18809af84f}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!d\_eachIteration@{d\_eachIteration}}
+\index{d\_eachIteration@{d\_eachIteration}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{d\_eachIteration}{d\_eachIteration}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+Parameters\+::d\+\_\+each\+Iteration = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_af734319d6441c13b18626ce6a9d0124f}\label{classDataBaseGeneratorParameters_af734319d6441c13b18626ce6a9d0124f}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!d\_generationParameters@{d\_generationParameters}}
+\index{d\_generationParameters@{d\_generationParameters}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{d\_generationParameters}{d\_generationParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGenerationParameters}{Generation\+Parameters}} Data\+Base\+Generator\+Parameters\+::d\+\_\+generation\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a59ec2eb731237424b8b521569ac018b2}\label{classDataBaseGeneratorParameters_a59ec2eb731237424b8b521569ac018b2}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!d\_generationTypes@{d\_generationTypes}}
+\index{d\_generationTypes@{d\_generationTypes}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{d\_generationTypes}{d\_generationTypes}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}} Data\+Base\+Generator\+Parameters\+::d\+\_\+generation\+Types = \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d}{Generation\+Types\+::\+From\+Random\+Truth\+Table}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a2e8dc6313187b6a09323d01f31c09e98}\label{classDataBaseGeneratorParameters_a2e8dc6313187b6a09323d01f31c09e98}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!d\_maxInputs@{d\_maxInputs}}
+\index{d\_maxInputs@{d\_maxInputs}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{d\_maxInputs}{d\_maxInputs}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+Parameters\+::d\+\_\+max\+Inputs = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_ac1a67ff6b7fbc1b15332e1aff0429c3c}\label{classDataBaseGeneratorParameters_ac1a67ff6b7fbc1b15332e1aff0429c3c}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!d\_maxOutputs@{d\_maxOutputs}}
+\index{d\_maxOutputs@{d\_maxOutputs}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{d\_maxOutputs}{d\_maxOutputs}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+Parameters\+::d\+\_\+max\+Outputs = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a281deb0afb3b74a66f910416dacbbf89}\label{classDataBaseGeneratorParameters_a281deb0afb3b74a66f910416dacbbf89}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!d\_minInputs@{d\_minInputs}}
+\index{d\_minInputs@{d\_minInputs}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{d\_minInputs}{d\_minInputs}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+Parameters\+::d\+\_\+min\+Inputs = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classDataBaseGeneratorParameters_a7a331f608ec9dde0ba786268b7037745}\label{classDataBaseGeneratorParameters_a7a331f608ec9dde0ba786268b7037745}} 
+\index{DataBaseGeneratorParameters@{DataBaseGeneratorParameters}!d\_minOutputs@{d\_minOutputs}}
+\index{d\_minOutputs@{d\_minOutputs}!DataBaseGeneratorParameters@{DataBaseGeneratorParameters}}
+\doxysubsubsection{\texorpdfstring{d\_minOutputs}{d\_minOutputs}}
+{\footnotesize\ttfamily int Data\+Base\+Generator\+Parameters\+::d\+\_\+min\+Outputs = 0\hspace{0.3cm}{\ttfamily [private]}}
+

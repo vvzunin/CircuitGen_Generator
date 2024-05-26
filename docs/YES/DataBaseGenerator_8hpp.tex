@@ -1,0 +1,87 @@
+\hypertarget{DataBaseGenerator_8hpp}{}\doxysection{/mnt/c/course\+\_\+3/\+Circuit\+Gen\+\_\+\+Generator/src/database/\+Data\+Base\+Generator.hpp File Reference}
+\label{DataBaseGenerator_8hpp}\index{/mnt/c/course\_3/CircuitGen\_Generator/src/database/DataBaseGenerator.hpp@{/mnt/c/course\_3/CircuitGen\_Generator/src/database/DataBaseGenerator.hpp}}
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$additional/\+Random\+Generator\+With\+Seed.\+hpp$>$}\newline
+{\ttfamily \#include $<$Circuit\+Gen\+Generator/\+Oriented\+Graph.\+hpp$>$}\newline
+{\ttfamily \#include $<$settings/\+Settings.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}Data\+Base\+Generator\+Parameters.\+hpp\char`\"{}}\newline
+Include dependency graph for Data\+Base\+Generator.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{DataBaseGenerator_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{DataBaseGenerator_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classDataBaseGenerator}{Data\+Base\+Generator}}
+\begin{DoxyCompactList}\small\item\em class \mbox{\hyperlink{classDataBaseGenerator}{Data\+Base\+Generator}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{DataBaseGenerator_8hpp_af365e9276e78fb465d972f19c76ddea1}{Result\+Graph}} = std\+::pair$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} $>$ $>$
+\item 
+using \mbox{\hyperlink{DataBaseGenerator_8hpp_a142eeb582b980f0e5e1283e0ea989e99}{Result\+Path}} = std\+::pair$<$ std\+::string, std\+::vector$<$ std\+::string $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cc}{Return\+Type}} \{ \mbox{\hyperlink{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cca88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}}
+, \mbox{\hyperlink{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cca3f2da53bcaa9802a92482bd71391fcf8}{GRAPH}}
+, \mbox{\hyperlink{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64ccad67a493278074cf714b262b33d84739c}{PATH}}
+, \mbox{\hyperlink{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64ccaab8c4d8135967b887502fda4f76deaa6}{FUNCTION}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{DataBaseGenerator_8hpp_af365e9276e78fb465d972f19c76ddea1}\label{DataBaseGenerator_8hpp_af365e9276e78fb465d972f19c76ddea1}} 
+\index{DataBaseGenerator.hpp@{DataBaseGenerator.hpp}!ResultGraph@{ResultGraph}}
+\index{ResultGraph@{ResultGraph}!DataBaseGenerator.hpp@{DataBaseGenerator.hpp}}
+\doxysubsubsection{\texorpdfstring{ResultGraph}{ResultGraph}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{DataBaseGenerator_8hpp_af365e9276e78fb465d972f19c76ddea1}{Result\+Graph}} =  std\+::pair$<$std\+::string, std\+::vector$<$\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}$>$ $>$}
+
+\mbox{\Hypertarget{DataBaseGenerator_8hpp_a142eeb582b980f0e5e1283e0ea989e99}\label{DataBaseGenerator_8hpp_a142eeb582b980f0e5e1283e0ea989e99}} 
+\index{DataBaseGenerator.hpp@{DataBaseGenerator.hpp}!ResultPath@{ResultPath}}
+\index{ResultPath@{ResultPath}!DataBaseGenerator.hpp@{DataBaseGenerator.hpp}}
+\doxysubsubsection{\texorpdfstring{ResultPath}{ResultPath}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{DataBaseGenerator_8hpp_a142eeb582b980f0e5e1283e0ea989e99}{Result\+Path}} =  std\+::pair$<$std\+::string, std\+::vector$<$std\+::string$>$ $>$}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cc}\label{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cc}} 
+\index{DataBaseGenerator.hpp@{DataBaseGenerator.hpp}!ReturnType@{ReturnType}}
+\index{ReturnType@{ReturnType}!DataBaseGenerator.hpp@{DataBaseGenerator.hpp}}
+\doxysubsubsection{\texorpdfstring{ReturnType}{ReturnType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cc}{Return\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT@{DEFAULT}!DataBaseGenerator.hpp@{DataBaseGenerator.hpp}}\index{DataBaseGenerator.hpp@{DataBaseGenerator.hpp}!DEFAULT@{DEFAULT}}}\mbox{\Hypertarget{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cca88ec7d5086d2469ba843c7fcceade8a6}\label{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cca88ec7d5086d2469ba843c7fcceade8a6}} 
+DEFAULT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GRAPH@{GRAPH}!DataBaseGenerator.hpp@{DataBaseGenerator.hpp}}\index{DataBaseGenerator.hpp@{DataBaseGenerator.hpp}!GRAPH@{GRAPH}}}\mbox{\Hypertarget{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cca3f2da53bcaa9802a92482bd71391fcf8}\label{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64cca3f2da53bcaa9802a92482bd71391fcf8}} 
+GRAPH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PATH@{PATH}!DataBaseGenerator.hpp@{DataBaseGenerator.hpp}}\index{DataBaseGenerator.hpp@{DataBaseGenerator.hpp}!PATH@{PATH}}}\mbox{\Hypertarget{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64ccad67a493278074cf714b262b33d84739c}\label{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64ccad67a493278074cf714b262b33d84739c}} 
+PATH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FUNCTION@{FUNCTION}!DataBaseGenerator.hpp@{DataBaseGenerator.hpp}}\index{DataBaseGenerator.hpp@{DataBaseGenerator.hpp}!FUNCTION@{FUNCTION}}}\mbox{\Hypertarget{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64ccaab8c4d8135967b887502fda4f76deaa6}\label{DataBaseGenerator_8hpp_a36a419f0b50a0c1d2d4cf712e0ba64ccaab8c4d8135967b887502fda4f76deaa6}} 
+FUNCTION&\\
+\hline
+
+\end{DoxyEnumFields}

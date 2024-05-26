@@ -1,0 +1,202 @@
+\hypertarget{classRandomGeneratorWithSeed}{}\doxysection{Random\+Generator\+With\+Seed Class Reference}
+\label{classRandomGeneratorWithSeed}\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+
+
+class \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} The Random Generator With Seed class is a C++ class designed to generate random numbers using a specified seed value  
+
+
+
+
+{\ttfamily \#include $<$Random\+Generator\+With\+Seed.\+hpp$>$}
+
+
+
+Collaboration diagram for Random\+Generator\+With\+Seed\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{classRandomGeneratorWithSeed__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRandomGeneratorWithSeed_abaac4e7b1c933e3527a10b5ec2e628b7}{Random\+Generator\+With\+Seed}} ()=default
+\item 
+\mbox{\hyperlink{classRandomGeneratorWithSeed_a8032273cf9a79429192fba75159f0fde}{Random\+Generator\+With\+Seed}} (std\+::uint\+\_\+fast32\+\_\+t i\+\_\+seed)
+\item 
+\mbox{\hyperlink{classRandomGeneratorWithSeed_ac466e5084e0b562f2f70fe3ebc57aa7e}{Random\+Generator\+With\+Seed}} (const \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \&other)=default
+\item 
+\mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \& \mbox{\hyperlink{classRandomGeneratorWithSeed_ae6960782747d0937b63ad99a99b57bd5}{operator=}} (const \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \&other)=default
+\item 
+\mbox{\hyperlink{classRandomGeneratorWithSeed_a675634e2aea8271d6ad7836175441f13}{Random\+Generator\+With\+Seed}} (\mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \&\&other)=default
+\item 
+\mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \& \mbox{\hyperlink{classRandomGeneratorWithSeed_a5274590cc6d2d119a96b56cc4b089c1e}{operator=}} (\mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \&\&other)=default
+\item 
+std\+::uint\+\_\+fast32\+\_\+t \mbox{\hyperlink{classRandomGeneratorWithSeed_a85e24c30cb4734b8899d9654c731513e}{get\+Seed}} () const
+\begin{DoxyCompactList}\small\item\em get\+Seed Get the current seed value This method returns the current seed value used to initialize the random number generator \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRandomGeneratorWithSeed_a7600f3ce0a0d651e7fe28695db1d59b7}{set\+Seed}} (std\+::uint\+\_\+fast32\+\_\+t i\+\_\+seed)
+\item 
+int \mbox{\hyperlink{classRandomGeneratorWithSeed_af94dddcdccd1ed551b1a6e6b3fdaedd6}{get\+Rand\+Int}} (int lower, int upper, bool inclusively=false)
+\begin{DoxyCompactList}\small\item\em get\+Rand\+Int Method to generate a random integer within a specified range. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classRandomGeneratorWithSeed_a8e6c9376aac7f4ce3fca4debf99bd545}{get\+Random\+Int\+List}} (int i\+\_\+n, int i\+\_\+min\+Number, int i\+\_\+max\+Number, bool repite=false)
+\item 
+double \mbox{\hyperlink{classRandomGeneratorWithSeed_ae4fc25f1e3e318fa18880f72ac7e2efe}{get\+Rand\+Double}} (double lower, double upper)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::uint\+\_\+fast32\+\_\+t \mbox{\hyperlink{classRandomGeneratorWithSeed_a39e909b7dcbed2b8bd93205631f8d9eb}{d\+\_\+seed}}
+\item 
+std\+::minstd\+\_\+rand \mbox{\hyperlink{classRandomGeneratorWithSeed_a176b14ab5717762fdbfdff25d58e1e44}{d\+\_\+gen}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} The Random Generator With Seed class is a C++ class designed to generate random numbers using a specified seed value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+seed} & Holds the current seed value. \\
+\hline
+{\em d\+\_\+gen} & std\+::minstd\+\_\+rand object used for generating random numbers. $\ast$/ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_abaac4e7b1c933e3527a10b5ec2e628b7}\label{classRandomGeneratorWithSeed_abaac4e7b1c933e3527a10b5ec2e628b7}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{RandomGeneratorWithSeed()}{RandomGeneratorWithSeed()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Random\+Generator\+With\+Seed\+::\+Random\+Generator\+With\+Seed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_a8032273cf9a79429192fba75159f0fde}\label{classRandomGeneratorWithSeed_a8032273cf9a79429192fba75159f0fde}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{RandomGeneratorWithSeed()}{RandomGeneratorWithSeed()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Random\+Generator\+With\+Seed\+::\+Random\+Generator\+With\+Seed (\begin{DoxyParamCaption}\item[{std\+::uint\+\_\+fast32\+\_\+t}]{i\+\_\+seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRandomGeneratorWithSeed_a8032273cf9a79429192fba75159f0fde_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_ac466e5084e0b562f2f70fe3ebc57aa7e}\label{classRandomGeneratorWithSeed_ac466e5084e0b562f2f70fe3ebc57aa7e}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{RandomGeneratorWithSeed()}{RandomGeneratorWithSeed()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Random\+Generator\+With\+Seed\+::\+Random\+Generator\+With\+Seed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_a675634e2aea8271d6ad7836175441f13}\label{classRandomGeneratorWithSeed_a675634e2aea8271d6ad7836175441f13}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{RandomGeneratorWithSeed()}{RandomGeneratorWithSeed()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Random\+Generator\+With\+Seed\+::\+Random\+Generator\+With\+Seed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_ae4fc25f1e3e318fa18880f72ac7e2efe}\label{classRandomGeneratorWithSeed_ae4fc25f1e3e318fa18880f72ac7e2efe}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!getRandDouble@{getRandDouble}}
+\index{getRandDouble@{getRandDouble}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{getRandDouble()}{getRandDouble()}}
+{\footnotesize\ttfamily double Random\+Generator\+With\+Seed\+::get\+Rand\+Double (\begin{DoxyParamCaption}\item[{double}]{lower,  }\item[{double}]{upper }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_af94dddcdccd1ed551b1a6e6b3fdaedd6}\label{classRandomGeneratorWithSeed_af94dddcdccd1ed551b1a6e6b3fdaedd6}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!getRandInt@{getRandInt}}
+\index{getRandInt@{getRandInt}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{getRandInt()}{getRandInt()}}
+{\footnotesize\ttfamily int Random\+Generator\+With\+Seed\+::get\+Rand\+Int (\begin{DoxyParamCaption}\item[{int}]{lower,  }\item[{int}]{upper,  }\item[{bool}]{inclusively = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get\+Rand\+Int Method to generate a random integer within a specified range. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower} & The lower limit of the range of random integers, inclusive, from which to generate a number \\
+\hline
+{\em upper} & The upper limit of the range of random integers, inclusive, from which to generate a number \\
+\hline
+{\em inclusively} & flag indicating whether the upper limit of the range is inclusive. If set to true, the upper bound is also included in the range of random numbers, otherwise it is excluded from the range \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+dis The generated integer in the range between lower and upper $\ast$/ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRandomGeneratorWithSeed_af94dddcdccd1ed551b1a6e6b3fdaedd6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_a8e6c9376aac7f4ce3fca4debf99bd545}\label{classRandomGeneratorWithSeed_a8e6c9376aac7f4ce3fca4debf99bd545}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!getRandomIntList@{getRandomIntList}}
+\index{getRandomIntList@{getRandomIntList}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{getRandomIntList()}{getRandomIntList()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Random\+Generator\+With\+Seed\+::get\+Random\+Int\+List (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+n,  }\item[{int}]{i\+\_\+min\+Number,  }\item[{int}]{i\+\_\+max\+Number,  }\item[{bool}]{repite = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRandomGeneratorWithSeed_a8e6c9376aac7f4ce3fca4debf99bd545_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_a85e24c30cb4734b8899d9654c731513e}\label{classRandomGeneratorWithSeed_a85e24c30cb4734b8899d9654c731513e}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!getSeed@{getSeed}}
+\index{getSeed@{getSeed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{getSeed()}{getSeed()}}
+{\footnotesize\ttfamily std\+::uint\+\_\+fast32\+\_\+t Random\+Generator\+With\+Seed\+::get\+Seed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get\+Seed Get the current seed value This method returns the current seed value used to initialize the random number generator 
+
+\begin{DoxyReturn}{Returns}
+The seed value as a 32-\/bit unsigned integer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_ae6960782747d0937b63ad99a99b57bd5}\label{classRandomGeneratorWithSeed_ae6960782747d0937b63ad99a99b57bd5}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!operator=@{operator=}}
+\index{operator=@{operator=}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}}\& Random\+Generator\+With\+Seed\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_a5274590cc6d2d119a96b56cc4b089c1e}\label{classRandomGeneratorWithSeed_a5274590cc6d2d119a96b56cc4b089c1e}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!operator=@{operator=}}
+\index{operator=@{operator=}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}}\& Random\+Generator\+With\+Seed\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_a7600f3ce0a0d651e7fe28695db1d59b7}\label{classRandomGeneratorWithSeed_a7600f3ce0a0d651e7fe28695db1d59b7}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!setSeed@{setSeed}}
+\index{setSeed@{setSeed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{setSeed()}{setSeed()}}
+{\footnotesize\ttfamily void Random\+Generator\+With\+Seed\+::set\+Seed (\begin{DoxyParamCaption}\item[{std\+::uint\+\_\+fast32\+\_\+t}]{i\+\_\+seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRandomGeneratorWithSeed_a7600f3ce0a0d651e7fe28695db1d59b7_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_a176b14ab5717762fdbfdff25d58e1e44}\label{classRandomGeneratorWithSeed_a176b14ab5717762fdbfdff25d58e1e44}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!d\_gen@{d\_gen}}
+\index{d\_gen@{d\_gen}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{d\_gen}{d\_gen}}
+{\footnotesize\ttfamily std\+::minstd\+\_\+rand Random\+Generator\+With\+Seed\+::d\+\_\+gen\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRandomGeneratorWithSeed_a39e909b7dcbed2b8bd93205631f8d9eb}\label{classRandomGeneratorWithSeed_a39e909b7dcbed2b8bd93205631f8d9eb}} 
+\index{RandomGeneratorWithSeed@{RandomGeneratorWithSeed}!d\_seed@{d\_seed}}
+\index{d\_seed@{d\_seed}!RandomGeneratorWithSeed@{RandomGeneratorWithSeed}}
+\doxysubsubsection{\texorpdfstring{d\_seed}{d\_seed}}
+{\footnotesize\ttfamily std\+::uint\+\_\+fast32\+\_\+t Random\+Generator\+With\+Seed\+::d\+\_\+seed\hspace{0.3cm}{\ttfamily [private]}}
+

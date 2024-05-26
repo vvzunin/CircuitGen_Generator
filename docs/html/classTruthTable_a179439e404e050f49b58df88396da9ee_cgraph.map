@@ -1,0 +1,8 @@
+<map id="TruthTable::generateRandom" name="TruthTable::generateRandom">
+<area shape="rect" id="node1" title="generateTable The method generates a truth table for a combinational circuit with a given probability..." alt="" coords="5,143,213,170"/>
+<area shape="rect" id="node2" href="$classGeneticParameters.html#ad3f4355c9a9f01760da9f9227805b7a4" title="getInputs Get the number of inputs" alt="" coords="285,5,440,47"/>
+<area shape="rect" id="node3" href="$classGeneticParameters.html#a970addd75a43423df0b1d34a19309707" title="getOutputs Get the number of outputs" alt="" coords="285,71,440,112"/>
+<area shape="rect" id="node4" href="$classRandomGeneratorWithSeed.html#af94dddcdccd1ed551b1a6e6b3fdaedd6" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="261,136,464,177"/>
+<area shape="rect" id="node5" href="$classGeneticParameters.html#a14ec018d27b218172ee573affd2d9ddc" title="setInputs Set the number of inputs" alt="" coords="285,201,440,243"/>
+<area shape="rect" id="node6" href="$classGeneticParameters.html#a7a2e0b23d890c0821b17d25afcc11d86" title="setOutputs Set the number of outputs" alt="" coords="285,267,440,308"/>
+</map>

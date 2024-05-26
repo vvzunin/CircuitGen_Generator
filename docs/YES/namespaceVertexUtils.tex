@@ -1,0 +1,115 @@
+\hypertarget{namespaceVertexUtils}{}\doxysection{Vertex\+Utils Namespace Reference}
+\label{namespaceVertexUtils}\index{VertexUtils@{VertexUtils}}
+
+
+\mbox{\hyperlink{namespaceVertexUtils}{Vertex\+Utils}} Namespace containing utility functions for working with vertices.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{namespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9}{gate\+To\+String}} (\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} i\+\_\+type)
+\begin{DoxyCompactList}\small\item\em gate\+To\+String Converts a gate type enum value to its string representation \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceVertexUtils_a58a8373cb1f0f5be90a30b7fc3b51abd}{vertex\+Type\+To\+Verilog}} (\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} i\+\_\+type)
+\begin{DoxyCompactList}\small\item\em vertex\+Type\+To\+Comment Converts a vertex type enum value to its Verilog representation \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceVertexUtils_a429cf39161c78a2a22dd45e6a0f41acf}{vertex\+Type\+To\+Comment}} (\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} i\+\_\+type)
+\begin{DoxyCompactList}\small\item\em vertex\+Type\+To\+Comment Converts a vertex type enum value to its comment representation This function takes a vertex type enum value (from the Vertex\+Types enum) and returns its corresponding comment representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{namespaceVertexUtils}{Vertex\+Utils}} Namespace containing utility functions for working with vertices. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9}\label{namespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9}} 
+\index{VertexUtils@{VertexUtils}!gateToString@{gateToString}}
+\index{gateToString@{gateToString}!VertexUtils@{VertexUtils}}
+\doxysubsubsection{\texorpdfstring{gateToString()}{gateToString()}}
+{\footnotesize\ttfamily std\+::string Vertex\+Utils\+::gate\+To\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}}]{i\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+gate\+To\+String Converts a gate type enum value to its string representation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+type} & The gate type enum value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the gate type. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} gateType = \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680}{Gates::GateAnd}};}
+\DoxyCodeLine{std::string gateString = \mbox{\hyperlink{namespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9}{VertexUtils::gateToString}}(gateType);}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}String representation of gate type: "{}} << gateString <<}
+\DoxyCodeLine{std::endl; gateType = \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45}{Gates::GateNot}}; gateString =}
+\DoxyCodeLine{\mbox{\hyperlink{namespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9}{VertexUtils::gateToString}}(gateType); std::cout << \textcolor{stringliteral}{"{}String representation of}}
+\DoxyCodeLine{\textcolor{stringliteral}{gate type: "{}} << gateString << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceVertexUtils_a429cf39161c78a2a22dd45e6a0f41acf}\label{namespaceVertexUtils_a429cf39161c78a2a22dd45e6a0f41acf}} 
+\index{VertexUtils@{VertexUtils}!vertexTypeToComment@{vertexTypeToComment}}
+\index{vertexTypeToComment@{vertexTypeToComment}!VertexUtils@{VertexUtils}}
+\doxysubsubsection{\texorpdfstring{vertexTypeToComment()}{vertexTypeToComment()}}
+{\footnotesize\ttfamily std\+::string Vertex\+Utils\+::vertex\+Type\+To\+Comment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}}]{i\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+vertex\+Type\+To\+Comment Converts a vertex type enum value to its comment representation This function takes a vertex type enum value (from the Vertex\+Types enum) and returns its corresponding comment representation. 
+
+The comment representation is based on the vertex type and is used for generating comments or documentation 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+type} & The vertex type enum value (from the Vertex\+Types enum) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The comment representation of the vertex type. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{VertexTypes}} vertexType = VertexTypes::Input;}
+\DoxyCodeLine{std::string comment = \mbox{\hyperlink{namespaceVertexUtils_a429cf39161c78a2a22dd45e6a0f41acf}{VertexUtils::vertexTypeToComment}}(vertexType);}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Comment for input vertex type: "{}} << comment << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceVertexUtils_a58a8373cb1f0f5be90a30b7fc3b51abd}\label{namespaceVertexUtils_a58a8373cb1f0f5be90a30b7fc3b51abd}} 
+\index{VertexUtils@{VertexUtils}!vertexTypeToVerilog@{vertexTypeToVerilog}}
+\index{vertexTypeToVerilog@{vertexTypeToVerilog}!VertexUtils@{VertexUtils}}
+\doxysubsubsection{\texorpdfstring{vertexTypeToVerilog()}{vertexTypeToVerilog()}}
+{\footnotesize\ttfamily std\+::string Vertex\+Utils\+::vertex\+Type\+To\+Verilog (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}}]{i\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+vertex\+Type\+To\+Comment Converts a vertex type enum value to its Verilog representation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+type} & The vertex type enum value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Verilog representation of the vertex type 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{VertexTypes}} vertexType = VertexTypes::Input;}
+\DoxyCodeLine{std::string verilogType = \mbox{\hyperlink{namespaceVertexUtils_a58a8373cb1f0f5be90a30b7fc3b51abd}{VertexUtils::vertexTypeToVerilog}}(vertexType);}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Verilog representation of vertex type: "{}} << verilogType <<}
+\DoxyCodeLine{std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceVertexUtils_a58a8373cb1f0f5be90a30b7fc3b51abd_icgraph}
+\end{center}
+\end{figure}

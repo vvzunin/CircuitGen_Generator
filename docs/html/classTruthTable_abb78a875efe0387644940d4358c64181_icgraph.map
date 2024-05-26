@@ -1,0 +1,11 @@
+<map id="TruthTable::getOutput" name="TruthTable::getOutput">
+<area shape="rect" id="node1" title="getOutput Get the number of output variables in the truth table" alt="" coords="1491,53,1652,80"/>
+<area shape="rect" id="node2" href="$classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="1237,78,1437,119"/>
+<area shape="rect" id="node9" href="$classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="1232,13,1443,54"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="946,5,1177,61"/>
+<area shape="rect" id="node5" href="$classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="939,85,1184,112"/>
+<area shape="rect" id="node4" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,42,164,83"/>
+<area shape="rect" id="node6" href="$classGeneticGenerator.html#adccf630aca912b55820c1fea43111b58" title="createPopulation Creates the initial genetic population The method clears the current population and ..." alt="" coords="704,71,891,113"/>
+<area shape="rect" id="node7" href="$classGeneticGenerator.html#afbf9f3e6ae4d839df3ba19ed9473739e" title="generate Generates a genetic population and carries out evolutionary processes The method creates an ..." alt="" coords="453,79,656,105"/>
+<area shape="rect" id="node8" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="212,71,405,113"/>
+</map>

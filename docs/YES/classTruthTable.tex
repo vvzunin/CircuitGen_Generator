@@ -1,0 +1,525 @@
+\hypertarget{classTruthTable}{}\doxysection{Truth\+Table Class Reference}
+\label{classTruthTable}\index{TruthTable@{TruthTable}}
+
+
+class \mbox{\hyperlink{classTruthTable}{Truth\+Table}} Represents a truth table for a combinational logic circuit This class encapsulates the functionality to generate, manipulate, and analyze truth tables for combinational logic circuits.  
+
+
+
+
+{\ttfamily \#include $<$Truth\+Table.\+hpp$>$}
+
+
+
+Collaboration diagram for Truth\+Table\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{classTruthTable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTruthTable_a64055d97eb8b502567ad21c0d97fc659}{Truth\+Table}} ()
+\item 
+\mbox{\hyperlink{classTruthTable_a04f662d628d3c8bec3b936ba7f9ec893}{Truth\+Table}} (int seed)
+\item 
+\mbox{\hyperlink{classTruthTable}{Truth\+Table}} \& \mbox{\hyperlink{classTruthTable_af6a87aa8b863edc228891bb6cb9cf742}{operator=}} (const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&other)=default
+\item 
+\mbox{\hyperlink{classTruthTable_ab5efc8f64b235c3bbe801dedc9857ea8}{Truth\+Table}} (\mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&\&other)=default
+\item 
+\mbox{\hyperlink{classTruthTable}{Truth\+Table}} \& \mbox{\hyperlink{classTruthTable_a4e4fb94616e496c329ebf3a3df6f597d}{operator=}} (\mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&\&other)=default
+\item 
+\mbox{\hyperlink{classTruthTable_a8ffa65f572ed4cd27c5595743e1ec409}{Truth\+Table}} (int i\+\_\+input, int i\+\_\+output, const std\+::vector$<$ std\+::vector$<$ bool $>$$>$ \&i\+\_\+array=\{\})
+\item 
+\mbox{\hyperlink{classTruthTable_a364ede1151c4d025c889d2a89d6404cc}{Truth\+Table}} (const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&i\+\_\+tt, std\+::vector$<$ std\+::vector$<$ bool $>$$>$ i\+\_\+array=\{\})
+\item 
+\mbox{\hyperlink{classTruthTable_a4f4cdab8cd3074113e9bce88ab255ed0}{Truth\+Table}} (int i\+\_\+input, int i\+\_\+output, double i\+\_\+p=0.\+5)
+\item 
+void \mbox{\hyperlink{classTruthTable_a630e4e16802cfc9c4d1c46853cdec9c4}{set\+Seed}} (int i\+\_\+seed)
+\begin{DoxyCompactList}\small\item\em set\+Seed Set the seed for random number generation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTruthTable_a179439e404e050f49b58df88396da9ee}{generate\+Random}} (\mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} i\+\_\+gp)
+\begin{DoxyCompactList}\small\item\em generate\+Table The method generates a truth table for a combinational circuit with a given probability i\+\_\+p for each output value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTruthTable_a09de48ba6c97632625188dc32ffd944b}{generate\+Table}} (double i\+\_\+p=0)
+\begin{DoxyCompactList}\small\item\em generate\+Table Generate a truth table with specified probability. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classTruthTable_ae6eb629aa688eadb1cae6dfd194c6dbc}{get\+Input}} () const
+\begin{DoxyCompactList}\small\item\em get\+Input Get the number of input variables in the truth table. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classTruthTable_abb78a875efe0387644940d4358c64181}{get\+Output}} () const
+\begin{DoxyCompactList}\small\item\em get\+Output Get the number of output variables in the truth table \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classTruthTable_a41993558ddd3bdf5fc861f647910781f}{size}} () const
+\begin{DoxyCompactList}\small\item\em size Get the size of the truth table. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ bool $>$ $>$ \mbox{\hyperlink{classTruthTable_ab71a41a53ce4167519b4d24f14cbac82}{get\+Out\+Table}} () const
+\begin{DoxyCompactList}\small\item\em get\+Out\+Table Get the output table. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classTruthTable_a382ca1e1b9c12c2489c04f126631838c}{get\+Out\+Table}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em get\+Out\+Table Get the truth value at a specific position in the output table. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ bool $>$ $>$ \mbox{\hyperlink{classTruthTable_a5790cc7c8fc0e04547d83e5f9384efe9}{conv\+To\+Binary}} () const
+\begin{DoxyCompactList}\small\item\em conv\+To\+Binary Convert truth table indices to binary representation This method converts the indices of the truth table into binary representation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTruthTable_a171580e29f9322e00464448382f6bf4e}{print\+Table}} () const
+\begin{DoxyCompactList}\small\item\em print\+Table Print the truth table. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classTruthTable_a1ec4a33fa7a9405b16c7c6c8b840f9ae}{operator==}} (const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&r) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classTruthTable_a67811b2537d61354ebb7292caff5dd6d}{d\+\_\+input}}
+\item 
+int \mbox{\hyperlink{classTruthTable_ab30058ada6086c0b483d729c9d41f225}{d\+\_\+output}}
+\item 
+int \mbox{\hyperlink{classTruthTable_a3600b77643805374c2c750689759255a}{d\+\_\+size}}
+\item 
+std\+::vector$<$ std\+::vector$<$ bool $>$ $>$ \mbox{\hyperlink{classTruthTable_a43ad98123a4fd9be08a28c85fd522cf3}{d\+\_\+array}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ \mbox{\hyperlink{classTruthTable_a180d66f59c72b1efd0fdab8ec0c05870}{d\+\_\+settings}} = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Truth\+Table\char`\"{})
+\item 
+\mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \mbox{\hyperlink{classTruthTable_a223edc97a7f4fe7e86038b3f56f75879}{d\+\_\+rand\+Generator}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classTruthTable}{Truth\+Table}} Represents a truth table for a combinational logic circuit This class encapsulates the functionality to generate, manipulate, and analyze truth tables for combinational logic circuits. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+input} & Number of input variables. \\
+\hline
+{\em d\+\_\+output} & Number of output variables. \\
+\hline
+{\em size} & Size of the truth table (number of rows). \\
+\hline
+{\em d\+\_\+array} & Output table representing the truth values. \\
+\hline
+{\em d\+\_\+settings} & Shared pointer to \mbox{\hyperlink{classSettings}{Settings}} object. \\
+\hline
+{\em d\+\_\+rand\+Generator} & Random number generator. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTruthTable_a64055d97eb8b502567ad21c0d97fc659}\label{classTruthTable_a64055d97eb8b502567ad21c0d97fc659}} 
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{TruthTable()}{TruthTable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily Truth\+Table\+::\+Truth\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a64055d97eb8b502567ad21c0d97fc659_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_a04f662d628d3c8bec3b936ba7f9ec893}\label{classTruthTable_a04f662d628d3c8bec3b936ba7f9ec893}} 
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{TruthTable()}{TruthTable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily Truth\+Table\+::\+Truth\+Table (\begin{DoxyParamCaption}\item[{int}]{seed }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a04f662d628d3c8bec3b936ba7f9ec893_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_ab5efc8f64b235c3bbe801dedc9857ea8}\label{classTruthTable_ab5efc8f64b235c3bbe801dedc9857ea8}} 
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{TruthTable()}{TruthTable()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily Truth\+Table\+::\+Truth\+Table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classTruthTable_a8ffa65f572ed4cd27c5595743e1ec409}\label{classTruthTable_a8ffa65f572ed4cd27c5595743e1ec409}} 
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{TruthTable()}{TruthTable()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily Truth\+Table\+::\+Truth\+Table (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+input,  }\item[{int}]{i\+\_\+output,  }\item[{const std\+::vector$<$ std\+::vector$<$ bool $>$$>$ \&}]{i\+\_\+array = {\ttfamily \{\}} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a8ffa65f572ed4cd27c5595743e1ec409_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_a364ede1151c4d025c889d2a89d6404cc}\label{classTruthTable_a364ede1151c4d025c889d2a89d6404cc}} 
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{TruthTable()}{TruthTable()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily Truth\+Table\+::\+Truth\+Table (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&}]{i\+\_\+tt,  }\item[{std\+::vector$<$ std\+::vector$<$ bool $>$$>$}]{i\+\_\+array = {\ttfamily \{\}} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a364ede1151c4d025c889d2a89d6404cc_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_a4f4cdab8cd3074113e9bce88ab255ed0}\label{classTruthTable_a4f4cdab8cd3074113e9bce88ab255ed0}} 
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\index{TruthTable@{TruthTable}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{TruthTable()}{TruthTable()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily Truth\+Table\+::\+Truth\+Table (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+input,  }\item[{int}]{i\+\_\+output,  }\item[{double}]{i\+\_\+p = {\ttfamily 0.5} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a4f4cdab8cd3074113e9bce88ab255ed0_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTruthTable_a5790cc7c8fc0e04547d83e5f9384efe9}\label{classTruthTable_a5790cc7c8fc0e04547d83e5f9384efe9}} 
+\index{TruthTable@{TruthTable}!convToBinary@{convToBinary}}
+\index{convToBinary@{convToBinary}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{convToBinary()}{convToBinary()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ bool $>$ $>$ Truth\+Table\+::conv\+To\+Binary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+conv\+To\+Binary Convert truth table indices to binary representation This method converts the indices of the truth table into binary representation. 
+
+Each row index of the truth table corresponds to a unique combination of input variables, which is represented in binary form. For example, if the number of input variables is 3, the binary representation of the row index 5 (101 in binary) corresponds to the input combination \mbox{[}true, false, true\mbox{]}. \begin{DoxyReturn}{Returns}
+A two-\/dimensional vector representing the binary representation of each row index in the truth table. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Assuming a truth table with 3 input variables and 2 output variable}}
+\DoxyCodeLine{\mbox{\hyperlink{classTruthTable}{TruthTable}} table(3, 2);}
+\DoxyCodeLine{Convert truth table indices to binary representation}
+\DoxyCodeLine{std::vector<std::vector<bool>> binRepresentation = table.convToBinary();}
+\DoxyCodeLine{\textcolor{comment}{// Print the binary representation}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Binary Representation of Truth Table Indices"{}} << std::endl;}
+\DoxyCodeLine{\textcolor{keywordflow}{for} (cosnt \textcolor{keyword}{auto}\& row: binRepresentation)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keywordflow}{for} (\textcolor{keywordtype}{bool} bit : row)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    std::cout << bit << \textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{  std::cout << std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a5790cc7c8fc0e04547d83e5f9384efe9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_a179439e404e050f49b58df88396da9ee}\label{classTruthTable_a179439e404e050f49b58df88396da9ee}} 
+\index{TruthTable@{TruthTable}!generateRandom@{generateRandom}}
+\index{generateRandom@{generateRandom}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{generateRandom()}{generateRandom()}}
+{\footnotesize\ttfamily void Truth\+Table\+::generate\+Random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}}}]{i\+\_\+gp }\end{DoxyParamCaption})}
+
+
+
+generate\+Table The method generates a truth table for a combinational circuit with a given probability i\+\_\+p for each output value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+p} & The probability of generating a unit (true value) for each output bit. If i\+\_\+p == 0, then all output values are randomly generated with equal probability. If i\+\_\+p $>$ 0 and i\+\_\+p $<$= 1, then each output bit has a probability of i\+\_\+p being equal to one. $\ast$/ \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a179439e404e050f49b58df88396da9ee_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a179439e404e050f49b58df88396da9ee_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_a09de48ba6c97632625188dc32ffd944b}\label{classTruthTable_a09de48ba6c97632625188dc32ffd944b}} 
+\index{TruthTable@{TruthTable}!generateTable@{generateTable}}
+\index{generateTable@{generateTable}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{generateTable()}{generateTable()}}
+{\footnotesize\ttfamily void Truth\+Table\+::generate\+Table (\begin{DoxyParamCaption}\item[{double}]{i\+\_\+p = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+generate\+Table Generate a truth table with specified probability. 
+
+This method generates a truth table with the given probability \textquotesingle{}i\+\_\+p"{}. If {\ttfamily i\+\_\+p} is greater than 0 and less than or equal to 1. 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+p} & The probability of generating a true value for each cell in the truth table. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a09de48ba6c97632625188dc32ffd944b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a09de48ba6c97632625188dc32ffd944b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_ae6eb629aa688eadb1cae6dfd194c6dbc}\label{classTruthTable_ae6eb629aa688eadb1cae6dfd194c6dbc}} 
+\index{TruthTable@{TruthTable}!getInput@{getInput}}
+\index{getInput@{getInput}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{getInput()}{getInput()}}
+{\footnotesize\ttfamily int Truth\+Table\+::get\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Input Get the number of input variables in the truth table. 
+
+\begin{DoxyReturn}{Returns}
+The number of input variables. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classTruthTable}{TruthTable}} table;}
+\DoxyCodeLine{\textcolor{keywordtype}{int} numInputs = table.\mbox{\hyperlink{classTruthTable_ae6eb629aa688eadb1cae6dfd194c6dbc}{getInput}}();}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Number of input variables: "{}} << numInputs << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_ae6eb629aa688eadb1cae6dfd194c6dbc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_abb78a875efe0387644940d4358c64181}\label{classTruthTable_abb78a875efe0387644940d4358c64181}} 
+\index{TruthTable@{TruthTable}!getOutput@{getOutput}}
+\index{getOutput@{getOutput}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{getOutput()}{getOutput()}}
+{\footnotesize\ttfamily int Truth\+Table\+::get\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Output Get the number of output variables in the truth table 
+
+\begin{DoxyReturn}{Returns}
+The number of output variables. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classTruthTable}{TruthTable}} table;}
+\DoxyCodeLine{\textcolor{keywordtype}{int} numOutputs = table.\mbox{\hyperlink{classTruthTable_abb78a875efe0387644940d4358c64181}{getOutput}}();}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Number of output variables: "{}} << numOutputs << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_abb78a875efe0387644940d4358c64181_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_ab71a41a53ce4167519b4d24f14cbac82}\label{classTruthTable_ab71a41a53ce4167519b4d24f14cbac82}} 
+\index{TruthTable@{TruthTable}!getOutTable@{getOutTable}}
+\index{getOutTable@{getOutTable}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{getOutTable()}{getOutTable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ bool $>$ $>$ Truth\+Table\+::get\+Out\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Out\+Table Get the output table. 
+
+This method returns a copy of the entire output table of the truth table. The output table contains the truth values for each combination of input variables. \begin{DoxyReturn}{Returns}
+The output table as a two-\/dimensional vector of boolean values. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Assuming a truth table with 2 input variables and 1 output variable}}
+\DoxyCodeLine{\mbox{\hyperlink{classTruthTable}{TruthTable}} table(2, 1);}
+\DoxyCodeLine{Get the \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}} table}
+\DoxyCodeLine{std::vector<std::vector<bool>> outputTable = table.getOutTable();}
+\DoxyCodeLine{\textcolor{comment}{// Print the output table}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Output Table: "{}} << std::endl;}
+\DoxyCodeLine{\textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& row : outputTable)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keywordflow}{for} (\textcolor{keywordtype}{bool} value : row)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    std:: cout << value << \textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{  std::cout << endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_ab71a41a53ce4167519b4d24f14cbac82_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_a382ca1e1b9c12c2489c04f126631838c}\label{classTruthTable_a382ca1e1b9c12c2489c04f126631838c}} 
+\index{TruthTable@{TruthTable}!getOutTable@{getOutTable}}
+\index{getOutTable@{getOutTable}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{getOutTable()}{getOutTable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Truth\+Table\+::get\+Out\+Table (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+get\+Out\+Table Get the truth value at a specific position in the output table. 
+
+This method returns the truth value at the specified position (i, j) in the output table. The position (i, j) corresponds to the i-\/th row and j-\/th column of the output table, representing a specific combination of input variables. 
+\begin{DoxyParams}{Parameters}
+{\em i} & The row index of the output table. \\
+\hline
+{\em j} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]\end{DoxyRefDesc}
+\begin{DoxyReturn}{Returns}
+The truth value at the specified position. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Assuming a truth table with 3 input variables and 2 output variable}}
+\DoxyCodeLine{\mbox{\hyperlink{classTruthTable}{TruthTable}} table(3, 2);}
+\DoxyCodeLine{\textcolor{comment}{// Get the truth value at position (1, 0) in the output table}}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} value = table.getOutTable(1,0);}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTruthTable_af6a87aa8b863edc228891bb6cb9cf742}\label{classTruthTable_af6a87aa8b863edc228891bb6cb9cf742}} 
+\index{TruthTable@{TruthTable}!operator=@{operator=}}
+\index{operator=@{operator=}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTruthTable}{Truth\+Table}}\& Truth\+Table\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classTruthTable_a4e4fb94616e496c329ebf3a3df6f597d}\label{classTruthTable_a4e4fb94616e496c329ebf3a3df6f597d}} 
+\index{TruthTable@{TruthTable}!operator=@{operator=}}
+\index{operator=@{operator=}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTruthTable}{Truth\+Table}}\& Truth\+Table\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classTruthTable_a1ec4a33fa7a9405b16c7c6c8b840f9ae}\label{classTruthTable_a1ec4a33fa7a9405b16c7c6c8b840f9ae}} 
+\index{TruthTable@{TruthTable}!operator==@{operator==}}
+\index{operator==@{operator==}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Truth\+Table\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&}]{r }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTruthTable_a171580e29f9322e00464448382f6bf4e}\label{classTruthTable_a171580e29f9322e00464448382f6bf4e}} 
+\index{TruthTable@{TruthTable}!printTable@{printTable}}
+\index{printTable@{printTable}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{printTable()}{printTable()}}
+{\footnotesize\ttfamily void Truth\+Table\+::print\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+print\+Table Print the truth table. 
+
+This method prints the entire truth table to the standard output stream. Each row of the truth table is printed as a space-\/separated sequence of boolean values. After printing the table, a newline character is inserted to separate rows. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Assuming a truth table with 3 input variables and 2 output variable}}
+\DoxyCodeLine{\mbox{\hyperlink{classTruthTable}{TruthTable}} table(3, 2);}
+\DoxyCodeLine{\textcolor{comment}{// Print the truth table}}
+\DoxyCodeLine{table.printTable();}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{classTruthTable_a630e4e16802cfc9c4d1c46853cdec9c4}\label{classTruthTable_a630e4e16802cfc9c4d1c46853cdec9c4}} 
+\index{TruthTable@{TruthTable}!setSeed@{setSeed}}
+\index{setSeed@{setSeed}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{setSeed()}{setSeed()}}
+{\footnotesize\ttfamily void Truth\+Table\+::set\+Seed (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+seed }\end{DoxyParamCaption})}
+
+
+
+set\+Seed Set the seed for random number generation. 
+
+This method sets the seed for the random number generator used in generating the truth table. Setting the seed allows for reproducible random number sequences. 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+seed} & The seed for random number generation. 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{classTruthTable}{TruthTable}} table;}
+\DoxyCodeLine{table.\mbox{\hyperlink{classTruthTable_a630e4e16802cfc9c4d1c46853cdec9c4}{setSeed}}(123);}
+
+\end{DoxyCode}
+ For the get\+Seed method there is get\+Seed in \mbox{\hyperlink{RandomGeneratorWithSeed_8hpp}{Random\+Generator\+With\+Seed.\+hpp}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} 
+\end{DoxySeeAlso}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a630e4e16802cfc9c4d1c46853cdec9c4_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTable_a41993558ddd3bdf5fc861f647910781f}\label{classTruthTable_a41993558ddd3bdf5fc861f647910781f}} 
+\index{TruthTable@{TruthTable}!size@{size}}
+\index{size@{size}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int Truth\+Table\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+size Get the size of the truth table. 
+
+This method returns the total number of rows in the truth table. Each rows corresponds to a unique combination of input values \begin{DoxyReturn}{Returns}
+The size of the truth table (number of rows). 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating a truth table with 3 input variables and 2 output variables}}
+\DoxyCodeLine{\mbox{\hyperlink{classTruthTable}{TruthTable}} table (3,2);}
+\DoxyCodeLine{\textcolor{keywordtype}{int} tableSize = table.size();}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Size of the truth table: "{}} << tableSize << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTable_a41993558ddd3bdf5fc861f647910781f_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classTruthTable_a43ad98123a4fd9be08a28c85fd522cf3}\label{classTruthTable_a43ad98123a4fd9be08a28c85fd522cf3}} 
+\index{TruthTable@{TruthTable}!d\_array@{d\_array}}
+\index{d\_array@{d\_array}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{d\_array}{d\_array}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$bool$>$ $>$ Truth\+Table\+::d\+\_\+array\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTruthTable_a67811b2537d61354ebb7292caff5dd6d}\label{classTruthTable_a67811b2537d61354ebb7292caff5dd6d}} 
+\index{TruthTable@{TruthTable}!d\_input@{d\_input}}
+\index{d\_input@{d\_input}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{d\_input}{d\_input}}
+{\footnotesize\ttfamily int Truth\+Table\+::d\+\_\+input\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTruthTable_ab30058ada6086c0b483d729c9d41f225}\label{classTruthTable_ab30058ada6086c0b483d729c9d41f225}} 
+\index{TruthTable@{TruthTable}!d\_output@{d\_output}}
+\index{d\_output@{d\_output}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{d\_output}{d\_output}}
+{\footnotesize\ttfamily int Truth\+Table\+::d\+\_\+output\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTruthTable_a223edc97a7f4fe7e86038b3f56f75879}\label{classTruthTable_a223edc97a7f4fe7e86038b3f56f75879}} 
+\index{TruthTable@{TruthTable}!d\_randGenerator@{d\_randGenerator}}
+\index{d\_randGenerator@{d\_randGenerator}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{d\_randGenerator}{d\_randGenerator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} Truth\+Table\+::d\+\_\+rand\+Generator\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTruthTable_a180d66f59c72b1efd0fdab8ec0c05870}\label{classTruthTable_a180d66f59c72b1efd0fdab8ec0c05870}} 
+\index{TruthTable@{TruthTable}!d\_settings@{d\_settings}}
+\index{d\_settings@{d\_settings}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{d\_settings}{d\_settings}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSettings}{Settings}}$>$ Truth\+Table\+::d\+\_\+settings = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Truth\+Table\char`\"{})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTruthTable_a3600b77643805374c2c750689759255a}\label{classTruthTable_a3600b77643805374c2c750689759255a}} 
+\index{TruthTable@{TruthTable}!d\_size@{d\_size}}
+\index{d\_size@{d\_size}!TruthTable@{TruthTable}}
+\doxysubsubsection{\texorpdfstring{d\_size}{d\_size}}
+{\footnotesize\ttfamily int Truth\+Table\+::d\+\_\+size\hspace{0.3cm}{\ttfamily [private]}}
+

@@ -1,0 +1,239 @@
+\hypertarget{classThreading_1_1UnboundedMPMCQueue}{}\doxysection{Threading\+::Unbounded\+MPMCQueue$<$ T $>$ Class Template Reference}
+\label{classThreading_1_1UnboundedMPMCQueue}\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+
+
+Allows to add tasks and blocking wait for element appearance for multiple writers (producers) and multiple readers (consumers).  
+
+
+
+
+{\ttfamily \#include $<$Unbounded\+MPMCQueue.\+hpp$>$}
+
+
+
+Inheritance diagram for Threading\+::Unbounded\+MPMCQueue$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classThreading_1_1UnboundedMPMCQueue__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Threading\+::Unbounded\+MPMCQueue$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classThreading_1_1UnboundedMPMCQueue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a7ac2f134e85fc2ca20d7aff2a574c0fa}{Unbounded\+MPMCQueue}} ()=default
+\begin{DoxyCompactList}\small\item\em Create open queue, which will be ready to accept items. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_afa9f81c2d089bee0a22d975d173b3ab7}{Unbounded\+MPMCQueue}} (const \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}} \&other)=delete
+\item 
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}} \& \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a71245eeb06a3fd765cfda1a4b9590a38}{operator=}} (const \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}} \&other)=delete
+\item 
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_aab90181c793d7d9c78c270387ddf85cb}{Unbounded\+MPMCQueue}} (\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}} \&\&other)=delete
+\item 
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}} \& \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_aae48c2b41f3243bd9e53209a65b8d610}{operator=}} (const \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}} \&\&other)=delete
+\item 
+void \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a32414b07fa0442d4e1a60b405241a3da}{add}} (T item)
+\begin{DoxyCompactList}\small\item\em Add task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a210a8e95d243cc20f463a97fc7f97eb1}{close}} ()
+\begin{DoxyCompactList}\small\item\em Close queue. All waiting threads will receive nullopt. \end{DoxyCompactList}\item 
+std\+::optional$<$ T $>$ \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_ad2618d4603cbf43abb9f1d823bed6aba}{take}} ()
+\begin{DoxyCompactList}\small\item\em Block current thread until no item will appearance in the queue or queue will be closed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a5f40b69a9253b45fe21b34eee797e59e}{closed}} \{false\}
+\item 
+std\+::mutex \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a41b31feda7feb8778ff3dbf8d49a871c}{mtx}} \{\}
+\item 
+std\+::condition\+\_\+variable \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_ae157e8fd3481d903126c334f3eb99890}{not\+\_\+empty\+\_\+or\+\_\+closed}} \{\}
+\item 
+std\+::deque$<$ T $>$ \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a8d90abf666cb82a2e0102072ca8883dc}{queue}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Threading\+::\+Unbounded\+MPMCQueue$<$ T $>$}
+
+Allows to add tasks and blocking wait for element appearance for multiple writers (producers) and multiple readers (consumers). 
+
+User must guarantee no adding in the closed queue, else runtime error exception will be thrown. class \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}} A thread-\/safe unbounded multiple producer multiple consumer (MPMC) queue 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of items stored in the queue \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em closed} & Flag indicating whether the queue is closed \\
+\hline
+{\em mutex} & TO DO\+: \\
+\hline
+{\em not\+\_\+empty\+\_\+or\+\_\+closed} & Condition variable for signaling queue status. A more detailed description \href{https://en.cppreference.com/w/cpp/thread/condition_variable}{\texttt{ here}}. \\
+\hline
+{\em queue} & TO DO\+: \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_a7ac2f134e85fc2ca20d7aff2a574c0fa}\label{classThreading_1_1UnboundedMPMCQueue_a7ac2f134e85fc2ca20d7aff2a574c0fa}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!UnboundedMPMCQueue@{UnboundedMPMCQueue}}
+\index{UnboundedMPMCQueue@{UnboundedMPMCQueue}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{UnboundedMPMCQueue()}{UnboundedMPMCQueue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Create open queue, which will be ready to accept items. 
+
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_afa9f81c2d089bee0a22d975d173b3ab7}\label{classThreading_1_1UnboundedMPMCQueue_afa9f81c2d089bee0a22d975d173b3ab7}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!UnboundedMPMCQueue@{UnboundedMPMCQueue}}
+\index{UnboundedMPMCQueue@{UnboundedMPMCQueue}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{UnboundedMPMCQueue()}{UnboundedMPMCQueue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_aab90181c793d7d9c78c270387ddf85cb}\label{classThreading_1_1UnboundedMPMCQueue_aab90181c793d7d9c78c270387ddf85cb}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!UnboundedMPMCQueue@{UnboundedMPMCQueue}}
+\index{UnboundedMPMCQueue@{UnboundedMPMCQueue}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{UnboundedMPMCQueue()}{UnboundedMPMCQueue()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}}$<$ T $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_a32414b07fa0442d4e1a60b405241a3da}\label{classThreading_1_1UnboundedMPMCQueue_a32414b07fa0442d4e1a60b405241a3da}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!add@{add}}
+\index{add@{add}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::add (\begin{DoxyParamCaption}\item[{T}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add task. 
+
+add designed to add an item to the queue 
+\begin{DoxyParams}{Parameters}
+{\em item} & the item to be added to the queue 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\textcolor{comment}{// Creating a queue for integers.}}
+\DoxyCodeLine{\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading::UnboundedMPMCQueue<int>}} \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a8d90abf666cb82a2e0102072ca8883dc}{queue}};}
+\DoxyCodeLine{\textcolor{comment}{// Adding items to the queue}}
+\DoxyCodeLine{\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a8d90abf666cb82a2e0102072ca8883dc}{queue}}.add(42);}
+\DoxyCodeLine{\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a8d90abf666cb82a2e0102072ca8883dc}{queue}}.add(17);}
+\DoxyCodeLine{\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a8d90abf666cb82a2e0102072ca8883dc}{queue}}.add(99);}
+
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error.} & It is thrown out if an attempt is made to add an item to a closed queue \\
+\hline
+\end{DoxyExceptions}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1UnboundedMPMCQueue_a32414b07fa0442d4e1a60b405241a3da_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_a210a8e95d243cc20f463a97fc7f97eb1}\label{classThreading_1_1UnboundedMPMCQueue_a210a8e95d243cc20f463a97fc7f97eb1}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!close@{close}}
+\index{close@{close}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Close queue. All waiting threads will receive nullopt. 
+
+close it is used to close the queue Example usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Closing the queue}}
+\DoxyCodeLine{\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue_a8d90abf666cb82a2e0102072ca8883dc}{queue}}.close()}
+
+\end{DoxyCode}
+ Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1UnboundedMPMCQueue_a210a8e95d243cc20f463a97fc7f97eb1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_aae48c2b41f3243bd9e53209a65b8d610}\label{classThreading_1_1UnboundedMPMCQueue_aae48c2b41f3243bd9e53209a65b8d610}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}}\& \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}}$<$ T $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_a71245eeb06a3fd765cfda1a4b9590a38}\label{classThreading_1_1UnboundedMPMCQueue_a71245eeb06a3fd765cfda1a4b9590a38}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}}\& \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_ad2618d4603cbf43abb9f1d823bed6aba}\label{classThreading_1_1UnboundedMPMCQueue_ad2618d4603cbf43abb9f1d823bed6aba}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!take@{take}}
+\index{take@{take}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{take()}{take()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::optional$<$T$>$ \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::take (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Block current thread until no item will appearance in the queue or queue will be closed. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1UnboundedMPMCQueue_ad2618d4603cbf43abb9f1d823bed6aba_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_a5f40b69a9253b45fe21b34eee797e59e}\label{classThreading_1_1UnboundedMPMCQueue_a5f40b69a9253b45fe21b34eee797e59e}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!closed@{closed}}
+\index{closed@{closed}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{closed}{closed}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::closed \{false\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_a41b31feda7feb8778ff3dbf8d49a871c}\label{classThreading_1_1UnboundedMPMCQueue_a41b31feda7feb8778ff3dbf8d49a871c}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!mtx@{mtx}}
+\index{mtx@{mtx}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{mtx}{mtx}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::mutex \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::mtx \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_ae157e8fd3481d903126c334f3eb99890}\label{classThreading_1_1UnboundedMPMCQueue_ae157e8fd3481d903126c334f3eb99890}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!not\_empty\_or\_closed@{not\_empty\_or\_closed}}
+\index{not\_empty\_or\_closed@{not\_empty\_or\_closed}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{not\_empty\_or\_closed}{not\_empty\_or\_closed}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::condition\+\_\+variable \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::not\+\_\+empty\+\_\+or\+\_\+closed \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classThreading_1_1UnboundedMPMCQueue_a8d90abf666cb82a2e0102072ca8883dc}\label{classThreading_1_1UnboundedMPMCQueue_a8d90abf666cb82a2e0102072ca8883dc}} 
+\index{Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}!queue@{queue}}
+\index{queue@{queue}!Threading::UnboundedMPMCQueue$<$ T $>$@{Threading::UnboundedMPMCQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{queue}{queue}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::deque$<$T$>$ \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Threading\+::\+Unbounded\+MPMCQueue}}$<$ T $>$\+::queue\hspace{0.3cm}{\ttfamily [private]}}
+

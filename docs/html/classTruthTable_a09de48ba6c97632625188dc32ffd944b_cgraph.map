@@ -1,0 +1,5 @@
+<map id="TruthTable::generateTable" name="TruthTable::generateTable">
+<area shape="rect" id="node1" title="generateTable Generate a truth table with specified probability." alt="" coords="5,35,193,61"/>
+<area shape="rect" id="node2" href="$namespaceAuxMethods.html#ad1cd19afad4489d0c7eb4938e106ec42" title="specified range" alt="" coords="241,5,452,32"/>
+<area shape="rect" id="node3" href="$classRandomGeneratorWithSeed.html#af94dddcdccd1ed551b1a6e6b3fdaedd6" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="245,57,448,98"/>
+</map>

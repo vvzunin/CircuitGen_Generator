@@ -1,0 +1,370 @@
+\hypertarget{classGeneticParameters}{}\doxysection{Genetic\+Parameters Class Reference}
+\label{classGeneticParameters}\index{GeneticParameters@{GeneticParameters}}
+
+
+{\ttfamily \#include $<$Genetic\+Parameters.\+h$>$}
+
+
+
+Inheritance diagram for Genetic\+Parameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Genetic\+Parameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGeneticParameters_a99d4a9086f804ac3b82617f18482a401}{Genetic\+Parameters}} (int i\+\_\+inputs=0, int outs=0)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classGeneticParameters}{Genetic\+Parameters}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGeneticParameters_ad3f4355c9a9f01760da9f9227805b7a4}{get\+Inputs}} () const
+\begin{DoxyCompactList}\small\item\em get\+Inputs Get the number of inputs \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGeneticParameters_a14ec018d27b218172ee573affd2d9ddc}{set\+Inputs}} (int i\+\_\+inputs)
+\begin{DoxyCompactList}\small\item\em set\+Inputs Set the number of inputs \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGeneticParameters_a970addd75a43423df0b1d34a19309707}{get\+Outputs}} () const
+\begin{DoxyCompactList}\small\item\em get\+Outputs Get the number of outputs \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGeneticParameters_a7a2e0b23d890c0821b17d25afcc11d86}{set\+Outputs}} (int i\+\_\+outputs)
+\begin{DoxyCompactList}\small\item\em set\+Outputs Set the number of outputs \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSelectionParameters}{Selection\+Parameters}} \mbox{\hyperlink{classGeneticParameters_a99ffc1f118b5727ef616c7222ee83ef0}{get\+Selection\+Parameters}} () const
+\item 
+void \mbox{\hyperlink{classGeneticParameters_a81ec40d33027039536aaf8ed006c5ae3}{set\+Selection\+Parameters}} (const \mbox{\hyperlink{classSelectionParameters}{Selection\+Parameters}} \&i\+\_\+sp)
+\item 
+\mbox{\hyperlink{classRecombinationParameters}{Recombination\+Parameters}} \mbox{\hyperlink{classGeneticParameters_afdacea030f6fdacdd08cf05fc5120f6b}{get\+Recombination\+Parameters}} () const
+\item 
+void \mbox{\hyperlink{classGeneticParameters_a151a6df29689fee335c405510539a385}{set\+Recombination\+Parameters}} (const \mbox{\hyperlink{classRecombinationParameters}{Recombination\+Parameters}} \&i\+\_\+rp)
+\item 
+\mbox{\hyperlink{classMutationParameters}{Mutation\+Parameters}} \mbox{\hyperlink{classGeneticParameters_a47b9aca9f0b6abf7c04945b2bd8767c9}{get\+Mutation\+Parameters}} () const
+\item 
+void \mbox{\hyperlink{classGeneticParameters_a525ba7e07d9cb189c0ca014f56416dc8}{set\+Mutation\+Parameters}} (const \mbox{\hyperlink{classMutationParameters}{Mutation\+Parameters}} \&i\+\_\+mp)
+\item 
+void \mbox{\hyperlink{classGeneticParameters_a4895d45db78ba5041f5f45e93ef5a380}{set\+Population\+Size}} (int i\+\_\+population\+Size)
+\item 
+void \mbox{\hyperlink{classGeneticParameters_a50dddd3b0b4d179be3637f59bc9c4fbc}{set\+Num\+Of\+Cycles}} (int i\+\_\+num\+Of\+Cycles)
+\item 
+void \mbox{\hyperlink{classGeneticParameters_a69d2a71967ac4446244bf488fa982ac5}{set\+Key\+End\+Process\+Index}} (double i\+\_\+key\+End\+Process\+Index)
+\item 
+double \mbox{\hyperlink{classGeneticParameters_a75b2f2fd5c44a06929af0933d6c0a792}{get\+Key\+End\+Process\+Index}} ()
+\item 
+int \mbox{\hyperlink{classGeneticParameters_a66a42803e1668bd51e24603945de112f}{get\+Num\+Of\+Cycles}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classGeneticParameters_ab711d6fcf5d9ea81cde5bf033101324a}{d\+\_\+inputs}}
+\item 
+int \mbox{\hyperlink{classGeneticParameters_a8637d3fbec85e070357daf43373e22fc}{d\+\_\+outputs}}
+\item 
+int \mbox{\hyperlink{classGeneticParameters_a4e04bc3bdad439bfeb9d788a3f818efb}{d\+\_\+population\+Size}} = 0
+\item 
+int \mbox{\hyperlink{classGeneticParameters_a6b91973df19cf2921bf66a5589ae3436}{d\+\_\+num\+Of\+Cycles}} = 0
+\item 
+\mbox{\hyperlink{classSelectionParameters}{Selection\+Parameters}} \mbox{\hyperlink{classGeneticParameters_a4ac6780cccce51dc0d26fae181dfd3ec}{d\+\_\+selection\+Parameters}}
+\item 
+\mbox{\hyperlink{classRecombinationParameters}{Recombination\+Parameters}} \mbox{\hyperlink{classGeneticParameters_af70baaedd6de5324d76368d92d18bb4f}{d\+\_\+recombination\+Parameters}}
+\item 
+\mbox{\hyperlink{classMutationParameters}{Mutation\+Parameters}} \mbox{\hyperlink{classGeneticParameters_a76fb51b61935b6141ff1ba7c7795a9ff}{d\+\_\+mutation\+Parameters}}
+\item 
+double \mbox{\hyperlink{classGeneticParameters_a01048c9af4023cc0507032a972f405ea}{d\+\_\+key\+End\+Process\+Index}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000014}{Todo}}]\+: fill in the description of the class fields
+
+Class representing genetic algorithm parameters \end{DoxyRefDesc}
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+inputs} & Number of inputs \\
+\hline
+{\em d\+\_\+outputs} & Number of outputs \\
+\hline
+{\em d\+\_\+population\+Size} & Population size \\
+\hline
+{\em d\+\_\+num\+Of\+Cycles} & Number of cycles \\
+\hline
+{\em d\+\_\+selection\+Parameters} & \\
+\hline
+{\em d\+\_\+recombination\+Parameters} & \\
+\hline
+{\em d\+\_\+mutation\+Parameters} & \\
+\hline
+{\em d\+\_\+key\+End\+Process\+Index} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGeneticParameters_a99d4a9086f804ac3b82617f18482a401}\label{classGeneticParameters_a99d4a9086f804ac3b82617f18482a401}} 
+\index{GeneticParameters@{GeneticParameters}!GeneticParameters@{GeneticParameters}}
+\index{GeneticParameters@{GeneticParameters}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{GeneticParameters()}{GeneticParameters()}}
+{\footnotesize\ttfamily Genetic\+Parameters\+::\+Genetic\+Parameters (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+inputs = {\ttfamily 0},  }\item[{int}]{outs = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classGeneticParameters}{Genetic\+Parameters}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+inputs} & Number of inputs \\
+\hline
+{\em outs} & Number of outputs \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGeneticParameters_ad3f4355c9a9f01760da9f9227805b7a4}\label{classGeneticParameters_ad3f4355c9a9f01760da9f9227805b7a4}} 
+\index{GeneticParameters@{GeneticParameters}!getInputs@{getInputs}}
+\index{getInputs@{getInputs}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{getInputs()}{getInputs()}}
+{\footnotesize\ttfamily int Genetic\+Parameters\+::get\+Inputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Inputs Get the number of inputs 
+
+\begin{DoxyReturn}{Returns}
+The number of inputs 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters_ad3f4355c9a9f01760da9f9227805b7a4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticParameters_a75b2f2fd5c44a06929af0933d6c0a792}\label{classGeneticParameters_a75b2f2fd5c44a06929af0933d6c0a792}} 
+\index{GeneticParameters@{GeneticParameters}!getKeyEndProcessIndex@{getKeyEndProcessIndex}}
+\index{getKeyEndProcessIndex@{getKeyEndProcessIndex}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{getKeyEndProcessIndex()}{getKeyEndProcessIndex()}}
+{\footnotesize\ttfamily double Genetic\+Parameters\+::get\+Key\+End\+Process\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classGeneticParameters_a47b9aca9f0b6abf7c04945b2bd8767c9}\label{classGeneticParameters_a47b9aca9f0b6abf7c04945b2bd8767c9}} 
+\index{GeneticParameters@{GeneticParameters}!getMutationParameters@{getMutationParameters}}
+\index{getMutationParameters@{getMutationParameters}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{getMutationParameters()}{getMutationParameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMutationParameters}{Mutation\+Parameters}} Genetic\+Parameters\+::get\+Mutation\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classGeneticParameters_a66a42803e1668bd51e24603945de112f}\label{classGeneticParameters_a66a42803e1668bd51e24603945de112f}} 
+\index{GeneticParameters@{GeneticParameters}!getNumOfCycles@{getNumOfCycles}}
+\index{getNumOfCycles@{getNumOfCycles}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{getNumOfCycles()}{getNumOfCycles()}}
+{\footnotesize\ttfamily int Genetic\+Parameters\+::get\+Num\+Of\+Cycles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classGeneticParameters_a970addd75a43423df0b1d34a19309707}\label{classGeneticParameters_a970addd75a43423df0b1d34a19309707}} 
+\index{GeneticParameters@{GeneticParameters}!getOutputs@{getOutputs}}
+\index{getOutputs@{getOutputs}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{getOutputs()}{getOutputs()}}
+{\footnotesize\ttfamily int Genetic\+Parameters\+::get\+Outputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Outputs Get the number of outputs 
+
+\begin{DoxyReturn}{Returns}
+The number of outputs 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters_a970addd75a43423df0b1d34a19309707_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticParameters_afdacea030f6fdacdd08cf05fc5120f6b}\label{classGeneticParameters_afdacea030f6fdacdd08cf05fc5120f6b}} 
+\index{GeneticParameters@{GeneticParameters}!getRecombinationParameters@{getRecombinationParameters}}
+\index{getRecombinationParameters@{getRecombinationParameters}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{getRecombinationParameters()}{getRecombinationParameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRecombinationParameters}{Recombination\+Parameters}} Genetic\+Parameters\+::get\+Recombination\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classGeneticParameters_a99ffc1f118b5727ef616c7222ee83ef0}\label{classGeneticParameters_a99ffc1f118b5727ef616c7222ee83ef0}} 
+\index{GeneticParameters@{GeneticParameters}!getSelectionParameters@{getSelectionParameters}}
+\index{getSelectionParameters@{getSelectionParameters}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{getSelectionParameters()}{getSelectionParameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSelectionParameters}{Selection\+Parameters}} Genetic\+Parameters\+::get\+Selection\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classGeneticParameters_a14ec018d27b218172ee573affd2d9ddc}\label{classGeneticParameters_a14ec018d27b218172ee573affd2d9ddc}} 
+\index{GeneticParameters@{GeneticParameters}!setInputs@{setInputs}}
+\index{setInputs@{setInputs}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{setInputs()}{setInputs()}}
+{\footnotesize\ttfamily void Genetic\+Parameters\+::set\+Inputs (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+inputs }\end{DoxyParamCaption})}
+
+
+
+set\+Inputs Set the number of inputs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+inputs} & The number of inputs \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters_a14ec018d27b218172ee573affd2d9ddc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticParameters_a69d2a71967ac4446244bf488fa982ac5}\label{classGeneticParameters_a69d2a71967ac4446244bf488fa982ac5}} 
+\index{GeneticParameters@{GeneticParameters}!setKeyEndProcessIndex@{setKeyEndProcessIndex}}
+\index{setKeyEndProcessIndex@{setKeyEndProcessIndex}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{setKeyEndProcessIndex()}{setKeyEndProcessIndex()}}
+{\footnotesize\ttfamily void Genetic\+Parameters\+::set\+Key\+End\+Process\+Index (\begin{DoxyParamCaption}\item[{double}]{i\+\_\+key\+End\+Process\+Index }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters_a69d2a71967ac4446244bf488fa982ac5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticParameters_a525ba7e07d9cb189c0ca014f56416dc8}\label{classGeneticParameters_a525ba7e07d9cb189c0ca014f56416dc8}} 
+\index{GeneticParameters@{GeneticParameters}!setMutationParameters@{setMutationParameters}}
+\index{setMutationParameters@{setMutationParameters}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{setMutationParameters()}{setMutationParameters()}}
+{\footnotesize\ttfamily void Genetic\+Parameters\+::set\+Mutation\+Parameters (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classMutationParameters}{Mutation\+Parameters}} \&}]{i\+\_\+mp }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters_a525ba7e07d9cb189c0ca014f56416dc8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticParameters_a50dddd3b0b4d179be3637f59bc9c4fbc}\label{classGeneticParameters_a50dddd3b0b4d179be3637f59bc9c4fbc}} 
+\index{GeneticParameters@{GeneticParameters}!setNumOfCycles@{setNumOfCycles}}
+\index{setNumOfCycles@{setNumOfCycles}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{setNumOfCycles()}{setNumOfCycles()}}
+{\footnotesize\ttfamily void Genetic\+Parameters\+::set\+Num\+Of\+Cycles (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+num\+Of\+Cycles }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters_a50dddd3b0b4d179be3637f59bc9c4fbc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticParameters_a7a2e0b23d890c0821b17d25afcc11d86}\label{classGeneticParameters_a7a2e0b23d890c0821b17d25afcc11d86}} 
+\index{GeneticParameters@{GeneticParameters}!setOutputs@{setOutputs}}
+\index{setOutputs@{setOutputs}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{setOutputs()}{setOutputs()}}
+{\footnotesize\ttfamily void Genetic\+Parameters\+::set\+Outputs (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+outputs }\end{DoxyParamCaption})}
+
+
+
+set\+Outputs Set the number of outputs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+outputs} & The number of outputs \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters_a7a2e0b23d890c0821b17d25afcc11d86_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticParameters_a4895d45db78ba5041f5f45e93ef5a380}\label{classGeneticParameters_a4895d45db78ba5041f5f45e93ef5a380}} 
+\index{GeneticParameters@{GeneticParameters}!setPopulationSize@{setPopulationSize}}
+\index{setPopulationSize@{setPopulationSize}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{setPopulationSize()}{setPopulationSize()}}
+{\footnotesize\ttfamily void Genetic\+Parameters\+::set\+Population\+Size (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+population\+Size }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters_a4895d45db78ba5041f5f45e93ef5a380_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticParameters_a151a6df29689fee335c405510539a385}\label{classGeneticParameters_a151a6df29689fee335c405510539a385}} 
+\index{GeneticParameters@{GeneticParameters}!setRecombinationParameters@{setRecombinationParameters}}
+\index{setRecombinationParameters@{setRecombinationParameters}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{setRecombinationParameters()}{setRecombinationParameters()}}
+{\footnotesize\ttfamily void Genetic\+Parameters\+::set\+Recombination\+Parameters (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRecombinationParameters}{Recombination\+Parameters}} \&}]{i\+\_\+rp }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters_a151a6df29689fee335c405510539a385_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticParameters_a81ec40d33027039536aaf8ed006c5ae3}\label{classGeneticParameters_a81ec40d33027039536aaf8ed006c5ae3}} 
+\index{GeneticParameters@{GeneticParameters}!setSelectionParameters@{setSelectionParameters}}
+\index{setSelectionParameters@{setSelectionParameters}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{setSelectionParameters()}{setSelectionParameters()}}
+{\footnotesize\ttfamily void Genetic\+Parameters\+::set\+Selection\+Parameters (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSelectionParameters}{Selection\+Parameters}} \&}]{i\+\_\+sp }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticParameters_a81ec40d33027039536aaf8ed006c5ae3_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGeneticParameters_ab711d6fcf5d9ea81cde5bf033101324a}\label{classGeneticParameters_ab711d6fcf5d9ea81cde5bf033101324a}} 
+\index{GeneticParameters@{GeneticParameters}!d\_inputs@{d\_inputs}}
+\index{d\_inputs@{d\_inputs}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{d\_inputs}{d\_inputs}}
+{\footnotesize\ttfamily int Genetic\+Parameters\+::d\+\_\+inputs\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGeneticParameters_a01048c9af4023cc0507032a972f405ea}\label{classGeneticParameters_a01048c9af4023cc0507032a972f405ea}} 
+\index{GeneticParameters@{GeneticParameters}!d\_keyEndProcessIndex@{d\_keyEndProcessIndex}}
+\index{d\_keyEndProcessIndex@{d\_keyEndProcessIndex}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{d\_keyEndProcessIndex}{d\_keyEndProcessIndex}}
+{\footnotesize\ttfamily double Genetic\+Parameters\+::d\+\_\+key\+End\+Process\+Index = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGeneticParameters_a76fb51b61935b6141ff1ba7c7795a9ff}\label{classGeneticParameters_a76fb51b61935b6141ff1ba7c7795a9ff}} 
+\index{GeneticParameters@{GeneticParameters}!d\_mutationParameters@{d\_mutationParameters}}
+\index{d\_mutationParameters@{d\_mutationParameters}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{d\_mutationParameters}{d\_mutationParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMutationParameters}{Mutation\+Parameters}} Genetic\+Parameters\+::d\+\_\+mutation\+Parameters\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGeneticParameters_a6b91973df19cf2921bf66a5589ae3436}\label{classGeneticParameters_a6b91973df19cf2921bf66a5589ae3436}} 
+\index{GeneticParameters@{GeneticParameters}!d\_numOfCycles@{d\_numOfCycles}}
+\index{d\_numOfCycles@{d\_numOfCycles}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{d\_numOfCycles}{d\_numOfCycles}}
+{\footnotesize\ttfamily int Genetic\+Parameters\+::d\+\_\+num\+Of\+Cycles = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGeneticParameters_a8637d3fbec85e070357daf43373e22fc}\label{classGeneticParameters_a8637d3fbec85e070357daf43373e22fc}} 
+\index{GeneticParameters@{GeneticParameters}!d\_outputs@{d\_outputs}}
+\index{d\_outputs@{d\_outputs}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{d\_outputs}{d\_outputs}}
+{\footnotesize\ttfamily int Genetic\+Parameters\+::d\+\_\+outputs\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGeneticParameters_a4e04bc3bdad439bfeb9d788a3f818efb}\label{classGeneticParameters_a4e04bc3bdad439bfeb9d788a3f818efb}} 
+\index{GeneticParameters@{GeneticParameters}!d\_populationSize@{d\_populationSize}}
+\index{d\_populationSize@{d\_populationSize}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{d\_populationSize}{d\_populationSize}}
+{\footnotesize\ttfamily int Genetic\+Parameters\+::d\+\_\+population\+Size = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGeneticParameters_af70baaedd6de5324d76368d92d18bb4f}\label{classGeneticParameters_af70baaedd6de5324d76368d92d18bb4f}} 
+\index{GeneticParameters@{GeneticParameters}!d\_recombinationParameters@{d\_recombinationParameters}}
+\index{d\_recombinationParameters@{d\_recombinationParameters}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{d\_recombinationParameters}{d\_recombinationParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRecombinationParameters}{Recombination\+Parameters}} Genetic\+Parameters\+::d\+\_\+recombination\+Parameters\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGeneticParameters_a4ac6780cccce51dc0d26fae181dfd3ec}\label{classGeneticParameters_a4ac6780cccce51dc0d26fae181dfd3ec}} 
+\index{GeneticParameters@{GeneticParameters}!d\_selectionParameters@{d\_selectionParameters}}
+\index{d\_selectionParameters@{d\_selectionParameters}!GeneticParameters@{GeneticParameters}}
+\doxysubsubsection{\texorpdfstring{d\_selectionParameters}{d\_selectionParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSelectionParameters}{Selection\+Parameters}} Genetic\+Parameters\+::d\+\_\+selection\+Parameters\hspace{0.3cm}{\ttfamily [protected]}}
+

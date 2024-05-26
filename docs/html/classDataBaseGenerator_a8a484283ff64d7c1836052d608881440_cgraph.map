@@ -1,0 +1,57 @@
+<map id="DataBaseGenerator::generateTypeForGraph" name="DataBaseGenerator::generateTypeForGraph">
+<area shape="rect" id="Node000001" title="generateTypeForGraph The generate Type method of the DataBase Generator class is responsible for gene..." alt="" coords="5,648,159,691"/>
+<area shape="rect" id="Node000002" href="$classDataBaseGenerator.html#af2d3442c4257a0da57658a12110adbdc" title="generateDataBaseFromRandomTruthTable The generate DataBase From Random Truth Table method of the Data..." alt="" coords="207,648,359,691"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,667,191,667,191,672,159,672"/>
+<area shape="rect" id="Node000003" href="$namespaceFilesTools.html#a092635d608973c4d6e39bac79929fafd" title="getDirectories This function takes the path to a directory and returns a string vector containing the..." alt="" coords="424,5,592,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="283,647,292,523,314,342,330,248,350,161,375,91,389,63,405,42,409,38,413,42,409,46,394,66,380,93,355,163,335,249,319,342,298,524,288,648"/>
+<area shape="rect" id="Node000004" href="$classDataBaseGeneratorParameters.html#a1355f77edbb89c99465e7e297334d958" title="getEachIteration This method is used to get the number of iterations that need to be performed for ea..." alt="" coords="407,56,609,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="283,647,296,535,320,374,336,291,356,215,379,152,405,109,407,107,410,111,409,112,383,155,361,217,341,293,325,375,301,536,289,648"/>
+<area shape="rect" id="Node000005" href="$classDataBaseGeneratorParameters.html#a81be8dde9601f9d206e3b9096213cf1a" title="getGenerationParameters This method is used to get the database generation parameters" alt="" coords="407,123,609,165"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="284,647,298,548,324,407,340,334,359,268,381,213,405,176,407,173,411,177,409,179,386,216,364,270,345,336,329,408,303,549,289,648"/>
+<area shape="rect" id="Node000006" href="$classDataBaseGeneratorParameters.html#a9d9a0679c5a3f2cd447a1e44c13e9bed" title="getGenerationType This method returns a GenerationTypes type variable representing the database gener..." alt="" coords="407,189,609,232"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="281,647,284,571,300,463,316,404,338,346,367,291,405,242,407,240,411,244,409,246,371,294,342,348,321,406,306,465,290,572,286,647"/>
+<area shape="rect" id="Node000007" href="$classDataBaseGeneratorParameters.html#a45b37cc153e8a07c3788b2d1065f90d5" title="getMaxInputs This method is used to get the maximum number of inputs set in the database generation p..." alt="" coords="407,256,609,299"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="283,647,289,582,308,492,324,443,345,394,372,349,405,309,408,306,411,310,409,312,376,352,350,397,329,445,313,493,295,583,288,648"/>
+<area shape="rect" id="Node000008" href="$classDataBaseGeneratorParameters.html#a985864c3103c55fbd282f9aee04e5c04" title="getMaxOutputs This one is used to get the maximum number of outputs set in the database generation pa..." alt="" coords="407,323,609,365"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="285,647,295,593,317,520,333,481,352,443,376,407,405,375,408,373,412,377,409,379,381,410,357,446,338,483,322,522,300,594,290,648"/>
+<area shape="rect" id="Node000009" href="$classDataBaseGeneratorParameters.html#ae89b30e205ebee39e944ff5e8fa32b16" title="getMinInputs This method is used to get the minimum number of inputs set in the database generation p..." alt="" coords="407,389,609,432"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="288,647,302,604,326,549,360,492,381,465,405,442,410,438,413,443,409,446,385,469,364,495,331,551,307,606,293,648"/>
+<area shape="rect" id="Node000010" href="$classDataBaseGeneratorParameters.html#ade71d00b271ceb1cff09ae3340044011" title="getMinOutputs This method is used to get the minimum number of outputs set in the database generation..." alt="" coords="407,456,609,499"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="293,646,336,579,368,541,405,509,412,504,415,509,409,513,372,545,341,582,298,649"/>
+<area shape="rect" id="Node000011" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="433,523,584,565"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="307,645,351,610,406,575,417,570,419,574,408,580,354,614,310,649"/>
+<area shape="rect" id="Node000012" href="$classRandomGeneratorWithSeed.html#af94dddcdccd1ed551b1a6e6b3fdaedd6" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="417,589,600,632"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="359,647,408,634,410,639,360,652"/>
+<area shape="rect" id="Node000013" href="$namespaceAuxMethods.html#a1ff433f6adb27f95ad4859e8ee9732c6" title="getRandSeed Returns the current grain for generating pseudo&#45;random numbers" alt="" coords="418,656,598,683"/>
+<area shape="poly" id="edge12_Node000002_Node000013" title=" " alt="" coords="360,667,403,667,403,672,360,672"/>
+<area shape="rect" id="Node000014" href="$classGenerationParameters.html#ab5c7b845f70600bdfb9cca6109aba209" title=" " alt="" coords="433,707,584,749"/>
+<area shape="poly" id="edge13_Node000002_Node000014" title=" " alt="" coords="360,687,418,702,417,707,359,692"/>
+<area shape="rect" id="Node000015" href="$namespaceAuxMethods.html#a70047e78c6b1ffcad09caf149a8d9db4" title=" " alt="" coords="413,773,604,816"/>
+<area shape="poly" id="edge14_Node000002_Node000015" title=" " alt="" coords="310,689,354,725,408,759,419,764,417,769,406,764,351,729,307,693"/>
+<area shape="rect" id="Node000016" href="$classDataBaseGeneratorParameters.html#a788c2c94a21b5b09ff560918db6c1238" title="setInputs The method sets the number of input signals to generate the database" alt="" coords="407,840,609,883"/>
+<area shape="poly" id="edge15_Node000002_Node000016" title=" " alt="" coords="298,690,341,757,372,794,409,826,415,830,412,835,405,830,368,798,336,760,293,693"/>
+<area shape="rect" id="Node000018" href="$classDataBaseGeneratorParameters.html#a9844eb915d0dd36bbfdec3763c656cb5" title="setIteration The method sets the iteration number for database generation" alt="" coords="407,907,609,949"/>
+<area shape="poly" id="edge17_Node000002_Node000018" title=" " alt="" coords="293,690,307,733,331,787,364,844,385,870,409,893,413,896,410,900,405,897,381,873,360,847,326,790,302,735,288,692"/>
+<area shape="rect" id="Node000020" href="$classDataBaseGeneratorParameters.html#a46539c9183d979e5b3e71f5e142e444e" title="setName The method is used to set the name for database generation" alt="" coords="407,973,609,1016"/>
+<area shape="poly" id="edge19_Node000002_Node000020" title=" " alt="" coords="290,691,300,745,322,817,338,855,357,893,381,928,409,959,412,962,408,966,405,963,376,932,352,896,333,858,317,819,295,746,285,692"/>
+<area shape="rect" id="Node000022" href="$classDataBaseGeneratorParameters.html#abd2fd5e6b525cb0c06ce83cc787cb72a" title="setOutputs The method sets the number of output signals to generate the database" alt="" coords="407,1040,609,1083"/>
+<area shape="poly" id="edge21_Node000002_Node000022" title=" " alt="" coords="288,691,295,756,313,845,329,894,350,942,376,987,409,1026,411,1028,408,1032,405,1030,372,990,345,944,324,896,308,847,289,756,283,691"/>
+<area shape="rect" id="Node000024" href="$classRandomGeneratorWithSeed.html#a7600f3ce0a0d651e7fe28695db1d59b7" title=" " alt="" coords="417,1107,600,1149"/>
+<area shape="poly" id="edge23_Node000002_Node000024" title=" " alt="" coords="286,691,290,767,306,874,321,933,342,990,371,1045,409,1093,411,1095,407,1099,405,1096,367,1048,338,993,316,934,300,875,284,767,281,691"/>
+<area shape="rect" id="Node000025" href="$classGenerationParameters.html#adc3ea9fd2752d5631c44ead12ec97007" title=" " alt="" coords="433,1173,584,1216"/>
+<area shape="poly" id="edge24_Node000002_Node000025" title=" " alt="" coords="289,691,303,790,329,931,345,1003,364,1069,386,1123,409,1160,421,1170,417,1174,405,1163,381,1125,359,1071,340,1004,324,932,298,791,284,691"/>
+<area shape="rect" id="Node000026" href="$classThreading_1_1ThreadPool.html#a70b1c1d24a492238a704c2c7b817ae27" title="Schedule task on execution." alt="" coords="433,1240,583,1283"/>
+<area shape="poly" id="edge25_Node000002_Node000026" title=" " alt="" coords="289,691,301,803,325,963,341,1046,361,1122,383,1184,409,1226,421,1237,418,1241,405,1230,379,1186,356,1123,336,1047,320,964,296,803,283,692"/>
+<area shape="rect" id="Node000028" href="$classThreading_1_1ThreadPool.html#a41dde4c256785b525a0334c060932a64" title="Wait for all spawned for now tasks complete." alt="" coords="433,1307,583,1349"/>
+<area shape="poly" id="edge27_Node000002_Node000028" title=" " alt="" coords="288,691,299,814,321,995,337,1088,357,1174,381,1245,394,1272,409,1293,421,1304,418,1308,405,1296,390,1275,376,1247,352,1176,332,1090,315,996,293,815,283,691"/>
+<area shape="rect" id="Node000017" href="$classGenerationParameters.html#a3e705c98f0e7bf135647f48e88bbb62c" title=" " alt="" coords="710,840,862,883"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="610,859,695,859,695,864,610,864"/>
+<area shape="rect" id="Node000019" href="$classGenerationParameters.html#aa8086051fa4847240493bdae77c00443" title=" " alt="" coords="710,907,862,949"/>
+<area shape="poly" id="edge18_Node000018_Node000019" title=" " alt="" coords="610,925,695,925,695,931,610,931"/>
+<area shape="rect" id="Node000021" href="$classGenerationParameters.html#a07db704beeefe9fb8958bd625ad6a6ad" title=" " alt="" coords="710,973,862,1016"/>
+<area shape="poly" id="edge20_Node000020_Node000021" title=" " alt="" coords="610,992,695,992,695,997,610,997"/>
+<area shape="rect" id="Node000023" href="$classGenerationParameters.html#a48ead551de59bfab492bc8940e8fc022" title=" " alt="" coords="710,1040,862,1083"/>
+<area shape="poly" id="edge22_Node000022_Node000023" title=" " alt="" coords="610,1059,695,1059,695,1064,610,1064"/>
+<area shape="rect" id="Node000027" href="$classThreading_1_1UnboundedMPMCQueue.html#a32414b07fa0442d4e1a60b405241a3da" title="Add task." alt="" coords="657,1248,915,1275"/>
+<area shape="poly" id="edge26_Node000026_Node000027" title=" " alt="" coords="584,1259,642,1259,642,1264,584,1264"/>
+</map>

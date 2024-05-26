@@ -1,0 +1,20 @@
+<map id="DataBaseGenerator::generateDataBaseSummator" name="DataBaseGenerator::generateDataBaseSummator">
+<area shape="rect" id="node1" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="5,459,216,501"/>
+<area shape="rect" id="node2" href="$classCircuit.html#ac07f64884fb0732102b39c0ec1c38896" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="313,81,444,108"/>
+<area shape="rect" id="node7" href="$classGenerationParameters.html#abe52488727e2afd682f8d75e2b4925a1" title=" " alt="" coords="295,133,463,174"/>
+<area shape="rect" id="node8" href="$classGenerationParameters.html#ab1e4bb546c125555d3fc577b5dbd2c06" title=" " alt="" coords="295,198,463,239"/>
+<area shape="rect" id="node9" href="$classGenerationParameters.html#afe40a79b145ba89c81ad07db21c949ab" title=" " alt="" coords="295,263,463,305"/>
+<area shape="rect" id="node10" href="$classGeneratorSummatorParameters.html#ab547b2615885db979a54e1b8149acbca" title=" " alt="" coords="264,329,493,370"/>
+<area shape="rect" id="node11" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="295,394,463,435"/>
+<area shape="rect" id="node12" href="$classGeneratorSummatorParameters.html#af0641f1d11364a9f529c61db1aafb211" title=" " alt="" coords="264,459,493,501"/>
+<area shape="rect" id="node13" href="$classGeneratorSummatorParameters.html#a14fa2311678b9a04ba99d7b7f099c87e" title=" " alt="" coords="264,525,493,566"/>
+<area shape="rect" id="node14" href="$classGenerationParameters.html#a07806a196e5976fce356ff2f3d91f822" title=" " alt="" coords="295,590,463,631"/>
+<area shape="rect" id="node15" href="$classGenerationParameters.html#a903b41beefe6e8295235ed8a7eb8aae6" title=" " alt="" coords="295,655,463,697"/>
+<area shape="rect" id="node16" href="$classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="292,721,465,748"/>
+<area shape="rect" id="node17" href="$classSimpleGenerators.html#a88102287ac78993a56a18fe43ec9b6bb" title="generatorRandLevelExperimental The method generates a random level of complexity of the graph within ..." alt="" coords="276,773,481,814"/>
+<area shape="rect" id="node18" href="$classCircuit.html#a71e323bb28864ea40f60fdc1fd693add" title="setPath This method is designed to set the path where the files associated with the digital circuit w..." alt="" coords="319,839,439,865"/>
+<area shape="rect" id="node3" href="$classCircuit.html#a5f9e1a5b9117f6e8c6547cf5a261047e" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="541,5,723,32"/>
+<area shape="rect" id="node4" href="$classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="548,56,716,83"/>
+<area shape="rect" id="node5" href="$classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="543,107,721,133"/>
+<area shape="rect" id="node6" href="$classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="771,132,1004,159"/>
+</map>

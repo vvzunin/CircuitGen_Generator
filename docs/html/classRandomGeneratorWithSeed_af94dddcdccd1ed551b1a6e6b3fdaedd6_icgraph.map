@@ -1,0 +1,20 @@
+<map id="RandomGeneratorWithSeed::getRandInt" name="RandomGeneratorWithSeed::getRandInt">
+<area shape="rect" id="node1" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="753,337,956,378"/>
+<area shape="rect" id="node2" href="$classTruthTable.html#a179439e404e050f49b58df88396da9ee" title="generateTable The method generates a truth table for a combinational circuit with a given probability..." alt="" coords="490,5,698,32"/>
+<area shape="rect" id="node4" href="$classTruthTable.html#a09de48ba6c97632625188dc32ffd944b" title="generateTable Generate a truth table with specified probability." alt="" coords="500,56,688,83"/>
+<area shape="rect" id="node6" href="$classSimpleGenerators.html#a662ceb370c15bcd152aa97f8fdf470a5" title="generatorRandLevel creates an oriented graph (represented by an OrientedGraph object) with a given le..." alt="" coords="489,107,699,149"/>
+<area shape="rect" id="node9" href="$classSimpleGenerators.html#a759134a07958c5e863258b5a97202aba" title=" " alt="" coords="483,173,705,214"/>
+<area shape="rect" id="node11" href="$classRandomGeneratorWithSeed.html#a8e6c9376aac7f4ce3fca4debf99bd545" title=" " alt="" coords="493,238,695,279"/>
+<area shape="rect" id="node12" href="$classSimpleGenerators.html#a2324374cb34f04435bd46fce2063d8ce" title="getRangomAndNumber The getRangomAndNumber method returns a random value from the list of possible inp..." alt="" coords="483,303,705,345"/>
+<area shape="rect" id="node13" href="$classSimpleGenerators.html#ae8514f015087a64fc9b473beef99285f" title="getRangomNandNumber The method returns a random value from the list of possible input ports for the &quot;..." alt="" coords="483,369,705,410"/>
+<area shape="rect" id="node14" href="$classSimpleGenerators.html#a87c5cf1ceeefab9d3ec41031921aeda0" title="getRangomNorNumber The method returns a random value from the list of possible input ports for the &quot;N..." alt="" coords="483,434,705,475"/>
+<area shape="rect" id="node15" href="$classSimpleGenerators.html#ae5c17337e30e9c89c2549f60ed08e949" title="getRangomOrNumber method is a random value from the list of possible input ports for the &quot;OR&quot; operato..." alt="" coords="483,499,705,541"/>
+<area shape="rect" id="node16" href="$classSimpleGenerators.html#ac3217e02325f01cf7aa66b0dc2180d02" title="The method returns a random value from the list of possible input ports for the &quot;XNOR&quot; operator." alt="" coords="483,565,705,606"/>
+<area shape="rect" id="node17" href="$classSimpleGenerators.html#a14f126423c9cc75ea1f6eb3048c58973" title="getRangomXorNumber The method returns a random value from the list of possible input ports for the &quot;X..." alt="" coords="483,630,705,671"/>
+<area shape="rect" id="node18" href="$classSimpleGenerators.html#a2ed625365dd94c1dcacff2be94717cc0" title=" " alt="" coords="495,695,693,737"/>
+<area shape="rect" id="node3" href="$classTruthTable.html#a364ede1151c4d025c889d2a89d6404cc" title=" " alt="" coords="242,5,405,32"/>
+<area shape="rect" id="node5" href="$classTruthTable.html#a8ffa65f572ed4cd27c5595743e1ec409" title=" " alt="" coords="242,56,405,83"/>
+<area shape="rect" id="node7" href="$classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="218,107,429,149"/>
+<area shape="rect" id="node8" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,107,164,149"/>
+<area shape="rect" id="node10" href="$classSimpleGenerators.html#afb85bf0a95cf405045231fe2f42ea707" title=" " alt="" coords="212,173,435,214"/>
+</map>

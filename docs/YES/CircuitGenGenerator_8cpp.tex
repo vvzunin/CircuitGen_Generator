@@ -1,0 +1,67 @@
+\hypertarget{CircuitGenGenerator_8cpp}{}\doxysection{/mnt/c/course\+\_\+3/\+Circuit\+Gen\+\_\+\+Generator/src/\+Circuit\+Gen\+Generator.cpp File Reference}
+\label{CircuitGenGenerator_8cpp}\index{/mnt/c/course\_3/CircuitGen\_Generator/src/CircuitGenGenerator.cpp@{/mnt/c/course\_3/CircuitGen\_Generator/src/CircuitGenGenerator.cpp}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$additional/\+Auxiliary\+Methods.\+hpp$>$}\newline
+{\ttfamily \#include $<$database/\+Data\+Base\+Generator.\+hpp$>$}\newline
+{\ttfamily \#include $<$database/\+Data\+Base\+Generator\+Parameters.\+hpp$>$}\newline
+{\ttfamily \#include $<$generators/\+Generation\+Parameters.\+hpp$>$}\newline
+{\ttfamily \#include $<$getopt.\+h$>$}\newline
+{\ttfamily \#include $<$nlohmann/json.\+hpp$>$}\newline
+{\ttfamily \#include $<$settings/\+Settings.\+hpp$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Circuit\+Gen\+Generator/export.\+hpp\char`\"{}}\newline
+Include dependency graph for Circuit\+Gen\+Generator.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CircuitGenGenerator_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceCircuitGenGenerator}{Circuit\+Gen\+Generator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{CircuitGenGenerator_8cpp_a5804bbffc39748cb89ca31f333e60289}{run\+Generation}} (std\+::string json\+\_\+path, std\+::function$<$ void(\mbox{\hyperlink{classDataBaseGenerator}{Data\+Base\+Generator}} \&, const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&, bool, bool)$>$ callable)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{DataBaseGenerator_8hpp_af365e9276e78fb465d972f19c76ddea1}{Result\+Graph}} $>$ \mbox{\hyperlink{namespaceCircuitGenGenerator_abba5a22034bbcdd83bf85a971c9fc6e8}{Circuit\+Gen\+Generator\+::run\+Generation\+From\+Json\+For\+Graph}} (std\+::string json\+\_\+path)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{DataBaseGenerator_8hpp_a142eeb582b980f0e5e1283e0ea989e99}{Result\+Path}} $>$ \mbox{\hyperlink{namespaceCircuitGenGenerator_a84a8be1b476410ae2dd0d23a555a7eb9}{Circuit\+Gen\+Generator\+::run\+Generation\+From\+Json\+For\+Path}} (std\+::string json\+\_\+path)
+\item 
+void \mbox{\hyperlink{namespaceCircuitGenGenerator_a41dfd9a88637c1961c7eebeec34025d2}{Circuit\+Gen\+Generator\+::run\+Generation\+From\+Json}} (std\+::string json\+\_\+path)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{CircuitGenGenerator_8cpp_a5804bbffc39748cb89ca31f333e60289}\label{CircuitGenGenerator_8cpp_a5804bbffc39748cb89ca31f333e60289}} 
+\index{CircuitGenGenerator.cpp@{CircuitGenGenerator.cpp}!runGeneration@{runGeneration}}
+\index{runGeneration@{runGeneration}!CircuitGenGenerator.cpp@{CircuitGenGenerator.cpp}}
+\doxysubsubsection{\texorpdfstring{runGeneration()}{runGeneration()}}
+{\footnotesize\ttfamily void run\+Generation (\begin{DoxyParamCaption}\item[{std\+::string}]{json\+\_\+path,  }\item[{std\+::function$<$ void(\mbox{\hyperlink{classDataBaseGenerator}{Data\+Base\+Generator}} \&, const \mbox{\hyperlink{classDataBaseGeneratorParameters}{Data\+Base\+Generator\+Parameters}} \&, bool, bool)$>$}]{callable }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{CircuitGenGenerator_8cpp_a5804bbffc39748cb89ca31f333e60289_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CircuitGenGenerator_8cpp_a5804bbffc39748cb89ca31f333e60289_icgraph}
+\end{center}
+\end{figure}

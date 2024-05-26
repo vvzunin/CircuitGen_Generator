@@ -1,0 +1,16 @@
+<map id="C:/course_3/CircuitGen_Generator/src/generators/simple" name="C:/course_3/CircuitGen_Generator/src/generators/simple">
+<area shape="rect" id="node1" href="dir_6c7775f3030ca824eb04bf24b16c71a1.html" title="Genetic" alt="" coords="27,128,93,155"/>
+<area shape="rect" id="node2" href="dir_9a7cf9e1eb651369bba6ff05cb085702.html" title="simple" alt="" coords="34,53,94,80"/>
+<area shape="poly" id="edge1" href="dir_000018_000010.html" alt="" coords="66,81,64,113,59,112,61,80"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000018_000010.html" title="1" alt="" coords="67,102,74,118"/>
+<area shape="rect" id="node3" href="dir_6f225bcb3540d15c84dd332eb9d51ab5.html" title="additional" alt="" coords="118,128,194,155"/>
+<area shape="poly" id="edge2" href="dir_000018_000000.html" alt="" coords="82,78,130,116,127,121,78,83"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000018_000000.html" title="2" alt="" coords="128,102,135,118"/>
+<area shape="rect" id="node4" href="dir_783b52754a2018d76e61e06ca3cbe8be.html" title="baseStructures" alt="" coords="219,128,328,155"/>
+<area shape="poly" id="edge3" href="dir_000018_000001.html" alt="" coords="95,76,223,120,222,125,93,81"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000018_000001.html" title="3" alt="" coords="219,106,226,122"/>
+<area shape="rect" id="node5" href="dir_7dcbfa0d2d1af490b32c17abc8ad7251.html" title="settings" alt="" coords="352,128,419,155"/>
+<area shape="poly" id="edge4" href="dir_000018_000017.html" alt="" coords="95,72,337,125,336,130,94,77"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000018_000017.html" title="1" alt="" coords="332,110,339,126"/>
+<area shape="rect" id="clust1" href="dir_1af64b257c3f00e7199751c64a4016ba.html" title="generators" alt="" coords="16,16,104,165"/>
+</map>

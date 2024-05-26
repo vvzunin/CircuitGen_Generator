@@ -1,0 +1,74 @@
+\hypertarget{AuxiliaryMethods_8hpp}{}\doxysection{/mnt/c/course\+\_\+3/\+Circuit\+Gen\+\_\+\+Generator/src/additional/\+Auxiliary\+Methods.hpp File Reference}
+\label{AuxiliaryMethods_8hpp}\index{/mnt/c/course\_3/CircuitGen\_Generator/src/additional/AuxiliaryMethods.hpp@{/mnt/c/course\_3/CircuitGen\_Generator/src/additional/AuxiliaryMethods.hpp}}
+
+
+TODO\+: To\+Enum TODO\+: if need Line\+Reader TODO\+: if need Copy\+Directory.  
+
+
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$circuit/\+Circuit.\+hpp$>$}\newline
+Include dependency graph for Auxiliary\+Methods.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{AuxiliaryMethods_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{AuxiliaryMethods_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structAuxMethods_1_1TuplePrinter}{Aux\+Methods\+::\+Tuple\+Printer$<$ Tuple, N $>$}}
+\item 
+struct \mbox{\hyperlink{structAuxMethods_1_1TuplePrinter_3_01Tuple_00_011_01_4}{Aux\+Methods\+::\+Tuple\+Printer$<$ Tuple, 1 $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceAuxMethods}{Aux\+Methods}}
+\begin{DoxyCompactList}\small\item\em namespace \mbox{\hyperlink{namespaceAuxMethods}{Aux\+Methods}} It was created to organize a set of auxiliary functions and methods that can be used in various parts of a software project Functions\+: Random number generation, Reading files, Data sorting and processing (includes methods for sorting dictionaries by their values and for working with spaces in strings) TO DO\+: list the other functions \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespaceAuxMethods_a5bd15903dbc7db95cb089304ca9e0277}{Aux\+Methods\+::set\+Rand\+Seed}} (std\+::uint\+\_\+fast32\+\_\+t seed)
+\begin{DoxyCompactList}\small\item\em set\+Rand\+Seed Sets the grain to generate pseudorandom numbers \end{DoxyCompactList}\item 
+std\+::uint\+\_\+fast32\+\_\+t \mbox{\hyperlink{namespaceAuxMethods_a1ff433f6adb27f95ad4859e8ee9732c6}{Aux\+Methods\+::get\+Rand\+Seed}} ()
+\begin{DoxyCompactList}\small\item\em get\+Rand\+Seed Returns the current grain for generating pseudo-\/random numbers \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespaceAuxMethods_a51fd6ff2ae8c02ab10d4e261236a7ba4}{Aux\+Methods\+::get\+Rand\+Int}} (int lower, int upper, bool inclusively=false)
+\begin{DoxyCompactList}\small\item\em get\+Rand\+Int Returns a random integer in the specified range \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespaceAuxMethods_ad1cd19afad4489d0c7eb4938e106ec42}{Aux\+Methods\+::get\+Rand\+Double}} (double lower, double upper)
+\begin{DoxyCompactList}\small\item\em specified range \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceAuxMethods_a9ea2f6dad8245c55cc658bb6a95a00dc}{Aux\+Methods\+::read\+All\+File}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em read\+All\+File Reads the contents of the file and returns it as a string \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{namespaceAuxMethods_aa52eafa5760c853cb2b840c2015a8ded}{Aux\+Methods\+::get\+Random\+Int\+List}} (int i\+\_\+n, int i\+\_\+min\+Number, int i\+\_\+max\+Number, bool repite=false)
+\begin{DoxyCompactList}\small\item\em get\+Random\+Int\+List Generates a list of random integers in a given range with certain restrictions on the number of elements and the presence of repetitions \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Key , typename Value $>$ }\\std\+::vector$<$ std\+::pair$<$ Key, Value $>$ $>$ \mbox{\hyperlink{namespaceAuxMethods_af9218449b862b94608c0f3f567bace90}{Aux\+Methods\+::sort\+Dict\+By\+Value}} (const std\+::map$<$ Key, Value $>$ \&i\+\_\+dict, bool up=true)
+\begin{DoxyCompactList}\small\item\em sort\+Dict\+By\+Value Sorting the associative container by values and returning sorted key-\/value pairs as a vector. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceAuxMethods_a43e549d87cd504b8bb0fc7546239b577}{Aux\+Methods\+::remove\+Spaces}} (const std\+::string \&i\+\_\+s)
+\begin{DoxyCompactList}\small\item\em remove\+Spaces Removes spaces, tabs, and newline characters from a string \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespaceAuxMethods_ad91e7d774694571db2a7b6b7238e5d13}{Aux\+Methods\+::skip\+Spaces}} (const std\+::string \&i\+\_\+s, int i\+\_\+start=0)
+\begin{DoxyCompactList}\small\item\em skip\+Spaces Skips whitespace characters in the string starting from the specified position. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{namespaceAuxMethods_af91905c8bf7e07464a2906f5b3a4a89a}{Aux\+Methods\+::transpose}} (const std\+::vector$<$ std\+::vector$<$ T $>$$>$ \&matrix)
+\item 
+std\+::string \mbox{\hyperlink{namespaceAuxMethods_a70047e78c6b1ffcad09caf149a8d9db4}{Aux\+Methods\+::int\+To\+String\+With\+Zeroes}} (int i\+\_\+num, int i\+\_\+total\+Digits=5)
+\item 
+std\+::string \mbox{\hyperlink{namespaceAuxMethods_a59e455754cc12afc07d1cf3eba904ac7}{Aux\+Methods\+::replacer}} (const std\+::string \&i\+\_\+s, const std\+::string \&i\+\_\+r)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\std\+::string \mbox{\hyperlink{namespaceAuxMethods_ae8c22181f69d49df8f7eee60103fe48c}{Aux\+Methods\+::format}} (const std\+::string \&fmt, Args \&\&... args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+TODO\+: To\+Enum TODO\+: if need Line\+Reader TODO\+: if need Copy\+Directory. 
+

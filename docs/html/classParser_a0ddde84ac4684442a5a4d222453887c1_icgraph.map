@@ -1,0 +1,11 @@
+<map id="Parser::setGatesInputsInfo" name="Parser::setGatesInputsInfo">
+<area shape="rect" id="node1" title="setGatesInputsInfo Set information about gates inputs" alt="" coords="1524,92,1717,119"/>
+<area shape="rect" id="node2" href="$classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="1276,55,1476,97"/>
+<area shape="rect" id="node9" href="$classParser.html#a50e4d814174c9b009e77181cd7abf209" title=" " alt="" coords="1321,121,1431,148"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="704,5,935,61"/>
+<area shape="rect" id="node5" href="$classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="983,93,1228,120"/>
+<area shape="rect" id="node4" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,50,164,91"/>
+<area shape="rect" id="node6" href="$classGeneticGenerator.html#adccf630aca912b55820c1fea43111b58" title="createPopulation Creates the initial genetic population The method clears the current population and ..." alt="" coords="726,86,913,127"/>
+<area shape="rect" id="node7" href="$classGeneticGenerator.html#afbf9f3e6ae4d839df3ba19ed9473739e" title="generate Generates a genetic population and carries out evolutionary processes The method creates an ..." alt="" coords="453,93,656,120"/>
+<area shape="rect" id="node8" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="212,79,405,121"/>
+</map>

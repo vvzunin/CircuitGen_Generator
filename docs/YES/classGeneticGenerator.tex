@@ -1,0 +1,263 @@
+\hypertarget{classGeneticGenerator}{}\doxysection{Genetic\+Generator$<$ Type, Parameters\+Type $>$ Class Template Reference}
+\label{classGeneticGenerator}\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+
+
+\mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}} Template class for generating genetic populations.  
+
+
+
+
+{\ttfamily \#include $<$Gen\+Generator.\+h$>$}
+
+
+
+Collaboration diagram for Genetic\+Generator$<$ Type, Parameters\+Type $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classGeneticGenerator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGeneticGenerator_a09c15336d6d15f476729739a7992fb1a}{Genetic\+Generator}} (const Parameters\+Type \&i\+\_\+parameters, std\+::pair$<$ int, int $>$ i\+\_\+inout, const std\+::string \&i\+\_\+main\+Path)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ Type, Parameters\+Type $>$ $>$ \mbox{\hyperlink{classGeneticGenerator_afbf9f3e6ae4d839df3ba19ed9473739e}{generate}} ()
+\begin{DoxyCompactList}\small\item\em generate Generates a genetic population and carries out evolutionary processes The method creates an initial population, calculates the value of the process end function, and in a cycle performs the operations of recombination, mutation and selection until reaching criterion for completing a process or reaching the maximum number of cycles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGeneticGenerator_aea3ad73fd1f0edbd96ab4a7c8387328e}{save\+Population}} (const std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ Type, Parameters\+Type $>$$>$ \&i\+\_\+population)
+\item 
+void \mbox{\hyperlink{classGeneticGenerator_adccf630aca912b55820c1fea43111b58}{create\+Population}} ()
+\begin{DoxyCompactList}\small\item\em create\+Population Creates the initial genetic population The method clears the current population and then generates a new population of a given size. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classGeneticGenerator_ac7cbd02932a747df62054887b4a273d7}{end\+Process\+Function}} () const
+\begin{DoxyCompactList}\small\item\em end\+Process\+Function Calculates the value of the process termination function The method goes through the entire current population and calculates the maximum value adaptation index among all individuals. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classGeneticGenerator_a86c77290df05bc74c292e5138a25d95c}{d\+\_\+inputs}}
+\item 
+int \mbox{\hyperlink{classGeneticGenerator_a9286edf820e28ec1202729f22a1798dc}{d\+\_\+outputs}}
+\item 
+int \mbox{\hyperlink{classGeneticGenerator_a25c1dbf741c6d8c099d2b57f9ecb0f5f}{d\+\_\+num\+Cross}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ Type, Parameters\+Type $>$ $>$ \mbox{\hyperlink{classGeneticGenerator_a41c1886679db32f5fddee4381bc6344f}{d\+\_\+population}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ \mbox{\hyperlink{classGeneticGenerator_a10876e71adc807de7375e9d415388681}{d\+\_\+settings}} = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Graph\+Vertex\char`\"{})
+\item 
+Parameters\+Type \mbox{\hyperlink{classGeneticGenerator_a4997821aaf9966a7ddd3a4a44c5187d6}{d\+\_\+parameters}}
+\item 
+std\+::string \mbox{\hyperlink{classGeneticGenerator_a5099af720bec078e0cf360022db908a5}{d\+\_\+main\+Path}}
+\item 
+int \mbox{\hyperlink{classGeneticGenerator_aac8adec920e6633eff6af9252df9b7e5}{d\+\_\+folders\+Count}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Type, typename Parameters\+Type$>$\newline
+class Genetic\+Generator$<$ Type, Parameters\+Type $>$}
+
+\mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}} Template class for generating genetic populations. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Type} & Type of chromosome in a genetic population \\
+\hline
+{\em Parameters\+Type} & Type of parameters used to generate genetics \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+inputs} & Number of inputs for genetic population \\
+\hline
+{\em d\+\_\+outputs} & Number of outputs for a genetic population \\
+\hline
+{\em d\+\_\+num\+Cross} & Number of intersections for genetic operations \\
+\hline
+{\em d\+\_\+population} & Genetic population \\
+\hline
+{\em d\+\_\+settings} & Pointer to a settings instance \\
+\hline
+{\em d\+\_\+parameters} & Parameters for genetic generation \\
+\hline
+{\em d\+\_\+main\+Path} & Main path for storing data \\
+\hline
+{\em d\+\_\+folders\+Count} & Data folder counter \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGeneticGenerator_a09c15336d6d15f476729739a7992fb1a}\label{classGeneticGenerator_a09c15336d6d15f476729739a7992fb1a}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!GeneticGenerator@{GeneticGenerator}}
+\index{GeneticGenerator@{GeneticGenerator}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{GeneticGenerator()}{GeneticGenerator()}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+\mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::\mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}} (\begin{DoxyParamCaption}\item[{const Parameters\+Type \&}]{i\+\_\+parameters,  }\item[{std\+::pair$<$ int, int $>$}]{i\+\_\+inout,  }\item[{const std\+::string \&}]{i\+\_\+main\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticGenerator_a09c15336d6d15f476729739a7992fb1a_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGeneticGenerator_adccf630aca912b55820c1fea43111b58}\label{classGeneticGenerator_adccf630aca912b55820c1fea43111b58}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!createPopulation@{createPopulation}}
+\index{createPopulation@{createPopulation}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{createPopulation()}{createPopulation()}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+void \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::create\+Population (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+create\+Population Creates the initial genetic population The method clears the current population and then generates a new population of a given size. 
+
+For each individual in the population, a random chromosome of Type is generated using passed parameters. Individuals are added to a population and then the population is maintained Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticGenerator_adccf630aca912b55820c1fea43111b58_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticGenerator_adccf630aca912b55820c1fea43111b58_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticGenerator_ac7cbd02932a747df62054887b4a273d7}\label{classGeneticGenerator_ac7cbd02932a747df62054887b4a273d7}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!endProcessFunction@{endProcessFunction}}
+\index{endProcessFunction@{endProcessFunction}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{endProcessFunction()}{endProcessFunction()}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+double \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::end\+Process\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+end\+Process\+Function Calculates the value of the process termination function The method goes through the entire current population and calculates the maximum value adaptation index among all individuals. 
+
+This value is used to determine completion of the process of evolution of the genetic population. \begin{DoxyReturn}{Returns}
+The maximum value of the adaptation index in the population 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticGenerator_ac7cbd02932a747df62054887b4a273d7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticGenerator_afbf9f3e6ae4d839df3ba19ed9473739e}\label{classGeneticGenerator_afbf9f3e6ae4d839df3ba19ed9473739e}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!generate@{generate}}
+\index{generate@{generate}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+std\+::vector$<$\mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$Type, Parameters\+Type$>$ $>$ \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::generate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+generate Generates a genetic population and carries out evolutionary processes The method creates an initial population, calculates the value of the process end function, and in a cycle performs the operations of recombination, mutation and selection until reaching criterion for completing a process or reaching the maximum number of cycles. 
+
+On each iteration preserves the population. Upon completion, returns the final population. \begin{DoxyReturn}{Returns}
+Final genetic population 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticGenerator_afbf9f3e6ae4d839df3ba19ed9473739e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticGenerator_afbf9f3e6ae4d839df3ba19ed9473739e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneticGenerator_aea3ad73fd1f0edbd96ab4a7c8387328e}\label{classGeneticGenerator_aea3ad73fd1f0edbd96ab4a7c8387328e}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!savePopulation@{savePopulation}}
+\index{savePopulation@{savePopulation}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{savePopulation()}{savePopulation()}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+void \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::save\+Population (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$ Type, Parameters\+Type $>$$>$ \&}]{i\+\_\+population }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticGenerator_aea3ad73fd1f0edbd96ab4a7c8387328e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneticGenerator_aea3ad73fd1f0edbd96ab4a7c8387328e_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGeneticGenerator_aac8adec920e6633eff6af9252df9b7e5}\label{classGeneticGenerator_aac8adec920e6633eff6af9252df9b7e5}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!d\_foldersCount@{d\_foldersCount}}
+\index{d\_foldersCount@{d\_foldersCount}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{d\_foldersCount}{d\_foldersCount}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+int \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::d\+\_\+folders\+Count = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneticGenerator_a86c77290df05bc74c292e5138a25d95c}\label{classGeneticGenerator_a86c77290df05bc74c292e5138a25d95c}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!d\_inputs@{d\_inputs}}
+\index{d\_inputs@{d\_inputs}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{d\_inputs}{d\_inputs}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+int \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::d\+\_\+inputs\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneticGenerator_a5099af720bec078e0cf360022db908a5}\label{classGeneticGenerator_a5099af720bec078e0cf360022db908a5}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!d\_mainPath@{d\_mainPath}}
+\index{d\_mainPath@{d\_mainPath}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{d\_mainPath}{d\_mainPath}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+std\+::string \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::d\+\_\+main\+Path\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneticGenerator_a25c1dbf741c6d8c099d2b57f9ecb0f5f}\label{classGeneticGenerator_a25c1dbf741c6d8c099d2b57f9ecb0f5f}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!d\_numCross@{d\_numCross}}
+\index{d\_numCross@{d\_numCross}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{d\_numCross}{d\_numCross}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+int \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::d\+\_\+num\+Cross\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneticGenerator_a9286edf820e28ec1202729f22a1798dc}\label{classGeneticGenerator_a9286edf820e28ec1202729f22a1798dc}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!d\_outputs@{d\_outputs}}
+\index{d\_outputs@{d\_outputs}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{d\_outputs}{d\_outputs}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+int \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::d\+\_\+outputs\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneticGenerator_a4997821aaf9966a7ddd3a4a44c5187d6}\label{classGeneticGenerator_a4997821aaf9966a7ddd3a4a44c5187d6}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!d\_parameters@{d\_parameters}}
+\index{d\_parameters@{d\_parameters}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{d\_parameters}{d\_parameters}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+Parameters\+Type \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::d\+\_\+parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneticGenerator_a41c1886679db32f5fddee4381bc6344f}\label{classGeneticGenerator_a41c1886679db32f5fddee4381bc6344f}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!d\_population@{d\_population}}
+\index{d\_population@{d\_population}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{d\_population}{d\_population}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+std\+::vector$<$\mbox{\hyperlink{classChronosomeType}{Chronosome\+Type}}$<$Type, Parameters\+Type$>$ $>$ \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::d\+\_\+population\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneticGenerator_a10876e71adc807de7375e9d415388681}\label{classGeneticGenerator_a10876e71adc807de7375e9d415388681}} 
+\index{GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}!d\_settings@{d\_settings}}
+\index{d\_settings@{d\_settings}!GeneticGenerator$<$ Type, ParametersType $>$@{GeneticGenerator$<$ Type, ParametersType $>$}}
+\doxysubsubsection{\texorpdfstring{d\_settings}{d\_settings}}
+{\footnotesize\ttfamily template$<$typename Type , typename Parameters\+Type $>$ \\
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSettings}{Settings}}$>$ \mbox{\hyperlink{classGeneticGenerator}{Genetic\+Generator}}$<$ Type, Parameters\+Type $>$\+::d\+\_\+settings = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Graph\+Vertex\char`\"{})\hspace{0.3cm}{\ttfamily [private]}}
+

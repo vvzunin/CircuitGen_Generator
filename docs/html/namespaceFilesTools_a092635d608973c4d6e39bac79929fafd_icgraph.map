@@ -1,0 +1,4 @@
+<map id="FilesTools::getDirectories" name="FilesTools::getDirectories">
+<area shape="rect" id="node1" title="getDirectories This function takes the path to a directory and returns a string vector containing the..." alt="" coords="227,13,412,39"/>
+<area shape="rect" id="node2" href="$classDataBaseGenerator.html#af2d3442c4257a0da57658a12110adbdc" title="generateDataBaseFromRandomTruthTable The generate DataBase From Random Truth Table method of the Data..." alt="" coords="5,5,179,47"/>
+</map>

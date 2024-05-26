@@ -1,0 +1,19 @@
+<map id="DataBaseGeneratorParameters::setInputs" name="DataBaseGeneratorParameters::setInputs">
+<area shape="rect" id="Node000001" title="setInputs The method sets the number of input signals to generate the database" alt="" coords="766,80,968,123"/>
+<area shape="rect" id="Node000002" href="$classDataBaseGenerator.html#af2d3442c4257a0da57658a12110adbdc" title="generateDataBaseFromRandomTruthTable The generate DataBase From Random Truth Table method of the Data..." alt="" coords="565,80,718,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="750,104,718,104,718,99,750,99"/>
+<area shape="rect" id="Node000003" href="$classDataBaseGenerator.html#aa2046793f1452eabf54ca938ee3c6042" title=" " alt="" coords="369,9,512,52"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="563,77,503,55,504,50,565,72"/>
+<area shape="rect" id="Node000006" href="$classDataBaseGenerator.html#a8a484283ff64d7c1836052d608881440" title="generateTypeForGraph The generate Type method of the DataBase Generator class is responsible for gene..." alt="" coords="364,80,517,123"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="549,104,518,104,518,99,549,99"/>
+<area shape="rect" id="Node000008" href="$classDataBaseGenerator.html#a29b9fdffd9923608d7d6521ec7e81332" title=" " alt="" coords="368,151,513,193"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="565,131,504,153,503,148,563,126"/>
+<area shape="rect" id="Node000004" href="$namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="126,5,293,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="354,32,293,31,293,25,354,27"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,55,40"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="110,29,55,29,55,24,110,24"/>
+<area shape="rect" id="Node000007" href="$namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="116,72,303,131"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="349,104,303,104,303,99,349,99"/>
+<area shape="rect" id="Node000009" href="$namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="103,155,316,197"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="352,176,317,177,316,171,352,171"/>
+</map>

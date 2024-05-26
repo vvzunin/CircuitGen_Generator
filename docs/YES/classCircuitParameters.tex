@@ -1,0 +1,175 @@
+\hypertarget{classCircuitParameters}{}\doxysection{Circuit\+Parameters Class Reference}
+\label{classCircuitParameters}\index{CircuitParameters@{CircuitParameters}}
+
+
+{\ttfamily \#include $<$Circuit\+Parameters.\+hpp$>$}
+
+
+
+Collaboration diagram for Circuit\+Parameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classCircuitParameters__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCircuitParameters_a6126c83cafb2d0d2f89e1a2975a7db5d}{Circuit\+Parameters}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classCircuitParameters_a17bcb9155be908afffe815b8e639d494}{d\+\_\+name}} = \char`\"{}\char`\"{}
+\item 
+int \mbox{\hyperlink{classCircuitParameters_aa57df8538aebe82bdb7a37b07f6bf4a6}{d\+\_\+num\+Inputs}} = 0
+\item 
+int \mbox{\hyperlink{classCircuitParameters_adcd9ef49fbfae585bcfcca0d31219f2e}{d\+\_\+num\+Constants}} = 0
+\item 
+int \mbox{\hyperlink{classCircuitParameters_a857f5ed40370b67f70dd9a03d755621f}{d\+\_\+num\+Outputs}} = 0
+\item 
+unsigned \mbox{\hyperlink{classCircuitParameters_a0ca45c90c5dc0985d9c31945df6bc4f7}{d\+\_\+max\+Level}} = 0
+\item 
+int \mbox{\hyperlink{classCircuitParameters_aaf75328d37df2ddb6cf3477eb1a56f5c}{d\+\_\+num\+Edges}} = 0
+\item 
+int \mbox{\hyperlink{classCircuitParameters_a64e5a8844e8b72fe057a600df3060c3d}{d\+\_\+num\+Gates}} = 0
+\item 
+double \mbox{\hyperlink{classCircuitParameters_a26eb9f67257163382c6322efc48a9e78}{d\+\_\+size}} = 0.
+\item 
+double \mbox{\hyperlink{classCircuitParameters_a74f632040b4e61f1805bdfc73abab188}{d\+\_\+area}} = 0.
+\item 
+std\+::string \mbox{\hyperlink{classCircuitParameters_a3af2415d7e4ee5045f123141aad1c0ef}{d\+\_\+hash\+Code}} = \char`\"{}\char`\"{}
+\item 
+std\+::map$<$ std\+::string, int $>$ \mbox{\hyperlink{classCircuitParameters_ab44bb0efcefc28d1eb0bb629c87b4c2e}{d\+\_\+num\+Elements\+Of\+Each\+Type}}
+\item 
+std\+::map$<$ std\+::pair$<$ std\+::string, std\+::string $>$, int $>$ \mbox{\hyperlink{classCircuitParameters_a40a32c31a16c3c5d27833281723688ae}{d\+\_\+num\+Edges\+Of\+Each\+Type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000004}{Todo}}]\+: to add desc fields of the class class \mbox{\hyperlink{classCircuitParameters}{Circuit\+Parameters}}\end{DoxyRefDesc}
+
+
+This is the detailed one. More details 
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+name} & This name of the \mbox{\hyperlink{classCircuit}{Circuit}} \\
+\hline
+{\em d\+\_\+num\+Imputs} & This the number of inputs in the \mbox{\hyperlink{classCircuit}{Circuit}} \\
+\hline
+{\em d\+\_\+num\+Outputs} & This the number of outputs in the \mbox{\hyperlink{classCircuit}{Circuit}} \\
+\hline
+{\em d\+\_\+max\+Level} & This possible maximum number of logical operations, also is level of the Circuit$\ast$ \\
+\hline
+{\em d\+\_\+num\+Edges} & This the number of transitions within the circuit, they are called edges, as in graphs the transition between vertices$\ast$ \\
+\hline
+{\em d\+\_\+reliability} & This parameter shows the probability that we will receive a true signal at the output. Its range is between 0 and 1 \\
+\hline
+{\em d\+\_\+size} & This parameter shows the number of logical elements in the circuit. For example, the number of logic gates, transistors, or other basic elements \\
+\hline
+{\em d\+\_\+area} & In the \mbox{\hyperlink{classCircuit}{Circuit}}, it usually refers to the physical area \\
+\hline
+{\em d\+\_\+longest\+Path} & This parameter shows the longest path from the entrance to the exit$\ast$ \\
+\hline
+{\em d\+\_\+gates} & The number of different logical operations on the circuit, for example and, or, XOR, and so on \\
+\hline
+{\em d\+\_\+sensitivity\+Factor} & This parameter gives information about possible change in the output signal, when measuring the input signal$\ast$ \\
+\hline
+{\em d\+\_\+reliability\+Percent} & The percentage of reliability in combination circuits usually means the probability that the circuit will work correctly under given input conditions for a certain period of time or number of operations$\ast$ \\
+\hline
+{\em d\+\_\+hash\+Code} & ??? \\
+\hline
+{\em d\+\_\+num\+Elements\+Of\+Each\+Type} & This map contains the name of the element and how many times it occurs in the \mbox{\hyperlink{classCircuit}{Circuit}}? \\
+\hline
+{\em d\+\_\+num\+Edges\+Of\+Each\+Type} & ??? \\
+\hline
+{\em d\+\_\+abc\+\_\+\+Stats} & ??? \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCircuitParameters_a6126c83cafb2d0d2f89e1a2975a7db5d}\label{classCircuitParameters_a6126c83cafb2d0d2f89e1a2975a7db5d}} 
+\index{CircuitParameters@{CircuitParameters}!CircuitParameters@{CircuitParameters}}
+\index{CircuitParameters@{CircuitParameters}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{CircuitParameters()}{CircuitParameters()}}
+{\footnotesize\ttfamily Circuit\+Parameters\+::\+Circuit\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classCircuitParameters_a74f632040b4e61f1805bdfc73abab188}\label{classCircuitParameters_a74f632040b4e61f1805bdfc73abab188}} 
+\index{CircuitParameters@{CircuitParameters}!d\_area@{d\_area}}
+\index{d\_area@{d\_area}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_area}{d\_area}}
+{\footnotesize\ttfamily double Circuit\+Parameters\+::d\+\_\+area = 0.}
+
+\mbox{\Hypertarget{classCircuitParameters_a3af2415d7e4ee5045f123141aad1c0ef}\label{classCircuitParameters_a3af2415d7e4ee5045f123141aad1c0ef}} 
+\index{CircuitParameters@{CircuitParameters}!d\_hashCode@{d\_hashCode}}
+\index{d\_hashCode@{d\_hashCode}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_hashCode}{d\_hashCode}}
+{\footnotesize\ttfamily std\+::string Circuit\+Parameters\+::d\+\_\+hash\+Code = \char`\"{}\char`\"{}}
+
+\mbox{\Hypertarget{classCircuitParameters_a0ca45c90c5dc0985d9c31945df6bc4f7}\label{classCircuitParameters_a0ca45c90c5dc0985d9c31945df6bc4f7}} 
+\index{CircuitParameters@{CircuitParameters}!d\_maxLevel@{d\_maxLevel}}
+\index{d\_maxLevel@{d\_maxLevel}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_maxLevel}{d\_maxLevel}}
+{\footnotesize\ttfamily unsigned Circuit\+Parameters\+::d\+\_\+max\+Level = 0}
+
+\mbox{\Hypertarget{classCircuitParameters_a17bcb9155be908afffe815b8e639d494}\label{classCircuitParameters_a17bcb9155be908afffe815b8e639d494}} 
+\index{CircuitParameters@{CircuitParameters}!d\_name@{d\_name}}
+\index{d\_name@{d\_name}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_name}{d\_name}}
+{\footnotesize\ttfamily std\+::string Circuit\+Parameters\+::d\+\_\+name = \char`\"{}\char`\"{}}
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000005}{Todo}}]\+: rewrite getters and setters \end{DoxyRefDesc}
+\mbox{\Hypertarget{classCircuitParameters_adcd9ef49fbfae585bcfcca0d31219f2e}\label{classCircuitParameters_adcd9ef49fbfae585bcfcca0d31219f2e}} 
+\index{CircuitParameters@{CircuitParameters}!d\_numConstants@{d\_numConstants}}
+\index{d\_numConstants@{d\_numConstants}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_numConstants}{d\_numConstants}}
+{\footnotesize\ttfamily int Circuit\+Parameters\+::d\+\_\+num\+Constants = 0}
+
+\mbox{\Hypertarget{classCircuitParameters_aaf75328d37df2ddb6cf3477eb1a56f5c}\label{classCircuitParameters_aaf75328d37df2ddb6cf3477eb1a56f5c}} 
+\index{CircuitParameters@{CircuitParameters}!d\_numEdges@{d\_numEdges}}
+\index{d\_numEdges@{d\_numEdges}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_numEdges}{d\_numEdges}}
+{\footnotesize\ttfamily int Circuit\+Parameters\+::d\+\_\+num\+Edges = 0}
+
+\mbox{\Hypertarget{classCircuitParameters_a40a32c31a16c3c5d27833281723688ae}\label{classCircuitParameters_a40a32c31a16c3c5d27833281723688ae}} 
+\index{CircuitParameters@{CircuitParameters}!d\_numEdgesOfEachType@{d\_numEdgesOfEachType}}
+\index{d\_numEdgesOfEachType@{d\_numEdgesOfEachType}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_numEdgesOfEachType}{d\_numEdgesOfEachType}}
+{\footnotesize\ttfamily std\+::map$<$std\+::pair$<$std\+::string, std\+::string$>$, int$>$ Circuit\+Parameters\+::d\+\_\+num\+Edges\+Of\+Each\+Type}
+
+\mbox{\Hypertarget{classCircuitParameters_ab44bb0efcefc28d1eb0bb629c87b4c2e}\label{classCircuitParameters_ab44bb0efcefc28d1eb0bb629c87b4c2e}} 
+\index{CircuitParameters@{CircuitParameters}!d\_numElementsOfEachType@{d\_numElementsOfEachType}}
+\index{d\_numElementsOfEachType@{d\_numElementsOfEachType}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_numElementsOfEachType}{d\_numElementsOfEachType}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, int$>$ Circuit\+Parameters\+::d\+\_\+num\+Elements\+Of\+Each\+Type}
+
+\mbox{\Hypertarget{classCircuitParameters_a64e5a8844e8b72fe057a600df3060c3d}\label{classCircuitParameters_a64e5a8844e8b72fe057a600df3060c3d}} 
+\index{CircuitParameters@{CircuitParameters}!d\_numGates@{d\_numGates}}
+\index{d\_numGates@{d\_numGates}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_numGates}{d\_numGates}}
+{\footnotesize\ttfamily int Circuit\+Parameters\+::d\+\_\+num\+Gates = 0}
+
+\mbox{\Hypertarget{classCircuitParameters_aa57df8538aebe82bdb7a37b07f6bf4a6}\label{classCircuitParameters_aa57df8538aebe82bdb7a37b07f6bf4a6}} 
+\index{CircuitParameters@{CircuitParameters}!d\_numInputs@{d\_numInputs}}
+\index{d\_numInputs@{d\_numInputs}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_numInputs}{d\_numInputs}}
+{\footnotesize\ttfamily int Circuit\+Parameters\+::d\+\_\+num\+Inputs = 0}
+
+\mbox{\Hypertarget{classCircuitParameters_a857f5ed40370b67f70dd9a03d755621f}\label{classCircuitParameters_a857f5ed40370b67f70dd9a03d755621f}} 
+\index{CircuitParameters@{CircuitParameters}!d\_numOutputs@{d\_numOutputs}}
+\index{d\_numOutputs@{d\_numOutputs}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_numOutputs}{d\_numOutputs}}
+{\footnotesize\ttfamily int Circuit\+Parameters\+::d\+\_\+num\+Outputs = 0}
+
+\mbox{\Hypertarget{classCircuitParameters_a26eb9f67257163382c6322efc48a9e78}\label{classCircuitParameters_a26eb9f67257163382c6322efc48a9e78}} 
+\index{CircuitParameters@{CircuitParameters}!d\_size@{d\_size}}
+\index{d\_size@{d\_size}!CircuitParameters@{CircuitParameters}}
+\doxysubsubsection{\texorpdfstring{d\_size}{d\_size}}
+{\footnotesize\ttfamily double Circuit\+Parameters\+::d\+\_\+size = 0.}
+

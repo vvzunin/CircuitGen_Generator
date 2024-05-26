@@ -1,0 +1,5 @@
+<map id="GraphVertexInput::updateValue" name="GraphVertexInput::updateValue">
+<area shape="rect" id="Node000001" title="updateValue A virtual function for updating the vertex value." alt="" coords="5,5,175,48"/>
+<area shape="rect" id="Node000002" href="$classGraphVertexBase.html#af114ad99f885c77a28cee77f0c86fbcf" title="getValue Returns the value of the vertex." alt="" coords="223,13,406,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,24,207,24,207,29,175,29"/>
+</map>

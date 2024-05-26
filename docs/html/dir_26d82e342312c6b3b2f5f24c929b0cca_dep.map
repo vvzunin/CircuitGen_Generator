@@ -1,0 +1,13 @@
+<map id="C:/course_3/CircuitGen_Generator/src/generators/Genetic/Recombination" name="C:/course_3/CircuitGen_Generator/src/generators/Genetic/Recombination">
+<area shape="rect" id="node1" href="dir_67301aae98e174b09c07e1be06e27ba2.html" title="Mutations" alt="" coords="26,128,105,155"/>
+<area shape="rect" id="node2" href="dir_7e389d3f378387457d4d54ac03526083.html" title="Parents" alt="" coords="128,128,195,155"/>
+<area shape="rect" id="node3" href="dir_26d82e342312c6b3b2f5f24c929b0cca.html" title="Recombination" alt="" coords="88,53,195,80"/>
+<area shape="poly" id="edge1" href="dir_000015_000012.html" alt="" coords="130,82,91,119,87,115,126,79"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000015_000012.html" title="2" alt="" coords="94,113,101,129"/>
+<area shape="poly" id="edge3" href="dir_000015_000014.html" alt="" coords="147,80,156,112,151,114,142,81"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000015_000014.html" title="4" alt="" coords="158,100,165,116"/>
+<area shape="rect" id="node4" href="dir_783b52754a2018d76e61e06ca3cbe8be.html" title="baseStructures" alt="" coords="219,128,328,155"/>
+<area shape="poly" id="edge2" href="dir_000015_000001.html" alt="" coords="166,78,239,118,236,123,163,83"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000015_000001.html" title="1" alt="" coords="235,103,242,119"/>
+<area shape="rect" id="clust1" href="dir_6c7775f3030ca824eb04bf24b16c71a1.html" title="Genetic" alt="" coords="16,16,205,165"/>
+</map>

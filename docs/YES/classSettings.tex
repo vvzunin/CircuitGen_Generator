@@ -1,0 +1,945 @@
+\hypertarget{classSettings}{}\doxysection{Settings Class Reference}
+\label{classSettings}\index{Settings@{Settings}}
+
+
+{\ttfamily \#include $<$Settings.\+hpp$>$}
+
+
+
+Collaboration diagram for Settings\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{classSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSettings_ae25bcc96acb95e2bab23f2df682c9803}{Settings}} (\mbox{\hyperlink{classSettings}{Settings}} \&other)=delete
+\item 
+void \mbox{\hyperlink{classSettings_aac1daa80e77ea4fd79c9506b31852765}{operator=}} (const \mbox{\hyperlink{classSettings}{Settings}} \&)=delete
+\item 
+void \mbox{\hyperlink{classSettings_aeedbd7f125f99ea2ecfe52c024c5e645}{load\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em load\+Settings Downloads settings from a file The method loads the settings from a file with the name specified in the data member in\+\_\+filename. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSettings_a518f942310a5e9283f5a7e07ce1bf018}{get\+Instance\+Name}} () const
+\begin{DoxyCompactList}\small\item\em get\+Instance\+Name Gets the name of the current instance of settings \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::string, int $>$ \mbox{\hyperlink{classSettings_a4f4b37d459434afc4d3ecee2fe35467c}{get\+Logic\+Operation}} (const std\+::string \&i\+\_\+op)
+\begin{DoxyCompactList}\small\item\em get\+Logic\+Operation Gets information about a logical operation by its name \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} $>$ \mbox{\hyperlink{classSettings_a77b6cdd4b2358694786317ccbc2488fb}{get\+Logic\+Operations\+Keys}} ()
+\begin{DoxyCompactList}\small\item\em get\+Logic\+Operations\+Keys Returns the keys of logical operations \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::vector$<$ bool $>$, std\+::vector$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} $>$ $>$ \mbox{\hyperlink{classSettings_a8ac97e84dd5832932cbc2adfcc46c418}{get\+Logic\+Operations\+With\+Gates}} ()
+\begin{DoxyCompactList}\small\item\em get\+Logic\+Operations\+With\+Gates Returns logical operations along with information about the presence of a single input The method returns a pair of vectors\+: the first vector contains information about whether each a logical operation has only one input(true if this is the case, false otherwise), and the second vector contains the keys(enumerated values) of all available logical operations \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSettings_a5f1c541b2966bafedef3cb6f73f94978}{from\+Operations\+To\+Name}} (const std\+::string \&i\+\_\+op) const
+\begin{DoxyCompactList}\small\item\em from\+Operations\+To\+Name Converts the operation to its name \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSettings_a838dbb2c30102f84ff0f9532aac665c8}{get\+Dataset\+Path}} () const
+\begin{DoxyCompactList}\small\item\em get\+Dataset\+Path Returns the path to the dataset \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSettings_aa58689526fd6afebad1d1171d200a75c}{set\+Dataset\+Path}} (const std\+::string \&i\+\_\+dataset\+Path)
+\begin{DoxyCompactList}\small\item\em set\+Dataset\+Path Sets the path to the dataset \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSettings_aa007a2c9f0058cc4a221373e98e796b9}{get\+Generation\+Method\+Prefix}} (const \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}} i\+\_\+method\+Type) const
+\begin{DoxyCompactList}\small\item\em get\+Generation\+Method\+Prefix Gets the prefix of the generation method by its corresponding Generation\+Types The method takes the Generation\+Types type variable of the generation method and returns the corresponding prefix. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSettings_a679f8d3ddc029d89e1185505bf0c1baa}{get\+Library\+Path}} () const
+\begin{DoxyCompactList}\small\item\em get\+Library\+Path Returns the path to the library \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSettings_a80d1b4b1f8fcf4593739a3cc8ebbaabf}{get\+Library\+Name\+From\+Enum}} (const \mbox{\hyperlink{Settings_8hpp_a71bf501f63160ba5aa5adb9552290dc9}{Libraries\+Types}} \&library) const
+\begin{DoxyCompactList}\small\item\em get\+Library\+Name\+From\+Enum Gets the library name by its enumerated type \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSettings_a9de88f4776c57ef5a86cf581dfee28de}{get\+Max\+Inputs}} () const
+\begin{DoxyCompactList}\small\item\em get\+Max\+Inputs Gets the maximum number of inputs \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSettings_a72aa6a0cb342648d011b458b8126934a}{get\+Max\+Outputs}} () const
+\begin{DoxyCompactList}\small\item\em get\+Max\+Outputs Returns the maximum number of outputs \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, std\+::pair$<$ std\+::string, int $>$ $>$ \mbox{\hyperlink{classSettings_acb1def89b78d63b88e6c1499bf271e5a}{get\+Logic\+Operations}} () const
+\begin{DoxyCompactList}\small\item\em get\+Logic\+Operations all logical operations The method returns a dictionary containing all logical operations in the form of a pair, where the key is a string representing the name of the operation, and the value is a pair in which the first element is a string representing the name of the operation, and the second element is an integer value representing the identifier of the operation \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSettings_a13728ea075c0dcd0e95cb477130659c3}{get\+Path\+Nadezhda}} () const
+\begin{DoxyCompactList}\small\item\em get\+Path\+Nadezhda Returns the path to Nadezhda \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSettings_a2b6e2dca09331c1ca30b748867428edc}{get\+Nadezhda\+Var}} (const std\+::string \&key) const
+\begin{DoxyCompactList}\small\item\em get\+Nadezhda\+Var Gets the value of a variable from the Nadezhda dictionary by key \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classSettings_a46ce66c164d399d0527bca5924e15ca3}{from\+Operations\+To\+Hierarchy}} (int key) const
+\begin{DoxyCompactList}\small\item\em from\+Operations\+To\+Hierarchy Converts an operation key to its corresponding hierarchy \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSettings_a8924389bb9d0ef1d3ad46f4a0f295c54}{get\+Num\+Thread}} () const
+\begin{DoxyCompactList}\small\item\em get\+Num\+Thread Retrieves the number of threads used for processing \end{DoxyCompactList}\item 
+\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} \mbox{\hyperlink{classSettings_a5a888d5cd6415b67280d17711cb5ede9}{parse\+String\+To\+Gate}} (std\+::string i\+\_\+gate) const
+\begin{DoxyCompactList}\small\item\em parse\+String\+To\+Gate Converts a string representation of a gate to its corresponding enum value \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSettings_ada36e22edd22840668ca152e58261293}{parse\+Gate\+To\+String}} (\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516}{gate}}) const
+\begin{DoxyCompactList}\small\item\em parse\+Gate\+To\+String Converts an enum value of a gate to its corresponding string representation \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSettings_a0237bbfae43cdc7ed6a8d68877f1bd35}{parse\+Vertex\+To\+String}} (\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} vertex) const
+\begin{DoxyCompactList}\small\item\em parse\+Vertex\+To\+String Converts an enum value of a vertex type to its corresponding string representation \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{get\+Instance}} (const std\+::string \&i\+\_\+value)
+\begin{DoxyCompactList}\small\item\em get\+Instance Gets a single instance of the \mbox{\hyperlink{classSettings}{Settings}} class The method provides creation and receipt of a single instance of the \mbox{\hyperlink{classSettings}{Settings}} class with the specified value of the settings path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSettings_a692db3013821565d261527cc0edeeb0e}{Settings}} (const std\+::string \&i\+\_\+path)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSettings_a19d1e2e2df8600f7e2cd1c64363fe60f}{Save\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Save\+Settings Saves the current settings to a file This method saves the current settings of the \mbox{\hyperlink{classSettings}{Settings}} object to a file specified by d\+\_\+file\+Name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classSettings_a30645ad6e1b4134078cc3e6847d7f21d}{d\+\_\+name}}
+\item 
+std\+::string \mbox{\hyperlink{classSettings_a7bba8dce46df65412fd5aba15afb7c3a}{d\+\_\+path}}
+\item 
+std\+::string \mbox{\hyperlink{classSettings_ab4fadb73ca581ee3340a022a05bb5f6d}{d\+\_\+csvdataset}} = \char`\"{}dataset.\+csv\char`\"{}
+\item 
+std\+::string \mbox{\hyperlink{classSettings_aa5da8389cf8876967f44415262d58a7b}{d\+\_\+file\+Name}} = \char`\"{}settings.\+dat\char`\"{}
+\item 
+std\+::string \mbox{\hyperlink{classSettings_ac2c5e889e5f79932bff53afcd28b09d5}{d\+\_\+dataset\+Path}} = \char`\"{}./dataset\char`\"{}
+\item 
+std\+::string \mbox{\hyperlink{classSettings_afab586c2612819f69302675d9b3a30e4}{d\+\_\+library\+Path}} = \char`\"{}Generator/libs\char`\"{}
+\item 
+std\+::string \mbox{\hyperlink{classSettings_a78506c7af148fdf119d85ce03c0c5ab0}{d\+\_\+path\+To\+Nadezhda}} = \char`\"{}./Generator/source/data/Nadezhda\char`\"{}
+\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{classSettings_a4100bd61a767f0904a54dd50de6ae98d}{d\+\_\+nadezhda}}
+\item 
+int \mbox{\hyperlink{classSettings_a9311ff44c616791236fe22f8860c43c3}{d\+\_\+num\+Threads}} = 4
+\item 
+std\+::map$<$ std\+::string, std\+::pair$<$ std\+::string, int $>$ $>$ \mbox{\hyperlink{classSettings_af468d97933e9b0c7cfacce937a7b79d6}{d\+\_\+logic\+Operations}}
+\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} $>$ \mbox{\hyperlink{classSettings_afe5072472603b12235614b71022a4140}{string\+To\+Gate}}
+\item 
+std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, std\+::string $>$ \mbox{\hyperlink{classSettings_ab74bc9714f5f5875fb4ee9febf7600f7}{gate\+To\+String}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} $>$ \mbox{\hyperlink{classSettings_a96e7f9cd3204378ac43d671ea72aeb8e}{d\+\_\+logic\+Elements}}
+\item 
+std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}, std\+::string $>$ \mbox{\hyperlink{classSettings_ac3baf3952239682c56079b605c7a462f}{vertex\+To\+String}}
+\item 
+std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}}, std\+::string $>$ \mbox{\hyperlink{classSettings_ac36e1b1e5631eb3f2881e6eb8a8c7855}{generation\+Type\+To\+Prefix}}
+\item 
+std\+::map$<$ int, std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{classSettings_a97de2ea217434cd195d621dfb8b16956}{d\+\_\+operations\+To\+Hierarchy}}
+\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{classSettings_aaae7b30262048d55ba5d001df6b61bb6}{d\+\_\+operations\+To\+Name}}
+\item 
+int \mbox{\hyperlink{classSettings_a6f879361fe971430ebfddb7ffc79b641}{d\+\_\+max\+Inputs}} = 50
+\item 
+int \mbox{\hyperlink{classSettings_ae183555f2e7a0751f901e5fb10888204}{d\+\_\+max\+Outputs}} = 50
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ \mbox{\hyperlink{classSettings_a6dee76fee0369f772bb0cb85457eea8e}{d\+\_\+singleton}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000017}{Todo}}]\+: To add Description some fields class \mbox{\hyperlink{classSettings}{Settings}}\end{DoxyRefDesc}
+
+
+This is the detailed one. More details. Private... 
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+name} & This is a string field for storing the name of the settings \\
+\hline
+{\em d\+\_\+singleton} & Singleton ensures that only one instance of the class exists in the application \\
+\hline
+{\em d\+\_\+path} & The path to the settings file \\
+\hline
+{\em d\+\_\+csvdataset} & Contains the name of the CSV file for the dataset. By default, \char`\"{}dataset.\+csv\char`\"{} \\
+\hline
+{\em d\+\_\+file\+Name} & The name of the settings file. The default value is \char`\"{}settings.\+dat\char`\"{} \\
+\hline
+{\em d\+\_\+dataset\+Path} & This is a string field containing the path to the directory with the dataset. The default value is \char`\"{}./dataset\char`\"{} \\
+\hline
+{\em d\+\_\+library\+Path} & This is a string field that contains the path to the library directory. The default value is set to \char`\"{}\+Generator/libs\char`\"{} \\
+\hline
+{\em d\+\_\+path\+To\+Nadezhda} & This is a string field that contains the path to the directory with Nadezhda data. The default value is set to \char`\"{}./\+Generator/source/data/\+Nadezhda\char`\"{}. However, this path is not in the project$\ast$ \\
+\hline
+{\em d\+\_\+nadezhda} & ??? \\
+\hline
+{\em d\+\_\+num\+Threads} & The number of threads that are used in the application. The default value is 4 \\
+\hline
+{\em d\+\_\+logic\+Operations} & This is an associative std\+::map container that maps strings (keys) into pairs of strings and integers. It is used to store logical operations and their associated parameters, such as the symbolic representation of the operation and its priority \\
+\hline
+{\em d\+\_\+operations\+To\+Hierarchy} & This is an associative std\+::map container that maps integers to string vectors. It is used to store a hierarchy of logical operations \\
+\hline
+{\em d\+\_\+operations\+To\+Name} & It is used to match symbolic representations of logical operations and their names. \\
+\hline
+{\em d\+\_\+max\+Inputs} & The maximum number of inputs. The default value is 50 \\
+\hline
+{\em d\+\_\+max\+Outputs} & The maximum number of outputs. The default value is 50 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSettings_a692db3013821565d261527cc0edeeb0e}\label{classSettings_a692db3013821565d261527cc0edeeb0e}} 
+\index{Settings@{Settings}!Settings@{Settings}}
+\index{Settings@{Settings}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{Settings()}{Settings()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Settings\+::\+Settings (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettings_a692db3013821565d261527cc0edeeb0e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSettings_ae25bcc96acb95e2bab23f2df682c9803}\label{classSettings_ae25bcc96acb95e2bab23f2df682c9803}} 
+\index{Settings@{Settings}!Settings@{Settings}}
+\index{Settings@{Settings}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{Settings()}{Settings()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Settings\+::\+Settings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSettings}{Settings}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSettings_a46ce66c164d399d0527bca5924e15ca3}\label{classSettings_a46ce66c164d399d0527bca5924e15ca3}} 
+\index{Settings@{Settings}!fromOperationsToHierarchy@{fromOperationsToHierarchy}}
+\index{fromOperationsToHierarchy@{fromOperationsToHierarchy}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{fromOperationsToHierarchy()}{fromOperationsToHierarchy()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Settings\+::from\+Operations\+To\+Hierarchy (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption}) const}
+
+
+
+from\+Operations\+To\+Hierarchy Converts an operation key to its corresponding hierarchy 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key representing the operation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$ The hierarchy associated with the operation key 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the Settings class or getting it from an}}
+\DoxyCodeLine{existing \textcolor{keywordtype}{object} std::shared\_ptr<Settings> settingsInstance =}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}/path/to/settings"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Get the hierarchy associated with the operation key 5}}
+\DoxyCodeLine{std::vector<std::string> operationHierarchy =}
+\DoxyCodeLine{settingsInstance-\/>fromOperationsToHierarchy(5);}
+\DoxyCodeLine{\textcolor{comment}{// Output the hierarchy}}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(\textcolor{keyword}{const} \textcolor{keyword}{auto}\& element : operationHierarchy)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    std::cout << element << \textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{std::cout << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::out\+\_\+of\+\_\+range} & If the provided key does not exist in the internal map of operation keys to hierarchies \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classSettings_a5f1c541b2966bafedef3cb6f73f94978}\label{classSettings_a5f1c541b2966bafedef3cb6f73f94978}} 
+\index{Settings@{Settings}!fromOperationsToName@{fromOperationsToName}}
+\index{fromOperationsToName@{fromOperationsToName}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{fromOperationsToName()}{fromOperationsToName()}}
+{\footnotesize\ttfamily std\+::string Settings\+::from\+Operations\+To\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+op }\end{DoxyParamCaption}) const}
+
+
+
+from\+Operations\+To\+Name Converts the operation to its name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+op} & a string representing the operation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string Operation name 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the Settings class or getting it from}}
+\DoxyCodeLine{an existing \textcolor{keywordtype}{object}}
+\DoxyCodeLine{std::shared\_ptr<Settings> settingsInstance =}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}/path/to/settings"{}});}
+\DoxyCodeLine{Convert the operation to its name}
+\DoxyCodeLine{std::string operationName;}
+\DoxyCodeLine{\textcolor{keywordflow}{try}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{operationName = settingsInstance-\/>fromOperationsToName(\textcolor{stringliteral}{"{}and"{}});}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Operation name: "{}} << operationName << std::endl;}
+\DoxyCodeLine{\} \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} std::out\_of\_range\& e) \{}
+\DoxyCodeLine{std::cerr << \textcolor{stringliteral}{"{}Error: "{}} << e.what() << std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::out\+\_\+of\+\_\+range} & If the passed operation does not exist in the list of operations \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classSettings_a838dbb2c30102f84ff0f9532aac665c8}\label{classSettings_a838dbb2c30102f84ff0f9532aac665c8}} 
+\index{Settings@{Settings}!getDatasetPath@{getDatasetPath}}
+\index{getDatasetPath@{getDatasetPath}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getDatasetPath()}{getDatasetPath()}}
+{\footnotesize\ttfamily std\+::string Settings\+::get\+Dataset\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Dataset\+Path Returns the path to the dataset 
+
+\begin{DoxyReturn}{Returns}
+std\+::string The path to the dataset 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_aa007a2c9f0058cc4a221373e98e796b9}\label{classSettings_aa007a2c9f0058cc4a221373e98e796b9}} 
+\index{Settings@{Settings}!getGenerationMethodPrefix@{getGenerationMethodPrefix}}
+\index{getGenerationMethodPrefix@{getGenerationMethodPrefix}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getGenerationMethodPrefix()}{getGenerationMethodPrefix()}}
+{\footnotesize\ttfamily std\+::string Settings\+::get\+Generation\+Method\+Prefix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}}}]{i\+\_\+method\+Type }\end{DoxyParamCaption}) const}
+
+
+
+get\+Generation\+Method\+Prefix Gets the prefix of the generation method by its corresponding Generation\+Types The method takes the Generation\+Types type variable of the generation method and returns the corresponding prefix. 
+
+If the passed Generation\+Types does not match any of the known methods, std\+::out\+\_\+of\+\_\+range exception is thrown. 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+method\+Type} & A Generation\+Types variable containing the name of the generation method \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string Prefix of the generation method 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the Settings class or getting it from an}}
+\DoxyCodeLine{existing \textcolor{keywordtype}{object}}
+\DoxyCodeLine{std::shared\_ptr<Settings> settingsInstance =}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}/path/to/settings"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Get the prefix of the generation method by its name}}
+\DoxyCodeLine{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{GenerationTypes}} method = \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c}{GenerationTypes::RandLevel}};}
+\DoxyCodeLine{std::string prefix = settingsInstance-\/>getGenerationMethodPrefix(method);}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Prefix for method "{}} << method << \textcolor{stringliteral}{"{}: "{}} << prefix <<}
+\DoxyCodeLine{std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a30ad5eb680e7894684c46fa5623870f3}\label{classSettings_a30ad5eb680e7894684c46fa5623870f3}} 
+\index{Settings@{Settings}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ Settings\+::get\+Instance (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+get\+Instance Gets a single instance of the \mbox{\hyperlink{classSettings}{Settings}} class The method provides creation and receipt of a single instance of the \mbox{\hyperlink{classSettings}{Settings}} class with the specified value of the settings path. 
+
+If an instance already exists, the method returns a pointer to it, otherwise it creates a new instance, loads the settings from the file and returns a pointer to it. 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+value} & The value of the path to the settings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::shared\+\_\+ptr$<$\+Settings$>$ A pointer to a single instance of the \mbox{\hyperlink{classSettings}{Settings}} class 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating a single instance of the Settings class, if it hasn't been}}
+\DoxyCodeLine{\textcolor{comment}{// created yet, and we get a pointer to it}}
+\DoxyCodeLine{std::shared\_ptr<Settings>        settingsInstance =}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}/path/to/settings"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Now we can use the settings Instance object to access the methods}}
+\DoxyCodeLine{\textcolor{comment}{// and members of the Settings class}}
+\DoxyCodeLine{std::string datasetPath = settingsInstance-\/>getDatasetPath();}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Dataset path: "{}} << datasetPath << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+This is a safer way to create an instance. instance = new Singleton is dangeruous in case two instance threads wants to access at the same timeHere is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{classSettings_a30ad5eb680e7894684c46fa5623870f3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettings_a30ad5eb680e7894684c46fa5623870f3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSettings_a518f942310a5e9283f5a7e07ce1bf018}\label{classSettings_a518f942310a5e9283f5a7e07ce1bf018}} 
+\index{Settings@{Settings}!getInstanceName@{getInstanceName}}
+\index{getInstanceName@{getInstanceName}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getInstanceName()}{getInstanceName()}}
+{\footnotesize\ttfamily std\+::string Settings\+::get\+Instance\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Instance\+Name Gets the name of the current instance of settings 
+
+\begin{DoxyReturn}{Returns}
+std\+::string Name of the current instance of settings 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a80d1b4b1f8fcf4593739a3cc8ebbaabf}\label{classSettings_a80d1b4b1f8fcf4593739a3cc8ebbaabf}} 
+\index{Settings@{Settings}!getLibraryNameFromEnum@{getLibraryNameFromEnum}}
+\index{getLibraryNameFromEnum@{getLibraryNameFromEnum}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getLibraryNameFromEnum()}{getLibraryNameFromEnum()}}
+{\footnotesize\ttfamily std\+::string Settings\+::get\+Library\+Name\+From\+Enum (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{Settings_8hpp_a71bf501f63160ba5aa5adb9552290dc9}{Libraries\+Types}} \&}]{library }\end{DoxyParamCaption}) const}
+
+
+
+get\+Library\+Name\+From\+Enum Gets the library name by its enumerated type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em library} & The enumerated type {\ttfamily Libraries\+Types} representing the library \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string Library name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a679f8d3ddc029d89e1185505bf0c1baa}\label{classSettings_a679f8d3ddc029d89e1185505bf0c1baa}} 
+\index{Settings@{Settings}!getLibraryPath@{getLibraryPath}}
+\index{getLibraryPath@{getLibraryPath}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getLibraryPath()}{getLibraryPath()}}
+{\footnotesize\ttfamily std\+::string Settings\+::get\+Library\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Library\+Path Returns the path to the library 
+
+\begin{DoxyReturn}{Returns}
+std\+::string Library path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a4f4b37d459434afc4d3ecee2fe35467c}\label{classSettings_a4f4b37d459434afc4d3ecee2fe35467c}} 
+\index{Settings@{Settings}!getLogicOperation@{getLogicOperation}}
+\index{getLogicOperation@{getLogicOperation}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getLogicOperation()}{getLogicOperation()}}
+{\footnotesize\ttfamily std\+::pair$<$ std\+::string, int $>$ Settings\+::get\+Logic\+Operation (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+op }\end{DoxyParamCaption})}
+
+
+
+get\+Logic\+Operation Gets information about a logical operation by its name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+op} & A string containing the name of the logical operation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::pair$<$std\+::string, int$>$ A pair containing the name and ID of the logical operation 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings}{Settings}} settingsInstance;}
+\DoxyCodeLine{\textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\textcolor{comment}{// Get information about the logical operation "{}and"{}}}
+\DoxyCodeLine{std::pair<std::string, int> operationInfo =}
+\DoxyCodeLine{settingsInstance.\mbox{\hyperlink{classSettings_a4f4b37d459434afc4d3ecee2fe35467c}{getLogicOperation}}(\textcolor{stringliteral}{"{}and"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Output information about the logical operation}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Operation name: "{}} << operationInfo.first << std::endl;}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Operation ID: "{}} << operationInfo.second << std::endl;}
+\DoxyCodeLine{\} \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} std::out\_of\_range\& e) \{}
+\DoxyCodeLine{\textcolor{comment}{// Handle an exception if the operation is not found}}
+\DoxyCodeLine{std::cerr << \textcolor{stringliteral}{"{}Error: "{}} << e.what() << std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::out\+\_\+of\+\_\+range} & If the passed operation name does not exist in the list of logical operations \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classSettings_acb1def89b78d63b88e6c1499bf271e5a}\label{classSettings_acb1def89b78d63b88e6c1499bf271e5a}} 
+\index{Settings@{Settings}!getLogicOperations@{getLogicOperations}}
+\index{getLogicOperations@{getLogicOperations}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getLogicOperations()}{getLogicOperations()}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string, std\+::pair$<$ std\+::string, int $>$ $>$ Settings\+::get\+Logic\+Operations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Logic\+Operations all logical operations The method returns a dictionary containing all logical operations in the form of a pair, where the key is a string representing the name of the operation, and the value is a pair in which the first element is a string representing the name of the operation, and the second element is an integer value representing the identifier of the operation 
+
+\begin{DoxyReturn}{Returns}
+std\+::map$<$std\+::string, std\+::pair$<$std\+::string, int$>$$>$ Dictionary with logical operations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a77b6cdd4b2358694786317ccbc2488fb}\label{classSettings_a77b6cdd4b2358694786317ccbc2488fb}} 
+\index{Settings@{Settings}!getLogicOperationsKeys@{getLogicOperationsKeys}}
+\index{getLogicOperationsKeys@{getLogicOperationsKeys}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getLogicOperationsKeys()}{getLogicOperationsKeys()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} $>$ Settings\+::get\+Logic\+Operations\+Keys (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Logic\+Operations\+Keys Returns the keys of logical operations 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Gates$>$ A vector containing the keys of logical operations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a8ac97e84dd5832932cbc2adfcc46c418}\label{classSettings_a8ac97e84dd5832932cbc2adfcc46c418}} 
+\index{Settings@{Settings}!getLogicOperationsWithGates@{getLogicOperationsWithGates}}
+\index{getLogicOperationsWithGates@{getLogicOperationsWithGates}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getLogicOperationsWithGates()}{getLogicOperationsWithGates()}}
+{\footnotesize\ttfamily std\+::pair$<$ std\+::vector$<$ bool $>$, std\+::vector$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} $>$ $>$ Settings\+::get\+Logic\+Operations\+With\+Gates (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Logic\+Operations\+With\+Gates Returns logical operations along with information about the presence of a single input The method returns a pair of vectors\+: the first vector contains information about whether each a logical operation has only one input(true if this is the case, false otherwise), and the second vector contains the keys(enumerated values) of all available logical operations 
+
+\begin{DoxyReturn}{Returns}
+std\+::pair$<$std\+::vector$<$bool$>$, std\+::vector$<$\+Gates$>$$>$ A pair of vectors\+: information about the presence of a single input and the keys of logical operations 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the Settings class or getting it from an}}
+\DoxyCodeLine{\textcolor{comment}{// existing object}}
+\DoxyCodeLine{std::shared\_ptr<Settings>        settingsInstance =}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}/path/to/settings"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Get logical operations together with information about the presence}}
+\DoxyCodeLine{\textcolor{comment}{// of a single input}}
+\DoxyCodeLine{std::pair<std::vector<bool>, std::vector<Gates>> logicOperationsInfo =}
+\DoxyCodeLine{settingsInstance-\/>getLogicOperationsWithGates();}
+\DoxyCodeLine{\textcolor{comment}{// Output information about each logical operation}}
+\DoxyCodeLine{\textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < logicOperationsInfo.second.size(); ++i)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{std::string operationName =}
+\DoxyCodeLine{settingsInstance-\/>parseGateToString(logicOperationsInfo.second[i]);}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} hasOneInput = logicOperationsInfo.first[i];}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Operation: "{}} << operationName;}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (hasOneInput)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  std::cout << \textcolor{stringliteral}{"{} (Has one input)"{}};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  std::cout << \textcolor{stringliteral}{"{} (Does not have one input)"{}};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{std::cout << std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a9de88f4776c57ef5a86cf581dfee28de}\label{classSettings_a9de88f4776c57ef5a86cf581dfee28de}} 
+\index{Settings@{Settings}!getMaxInputs@{getMaxInputs}}
+\index{getMaxInputs@{getMaxInputs}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getMaxInputs()}{getMaxInputs()}}
+{\footnotesize\ttfamily int Settings\+::get\+Max\+Inputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Max\+Inputs Gets the maximum number of inputs 
+
+\begin{DoxyReturn}{Returns}
+int Maximum number of inputs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a72aa6a0cb342648d011b458b8126934a}\label{classSettings_a72aa6a0cb342648d011b458b8126934a}} 
+\index{Settings@{Settings}!getMaxOutputs@{getMaxOutputs}}
+\index{getMaxOutputs@{getMaxOutputs}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getMaxOutputs()}{getMaxOutputs()}}
+{\footnotesize\ttfamily int Settings\+::get\+Max\+Outputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Max\+Outputs Returns the maximum number of outputs 
+
+\begin{DoxyReturn}{Returns}
+int Maximum number of outputs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a2b6e2dca09331c1ca30b748867428edc}\label{classSettings_a2b6e2dca09331c1ca30b748867428edc}} 
+\index{Settings@{Settings}!getNadezhdaVar@{getNadezhdaVar}}
+\index{getNadezhdaVar@{getNadezhdaVar}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getNadezhdaVar()}{getNadezhdaVar()}}
+{\footnotesize\ttfamily std\+::string Settings\+::get\+Nadezhda\+Var (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key }\end{DoxyParamCaption}) const}
+
+
+
+get\+Nadezhda\+Var Gets the value of a variable from the Nadezhda dictionary by key 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key used to search for a value in the Nadezhda dictionary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string The value corresponding to the provided key in the Nadezhda dictionary 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a8924389bb9d0ef1d3ad46f4a0f295c54}\label{classSettings_a8924389bb9d0ef1d3ad46f4a0f295c54}} 
+\index{Settings@{Settings}!getNumThread@{getNumThread}}
+\index{getNumThread@{getNumThread}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getNumThread()}{getNumThread()}}
+{\footnotesize\ttfamily int Settings\+::get\+Num\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Num\+Thread Retrieves the number of threads used for processing 
+
+\begin{DoxyReturn}{Returns}
+int The number of threads configured for processing 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the Settings class or getting it from an}}
+\DoxyCodeLine{existing \textcolor{keywordtype}{object} std::shared\_ptr<Settings> settingsInstance =}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}/path/to/settings"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Get the number of threads configured for processing}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} numThreads = settingsInstance-\/>getNumThread();}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Number of threads: "{}} << numThreads << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a13728ea075c0dcd0e95cb477130659c3}\label{classSettings_a13728ea075c0dcd0e95cb477130659c3}} 
+\index{Settings@{Settings}!getPathNadezhda@{getPathNadezhda}}
+\index{getPathNadezhda@{getPathNadezhda}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{getPathNadezhda()}{getPathNadezhda()}}
+{\footnotesize\ttfamily std\+::string Settings\+::get\+Path\+Nadezhda (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Path\+Nadezhda Returns the path to Nadezhda 
+
+\begin{DoxyReturn}{Returns}
+std\+::string Path to Nadezhda 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_aeedbd7f125f99ea2ecfe52c024c5e645}\label{classSettings_aeedbd7f125f99ea2ecfe52c024c5e645}} 
+\index{Settings@{Settings}!loadSettings@{loadSettings}}
+\index{loadSettings@{loadSettings}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{loadSettings()}{loadSettings()}}
+{\footnotesize\ttfamily void Settings\+::load\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+load\+Settings Downloads settings from a file The method loads the settings from a file with the name specified in the data member in\+\_\+filename. 
+
+If the file exists, the method reads the settings values from it and updates the corresponding data members of the class \mbox{\Hypertarget{classSettings_aac1daa80e77ea4fd79c9506b31852765}\label{classSettings_aac1daa80e77ea4fd79c9506b31852765}} 
+\index{Settings@{Settings}!operator=@{operator=}}
+\index{operator=@{operator=}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily void Settings\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSettings}{Settings}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classSettings_ada36e22edd22840668ca152e58261293}\label{classSettings_ada36e22edd22840668ca152e58261293}} 
+\index{Settings@{Settings}!parseGateToString@{parseGateToString}}
+\index{parseGateToString@{parseGateToString}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{parseGateToString()}{parseGateToString()}}
+{\footnotesize\ttfamily std\+::string Settings\+::parse\+Gate\+To\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}}]{gate }\end{DoxyParamCaption}) const}
+
+
+
+parse\+Gate\+To\+String Converts an enum value of a gate to its corresponding string representation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gate} & The enum value representing the gate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string The string representation of the provided gate enum value This method converts an enum value representing a gate to its corresponding string representation. It retrieves the string representation from the internal map date To\+String, which maps enum values of gates to their string representations. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the Settings class or getting it from an}}
+\DoxyCodeLine{existing \textcolor{keywordtype}{object} std::shared\_ptr<Settings> settingsInstance =}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}/path/to/settings"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Convert the enum value Gates::GateAnd to its corresponding string}}
+\DoxyCodeLine{representation std::string gateString =}
+\DoxyCodeLine{settingsInstance-\/>parseGateToString(\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680}{Gates::GateAnd}}); std::cout << \textcolor{stringliteral}{"{}String}}
+\DoxyCodeLine{\textcolor{stringliteral}{representation of Gates::GateAnd: "{}} << gateString << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a5a888d5cd6415b67280d17711cb5ede9}\label{classSettings_a5a888d5cd6415b67280d17711cb5ede9}} 
+\index{Settings@{Settings}!parseStringToGate@{parseStringToGate}}
+\index{parseStringToGate@{parseStringToGate}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{parseStringToGate()}{parseStringToGate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} Settings\+::parse\+String\+To\+Gate (\begin{DoxyParamCaption}\item[{std\+::string}]{i\+\_\+gate }\end{DoxyParamCaption}) const}
+
+
+
+parse\+String\+To\+Gate Converts a string representation of a gate to its corresponding enum value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+gate} & The string representation of the gate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Gates The enum value corresponding to the provided string representation of the gate 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the Settings class or getting it from an}}
+\DoxyCodeLine{existing \textcolor{keywordtype}{object} std::shared\_ptr<Settings> settingsInstance =}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}/path/to/settings"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Convert the string representation "{}and"{} to its corresponding enum value}}
+\DoxyCodeLine{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516}{gate}} = settingsInstance-\/>parseStringToGate(\textcolor{stringliteral}{"{}and"{}});}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Enum value of 'and': "{}} << \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516}{gate}} << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a0237bbfae43cdc7ed6a8d68877f1bd35}\label{classSettings_a0237bbfae43cdc7ed6a8d68877f1bd35}} 
+\index{Settings@{Settings}!parseVertexToString@{parseVertexToString}}
+\index{parseVertexToString@{parseVertexToString}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{parseVertexToString()}{parseVertexToString()}}
+{\footnotesize\ttfamily std\+::string Settings\+::parse\+Vertex\+To\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}}]{vertex }\end{DoxyParamCaption}) const}
+
+
+
+parse\+Vertex\+To\+String Converts an enum value of a vertex type to its corresponding string representation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertex} & The enum value representing the vertex type \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string The string representation of the provided vertex type enum value 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the Settings class or getting it from an}}
+\DoxyCodeLine{existing \textcolor{keywordtype}{object} std::shared\_ptr<Settings> settingsInstance =}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}/path/to/settings"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Convert the enum value VertexTypes::input to its corresponding string}}
+\DoxyCodeLine{representation std::string vertexString =}
+\DoxyCodeLine{settingsInstance-\/>parseVertexToString(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}); std::cout <<}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}String representation of VertexTypes::input: "{}} << vertexString <<}
+\DoxyCodeLine{std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSettings_a19d1e2e2df8600f7e2cd1c64363fe60f}\label{classSettings_a19d1e2e2df8600f7e2cd1c64363fe60f}} 
+\index{Settings@{Settings}!SaveSettings@{SaveSettings}}
+\index{SaveSettings@{SaveSettings}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{SaveSettings()}{SaveSettings()}}
+{\footnotesize\ttfamily void Settings\+::\+Save\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Save\+Settings Saves the current settings to a file This method saves the current settings of the \mbox{\hyperlink{classSettings}{Settings}} object to a file specified by d\+\_\+file\+Name. 
+
+It writes various settings parameters, such as dataset information, Nadezhda dictionary, number of threads, logical operations, operation hierarchies, operation names, and maximum inputs/outputs, to the file in a structured format 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the Settings class or getting it from an}}
+\DoxyCodeLine{existing \textcolor{keywordtype}{object} std::shared\_ptr<Settings> settingsInstance =}
+\DoxyCodeLine{\mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}/path/to/settings"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Save the current settings to a file}}
+\DoxyCodeLine{settingsInstance-\/>SaveSettings();}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{classSettings_aa58689526fd6afebad1d1171d200a75c}\label{classSettings_aa58689526fd6afebad1d1171d200a75c}} 
+\index{Settings@{Settings}!setDatasetPath@{setDatasetPath}}
+\index{setDatasetPath@{setDatasetPath}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{setDatasetPath()}{setDatasetPath()}}
+{\footnotesize\ttfamily void Settings\+::set\+Dataset\+Path (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+dataset\+Path }\end{DoxyParamCaption})}
+
+
+
+set\+Dataset\+Path Sets the path to the dataset 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+dataset\+Path} & a string representing the path to the dataset \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSettings_ab4fadb73ca581ee3340a022a05bb5f6d}\label{classSettings_ab4fadb73ca581ee3340a022a05bb5f6d}} 
+\index{Settings@{Settings}!d\_csvdataset@{d\_csvdataset}}
+\index{d\_csvdataset@{d\_csvdataset}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_csvdataset}{d\_csvdataset}}
+{\footnotesize\ttfamily std\+::string Settings\+::d\+\_\+csvdataset = \char`\"{}dataset.\+csv\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_ac2c5e889e5f79932bff53afcd28b09d5}\label{classSettings_ac2c5e889e5f79932bff53afcd28b09d5}} 
+\index{Settings@{Settings}!d\_datasetPath@{d\_datasetPath}}
+\index{d\_datasetPath@{d\_datasetPath}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_datasetPath}{d\_datasetPath}}
+{\footnotesize\ttfamily std\+::string Settings\+::d\+\_\+dataset\+Path = \char`\"{}./dataset\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_aa5da8389cf8876967f44415262d58a7b}\label{classSettings_aa5da8389cf8876967f44415262d58a7b}} 
+\index{Settings@{Settings}!d\_fileName@{d\_fileName}}
+\index{d\_fileName@{d\_fileName}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_fileName}{d\_fileName}}
+{\footnotesize\ttfamily std\+::string Settings\+::d\+\_\+file\+Name = \char`\"{}settings.\+dat\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_afab586c2612819f69302675d9b3a30e4}\label{classSettings_afab586c2612819f69302675d9b3a30e4}} 
+\index{Settings@{Settings}!d\_libraryPath@{d\_libraryPath}}
+\index{d\_libraryPath@{d\_libraryPath}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_libraryPath}{d\_libraryPath}}
+{\footnotesize\ttfamily std\+::string Settings\+::d\+\_\+library\+Path = \char`\"{}Generator/libs\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_a96e7f9cd3204378ac43d671ea72aeb8e}\label{classSettings_a96e7f9cd3204378ac43d671ea72aeb8e}} 
+\index{Settings@{Settings}!d\_logicElements@{d\_logicElements}}
+\index{d\_logicElements@{d\_logicElements}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_logicElements}{d\_logicElements}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}$>$ Settings\+::d\+\_\+logic\+Elements\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{      \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680}{Gates::GateAnd}},}
+\DoxyCodeLine{      \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69}{Gates::GateNand}},}
+\DoxyCodeLine{      \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2}{Gates::GateOr}},}
+\DoxyCodeLine{      \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec}{Gates::GateNor}},}
+\DoxyCodeLine{      \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64}{Gates::GateXor}},}
+\DoxyCodeLine{      \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba}{Gates::GateXnor}},}
+\DoxyCodeLine{      \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45}{Gates::GateNot}},}
+\DoxyCodeLine{      \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e}{Gates::GateBuf}}\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSettings_af468d97933e9b0c7cfacce937a7b79d6}\label{classSettings_af468d97933e9b0c7cfacce937a7b79d6}} 
+\index{Settings@{Settings}!d\_logicOperations@{d\_logicOperations}}
+\index{d\_logicOperations@{d\_logicOperations}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_logicOperations}{d\_logicOperations}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, std\+::pair$<$std\+::string, int$>$ $>$ Settings\+::d\+\_\+logic\+Operations\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}input"{}}, \{\textcolor{stringliteral}{"{}"{}}, 10\}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}output"{}}, \{\textcolor{stringliteral}{"{}="{}}, 0\}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}const"{}}, \{\textcolor{stringliteral}{"{}1'b0"{}}, 9\}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}and"{}}, \{\textcolor{stringliteral}{"{}and"{}}, 4\}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}nand"{}}, \{\textcolor{stringliteral}{"{}nand"{}}, 3\}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}or"{}}, \{\textcolor{stringliteral}{"{}or"{}}, 6\}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}nor"{}}, \{\textcolor{stringliteral}{"{}nor"{}}, 5\}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}not"{}}, \{\textcolor{stringliteral}{"{}not"{}}, 7\}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}buf"{}}, \{\textcolor{stringliteral}{"{}buf"{}}, 8\}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}xor"{}}, \{\textcolor{stringliteral}{"{}xor"{}}, 2\}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}xnor"{}}, \{\textcolor{stringliteral}{"{}xnor"{}}, 1\}\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSettings_a6f879361fe971430ebfddb7ffc79b641}\label{classSettings_a6f879361fe971430ebfddb7ffc79b641}} 
+\index{Settings@{Settings}!d\_maxInputs@{d\_maxInputs}}
+\index{d\_maxInputs@{d\_maxInputs}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_maxInputs}{d\_maxInputs}}
+{\footnotesize\ttfamily int Settings\+::d\+\_\+max\+Inputs = 50\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_ae183555f2e7a0751f901e5fb10888204}\label{classSettings_ae183555f2e7a0751f901e5fb10888204}} 
+\index{Settings@{Settings}!d\_maxOutputs@{d\_maxOutputs}}
+\index{d\_maxOutputs@{d\_maxOutputs}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_maxOutputs}{d\_maxOutputs}}
+{\footnotesize\ttfamily int Settings\+::d\+\_\+max\+Outputs = 50\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_a4100bd61a767f0904a54dd50de6ae98d}\label{classSettings_a4100bd61a767f0904a54dd50de6ae98d}} 
+\index{Settings@{Settings}!d\_nadezhda@{d\_nadezhda}}
+\index{d\_nadezhda@{d\_nadezhda}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_nadezhda}{d\_nadezhda}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, std\+::string$>$ Settings\+::d\+\_\+nadezhda\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}python"{}}, \textcolor{stringliteral}{"{}python3"{}}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}resynthesis"{}}, \textcolor{stringliteral}{"{}Nadezhda/Scripts/resynthesis\_local\_rewriting.pyc"{}}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}reliability"{}}, \textcolor{stringliteral}{"{}Nadezhda/Scripts/check\_reliability.pyc"{}}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}liberty"{}}, \textcolor{stringliteral}{"{}Nadezda/Test/Nangate.lib"{}}\}\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSettings_a30645ad6e1b4134078cc3e6847d7f21d}\label{classSettings_a30645ad6e1b4134078cc3e6847d7f21d}} 
+\index{Settings@{Settings}!d\_name@{d\_name}}
+\index{d\_name@{d\_name}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_name}{d\_name}}
+{\footnotesize\ttfamily std\+::string Settings\+::d\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_a9311ff44c616791236fe22f8860c43c3}\label{classSettings_a9311ff44c616791236fe22f8860c43c3}} 
+\index{Settings@{Settings}!d\_numThreads@{d\_numThreads}}
+\index{d\_numThreads@{d\_numThreads}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_numThreads}{d\_numThreads}}
+{\footnotesize\ttfamily int Settings\+::d\+\_\+num\+Threads = 4\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_a97de2ea217434cd195d621dfb8b16956}\label{classSettings_a97de2ea217434cd195d621dfb8b16956}} 
+\index{Settings@{Settings}!d\_operationsToHierarchy@{d\_operationsToHierarchy}}
+\index{d\_operationsToHierarchy@{d\_operationsToHierarchy}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_operationsToHierarchy}{d\_operationsToHierarchy}}
+{\footnotesize\ttfamily std\+::map$<$int, std\+::vector$<$std\+::string$>$ $>$ Settings\+::d\+\_\+operations\+To\+Hierarchy\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_aaae7b30262048d55ba5d001df6b61bb6}\label{classSettings_aaae7b30262048d55ba5d001df6b61bb6}} 
+\index{Settings@{Settings}!d\_operationsToName@{d\_operationsToName}}
+\index{d\_operationsToName@{d\_operationsToName}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_operationsToName}{d\_operationsToName}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, std\+::string$>$ Settings\+::d\+\_\+operations\+To\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_a7bba8dce46df65412fd5aba15afb7c3a}\label{classSettings_a7bba8dce46df65412fd5aba15afb7c3a}} 
+\index{Settings@{Settings}!d\_path@{d\_path}}
+\index{d\_path@{d\_path}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_path}{d\_path}}
+{\footnotesize\ttfamily std\+::string Settings\+::d\+\_\+path\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_a78506c7af148fdf119d85ce03c0c5ab0}\label{classSettings_a78506c7af148fdf119d85ce03c0c5ab0}} 
+\index{Settings@{Settings}!d\_pathToNadezhda@{d\_pathToNadezhda}}
+\index{d\_pathToNadezhda@{d\_pathToNadezhda}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_pathToNadezhda}{d\_pathToNadezhda}}
+{\footnotesize\ttfamily std\+::string Settings\+::d\+\_\+path\+To\+Nadezhda = \char`\"{}./Generator/source/data/Nadezhda\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_a6dee76fee0369f772bb0cb85457eea8e}\label{classSettings_a6dee76fee0369f772bb0cb85457eea8e}} 
+\index{Settings@{Settings}!d\_singleton@{d\_singleton}}
+\index{d\_singleton@{d\_singleton}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{d\_singleton}{d\_singleton}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ Settings\+::d\+\_\+singleton = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSettings_ab74bc9714f5f5875fb4ee9febf7600f7}\label{classSettings_ab74bc9714f5f5875fb4ee9febf7600f7}} 
+\index{Settings@{Settings}!gateToString@{gateToString}}
+\index{gateToString@{gateToString}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{gateToString}{gateToString}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, std\+::string$>$ Settings\+::gate\+To\+String\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680}{Gates::GateAnd}}, \textcolor{stringliteral}{"{}and"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69}{Gates::GateNand}}, \textcolor{stringliteral}{"{}nand"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2}{Gates::GateOr}}, \textcolor{stringliteral}{"{}or"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec}{Gates::GateNor}}, \textcolor{stringliteral}{"{}nor"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45}{Gates::GateNot}}, \textcolor{stringliteral}{"{}not"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e}{Gates::GateBuf}}, \textcolor{stringliteral}{"{}buf"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64}{Gates::GateXor}}, \textcolor{stringliteral}{"{}xor"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba}{Gates::GateXnor}}, \textcolor{stringliteral}{"{}xnor"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ac2976809a913c91ef0f17c57113a882a}{Gates::GateDefault}}, \textcolor{stringliteral}{"{}ERROR"{}}\}\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSettings_ac36e1b1e5631eb3f2881e6eb8a8c7855}\label{classSettings_ac36e1b1e5631eb3f2881e6eb8a8c7855}} 
+\index{Settings@{Settings}!generationTypeToPrefix@{generationTypeToPrefix}}
+\index{generationTypeToPrefix@{generationTypeToPrefix}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{generationTypeToPrefix}{generationTypeToPrefix}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}}, std\+::string$>$ Settings\+::generation\+Type\+To\+Prefix\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d}{GenerationTypes::FromRandomTruthTable}}, \textcolor{stringliteral}{"{}CCGRTT"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c}{GenerationTypes::RandLevel}}, \textcolor{stringliteral}{"{}CCGRCG"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a250ce0215fa3b94c1c5113edeedc6f4a}{GenerationTypes::RandLevelExperimental}}, \textcolor{stringliteral}{"{}CCGRCGE"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a9ade0b294c4074fbe2f4d1da34a4134d}{GenerationTypes::NumOperation}}, \textcolor{stringliteral}{"{}CCGRVC"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a74feb9d0bc2dfab619f7413964796c4f}{GenerationTypes::Genetic}}, \textcolor{stringliteral}{"{}CCGGA"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f}{GenerationTypes::Summator}}, \textcolor{stringliteral}{"{}CCGTCSM"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b}{GenerationTypes::Comparison}}, \textcolor{stringliteral}{"{}CCGTCC"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a618b82de6e239a7e1603c26ec7fcb9f9}{GenerationTypes::Encoder}}, \textcolor{stringliteral}{"{}CCGECR"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a4f15853557f908ae40fd266dccef4413}{GenerationTypes::Subtractor}}, \textcolor{stringliteral}{"{}CCGTCSB"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a965c12cc1bd600342bea10723c5fa7a8}{GenerationTypes::Parity}}, \textcolor{stringliteral}{"{}CCGTCP"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e}{GenerationTypes::Multiplier}}, \textcolor{stringliteral}{"{}CCGTCM"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a9ec009dfeaf56f731f3943183fcc19e0}{GenerationTypes::Demultiplexer}}, \textcolor{stringliteral}{"{}CCGTCDMP"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51}{GenerationTypes::Multiplexer}}, \textcolor{stringliteral}{"{}CCGTCMP"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265abd35cc832d8523cd2d3284f0cd831897}{GenerationTypes::Decoder}}, \textcolor{stringliteral}{"{}CCGDCR"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35}{GenerationTypes::ALU}}, \textcolor{stringliteral}{"{}CCGALU"{}}\}\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSettings_afe5072472603b12235614b71022a4140}\label{classSettings_afe5072472603b12235614b71022a4140}} 
+\index{Settings@{Settings}!stringToGate@{stringToGate}}
+\index{stringToGate@{stringToGate}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{stringToGate}{stringToGate}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}$>$ Settings\+::string\+To\+Gate\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}and"{}}, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680}{Gates::GateAnd}}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}nand"{}}, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69}{Gates::GateNand}}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}or"{}}, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2}{Gates::GateOr}}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}nor"{}}, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec}{Gates::GateNor}}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}not"{}}, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45}{Gates::GateNot}}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}buf"{}}, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e}{Gates::GateBuf}}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}xor"{}}, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64}{Gates::GateXor}}\},}
+\DoxyCodeLine{      \{\textcolor{stringliteral}{"{}xnor"{}}, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba}{Gates::GateXnor}}\}\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSettings_ac3baf3952239682c56079b605c7a462f}\label{classSettings_ac3baf3952239682c56079b605c7a462f}} 
+\index{Settings@{Settings}!vertexToString@{vertexToString}}
+\index{vertexToString@{vertexToString}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{vertexToString}{vertexToString}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}, std\+::string$>$ Settings\+::vertex\+To\+String\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}input"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{VertexTypes::output}}, \textcolor{stringliteral}{"{}output"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da995640a12d5339aabee76a933fb5f519}{VertexTypes::constant}}, \textcolor{stringliteral}{"{}const"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da22c78580446133d737f326835778c076}{VertexTypes::subGraph}}, \textcolor{stringliteral}{"{}subGraph"{}}\},}
+\DoxyCodeLine{      \{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516}{VertexTypes::gate}}, \textcolor{stringliteral}{"{}g"{}}\}\}}
+
+\end{DoxyCode}

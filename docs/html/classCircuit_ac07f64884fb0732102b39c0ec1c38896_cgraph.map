@@ -1,0 +1,7 @@
+<map id="Circuit::generate" name="Circuit::generate">
+<area shape="rect" id="node1" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="5,81,136,108"/>
+<area shape="rect" id="node2" href="$classCircuit.html#a5f9e1a5b9117f6e8c6547cf5a261047e" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="184,5,365,32"/>
+<area shape="rect" id="node3" href="$classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="191,56,359,83"/>
+<area shape="rect" id="node4" href="$classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="186,107,363,133"/>
+<area shape="rect" id="node5" href="$classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="413,132,647,159"/>
+</map>

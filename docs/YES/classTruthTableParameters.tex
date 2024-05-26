@@ -1,0 +1,146 @@
+\hypertarget{classTruthTableParameters}{}\doxysection{Truth\+Table\+Parameters Class Reference}
+\label{classTruthTableParameters}\index{TruthTableParameters@{TruthTableParameters}}
+
+
+Parameters for generating truth tables The class provides the parameters needed to generate truth tables.  
+
+
+
+
+{\ttfamily \#include $<$Genetic\+Parameters.\+h$>$}
+
+
+
+Inheritance diagram for Truth\+Table\+Parameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{classTruthTableParameters__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Truth\+Table\+Parameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTableParameters__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTruthTableParameters_aff99e2d8931af5e179865f271fa302c0}{Truth\+Table\+Parameters}} (int i\+\_\+inputs=0, int i\+\_\+outputs=0)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTruthTableParameters_a5aa0122fc9dcb9b0bc242ef425135893}{Truth\+Table\+Parameters}} (const \mbox{\hyperlink{classGeneticParameters}{Genetic\+Parameters}} \&i\+\_\+gp)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classTruthTableParameters_a85431954023d8b179833f24dece2bb10}{get\+Population\+Size}} ()
+\begin{DoxyCompactList}\small\item\em get\+Population\+Size \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classTruthTableParameters_a77762154681576267aac59b1768b399a}{size}} () const
+\begin{DoxyCompactList}\small\item\em size Returns the size of the truth table population \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classTruthTableParameters_a25853ef41a7393e74c7fbebed40f75c9}{operator==}} (const \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} \&r)
+\begin{DoxyCompactList}\small\item\em Overloaded comparison operator for Truth Table Parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Parameters for generating truth tables The class provides the parameters needed to generate truth tables. 
+
+These parameters include the number of entries and exits, population size, parameters for selection, recombination and mutation operations, as well as termination criteria truth table generation process 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTruthTableParameters_aff99e2d8931af5e179865f271fa302c0}\label{classTruthTableParameters_aff99e2d8931af5e179865f271fa302c0}} 
+\index{TruthTableParameters@{TruthTableParameters}!TruthTableParameters@{TruthTableParameters}}
+\index{TruthTableParameters@{TruthTableParameters}!TruthTableParameters@{TruthTableParameters}}
+\doxysubsubsection{\texorpdfstring{TruthTableParameters()}{TruthTableParameters()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Truth\+Table\+Parameters\+::\+Truth\+Table\+Parameters (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+inputs = {\ttfamily 0},  }\item[{int}]{i\+\_\+outputs = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+inputs} & Number of truth table inputs \\
+\hline
+{\em i\+\_\+outputs} & Number of truth table outputs \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTruthTableParameters_a5aa0122fc9dcb9b0bc242ef425135893}\label{classTruthTableParameters_a5aa0122fc9dcb9b0bc242ef425135893}} 
+\index{TruthTableParameters@{TruthTableParameters}!TruthTableParameters@{TruthTableParameters}}
+\index{TruthTableParameters@{TruthTableParameters}!TruthTableParameters@{TruthTableParameters}}
+\doxysubsubsection{\texorpdfstring{TruthTableParameters()}{TruthTableParameters()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Truth\+Table\+Parameters\+::\+Truth\+Table\+Parameters (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGeneticParameters}{Genetic\+Parameters}} \&}]{i\+\_\+gp }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+gp} & Genetic parameters used to generate the truth table \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTruthTableParameters_a85431954023d8b179833f24dece2bb10}\label{classTruthTableParameters_a85431954023d8b179833f24dece2bb10}} 
+\index{TruthTableParameters@{TruthTableParameters}!getPopulationSize@{getPopulationSize}}
+\index{getPopulationSize@{getPopulationSize}!TruthTableParameters@{TruthTableParameters}}
+\doxysubsubsection{\texorpdfstring{getPopulationSize()}{getPopulationSize()}}
+{\footnotesize\ttfamily int Truth\+Table\+Parameters\+::get\+Population\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get\+Population\+Size 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000016}{Todo}}]\+: Why is this method needed if there is a size \end{DoxyRefDesc}
+\begin{DoxyReturn}{Returns}
+truth table population size 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTableParameters_a85431954023d8b179833f24dece2bb10_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classTruthTableParameters_a25853ef41a7393e74c7fbebed40f75c9}\label{classTruthTableParameters_a25853ef41a7393e74c7fbebed40f75c9}} 
+\index{TruthTableParameters@{TruthTableParameters}!operator==@{operator==}}
+\index{operator==@{operator==}!TruthTableParameters@{TruthTableParameters}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Truth\+Table\+Parameters\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTruthTableParameters}{Truth\+Table\+Parameters}} \&}]{r }\end{DoxyParamCaption})}
+
+
+
+Overloaded comparison operator for Truth Table Parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Truth table parameters for comparison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the parameters are equal, otherwise false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTruthTableParameters_a77762154681576267aac59b1768b399a}\label{classTruthTableParameters_a77762154681576267aac59b1768b399a}} 
+\index{TruthTableParameters@{TruthTableParameters}!size@{size}}
+\index{size@{size}!TruthTableParameters@{TruthTableParameters}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int Truth\+Table\+Parameters\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+size Returns the size of the truth table population 
+
+\begin{DoxyReturn}{Returns}
+truth table population size 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTruthTableParameters_a77762154681576267aac59b1768b399a_icgraph}
+\end{center}
+\end{figure}

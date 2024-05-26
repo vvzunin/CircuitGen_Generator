@@ -1,0 +1,160 @@
+\hypertarget{classGeneratorSummatorParameters}{}\doxysection{Generator\+Summator\+Parameters Class Reference}
+\label{classGeneratorSummatorParameters}\index{GeneratorSummatorParameters@{GeneratorSummatorParameters}}
+
+
+\mbox{\hyperlink{classGeneratorSummatorParameters}{Generator\+Summator\+Parameters}}.  
+
+
+
+
+{\ttfamily \#include $<$Generation\+Parameters.\+hpp$>$}
+
+
+
+Collaboration diagram for Generator\+Summator\+Parameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{classGeneratorSummatorParameters__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classGeneratorSummatorParameters_af0641f1d11364a9f529c61db1aafb211}{get\+Over\+Flow\+In}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorSummatorParameters_a14fa2311678b9a04ba99d7b7f099c87e}{get\+Over\+Flow\+Out}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorSummatorParameters_ab547b2615885db979a54e1b8149acbca}{get\+Minus}} ()
+\item 
+void \mbox{\hyperlink{classGeneratorSummatorParameters_abd5dc0e29aaf111f0c539efe5a3b24ca}{set\+Over\+Flow\+In}} (bool i\+\_\+overflow\+In)
+\item 
+void \mbox{\hyperlink{classGeneratorSummatorParameters_a35cbb588c388a54d8c98156aa2ad1229}{set\+Over\+Flow\+Out}} (bool i\+\_\+overflow\+Out)
+\item 
+void \mbox{\hyperlink{classGeneratorSummatorParameters_ae70d2e8ca787a5c1ad8d9dbbed189c26}{set\+Minus}} (bool i\+\_\+minus)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classGeneratorSummatorParameters_ad2854ccacd1b7ddd5a34fd0282c92bee}{d\+\_\+\+Over\+Flow\+In}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorSummatorParameters_adeb3e6b299f178ff43b9fdda1f730f83}{d\+\_\+\+Over\+Flow\+Out}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorSummatorParameters_acfb77778385d96770aef014ae2676e7f}{d\+\_\+minus}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classGeneratorSummatorParameters}{Generator\+Summator\+Parameters}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Over\+Flow\+In} & A Boolean value indicating whether overflow of input values is allowed. It relate to the behavior of the adder when the maximum value of the summed inputs is exceeded$\ast$ \\
+\hline
+{\em Over\+Flow\+Out} & A Boolean value indicating whether overflow of the output value is allowed. The adder can generate an additional bit to handle overflow. Default -\/ false \\
+\hline
+{\em minus} & In the context of combinational circuits, this may mean that the adder can work not only with the addition operation, but also with subtractions$\ast$ $\ast$/ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGeneratorSummatorParameters_ab547b2615885db979a54e1b8149acbca}\label{classGeneratorSummatorParameters_ab547b2615885db979a54e1b8149acbca}} 
+\index{GeneratorSummatorParameters@{GeneratorSummatorParameters}!getMinus@{getMinus}}
+\index{getMinus@{getMinus}!GeneratorSummatorParameters@{GeneratorSummatorParameters}}
+\doxysubsubsection{\texorpdfstring{getMinus()}{getMinus()}}
+{\footnotesize\ttfamily bool Generator\+Summator\+Parameters\+::get\+Minus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorSummatorParameters_ab547b2615885db979a54e1b8149acbca_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorSummatorParameters_af0641f1d11364a9f529c61db1aafb211}\label{classGeneratorSummatorParameters_af0641f1d11364a9f529c61db1aafb211}} 
+\index{GeneratorSummatorParameters@{GeneratorSummatorParameters}!getOverFlowIn@{getOverFlowIn}}
+\index{getOverFlowIn@{getOverFlowIn}!GeneratorSummatorParameters@{GeneratorSummatorParameters}}
+\doxysubsubsection{\texorpdfstring{getOverFlowIn()}{getOverFlowIn()}}
+{\footnotesize\ttfamily bool Generator\+Summator\+Parameters\+::get\+Over\+Flow\+In (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorSummatorParameters_af0641f1d11364a9f529c61db1aafb211_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorSummatorParameters_a14fa2311678b9a04ba99d7b7f099c87e}\label{classGeneratorSummatorParameters_a14fa2311678b9a04ba99d7b7f099c87e}} 
+\index{GeneratorSummatorParameters@{GeneratorSummatorParameters}!getOverFlowOut@{getOverFlowOut}}
+\index{getOverFlowOut@{getOverFlowOut}!GeneratorSummatorParameters@{GeneratorSummatorParameters}}
+\doxysubsubsection{\texorpdfstring{getOverFlowOut()}{getOverFlowOut()}}
+{\footnotesize\ttfamily bool Generator\+Summator\+Parameters\+::get\+Over\+Flow\+Out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorSummatorParameters_a14fa2311678b9a04ba99d7b7f099c87e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorSummatorParameters_ae70d2e8ca787a5c1ad8d9dbbed189c26}\label{classGeneratorSummatorParameters_ae70d2e8ca787a5c1ad8d9dbbed189c26}} 
+\index{GeneratorSummatorParameters@{GeneratorSummatorParameters}!setMinus@{setMinus}}
+\index{setMinus@{setMinus}!GeneratorSummatorParameters@{GeneratorSummatorParameters}}
+\doxysubsubsection{\texorpdfstring{setMinus()}{setMinus()}}
+{\footnotesize\ttfamily void Generator\+Summator\+Parameters\+::set\+Minus (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+minus }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorSummatorParameters_ae70d2e8ca787a5c1ad8d9dbbed189c26_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorSummatorParameters_abd5dc0e29aaf111f0c539efe5a3b24ca}\label{classGeneratorSummatorParameters_abd5dc0e29aaf111f0c539efe5a3b24ca}} 
+\index{GeneratorSummatorParameters@{GeneratorSummatorParameters}!setOverFlowIn@{setOverFlowIn}}
+\index{setOverFlowIn@{setOverFlowIn}!GeneratorSummatorParameters@{GeneratorSummatorParameters}}
+\doxysubsubsection{\texorpdfstring{setOverFlowIn()}{setOverFlowIn()}}
+{\footnotesize\ttfamily void Generator\+Summator\+Parameters\+::set\+Over\+Flow\+In (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+overflow\+In }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorSummatorParameters_abd5dc0e29aaf111f0c539efe5a3b24ca_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorSummatorParameters_a35cbb588c388a54d8c98156aa2ad1229}\label{classGeneratorSummatorParameters_a35cbb588c388a54d8c98156aa2ad1229}} 
+\index{GeneratorSummatorParameters@{GeneratorSummatorParameters}!setOverFlowOut@{setOverFlowOut}}
+\index{setOverFlowOut@{setOverFlowOut}!GeneratorSummatorParameters@{GeneratorSummatorParameters}}
+\doxysubsubsection{\texorpdfstring{setOverFlowOut()}{setOverFlowOut()}}
+{\footnotesize\ttfamily void Generator\+Summator\+Parameters\+::set\+Over\+Flow\+Out (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+overflow\+Out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorSummatorParameters_a35cbb588c388a54d8c98156aa2ad1229_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGeneratorSummatorParameters_acfb77778385d96770aef014ae2676e7f}\label{classGeneratorSummatorParameters_acfb77778385d96770aef014ae2676e7f}} 
+\index{GeneratorSummatorParameters@{GeneratorSummatorParameters}!d\_minus@{d\_minus}}
+\index{d\_minus@{d\_minus}!GeneratorSummatorParameters@{GeneratorSummatorParameters}}
+\doxysubsubsection{\texorpdfstring{d\_minus}{d\_minus}}
+{\footnotesize\ttfamily bool Generator\+Summator\+Parameters\+::d\+\_\+minus = false}
+
+\mbox{\Hypertarget{classGeneratorSummatorParameters_ad2854ccacd1b7ddd5a34fd0282c92bee}\label{classGeneratorSummatorParameters_ad2854ccacd1b7ddd5a34fd0282c92bee}} 
+\index{GeneratorSummatorParameters@{GeneratorSummatorParameters}!d\_OverFlowIn@{d\_OverFlowIn}}
+\index{d\_OverFlowIn@{d\_OverFlowIn}!GeneratorSummatorParameters@{GeneratorSummatorParameters}}
+\doxysubsubsection{\texorpdfstring{d\_OverFlowIn}{d\_OverFlowIn}}
+{\footnotesize\ttfamily bool Generator\+Summator\+Parameters\+::d\+\_\+\+Over\+Flow\+In = false}
+
+\mbox{\Hypertarget{classGeneratorSummatorParameters_adeb3e6b299f178ff43b9fdda1f730f83}\label{classGeneratorSummatorParameters_adeb3e6b299f178ff43b9fdda1f730f83}} 
+\index{GeneratorSummatorParameters@{GeneratorSummatorParameters}!d\_OverFlowOut@{d\_OverFlowOut}}
+\index{d\_OverFlowOut@{d\_OverFlowOut}!GeneratorSummatorParameters@{GeneratorSummatorParameters}}
+\doxysubsubsection{\texorpdfstring{d\_OverFlowOut}{d\_OverFlowOut}}
+{\footnotesize\ttfamily bool Generator\+Summator\+Parameters\+::d\+\_\+\+Over\+Flow\+Out = false}
+

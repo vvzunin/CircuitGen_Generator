@@ -1,0 +1,153 @@
+\hypertarget{classGraphVertexInput}{}\doxysection{Graph\+Vertex\+Input Class Reference}
+\label{classGraphVertexInput}\index{GraphVertexInput@{GraphVertexInput}}
+
+
+class \mbox{\hyperlink{classGraphVertexInput}{Graph\+Vertex\+Input}} Represents a vertex in a directed graph that serves as an input vertex.  
+
+
+
+
+{\ttfamily \#include $<$Graph\+Vertex.\+hpp$>$}
+
+
+
+Inheritance diagram for Graph\+Vertex\+Input\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classGraphVertexInput__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Graph\+Vertex\+Input\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{classGraphVertexInput__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraphVertexInput_a0f05c410d6607322b83f5a6dbef16293}{Graph\+Vertex\+Input}} (\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+base\+Graph=nullptr, const \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} i\+\_\+type=\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{Vertex\+Types\+::input}})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classGraphVertexInput}{Graph\+Vertex\+Input}} Initializes the \mbox{\hyperlink{classGraphVertexInput}{Graph\+Vertex\+Input}} object with the provided base graph pointer and type. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGraphVertexInput_a0cb7512211a64de94123769ca4079b03}{Graph\+Vertex\+Input}} (const std\+::string i\+\_\+name, \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+base\+Graph=nullptr, const \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} i\+\_\+type=\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{Vertex\+Types\+::input}})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classGraphVertexInput}{Graph\+Vertex\+Input}} Initializes the \mbox{\hyperlink{classGraphVertexInput}{Graph\+Vertex\+Input}} object with the provided name, base graph pointer, and type. \end{DoxyCompactList}\item 
+virtual char \mbox{\hyperlink{classGraphVertexInput_af27b2c9067b9861882544ff172036be3}{update\+Value}} ()
+\begin{DoxyCompactList}\small\item\em update\+Value A virtual function for updating the vertex value. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGraphVertexInput_a2fc1f6fbcf74f8670531d00173bc363c}{update\+Level}} ()
+\begin{DoxyCompactList}\small\item\em update\+Level It is designed to update the level of the current vertex in a directed graph based on the levels of its input connections \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraphVertexInput_a6dc18d398579d92407cf6ba9a01b1197}{Graph\+Vertex\+Input}} (\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} i\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classGraphVertexInput}{Graph\+Vertex\+Input}} Represents a vertex in a directed graph that serves as an input vertex. 
+
+It inherits from the \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} class and extends its functionality to work with input vertices 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+base\+Graph} & A pointer to the oriented graph to which this vertex belongs. It can be null ptr, which indicates the absence of a base graph \\
+\hline
+{\em i\+\_\+type} & Vertex type (Vertex\+Types enumeration). By default, it is set to Vertex\+Types\+::input, indicating that this is the input vertex \\
+\hline
+{\em i\+\_\+name} & The name of the vertex provided during creation. This is a string of type std\+::string that identifies a vertex $\ast$/ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGraphVertexInput_a0f05c410d6607322b83f5a6dbef16293}\label{classGraphVertexInput_a0f05c410d6607322b83f5a6dbef16293}} 
+\index{GraphVertexInput@{GraphVertexInput}!GraphVertexInput@{GraphVertexInput}}
+\index{GraphVertexInput@{GraphVertexInput}!GraphVertexInput@{GraphVertexInput}}
+\doxysubsubsection{\texorpdfstring{GraphVertexInput()}{GraphVertexInput()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Input\+::\+Graph\+Vertex\+Input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+base\+Graph = {\ttfamily nullptr},  }\item[{const \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}}]{i\+\_\+type = {\ttfamily \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{Vertex\+Types\+::input}}} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classGraphVertexInput}{Graph\+Vertex\+Input}} Initializes the \mbox{\hyperlink{classGraphVertexInput}{Graph\+Vertex\+Input}} object with the provided base graph pointer and type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+base\+Graph} & Pointer to the base graph. Default is nullptr. \\
+\hline
+{\em i\+\_\+type} & i\+\_\+type Type of the vertex. Default is Vertex\+Types\+::input. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraphVertexInput_a0cb7512211a64de94123769ca4079b03}\label{classGraphVertexInput_a0cb7512211a64de94123769ca4079b03}} 
+\index{GraphVertexInput@{GraphVertexInput}!GraphVertexInput@{GraphVertexInput}}
+\index{GraphVertexInput@{GraphVertexInput}!GraphVertexInput@{GraphVertexInput}}
+\doxysubsubsection{\texorpdfstring{GraphVertexInput()}{GraphVertexInput()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Input\+::\+Graph\+Vertex\+Input (\begin{DoxyParamCaption}\item[{const std\+::string}]{i\+\_\+name,  }\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+base\+Graph = {\ttfamily nullptr},  }\item[{const \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}}]{i\+\_\+type = {\ttfamily \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{Vertex\+Types\+::input}}} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classGraphVertexInput}{Graph\+Vertex\+Input}} Initializes the \mbox{\hyperlink{classGraphVertexInput}{Graph\+Vertex\+Input}} object with the provided name, base graph pointer, and type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+name} & Name of the vertex. \\
+\hline
+{\em i\+\_\+base\+Graph} & Pointer to the base graph. \\
+\hline
+{\em i\+\_\+type} & Type of the vertex. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraphVertexInput_a6dc18d398579d92407cf6ba9a01b1197}\label{classGraphVertexInput_a6dc18d398579d92407cf6ba9a01b1197}} 
+\index{GraphVertexInput@{GraphVertexInput}!GraphVertexInput@{GraphVertexInput}}
+\index{GraphVertexInput@{GraphVertexInput}!GraphVertexInput@{GraphVertexInput}}
+\doxysubsubsection{\texorpdfstring{GraphVertexInput()}{GraphVertexInput()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Input\+::\+Graph\+Vertex\+Input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}}]{i\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraphVertexInput_a2fc1f6fbcf74f8670531d00173bc363c}\label{classGraphVertexInput_a2fc1f6fbcf74f8670531d00173bc363c}} 
+\index{GraphVertexInput@{GraphVertexInput}!updateLevel@{updateLevel}}
+\index{updateLevel@{updateLevel}!GraphVertexInput@{GraphVertexInput}}
+\doxysubsubsection{\texorpdfstring{updateLevel()}{updateLevel()}}
+{\footnotesize\ttfamily void Graph\+Vertex\+Input\+::update\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+update\+Level It is designed to update the level of the current vertex in a directed graph based on the levels of its input connections 
+
+
+
+Reimplemented from \mbox{\hyperlink{classGraphVertexBase_a5524af9e76e94937c16ff7c56efcf182}{Graph\+Vertex\+Base}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classGraphVertexConstant_af4cb892fd50759407da39a96c045e7d1}{Graph\+Vertex\+Constant}}.
+
+\mbox{\Hypertarget{classGraphVertexInput_af27b2c9067b9861882544ff172036be3}\label{classGraphVertexInput_af27b2c9067b9861882544ff172036be3}} 
+\index{GraphVertexInput@{GraphVertexInput}!updateValue@{updateValue}}
+\index{updateValue@{updateValue}!GraphVertexInput@{GraphVertexInput}}
+\doxysubsubsection{\texorpdfstring{updateValue()}{updateValue()}}
+{\footnotesize\ttfamily char Graph\+Vertex\+Input\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+update\+Value A virtual function for updating the vertex value. 
+
+The implementation is provided in derived classes \begin{DoxyReturn}{Returns}
+the value of the vertex after its update 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{TO DO:}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if any input connection is invalid \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classGraphVertexBase_a330ddc78ee52b8425a773cecc70954fe}{Graph\+Vertex\+Base}}.
+

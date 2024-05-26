@@ -1,0 +1,31 @@
+<map id="SimpleGenerators::setGatesInputsInfo" name="SimpleGenerators::setGatesInputsInfo">
+<area shape="rect" id="Node000001" title="generatorRandLevelExperimental The method generates a random level of complexity of the graph within ..." alt="" coords="317,455,503,497"/>
+<area shape="rect" id="Node000002" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="60,5,214,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="405,439,397,360,375,259,358,205,334,153,304,104,267,62,242,46,213,36,215,30,244,41,270,58,309,101,339,150,363,203,381,257,402,360,410,439"/>
+<area shape="rect" id="Node000003" href="$classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="38,72,236,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="402,440,390,372,366,288,349,244,326,202,299,163,267,129,235,110,237,105,270,125,304,159,331,199,353,242,371,287,395,371,407,439"/>
+<area shape="rect" id="Node000004" href="$classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="49,139,225,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="398,440,383,385,357,319,319,252,295,222,267,195,247,183,225,174,227,169,250,178,270,191,299,218,323,249,361,317,388,383,403,439"/>
+<area shape="rect" id="Node000005" href="$classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="33,205,241,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="393,441,374,399,346,351,311,303,267,262,240,247,243,243,270,258,315,299,351,348,378,397,398,439"/>
+<area shape="rect" id="Node000006" href="$classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="49,272,225,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="383,444,334,384,303,354,267,329,225,311,227,306,270,324,306,350,338,381,388,440"/>
+<area shape="rect" id="Node000007" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="34,339,240,397"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="352,450,268,412,237,400,239,395,270,407,354,445"/>
+<area shape="rect" id="Node000008" href="$classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="41,421,233,464"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="301,465,233,457,233,452,302,460"/>
+<area shape="rect" id="Node000009" href="$classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="47,488,227,531"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="302,492,228,501,227,496,301,487"/>
+<area shape="rect" id="Node000010" href="$classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="28,555,246,597"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="355,507,270,545,234,557,233,551,268,540,353,502"/>
+<area shape="rect" id="Node000011" href="$classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="56,621,218,664"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="384,511,335,563,304,589,270,612,220,631,218,626,267,607,301,585,331,559,380,507"/>
+<area shape="rect" id="Node000012" href="$classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="43,688,231,731"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="396,513,376,552,348,596,313,641,270,678,232,697,230,692,267,674,309,637,344,593,371,549,391,510"/>
+<area shape="rect" id="Node000013" href="$classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="5,755,269,797"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="402,513,386,566,359,628,321,691,297,720,270,745,252,756,249,752,267,741,293,716,317,688,354,626,381,564,397,512"/>
+<area shape="rect" id="Node000014" href="$classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="43,821,231,864"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="406,513,394,578,369,658,351,700,329,741,302,778,270,811,252,824,233,833,230,828,250,819,267,807,298,775,325,738,346,698,364,656,388,576,401,512"/>
+<area shape="rect" id="Node000015" href="$classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="43,888,231,931"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="409,513,401,589,378,688,361,739,337,790,307,837,270,878,253,891,233,900,231,895,250,886,267,874,303,834,332,787,356,737,373,686,395,588,404,512"/>
+</map>

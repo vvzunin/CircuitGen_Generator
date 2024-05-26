@@ -1,0 +1,10 @@
+<map id="SimpleGenerators::cnfFromTruthTable" name="SimpleGenerators::cnfFromTruthTable">
+<area shape="rect" id="node1" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="5,150,205,191"/>
+<area shape="rect" id="node2" href="$classTruthTable.html#a5790cc7c8fc0e04547d83e5f9384efe9" title="convToBinary Convert truth table indices to binary representation This method converts the indices of..." alt="" coords="259,5,441,32"/>
+<area shape="rect" id="node3" href="$classTruthTable.html#ae6eb629aa688eadb1cae6dfd194c6dbc" title="getInput Get the number of input variables in the truth table." alt="" coords="275,56,425,83"/>
+<area shape="rect" id="node4" href="$classTruthTable.html#abb78a875efe0387644940d4358c64181" title="getOutput Get the number of output variables in the truth table" alt="" coords="269,107,431,133"/>
+<area shape="rect" id="node5" href="$classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82" title="getOutTable Get the output table." alt="" coords="263,157,437,184"/>
+<area shape="rect" id="node6" href="$classParser.html#ae2686bf3fdb12a709732363745943425" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="258,209,442,250"/>
+<area shape="rect" id="node7" href="$classParser.html#a0ddde84ac4684442a5a4d222453887c1" title="setGatesInputsInfo Set information about gates inputs" alt="" coords="253,275,447,301"/>
+<area shape="rect" id="node8" href="$classTruthTable.html#a41993558ddd3bdf5fc861f647910781f" title="size Get the size of the truth table." alt="" coords="289,325,411,352"/>
+</map>

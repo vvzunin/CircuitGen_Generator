@@ -1,0 +1,15 @@
+<map id="GeneticGenerator::generate" name="GeneticGenerator::generate">
+<area shape="rect" id="Node000001" title="generate Generates a genetic population and carries out evolutionary processes The method creates an ..." alt="" coords="5,97,187,124"/>
+<area shape="rect" id="Node000002" href="$classGeneticGenerator.html#adccf630aca912b55820c1fea43111b58" title="createPopulation Creates the initial genetic population The method clears the current population and ..." alt="" coords="235,5,402,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,94,245,51,247,56,135,99"/>
+<area shape="rect" id="Node000003" href="$Recombinations_8h.html#ae4e2ef42ba9e47a6c22a7befaf23c33e" title=" " alt="" coords="716,97,852,124"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="187,108,701,108,701,113,187,113"/>
+<area shape="rect" id="Node000004" href="$classGeneticGenerator.html#ab1f6fd77514d0f5f622bfb7cf78ac35f" title=" " alt="" coords="450,72,668,99"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="187,103,434,89,434,95,187,108"/>
+<area shape="rect" id="Node000005" href="$classGeneticGenerator.html#ac7cbd02932a747df62054887b4a273d7" title="endProcessFunction Calculates the value of the process termination function The method goes through t..." alt="" coords="459,173,659,216"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="135,122,235,152,342,171,444,183,443,188,341,176,234,157,133,127"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="403,24,529,33,600,43,669,57,709,71,745,88,743,92,707,76,668,63,599,48,529,38,402,30"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="403,45,487,65,486,70,402,50"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="669,95,701,99,701,104,669,100"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="619,170,667,152,732,128,734,133,669,157,621,175"/>
+</map>

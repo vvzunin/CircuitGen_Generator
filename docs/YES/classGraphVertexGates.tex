@@ -1,0 +1,239 @@
+\hypertarget{classGraphVertexGates}{}\doxysection{Graph\+Vertex\+Gates Class Reference}
+\label{classGraphVertexGates}\index{GraphVertexGates@{GraphVertexGates}}
+
+
+\mbox{\hyperlink{classGraphVertexGates}{Graph\+Vertex\+Gates}} Class representing a vertex in a graph with gates.  
+
+
+
+
+{\ttfamily \#include $<$Graph\+Vertex.\+hpp$>$}
+
+
+
+Inheritance diagram for Graph\+Vertex\+Gates\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{classGraphVertexGates__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Graph\+Vertex\+Gates\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{classGraphVertexGates__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraphVertexGates_a1fa14a181bc885aaf65d701f77dd1dd1}{Graph\+Vertex\+Gates}} (\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} i\+\_\+gate, \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+base\+Graph=nullptr)
+\item 
+\mbox{\hyperlink{classGraphVertexGates_a16027575fa9f6b9546c09d7835f528e5}{Graph\+Vertex\+Gates}} (\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} i\+\_\+gate, const std\+::string i\+\_\+name, \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+base\+Graph=nullptr)
+\item 
+virtual char \mbox{\hyperlink{classGraphVertexGates_aa23a50827498b0d74e8fd3245bc0c49f}{update\+Value}} ()
+\begin{DoxyCompactList}\small\item\em update\+Value Updates the value of the vertex \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGraphVertexGates_a910539228636bc20f5751611a87a5d47}{calculate\+Hash}} (bool recalculate=false)
+\begin{DoxyCompactList}\small\item\em calculate\+Hash Calculates the hash value of the vertex \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGraphVertexGates_a83f145b69fafe9ed340c656aa1e82940}{get\+Verilog\+String}} () const
+\begin{DoxyCompactList}\small\item\em get\+Verilog\+String Gets a string in Verilog format representing the current vertex \end{DoxyCompactList}\item 
+\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} \mbox{\hyperlink{classGraphVertexGates_a5232bce8a15a40c4f3d19553b79a69a9}{get\+Gate}} () const
+\begin{DoxyCompactList}\small\item\em get\+Gate Returns the type of valve associated with the current vertex \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGraphVertexGates_a4d38ec95ed252a205cbcb08ed691941d}{to\+Verilog}} ()
+\begin{DoxyCompactList}\small\item\em to\+Verilog generates a string in Verilog format for the current vertex, representing the valve according to its type and input connections. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraphVertexGates_a946469866a698378c2885ccea85c1f11}{is\+Subgraph\+Buffer}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} \mbox{\hyperlink{classGraphVertexGates_a129f56fc347d7127f7ad934e20a1c386}{d\+\_\+gate}}
+\item 
+std\+::string \mbox{\hyperlink{classGraphVertexGates_ae164e6be05d19517e8783173ca25acb9}{hashed}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classGraphVertexGates}{Graph\+Vertex\+Gates}} Class representing a vertex in a graph with gates. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGraphVertexGates_a1fa14a181bc885aaf65d701f77dd1dd1}\label{classGraphVertexGates_a1fa14a181bc885aaf65d701f77dd1dd1}} 
+\index{GraphVertexGates@{GraphVertexGates}!GraphVertexGates@{GraphVertexGates}}
+\index{GraphVertexGates@{GraphVertexGates}!GraphVertexGates@{GraphVertexGates}}
+\doxysubsubsection{\texorpdfstring{GraphVertexGates()}{GraphVertexGates()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Gates\+::\+Graph\+Vertex\+Gates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}}]{i\+\_\+gate,  }\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+base\+Graph = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGraphVertexGates_a16027575fa9f6b9546c09d7835f528e5}\label{classGraphVertexGates_a16027575fa9f6b9546c09d7835f528e5}} 
+\index{GraphVertexGates@{GraphVertexGates}!GraphVertexGates@{GraphVertexGates}}
+\index{GraphVertexGates@{GraphVertexGates}!GraphVertexGates@{GraphVertexGates}}
+\doxysubsubsection{\texorpdfstring{GraphVertexGates()}{GraphVertexGates()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Gates\+::\+Graph\+Vertex\+Gates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}}]{i\+\_\+gate,  }\item[{const std\+::string}]{i\+\_\+name,  }\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+base\+Graph = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraphVertexGates_a910539228636bc20f5751611a87a5d47}\label{classGraphVertexGates_a910539228636bc20f5751611a87a5d47}} 
+\index{GraphVertexGates@{GraphVertexGates}!calculateHash@{calculateHash}}
+\index{calculateHash@{calculateHash}!GraphVertexGates@{GraphVertexGates}}
+\doxysubsubsection{\texorpdfstring{calculateHash()}{calculateHash()}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Gates\+::calculate\+Hash (\begin{DoxyParamCaption}\item[{bool}]{recalculate = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+calculate\+Hash Calculates the hash value of the vertex 
+
+
+\begin{DoxyParams}{Parameters}
+{\em recalculate} & Flag indicating whether to recalculate the hash value (default false) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None.} & 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{TO DO:}
+
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+The calculated hash value as a string 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classGraphVertexBase_a07f6737b3622f2e057963849dea1c018}{Graph\+Vertex\+Base}}.
+
+\mbox{\Hypertarget{classGraphVertexGates_a5232bce8a15a40c4f3d19553b79a69a9}\label{classGraphVertexGates_a5232bce8a15a40c4f3d19553b79a69a9}} 
+\index{GraphVertexGates@{GraphVertexGates}!getGate@{getGate}}
+\index{getGate@{getGate}!GraphVertexGates@{GraphVertexGates}}
+\doxysubsubsection{\texorpdfstring{getGate()}{getGate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} Graph\+Vertex\+Gates\+::get\+Gate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get\+Gate Returns the type of valve associated with the current vertex 
+
+\begin{DoxyReturn}{Returns}
+The type of valve associated with the current vertex 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexGates}{GraphVertexGates}} vertex(\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680}{Gates::GateAnd}});}
+\DoxyCodeLine{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} gateType = vertex.getGate();}
+\DoxyCodeLine{std:: cout << \textcolor{stringliteral}{"{}Gate type : "{}} << gateType << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classGraphVertexBase_a1a69b367ea429636864e63c4cc9b6abc}{Graph\+Vertex\+Base}}.
+
+\mbox{\Hypertarget{classGraphVertexGates_a83f145b69fafe9ed340c656aa1e82940}\label{classGraphVertexGates_a83f145b69fafe9ed340c656aa1e82940}} 
+\index{GraphVertexGates@{GraphVertexGates}!getVerilogString@{getVerilogString}}
+\index{getVerilogString@{getVerilogString}!GraphVertexGates@{GraphVertexGates}}
+\doxysubsubsection{\texorpdfstring{getVerilogString()}{getVerilogString()}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Gates\+::get\+Verilog\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Verilog\+String Gets a string in Verilog format representing the current vertex 
+
+\begin{DoxyReturn}{Returns}
+A string in Verilog format representing the current vertex 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if any input connection is invalid \\
+\hline
+\end{DoxyExceptions}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraphVertexGates_a83f145b69fafe9ed340c656aa1e82940_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGraphVertexGates_a946469866a698378c2885ccea85c1f11}\label{classGraphVertexGates_a946469866a698378c2885ccea85c1f11}} 
+\index{GraphVertexGates@{GraphVertexGates}!isSubgraphBuffer@{isSubgraphBuffer}}
+\index{isSubgraphBuffer@{isSubgraphBuffer}!GraphVertexGates@{GraphVertexGates}}
+\doxysubsubsection{\texorpdfstring{isSubgraphBuffer()}{isSubgraphBuffer()}}
+{\footnotesize\ttfamily bool Graph\+Vertex\+Gates\+::is\+Subgraph\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classGraphVertexBase_ad1e4734f26f7e0d8e0153a3f48e23519}{Graph\+Vertex\+Base}}.
+
+\mbox{\Hypertarget{classGraphVertexGates_a4d38ec95ed252a205cbcb08ed691941d}\label{classGraphVertexGates_a4d38ec95ed252a205cbcb08ed691941d}} 
+\index{GraphVertexGates@{GraphVertexGates}!toVerilog@{toVerilog}}
+\index{toVerilog@{toVerilog}!GraphVertexGates@{GraphVertexGates}}
+\doxysubsubsection{\texorpdfstring{toVerilog()}{toVerilog()}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Gates\+::to\+Verilog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+to\+Verilog generates a string in Verilog format for the current vertex, representing the valve according to its type and input connections. 
+
+If a vertex has no input connections, an empty string is returned. If any input connection is invalid, an exception is thrown. \begin{DoxyReturn}{Returns}
+A Verilog format string for the current vertex 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if any input connection is invalid \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented from \mbox{\hyperlink{classGraphVertexBase_a246bbb9dc5234c74fe538bec28627cee}{Graph\+Vertex\+Base}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraphVertexGates_a4d38ec95ed252a205cbcb08ed691941d_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGraphVertexGates_aa23a50827498b0d74e8fd3245bc0c49f}\label{classGraphVertexGates_aa23a50827498b0d74e8fd3245bc0c49f}} 
+\index{GraphVertexGates@{GraphVertexGates}!updateValue@{updateValue}}
+\index{updateValue@{updateValue}!GraphVertexGates@{GraphVertexGates}}
+\doxysubsubsection{\texorpdfstring{updateValue()}{updateValue()}}
+{\footnotesize\ttfamily char Graph\+Vertex\+Gates\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+update\+Value Updates the value of the vertex 
+
+\begin{DoxyReturn}{Returns}
+The updated value of the vertex 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{TO DO:}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if any of the input connections point to a nullptr \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classGraphVertexBase_a330ddc78ee52b8425a773cecc70954fe}{Graph\+Vertex\+Base}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGraphVertexGates_a129f56fc347d7127f7ad934e20a1c386}\label{classGraphVertexGates_a129f56fc347d7127f7ad934e20a1c386}} 
+\index{GraphVertexGates@{GraphVertexGates}!d\_gate@{d\_gate}}
+\index{d\_gate@{d\_gate}!GraphVertexGates@{GraphVertexGates}}
+\doxysubsubsection{\texorpdfstring{d\_gate}{d\_gate}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} Graph\+Vertex\+Gates\+::d\+\_\+gate\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGraphVertexGates_ae164e6be05d19517e8783173ca25acb9}\label{classGraphVertexGates_ae164e6be05d19517e8783173ca25acb9}} 
+\index{GraphVertexGates@{GraphVertexGates}!hashed@{hashed}}
+\index{hashed@{hashed}!GraphVertexGates@{GraphVertexGates}}
+\doxysubsubsection{\texorpdfstring{hashed}{hashed}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Gates\+::hashed\hspace{0.3cm}{\ttfamily [private]}}
+

@@ -1,0 +1,19 @@
+<map id="ParentsTypesWorker" name="ParentsTypesWorker">
+<area shape="rect" id="Node000001" title=" " alt="" coords="456,179,599,205"/>
+<area shape="rect" id="Node000002" href="$namespaceRecombinationsTruthTable.html#add4ee3308e4a023816ff58e5bb09bbd4" title=" " alt="" coords="189,5,408,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="504,168,462,123,407,78,386,67,389,62,409,74,465,119,508,165"/>
+<area shape="rect" id="Node000004" href="$namespaceRecombinationsTruthTable.html#a1e54e20b9eaed73c35cdac85c67269ee" title=" " alt="" coords="190,88,407,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="469,176,390,150,391,145,471,171"/>
+<area shape="rect" id="Node000005" href="$namespaceRecombinationsTruthTable.html#a0414d7fd7d514153afeae2ec35e07a47" title=" " alt="" coords="191,171,406,213"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="441,195,406,195,406,189,441,189"/>
+<area shape="rect" id="Node000006" href="$namespaceRecombinationsTruthTable.html#a9f15cc26305e44482c86e598c35f562f" title=" " alt="" coords="196,237,401,280"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="465,213,375,239,374,234,464,208"/>
+<area shape="rect" id="Node000007" href="$namespaceRecombinationsTruthTable.html#a2761ab37c5457b9af456f316944e73ec" title=" " alt="" coords="193,304,404,347"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="505,219,463,257,409,294,384,306,382,301,407,290,459,253,501,215"/>
+<area shape="rect" id="Node000003" href="$Recombinations_8h.html#a5a2a38b875be5eeed34ee5b50db6a3c3" title=" " alt="" coords="5,179,141,205"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="197,74,190,78,158,103,129,131,87,180,83,177,125,127,154,99,187,74,195,69"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="194,155,117,181,115,175,193,150"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="175,195,141,195,141,189,175,189"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="209,235,120,208,122,203,210,230"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="198,300,187,294,156,274,127,250,84,208,88,204,131,246,159,269,190,290,201,295"/>
+</map>

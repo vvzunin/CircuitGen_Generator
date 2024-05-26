@@ -1,0 +1,626 @@
+\hypertarget{classParser}{}\doxysection{Parser Class Reference}
+\label{classParser}\index{Parser@{Parser}}
+
+
+class \mbox{\hyperlink{classParser}{Parser}}  
+
+
+
+
+{\ttfamily \#include $<$Parser.\+hpp$>$}
+
+
+
+Collaboration diagram for Parser\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classParser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classParser_a50e4d814174c9b009e77181cd7abf209}{Parser}} (const std\+::string \&i\+\_\+log\+Expression, const std\+::map$<$ std\+::string, std\+::vector$<$ int $>$$>$ \&i\+\_\+info)
+\item 
+\mbox{\hyperlink{classParser_a03e02d51f8ea1cd579d7558c184443f3}{Parser}} (const std\+::vector$<$ std\+::string $>$ \&i\+\_\+log\+Expressions, const std\+::map$<$ std\+::string, std\+::vector$<$ int $>$$>$ \&i\+\_\+info)
+\item 
+\mbox{\hyperlink{classParser_adebcb112980269b90f9b476a5d8ca64a}{Parser}} (const std\+::string \&i\+\_\+log\+Expression, const \mbox{\hyperlink{Parser_8hpp_acc732d3a2c1ab5f7d94419a55affee08}{Gates\+Info}} \&i\+\_\+info)
+\item 
+\mbox{\hyperlink{classParser_a780c2dc26dd90952984fd0ff8ce6d2bd}{Parser}} (const std\+::vector$<$ std\+::string $>$ \&i\+\_\+log\+Expressions, const \mbox{\hyperlink{Parser_8hpp_acc732d3a2c1ab5f7d94419a55affee08}{Gates\+Info}} \&i\+\_\+info)
+\item 
+\mbox{\hyperlink{classParser_a5208129b497bfdf7c8ecceeb70e4bba8}{Parser}} ()=default
+\item 
+\mbox{\hyperlink{classParser_a897165b179561270a2cd14ad39040256}{Parser}} (const \mbox{\hyperlink{classParser}{Parser}} \&other)=default
+\item 
+\mbox{\hyperlink{classParser}{Parser}} \& \mbox{\hyperlink{classParser_a7f4e01f44059d19f58f99d9f1ae7a5c5}{operator=}} (const \mbox{\hyperlink{classParser}{Parser}} \&other)=default
+\item 
+\mbox{\hyperlink{classParser_aaf729e2242d0c651412faea209cb879f}{Parser}} (\mbox{\hyperlink{classParser}{Parser}} \&\&other)=default
+\item 
+\mbox{\hyperlink{classParser}{Parser}} \& \mbox{\hyperlink{classParser_a32a46aa1930b03db3f9386e7cd823eeb}{operator=}} (\mbox{\hyperlink{classParser}{Parser}} \&\&other)=default
+\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} \mbox{\hyperlink{classParser_a4cea924dba7f7975cd4c4644633ead5e}{get\+Graph}} () const
+\begin{DoxyCompactList}\small\item\em get\+Graph Get the graph object This method returns a pointer to the graph object associated with the \mbox{\hyperlink{classParser}{Parser}} instance \end{DoxyCompactList}\item 
+std\+::pair$<$ int32\+\_\+t, std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{classParser_a4fd50e46000940a154a27c8ac8010b30}{split\+Logic\+Expression}} (std\+::string i\+\_\+expr)
+\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} \mbox{\hyperlink{classParser_ae2686bf3fdb12a709732363745943425}{multiple\+Vertecies\+To\+One}} (std\+::vector$<$ \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} $>$ cur\+Layout, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} operation, \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} graph)
+\begin{DoxyCompactList}\small\item\em multiple\+Vertecies\+To\+One This method takes a vector of vertices representing the current layout, combines them into a single vertex using the specified logical operation, and returns the resulting vertex \end{DoxyCompactList}\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} \mbox{\hyperlink{classParser_a4d5f1bc99199b99ef027f0a3a698a99f}{parse\+To\+Vertex}} (const std\+::string \&i\+\_\+expr)
+\begin{DoxyCompactList}\small\item\em parse\+To\+Vertex This method takes a logical expression, splits it, and converts it into a vertex within the graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classParser_a3602d3fde1e401b5fb352250232800b0}{parse\+All}} ()
+\begin{DoxyCompactList}\small\item\em parse\+All Parse all logical expressions and construct the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParser_a0ddde84ac4684442a5a4d222453887c1}{set\+Gates\+Inputs\+Info}} (const std\+::map$<$ std\+::string, std\+::vector$<$ int $>$$>$ \&i\+\_\+info)
+\begin{DoxyCompactList}\small\item\em set\+Gates\+Inputs\+Info Set information about gates inputs \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParser_aa3aac879ba833cb3d0e637e04bca631c}{set\+Gates\+Inputs\+Info}} (const \mbox{\hyperlink{Parser_8hpp_acc732d3a2c1ab5f7d94419a55affee08}{Gates\+Info}} \&i\+\_\+info)
+\begin{DoxyCompactList}\small\item\em set\+Gates\+Inputs\+Info TO DO\+: Analog set\+Gates\+Inputs\+Info \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classParser_a19e5fef79c5e703b18464e18acf3a2a4}{Parser}} (const std\+::string \&i\+\_\+log\+Expression)
+\item 
+\mbox{\hyperlink{classParser_a3ddf263d00e942d9b296cf72ff77418b}{Parser}} (const std\+::vector$<$ std\+::string $>$ \&i\+\_\+log\+Expressions)
+\item 
+Oriented\+Graph \mbox{\hyperlink{classParser_a4cea924dba7f7975cd4c4644633ead5e}{get\+Graph}} () const
+\item 
+std\+::pair$<$ int, std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{classParser_a84c6d41d243f2cd350a160e244be6a44}{split\+Logic\+Expression}} (std\+::string i\+\_\+expr)
+\item 
+bool \mbox{\hyperlink{classParser_a71c1a8dc870186065f5be80fcf521508}{parse}} (const std\+::string \&i\+\_\+expr)
+\item 
+bool \mbox{\hyperlink{classParser_a3602d3fde1e401b5fb352250232800b0}{parse\+All}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::pair$<$ bool, std\+::vector$<$ std\+::pair$<$ int32\+\_\+t, int32\+\_\+t $>$ $>$ $>$ \mbox{\hyperlink{classParser_a1a3eda4cd126adbb49d2bcbd1fe00973}{create\+Brackets}} (const std\+::string \&i\+\_\+expr)
+\begin{DoxyCompactList}\small\item\em create\+Brackets Creates pairs of bracket positions within a given logical expression \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classParser_a24e2a9a6369f0cc90afceb08c5af936e}{in\+Brackets}} (const std\+::vector$<$ std\+::pair$<$ int32\+\_\+t, int32\+\_\+t $>$$>$ \&i\+\_\+brackets, int32\+\_\+t i\+\_\+position) const
+\begin{DoxyCompactList}\small\item\em in\+Brackets Checks if a given position is within any pair of brackets \end{DoxyCompactList}\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} \mbox{\hyperlink{classParser_ab9b60493ebbae3daa502c72cde261ada}{parse\+Input\+Not}} (std\+::string oper, std\+::string name)
+\begin{DoxyCompactList}\small\item\em parse\+Input\+Not Parses an input variable with or without the NOT operation and returns its corresponding vertex \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classParser_afdfa436849e6d5ace5227b12b7aade20}{delete\+Extra\+Spaces}} (std\+::string i\+\_\+s)
+\begin{DoxyCompactList}\small\item\em delete\+Extra\+Spaces Deletes extra spaces from the beginning and end of a string \end{DoxyCompactList}\item 
+std\+::pair$<$ bool, std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ $>$ \mbox{\hyperlink{classParser_afd99879a479ec7a3faab7aa67960305d}{create\+Brackets}} (const std\+::string \&i\+\_\+expr)
+\item 
+bool \mbox{\hyperlink{classParser_a2eaacc6c3b24e5b55102f28f73fd7a31}{in\+Brackets}} (const std\+::vector$<$ std\+::pair$<$ int, int $>$$>$ \&i\+\_\+brackets, int i\+\_\+position) const
+\item 
+std\+::string \mbox{\hyperlink{classParser_afdfa436849e6d5ace5227b12b7aade20}{delete\+Extra\+Spaces}} (std\+::string i\+\_\+s)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classParser_a8768b267f6430e9c46e44417ea2df0e7}{d\+\_\+log\+Expressions}}
+\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} \mbox{\hyperlink{classParser_ac1e79bd59b7e8951114f982b81499ae2}{d\+\_\+graph}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ \mbox{\hyperlink{classParser_ae28bee9908099579213af0c6d2b720ca}{d\+\_\+settings}} = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Parser\char`\"{})
+\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} $>$ \mbox{\hyperlink{classParser_a997e3718a07e3299323cb6af7d75529b}{d\+\_\+inputs\+By\+Names}}
+\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} $>$ \mbox{\hyperlink{classParser_a6ffc50c76ae161a469328f37c183d8d2}{d\+\_\+not\+Inputs\+By\+Names}}
+\item 
+\mbox{\hyperlink{Parser_8hpp_acc732d3a2c1ab5f7d94419a55affee08}{Gates\+Info}} \mbox{\hyperlink{classParser_a6d899f84fcc7c038b9b5c44fd4c8299f}{d\+\_\+gates\+Inputs\+Info}}
+\item 
+Oriented\+Graph \mbox{\hyperlink{classParser_a02f1153a9838ceab360575f825581721}{d\+\_\+graph}}
+\item 
+\mbox{\hyperlink{classSettings}{Settings}} $\ast$ \mbox{\hyperlink{classParser_acb70c84879c3fb25b8a473b2ef6d25d3}{d\+\_\+settings}} = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Parser\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classParser}{Parser}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+log\+Expressions} & It can represent a set of logical expressions describing the logic of combinational schemes. These expressions can contain combinations of logical operations and variables. for example, A AND B, NOT, C XOR(\+A, Y)$\ast$ \\
+\hline
+{\em d\+\_\+graph} & An object of the Oriented Graph class, which is an oriented graph used to represent relationships between logical expressions. \\
+\hline
+{\em d\+\_\+settings} & A pointer to an object of the \mbox{\hyperlink{classSettings}{Settings}} class, which is a singleton and is used to store settings related to the \char`\"{}\+Parser\char`\"{} \\
+\hline
+{\em d\+\_\+gates\+Inputs\+Info} & Map storing information about gates inputs \\
+\hline
+{\em d\+\_\+inputs\+By\+Names} & Map associating input names with their corresponding vertices \\
+\hline
+{\em d\+\_\+not\+Inputs\+By\+Names} & Map associating input names with their corresponding \char`\"{}not\char`\"{} vertices \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classParser_a50e4d814174c9b009e77181cd7abf209}\label{classParser_a50e4d814174c9b009e77181cd7abf209}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+log\+Expression,  }\item[{const std\+::map$<$ std\+::string, std\+::vector$<$ int $>$$>$ \&}]{i\+\_\+info }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{classParser_a50e4d814174c9b009e77181cd7abf209_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_a03e02d51f8ea1cd579d7558c184443f3}\label{classParser_a03e02d51f8ea1cd579d7558c184443f3}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{i\+\_\+log\+Expressions,  }\item[{const std\+::map$<$ std\+::string, std\+::vector$<$ int $>$$>$ \&}]{i\+\_\+info }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{classParser_a03e02d51f8ea1cd579d7558c184443f3_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_adebcb112980269b90f9b476a5d8ca64a}\label{classParser_adebcb112980269b90f9b476a5d8ca64a}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+log\+Expression,  }\item[{const \mbox{\hyperlink{Parser_8hpp_acc732d3a2c1ab5f7d94419a55affee08}{Gates\+Info}} \&}]{i\+\_\+info }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classParser_a780c2dc26dd90952984fd0ff8ce6d2bd}\label{classParser_a780c2dc26dd90952984fd0ff8ce6d2bd}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{i\+\_\+log\+Expressions,  }\item[{const \mbox{\hyperlink{Parser_8hpp_acc732d3a2c1ab5f7d94419a55affee08}{Gates\+Info}} \&}]{i\+\_\+info }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classParser_a5208129b497bfdf7c8ecceeb70e4bba8}\label{classParser_a5208129b497bfdf7c8ecceeb70e4bba8}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classParser_a897165b179561270a2cd14ad39040256}\label{classParser_a897165b179561270a2cd14ad39040256}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classParser}{Parser}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classParser_aaf729e2242d0c651412faea209cb879f}\label{classParser_aaf729e2242d0c651412faea209cb879f}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classParser}{Parser}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classParser_a19e5fef79c5e703b18464e18acf3a2a4}\label{classParser_a19e5fef79c5e703b18464e18acf3a2a4}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+log\+Expression }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classParser_a3ddf263d00e942d9b296cf72ff77418b}\label{classParser_a3ddf263d00e942d9b296cf72ff77418b}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{i\+\_\+log\+Expressions }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classParser_a1a3eda4cd126adbb49d2bcbd1fe00973}\label{classParser_a1a3eda4cd126adbb49d2bcbd1fe00973}} 
+\index{Parser@{Parser}!createBrackets@{createBrackets}}
+\index{createBrackets@{createBrackets}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{createBrackets()}{createBrackets()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ $>$ Parser\+::create\+Brackets (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+expr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+create\+Brackets Creates pairs of bracket positions within a given logical expression 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+expr} & The logical expression to analyze \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pair indicating whether the expression has balanced brackets and a vector of pairs representing the positions of opening and closing brackets 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{TO DO:}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_a1a3eda4cd126adbb49d2bcbd1fe00973_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_afd99879a479ec7a3faab7aa67960305d}\label{classParser_afd99879a479ec7a3faab7aa67960305d}} 
+\index{Parser@{Parser}!createBrackets@{createBrackets}}
+\index{createBrackets@{createBrackets}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{createBrackets()}{createBrackets()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::pair$<$bool, std\+::vector$<$std\+::pair$<$int, int$>$ $>$ $>$ Parser\+::create\+Brackets (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+expr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classParser_afdfa436849e6d5ace5227b12b7aade20}\label{classParser_afdfa436849e6d5ace5227b12b7aade20}} 
+\index{Parser@{Parser}!deleteExtraSpaces@{deleteExtraSpaces}}
+\index{deleteExtraSpaces@{deleteExtraSpaces}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{deleteExtraSpaces()}{deleteExtraSpaces()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string Parser\+::delete\+Extra\+Spaces (\begin{DoxyParamCaption}\item[{std\+::string}]{i\+\_\+s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+delete\+Extra\+Spaces Deletes extra spaces from the beginning and end of a string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+s} & The string from which to delete extra spaces \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The input string with leading and trailing spaces removed 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classParser}{Parser}} parser;}
+\DoxyCodeLine{std::string \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} = \textcolor{stringliteral}{"{}   Hello,   World!   "{}};}
+\DoxyCodeLine{std::string cleanedString = parser.\mbox{\hyperlink{classParser_afdfa436849e6d5ace5227b12b7aade20}{deleteExtraSpaces}}(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Original string: '"{}} << \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} << \textcolor{stringliteral}{"{}'\(\backslash\)n"{}};}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Cleaned string: '"{}} << cleanedString << \textcolor{stringliteral}{"{}'\(\backslash\)n"{}};}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_afdfa436849e6d5ace5227b12b7aade20_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_afdfa436849e6d5ace5227b12b7aade20}\label{classParser_afdfa436849e6d5ace5227b12b7aade20}} 
+\index{Parser@{Parser}!deleteExtraSpaces@{deleteExtraSpaces}}
+\index{deleteExtraSpaces@{deleteExtraSpaces}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{deleteExtraSpaces()}{deleteExtraSpaces()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::string Parser\+::delete\+Extra\+Spaces (\begin{DoxyParamCaption}\item[{std\+::string}]{i\+\_\+s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classParser_a4cea924dba7f7975cd4c4644633ead5e}\label{classParser_a4cea924dba7f7975cd4c4644633ead5e}} 
+\index{Parser@{Parser}!getGraph@{getGraph}}
+\index{getGraph@{getGraph}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getGraph()}{getGraph()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Oriented\+Graph Parser\+::get\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Graph Get the graph object This method returns a pointer to the graph object associated with the \mbox{\hyperlink{classParser}{Parser}} instance 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the graph object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classParser_a4cea924dba7f7975cd4c4644633ead5e}\label{classParser_a4cea924dba7f7975cd4c4644633ead5e}} 
+\index{Parser@{Parser}!getGraph@{getGraph}}
+\index{getGraph@{getGraph}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getGraph()}{getGraph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Oriented\+Graph Parser\+::get\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classParser_a2eaacc6c3b24e5b55102f28f73fd7a31}\label{classParser_a2eaacc6c3b24e5b55102f28f73fd7a31}} 
+\index{Parser@{Parser}!inBrackets@{inBrackets}}
+\index{inBrackets@{inBrackets}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{inBrackets()}{inBrackets()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Parser\+::in\+Brackets (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::pair$<$ int, int $>$$>$ \&}]{i\+\_\+brackets,  }\item[{int}]{i\+\_\+position }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classParser_a24e2a9a6369f0cc90afceb08c5af936e}\label{classParser_a24e2a9a6369f0cc90afceb08c5af936e}} 
+\index{Parser@{Parser}!inBrackets@{inBrackets}}
+\index{inBrackets@{inBrackets}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{inBrackets()}{inBrackets()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Parser\+::in\+Brackets (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::pair$<$ int32\+\_\+t, int32\+\_\+t $>$$>$ \&}]{i\+\_\+brackets,  }\item[{int32\+\_\+t}]{i\+\_\+position }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+in\+Brackets Checks if a given position is within any pair of brackets 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+brackets} & The vector of pairs representing the positions of opening and closing brackets \\
+\hline
+{\em i\+\_\+position} & The position to check if it falls within any pair of brackets \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the specified position is within any pair of brackets, false otherwise 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classParser}{Parser}} parser;}
+\DoxyCodeLine{std::vector<std::pair<int32\_t, int32\_t>> brackets = \{\{0, 3\}, \{5, 8\}, \{12,}
+\DoxyCodeLine{15\}\}; int32\_t position1 = 2; int32\_t position2 = 6; \textcolor{keywordtype}{bool} result1 =}
+\DoxyCodeLine{parser.\mbox{\hyperlink{classParser_a24e2a9a6369f0cc90afceb08c5af936e}{inBrackets}}(brackets, position1); \textcolor{keywordtype}{bool} result2 =}
+\DoxyCodeLine{parser.\mbox{\hyperlink{classParser_a24e2a9a6369f0cc90afceb08c5af936e}{inBrackets}}(brackets, position2); std::cout << \textcolor{stringliteral}{"{}Position "{}} <<}
+\DoxyCodeLine{position1 << \textcolor{stringliteral}{"{} is within any pair of brackets: "{}} << std::boolalpha <<}
+\DoxyCodeLine{result1 << \textcolor{stringliteral}{"{}\(\backslash\)n"{}}; std::cout << \textcolor{stringliteral}{"{}Position "{}} << position2 << \textcolor{stringliteral}{"{} is within any}}
+\DoxyCodeLine{\textcolor{stringliteral}{pair of brackets: "{}} << std::boolalpha << result2 << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_a24e2a9a6369f0cc90afceb08c5af936e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_ae2686bf3fdb12a709732363745943425}\label{classParser_ae2686bf3fdb12a709732363745943425}} 
+\index{Parser@{Parser}!multipleVerteciesToOne@{multipleVerteciesToOne}}
+\index{multipleVerteciesToOne@{multipleVerteciesToOne}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{multipleVerteciesToOne()}{multipleVerteciesToOne()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} Parser\+::multiple\+Vertecies\+To\+One (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} $>$}]{cur\+Layout,  }\item[{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}}]{operation,  }\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{graph }\end{DoxyParamCaption})}
+
+
+
+multiple\+Vertecies\+To\+One This method takes a vector of vertices representing the current layout, combines them into a single vertex using the specified logical operation, and returns the resulting vertex 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cur\+Layout} & The vector of vertices representing the current layout \\
+\hline
+{\em operation} & The logical operation to apply \\
+\hline
+{\em graph} & A pointer to the graph object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the resulting vertex after combining the input vertices 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::vector<VertexPtr> vertices = \{vertex1, vertex2, vertex3\};}
+\DoxyCodeLine{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} operation = Gates::AND;}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} graph = std::make\_shared<Graph>();}
+\DoxyCodeLine{\mbox{\hyperlink{classParser}{Parser}} parser;}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} result = parser.\mbox{\hyperlink{classParser_ae2686bf3fdb12a709732363745943425}{multipleVerteciesToOne}}(vertices, operation,}
+\DoxyCodeLine{graph);}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_ae2686bf3fdb12a709732363745943425_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_a7f4e01f44059d19f58f99d9f1ae7a5c5}\label{classParser_a7f4e01f44059d19f58f99d9f1ae7a5c5}} 
+\index{Parser@{Parser}!operator=@{operator=}}
+\index{operator=@{operator=}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classParser}{Parser}}\& Parser\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classParser}{Parser}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classParser_a32a46aa1930b03db3f9386e7cd823eeb}\label{classParser_a32a46aa1930b03db3f9386e7cd823eeb}} 
+\index{Parser@{Parser}!operator=@{operator=}}
+\index{operator=@{operator=}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classParser}{Parser}}\& Parser\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classParser}{Parser}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classParser_a71c1a8dc870186065f5be80fcf521508}\label{classParser_a71c1a8dc870186065f5be80fcf521508}} 
+\index{Parser@{Parser}!parse@{parse}}
+\index{parse@{parse}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily bool Parser\+::parse (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+expr }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_a71c1a8dc870186065f5be80fcf521508_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_a3602d3fde1e401b5fb352250232800b0}\label{classParser_a3602d3fde1e401b5fb352250232800b0}} 
+\index{Parser@{Parser}!parseAll@{parseAll}}
+\index{parseAll@{parseAll}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parseAll()}{parseAll()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Parser\+::parse\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+parse\+All Parse all logical expressions and construct the graph. 
+
+This method initializes a new oriented graph and iterates through all logical expressions stored in the {\ttfamily d\+\_\+log\+Expressions} member variable. For each expression, it checks if it has balanced brackets using the {\ttfamily create\+Brackets} method. If the brackets are balanced, it calls the {\ttfamily parse\+To\+Vertex} method to parse the expression and construct the corresponding vertex in the graph. If parsing fails for any expression, the method returns false. Otherwise, it returns true indicating successful parsing of all expressions. \begin{DoxyReturn}{Returns}
+True if parsing is successful for all expressions, false otherwise 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{TO DO:}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_a3602d3fde1e401b5fb352250232800b0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_a3602d3fde1e401b5fb352250232800b0}\label{classParser_a3602d3fde1e401b5fb352250232800b0}} 
+\index{Parser@{Parser}!parseAll@{parseAll}}
+\index{parseAll@{parseAll}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parseAll()}{parseAll()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Parser\+::parse\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classParser_ab9b60493ebbae3daa502c72cde261ada}\label{classParser_ab9b60493ebbae3daa502c72cde261ada}} 
+\index{Parser@{Parser}!parseInputNot@{parseInputNot}}
+\index{parseInputNot@{parseInputNot}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parseInputNot()}{parseInputNot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} Parser\+::parse\+Input\+Not (\begin{DoxyParamCaption}\item[{std\+::string}]{oper,  }\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+parse\+Input\+Not Parses an input variable with or without the NOT operation and returns its corresponding vertex 
+
+
+\begin{DoxyParams}{Parameters}
+{\em oper} & The operation associated with the input variable (\textquotesingle{}input\textquotesingle{} for no operation, \textquotesingle{}not\textquotesingle{} for the NOT operation) \\
+\hline
+{\em name} & The name of the input variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the vertex representing the parsed input variable, with or without the NOT operation 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{TO DO:}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_ab9b60493ebbae3daa502c72cde261ada_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_a4d5f1bc99199b99ef027f0a3a698a99f}\label{classParser_a4d5f1bc99199b99ef027f0a3a698a99f}} 
+\index{Parser@{Parser}!parseToVertex@{parseToVertex}}
+\index{parseToVertex@{parseToVertex}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parseToVertex()}{parseToVertex()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} Parser\+::parse\+To\+Vertex (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+expr }\end{DoxyParamCaption})}
+
+
+
+parse\+To\+Vertex This method takes a logical expression, splits it, and converts it into a vertex within the graph. 
+
+It recursively parses sub-\/expressions until it constructs the complete expression tree 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+expr} & The logical expression to parse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the resulting vertex representing the expression, or nullptr on failure 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classParser}{Parser}} parser;}
+\DoxyCodeLine{std::string expression = \textcolor{stringliteral}{"{}output A AND B"{}};}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} result = parser.\mbox{\hyperlink{classParser_a4d5f1bc99199b99ef027f0a3a698a99f}{parseToVertex}}(expression);}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (result)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  std::cout << \textcolor{stringliteral}{"{}Vertex successfully created."{}} << std::endl;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  std::cerr << \textcolor{stringliteral}{"{}Failed to parse the expression."{}} << std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_a4d5f1bc99199b99ef027f0a3a698a99f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classParser_a4d5f1bc99199b99ef027f0a3a698a99f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_aa3aac879ba833cb3d0e637e04bca631c}\label{classParser_aa3aac879ba833cb3d0e637e04bca631c}} 
+\index{Parser@{Parser}!setGatesInputsInfo@{setGatesInputsInfo}}
+\index{setGatesInputsInfo@{setGatesInputsInfo}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{setGatesInputsInfo()}{setGatesInputsInfo()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Parser\+::set\+Gates\+Inputs\+Info (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{Parser_8hpp_acc732d3a2c1ab5f7d94419a55affee08}{Gates\+Info}} \&}]{i\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+set\+Gates\+Inputs\+Info TO DO\+: Analog set\+Gates\+Inputs\+Info 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Gates\+Info} & = std\+::map$<$Gates, std\+::vector$<$int$>$$>$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classParser_a0ddde84ac4684442a5a4d222453887c1}\label{classParser_a0ddde84ac4684442a5a4d222453887c1}} 
+\index{Parser@{Parser}!setGatesInputsInfo@{setGatesInputsInfo}}
+\index{setGatesInputsInfo@{setGatesInputsInfo}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{setGatesInputsInfo()}{setGatesInputsInfo()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Parser\+::set\+Gates\+Inputs\+Info (\begin{DoxyParamCaption}\item[{const std\+::map$<$ std\+::string, std\+::vector$<$ int $>$$>$ \&}]{i\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+set\+Gates\+Inputs\+Info Set information about gates inputs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+info} & A map where keys are gate names as strings and values are vectors of integers specifying the number of inputs for each gate \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_a0ddde84ac4684442a5a4d222453887c1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_a4fd50e46000940a154a27c8ac8010b30}\label{classParser_a4fd50e46000940a154a27c8ac8010b30}} 
+\index{Parser@{Parser}!splitLogicExpression@{splitLogicExpression}}
+\index{splitLogicExpression@{splitLogicExpression}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{splitLogicExpression()}{splitLogicExpression()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::pair$<$ int, std\+::vector$<$ std\+::string $>$ $>$ Parser\+::split\+Logic\+Expression (\begin{DoxyParamCaption}\item[{std\+::string}]{i\+\_\+expr }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_a4fd50e46000940a154a27c8ac8010b30_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classParser_a4fd50e46000940a154a27c8ac8010b30_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classParser_a84c6d41d243f2cd350a160e244be6a44}\label{classParser_a84c6d41d243f2cd350a160e244be6a44}} 
+\index{Parser@{Parser}!splitLogicExpression@{splitLogicExpression}}
+\index{splitLogicExpression@{splitLogicExpression}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{splitLogicExpression()}{splitLogicExpression()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::pair$<$int, std\+::vector$<$std\+::string$>$ $>$ Parser\+::split\+Logic\+Expression (\begin{DoxyParamCaption}\item[{std\+::string}]{i\+\_\+expr }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classParser_a6d899f84fcc7c038b9b5c44fd4c8299f}\label{classParser_a6d899f84fcc7c038b9b5c44fd4c8299f}} 
+\index{Parser@{Parser}!d\_gatesInputsInfo@{d\_gatesInputsInfo}}
+\index{d\_gatesInputsInfo@{d\_gatesInputsInfo}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{d\_gatesInputsInfo}{d\_gatesInputsInfo}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Parser_8hpp_acc732d3a2c1ab5f7d94419a55affee08}{Gates\+Info}} Parser\+::d\+\_\+gates\+Inputs\+Info\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classParser_ac1e79bd59b7e8951114f982b81499ae2}\label{classParser_ac1e79bd59b7e8951114f982b81499ae2}} 
+\index{Parser@{Parser}!d\_graph@{d\_graph}}
+\index{d\_graph@{d\_graph}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{d\_graph}{d\_graph}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} Parser\+::d\+\_\+graph\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classParser_a02f1153a9838ceab360575f825581721}\label{classParser_a02f1153a9838ceab360575f825581721}} 
+\index{Parser@{Parser}!d\_graph@{d\_graph}}
+\index{d\_graph@{d\_graph}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{d\_graph}{d\_graph}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Oriented\+Graph Parser\+::d\+\_\+graph\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classParser_a997e3718a07e3299323cb6af7d75529b}\label{classParser_a997e3718a07e3299323cb6af7d75529b}} 
+\index{Parser@{Parser}!d\_inputsByNames@{d\_inputsByNames}}
+\index{d\_inputsByNames@{d\_inputsByNames}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{d\_inputsByNames}{d\_inputsByNames}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}}$>$ Parser\+::d\+\_\+inputs\+By\+Names\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classParser_a8768b267f6430e9c46e44417ea2df0e7}\label{classParser_a8768b267f6430e9c46e44417ea2df0e7}} 
+\index{Parser@{Parser}!d\_logExpressions@{d\_logExpressions}}
+\index{d\_logExpressions@{d\_logExpressions}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{d\_logExpressions}{d\_logExpressions}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Parser\+::d\+\_\+log\+Expressions\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classParser_a6ffc50c76ae161a469328f37c183d8d2}\label{classParser_a6ffc50c76ae161a469328f37c183d8d2}} 
+\index{Parser@{Parser}!d\_notInputsByNames@{d\_notInputsByNames}}
+\index{d\_notInputsByNames@{d\_notInputsByNames}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{d\_notInputsByNames}{d\_notInputsByNames}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}}$>$ Parser\+::d\+\_\+not\+Inputs\+By\+Names\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classParser_ae28bee9908099579213af0c6d2b720ca}\label{classParser_ae28bee9908099579213af0c6d2b720ca}} 
+\index{Parser@{Parser}!d\_settings@{d\_settings}}
+\index{d\_settings@{d\_settings}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{d\_settings}{d\_settings}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSettings}{Settings}}$>$ Parser\+::d\+\_\+settings = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Parser\char`\"{})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classParser_acb70c84879c3fb25b8a473b2ef6d25d3}\label{classParser_acb70c84879c3fb25b8a473b2ef6d25d3}} 
+\index{Parser@{Parser}!d\_settings@{d\_settings}}
+\index{d\_settings@{d\_settings}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{d\_settings}{d\_settings}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSettings}{Settings}}$\ast$ Parser\+::d\+\_\+settings = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Parser\char`\"{})\hspace{0.3cm}{\ttfamily [private]}}
+

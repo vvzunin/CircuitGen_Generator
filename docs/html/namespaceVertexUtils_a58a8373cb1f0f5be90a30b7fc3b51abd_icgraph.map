@@ -1,0 +1,4 @@
+<map id="VertexUtils::vertexTypeToVerilog" name="VertexUtils::vertexTypeToVerilog">
+<area shape="rect" id="node1" title="vertexTypeToComment Converts a vertex type enum value to its Verilog representation" alt="" coords="272,5,460,47"/>
+<area shape="rect" id="node2" href="$classGraphVertexBase.html#ae4e70880a9cd7de29aa4a301ca208df6" title="getInstance Generates an instance declaration for the vertex in Verilog format." alt="" coords="5,13,224,39"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="C:/course_3/CircuitGen_Generator/src/baseStructures/truthTable" name="C:/course_3/CircuitGen_Generator/src/baseStructures/truthTable">
+<area shape="rect" id="node1" href="dir_e6ccde60e37790c908fede173efb3ced.html" title="truthTable" alt="" coords="111,53,190,80"/>
+<area shape="rect" id="node2" href="dir_1af64b257c3f00e7199751c64a4016ba.html" title="generators" alt="" coords="5,128,88,155"/>
+<area shape="poly" id="edge1" href="dir_000021_000009.html" alt="" coords="134,83,78,121,75,117,131,78"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000021_000009.html" title="1" alt="" coords="81,116,88,132"/>
+<area shape="rect" id="node3" href="dir_6f225bcb3540d15c84dd332eb9d51ab5.html" title="additional" alt="" coords="112,128,189,155"/>
+<area shape="poly" id="edge2" href="dir_000021_000000.html" alt="" coords="153,81,153,112,148,112,148,81"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000021_000000.html" title="2" alt="" coords="155,101,162,117"/>
+<area shape="rect" id="node4" href="dir_7dcbfa0d2d1af490b32c17abc8ad7251.html" title="settings" alt="" coords="213,128,280,155"/>
+<area shape="poly" id="edge3" href="dir_000021_000017.html" alt="" coords="169,78,219,116,216,121,166,83"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000021_000017.html" title="1" alt="" coords="217,102,224,118"/>
+<area shape="rect" id="clust1" href="dir_783b52754a2018d76e61e06ca3cbe8be.html" title="baseStructures" alt="" coords="96,16,205,91"/>
+</map>

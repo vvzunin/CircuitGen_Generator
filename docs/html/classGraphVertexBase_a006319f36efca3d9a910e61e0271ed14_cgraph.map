@@ -1,0 +1,4 @@
+<map id="GraphVertexBase::GraphVertexBase" name="GraphVertexBase::GraphVertexBase">
+<area shape="rect" id="node1" title="GraphVertexBase Constructs a GraphVertexBase object with the specified vertex type and optional graph..." alt="" coords="5,5,261,32"/>
+<area shape="rect" id="node2" href="$classGraphVertexBase.html#abba036744b90360643beae0ab1db977a" title="getTypeName This method returns the string representation of the vertex type by parsing the vertex ty..." alt="" coords="309,5,543,32"/>
+</map>

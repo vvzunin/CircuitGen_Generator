@@ -1,0 +1,7 @@
+<map id="SimpleGenerators::zhegalkinFromTruthTable" name="SimpleGenerators::zhegalkinFromTruthTable">
+<area shape="rect" id="node1" title=" " alt="" coords="5,74,216,115"/>
+<area shape="rect" id="node2" href="$classTruthTable.html#ae6eb629aa688eadb1cae6dfd194c6dbc" title="getInput Get the number of input variables in the truth table." alt="" coords="276,5,427,32"/>
+<area shape="rect" id="node3" href="$classTruthTable.html#abb78a875efe0387644940d4358c64181" title="getOutput Get the number of output variables in the truth table" alt="" coords="271,56,432,83"/>
+<area shape="rect" id="node4" href="$classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82" title="getOutTable Get the output table." alt="" coords="264,107,439,133"/>
+<area shape="rect" id="node5" href="$classTruthTable.html#a41993558ddd3bdf5fc861f647910781f" title="size Get the size of the truth table." alt="" coords="290,157,413,184"/>
+</map>

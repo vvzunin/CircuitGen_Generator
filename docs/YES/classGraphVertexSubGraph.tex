@@ -1,0 +1,278 @@
+\hypertarget{classGraphVertexSubGraph}{}\doxysection{Graph\+Vertex\+Sub\+Graph Class Reference}
+\label{classGraphVertexSubGraph}\index{GraphVertexSubGraph@{GraphVertexSubGraph}}
+
+
+class \mbox{\hyperlink{classGraphVertexSubGraph}{Graph\+Vertex\+Sub\+Graph}} It is a class, having a sub\+Gruph pointer inside.  
+
+
+
+
+{\ttfamily \#include $<$Graph\+Vertex.\+hpp$>$}
+
+
+
+Inheritance diagram for Graph\+Vertex\+Sub\+Graph\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classGraphVertexSubGraph__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Graph\+Vertex\+Sub\+Graph\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classGraphVertexSubGraph__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraphVertexSubGraph_a677aa415395352cad6108576be2e76fe}{Graph\+Vertex\+Sub\+Graph}} (\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+sub\+Graph, \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+base\+Graph=nullptr)
+\item 
+\mbox{\hyperlink{classGraphVertexSubGraph_ad7bdd7c92d76b0d92ef8cc8ab99dfba6}{Graph\+Vertex\+Sub\+Graph}} (\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+sub\+Graph, const std\+::string \&i\+\_\+name, \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+base\+Graph=nullptr)
+\item 
+char \mbox{\hyperlink{classGraphVertexSubGraph_af18b1a71d768e2c8c01ea93a57995f7a}{update\+Value}} () override
+\begin{DoxyCompactList}\small\item\em update\+Value TO DO\+: \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGraphVertexSubGraph_a3ef7ccb93efd390c6f90aba11eee2c88}{to\+Verilog}} () override
+\begin{DoxyCompactList}\small\item\em to\+Verilog Generates Verilog code for the vertex \end{DoxyCompactList}\item 
+std\+::pair$<$ bool, std\+::string $>$ \mbox{\hyperlink{classGraphVertexSubGraph_a2ea1ba66149ba38de143dd849497206a}{to\+Verilog}} (std\+::string i\+\_\+path, std\+::string i\+\_\+filename=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em This method is used as a substructure for Oriented\+Graph methods. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraphVertexSubGraph_a9fe85d8468f974f29a3e08c12534fb5c}{to\+Graph\+ML}} (std\+::ofstream \&i\+\_\+file\+Stream) const
+\begin{DoxyCompactList}\small\item\em This method is used as a substructure for Oriented\+Graph methods. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGraphVertexSubGraph_accd463ee3dd618d84dfd4c1c21ce3d16}{to\+Graph\+ML}} (int i\+\_\+indent=0, std\+::string i\+\_\+prefix=\char`\"{}\char`\"{}) const
+\begin{DoxyCompactList}\small\item\em This method is used as a substructure for Oriented\+Graph methods. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGraphVertexSubGraph_aa17d5ad4d74428f86f76b2388a02c156}{get\+Instance}} () override
+\begin{DoxyCompactList}\small\item\em This method is used as a substructure for Oriented\+Graph methods. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGraphVertexSubGraph_adba79986a7c57da850b044bb1d34157e}{calculate\+Hash}} (bool recalculate=false)
+\begin{DoxyCompactList}\small\item\em calculate\+Hash Calculates the hash value for the vertex based on its outgoing connections. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraphVertexSubGraph_a26ab0b39eb1c5cfc4b2e565d1f3e784f}{set\+Sub\+Graph}} (\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+sub\+Graph)
+\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} \mbox{\hyperlink{classGraphVertexSubGraph_ada55795fde0a7004c48abfd2c1aae1d7}{get\+Sub\+Graph}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} \mbox{\hyperlink{classGraphVertexSubGraph_ae1a4fc9e88f572807f82f10ffa3b790e}{d\+\_\+sub\+Graph}}
+\item 
+std\+::string \mbox{\hyperlink{classGraphVertexSubGraph_a35a2b5353ed46c7cc3d3216889017f06}{hashed}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classGraphVertexSubGraph}{Graph\+Vertex\+Sub\+Graph}} It is a class, having a sub\+Gruph pointer inside. 
+
+Is used for storing this pointer for providing Grpah connectivity 
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+sub\+Graph} & Pointer to the subgraph associated with this vertex \\
+\hline
+{\em hashed} & Cached hash value of the vertex \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGraphVertexSubGraph_a677aa415395352cad6108576be2e76fe}\label{classGraphVertexSubGraph_a677aa415395352cad6108576be2e76fe}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{GraphVertexSubGraph()}{GraphVertexSubGraph()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Sub\+Graph\+::\+Graph\+Vertex\+Sub\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+sub\+Graph,  }\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+base\+Graph = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGraphVertexSubGraph_ad7bdd7c92d76b0d92ef8cc8ab99dfba6}\label{classGraphVertexSubGraph_ad7bdd7c92d76b0d92ef8cc8ab99dfba6}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{GraphVertexSubGraph()}{GraphVertexSubGraph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Sub\+Graph\+::\+Graph\+Vertex\+Sub\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+sub\+Graph,  }\item[{const std\+::string \&}]{i\+\_\+name,  }\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+base\+Graph = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraphVertexSubGraph_adba79986a7c57da850b044bb1d34157e}\label{classGraphVertexSubGraph_adba79986a7c57da850b044bb1d34157e}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!calculateHash@{calculateHash}}
+\index{calculateHash@{calculateHash}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{calculateHash()}{calculateHash()}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Sub\+Graph\+::calculate\+Hash (\begin{DoxyParamCaption}\item[{bool}]{recalculate = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+calculate\+Hash Calculates the hash value for the vertex based on its outgoing connections. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em recalculate} & Flag indicating whether to recalculate the hash value even if it has already been calculated. If true, the hash value will be recalculated. If false and the hash value has already been calculated, the cached hash value will be returned without recalculation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The hash value of the vertex based on its outgoing connections. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{VertexTypes::output}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Creating two more vertices}}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} vertex2 = std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}},}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}vertex2"{}}); \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} vertex3 =}
+\DoxyCodeLine{std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex3"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Adding the second and third vertices to the output connections of the}}
+\DoxyCodeLine{first vertex vertex.addVertexToOutConnections(vertex2);}
+\DoxyCodeLine{vertex.addVertexToOutConnections(vertex3);}
+\DoxyCodeLine{\textcolor{comment}{// Calculating the hash for the first vertex}}
+\DoxyCodeLine{std::string hashValue = vertex.calculateHash();}
+\DoxyCodeLine{\textcolor{comment}{// Output of the result}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Hash for the first vertex: "{}} << hashValue << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classGraphVertexBase_a07f6737b3622f2e057963849dea1c018}{Graph\+Vertex\+Base}}.
+
+\mbox{\Hypertarget{classGraphVertexSubGraph_aa17d5ad4d74428f86f76b2388a02c156}\label{classGraphVertexSubGraph_aa17d5ad4d74428f86f76b2388a02c156}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Sub\+Graph\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+This method is used as a substructure for Oriented\+Graph methods. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classGraphVertexBase_ae4e70880a9cd7de29aa4a301ca208df6}{Graph\+Vertex\+Base}}.
+
+\mbox{\Hypertarget{classGraphVertexSubGraph_ada55795fde0a7004c48abfd2c1aae1d7}\label{classGraphVertexSubGraph_ada55795fde0a7004c48abfd2c1aae1d7}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!getSubGraph@{getSubGraph}}
+\index{getSubGraph@{getSubGraph}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{getSubGraph()}{getSubGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} Graph\+Vertex\+Sub\+Graph\+::get\+Sub\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classGraphVertexSubGraph_a26ab0b39eb1c5cfc4b2e565d1f3e784f}\label{classGraphVertexSubGraph_a26ab0b39eb1c5cfc4b2e565d1f3e784f}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!setSubGraph@{setSubGraph}}
+\index{setSubGraph@{setSubGraph}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{setSubGraph()}{setSubGraph()}}
+{\footnotesize\ttfamily void Graph\+Vertex\+Sub\+Graph\+::set\+Sub\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+sub\+Graph }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGraphVertexSubGraph_accd463ee3dd618d84dfd4c1c21ce3d16}\label{classGraphVertexSubGraph_accd463ee3dd618d84dfd4c1c21ce3d16}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!toGraphML@{toGraphML}}
+\index{toGraphML@{toGraphML}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{toGraphML()}{toGraphML()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Sub\+Graph\+::to\+Graph\+ML (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+indent = {\ttfamily 0},  }\item[{std\+::string}]{i\+\_\+prefix = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption}) const}
+
+
+
+This method is used as a substructure for Oriented\+Graph methods. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+indent} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexSubGraph_a9fe85d8468f974f29a3e08c12534fb5c}\label{classGraphVertexSubGraph_a9fe85d8468f974f29a3e08c12534fb5c}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!toGraphML@{toGraphML}}
+\index{toGraphML@{toGraphML}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{toGraphML()}{toGraphML()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Graph\+Vertex\+Sub\+Graph\+::to\+Graph\+ML (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{i\+\_\+file\+Stream }\end{DoxyParamCaption}) const}
+
+
+
+This method is used as a substructure for Oriented\+Graph methods. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+file\+Stream} & TO DO\+: \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TO DO\+: 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexSubGraph_a3ef7ccb93efd390c6f90aba11eee2c88}\label{classGraphVertexSubGraph_a3ef7ccb93efd390c6f90aba11eee2c88}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!toVerilog@{toVerilog}}
+\index{toVerilog@{toVerilog}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{toVerilog()}{toVerilog()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Sub\+Graph\+::to\+Verilog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+to\+Verilog Generates Verilog code for the vertex 
+
+\begin{DoxyReturn}{Returns}
+A string containing Verilog code for the vertex, or an empty string if the vertex type is not \char`\"{}output\char`\"{} or if the incoming connection is invalid 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class with the type}}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}output"{}} and the name \textcolor{stringliteral}{"{}output\_vertex"{}}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} outputVertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{VertexTypes::output}}, \textcolor{stringliteral}{"{}output\_vertex"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Creating another vertex with the type "{}input"{} and the name}}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}input\_vertex"{}} \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} inputVertex =}
+\DoxyCodeLine{std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}input\_vertex"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Setting the input connection for the vertex "{}output\_vertex"{}}}
+\DoxyCodeLine{outputVertex.addVertexToInConnections(inputVertex);}
+\DoxyCodeLine{\textcolor{comment}{// Generating the Verilog code for the vertex "{}output\_vertex"{}}}
+\DoxyCodeLine{std::string verilogCode = outputVertex.toVerilog();}
+\DoxyCodeLine{\textcolor{comment}{// Display the generated Verilog code on the screen}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Generated Verilog code:\(\backslash\)n"{}} << verilogCode << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classGraphVertexBase_a246bbb9dc5234c74fe538bec28627cee}{Graph\+Vertex\+Base}}.
+
+\mbox{\Hypertarget{classGraphVertexSubGraph_a2ea1ba66149ba38de143dd849497206a}\label{classGraphVertexSubGraph_a2ea1ba66149ba38de143dd849497206a}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!toVerilog@{toVerilog}}
+\index{toVerilog@{toVerilog}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{toVerilog()}{toVerilog()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, std\+::string $>$ Graph\+Vertex\+Sub\+Graph\+::to\+Verilog (\begin{DoxyParamCaption}\item[{std\+::string}]{i\+\_\+path,  }\item[{std\+::string}]{i\+\_\+filename = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+This method is used as a substructure for Oriented\+Graph methods. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+path} & path to future file storing. Do not add submodule here, folder would be created there \\
+\hline
+{\em i\+\_\+filename} & name of file to be created (default is same as grpah name) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pair, first is bool, meaning was file writing successful or not and second is string, for graph is empty, for subgraph is module instance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexSubGraph_af18b1a71d768e2c8c01ea93a57995f7a}\label{classGraphVertexSubGraph_af18b1a71d768e2c8c01ea93a57995f7a}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!updateValue@{updateValue}}
+\index{updateValue@{updateValue}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{updateValue()}{updateValue()}}
+{\footnotesize\ttfamily char Graph\+Vertex\+Sub\+Graph\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+update\+Value TO DO\+: 
+
+
+
+Implements \mbox{\hyperlink{classGraphVertexBase_a330ddc78ee52b8425a773cecc70954fe}{Graph\+Vertex\+Base}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGraphVertexSubGraph_ae1a4fc9e88f572807f82f10ffa3b790e}\label{classGraphVertexSubGraph_ae1a4fc9e88f572807f82f10ffa3b790e}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!d\_subGraph@{d\_subGraph}}
+\index{d\_subGraph@{d\_subGraph}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{d\_subGraph}{d\_subGraph}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} Graph\+Vertex\+Sub\+Graph\+::d\+\_\+sub\+Graph\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGraphVertexSubGraph_a35a2b5353ed46c7cc3d3216889017f06}\label{classGraphVertexSubGraph_a35a2b5353ed46c7cc3d3216889017f06}} 
+\index{GraphVertexSubGraph@{GraphVertexSubGraph}!hashed@{hashed}}
+\index{hashed@{hashed}!GraphVertexSubGraph@{GraphVertexSubGraph}}
+\doxysubsubsection{\texorpdfstring{hashed}{hashed}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Sub\+Graph\+::hashed\hspace{0.3cm}{\ttfamily [private]}}
+

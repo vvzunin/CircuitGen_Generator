@@ -1,0 +1,102 @@
+<map id="CircuitGenGenerator::runGenerationFromJsonForGraph" name="CircuitGenGenerator::runGenerationFromJsonForGraph">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,1716,192,1775"/>
+<area shape="rect" id="Node000002" href="$classDataBaseGenerator.html#a8a484283ff64d7c1836052d608881440" title="generateTypeForGraph The generate Type method of the DataBase Generator class is responsible for gene..." alt="" coords="240,1177,393,1220"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,1715,298,1234,303,1236,114,1717"/>
+<area shape="rect" id="Node000030" href="$CircuitGenGenerator_8cpp.html#a5804bbffc39748cb89ca31f333e60289" title=" " alt="" coords="265,1761,368,1788"/>
+<area shape="poly" id="edge24_Node000001_Node000030" title=" " alt="" coords="193,1755,250,1763,250,1768,192,1761"/>
+<area shape="rect" id="Node000003" href="$classDataBaseGenerator.html#af2d3442c4257a0da57658a12110adbdc" title="generateDataBaseFromRandomTruthTable The generate DataBase From Random Truth Table method of the Data..." alt="" coords="465,689,617,732"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="325,1176,521,745,526,748,330,1178"/>
+<area shape="rect" id="Node000004" href="$namespaceFilesTools.html#a092635d608973c4d6e39bac79929fafd" title="getDirectories This function takes the path to a directory and returns a string vector containing the..." alt="" coords="706,539,875,565"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="558,687,612,631,648,601,688,575,702,569,704,573,691,580,652,605,616,635,562,691"/>
+<area shape="rect" id="Node000005" href="$classDataBaseGeneratorParameters.html#a1355f77edbb89c99465e7e297334d958" title="getEachIteration This method is used to get the number of iterations that need to be performed for ea..." alt="" coords="689,589,892,632"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="587,686,688,642,705,635,707,640,690,646,589,691"/>
+<area shape="rect" id="Node000006" href="$classDataBaseGeneratorParameters.html#a81be8dde9601f9d206e3b9096213cf1a" title="getGenerationParameters This method is used to get the database generation parameters" alt="" coords="689,656,892,699"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="617,698,673,690,674,696,618,703"/>
+<area shape="rect" id="Node000007" href="$classDataBaseGeneratorParameters.html#a9d9a0679c5a3f2cd447a1e44c13e9bed" title="getGenerationType This method returns a GenerationTypes type variable representing the database gener..." alt="" coords="689,723,892,765"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="618,718,674,726,673,731,617,723"/>
+<area shape="rect" id="Node000008" href="$classDataBaseGeneratorParameters.html#a45b37cc153e8a07c3788b2d1065f90d5" title="getMaxInputs This method is used to get the maximum number of inputs set in the database generation p..." alt="" coords="689,789,892,832"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="589,730,690,775,707,781,705,786,688,780,587,735"/>
+<area shape="rect" id="Node000009" href="$classDataBaseGeneratorParameters.html#a985864c3103c55fbd282f9aee04e5c04" title="getMaxOutputs This one is used to get the maximum number of outputs set in the database generation pa..." alt="" coords="689,856,892,899"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="563,731,617,786,653,816,691,842,700,847,698,851,688,846,649,820,614,790,559,734"/>
+<area shape="rect" id="Node000010" href="$classDataBaseGeneratorParameters.html#ae89b30e205ebee39e944ff5e8fa32b16" title="getMinInputs This method is used to get the minimum number of inputs set in the database generation p..." alt="" coords="689,923,892,965"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="555,731,575,769,606,817,644,866,691,909,697,913,694,917,688,913,641,870,601,820,571,772,550,733"/>
+<area shape="rect" id="Node000011" href="$classDataBaseGeneratorParameters.html#ade71d00b271ceb1cff09ae3340044011" title="getMinOutputs This method is used to get the minimum number of outputs set in the database generation..." alt="" coords="689,989,892,1032"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="551,732,568,782,596,847,637,916,662,948,691,975,695,979,692,983,688,979,658,951,633,919,592,850,563,783,546,733"/>
+<area shape="rect" id="Node000012" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="715,1056,866,1099"/>
+<area shape="poly" id="edge11_Node000003_Node000012" title=" " alt="" coords="548,732,562,793,588,876,606,921,630,965,658,1006,691,1042,703,1051,700,1055,688,1046,654,1009,625,968,602,923,583,878,556,794,543,733"/>
+<area shape="rect" id="Node000013" href="$classRandomGeneratorWithSeed.html#af94dddcdccd1ed551b1a6e6b3fdaedd6" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="699,1123,882,1165"/>
+<area shape="poly" id="edge12_Node000003_Node000013" title=" " alt="" coords="547,732,556,804,579,905,598,959,622,1014,653,1064,691,1109,694,1111,690,1115,687,1113,649,1067,618,1016,593,961,574,906,551,805,541,733"/>
+<area shape="rect" id="Node000014" href="$namespaceAuxMethods.html#a1ff433f6adb27f95ad4859e8ee9732c6" title="getRandSeed Returns the current grain for generating pseudo&#45;random numbers" alt="" coords="700,1189,881,1216"/>
+<area shape="poly" id="edge13_Node000003_Node000014" title=" " alt="" coords="545,732,550,815,557,872,569,935,587,1000,613,1064,647,1124,691,1175,695,1179,691,1183,687,1179,643,1127,608,1066,582,1002,564,936,552,873,544,816,540,733"/>
+<area shape="rect" id="Node000015" href="$classGenerationParameters.html#ab5c7b845f70600bdfb9cca6109aba209" title=" " alt="" coords="715,1240,866,1283"/>
+<area shape="poly" id="edge14_Node000003_Node000015" title=" " alt="" coords="545,732,548,822,554,884,565,954,583,1026,609,1099,645,1166,691,1226,703,1236,700,1240,687,1230,640,1169,605,1101,578,1028,560,955,549,885,542,822,539,732"/>
+<area shape="rect" id="Node000016" href="$namespaceAuxMethods.html#a70047e78c6b1ffcad09caf149a8d9db4" title=" " alt="" coords="695,5,886,48"/>
+<area shape="poly" id="edge15_Node000003_Node000016" title=" " alt="" coords="542,689,556,561,585,372,605,274,629,184,656,110,671,80,687,58,689,57,693,60,691,62,676,83,661,112,634,186,610,275,591,373,562,562,547,689"/>
+<area shape="rect" id="Node000017" href="$classDataBaseGeneratorParameters.html#a788c2c94a21b5b09ff560918db6c1238" title="setInputs The method sets the number of input signals to generate the database" alt="" coords="689,72,892,115"/>
+<area shape="poly" id="edge16_Node000003_Node000017" title=" " alt="" coords="543,689,559,572,589,404,609,316,632,236,658,170,687,125,689,123,693,126,691,128,663,173,638,238,615,318,595,405,564,573,548,689"/>
+<area shape="rect" id="Node000019" href="$classDataBaseGeneratorParameters.html#a9844eb915d0dd36bbfdec3763c656cb5" title="setIteration The method sets the iteration number for database generation" alt="" coords="689,139,892,181"/>
+<area shape="poly" id="edge17_Node000003_Node000019" title=" " alt="" coords="539,689,542,599,549,536,560,466,578,393,605,321,640,252,687,192,689,189,693,193,691,195,645,255,609,323,583,395,565,467,554,537,548,599,545,689"/>
+<area shape="rect" id="Node000021" href="$classDataBaseGeneratorParameters.html#a46539c9183d979e5b3e71f5e142e444e" title="setName The method is used to set the name for database generation" alt="" coords="689,205,892,248"/>
+<area shape="poly" id="edge18_Node000003_Node000021" title=" " alt="" coords="540,689,547,609,555,554,568,494,587,431,612,369,645,310,687,258,690,256,694,260,691,262,650,313,617,371,592,433,573,495,560,555,552,609,546,689"/>
+<area shape="rect" id="Node000023" href="$classDataBaseGeneratorParameters.html#abd2fd5e6b525cb0c06ce83cc787cb72a" title="setOutputs The method sets the number of output signals to generate the database" alt="" coords="689,272,892,315"/>
+<area shape="poly" id="edge19_Node000003_Node000023" title=" " alt="" coords="542,689,552,619,576,522,595,469,619,417,650,368,687,325,691,322,694,326,691,329,654,371,624,419,600,471,581,523,557,620,547,689"/>
+<area shape="rect" id="Node000025" href="$classRandomGeneratorWithSeed.html#a7600f3ce0a0d651e7fe28695db1d59b7" title=" " alt="" coords="699,1307,882,1349"/>
+<area shape="poly" id="edge20_Node000003_Node000025" title=" " alt="" coords="548,732,564,848,595,1017,615,1104,638,1183,663,1249,691,1293,693,1295,689,1299,687,1296,658,1251,632,1185,609,1105,589,1018,559,849,543,733"/>
+<area shape="rect" id="Node000026" href="$classGenerationParameters.html#adc3ea9fd2752d5631c44ead12ec97007" title=" " alt="" coords="715,339,866,381"/>
+<area shape="poly" id="edge21_Node000003_Node000026" title=" " alt="" coords="544,688,558,630,585,550,604,507,627,465,655,426,688,391,700,382,703,387,691,395,659,429,631,468,608,510,590,552,563,631,549,690"/>
+<area shape="rect" id="Node000027" href="$classThreading_1_1ThreadPool.html#a70b1c1d24a492238a704c2c7b817ae27" title="Schedule task on execution." alt="" coords="715,405,866,448"/>
+<area shape="poly" id="edge22_Node000003_Node000027" title=" " alt="" coords="547,688,565,640,594,579,635,514,660,484,688,458,700,449,703,454,691,462,663,488,639,517,599,581,570,642,552,690"/>
+<area shape="rect" id="Node000029" href="$classThreading_1_1ThreadPool.html#a41dde4c256785b525a0334c060932a64" title="Wait for all spawned for now tasks complete." alt="" coords="715,472,866,515"/>
+<area shape="poly" id="edge23_Node000003_Node000029" title=" " alt="" coords="552,688,573,652,604,609,642,564,688,525,700,517,703,522,691,529,646,567,608,612,578,655,556,691"/>
+<area shape="rect" id="Node000031" href="$classSettings.html#a30ad5eb680e7894684c46fa5623870f3" title="getInstance Gets a single instance of the Settings class The method provides creation and receipt of ..." alt="" coords="469,1369,613,1396"/>
+<area shape="poly" id="edge25_Node000030_Node000031" title=" " alt="" coords="315,1761,320,1697,337,1601,352,1549,374,1497,403,1448,439,1406,453,1396,456,1400,443,1410,407,1451,379,1499,357,1551,342,1603,325,1698,321,1761"/>
+<area shape="rect" id="Node000034" href="$classGenerationParameters.html#ac0633464bc50fd748f243e77f82c151d" title=" " alt="" coords="466,2087,617,2129"/>
+<area shape="poly" id="edge28_Node000030_Node000034" title=" " alt="" coords="322,1788,331,1841,352,1917,368,1959,388,2000,413,2039,443,2073,454,2081,450,2085,439,2077,408,2042,383,2003,363,1961,347,1919,326,1842,317,1789"/>
+<area shape="rect" id="Node000057" href="$classGenerationParameters.html#a6a579996d93cf7232d818c48f8755eb3" title=" " alt="" coords="466,1420,617,1463"/>
+<area shape="poly" id="edge34_Node000030_Node000057" title=" " alt="" coords="317,1760,326,1707,347,1630,363,1588,383,1546,408,1507,439,1473,450,1464,454,1468,443,1477,413,1510,388,1549,368,1590,352,1632,331,1708,322,1761"/>
+<area shape="rect" id="Node000059" href="$classGenerationParameters.html#a1555432e7175794ef8a0c447496ddf9b" title=" " alt="" coords="466,1487,617,1529"/>
+<area shape="poly" id="edge35_Node000030_Node000059" title=" " alt="" coords="319,1760,331,1718,355,1658,391,1595,413,1565,439,1539,450,1531,453,1536,443,1543,417,1569,395,1598,360,1661,336,1719,324,1762"/>
+<area shape="rect" id="Node000061" href="$classGenerationParameters.html#ae3b6beac2abb151698fbd9dbc054ff64" title=" " alt="" coords="450,1553,633,1596"/>
+<area shape="poly" id="edge36_Node000030_Node000061" title=" " alt="" coords="322,1759,364,1687,398,1644,439,1606,446,1601,449,1606,443,1610,402,1647,369,1690,327,1762"/>
+<area shape="rect" id="Node000065" href="$classGenerationParameters.html#a888cda6789ad95a6c77344bc729f811b" title=" " alt="" coords="466,1620,617,1663"/>
+<area shape="poly" id="edge37_Node000030_Node000065" title=" " alt="" coords="329,1759,376,1717,407,1693,440,1672,450,1667,453,1672,442,1677,410,1698,379,1721,333,1763"/>
+<area shape="rect" id="Node000066" href="$classGenerationParameters.html#a3a8129ddff0a5f592c3046021f3c7daf" title=" " alt="" coords="455,1687,627,1729"/>
+<area shape="poly" id="edge38_Node000030_Node000066" title=" " alt="" coords="363,1758,451,1732,453,1737,365,1763"/>
+<area shape="rect" id="Node000068" href="$classGenerationParameters.html#a3fb03417dc3919cb0d118f984e66cca5" title=" " alt="" coords="459,1753,623,1796"/>
+<area shape="poly" id="edge39_Node000030_Node000068" title=" " alt="" coords="368,1772,444,1772,444,1777,368,1777"/>
+<area shape="rect" id="Node000074" href="$classGenerationParameters.html#a6c3913a0bad4bdfd4a82f933b527bdfd" title=" " alt="" coords="466,1820,617,1863"/>
+<area shape="poly" id="edge40_Node000030_Node000074" title=" " alt="" coords="365,1786,453,1812,451,1818,363,1791"/>
+<area shape="rect" id="Node000076" href="$classGenerationParameters.html#a99a8340e021fd0ca1265f71d94435412" title=" " alt="" coords="443,1887,640,1929"/>
+<area shape="poly" id="edge41_Node000030_Node000076" title=" " alt="" coords="333,1787,379,1828,410,1852,442,1872,453,1878,450,1882,440,1877,407,1856,376,1832,329,1790"/>
+<area shape="rect" id="Node000079" href="$classGenerationParameters.html#af99346e7132aa975a89239acb1785d64" title=" " alt="" coords="466,1953,617,1996"/>
+<area shape="poly" id="edge42_Node000030_Node000079" title=" " alt="" coords="327,1787,369,1859,402,1902,443,1939,453,1946,450,1950,439,1943,398,1906,364,1862,322,1790"/>
+<area shape="rect" id="Node000081" href="$classGenerationParameters.html#a79a66fdae906957bf7d4e25d4962ee3e" title=" " alt="" coords="455,2020,628,2063"/>
+<area shape="poly" id="edge43_Node000030_Node000081" title=" " alt="" coords="324,1788,336,1830,360,1889,395,1952,417,1981,443,2006,447,2009,443,2013,439,2010,413,1984,391,1955,355,1891,331,1832,319,1789"/>
+<area shape="rect" id="Node000086" href="$namespaceAuxMethods.html#a5bd15903dbc7db95cb089304ca9e0277" title="setRandSeed Sets the grain to generate pseudorandom numbers" alt="" coords="451,1319,631,1345"/>
+<area shape="poly" id="edge44_Node000030_Node000086" title=" " alt="" coords="315,1761,316,1689,321,1638,331,1580,346,1520,368,1460,399,1404,439,1355,443,1352,446,1356,443,1359,403,1407,373,1462,351,1521,336,1581,327,1638,322,1689,320,1761"/>
+<area shape="rect" id="Node000087" href="$classGenerationParameters.html#a28ad7386a31878472ffee85207a0f226" title=" " alt="" coords="441,2153,641,2196"/>
+<area shape="poly" id="edge46_Node000030_Node000087" title=" " alt="" coords="321,1788,326,1851,344,1945,360,1997,381,2049,408,2097,443,2140,445,2142,442,2146,439,2143,404,2100,376,2051,354,1999,339,1947,321,1852,315,1789"/>
+<area shape="rect" id="Node000096" href="$classGenerationParameters.html#a74965933f5711f8110ee11e2dfe2ef35" title=" " alt="" coords="457,2220,625,2263"/>
+<area shape="poly" id="edge47_Node000030_Node000096" title=" " alt="" coords="320,1788,322,1861,327,1914,336,1973,351,2035,373,2097,403,2155,443,2206,446,2210,443,2213,439,2210,399,2158,368,2099,346,2036,331,1974,322,1914,317,1861,315,1789"/>
+<area shape="rect" id="Node000100" href="$classGenerationParameters.html#a5a57d13129ceb1b1994be37bc41d3a87" title=" " alt="" coords="454,2287,628,2329"/>
+<area shape="poly" id="edge48_Node000030_Node000100" title=" " alt="" coords="322,1788,335,1884,360,2030,377,2107,397,2177,419,2234,443,2273,445,2275,441,2279,439,2276,414,2236,392,2178,372,2108,355,2031,330,1885,317,1789"/>
+<area shape="rect" id="Node000104" href="$classGenerationParameters.html#a4659e3014d366ff00d7e5c57011fa6c1" title=" " alt="" coords="454,2353,628,2396"/>
+<area shape="poly" id="edge49_Node000030_Node000104" title=" " alt="" coords="321,1788,333,1895,356,2061,373,2148,393,2229,416,2295,429,2320,443,2340,444,2341,441,2345,439,2343,425,2323,411,2297,388,2230,368,2150,351,2062,327,1896,316,1789"/>
+<area shape="rect" id="Node000108" href="$classGenerationParameters.html#aaa71d5307d34b8da2f64e45417c271b1" title=" " alt="" coords="466,1252,617,1295"/>
+<area shape="poly" id="edge50_Node000030_Node000108" title=" " alt="" coords="317,1760,331,1669,357,1533,374,1462,393,1396,415,1342,439,1305,451,1295,454,1299,443,1308,420,1345,398,1398,379,1463,362,1534,336,1670,322,1761"/>
+<area shape="rect" id="Node000032" href="$Recombinations_8h.html#ae4e2ef42ba9e47a6c22a7befaf23c33e" title=" " alt="" coords="723,1373,858,1400"/>
+<area shape="poly" id="edge26_Node000031_Node000032" title=" " alt="" coords="614,1381,707,1383,707,1388,614,1386"/>
+<area shape="rect" id="Node000033" href="$classSettings.html#a692db3013821565d261527cc0edeeb0e" title=" " alt="" coords="728,1424,853,1451"/>
+<area shape="poly" id="edge27_Node000031_Node000033" title=" " alt="" coords="606,1394,713,1418,712,1423,605,1399"/>
+<area shape="rect" id="Node000035" href="$classGeneratorALUParameters.html#af4756f18b8f286b89c8fb83ac9784fb1" title=" " alt="" coords="705,2153,876,2196"/>
+<area shape="poly" id="edge29_Node000034_Node000035" title=" " alt="" coords="618,2126,694,2146,693,2151,616,2131"/>
+<area shape="rect" id="Node000036" href="$classGeneratorALUParameters.html#ac87e4da8a9f5ad9c98cf99879b6e6c31" title=" " alt="" coords="705,2220,876,2263"/>
+<area shape="poly" id="edge30_Node000034_Node000036" title=" " alt="" coords="619,2125,643,2139,659,2156,668,2174,676,2190,691,2206,697,2210,694,2214,688,2210,671,2193,663,2176,655,2159,640,2143,616,2130"/>
+<area shape="rect" id="Node000037" href="$classGeneratorALUParameters.html#a18b2791d1e6d948ce52331ea8d555507" title=" " alt="" coords="705,1953,876,1996"/>
+<area shape="poly" id="edge31_Node000034_Node000037" title=" " alt="" coords="616,2086,640,2073,655,2057,663,2040,671,2023,688,2006,694,2002,697,2006,691,2010,676,2026,668,2042,659,2060,643,2077,619,2091"/>
+<area shape="rect" id="Node000038" href="$classGeneratorALUParameters.html#a77cd97a07d53329ca5528049a533a156" title=" " alt="" coords="705,2020,876,2063"/>
+<area shape="poly" id="edge32_Node000034_Node000038" title=" " alt="" coords="616,2085,693,2065,694,2070,618,2090"/>
+<area shape="rect" id="Node000039" href="$classGeneratorALUParameters.html#a97a0b2541c227b04fdf012d31df7cd18" title=" " alt="" coords="705,2087,876,2129"/>
+<area shape="poly" id="edge33_Node000034_Node000039" title=" " alt="" coords="617,2105,690,2105,690,2111,617,2111"/>
+<area shape="poly" id="edge45_Node000086_Node000025" title=" " alt="" coords="632,1328,683,1327,684,1332,632,1333"/>
+</map>

@@ -1,0 +1,80 @@
+\hypertarget{GraphVertexBase_8hpp}{}\doxysection{/mnt/c/course\+\_\+3/\+Circuit\+Gen\+\_\+\+Generator/src/base\+Structures/graph/\+Graph\+Vertex\+Base.hpp File Reference}
+\label{GraphVertexBase_8hpp}\index{/mnt/c/course\_3/CircuitGen\_Generator/src/baseStructures/graph/GraphVertexBase.hpp@{/mnt/c/course\_3/CircuitGen\_Generator/src/baseStructures/graph/GraphVertexBase.hpp}}
+{\ttfamily \#include $<$atomic$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$base\+Structures/graph/enums.\+hpp$>$}\newline
+{\ttfamily \#include $<$Circuit\+Gen\+Generator/\+Oriented\+Graph.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}settings/\+Settings.\+hpp\char`\"{}}\newline
+Include dependency graph for Graph\+Vertex\+Base.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{GraphVertexBase_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{GraphVertexBase_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}}
+\begin{DoxyCompactList}\small\item\em class \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceVertexUtils}{Vertex\+Utils}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{namespaceVertexUtils}{Vertex\+Utils}} Namespace containing utility functions for working with vertices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}~std\+::shared\+\_\+ptr$<$Oriented\+Graph$>$
+\item 
+\#define \mbox{\hyperlink{GraphVertexBase_8hpp_a5313b3b1d817cd6035ec0a01cb940767}{Graph\+Ptr\+Weak}}~std\+::weak\+\_\+ptr$<$Oriented\+Graph$>$
+\item 
+\#define \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}}~std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}}$>$
+\item 
+\#define \mbox{\hyperlink{GraphVertexBase_8hpp_a4b3939252a6663d832e60390edb3210b}{Vertex\+Ptr\+Weak}}~std\+::weak\+\_\+ptr$<$\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}}$>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{namespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9}{Vertex\+Utils\+::gate\+To\+String}} (\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} i\+\_\+type)
+\begin{DoxyCompactList}\small\item\em gate\+To\+String Converts a gate type enum value to its string representation \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceVertexUtils_a58a8373cb1f0f5be90a30b7fc3b51abd}{Vertex\+Utils\+::vertex\+Type\+To\+Verilog}} (\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} i\+\_\+type)
+\begin{DoxyCompactList}\small\item\em vertex\+Type\+To\+Comment Converts a vertex type enum value to its Verilog representation \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceVertexUtils_a429cf39161c78a2a22dd45e6a0f41acf}{Vertex\+Utils\+::vertex\+Type\+To\+Comment}} (\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} i\+\_\+type)
+\begin{DoxyCompactList}\small\item\em vertex\+Type\+To\+Comment Converts a vertex type enum value to its comment representation This function takes a vertex type enum value (from the Vertex\+Types enum) and returns its corresponding comment representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}\label{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}} 
+\index{GraphVertexBase.hpp@{GraphVertexBase.hpp}!GraphPtr@{GraphPtr}}
+\index{GraphPtr@{GraphPtr}!GraphVertexBase.hpp@{GraphVertexBase.hpp}}
+\doxysubsubsection{\texorpdfstring{GraphPtr}{GraphPtr}}
+{\footnotesize\ttfamily \#define Graph\+Ptr~std\+::shared\+\_\+ptr$<$Oriented\+Graph$>$}
+
+\mbox{\Hypertarget{GraphVertexBase_8hpp_a5313b3b1d817cd6035ec0a01cb940767}\label{GraphVertexBase_8hpp_a5313b3b1d817cd6035ec0a01cb940767}} 
+\index{GraphVertexBase.hpp@{GraphVertexBase.hpp}!GraphPtrWeak@{GraphPtrWeak}}
+\index{GraphPtrWeak@{GraphPtrWeak}!GraphVertexBase.hpp@{GraphVertexBase.hpp}}
+\doxysubsubsection{\texorpdfstring{GraphPtrWeak}{GraphPtrWeak}}
+{\footnotesize\ttfamily \#define Graph\+Ptr\+Weak~std\+::weak\+\_\+ptr$<$Oriented\+Graph$>$}
+
+\mbox{\Hypertarget{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}\label{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}} 
+\index{GraphVertexBase.hpp@{GraphVertexBase.hpp}!VertexPtr@{VertexPtr}}
+\index{VertexPtr@{VertexPtr}!GraphVertexBase.hpp@{GraphVertexBase.hpp}}
+\doxysubsubsection{\texorpdfstring{VertexPtr}{VertexPtr}}
+{\footnotesize\ttfamily \#define Vertex\+Ptr~std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}}$>$}
+
+\mbox{\Hypertarget{GraphVertexBase_8hpp_a4b3939252a6663d832e60390edb3210b}\label{GraphVertexBase_8hpp_a4b3939252a6663d832e60390edb3210b}} 
+\index{GraphVertexBase.hpp@{GraphVertexBase.hpp}!VertexPtrWeak@{VertexPtrWeak}}
+\index{VertexPtrWeak@{VertexPtrWeak}!GraphVertexBase.hpp@{GraphVertexBase.hpp}}
+\doxysubsubsection{\texorpdfstring{VertexPtrWeak}{VertexPtrWeak}}
+{\footnotesize\ttfamily \#define Vertex\+Ptr\+Weak~std\+::weak\+\_\+ptr$<$\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}}$>$}
+

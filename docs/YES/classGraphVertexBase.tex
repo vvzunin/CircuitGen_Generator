@@ -1,0 +1,888 @@
+\hypertarget{classGraphVertexBase}{}\doxysection{Graph\+Vertex\+Base Class Reference}
+\label{classGraphVertexBase}\index{GraphVertexBase@{GraphVertexBase}}
+
+
+class \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}}  
+
+
+
+
+{\ttfamily \#include $<$Graph\+Vertex\+Base.\+hpp$>$}
+
+
+
+Inheritance diagram for Graph\+Vertex\+Base\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraphVertexBase__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Graph\+Vertex\+Base\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{classGraphVertexBase__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraphVertexBase_a006319f36efca3d9a910e61e0271ed14}{Graph\+Vertex\+Base}} (const \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} i\+\_\+type, \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+graph=nullptr)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} Constructs a \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} object with the specified vertex type and optional graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGraphVertexBase_a72ec39807323365997afe38d65ecf670}{Graph\+Vertex\+Base}} (const \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} i\+\_\+type, const std\+::string i\+\_\+name, \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+graph=nullptr)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} Constructs a \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} object with the specified vertex type, name, and optional graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \& \mbox{\hyperlink{classGraphVertexBase_af41dbc7dedad885bceae83bfb85d976c}{operator=}} (const \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \&other)=default
+\item 
+\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \& \mbox{\hyperlink{classGraphVertexBase_a9ee2363dbed325ea17ef80ec6aacef30}{operator=}} (\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \&\&other)=default
+\item 
+\mbox{\hyperlink{classGraphVertexBase_a3755c63c1abe080c5a6c6b7cb13b4028}{Graph\+Vertex\+Base}} (const \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \&other)=default
+\item 
+\mbox{\hyperlink{classGraphVertexBase_af51c6f7a544d5df9333eed7dd9af027b}{Graph\+Vertex\+Base}} (\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \&\&other)=default
+\item 
+virtual \mbox{\hyperlink{classGraphVertexBase_a97d09e7b5904ecd715a5ac057b8d737b}{$\sim$\+Graph\+Vertex\+Base}} ()
+\item 
+virtual \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} \mbox{\hyperlink{classGraphVertexBase_a59e8313bfa37fecd37e2dd4311bff814}{get\+Type}} () const final
+\begin{DoxyCompactList}\small\item\em get\+Type This method returns the type of the vertex as a value of the Vertex\+Types enum \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classGraphVertexBase_abba036744b90360643beae0ab1db977a}{get\+Type\+Name}} () const final
+\begin{DoxyCompactList}\small\item\em get\+Type\+Name This method returns the string representation of the vertex type by parsing the vertex type enum value using the settings object associated with the vertex \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraphVertexBase_adba8223322836a7de810416fbb9aa48a}{set\+Name}} (const std\+::string i\+\_\+name)
+\begin{DoxyCompactList}\small\item\em set\+Name This method sets the name of the vertex to the specified string. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGraphVertexBase_af1d900fc4073ade5fc0fe0bf3346ff49}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em get\+Name Returns the name of the vertex \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classGraphVertexBase_a3d4c56b9a199587edd4c3ca9ec43fac7}{get\+Name}} (const std\+::string \&i\+\_\+prefix) const
+\item 
+virtual char \mbox{\hyperlink{classGraphVertexBase_af114ad99f885c77a28cee77f0c86fbcf}{get\+Value}} () const
+\begin{DoxyCompactList}\small\item\em get\+Value Returns the value of the vertex. \end{DoxyCompactList}\item 
+virtual char \mbox{\hyperlink{classGraphVertexBase_a330ddc78ee52b8425a773cecc70954fe}{update\+Value}} ()=0
+\begin{DoxyCompactList}\small\item\em update\+Value TO DO\+: \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraphVertexBase_af4dcd2241e21f7e2664d5495722a4f85}{set\+Level}} (const unsigned i\+\_\+level)
+\begin{DoxyCompactList}\small\item\em set\+Level Sets the level of the vertex \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{classGraphVertexBase_a8a85edbd51bc104c0f11003f158ac209}{get\+Level}} () const
+\begin{DoxyCompactList}\small\item\em get\+Level Returns the level of the vertex \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGraphVertexBase_a5524af9e76e94937c16ff7c56efcf182}{update\+Level}} ()
+\begin{DoxyCompactList}\small\item\em update\+Level This method updates the level of the vertex based on the levels of its input connections. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} \mbox{\hyperlink{classGraphVertexBase_a1a69b367ea429636864e63c4cc9b6abc}{get\+Gate}} () const
+\begin{DoxyCompactList}\small\item\em get\+Gate Returns the type of the basic logic gate represented by this vertex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_a5313b3b1d817cd6035ec0a01cb940767}{Graph\+Ptr\+Weak}} \mbox{\hyperlink{classGraphVertexBase_a2aa06dde09dc4fe2698dd25faab1c80d}{get\+Base\+Graph}} () const
+\begin{DoxyCompactList}\small\item\em get\+Base\+Graph \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{GraphVertexBase_8hpp_a4b3939252a6663d832e60390edb3210b}{Vertex\+Ptr\+Weak}} $>$ \mbox{\hyperlink{classGraphVertexBase_ae608f01310a319a3ffa9d1a261d05177}{get\+In\+Connections}} () const
+\begin{DoxyCompactList}\small\item\em get\+In\+Connections \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraphVertexBase_a2638599000bdc54cb64cb9c54e051260}{add\+Vertex\+To\+In\+Connections}} (\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} i\+\_\+vert)
+\begin{DoxyCompactList}\small\item\em add\+Vertex\+To\+In\+Connections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraphVertexBase_a97e6bb3b3782f86439a0069d775fbfe0}{remove\+Vertex\+To\+In\+Connections}} (\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} i\+\_\+vert, bool i\+\_\+full=false)
+\begin{DoxyCompactList}\small\item\em remove\+Vertex\+To\+In\+Connections Removes a vertex from the input connections of this vertex. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} $>$ \mbox{\hyperlink{classGraphVertexBase_acba2074e04e2457be77680e218a0d45f}{get\+Out\+Connections}} () const
+\begin{DoxyCompactList}\small\item\em get\+Out\+Connections \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraphVertexBase_ab4b49728b705bc687c94d1b189f38fc1}{add\+Vertex\+To\+Out\+Connections}} (\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} i\+\_\+vert)
+\begin{DoxyCompactList}\small\item\em add\+Vertex\+To\+Out\+Connections Adds a vertex to the output connections of this vertex if it is not already present \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraphVertexBase_ab1d8b7092aa986fb6d06cd37d8f9c643}{remove\+Vertex\+To\+Out\+Connections}} (\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} i\+\_\+vert)
+\begin{DoxyCompactList}\small\item\em remove\+Vertex\+To\+Out\+Connections Removes a vertex from the output connections of this vertex. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classGraphVertexBase_a07f6737b3622f2e057963849dea1c018}{calculate\+Hash}} (bool recalculate=false)
+\begin{DoxyCompactList}\small\item\em calculate\+Hash Calculates the hash value for the vertex based on its outgoing connections. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classGraphVertexBase_ae4e70880a9cd7de29aa4a301ca208df6}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em get\+Instance Generates an instance declaration for the vertex in Verilog format. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classGraphVertexBase_a246bbb9dc5234c74fe538bec28627cee}{to\+Verilog}} ()
+\begin{DoxyCompactList}\small\item\em to\+Verilog Generates Verilog code for the vertex \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGraphVertexBase_ad1e4734f26f7e0d8e0153a3f48e23519}{is\+Subgraph\+Buffer}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_a5313b3b1d817cd6035ec0a01cb940767}{Graph\+Ptr\+Weak}} \mbox{\hyperlink{classGraphVertexBase_a827a867771dc1307e26d0d9702516d4b}{d\+\_\+base\+Graph}}
+\item 
+std\+::string \mbox{\hyperlink{classGraphVertexBase_a1c3745128ab685cb98f437781dfbaac8}{d\+\_\+name}}
+\item 
+char \mbox{\hyperlink{classGraphVertexBase_a46f5aa4aa4be388075c14617b38df563}{d\+\_\+value}}
+\item 
+unsigned \mbox{\hyperlink{classGraphVertexBase_a4ceafa2d19e4425b9a88edaa76b1896a}{d\+\_\+level}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{GraphVertexBase_8hpp_a4b3939252a6663d832e60390edb3210b}{Vertex\+Ptr\+Weak}} $>$ \mbox{\hyperlink{classGraphVertexBase_a418e8e9b44810439133522e3cbfb2f9e}{d\+\_\+in\+Connections}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} $>$ \mbox{\hyperlink{classGraphVertexBase_a5af02c2cb649c4413f5fea35a955360c}{d\+\_\+out\+Connections}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ \mbox{\hyperlink{classGraphVertexBase_a05f5198fc2b7c9cb2806085bac5cf567}{d\+\_\+settings}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} \mbox{\hyperlink{classGraphVertexBase_a6543b4eedd5220ef96f2c8815ced2a34}{d\+\_\+type}}
+\item 
+std\+::string \mbox{\hyperlink{classGraphVertexBase_a495be57c86f63065b524e4e1420f5b28}{hashed}} = \char`\"{}\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::atomic\+\_\+uint64\+\_\+t \mbox{\hyperlink{classGraphVertexBase_a2d1e57b08fccf0e3b0c2f98c1116534e}{d\+\_\+count}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+base\+Graph} & A weak pointer to the base graph containing this vertex \\
+\hline
+{\em i\+\_\+name} & The name of the vertex. It is a string containing the name of a vertex \\
+\hline
+{\em d\+\_\+value} & The value of the vertex \\
+\hline
+{\em d\+\_\+level} & The vertex level is represented by the unsigned type \\
+\hline
+{\em d\+\_\+in\+Connections} & vector of weak pointers to input connections with other vertices \\
+\hline
+{\em d\+\_\+out\+Connections} & vector of strong pointers to output connections with other vertices \\
+\hline
+{\em d\+\_\+settings} & A pointer to the settings object for this vertex \\
+\hline
+{\em d\+\_\+type} & Vertex Type -\/ Defined by the Vertex\+Types enumeration \\
+\hline
+{\em d\+\_\+count} & Vertex counter for naming and other purposes. Represented by the uint\+\_\+fast64\+\_\+t type \\
+\hline
+{\em hashed} & A string containing the calculated hash value for the vertex \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGraphVertexBase_a006319f36efca3d9a910e61e0271ed14}\label{classGraphVertexBase_a006319f36efca3d9a910e61e0271ed14}} 
+\index{GraphVertexBase@{GraphVertexBase}!GraphVertexBase@{GraphVertexBase}}
+\index{GraphVertexBase@{GraphVertexBase}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{GraphVertexBase()}{GraphVertexBase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Base\+::\+Graph\+Vertex\+Base (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}}]{i\+\_\+type,  }\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+graph = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} Constructs a \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} object with the specified vertex type and optional graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+type} & The type of the vertex (from the Vertex\+Types enum). \\
+\hline
+{\em i\+\_\+graph} & Optional pointer to the graph containing the vertex \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraphVertexBase_a006319f36efca3d9a910e61e0271ed14_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGraphVertexBase_a72ec39807323365997afe38d65ecf670}\label{classGraphVertexBase_a72ec39807323365997afe38d65ecf670}} 
+\index{GraphVertexBase@{GraphVertexBase}!GraphVertexBase@{GraphVertexBase}}
+\index{GraphVertexBase@{GraphVertexBase}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{GraphVertexBase()}{GraphVertexBase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Base\+::\+Graph\+Vertex\+Base (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}}]{i\+\_\+type,  }\item[{const std\+::string}]{i\+\_\+name,  }\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+graph = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} Constructs a \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} object with the specified vertex type, name, and optional graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+type} & The type of the vertex (from the Vertex\+Types enum) \\
+\hline
+{\em i\+\_\+name} & The name of the vertex. \\
+\hline
+{\em i\+\_\+graph} & Optional pointer to the graph containing the vertex. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraphVertexBase_a72ec39807323365997afe38d65ecf670_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGraphVertexBase_a3755c63c1abe080c5a6c6b7cb13b4028}\label{classGraphVertexBase_a3755c63c1abe080c5a6c6b7cb13b4028}} 
+\index{GraphVertexBase@{GraphVertexBase}!GraphVertexBase@{GraphVertexBase}}
+\index{GraphVertexBase@{GraphVertexBase}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{GraphVertexBase()}{GraphVertexBase()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Base\+::\+Graph\+Vertex\+Base (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_af51c6f7a544d5df9333eed7dd9af027b}\label{classGraphVertexBase_af51c6f7a544d5df9333eed7dd9af027b}} 
+\index{GraphVertexBase@{GraphVertexBase}!GraphVertexBase@{GraphVertexBase}}
+\index{GraphVertexBase@{GraphVertexBase}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{GraphVertexBase()}{GraphVertexBase()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Base\+::\+Graph\+Vertex\+Base (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a97d09e7b5904ecd715a5ac057b8d737b}\label{classGraphVertexBase_a97d09e7b5904ecd715a5ac057b8d737b}} 
+\index{GraphVertexBase@{GraphVertexBase}!````~GraphVertexBase@{$\sim$GraphVertexBase}}
+\index{````~GraphVertexBase@{$\sim$GraphVertexBase}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{$\sim$GraphVertexBase()}{~GraphVertexBase()}}
+{\footnotesize\ttfamily Graph\+Vertex\+Base\+::$\sim$\+Graph\+Vertex\+Base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraphVertexBase_a2638599000bdc54cb64cb9c54e051260}\label{classGraphVertexBase_a2638599000bdc54cb64cb9c54e051260}} 
+\index{GraphVertexBase@{GraphVertexBase}!addVertexToInConnections@{addVertexToInConnections}}
+\index{addVertexToInConnections@{addVertexToInConnections}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{addVertexToInConnections()}{addVertexToInConnections()}}
+{\footnotesize\ttfamily int Graph\+Vertex\+Base\+::add\+Vertex\+To\+In\+Connections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}}}]{i\+\_\+vert }\end{DoxyParamCaption})}
+
+
+
+add\+Vertex\+To\+In\+Connections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+vert} & The vertex to be added to the input connections \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The count of occurrences of the given vertex in the input connections after adding it 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Creating another vertex}}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} anotherVertex =}
+\DoxyCodeLine{std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex2"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Add the second vertex to the input connections of the first vertex}}
+\DoxyCodeLine{\textcolor{comment}{// and get the number of occurrences}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} count = vertex.addVertexToInConnections(anotherVertex);}
+\DoxyCodeLine{\textcolor{comment}{// Output the result}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}The number of occurrences of the second vertex in the input}}
+\DoxyCodeLine{\textcolor{stringliteral}{connections of the first vertex: "{}} << count << std::endl;}
+
+\end{DoxyCode}
+
+\end{DoxyReturn}
+add\+Vertex\+To\+In\+Connections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+vert} & The vertex to be added to the input connections \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The count of occurrences of the given vertex in the input connections after adding it 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Creating another vertex}}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} anotherVertex =}
+\DoxyCodeLine{std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex2"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Adding a second vertex to the input connections of the first vertex}}
+\DoxyCodeLine{and getting the number of occurrences}
+\DoxyCodeLine{\textcolor{keywordtype}{int} occurrences = vertex.addVertexToInConnections(anotherVertex);}
+\DoxyCodeLine{\textcolor{comment}{// Output of the result}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}The number of occurrences of the second vertex in the input}}
+\DoxyCodeLine{\textcolor{stringliteral}{connections of the first vertex: "{}} << occurrences << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_ab4b49728b705bc687c94d1b189f38fc1}\label{classGraphVertexBase_ab4b49728b705bc687c94d1b189f38fc1}} 
+\index{GraphVertexBase@{GraphVertexBase}!addVertexToOutConnections@{addVertexToOutConnections}}
+\index{addVertexToOutConnections@{addVertexToOutConnections}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{addVertexToOutConnections()}{addVertexToOutConnections()}}
+{\footnotesize\ttfamily bool Graph\+Vertex\+Base\+::add\+Vertex\+To\+Out\+Connections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}}}]{i\+\_\+vert }\end{DoxyParamCaption})}
+
+
+
+add\+Vertex\+To\+Out\+Connections Adds a vertex to the output connections of this vertex if it is not already present 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+vert} & The vertex to be added to the output connections \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the vertex was successfully added, false if it was already present in the output connections. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{TO DO:}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_a07f6737b3622f2e057963849dea1c018}\label{classGraphVertexBase_a07f6737b3622f2e057963849dea1c018}} 
+\index{GraphVertexBase@{GraphVertexBase}!calculateHash@{calculateHash}}
+\index{calculateHash@{calculateHash}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{calculateHash()}{calculateHash()}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Base\+::calculate\+Hash (\begin{DoxyParamCaption}\item[{bool}]{recalculate = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+calculate\+Hash Calculates the hash value for the vertex based on its outgoing connections. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em recalculate} & Flag indicating whether to recalculate the hash value even if it has already been calculated. If true, the hash value will be recalculated. If false and the hash value has already been calculated, the cached hash value will be returned without recalculation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The hash value of the vertex based on its outgoing connections. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{VertexTypes::output}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Creating two more vertices}}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} vertex2 = std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}},}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}vertex2"{}}); \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} vertex3 =}
+\DoxyCodeLine{std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex3"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Adding the second and third vertices to the output connections of the}}
+\DoxyCodeLine{first vertex vertex.addVertexToOutConnections(vertex2);}
+\DoxyCodeLine{vertex.addVertexToOutConnections(vertex3);}
+\DoxyCodeLine{\textcolor{comment}{// Calculating the hash for the first vertex}}
+\DoxyCodeLine{std::string hashValue = vertex.calculateHash();}
+\DoxyCodeLine{\textcolor{comment}{// Output of the result}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Hash for the first vertex: "{}} << hashValue << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classGraphVertexGates_a910539228636bc20f5751611a87a5d47}{Graph\+Vertex\+Gates}}, and \mbox{\hyperlink{classGraphVertexSubGraph_adba79986a7c57da850b044bb1d34157e}{Graph\+Vertex\+Sub\+Graph}}.
+
+\mbox{\Hypertarget{classGraphVertexBase_a2aa06dde09dc4fe2698dd25faab1c80d}\label{classGraphVertexBase_a2aa06dde09dc4fe2698dd25faab1c80d}} 
+\index{GraphVertexBase@{GraphVertexBase}!getBaseGraph@{getBaseGraph}}
+\index{getBaseGraph@{getBaseGraph}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getBaseGraph()}{getBaseGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_a5313b3b1d817cd6035ec0a01cb940767}{Graph\+Ptr\+Weak}} Graph\+Vertex\+Base\+::get\+Base\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Base\+Graph 
+
+\begin{DoxyReturn}{Returns}
+a weak pointer to the base graph associated with this vertex. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{TO DO:}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_a1a69b367ea429636864e63c4cc9b6abc}\label{classGraphVertexBase_a1a69b367ea429636864e63c4cc9b6abc}} 
+\index{GraphVertexBase@{GraphVertexBase}!getGate@{getGate}}
+\index{getGate@{getGate}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getGate()}{getGate()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} Graph\+Vertex\+Base\+::get\+Gate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+get\+Gate Returns the type of the basic logic gate represented by this vertex. 
+
+If the vertex does not correspond to any basic logic gate, it returns Gate Default \begin{DoxyReturn}{Returns}
+The type of the basic logic gate represented by this vertex 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} gateType = vertex.getGate();}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classGraphVertexGates_a5232bce8a15a40c4f3d19553b79a69a9}{Graph\+Vertex\+Gates}}.
+
+\mbox{\Hypertarget{classGraphVertexBase_ae608f01310a319a3ffa9d1a261d05177}\label{classGraphVertexBase_ae608f01310a319a3ffa9d1a261d05177}} 
+\index{GraphVertexBase@{GraphVertexBase}!getInConnections@{getInConnections}}
+\index{getInConnections@{getInConnections}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getInConnections()}{getInConnections()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{GraphVertexBase_8hpp_a4b3939252a6663d832e60390edb3210b}{Vertex\+Ptr\+Weak}} $>$ Graph\+Vertex\+Base\+::get\+In\+Connections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+In\+Connections 
+
+\begin{DoxyReturn}{Returns}
+A vector of weak pointers to the input connections of this vertex 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Get the vector of the input connections of this vertex}}
+\DoxyCodeLine{std::vector<VertexPtrWeak> inConnections = vertex.getInConnections();}
+\DoxyCodeLine{\textcolor{comment}{// Iterate over the input connections and do something with them}}
+\DoxyCodeLine{\textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& connection : inConnections)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{comment}{// Checking if the connection is valid}}
+\DoxyCodeLine{  \textcolor{keywordflow}{if} (!connection.expired())}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{comment}{// Getting shared\_ptr from weak\_ptr}}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} inputVertex = connection.lock();}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (inputVertex)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{comment}{// Doing something with the input Vertex}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_ae4e70880a9cd7de29aa4a301ca208df6}\label{classGraphVertexBase_ae4e70880a9cd7de29aa4a301ca208df6}} 
+\index{GraphVertexBase@{GraphVertexBase}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Base\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get\+Instance Generates an instance declaration for the vertex in Verilog format. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the instance declaration for the vertex in Verilog format. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Generating an instance for a vertex in Verilog format}}
+\DoxyCodeLine{std::string instanceDeclaration = vertex.getInstance();}
+\DoxyCodeLine{\textcolor{comment}{// Displaying the instance on the screen}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Instance declaration for vertex: "{}} << instanceDeclaration <<}
+\DoxyCodeLine{std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classGraphVertexSubGraph_aa17d5ad4d74428f86f76b2388a02c156}{Graph\+Vertex\+Sub\+Graph}}, and \mbox{\hyperlink{classGraphVertexConstant_afb5a7f4d443efca31a804ed2f31e648c}{Graph\+Vertex\+Constant}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraphVertexBase_ae4e70880a9cd7de29aa4a301ca208df6_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGraphVertexBase_a8a85edbd51bc104c0f11003f158ac209}\label{classGraphVertexBase_a8a85edbd51bc104c0f11003f158ac209}} 
+\index{GraphVertexBase@{GraphVertexBase}!getLevel@{getLevel}}
+\index{getLevel@{getLevel}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getLevel()}{getLevel()}}
+{\footnotesize\ttfamily unsigned Graph\+Vertex\+Base\+::get\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Level Returns the level of the vertex 
+
+\begin{DoxyReturn}{Returns}
+The level of the vertex 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{keywordtype}{unsigned} level = vertex.getLevel();}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Level of the vertex: "{}} << level << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_af1d900fc4073ade5fc0fe0bf3346ff49}\label{classGraphVertexBase_af1d900fc4073ade5fc0fe0bf3346ff49}} 
+\index{GraphVertexBase@{GraphVertexBase}!getName@{getName}}
+\index{getName@{getName}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Base\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Name Returns the name of the vertex 
+
+\begin{DoxyReturn}{Returns}
+The name of the vertex. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{std::string name = vertex.getName();}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Name of the vertex: "{}} << name << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_a3d4c56b9a199587edd4c3ca9ec43fac7}\label{classGraphVertexBase_a3d4c56b9a199587edd4c3ca9ec43fac7}} 
+\index{GraphVertexBase@{GraphVertexBase}!getName@{getName}}
+\index{getName@{getName}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Base\+::get\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{i\+\_\+prefix }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classGraphVertexBase_acba2074e04e2457be77680e218a0d45f}\label{classGraphVertexBase_acba2074e04e2457be77680e218a0d45f}} 
+\index{GraphVertexBase@{GraphVertexBase}!getOutConnections@{getOutConnections}}
+\index{getOutConnections@{getOutConnections}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getOutConnections()}{getOutConnections()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}} $>$ Graph\+Vertex\+Base\+::get\+Out\+Connections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Out\+Connections 
+
+\begin{DoxyReturn}{Returns}
+A vector of shared pointers to the output connections of this vertex 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Creating another vertex}}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} anotherVertex =}
+\DoxyCodeLine{std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{VertexTypes::output}}, \textcolor{stringliteral}{"{}vertex2"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Adding the second vertex to the output connections of the first vertex}}
+\DoxyCodeLine{vertex.addVertexToOutConnections(anotherVertex);}
+\DoxyCodeLine{\textcolor{comment}{// get the vector of the output connections of the first vertex}}
+\DoxyCodeLine{std::vector<VertexPtr> outConnections = vertex.getOutConnections();}
+\DoxyCodeLine{\textcolor{comment}{// output information about the output connections}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Output connections of the first vertex:"{}} << std::endl;}
+\DoxyCodeLine{\textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& connection : outConnections)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  std::cout << \textcolor{stringliteral}{"{} -\/ "{}} << connection-\/>getName() << std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_a59e8313bfa37fecd37e2dd4311bff814}\label{classGraphVertexBase_a59e8313bfa37fecd37e2dd4311bff814}} 
+\index{GraphVertexBase@{GraphVertexBase}!getType@{getType}}
+\index{getType@{getType}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} Graph\+Vertex\+Base\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+get\+Type This method returns the type of the vertex as a value of the Vertex\+Types enum 
+
+\begin{DoxyReturn}{Returns}
+The type of the vertex (from the Vertex\+Types enum). 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{VertexTypes}} type = vertex.getType();}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Type of the vertex: "{}} << type << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_abba036744b90360643beae0ab1db977a}\label{classGraphVertexBase_abba036744b90360643beae0ab1db977a}} 
+\index{GraphVertexBase@{GraphVertexBase}!getTypeName@{getTypeName}}
+\index{getTypeName@{getTypeName}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getTypeName()}{getTypeName()}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Base\+::get\+Type\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+get\+Type\+Name This method returns the string representation of the vertex type by parsing the vertex type enum value using the settings object associated with the vertex 
+
+\begin{DoxyReturn}{Returns}
+The string representation of the vertex type. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{std::string typeName = vertex.getTypeName();}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}String representation of the vertex type: "{}} << typeName;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGraphVertexBase_abba036744b90360643beae0ab1db977a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGraphVertexBase_af114ad99f885c77a28cee77f0c86fbcf}\label{classGraphVertexBase_af114ad99f885c77a28cee77f0c86fbcf}} 
+\index{GraphVertexBase@{GraphVertexBase}!getValue@{getValue}}
+\index{getValue@{getValue}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily char Graph\+Vertex\+Base\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get\+Value Returns the value of the vertex. 
+
+\begin{DoxyReturn}{Returns}
+The value of the vertex. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{keywordtype}{char} value = vertex.getValue();}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Value of the vertex: "{}} << value << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_ad1e4734f26f7e0d8e0153a3f48e23519}\label{classGraphVertexBase_ad1e4734f26f7e0d8e0153a3f48e23519}} 
+\index{GraphVertexBase@{GraphVertexBase}!isSubgraphBuffer@{isSubgraphBuffer}}
+\index{isSubgraphBuffer@{isSubgraphBuffer}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{isSubgraphBuffer()}{isSubgraphBuffer()}}
+{\footnotesize\ttfamily virtual bool Graph\+Vertex\+Base\+::is\+Subgraph\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classGraphVertexGates_a946469866a698378c2885ccea85c1f11}{Graph\+Vertex\+Gates}}.
+
+\mbox{\Hypertarget{classGraphVertexBase_af41dbc7dedad885bceae83bfb85d976c}\label{classGraphVertexBase_af41dbc7dedad885bceae83bfb85d976c}} 
+\index{GraphVertexBase@{GraphVertexBase}!operator=@{operator=}}
+\index{operator=@{operator=}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}}\& Graph\+Vertex\+Base\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a9ee2363dbed325ea17ef80ec6aacef30}\label{classGraphVertexBase_a9ee2363dbed325ea17ef80ec6aacef30}} 
+\index{GraphVertexBase@{GraphVertexBase}!operator=@{operator=}}
+\index{operator=@{operator=}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}}\& Graph\+Vertex\+Base\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a97e6bb3b3782f86439a0069d775fbfe0}\label{classGraphVertexBase_a97e6bb3b3782f86439a0069d775fbfe0}} 
+\index{GraphVertexBase@{GraphVertexBase}!removeVertexToInConnections@{removeVertexToInConnections}}
+\index{removeVertexToInConnections@{removeVertexToInConnections}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{removeVertexToInConnections()}{removeVertexToInConnections()}}
+{\footnotesize\ttfamily bool Graph\+Vertex\+Base\+::remove\+Vertex\+To\+In\+Connections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}}}]{i\+\_\+vert,  }\item[{bool}]{i\+\_\+full = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+remove\+Vertex\+To\+In\+Connections Removes a vertex from the input connections of this vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+vert} & The vertex to be removed from the input connections. \\
+\hline
+{\em i\+\_\+full} & lag indicating whether to remove all occurrences of the vertex from the input connections. If true, all occurrences will be removed. If false, only the first occurrence will be removed. Default -\/ false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the vertex was successfully removed, false otherwise. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Creating another vertex}}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} anotherVertex =}
+\DoxyCodeLine{std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex2"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Adding a second vertex to the input connections of the first vertex}}
+\DoxyCodeLine{vertex.addVertexToInConnections(anotherVertex);}
+\DoxyCodeLine{\textcolor{comment}{// Removing the second vertex from the input connections of the first}}
+\DoxyCodeLine{vertex \textcolor{keywordtype}{bool} removed = vertex.removeVertexToInConnections(anotherVertex,}
+\DoxyCodeLine{\textcolor{keyword}{false});}
+\DoxyCodeLine{\textcolor{comment}{// Output of the result}}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (removed)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   std::cout << \textcolor{stringliteral}{"{}The second vertex has been successfully removed from the}}
+\DoxyCodeLine{\textcolor{stringliteral}{   input connections of the first vertex"{}} << std::endl;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   std::cout << \textcolor{stringliteral}{"{}The second vertex was not found in the input connections}}
+\DoxyCodeLine{\textcolor{stringliteral}{   of the first vertex"{}} << std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_ab1d8b7092aa986fb6d06cd37d8f9c643}\label{classGraphVertexBase_ab1d8b7092aa986fb6d06cd37d8f9c643}} 
+\index{GraphVertexBase@{GraphVertexBase}!removeVertexToOutConnections@{removeVertexToOutConnections}}
+\index{removeVertexToOutConnections@{removeVertexToOutConnections}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{removeVertexToOutConnections()}{removeVertexToOutConnections()}}
+{\footnotesize\ttfamily bool Graph\+Vertex\+Base\+::remove\+Vertex\+To\+Out\+Connections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}}}]{i\+\_\+vert }\end{DoxyParamCaption})}
+
+
+
+remove\+Vertex\+To\+Out\+Connections Removes a vertex from the output connections of this vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+vert} & The vertex to be removed from the output connections. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the vertex was successfully removed, false otherwise. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Creating another vertex}}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} anotherVertex =}
+\DoxyCodeLine{std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{VertexTypes::output}}, \textcolor{stringliteral}{"{}vertex2"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Adding the second vertex to the output connections of the first vertex}}
+\DoxyCodeLine{vertex.addVertexToOutConnections(anotherVertex);}
+\DoxyCodeLine{\textcolor{comment}{// Removing the second vertex from the output connections of the first}}
+\DoxyCodeLine{vertex \textcolor{keywordtype}{bool} removed = vertex.removeVertexToOutConnections(anotherVertex);}
+\DoxyCodeLine{\textcolor{comment}{// Output of the result}}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (removed)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  std::cout << \textcolor{stringliteral}{"{}Вторая вершина успешно удалена из выходных соединений}}
+\DoxyCodeLine{\textcolor{stringliteral}{  первой вершины."{}} << std::endl;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  std::cout << \textcolor{stringliteral}{"{}Вторая вершина не найдена в выходных соединениях первой}}
+\DoxyCodeLine{\textcolor{stringliteral}{  вершины."{}} << std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraphVertexBase_af4dcd2241e21f7e2664d5495722a4f85}\label{classGraphVertexBase_af4dcd2241e21f7e2664d5495722a4f85}} 
+\index{GraphVertexBase@{GraphVertexBase}!setLevel@{setLevel}}
+\index{setLevel@{setLevel}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{setLevel()}{setLevel()}}
+{\footnotesize\ttfamily void Graph\+Vertex\+Base\+::set\+Level (\begin{DoxyParamCaption}\item[{const unsigned}]{i\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+set\+Level Sets the level of the vertex 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+level} & The new level for the vertex 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{vertex.setLevel(2);}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}New level of the vertex: "{}} << vertex.getLevel() << \textcolor{charliteral}{'\(\backslash\)n'};}
+
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraphVertexBase_adba8223322836a7de810416fbb9aa48a}\label{classGraphVertexBase_adba8223322836a7de810416fbb9aa48a}} 
+\index{GraphVertexBase@{GraphVertexBase}!setName@{setName}}
+\index{setName@{setName}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily void Graph\+Vertex\+Base\+::set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string}]{i\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+set\+Name This method sets the name of the vertex to the specified string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+name} & The new name for the vertex. 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} vertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}vertex1"{}});}
+\DoxyCodeLine{vertex.setName(\textcolor{stringliteral}{"{}new\_vertex\_name"{}});}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}New name of the vertex: "{}} << vertex.getName() << std::endl;}
+
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraphVertexBase_a246bbb9dc5234c74fe538bec28627cee}\label{classGraphVertexBase_a246bbb9dc5234c74fe538bec28627cee}} 
+\index{GraphVertexBase@{GraphVertexBase}!toVerilog@{toVerilog}}
+\index{toVerilog@{toVerilog}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{toVerilog()}{toVerilog()}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Base\+::to\+Verilog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+to\+Verilog Generates Verilog code for the vertex 
+
+\begin{DoxyReturn}{Returns}
+A string containing Verilog code for the vertex, or an empty string if the vertex type is not \char`\"{}output\char`\"{} or if the incoming connection is invalid 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Creating an instance of the GraphVertexBase class with the type}}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}output"{}} and the name \textcolor{stringliteral}{"{}output\_vertex"{}}}
+\DoxyCodeLine{\mbox{\hyperlink{classGraphVertexBase}{GraphVertexBase}} outputVertex(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{VertexTypes::output}}, \textcolor{stringliteral}{"{}output\_vertex"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Creating another vertex with the type "{}input"{} and the name}}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}input\_vertex"{}} \mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{VertexPtr}} inputVertex =}
+\DoxyCodeLine{std::make\_shared<GraphVertexBase>(\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{VertexTypes::input}}, \textcolor{stringliteral}{"{}input\_vertex"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Setting the input connection for the vertex "{}output\_vertex"{}}}
+\DoxyCodeLine{outputVertex.addVertexToInConnections(inputVertex);}
+\DoxyCodeLine{\textcolor{comment}{// Generating the Verilog code for the vertex "{}output\_vertex"{}}}
+\DoxyCodeLine{std::string verilogCode = outputVertex.toVerilog();}
+\DoxyCodeLine{\textcolor{comment}{// Display the generated Verilog code on the screen}}
+\DoxyCodeLine{std::cout << \textcolor{stringliteral}{"{}Generated Verilog code:\(\backslash\)n"{}} << verilogCode << std::endl;}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classGraphVertexSubGraph_a3ef7ccb93efd390c6f90aba11eee2c88}{Graph\+Vertex\+Sub\+Graph}}, \mbox{\hyperlink{classGraphVertexConstant_a1e39779b684f06740e76dda4dd2e2004}{Graph\+Vertex\+Constant}}, and \mbox{\hyperlink{classGraphVertexGates_a4d38ec95ed252a205cbcb08ed691941d}{Graph\+Vertex\+Gates}}.
+
+\mbox{\Hypertarget{classGraphVertexBase_a5524af9e76e94937c16ff7c56efcf182}\label{classGraphVertexBase_a5524af9e76e94937c16ff7c56efcf182}} 
+\index{GraphVertexBase@{GraphVertexBase}!updateLevel@{updateLevel}}
+\index{updateLevel@{updateLevel}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{updateLevel()}{updateLevel()}}
+{\footnotesize\ttfamily void Graph\+Vertex\+Base\+::update\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+update\+Level This method updates the level of the vertex based on the levels of its input connections. 
+
+It iterates through each input connection and sets the vertex level to the maximum level of its input connections plus one. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{TO DO:}
+
+\end{DoxyCode}
+ 
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if any of the input connections are invalid (i.\+e., null pointers) \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented in \mbox{\hyperlink{classGraphVertexOutput_aac5e4e2c2b661cf879acacc9d38d5b62}{Graph\+Vertex\+Output}}, \mbox{\hyperlink{classGraphVertexConstant_af4cb892fd50759407da39a96c045e7d1}{Graph\+Vertex\+Constant}}, and \mbox{\hyperlink{classGraphVertexInput_a2fc1f6fbcf74f8670531d00173bc363c}{Graph\+Vertex\+Input}}.
+
+\mbox{\Hypertarget{classGraphVertexBase_a330ddc78ee52b8425a773cecc70954fe}\label{classGraphVertexBase_a330ddc78ee52b8425a773cecc70954fe}} 
+\index{GraphVertexBase@{GraphVertexBase}!updateValue@{updateValue}}
+\index{updateValue@{updateValue}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{updateValue()}{updateValue()}}
+{\footnotesize\ttfamily virtual char Graph\+Vertex\+Base\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+update\+Value TO DO\+: 
+
+
+
+Implemented in \mbox{\hyperlink{classGraphVertexSubGraph_af18b1a71d768e2c8c01ea93a57995f7a}{Graph\+Vertex\+Sub\+Graph}}, \mbox{\hyperlink{classGraphVertexGates_aa23a50827498b0d74e8fd3245bc0c49f}{Graph\+Vertex\+Gates}}, \mbox{\hyperlink{classGraphVertexOutput_a68af7628ac372af632581f3a489e870e}{Graph\+Vertex\+Output}}, and \mbox{\hyperlink{classGraphVertexInput_af27b2c9067b9861882544ff172036be3}{Graph\+Vertex\+Input}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGraphVertexBase_a827a867771dc1307e26d0d9702516d4b}\label{classGraphVertexBase_a827a867771dc1307e26d0d9702516d4b}} 
+\index{GraphVertexBase@{GraphVertexBase}!d\_baseGraph@{d\_baseGraph}}
+\index{d\_baseGraph@{d\_baseGraph}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{d\_baseGraph}{d\_baseGraph}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_a5313b3b1d817cd6035ec0a01cb940767}{Graph\+Ptr\+Weak}} Graph\+Vertex\+Base\+::d\+\_\+base\+Graph\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a2d1e57b08fccf0e3b0c2f98c1116534e}\label{classGraphVertexBase_a2d1e57b08fccf0e3b0c2f98c1116534e}} 
+\index{GraphVertexBase@{GraphVertexBase}!d\_count@{d\_count}}
+\index{d\_count@{d\_count}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{d\_count}{d\_count}}
+{\footnotesize\ttfamily std\+::atomic\+\_\+uint64\+\_\+t Graph\+Vertex\+Base\+::d\+\_\+count = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a418e8e9b44810439133522e3cbfb2f9e}\label{classGraphVertexBase_a418e8e9b44810439133522e3cbfb2f9e}} 
+\index{GraphVertexBase@{GraphVertexBase}!d\_inConnections@{d\_inConnections}}
+\index{d\_inConnections@{d\_inConnections}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{d\_inConnections}{d\_inConnections}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{GraphVertexBase_8hpp_a4b3939252a6663d832e60390edb3210b}{Vertex\+Ptr\+Weak}}$>$ Graph\+Vertex\+Base\+::d\+\_\+in\+Connections\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a4ceafa2d19e4425b9a88edaa76b1896a}\label{classGraphVertexBase_a4ceafa2d19e4425b9a88edaa76b1896a}} 
+\index{GraphVertexBase@{GraphVertexBase}!d\_level@{d\_level}}
+\index{d\_level@{d\_level}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{d\_level}{d\_level}}
+{\footnotesize\ttfamily unsigned Graph\+Vertex\+Base\+::d\+\_\+level\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a1c3745128ab685cb98f437781dfbaac8}\label{classGraphVertexBase_a1c3745128ab685cb98f437781dfbaac8}} 
+\index{GraphVertexBase@{GraphVertexBase}!d\_name@{d\_name}}
+\index{d\_name@{d\_name}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{d\_name}{d\_name}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Base\+::d\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a5af02c2cb649c4413f5fea35a955360c}\label{classGraphVertexBase_a5af02c2cb649c4413f5fea35a955360c}} 
+\index{GraphVertexBase@{GraphVertexBase}!d\_outConnections@{d\_outConnections}}
+\index{d\_outConnections@{d\_outConnections}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{d\_outConnections}{d\_outConnections}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{GraphVertexBase_8hpp_a422e1ad1ea2471e71477f2cedbe6c23d}{Vertex\+Ptr}}$>$ Graph\+Vertex\+Base\+::d\+\_\+out\+Connections\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a05f5198fc2b7c9cb2806085bac5cf567}\label{classGraphVertexBase_a05f5198fc2b7c9cb2806085bac5cf567}} 
+\index{GraphVertexBase@{GraphVertexBase}!d\_settings@{d\_settings}}
+\index{d\_settings@{d\_settings}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{d\_settings}{d\_settings}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSettings}{Settings}}$>$ Graph\+Vertex\+Base\+::d\+\_\+settings\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{      \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings::getInstance}}(\textcolor{stringliteral}{"{}GraphVertexBase"{}})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGraphVertexBase_a6543b4eedd5220ef96f2c8815ced2a34}\label{classGraphVertexBase_a6543b4eedd5220ef96f2c8815ced2a34}} 
+\index{GraphVertexBase@{GraphVertexBase}!d\_type@{d\_type}}
+\index{d\_type@{d\_type}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{d\_type}{d\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} Graph\+Vertex\+Base\+::d\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a46f5aa4aa4be388075c14617b38df563}\label{classGraphVertexBase_a46f5aa4aa4be388075c14617b38df563}} 
+\index{GraphVertexBase@{GraphVertexBase}!d\_value@{d\_value}}
+\index{d\_value@{d\_value}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{d\_value}{d\_value}}
+{\footnotesize\ttfamily char Graph\+Vertex\+Base\+::d\+\_\+value\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGraphVertexBase_a495be57c86f63065b524e4e1420f5b28}\label{classGraphVertexBase_a495be57c86f63065b524e4e1420f5b28}} 
+\index{GraphVertexBase@{GraphVertexBase}!hashed@{hashed}}
+\index{hashed@{hashed}!GraphVertexBase@{GraphVertexBase}}
+\doxysubsubsection{\texorpdfstring{hashed}{hashed}}
+{\footnotesize\ttfamily std\+::string Graph\+Vertex\+Base\+::hashed = \char`\"{}\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+

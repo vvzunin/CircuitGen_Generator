@@ -1,0 +1,868 @@
+\hypertarget{classGeneratorALUParameters}{}\doxysection{Generator\+ALUParameters Class Reference}
+\label{classGeneratorALUParameters}\index{GeneratorALUParameters@{GeneratorALUParameters}}
+
+
+{\ttfamily \#include $<$Generation\+Parameters.\+hpp$>$}
+
+
+
+Collaboration diagram for Generator\+ALUParameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classGeneratorALUParameters__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a690c947b170039329e9a4abbbf0154d9}{get\+ALL}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_abaa6a4ed5cff5a460adfc230356bdd3d}{get\+SUM}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_add12c1c21b85254b04b04de314aae167}{get\+SUB}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a10afde9d25dc70015c7192175ea26962}{get\+NSUM}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a90ba2c308d7013d10c9185b313a5f298}{get\+NSUB}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a8a8c7545eeec7db77be713c730c9b968}{get\+MULT}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a9106361922072af106247c1e7eedf44f}{get\+COM}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a075d95756c2dd24633c75b5e499120f1}{get\+AND}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_ad8b89d7cc23a3f6b41fe0240c664d47a}{get\+NAND}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a9594df15bd686ea8e1f9fa05bb950833}{get\+OR}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a3184f77229e3a702d069d5b550502032}{get\+NOR}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a48819482ebab57538b79fbd0ea1bdd75}{get\+XOR}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a2d18eb797f128a17856abe6486d5625a}{get\+XNOR}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a83dbbc9b5597466856cb0aab95cbfa2d}{get\+CNF}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a25de989cfab96737b7fe2b3c4f2e6724}{get\+RNL}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a737259e89a04a5d2f9d969c4e01e9a99}{get\+NUMOP}} ()
+\item 
+int \mbox{\hyperlink{classGeneratorALUParameters_a01deee4124a57904b7ba4beed242456c}{getmin\+Level}} ()
+\item 
+int \mbox{\hyperlink{classGeneratorALUParameters_aa047aaf364aa3b8ca06b9ab307e58fb4}{getmax\+Level}} ()
+\item 
+int \mbox{\hyperlink{classGeneratorALUParameters_ab656fc9661cf44d9967bef2c4531d226}{getmin\+Element}} ()
+\item 
+int \mbox{\hyperlink{classGeneratorALUParameters_a5dcd54fe9daacc9d43430a4f84efbb2a}{getmax\+Element}} ()
+\item 
+std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \mbox{\hyperlink{classGeneratorALUParameters_a40c0aff12106e56e8021cba70cee1676}{getm}} ()
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a0bb3e1df833a8e14ccdf08fd8310ea3e}{get\+Leave\+Empty\+Out}} ()
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_af4756f18b8f286b89c8fb83ac9784fb1}{set\+ALL}} (bool i\+\_\+\+ALL)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a52c0772c285223c8694b2afd35c5d0e0}{set\+SUM}} (bool i\+\_\+\+SUM)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_aed4d6d62dca1af727cc58639d64ea084}{set\+SUB}} (bool i\+\_\+\+SUB)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a909d0cefb998958e040c05f3d015157f}{set\+NSUM}} (bool i\+\_\+\+NSUM)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a55d9d06ba92546c5b388772b733d2f45}{set\+NSUB}} (bool i\+\_\+\+NSUB)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a230f393405edc837a3925f5638d703e5}{set\+MULT}} (bool i\+\_\+\+MULT)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a77cd97a07d53329ca5528049a533a156}{set\+COM}} (bool i\+\_\+\+COM)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_ac87e4da8a9f5ad9c98cf99879b6e6c31}{set\+AND}} (bool i\+\_\+\+AND)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a3f408741e56b0119165c3f0a766d6484}{set\+NAND}} (bool i\+\_\+\+NAND)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a166f9c133b055a5e56298c5dc0a4342d}{set\+OR}} (bool i\+\_\+\+OR)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a102c7305556fd9b66d657280adcbd695}{set\+NOR}} (bool i\+\_\+\+NOR)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a3745ca1969609b1378576bb94cf03305}{set\+XOR}} (bool i\+\_\+\+XOR)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_ac5c5725278f50bf4b45a8971eaf31b44}{set\+XNOR}} (bool i\+\_\+\+XNOR)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a18b2791d1e6d948ce52331ea8d555507}{set\+CNF}} (bool i\+\_\+\+CNF)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_ab4e70466e70e0f6b7465256e8f176354}{set\+RNL}} (int i\+\_\+\+RNL)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_ac24ddf9bfa87a2fc2ddf6f07a06c2e57}{set\+NUMOP}} (int i\+\_\+\+NUM\+\_\+\+OP)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_ade7f49516eaf1bef1e3f88f105ca46f4}{setmin\+Level}} (int i\+\_\+min\+Level)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_aa063a3752d584b1fa090568a1469f806}{setmax\+Level}} (int i\+\_\+max\+Level)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_af608333aa0f5d5319121d14b00e754a5}{setmin\+Element}} (int i\+\_\+min\+Element)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_ae2988e134f2969ea94f57a18b55c02db}{setmax\+Element}} (int i\+\_\+max\+Element)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a0c9e564dc4d56b3abf770724a414778a}{setm}} (std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ i\+\_\+m)
+\item 
+void \mbox{\hyperlink{classGeneratorALUParameters_a97a0b2541c227b04fdf012d31df7cd18}{set\+Leave\+Empty\+Out}} (bool i\+\_\+\+Leave\+Empty\+Out)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a52698cd243d985b3f5a42f24107aef2c}{d\+\_\+\+ALL}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_af16379e59e7c4ff98e1e5b809a763552}{d\+\_\+\+SUM}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_af64c703d1ff8922629e6b11582c63178}{d\+\_\+\+SUB}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a9705314839770f40b26361d226b8d72c}{d\+\_\+\+NSUM}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a9536408ae94aaa02e8ba2ce5898b119e}{d\+\_\+\+NSUB}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_aa17cd3c96312bb9e5bcc1d8d891eb22c}{d\+\_\+\+MULT}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_af6ba4087cba82177618d66a66dcde4f2}{d\+\_\+\+COM}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a14cca30f46508e92208146bf4c16dc67}{d\+\_\+\+AND}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_abc0da8780a6b0859e4ae6014c29a52f6}{d\+\_\+\+NAND}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_aaae9f727b69e166b1429096dcdd232e7}{d\+\_\+\+OR}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_ac642ad8f2e14578c71b7decaf18ed0ef}{d\+\_\+\+NOR}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a5c2148b21d8cce8296ae6ef2d84c7444}{d\+\_\+\+XOR}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_afb90a8fb0bbdefda48c03ec0d6cae60c}{d\+\_\+\+XNOR}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a9d4c5e03d89666083f3260a88a3ae450}{d\+\_\+\+CNF}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a63adeccf33dd592190faf57d88f2a952}{d\+\_\+\+RNL}} = false
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_accbf413efc09813784c1ad5407a36d05}{d\+\_\+\+NUM\+\_\+\+OP}} = false
+\item 
+int \mbox{\hyperlink{classGeneratorALUParameters_ab63bfac429de835e85a4d93bef0b2443}{d\+\_\+min\+Level}}
+\item 
+int \mbox{\hyperlink{classGeneratorALUParameters_ab63f5cddb1d404ded1328786183eb72c}{d\+\_\+max\+Level}}
+\item 
+int \mbox{\hyperlink{classGeneratorALUParameters_a769afe08d0fdf9512496ab16aa1f4d42}{d\+\_\+min\+Element}}
+\item 
+int \mbox{\hyperlink{classGeneratorALUParameters_af36bada73dad4027879705d503eadb47}{d\+\_\+max\+Element}}
+\item 
+std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \mbox{\hyperlink{classGeneratorALUParameters_a7929419e97233f338ab2851d1c1ccdff}{d\+\_\+m}}
+\item 
+bool \mbox{\hyperlink{classGeneratorALUParameters_a5f6e5eb25dea3127c4abb0a3359d27ab}{d\+\_\+\+Leave\+Empty\+Out}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000011}{Todo}}]\+: Desc class \end{DoxyRefDesc}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGeneratorALUParameters_a690c947b170039329e9a4abbbf0154d9}\label{classGeneratorALUParameters_a690c947b170039329e9a4abbbf0154d9}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getALL@{getALL}}
+\index{getALL@{getALL}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getALL()}{getALL()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+ALL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a690c947b170039329e9a4abbbf0154d9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a075d95756c2dd24633c75b5e499120f1}\label{classGeneratorALUParameters_a075d95756c2dd24633c75b5e499120f1}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getAND@{getAND}}
+\index{getAND@{getAND}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getAND()}{getAND()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+AND (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a075d95756c2dd24633c75b5e499120f1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a83dbbc9b5597466856cb0aab95cbfa2d}\label{classGeneratorALUParameters_a83dbbc9b5597466856cb0aab95cbfa2d}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getCNF@{getCNF}}
+\index{getCNF@{getCNF}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getCNF()}{getCNF()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+CNF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a83dbbc9b5597466856cb0aab95cbfa2d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a9106361922072af106247c1e7eedf44f}\label{classGeneratorALUParameters_a9106361922072af106247c1e7eedf44f}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getCOM@{getCOM}}
+\index{getCOM@{getCOM}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getCOM()}{getCOM()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+COM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a9106361922072af106247c1e7eedf44f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a0bb3e1df833a8e14ccdf08fd8310ea3e}\label{classGeneratorALUParameters_a0bb3e1df833a8e14ccdf08fd8310ea3e}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getLeaveEmptyOut@{getLeaveEmptyOut}}
+\index{getLeaveEmptyOut@{getLeaveEmptyOut}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getLeaveEmptyOut()}{getLeaveEmptyOut()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+Leave\+Empty\+Out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a0bb3e1df833a8e14ccdf08fd8310ea3e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a40c0aff12106e56e8021cba70cee1676}\label{classGeneratorALUParameters_a40c0aff12106e56e8021cba70cee1676}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getm@{getm}}
+\index{getm@{getm}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getm()}{getm()}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int$>$ Generator\+ALUParameters\+::getm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a40c0aff12106e56e8021cba70cee1676_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a5dcd54fe9daacc9d43430a4f84efbb2a}\label{classGeneratorALUParameters_a5dcd54fe9daacc9d43430a4f84efbb2a}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getmaxElement@{getmaxElement}}
+\index{getmaxElement@{getmaxElement}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getmaxElement()}{getmaxElement()}}
+{\footnotesize\ttfamily int Generator\+ALUParameters\+::getmax\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a5dcd54fe9daacc9d43430a4f84efbb2a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_aa047aaf364aa3b8ca06b9ab307e58fb4}\label{classGeneratorALUParameters_aa047aaf364aa3b8ca06b9ab307e58fb4}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getmaxLevel@{getmaxLevel}}
+\index{getmaxLevel@{getmaxLevel}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getmaxLevel()}{getmaxLevel()}}
+{\footnotesize\ttfamily int Generator\+ALUParameters\+::getmax\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_aa047aaf364aa3b8ca06b9ab307e58fb4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_ab656fc9661cf44d9967bef2c4531d226}\label{classGeneratorALUParameters_ab656fc9661cf44d9967bef2c4531d226}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getminElement@{getminElement}}
+\index{getminElement@{getminElement}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getminElement()}{getminElement()}}
+{\footnotesize\ttfamily int Generator\+ALUParameters\+::getmin\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_ab656fc9661cf44d9967bef2c4531d226_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a01deee4124a57904b7ba4beed242456c}\label{classGeneratorALUParameters_a01deee4124a57904b7ba4beed242456c}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getminLevel@{getminLevel}}
+\index{getminLevel@{getminLevel}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getminLevel()}{getminLevel()}}
+{\footnotesize\ttfamily int Generator\+ALUParameters\+::getmin\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a01deee4124a57904b7ba4beed242456c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a8a8c7545eeec7db77be713c730c9b968}\label{classGeneratorALUParameters_a8a8c7545eeec7db77be713c730c9b968}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getMULT@{getMULT}}
+\index{getMULT@{getMULT}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getMULT()}{getMULT()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+MULT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a8a8c7545eeec7db77be713c730c9b968_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_ad8b89d7cc23a3f6b41fe0240c664d47a}\label{classGeneratorALUParameters_ad8b89d7cc23a3f6b41fe0240c664d47a}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getNAND@{getNAND}}
+\index{getNAND@{getNAND}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getNAND()}{getNAND()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+NAND (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_ad8b89d7cc23a3f6b41fe0240c664d47a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a3184f77229e3a702d069d5b550502032}\label{classGeneratorALUParameters_a3184f77229e3a702d069d5b550502032}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getNOR@{getNOR}}
+\index{getNOR@{getNOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getNOR()}{getNOR()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+NOR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a3184f77229e3a702d069d5b550502032_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a90ba2c308d7013d10c9185b313a5f298}\label{classGeneratorALUParameters_a90ba2c308d7013d10c9185b313a5f298}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getNSUB@{getNSUB}}
+\index{getNSUB@{getNSUB}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getNSUB()}{getNSUB()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+NSUB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a90ba2c308d7013d10c9185b313a5f298_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a10afde9d25dc70015c7192175ea26962}\label{classGeneratorALUParameters_a10afde9d25dc70015c7192175ea26962}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getNSUM@{getNSUM}}
+\index{getNSUM@{getNSUM}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getNSUM()}{getNSUM()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+NSUM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a10afde9d25dc70015c7192175ea26962_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a737259e89a04a5d2f9d969c4e01e9a99}\label{classGeneratorALUParameters_a737259e89a04a5d2f9d969c4e01e9a99}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getNUMOP@{getNUMOP}}
+\index{getNUMOP@{getNUMOP}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getNUMOP()}{getNUMOP()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+NUMOP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a737259e89a04a5d2f9d969c4e01e9a99_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a9594df15bd686ea8e1f9fa05bb950833}\label{classGeneratorALUParameters_a9594df15bd686ea8e1f9fa05bb950833}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getOR@{getOR}}
+\index{getOR@{getOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getOR()}{getOR()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+OR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a9594df15bd686ea8e1f9fa05bb950833_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a25de989cfab96737b7fe2b3c4f2e6724}\label{classGeneratorALUParameters_a25de989cfab96737b7fe2b3c4f2e6724}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getRNL@{getRNL}}
+\index{getRNL@{getRNL}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getRNL()}{getRNL()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+RNL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a25de989cfab96737b7fe2b3c4f2e6724_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_add12c1c21b85254b04b04de314aae167}\label{classGeneratorALUParameters_add12c1c21b85254b04b04de314aae167}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getSUB@{getSUB}}
+\index{getSUB@{getSUB}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getSUB()}{getSUB()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+SUB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_add12c1c21b85254b04b04de314aae167_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_abaa6a4ed5cff5a460adfc230356bdd3d}\label{classGeneratorALUParameters_abaa6a4ed5cff5a460adfc230356bdd3d}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getSUM@{getSUM}}
+\index{getSUM@{getSUM}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getSUM()}{getSUM()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+SUM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_abaa6a4ed5cff5a460adfc230356bdd3d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a2d18eb797f128a17856abe6486d5625a}\label{classGeneratorALUParameters_a2d18eb797f128a17856abe6486d5625a}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getXNOR@{getXNOR}}
+\index{getXNOR@{getXNOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getXNOR()}{getXNOR()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+XNOR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a2d18eb797f128a17856abe6486d5625a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a48819482ebab57538b79fbd0ea1bdd75}\label{classGeneratorALUParameters_a48819482ebab57538b79fbd0ea1bdd75}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!getXOR@{getXOR}}
+\index{getXOR@{getXOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{getXOR()}{getXOR()}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::get\+XOR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a48819482ebab57538b79fbd0ea1bdd75_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_af4756f18b8f286b89c8fb83ac9784fb1}\label{classGeneratorALUParameters_af4756f18b8f286b89c8fb83ac9784fb1}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setALL@{setALL}}
+\index{setALL@{setALL}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setALL()}{setALL()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+ALL (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+ALL }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_af4756f18b8f286b89c8fb83ac9784fb1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_ac87e4da8a9f5ad9c98cf99879b6e6c31}\label{classGeneratorALUParameters_ac87e4da8a9f5ad9c98cf99879b6e6c31}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setAND@{setAND}}
+\index{setAND@{setAND}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setAND()}{setAND()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+AND (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+AND }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_ac87e4da8a9f5ad9c98cf99879b6e6c31_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a18b2791d1e6d948ce52331ea8d555507}\label{classGeneratorALUParameters_a18b2791d1e6d948ce52331ea8d555507}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setCNF@{setCNF}}
+\index{setCNF@{setCNF}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setCNF()}{setCNF()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+CNF (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+CNF }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a18b2791d1e6d948ce52331ea8d555507_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a77cd97a07d53329ca5528049a533a156}\label{classGeneratorALUParameters_a77cd97a07d53329ca5528049a533a156}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setCOM@{setCOM}}
+\index{setCOM@{setCOM}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setCOM()}{setCOM()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+COM (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+COM }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a77cd97a07d53329ca5528049a533a156_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a97a0b2541c227b04fdf012d31df7cd18}\label{classGeneratorALUParameters_a97a0b2541c227b04fdf012d31df7cd18}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setLeaveEmptyOut@{setLeaveEmptyOut}}
+\index{setLeaveEmptyOut@{setLeaveEmptyOut}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setLeaveEmptyOut()}{setLeaveEmptyOut()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+Leave\+Empty\+Out (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+Leave\+Empty\+Out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a97a0b2541c227b04fdf012d31df7cd18_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a0c9e564dc4d56b3abf770724a414778a}\label{classGeneratorALUParameters_a0c9e564dc4d56b3abf770724a414778a}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setm@{setm}}
+\index{setm@{setm}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setm()}{setm()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::setm (\begin{DoxyParamCaption}\item[{std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$}]{i\+\_\+m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a0c9e564dc4d56b3abf770724a414778a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_ae2988e134f2969ea94f57a18b55c02db}\label{classGeneratorALUParameters_ae2988e134f2969ea94f57a18b55c02db}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setmaxElement@{setmaxElement}}
+\index{setmaxElement@{setmaxElement}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setmaxElement()}{setmaxElement()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::setmax\+Element (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+max\+Element }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_ae2988e134f2969ea94f57a18b55c02db_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_aa063a3752d584b1fa090568a1469f806}\label{classGeneratorALUParameters_aa063a3752d584b1fa090568a1469f806}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setmaxLevel@{setmaxLevel}}
+\index{setmaxLevel@{setmaxLevel}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setmaxLevel()}{setmaxLevel()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::setmax\+Level (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+max\+Level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_aa063a3752d584b1fa090568a1469f806_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_af608333aa0f5d5319121d14b00e754a5}\label{classGeneratorALUParameters_af608333aa0f5d5319121d14b00e754a5}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setminElement@{setminElement}}
+\index{setminElement@{setminElement}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setminElement()}{setminElement()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::setmin\+Element (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+min\+Element }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_af608333aa0f5d5319121d14b00e754a5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_ade7f49516eaf1bef1e3f88f105ca46f4}\label{classGeneratorALUParameters_ade7f49516eaf1bef1e3f88f105ca46f4}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setminLevel@{setminLevel}}
+\index{setminLevel@{setminLevel}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setminLevel()}{setminLevel()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::setmin\+Level (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+min\+Level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_ade7f49516eaf1bef1e3f88f105ca46f4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a230f393405edc837a3925f5638d703e5}\label{classGeneratorALUParameters_a230f393405edc837a3925f5638d703e5}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setMULT@{setMULT}}
+\index{setMULT@{setMULT}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setMULT()}{setMULT()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+MULT (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+MULT }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a230f393405edc837a3925f5638d703e5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a3f408741e56b0119165c3f0a766d6484}\label{classGeneratorALUParameters_a3f408741e56b0119165c3f0a766d6484}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setNAND@{setNAND}}
+\index{setNAND@{setNAND}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setNAND()}{setNAND()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+NAND (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+NAND }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a3f408741e56b0119165c3f0a766d6484_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a102c7305556fd9b66d657280adcbd695}\label{classGeneratorALUParameters_a102c7305556fd9b66d657280adcbd695}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setNOR@{setNOR}}
+\index{setNOR@{setNOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setNOR()}{setNOR()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+NOR (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+NOR }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a102c7305556fd9b66d657280adcbd695_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a55d9d06ba92546c5b388772b733d2f45}\label{classGeneratorALUParameters_a55d9d06ba92546c5b388772b733d2f45}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setNSUB@{setNSUB}}
+\index{setNSUB@{setNSUB}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setNSUB()}{setNSUB()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+NSUB (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+NSUB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a55d9d06ba92546c5b388772b733d2f45_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a909d0cefb998958e040c05f3d015157f}\label{classGeneratorALUParameters_a909d0cefb998958e040c05f3d015157f}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setNSUM@{setNSUM}}
+\index{setNSUM@{setNSUM}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setNSUM()}{setNSUM()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+NSUM (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+NSUM }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a909d0cefb998958e040c05f3d015157f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_ac24ddf9bfa87a2fc2ddf6f07a06c2e57}\label{classGeneratorALUParameters_ac24ddf9bfa87a2fc2ddf6f07a06c2e57}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setNUMOP@{setNUMOP}}
+\index{setNUMOP@{setNUMOP}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setNUMOP()}{setNUMOP()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+NUMOP (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+\+NUM\+\_\+\+OP }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_ac24ddf9bfa87a2fc2ddf6f07a06c2e57_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a166f9c133b055a5e56298c5dc0a4342d}\label{classGeneratorALUParameters_a166f9c133b055a5e56298c5dc0a4342d}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setOR@{setOR}}
+\index{setOR@{setOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setOR()}{setOR()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+OR (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+OR }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a166f9c133b055a5e56298c5dc0a4342d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_ab4e70466e70e0f6b7465256e8f176354}\label{classGeneratorALUParameters_ab4e70466e70e0f6b7465256e8f176354}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setRNL@{setRNL}}
+\index{setRNL@{setRNL}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setRNL()}{setRNL()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+RNL (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+\+RNL }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_ab4e70466e70e0f6b7465256e8f176354_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_aed4d6d62dca1af727cc58639d64ea084}\label{classGeneratorALUParameters_aed4d6d62dca1af727cc58639d64ea084}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setSUB@{setSUB}}
+\index{setSUB@{setSUB}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setSUB()}{setSUB()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+SUB (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+SUB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_aed4d6d62dca1af727cc58639d64ea084_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a52c0772c285223c8694b2afd35c5d0e0}\label{classGeneratorALUParameters_a52c0772c285223c8694b2afd35c5d0e0}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setSUM@{setSUM}}
+\index{setSUM@{setSUM}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setSUM()}{setSUM()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+SUM (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+SUM }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a52c0772c285223c8694b2afd35c5d0e0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_ac5c5725278f50bf4b45a8971eaf31b44}\label{classGeneratorALUParameters_ac5c5725278f50bf4b45a8971eaf31b44}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setXNOR@{setXNOR}}
+\index{setXNOR@{setXNOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setXNOR()}{setXNOR()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+XNOR (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+XNOR }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_ac5c5725278f50bf4b45a8971eaf31b44_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGeneratorALUParameters_a3745ca1969609b1378576bb94cf03305}\label{classGeneratorALUParameters_a3745ca1969609b1378576bb94cf03305}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!setXOR@{setXOR}}
+\index{setXOR@{setXOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{setXOR()}{setXOR()}}
+{\footnotesize\ttfamily void Generator\+ALUParameters\+::set\+XOR (\begin{DoxyParamCaption}\item[{bool}]{i\+\_\+\+XOR }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGeneratorALUParameters_a3745ca1969609b1378576bb94cf03305_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGeneratorALUParameters_a52698cd243d985b3f5a42f24107aef2c}\label{classGeneratorALUParameters_a52698cd243d985b3f5a42f24107aef2c}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_ALL@{d\_ALL}}
+\index{d\_ALL@{d\_ALL}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_ALL}{d\_ALL}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+ALL = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_a14cca30f46508e92208146bf4c16dc67}\label{classGeneratorALUParameters_a14cca30f46508e92208146bf4c16dc67}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_AND@{d\_AND}}
+\index{d\_AND@{d\_AND}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_AND}{d\_AND}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+AND = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_a9d4c5e03d89666083f3260a88a3ae450}\label{classGeneratorALUParameters_a9d4c5e03d89666083f3260a88a3ae450}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_CNF@{d\_CNF}}
+\index{d\_CNF@{d\_CNF}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_CNF}{d\_CNF}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+CNF = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_af6ba4087cba82177618d66a66dcde4f2}\label{classGeneratorALUParameters_af6ba4087cba82177618d66a66dcde4f2}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_COM@{d\_COM}}
+\index{d\_COM@{d\_COM}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_COM}{d\_COM}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+COM = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_a5f6e5eb25dea3127c4abb0a3359d27ab}\label{classGeneratorALUParameters_a5f6e5eb25dea3127c4abb0a3359d27ab}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_LeaveEmptyOut@{d\_LeaveEmptyOut}}
+\index{d\_LeaveEmptyOut@{d\_LeaveEmptyOut}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_LeaveEmptyOut}{d\_LeaveEmptyOut}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+Leave\+Empty\+Out\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_a7929419e97233f338ab2851d1c1ccdff}\label{classGeneratorALUParameters_a7929419e97233f338ab2851d1c1ccdff}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_m@{d\_m}}
+\index{d\_m@{d\_m}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_m}{d\_m}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int$>$ Generator\+ALUParameters\+::d\+\_\+m\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_af36bada73dad4027879705d503eadb47}\label{classGeneratorALUParameters_af36bada73dad4027879705d503eadb47}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_maxElement@{d\_maxElement}}
+\index{d\_maxElement@{d\_maxElement}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_maxElement}{d\_maxElement}}
+{\footnotesize\ttfamily int Generator\+ALUParameters\+::d\+\_\+max\+Element\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_ab63f5cddb1d404ded1328786183eb72c}\label{classGeneratorALUParameters_ab63f5cddb1d404ded1328786183eb72c}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_maxLevel@{d\_maxLevel}}
+\index{d\_maxLevel@{d\_maxLevel}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_maxLevel}{d\_maxLevel}}
+{\footnotesize\ttfamily int Generator\+ALUParameters\+::d\+\_\+max\+Level\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_a769afe08d0fdf9512496ab16aa1f4d42}\label{classGeneratorALUParameters_a769afe08d0fdf9512496ab16aa1f4d42}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_minElement@{d\_minElement}}
+\index{d\_minElement@{d\_minElement}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_minElement}{d\_minElement}}
+{\footnotesize\ttfamily int Generator\+ALUParameters\+::d\+\_\+min\+Element\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_ab63bfac429de835e85a4d93bef0b2443}\label{classGeneratorALUParameters_ab63bfac429de835e85a4d93bef0b2443}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_minLevel@{d\_minLevel}}
+\index{d\_minLevel@{d\_minLevel}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_minLevel}{d\_minLevel}}
+{\footnotesize\ttfamily int Generator\+ALUParameters\+::d\+\_\+min\+Level\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_aa17cd3c96312bb9e5bcc1d8d891eb22c}\label{classGeneratorALUParameters_aa17cd3c96312bb9e5bcc1d8d891eb22c}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_MULT@{d\_MULT}}
+\index{d\_MULT@{d\_MULT}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_MULT}{d\_MULT}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+MULT = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_abc0da8780a6b0859e4ae6014c29a52f6}\label{classGeneratorALUParameters_abc0da8780a6b0859e4ae6014c29a52f6}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_NAND@{d\_NAND}}
+\index{d\_NAND@{d\_NAND}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_NAND}{d\_NAND}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+NAND = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_ac642ad8f2e14578c71b7decaf18ed0ef}\label{classGeneratorALUParameters_ac642ad8f2e14578c71b7decaf18ed0ef}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_NOR@{d\_NOR}}
+\index{d\_NOR@{d\_NOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_NOR}{d\_NOR}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+NOR = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_a9536408ae94aaa02e8ba2ce5898b119e}\label{classGeneratorALUParameters_a9536408ae94aaa02e8ba2ce5898b119e}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_NSUB@{d\_NSUB}}
+\index{d\_NSUB@{d\_NSUB}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_NSUB}{d\_NSUB}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+NSUB = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_a9705314839770f40b26361d226b8d72c}\label{classGeneratorALUParameters_a9705314839770f40b26361d226b8d72c}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_NSUM@{d\_NSUM}}
+\index{d\_NSUM@{d\_NSUM}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_NSUM}{d\_NSUM}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+NSUM = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_accbf413efc09813784c1ad5407a36d05}\label{classGeneratorALUParameters_accbf413efc09813784c1ad5407a36d05}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_NUM\_OP@{d\_NUM\_OP}}
+\index{d\_NUM\_OP@{d\_NUM\_OP}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_NUM\_OP}{d\_NUM\_OP}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+NUM\+\_\+\+OP = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_aaae9f727b69e166b1429096dcdd232e7}\label{classGeneratorALUParameters_aaae9f727b69e166b1429096dcdd232e7}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_OR@{d\_OR}}
+\index{d\_OR@{d\_OR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_OR}{d\_OR}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+OR = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_a63adeccf33dd592190faf57d88f2a952}\label{classGeneratorALUParameters_a63adeccf33dd592190faf57d88f2a952}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_RNL@{d\_RNL}}
+\index{d\_RNL@{d\_RNL}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_RNL}{d\_RNL}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+RNL = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_af64c703d1ff8922629e6b11582c63178}\label{classGeneratorALUParameters_af64c703d1ff8922629e6b11582c63178}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_SUB@{d\_SUB}}
+\index{d\_SUB@{d\_SUB}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_SUB}{d\_SUB}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+SUB = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_af16379e59e7c4ff98e1e5b809a763552}\label{classGeneratorALUParameters_af16379e59e7c4ff98e1e5b809a763552}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_SUM@{d\_SUM}}
+\index{d\_SUM@{d\_SUM}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_SUM}{d\_SUM}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+SUM = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_afb90a8fb0bbdefda48c03ec0d6cae60c}\label{classGeneratorALUParameters_afb90a8fb0bbdefda48c03ec0d6cae60c}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_XNOR@{d\_XNOR}}
+\index{d\_XNOR@{d\_XNOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_XNOR}{d\_XNOR}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+XNOR = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classGeneratorALUParameters_a5c2148b21d8cce8296ae6ef2d84c7444}\label{classGeneratorALUParameters_a5c2148b21d8cce8296ae6ef2d84c7444}} 
+\index{GeneratorALUParameters@{GeneratorALUParameters}!d\_XOR@{d\_XOR}}
+\index{d\_XOR@{d\_XOR}!GeneratorALUParameters@{GeneratorALUParameters}}
+\doxysubsubsection{\texorpdfstring{d\_XOR}{d\_XOR}}
+{\footnotesize\ttfamily bool Generator\+ALUParameters\+::d\+\_\+\+XOR = false\hspace{0.3cm}{\ttfamily [private]}}
+

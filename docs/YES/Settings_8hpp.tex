@@ -1,0 +1,243 @@
+\hypertarget{Settings_8hpp}{}\doxysection{/mnt/c/course\+\_\+3/\+Circuit\+Gen\+\_\+\+Generator/src/settings/\+Settings.hpp File Reference}
+\label{Settings_8hpp}\index{/mnt/c/course\_3/CircuitGen\_Generator/src/settings/Settings.hpp@{/mnt/c/course\_3/CircuitGen\_Generator/src/settings/Settings.hpp}}
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for Settings.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Settings_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Settings_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classSettings}{Settings}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{Settings_8hpp_a71bf501f63160ba5aa5adb9552290dc9}{Libraries\+Types}} \{ \mbox{\hyperlink{Settings_8hpp_a71bf501f63160ba5aa5adb9552290dc9abb1eba077962bf4055f96f72d94e8cab}{SKY\+\_\+\+LIB}}
+ \}
+\item 
+enum \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}} \{ \newline
+\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}}
+, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}}
+, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da995640a12d5339aabee76a933fb5f519}{constant}}
+, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516}{gate}}
+, \newline
+\mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da22c78580446133d737f326835778c076}{sub\+Graph}}
+ \}
+\begin{DoxyCompactList}\small\item\em Vertex\+Types Enumeration of vertex types. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}} \{ \newline
+\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680}{Gate\+And}}
+, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69}{Gate\+Nand}}
+, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2}{Gate\+Or}}
+, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec}{Gate\+Nor}}
+, \newline
+\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64}{Gate\+Xor}}
+, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba}{Gate\+Xnor}}
+, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45}{Gate\+Not}}
+, \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e}{Gate\+Buf}}
+, \newline
+\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ac2976809a913c91ef0f17c57113a882a}{Gate\+Default}}
+ \}
+\begin{DoxyCompactList}\small\item\em Gates Enumeration of types of logical elements This enumeration defines the various types of logic elements that can be used in digital circuits. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}} \{ \newline
+\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d}{From\+Random\+Truth\+Table}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c}{Rand\+Level}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a250ce0215fa3b94c1c5113edeedc6f4a}{Rand\+Level\+Experimental}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a9ade0b294c4074fbe2f4d1da34a4134d}{Num\+Operation}}
+, \newline
+\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a74feb9d0bc2dfab619f7413964796c4f}{Genetic}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f}{Summator}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b}{Comparison}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a618b82de6e239a7e1603c26ec7fcb9f9}{Encoder}}
+, \newline
+\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a4f15853557f908ae40fd266dccef4413}{Subtractor}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51}{Multiplexer}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a9ec009dfeaf56f731f3943183fcc19e0}{Demultiplexer}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e}{Multiplier}}
+, \newline
+\mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265abd35cc832d8523cd2d3284f0cd831897}{Decoder}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265a965c12cc1bd600342bea10723c5fa7a8}{Parity}}
+, \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35}{ALU}}
+ \}
+\begin{DoxyCompactList}\small\item\em Generation\+Types Enumeration of the types of digital circuit generation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}\label{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}} 
+\index{Settings.hpp@{Settings.hpp}!Gates@{Gates}}
+\index{Gates@{Gates}!Settings.hpp@{Settings.hpp}}
+\doxysubsubsection{\texorpdfstring{Gates}{Gates}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}}
+
+
+
+Gates Enumeration of types of logical elements This enumeration defines the various types of logic elements that can be used in digital circuits. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GateAnd@{GateAnd}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!GateAnd@{GateAnd}}}\mbox{\Hypertarget{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680}\label{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680}} 
+Gate\+And&logical element -\/ \char`\"{}\+AND\char`\"{} (AND) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GateNand@{GateNand}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!GateNand@{GateNand}}}\mbox{\Hypertarget{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69}\label{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69}} 
+Gate\+Nand&logical element \char`\"{}\+AND-\/\+NOT\char`\"{} (NAND) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GateOr@{GateOr}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!GateOr@{GateOr}}}\mbox{\Hypertarget{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2}\label{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2}} 
+Gate\+Or&logical element -\/ \char`\"{}\+OR\char`\"{} (OR) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GateNor@{GateNor}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!GateNor@{GateNor}}}\mbox{\Hypertarget{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec}\label{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec}} 
+Gate\+Nor&logical element -\/ \char`\"{}\+OR-\/\+NOT\char`\"{} (NOR) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GateXor@{GateXor}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!GateXor@{GateXor}}}\mbox{\Hypertarget{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64}\label{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64}} 
+Gate\+Xor&lofical element -\/ \char`\"{}\+Exclusive OR\char`\"{} (XOR) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GateXnor@{GateXnor}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!GateXnor@{GateXnor}}}\mbox{\Hypertarget{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba}\label{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba}} 
+Gate\+Xnor&logical element -\/ XNOR \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GateNot@{GateNot}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!GateNot@{GateNot}}}\mbox{\Hypertarget{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45}\label{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45}} 
+Gate\+Not&logical element -\/ NOT \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GateBuf@{GateBuf}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!GateBuf@{GateBuf}}}\mbox{\Hypertarget{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e}\label{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e}} 
+Gate\+Buf&logical element -\/ Buffer \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GateDefault@{GateDefault}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!GateDefault@{GateDefault}}}\mbox{\Hypertarget{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ac2976809a913c91ef0f17c57113a882a}\label{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974ac2976809a913c91ef0f17c57113a882a}} 
+Gate\+Default&default logical element \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265}} 
+\index{Settings.hpp@{Settings.hpp}!GenerationTypes@{GenerationTypes}}
+\index{GenerationTypes@{GenerationTypes}!Settings.hpp@{Settings.hpp}}
+\doxysubsubsection{\texorpdfstring{GenerationTypes}{GenerationTypes}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265}{Generation\+Types}}}
+
+
+
+Generation\+Types Enumeration of the types of digital circuit generation. 
+
+This enumeration defines the various types of digital circuit generation that can be used to create a variety of logic circuits. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FromRandomTruthTable@{FromRandomTruthTable}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!FromRandomTruthTable@{FromRandomTruthTable}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d}} 
+From\+Random\+Truth\+Table&Generating a circuit from a random truth table. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RandLevel@{RandLevel}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!RandLevel@{RandLevel}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c}} 
+Rand\+Level&Random level (experimental) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RandLevelExperimental@{RandLevelExperimental}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!RandLevelExperimental@{RandLevelExperimental}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265a250ce0215fa3b94c1c5113edeedc6f4a}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265a250ce0215fa3b94c1c5113edeedc6f4a}} 
+Rand\+Level\+Experimental&Experimental random level generation. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NumOperation@{NumOperation}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!NumOperation@{NumOperation}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265a9ade0b294c4074fbe2f4d1da34a4134d}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265a9ade0b294c4074fbe2f4d1da34a4134d}} 
+Num\+Operation&Generating a circuit with numerical operations. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Genetic@{Genetic}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!Genetic@{Genetic}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265a74feb9d0bc2dfab619f7413964796c4f}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265a74feb9d0bc2dfab619f7413964796c4f}} 
+Genetic&Genetic generation of the circuit. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Summator@{Summator}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!Summator@{Summator}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f}} 
+Summator&Adder. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Comparison@{Comparison}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!Comparison@{Comparison}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b}} 
+Comparison&The comparison block. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Encoder@{Encoder}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!Encoder@{Encoder}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265a618b82de6e239a7e1603c26ec7fcb9f9}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265a618b82de6e239a7e1603c26ec7fcb9f9}} 
+Encoder&The encoder. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Subtractor@{Subtractor}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!Subtractor@{Subtractor}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265a4f15853557f908ae40fd266dccef4413}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265a4f15853557f908ae40fd266dccef4413}} 
+Subtractor&Subtractor. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Multiplexer@{Multiplexer}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!Multiplexer@{Multiplexer}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51}} 
+Multiplexer&Multiplexer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Demultiplexer@{Demultiplexer}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!Demultiplexer@{Demultiplexer}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265a9ec009dfeaf56f731f3943183fcc19e0}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265a9ec009dfeaf56f731f3943183fcc19e0}} 
+Demultiplexer&Demultiplexer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Multiplier@{Multiplier}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!Multiplier@{Multiplier}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e}} 
+Multiplier&Multiplier. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Decoder@{Decoder}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!Decoder@{Decoder}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265abd35cc832d8523cd2d3284f0cd831897}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265abd35cc832d8523cd2d3284f0cd831897}} 
+Decoder&Decoder. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Parity@{Parity}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!Parity@{Parity}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265a965c12cc1bd600342bea10723c5fa7a8}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265a965c12cc1bd600342bea10723c5fa7a8}} 
+Parity&Parity. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALU@{ALU}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!ALU@{ALU}}}\mbox{\Hypertarget{Settings_8hpp_aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35}\label{Settings_8hpp_aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35}} 
+ALU&Arithmetic Logic Unit (ALU) \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{Settings_8hpp_a71bf501f63160ba5aa5adb9552290dc9}\label{Settings_8hpp_a71bf501f63160ba5aa5adb9552290dc9}} 
+\index{Settings.hpp@{Settings.hpp}!LibrariesTypes@{LibrariesTypes}}
+\index{LibrariesTypes@{LibrariesTypes}!Settings.hpp@{Settings.hpp}}
+\doxysubsubsection{\texorpdfstring{LibrariesTypes}{LibrariesTypes}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Settings_8hpp_a71bf501f63160ba5aa5adb9552290dc9}{Libraries\+Types}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SKY\_LIB@{SKY\_LIB}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!SKY\_LIB@{SKY\_LIB}}}\mbox{\Hypertarget{Settings_8hpp_a71bf501f63160ba5aa5adb9552290dc9abb1eba077962bf4055f96f72d94e8cab}\label{Settings_8hpp_a71bf501f63160ba5aa5adb9552290dc9abb1eba077962bf4055f96f72d94e8cab}} 
+SKY\+\_\+\+LIB&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}\label{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}} 
+\index{Settings.hpp@{Settings.hpp}!VertexTypes@{VertexTypes}}
+\index{VertexTypes@{VertexTypes}!Settings.hpp@{Settings.hpp}}
+\doxysubsubsection{\texorpdfstring{VertexTypes}{VertexTypes}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5d}{Vertex\+Types}}}
+
+
+
+Vertex\+Types Enumeration of vertex types. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{input@{input}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!input@{input}}}\mbox{\Hypertarget{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}\label{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}} 
+input&input vertex \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{output@{output}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!output@{output}}}\mbox{\Hypertarget{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}\label{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}} 
+output&output vertex \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{constant@{constant}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!constant@{constant}}}\mbox{\Hypertarget{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da995640a12d5339aabee76a933fb5f519}\label{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da995640a12d5339aabee76a933fb5f519}} 
+constant&constant vertex \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{gate@{gate}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!gate@{gate}}}\mbox{\Hypertarget{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516}\label{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516}} 
+gate&vertex representing a logical element \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{subGraph@{subGraph}!Settings.hpp@{Settings.hpp}}\index{Settings.hpp@{Settings.hpp}!subGraph@{subGraph}}}\mbox{\Hypertarget{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da22c78580446133d737f326835778c076}\label{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da22c78580446133d737f326835778c076}} 
+sub\+Graph&subgraph that makes up the vertex \\
+\hline
+
+\end{DoxyEnumFields}

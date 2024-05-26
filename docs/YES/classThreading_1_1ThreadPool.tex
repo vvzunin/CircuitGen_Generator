@@ -1,0 +1,282 @@
+\hypertarget{classThreading_1_1ThreadPool}{}\doxysection{Threading\+::Thread\+Pool Class Reference}
+\label{classThreading_1_1ThreadPool}\index{Threading::ThreadPool@{Threading::ThreadPool}}
+
+
+Allows to execute tasks in multithread manner.  
+
+
+
+
+{\ttfamily \#include $<$Thread\+Pool.\+hpp$>$}
+
+
+
+Collaboration diagram for Threading\+::Thread\+Pool\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classThreading_1_1ThreadPool__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classThreading_1_1ThreadPool_a16f9bc00cf6143c96e49b1724859d3af}{Task}} = std\+::function$<$ void()$>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classThreading_1_1ThreadPool_a476e732d00b62930f60ee345c44ef00a}{Thread\+Pool}} (size\+\_\+t use\+Threads)
+\begin{DoxyCompactList}\small\item\em Create thread pool with specified number of threads. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classThreading_1_1ThreadPool_a1c98beef500f66cf0f863d68766fca13}{Thread\+Pool}} (const \mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}} \&other)=delete
+\item 
+\mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}} \& \mbox{\hyperlink{classThreading_1_1ThreadPool_a28fcd9de9f9d627eea869f7fadc84349}{operator=}} (const \mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}} \&other)=delete
+\item 
+\mbox{\hyperlink{classThreading_1_1ThreadPool_acb24c0cf419fde637b57fccc4e04620d}{Thread\+Pool}} (\mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}} \&\&other)=delete
+\item 
+\mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}} \& \mbox{\hyperlink{classThreading_1_1ThreadPool_acff1fb149eed54d894d03a4b1103a9d0}{operator=}} (\mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}} \&\&other)=delete
+\item 
+void \mbox{\hyperlink{classThreading_1_1ThreadPool_a70b1c1d24a492238a704c2c7b817ae27}{submit}} (\mbox{\hyperlink{classThreading_1_1ThreadPool_a16f9bc00cf6143c96e49b1724859d3af}{Task}} task)
+\begin{DoxyCompactList}\small\item\em Schedule task on execution. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classThreading_1_1ThreadPool_a41dde4c256785b525a0334c060932a64}{wait}} ()
+\begin{DoxyCompactList}\small\item\em Wait for all spawned for now tasks complete. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classThreading_1_1ThreadPool_acab1831895d9b9dbaa11a951e04b894c}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Stop workers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classThreading_1_1ThreadPool_a44d3d2ab618970605e684efc216655eb}{$\sim$\+Thread\+Pool}} ()
+\begin{DoxyCompactList}\small\item\em Custom destructor which are to stop workers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classThreading_1_1ThreadPool_aeaadc6fbbcbb380f4111cc238dcf204f}{work}} ()
+\item 
+void \mbox{\hyperlink{classThreading_1_1ThreadPool_a41f65f9f1a382f62edac18cfce73326a}{spawn\+Worker}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}}$<$ \mbox{\hyperlink{classThreading_1_1ThreadPool_a16f9bc00cf6143c96e49b1724859d3af}{Task}} $>$ \mbox{\hyperlink{classThreading_1_1ThreadPool_ae2c1b1647c5447e2fbcaa94f5c3498fc}{queue}}
+\item 
+std\+::vector$<$ std\+::thread $>$ \mbox{\hyperlink{classThreading_1_1ThreadPool_aef3a4632d6479d317ea99a1331bc6721}{workers}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classThreading_1_1ThreadPool_a85430eb6829c4a2a58e14f25828027cf}{not\+Processed}} \{0\}
+\item 
+std\+::mutex \mbox{\hyperlink{classThreading_1_1ThreadPool_a0b1c7cd2f50695fb45eaef9eeb22be25}{mtx}}
+\item 
+std\+::condition\+\_\+variable \mbox{\hyperlink{classThreading_1_1ThreadPool_aa07480cfdfea81448e34ac29042398d3}{processed\+All}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Allows to execute tasks in multithread manner. 
+
+It is not allowed to use thread pool in multiple threads. It is guaranteed tasks process-\/start times and ordered as their add time. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_a16f9bc00cf6143c96e49b1724859d3af}\label{classThreading_1_1ThreadPool_a16f9bc00cf6143c96e49b1724859d3af}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!Task@{Task}}
+\index{Task@{Task}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{Task}{Task}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classThreading_1_1ThreadPool_a16f9bc00cf6143c96e49b1724859d3af}{Threading\+::\+Thread\+Pool\+::\+Task}} =  std\+::function$<$void()$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_a476e732d00b62930f60ee345c44ef00a}\label{classThreading_1_1ThreadPool_a476e732d00b62930f60ee345c44ef00a}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!ThreadPool@{ThreadPool}}
+\index{ThreadPool@{ThreadPool}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{ThreadPool()}{ThreadPool()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Thread\+Pool\+::\+Thread\+Pool (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{use\+Threads }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Create thread pool with specified number of threads. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_a476e732d00b62930f60ee345c44ef00a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_a1c98beef500f66cf0f863d68766fca13}\label{classThreading_1_1ThreadPool_a1c98beef500f66cf0f863d68766fca13}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!ThreadPool@{ThreadPool}}
+\index{ThreadPool@{ThreadPool}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{ThreadPool()}{ThreadPool()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Threading\+::\+Thread\+Pool\+::\+Thread\+Pool (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_acb24c0cf419fde637b57fccc4e04620d}\label{classThreading_1_1ThreadPool_acb24c0cf419fde637b57fccc4e04620d}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!ThreadPool@{ThreadPool}}
+\index{ThreadPool@{ThreadPool}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{ThreadPool()}{ThreadPool()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Threading\+::\+Thread\+Pool\+::\+Thread\+Pool (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_a44d3d2ab618970605e684efc216655eb}\label{classThreading_1_1ThreadPool_a44d3d2ab618970605e684efc216655eb}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!````~ThreadPool@{$\sim$ThreadPool}}
+\index{````~ThreadPool@{$\sim$ThreadPool}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{$\sim$ThreadPool()}{~ThreadPool()}}
+{\footnotesize\ttfamily Thread\+Pool\+::$\sim$\+Thread\+Pool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Custom destructor which are to stop workers. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_a44d3d2ab618970605e684efc216655eb_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_a28fcd9de9f9d627eea869f7fadc84349}\label{classThreading_1_1ThreadPool_a28fcd9de9f9d627eea869f7fadc84349}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!operator=@{operator=}}
+\index{operator=@{operator=}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}}\& Threading\+::\+Thread\+Pool\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_acff1fb149eed54d894d03a4b1103a9d0}\label{classThreading_1_1ThreadPool_acff1fb149eed54d894d03a4b1103a9d0}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!operator=@{operator=}}
+\index{operator=@{operator=}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}}\& Threading\+::\+Thread\+Pool\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classThreading_1_1ThreadPool}{Thread\+Pool}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_a41f65f9f1a382f62edac18cfce73326a}\label{classThreading_1_1ThreadPool_a41f65f9f1a382f62edac18cfce73326a}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!spawnWorker@{spawnWorker}}
+\index{spawnWorker@{spawnWorker}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{spawnWorker()}{spawnWorker()}}
+{\footnotesize\ttfamily void Thread\+Pool\+::spawn\+Worker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_a41f65f9f1a382f62edac18cfce73326a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_a41f65f9f1a382f62edac18cfce73326a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_acab1831895d9b9dbaa11a951e04b894c}\label{classThreading_1_1ThreadPool_acab1831895d9b9dbaa11a951e04b894c}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!stop@{stop}}
+\index{stop@{stop}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void Thread\+Pool\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stop workers. 
+
+Some tasks can be incomplete. Blocks until every thread won\textquotesingle{}t be stopped and destroyed. After that, thread pool can not process new tasks. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_acab1831895d9b9dbaa11a951e04b894c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_acab1831895d9b9dbaa11a951e04b894c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_a70b1c1d24a492238a704c2c7b817ae27}\label{classThreading_1_1ThreadPool_a70b1c1d24a492238a704c2c7b817ae27}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!submit@{submit}}
+\index{submit@{submit}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{submit()}{submit()}}
+{\footnotesize\ttfamily void Thread\+Pool\+::submit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classThreading_1_1ThreadPool_a16f9bc00cf6143c96e49b1724859d3af}{Thread\+Pool\+::\+Task}}}]{task }\end{DoxyParamCaption})}
+
+
+
+Schedule task on execution. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_a70b1c1d24a492238a704c2c7b817ae27_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_a70b1c1d24a492238a704c2c7b817ae27_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_a41dde4c256785b525a0334c060932a64}\label{classThreading_1_1ThreadPool_a41dde4c256785b525a0334c060932a64}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!wait@{wait}}
+\index{wait@{wait}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily void Thread\+Pool\+::wait (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Wait for all spawned for now tasks complete. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_a41dde4c256785b525a0334c060932a64_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_aeaadc6fbbcbb380f4111cc238dcf204f}\label{classThreading_1_1ThreadPool_aeaadc6fbbcbb380f4111cc238dcf204f}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!work@{work}}
+\index{work@{work}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{work()}{work()}}
+{\footnotesize\ttfamily void Thread\+Pool\+::work (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_aeaadc6fbbcbb380f4111cc238dcf204f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classThreading_1_1ThreadPool_aeaadc6fbbcbb380f4111cc238dcf204f_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_a0b1c7cd2f50695fb45eaef9eeb22be25}\label{classThreading_1_1ThreadPool_a0b1c7cd2f50695fb45eaef9eeb22be25}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!mtx@{mtx}}
+\index{mtx@{mtx}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{mtx}{mtx}}
+{\footnotesize\ttfamily std\+::mutex Threading\+::\+Thread\+Pool\+::mtx\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_a85430eb6829c4a2a58e14f25828027cf}\label{classThreading_1_1ThreadPool_a85430eb6829c4a2a58e14f25828027cf}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!notProcessed@{notProcessed}}
+\index{notProcessed@{notProcessed}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{notProcessed}{notProcessed}}
+{\footnotesize\ttfamily size\+\_\+t Threading\+::\+Thread\+Pool\+::not\+Processed \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_aa07480cfdfea81448e34ac29042398d3}\label{classThreading_1_1ThreadPool_aa07480cfdfea81448e34ac29042398d3}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!processedAll@{processedAll}}
+\index{processedAll@{processedAll}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{processedAll}{processedAll}}
+{\footnotesize\ttfamily std\+::condition\+\_\+variable Threading\+::\+Thread\+Pool\+::processed\+All\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_ae2c1b1647c5447e2fbcaa94f5c3498fc}\label{classThreading_1_1ThreadPool_ae2c1b1647c5447e2fbcaa94f5c3498fc}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!queue@{queue}}
+\index{queue@{queue}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{queue}{queue}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classThreading_1_1UnboundedMPMCQueue}{Unbounded\+MPMCQueue}}$<$\mbox{\hyperlink{classThreading_1_1ThreadPool_a16f9bc00cf6143c96e49b1724859d3af}{Task}}$>$ Threading\+::\+Thread\+Pool\+::queue\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classThreading_1_1ThreadPool_aef3a4632d6479d317ea99a1331bc6721}\label{classThreading_1_1ThreadPool_aef3a4632d6479d317ea99a1331bc6721}} 
+\index{Threading::ThreadPool@{Threading::ThreadPool}!workers@{workers}}
+\index{workers@{workers}!Threading::ThreadPool@{Threading::ThreadPool}}
+\doxysubsubsection{\texorpdfstring{workers}{workers}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::thread$>$ Threading\+::\+Thread\+Pool\+::workers\hspace{0.3cm}{\ttfamily [private]}}
+

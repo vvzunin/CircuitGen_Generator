@@ -1,0 +1,95 @@
+\hypertarget{classGraphVertexOutput}{}\doxysection{Graph\+Vertex\+Output Class Reference}
+\label{classGraphVertexOutput}\index{GraphVertexOutput@{GraphVertexOutput}}
+
+
+class \mbox{\hyperlink{classGraphVertexOutput}{Graph\+Vertex\+Output}} It is a vertex of the graph, specially designed for data output.  
+
+
+
+
+{\ttfamily \#include $<$Graph\+Vertex.\+hpp$>$}
+
+
+
+Inheritance diagram for Graph\+Vertex\+Output\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classGraphVertexOutput__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Graph\+Vertex\+Output\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{classGraphVertexOutput__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraphVertexOutput_ae4c5e57dbbb1a3c0d5156dd3226430c0}{Graph\+Vertex\+Output}} (\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+base\+Graph=nullptr)
+\item 
+\mbox{\hyperlink{classGraphVertexOutput_a13f5e5b7a515f779fffe667741d1e3ae}{Graph\+Vertex\+Output}} (const std\+::string i\+\_\+name, \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} i\+\_\+base\+Graph=nullptr)
+\item 
+virtual char \mbox{\hyperlink{classGraphVertexOutput_a68af7628ac372af632581f3a489e870e}{update\+Value}} ()
+\begin{DoxyCompactList}\small\item\em update\+Value updates the value of the current vertex of the graph based on the values of its incoming connections and the type of logical element (or \char`\"{}gate\char`\"{}). \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGraphVertexOutput_aac5e4e2c2b661cf879acacc9d38d5b62}{update\+Level}} ()
+\begin{DoxyCompactList}\small\item\em update\+Level updates the level of the current vertex in the graph based on the levels of its incoming connections. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classGraphVertexOutput}{Graph\+Vertex\+Output}} It is a vertex of the graph, specially designed for data output. 
+
+It inherits from the \mbox{\hyperlink{classGraphVertexBase}{Graph\+Vertex\+Base}} class and adds additional functionality related to data output 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGraphVertexOutput_ae4c5e57dbbb1a3c0d5156dd3226430c0}\label{classGraphVertexOutput_ae4c5e57dbbb1a3c0d5156dd3226430c0}} 
+\index{GraphVertexOutput@{GraphVertexOutput}!GraphVertexOutput@{GraphVertexOutput}}
+\index{GraphVertexOutput@{GraphVertexOutput}!GraphVertexOutput@{GraphVertexOutput}}
+\doxysubsubsection{\texorpdfstring{GraphVertexOutput()}{GraphVertexOutput()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Output\+::\+Graph\+Vertex\+Output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+base\+Graph = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGraphVertexOutput_a13f5e5b7a515f779fffe667741d1e3ae}\label{classGraphVertexOutput_a13f5e5b7a515f779fffe667741d1e3ae}} 
+\index{GraphVertexOutput@{GraphVertexOutput}!GraphVertexOutput@{GraphVertexOutput}}
+\index{GraphVertexOutput@{GraphVertexOutput}!GraphVertexOutput@{GraphVertexOutput}}
+\doxysubsubsection{\texorpdfstring{GraphVertexOutput()}{GraphVertexOutput()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Graph\+Vertex\+Output\+::\+Graph\+Vertex\+Output (\begin{DoxyParamCaption}\item[{const std\+::string}]{i\+\_\+name,  }\item[{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}}}]{i\+\_\+base\+Graph = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraphVertexOutput_aac5e4e2c2b661cf879acacc9d38d5b62}\label{classGraphVertexOutput_aac5e4e2c2b661cf879acacc9d38d5b62}} 
+\index{GraphVertexOutput@{GraphVertexOutput}!updateLevel@{updateLevel}}
+\index{updateLevel@{updateLevel}!GraphVertexOutput@{GraphVertexOutput}}
+\doxysubsubsection{\texorpdfstring{updateLevel()}{updateLevel()}}
+{\footnotesize\ttfamily void Graph\+Vertex\+Output\+::update\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+update\+Level updates the level of the current vertex in the graph based on the levels of its incoming connections. 
+
+If a vertex has incoming connections, the method determines the highest level among all the vertices to which it is connected, and sets the level of the current vertex to one higher than the highest level 
+
+Reimplemented from \mbox{\hyperlink{classGraphVertexBase_a5524af9e76e94937c16ff7c56efcf182}{Graph\+Vertex\+Base}}.
+
+\mbox{\Hypertarget{classGraphVertexOutput_a68af7628ac372af632581f3a489e870e}\label{classGraphVertexOutput_a68af7628ac372af632581f3a489e870e}} 
+\index{GraphVertexOutput@{GraphVertexOutput}!updateValue@{updateValue}}
+\index{updateValue@{updateValue}!GraphVertexOutput@{GraphVertexOutput}}
+\doxysubsubsection{\texorpdfstring{updateValue()}{updateValue()}}
+{\footnotesize\ttfamily char Graph\+Vertex\+Output\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+update\+Value updates the value of the current vertex of the graph based on the values of its incoming connections and the type of logical element (or \char`\"{}gate\char`\"{}). 
+
+Depending on the type of gate and the values of the incoming links, the method uses the truth tables to perform the corresponding logical operation and sets a new value for the current vertex \begin{DoxyReturn}{Returns}
+A char that represents the new value of the current vertex after updating based on the values of its incoming connections and the type of logical element (or \char`\"{}gate\char`\"{}). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classGraphVertexBase_a330ddc78ee52b8425a773cecc70954fe}{Graph\+Vertex\+Base}}.
+

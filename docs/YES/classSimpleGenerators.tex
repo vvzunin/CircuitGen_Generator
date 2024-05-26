@@ -1,0 +1,814 @@
+\hypertarget{classSimpleGenerators}{}\doxysection{Simple\+Generators Class Reference}
+\label{classSimpleGenerators}\index{SimpleGenerators@{SimpleGenerators}}
+
+
+class \mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}}  
+
+
+
+
+{\ttfamily \#include $<$Simple\+Generators.\+hpp$>$}
+
+
+
+Collaboration diagram for Simple\+Generators\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classSimpleGenerators__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSimpleGenerators_a2414b33a0e25130c1ba5629970135795}{Simple\+Generators}} ()
+\item 
+\mbox{\hyperlink{classSimpleGenerators_aae0a18a5e07bc63b3807cb6123aa4024}{Simple\+Generators}} (int i\+\_\+seed)
+\item 
+\mbox{\hyperlink{classSimpleGenerators_a5a178b2f7c560fa4112ddac8b08b281f}{Simple\+Generators}} (const \mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \&other)=delete
+\item 
+\mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \& \mbox{\hyperlink{classSimpleGenerators_a575aa8ac25bbc7688425c54f881fbf88}{operator=}} (const \mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \&other)=delete
+\item 
+\mbox{\hyperlink{classSimpleGenerators_a3b17c344184a99ea33ddf50ab495ae0c}{Simple\+Generators}} (\mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \&\&other)=delete
+\item 
+\mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \& \mbox{\hyperlink{classSimpleGenerators_a73f972dfd033b02eb4d71ef7bb2e3413}{operator=}} (\mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \&\&other)=delete
+\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} \mbox{\hyperlink{classSimpleGenerators_a5d4c910f51dbbb4a4c1c09923ca90147}{cnf\+From\+Truth\+Table}} (const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&i\+\_\+table, bool i\+\_\+tp=true)
+\begin{DoxyCompactList}\small\item\em cnf\+From\+Truth\+Table accepts a truth table as an input in the form of a Truth Table object and returns a vector of rows representing an expression in the form of a conjunctive normal form (KNF) that corresponds to this truth table. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} \mbox{\hyperlink{classSimpleGenerators_abe2fb580fe65b11a84770b9f99ef3c99}{zhegalkin\+From\+Truth\+Table}} (const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&i\+\_\+table)
+\item 
+\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} \mbox{\hyperlink{classSimpleGenerators_a662ceb370c15bcd152aa97f8fdf470a5}{generator\+Rand\+Level}} (int i\+\_\+min\+Level, int i\+\_\+max\+Level, int i\+\_\+min\+Elements, int i\+\_\+max\+Elements, int i\+\_\+inputs, int i\+\_\+outputs)
+\begin{DoxyCompactList}\small\item\em generator\+Rand\+Level creates an oriented graph (represented by an Oriented\+Graph object) with a given level of complexity and number of elements. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSimpleGenerators_a88102287ac78993a56a18fe43ec9b6bb}{set\+Gates\+Inputs\+Info}} (const std\+::map$<$ std\+::string, std\+::vector$<$ int $>$$>$ \&i\+\_\+info)
+\begin{DoxyCompactList}\small\item\em generator\+Rand\+Level\+Experimental The method generates a random level of complexity of the graph within the specified boundaries. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSimpleGenerators_a687968d1c435ef831859743f64388601}{Gates\+Info}} \mbox{\hyperlink{classSimpleGenerators_a966319874fc1e50594028533680ccbc1}{get\+Gates\+Inputs\+Info}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classSimpleGenerators_a687968d1c435ef831859743f64388601}{Gates\+Info}} = std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, std\+::vector$<$ int $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \mbox{\hyperlink{classSimpleGenerators_ae43ca614266df0f2ec07f467f3346884}{del\+Null}} (std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ i\+\_\+copy\+Logic\+Oper)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{classSimpleGenerators_a2ed625365dd94c1dcacff2be94717cc0}{random\+Generator}} (const std\+::map$<$ T, int $>$ \&i\+\_\+map)
+\item 
+std\+::pair$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \mbox{\hyperlink{classSimpleGenerators_a759134a07958c5e863258b5a97202aba}{get\+Random\+Element}} (const \mbox{\hyperlink{classSimpleGenerators_a687968d1c435ef831859743f64388601}{Gates\+Info}} \&i\+\_\+info)
+\item 
+std\+::pair$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ \mbox{\hyperlink{classSimpleGenerators_afb85bf0a95cf405045231fe2f42ea707}{get\+Random\+Element}} (u\+\_\+int32\+\_\+t i\+\_\+gates\+Limit)
+\item 
+int \mbox{\hyperlink{classSimpleGenerators_a2324374cb34f04435bd46fce2063d8ce}{get\+Rangom\+And\+Number}} ()
+\begin{DoxyCompactList}\small\item\em get\+Rangom\+And\+Number The get\+Rangom\+And\+Number method returns a random value from the list of possible input ports for the \char`\"{}\+AND\char`\"{} operator. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSimpleGenerators_ae5c17337e30e9c89c2549f60ed08e949}{get\+Rangom\+Or\+Number}} ()
+\begin{DoxyCompactList}\small\item\em get\+Rangom\+Or\+Number method is a random value from the list of possible input ports for the \char`\"{}\+OR\char`\"{} operator \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSimpleGenerators_ae8514f015087a64fc9b473beef99285f}{get\+Rangom\+Nand\+Number}} ()
+\begin{DoxyCompactList}\small\item\em get\+Rangom\+Nand\+Number The method returns a random value from the list of possible input ports for the \char`\"{}\+NAND\char`\"{} operator. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSimpleGenerators_a87c5cf1ceeefab9d3ec41031921aeda0}{get\+Rangom\+Nor\+Number}} ()
+\begin{DoxyCompactList}\small\item\em get\+Rangom\+Nor\+Number The method returns a random value from the list of possible input ports for the \char`\"{}\+NOR\char`\"{} operator. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSimpleGenerators_a14f126423c9cc75ea1f6eb3048c58973}{get\+Rangom\+Xor\+Number}} ()
+\begin{DoxyCompactList}\small\item\em get\+Rangom\+Xor\+Number The method returns a random value from the list of possible input ports for the \char`\"{}\+XOR\char`\"{} operator. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSimpleGenerators_ac3217e02325f01cf7aa66b0dc2180d02}{get\+Rangom\+Xnor\+Number}} ()
+\begin{DoxyCompactList}\small\item\em The method returns a random value from the list of possible input ports for the \char`\"{}\+XNOR\char`\"{} operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSettings}{Settings}} $>$ \mbox{\hyperlink{classSimpleGenerators_a2dd9ec163e7c96dd90993434fa5eec05}{d\+\_\+settings}} = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Graph\+Vertex\char`\"{})
+\item 
+\mbox{\hyperlink{classSimpleGenerators_a687968d1c435ef831859743f64388601}{Gates\+Info}} \mbox{\hyperlink{classSimpleGenerators_abfef0293dd7a4e07b15f827b5d6d7868}{d\+\_\+gates\+Inputs\+Info}}
+\item 
+\mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} \mbox{\hyperlink{classSimpleGenerators_a33d7d09e22ab9e6d0539df9e4f89ae91}{d\+\_\+rand\+Generator}}
+\item 
+int \mbox{\hyperlink{classSimpleGenerators_a84682af995663fbd2be5a0968a576d9a}{d\+\_\+max\+Gate\+Number}} = 0
+\item 
+int \mbox{\hyperlink{classSimpleGenerators_a12763bce107afce341c1d5984d66e775}{d\+\_\+min\+Gate\+Number}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d\+\_\+settings} & A pointer to an object of the \mbox{\hyperlink{classSettings}{Settings}} class, which is a singleton and is used to store settings associated with the vertices of the graph. \\
+\hline
+{\em d\+\_\+gates\+Inputs\+Info} & The data structure represented as a display (std\+::map$<$std\+::string, std\+::vector$<$int$>$$>$), where the keys are strings (names of logical operations), and the values are vectors of integers representing information about the inputs (indexes) of gates associated with each logical operation. This is a general description$\ast$$\ast$$\ast$ \\
+\hline
+{\em d\+\_\+rand\+Generator} & An object of the Random Generator With Seed class, which is used to generate random numbers based on a given grain (seed). \\
+\hline
+{\em d\+\_\+max\+Gate\+Number} & An integer value representing the maximum gate number in the system. This value is probably used to control the allocation of new gate numbers when creating new elements. $\ast$/ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classSimpleGenerators_a687968d1c435ef831859743f64388601}\label{classSimpleGenerators_a687968d1c435ef831859743f64388601}} 
+\index{SimpleGenerators@{SimpleGenerators}!GatesInfo@{GatesInfo}}
+\index{GatesInfo@{GatesInfo}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{GatesInfo}{GatesInfo}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classSimpleGenerators_a687968d1c435ef831859743f64388601}{Simple\+Generators\+::\+Gates\+Info}} =  std\+::map$<$\mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, std\+::vector$<$int$>$ $>$\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSimpleGenerators_a2414b33a0e25130c1ba5629970135795}\label{classSimpleGenerators_a2414b33a0e25130c1ba5629970135795}} 
+\index{SimpleGenerators@{SimpleGenerators}!SimpleGenerators@{SimpleGenerators}}
+\index{SimpleGenerators@{SimpleGenerators}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{SimpleGenerators()}{SimpleGenerators()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Simple\+Generators\+::\+Simple\+Generators (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a2414b33a0e25130c1ba5629970135795_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_aae0a18a5e07bc63b3807cb6123aa4024}\label{classSimpleGenerators_aae0a18a5e07bc63b3807cb6123aa4024}} 
+\index{SimpleGenerators@{SimpleGenerators}!SimpleGenerators@{SimpleGenerators}}
+\index{SimpleGenerators@{SimpleGenerators}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{SimpleGenerators()}{SimpleGenerators()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Simple\+Generators\+::\+Simple\+Generators (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+seed }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_aae0a18a5e07bc63b3807cb6123aa4024_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_a5a178b2f7c560fa4112ddac8b08b281f}\label{classSimpleGenerators_a5a178b2f7c560fa4112ddac8b08b281f}} 
+\index{SimpleGenerators@{SimpleGenerators}!SimpleGenerators@{SimpleGenerators}}
+\index{SimpleGenerators@{SimpleGenerators}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{SimpleGenerators()}{SimpleGenerators()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Simple\+Generators\+::\+Simple\+Generators (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classSimpleGenerators_a3b17c344184a99ea33ddf50ab495ae0c}\label{classSimpleGenerators_a3b17c344184a99ea33ddf50ab495ae0c}} 
+\index{SimpleGenerators@{SimpleGenerators}!SimpleGenerators@{SimpleGenerators}}
+\index{SimpleGenerators@{SimpleGenerators}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{SimpleGenerators()}{SimpleGenerators()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Simple\+Generators\+::\+Simple\+Generators (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSimpleGenerators_a5d4c910f51dbbb4a4c1c09923ca90147}\label{classSimpleGenerators_a5d4c910f51dbbb4a4c1c09923ca90147}} 
+\index{SimpleGenerators@{SimpleGenerators}!cnfFromTruthTable@{cnfFromTruthTable}}
+\index{cnfFromTruthTable@{cnfFromTruthTable}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{cnfFromTruthTable()}{cnfFromTruthTable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} Simple\+Generators\+::cnf\+From\+Truth\+Table (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&}]{i\+\_\+table,  }\item[{bool}]{i\+\_\+tp = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+cnf\+From\+Truth\+Table accepts a truth table as an input in the form of a Truth Table object and returns a vector of rows representing an expression in the form of a conjunctive normal form (KNF) that corresponds to this truth table. 
+
+The conjunctive normal form form represents a logical expression in the form of a conjunction of disjunctions 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+table} & This is an object of the Truth Table type, which is a truth table. The truth table consists of a set of rows, where each row represents a possible combination of variable values in a logical expression, and each column represents the value of a variable in that combination. \\
+\hline
+{\em i\+\_\+tp} & This is a Boolean flag (true/false) that indicates whether to add negation before variables that have the value \char`\"{}\+False\char`\"{} in the truth table. If i\+\_\+tp is set to true, negation will be added to the variables with the value \char`\"{}\+False\char`\"{}. If i\+\_\+tp is set to false, the negation will not be added. This allows you to choose between the representation of the truth table in KNF or in disjunctive normal form (DNF) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of strings representing an expression in the form of conjunctive normal form (KNF) corresponding to the input truth table 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// @todo: Examples}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a5d4c910f51dbbb4a4c1c09923ca90147_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a5d4c910f51dbbb4a4c1c09923ca90147_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_ae43ca614266df0f2ec07f467f3346884}\label{classSimpleGenerators_ae43ca614266df0f2ec07f467f3346884}} 
+\index{SimpleGenerators@{SimpleGenerators}!delNull@{delNull}}
+\index{delNull@{delNull}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{delNull()}{delNull()}}
+{\footnotesize\ttfamily std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ Simple\+Generators\+::del\+Null (\begin{DoxyParamCaption}\item[{std\+::map$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$}]{i\+\_\+copy\+Logic\+Oper }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSimpleGenerators_a662ceb370c15bcd152aa97f8fdf470a5}\label{classSimpleGenerators_a662ceb370c15bcd152aa97f8fdf470a5}} 
+\index{SimpleGenerators@{SimpleGenerators}!generatorRandLevel@{generatorRandLevel}}
+\index{generatorRandLevel@{generatorRandLevel}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{generatorRandLevel()}{generatorRandLevel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} Simple\+Generators\+::generator\+Rand\+Level (\begin{DoxyParamCaption}\item[{int}]{i\+\_\+min\+Level,  }\item[{int}]{i\+\_\+max\+Level,  }\item[{int}]{i\+\_\+min\+Elements,  }\item[{int}]{i\+\_\+max\+Elements,  }\item[{int}]{i\+\_\+inputs,  }\item[{int}]{i\+\_\+outputs }\end{DoxyParamCaption})}
+
+
+
+generator\+Rand\+Level creates an oriented graph (represented by an Oriented\+Graph object) with a given level of complexity and number of elements. 
+
+The graph is a circuit consisting of logic gates, inputs and outputs The method starts by creating graph inputs (variables). Then he gradually adds levels with valves to the graph, while the number of valves at each level is randomly selected within the specified limits. For each valve, the type of operation is randomly selected from a predefined set, then the corresponding valve object is created and added to the graph. At the end, the method adds outputs from the graph, connecting them to the last level of the gates 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+min\+Level} & The minimum level of complexity of the graph??? \\
+\hline
+{\em i\+\_\+max\+Level} & The maximum level of complexity of the graph. If the value is set to 0, only the minimum level will be used \\
+\hline
+{\em i\+\_\+min\+Elements} & The minimum number of elements (valves) at each level \\
+\hline
+{\em i\+\_\+max\+Elements} & The maximum number of elements (valves) at each level \\
+\hline
+{\em i\+\_\+inputs} & The number of inputs to the graph \\
+\hline
+{\em i\+\_\+outputs} & The number of exits from the graph \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a662ceb370c15bcd152aa97f8fdf470a5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a662ceb370c15bcd152aa97f8fdf470a5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_a966319874fc1e50594028533680ccbc1}\label{classSimpleGenerators_a966319874fc1e50594028533680ccbc1}} 
+\index{SimpleGenerators@{SimpleGenerators}!getGatesInputsInfo@{getGatesInputsInfo}}
+\index{getGatesInputsInfo@{getGatesInputsInfo}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{getGatesInputsInfo()}{getGatesInputsInfo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSimpleGenerators_a687968d1c435ef831859743f64388601}{Gates\+Info}} Simple\+Generators\+::get\+Gates\+Inputs\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSimpleGenerators_a759134a07958c5e863258b5a97202aba}\label{classSimpleGenerators_a759134a07958c5e863258b5a97202aba}} 
+\index{SimpleGenerators@{SimpleGenerators}!getRandomElement@{getRandomElement}}
+\index{getRandomElement@{getRandomElement}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{getRandomElement()}{getRandomElement()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::pair$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ Simple\+Generators\+::get\+Random\+Element (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSimpleGenerators_a687968d1c435ef831859743f64388601}{Gates\+Info}} \&}]{i\+\_\+info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a759134a07958c5e863258b5a97202aba_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a759134a07958c5e863258b5a97202aba_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_afb85bf0a95cf405045231fe2f42ea707}\label{classSimpleGenerators_afb85bf0a95cf405045231fe2f42ea707}} 
+\index{SimpleGenerators@{SimpleGenerators}!getRandomElement@{getRandomElement}}
+\index{getRandomElement@{getRandomElement}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{getRandomElement()}{getRandomElement()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::pair$<$ \mbox{\hyperlink{Settings_8hpp_a0963bd5066d6d6a58155d1ad79f56974}{Gates}}, int $>$ Simple\+Generators\+::get\+Random\+Element (\begin{DoxyParamCaption}\item[{u\+\_\+int32\+\_\+t}]{i\+\_\+gates\+Limit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_afb85bf0a95cf405045231fe2f42ea707_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_a2324374cb34f04435bd46fce2063d8ce}\label{classSimpleGenerators_a2324374cb34f04435bd46fce2063d8ce}} 
+\index{SimpleGenerators@{SimpleGenerators}!getRangomAndNumber@{getRangomAndNumber}}
+\index{getRangomAndNumber@{getRangomAndNumber}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{getRangomAndNumber()}{getRangomAndNumber()}}
+{\footnotesize\ttfamily int Simple\+Generators\+::get\+Rangom\+And\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+get\+Rangom\+And\+Number The get\+Rangom\+And\+Number method returns a random value from the list of possible input ports for the \char`\"{}\+AND\char`\"{} operator. 
+
+\begin{DoxyReturn}{Returns}
+a random value representing the input port number for the \char`\"{}\+AND\char`\"{} operator. $\ast$/ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a2324374cb34f04435bd46fce2063d8ce_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_ae8514f015087a64fc9b473beef99285f}\label{classSimpleGenerators_ae8514f015087a64fc9b473beef99285f}} 
+\index{SimpleGenerators@{SimpleGenerators}!getRangomNandNumber@{getRangomNandNumber}}
+\index{getRangomNandNumber@{getRangomNandNumber}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{getRangomNandNumber()}{getRangomNandNumber()}}
+{\footnotesize\ttfamily int Simple\+Generators\+::get\+Rangom\+Nand\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+get\+Rangom\+Nand\+Number The method returns a random value from the list of possible input ports for the \char`\"{}\+NAND\char`\"{} operator. 
+
+\begin{DoxyReturn}{Returns}
+a random value representing the input port number for the \char`\"{}\+NAND\char`\"{} operator $\ast$/ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_ae8514f015087a64fc9b473beef99285f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_a87c5cf1ceeefab9d3ec41031921aeda0}\label{classSimpleGenerators_a87c5cf1ceeefab9d3ec41031921aeda0}} 
+\index{SimpleGenerators@{SimpleGenerators}!getRangomNorNumber@{getRangomNorNumber}}
+\index{getRangomNorNumber@{getRangomNorNumber}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{getRangomNorNumber()}{getRangomNorNumber()}}
+{\footnotesize\ttfamily int Simple\+Generators\+::get\+Rangom\+Nor\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+get\+Rangom\+Nor\+Number The method returns a random value from the list of possible input ports for the \char`\"{}\+NOR\char`\"{} operator. 
+
+\begin{DoxyReturn}{Returns}
+a random value representing the input port number for the \char`\"{}\+NOR\char`\"{} operator $\ast$/ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a87c5cf1ceeefab9d3ec41031921aeda0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_ae5c17337e30e9c89c2549f60ed08e949}\label{classSimpleGenerators_ae5c17337e30e9c89c2549f60ed08e949}} 
+\index{SimpleGenerators@{SimpleGenerators}!getRangomOrNumber@{getRangomOrNumber}}
+\index{getRangomOrNumber@{getRangomOrNumber}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{getRangomOrNumber()}{getRangomOrNumber()}}
+{\footnotesize\ttfamily int Simple\+Generators\+::get\+Rangom\+Or\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+get\+Rangom\+Or\+Number method is a random value from the list of possible input ports for the \char`\"{}\+OR\char`\"{} operator 
+
+\begin{DoxyReturn}{Returns}
+a random value representing the input port number for the \char`\"{}\+OR\char`\"{} operator. $\ast$/ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_ae5c17337e30e9c89c2549f60ed08e949_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_ac3217e02325f01cf7aa66b0dc2180d02}\label{classSimpleGenerators_ac3217e02325f01cf7aa66b0dc2180d02}} 
+\index{SimpleGenerators@{SimpleGenerators}!getRangomXnorNumber@{getRangomXnorNumber}}
+\index{getRangomXnorNumber@{getRangomXnorNumber}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{getRangomXnorNumber()}{getRangomXnorNumber()}}
+{\footnotesize\ttfamily int Simple\+Generators\+::get\+Rangom\+Xnor\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The method returns a random value from the list of possible input ports for the \char`\"{}\+XNOR\char`\"{} operator. 
+
+\begin{DoxyReturn}{Returns}
+a random value representing the input port number for the \char`\"{}\+XNOR\char`\"{} operator $\ast$/ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_ac3217e02325f01cf7aa66b0dc2180d02_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_a14f126423c9cc75ea1f6eb3048c58973}\label{classSimpleGenerators_a14f126423c9cc75ea1f6eb3048c58973}} 
+\index{SimpleGenerators@{SimpleGenerators}!getRangomXorNumber@{getRangomXorNumber}}
+\index{getRangomXorNumber@{getRangomXorNumber}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{getRangomXorNumber()}{getRangomXorNumber()}}
+{\footnotesize\ttfamily int Simple\+Generators\+::get\+Rangom\+Xor\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+get\+Rangom\+Xor\+Number The method returns a random value from the list of possible input ports for the \char`\"{}\+XOR\char`\"{} operator. 
+
+\begin{DoxyReturn}{Returns}
+a random value representing the input port number for the \char`\"{}\+XOR\char`\"{} operator. $\ast$/ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a14f126423c9cc75ea1f6eb3048c58973_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_a575aa8ac25bbc7688425c54f881fbf88}\label{classSimpleGenerators_a575aa8ac25bbc7688425c54f881fbf88}} 
+\index{SimpleGenerators@{SimpleGenerators}!operator=@{operator=}}
+\index{operator=@{operator=}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}}\& Simple\+Generators\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classSimpleGenerators_a73f972dfd033b02eb4d71ef7bb2e3413}\label{classSimpleGenerators_a73f972dfd033b02eb4d71ef7bb2e3413}} 
+\index{SimpleGenerators@{SimpleGenerators}!operator=@{operator=}}
+\index{operator=@{operator=}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}}\& Simple\+Generators\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSimpleGenerators}{Simple\+Generators}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classSimpleGenerators_a2ed625365dd94c1dcacff2be94717cc0}\label{classSimpleGenerators_a2ed625365dd94c1dcacff2be94717cc0}} 
+\index{SimpleGenerators@{SimpleGenerators}!randomGenerator@{randomGenerator}}
+\index{randomGenerator@{randomGenerator}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{randomGenerator()}{randomGenerator()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T Simple\+Generators\+::random\+Generator (\begin{DoxyParamCaption}\item[{const std\+::map$<$ T, int $>$ \&}]{i\+\_\+map }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a2ed625365dd94c1dcacff2be94717cc0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_a88102287ac78993a56a18fe43ec9b6bb}\label{classSimpleGenerators_a88102287ac78993a56a18fe43ec9b6bb}} 
+\index{SimpleGenerators@{SimpleGenerators}!setGatesInputsInfo@{setGatesInputsInfo}}
+\index{setGatesInputsInfo@{setGatesInputsInfo}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{setGatesInputsInfo()}{setGatesInputsInfo()}}
+{\footnotesize\ttfamily void Simple\+Generators\+::set\+Gates\+Inputs\+Info (\begin{DoxyParamCaption}\item[{const std\+::map$<$ std\+::string, std\+::vector$<$ int $>$$>$ \&}]{i\+\_\+info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+generator\+Rand\+Level\+Experimental The method generates a random level of complexity of the graph within the specified boundaries. 
+
+After that, the method adds input vertices (variables) to the graph. Next, there is a step-\/by-\/step addition of levels with gates (logical operations) to the graph. Each level can contain a different number of gates, randomly selected within the specified boundaries. Also, at each level, the type of operation for each valve is randomly selected. The method uses some additional algorithms to select parent vertices for each gate to provide more diverse graphs. In particular, at each level, the algorithm randomly selects parent vertices from existing vertices, and the vertices are selected based on their location in the graph, which increases the flexibility of generation. At the end, the method adds output vertices (outputs) from the graph, connecting them to the last level of the gates 
+\begin{DoxyParams}{Parameters}
+{\em i\+\_\+min\+Level} & The minimum level of complexity of the graph. The difficulty level determines the number of levels in the graph. The more levels there are, the more complex the scheme becomes \\
+\hline
+{\em i\+\_\+max\+Level} & The maximum level of complexity of the graph. If the value is set to 0, only the minimum level will be used \\
+\hline
+{\em i\+\_\+min\+Elements} & The minimum number of elements (valves) at each level \\
+\hline
+{\em i\+\_\+max\+Elements} & The maximum number of elements (valves) at each level \\
+\hline
+{\em i\+\_\+inputs} & The number of inputs to the graph \\
+\hline
+{\em i\+\_\+outputs} & The number of exits from the graph \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the created Oriented\+Graph, which is a circuit with logic gates, inputs and outputs 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{comment}{// @todo: Examples}}
+\DoxyCodeLine{    \textcolor{keyword}{@end}\_code}
+\DoxyCodeLine{    \textcolor{keyword}{@throw} std::invalid\_argument. The method starts by checking the \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}}}
+\DoxyCodeLine{    parameters \textcolor{keywordflow}{for} correctness: \textcolor{keywordflow}{if} the minimum level is greater than the}
+\DoxyCodeLine{    maximum or the minimum number of elements is greater than the maximum,}
+\DoxyCodeLine{    the method \textcolor{keywordflow}{throws} an exception std::invalid\_argument.}
+\DoxyCodeLine{}
+\DoxyCodeLine{GraphPtr generatorRandLevelExperimental(}
+\DoxyCodeLine{    u\_int32\_t i\_minLevel,}
+\DoxyCodeLine{    u\_int32\_t i\_maxLevel,}
+\DoxyCodeLine{    u\_int32\_t i\_minElements,}
+\DoxyCodeLine{    u\_int32\_t i\_maxElements,}
+\DoxyCodeLine{    u\_int32\_t i\_inputs,}
+\DoxyCodeLine{    u\_int32\_t i\_outputs}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @todo: Description algorithm}
+\DoxyCodeLine{    @brief generatorNumOperation}
+\DoxyCodeLine{   }
+\DoxyCodeLine{    @param i\_input The number of \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices (variables) in the graph}
+\DoxyCodeLine{    @param i\_output The number of \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}} vertices (functions) in the graph}
+\DoxyCodeLine{    @param i\_logicOper A dictionary containing a set of logical operations}
+\DoxyCodeLine{    (gates) and their numbers that can be used to generate a graph}
+\DoxyCodeLine{    @param i\_leaveEmptyOut A Boolean flag indicating whether to leave the}
+\DoxyCodeLine{    \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}} vertices empty \textcolor{keywordflow}{if} the number of \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}} vertices is greater than}
+\DoxyCodeLine{    the number of logical operations in the graph. If \textcolor{keyword}{true}, the remaining}
+\DoxyCodeLine{    \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}} vertices will remain empty, \textcolor{keywordflow}{if} \textcolor{keyword}{false}, they will be deleted}
+\DoxyCodeLine{    @\textcolor{keywordflow}{return} the created OrientedGraph}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} generatorNumOperation(}
+\DoxyCodeLine{    \textcolor{keywordtype}{int}                  i\_input,}
+\DoxyCodeLine{    \textcolor{keywordtype}{int}                  i\_output,}
+\DoxyCodeLine{    std::map<Gates, int> i\_logicOper,}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool}                 i\_leaveEmptyOut = \textcolor{keyword}{true}}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @brief generatorSummator represents the generation of a combinational}
+\DoxyCodeLine{    adder circuit. It is based on the arithmetic operation of addition in the}
+\DoxyCodeLine{    decimal system and creates a graph of logical elements \textcolor{keywordflow}{for} its}
+\DoxyCodeLine{    implementation. The number of bits fed into it is the length of the}
+\DoxyCodeLine{    numbers that are converted from decimal to binary notation to implement}
+\DoxyCodeLine{    the graph. Both the half-\/version and the full version are used as the}
+\DoxyCodeLine{    basis of the generation.}
+\DoxyCodeLine{    @param i\_bits The number of bits, or in other words, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices}
+\DoxyCodeLine{    (variables), which will be twice as many in the graph}
+\DoxyCodeLine{    @param i\_overflowIn A Boolean flag indicating whether to create an}
+\DoxyCodeLine{    additional \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertex (variable) in the graph at the beginning of}
+\DoxyCodeLine{    generation}
+\DoxyCodeLine{    @param i\_overflowOut A Boolean flag indicating whether to create an}
+\DoxyCodeLine{    additional \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}} vertex (variable) in the graph at the end of generation}
+\DoxyCodeLine{    @param i\_minus A Boolean flag indicating whether it is worth adding}
+\DoxyCodeLine{    logical vertices of type NOT to the graph to select a negative sum}
+\DoxyCodeLine{    @\textcolor{keywordflow}{return} the created OrientedGraph}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} generatorSummator(}
+\DoxyCodeLine{    \textcolor{keywordtype}{int}  i\_bits,}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} i\_overflowIn,}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} i\_overflowOut,}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} i\_minus}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @brief generatorComparison represents the generation of a combinational}
+\DoxyCodeLine{    comparator circuit. It is able to compare the submitted data in three}
+\DoxyCodeLine{    variants: \textcolor{stringliteral}{"{}equal"{}}, \textcolor{stringliteral}{"{}less"{}}, \textcolor{stringliteral}{"{}more"{}}. Reads the bits of numbers from larger}
+\DoxyCodeLine{    to smaller, taking into account the significance of the higher bits.}
+\DoxyCodeLine{    numbers that are converted from decimal to binary notation to implement}
+\DoxyCodeLine{    the graph}
+\DoxyCodeLine{    @param i\_bits The number of bits, or in other words, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices}
+\DoxyCodeLine{    (variables), which will be twice as many in the graph}
+\DoxyCodeLine{    @param compare0 A Boolean flag indicating whether to perform the}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}equality"{}} (\textcolor{stringliteral}{"{}="{}}) comparison operation between two bits of different}
+\DoxyCodeLine{    numbers.}
+\DoxyCodeLine{    @param compare1 A Boolean flag indicating indicating whether to perform}
+\DoxyCodeLine{    the \textcolor{stringliteral}{"{}less"{}} (\textcolor{stringliteral}{"{}<"{}}) comparison operation between two bits of different}
+\DoxyCodeLine{    numbers.}
+\DoxyCodeLine{    @param compare2 A Boolean flag indicating indicating whether to perform}
+\DoxyCodeLine{    the \textcolor{stringliteral}{"{}more"{}} (\textcolor{stringliteral}{"{}>"{}}) comparison operation between two bits of different}
+\DoxyCodeLine{    numbers.}
+\DoxyCodeLine{    @\textcolor{keywordflow}{return} the created OrientedGraph}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} generatorComparison(}
+\DoxyCodeLine{    \textcolor{keywordtype}{int}  i\_bits,}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} compare0,}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} compare1,}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} compare2}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @brief generatorEncoder represents the generation of a combinational}
+\DoxyCodeLine{    scheme of a standard binary encoder. The number of incoming bits (n) must}
+\DoxyCodeLine{    be equal to two in degree (m), whose value is the number of outputs in the}
+\DoxyCodeLine{    graph. If the number n is not equal to two in any degree, then the power}
+\DoxyCodeLine{    of two is selected, at which the value will be the nearest and greater}
+\DoxyCodeLine{    than the value of n itself. If one bit is applied to the \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}}, the}
+\DoxyCodeLine{    generation is canceled.}
+\DoxyCodeLine{    @param i\_bits The number of bits, or in other words, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices}
+\DoxyCodeLine{    (variables) in the graph.}
+\DoxyCodeLine{    @\textcolor{keywordflow}{return} the created OrientedGraph}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} generatorEncoder(\textcolor{keywordtype}{int} i\_bits);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @brief generatorSubtractor represents the generation of a combinational}
+\DoxyCodeLine{    subtractor scheme. It is based on the arithmetic difference operation,}
+\DoxyCodeLine{    implementing its logic through logical operations. The generation logic is}
+\DoxyCodeLine{    close to the logic of generatorSummator, with the difference that the user}
+\DoxyCodeLine{    can choose which \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices will be the bits of the reduced and which}
+\DoxyCodeLine{    ones will be subtracted. Both the half-\/version and the full version are}
+\DoxyCodeLine{    used as the basis of the generation.}
+\DoxyCodeLine{    @param i\_bits The number of bits, or in other words, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices}
+\DoxyCodeLine{    (variables), which will be twice as many in the graph}
+\DoxyCodeLine{    @param i\_overflowIn A Boolean flag indicating whether to create an}
+\DoxyCodeLine{    additional \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertex (variable) in the graph at the beginning of}
+\DoxyCodeLine{    generation}
+\DoxyCodeLine{    @param i\_overflowOut A Boolean flag indicating whether to create an}
+\DoxyCodeLine{    additional \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}} vertex (variable) in the graph at the end of generation}
+\DoxyCodeLine{    @param i\_sub A Boolean flag indicating which \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices will be the}
+\DoxyCodeLine{    bits of the reduced and which bits of the subtracted (\textcolor{keywordflow}{if} \textcolor{keyword}{false}, then B-\/A}
+\DoxyCodeLine{    is executed, \textcolor{keywordflow}{if} \textcolor{keyword}{true}, then A-\/B)}
+\DoxyCodeLine{    @\textcolor{keywordflow}{return} the created OrientedGraph}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} generatorSubtractor(}
+\DoxyCodeLine{    \textcolor{keywordtype}{int}  i\_bits,}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} i\_overflowIn,}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} i\_overflowOut,}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} i\_sub}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @brief generatorMultiplexer represents the generation of a combinational}
+\DoxyCodeLine{    multiplexer circuit. When generating to the standard \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices,}
+\DoxyCodeLine{    additional ones are created, which are control inputs in the multiplexer}
+\DoxyCodeLine{    circuit. Their number is a power of two, which is equal to or greater than}
+\DoxyCodeLine{    the number of \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices, and is the closest to the number of \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}}}
+\DoxyCodeLine{    vertices. There is always one \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}} vertex. If the number of \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}}}
+\DoxyCodeLine{    vertices is less than two, the generation will be rejected.}
+\DoxyCodeLine{    @param i\_bits The number of bits, or in other words, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices}
+\DoxyCodeLine{    (variables) in the graph.}
+\DoxyCodeLine{    @\textcolor{keywordflow}{return} the created OrientedGraph}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} generatorMultiplexer(\textcolor{keywordtype}{int} i\_bits);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @brief generatorDemultiplexer represents the generation of the}
+\DoxyCodeLine{    combinational circuit of the demultiplexer. The generation logic almost}
+\DoxyCodeLine{    completely repeats the logic of generatorMultiplexer. The difference lies}
+\DoxyCodeLine{    in the use of logical operations and the fact that the user sets the}
+\DoxyCodeLine{    number of \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}} vertices, \textcolor{keywordflow}{while} the \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertex is always one.}
+\DoxyCodeLine{    @param i\_bits The number of bits, or in other words, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices}
+\DoxyCodeLine{    (variables) in the graph.}
+\DoxyCodeLine{    @\textcolor{keywordflow}{return} the created OrientedGraph}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} generatorDemultiplexer(\textcolor{keywordtype}{int} i\_bits);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @brief generatorDecoder represents the generation of a combinational}
+\DoxyCodeLine{    decoder circuit. The logic of generation is close to the logic of}
+\DoxyCodeLine{    generating an encoder, except \textcolor{keywordflow}{for} logical operations and the fact that the}
+\DoxyCodeLine{    number of \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices is a power of two of the number of \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545}{output}}}
+\DoxyCodeLine{    vertices. The number of \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices can range from 1 to the desired}
+\DoxyCodeLine{    number by the user.}
+\DoxyCodeLine{    @param i\_bits The number of bits, or in other words, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices}
+\DoxyCodeLine{    (variables) in the graph.}
+\DoxyCodeLine{    @\textcolor{keywordflow}{return} the created OrientedGraph}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} generatorDecoder(\textcolor{keywordtype}{int} i\_bits);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @brief generatorParity represents the generation of a combinational parity}
+\DoxyCodeLine{    check scheme. The graph is based on the logical XOR operation, which is}
+\DoxyCodeLine{    used to check the parity of the resulting number in binary form. The graph}
+\DoxyCodeLine{    can be generated from any number of supplied bits, \textcolor{keywordflow}{if} their number is at}
+\DoxyCodeLine{    least two. Otherwise, the generation will be canceled.}
+\DoxyCodeLine{    @param i\_bits The number of bits, or in other words, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices}
+\DoxyCodeLine{    (variables) in the graph.}
+\DoxyCodeLine{    @\textcolor{keywordflow}{return} the created OrientedGraph}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} generatorParity(\textcolor{keywordtype}{int} i\_bits);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @brief generatorMultiplier represents the generation of a combinational}
+\DoxyCodeLine{    multiplier circuit. It is based on the arithmetic multiplication operation}
+\DoxyCodeLine{    implemented through logical operations and generatorSummator. Arithmetic}
+\DoxyCodeLine{    multiplication consists of addition, so the logical implementation is}
+\DoxyCodeLine{    based on a semi-\/ and full implementation of the generatorSummator. The}
+\DoxyCodeLine{    multiplier structure is a matrix of AND operations and adders, in which}
+\DoxyCodeLine{    all adders are interconnected through value transfers. The user cannot}
+\DoxyCodeLine{    influence the operation of the adders inside the multiplier.}
+\DoxyCodeLine{    @param i\_bits The number of bits, or in other words, \mbox{\hyperlink{Settings_8hpp_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528}{input}} vertices}
+\DoxyCodeLine{    (variables) in the graph.}
+\DoxyCodeLine{    @\textcolor{keywordflow}{return} the created OrientedGraph}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{GraphPtr}} generatorMultiplier(\textcolor{keywordtype}{int} i\_bits);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    @brief generatorALU represents the generation of a combinational circuit}
+\DoxyCodeLine{    of an \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35}{ALU}} (Arithmetic Logic Unit). It is a multi-\/structured graph}
+\DoxyCodeLine{    consisting of a set of subgraphs selected by the user. The framework of}
+\DoxyCodeLine{    the \mbox{\hyperlink{Settings_8hpp_aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35}{ALU}} generator is a multiplexer, which is a subgraph. This subgraph is}
+\DoxyCodeLine{    connected to other subgraphs, which are almost all the declared generators}
+\DoxyCodeLine{    above. Their generation takes place at the user\textcolor{stringliteral}{'s choice and the output}}
+\DoxyCodeLine{\textcolor{stringliteral}{    vertices are connected to the input vertices of the multiplexer subgraph.}}
+\DoxyCodeLine{\textcolor{stringliteral}{    As a result, the ALU has one output vertex from each multiplexer, which}}
+\DoxyCodeLine{\textcolor{stringliteral}{    transmit the result to the output based on the signals of the control}}
+\DoxyCodeLine{\textcolor{stringliteral}{    input vertices.}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param i\_bits The number of bits, which specifies for what size of input}}
+\DoxyCodeLine{\textcolor{stringliteral}{    values each generators should be.}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param i\_outbits The number of bits, which specifies for what size of}}
+\DoxyCodeLine{\textcolor{stringliteral}{    output values each generators should be.}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param ALL A Boolean flag indicating whether it is worth selecting all}}
+\DoxyCodeLine{\textcolor{stringliteral}{    types of generation from the available ones}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param SUM A Boolean flag indicating whether to choose summator generation}}
+\DoxyCodeLine{\textcolor{stringliteral}{    with positive numbers}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param SUB A Boolean flag indicating whether it is worth choosing to}}
+\DoxyCodeLine{\textcolor{stringliteral}{    generate a subtractor with a choice of a reduced B and subtracted A}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param NSUM A Boolean flag indicating whether to choose summator}}
+\DoxyCodeLine{\textcolor{stringliteral}{    generation with negative numbers}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param NSUB A Boolean flag indicating whether it is worth choosing to}}
+\DoxyCodeLine{\textcolor{stringliteral}{    generate a subtractor with a choice of a reduced A and subtracted B}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param MULT A Boolean flag indicating whether to choose multiplier}}
+\DoxyCodeLine{\textcolor{stringliteral}{    generation}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param COM A Boolean flag indicating whether to choose the generation of}}
+\DoxyCodeLine{\textcolor{stringliteral}{    the comparator}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param AND A Boolean flag indicating whether to choose to generate a}}
+\DoxyCodeLine{\textcolor{stringliteral}{    logical operation AND}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param NAND A Boolean flag indicating whether to choose to generate a}}
+\DoxyCodeLine{\textcolor{stringliteral}{    logical operation NAND}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param OR A Boolean flag indicating whether to choose to generate a}}
+\DoxyCodeLine{\textcolor{stringliteral}{    logical operation OR}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param NOR A Boolean flag indicating whether to choose to generate a}}
+\DoxyCodeLine{\textcolor{stringliteral}{    logical operation NOR}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param XOR A Boolean flag indicating whether to choose to generate a}}
+\DoxyCodeLine{\textcolor{stringliteral}{    logical operation XOR}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param XNOR A Boolean flag indicating whether to choose to generate a}}
+\DoxyCodeLine{\textcolor{stringliteral}{    logical operation XNOR}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param CNF A Boolean flag indicating whether it is worth choosing to}}
+\DoxyCodeLine{\textcolor{stringliteral}{    generate a generator based on a Random Truth Table}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param RNL A Boolean flag indicating whether it is worth choosing to}}
+\DoxyCodeLine{\textcolor{stringliteral}{    type of generation Rand Level}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param NUM\_OP A Boolean flag indicating whether it is worth choosing to}}
+\DoxyCodeLine{\textcolor{stringliteral}{    type of generation Num Operation}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param minLevel The minimum level of complexity of the graph from}}
+\DoxyCodeLine{\textcolor{stringliteral}{    generation based on Rand Level}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param maxLevel The maximum level of complexity of the graph from}}
+\DoxyCodeLine{\textcolor{stringliteral}{    generation based on Rand Level. If the value is set to 0, only the minimum}}
+\DoxyCodeLine{\textcolor{stringliteral}{    level will be used.}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param minElement The minimum number of elements (valves) at each}}
+\DoxyCodeLine{\textcolor{stringliteral}{    level from generation based on Rand Level}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param maxElement The maximum number of elements (valves) at each}}
+\DoxyCodeLine{\textcolor{stringliteral}{    level from generation based on Rand Level}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param m A dictionary containing a set of logical operations}}
+\DoxyCodeLine{\textcolor{stringliteral}{    (gates) and their numbers that can be used to generate a graph from}}
+\DoxyCodeLine{\textcolor{stringliteral}{    generation based on Num Operation}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param LeaveEmptyOut A Boolean flag indicating whether to leave the}}
+\DoxyCodeLine{\textcolor{stringliteral}{    output vertices empty if the number of output vertices is greater than}}
+\DoxyCodeLine{\textcolor{stringliteral}{    the number of logical operations in the graph from generation based on Num}}
+\DoxyCodeLine{\textcolor{stringliteral}{    Operation. If true, the remaining output vertices will remain empty, if}}
+\DoxyCodeLine{\textcolor{stringliteral}{    false, they will be deleted}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @return the created OrientedGraph}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{GraphPtr generatorALU(}}
+\DoxyCodeLine{\textcolor{stringliteral}{    int                  i\_bits,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    int                  i\_outbits,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 ALL,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 SUM,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 SUB,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 NSUM,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 NSUB,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 MULT,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 COM,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 AND,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 NAND,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 OR,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 NOR,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 XOR,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 XNOR,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 CNF,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 RNL,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 NUM\_OP,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    int                  minLevel,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    int                  maxLevel,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    int                  minElement,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    int                  maxElement,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    std::map<Gates, int> m,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    bool                 LeaveEmptyOut}}
+\DoxyCodeLine{\textcolor{stringliteral}{);}}
+\DoxyCodeLine{\textcolor{stringliteral}{}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @brief setGatesInputsInfo It is designed to set information about the}}
+\DoxyCodeLine{\textcolor{stringliteral}{    inputs for various logic gates. It takes as an argument a dictionary,}}
+\DoxyCodeLine{\textcolor{stringliteral}{    where the keys are the names of logical gates (Gates), and the values}}
+\DoxyCodeLine{\textcolor{stringliteral}{    are vectors of integers representing the entry ports for each gate.}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @param i\_info A map containing information about the entrances to}}
+\DoxyCodeLine{\textcolor{stringliteral}{    various gates. The map keys are the names of the gates, and the values}}
+\DoxyCodeLine{\textcolor{stringliteral}{    are vectors of integers representing the entry ports for each gate}}
+\DoxyCodeLine{\textcolor{stringliteral}{    @code}}
+\DoxyCodeLine{\textcolor{stringliteral}{    SimpleGenerators generators;}}
+\DoxyCodeLine{\textcolor{stringliteral}{    // Define input information for logic gates}}
+\DoxyCodeLine{\textcolor{stringliteral}{    std::map<std::string, std::vector<int>> gateInputsInfo =}}
+\DoxyCodeLine{\textcolor{stringliteral}{    \{}}
+\DoxyCodeLine{\textcolor{stringliteral}{    \{"{}AND"{}, \{2, 3\}\},}}
+\DoxyCodeLine{\textcolor{stringliteral}{    \{"{}OR"{}, \{2, 3\}\},}}
+\DoxyCodeLine{\textcolor{stringliteral}{    \{"{}NOT"{}, \{1\}\},}}
+\DoxyCodeLine{\textcolor{stringliteral}{    // Add more gate input information as needed}}
+\DoxyCodeLine{\textcolor{stringliteral}{    \};}}
+\DoxyCodeLine{\textcolor{stringliteral}{    // Set the input information for logic gates}}
+\DoxyCodeLine{\textcolor{stringliteral}{    generators.setGatesInputsInfo(gateInputsInfo);}}
+
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_a88102287ac78993a56a18fe43ec9b6bb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classSimpleGenerators_abe2fb580fe65b11a84770b9f99ef3c99}\label{classSimpleGenerators_abe2fb580fe65b11a84770b9f99ef3c99}} 
+\index{SimpleGenerators@{SimpleGenerators}!zhegalkinFromTruthTable@{zhegalkinFromTruthTable}}
+\index{zhegalkinFromTruthTable@{zhegalkinFromTruthTable}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{zhegalkinFromTruthTable()}{zhegalkinFromTruthTable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{GraphVertexBase_8hpp_afc9ace2881a918ee869eca6ecf10dbe9}{Graph\+Ptr}} Simple\+Generators\+::zhegalkin\+From\+Truth\+Table (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTruthTable}{Truth\+Table}} \&}]{i\+\_\+table }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_abe2fb580fe65b11a84770b9f99ef3c99_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleGenerators_abe2fb580fe65b11a84770b9f99ef3c99_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSimpleGenerators_abfef0293dd7a4e07b15f827b5d6d7868}\label{classSimpleGenerators_abfef0293dd7a4e07b15f827b5d6d7868}} 
+\index{SimpleGenerators@{SimpleGenerators}!d\_gatesInputsInfo@{d\_gatesInputsInfo}}
+\index{d\_gatesInputsInfo@{d\_gatesInputsInfo}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{d\_gatesInputsInfo}{d\_gatesInputsInfo}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSimpleGenerators_a687968d1c435ef831859743f64388601}{Gates\+Info}} Simple\+Generators\+::d\+\_\+gates\+Inputs\+Info\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSimpleGenerators_a84682af995663fbd2be5a0968a576d9a}\label{classSimpleGenerators_a84682af995663fbd2be5a0968a576d9a}} 
+\index{SimpleGenerators@{SimpleGenerators}!d\_maxGateNumber@{d\_maxGateNumber}}
+\index{d\_maxGateNumber@{d\_maxGateNumber}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{d\_maxGateNumber}{d\_maxGateNumber}}
+{\footnotesize\ttfamily int Simple\+Generators\+::d\+\_\+max\+Gate\+Number = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSimpleGenerators_a12763bce107afce341c1d5984d66e775}\label{classSimpleGenerators_a12763bce107afce341c1d5984d66e775}} 
+\index{SimpleGenerators@{SimpleGenerators}!d\_minGateNumber@{d\_minGateNumber}}
+\index{d\_minGateNumber@{d\_minGateNumber}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{d\_minGateNumber}{d\_minGateNumber}}
+{\footnotesize\ttfamily int Simple\+Generators\+::d\+\_\+min\+Gate\+Number = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSimpleGenerators_a33d7d09e22ab9e6d0539df9e4f89ae91}\label{classSimpleGenerators_a33d7d09e22ab9e6d0539df9e4f89ae91}} 
+\index{SimpleGenerators@{SimpleGenerators}!d\_randGenerator@{d\_randGenerator}}
+\index{d\_randGenerator@{d\_randGenerator}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{d\_randGenerator}{d\_randGenerator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRandomGeneratorWithSeed}{Random\+Generator\+With\+Seed}} Simple\+Generators\+::d\+\_\+rand\+Generator\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classSimpleGenerators_a2dd9ec163e7c96dd90993434fa5eec05}\label{classSimpleGenerators_a2dd9ec163e7c96dd90993434fa5eec05}} 
+\index{SimpleGenerators@{SimpleGenerators}!d\_settings@{d\_settings}}
+\index{d\_settings@{d\_settings}!SimpleGenerators@{SimpleGenerators}}
+\doxysubsubsection{\texorpdfstring{d\_settings}{d\_settings}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSettings}{Settings}}$>$ Simple\+Generators\+::d\+\_\+settings = \mbox{\hyperlink{classSettings_a30ad5eb680e7894684c46fa5623870f3}{Settings\+::get\+Instance}}(\char`\"{}Graph\+Vertex\char`\"{})\hspace{0.3cm}{\ttfamily [private]}}
+

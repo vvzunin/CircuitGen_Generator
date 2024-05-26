@@ -1,0 +1,7 @@
+<map id="GeneticParameters::setOutputs" name="GeneticParameters::setOutputs">
+<area shape="rect" id="node1" title="setOutputs Set the number of outputs" alt="" coords="472,35,627,76"/>
+<area shape="rect" id="node2" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="223,5,417,47"/>
+<area shape="rect" id="node4" href="$classTruthTable.html#a179439e404e050f49b58df88396da9ee" title="generateTable The method generates a truth table for a combinational circuit with a given probability..." alt="" coords="216,71,424,98"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="7,5,166,47"/>
+<area shape="rect" id="node5" href="$classTruthTable.html#a364ede1151c4d025c889d2a89d6404cc" title=" " alt="" coords="5,71,168,98"/>
+</map>
