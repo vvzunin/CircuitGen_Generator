@@ -41,8 +41,8 @@ void runGeneration(
     )>          callable,
     const std::string& flag = ""
 ) {
-   
   unsigned int thread_id = static_cast<unsigned int>(pthread_self());
+  std::cout << "\n" << "thread_id: " << thread_id << "\n";
   thread_local std::filesystem::path folderPath = std::string("./include/path/to/") + std::to_string(thread_id);
   std::filesystem::create_directories(folderPath);
 
