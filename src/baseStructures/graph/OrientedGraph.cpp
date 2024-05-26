@@ -2,6 +2,7 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#include <stack>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -648,4 +649,90 @@ std::string OrientedGraph::toGraphML(
 bool OrientedGraph::toGraphML(std::ofstream& fileStream) const {
   fileStream << this->toGraphML();
   return true;
+}
+
+bool OrientedGraph::isConnected(bool i_recalculate) {
+  if (d_connected && !i_recalculate) {
+    return d_connected + 1;
+  }
+
+  size_t size = sumFullSize();
+  if (size <= 1) {
+    return (d_connected = 1);
+  }
+
+  size_t subGraphsBuffersCount = 0;
+  for (auto subGraph : d_vertexes[VertexTypes::subGraph]) {
+    subGraphsBuffersCount += subGraph->getOutConnections().size();
+    auto subGraphPtr      = static_cast<GraphVertexSubGraph*>(subGraph.get());
+    if (!subGraphPtr->getSubGraph()->isConnected()) {
+      return (d_connected = -1) + 1;
+    }
+  }
+
+  std::unordered_set<VertexPtr> visited;
+  VertexPtr                     startVertex = nullptr;
+  for (auto& [type, vertices] : d_vertexes) {
+    if (!vertices.empty()) {
+      startVertex = vertices[0];
+      break;
+    }
+  }
+
+  dfs(startVertex, visited);
+
+  if (visited.size() == size - subGraphsBuffersCount) {
+    return (d_connected = 1);
+  } else {
+    return (d_connected = -1) + 1;
+  }
+}
+
+// void OrientedGraph::dfs(
+//     VertexPtr                      i_v,
+//     std::unordered_set<VertexPtr>& i_visited
+// ) {
+//   i_visited.insert(i_v);
+//   for (auto v : i_v->getOutConnections()) {
+//     if (i_visited.find(v) == i_visited.end()) {
+//       dfs(v, i_visited);
+//     }
+//   }
+//   for (auto v : i_v->getInConnections()) {
+//     auto ptr = v.lock();
+//     if (!ptr) {
+//       throw std::invalid_argument("Dead pointer!");
+//     }
+//     if (i_visited.find(ptr) == i_visited.end()) {
+//       dfs(ptr, i_visited);
+//     }
+//   }
+// }
+
+void OrientedGraph::dfs(
+    VertexPtr                      i_startVertex,
+    std::unordered_set<VertexPtr>& i_visited
+) {
+  std::stack<VertexPtr> stck;
+  stck.push(i_startVertex);
+
+  while (!stck.empty()) {
+    VertexPtr current = stck.top();
+    stck.pop();
+
+    if (i_visited.find(current) == i_visited.end()) {
+      i_visited.insert(current);
+
+      for (auto v : current->getOutConnections()) {
+        stck.push(v);
+      }
+      for (auto v : current->getInConnections()) {
+        auto ptr = v.lock();
+        if (!ptr) {
+          throw std::invalid_argument("Dead pointer!");
+        }
+        stck.push(ptr);
+      }
+    }
+  }
 }
