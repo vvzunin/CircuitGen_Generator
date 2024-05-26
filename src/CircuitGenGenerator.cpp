@@ -1,5 +1,3 @@
-#pragma once
-
 #include <algorithm>
 #include <array>
 #include <chrono>
@@ -27,10 +25,6 @@
 
 using namespace std::chrono;
 
-const char * build_C_style_string(const std::string& s, unsigned int num, const std::string& extention = "") {
-    return (s + std::string("_with_thread_id_") + std::to_string(num) + extention).c_str();
-};
-
 void runGeneration(
     std::string json_path,
     std::function<void(
@@ -41,11 +35,10 @@ void runGeneration(
     )>          callable,
     const std::string& flag = ""
 ) {
+  // system("rm -rf include/path/to/*"); If we want to delete folders from previous execution of programm.
   unsigned int thread_id = static_cast<unsigned int>(pthread_self());
   thread_local std::filesystem::path folderPath = std::string("./include/path/to/") + std::to_string(thread_id);
-  std::filesystem::create_directories(folderPath);
-
-  thread_local std::string path = build_C_style_string("/include/path/to/", thread_id, "/");
+  thread_local std::string path = std::string("/include/path/to/") + std::to_string(thread_id) + "/";
   thread_local bool has_run_once = false;
   thread_local el::Configurations logger_config_for_database_generator_parameters;
   thread_local el::Configurations logger_config_for_generation_parameters;
