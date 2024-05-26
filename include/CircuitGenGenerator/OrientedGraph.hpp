@@ -86,7 +86,7 @@ public:
   /// @return An integer value representing the number of "gate" type vertices
   /// in the graph
 
-  int                       baseSize() const;
+  size_t                    baseSize() const;
   // Количество gate в графе, включая подграфы
   /// @brief fullSize returns the total number of vertices in the graph,
   /// including vertices from all subgraphs. It recursively traverses all
@@ -94,7 +94,7 @@ public:
   /// @return An integer value representing the total number of vertices
   /// in the graph, including vertices from all subgraphs
 
-  int                       fullSize() const;
+  size_t                    fullSize() const;
   // sum of gates, inputs, outputs and consts sizes
   /// @brief sumFullSize returns the total number of vertices of all types
   /// in the graph, including input vertices, constants, gates, and output
@@ -145,12 +145,12 @@ public:
   ///  OrientedGraph graph("ExampleGraph");
   /// // Add vertices and edges to the graph (omitted for brevity)
   /// // Calculate the maximum level of output vertices
-  /// unsigned maxLevel = graph.getMaxLevel();
+  /// uint32_t maxLevel = graph.getMaxLevel();
   /// // Output the result
   /// std::cout << "Maximum level of output vertices: " << maxLevel << '\n';
   /// @endcode
 
-  unsigned                  getMaxLevel();
+  uint32_t                  getMaxLevel();
 
   /// @brief addParentGraph
   /// Adds a parent graph to the current graph
@@ -277,7 +277,7 @@ public:
   /// auto subGraph = std::make_shared<OrientedGraph>("SubGraph");
   /// // Create input vertices for the subgraph
   /// std::vector<VertexPtr> subGraphInputs;
-  /// for (int i = 0; i < 3; ++i)
+  /// for (size_t i = 0; i < 3; ++i)
   /// {
   ///   auto inputVertex = graph->addInput("SubGraphInput" +
   ///   std::to_string(i+1)); subGraphInputs.push_back(inputVertex);
@@ -334,7 +334,7 @@ public:
   /// auto graph = std::make_shared<OrientedGraph>("ExampleGraph");
   /// // Create multiple source vertices
   /// std::vector<VertexPtr> sources;
-  /// for (int i = 0; i < 3; ++i)
+  /// for (size_t i = 0; i < 3; ++i)
   /// {
   ///   auto vertex = graph->addInput("Source" + std::to_string(i+1));
   ///   sources.push_back(vertex);
@@ -365,7 +365,7 @@ public:
   std::set<GraphPtr>                            getSubGraphs() const;
   std::set<GraphPtr>                            getSetSubGraphs() const;
   std::map<VertexTypes, std::vector<VertexPtr>> getBaseVertexes() const;
-  VertexPtr   getVerticeByIndex(int idx) const;
+  VertexPtr   getVerticeByIndex(size_t idx) const;
 
   std::string getGraphInstance();
   std::pair<bool, std::string>
@@ -382,7 +382,7 @@ public:
   /// returns true.
 
   bool        toGraphML(std::ofstream& i_fileStream) const;
-  std::string toGraphML(int i_indent = 0, const std::string& i_prefix = "")
+  std::string toGraphML(uint16_t i_indent = 0, const std::string& i_prefix = "")
       const;
   // visualize
   // calcGraph
@@ -394,14 +394,14 @@ public:
       const std::string& i_name         = "",
       const bool&        i_addSubGraphs = false
   ) const;
-  std::vector<VertexPtr> getVerticesByLevel(const int& i_level);
+  std::vector<VertexPtr> getVerticesByLevel(const uint32_t& i_level);
 
   std::vector<VertexPtr> getVerticesByName(
       const std::string& i_name,
       const bool&        i_addSubGraphs = false
   ) const;
 
-  bool                                  operator==(const OrientedGraph& rhs);
+  bool                    operator==(const OrientedGraph& rhs);
 
   /// @brief calculateHash calculates hash values for a graph based on the hash
   /// values of its vertices
@@ -410,14 +410,14 @@ public:
   /// By default, false.
   /// @return A string representing the hash value of the graph
 
-  std::string                           calculateHash(bool recalculate = false);
+  std::string             calculateHash(bool recalculate = false);
 
   // @brief getGatesCount Returns a display containing the number of each gate
   /// type in the graph
   /// @return A display where each key is a type of gate (Gates), and the
   /// corresponding value is the number of gates of this type in the graph
 
-  std::map<Gates, int>                  getGatesCount() const;
+  std::map<Gates, size_t> getGatesCount() const;
 
   /// @brief getEdgesGatesCount Returns a mapping containing the number of
   /// edges between different types of gates in the graph
@@ -425,7 +425,7 @@ public:
   /// corresponding value is an internal mapping containing the number of
   /// edges between different types of gates in the graph
 
-  std::map<Gates, std::map<Gates, int>> getEdgesGatesCount() const;
+  std::map<Gates, std::map<Gates, size_t>> getEdgesGatesCount() const;
 
 private:
   static std::atomic_size_t  d_countNewGraphInstance;
@@ -468,7 +468,7 @@ private:
   static std::atomic_size_t d_countGraph;
 
   // used for quick gates count
-  std::map<Gates, int>      d_gatesCount = {
+  std::map<Gates, size_t>   d_gatesCount = {
       {Gates::GateAnd, 0},
       {Gates::GateNand, 0},
       {Gates::GateOr, 0},
@@ -478,7 +478,7 @@ private:
       {Gates::GateXor, 0},
       {Gates::GateXnor, 0}};
   // used for quick edges of gate type count;
-  std::map<Gates, std::map<Gates, int>> d_edgesGatesCount;
+  std::map<Gates, std::map<Gates, size_t>> d_edgesGatesCount;
 
   std::shared_ptr<Settings> d_settings = Settings::getInstance("OrientedGraph");
 };

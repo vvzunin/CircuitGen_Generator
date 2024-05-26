@@ -76,13 +76,13 @@ TEST(TestBaseSizeAndFullSizeAndSumFullSize, ReturnCorrectSize) {
   EXPECT_EQ(graphPtr->fullSize(), 18);
   EXPECT_EQ(graphPtr->sumFullSize(), 24);
 
-  GraphPtr subGrpahPtr1 = std::make_shared<OrientedGraph>();
-  subGrpahPtr1->addGate(Gates::GateAnd, "Anything");
-  subGrpahPtr1->addInput("Anything");
-  subGrpahPtr1->addOutput("Anything");
-  subGrpahPtr1->addConst('x', "Anything");
+  GraphPtr subGraphPtr1 = std::make_shared<OrientedGraph>();
+  subGraphPtr1->addGate(Gates::GateAnd, "Anything");
+  subGraphPtr1->addInput("Anything");
+  subGraphPtr1->addOutput("Anything");
+  subGraphPtr1->addConst('x', "Anything");
   graphPtr->addSubGraph(
-      subGrpahPtr1, subGrpahPtr1->getVerticesByType(VertexTypes::input)
+      subGraphPtr1, subGraphPtr1->getVerticesByType(VertexTypes::input)
   );
 
   EXPECT_EQ(graphPtr->baseSize(), 18);
@@ -90,13 +90,13 @@ TEST(TestBaseSizeAndFullSizeAndSumFullSize, ReturnCorrectSize) {
   // Does sumFullSize() return sum from subGraphs too
   // EXPECT_EQ(graphPtr->sumFullSize(), 28);
 
-  GraphPtr subGrpahPtr2 = std::make_shared<OrientedGraph>("");
-  subGrpahPtr2->addGate(Gates::GateAnd, "Anything");
-  subGrpahPtr2->addInput("Anything");
-  subGrpahPtr2->addOutput("Anything");
-  subGrpahPtr2->addConst('x', "Anything");
+  GraphPtr subGraphPtr2 = std::make_shared<OrientedGraph>("");
+  subGraphPtr2->addGate(Gates::GateAnd, "Anything");
+  subGraphPtr2->addInput("Anything");
+  subGraphPtr2->addOutput("Anything");
+  subGraphPtr2->addConst('x', "Anything");
   graphPtr->addSubGraph(
-      subGrpahPtr2, subGrpahPtr2->getVerticesByType(VertexTypes::input)
+      subGraphPtr2, subGraphPtr2->getVerticesByType(VertexTypes::input)
   );
   EXPECT_EQ(graphPtr->baseSize(), 18);
   EXPECT_EQ(graphPtr->fullSize(), 20);
@@ -396,7 +396,7 @@ TEST(TestGetVerticesByName, ReturnCorrectVertices) {
   );
 }
 
-TEST(TestToGraphMLStringReturn, ReturnCorrectStringWhenGrpahIsEmpty) {
+TEST(TestToGraphMLStringReturn, ReturnCorrectStringWhenGraphIsEmpty) {
   GraphPtr graphPtr = std::make_shared<OrientedGraph>("Graph1");
   EXPECT_EQ(graphPtr->isEmptyFull(), true);
   EXPECT_EQ(
@@ -530,8 +530,8 @@ TEST(TestToGraphMLStringReturn, ReturnCorrectStringWhenThereAreSubEdges) {
       "    <node id=\"gate1\">\n"
       "      <data key=\"d0\">and</data>\n"
       "    </node>\n"
-      "    <source=\"input1\" target=\"gate1\"/>\n"
-      "    <source=\"input2\" target=\"gate1\"/>\n"
+      "    <edge source=\"input1\" target=\"gate1\"/>\n"
+      "    <edge source=\"input2\" target=\"gate1\"/>\n"
       "  </graph>\n"
       "</graphml>\n"
   );

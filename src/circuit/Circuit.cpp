@@ -159,16 +159,16 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
   static std::string filename;
   static std::string s;
 
-  int                previousSizeOfFileName = filename.size();
+  size_t             previousSizeOfFileName = filename.size();
 
   if (!d_graph->getSubGraphs().empty()) {
     std::string folderSubgraphs = d_path + "/submodules";
     std::filesystem::create_directory(folderSubgraphs);
   }
-  filename = d_path + "/" + d_circuitName + ".v";
+  filename    = d_path + "/" + d_circuitName + ".v";
 
-  int pos  = (s.find_last_of('/')) + 1;
-  int pos2 = (filename.find_last_of('/')) + 1;
+  size_t pos  = (s.find_last_of('/')) + 1;
+  size_t pos2 = (filename.find_last_of('/')) + 1;
 
   if (previousSizeOfFileName == 0)
     s = std::filesystem::current_path().string() + "/"

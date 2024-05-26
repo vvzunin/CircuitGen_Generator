@@ -12,11 +12,11 @@
 
 
 template<typename Type, typename ParametersType>
-std::vector<int> ParentsTypesWorker(ParentsParameters i_parentsParameters,
+std::vector<int32_t> ParentsTypesWorker(ParentsParameters i_parentsParameters,
                               std::vector<ChronosomeType<Type, ParametersType>> i_population
 );
 template<>
-inline std::vector<int> ParentsTypesWorker(ParentsParameters i_parentsParameters,
+inline std::vector<int32_t> ParentsTypesWorker(ParentsParameters i_parentsParameters,
                               std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
 )
 {

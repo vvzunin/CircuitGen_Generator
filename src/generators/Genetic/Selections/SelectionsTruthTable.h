@@ -1,5 +1,5 @@
 #pragma once
-
+#include <algorithm>
 #include "../ChronosomeType.h"
 
 namespace SelectionsTruthTable
@@ -14,7 +14,7 @@ inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>> SelectionBa
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> survivors;
   while (survivors.size() < i_selectionParameters.getNumOfSurvivors())
   {
-    int r1 = 0, r2 = 0;
+    int32_t r1 = 0, r2 = 0;
     while (i_population.size() > 2 && r2 == r1)
     {
       r1 = rand() % i_population.size();

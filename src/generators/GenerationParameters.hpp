@@ -55,27 +55,27 @@ private:
 
 class GeneratorRandLevelParameters {
 public:
-  int  getMinLevel() const { return d_minLevel; }
+  uint32_t getMinLevel() const { return d_minLevel; }
 
-  void setMinLevel(int i_minLevel) { d_minLevel = i_minLevel; }
+  void     setMinLevel(uint32_t i_minLevel) { d_minLevel = i_minLevel; }
 
-  int  getMaxLevel() const { return d_maxLevel; }
+  uint32_t getMaxLevel() const { return d_maxLevel; }
 
-  void setMaxLevel(int i_maxLevel) { d_maxLevel = i_maxLevel; }
+  void     setMaxLevel(uint32_t i_maxLevel) { d_maxLevel = i_maxLevel; }
 
-  int  getMinElements() const { return d_minElements; }
+  uint32_t getMinElements() const { return d_minElements; }
 
-  void setMinElements(int i_minElements) { d_minElements = i_minElements; }
+  void setMinElements(uint32_t i_minElements) { d_minElements = i_minElements; }
 
-  int  getMaxElements() const { return d_maxElements; }
+  uint32_t getMaxElements() const { return d_maxElements; }
 
-  void setMaxElements(int i_maxElements) { d_maxElements = i_maxElements; }
+  void setMaxElements(uint32_t i_maxElements) { d_maxElements = i_maxElements; }
 
 private:
-  int d_minLevel    = 0;
-  int d_maxLevel    = 0;
-  int d_minElements = 0;
-  int d_maxElements = 0;
+  uint32_t d_minLevel    = 0;
+  uint32_t d_maxLevel    = 0;
+  uint32_t d_minElements = 0;
+  uint32_t d_maxElements = 0;
 };
 
 /// class GeneratorNumOperationParameters
@@ -89,26 +89,26 @@ private:
 
 class GeneratorNumOperationParameters {
 public:
-  int getLogicOper(const Gates& i_op) const {
+  int32_t getLogicOper(const Gates& i_op) const {
     if (d_logicOper.find(i_op) != d_logicOper.end())
       return d_logicOper.at(i_op);
     return -1;
   }
 
-  std::map<Gates, int> getLogicOpers() const { return d_logicOper; }
-  void                 setLogicOper(const std::pair<Gates, int>& i_p) {
+  std::map<Gates, int32_t> getLogicOpers() const { return d_logicOper; }
+  void                     setLogicOper(const std::pair<Gates, int32_t>& i_p) {
     d_logicOper[i_p.first] = i_p.second;
   }
 
-  void setLogicOper(const std::map<Gates, int>& i_p) { d_logicOper = i_p; }
+  void setLogicOper(const std::map<Gates, int32_t>& i_p) { d_logicOper = i_p; }
 
   bool getLeaveEmptyOut() const { return d_leaveEmptyOut; }
 
   void setLeaveEmptyOut(bool i_leo) { d_leaveEmptyOut = i_leo; }
 
 private:
-  std::map<Gates, int> d_logicOper;
-  bool                 d_leaveEmptyOut = true;
+  std::map<Gates, int32_t> d_logicOper;
+  bool                     d_leaveEmptyOut = true;
 };
 
 /// GeneratorSummatorParameters
@@ -182,76 +182,76 @@ private:
 /// @todo: Desc class
 class GeneratorALUParameters {
 public:
-  bool                 getALL() { return d_ALL; }
-  bool                 getSUM() { return d_SUM; }
-  bool                 getSUB() { return d_SUB; }
-  bool                 getNSUM() { return d_NSUM; }
-  bool                 getNSUB() { return d_NSUB; }
-  bool                 getMULT() { return d_MULT; }
-  bool                 getCOM() { return d_COM; }
-  bool                 getAND() { return d_AND; }
-  bool                 getNAND() { return d_NAND; }
-  bool                 getOR() { return d_OR; }
-  bool                 getNOR() { return d_NOR; }
-  bool                 getXOR() { return d_XOR; }
-  bool                 getXNOR() { return d_XNOR; }
-  bool                 getCNF() { return d_CNF; }
-  bool                 getRNL() { return d_RNL; }
-  bool                 getNUMOP() { return d_NUM_OP; }
-  int                  getminLevel() { return d_minLevel; }
-  int                  getmaxLevel() { return d_maxLevel; }
-  int                  getminElement() { return d_minElement; }
-  int                  getmaxElement() { return d_maxElement; }
-  std::map<Gates, int> getm() { return d_m; }
-  bool                 getLeaveEmptyOut() { return d_LeaveEmptyOut; }
-  void                 setALL(bool i_ALL) { d_ALL = i_ALL; }
-  void                 setSUM(bool i_SUM) { d_SUM = i_SUM; }
-  void                 setSUB(bool i_SUB) { d_SUB = i_SUB; }
-  void                 setNSUM(bool i_NSUM) { d_NSUM = i_NSUM; }
-  void                 setNSUB(bool i_NSUB) { d_NSUB = i_NSUB; }
-  void                 setMULT(bool i_MULT) { d_MULT = i_MULT; }
-  void                 setCOM(bool i_COM) { d_COM = i_COM; }
-  void                 setAND(bool i_AND) { d_AND = i_AND; }
-  void                 setNAND(bool i_NAND) { d_NAND = i_NAND; }
-  void                 setOR(bool i_OR) { d_OR = i_OR; }
-  void                 setNOR(bool i_NOR) { d_NOR = i_NOR; }
-  void                 setXOR(bool i_XOR) { d_XOR = i_XOR; }
-  void                 setXNOR(bool i_XNOR) { d_XNOR = i_XNOR; }
-  void                 setCNF(bool i_CNF) { d_CNF = i_CNF; }
-  void                 setRNL(int i_RNL) { d_RNL = i_RNL; }
-  void                 setNUMOP(int i_NUM_OP) { d_NUM_OP = i_NUM_OP; }
-  void                 setminLevel(int i_minLevel) { d_minLevel = i_minLevel; }
-  void                 setmaxLevel(int i_maxLevel) { d_maxLevel = i_maxLevel; }
-  void setminElement(int i_minElement) { d_minElement = i_minElement; }
-  void setmaxElement(int i_maxElement) { d_maxElement = i_maxElement; }
-  void setm(std::map<Gates, int> i_m) { d_m = i_m; }
+  bool                     getALL() { return d_ALL; }
+  bool                     getSUM() { return d_SUM; }
+  bool                     getSUB() { return d_SUB; }
+  bool                     getNSUM() { return d_NSUM; }
+  bool                     getNSUB() { return d_NSUB; }
+  bool                     getMULT() { return d_MULT; }
+  bool                     getCOM() { return d_COM; }
+  bool                     getAND() { return d_AND; }
+  bool                     getNAND() { return d_NAND; }
+  bool                     getOR() { return d_OR; }
+  bool                     getNOR() { return d_NOR; }
+  bool                     getXOR() { return d_XOR; }
+  bool                     getXNOR() { return d_XNOR; }
+  bool                     getCNF() { return d_CNF; }
+  bool                     getRNL() { return d_RNL; }
+  bool                     getNUMOP() { return d_NUM_OP; }
+  uint32_t                 getminLevel() { return d_minLevel; }
+  uint32_t                 getmaxLevel() { return d_maxLevel; }
+  uint32_t                 getminElement() { return d_minElement; }
+  uint32_t                 getmaxElement() { return d_maxElement; }
+  std::map<Gates, int32_t> getm() { return d_m; }
+  bool                     getLeaveEmptyOut() { return d_LeaveEmptyOut; }
+  void                     setALL(bool i_ALL) { d_ALL = i_ALL; }
+  void                     setSUM(bool i_SUM) { d_SUM = i_SUM; }
+  void                     setSUB(bool i_SUB) { d_SUB = i_SUB; }
+  void                     setNSUM(bool i_NSUM) { d_NSUM = i_NSUM; }
+  void                     setNSUB(bool i_NSUB) { d_NSUB = i_NSUB; }
+  void                     setMULT(bool i_MULT) { d_MULT = i_MULT; }
+  void                     setCOM(bool i_COM) { d_COM = i_COM; }
+  void                     setAND(bool i_AND) { d_AND = i_AND; }
+  void                     setNAND(bool i_NAND) { d_NAND = i_NAND; }
+  void                     setOR(bool i_OR) { d_OR = i_OR; }
+  void                     setNOR(bool i_NOR) { d_NOR = i_NOR; }
+  void                     setXOR(bool i_XOR) { d_XOR = i_XOR; }
+  void                     setXNOR(bool i_XNOR) { d_XNOR = i_XNOR; }
+  void                     setCNF(bool i_CNF) { d_CNF = i_CNF; }
+  void                     setRNL(int32_t i_RNL) { d_RNL = i_RNL; }
+  void                     setNUMOP(int32_t i_NUM_OP) { d_NUM_OP = i_NUM_OP; }
+  void setminLevel(uint32_t i_minLevel) { d_minLevel = i_minLevel; }
+  void setmaxLevel(uint32_t i_maxLevel) { d_maxLevel = i_maxLevel; }
+  void setminElement(uint32_t i_minElement) { d_minElement = i_minElement; }
+  void setmaxElement(uint32_t i_maxElement) { d_maxElement = i_maxElement; }
+  void setm(std::map<Gates, int32_t> i_m) { d_m = i_m; }
   void setLeaveEmptyOut(bool i_LeaveEmptyOut) {
     d_LeaveEmptyOut = i_LeaveEmptyOut;
   }
 
 private:
-  bool                 d_ALL    = false;
-  bool                 d_SUM    = false;
-  bool                 d_SUB    = false;
-  bool                 d_NSUM   = false;
-  bool                 d_NSUB   = false;
-  bool                 d_MULT   = false;
-  bool                 d_COM    = false;
-  bool                 d_AND    = false;
-  bool                 d_NAND   = false;
-  bool                 d_OR     = false;
-  bool                 d_NOR    = false;
-  bool                 d_XOR    = false;
-  bool                 d_XNOR   = false;
-  bool                 d_CNF    = false;
-  bool                 d_RNL    = false;
-  bool                 d_NUM_OP = false;
-  int                  d_minLevel;
-  int                  d_maxLevel;
-  int                  d_minElement;
-  int                  d_maxElement;
-  std::map<Gates, int> d_m;
-  bool                 d_LeaveEmptyOut;
+  bool                     d_ALL    = false;
+  bool                     d_SUM    = false;
+  bool                     d_SUB    = false;
+  bool                     d_NSUM   = false;
+  bool                     d_NSUB   = false;
+  bool                     d_MULT   = false;
+  bool                     d_COM    = false;
+  bool                     d_AND    = false;
+  bool                     d_NAND   = false;
+  bool                     d_OR     = false;
+  bool                     d_NOR    = false;
+  bool                     d_XOR    = false;
+  bool                     d_XNOR   = false;
+  bool                     d_CNF    = false;
+  bool                     d_RNL    = false;
+  bool                     d_NUM_OP = false;
+  uint32_t                 d_minLevel;
+  uint32_t                 d_maxLevel;
+  uint32_t                 d_minElement;
+  uint32_t                 d_maxElement;
+  std::map<Gates, int32_t> d_m;
+  bool                     d_LeaveEmptyOut;
 };
 
 /// @todo: To add desc some fields
@@ -303,9 +303,9 @@ public:
   GenerationParameters(
       const std::string& i_name,
       const std::string& i_requestId,
-      int                i_inputs,
-      int                i_outputs,
-      int                i_iteration,
+      uint32_t           i_inputs,
+      uint32_t           i_outputs,
+      uint32_t           i_iteration,
       std::string        i_libraryName        = "",
       bool               i_calculateStatsAbc  = false,
       bool               i_makeOptimizedFiles = false,
@@ -337,30 +337,30 @@ public:
     d_libraryName = i_libraryName;
   }
 
-  int  getInputs() const { return d_inputs; }
+  uint32_t getInputs() const { return d_inputs; }
 
-  void setInputs(int i_inputs) { d_inputs = i_inputs; }
+  void     setInputs(uint32_t i_inputs) { d_inputs = i_inputs; }
 
-  int  getOutputs() const { return d_outputs; }
+  uint32_t getOutputs() const { return d_outputs; }
 
-  void setOutputs(int i_outputs) { d_outputs = i_outputs; }
+  void     setOutputs(uint32_t i_outputs) { d_outputs = i_outputs; }
 
-  int  getIteration() const { return d_iteration; }
+  uint32_t getIteration() const { return d_iteration; }
 
-  void setIteration(int i_iteration) { d_iteration = i_iteration; }
+  void     setIteration(uint32_t i_iteration) { d_iteration = i_iteration; }
 
-  bool getMakeGraphML() const { return d_makeGraphML; }
+  bool     getMakeGraphML() const { return d_makeGraphML; }
 
   std::uint_fast32_t getSeed() const { return d_seed; }
 
   void               setSeed(std::uint_fast32_t i_seed) { d_seed = i_seed; }
 
-  std::map<std::string, std::vector<int>> getGatesInputsInfo() const {
+  std::map<std::string, std::vector<int32_t>> getGatesInputsInfo() const {
     return d_gatesInputsInfo;
   }
 
   void setGatesInputInfo(
-      const std::map<std::string, std::vector<int>>& i_gatesInputsInfo
+      const std::map<std::string, std::vector<int32_t>>& i_gatesInputsInfo
   ) {
     d_gatesInputsInfo = i_gatesInputsInfo;
   }
@@ -394,10 +394,10 @@ public:
     d_cnfFromTruthTableParameters.setLimit(i_limit);
   }
   void setRandLevelParameters(
-      int i_minLevel,
-      int i_maxLevel,
-      int i_minElements,
-      int i_maxElements
+      uint32_t i_minLevel,
+      uint32_t i_maxLevel,
+      uint32_t i_minElements,
+      uint32_t i_maxElements
   ) {
     d_generatorRandLevelParameters.setMinLevel(i_minLevel);
     d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
@@ -405,8 +405,8 @@ public:
     d_generatorRandLevelParameters.setMaxElements(i_maxElements);
   }
   void setNumOperationParameters(
-      const std::map<Gates, int>& i_m,
-      bool                        i_LeaveEmptyOut
+      const std::map<Gates, int32_t>& i_m,
+      bool                            i_LeaveEmptyOut
   ) {
     d_generatorNumOperationParameters.setLogicOper(i_m);
     d_generatorNumOperationParameters.setLeaveEmptyOut(i_LeaveEmptyOut);
@@ -439,28 +439,28 @@ public:
     d_generatorComparisonParameters.setCompare2(i_compare2);
   }
   void setALUParameters(
-      bool                 i_ALL,
-      bool                 i_SUM,
-      bool                 i_SUB,
-      bool                 i_NSUM,
-      bool                 i_NSUB,
-      bool                 i_MULT,
-      bool                 i_COM,
-      bool                 i_AND,
-      bool                 i_NAND,
-      bool                 i_OR,
-      bool                 i_NOR,
-      bool                 i_XOR,
-      bool                 i_XNOR,
-      bool                 i_CNF,
-      bool                 i_RNL,
-      bool                 i_NUM_OP,
-      int                  i_minLevel,
-      int                  i_maxLevel,
-      int                  i_minElement,
-      int                  i_maxElement,
-      std::map<Gates, int> i_m,
-      bool                 i_LeaveEmptyOut
+      bool                     i_ALL,
+      bool                     i_SUM,
+      bool                     i_SUB,
+      bool                     i_NSUM,
+      bool                     i_NSUB,
+      bool                     i_MULT,
+      bool                     i_COM,
+      bool                     i_AND,
+      bool                     i_NAND,
+      bool                     i_OR,
+      bool                     i_NOR,
+      bool                     i_XOR,
+      bool                     i_XNOR,
+      bool                     i_CNF,
+      bool                     i_RNL,
+      bool                     i_NUM_OP,
+      uint32_t                 i_minLevel,
+      uint32_t                 i_maxLevel,
+      uint32_t                 i_minElement,
+      uint32_t                 i_maxElement,
+      std::map<Gates, int32_t> i_m,
+      bool                     i_LeaveEmptyOut
   ) {
     d_generatorALUParameters.setALL(i_ALL);
     d_generatorALUParameters.setSUM(i_SUM);
@@ -489,19 +489,19 @@ public:
   void setZhegalkin(bool i_zhegalkin) {
     d_ZhegalkinFromTruthTableParameters.setZhegalkin(i_zhegalkin);
   }
-  void setNumOfCycles(int i_numOfCycles) {
+  void setNumOfCycles(uint32_t i_numOfCycles) {
     d_geneticParameters.setNumOfCycles(i_numOfCycles);
   }
-  void setPopulationSize(int i_populationSize) {
+  void setPopulationSize(uint32_t i_populationSize) {
     d_geneticParameters.setPopulationSize(i_populationSize);
   }
   void setRecombinationParameters(
       ParentsTypes       i_parentsTypes,
-      int                i_tournamentNumber,
+      uint32_t           i_tournamentNumber,
       RecombinationTypes i_recombinationType,
-      int                i_refPoints,
+      uint32_t           i_refPoints,
       double             maskProbability,
-      int                i_recombinationNumber
+      uint32_t           i_recombinationNumber
   ) {
     RecombinationParameters RP;
     RP.setParentsParameters(i_parentsTypes, i_tournamentNumber);
@@ -514,7 +514,7 @@ public:
   void setMutationParameters(
       MutationTypes i_mutationType,
       double        i_probabilityGen,
-      int           i_exchangeType,
+      uint32_t      i_exchangeType,
       double        i_probabilityTruthTable
   ) {
     MutationParameters MP;
@@ -526,7 +526,7 @@ public:
   }
   void setSelectionParameters(
       SelectionTypes i_selectionType,
-      int            i_numOfSurvivors
+      uint32_t       i_numOfSurvivors
   ) {
     SelectionParameters SP;
     SP.setSelectionType(i_selectionType);
@@ -538,28 +538,28 @@ public:
   }
 
 private:
-  std::string                             d_name = "";
-  std::string                             d_requestId;
-  std::string                             d_libraryName;
-  int                                     d_inputs    = 0;
-  int                                     d_outputs   = 0;
-  int                                     d_iteration = 0;
-  bool                                    d_calculateStatsAbc;
-  bool                                    d_makeOptimizedFiles;
-  bool                                    d_makeFirrtl;
-  bool                                    d_makeBench;
-  bool                                    d_makeGraphML;
-  std::map<std::string, std::vector<int>> d_gatesInputsInfo;
+  std::string                                 d_name = "";
+  std::string                                 d_requestId;
+  std::string                                 d_libraryName;
+  uint32_t                                    d_inputs    = 0;
+  uint32_t                                    d_outputs   = 0;
+  uint32_t                                    d_iteration = 0;
+  bool                                        d_calculateStatsAbc;
+  bool                                        d_makeOptimizedFiles;
+  bool                                        d_makeFirrtl;
+  bool                                        d_makeBench;
+  bool                                        d_makeGraphML;
+  std::map<std::string, std::vector<int32_t>> d_gatesInputsInfo;
 
-  std::uint_fast32_t                      d_seed = 0;
+  std::uint_fast32_t                          d_seed = 0;
 
-  CNNFromTruthTableParameters             d_cnfFromTruthTableParameters;
-  zhegalkinFromTruthTableParameters       d_ZhegalkinFromTruthTableParameters;
-  GeneratorRandLevelParameters            d_generatorRandLevelParameters;
-  GeneratorNumOperationParameters         d_generatorNumOperationParameters;
-  GeneratorSummatorParameters             d_generatorSummatorParameters;
-  GeneratorComparisonParameters           d_generatorComparisonParameters;
-  GeneratorSubtractorParameters           d_generatorSubtractorParameters;
-  GeneratorALUParameters                  d_generatorALUParameters;
+  CNNFromTruthTableParameters                 d_cnfFromTruthTableParameters;
+  zhegalkinFromTruthTableParameters d_ZhegalkinFromTruthTableParameters;
+  GeneratorRandLevelParameters      d_generatorRandLevelParameters;
+  GeneratorNumOperationParameters   d_generatorNumOperationParameters;
+  GeneratorSummatorParameters       d_generatorSummatorParameters;
+  GeneratorComparisonParameters     d_generatorComparisonParameters;
+  GeneratorSubtractorParameters     d_generatorSubtractorParameters;
+  GeneratorALUParameters            d_generatorALUParameters;
   GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
 };
