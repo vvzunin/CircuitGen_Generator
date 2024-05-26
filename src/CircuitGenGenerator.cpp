@@ -42,13 +42,10 @@ void runGeneration(
     const std::string& flag = ""
 ) {
   unsigned int thread_id = static_cast<unsigned int>(pthread_self());
-  std::cout << "\n" << "thread_id: " << thread_id << "\n";
   thread_local std::filesystem::path folderPath = std::string("./include/path/to/") + std::to_string(thread_id);
   std::filesystem::create_directories(folderPath);
 
   thread_local std::string path = build_C_style_string("/include/path/to/", thread_id, "/");
-  thread_local std::string path_to_log_for_database_generator_parameters = path + "logger_for_database_generator_parameters.log";
-  thread_local std::string path_to_log_for_generation_parameters         = path + "logger_for_generation_parameters.log";
   thread_local bool has_run_once = false;
   thread_local el::Configurations logger_config_for_database_generator_parameters;
   thread_local el::Configurations logger_config_for_generation_parameters;
