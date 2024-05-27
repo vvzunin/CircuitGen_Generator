@@ -213,8 +213,8 @@ TEST(TestIsConnected, SizeZeroAndOneIsConnected) {
   GraphPtr graphPtr2 = std::make_shared<OrientedGraph>();
   graphPtr2->addGate(Gates::GateAnd, "and");
 
-  EXPECT_EQ(graphPtr1->isConnected(), 1);
-  EXPECT_EQ(graphPtr2->isConnected(), 1);
+  EXPECT_EQ(graphPtr1->isConnected(), true);
+  EXPECT_EQ(graphPtr2->isConnected(), true);
 }
 
 TEST(TestIsConnected, SizeTwoWithoutEdgesIsNotConnected) {
@@ -222,7 +222,7 @@ TEST(TestIsConnected, SizeTwoWithoutEdgesIsNotConnected) {
   graphPtr->addInput("input");
   graphPtr->addOutput("output");
 
-  EXPECT_EQ(graphPtr->isConnected(), 0);
+  EXPECT_EQ(graphPtr->isConnected(), false);
 }
 
 TEST(TestIsConnected, SizeTwoWithEdgeIsConnected) {
@@ -231,7 +231,7 @@ TEST(TestIsConnected, SizeTwoWithEdgeIsConnected) {
   VertexPtr output   = graphPtr->addOutput("output");
   graphPtr->addEdge(input, output);
 
-  EXPECT_EQ(graphPtr->isConnected(), 1);
+  EXPECT_EQ(graphPtr->isConnected(), true);
 }
 
 TEST(TestIsConnectedWithSubGraphs, ConnectedSubGraphIsConnected) {
@@ -245,7 +245,7 @@ TEST(TestIsConnectedWithSubGraphs, ConnectedSubGraphIsConnected) {
   GraphPtr  subGraphPtr(new OrientedGraph());
 
   VertexPtr subGraphInput  = subGraphPtr->addInput("subGraphInput");
-  VertexPtr testBuf        = subGraphPtr->addGate(GateBuf);
+  VertexPtr testBuf        = subGraphPtr->addGate(Gates::GateBuf);
   VertexPtr subGraphOutput = subGraphPtr->addOutput("subGraphOutput");
 
   subGraphPtr->addEdge(subGraphInput, testBuf);
@@ -257,7 +257,7 @@ TEST(TestIsConnectedWithSubGraphs, ConnectedSubGraphIsConnected) {
   graphPtr->addEdge(subGraphOutput2, inv);
   graphPtr->addEdge(inv, output);
 
-  EXPECT_EQ(graphPtr->isConnected(), 1);
+  EXPECT_EQ(graphPtr->isConnected(), true);
 }
 
 TEST(TestIsConnectedWithSubGraphs, NotConnectedSubGraphIsNotConnected) {
@@ -272,5 +272,5 @@ TEST(TestIsConnectedWithSubGraphs, NotConnectedSubGraphIsNotConnected) {
       subGraphPtr, graphPtr->getVerticesByType(VertexTypes::input)
   );
 
-  EXPECT_EQ(graphPtr->isConnected(), 0);
+  EXPECT_EQ(graphPtr->isConnected(), false);
 }

@@ -137,10 +137,11 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
       i_subGraph->getVerticesByType(VertexTypes::input);
 
   i_subGraph->setCurrentParent(shared_from_this());
+  i_subGraph->d_isSubGraph = true;
 
   if (i_inputs.size() != iGraph.size()) {
     throw std::invalid_argument(
-        "Number of inputs should be same, as subgrap inputs number"
+        "Number of inputs should be same, as subgraph inputs number"
     );
   }
 
@@ -679,7 +680,7 @@ bool OrientedGraph::isConnected(bool i_recalculate) {
 
   dfs(startVertex, visited);
 
-  if (visited.size() == size - subGraphsBuffersCount) {
+  if (visited.size() == size + subGraphsBuffersCount) {
     return (d_connected = 1);
   } else {
     return (d_connected = -1) + 1;
