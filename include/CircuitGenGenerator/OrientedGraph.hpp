@@ -87,7 +87,7 @@ public:
   /// @return An integer value representing the number of "gate" type vertices
   /// in the graph
 
-  size_t                    baseSize() const;
+  size_t      baseSize() const;
   // Количество gate в графе, включая подграфы
   /// @brief fullSize returns the total number of vertices in the graph,
   /// including vertices from all subgraphs. It recursively traverses all
@@ -95,48 +95,48 @@ public:
   /// @return An integer value representing the total number of vertices
   /// in the graph, including vertices from all subgraphs
 
-  size_t                    fullSize() const;
+  size_t      fullSize() const;
   // sum of gates, inputs, outputs and consts sizes
   /// @brief sumFullSize returns the total number of vertices of all types
   /// in the graph, including input vertices, constants, gates, and output
   /// vertices
   /// @return the size of all vertices in the graph, summing the number of
   /// vertices of each type
-  size_t                    sumFullSize() const;
+  size_t      sumFullSize() const;
 
   // Имеются ли gate в схеме, включая подграфы
-  bool                      isEmpty() const;
+  bool        isEmpty() const;
 
   /// @brief isEmptyFull It is used to check the emptiness of a graph,
   /// including all its subgraphs. It recursively traverses all the subgraphs
   /// and checks if they are empty
   /// @return bool - true if the graph and all its subgraphs are empty, and
   /// false if at least one of them contains vertice
-  bool                      isEmptyFull() const;
+  bool        isEmptyFull() const;
 
   /// @brief setName Used to set the name of the graph. It takes a string as
   /// an argument and sets the d_name field to this string
   /// @param i_name the new name of the graph
 
-  void                      setName(const std::string& i_name);
+  void        setName(const std::string& i_name);
 
   /// @brief getName Used to get the name of the graph
   /// @return the name of the graph
 
-  std::string               getName() const;
+  std::string getName() const;
 
   /// @brief needToUpdateLevel it is used to check whether the vertex levels
   /// in the graph need to be updated
   /// @return bool - true if updating the vertex levels in the graph is
   /// required, and false if not required
 
-  bool                      needToUpdateLevel() const;
+  bool        needToUpdateLevel() const;
 
   /// @brief updateLevels TO DO: the method body is commented out!!!
   ///
   /// */
 
-  void                      updateLevels();
+  void        updateLevels();
 
   /// @brief getMaxLevel
   /// Calculates and returns the maximum level of the output vertices in the
@@ -151,37 +151,37 @@ public:
   /// std::cout << "Maximum level of output vertices: " << maxLevel << '\n';
   /// @endcode
 
-  uint32_t                  getMaxLevel();
+  uint32_t    getMaxLevel();
 
-  /// @brief addParentGraph
-  /// Adds a parent graph to the current graph
-  /// @param i_baseGraph A shared pointer to the parent graph to be added
-  /// @code
-  /// // Create the first OrientedGraph instance
-  /// auto graph1 = std::make_shared<OrientedGraph>("Graph1");
-  /// // Create the second OrientedGraph instance
-  /// auto graph2 = std::make_shared<OrientedGraph>("Graph2");
-  /// // Add graph1 as a parent to graph2
-  /// graph2->addParentGraph(graph1);
-  /// // Now graph2 has graph1 as one of its parent graphs
-  /// @endcode
-  void                      addParentGraph(GraphPtr i_baseGraph);
+  // /// @brief addParentGraph
+  // /// Adds a parent graph to the current graph
+  // /// @param i_baseGraph A shared pointer to the parent graph to be added
+  // /// @code
+  // /// // Create the first OrientedGraph instance
+  // /// auto graph1 = std::make_shared<OrientedGraph>("Graph1");
+  // /// // Create the second OrientedGraph instance
+  // /// auto graph2 = std::make_shared<OrientedGraph>("Graph2");
+  // /// // Add graph1 as a parent to graph2
+  // /// graph2->addParentGraph(graph1);
+  // /// // Now graph2 has graph1 as one of its parent graphs
+  // /// @endcode
+  // void                      addParentGraph(GraphPtr i_baseGraph);
 
-  /// @brief getParentGraphs
-  /// Retrieves the parent graphs of the current graph
-  /// @return A vector containing weak pointers to the parent graphs
-  /// @code
-  /// // Create an instance of OrientedGraph
-  /// auto graph = std::make_shared<OrientedGraph>("ExampleGraph");
-  /// // Add some parent graphs to the current graph (omitted for brevity)
-  /// // Retrieve the parent graphs of the current graph
-  /// std::vector<std::weak_ptr<OrientedGraph>> parentGraphs =
-  /// graph->getParentGraphs();
-  /// // Iterate over the parent graphs and perform operations (omitted for
-  /// brevity)
-  /// @endcode
+  // /// @brief getParentGraphs
+  // /// Retrieves the parent graphs of the current graph
+  // /// @return A vector containing weak pointers to the parent graphs
+  // /// @code
+  // /// // Create an instance of OrientedGraph
+  // /// auto graph = std::make_shared<OrientedGraph>("ExampleGraph");
+  // /// // Add some parent graphs to the current graph (omitted for brevity)
+  // /// // Retrieve the parent graphs of the current graph
+  // /// std::vector<std::weak_ptr<OrientedGraph>> parentGraphs =
+  // /// graph->getParentGraphs();
+  // /// // Iterate over the parent graphs and perform operations (omitted for
+  // /// brevity)
+  // /// @endcode
 
-  std::vector<GraphPtrWeak> getParentGraphs() const;
+  // std::vector<GraphPtrWeak> getParentGraphs() const;
 
   /// @brief setCurrentParent
   /// Sets the current parent graph of the current graph
@@ -196,13 +196,13 @@ public:
   /// graph->setCurrentParent(parentGraph);
   /// // Now parentGraph is set as the current parent of graph
   /// @endcode
-  void                      setCurrentParent(GraphPtr parent);
+  void        setCurrentParent(GraphPtr parent);
 
   /// @brief resetCounters
   /// Resets counters associated with a specific graph instance
   /// @param where A shared pointer to the subgraph whose counters need to be
   /// reset
-  void                      resetCounters(GraphPtr where);
+  void        resetCounters(GraphPtr where);
 
   // TODO: Заменить все const на const &
 
@@ -218,7 +218,7 @@ public:
   /// // Now inputVertex is a shared pointer to the newly added input vertex
   /// @endcode
 
-  VertexPtr                 addInput(const std::string& i_name = "");
+  VertexPtr   addInput(const std::string& i_name = "");
 
   /// @brief addOutput
   /// Adds an output vertex to the current graph
@@ -232,7 +232,7 @@ public:
   /// // Now outputVertex is a shared pointer to the newly added output vertex
   /// @endcode
 
-  VertexPtr                 addOutput(const std::string& i_name = "");
+  VertexPtr   addOutput(const std::string& i_name = "");
 
   /// @brief addConst
   /// Adds a constant vertex to the current graph
@@ -248,7 +248,7 @@ public:
   /// vertex
   /// @endcode
 
-  VertexPtr addConst(const char& i_value, const std::string& i_name = "");
+  VertexPtr   addConst(const char& i_value, const std::string& i_name = "");
 
   /// @brief addGate
   /// Adds a gate vertex to the current graph
@@ -263,7 +263,7 @@ public:
   /// // Now gateVertex is a shared pointer to the newly added gate vertex
   /// @endcode
 
-  VertexPtr addGate(const Gates& i_gate, const std::string& i_name = "");
+  VertexPtr   addGate(const Gates& i_gate, const std::string& i_name = "");
 
   /// @brief addSubGraph
   /// Adds a subgraph to the current graph
@@ -439,7 +439,7 @@ private:
   size_t                    d_edgesCount = 0;
 
   std::string               d_hashed     = "";
-  std::vector<GraphPtrWeak> d_parentGraphs;
+  bool                      d_isSubGraph = false;
 
   std::string               d_name;
 

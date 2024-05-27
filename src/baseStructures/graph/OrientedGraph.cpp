@@ -30,7 +30,14 @@ OrientedGraph::OrientedGraph(const std::string& i_name) {
   }
 }
 
-OrientedGraph::~OrientedGraph() {}
+OrientedGraph::~OrientedGraph() {
+  for (auto sub : d_subGraphs) {
+    sub->d_subGraphsInputsPtr.erase(d_graphID);
+    sub->d_subGraphsOutputsPtr.erase(d_graphID);
+
+    sub->d_currentParentGraph.lock() = nullptr;
+  }
+}
 
 size_t OrientedGraph::baseSize() const {
   return d_vertexes.at(VertexTypes::gate).size();
@@ -88,14 +95,6 @@ uint32_t OrientedGraph::getMaxLevel() {
   return mx;
 }
 
-void OrientedGraph::addParentGraph(GraphPtr i_baseGraph) {
-  d_parentGraphs.push_back(i_baseGraph);
-}
-
-std::vector<GraphPtrWeak> OrientedGraph::getParentGraphs() const {
-  return d_parentGraphs;
-}
-
 VertexPtr OrientedGraph::addInput(const std::string& i_name) {
   VertexPtr newVertex(new GraphVertexInput(i_name, shared_from_this()));
   d_vertexes[VertexTypes::input].push_back(newVertex);
@@ -137,7 +136,6 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
   std::vector<VertexPtr> iGraph =
       i_subGraph->getVerticesByType(VertexTypes::input);
 
-  i_subGraph->addParentGraph(shared_from_this());
   i_subGraph->setCurrentParent(shared_from_this());
 
   if (i_inputs.size() != iGraph.size()) {
@@ -424,7 +422,7 @@ std::string OrientedGraph::getGraphInstance() {
 
 std::pair<bool, std::string>
     OrientedGraph::toVerilog(std::string i_path, std::string i_filename) {
-  if (d_alreadyParsed && d_parentGraphs.size()) {
+  if (d_alreadyParsed && d_isSubGraph) {
     return std::make_pair(true, getGraphInstance());
   }
   // В данном методе происходит только генерация одного графа. Без подграфов.
@@ -433,7 +431,7 @@ std::pair<bool, std::string>
   if (!i_filename.size()) {
     i_filename = d_name + ".v";
   }
-  std::string   path = i_path + (d_parentGraphs.size() ? "/submodules" : "");
+  std::string   path = i_path + (d_isSubGraph ? "/submodules" : "");
 
   std::ofstream fileStream(path + "/" + i_filename);
 
@@ -532,7 +530,7 @@ std::pair<bool, std::string>
 
   d_alreadyParsed = true;
 
-  if (d_parentGraphs.size()) {
+  if (d_isSubGraph) {
     return std::make_pair(true, getGraphInstance());
   }
 
