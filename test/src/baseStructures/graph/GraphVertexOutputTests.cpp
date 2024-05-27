@@ -1,5 +1,6 @@
 #include "baseStructures/graph/GraphVertex.hpp"
 
+#include <CircuitGenGenerator/OrientedGraph.hpp>
 #include <gtest/gtest.h>
 
 /*
@@ -206,3 +207,61 @@ TEST(TestRemoveVertexToInConnections, RemoveConnections) {
 
 // need to remake realisition of method
 // TEST(TestRemoveVertexToOutConnections, RemoveConnecttions){}
+
+TEST(TestIsConnected, SizeZeroAndOneIsConnected) {
+  GraphPtr graphPtr1 = std::make_shared<OrientedGraph>();
+  GraphPtr graphPtr2 = std::make_shared<OrientedGraph>();
+  graphPtr2->addGate(Gates::GateAnd, "and");
+
+  EXPECT_EQ(graphPtr1->isConnected(), 1);
+  EXPECT_EQ(graphPtr2->isConnected(), 1);
+}
+
+TEST(TestIsConnected, SizeTwoWithoutEdgesIsNotConnected) {
+  GraphPtr graphPtr = std::make_shared<OrientedGraph>();
+  graphPtr->addInput("input");
+  graphPtr->addOutput("output");
+
+  EXPECT_EQ(graphPtr->isConnected(), 0);
+}
+
+TEST(TestIsConnected, SizeTwoWithEdgeIsConnected) {
+  GraphPtr  graphPtr = std::make_shared<OrientedGraph>();
+  VertexPtr input    = graphPtr->addInput("input");
+  VertexPtr output   = graphPtr->addOutput("output");
+  graphPtr->addEdge(input, output);
+
+  EXPECT_EQ(graphPtr->isConnected(), 1);
+}
+
+TEST(TestIsConnectedWithSubGraphs, ConnectedSubGraphIsConnected) {
+  GraphPtr  subGraphPtr(new OrientedGraph());
+  VertexPtr subGraphInput  = subGraphPtr->addInput("subGraphInput");
+  VertexPtr subGraphOutput = subGraphPtr->addOutput("subGraphOutput");
+  subGraphPtr->addEdge(subGraphInput, subGraphOutput);
+
+  GraphPtr               graphPtr(new OrientedGraph());
+
+  std::vector<VertexPtr> inputs;
+  VertexPtr              input  = graphPtr->addInput("input");
+  VertexPtr              output = graphPtr->addOutput("output");
+  inputs.push_back(input);
+
+  graphPtr->addSubGraph(subGraphPtr, inputs);
+
+  EXPECT_EQ(graphPtr->isConnected(), 1);
+}
+
+TEST(TestIsConnectedWithSubGraphs, NotConnectedSubGraphIsNotConnected) {
+  GraphPtr  subGraphPtr    = std::make_shared<OrientedGraph>();
+  VertexPtr subGraphInput  = subGraphPtr->addInput("subGraphInput");
+  VertexPtr subGraphOutput = subGraphPtr->addOutput("subGraphOutput");
+
+  GraphPtr  graphPtr       = std::make_shared<OrientedGraph>();
+  VertexPtr input          = graphPtr->addInput("input");
+  graphPtr->addSubGraph(
+      subGraphPtr, graphPtr->getVerticesByType(VertexTypes::input)
+  );
+
+  EXPECT_EQ(graphPtr->isConnected(), 0);
+}
