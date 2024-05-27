@@ -235,11 +235,6 @@ TEST(TestIsConnected, SizeTwoWithEdgeIsConnected) {
 }
 
 TEST(TestIsConnectedWithSubGraphs, ConnectedSubGraphIsConnected) {
-  GraphPtr  subGraphPtr(new OrientedGraph());
-  VertexPtr subGraphInput  = subGraphPtr->addInput("subGraphInput");
-  VertexPtr subGraphOutput = subGraphPtr->addOutput("subGraphOutput");
-  subGraphPtr->addEdge(subGraphInput, subGraphOutput);
-
   GraphPtr               graphPtr(new OrientedGraph());
 
   std::vector<VertexPtr> inputs;
@@ -247,18 +242,32 @@ TEST(TestIsConnectedWithSubGraphs, ConnectedSubGraphIsConnected) {
   VertexPtr              output = graphPtr->addOutput("output");
   inputs.push_back(input);
 
-  graphPtr->addSubGraph(subGraphPtr, inputs);
+  GraphPtr  subGraphPtr(new OrientedGraph());
+
+  VertexPtr subGraphInput  = subGraphPtr->addInput("subGraphInput");
+  VertexPtr testBuf        = subGraphPtr->addGate(GateBuf);
+  VertexPtr subGraphOutput = subGraphPtr->addOutput("subGraphOutput");
+
+  subGraphPtr->addEdge(subGraphInput, testBuf);
+  subGraphPtr->addEdge(testBuf, subGraphOutput);
+
+  auto subGraphOutput = graphPtr->addSubGraph(subGraphPtr, inputs).back();
+  auto inv            = graphPtr->addGate(GateNot);
+
+  graphPtr->addEdge(subGraphOutput, inv);
+  graphPtr->addEdge(inv, output);
 
   EXPECT_EQ(graphPtr->isConnected(), 1);
 }
 
 TEST(TestIsConnectedWithSubGraphs, NotConnectedSubGraphIsNotConnected) {
-  GraphPtr  subGraphPtr    = std::make_shared<OrientedGraph>();
+  GraphPtr  graphPtr = std::make_shared<OrientedGraph>();
+  VertexPtr input    = graphPtr->addInput("input");
+
+  GraphPtr  subGraphPtr(new OrientedGraph());
   VertexPtr subGraphInput  = subGraphPtr->addInput("subGraphInput");
   VertexPtr subGraphOutput = subGraphPtr->addOutput("subGraphOutput");
 
-  GraphPtr  graphPtr       = std::make_shared<OrientedGraph>();
-  VertexPtr input          = graphPtr->addInput("input");
   graphPtr->addSubGraph(
       subGraphPtr, graphPtr->getVerticesByType(VertexTypes::input)
   );
