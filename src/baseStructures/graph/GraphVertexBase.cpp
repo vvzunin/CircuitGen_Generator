@@ -104,11 +104,11 @@ std::string GraphVertexBase::getName(const std::string& i_prefix) const {
   return i_prefix + d_name;
 }
 
-void GraphVertexBase::setLevel(const unsigned i_level) {
+void GraphVertexBase::setLevel(const uint32_t i_level) {
   d_level = i_level;
 }
 
-unsigned GraphVertexBase::getLevel() const {
+uint32_t GraphVertexBase::getLevel() const {
   return d_level;
 }
 
@@ -134,12 +134,12 @@ std::vector<VertexPtrWeak> GraphVertexBase::getInConnections() const {
   return d_inConnections;
 }
 
-int GraphVertexBase::addVertexToInConnections(VertexPtr i_vert) {
+uint32_t GraphVertexBase::addVertexToInConnections(VertexPtr i_vert) {
   VertexPtrWeak vertWeak(i_vert);
 
   d_inConnections.push_back(vertWeak);
-  int n = 0;
-  // TODO use map<VertexPtr, int> instead of for
+  uint32_t n = 0;
+  // TODO use map<VertexPtr, uint32_t> instead of for
   for (VertexPtrWeak vert : d_inConnections)
     n += (vert.lock() == i_vert);
   return n;
@@ -178,13 +178,13 @@ bool GraphVertexBase::removeVertexToInConnections(
 
   if (i_full) {
     bool f = false;
-    for (int i = d_inConnections.size() - 1; i >= 0; i--) {
+    for (int64_t i = d_inConnections.size() - 1; i >= 0; i--) {
       d_inConnections.erase(d_inConnections.begin() + i);
       f = true;
     }
     return f;
   } else {
-    for (int i = 0; i < d_inConnections.size(); i++) {
+    for (size_t i = 0; i < d_inConnections.size(); i++) {
       d_inConnections.erase(d_inConnections.begin() + i);
       return true;
     }
@@ -197,7 +197,7 @@ std::vector<VertexPtr> GraphVertexBase::getOutConnections() const {
 }
 
 bool GraphVertexBase::addVertexToOutConnections(VertexPtr i_vert) {
-  int n = 0;
+  size_t n = 0;
   for (VertexPtr vert : d_outConnections)
     n += (vert == i_vert);
   if (n == 0) {
@@ -208,7 +208,7 @@ bool GraphVertexBase::addVertexToOutConnections(VertexPtr i_vert) {
 }
 
 bool GraphVertexBase::removeVertexToOutConnections(VertexPtr i_vert) {
-  for (int i = 0; i < d_outConnections.size(); i++) {
+  for (size_t i = 0; i < d_outConnections.size(); i++) {
     d_outConnections.erase(d_outConnections.begin() + i);
     return true;
   }

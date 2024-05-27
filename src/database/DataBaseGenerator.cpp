@@ -78,14 +78,14 @@ void DataBaseGenerator::runGeneratorByDefault(
 
   ThreadPool pool(parallel);
 
-  for (int i = i_dbgp.getMinInputs(); i <= i_dbgp.getMaxInputs(); ++i) {
-    for (int j = i_dbgp.getMinOutputs(); j <= i_dbgp.getMaxOutputs(); ++j) {
+  for (int32_t i = i_dbgp.getMinInputs(); i <= i_dbgp.getMaxInputs(); ++i) {
+    for (int32_t j = i_dbgp.getMinOutputs(); j <= i_dbgp.getMaxOutputs(); ++j) {
       auto iter = seeds.begin();
       d_parameters.setInputs(i);
       d_parameters.setOutputs(j);
 
       if (parallel > 1) {
-        for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
+        for (int32_t tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           d_parameters.setIteration(tt);
           d_parameters.setName(
               d_settings->getGenerationMethodPrefix(gt)
@@ -103,7 +103,7 @@ void DataBaseGenerator::runGeneratorByDefault(
           ++iter;
         }
       } else {
-        for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
+        for (int32_t tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           // TODO: it is that Rustam told about iteration?
           d_parameters.setIteration(tt);
           d_parameters.setName(
@@ -319,7 +319,7 @@ void DataBaseGenerator::generateDataBaseSummator(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int      bits        = i_param.getInputs();
+  int32_t  bits        = i_param.getInputs();
   bool     overflowIn  = i_param.getSummator().getOverFlowIn();
   bool     overflowOut = i_param.getSummator().getOverFlowOut();
   bool     minus       = i_param.getSummator().getMinus();
@@ -338,7 +338,7 @@ void DataBaseGenerator::generateDataBaseComparison(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int      i_bits   = i_param.getInputs();
+  int32_t  i_bits   = i_param.getInputs();
   bool     compare0 = i_param.getComparison().getCompare0();
   bool     compare1 = i_param.getComparison().getCompare1();
   bool     compare2 = i_param.getComparison().getCompare2();
@@ -357,7 +357,7 @@ void DataBaseGenerator::generateDataBaseEncoder(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int      i_bits = i_param.getInputs();
+  int32_t  i_bits = i_param.getInputs();
   GraphPtr graph  = sg.generatorEncoder(i_bits);
   Circuit  c(graph);
   c.setPath(d_mainPath);
@@ -373,7 +373,7 @@ void DataBaseGenerator::generateDataBaseParity(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int      bits  = i_param.getInputs();
+  int32_t  bits  = i_param.getInputs();
   GraphPtr graph = sg.generatorParity(bits);
   Circuit  c(graph);
   c.setPath(d_mainPath);
@@ -409,7 +409,7 @@ void DataBaseGenerator::generateDataBaseMultiplexer(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int      i_bits = i_param.getInputs();
+  int32_t  i_bits = i_param.getInputs();
   GraphPtr graph  = sg.generatorMultiplexer(i_bits);
   Circuit  c(graph);
   c.setPath(d_mainPath);
@@ -425,7 +425,7 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
   SimpleGenerators sg(i_param.getSeed());
   sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
 
-  int      i_bits = i_param.getOutputs();
+  int32_t  i_bits = i_param.getOutputs();
   GraphPtr graph  = sg.generatorDemultiplexer(i_bits);
   Circuit  c(graph);
   c.setPath(d_mainPath);

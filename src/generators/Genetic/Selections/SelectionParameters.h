@@ -9,12 +9,12 @@ enum SelectionTypes
 class SelectionParameters
 {
 public:
-  int getNumOfSurvivors() const;
-  void setNumOfSurvivors(int i_survivors);
+  int32_t getNumOfSurvivors() const;
+  void setNumOfSurvivors(int32_t i_survivors);
   bool operator== (const SelectionParameters& r) const;
   void setSelectionType(SelectionTypes i_selectionType);
   SelectionTypes getSelectionType() const;
 private:
   SelectionTypes d_selectionType = SelectionTypes::Base;
-  int d_numOfSurvivors = 0;
+  int32_t d_numOfSurvivors = 0;
 };

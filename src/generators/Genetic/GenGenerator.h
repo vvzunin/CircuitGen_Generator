@@ -26,14 +26,13 @@ bool isNumber(const std::string& s) {
   return true;
 }
 
-int getNumFolderFromString(const std::string& path) {
-  int lastSlash = 0;
-  for (int i = 0; i < path.size(); ++i) {
+uint32_t getNumFolderFromString(const std::string& path) {
+  size_t lastSlash = 0;
+  for (size_t i = 0; i < path.size(); ++i) {
     if (path[i] == '_')
       lastSlash = i;
   }
   std::string lastDir = path.substr(lastSlash);
-  int         res     = 0;
   if (!isNumber(lastDir))
     return 0;
   return std::stoi(lastDir);
@@ -56,9 +55,9 @@ template<typename Type, typename ParametersType>
 class GeneticGenerator {
 public:
   GeneticGenerator(
-      const ParametersType& i_parameters,
-      std::pair<int, int>   i_inout,
-      const std::string&    i_mainPath
+      const ParametersType&       i_parameters,
+      std::pair<int32_t, int32_t> i_inout,
+      const std::string&          i_mainPath
   ) :
     d_parameters(i_parameters),
     d_inputs(i_inout.first),
@@ -89,7 +88,7 @@ public:
   std::vector<ChronosomeType<Type, ParametersType>> generate() {
     createPopulation();
     double d = endProcessFunction();
-    for (int i = 0;
+    for (int32_t i = 0;
          (i < d_parameters.getNumOfCycles())
          && (endProcessFunction() < d_parameters.getKeyEndProcessIndex());
          ++i) {
@@ -112,14 +111,14 @@ public:
   }
 
 private:
-  int                                               d_inputs;
-  int                                               d_outputs;
-  int                                               d_numCross;
+  uint32_t                                          d_inputs;
+  uint32_t                                          d_outputs;
+  uint32_t                                          d_numCross;
   std::vector<ChronosomeType<Type, ParametersType>> d_population;
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
   ParametersType            d_parameters;
   std::string               d_mainPath;
-  int                       d_foldersCount = 0;
+  uint32_t                  d_foldersCount = 0;
 
   void                      savePopulation(
                            const std::vector<ChronosomeType<Type, ParametersType>>& i_population
@@ -166,7 +165,7 @@ private:
 
   void createPopulation() {
     d_population.clear();
-    for (int i = 0; i < d_parameters.getPopulationSize(); ++i) {
+    for (int32_t i = 0; i < d_parameters.getPopulationSize(); ++i) {
       Type gen;
       gen.generateRandom(d_parameters);
       ChronosomeType<Type, ParametersType> ind =

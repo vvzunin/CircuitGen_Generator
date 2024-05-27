@@ -13,7 +13,7 @@ TruthTable::TruthTable() {
   d_settings = Settings::getInstance("TruthTable");
 }
 
-TruthTable::TruthTable(int i_seed) {
+TruthTable::TruthTable(uint_fast32_t i_seed) {
   d_randGenerator.setSeed(i_seed);
   d_settings = Settings::getInstance("TruthTable");
 }
@@ -24,13 +24,13 @@ TruthTable::TruthTable(int i_seed) {
 //     d_settings = Settings::getInstance("TruthTable");
 // }
 
-void TruthTable::setSeed(int i_seed) {
+void TruthTable::setSeed(uint_fast32_t i_seed) {
   d_randGenerator.setSeed(i_seed);
 }
 
 TruthTable::TruthTable(
-    int                                   i_input,
-    int                                   i_output,
+    int32_t                               i_input,
+    int32_t                               i_output,
     const std::vector<std::vector<bool>>& i_array
 ) :
   d_input(i_input), d_output(i_output) {
@@ -57,7 +57,7 @@ TruthTable::TruthTable(
   }
 }
 
-TruthTable::TruthTable(int i_input, int i_output, double i_p) :
+TruthTable::TruthTable(int32_t i_input, int32_t i_output, double i_p) :
   d_input(i_input), d_output(i_output) {
   d_size = (1u << i_input);
   generateTable(i_p);
@@ -65,8 +65,8 @@ TruthTable::TruthTable(int i_input, int i_output, double i_p) :
 
 std::vector<std::vector<bool>> TruthTable::convToBinary() const {
   std::vector<std::vector<bool>> bin(d_size, std::vector<bool>(d_input));
-  for (int i = 0; i < d_size; ++i) {
-    for (int j = d_input - 1, tmp = i; j >= 0; --j) {
+  for (int32_t i = 0; i < d_size; ++i) {
+    for (int32_t j = d_input - 1, tmp = i; j >= 0; --j) {
       bin[i][j] = (tmp % 2) == 1;
       tmp       /= 2;
     }
@@ -74,15 +74,15 @@ std::vector<std::vector<bool>> TruthTable::convToBinary() const {
   return bin;
 }
 
-int TruthTable::getInput() const {
+int32_t TruthTable::getInput() const {
   return d_input;
 }
 
-int TruthTable::getOutput() const {
+int32_t TruthTable::getOutput() const {
   return d_output;
 }
 
-int TruthTable::size() const {
+int32_t TruthTable::size() const {
   return d_size;
 }
 
@@ -90,7 +90,7 @@ std::vector<std::vector<bool>> TruthTable::getOutTable() const {
   return d_array;
 }
 
-bool TruthTable::getOutTable(int i, int j) const {
+bool TruthTable::getOutTable(int32_t i, int32_t j) const {
   return d_array.at(i).at(j);
 }
 
@@ -109,9 +109,9 @@ void TruthTable::generateRandom(TruthTableParameters i_gp) {
   d_array.clear();
   d_array.resize(d_size);
 
-  for (int i = 0; i < d_size; ++i) {
+  for (int32_t i = 0; i < d_size; ++i) {
     d_array[i].resize(i_gp.getOutputs());
-    for (int j = 0; j < i_gp.getOutputs(); ++j)
+    for (int32_t j = 0; j < i_gp.getOutputs(); ++j)
       d_array[i][j] = d_randGenerator.getRandInt(0, 1, true) == 1;
   }
 }
@@ -120,9 +120,9 @@ void TruthTable::generateTable(double i_p) {
   if (i_p <= 0) {
     d_array.clear();
     d_array.resize(d_size);
-    for (int i = 0; i < d_size; ++i) {
+    for (int32_t i = 0; i < d_size; ++i) {
       d_array[i].resize(d_output);
-      for (int j = 0; j < d_output; ++j)
+      for (int32_t j = 0; j < d_output; ++j)
         d_array[i][j] = d_randGenerator.getRandInt(0, 1, true) == 1;
     }
     return;
@@ -130,9 +130,9 @@ void TruthTable::generateTable(double i_p) {
   if (i_p > 0 && i_p <= 1) {
     d_array.clear();
     d_array.resize(d_size);
-    for (int i = 0; i < d_size; ++i) {
+    for (int32_t i = 0; i < d_size; ++i) {
       d_array[i].resize(d_output);
-      for (int j = 0; j < d_output; ++j)
+      for (int32_t j = 0; j < d_output; ++j)
         d_array[i][j] = AuxMethods::getRandDouble(0, 1) < i_p;
     }
     return;

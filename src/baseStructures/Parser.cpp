@@ -23,16 +23,16 @@ std::string deleteDoubleSpaces(const std::string& s) {
 }  // namespace
 
 Parser::Parser(
-    const std::string&                             i_logExpression,
-    const std::map<std::string, std::vector<int>>& i_info
+    const std::string&                                 i_logExpression,
+    const std::map<std::string, std::vector<int32_t>>& i_info
 ) {
   d_logExpressions.push_back(deleteDoubleSpaces(i_logExpression));
   setGatesInputsInfo(i_info);
 }
 
 Parser::Parser(
-    const std::vector<std::string>&                i_logExpressions,
-    const std::map<std::string, std::vector<int>>& i_info
+    const std::vector<std::string>&                    i_logExpressions,
+    const std::map<std::string, std::vector<int32_t>>& i_info
 ) {
   for (const auto& expression : i_logExpressions)
     d_logExpressions.push_back(expression);
@@ -60,7 +60,7 @@ GraphPtr Parser::getGraph() const {
 }
 
 void Parser::setGatesInputsInfo(
-    const std::map<std::string, std::vector<int>>& i_info
+    const std::map<std::string, std::vector<int32_t>>& i_info
 ) {
   for (auto& [key, value] : i_info) {
     d_gatesInputsInfo[d_settings->parseStringToGate(key)] = value;
@@ -171,7 +171,7 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
             i_expr   = deleteExtraSpaces(i_expr.substr(index + oper.length()));
             brackets = createBrackets(i_expr);
 
-            int idx  = i_expr.find(oper);
+            size_t idx = i_expr.find(oper);
             // now we are trying to parse whole operations
             if (idx != std::string::npos && !inBrackets(brackets.second, idx)) {
               index = idx;
@@ -230,7 +230,7 @@ VertexPtr Parser::multipleVerteciesToOne(
 
         // if we have less elements than we can add, and our logical element
         // has too big gates number, move to lower
-        int npos = pos;
+        int64_t npos = pos;
         while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
           --npos;
         }
@@ -246,7 +246,7 @@ VertexPtr Parser::multipleVerteciesToOne(
     if (curSize > 1) {
       // if we have less elements than we can add, and our logical element
       // has too big gates number, move to lower
-      int npos = pos;
+      int64_t npos = pos;
       while (npos >= 0 && curSize < d_gatesInputsInfo[operation][npos]) {
         --npos;
       }

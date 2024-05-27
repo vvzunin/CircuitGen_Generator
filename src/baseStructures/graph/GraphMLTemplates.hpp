@@ -16,5 +16,5 @@ const char* rawNodeTemplate  = R"(%    <node id="%">
 %    </node>
 )";
 
-const char* rawEdgeTemplate  = R"(%    <source="%" target="%"/>
+const char* rawEdgeTemplate  = R"(%    <edge source="%" target="%"/>
 )";

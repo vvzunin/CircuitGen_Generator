@@ -8,7 +8,7 @@ void RecombinationParameters::setMaskProbability(double i_maskProbability) {
 
 void RecombinationParameters::setParentsParameters(
     ParentsTypes i_parentsType,
-    int          i_tournamentSize
+    int32_t      i_tournamentSize
 ) {
   d_parentsParameters.setParentsType(i_parentsType);
   d_parentsParameters.setTournamentNumber(i_tournamentSize);
@@ -28,11 +28,11 @@ ParentsParameters RecombinationParameters::getParentsParameters() const {
   return d_parentsParameters;
 }
 
-int RecombinationParameters::getRefPoints() const {
+int32_t RecombinationParameters::getRefPoints() const {
   return d_refPoints;
 }
 
-void RecombinationParameters::setRefPoints(int i_refPoints) {
+void RecombinationParameters::setRefPoints(int32_t i_refPoints) {
   d_refPoints = i_refPoints;
 }
 
@@ -40,11 +40,11 @@ double RecombinationParameters::getMaskProbability() const {
   return d_maskProbability;
 }
 
-void RecombinationParameters::setRecombinationParameters(int i_rp) {
+void RecombinationParameters::setRecombinationParameters(int32_t i_rp) {
   d_recombinationNumber = i_rp;
 }
 
-int RecombinationParameters::getRecombinationParameters() const {
+int32_t RecombinationParameters::getRecombinationParameters() const {
   return d_recombinationNumber;
 }
 

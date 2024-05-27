@@ -84,7 +84,7 @@ private:
   std::shared_ptr<Settings> d_settings =
       Settings::getInstance("DataBaseGenerator");
   DataBaseGeneratorParameters d_parameters;  // why we need this var?
-  int                         d_dirCount = 0;
+  int32_t                     d_dirCount = 0;
 
   /// @brief generateDataBaseFromRandomTruthTable The generate DataBase From
   /// Random Truth Table method of the DataBase Generator class is responsible

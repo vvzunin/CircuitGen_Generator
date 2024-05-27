@@ -22,21 +22,21 @@ class TruthTable {
 public:
   TruthTable();
 
-  TruthTable(int seed);
+  TruthTable(uint_fast32_t seed);
   // TruthTable(const TruthTable& other)            = default;
   TruthTable& operator=(const TruthTable& other) = default;
   TruthTable(TruthTable&& other)                 = default;
   TruthTable& operator=(TruthTable&& other)      = default;
   TruthTable(
-      int                                   i_input,
-      int                                   i_output,
+      int32_t                               i_input,
+      int32_t                               i_output,
       const std::vector<std::vector<bool>>& i_array = {}
   );
   TruthTable(
       const TruthTable&              i_tt,
       std::vector<std::vector<bool>> i_array = {}
   );
-  TruthTable(int i_input, int i_output, double i_p = 0.5);
+  TruthTable(int32_t i_input, int32_t i_output, double i_p = 0.5);
 
   /// @brief setSeed
   /// Set the seed for random number generation.
@@ -51,7 +51,7 @@ public:
   /// For the getSeed method there is getSeed in RandomGeneratorWithSeed.hpp
   /// @see RandomGeneratorWithSeed
 
-  void                           setSeed(int i_seed);
+  void                           setSeed(uint_fast32_t i_seed);
   // void generateRandom(TruthTableParameters i_gp) override;
 
   /// @brief generateTable The method generates a truth table for a
@@ -78,22 +78,22 @@ public:
   /// @return The number of input variables.
   /// @code
   /// TruthTable table;
-  /// int numInputs = table.getInput();
+  /// int32_t numInputs = table.getInput();
   /// std::cout << "Number of input variables: " << numInputs << std::endl;
   /// @endcode
 
-  int                            getInput() const;
+  int32_t                        getInput() const;
 
   /// @brief getOutput
   /// Get the number of output variables in the truth table
   /// @return The number of output variables.
   /// @code
   /// TruthTable table;
-  /// int numOutputs = table.getOutput();
+  /// int32_t numOutputs = table.getOutput();
   /// std::cout << "Number of output variables: " << numOutputs << std::endl;
   /// @endcode
 
-  int                            getOutput() const;
+  int32_t                        getOutput() const;
 
   /// @brief size
   /// Get the size of the truth table.
@@ -103,11 +103,11 @@ public:
   /// @code
   /// // Creating a truth table with 3 input variables and 2 output variables
   /// TruthTable table (3,2);
-  /// int tableSize = table.size();
+  /// int32_t tableSize = table.size();
   /// std::cout << "Size of the truth table: " << tableSize << std::endl;
   /// @endcode
 
-  int                            size() const;
+  int32_t                        size() const;
 
   /// @brief getOutTable
   /// Get the output table.
@@ -150,7 +150,7 @@ public:
   /// bool value = table.getOutTable(1,0);
   /// @endcode
 
-  bool                           getOutTable(int i, int j) const;
+  bool                           getOutTable(int32_t i, int32_t j) const;
 
   /// @brief convToBinary
   /// Convert truth table indices to binary representation
@@ -200,9 +200,9 @@ public:
   bool                           operator==(const TruthTable& r) const;
 
 private:
-  int                            d_input;
-  int                            d_output;
-  int                            d_size;
+  int32_t                        d_input;
+  int32_t                        d_output;
+  int32_t                        d_size;
   std::vector<std::vector<bool>> d_array;
   std::shared_ptr<Settings> d_settings = Settings::getInstance("TruthTable");
   RandomGeneratorWithSeed   d_randGenerator;
