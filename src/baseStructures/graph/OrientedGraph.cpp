@@ -660,27 +660,32 @@ bool OrientedGraph::isConnected(bool i_recalculate) {
     return (d_connected = 1);
   }
 
-  size_t subGraphsBuffersCount = 0;
+  size_t                        subGraphsBuffersCount = 0;
+  std::unordered_set<VertexPtr> disconnectedSubGraphs;
   for (auto subGraph : d_vertexes[VertexTypes::subGraph]) {
     subGraphsBuffersCount += subGraph->getOutConnections().size();
-    auto subGraphPtr      = static_cast<GraphVertexSubGraph*>(subGraph.get());
+    auto subGraphPtr = std::dynamic_pointer_cast<GraphVertexSubGraph>(subGraph);
     if (!subGraphPtr->getSubGraph()->isConnected()) {
-      return (d_connected = -1) + 1;
+      disconnectedSubGraphs.insert(subGraph);
     }
   }
 
   std::unordered_set<VertexPtr> visited;
   VertexPtr                     startVertex = nullptr;
   for (auto& [type, vertices] : d_vertexes) {
+    if (type == VertexTypes::subGraph) {
+      continue;
+    }
     if (!vertices.empty()) {
       startVertex = vertices[0];
       break;
     }
   }
 
-  dfs(startVertex, visited);
+  dfs(startVertex, visited, disconnectedSubGraphs);
 
-  if (visited.size() == size + subGraphsBuffersCount) {
+  if (visited.size()
+      == size + subGraphsBuffersCount - disconnectedSubGraphs.size()) {
     return (d_connected = 1);
   } else {
     return (d_connected = -1) + 1;
@@ -710,7 +715,8 @@ bool OrientedGraph::isConnected(bool i_recalculate) {
 
 void OrientedGraph::dfs(
     VertexPtr                      i_startVertex,
-    std::unordered_set<VertexPtr>& i_visited
+    std::unordered_set<VertexPtr>& i_visited,
+    std::unordered_set<VertexPtr>& i_dsg
 ) {
   std::stack<VertexPtr> stck;
   stck.push(i_startVertex);
@@ -723,14 +729,32 @@ void OrientedGraph::dfs(
       i_visited.insert(current);
 
       for (auto v : current->getOutConnections()) {
-        stck.push(v);
+        if (v->getType() != VertexTypes::subGraph
+            || i_dsg.find(v) == i_dsg.end()) {
+          stck.push(v);
+        } else {
+          auto subGraphPtr = std::dynamic_pointer_cast<GraphVertexSubGraph>(v);
+          for (auto buf : subGraphPtr->getOutputBuffersByOuterInput(current)) {
+            stck.push(buf);
+          }
+        }
       }
       for (auto v : current->getInConnections()) {
         auto ptr = v.lock();
         if (!ptr) {
           throw std::invalid_argument("Dead pointer!");
         }
-        stck.push(ptr);
+        if (ptr->getType() != VertexTypes::subGraph
+            || i_dsg.find(ptr) == i_dsg.end()) {
+          stck.push(ptr);
+        } else {
+          auto subGraphPtr =
+              std::dynamic_pointer_cast<GraphVertexSubGraph>(ptr);
+          for (auto input :
+               subGraphPtr->getOuterInputsByOutputBuffer(current)) {
+            stck.push(input);
+          }
+        }
       }
     }
   }

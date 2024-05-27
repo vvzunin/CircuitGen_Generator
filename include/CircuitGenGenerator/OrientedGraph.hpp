@@ -451,7 +451,11 @@ private:
 
   // -1 if false, 0 if undefined, 1 if true
   int8_t                    d_connected       = 0;
-  void dfs(VertexPtr i_startVertex, std::unordered_set<VertexPtr>& i_visited);
+  void                      dfs(
+                           VertexPtr                      i_startVertex,
+                           std::unordered_set<VertexPtr>& i_visited,
+                           std::unordered_set<VertexPtr>& i_dsg
+                       );
   // We can add a subgraph multiple times
   // so we need to count instances to verilog.
   // We are counting to know, which inputs and outputs should we use now
@@ -461,7 +465,7 @@ private:
   // depending on subgraph instance number
   std::map<size_t, std::vector<std::vector<VertexPtr>>> d_subGraphsOutputsPtr;
   std::vector<VertexPtr>                                d_allSubGraphsOutputs;
-  // we have such pairs: number of subragh instances,
+  // we have such pairs: number of subgraph instances,
   std::map<size_t, std::vector<std::vector<VertexPtr>>> d_subGraphsInputsPtr;
 
   std::set<GraphPtr>                                    d_subGraphs;
