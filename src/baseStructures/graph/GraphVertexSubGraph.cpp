@@ -94,7 +94,7 @@ std::vector<VertexPtr> GraphVertexSubGraph::getOutputBuffersByOuterInput(
 ) const {
   size_t inputIndex = SIZE_MAX;
   for (size_t i = 0; i < d_inConnections.size(); ++i) {
-    if (d_inConnections[i].lock().get() == i_outerInput.get()) {
+    if (d_inConnections[i].lock() == i_outerInput) {
       inputIndex = i;
       break;
     }
@@ -147,7 +147,7 @@ std::vector<VertexPtr> GraphVertexSubGraph::getOuterInputsByOutputBuffer(
 ) const {
   size_t bufferIndex = SIZE_MAX;
   for (size_t i = 0; i < d_outConnections.size(); ++i) {
-    if (d_outConnections[i].get() == i_outputBuffer.get()) {
+    if (d_outConnections[i] == i_outputBuffer) {
       bufferIndex = i;
       break;
     }
@@ -181,7 +181,7 @@ std::vector<VertexPtr> GraphVertexSubGraph::getOuterInputsByOutputBuffer(
         }
         if (ptr->getType() == VertexTypes::input) {
           for (size_t i = 0; i < sgAllInputs.size(); ++i) {
-            if (sgAllInputs[i].get() == ptr.get()) {
+            if (sgAllInputs[i] == ptr) {
               inputs.push_back(d_inConnections[i].lock());
             }
           }
