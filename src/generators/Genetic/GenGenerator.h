@@ -32,7 +32,9 @@ uint32_t getNumFolderFromString(const std::string& path) {
     if (path[i] == '_')
       lastSlash = i;
   }
+
   std::string lastDir = path.substr(lastSlash);
+
   if (!isNumber(lastDir))
     return 0;
   return std::stoi(lastDir);

@@ -18,7 +18,7 @@ std::atomic_size_t OrientedGraph::d_countNewGraphInstance = 0;
 
 OrientedGraph::OrientedGraph(const std::string& i_name) {
   d_graphID = d_countNewGraphInstance++;
-  // this_ptr.reset(this);
+
   if (i_name == "")
     d_name = "graph_" + std::to_string(d_countGraph++);
   else
