@@ -13,7 +13,7 @@ std::shared_ptr<Settings> Settings::getInstance(const std::string& i_value) {
    * This is a safer way to create an instance. instance = new Singleton is
    * dangeruous in case two instance threads wants to access at the same time
    */
-  if (d_singleton.get() == nullptr) {
+  if (d_singleton == nullptr) {
     d_singleton.reset(new Settings(i_value));
     d_singleton->loadSettings();
   }

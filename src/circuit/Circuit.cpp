@@ -221,6 +221,8 @@ bool Circuit::saveParameters(
                << "\"," << std::endl;
   i_outputFile << tab << "\"hash_code\": \"" << d_circuitParameters.d_hashCode
                << "\"," << std::endl;
+  i_outputFile << tab << "\"connected\": " << std::boolalpha
+               << i_graph->isConnected() << "," << std::endl;
 
   i_outputFile << tab << "\"numElementsOfEachType\": {" << std::endl;
 

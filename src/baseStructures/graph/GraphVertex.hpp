@@ -150,6 +150,10 @@ public:
 
   void        setSubGraph(GraphPtr i_subGraph);
   GraphPtr    getSubGraph() const;
+  std::vector<VertexPtr> getOutputBuffersByOuterInput(VertexPtr i_outerInput
+  ) const;
+  std::vector<VertexPtr> getOuterInputsByOutputBuffer(VertexPtr i_outputBuffer
+  ) const;
 
 private:
   GraphPtr    d_subGraph;

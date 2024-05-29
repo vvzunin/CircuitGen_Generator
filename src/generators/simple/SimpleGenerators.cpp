@@ -137,12 +137,12 @@ GraphPtr
 
     if (mem == 0 || mem == i_table.size()) {
       if (i_tp && mem == 0 || !i_tp && mem == i_table.size()) {
-        if (constGate_0.get() == nullptr) {
+        if (constGate_0 == nullptr) {
           constGate_0 = graph->addConst('0');
         }
         graph->addEdge(constGate_0, out);
       } else {
-        if (constGate_1.get() == nullptr) {
+        if (constGate_1 == nullptr) {
           constGate_1 = graph->addConst('1');
         }
         graph->addEdge(constGate_1, out);
@@ -277,9 +277,9 @@ GraphPtr SimpleGenerators::generatorRandLevel(
   int32_t maxLevel;
 
   if (i_minLevel > i_maxLevel)
-    throw std::invalid_argument("min level is biggert than max level");
+    throw std::invalid_argument("min level is bigger than max level");
   if (i_minElements > i_maxElements)
-    throw std::invalid_argument("min elem is biggert than max elem");
+    throw std::invalid_argument("min elem is bigger than max elem");
 
   if (i_maxLevel)
     maxLevel = d_randGenerator.getRandInt(i_minLevel, i_maxLevel, true) + 1;
@@ -361,9 +361,9 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
     uint32_t i_outputs
 ) {
   if (i_minLevel > i_maxLevel)
-    throw std::invalid_argument("min level is biggert than max level");
+    throw std::invalid_argument("min level is bigger than max level");
   if (i_minElements > i_maxElements)
-    throw std::invalid_argument("min elem is biggert than max elem");
+    throw std::invalid_argument("min elem is bigger than max elem");
 
   uint32_t maxLevel;
   if (i_maxLevel)
@@ -938,7 +938,7 @@ GraphPtr SimpleGenerators::generatorSubtractor(
     graph->addEdges({input_x, input_y}, abxor);
 
     VertexPtr abandn;
-    // i_sub отвечает за определение вычитателя и вычитываемого: B-A или A-B
+    // i_sub отвечает за определение уменьшаемого и вычитываемого: B-A или A-B
     if (!i_sub) {
       VertexPtr nx = graph->addGate(Gates::GateNot, "na" + Z);
       graph->addEdge(input_x, nx);
