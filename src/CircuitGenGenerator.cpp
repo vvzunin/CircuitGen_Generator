@@ -131,22 +131,6 @@ void runGeneration(
       std::clog << "repeat_n is not in json" << std::endl;
     }
 
-    // this is for ABC
-    bool        calculateStatsAbc  = data.contains("calculate_stats_abc")
-                                       ? (bool)data["calculate_stats_abc"]
-                                       : false;
-    bool        makeOptimizedFiles = data.contains("make_optimized_files")
-                                       ? (bool)data["make_optimized_files"]
-                                       : false;
-    std::string libraryName =
-        data.contains("library_name") ? (std::string)data["library_name"] : "";
-    bool makeBench =
-        data.contains("make_bench") ? (bool)data["make_bench"] : false;
-
-    // and this is for Yosys
-    bool makeFirrtl =
-        data.contains("make_firrtl") ? (bool)data["make_firrtl"] : false;
-
     // for GraphML
     bool makeGraphML =
         data.contains("make_graphml") ? (bool)data["make_graphml"] : false;
@@ -187,11 +171,6 @@ void runGeneration(
         minInputs,
         minOutputs,
         repeats,
-        libraryName,
-        calculateStatsAbc,
-        makeOptimizedFiles,
-        makeFirrtl,
-        makeBench,
         makeGraphML
     );
 

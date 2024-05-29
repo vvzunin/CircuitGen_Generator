@@ -258,17 +258,11 @@ private:
 /// class GenerationParameters
 /// @param d_name Generation name
 /// @param d_requestId request ID
-/// @param d_libraryName library name***
 /// @param d_inputs number of inputs
 /// @param d_outputs number of outputs
 /// @param d_iteration ???
-/// @param d_calculateStatsAbc A Boolean value indicating whether ABC statistics
-/// should be calculated
-/// @param d_makeOptimizedFiles A Boolean value indicating whether optimized
-/// files should be created
-/// @param d_makeFirrtl A Boolean value indicating whether FIRRTL files should
-/// be created
-/// @param d_makeBench A Boolean value indicating whether to create Bench files
+/// @param d_makeGraphMl A Boolean value indicating whether to create graph ml
+/// files
 /// @param d_gatesInputsInfo A mapping where the key is a string representing
 /// information about the inputs, and the value is a vector of integers
 /// representing information about the inputs for the gates***
@@ -306,23 +300,13 @@ public:
       uint32_t           i_inputs,
       uint32_t           i_outputs,
       uint32_t           i_iteration,
-      std::string        i_libraryName        = "",
-      bool               i_calculateStatsAbc  = false,
-      bool               i_makeOptimizedFiles = false,
-      bool               i_makeFirrtl         = false,
-      bool               i_makeBench          = false,
-      bool               i_makeGraphML        = false
+      bool               i_makeGraphML = false
   ) :
     d_name(i_name),
     d_requestId(i_requestId),
     d_inputs(i_inputs),
     d_outputs(i_outputs),
     d_iteration(i_iteration),
-    d_libraryName(i_libraryName),
-    d_calculateStatsAbc(i_calculateStatsAbc),
-    d_makeOptimizedFiles(i_makeOptimizedFiles),
-    d_makeFirrtl(i_makeFirrtl),
-    d_makeBench(i_makeBench),
     d_makeGraphML(i_makeGraphML) {};
 
   std::string getName() const { return d_name; }
@@ -331,25 +315,19 @@ public:
 
   std::string getRequestId() const { return d_requestId; }
 
-  std::string getLibraryName() const { return d_libraryName; }
+  uint32_t    getInputs() const { return d_inputs; }
 
-  void        setLibraryName(std::string i_libraryName) {
-    d_libraryName = i_libraryName;
-  }
+  void        setInputs(uint32_t i_inputs) { d_inputs = i_inputs; }
 
-  uint32_t getInputs() const { return d_inputs; }
+  uint32_t    getOutputs() const { return d_outputs; }
 
-  void     setInputs(uint32_t i_inputs) { d_inputs = i_inputs; }
+  void        setOutputs(uint32_t i_outputs) { d_outputs = i_outputs; }
 
-  uint32_t getOutputs() const { return d_outputs; }
+  uint32_t    getIteration() const { return d_iteration; }
 
-  void     setOutputs(uint32_t i_outputs) { d_outputs = i_outputs; }
+  void        setIteration(uint32_t i_iteration) { d_iteration = i_iteration; }
 
-  uint32_t getIteration() const { return d_iteration; }
-
-  void     setIteration(uint32_t i_iteration) { d_iteration = i_iteration; }
-
-  bool     getMakeGraphML() const { return d_makeGraphML; }
+  bool        getMakeGraphML() const { return d_makeGraphML; }
 
   std::uint_fast32_t getSeed() const { return d_seed; }
 
@@ -540,14 +518,9 @@ public:
 private:
   std::string                                 d_name = "";
   std::string                                 d_requestId;
-  std::string                                 d_libraryName;
   uint32_t                                    d_inputs    = 0;
   uint32_t                                    d_outputs   = 0;
   uint32_t                                    d_iteration = 0;
-  bool                                        d_calculateStatsAbc;
-  bool                                        d_makeOptimizedFiles;
-  bool                                        d_makeFirrtl;
-  bool                                        d_makeBench;
   bool                                        d_makeGraphML;
   std::map<std::string, std::vector<int32_t>> d_gatesInputsInfo;
 
