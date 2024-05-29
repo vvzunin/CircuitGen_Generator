@@ -305,7 +305,7 @@ void DataBaseGenerator::generateDataBaseGenetic(
       d_mainPath,
       i_param.getName()
   );
-  
+
   gg.generate();
   // TODO make function return graphs
 }
