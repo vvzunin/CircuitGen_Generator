@@ -1156,7 +1156,7 @@ GraphPtr SimpleGenerators::generatorDecoder(uint32_t i_bits) {
     for (int32_t i = 0; i < i_bits; i++) {
       std::string Z = std::to_string(i);
       X[i]          = graph->addInput("x" + Z);
-      X[i + i_bits] = graph->addGate(GateNot, "not (x" + Z + ")");
+      X[i + i_bits] = graph->addGate(GateNot, "not_x" + Z + "");
       graph->addEdge(X[i], X[i + i_bits]);
     }
     for (int32_t i = 0; i < pow(2, i_bits); i++) {
@@ -1182,7 +1182,7 @@ GraphPtr SimpleGenerators::generatorDecoder(uint32_t i_bits) {
     }
   } else {
     VertexPtr x     = graph->addInput("x");
-    VertexPtr not_x = graph->addGate(GateNot, "not (x)");
+    VertexPtr not_x = graph->addGate(GateNot, "not_x_");
     for (int32_t i = 0; i < 2; i++) {
       VertexPtr out = graph->addOutput("f" + std::to_string(i));
       if (i == 0) {
