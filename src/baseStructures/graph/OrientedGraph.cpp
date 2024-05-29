@@ -30,7 +30,14 @@ OrientedGraph::OrientedGraph(const std::string& i_name) {
   }
 }
 
-OrientedGraph::~OrientedGraph() {}
+OrientedGraph::~OrientedGraph() {
+  for (auto sub : d_subGraphs) {
+    sub->d_subGraphsInputsPtr.erase(d_graphID);
+    sub->d_subGraphsOutputsPtr.erase(d_graphID);
+
+    sub->d_currentParentGraph.lock() = nullptr;
+  }
+}
 
 size_t OrientedGraph::baseSize() const {
   return d_vertexes.at(VertexTypes::gate).size();
@@ -88,14 +95,6 @@ uint32_t OrientedGraph::getMaxLevel() {
   return mx;
 }
 
-void OrientedGraph::addParentGraph(GraphPtr i_baseGraph) {
-  d_parentGraphs.push_back(i_baseGraph);
-}
-
-std::vector<GraphPtrWeak> OrientedGraph::getParentGraphs() const {
-  return d_parentGraphs;
-}
-
 VertexPtr OrientedGraph::addInput(const std::string& i_name) {
   VertexPtr newVertex(new GraphVertexInput(i_name, shared_from_this()));
   d_vertexes[VertexTypes::input].push_back(newVertex);
@@ -137,12 +136,12 @@ std::vector<VertexPtr> OrientedGraph::addSubGraph(
   std::vector<VertexPtr> iGraph =
       i_subGraph->getVerticesByType(VertexTypes::input);
 
-  i_subGraph->addParentGraph(shared_from_this());
   i_subGraph->setCurrentParent(shared_from_this());
+  i_subGraph->d_isSubGraph = true;
 
   if (i_inputs.size() != iGraph.size()) {
     throw std::invalid_argument(
-        "Number of inputs should be same, as subgrap inputs number"
+        "Number of inputs should be same, as subgraph inputs number"
     );
   }
 
@@ -391,7 +390,7 @@ std::string OrientedGraph::getGraphInstance() {
   for (size_t i = 0; i < d_vertexes[VertexTypes::input].size(); ++i) {
     auto inp = d_subGraphsInputsPtr[d_currentParentGraph.lock()->d_graphID]
                                    [*verilogCount][i];
-    std::string inp_name  = d_vertexes[VertexTypes::input][i]->getName();
+    std::string inp_name = d_vertexes[VertexTypes::input][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + inp_name + "( ";
     module_ver           += inp->getName() + " ),\n";
@@ -401,13 +400,13 @@ std::string OrientedGraph::getGraphInstance() {
     VertexPtr out =
         d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_graphID]
                              [*verilogCount][i];
-    std::string out_name  = d_vertexes[VertexTypes::output][i]->getName();
+    std::string out_name = d_vertexes[VertexTypes::output][i]->getName();
 
     module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
     module_ver           += out->getName() + " ),\n";
   }
 
-  std::string out_name  = d_vertexes[VertexTypes::output].back()->getName();
+  std::string out_name = d_vertexes[VertexTypes::output].back()->getName();
 
   module_ver           += verilogTab + verilogTab + "." + out_name + "( ";
   module_ver += d_subGraphsOutputsPtr[d_currentParentGraph.lock()->d_graphID]
@@ -424,7 +423,7 @@ std::string OrientedGraph::getGraphInstance() {
 
 std::pair<bool, std::string>
     OrientedGraph::toVerilog(std::string i_path, std::string i_filename) {
-  if (d_alreadyParsed && d_parentGraphs.size()) {
+  if (d_alreadyParsed && d_isSubGraph) {
     return std::make_pair(true, getGraphInstance());
   }
   // В данном методе происходит только генерация одного графа. Без подграфов.
@@ -433,7 +432,7 @@ std::pair<bool, std::string>
   if (!i_filename.size()) {
     i_filename = d_name + ".v";
   }
-  std::string   path = i_path + (d_parentGraphs.size() ? "/submodules" : "");
+  std::string   path        = i_path + (d_isSubGraph ? "/submodules" : "");
 
   auto          correctPath = path + "/" + i_filename;
   std::ofstream fileStream(correctPath);
@@ -533,7 +532,7 @@ std::pair<bool, std::string>
 
   d_alreadyParsed = true;
 
-  if (d_parentGraphs.size()) {
+  if (d_isSubGraph) {
     return std::make_pair(true, getGraphInstance());
   }
 
@@ -662,27 +661,32 @@ bool OrientedGraph::isConnected(bool i_recalculate) {
     return (d_connected = 1);
   }
 
-  size_t subGraphsBuffersCount = 0;
+  size_t                        subGraphsBuffersCount = 0;
+  std::unordered_set<VertexPtr> disconnectedSubGraphs;
   for (auto subGraph : d_vertexes[VertexTypes::subGraph]) {
     subGraphsBuffersCount += subGraph->getOutConnections().size();
-    auto subGraphPtr       = static_cast<GraphVertexSubGraph*>(subGraph.get());
+    auto subGraphPtr = std::dynamic_pointer_cast<GraphVertexSubGraph>(subGraph);
     if (!subGraphPtr->getSubGraph()->isConnected()) {
-      return (d_connected = -1) + 1;
+      disconnectedSubGraphs.insert(subGraph);
     }
   }
 
   std::unordered_set<VertexPtr> visited;
   VertexPtr                     startVertex = nullptr;
   for (auto& [type, vertices] : d_vertexes) {
+    if (type == VertexTypes::subGraph) {
+      continue;
+    }
     if (!vertices.empty()) {
       startVertex = vertices[0];
       break;
     }
   }
 
-  dfs(startVertex, visited);
+  dfs(startVertex, visited, disconnectedSubGraphs);
 
-  if (visited.size() == size - subGraphsBuffersCount) {
+  if (visited.size()
+      == size + subGraphsBuffersCount - disconnectedSubGraphs.size()) {
     return (d_connected = 1);
   } else {
     return (d_connected = -1) + 1;
@@ -712,7 +716,8 @@ bool OrientedGraph::isConnected(bool i_recalculate) {
 
 void OrientedGraph::dfs(
     VertexPtr                      i_startVertex,
-    std::unordered_set<VertexPtr>& i_visited
+    std::unordered_set<VertexPtr>& i_visited,
+    std::unordered_set<VertexPtr>& i_dsg
 ) {
   std::stack<VertexPtr> stck;
   stck.push(i_startVertex);
@@ -725,14 +730,32 @@ void OrientedGraph::dfs(
       i_visited.insert(current);
 
       for (auto v : current->getOutConnections()) {
-        stck.push(v);
+        if (v->getType() != VertexTypes::subGraph
+            || i_dsg.find(v) == i_dsg.end()) {
+          stck.push(v);
+        } else {
+          auto subGraphPtr = std::dynamic_pointer_cast<GraphVertexSubGraph>(v);
+          for (auto buf : subGraphPtr->getOutputBuffersByOuterInput(current)) {
+            stck.push(buf);
+          }
+        }
       }
       for (auto v : current->getInConnections()) {
         auto ptr = v.lock();
         if (!ptr) {
           throw std::invalid_argument("Dead pointer!");
         }
-        stck.push(ptr);
+        if (ptr->getType() != VertexTypes::subGraph
+            || i_dsg.find(ptr) == i_dsg.end()) {
+          stck.push(ptr);
+        } else {
+          auto subGraphPtr =
+              std::dynamic_pointer_cast<GraphVertexSubGraph>(ptr);
+          for (auto input :
+               subGraphPtr->getOuterInputsByOutputBuffer(current)) {
+            stck.push(input);
+          }
+        }
       }
     }
   }
