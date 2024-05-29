@@ -14,9 +14,9 @@
     "create_id_directories": true,
     "library_name": "sky130",
 
-    "=": true,
-    "<": true,
-    ">": true
+    "equal": true,
+    "less": true,
+    "more": true
   }
 ]
  
