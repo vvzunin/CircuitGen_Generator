@@ -6,6 +6,8 @@
 
 #include "MutationTruthTable.h"
 
+#include <additional/AuxiliaryMethods.hpp>
+
 namespace MutationTruthTable {
 std::vector<std::vector<bool>> MutationTable(
     std::vector<std::vector<bool>> i_table,
@@ -34,14 +36,14 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationBinary(
   int32_t output = i_population[0].getChronosomeType().getOutput();
   std::srand(time(0));
   for (size_t i = 0; i < i_population.size(); ++i) {
-    num_mut = (rand() % (size * output)) + 1;
+    num_mut = AuxMethods::getRandInt(1, (size * output), true);
     std::vector<std::vector<bool>> mutant =
         i_population[i].getChronosomeType().getOutTable();
     std::vector<int32_t> m;
     for (int32_t j = 0; j < num_mut; ++j) {
       do {
-        n = rand() % output;
-        k = rand() % size;
+        n = AuxMethods::getRandInt(0, output);
+        k = AuxMethods::getRandInt(0, size);
       } while (std::find(m.begin(), m.end(), k * output + n) != m.end());
       m.push_back(k * output + n);
       mutant[k][n] = !mutant[k][n];
@@ -103,7 +105,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
     if (distribution(generator) < i_mutationParameters.getProbabilityGen()) {
       std::vector<std::vector<bool>> bin2 =
           i_population[i].getChronosomeType().getOutTable();
-      bin2[size - 1] = bin[rand() % size];
+      bin2[size - 1] = bin[AuxMethods::getRandInt(0, size)];
       i_population[i].setChronosomeType(
           TruthTable(i_population[0].getChronosomeType(), bin2)
       );
@@ -129,7 +131,8 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationInsertDel(
     if (distribution(generator) < i_mutationParameters.getProbabilityGen()) {
       std::vector<std::vector<bool>> bin2 =
           i_population[i].getChronosomeType().getOutTable();
-      bin2[rand() % size] = bin[rand() % size];
+      bin2[AuxMethods::getRandInt(0, size)] =
+          bin[AuxMethods::getRandInt(0, size)];
       i_population[i].setChronosomeType(
           TruthTable(i_population[0].getChronosomeType(), bin2)
       );
@@ -150,8 +153,8 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationExchange(
   int32_t size   = i_population[0].getChronosomeType().size();
   int32_t output = i_population[0].getChronosomeType().getOutput();
 
-  int32_t k      = rand() % size;
-  int32_t n      = rand() % output;
+  int32_t k      = AuxMethods::getRandInt(0, size);
+  int32_t n      = AuxMethods::getRandInt(0, output);
 
   for (size_t z = 0; z < i_population.size(); ++z) {
     if (distribution(generator) < i_mutationParameters.getProbabilityGen()) {

@@ -51,8 +51,8 @@ inline std::vector<int32_t> ParentsPanmixia(
   int32_t parent1 = 0, parent2 = 0;
 
   while (i_population.size() > 2 && parent1 == parent2) {
-    parent1 = rand() % i_population.size();
-    parent2 = rand() % i_population.size();
+    parent1 = AuxMethods::getRandInt(0, i_population.size());
+    parent2 = AuxMethods::getRandInt(0, i_population.size());
   }
 
   return {parent1, parent2};
@@ -64,7 +64,7 @@ inline std::vector<int32_t> ParentsInbrinding(
 ) {
   std::srand(std::time(0));
 
-  int32_t parent1 = rand() % i_population.size();
+  int32_t parent1 = AuxMethods::getRandInt(0, i_population.size());
   int32_t parent2 = GetHemming(parent1, i_population).back();
 
   return {parent1, parent2};
@@ -76,7 +76,7 @@ inline std::vector<int32_t> ParentsOutbrinding(
 ) {
   std::srand(std::time(0));
 
-  int32_t parent1 = rand() % i_population.size();
+  int32_t parent1 = AuxMethods::getRandInt(0, i_population.size());
   int32_t parent2 = GetHemming(parent1, i_population).front();
 
   return {parent1, parent2};

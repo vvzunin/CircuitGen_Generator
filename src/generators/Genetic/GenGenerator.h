@@ -8,7 +8,6 @@
 #include <utility>
 
 #include <additional/filesTools/FilesTools.hpp>
-#include <baseStructures/Parser.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <circuit/Circuit.hpp>
 #include <generators/simple/SimpleGenerators.hpp>
@@ -26,18 +25,32 @@ bool isNumber(const std::string& s) {
   return true;
 }
 
-uint32_t getNumFolderFromString(const std::string& path) {
-  size_t lastSlash = 0;
-  for (size_t i = 0; i < path.size(); ++i) {
-    if (path[i] == '_')
-      lastSlash = i;
+// copied from DataBaseGenerator
+uint32_t getNumFolderFromString(std::string& path, const std::string& prefix) {
+  uint32_t dirCount = 0u;
+  for (const auto item : FilesTools::getDirectories(path)) {
+    std::string s0  = item;
+    auto        pos = s0.find(prefix);
+
+    if (pos == std::string::npos)
+      continue;
+
+    s0.replace(pos, prefix.size(), "");
+
+    auto jk = std::min(s0.find("_"), s0.find("."));
+    if (jk == std::string::npos) {
+      jk = s0.size();
+    }
+
+    s0       = s0.substr(0, jk);
+
+    dirCount = std::max<uint32_t>(
+        dirCount,
+        std::stoi(s0) + 1
+    );
   }
 
-  std::string lastDir = path.substr(lastSlash);
-
-  if (!isNumber(lastDir))
-    return 0;
-  return std::stoi(lastDir);
+  return dirCount;
 }
 
 /// @brief GeneticGenerator
@@ -65,13 +78,13 @@ public:
     d_inputs(i_inout.first),
     d_outputs(i_inout.second),
     d_mainPath(i_mainPath) {
-    std::string dataPath = "../." + d_settings->getDatasetPath()
-                         + "/Genetic";  // TODO:: Make general function
+    std::string dataPath =
+        d_mainPath + "/Genetic";  // TODO:: Make general function
+
     if (FilesTools::isDirectoryExists(dataPath)) {
-      for (const auto& entry : std::filesystem::directory_iterator(dataPath)) {
-        d_foldersCount =
-            std::max(d_foldersCount, getNumFolderFromString(entry.path()) + 1);
-      }
+      d_foldersCount = getNumFolderFromString(
+          dataPath, d_settings->getGenerationMethodPrefix(d_generationType)
+      );
     } else {
       std::filesystem::create_directories(dataPath);
     }
@@ -120,7 +133,8 @@ private:
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
   ParametersType            d_parameters;
   std::string               d_mainPath;
-  uint32_t                  d_foldersCount = 0;
+  uint32_t                  d_foldersCount   = 0;
+  const GenerationTypes     d_generationType = Genetic;
 
   void                      savePopulation(
                            const std::vector<ChronosomeType<Type, ParametersType>>& i_population
@@ -133,21 +147,19 @@ private:
       std::vector<std::pair<std::string, GraphPtr>> circs;
       circs.push_back(
           {d_settings->getGenerationMethodPrefix(GenerationTypes::Genetic)
-               + std::to_string(d_foldersCount++),
+               + AuxMethods::intToStringWithZeroes(d_foldersCount++),
            tftt.cnfFromTruthTable(tt, true)}
       );
       circs.push_back(
           {d_settings->getGenerationMethodPrefix(GenerationTypes::Genetic)
-               + std::to_string(d_foldersCount++),
+               + AuxMethods::intToStringWithZeroes(d_foldersCount++),
            tftt.cnfFromTruthTable(tt, false)}
       );
 
       for (const auto& nameexpr : circs) {
         std::string name  = nameexpr.first;
         GraphPtr    graph = nameexpr.second;
-        // Parser pCNFT(expr);
-        // pCNFT.parseAll();
-        // GraphPtr graph = pCNFT.getGraph();
+
         Circuit     c(graph);
         c.setTable(tt);
         c.setPath(d_mainPath + "Genetic/");

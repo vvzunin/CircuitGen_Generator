@@ -435,7 +435,8 @@ std::pair<bool, std::string>
   }
   std::string   path = i_path + (d_parentGraphs.size() ? "/submodules" : "");
 
-  std::ofstream fileStream(path + "/" + i_filename);
+  auto          correctPath = path + "/" + i_filename;
+  std::ofstream fileStream(correctPath);
 
   if (!fileStream) {
     std::cerr << "cannot write file to " << path << std::endl;

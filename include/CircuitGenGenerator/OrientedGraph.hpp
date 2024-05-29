@@ -428,7 +428,7 @@ public:
 
   std::map<Gates, std::map<Gates, size_t>> getEdgesGatesCount() const;
 
-  bool                                  isConnected(bool i_recalculate = false);
+  bool isConnected(bool i_recalculate = false);
 
 private:
   static std::atomic_size_t d_countNewGraphInstance;
