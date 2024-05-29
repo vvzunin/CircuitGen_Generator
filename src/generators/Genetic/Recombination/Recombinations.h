@@ -26,7 +26,7 @@ inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>> Recombinati
   RecombinationTypes help_1 = i_recombinationParameters.getRecombinationType();
   RecombinationTypes help_2 = CrossingEachExitInTurnMany;
   if (help_1 == CrossingEachExitInTurnMany){
-    std::cout << "1" << std::endl;
+    // std::cout << "1" << std::endl;
     std::vector<ChronosomeType<TruthTable, TruthTableParameters>> newPopulation = RecombinationsTruthTable::RecombinationCrossingEachExitInTurnMany(i_recombinationParameters, i_population);
 
     return RecombinationsTruthTable::RecombinationCrossingEachExitInTurnMany(
@@ -35,9 +35,10 @@ inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>> Recombinati
     );
   }
   else {
-    std::cout << "2"<< std::endl;
+    // TODO why it is empty?
+    // std::cout << "2" << std::endl;
   }
-  std::cout << "3"<< std::endl;
+  // std::cout << "3"<< std::endl;
     
   if (i_recombinationParameters.getRecombinationType() == RecombinationTypes::CrossingUniform)
     return RecombinationsTruthTable::RecombinationCrossingUniform(

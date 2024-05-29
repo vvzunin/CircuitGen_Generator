@@ -25,34 +25,6 @@ bool isNumber(const std::string& s) {
   return true;
 }
 
-// copied from DataBaseGenerator
-uint32_t getNumFolderFromString(std::string& path, const std::string& prefix) {
-  uint32_t dirCount = 0u;
-  for (const auto item : FilesTools::getDirectories(path)) {
-    std::string s0  = item;
-    auto        pos = s0.find(prefix);
-
-    if (pos == std::string::npos)
-      continue;
-
-    s0.replace(pos, prefix.size(), "");
-
-    auto jk = std::min(s0.find("_"), s0.find("."));
-    if (jk == std::string::npos) {
-      jk = s0.size();
-    }
-
-    s0       = s0.substr(0, jk);
-
-    dirCount = std::max<uint32_t>(
-        dirCount,
-        std::stoi(s0) + 1
-    );
-  }
-
-  return dirCount;
-}
-
 /// @brief GeneticGenerator
 /// Template class for generating genetic populations
 /// @tparam Type Type of chromosome in a genetic population
@@ -72,22 +44,17 @@ public:
   GeneticGenerator(
       const ParametersType&       i_parameters,
       std::pair<int32_t, int32_t> i_inout,
-      const std::string&          i_mainPath
+      const std::string&          i_mainPath,
+      const std::string&          i_name
   ) :
     d_parameters(i_parameters),
     d_inputs(i_inout.first),
     d_outputs(i_inout.second),
-    d_mainPath(i_mainPath) {
-    std::string dataPath =
-        d_mainPath + "/Genetic";  // TODO:: Make general function
+    d_mainPath(i_mainPath),
+    d_name(i_name) {
 
-    if (FilesTools::isDirectoryExists(dataPath)) {
-      d_foldersCount = getNumFolderFromString(
-          dataPath, d_settings->getGenerationMethodPrefix(d_generationType)
-      );
-    } else {
-      std::filesystem::create_directories(dataPath);
-    }
+    d_parameters.setInputs(d_inputs);
+    d_parameters.setOutputs(d_outputs);
   }
 
   /// @brief generate
@@ -115,13 +82,14 @@ public:
           MutationType<Type, ParametersType>(
               d_parameters.getMutationParameters(), newPopulation
           );
-      std::vector<ChronosomeType<Type, ParametersType>> d_population =
+      d_population =
           SelectionType<Type, ParametersType>(
               d_parameters.getSelectionParameters(), mutants
           );
-      savePopulation(d_population);
+      // TODO make flag if necessary
+      // savePopulation(d_population);
     }
-
+    savePopulation(d_population);
     return d_population;
   }
 
@@ -133,7 +101,7 @@ private:
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
   ParametersType            d_parameters;
   std::string               d_mainPath;
-  uint32_t                  d_foldersCount   = 0;
+  std::string               d_name;
   const GenerationTypes     d_generationType = Genetic;
 
   void                      savePopulation(
@@ -146,13 +114,11 @@ private:
       SimpleGenerators                              tftt;
       std::vector<std::pair<std::string, GraphPtr>> circs;
       circs.push_back(
-          {d_settings->getGenerationMethodPrefix(GenerationTypes::Genetic)
-               + AuxMethods::intToStringWithZeroes(d_foldersCount++),
+          {d_name + "_CNFT",
            tftt.cnfFromTruthTable(tt, true)}
       );
       circs.push_back(
-          {d_settings->getGenerationMethodPrefix(GenerationTypes::Genetic)
-               + AuxMethods::intToStringWithZeroes(d_foldersCount++),
+          {d_name + "_CNFF",
            tftt.cnfFromTruthTable(tt, false)}
       );
 
@@ -162,7 +128,7 @@ private:
 
         Circuit     c(graph);
         c.setTable(tt);
-        c.setPath(d_mainPath + "Genetic/");
+        c.setPath(d_mainPath);
         c.setCircuitName(name);
         c.generate();
       }
@@ -176,19 +142,22 @@ private:
   /// random chromosome of Type is generated using passed parameters.
   /// Individuals are added to a population and then the population is
   /// maintained
+  /// @todo add flag for saving ALL populations
 
   void createPopulation() {
     d_population.clear();
     for (int32_t i = 0; i < d_parameters.getPopulationSize(); ++i) {
       Type gen;
       gen.generateRandom(d_parameters);
+      
       ChronosomeType<Type, ParametersType> ind =
           ChronosomeType<Type, ParametersType>(
               std::string("ind" + std::to_string(i)), gen
           );
       d_population.push_back(ind);
     }
-    savePopulation(d_population);
+    // TODO make flag if necessary
+    // savePopulation(d_population);
   }
 
   /// @brief endProcessFunction

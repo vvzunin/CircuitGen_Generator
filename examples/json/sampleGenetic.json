@@ -9,7 +9,7 @@
     "min_out": 4,
     "max_out": 5,
     "repeat_n": 1,
-    "multithread": 4,
+    "multithread": 1,
     "make_graphml": true,
     "create_id_directories": true,
     "library_name": "sky130",

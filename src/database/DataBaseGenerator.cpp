@@ -58,7 +58,6 @@ void DataBaseGenerator::runGeneratorByDefault(
       }
 
       s0         = s0.substr(0, jk);
-
       d_dirCount = std::max(
           d_dirCount,
           std::stoi(s0) + 1
@@ -295,20 +294,18 @@ void DataBaseGenerator::generateDataBaseNumOperations(
 
     addDataToReturn(graph);
   }
-  // TODO: remake all generates to return value and call graphToVerilog
 }
 
 void DataBaseGenerator::generateDataBaseGenetic(
     const GenerationParameters& i_param
 ) {
-  i_param.getGenetic().setInputs(i_param.getInputs());
-  i_param.getGenetic().setOutputs(i_param.getOutputs());
-
   GeneticGenerator<TruthTable, TruthTableParameters> gg(
       GeneticParameters(i_param.getGenetic()),
       {i_param.getInputs(), i_param.getOutputs()},
-      d_mainPath
+      d_mainPath,
+      i_param.getName()
   );
+  
   gg.generate();
   // TODO make function return graphs
 }

@@ -534,5 +534,5 @@ private:
   GeneratorComparisonParameters     d_generatorComparisonParameters;
   GeneratorSubtractorParameters     d_generatorSubtractorParameters;
   GeneratorALUParameters            d_generatorALUParameters;
-  GeneticParameters d_geneticParameters = GeneticParameters(2, 3);
+  GeneticParameters                 d_geneticParameters;
 };
