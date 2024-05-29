@@ -95,15 +95,15 @@ void runGeneration(
                                  ? static_cast<std::string>(data["dataset_id"])
                                  : "0";
 
-    uint32_t         requestIdINT = data.contains("id") ? (uint32_t)data["id"] : 0;
+    uint32_t    requestIdINT = data.contains("id") ? (uint32_t)data["id"] : 0;
 
     std::string requestId    = std::to_string(requestIdINT);
 
-    uint32_t         minInputs    = 1;
-    uint32_t         maxInputs    = 1;
-    uint32_t         minOutputs   = 1;
-    uint32_t         maxOutputs   = 1;
-    uint32_t         repeats      = 1;
+    uint32_t    minInputs    = 1;
+    uint32_t    maxInputs    = 1;
+    uint32_t    minOutputs   = 1;
+    uint32_t    maxOutputs   = 1;
+    uint32_t    repeats      = 1;
 
     if (data.contains("min_in")) {
       minInputs = data["min_in"];
@@ -166,12 +166,7 @@ void runGeneration(
     // TODO:: make function that return DataBaseGeneratorParameters from json
     // Recording of json data to gp
     GenerationParameters gp(
-        datasetId,
-        requestId,
-        minInputs,
-        minOutputs,
-        repeats,
-        makeGraphML
+        datasetId, requestId, minInputs, minOutputs, repeats, makeGraphML
     );
 
     gp.setGatesInputInfo(gatesInputsInfo);
@@ -200,10 +195,14 @@ void runGeneration(
                      "Parameters sets to default."
                   << std::endl;
 
-      uint32_t minLevel   = data.contains("min_level") ? (uint32_t)data["min_level"] : 0;
-      uint32_t maxLevel   = data.contains("max_level") ? (uint32_t)data["max_level"] : 0;
-      uint32_t minElement = data.contains("min_elem") ? (uint32_t)data["min_elem"] : 0;
-      uint32_t maxElement = data.contains("max_elem") ? (uint32_t)data["max_elem"] : 0;
+      uint32_t minLevel =
+          data.contains("min_level") ? (uint32_t)data["min_level"] : 0;
+      uint32_t maxLevel =
+          data.contains("max_level") ? (uint32_t)data["max_level"] : 0;
+      uint32_t minElement =
+          data.contains("min_elem") ? (uint32_t)data["min_elem"] : 0;
+      uint32_t maxElement =
+          data.contains("max_elem") ? (uint32_t)data["max_elem"] : 0;
       gp.setRandLevelParameters(minLevel, maxLevel, minElement, maxElement);
     }
 
@@ -430,14 +429,15 @@ void runGeneration(
 
     if (static_cast<std::string>(data["type_of_generation"]).find("Comparison")
         != std::string::npos) {
-      if (!(data.contains("=") || data.contains("<") || data.contains(">")))
+      if (!(data.contains("equal") || data.contains("less")
+            || data.contains("more")))
         std::clog << "Parameters for selected generation type is not set. "
                      "Parameters sets to default."
                   << std::endl;
 
-      bool compare0 = data.contains("=") ? (bool)data["="] : false;
-      bool compare1 = data.contains("<") ? (bool)data["<"] : false;
-      bool compare2 = data.contains(">") ? (bool)data[">"] : false;
+      bool compare0 = data.contains("equal") ? (bool)data["equal"] : false;
+      bool compare1 = data.contains("less") ? (bool)data["less"] : false;
+      bool compare2 = data.contains("more") ? (bool)data["more"] : false;
       gp.setComparisonParameters(compare0, compare1, compare2);
     }
 
@@ -454,27 +454,31 @@ void runGeneration(
                      "Parameters sets to default."
                   << std::endl;
 
-      bool ALL        = data.contains("ALL") ? (bool)data["ALL"] : false;
-      bool SUM        = data.contains("SUM") ? (bool)data["SUM"] : false;
-      bool SUB        = data.contains("SUB") ? (bool)data["SUB"] : false;
-      bool NSUM       = data.contains("NSUM") ? (bool)data["NSUM"] : false;
-      bool NSUB       = data.contains("NSUB") ? (bool)data["NSUB"] : false;
-      bool MULT       = data.contains("MULT") ? (bool)data["MULT"] : false;
-      bool COM        = data.contains("COM") ? (bool)data["COM"] : false;
-      bool AND        = data.contains("AND") ? (bool)data["AND"] : false;
-      bool NAND       = data.contains("NAND") ? (bool)data["NAND"] : false;
-      bool OR         = data.contains("OR") ? (bool)data["OR"] : false;
-      bool NOR        = data.contains("NOR") ? (bool)data["NOR"] : false;
-      bool XOR        = data.contains("XOR") ? (bool)data["XOR"] : false;
-      bool XNOR       = data.contains("XNOR") ? (bool)data["XNOR"] : false;
-      bool CNF        = data.contains("CNF") ? (bool)data["CNF"] : false;
-      bool RNL        = data.contains("RNL") ? (bool)data["RNL"] : false;
-      bool NUM_OP     = data.contains("NUM_OP") ? (bool)data["NUM_OP"] : false;
+      bool     ALL    = data.contains("ALL") ? (bool)data["ALL"] : false;
+      bool     SUM    = data.contains("SUM") ? (bool)data["SUM"] : false;
+      bool     SUB    = data.contains("SUB") ? (bool)data["SUB"] : false;
+      bool     NSUM   = data.contains("NSUM") ? (bool)data["NSUM"] : false;
+      bool     NSUB   = data.contains("NSUB") ? (bool)data["NSUB"] : false;
+      bool     MULT   = data.contains("MULT") ? (bool)data["MULT"] : false;
+      bool     COM    = data.contains("COM") ? (bool)data["COM"] : false;
+      bool     AND    = data.contains("AND") ? (bool)data["AND"] : false;
+      bool     NAND   = data.contains("NAND") ? (bool)data["NAND"] : false;
+      bool     OR     = data.contains("OR") ? (bool)data["OR"] : false;
+      bool     NOR    = data.contains("NOR") ? (bool)data["NOR"] : false;
+      bool     XOR    = data.contains("XOR") ? (bool)data["XOR"] : false;
+      bool     XNOR   = data.contains("XNOR") ? (bool)data["XNOR"] : false;
+      bool     CNF    = data.contains("CNF") ? (bool)data["CNF"] : false;
+      bool     RNL    = data.contains("RNL") ? (bool)data["RNL"] : false;
+      bool     NUM_OP = data.contains("NUM_OP") ? (bool)data["NUM_OP"] : false;
       // для RNL
-      uint32_t  minLevel   = data.contains("min_level") ? (uint32_t)data["min_level"] : 0;
-      uint32_t  maxLevel   = data.contains("max_level") ? (uint32_t)data["max_level"] : 0;
-      uint32_t  minElement = data.contains("min_elem") ? (uint32_t)data["min_elem"] : 0;
-      uint32_t  maxElement = data.contains("max_elem") ? (uint32_t)data["max_elem"] : 0;
+      uint32_t minLevel =
+          data.contains("min_level") ? (uint32_t)data["min_level"] : 0;
+      uint32_t maxLevel =
+          data.contains("max_level") ? (uint32_t)data["max_level"] : 0;
+      uint32_t minElement =
+          data.contains("min_elem") ? (uint32_t)data["min_elem"] : 0;
+      uint32_t maxElement =
+          data.contains("max_elem") ? (uint32_t)data["max_elem"] : 0;
       // для NUM_OP
       std::vector<std::string> v = {
           "num_and",
@@ -497,7 +501,7 @@ void runGeneration(
           {"xnor", Gates::GateXnor}
       };
       std::map<Gates, int32_t> m;
-      bool                 LeaveEmptyOut = false;
+      bool                     LeaveEmptyOut = false;
       if (data.contains("leave_empty_out"))
         LeaveEmptyOut = data["leave_empty_out"];
       else
@@ -541,11 +545,11 @@ void runGeneration(
 
     auto    start = high_resolution_clock::now();
     uint8_t parallel =
-        data.contains("multithread") ? (uint8_t) data["multithread"] : 1;
+        data.contains("multithread") ? (uint8_t)data["multithread"] : 1;
     if (!parallel) {
       parallel = 1;
     }
-    
+
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
     callable(
         generator,
