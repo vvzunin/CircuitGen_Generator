@@ -731,7 +731,12 @@ GraphPtr SimpleGenerators::generatorComparison(
     bool     compare2
 ) {
   GraphPtr    graph(new OrientedGraph);
-  VertexPtr   prev_pn_;
+  VertexPtr   prev_p0_;
+  VertexPtr   prev_p1_;
+  VertexPtr   prev_p2_;
+  
+  VertexPtr   prev_np1_;
+  VertexPtr   prev_np2_;
   std::string cond = std::string(compare0 ? "t" : "f") + (compare1 ? "t" : "f")
                    + (compare2 ? "t" : "f");
   for (int32_t i = i_bits - 1; i >= 0; i--) {
@@ -768,56 +773,62 @@ GraphPtr SimpleGenerators::generatorComparison(
         graph->addEdge(pn_, En_);
       } else {
         pEn_ = graph->addGate(Gates::GateAnd, "pE0_" + C);
-        graph->addEdges({prev_pn_, pn_}, pEn_);
+        graph->addEdges({prev_p0_, pn_}, pEn_);
         graph->addEdge(pEn_, En_);
       }
-      prev_pn_ = pn_;
+      prev_p0_ = pn_;
     }
     if (compare1) {
       En_ = graph->addOutput("E1_" + C);
       pn_ = graph->addGate(Gates::GateAnd, "p1_" + NextC);
       graph->addEdges({input_x, nb}, pn_);
+      VertexPtr np1_;
 
       // in case of first iteration
       if (i == i_bits - 1) {
         graph->addEdge(pn_, En_);
+        np1_ = graph->addGate(Gates::GateNot, "np1_" + NextC);
+        graph->addEdge(pn_, np1_);
       } else {
-        VertexPtr np1_     = graph->addGate(Gates::GateNot, "np1_" + C);
-        VertexPtr np1_next = graph->addGate(Gates::GateNot, "np1_" + NextC);
-        graph->addEdge(prev_pn_, np1_);
-        graph->addEdge(pn_, np1_next);
+        np1_ = graph->addGate(Gates::GateNot, "np1_" + NextC);
+        // graph->addEdge(prev_p1_, prev_np1_);
+        graph->addEdge(pn_, np1_);
         VertexPtr P11_ = graph->addGate(Gates::GateAnd, "P11_" + C);
-        graph->addEdges({np1_, pn_}, P11_);
+        graph->addEdges({prev_np1_, pn_}, P11_);
         VertexPtr P12_ = graph->addGate(Gates::GateAnd, "P12_" + C);
-        graph->addEdges({prev_pn_, np1_next}, P12_);
+        graph->addEdges({prev_p1_, np1_}, P12_);
         pEn_ = graph->addGate(Gates::GateOr, "pE1_" + C);
         graph->addEdges({P11_, P12_}, pEn_);
         graph->addEdge(pEn_, En_);
       }
-      prev_pn_ = pn_;
+      prev_p1_ = pn_;
+      prev_np1_ = np1_;
     }
     if (compare2) {
       En_ = graph->addOutput("E2_" + C);
       pn_ = graph->addGate(Gates::GateAnd, "p2_" + NextC);
       graph->addEdges({input_y, na}, pn_);
+      VertexPtr np2_;
 
       // first iteration
       if (i == i_bits - 1) {
         graph->addEdge(pn_, En_);
+        np2_ = graph->addGate(Gates::GateNot, "np2_" + NextC);
+        graph->addEdge(pn_, np2_);
       } else {
-        VertexPtr np2_     = graph->addGate(Gates::GateNot, "np2_" + C);
-        VertexPtr np2_next = graph->addGate(Gates::GateNot, "np2_" + NextC);
-        graph->addEdge(prev_pn_, np2_);
-        graph->addEdge(pn_, np2_next);
+        np2_ = graph->addGate(Gates::GateNot, "np2_" + NextC);
+        // graph->addEdge(prev_p2_, prev_np2_);
+        graph->addEdge(pn_, np2_);
         VertexPtr P21_ = graph->addGate(Gates::GateAnd, "P21_" + C);
-        graph->addEdges({np2_, np2_next}, P21_);
+        graph->addEdges({prev_np2_, np2_}, P21_);
         VertexPtr P22_ = graph->addGate(Gates::GateAnd, "P22_" + C);
-        graph->addEdges({prev_pn_, np2_next}, P22_);
+        graph->addEdges({prev_p2_, np2_}, P22_);
         pEn_ = graph->addGate(Gates::GateOr, "pE2_" + C);
         graph->addEdges({P21_, P22_}, pEn_);
         graph->addEdge(pEn_, En_);
       }
-      prev_pn_ = pn_;
+      prev_p2_ = pn_;
+      prev_np2_ = np2_;
     }
   }
   return graph;
