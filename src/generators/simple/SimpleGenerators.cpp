@@ -734,7 +734,7 @@ GraphPtr SimpleGenerators::generatorComparison(
   VertexPtr   prev_p0_;
   VertexPtr   prev_p1_;
   VertexPtr   prev_p2_;
-  
+
   VertexPtr   prev_np1_;
   VertexPtr   prev_np2_;
   std::string cond = std::string(compare0 ? "t" : "f") + (compare1 ? "t" : "f")
@@ -801,7 +801,7 @@ GraphPtr SimpleGenerators::generatorComparison(
         graph->addEdges({P11_, P12_}, pEn_);
         graph->addEdge(pEn_, En_);
       }
-      prev_p1_ = pn_;
+      prev_p1_  = pn_;
       prev_np1_ = np1_;
     }
     if (compare2) {
@@ -827,7 +827,7 @@ GraphPtr SimpleGenerators::generatorComparison(
         graph->addEdges({P21_, P22_}, pEn_);
         graph->addEdge(pEn_, En_);
       }
-      prev_p2_ = pn_;
+      prev_p2_  = pn_;
       prev_np2_ = np2_;
     }
   }
