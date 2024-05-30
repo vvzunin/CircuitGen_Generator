@@ -110,6 +110,8 @@ public:
       graph->setName(d_name + "_CNFF");
       result.push_back(graph);
     }
+
+    return result;
   }
 
 private:
