@@ -159,7 +159,7 @@ jobs:
         && sudo apt-get install -y -q graphviz
 
     - name: Build docs
-      run: mkdir -p build/docs && cd build/docs && cmake "-DPROJECT_SOURCE_DIR=$PWD/../.." "-DPROJECT_BINARY_DIR=$PWD"
+      run: mkdir -p build/docs && cd build/docs && cmake "-DPROJECT_SOURCE_DIR=$PWD/../.." "-DPROJECT_BINARY_DIR=$PWD/.."
         -P ../../cmake/docs-ci.cmake
 
 
