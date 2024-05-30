@@ -129,7 +129,7 @@ private:
     auto graphs = getGraphsFromPopulation(i_population);
     for (auto graph : graphs) {
       Circuit c(graph);
-      c.setTable(tt);
+      // c.setTable(tt);
       c.setPath(d_mainPath);
       c.setCircuitName(graph->getName());
       c.generate();
