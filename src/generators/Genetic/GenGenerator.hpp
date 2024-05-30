@@ -52,7 +52,6 @@ public:
     d_outputs(i_inout.second),
     d_mainPath(i_mainPath),
     d_name(i_name) {
-
     d_parameters.setInputs(d_inputs);
     d_parameters.setOutputs(d_outputs);
   }
@@ -82,10 +81,9 @@ public:
           MutationType<Type, ParametersType>(
               d_parameters.getMutationParameters(), newPopulation
           );
-      d_population =
-          SelectionType<Type, ParametersType>(
-              d_parameters.getSelectionParameters(), mutants
-          );
+      d_population = SelectionType<Type, ParametersType>(
+          d_parameters.getSelectionParameters(), mutants
+      );
       // TODO make flag if necessary
       // savePopulation(d_population);
     }
@@ -113,14 +111,8 @@ private:
 
       SimpleGenerators                              tftt;
       std::vector<std::pair<std::string, GraphPtr>> circs;
-      circs.push_back(
-          {d_name + "_CNFT",
-           tftt.cnfFromTruthTable(tt, true)}
-      );
-      circs.push_back(
-          {d_name + "_CNFF",
-           tftt.cnfFromTruthTable(tt, false)}
-      );
+      circs.push_back({d_name + "_CNFT", tftt.cnfFromTruthTable(tt, true)});
+      circs.push_back({d_name + "_CNFF", tftt.cnfFromTruthTable(tt, false)});
 
       for (const auto& nameexpr : circs) {
         std::string name  = nameexpr.first;
@@ -149,7 +141,7 @@ private:
     for (int32_t i = 0; i < d_parameters.getPopulationSize(); ++i) {
       Type gen;
       gen.generateRandom(d_parameters);
-      
+
       ChronosomeType<Type, ParametersType> ind =
           ChronosomeType<Type, ParametersType>(
               std::string("ind" + std::to_string(i)), gen

@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-enum ParentsTypes{
+enum ParentsTypes {
   Panmixia,
   Inbringing,
   Outbrinding,
@@ -12,13 +12,13 @@ enum ParentsTypes{
 
 class ParentsParameters {
 public:
-  void setParentsType(ParentsTypes i_parentsTypes);
+  void         setParentsType(ParentsTypes i_parentsTypes);
   ParentsTypes getParentsType() const;
-  void setTournamentNumber(int32_t i_tournamentNumber);
-  int32_t getTournamentNumber() const;
-  bool operator== (const ParentsParameters& r) const;
+  void         setTournamentNumber(int32_t i_tournamentNumber);
+  int32_t      getTournamentNumber() const;
+  bool         operator==(const ParentsParameters& r) const;
 
 private:
-  int32_t d_tournamentNumber = 2;
-  ParentsTypes d_parentsType = ParentsTypes::Panmixia;
+  int32_t      d_tournamentNumber = 2;
+  ParentsTypes d_parentsType      = ParentsTypes::Panmixia;
 };

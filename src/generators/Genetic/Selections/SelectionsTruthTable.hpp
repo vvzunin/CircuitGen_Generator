@@ -34,8 +34,7 @@ inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
                    )
                    == survivors.end())) {
       survivors.push_back(i_population[r2]);
-    } else if (i_population[r1].getAdaptationIndex()
-               == i_population[r2].getAdaptationIndex()) {
+    } else if (i_population[r1].getAdaptationIndex() == i_population[r2].getAdaptationIndex()) {
       if (std::find(survivors.begin(), survivors.end(), i_population[r1])
           == survivors.end())
         survivors.push_back(i_population[r1]);
