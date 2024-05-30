@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "Mutation.h"
+#include "Mutation.hpp"
 
-#include "MutationTruthTable.h"
+#include "MutationTruthTable.hpp"
 
 template<>
 std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationType(

@@ -15,8 +15,8 @@
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
 #include <CircuitGenGenerator/ThreadPool.hpp>
-#include <generators/Genetic/GeneticParameters.h>
-#include <generators/Genetic/GenGenerator.h>
+#include <generators/Genetic/GeneticParameters.hpp>
+#include <generators/Genetic/GenGenerator.hpp>
 #include <generators/simple/SimpleGenerators.hpp>
 
 using namespace std::chrono;
@@ -58,7 +58,6 @@ void DataBaseGenerator::runGeneratorByDefault(
       }
 
       s0         = s0.substr(0, jk);
-
       d_dirCount = std::max(
           d_dirCount,
           std::stoi(s0) + 1
@@ -295,22 +294,29 @@ void DataBaseGenerator::generateDataBaseNumOperations(
 
     addDataToReturn(graph);
   }
-  // TODO: remake all generates to return value and call graphToVerilog
 }
 
 void DataBaseGenerator::generateDataBaseGenetic(
     const GenerationParameters& i_param
 ) {
-  i_param.getGenetic().setInputs(i_param.getInputs());
-  i_param.getGenetic().setOutputs(i_param.getOutputs());
-
   GeneticGenerator<TruthTable, TruthTableParameters> gg(
       GeneticParameters(i_param.getGenetic()),
       {i_param.getInputs(), i_param.getOutputs()},
-      d_mainPath
+      d_mainPath,
+      i_param.getName()
   );
-  gg.generate();
-  // TODO make function return graphs
+
+  const auto& population = gg.generate();
+  auto        graphs     = gg.getGraphsFromPopulation(population);
+
+  for (auto graph : graphs) {
+    Circuit c(graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(graph->getName());
+    c.generate(i_param.getMakeGraphML());
+
+    addDataToReturn(graph);
+  }
 }
 
 void DataBaseGenerator::generateDataBaseSummator(

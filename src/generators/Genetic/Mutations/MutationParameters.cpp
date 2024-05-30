@@ -1,6 +1,6 @@
 #include <tuple>
 
-#include "MutationParameters.h"
+#include "MutationParameters.hpp"
 
 void MutationParameters::setMutationType(MutationTypes i_mutationType) {
   d_mutationType = i_mutationType;

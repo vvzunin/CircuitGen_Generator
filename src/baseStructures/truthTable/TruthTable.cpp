@@ -98,8 +98,8 @@ void TruthTable::generateRandom(TruthTableParameters i_gp) {
   std::srand(std::time(0));
   if (i_gp.getInputs() == 0) {
     i_gp = TruthTableParameters();
-    i_gp.setInputs(rand() % d_settings->getMaxInputs());
-    i_gp.setOutputs(rand() % d_settings->getMaxOutputs());
+    i_gp.setInputs(d_randGenerator.getRandInt(0, d_settings->getMaxInputs()));
+    i_gp.setOutputs(d_randGenerator.getRandInt(0, d_settings->getMaxOutputs()));
   }
 
   d_input  = i_gp.getInputs();

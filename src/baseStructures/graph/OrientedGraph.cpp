@@ -18,7 +18,7 @@ std::atomic_size_t OrientedGraph::d_countNewGraphInstance = 0;
 
 OrientedGraph::OrientedGraph(const std::string& i_name) {
   d_graphID = d_countNewGraphInstance++;
-  // this_ptr.reset(this);
+
   if (i_name == "")
     d_name = "graph_" + std::to_string(d_countGraph++);
   else
@@ -432,9 +432,10 @@ std::pair<bool, std::string>
   if (!i_filename.size()) {
     i_filename = d_name + ".v";
   }
-  std::string   path = i_path + (d_isSubGraph ? "/submodules" : "");
+  std::string   path        = i_path + (d_isSubGraph ? "/submodules" : "");
 
-  std::ofstream fileStream(path + "/" + i_filename);
+  auto          correctPath = path + "/" + i_filename;
+  std::ofstream fileStream(correctPath);
 
   if (!fileStream) {
     std::cerr << "cannot write file to " << path << std::endl;

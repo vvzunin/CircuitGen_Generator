@@ -34,9 +34,6 @@
 Программа запускалась на Ubuntu 22.04 с использованием WSL (Windows Subsystem for Linux).
 Руководство разработчика доступно по [ссылке](https://drive.google.com/file/d/1eKWMpF0Ig5r5ZI81dJjRoibctzezNE-D/view?usp=sharing).
 
-> [!CAUTION]
-> Генетический алгоритм временно убран из методов генрации схем для полной переработки.
-
 ## Режим разработчика
 <a name="hacking"></a> 
 

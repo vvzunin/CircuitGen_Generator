@@ -1,9 +1,11 @@
 #include <ctime>
 
-#include "RecombinationsTruthTable.h"
+#include "RecombinationsTruthTable.hpp"
 
-#include "../Mutations/MutationTruthTable.h"
-#include "../Parents/Parents.h"
+#include <additional/AuxiliaryMethods.hpp>
+
+#include "../Mutations/MutationTruthTable.hpp"
+#include "../Parents/Parents.hpp"
 
 namespace RecombinationsTruthTable {
 std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
@@ -123,7 +125,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
     int32_t child2 = parentsInt[1];
 
     while (child1 == child3 || child2 == child3)
-      child3 = rand() % i_population.size();
+      child3 = AuxMethods::getRandInt(0, i_population.size());
 
     TruthTable mask(
         input,
@@ -168,7 +170,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
   int32_t input          = i_population[0].getChronosomeType().getInput();
   int32_t output         = i_population[0].getChronosomeType().getOutput();
   int32_t size           = i_population[0].getChronosomeType().size();
-  int32_t referencePoint = rand() % size;
+  int32_t referencePoint = AuxMethods::getRandInt(0, size);
 
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> survivors;
 
@@ -188,7 +190,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
 
     for (int32_t j = 0; j < output; ++j) {
       while (parents[0][referencePoint][j] == parents[1][referencePoint][j])
-        referencePoint = rand() % size;
+        referencePoint = AuxMethods::getRandInt(0, size);
 
       for (int32_t i = 0; i < size; ++i)
         child[i][j] = parents[i < referencePoint ? 0 : 1][i][j];
@@ -213,7 +215,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
   int32_t input          = i_population[0].getChronosomeType().getInput();
   int32_t output         = i_population[0].getChronosomeType().getOutput();
   int32_t size           = i_population[0].getChronosomeType().size();
-  int32_t referencePoint = rand() % size;
+  int32_t referencePoint = AuxMethods::getRandInt(0, size);
 
   std::vector<ChronosomeType<TruthTable, TruthTableParameters>> survivors;
 
@@ -226,7 +228,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
     int32_t child1 = parentsInt[0];
     int32_t child2 = parentsInt[1];
 
-    referencePoint = rand() % size;
+    referencePoint = AuxMethods::getRandInt(0, size);
     std::vector<std::vector<std::vector<bool>>> parents;
     parents.push_back(i_population[child1].getChronosomeType().getOutTable());
     parents.push_back(i_population[child2].getChronosomeType().getOutTable());
@@ -234,7 +236,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
 
     for (int32_t i = 0; i < size; ++i) {
       for (int32_t j = 0; j < output; ++j) {
-        if (rand() % 2)
+        if (AuxMethods::getRandInt(0, 2))
           swap(parents[0][i][j], parents[1][i][j]);
       }
     }

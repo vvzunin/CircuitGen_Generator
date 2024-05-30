@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <tuple>
 
-#include "SelectionParameters.h"
+#include "SelectionParameters.hpp"
 
 void SelectionParameters::setSelectionType(SelectionTypes i_selectionType) {
   d_selectionType = i_selectionType;
