@@ -2,9 +2,9 @@
 
 #include <vector>
 
-#include "MutationParameters.h"
-#include "../ChronosomeType.h"
-#include "MutationTruthTable.h"
+#include "MutationParameters.hpp"
+#include "../ChronosomeType.hpp"
+#include "MutationTruthTable.hpp"
 
 
 template<typename Type, typename ParametersType>

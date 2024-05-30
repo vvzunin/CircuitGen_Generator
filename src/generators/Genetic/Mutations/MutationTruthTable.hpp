@@ -3,7 +3,7 @@
 #include <vector>
 
 #include <baseStructures/truthTable/TruthTable.hpp>
-#include "../ChronosomeType.h"
+#include "../ChronosomeType.hpp"
 
 
 namespace MutationTruthTable

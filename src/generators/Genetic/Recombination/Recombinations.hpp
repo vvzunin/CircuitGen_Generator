@@ -4,10 +4,10 @@
 #include <iostream>
 #include <string>
 
-#include "RecombinationParameters.h"
-#include "RecombinationsTruthTable.h"
+#include "RecombinationParameters.hpp"
+#include "RecombinationsTruthTable.hpp"
 
-#include "../ChronosomeType.h"
+#include "../ChronosomeType.hpp"
 
 template<typename Type, typename ParametersType>
 std::vector<ChronosomeType<Type, ParametersType>> RecombinationType

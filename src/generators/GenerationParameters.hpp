@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include <generators/Genetic/GeneticParameters.h>
+#include <generators/Genetic/GeneticParameters.hpp>
 #include <settings/Settings.hpp>
 
 /// class CNNFromTruthTableParameters

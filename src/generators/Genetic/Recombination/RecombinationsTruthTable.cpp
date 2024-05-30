@@ -1,11 +1,11 @@
 #include <ctime>
 
-#include "RecombinationsTruthTable.h"
+#include "RecombinationsTruthTable.hpp"
 
 #include <additional/AuxiliaryMethods.hpp>
 
-#include "../Mutations/MutationTruthTable.h"
-#include "../Parents/Parents.h"
+#include "../Mutations/MutationTruthTable.hpp"
+#include "../Parents/Parents.hpp"
 
 namespace RecombinationsTruthTable {
 std::vector<ChronosomeType<TruthTable, TruthTableParameters>>

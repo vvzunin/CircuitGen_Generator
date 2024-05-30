@@ -6,8 +6,8 @@
 #include <iostream>
 
 
-#include "ParentsParameters.h"
-#include "../ChronosomeType.h"
+#include "ParentsParameters.hpp"
+#include "../ChronosomeType.hpp"
 #include "ParentsTruthTable.hpp"
 
 

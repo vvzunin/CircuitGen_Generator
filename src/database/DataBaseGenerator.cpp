@@ -15,8 +15,8 @@
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
 #include <CircuitGenGenerator/ThreadPool.hpp>
-#include <generators/Genetic/GeneticParameters.h>
-#include <generators/Genetic/GenGenerator.h>
+#include <generators/Genetic/GeneticParameters.hpp>
+#include <generators/Genetic/GenGenerator.hpp>
 #include <generators/simple/SimpleGenerators.hpp>
 
 using namespace std::chrono;

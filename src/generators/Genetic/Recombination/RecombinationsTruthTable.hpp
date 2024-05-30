@@ -2,12 +2,12 @@
 
 #include <vector>
 
-#include "RecombinationParameters.h"
-#include "../ChronosomeType.h"
-#include "../Parents/ParentsParameters.h"
+#include "RecombinationParameters.hpp"
+#include "../ChronosomeType.hpp"
+#include "../Parents/ParentsParameters.hpp"
 #include <baseStructures/truthTable/TruthTable.hpp>
-#include "../Parents/Parents.h"
-#include "../Mutations/MutationTruthTable.h"
+#include "../Parents/Parents.hpp"
+#include "../Mutations/MutationTruthTable.hpp"
 #include <ctime>
 
 namespace RecombinationsTruthTable

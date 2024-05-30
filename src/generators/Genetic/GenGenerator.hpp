@@ -12,10 +12,10 @@
 #include <circuit/Circuit.hpp>
 #include <generators/simple/SimpleGenerators.hpp>
 
-#include "ChronosomeType.h"
-#include "Mutations/Mutation.h"
-#include "Recombination/Recombinations.h"
-#include "Selections/Selections.h"
+#include "ChronosomeType.hpp"
+#include "Mutations/Mutation.hpp"
+#include "Recombination/Recombinations.hpp"
+#include "Selections/Selections.hpp"
 
 bool isNumber(const std::string& s) {
   for (auto c : s) {

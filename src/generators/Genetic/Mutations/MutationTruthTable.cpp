@@ -4,7 +4,7 @@
 #include <random>
 #include <vector>
 
-#include "MutationTruthTable.h"
+#include "MutationTruthTable.hpp"
 
 #include <additional/AuxiliaryMethods.hpp>
 

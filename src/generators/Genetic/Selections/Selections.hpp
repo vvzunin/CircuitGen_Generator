@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 
-#include "SelectionParameters.h"
-#include "SelectionsTruthTable.h"
-#include "../ChronosomeType.h"
+#include "SelectionParameters.hpp"
+#include "SelectionsTruthTable.hpp"
+#include "../ChronosomeType.hpp"
 
 template<typename Type, typename ParametersType>
 std::vector<ChronosomeType<Type, ParametersType>> SelectionType

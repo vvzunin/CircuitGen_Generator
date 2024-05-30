@@ -1,8 +1,8 @@
 #pragma once
 
-#include "./Selections/SelectionParameters.h"
-#include "./Recombination/RecombinationParameters.h"
-#include "./Mutations/MutationParameters.h"
+#include "./Selections/SelectionParameters.hpp"
+#include "./Recombination/RecombinationParameters.hpp"
+#include "./Mutations/MutationParameters.hpp"
 
 /// @todo: fill in the description of the class fields
 /// @class GeneticParameters

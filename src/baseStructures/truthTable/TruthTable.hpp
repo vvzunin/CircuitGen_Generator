@@ -4,7 +4,7 @@
 #include <vector>
 
 #include <additional/RandomGeneratorWithSeed.hpp>
-#include <generators/Genetic/GeneticParameters.h>
+#include <generators/Genetic/GeneticParameters.hpp>
 #include <settings/Settings.hpp>
 
 /// class TruthTable

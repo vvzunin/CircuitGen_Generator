@@ -1,6 +1,6 @@
 #include <tuple>
 
-#include "RecombinationParameters.h"
+#include "RecombinationParameters.hpp"
 
 void RecombinationParameters::setMaskProbability(double i_maskProbability) {
   d_maskProbability = i_maskProbability;

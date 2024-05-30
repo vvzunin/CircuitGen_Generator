@@ -12,7 +12,7 @@
 #include <baseStructures/Parser.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <CircuitGenGenerator/OrientedGraph.hpp>
-#include <generators/Genetic/GeneticParameters.h>
+#include <generators/Genetic/GeneticParameters.hpp>
 #include <math.h>
 
 int32_t SimpleGenerators::getRangomAndNumber() {

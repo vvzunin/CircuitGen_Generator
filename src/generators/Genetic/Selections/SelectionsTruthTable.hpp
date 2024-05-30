@@ -3,7 +3,7 @@
 
 #include <additional/AuxiliaryMethods.hpp>
 
-#include "../ChronosomeType.h"
+#include "../ChronosomeType.hpp"
 
 namespace SelectionsTruthTable {
 inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>>

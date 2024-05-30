@@ -8,7 +8,7 @@
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
 
-#include "../ChronosomeType.h"
+#include "../ChronosomeType.hpp"
 
 inline std::vector<int32_t> GetHemming(
     int32_t                                                       i_t,

@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "../Parents/ParentsParameters.h"
+#include "../Parents/ParentsParameters.hpp"
 
 enum RecombinationTypes
 {

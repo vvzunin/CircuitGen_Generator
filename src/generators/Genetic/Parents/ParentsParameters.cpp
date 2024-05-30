@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <tuple>
 
-#include "ParentsParameters.h"
+#include "ParentsParameters.hpp"
 
 void ParentsParameters::setParentsType(ParentsTypes i_parentsTypes) {
   d_parentsType = i_parentsTypes;
