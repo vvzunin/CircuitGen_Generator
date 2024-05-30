@@ -87,8 +87,29 @@ public:
       // TODO make flag if necessary
       // savePopulation(d_population);
     }
-    savePopulation(d_population);
+
     return d_population;
+  }
+
+  std::vector<GraphPtr> getGraphsFromPopulation(
+      const std::vector<ChronosomeType<Type, ParametersType>>& i_population
+  ) {
+    std::vector<GraphPtr> result;
+
+    for (const auto& ttp : i_population) {
+      Type tt;
+      tt = ttp.getChronosomeType();
+
+      SimpleGenerators tftt;
+
+      auto             graph = tftt.cnfFromTruthTable(tt, true);
+      graph->setName(d_name + "_CNFT");
+      result.push_back(graph);
+
+      graph = tftt.cnfFromTruthTable(tt, false);
+      graph->setName(d_name + "_CNFF");
+      result.push_back(graph);
+    }
   }
 
 private:
@@ -105,25 +126,13 @@ private:
   void                      savePopulation(
                            const std::vector<ChronosomeType<Type, ParametersType>>& i_population
                        ) {
-    for (const auto& ttp : i_population) {
-      Type tt;
-      tt = ttp.getChronosomeType();
-
-      SimpleGenerators                              tftt;
-      std::vector<std::pair<std::string, GraphPtr>> circs;
-      circs.push_back({d_name + "_CNFT", tftt.cnfFromTruthTable(tt, true)});
-      circs.push_back({d_name + "_CNFF", tftt.cnfFromTruthTable(tt, false)});
-
-      for (const auto& nameexpr : circs) {
-        std::string name  = nameexpr.first;
-        GraphPtr    graph = nameexpr.second;
-
-        Circuit     c(graph);
-        c.setTable(tt);
-        c.setPath(d_mainPath);
-        c.setCircuitName(name);
-        c.generate();
-      }
+    auto graphs = getGraphsFromPopulation(i_population);
+    for (auto graph : graphs) {
+      Circuit c(graph);
+      c.setTable(tt);
+      c.setPath(d_mainPath);
+      c.setCircuitName(graph->getName());
+      c.generate();
     }
   }
 

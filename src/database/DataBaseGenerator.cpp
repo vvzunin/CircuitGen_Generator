@@ -306,8 +306,17 @@ void DataBaseGenerator::generateDataBaseGenetic(
       i_param.getName()
   );
 
-  gg.generate();
-  // TODO make function return graphs
+  const auto& population = gg.generate();
+  auto        graphs     = gg.getGraphsFromPopulation(population);
+
+  for (auto graph : graphs) {
+    Circuit c(graph);
+    c.setPath(d_mainPath);
+    c.setCircuitName(graph->getName());
+    c.generate(i_param.getMakeGraphML());
+
+    addDataToReturn(graph);
+  }
 }
 
 void DataBaseGenerator::generateDataBaseSummator(
