@@ -600,7 +600,7 @@ std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
         sg->toGraphML(i_indent + 4, i_prefix + "%::")
     );
 
-    // verticesInputs, verticesOutputs, graphInputs, graphOutputs
+    // graphInputs, graphOutputs, verticesInputs, verticesOutputs
     const auto& gInputs  = sg->d_vertexes.at(VertexTypes::input);
     const auto& gOutputs = sg->d_vertexes.at(VertexTypes::output);
     const auto& vInputs  = sg->d_subGraphsInputsPtr.at(d_graphID);
@@ -643,7 +643,7 @@ std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
 }
 
 bool OrientedGraph::toGraphML(std::ofstream& fileStream) const {
-  fileStream << this->toGraphMLABCD();
+  fileStream << this->unrollGraph()->toGraphML();
   return true;
 }
 
@@ -753,27 +753,108 @@ std::string OrientedGraph::toGraphMLABCD() const {
         Gates sinkGate = sink->getGate();
         if (sinkGate == Gates::GateBuf || sinkGate == Gates::GateNot) {
           continue;
-        }
-        else {
+        } else {
           sinkName = sink->getName();
           if (nodeNames.find(sinkName) == nodeNames.end()) {
             nodeNames[sinkName] = nodeCounter++;
           }
 
           edges += format(
-              ABCDEdgeTemplate,
-              nodeNames.at(actualName),
-              nodeNames.at(sinkName)
+              ABCDEdgeTemplate, nodeNames.at(actualName), nodeNames.at(sinkName)
           );
         }
       }
 
-            nodes += format(
+      nodes += format(
           ABCDNodeTemplate, nodeNames.at(actualName), actualName, nodeType
       );
-
     }
   }
 
   return format(ABCDMainTemplate, nodes + edges);
+}
+
+GraphPtr OrientedGraph::unrollGraph() const {
+  GraphPtr newGraph(new OrientedGraph(d_name + "_unrolled"));
+  std::map<VertexPtr, VertexPtr> vPairs;
+
+  for (const auto& v : d_vertexes.at(VertexTypes::input)) {
+    vPairs.insert({v, newGraph->addInput(v->getName())});
+  }
+  for (const auto& v : d_vertexes.at(VertexTypes::output)) {
+    vPairs.insert({v, newGraph->addOutput(v->getName())});
+  }
+
+  auto unroller = [&](std::shared_ptr<const OrientedGraph> graph,
+                      auto&&                               unroller) -> void {
+    for (const auto& [vertexType, vertices] : graph->getBaseVertexes()) {
+      for (const auto& v : vertices) {
+        VertexPtr newVertex;
+
+        switch (vertexType) {
+          case VertexTypes::constant:
+            newVertex = newGraph->addConst(v->getValue(), v->getName());
+            vPairs.insert({v, newVertex});
+            break;
+          case VertexTypes::gate:
+            newVertex = newGraph->addGate(v->getGate(), v->getName());
+            vPairs.insert({v, newVertex});
+            break;
+
+          case VertexTypes::subGraph: {
+            const auto sgv = std::dynamic_pointer_cast<GraphVertexSubGraph>(v);
+            const GraphPtr sg       = sgv->getSubGraph();
+            const auto&    gInputs  = sg->d_vertexes.at(VertexTypes::input);
+            const auto&    gOutputs = sg->d_vertexes.at(VertexTypes::output);
+            const auto&    vInputs  = v->getInConnections();
+            const auto&    vOutputs = v->getOutConnections();
+            VertexPtr      ptr;
+
+            unroller(sg, unroller);
+
+            for (size_t i = 0; i < vInputs.size(); ++i) {
+              ptr = vInputs[i].lock();
+              if (!ptr) {
+                throw std::invalid_argument("Dead pointer!");
+              }
+              for (const auto& innerVertex : gInputs[i]->getOutConnections()) {
+                newGraph->addEdge(vPairs.at(ptr), vPairs.at(innerVertex));
+              }
+            }
+
+            for (size_t i = 0; i < vOutputs.size(); ++i) {
+              for (const auto& innerVertex : gOutputs[i]->getInConnections()) {
+                ptr = innerVertex.lock();
+                if (!ptr) {
+                  throw std::invalid_argument("Dead pointer!");
+                }
+                for (const auto& nonBuffer : vOutputs[i]->getOutConnections()) {
+                  newGraph->addEdge(vPairs.at(ptr), vPairs.at(nonBuffer));
+                }
+              }
+            }
+
+            break;
+          }
+          default:
+            continue;
+        }
+      }
+    }
+  };
+
+  unroller(shared_from_this(), unroller);
+
+  for (const auto& pair : vPairs) {
+    for (const auto& v : pair.first->getOutConnections()) {
+      // if v is not subGraph and if v is not output from subGraph
+      if (v->getType() != VertexTypes::subGraph
+          && (v->getType() != VertexTypes::output
+              || v->getBaseGraph().lock().get() == this)) {
+        newGraph->addEdge(pair.second, vPairs.at(v));
+      }
+    }
+  }
+
+  return newGraph;
 }

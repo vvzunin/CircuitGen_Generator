@@ -429,6 +429,8 @@ public:
 
   std::map<Gates, std::map<Gates, int>> getEdgesGatesCount() const;
 
+  GraphPtr                              unrollGraph() const;
+
 private:
   static std::atomic_size_t  d_countNewGraphInstance;
   size_t                     d_graphID;
