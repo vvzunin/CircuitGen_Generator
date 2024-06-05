@@ -2,6 +2,7 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#include <stack>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -540,7 +541,8 @@ std::pair<bool, std::string>
 
 std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
     const {
-  using namespace AuxMethods;  // format() and replacer()
+  using namespace AuxMethods;      // format() and replacer()
+  using namespace ClassicGraphML;  // templates
 
   const std::string spaces(i_indent, ' ');
 
@@ -643,24 +645,24 @@ std::string OrientedGraph::toGraphML(int i_indent, const std::string& i_prefix)
 }
 
 bool OrientedGraph::toGraphML(std::ofstream& fileStream) const {
-  fileStream << this->unrollGraph()->toGraphML();
+  fileStream << this->toGraphMLABCD();
   return true;
 }
 
 std::string OrientedGraph::toGraphMLPseudoABCD() const {
-  using namespace AuxMethods;  // format() and replacer()
+  using namespace AuxMethods;      // format()
+  using namespace PseudoOpenABCD;  // templates
 
+  std::shared_ptr<const OrientedGraph> graphPtr = shared_from_this();
   if (!d_vertexes.at(VertexTypes::subGraph).empty()) {
-    throw std::invalid_argument(
-        "GraphMLPseudoABCD: subGraphs are not allowed in this format yet."
-    );
+    graphPtr = this->unrollGraph();
   }
 
   std::string                     nodes, edges, nodeType, actualName, sinkName;
   std::map<std::string, uint32_t> nodeNames;
   uint32_t                        nodeCounter = 0;
 
-  for (const auto& [vertexType, vertexVector] : d_vertexes) {
+  for (const auto& [vertexType, vertexVector] : graphPtr->d_vertexes) {
     switch (vertexType) {
       case VertexTypes::input:
         nodeType = "0";
@@ -684,9 +686,8 @@ std::string OrientedGraph::toGraphMLPseudoABCD() const {
       if (nodeNames.find(actualName) == nodeNames.end()) {
         nodeNames[actualName] = nodeCounter++;
       }
-      nodes += format(
-          pseudoABCDNodeTemplate, nodeNames.at(actualName), actualName, nodeType
-      );
+      nodes +=
+          format(nodeTemplate, nodeNames.at(actualName), actualName, nodeType);
 
       for (const auto& sink : v->getOutConnections()) {
         sinkName = sink->getName();
@@ -695,31 +696,29 @@ std::string OrientedGraph::toGraphMLPseudoABCD() const {
         }
 
         edges += format(
-            pseudoABCDEdgeTemplate,
-            nodeNames.at(actualName),
-            nodeNames.at(sinkName)
+            edgeTemplate, nodeNames.at(actualName), nodeNames.at(sinkName)
         );
       }
     }
   }
 
-  return format(pseudoABCDMainTemplate, nodes + edges);
+  return format(mainTemplate, nodes + edges);
 }
 
 std::string OrientedGraph::toGraphMLABCD() const {
-  using namespace AuxMethods;  // format() and replacer()
+  using namespace AuxMethods;  // format()
+  using namespace OpenABCD;    // templates
 
+  std::shared_ptr<const OrientedGraph> graphPtr = shared_from_this();
   if (!d_vertexes.at(VertexTypes::subGraph).empty()) {
-    throw std::invalid_argument(
-        "GraphMLABCD: subGraphs are not allowed in this format yet."
-    );
+    graphPtr = this->unrollGraph();
   }
 
   std::string                     nodes, edges, nodeType, actualName, sinkName;
   std::map<std::string, uint32_t> nodeNames;
   uint32_t                        nodeCounter = 0;
 
-  for (const auto& [vertexType, vertexVector] : d_vertexes) {
+  for (const auto& [vertexType, vertexVector] : graphPtr->d_vertexes) {
     switch (vertexType) {
       case VertexTypes::input:
         nodeType = "0";
@@ -749,10 +748,37 @@ std::string OrientedGraph::toGraphMLABCD() const {
         nodeNames[actualName] = nodeCounter++;
       }
 
+      uint32_t inverted = 0;
       for (const auto& sink : v->getOutConnections()) {
         Gates sinkGate = sink->getGate();
         if (sinkGate == Gates::GateBuf || sinkGate == Gates::GateNot) {
-          continue;
+          std::stack<std::pair<VertexPtr, bool>> stck;
+          stck.push({sink, sinkGate == Gates::GateBuf ? 0 : 1});
+          while (!stck.empty()) {
+            auto current = stck.top();
+            stck.pop();
+            for (const auto& s : current.first->getOutConnections()) {
+              Gates sGate = s->getGate();
+              if (sGate == Gates::GateBuf || sGate == Gates::GateNot) {
+                stck.push(
+                    {s,
+                     sGate == Gates::GateBuf ? current.second : !current.second}
+                );
+              } else {
+                std::string sName = s->getName();
+                if (nodeNames.find(sName) == nodeNames.end()) {
+                  nodeNames[sName] = nodeCounter++;
+                }
+                edges += format(
+                    edgeTemplate,
+                    nodeNames.at(actualName),
+                    nodeNames.at(sName),
+                    current.second
+                );
+                inverted += current.second;
+              }
+            }
+          }
         } else {
           sinkName = sink->getName();
           if (nodeNames.find(sinkName) == nodeNames.end()) {
@@ -760,18 +786,21 @@ std::string OrientedGraph::toGraphMLABCD() const {
           }
 
           edges += format(
-              ABCDEdgeTemplate, nodeNames.at(actualName), nodeNames.at(sinkName)
+              edgeTemplate,
+              nodeNames.at(actualName),
+              nodeNames.at(sinkName),
+              "0"
           );
         }
       }
 
       nodes += format(
-          ABCDNodeTemplate, nodeNames.at(actualName), actualName, nodeType
+          nodeTemplate, nodeNames.at(actualName), actualName, nodeType, inverted
       );
     }
   }
 
-  return format(ABCDMainTemplate, nodes + edges);
+  return format(mainTemplate, nodes + edges);
 }
 
 GraphPtr OrientedGraph::unrollGraph() const {
@@ -786,6 +815,7 @@ GraphPtr OrientedGraph::unrollGraph() const {
   }
 
   auto unroller = [&](std::shared_ptr<const OrientedGraph> graph,
+                      std::string                          prefix,
                       auto&&                               unroller) -> void {
     for (const auto& [vertexType, vertices] : graph->getBaseVertexes()) {
       for (const auto& v : vertices) {
@@ -793,11 +823,11 @@ GraphPtr OrientedGraph::unrollGraph() const {
 
         switch (vertexType) {
           case VertexTypes::constant:
-            newVertex = newGraph->addConst(v->getValue(), v->getName());
+            newVertex = newGraph->addConst(v->getValue(), v->getName(prefix));
             vPairs.insert({v, newVertex});
             break;
           case VertexTypes::gate:
-            newVertex = newGraph->addGate(v->getGate(), v->getName());
+            newVertex = newGraph->addGate(v->getGate(), v->getName(prefix));
             vPairs.insert({v, newVertex});
             break;
 
@@ -810,7 +840,7 @@ GraphPtr OrientedGraph::unrollGraph() const {
             const auto&    vOutputs = v->getOutConnections();
             VertexPtr      ptr;
 
-            unroller(sg, unroller);
+            unroller(sg, v->getName() + "::", unroller);
 
             for (size_t i = 0; i < vInputs.size(); ++i) {
               ptr = vInputs[i].lock();
@@ -843,7 +873,7 @@ GraphPtr OrientedGraph::unrollGraph() const {
     }
   };
 
-  unroller(shared_from_this(), unroller);
+  unroller(shared_from_this(), "", unroller);
 
   for (const auto& pair : vPairs) {
     for (const auto& v : pair.first->getOutConnections()) {
