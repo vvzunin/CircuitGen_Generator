@@ -714,9 +714,10 @@ std::string OrientedGraph::toGraphMLABCD() const {
     graphPtr = this->unrollGraph();
   }
 
-  std::string                     nodes, edges, nodeType, actualName, sinkName;
+  std::string nodes, edges, nodeType, actualName, currentName;
+  Gates       currentGate, vGate, sGate;
   std::map<std::string, uint32_t> nodeNames;
-  uint32_t                        nodeCounter = 0;
+  uint32_t                        nodeCounter = 0, inverted;
 
   for (const auto& [vertexType, vertexVector] : graphPtr->d_vertexes) {
     switch (vertexType) {
@@ -735,7 +736,7 @@ std::string OrientedGraph::toGraphMLABCD() const {
           nodeType = "100" + std::string(1, v->getValue());
           break;
         case VertexTypes::gate:
-          Gates vGate = v->getGate();
+          vGate = v->getGate();
           if (vGate == Gates::GateBuf || vGate == Gates::GateNot) {
             continue;
           }
@@ -748,58 +749,41 @@ std::string OrientedGraph::toGraphMLABCD() const {
         nodeNames[actualName] = nodeCounter++;
       }
 
-      uint32_t inverted = 0;
+      inverted = 0;
       for (const auto& sink : v->getOutConnections()) {
-        Gates sinkGate = sink->getGate();
-        if (sinkGate == Gates::GateBuf || sinkGate == Gates::GateNot) {
-          std::stack<std::pair<VertexPtr, bool>> stck;
-          stck.push({sink, sinkGate == Gates::GateBuf ? 0 : 1});
-          while (!stck.empty()) {
-            auto current = stck.top();
-            stck.pop();
-            for (const auto& s : current.first->getOutConnections()) {
-              Gates sGate = s->getGate();
-              if (sGate == Gates::GateBuf || sGate == Gates::GateNot) {
-                stck.push(
-                    {s,
-                     sGate == Gates::GateBuf ? current.second : !current.second}
-                );
-              } else {
-                std::string sName = s->getName();
-                if (nodeNames.find(sName) == nodeNames.end()) {
-                  nodeNames[sName] = nodeCounter++;
-                }
-                edges += format(
-                    edgeTemplate,
-                    nodeNames.at(actualName),
-                    nodeNames.at(sName),
-                    current.second
-                );
-                inverted += current.second;
-              }
-            }
-          }
-        } else {
-          sinkName = sink->getName();
-          if (nodeNames.find(sinkName) == nodeNames.end()) {
-            nodeNames[sinkName] = nodeCounter++;
-          }
+        std::stack<std::pair<VertexPtr, bool>> stck;
+        stck.push({sink, sink->getGate() == Gates::GateNot ? 1 : 0});
 
-          edges += format(
-              edgeTemplate,
-              nodeNames.at(actualName),
-              nodeNames.at(sinkName),
-              "0"
-          );
+        while (!stck.empty()) {
+          auto current = stck.top();
+          stck.pop();
+          currentGate = current.first->getGate();
+          if (currentGate == Gates::GateBuf || currentGate == Gates::GateNot) {
+            for (const auto& s : current.first->getOutConnections()) {
+              sGate      = s->getGate();
+              bool state = current.second;
+              stck.push({s, sGate == Gates::GateNot ? !state : state});
+            }
+          } else {
+            currentName = current.first->getName();
+            if (nodeNames.find(currentName) == nodeNames.end()) {
+              nodeNames[currentName] = nodeCounter++;
+            }
+            edges += format(
+                edgeTemplate,
+                nodeNames.at(actualName),
+                nodeNames.at(currentName),
+                current.second
+            );
+            inverted += current.second;
+          }
         }
       }
-
       nodes += format(
           nodeTemplate, nodeNames.at(actualName), actualName, nodeType, inverted
       );
     }
   }
-
   return format(mainTemplate, nodes + edges);
 }
 
@@ -824,11 +808,11 @@ GraphPtr OrientedGraph::unrollGraph() const {
         switch (vertexType) {
           case VertexTypes::constant:
             newVertex = newGraph->addConst(v->getValue(), v->getName(prefix));
-            vPairs.insert({v, newVertex});
+            vPairs[v] = newVertex;
             break;
           case VertexTypes::gate:
             newVertex = newGraph->addGate(v->getGate(), v->getName(prefix));
-            vPairs.insert({v, newVertex});
+            vPairs[v] = newVertex;
             break;
 
           case VertexTypes::subGraph: {
