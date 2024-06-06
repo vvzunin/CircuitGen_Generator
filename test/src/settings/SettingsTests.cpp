@@ -54,7 +54,7 @@ TEST(TestSettings, TestDefaultLoadSettings) {
   std::shared_ptr<Settings> t =
       Settings::getInstance("test_default_load_settings");
 
-  std::map<int, std::vector<std::string>> operToHierAns;
+  std::map<int32_t, std::vector<std::string>> operToHierAns;
   operToHierAns[0]  = {"="};
   operToHierAns[1]  = {"xnor"};
   operToHierAns[2]  = {"xor"};
@@ -99,18 +99,19 @@ TEST(
         Settings::getInstance(" ");  // Here we call implicitly loadSettings.
     // Below I going to write down correct samples that I want to use to compare
     // with the output of the loadSettings
-    std::map<std::string, std::pair<std::string, int>> correctLogicOperations =
-        {{"input", {"", 10}},
-         {"output", {"=", 0}},
-         {"const", {"1'b0", 9}},
-         {"and", {"and", 4}},
-         {"nand", {"nand", 3}},
-         {"or", {"or", 6}},
-         {"nor", {"nor", 5}},
-         {"not", {"not", 7}},
-         {"buf", {"buf", 8}},
-         {"xor", {"xor", 2}},
-         {"xnor", {"xnor", 1}}};
+    std::map<std::string, std::pair<std::string, int32_t>>
+        correctLogicOperations = {
+            {"input", {"", 10}},
+            {"output", {"=", 0}},
+            {"const", {"1'b0", 9}},
+            {"and", {"and", 4}},
+            {"nand", {"nand", 3}},
+            {"or", {"or", 6}},
+            {"nor", {"nor", 5}},
+            {"not", {"not", 7}},
+            {"buf", {"buf", 8}},
+            {"xor", {"xor", 2}},
+            {"xnor", {"xnor", 1}}};
 
     for (auto const& [key, val] : correctLogicOperations) {
       EXPECT_EQ(correctLogicOperations[key], SetPtr->getLogicOperation(key));
@@ -127,7 +128,7 @@ TEST(
         Settings::getInstance(" ");  // Here we call implicitly loadSettings.
     // Below I going to write down correct samples that I want to use to compare
     // with the output of the loadSettings
-    std::map<int, std::vector<std::string>> correctOperationsToHierarchy = {
+    std::map<int32_t, std::vector<std::string>> correctOperationsToHierarchy = {
         {10, {""}},
         {0, {"="}},
         {9, {"1'b0"}},

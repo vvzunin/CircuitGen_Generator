@@ -159,7 +159,7 @@ public:
   /// vertex
   /// */
 
-  void    setVerticeOperation(int i_vertice, const std::string& i_operation);
+  void setVerticeOperation(int32_t i_vertice, const std::string& i_operation);
 
   /// @todo: description fromVerilog
   /// @brief fromVerilog

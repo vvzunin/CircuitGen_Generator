@@ -59,19 +59,19 @@ public:
 
   ResultGraph generateTypeForGraph(
       const DataBaseGeneratorParameters& i_gp,
-      bool                               parallel            = true,
+      uint8_t                            parallel            = 1,
       bool                               createIdDirectories = true
   );
 
   ResultPath generateTypeForPath(
       const DataBaseGeneratorParameters& i_gp,
-      bool                               parallel            = true,
+      uint8_t                            parallel            = 1,
       bool                               createIdDirectories = true
   );
 
   void generateTypeDefault(
       const DataBaseGeneratorParameters& i_gp,
-      bool                               parallel            = true,
+      uint8_t                            parallel            = 1,
       bool                               createIdDirectories = true
   );
 
@@ -84,7 +84,7 @@ private:
   std::shared_ptr<Settings> d_settings =
       Settings::getInstance("DataBaseGenerator");
   DataBaseGeneratorParameters d_parameters;  // why we need this var?
-  int                         d_dirCount = 0;
+  int32_t                     d_dirCount = 0;
 
   /// @brief generateDataBaseFromRandomTruthTable The generate DataBase From
   /// Random Truth Table method of the DataBase Generator class is responsible
@@ -97,7 +97,7 @@ private:
 
   void                        runGeneratorByDefault(
                              const DataBaseGeneratorParameters& i_gp,
-                             bool                               parallel = true,
+                             uint8_t                            parallel = 1,
                              bool                               createIdDirectories = true
                          );
 

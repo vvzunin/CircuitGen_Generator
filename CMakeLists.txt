@@ -41,6 +41,7 @@ set(PUBLIC_HEADERS
   include/CircuitGenGenerator/export.hpp
   include/CircuitGenGenerator/CircuitGenGenerator.hpp
   include/CircuitGenGenerator/OrientedGraph.hpp
+  include/CircuitGenGenerator/ThreadPool.hpp
 )
 
 set(SOURCES
@@ -61,16 +62,16 @@ set(SOURCES
   src/database/DataBaseGeneratorParameters.cpp
   src/generators/simple/SimpleGenerators.cpp
   src/generators/Genetic/GeneticParameters.cpp
-  src/generators/Genetic/GenGenerator.h
-  src/generators/Genetic/Chronosome.h
-  src/generators/Genetic/ChronosomeType.h
-  src/generators/Genetic/Selections/Selections.h
+  src/generators/Genetic/GenGenerator.hpp
+  src/generators/Genetic/Chronosome.hpp
+  src/generators/Genetic/ChronosomeType.hpp
+  src/generators/Genetic/Selections/Selections.hpp
   src/generators/Genetic/Selections/SelectionParameters.cpp
-  src/generators/Genetic/Selections/SelectionsTruthTable.h
-  src/generators/Genetic/Recombination/Recombinations.h
+  src/generators/Genetic/Selections/SelectionsTruthTable.hpp
+  src/generators/Genetic/Recombination/Recombinations.hpp
   src/generators/Genetic/Recombination/RecombinationParameters.cpp
   src/generators/Genetic/Recombination/RecombinationsTruthTable.cpp
-  src/generators/Genetic/Parents/Parents.h
+  src/generators/Genetic/Parents/Parents.hpp
   src/generators/Genetic/Parents/ParentsParameters.cpp
   src/generators/Genetic/Parents/ParentsTruthTable.hpp
   src/generators/Genetic/Mutations/Mutation.cpp
@@ -153,7 +154,8 @@ target_include_directories(
 )
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
-
+# add_compile_options(-fsanitize=address)
+# add_link_options(-fsanitize=address)
 target_include_directories(CircuitGenGenerator_lib
   PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"

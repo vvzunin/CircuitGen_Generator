@@ -35,7 +35,10 @@ public:
 
   std::uint_fast32_t       getSeed() const { return d_seed; }
 
-  void setSeed(std::uint_fast32_t i_seed) { d_gen.seed(i_seed); }
+  void                     setSeed(std::uint_fast32_t i_seed) {
+    d_gen.seed(i_seed);
+    d_seed = i_seed;
+  }
 
   /// @brief getRandInt Method to generate a random integer within a specified
   /// range.
@@ -49,7 +52,7 @@ public:
   /// @return dis The generated integer in the range between lower and upper
   /// */
 
-  int  getRandInt(int lower, int upper, bool inclusively = false) {
+  int32_t getRandInt(int32_t lower, int32_t upper, bool inclusively = false) {
     if (!inclusively)
       upper--;
 
@@ -67,25 +70,25 @@ public:
     return dis(d_gen);
   }
 
-  std::vector<int> getRandomIntList(
-      int  i_n,
-      int  i_minNumber,
-      int  i_maxNumber,
-      bool repite = false
+  std::vector<int32_t> getRandomIntList(
+      size_t  i_n,
+      int32_t i_minNumber,
+      int32_t i_maxNumber,
+      bool    repite = false
   ) {
-    std::vector<int> randomNumbers;
+    std::vector<int32_t> randomNumbers;
 
     if (repite) {
       // Если повторения разрешены, просто генерируем числа.
-      for (int i = 0; i < i_n; ++i) {
+      for (size_t i = 0; i < i_n; ++i) {
         randomNumbers.push_back(getRandInt(i_minNumber, i_maxNumber, false));
       }
     } else {
       // Если повторения запрещены, используем set для проверки существующих
       // чисел.
-      std::unordered_set<int> used;
-      while (randomNumbers.size() < static_cast<size_t>(i_n)) {
-        int number = getRandInt(i_minNumber, i_maxNumber, false);
+      std::unordered_set<int32_t> used;
+      while (randomNumbers.size() < i_n) {
+        int32_t number = getRandInt(i_minNumber, i_maxNumber, false);
         // Добавляем только уникальные числа.
         if (used.insert(number).second) {
           randomNumbers.push_back(number);

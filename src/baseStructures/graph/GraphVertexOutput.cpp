@@ -17,7 +17,7 @@ char GraphVertexOutput::updateValue() {
       throw std::invalid_argument("Dead pointer!");
     }
   }
-  for (int i = 1; i < d_inConnections.size(); i++) {
+  for (size_t i = 1; i < d_inConnections.size(); i++) {
     if (auto ptr = d_inConnections[i].lock()) {
       if (ptr->getValue() != d_value) {
         d_value = 'x';

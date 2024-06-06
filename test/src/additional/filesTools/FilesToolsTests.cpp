@@ -89,7 +89,7 @@ TEST(FileTools, NoDirectoriesOnlyFiles) {
 
   // Created ten empty txt files in the current directory to make sure that the
   // function does not count files.
-  for (int i = 1; i <= 10; i++) {
+  for (int32_t i = 1; i <= 10; i++) {
     std::ofstream file;
     std::string   str = std::to_string(i)
                     + ".txt";  // Create str to prevent warning from below line
@@ -147,7 +147,7 @@ TEST(FileTools, DirectoriesAndFilesExist) {
 
   // Created ten empty txt files in the current directory to make sure that the
   // function does not count files.
-  for (int i = 1; i <= 10; i++) {
+  for (int32_t i = 1; i <= 10; i++) {
     std::ofstream file;
     std::string   str =
         std::to_string(i) + ".txt";  // To prevent warning from below line

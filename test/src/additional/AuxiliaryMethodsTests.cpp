@@ -107,15 +107,15 @@ TEST(
 
 TEST(TestAuxiliarySortDictByValue, NormalTest) {
   // Just created some maps that going to be input for  sortDictByValue
-  std::map<std::string, int> normalInput1 = {
+  std::map<std::string, int32_t> normalInput1 = {
       {"0", 0}, {"1", 1}, {"2", 2}, {"3", 3}};
-  std::map<std::string, int> normalInput2 = {
+  std::map<std::string, int32_t> normalInput2 = {
       {"0", 110}, {"1", 10}, {"2", 20}, {"3", 3}};
-  std::map<std::string, int> normalInput3 = {
+  std::map<std::string, int32_t> normalInput3 = {
       {"0", 1100}, {"1", 1}, {"2", 1}, {"3", 33}};
   // Here I created vector correctAnswer which I will use to compare with the
   // result of sortDictByValue
-  std::vector<std::pair<std::string, int>> correctAnswer;
+  std::vector<std::pair<std::string, int32_t>> correctAnswer;
   // Here I fill the vector with expected from sortDictByValue(testDict1, false)
   // data
   correctAnswer.push_back({"3", 3});
@@ -156,7 +156,7 @@ TEST(
     SortDictByValueReturnEmptyVectorWhenThereEmptyDictionary
 ) {
   // Just created a map that going to be input for  sortDictByValue
-  std::map<std::string, int> EmptyMap = {};
+  std::map<std::string, int32_t> EmptyMap = {};
   EXPECT_EQ(
       0, (sortDictByValue(EmptyMap, true)).size()
   );  // Check to make sure that output of sortDictByValue(testDict1, true) has
@@ -169,11 +169,11 @@ TEST(
 
 TEST(TestAuxiliarySortDictByValue, WhenThereTheSameValuesInDictionary) {
   // Just created a map that's going to be input for  sortDictByValue
-  std::map<std::string, int> TheSameElements = {
+  std::map<std::string, int32_t> TheSameElements = {
       {"1", 1}, {"2", 1}, {"3", 1}, {"4", 1}, {"5", 1}};
   // Here I created vector correctAnswer which I will use to compare with the
   // result of sortDictByValue
-  std::vector<std::pair<std::string, int>> correctAnswer;
+  std::vector<std::pair<std::string, int32_t>> correctAnswer;
   // Here I fill the vector with expected from sortDictByValue(testDict1, false)
   // data
   correctAnswer.push_back({"1", 1});
