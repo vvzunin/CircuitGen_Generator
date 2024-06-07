@@ -46,7 +46,7 @@ const char* edgeTemplate = R"(    <edge source="%" target="%">
 )";
 }  // namespace OpenABCD
 
-namespace PseudoOpenABCD {
+namespace PseudoABCD {
 const char* mainTemplate = R"(<?xml version='1.0' encoding='utf-8'?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
   <key id="d1" for="node" attr.name="node_type" attr.type="long" />
@@ -64,7 +64,7 @@ const char* nodeTemplate = R"(    <node id="%">
 
 const char* edgeTemplate = R"(    <edge source="%" target="%"/>
 )";
-}  // namespace PseudoOpenABCD
+}  // namespace PseudoABCD
 
 std::map<Gates, std::string> gateToABCDType = {
     {Gates::GateAnd, "2"},

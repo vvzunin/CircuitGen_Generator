@@ -208,7 +208,11 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     c.setTable(tt);
     c.setPath(d_mainPath);
     c.setCircuitName(curGraph->getName());
-    c.generate(i_param.getMakeGraphML());
+    c.generate(
+        i_param.getMakeGraphMLClassic(),
+        i_param.getMakeGraphMLPseudoABCD(),
+        i_param.getMakeGraphMLOpenABCD()
+    );
 
     addDataToReturn(curGraph);
   }
@@ -232,7 +236,11 @@ void DataBaseGenerator::generateDataBaseRandLevel(
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -264,7 +272,11 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
 
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -290,7 +302,11 @@ void DataBaseGenerator::generateDataBaseNumOperations(
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(i_param.getName());
-    c.generate(i_param.getMakeGraphML());
+    c.generate(
+        i_param.getMakeGraphMLClassic(),
+        i_param.getMakeGraphMLPseudoABCD(),
+        i_param.getMakeGraphMLOpenABCD()
+    );
 
     addDataToReturn(graph);
   }
@@ -313,7 +329,11 @@ void DataBaseGenerator::generateDataBaseGenetic(
     Circuit c(graph);
     c.setPath(d_mainPath);
     c.setCircuitName(graph->getName());
-    c.generate(i_param.getMakeGraphML());
+    c.generate(
+        i_param.getMakeGraphMLClassic(),
+        i_param.getMakeGraphMLPseudoABCD(),
+        i_param.getMakeGraphMLOpenABCD()
+    );
 
     addDataToReturn(graph);
   }
@@ -333,7 +353,11 @@ void DataBaseGenerator::generateDataBaseSummator(
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -352,7 +376,11 @@ void DataBaseGenerator::generateDataBaseComparison(
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -368,7 +396,11 @@ void DataBaseGenerator::generateDataBaseEncoder(
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -384,7 +416,11 @@ void DataBaseGenerator::generateDataBaseParity(
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -404,7 +440,11 @@ void DataBaseGenerator::generateDataBaseSubtractor(
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -420,7 +460,11 @@ void DataBaseGenerator::generateDataBaseMultiplexer(
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -436,7 +480,11 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -451,7 +499,11 @@ void DataBaseGenerator::generateDataBaseMultiplier(
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -466,7 +518,11 @@ void DataBaseGenerator::generateDataBaseDecoder(
   Circuit  c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }
@@ -505,7 +561,11 @@ void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+      i_param.getMakeGraphMLClassic(),
+      i_param.getMakeGraphMLPseudoABCD(),
+      i_param.getMakeGraphMLOpenABCD()
+  );
 
   addDataToReturn(graph);
 }

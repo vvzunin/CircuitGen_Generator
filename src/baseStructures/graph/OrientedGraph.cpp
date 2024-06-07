@@ -540,7 +540,7 @@ std::pair<bool, std::string>
   return std::make_pair(true, "");
 }
 
-std::string OrientedGraph::toGraphML(
+std::string OrientedGraph::toGraphMLClassic(
     uint16_t           i_indent,
     const std::string& i_prefix
 ) const {
@@ -602,7 +602,7 @@ std::string OrientedGraph::toGraphML(
         "%",
         "subGraph",
         "\n",
-        sg->toGraphML(i_indent + 4, i_prefix + "%::")
+        sg->toGraphMLClassic(i_indent + 4, i_prefix + "%::")
     );
 
     // graphInputs, graphOutputs, verticesInputs, verticesOutputs
@@ -647,14 +647,24 @@ std::string OrientedGraph::toGraphML(
   return format(mainTemplate, format(finalGraph, d_name));
 }
 
-bool OrientedGraph::toGraphML(std::ofstream& fileStream) const {
-  fileStream << this->toGraphML();
+bool OrientedGraph::toGraphMLClassic(std::ofstream& fileStream) const {
+  fileStream << this->toGraphMLClassic();
+  return true;
+}
+
+bool OrientedGraph::toGraphMLPseudoABCD(std::ofstream& fileStream) const {
+  fileStream << this->toGraphMLPseudoABCD();
+  return true;
+}
+
+bool OrientedGraph::toGraphMLOpenABCD(std::ofstream& fileStream) const {
+  fileStream << this->toGraphMLOpenABCD();
   return true;
 }
 
 std::string OrientedGraph::toGraphMLPseudoABCD() const {
-  using namespace AuxMethods;      // format()
-  using namespace PseudoOpenABCD;  // templates
+  using namespace AuxMethods;  // format()
+  using namespace PseudoABCD;  // templates
 
   std::shared_ptr<const OrientedGraph> graphPtr = shared_from_this();
   if (!d_vertexes.at(VertexTypes::subGraph).empty()) {
@@ -708,7 +718,7 @@ std::string OrientedGraph::toGraphMLPseudoABCD() const {
   return format(mainTemplate, nodes + edges);
 }
 
-std::string OrientedGraph::toGraphMLABCD() const {
+std::string OrientedGraph::toGraphMLOpenABCD() const {
   using namespace AuxMethods;  // format()
   using namespace OpenABCD;    // templates
 
