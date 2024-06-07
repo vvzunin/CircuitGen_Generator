@@ -43,14 +43,14 @@ std::pair<bool, std::string>
 }
 
 bool GraphVertexSubGraph::toGraphML(std::ofstream& i_fileStream) const {
-  return d_subGraph->toGraphML(i_fileStream);
+  return d_subGraph->toGraphMLClassic(i_fileStream);
 }
 
 std::string GraphVertexSubGraph::toGraphML(
     uint16_t    i_indent,
     std::string i_prefix
 ) const {
-  return d_subGraph->toGraphML(i_indent, i_prefix);
+  return d_subGraph->toGraphMLClassic(i_indent, i_prefix);
 }
 
 std::string GraphVertexSubGraph::toVerilog() {

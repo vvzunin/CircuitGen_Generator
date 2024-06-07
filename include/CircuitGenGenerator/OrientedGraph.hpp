@@ -382,9 +382,15 @@ public:
   /// written in GraphML format, and false otherwise. In this case, it always
   /// returns true.
 
-  bool        toGraphML(std::ofstream& i_fileStream) const;
-  std::string toGraphML(uint16_t i_indent = 0, const std::string& i_prefix = "")
-      const;
+  bool        toGraphMLClassic(std::ofstream& i_fileStream) const;
+  bool        toGraphMLPseudoABCD(std::ofstream& i_fileStream) const;
+  bool        toGraphMLOpenABCD(std::ofstream& i_fileStream) const;
+  std::string toGraphMLClassic(
+      uint16_t           i_indent = 0,
+      const std::string& i_prefix = ""
+  ) const;
+  std::string            toGraphMLPseudoABCD() const;
+  std::string            toGraphMLOpenABCD() const;
   // visualize
   // calcGraph
 
@@ -428,7 +434,9 @@ public:
 
   std::map<Gates, std::map<Gates, size_t>> getEdgesGatesCount() const;
 
-  bool isConnected(bool i_recalculate = false);
+  bool     isConnected(bool i_recalculate = false);
+
+  GraphPtr unrollGraph() const;
 
 private:
   static std::atomic_size_t d_countNewGraphInstance;

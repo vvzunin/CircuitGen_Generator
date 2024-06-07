@@ -132,8 +132,15 @@ void runGeneration(
     }
 
     // for GraphML
-    bool makeGraphML =
-        data.contains("make_graphml") ? (bool)data["make_graphml"] : false;
+    bool makeGraphMLClassic =
+        data.contains("make_graphml_classic")
+        ? (bool)data["make_graphml_classic"] : false;
+    bool makeGraphMLPseudoABCD =
+        data.contains("make_graphml_pseudo_abc_d")
+        ? (bool)data["make_graphml_pseudo_abc_d"] : false;
+    bool makeGraphMLOpenABCD =
+        data.contains("make_graphml_open_abc_d")
+        ? (bool)data["make_graphml_open_abc_d"] : false;
 
     // Считывание информации по логичсеким элементам.
     std::map<std::string, std::vector<int32_t>> gatesInputsInfo;
@@ -166,7 +173,8 @@ void runGeneration(
     // TODO:: make function that return DataBaseGeneratorParameters from json
     // Recording of json data to gp
     GenerationParameters gp(
-        datasetId, requestId, minInputs, minOutputs, repeats, makeGraphML
+        datasetId, requestId, minInputs, minOutputs, repeats,
+        makeGraphMLClassic, makeGraphMLPseudoABCD, makeGraphMLOpenABCD
     );
 
     gp.setGatesInputInfo(gatesInputsInfo);

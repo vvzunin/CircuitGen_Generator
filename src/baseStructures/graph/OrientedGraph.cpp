@@ -540,11 +540,12 @@ std::pair<bool, std::string>
   return std::make_pair(true, "");
 }
 
-std::string OrientedGraph::toGraphML(
+std::string OrientedGraph::toGraphMLClassic(
     uint16_t           i_indent,
     const std::string& i_prefix
 ) const {
-  using namespace AuxMethods;  // format() and replacer()
+  using namespace AuxMethods;      // format() and replacer()
+  using namespace ClassicGraphML;  // templates
 
   const std::string spaces(i_indent, ' ');
 
@@ -601,10 +602,10 @@ std::string OrientedGraph::toGraphML(
         "%",
         "subGraph",
         "\n",
-        sg->toGraphML(i_indent + 4, i_prefix + "%::")
+        sg->toGraphMLClassic(i_indent + 4, i_prefix + "%::")
     );
 
-    // vertexesInputs, vertexesOutputs, graphInputs, graphOutputs
+    // graphInputs, graphOutputs, verticesInputs, verticesOutputs
     const auto& gInputs  = sg->d_vertexes.at(VertexTypes::input);
     const auto& gOutputs = sg->d_vertexes.at(VertexTypes::output);
     const auto& vInputs  = sg->d_subGraphsInputsPtr.at(d_graphID);
@@ -646,9 +647,247 @@ std::string OrientedGraph::toGraphML(
   return format(mainTemplate, format(finalGraph, d_name));
 }
 
-bool OrientedGraph::toGraphML(std::ofstream& fileStream) const {
-  fileStream << this->toGraphML();
+bool OrientedGraph::toGraphMLClassic(std::ofstream& fileStream) const {
+  fileStream << this->toGraphMLClassic();
   return true;
+}
+
+bool OrientedGraph::toGraphMLPseudoABCD(std::ofstream& fileStream) const {
+  fileStream << this->toGraphMLPseudoABCD();
+  return true;
+}
+
+bool OrientedGraph::toGraphMLOpenABCD(std::ofstream& fileStream) const {
+  fileStream << this->toGraphMLOpenABCD();
+  return true;
+}
+
+std::string OrientedGraph::toGraphMLPseudoABCD() const {
+  using namespace AuxMethods;  // format()
+  using namespace PseudoABCD;  // templates
+
+  std::shared_ptr<const OrientedGraph> graphPtr = shared_from_this();
+  if (!d_vertexes.at(VertexTypes::subGraph).empty()) {
+    graphPtr = this->unrollGraph();
+  }
+
+  std::string                     nodes, edges, nodeType, actualName, sinkName;
+  std::map<std::string, uint32_t> nodeNames;
+  uint32_t                        nodeCounter = 0;
+
+  for (const auto& [vertexType, vertexVector] : graphPtr->d_vertexes) {
+    switch (vertexType) {
+      case VertexTypes::input:
+        nodeType = "0";
+        break;
+      case VertexTypes::output:
+        nodeType = "1";
+        break;
+    }
+
+    for (const auto& v : vertexVector) {
+      // every "gate" and "const" vertex has subtypes
+      switch (vertexType) {
+        case VertexTypes::constant:
+          nodeType = "100" + std::string(1, v->getValue());
+          break;
+        case VertexTypes::gate:
+          nodeType = gateToABCDType.at(v->getGate());
+          break;
+      }
+      actualName = v->getName();
+      if (nodeNames.find(actualName) == nodeNames.end()) {
+        nodeNames[actualName] = nodeCounter++;
+      }
+      nodes +=
+          format(nodeTemplate, nodeNames.at(actualName), actualName, nodeType);
+
+      for (const auto& sink : v->getOutConnections()) {
+        sinkName = sink->getName();
+        if (nodeNames.find(sinkName) == nodeNames.end()) {
+          nodeNames[sinkName] = nodeCounter++;
+        }
+
+        edges += format(
+            edgeTemplate, nodeNames.at(actualName), nodeNames.at(sinkName)
+        );
+      }
+    }
+  }
+
+  return format(mainTemplate, nodes + edges);
+}
+
+std::string OrientedGraph::toGraphMLOpenABCD() const {
+  using namespace AuxMethods;  // format()
+  using namespace OpenABCD;    // templates
+
+  std::shared_ptr<const OrientedGraph> graphPtr = shared_from_this();
+  if (!d_vertexes.at(VertexTypes::subGraph).empty()) {
+    graphPtr = this->unrollGraph();
+  }
+
+  std::string nodes, edges, nodeType, actualName, currentName;
+  Gates       currentGate, vGate, sGate;
+  std::map<std::string, uint32_t> nodeNames;
+  uint32_t                        nodeCounter = 0, inverted;
+
+  for (const auto& [vertexType, vertexVector] : graphPtr->d_vertexes) {
+    switch (vertexType) {
+      case VertexTypes::input:
+        nodeType = "0";
+        break;
+      case VertexTypes::output:
+        nodeType = "1";
+        break;
+    }
+
+    for (const auto& v : vertexVector) {
+      // every "gate" and "const" vertex has subtypes
+      switch (vertexType) {
+        case VertexTypes::constant:
+          nodeType = "100" + std::string(1, v->getValue());
+          break;
+        case VertexTypes::gate:
+          vGate = v->getGate();
+          if (vGate == Gates::GateBuf || vGate == Gates::GateNot) {
+            continue;
+          }
+          nodeType = gateToABCDType.at(vGate);
+          break;
+      }
+
+      actualName = v->getName();
+      if (nodeNames.find(actualName) == nodeNames.end()) {
+        nodeNames[actualName] = nodeCounter++;
+      }
+
+      inverted = 0;
+      for (const auto& sink : v->getOutConnections()) {
+        std::stack<std::pair<VertexPtr, bool>> stck;
+        stck.push({sink, sink->getGate() == Gates::GateNot ? 1 : 0});
+
+        while (!stck.empty()) {
+          auto current = stck.top();
+          stck.pop();
+          currentGate = current.first->getGate();
+          if (currentGate == Gates::GateBuf || currentGate == Gates::GateNot) {
+            for (const auto& s : current.first->getOutConnections()) {
+              sGate      = s->getGate();
+              bool state = current.second;
+              stck.push({s, sGate == Gates::GateNot ? !state : state});
+            }
+          } else {
+            currentName = current.first->getName();
+            if (nodeNames.find(currentName) == nodeNames.end()) {
+              nodeNames[currentName] = nodeCounter++;
+            }
+            edges += format(
+                edgeTemplate,
+                nodeNames.at(actualName),
+                nodeNames.at(currentName),
+                current.second
+            );
+            inverted += current.second;
+          }
+        }
+      }
+      nodes += format(
+          nodeTemplate, nodeNames.at(actualName), actualName, nodeType, inverted
+      );
+    }
+  }
+  return format(mainTemplate, nodes + edges);
+}
+
+GraphPtr OrientedGraph::unrollGraph() const {
+  GraphPtr newGraph(new OrientedGraph(d_name + "_unrolled"));
+  std::map<VertexPtr, VertexPtr> vPairs;
+
+  for (const auto& v : d_vertexes.at(VertexTypes::input)) {
+    vPairs.insert({v, newGraph->addInput(v->getName())});
+  }
+  for (const auto& v : d_vertexes.at(VertexTypes::output)) {
+    vPairs.insert({v, newGraph->addOutput(v->getName())});
+  }
+
+  auto unroller = [&](std::shared_ptr<const OrientedGraph> graph,
+                      std::string                          prefix,
+                      auto&&                               unroller) -> void {
+    for (const auto& [vertexType, vertices] : graph->getBaseVertexes()) {
+      for (const auto& v : vertices) {
+        VertexPtr newVertex;
+
+        switch (vertexType) {
+          case VertexTypes::constant:
+            newVertex = newGraph->addConst(v->getValue(), v->getName(prefix));
+            vPairs[v] = newVertex;
+            break;
+          case VertexTypes::gate:
+            newVertex = newGraph->addGate(v->getGate(), v->getName(prefix));
+            vPairs[v] = newVertex;
+            break;
+
+          case VertexTypes::subGraph: {
+            const auto sgv = std::dynamic_pointer_cast<GraphVertexSubGraph>(v);
+            const GraphPtr sg       = sgv->getSubGraph();
+            const auto&    gInputs  = sg->d_vertexes.at(VertexTypes::input);
+            const auto&    gOutputs = sg->d_vertexes.at(VertexTypes::output);
+            const auto&    vInputs  = v->getInConnections();
+            const auto&    vOutputs = v->getOutConnections();
+            VertexPtr      ptr;
+
+            unroller(sg, v->getName() + "::", unroller);
+
+            for (size_t i = 0; i < vInputs.size(); ++i) {
+              ptr = vInputs[i].lock();
+              if (!ptr) {
+                throw std::invalid_argument("Dead pointer!");
+              }
+              for (const auto& innerVertex : gInputs[i]->getOutConnections()) {
+                if (vPairs.find(innerVertex) != vPairs.end()
+                    && vPairs.find(ptr) != vPairs.end())
+                  newGraph->addEdge(vPairs.at(ptr), vPairs.at(innerVertex));
+              }
+            }
+
+            for (size_t i = 0; i < vOutputs.size(); ++i) {
+              for (const auto& innerVertex : gOutputs[i]->getInConnections()) {
+                ptr = innerVertex.lock();
+                if (!ptr) {
+                  throw std::invalid_argument("Dead pointer!");
+                }
+                for (const auto& nonBuffer : vOutputs[i]->getOutConnections()) {
+                  if (vPairs.find(nonBuffer) != vPairs.end()
+                      && vPairs.find(ptr) != vPairs.end())
+                    newGraph->addEdge(vPairs.at(ptr), vPairs.at(nonBuffer));
+                }
+              }
+            }
+
+            break;
+          }
+          default:
+            continue;
+        }
+      }
+    }
+  };
+
+  unroller(shared_from_this(), "", unroller);
+
+  for (const auto& pair : vPairs) {
+    for (const auto& v : pair.first->getOutConnections()) {
+      // if v is not subGraph and if v is not output from subGraph
+      if (v->getType() != VertexTypes::subGraph
+          && (v->getType() != VertexTypes::output
+              || v->getBaseGraph().lock().get() == this)) {
+        newGraph->addEdge(pair.second, vPairs.at(v));
+      }
+    }
+  }
+
+  return newGraph;
 }
 
 bool OrientedGraph::isConnected(bool i_recalculate) {

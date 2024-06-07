@@ -32,10 +32,10 @@ GraphPtr SimpleGenerators::generatorNewGeneratorName(...) {
 }
 ```
 ## 4. [DataBaseGenerator.hpp](src/database/DataBaseGenerator.hpp) и [DataBaseGenerator.cpp](src/database/DataBaseGenerator.cpp)
-В классе **DataBaseGenerator** необходимо реализовать метод, который будет на вход получать константную ссылку на параметры генерации *i_param*,  которая содержит все необходимые параметры генерации. В данном методе необходимо создать объект класса **SimpleGenerator** и запустить в нем ранее созданный метод, в который нужно передать все необходимые параметры из *i_param* в том же порядке, в котором они были описаны в реализации метода. Результат необходимо записать в переменную типа **GraphPtr**. После этого необходимо создать переменную типа **Circuit** и в качестве параметра конструктора передать полученный граф. После этого необходимо задать путь генерации (setPath) в качестве которого выступает *d_mainPath*. Также нужно задать название схемы (setCircuitName) присутствующее в параметрах генерации (i_param.getName()). После этого необходимо запустить генерацию схемы в формате Verilog и обсчет параметров (generate), передав набор параметров: i_param.getMakeGraphML().
+В классе **DataBaseGenerator** необходимо реализовать метод, который будет на вход получать константную ссылку на параметры генерации *i_param*,  которая содержит все необходимые параметры генерации. В данном методе необходимо создать объект класса **SimpleGenerator** и запустить в нем ранее созданный метод, в который нужно передать все необходимые параметры из *i_param* в том же порядке, в котором они были описаны в реализации метода. Результат необходимо записать в переменную типа **GraphPtr**. После этого необходимо создать переменную типа **Circuit** и в качестве параметра конструктора передать полученный граф. После этого необходимо задать путь генерации (setPath) в качестве которого выступает *d_mainPath*. Также нужно задать название схемы (setCircuitName) присутствующее в параметрах генерации (i_param.getName()). После этого необходимо запустить генерацию схемы в формате Verilog и обсчет параметров (generate), передав набор параметров: i_param.getMakeGraphMLClassic(), i_param.getMakeGraphMLPseudoABCD(), i_param.getMakeGraphMLOpenABCD().
 <!--
-На данный момент в коде используется только i_param.getMakeGraphML(). По мере реализации нужно добавить другие параметры из списка ниже (или ввести новые)
-i_param.getLibraryName(), i_param.getCalculateStatsAbc(), i_param.getMakeOptimizedFiles(), i_param.getMakeFirrtl(), i_param.getMakeBench(), i_param.getMakeGraphML()
+На данный момент в коде используется только i_param.getMakeGraphMLClassic(), i_param.getMakeGraphMLPseudoABCD(), i_param.getMakeGraphMLOpenABCD(). По мере реализации нужно добавить другие параметры из списка ниже (или ввести новые)
+i_param.getLibraryName(), i_param.getCalculateStatsAbc(), i_param.getMakeOptimizedFiles(), i_param.getMakeFirrtl(), i_param.getMakeBench()
 -->
 
 Используя приведенные ранее примеры названий методов, получаем следующий код для реализации метода:
@@ -47,7 +47,11 @@ void DataBaseGenerator::generateNewGeneratorName(GenerationParameters &i_param) 
   Circuit c (graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphML());
+  c.generate(
+    i_param.getMakeGraphMLClassic(),
+    i_param.getMakeGraphMLPseudoABCD(),
+    i_param.getMakeGraphMLOpenABCD()
+  );
 }
 ```
 И код для описания метода в header:
