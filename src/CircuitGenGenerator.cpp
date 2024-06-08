@@ -47,8 +47,8 @@ void runGeneration(
     // Задаем сид рандомизации.
     AuxMethods::setRandSeed(
         !data.contains("seed") || data["seed"] == -1
-            ? static_cast<unsigned>(std::time(0))
-            : static_cast<unsigned>(data["seed"])
+            ? static_cast<uint_fast32_t>(std::time(0))
+            : static_cast<uint_fast32_t>(data["seed"])
     );
     // EVERYWHERE seed from json is getting here. It is like a storage for seed
     // for all future usages`
@@ -95,15 +95,15 @@ void runGeneration(
                                  ? static_cast<std::string>(data["dataset_id"])
                                  : "0";
 
-    int         requestIdINT = data.contains("id") ? (int)data["id"] : 0;
+    uint32_t    requestIdINT = data.contains("id") ? (uint32_t)data["id"] : 0;
 
     std::string requestId    = std::to_string(requestIdINT);
 
-    int         minInputs    = 1;
-    int         maxInputs    = 1;
-    int         minOutputs   = 1;
-    int         maxOutputs   = 1;
-    int         repeats      = 1;
+    uint32_t    minInputs    = 1;
+    uint32_t    maxInputs    = 1;
+    uint32_t    minOutputs   = 1;
+    uint32_t    maxOutputs   = 1;
+    uint32_t    repeats      = 1;
 
     if (data.contains("min_in")) {
       minInputs = data["min_in"];
@@ -131,33 +131,24 @@ void runGeneration(
       std::clog << "repeat_n is not in json" << std::endl;
     }
 
-    // this is for ABC
-    bool        calculateStatsAbc  = data.contains("calculate_stats_abc")
-                                       ? (bool)data["calculate_stats_abc"]
-                                       : false;
-    bool        makeOptimizedFiles = data.contains("make_optimized_files")
-                                       ? (bool)data["make_optimized_files"]
-                                       : false;
-    std::string libraryName =
-        data.contains("library_name") ? (std::string)data["library_name"] : "";
-    bool makeBench =
-        data.contains("make_bench") ? (bool)data["make_bench"] : false;
-
-    // and this is for Yosys
-    bool makeFirrtl =
-        data.contains("make_firrtl") ? (bool)data["make_firrtl"] : false;
-
     // for GraphML
-    bool makeGraphML =
-        data.contains("make_graphml") ? (bool)data["make_graphml"] : false;
+    bool makeGraphMLClassic =
+        data.contains("make_graphml_classic")
+        ? (bool)data["make_graphml_classic"] : false;
+    bool makeGraphMLPseudoABCD =
+        data.contains("make_graphml_pseudo_abc_d")
+        ? (bool)data["make_graphml_pseudo_abc_d"] : false;
+    bool makeGraphMLOpenABCD =
+        data.contains("make_graphml_open_abc_d")
+        ? (bool)data["make_graphml_open_abc_d"] : false;
 
     // Считывание информации по логичсеким элементам.
-    std::map<std::string, std::vector<int>> gatesInputsInfo;
+    std::map<std::string, std::vector<int32_t>> gatesInputsInfo;
 
     if (data.contains("gates_inputs_info")) {
       for (auto gate : data["gates_inputs_info"].items()) {
-        std::vector<int> gatesNumber =
-            static_cast<std::vector<int>>(gate.value());
+        std::vector<int32_t> gatesNumber =
+            static_cast<std::vector<int32_t>>(gate.value());
 
         // sorting data. It's important for fast generator work
         if (gatesNumber.size()) {
@@ -182,17 +173,8 @@ void runGeneration(
     // TODO:: make function that return DataBaseGeneratorParameters from json
     // Recording of json data to gp
     GenerationParameters gp(
-        datasetId,
-        requestId,
-        minInputs,
-        minOutputs,
-        repeats,
-        libraryName,
-        calculateStatsAbc,
-        makeOptimizedFiles,
-        makeFirrtl,
-        makeBench,
-        makeGraphML
+        datasetId, requestId, minInputs, minOutputs, repeats,
+        makeGraphMLClassic, makeGraphMLPseudoABCD, makeGraphMLOpenABCD
     );
 
     gp.setGatesInputInfo(gatesInputsInfo);
@@ -221,10 +203,14 @@ void runGeneration(
                      "Parameters sets to default."
                   << std::endl;
 
-      int minLevel   = data.contains("min_level") ? (int)data["min_level"] : 0;
-      int maxLevel   = data.contains("max_level") ? (int)data["max_level"] : 0;
-      int minElement = data.contains("min_elem") ? (int)data["min_elem"] : 0;
-      int maxElement = data.contains("max_elem") ? (int)data["max_elem"] : 0;
+      uint32_t minLevel =
+          data.contains("min_level") ? (uint32_t)data["min_level"] : 0;
+      uint32_t maxLevel =
+          data.contains("max_level") ? (uint32_t)data["max_level"] : 0;
+      uint32_t minElement =
+          data.contains("min_elem") ? (uint32_t)data["min_elem"] : 0;
+      uint32_t maxElement =
+          data.contains("max_elem") ? (uint32_t)data["max_elem"] : 0;
       gp.setRandLevelParameters(minLevel, maxLevel, minElement, maxElement);
     }
 
@@ -252,7 +238,7 @@ void runGeneration(
           {"xnor", Gates::GateXnor}
       };
 
-      std::map<Gates, int> m;
+      std::map<Gates, int32_t> m;
 
       for (auto& el : data.items()) {
         if (std::find(v.begin(), v.end(), el.key()) != v.end()) {
@@ -271,9 +257,9 @@ void runGeneration(
 
     // Основные параметры для Genetic
     if (data["type_of_generation"] == "Genetic") {
-      int numOfSurv = 1;
+      int32_t numOfSurv = 1;
       if (data.contains("surv_num"))
-        int numOfSurv = data["surv_num"];
+        int32_t numOfSurv = data["surv_num"];
       else
         std::clog << "Parameter surv_num is not set." << std::endl;
 
@@ -308,7 +294,7 @@ void runGeneration(
       else
         std::clog << "Parameter mutChance is not set." << std::endl;
 
-      int exchangeType = 0;
+      int32_t exchangeType = 0;
       if (data.contains("swap_type"))
         exchangeType = data["swap_type"];
       else
@@ -326,19 +312,19 @@ void runGeneration(
       else
         std::clog << "Parameter ratio_in_table is not set." << std::endl;
 
-      int recNum = 1;
+      int32_t recNum = 1;
       if (data.contains("rec_num"))
         recNum = data["rec_num"];
       else
         std::clog << "Parameter rec_num is not set." << std::endl;
 
-      int refPoints = 1;
+      int32_t refPoints = 1;
       if (data.contains("ref_points"))
         refPoints = data["ref_points"];
       else
         std::clog << "Parameter ref_points is not set." << std::endl;
 
-      int tourSize = 1;
+      int32_t tourSize = 1;
       if (data.contains("tour_size"))
         tourSize = data["tour_size"];
       else
@@ -384,13 +370,13 @@ void runGeneration(
       else
         std::clog << "Parameter mask_prob is not set." << std::endl;
 
-      int populationSize = 1;
+      int32_t populationSize = 1;
       if (data.contains("population_size"))
         populationSize = data["population_size"];
       else
         std::clog << "Parameter population_size is not set." << std::endl;
 
-      int numOfCycles = 1;
+      int32_t numOfCycles = 1;
       if (data.contains("cycles"))
         numOfCycles = data["cycles"];
       else
@@ -401,7 +387,7 @@ void runGeneration(
       if (selectionType == "Base")
         selType = SelectionTypes::Base;
 
-      int survNum = data["surv_num"];
+      int32_t survNum = data["surv_num"];
 
       gp.setPopulationSize(populationSize);
       gp.setNumOfCycles(numOfCycles);
@@ -451,14 +437,15 @@ void runGeneration(
 
     if (static_cast<std::string>(data["type_of_generation"]).find("Comparison")
         != std::string::npos) {
-      if (!(data.contains("=") || data.contains("<") || data.contains(">")))
+      if (!(data.contains("equal") || data.contains("less")
+            || data.contains("more")))
         std::clog << "Parameters for selected generation type is not set. "
                      "Parameters sets to default."
                   << std::endl;
 
-      bool compare0 = data.contains("=") ? (bool)data["="] : false;
-      bool compare1 = data.contains("<") ? (bool)data["<"] : false;
-      bool compare2 = data.contains(">") ? (bool)data[">"] : false;
+      bool compare0 = data.contains("equal") ? (bool)data["equal"] : false;
+      bool compare1 = data.contains("less") ? (bool)data["less"] : false;
+      bool compare2 = data.contains("more") ? (bool)data["more"] : false;
       gp.setComparisonParameters(compare0, compare1, compare2);
     }
 
@@ -475,27 +462,31 @@ void runGeneration(
                      "Parameters sets to default."
                   << std::endl;
 
-      bool ALL        = data.contains("ALL") ? (bool)data["ALL"] : false;
-      bool SUM        = data.contains("SUM") ? (bool)data["SUM"] : false;
-      bool SUB        = data.contains("SUB") ? (bool)data["SUB"] : false;
-      bool NSUM       = data.contains("NSUM") ? (bool)data["NSUM"] : false;
-      bool NSUB       = data.contains("NSUB") ? (bool)data["NSUB"] : false;
-      bool MULT       = data.contains("MULT") ? (bool)data["MULT"] : false;
-      bool COM        = data.contains("COM") ? (bool)data["COM"] : false;
-      bool AND        = data.contains("AND") ? (bool)data["AND"] : false;
-      bool NAND       = data.contains("NAND") ? (bool)data["NAND"] : false;
-      bool OR         = data.contains("OR") ? (bool)data["OR"] : false;
-      bool NOR        = data.contains("NOR") ? (bool)data["NOR"] : false;
-      bool XOR        = data.contains("XOR") ? (bool)data["XOR"] : false;
-      bool XNOR       = data.contains("XNOR") ? (bool)data["XNOR"] : false;
-      bool CNF        = data.contains("CNF") ? (bool)data["CNF"] : false;
-      bool RNL        = data.contains("RNL") ? (bool)data["RNL"] : false;
-      bool NUM_OP     = data.contains("NUM_OP") ? (bool)data["NUM_OP"] : false;
+      bool     ALL    = data.contains("ALL") ? (bool)data["ALL"] : false;
+      bool     SUM    = data.contains("SUM") ? (bool)data["SUM"] : false;
+      bool     SUB    = data.contains("SUB") ? (bool)data["SUB"] : false;
+      bool     NSUM   = data.contains("NSUM") ? (bool)data["NSUM"] : false;
+      bool     NSUB   = data.contains("NSUB") ? (bool)data["NSUB"] : false;
+      bool     MULT   = data.contains("MULT") ? (bool)data["MULT"] : false;
+      bool     COM    = data.contains("COM") ? (bool)data["COM"] : false;
+      bool     AND    = data.contains("AND") ? (bool)data["AND"] : false;
+      bool     NAND   = data.contains("NAND") ? (bool)data["NAND"] : false;
+      bool     OR     = data.contains("OR") ? (bool)data["OR"] : false;
+      bool     NOR    = data.contains("NOR") ? (bool)data["NOR"] : false;
+      bool     XOR    = data.contains("XOR") ? (bool)data["XOR"] : false;
+      bool     XNOR   = data.contains("XNOR") ? (bool)data["XNOR"] : false;
+      bool     CNF    = data.contains("CNF") ? (bool)data["CNF"] : false;
+      bool     RNL    = data.contains("RNL") ? (bool)data["RNL"] : false;
+      bool     NUM_OP = data.contains("NUM_OP") ? (bool)data["NUM_OP"] : false;
       // для RNL
-      int  minLevel   = data.contains("min_level") ? (int)data["min_level"] : 0;
-      int  maxLevel   = data.contains("max_level") ? (int)data["max_level"] : 0;
-      int  minElement = data.contains("min_elem") ? (int)data["min_elem"] : 0;
-      int  maxElement = data.contains("max_elem") ? (int)data["max_elem"] : 0;
+      uint32_t minLevel =
+          data.contains("min_level") ? (uint32_t)data["min_level"] : 0;
+      uint32_t maxLevel =
+          data.contains("max_level") ? (uint32_t)data["max_level"] : 0;
+      uint32_t minElement =
+          data.contains("min_elem") ? (uint32_t)data["min_elem"] : 0;
+      uint32_t maxElement =
+          data.contains("max_elem") ? (uint32_t)data["max_elem"] : 0;
       // для NUM_OP
       std::vector<std::string> v = {
           "num_and",
@@ -517,8 +508,8 @@ void runGeneration(
           {"xor", Gates::GateXor},
           {"xnor", Gates::GateXnor}
       };
-      std::map<Gates, int> m;
-      bool                 LeaveEmptyOut = false;
+      std::map<Gates, int32_t> m;
+      bool                     LeaveEmptyOut = false;
       if (data.contains("leave_empty_out"))
         LeaveEmptyOut = data["leave_empty_out"];
       else
@@ -562,11 +553,11 @@ void runGeneration(
 
     auto    start = high_resolution_clock::now();
     uint8_t parallel =
-        data.contains("multithread") ? (uint8_t) data["multithread"] : 1;
+        data.contains("multithread") ? (uint8_t)data["multithread"] : 1;
     if (!parallel) {
       parallel = 1;
     }
-    
+
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
     callable(
         generator,

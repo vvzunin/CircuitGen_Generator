@@ -159,16 +159,16 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
   static std::string filename;
   static std::string s;
 
-  int                previousSizeOfFileName = filename.size();
+  size_t             previousSizeOfFileName = filename.size();
 
   if (!d_graph->getSubGraphs().empty()) {
     std::string folderSubgraphs = d_path + "/submodules";
     std::filesystem::create_directory(folderSubgraphs);
   }
-  filename = d_path + "/" + d_circuitName + ".v";
+  filename    = d_path + "/" + d_circuitName + ".v";
 
-  int pos  = (s.find_last_of('/')) + 1;
-  int pos2 = (filename.find_last_of('/')) + 1;
+  size_t pos  = (s.find_last_of('/')) + 1;
+  size_t pos2 = (filename.find_last_of('/')) + 1;
 
   if (previousSizeOfFileName == 0)
     s = std::filesystem::current_path().string() + "/"
@@ -184,9 +184,28 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
   return d_graph->toVerilog(d_path, d_circuitName + ".v").first;
 }
 
-bool Circuit::graphToGraphML(const std::string& i_path, bool i_pathExists) {
-  std::ofstream w(d_path + "/" + d_circuitName + ".graphml");
-  d_graph->toGraphML(w);
+bool Circuit::graphToGraphML(
+    const std::string& i_path,
+    bool               i_makeGraphMLClassic,
+    bool               i_makeGraphMLPseudoABCD,
+    bool               i_makeGraphMLOpenABCD,
+    bool               i_pathExists
+) {
+  if (i_makeGraphMLClassic) {
+    std::ofstream w(i_path + "/" + d_circuitName + "_Classic.graphml");
+    d_graph->toGraphMLClassic(w);
+    w.close();
+  }
+  if (i_makeGraphMLPseudoABCD) {
+    std::ofstream w(i_path + "/" + d_circuitName + "_PseudoABC-D.graphml");
+    d_graph->toGraphMLPseudoABCD(w);
+    w.close();
+  }
+  if (i_makeGraphMLOpenABCD) {
+    std::ofstream w(i_path + "/" + d_circuitName + "_OpenABC-D.graphml");
+    d_graph->toGraphMLOpenABCD(w);
+    w.close();
+  }
   return true;
 }
 
@@ -221,6 +240,8 @@ bool Circuit::saveParameters(
                << "\"," << std::endl;
   i_outputFile << tab << "\"hash_code\": \"" << d_circuitParameters.d_hashCode
                << "\"," << std::endl;
+  i_outputFile << tab << "\"connected\": " << std::boolalpha
+               << i_graph->isConnected() << "," << std::endl;
 
   i_outputFile << tab << "\"numElementsOfEachType\": {" << std::endl;
 
@@ -307,7 +328,12 @@ bool Circuit::checkExistingHash()  // TODO: is it really need return true when
   return false;
 }
 
-bool Circuit::generate(bool i_makeGraphML, bool i_pathExists) {
+bool Circuit::generate(
+    bool i_makeGraphMLClassic,
+    bool i_makeGraphMLPseudoABCD,
+    bool i_makeGraphMLOpenABCD,
+    bool i_pathExists
+) {
   // creating all files in sub directories
   std::string d_path_temp = d_path + d_circuitName;
   d_path                  += d_circuitName + "/";
@@ -322,11 +348,15 @@ bool Circuit::generate(bool i_makeGraphML, bool i_pathExists) {
 
   // std::clog << "Writing verilog ended for " << d_circuitName << std::endl;
 
-  if (i_makeGraphML) {
-    std::clog << "Writing GraphML for " << d_circuitName << std::endl;
-    if (graphToGraphML(d_path, i_pathExists)) {
-      std::clog << "Writing GraphML ended for " << d_circuitName << std::endl;
-    }
+  std::clog << "Writing GraphML for " << d_circuitName << std::endl;
+  if (graphToGraphML(
+          d_path,
+          i_makeGraphMLClassic,
+          i_makeGraphMLPseudoABCD,
+          i_makeGraphMLOpenABCD,
+          i_pathExists
+      )) {
+    std::clog << "Writing GraphML ended for " << d_circuitName << std::endl;
   }
 
   updateCircuitParameters(d_graph);

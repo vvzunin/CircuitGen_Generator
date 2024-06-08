@@ -30,12 +30,21 @@ JSON файл может содержать несколько наборов г
    5) repeat_n - int; количества повторений для каждого набора (num_in-num_out);
 4) Выбор типа генерации:
    1) Выбор происходит путем указания в "type_of_generation" типа генерации:
-      1) From Random Truth Table;
-      2) Rand Level;
-      3) Num Operation;
-      4) Genetic;
-      5) ALU;
-      6) 
+      1) ALU;
+      2) Comparison;
+      3) Decoder;
+      4) Demultiplexer;
+      5) Encoder;
+      6) From Random Truth Table;
+      7) Genetic;
+      8) Multiplexer;
+      9) Multiplier;
+     10) Num Operation;
+     11) Parity;
+     12) Rand Level;
+     13) Rand Level Experimental;
+     14) Subtractor;
+     15) Summator;
 5) В зависимости от типа генерации необходимо описать требуемые параметры:
    1) From Random Truth Table:
       1) CNFF - bool; необходимо ли создать схему с использованием СДНФ;
@@ -72,9 +81,9 @@ JSON файл может содержать несколько наборов г
       2) overflowOut - bool; необходимо ли создать дополнительный выход (последний заем) для последнего разряда генерации;
       3) sub - bool; выбор вычитателя и вычитаемого (при false - B-A, при true - A-B).
    7) Comparison:
-      1) "=" - bool; выбор операции сравнения: равенство;
-      2) "<" - bool; выбор операции сравнения: меньше;
-      3) ">" - bool; выбор операции сравнения: больше.
+      1) "equal" - bool; выбор операции сравнения: равенство;
+      2) "less" - bool; выбор операции сравнения: меньше;
+      3) "more" - bool; выбор операции сравнения: больше.
    8) ALU:
       1) "ALL" - bool; выбор всех типов генераций из доступных (все значения ниже будут true);
       2) "SUM" - bool; выбор генерации Summator с положительной суммой; 

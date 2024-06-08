@@ -155,12 +155,12 @@ jobs:
         && sudo apt-get install doxygen -q -y
     
     - name: Install Graphviz
-      run: sudo apt-get update -q
-        && sudo apt-get install -y -q graphviz
+      run: sudo apt-get update -q && sudo apt-get install -y -q graphviz ghostscript
 
     - name: Build docs
-      run: cmake "-DPROJECT_SOURCE_DIR=$PWD" "-DPROJECT_BINARY_DIR=$PWD/build"
-        -P cmake/docs-ci.cmake
+      run: mkdir -p build/docs && cd build/docs && cmake "-DPROJECT_SOURCE_DIR=$PWD/../.." "-DPROJECT_BINARY_DIR=$PWD/.."
+        -P ../../cmake/docs-ci.cmake
+
 
     - name: Deploy docs
       uses: peaceiris/actions-gh-pages@v3

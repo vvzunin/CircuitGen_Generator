@@ -1,6 +1,7 @@
+#include <cstdint>
 #include <tuple>
 
-#include "SelectionParameters.h"
+#include "SelectionParameters.hpp"
 
 void SelectionParameters::setSelectionType(SelectionTypes i_selectionType) {
   d_selectionType = i_selectionType;
@@ -10,11 +11,11 @@ SelectionTypes SelectionParameters::getSelectionType() const {
   return d_selectionType;
 }
 
-int SelectionParameters::getNumOfSurvivors() const {
+int32_t SelectionParameters::getNumOfSurvivors() const {
   return d_numOfSurvivors;
 }
 
-void SelectionParameters::setNumOfSurvivors(int i_survivors) {
+void SelectionParameters::setNumOfSurvivors(int32_t i_survivors) {
   d_numOfSurvivors = i_survivors;
 }
 

@@ -146,13 +146,13 @@ public:
   /// @brief getLogicOperation Gets information about a logical operation by
   /// its name
   /// @param i_op A string containing the name of the logical operation
-  /// @return std::pair<std::string, int> A pair containing the name and ID
+  /// @return std::pair<std::string, int32_t> A pair containing the name and ID
   /// of the logical operation
   /// @code
   /// Settings settingsInstance;
   /// try {
   /// // Get information about the logical operation "and"
-  /// std::pair<std::string, int> operationInfo =
+  /// std::pair<std::string, int32_t> operationInfo =
   /// settingsInstance.getLogicOperation("and");
   /// // Output information about the logical operation
   /// std::cout << "Operation name: " << operationInfo.first << std::endl;
@@ -165,7 +165,7 @@ public:
   /// @throws std::out_of_range If the passed operation name does not exist
   /// in the list of logical operations
 
-  std::pair<std::string, int>      getLogicOperation(const std::string& i_op);
+  std::pair<std::string, int32_t>  getLogicOperation(const std::string& i_op);
 
   /// @brief getLogicOperationsKeys Returns the keys of logical operations
   /// @return std::vector<Gates> A vector containing the keys of logical
@@ -285,14 +285,14 @@ public:
   std::string getLibraryNameFromEnum(const LibrariesTypes& library) const;
 
   /// @brief getMaxInputs Gets the maximum number of inputs
-  /// @return int Maximum number of inputs
+  /// @return uint32_t Maximum number of inputs
 
-  int         getMaxInputs() const;
+  uint32_t    getMaxInputs() const;
 
   /// @brief getMaxOutputs Returns the maximum number of outputs
-  /// @return int Maximum number of outputs
+  /// @return uint32_t Maximum number of outputs
 
-  int         getMaxOutputs() const;
+  uint32_t    getMaxOutputs() const;
 
   /// @brief getLogicOperations all logical operations
   /// The method returns a dictionary containing all logical operations
@@ -301,15 +301,16 @@ public:
   /// element is a string representing the name of the operation, and the
   /// second element is an integer value representing the identifier of
   /// the operation
-  /// @return std::map<std::string, std::pair<std::string, int>> Dictionary
+  /// @return std::map<std::string, std::pair<std::string, int32_t>> Dictionary
   /// with logical operations
 
-  std::map<std::string, std::pair<std::string, int>> getLogicOperations() const;
+  std::map<std::string, std::pair<std::string, int32_t>> getLogicOperations(
+  ) const;
 
   /// @brief getPathNadezhda Returns the path to Nadezhda
   /// @return std::string Path to Nadezhda
 
-  std::string                                        getPathNadezhda() const;
+  std::string              getPathNadezhda() const;
 
   /// @brief getNadezhdaVar Gets the value of a variable from the Nadezhda
   /// dictionary by key
@@ -341,20 +342,20 @@ public:
   /// @throws std::out_of_range If the provided key does not exist in the
   /// internal map of operation keys to hierarchies
 
-  std::vector<std::string> fromOperationsToHierarchy(int key) const;
+  std::vector<std::string> fromOperationsToHierarchy(int32_t key) const;
 
   /// @brief getNumThread Retrieves the number of threads used for processing
-  /// @return int The number of threads configured for processing
+  /// @return uint16_t The number of threads configured for processing
   /// @code
   /// // Creating an instance of the Settings class or getting it from an
   /// existing object std::shared_ptr<Settings> settingsInstance =
   /// Settings::getInstance("/path/to/settings");
   /// // Get the number of threads configured for processing
-  /// int numThreads = settingsInstance->getNumThread();
+  /// uint16_t numThreads = settingsInstance->getNumThread();
   /// std::cout << "Number of threads: " << numThreads << std::endl;
   /// @endcode
 
-  int                      getNumThread() const;
+  uint16_t                 getNumThread() const;
 
   /// @brief parseStringToGate Converts a string representation of a gate to
   /// its corresponding enum value
@@ -442,8 +443,8 @@ private:
       {"resynthesis", "Nadezhda/Scripts/resynthesis_local_rewriting.pyc"},
       {"reliability", "Nadezhda/Scripts/check_reliability.pyc"},
       {"liberty", "Nadezda/Test/Nangate.lib"}};
-  int                                                d_numThreads      = 4;
-  std::map<std::string, std::pair<std::string, int>> d_logicOperations = {
+  uint16_t                                               d_numThreads      = 4;
+  std::map<std::string, std::pair<std::string, int32_t>> d_logicOperations = {
       {"input", {"", 10}},
       {"output", {"=", 0}},
       {"const", {"1'b0", 9}},
@@ -513,8 +514,8 @@ private:
       {GenerationTypes::Decoder, "CCGDCR"},
       {GenerationTypes::ALU, "CCGALU"}};
 
-  std::map<int, std::vector<std::string>> d_operationsToHierarchy;
-  std::map<std::string, std::string>      d_operationsToName;
-  int                                     d_maxInputs  = 50;
-  int                                     d_maxOutputs = 50;
+  std::map<int32_t, std::vector<std::string>> d_operationsToHierarchy;
+  std::map<std::string, std::string>          d_operationsToName;
+  uint32_t                                    d_maxInputs  = 50;
+  uint32_t                                    d_maxOutputs = 50;
 };

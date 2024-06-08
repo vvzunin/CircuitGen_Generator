@@ -51,7 +51,7 @@ TEST(CnfFromTruthTableTest, EqualWithTheSameParametrs) {
 
 // RnadLevel
 TEST(GeneratorRandLevelTest, EqualWithTheSameParametrs) {
-  std::map<std::string, std::vector<int>> gatesInfo = {
+  std::map<std::string, std::vector<int32_t>> gatesInfo = {
       {"and", {2, 4, 8}},
       {"nand", {2, 4, 8}},
       {"or", {2, 8}},
@@ -95,7 +95,7 @@ TEST(GeneratorRandLevelTest, EqualWithTheSameParametrs) {
 
 // RandLevelExperimental
 TEST(GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
-  std::map<std::string, std::vector<int>> gatesInfo = {
+  std::map<std::string, std::vector<int32_t>> gatesInfo = {
       {"and", {2, 4, 8}},
       {"nand", {2, 4, 8}},
       {"or", {2, 8}},
@@ -140,12 +140,12 @@ TEST(GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
 
 // NumOperations
 TEST(GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
-  SimpleGenerators     generator1 = SimpleGenerators(1);
-  SimpleGenerators     generator2 = SimpleGenerators(1);
-  SimpleGenerators     generator3 = SimpleGenerators(2);
-  SimpleGenerators     generator4 = SimpleGenerators(2);
+  SimpleGenerators         generator1 = SimpleGenerators(1);
+  SimpleGenerators         generator2 = SimpleGenerators(1);
+  SimpleGenerators         generator3 = SimpleGenerators(2);
+  SimpleGenerators         generator4 = SimpleGenerators(2);
 
-  std::map<Gates, int> logicOper  = {
+  std::map<Gates, int32_t> logicOper  = {
       {Gates::GateAnd, 2}, {Gates::GateOr, 2}, {Gates::GateNot, 1}};
   std::shared_ptr<OrientedGraph> graphPtr1 =
       generator1.generatorNumOperation(1, 1, logicOper, true);
@@ -298,13 +298,13 @@ TEST(GeneratorComparisonTest, DifferentFromEachOther) {
   EXPECT_FALSE(str1 == str2);
 }
 TEST(GeneratorComparisonTest, GraphSizeTest) {
-  int              bits = 1;
+  uint32_t         bits = 1;
   SimpleGenerators generator;
   GraphPtr graph = generator.generatorComparison(bits, true, false, false);
 
   ASSERT_NE(graph, nullptr);
 
-  int expectedVertexCount = 8;
+  size_t expectedVertexCount = 8;
   EXPECT_EQ(graph->sumFullSize(), expectedVertexCount);
   // graph->~OrientedGraph();
 }
@@ -369,7 +369,7 @@ TEST(GeneratorSummatorTest, DifferentFromEachOther) {
 TEST(GeneratorSummatorTest, NumOfElements) {
   SimpleGenerators S_gen_1(1);
   SimpleGenerators S_gen_2(1);
-  int              bits = 1;
+  uint32_t         bits = 1;
   GraphPtr graph_1      = S_gen_1.generatorSummator(bits, false, false, false);
   EXPECT_EQ(graph_1->sumFullSize(), 6);
   bits             = 4;
