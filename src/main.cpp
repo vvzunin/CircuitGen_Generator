@@ -21,7 +21,6 @@ int main(int argc, char **argv) {
   const char *const short_opts = "j:n:";
   const option long_opts[] = {{"json_path", required_argument, nullptr, 'j'},
                               {"num_nodes", required_argument, nullptr, 'n'}};
-  int32_t c;
 
   int32_t opt;
   while ((opt = getopt_long(argc, argv, short_opts, long_opts, nullptr)) !=
