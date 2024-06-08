@@ -128,6 +128,19 @@ target_include_directories(
 )
 add_test(NAME GraphVertexOutputTests COMMAND CircuitGenGenerator_test_GraphVertexOutputTests)
 
+# Test GraphVertexSubGraphTests
+add_executable(CircuitGenGenerator_test_GraphVertexSubGraphTests src/baseStructures/graph/GraphVertexSubGraphTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_GraphVertexSubGraphTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GraphVertexSubGraphTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_GraphVertexSubGraphTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GraphVertexSubGraphTests COMMAND CircuitGenGenerator_test_GraphVertexSubGraphTests)
+
+
 # # Test OrientedGrahTests
 # add_executable(CircuitGenGenerator_test_OrientedGraphTests src/baseStructures/graph/OrientedGraphTests.cpp ${NEW_SOURCES})
 
