@@ -161,7 +161,7 @@ std::string
   size_t numLength = std::to_string(i_num).length();
   i_totalDigits    = std::max(numLength, i_totalDigits);
   std::stringstream ss;
-  ss << std::setw(i_totalDigits) << std::setfill('0') << i_num;
+  ss << std::setw((int)i_totalDigits) << std::setfill('0') << i_num;
   return ss.str();
 }
 

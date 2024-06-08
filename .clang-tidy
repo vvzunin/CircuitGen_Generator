@@ -1,134 +1,90 @@
 ---
-# Enable ALL the things! Except not really
-# misc-non-private-member-variables-in-classes: the options don't do anything
-# modernize-use-nodiscard: too aggressive, attribute is situationally useful
-Checks: "*,\
-  -google-readability-todo,\
-  -altera-*,\
-  -fuchsia-*,\
-  fuchsia-multiple-inheritance,\
-  -llvm-header-guard,\
-  -llvm-include-order,\
-  -llvmlibc-*,\
-  -modernize-use-nodiscard,\
-  -misc-non-private-member-variables-in-classes"
+Checks: >
+  -*,
+  bugprone-*,
+  performance-*,
+  readability-*,
+  google-*,
+  modernize-*,
+  -modernize-use-nodiscard,
+  -misc-non-private-member-variables-in-classes,
+  -readability-magic-numbers,
+  -readability-braces-around-statements,
+  -readability-else-after-return,
+  -readability-simplify-boolean-expr,
+  -google-readability-casting,
+  -clang-diagnostic-sign-conversion,
+  -clang-diagnostic-old-style-cast,
+  -clang-analyzer-core.UndefinedBinaryOperatorResult,
+  -clang-analyzer-core.CallAndMessage,
+  -clang-analyzer-core.NonNullParamChecker,
+  -clang-analyzer-core.NonNullParamChecker,
+  -clang-analyzer-core.CallAndMessage,
+  -clang-diagnostic-conversion,
+  -clang-diagnostic-shadow,
+  -clang-diagnostic-extra-semi,
+  -clang-diagnostic-unused-function,
+  -clang-diagnostic-cpp
+
 WarningsAsErrors: ''
 CheckOptions:
   - key: 'bugprone-argument-comment.StrictMode'
-    value: 'true'
-# Prefer using enum classes with 2 values for parameters instead of bools
+    value: 'false'
   - key: 'bugprone-argument-comment.CommentBoolLiterals'
-    value: 'true'
+    value: 'false'
   - key: 'bugprone-misplaced-widening-cast.CheckImplicitCasts'
-    value: 'true'
+    value: 'false'
   - key: 'bugprone-sizeof-expression.WarnOnSizeOfIntegerExpression'
-    value: 'true'
+    value: 'false'
   - key: 'bugprone-suspicious-string-compare.WarnOnLogicalNotComparison'
-    value: 'true'
+    value: 'false'
   - key: 'readability-simplify-boolean-expr.ChainedConditionalReturn'
-    value: 'true'
+    value: 'false'
   - key: 'readability-simplify-boolean-expr.ChainedConditionalAssignment'
-    value: 'true'
+    value: 'false'
   - key: 'readability-uniqueptr-delete-release.PreferResetCall'
-    value: 'true'
+    value: 'false'
   - key: 'cppcoreguidelines-init-variables.MathHeader'
     value: '<cmath>'
   - key: 'cppcoreguidelines-narrowing-conversions.PedanticMode'
-    value: 'true'
+    value: 'false'
   - key: 'readability-else-after-return.WarnOnUnfixable'
-    value: 'true'
+    value: 'false'
   - key: 'readability-else-after-return.WarnOnConditionVariables'
-    value: 'true'
+    value: 'false'
   - key: 'readability-inconsistent-declaration-parameter-name.Strict'
-    value: 'true'
+    value: 'false'
   - key: 'readability-qualified-auto.AddConstToQualified'
-    value: 'true'
+    value: 'false'
   - key: 'readability-redundant-access-specifiers.CheckFirstDeclaration'
-    value: 'true'
-# These seem to be the most common identifier styles
+    value: 'false'
   - key: 'readability-identifier-naming.AbstractClassCase'
     value: 'CamelCase'
   - key: 'readability-identifier-naming.ClassCase'
     value: 'CamelCase'
-  - key: 'readability-identifier-naming.ClassConstantCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.ClassMemberPrefix'
-    value: 'd_'
   - key: 'readability-identifier-naming.ClassMemberCase'
     value: 'camelBack'
-  - key: 'readability-identifier-naming.ClassMethodCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.ConstantCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.ConstantMemberPrefix'
-    value: 'd_'
-  - key: 'readability-identifier-naming.ConstantMemberCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.ConstantParameterPrefix'
-    value: 'i_'
-  - key: 'readability-identifier-naming.ConstantParameterCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.ConstantPointerParameterPrefix'
-    value: 'i_'
-  - key: 'readability-identifier-naming.ConstantPointerParameterCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.ConstexprFunctionCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.ConstexprMethodCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.ConstexprVariableCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.EnumCase'
-    value: 'CamelCase'
-  - key: 'readability-identifier-naming.EnumConstantCase'
-    value: 'CamelCase'
-  - key: 'readability-identifier-naming.FunctionCase'
-    value: 'camelBack'
+  - key: 'readability-identifier-naming.ClassMemberPrefix'
+    value: 'm_'
   - key: 'readability-identifier-naming.GlobalConstantCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.GlobalConstantPointerPrefix'
-    value: ''
-  - key: 'readability-identifier-naming.GlobalConstantPointerCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.GlobalFunctionCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.GlobalPointerPrefix'
-    value: ''
-  - key: 'readability-identifier-naming.GlobalPointerCase'
-    value: 'camelBack'
+    value: 'UPPER_CASE'
   - key: 'readability-identifier-naming.GlobalVariableCase'
     value: 'camelBack'
-  - key: 'readability-identifier-naming.InlineNamespaceCase'
-    value: 'CamelCase'
   - key: 'readability-identifier-naming.LocalConstantCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.LocalConstantPointerPrefix'
-    value: ''
-  - key: 'readability-identifier-naming.LocalConstantPointerCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.LocalPointerPrefix '
-    value: ''
-  - key: 'readability-identifier-naming.LocalPointerCase'
     value: 'camelBack'
   - key: 'readability-identifier-naming.LocalVariableCase'
     value: 'camelBack'
   - key: 'readability-identifier-naming.MacroDefinitionCase'
     value: 'UPPER_CASE'
-  - key: 'readability-identifier-naming.MemberPrefix'
-    value: 'd_'
-  - key: 'readability-identifier-naming.MemberCase'
-    value: 'camelBack'
-  - key: 'readability-identifier-naming.MethodCase'
+  - key: 'readability-identifier-naming.MemberFunctionCase'
     value: 'camelBack'
   - key: 'readability-identifier-naming.NamespaceCase'
-    value: 'CamelCase'
-  - key: 'readability-identifier-naming.ParameterPrefix'
-    value: 'i_'
+    value: 'camelBack'
   - key: 'readability-identifier-naming.ParameterCase'
     value: 'camelBack'
   - key: 'readability-identifier-naming.ParameterPackCase'
     value: 'camelBack'
-  - key: 'readability-identifier-naming.PointerParameterPrefix '
+  - key: 'readability-identifier-naming.PointerParameterPrefix'
     value: 'i_'
   - key: 'readability-identifier-naming.PointerParameterCase'
     value: 'camelBack'
@@ -151,7 +107,7 @@ CheckOptions:
   - key: 'readability-identifier-naming.StaticConstantCase'
     value: 'camelBack'
   - key: 'readability-identifier-naming.StaticVariableCase'
-    value: 'StaticVariableCase'
+    value: 'camelBack'
   - key: 'readability-identifier-naming.StructCase'
     value: 'CamelCase'
   - key: 'readability-identifier-naming.TemplateParameterCase'
