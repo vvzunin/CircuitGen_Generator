@@ -225,6 +225,17 @@ target_include_directories(
 )
 add_test(NAME MutationParametersTests COMMAND CircuitGenGenerator_test_MutationParametersTests)
 
+# Test GeneticParametersTests
+add_executable(CircuitGenGenerator_test_GeneticParametersTests src/generators/Genetic/GeneticParametersTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_GeneticParametersTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GeneticParametersTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_GeneticParametersTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GeneticParametersTests COMMAND CircuitGenGenerator_test_GeneticParametersTests)
 # ---- End-of-file commands ----
 
 add_folders(Test)
