@@ -63,7 +63,7 @@ TEST(RecombinationTest, RecombinationCrossingTriadic) {
   ASSERT_NE(population, newPopulation);
 }
 /*
-//doesnt work, idk why
+//does not work, idk why
 TEST(RecombinationTest, RecombinationCrossingReducedReplacement) {
     RecombinationParameters params;
     params.setRecombinationType(RecombinationTypes::CrossingReducedReplacement);
