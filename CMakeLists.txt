@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.14)
 
 include(cmake/prelude.cmake)
 
+ADD_DEFINITIONS( -D_PATH_TO_LOGGING=\"./include/path/to/\" )
+
 project(
   CircuitGenGenerator
   VERSION 0.1.0

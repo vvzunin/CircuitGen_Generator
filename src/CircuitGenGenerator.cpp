@@ -25,6 +25,12 @@
 
 using namespace std::chrono;
 
+#ifdef _PATH_TO_LOGGING
+  #define PATH _PATH_TO_LOGGING
+#else
+  #define PATH "" 
+#endif
+
 void runGeneration(
     std::string json_path,
     std::function<void(
@@ -35,10 +41,11 @@ void runGeneration(
     )>          callable,
     const std::string& flag = ""
 ) {
-  // system("rm -rf include/path/to/*"); If we want to delete folders from previous execution of programm.
+  system("rm -rf include/path/to/*");
   unsigned int thread_id = static_cast<unsigned int>(pthread_self());
-  thread_local std::filesystem::path folderPath = std::string("./include/path/to/") + std::to_string(thread_id);
-  thread_local std::string path = std::string("/include/path/to/") + std::to_string(thread_id) + "/";
+
+  thread_local std::filesystem::path folderPath = std::string(PATH) + std::to_string(thread_id);
+  thread_local std::string path = std::string(PATH) + std::to_string(thread_id) + "/";
   thread_local bool has_run_once = false;
   thread_local el::Configurations logger_config_for_database_generator_parameters;
   thread_local el::Configurations logger_config_for_generation_parameters;
@@ -50,12 +57,12 @@ void runGeneration(
     std::filesystem::create_directories(folderPath);
     
     logger_config_for_database_generator_parameters.setToDefault();
-    logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::Filename, std::string("./include/path/to/") + std::to_string(thread_id) + "/log_for_database_generator_parameters.log");
+    logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::Filename, std::string(PATH) + std::to_string(thread_id) + "/log_for_database_generator_parameters.log");
     logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::Format, "%datetime %level %msg");
     logger_config_for_database_generator_parameters.set(el::Level::Global, el::ConfigurationType::ToStandardOutput, "false");
     logger_for_database_generator_parameters = el::Loggers::getLogger("logger_for_database_generator_parameters");
     logger_config_for_generation_parameters.setToDefault();
-    logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::Filename, std::string("./include/path/to/") + std::to_string(thread_id) + "/log_for_generation_parameters.log");
+    logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::Filename, std::string(PATH) + std::to_string(thread_id) + "/log_for_generation_parameters.log");
     logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::Format, "%datetime %level %msg");
     logger_config_for_generation_parameters.set(el::Level::Global, el::ConfigurationType::ToStandardOutput, "false");
     logger_for_generation_parameters = el::Loggers::getLogger("logger_for_generation_parameters");
