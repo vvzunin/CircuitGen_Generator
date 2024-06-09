@@ -1,5 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,60,57"/>
-<area shape="rect" id="node2" href="$classGraphVertexBase.html#af1d900fc4073ade5fc0fe0bf3346ff49" title="getName Returns the name of the vertex" alt="" coords="108,5,311,32"/>
-<area shape="rect" id="node3" href="$classGraphVertexBase.html#adba8223322836a7de810416fbb9aa48a" title="setName This method sets the name of the vertex to the specified string." alt="" coords="108,56,311,83"/>
-</map>

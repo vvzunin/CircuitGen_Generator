@@ -1,5 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,46,60,73"/>
-<area shape="rect" id="node2" href="$classGraphVertexBase.html#a8c984675497210531aab85e713eb16e5" title="addVertexToInConnections Adds a vertex to the input connections of this vertex and returns the count ..." alt="" coords="108,5,317,47"/>
-<area shape="rect" id="node3" href="$classGraphVertexInput.html#af27b2c9067b9861882544ff172036be3" title="updateValue A virtual function for updating the vertex value." alt="" coords="118,71,307,112"/>
-</map>

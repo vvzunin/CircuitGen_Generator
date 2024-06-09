@@ -1,8 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,60,60,87"/>
-<area shape="rect" id="node2" href="$classTruthTable.html#a09de48ba6c97632625188dc32ffd944b" title="generateTable Generate a truth table with specified probability." alt="" coords="108,35,296,61"/>
-<area shape="rect" id="node6" href="$classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82" title="getOutTable Get the output table." alt="" coords="115,85,289,112"/>
-<area shape="rect" id="node3" href="$namespaceAuxMethods.html#ad1cd19afad4489d0c7eb4938e106ec42" title="specified range" alt="" coords="344,5,555,32"/>
-<area shape="rect" id="node4" href="$classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="348,57,551,98"/>
-<area shape="rect" id="node5" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="603,64,681,91"/>
-</map>

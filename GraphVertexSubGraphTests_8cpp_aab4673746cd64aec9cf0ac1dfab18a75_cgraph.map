@@ -1,5 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,35,60,61"/>
-<area shape="rect" id="node2" href="$namespaceFilesTools.html#a18803aaa48e9809e4d35c0f6defc131a" title="loadStringFile This method loads the contents of the file as a string" alt="" coords="108,5,291,32"/>
-<area shape="rect" id="node3" href="$classGraphVertexSubGraph.html#a3ef7ccb93efd390c6f90aba11eee2c88" title="toVerilog Generates Verilog code for the vertex" alt="" coords="116,57,283,98"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="Threading::ThreadPool" name="Threading::ThreadPool">
-<area shape="rect" id="node1" title="Allows to execute tasks in multithread manner." alt="" coords="47,307,215,575"/>
-<area shape="rect" id="node2" href="$classThreading_1_1UnboundedMPMCQueue.html" title=" " alt="" coords="5,5,257,244"/>
-</map>

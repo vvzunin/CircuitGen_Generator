@@ -1,5 +1,0 @@
-<map id="Circuit::setTable" name="Circuit::setTable">
-<area shape="rect" id="node1" title="setTable This method is designed to set up a truth table for a digital circuit." alt="" coords="491,20,617,47"/>
-<area shape="rect" id="node2" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="212,5,443,61"/>
-<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,13,164,54"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="SelectionType" name="SelectionType">
-<area shape="rect" id="node1" title=" " alt="" coords="5,46,117,73"/>
-<area shape="rect" id="node2" href="$classSelectionParameters.html#ab8ec6a063241974b52ea54330cec6b21" title=" " alt="" coords="165,5,321,47"/>
-<area shape="rect" id="node3" href="$namespaceSelectionsTruthTable.html#a9220cc304652ceb68108b55ec17742c4" title=" " alt="" coords="166,71,321,112"/>
-<area shape="rect" id="node4" href="$classSelectionParameters.html#a2312360122891a0db1429bb07ad40a40" title=" " alt="" coords="381,41,540,83"/>
-<area shape="rect" id="node5" href="$namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207" title="getRandInt Returns a random integer in the specified range" alt="" coords="369,107,552,134"/>
-</map>

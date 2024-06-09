@@ -1,5 +1,0 @@
-<map id="basic_json::operator=" name="basic_json::operator=">
-<area shape="rect" id="node1" title="copy assignment" alt="" coords="5,42,169,69"/>
-<area shape="rect" id="node2" href="$classbasic__json.html#a54ffa8ef2d9d5971619fdac9012ae8dd" title="checks the class invariants" alt="" coords="217,5,356,47"/>
-<area shape="rect" id="node3" href="$namespacestd.html#a4874fd00297ff5aef2872379cb521783" title="exchanges the values of two JSON objects" alt="" coords="245,71,329,98"/>
-</map>

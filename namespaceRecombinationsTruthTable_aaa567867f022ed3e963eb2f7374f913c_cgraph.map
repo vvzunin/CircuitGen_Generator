@@ -1,9 +1,0 @@
-<map id="RecombinationsTruthTable::RecombinationCrossingShuffling" name="RecombinationsTruthTable::RecombinationCrossingShuffling">
-<area shape="rect" id="node1" title=" " alt="" coords="5,152,247,193"/>
-<area shape="rect" id="node2" href="$classRecombinationParameters.html#a56737481f643f359ad307451d411c276" title=" " alt="" coords="309,5,503,47"/>
-<area shape="rect" id="node3" href="$namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207" title="getRandInt Returns a random integer in the specified range" alt="" coords="315,71,497,98"/>
-<area shape="rect" id="node4" href="$classRecombinationParameters.html#ae3f327647fb096602c20571a53eaa44d" title=" " alt="" coords="295,123,517,164"/>
-<area shape="rect" id="node5" href="$Parents_8hpp.html#a9478d16361ede6f1796c35bfb0ad91fe" title=" " alt="" coords="330,189,482,215"/>
-<area shape="rect" id="node6" href="$namespacestd.html#a4874fd00297ff5aef2872379cb521783" title="exchanges the values of two JSON objects" alt="" coords="364,239,448,266"/>
-<area shape="rect" id="node7" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="367,290,445,317"/>
-</map>

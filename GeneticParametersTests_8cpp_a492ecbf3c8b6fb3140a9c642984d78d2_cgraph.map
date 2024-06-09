@@ -1,6 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,78,60,105"/>
-<area shape="rect" id="node2" href="$classGeneticParameters.html#aa1b4269bb8a929aa2501514cda0f4ba9" title="getInputs Get the number of inputs" alt="" coords="112,5,267,47"/>
-<area shape="rect" id="node3" href="$classGeneticParameters.html#a6bb3be1205ed0202b9051e8c78282069" title="getOutputs Get the number of outputs" alt="" coords="112,71,267,112"/>
-<area shape="rect" id="node4" href="$classTruthTableParameters.html#afdb70d96954c2bd4caca08bbdba7de22" title="size Returns the size of the truth table population" alt="" coords="108,136,271,177"/>
-</map>

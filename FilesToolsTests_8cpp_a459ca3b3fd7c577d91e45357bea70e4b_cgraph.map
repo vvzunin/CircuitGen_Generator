@@ -1,5 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,60,57"/>
-<area shape="rect" id="node2" href="$namespaceFilesTools.html#a092635d608973c4d6e39bac79929fafd" title="getDirectories This function takes the path to a directory and returns a string vector containing the..." alt="" coords="108,5,293,32"/>
-<area shape="rect" id="node3" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="161,56,240,83"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,75,60,102"/>
-<area shape="rect" id="node2" href="$classSimpleGenerators.html#aebea64983c4f49c3c1007a0390e06977" title="generatorRandLevel creates an oriented graph (represented by an OrientedGraph object) with a given le..." alt="" coords="108,35,319,76"/>
-<area shape="rect" id="node5" href="$classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06" title="generatorRandLevelExperimental The method generates a random level of complexity of the graph within ..." alt="" coords="111,100,316,141"/>
-<area shape="rect" id="node3" href="$classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="367,5,569,47"/>
-<area shape="rect" id="node4" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="617,42,696,69"/>
-</map>

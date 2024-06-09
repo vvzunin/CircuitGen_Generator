@@ -1,6 +1,0 @@
-<map id="GeneticParameters::setInputs" name="GeneticParameters::setInputs">
-<area shape="rect" id="node1" title="setInputs Set the number of inputs" alt="" coords="472,23,627,65"/>
-<area shape="rect" id="node2" href="$classTruthTable.html#a179439e404e050f49b58df88396da9ee" title="generateTable The method generates a truth table for a combinational circuit with a given probability..." alt="" coords="216,5,424,32"/>
-<area shape="rect" id="node4" href="$GeneticParametersTests_8cpp.html#a14998de7d467dfd985361c2a1b3a3084" title=" " alt="" coords="293,56,347,83"/>
-<area shape="rect" id="node3" href="$classTruthTable.html#a364ede1151c4d025c889d2a89d6404cc" title=" " alt="" coords="5,5,168,32"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,64,60,91"/>
-<area shape="rect" id="node2" href="$classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82" title="getOutTable Get the output table." alt="" coords="108,5,283,32"/>
-<area shape="rect" id="node3" href="$namespaceMutationTruthTable.html#a786f5907ec3edcb3db3b07f958c118ad" title=" " alt="" coords="122,57,269,98"/>
-<area shape="rect" id="node6" href="$classMutationParameters.html#aef42fd112cd556b1898c70513bfbf618" title=" " alt="" coords="118,122,273,163"/>
-<area shape="rect" id="node4" href="$classChronosomeType.html#a190ae781eb675e0d160e8405fe7b9118" title=" " alt="" coords="331,39,533,65"/>
-<area shape="rect" id="node5" href="$namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207" title="getRandInt Returns a random integer in the specified range" alt="" coords="341,89,523,116"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="SimpleGenerators::randomGenerator" name="SimpleGenerators::randomGenerator">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,203,47"/>
-<area shape="rect" id="node2" href="$classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="251,5,453,47"/>
-<area shape="rect" id="node3" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="501,13,580,39"/>
-</map>

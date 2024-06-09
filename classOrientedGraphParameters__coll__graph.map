@@ -1,8 +1,0 @@
-<map id="OrientedGraphParameters" name="OrientedGraphParameters">
-<area shape="rect" id="node1" title=" " alt="" coords="262,881,453,1003"/>
-<area shape="rect" id="node2" href="$classGeneticParameters.html" title=" " alt="" coords="237,549,477,832"/>
-<area shape="rect" id="node3" href="$classRecombinationParameters.html" title=" " alt="" coords="5,219,245,487"/>
-<area shape="rect" id="node4" href="$classParentsParameters.html" title=" " alt="" coords="27,5,224,156"/>
-<area shape="rect" id="node5" href="$classSelectionParameters.html" title=" " alt="" coords="270,277,445,428"/>
-<area shape="rect" id="node6" href="$classMutationParameters.html" title=" " alt="" coords="469,226,673,479"/>
-</map>

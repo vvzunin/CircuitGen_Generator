@@ -1,4 +1,0 @@
-<map id="Threading::ThreadPool::stop" name="Threading::ThreadPool::stop">
-<area shape="rect" id="node1" title="Stop workers." alt="" coords="5,5,173,47"/>
-<area shape="rect" id="node2" href="$classThreading_1_1UnboundedMPMCQueue.html#a210a8e95d243cc20f463a97fc7f97eb1" title="Close queue. All waiting threads will receive nullopt." alt="" coords="221,5,473,47"/>
-</map>

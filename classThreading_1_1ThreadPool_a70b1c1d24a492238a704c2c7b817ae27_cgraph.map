@@ -1,4 +1,0 @@
-<map id="Threading::ThreadPool::submit" name="Threading::ThreadPool::submit">
-<area shape="rect" id="node1" title="Schedule task on execution." alt="" coords="5,5,173,47"/>
-<area shape="rect" id="node2" href="$classThreading_1_1UnboundedMPMCQueue.html#a32414b07fa0442d4e1a60b405241a3da" title="Add task." alt="" coords="221,13,505,39"/>
-</map>
