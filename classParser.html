@@ -1,317 +1,1128 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>Parser class | CircuitGenGenerator</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: Parser Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">CircuitGenGenerator</a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li>
-              <a href="pages.html">Pages</a>
-              <ol>
-                <li><a href="about.html">About</a></li>
-              </ol>
-            </li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          Parser <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8hpp.html">&lt;Parser.hpp&gt;</a></div>
-        </h1>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-<p>class <a href="classParser.html" class="m-doc">Parser</a></p>
-        <section id="typeless-methods">
-          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
-          <dl class="m-doc">
-            <dt id="ac125790430e44895143aa868377ebb56">
-              <span class="m-doc-wrap-bumper"><a href="#ac125790430e44895143aa868377ebb56" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression,
-              const std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;&amp; i_info)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a05491695a0ef40568716f046c5a557eb">
-              <span class="m-doc-wrap-bumper"><a href="#a05491695a0ef40568716f046c5a557eb" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions,
-              const std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;&amp; i_info)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="adebcb112980269b90f9b476a5d8ca64a">
-              <span class="m-doc-wrap-bumper"><a href="#adebcb112980269b90f9b476a5d8ca64a" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression,
-              const <a href="Parser_8hpp.html#ac329a2734056446e2014455691347c87" class="m-doc">GatesInfo</a>&amp; i_info)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a780c2dc26dd90952984fd0ff8ce6d2bd">
-              <span class="m-doc-wrap-bumper"><a href="#a780c2dc26dd90952984fd0ff8ce6d2bd" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions,
-              const <a href="Parser_8hpp.html#ac329a2734056446e2014455691347c87" class="m-doc">GatesInfo</a>&amp; i_info)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a5208129b497bfdf7c8ecceeb70e4bba8">
-              <span class="m-doc-wrap-bumper"><a href="#a5208129b497bfdf7c8ecceeb70e4bba8" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a897165b179561270a2cd14ad39040256">
-              <span class="m-doc-wrap-bumper"><a href="#a897165b179561270a2cd14ad39040256" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const <a href="classParser.html" class="m-doc">Parser</a>&amp; other) <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="aaf729e2242d0c651412faea209cb879f">
-              <span class="m-doc-wrap-bumper"><a href="#aaf729e2242d0c651412faea209cb879f" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap"><a href="classParser.html" class="m-doc">Parser</a>&amp;&amp; other) <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="a7f4e01f44059d19f58f99d9f1ae7a5c5">
-              <span class="m-doc-wrap-bumper">auto <a href="#a7f4e01f44059d19f58f99d9f1ae7a5c5" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classParser.html" class="m-doc">Parser</a>&amp; other) -&gt; <a href="classParser.html" class="m-doc">Parser</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a32a46aa1930b03db3f9386e7cd823eeb">
-              <span class="m-doc-wrap-bumper">auto <a href="#a32a46aa1930b03db3f9386e7cd823eeb" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classParser.html" class="m-doc">Parser</a>&amp;&amp; other) -&gt; <a href="classParser.html" class="m-doc">Parser</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a6b489a7062dcddbb8e04b2a0f8e77ba1" class="m-doc">getGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
-            </dt>
-            <dd>getGraph Get the graph object This method returns a pointer to the graph object associated with the <a href="classParser.html" class="m-doc">Parser</a> instance</dd>
-            <dt id="a0c1744b41606f8601e0c6ed1c6f99dc1">
-              <span class="m-doc-wrap-bumper">auto <a href="#a0c1744b41606f8601e0c6ed1c6f99dc1" class="m-doc-self">splitLogicExpression</a>(</span><span class="m-doc-wrap">std::string i_expr) -&gt; std::pair&lt;int32_t, std::vector&lt;std::string&gt;&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ae2686bf3fdb12a709732363745943425" class="m-doc">multipleVerteciesToOne</a>(</span><span class="m-doc-wrap">std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; curLayout,
-              <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> operation,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> graph) -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
-            </dt>
-            <dd>multipleVerteciesToOne This method takes a vector of vertices representing the current layout, combines them into a single vertex using the specified logical operation, and returns the resulting vertex</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a4d5f1bc99199b99ef027f0a3a698a99f" class="m-doc">parseToVertex</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr) -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
-            </dt>
-            <dd>parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within the graph. It recursively parses sub-expressions until it constructs the complete expression tree</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a3602d3fde1e401b5fb352250232800b0" class="m-doc">parseAll</a>(</span><span class="m-doc-wrap">) -&gt; bool</span>
-            </dt>
-            <dd>parseAll Parse all logical expressions and construct the graph. This method initializes a new oriented graph and iterates through all logical expressions stored in the <code>d_logExpressions</code> member variable. For each expression, it checks if it has balanced brackets using the <code>createBrackets</code> method. If the brackets are balanced, it calls the <code>parseToVertex</code> method to parse the expression and construct the corresponding vertex in the graph. If parsing fails for any expression, the method returns false. Otherwise, it returns true indicating successful parsing of all expressions.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a0a27158ce7c8ca578b82140b4239bd26" class="m-doc">setGatesInputsInfo</a>(</span><span class="m-doc-wrap">const std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;&amp; i_info)</span>
-            </dt>
-            <dd>setGatesInputsInfo Set information about gates inputs</dd>
-            <dt id="aa3aac879ba833cb3d0e637e04bca631c">
-              <span class="m-doc-wrap-bumper">void <a href="#aa3aac879ba833cb3d0e637e04bca631c" class="m-doc-self">setGatesInputsInfo</a>(</span><span class="m-doc-wrap">const <a href="Parser_8hpp.html#ac329a2734056446e2014455691347c87" class="m-doc">GatesInfo</a>&amp; i_info)</span>
-            </dt>
-            <dd>setGatesInputsInfo TO DO: Analog setGatesInputsInfo</dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a6b489a7062dcddbb8e04b2a0f8e77ba1"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6b489a7062dcddbb8e04b2a0f8e77ba1" class="m-doc-self">getGraph</a>(</span><span class="m-doc-wrap">) const</span></span>
-            </h3>
-            <p>getGraph Get the graph object This method returns a pointer to the graph object associated with the <a href="classParser.html" class="m-doc">Parser</a> instance</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td>A pointer to the graph object</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="ae2686bf3fdb12a709732363745943425"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae2686bf3fdb12a709732363745943425" class="m-doc-self">multipleVerteciesToOne</a>(</span><span class="m-doc-wrap">std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; curLayout,
-              <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> operation,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> graph)</span></span>
-            </h3>
-            <p>multipleVerteciesToOne This method takes a vector of vertices representing the current layout, combines them into a single vertex using the specified logical operation, and returns the resulting vertex</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">curLayout</td>
-                  <td>The vector of vertices representing the current layout</td>
-                </tr>
-                <tr>
-                  <td>operation</td>
-                  <td>The logical operation to apply</td>
-                </tr>
-                <tr>
-                  <td>graph</td>
-                  <td>A pointer to the graph object</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>A pointer to the resulting vertex after combining the input vertices</p><pre class="m-code"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">VertexPtr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">vertex1</span><span class="p">,</span><span class="w"> </span><span class="n">vertex2</span><span class="p">,</span><span class="w"> </span><span class="n">vertex3</span><span class="p">};</span>
-<span class="n">Gates</span><span class="w"> </span><span class="n">operation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Gates</span><span class="o">::</span><span class="n">AND</span><span class="p">;</span>
-<span class="n">GraphPtr</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Graph</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="n">Parser</span><span class="w"> </span><span class="n">parser</span><span class="p">;</span>
-<span class="n">VertexPtr</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parser</span><span class="p">.</span><span class="n">multipleVerteciesToOne</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span>
-<span class="n">graph</span><span class="p">);</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a4d5f1bc99199b99ef027f0a3a698a99f"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4d5f1bc99199b99ef027f0a3a698a99f" class="m-doc-self">parseToVertex</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr)</span></span>
-            </h3>
-            <p>parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within the graph. It recursively parses sub-expressions until it constructs the complete expression tree</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_expr</td>
-                  <td>The logical expression to parse</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>A pointer to the resulting vertex representing the expression, or nullptr on failure</p><pre class="m-code"><span class="n">Parser</span><span class="w"> </span><span class="n">parser</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;output A AND B&quot;</span><span class="p">;</span>
-<span class="n">VertexPtr</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parser</span><span class="p">.</span><span class="n">parseToVertex</span><span class="p">(</span><span class="n">expression</span><span class="p">);</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Vertex successfully created.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to parse the expression.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a3602d3fde1e401b5fb352250232800b0"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3602d3fde1e401b5fb352250232800b0" class="m-doc-self">parseAll</a>(</span><span class="m-doc-wrap">)</span></span>
-            </h3>
-            <p>parseAll Parse all logical expressions and construct the graph. This method initializes a new oriented graph and iterates through all logical expressions stored in the <code>d_logExpressions</code> member variable. For each expression, it checks if it has balanced brackets using the <code>createBrackets</code> method. If the brackets are balanced, it calls the <code>parseToVertex</code> method to parse the expression and construct the corresponding vertex in the graph. If parsing fails for any expression, the method returns false. Otherwise, it returns true indicating successful parsing of all expressions.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td>True if parsing is successful for all expressions, false otherwise <code class="m-code"><span class="n">TO</span><span class="w"> </span><span class="n">DO</span><span class="o">:</span></code></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a0a27158ce7c8ca578b82140b4239bd26"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0a27158ce7c8ca578b82140b4239bd26" class="m-doc-self">setGatesInputsInfo</a>(</span><span class="m-doc-wrap">const std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;&amp; i_info)</span></span>
-            </h3>
-            <p>setGatesInputsInfo Set information about gates inputs</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_info</td>
-                  <td>A map where keys are gate names as strings and values are vectors of integers specifying the number of inputs for each gate</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGenGenerator. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classParser.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classParser-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">Parser Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>class <a class="el" href="classParser.html" title="class Parser">Parser</a>  
+ <a href="classParser.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Parser_8hpp_source.html">Parser.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for Parser:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser__coll__graph.png" border="0" usemap="#aParser_coll__map" alt="Collaboration graph"/></div>
+<map name="aParser_coll__map" id="aParser_coll__map">
+<area shape="rect" title="class Parser" alt="" coords="5,5,176,361"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ac125790430e44895143aa868377ebb56"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#ac125790430e44895143aa868377ebb56">Parser</a> (const std::string &amp;i_logExpression, const std::map&lt; std::string, std::vector&lt; int32_t &gt;&gt; &amp;i_info)</td></tr>
+<tr class="separator:ac125790430e44895143aa868377ebb56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05491695a0ef40568716f046c5a557eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a05491695a0ef40568716f046c5a557eb">Parser</a> (const std::vector&lt; std::string &gt; &amp;i_logExpressions, const std::map&lt; std::string, std::vector&lt; int32_t &gt;&gt; &amp;i_info)</td></tr>
+<tr class="separator:a05491695a0ef40568716f046c5a557eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adebcb112980269b90f9b476a5d8ca64a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#adebcb112980269b90f9b476a5d8ca64a">Parser</a> (const std::string &amp;i_logExpression, const <a class="el" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> &amp;i_info)</td></tr>
+<tr class="separator:adebcb112980269b90f9b476a5d8ca64a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a780c2dc26dd90952984fd0ff8ce6d2bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a780c2dc26dd90952984fd0ff8ce6d2bd">Parser</a> (const std::vector&lt; std::string &gt; &amp;i_logExpressions, const <a class="el" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> &amp;i_info)</td></tr>
+<tr class="separator:a780c2dc26dd90952984fd0ff8ce6d2bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5208129b497bfdf7c8ecceeb70e4bba8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a5208129b497bfdf7c8ecceeb70e4bba8">Parser</a> ()=default</td></tr>
+<tr class="separator:a5208129b497bfdf7c8ecceeb70e4bba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a897165b179561270a2cd14ad39040256"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a897165b179561270a2cd14ad39040256">Parser</a> (const <a class="el" href="classParser.html">Parser</a> &amp;other)=default</td></tr>
+<tr class="separator:a897165b179561270a2cd14ad39040256"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f4e01f44059d19f58f99d9f1ae7a5c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classParser.html">Parser</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a7f4e01f44059d19f58f99d9f1ae7a5c5">operator=</a> (const <a class="el" href="classParser.html">Parser</a> &amp;other)=default</td></tr>
+<tr class="separator:a7f4e01f44059d19f58f99d9f1ae7a5c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf729e2242d0c651412faea209cb879f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#aaf729e2242d0c651412faea209cb879f">Parser</a> (<a class="el" href="classParser.html">Parser</a> &amp;&amp;other)=default</td></tr>
+<tr class="separator:aaf729e2242d0c651412faea209cb879f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32a46aa1930b03db3f9386e7cd823eeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classParser.html">Parser</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a32a46aa1930b03db3f9386e7cd823eeb">operator=</a> (<a class="el" href="classParser.html">Parser</a> &amp;&amp;other)=default</td></tr>
+<tr class="separator:a32a46aa1930b03db3f9386e7cd823eeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b489a7062dcddbb8e04b2a0f8e77ba1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a6b489a7062dcddbb8e04b2a0f8e77ba1">getGraph</a> () const</td></tr>
+<tr class="memdesc:a6b489a7062dcddbb8e04b2a0f8e77ba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">getGraph Get the graph object This method returns a pointer to the graph object associated with the <a class="el" href="classParser.html" title="class Parser">Parser</a> instance  <a href="classParser.html#a6b489a7062dcddbb8e04b2a0f8e77ba1">More...</a><br /></td></tr>
+<tr class="separator:a6b489a7062dcddbb8e04b2a0f8e77ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c1744b41606f8601e0c6ed1c6f99dc1"><td class="memItemLeft" align="right" valign="top">std::pair&lt; int32_t, std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a0c1744b41606f8601e0c6ed1c6f99dc1">splitLogicExpression</a> (std::string i_expr)</td></tr>
+<tr class="separator:a0c1744b41606f8601e0c6ed1c6f99dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2686bf3fdb12a709732363745943425"><td class="memItemLeft" align="right" valign="top"><a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#ae2686bf3fdb12a709732363745943425">multipleVerteciesToOne</a> (std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> &gt; curLayout, <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a> operation, <a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> graph)</td></tr>
+<tr class="memdesc:ae2686bf3fdb12a709732363745943425"><td class="mdescLeft">&#160;</td><td class="mdescRight">multipleVerteciesToOne This method takes a vector of vertices representing the current layout, combines them into a single vertex using the specified logical operation, and returns the resulting vertex  <a href="classParser.html#ae2686bf3fdb12a709732363745943425">More...</a><br /></td></tr>
+<tr class="separator:ae2686bf3fdb12a709732363745943425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d5f1bc99199b99ef027f0a3a698a99f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f">parseToVertex</a> (const std::string &amp;i_expr)</td></tr>
+<tr class="memdesc:a4d5f1bc99199b99ef027f0a3a698a99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within the graph.  <a href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f">More...</a><br /></td></tr>
+<tr class="separator:a4d5f1bc99199b99ef027f0a3a698a99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3602d3fde1e401b5fb352250232800b0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a3602d3fde1e401b5fb352250232800b0">parseAll</a> ()</td></tr>
+<tr class="memdesc:a3602d3fde1e401b5fb352250232800b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">parseAll Parse all logical expressions and construct the graph.  <a href="classParser.html#a3602d3fde1e401b5fb352250232800b0">More...</a><br /></td></tr>
+<tr class="separator:a3602d3fde1e401b5fb352250232800b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a27158ce7c8ca578b82140b4239bd26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a0a27158ce7c8ca578b82140b4239bd26">setGatesInputsInfo</a> (const std::map&lt; std::string, std::vector&lt; int32_t &gt;&gt; &amp;i_info)</td></tr>
+<tr class="memdesc:a0a27158ce7c8ca578b82140b4239bd26"><td class="mdescLeft">&#160;</td><td class="mdescRight">setGatesInputsInfo Set information about gates inputs  <a href="classParser.html#a0a27158ce7c8ca578b82140b4239bd26">More...</a><br /></td></tr>
+<tr class="separator:a0a27158ce7c8ca578b82140b4239bd26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3aac879ba833cb3d0e637e04bca631c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#aa3aac879ba833cb3d0e637e04bca631c">setGatesInputsInfo</a> (const <a class="el" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> &amp;i_info)</td></tr>
+<tr class="memdesc:aa3aac879ba833cb3d0e637e04bca631c"><td class="mdescLeft">&#160;</td><td class="mdescRight">setGatesInputsInfo TO DO: Analog setGatesInputsInfo  <a href="classParser.html#aa3aac879ba833cb3d0e637e04bca631c">More...</a><br /></td></tr>
+<tr class="separator:aa3aac879ba833cb3d0e637e04bca631c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:afda41ce76c448c85e3530b78c180cd60"><td class="memItemLeft" align="right" valign="top">std::pair&lt; bool, std::vector&lt; std::pair&lt; int32_t, int32_t &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#afda41ce76c448c85e3530b78c180cd60">createBrackets</a> (const std::string &amp;i_expr)</td></tr>
+<tr class="memdesc:afda41ce76c448c85e3530b78c180cd60"><td class="mdescLeft">&#160;</td><td class="mdescRight">createBrackets Creates pairs of bracket positions within a given logical expression  <a href="classParser.html#afda41ce76c448c85e3530b78c180cd60">More...</a><br /></td></tr>
+<tr class="separator:afda41ce76c448c85e3530b78c180cd60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24e2a9a6369f0cc90afceb08c5af936e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a24e2a9a6369f0cc90afceb08c5af936e">inBrackets</a> (const std::vector&lt; std::pair&lt; int32_t, int32_t &gt;&gt; &amp;i_brackets, int32_t i_position) const</td></tr>
+<tr class="memdesc:a24e2a9a6369f0cc90afceb08c5af936e"><td class="mdescLeft">&#160;</td><td class="mdescRight">inBrackets Checks if a given position is within any pair of brackets  <a href="classParser.html#a24e2a9a6369f0cc90afceb08c5af936e">More...</a><br /></td></tr>
+<tr class="separator:a24e2a9a6369f0cc90afceb08c5af936e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9b60493ebbae3daa502c72cde261ada"><td class="memItemLeft" align="right" valign="top"><a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#ab9b60493ebbae3daa502c72cde261ada">parseInputNot</a> (std::string oper, std::string name)</td></tr>
+<tr class="memdesc:ab9b60493ebbae3daa502c72cde261ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">parseInputNot Parses an input variable with or without the NOT operation and returns its corresponding vertex  <a href="classParser.html#ab9b60493ebbae3daa502c72cde261ada">More...</a><br /></td></tr>
+<tr class="separator:ab9b60493ebbae3daa502c72cde261ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdfa436849e6d5ace5227b12b7aade20"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#afdfa436849e6d5ace5227b12b7aade20">deleteExtraSpaces</a> (std::string i_s)</td></tr>
+<tr class="memdesc:afdfa436849e6d5ace5227b12b7aade20"><td class="mdescLeft">&#160;</td><td class="mdescRight">deleteExtraSpaces Deletes extra spaces from the beginning and end of a string  <a href="classParser.html#afdfa436849e6d5ace5227b12b7aade20">More...</a><br /></td></tr>
+<tr class="separator:afdfa436849e6d5ace5227b12b7aade20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac01e81135d80b02d30b11d7f5803a835"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#ac01e81135d80b02d30b11d7f5803a835">d_logExpressions</a></td></tr>
+<tr class="separator:ac01e81135d80b02d30b11d7f5803a835"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1e79bd59b7e8951114f982b81499ae2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#ac1e79bd59b7e8951114f982b81499ae2">d_graph</a></td></tr>
+<tr class="separator:ac1e79bd59b7e8951114f982b81499ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae28bee9908099579213af0c6d2b720ca"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classSettings.html">Settings</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#ae28bee9908099579213af0c6d2b720ca">d_settings</a> = <a class="el" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(&quot;Parser&quot;)</td></tr>
+<tr class="separator:ae28bee9908099579213af0c6d2b720ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a997e3718a07e3299323cb6af7d75529b"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a997e3718a07e3299323cb6af7d75529b">d_inputsByNames</a></td></tr>
+<tr class="separator:a997e3718a07e3299323cb6af7d75529b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ffc50c76ae161a469328f37c183d8d2"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a6ffc50c76ae161a469328f37c183d8d2">d_notInputsByNames</a></td></tr>
+<tr class="separator:a6ffc50c76ae161a469328f37c183d8d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d899f84fcc7c038b9b5c44fd4c8299f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParser.html#a6d899f84fcc7c038b9b5c44fd4c8299f">d_gatesInputsInfo</a></td></tr>
+<tr class="separator:a6d899f84fcc7c038b9b5c44fd4c8299f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>class <a class="el" href="classParser.html" title="class Parser">Parser</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d_logExpressions</td><td>It can represent a set of logical expressions describing the logic of combinational schemes. These expressions can contain combinations of logical operations and variables. for example, A AND B, NOT, C XOR(A, Y)* </td></tr>
+    <tr><td class="paramname">d_graph</td><td>An object of the Oriented Graph class, which is an oriented graph used to represent relationships between logical expressions. </td></tr>
+    <tr><td class="paramname">d_settings</td><td>A pointer to an object of the <a class="el" href="classSettings.html">Settings</a> class, which is a singleton and is used to store settings related to the "Parser" </td></tr>
+    <tr><td class="paramname">d_gatesInputsInfo</td><td>Map storing information about gates inputs </td></tr>
+    <tr><td class="paramname">d_inputsByNames</td><td>Map associating input names with their corresponding vertices </td></tr>
+    <tr><td class="paramname">d_notInputsByNames</td><td>Map associating input names with their corresponding "not" vertices </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac125790430e44895143aa868377ebb56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac125790430e44895143aa868377ebb56">&#9670;&nbsp;</a></span>Parser() <span class="overload">[1/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Parser::Parser </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_logExpression</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; std::string, std::vector&lt; int32_t &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>i_info</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_ac125790430e44895143aa868377ebb56_cgraph.png" border="0" usemap="#aclassParser_ac125790430e44895143aa868377ebb56_cgraph" alt=""/></div>
+<map name="aclassParser_ac125790430e44895143aa868377ebb56_cgraph" id="aclassParser_ac125790430e44895143aa868377ebb56_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,116,32"/>
+<area shape="rect" href="classParser.html#a0a27158ce7c8ca578b82140b4239bd26" title="setGatesInputsInfo Set information about gates inputs" alt="" coords="164,5,357,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a05491695a0ef40568716f046c5a557eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05491695a0ef40568716f046c5a557eb">&#9670;&nbsp;</a></span>Parser() <span class="overload">[2/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Parser::Parser </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>i_logExpressions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; std::string, std::vector&lt; int32_t &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>i_info</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_a05491695a0ef40568716f046c5a557eb_cgraph.png" border="0" usemap="#aclassParser_a05491695a0ef40568716f046c5a557eb_cgraph" alt=""/></div>
+<map name="aclassParser_a05491695a0ef40568716f046c5a557eb_cgraph" id="aclassParser_a05491695a0ef40568716f046c5a557eb_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,116,32"/>
+<area shape="rect" href="classParser.html#a0a27158ce7c8ca578b82140b4239bd26" title="setGatesInputsInfo Set information about gates inputs" alt="" coords="164,5,357,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adebcb112980269b90f9b476a5d8ca64a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adebcb112980269b90f9b476a5d8ca64a">&#9670;&nbsp;</a></span>Parser() <span class="overload">[3/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Parser::Parser </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_logExpression</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>i_info</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a780c2dc26dd90952984fd0ff8ce6d2bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a780c2dc26dd90952984fd0ff8ce6d2bd">&#9670;&nbsp;</a></span>Parser() <span class="overload">[4/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Parser::Parser </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>i_logExpressions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>i_info</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5208129b497bfdf7c8ecceeb70e4bba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5208129b497bfdf7c8ecceeb70e4bba8">&#9670;&nbsp;</a></span>Parser() <span class="overload">[5/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Parser::Parser </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a897165b179561270a2cd14ad39040256"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a897165b179561270a2cd14ad39040256">&#9670;&nbsp;</a></span>Parser() <span class="overload">[6/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Parser::Parser </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classParser.html">Parser</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaf729e2242d0c651412faea209cb879f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf729e2242d0c651412faea209cb879f">&#9670;&nbsp;</a></span>Parser() <span class="overload">[7/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Parser::Parser </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classParser.html">Parser</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="afda41ce76c448c85e3530b78c180cd60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afda41ce76c448c85e3530b78c180cd60">&#9670;&nbsp;</a></span>createBrackets()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; bool, std::vector&lt; std::pair&lt; int32_t, int32_t &gt; &gt; &gt; Parser::createBrackets </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_expr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>createBrackets Creates pairs of bracket positions within a given logical expression </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_expr</td><td>The logical expression to analyze </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pair indicating whether the expression has balanced brackets and a vector of pairs representing the positions of opening and closing brackets <div class="fragment"><div class="line">TO DO:</div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_afda41ce76c448c85e3530b78c180cd60_icgraph.png" border="0" usemap="#aclassParser_afda41ce76c448c85e3530b78c180cd60_icgraph" alt=""/></div>
+<map name="aclassParser_afda41ce76c448c85e3530b78c180cd60_icgraph" id="aclassParser_afda41ce76c448c85e3530b78c180cd60_icgraph">
+<area shape="rect" title="createBrackets Creates pairs of bracket positions within a given logical expression" alt="" coords="637,31,804,57"/>
+<area shape="rect" href="classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="5,5,128,32"/>
+<area shape="rect" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="176,31,339,57"/>
+<area shape="rect" href="classParser.html#a0c1744b41606f8601e0c6ed1c6f99dc1" title=" " alt="" coords="387,81,589,108"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afdfa436849e6d5ace5227b12b7aade20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdfa436849e6d5ace5227b12b7aade20">&#9670;&nbsp;</a></span>deleteExtraSpaces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Parser::deleteExtraSpaces </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>i_s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>deleteExtraSpaces Deletes extra spaces from the beginning and end of a string </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_s</td><td>The string from which to delete extra spaces </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The input string with leading and trailing spaces removed <div class="fragment"><div class="line"><a class="code" href="classParser.html">Parser</a> parser;</div>
+<div class="line">std::string <a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">input</a> = <span class="stringliteral">&quot;   Hello,   World!   &quot;</span>;</div>
+<div class="line">std::string cleanedString = parser.<a class="code" href="classParser.html#afdfa436849e6d5ace5227b12b7aade20">deleteExtraSpaces</a>(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">input</a>);</div>
+<div class="line"> </div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Original string: &#39;&quot;</span> &lt;&lt; <a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">input</a> &lt;&lt; <span class="stringliteral">&quot;&#39;\n&quot;</span>;</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Cleaned string: &#39;&quot;</span> &lt;&lt; cleanedString &lt;&lt; <span class="stringliteral">&quot;&#39;\n&quot;</span>;</div>
+<div class="ttc" id="aSettings_8hpp_html_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528"><div class="ttname"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">input</a></div><div class="ttdeci">@ input</div><div class="ttdoc">input vertex</div><div class="ttdef"><b>Definition:</b> Settings.hpp:19</div></div>
+<div class="ttc" id="aclassParser_html"><div class="ttname"><a href="classParser.html">Parser</a></div><div class="ttdoc">class Parser</div><div class="ttdef"><b>Definition:</b> Parser.hpp:27</div></div>
+<div class="ttc" id="aclassParser_html_afdfa436849e6d5ace5227b12b7aade20"><div class="ttname"><a href="classParser.html#afdfa436849e6d5ace5227b12b7aade20">Parser::deleteExtraSpaces</a></div><div class="ttdeci">std::string deleteExtraSpaces(std::string i_s)</div><div class="ttdoc">deleteExtraSpaces Deletes extra spaces from the beginning and end of a string</div><div class="ttdef"><b>Definition:</b> Parser.cpp:394</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_afdfa436849e6d5ace5227b12b7aade20_icgraph.png" border="0" usemap="#aclassParser_afdfa436849e6d5ace5227b12b7aade20_icgraph" alt=""/></div>
+<map name="aclassParser_afdfa436849e6d5ace5227b12b7aade20_icgraph" id="aclassParser_afdfa436849e6d5ace5227b12b7aade20_icgraph">
+<area shape="rect" title="deleteExtraSpaces Deletes extra spaces from the beginning and end of a string" alt="" coords="637,5,828,32"/>
+<area shape="rect" href="classParser.html#a0c1744b41606f8601e0c6ed1c6f99dc1" title=" " alt="" coords="387,5,589,32"/>
+<area shape="rect" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="176,5,339,32"/>
+<area shape="rect" href="classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="5,5,128,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6b489a7062dcddbb8e04b2a0f8e77ba1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b489a7062dcddbb8e04b2a0f8e77ba1">&#9670;&nbsp;</a></span>getGraph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> Parser::getGraph </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getGraph Get the graph object This method returns a pointer to the graph object associated with the <a class="el" href="classParser.html" title="class Parser">Parser</a> instance </p>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the graph object </dd></dl>
+
+</div>
+</div>
+<a id="a24e2a9a6369f0cc90afceb08c5af936e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24e2a9a6369f0cc90afceb08c5af936e">&#9670;&nbsp;</a></span>inBrackets()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Parser::inBrackets </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; int32_t, int32_t &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>i_brackets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>i_position</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>inBrackets Checks if a given position is within any pair of brackets </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_brackets</td><td>The vector of pairs representing the positions of opening and closing brackets </td></tr>
+    <tr><td class="paramname">i_position</td><td>The position to check if it falls within any pair of brackets </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the specified position is within any pair of brackets, false otherwise <div class="fragment"><div class="line"><a class="code" href="classParser.html">Parser</a> parser;</div>
+<div class="line">std::vector&lt;std::pair&lt;int32_t, int32_t&gt;&gt; brackets = {{0, 3}, {5, 8}, {12,</div>
+<div class="line">15}}; int32_t position1 = 2; int32_t position2 = 6; <span class="keywordtype">bool</span> result1 =</div>
+<div class="line">parser.<a class="code" href="classParser.html#a24e2a9a6369f0cc90afceb08c5af936e">inBrackets</a>(brackets, position1); <span class="keywordtype">bool</span> result2 =</div>
+<div class="line">parser.<a class="code" href="classParser.html#a24e2a9a6369f0cc90afceb08c5af936e">inBrackets</a>(brackets, position2); std::cout &lt;&lt; <span class="stringliteral">&quot;Position &quot;</span> &lt;&lt;</div>
+<div class="line">position1 &lt;&lt; <span class="stringliteral">&quot; is within any pair of brackets: &quot;</span> &lt;&lt; std::boolalpha &lt;&lt;</div>
+<div class="line">result1 &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>; std::cout &lt;&lt; <span class="stringliteral">&quot;Position &quot;</span> &lt;&lt; position2 &lt;&lt; <span class="stringliteral">&quot; is within any</span></div>
+<div class="line"><span class="stringliteral">pair of brackets: &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; result2 &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="ttc" id="aclassParser_html_a24e2a9a6369f0cc90afceb08c5af936e"><div class="ttname"><a href="classParser.html#a24e2a9a6369f0cc90afceb08c5af936e">Parser::inBrackets</a></div><div class="ttdeci">bool inBrackets(const std::vector&lt; std::pair&lt; int32_t, int32_t &gt;&gt; &amp;i_brackets, int32_t i_position) const</div><div class="ttdoc">inBrackets Checks if a given position is within any pair of brackets</div><div class="ttdef"><b>Definition:</b> Parser.cpp:98</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_a24e2a9a6369f0cc90afceb08c5af936e_icgraph.png" border="0" usemap="#aclassParser_a24e2a9a6369f0cc90afceb08c5af936e_icgraph" alt=""/></div>
+<map name="aclassParser_a24e2a9a6369f0cc90afceb08c5af936e_icgraph" id="aclassParser_a24e2a9a6369f0cc90afceb08c5af936e_icgraph">
+<area shape="rect" title="inBrackets Checks if a given position is within any pair of brackets" alt="" coords="637,5,776,32"/>
+<area shape="rect" href="classParser.html#a0c1744b41606f8601e0c6ed1c6f99dc1" title=" " alt="" coords="387,5,589,32"/>
+<area shape="rect" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="176,5,339,32"/>
+<area shape="rect" href="classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="5,5,128,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae2686bf3fdb12a709732363745943425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2686bf3fdb12a709732363745943425">&#9670;&nbsp;</a></span>multipleVerteciesToOne()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> Parser::multipleVerteciesToOne </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> &gt;&#160;</td>
+          <td class="paramname"><em>curLayout</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a>&#160;</td>
+          <td class="paramname"><em>operation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>&#160;</td>
+          <td class="paramname"><em>graph</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>multipleVerteciesToOne This method takes a vector of vertices representing the current layout, combines them into a single vertex using the specified logical operation, and returns the resulting vertex </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">curLayout</td><td>The vector of vertices representing the current layout </td></tr>
+    <tr><td class="paramname">operation</td><td>The logical operation to apply </td></tr>
+    <tr><td class="paramname">graph</td><td>A pointer to the graph object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the resulting vertex after combining the input vertices <div class="fragment"><div class="line">std::vector&lt;VertexPtr&gt; vertices = {vertex1, vertex2, vertex3};</div>
+<div class="line"><a class="code" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a> operation = Gates::AND;</div>
+<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> graph = std::make_shared&lt;Graph&gt;();</div>
+<div class="line"><a class="code" href="classParser.html">Parser</a> parser;</div>
+<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> result = parser.<a class="code" href="classParser.html#ae2686bf3fdb12a709732363745943425">multipleVerteciesToOne</a>(vertices, operation,</div>
+<div class="line">graph);</div>
+<div class="ttc" id="aGraphVertexBase_8hpp_html_a422e1ad1ea2471e71477f2cedbe6c23d"><div class="ttname"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a></div><div class="ttdeci">#define VertexPtr</div><div class="ttdef"><b>Definition:</b> GraphVertexBase.hpp:18</div></div>
+<div class="ttc" id="aGraphVertexBase_8hpp_html_afc9ace2881a918ee869eca6ecf10dbe9"><div class="ttname"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a></div><div class="ttdeci">#define GraphPtr</div><div class="ttdef"><b>Definition:</b> GraphVertexBase.hpp:15</div></div>
+<div class="ttc" id="aSettings_8hpp_html_a0963bd5066d6d6a58155d1ad79f56974"><div class="ttname"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a></div><div class="ttdeci">Gates</div><div class="ttdoc">Gates Enumeration of types of logical elements This enumeration defines the various types of logic el...</div><div class="ttdef"><b>Definition:</b> Settings.hpp:31</div></div>
+<div class="ttc" id="aclassParser_html_ae2686bf3fdb12a709732363745943425"><div class="ttname"><a href="classParser.html#ae2686bf3fdb12a709732363745943425">Parser::multipleVerteciesToOne</a></div><div class="ttdeci">VertexPtr multipleVerteciesToOne(std::vector&lt; VertexPtr &gt; curLayout, Gates operation, GraphPtr graph)</div><div class="ttdoc">multipleVerteciesToOne This method takes a vector of vertices representing the current layout,...</div><div class="ttdef"><b>Definition:</b> Parser.cpp:193</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_ae2686bf3fdb12a709732363745943425_icgraph.png" border="0" usemap="#aclassParser_ae2686bf3fdb12a709732363745943425_icgraph" alt=""/></div>
+<map name="aclassParser_ae2686bf3fdb12a709732363745943425_icgraph" id="aclassParser_ae2686bf3fdb12a709732363745943425_icgraph">
+<area shape="rect" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="1013,115,1197,157"/>
+<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="765,86,965,127"/>
+<area shape="rect" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="784,152,947,179"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="219,5,450,61"/>
+<area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="505,86,717,127"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,50,164,91"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,86,431,127"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,152,457,179"/>
+<area shape="rect" href="classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="550,152,673,179"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7f4e01f44059d19f58f99d9f1ae7a5c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f4e01f44059d19f58f99d9f1ae7a5c5">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classParser.html">Parser</a>&amp; Parser::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classParser.html">Parser</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32a46aa1930b03db3f9386e7cd823eeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32a46aa1930b03db3f9386e7cd823eeb">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classParser.html">Parser</a>&amp; Parser::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classParser.html">Parser</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3602d3fde1e401b5fb352250232800b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3602d3fde1e401b5fb352250232800b0">&#9670;&nbsp;</a></span>parseAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Parser::parseAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>parseAll Parse all logical expressions and construct the graph. </p>
+<p>This method initializes a new oriented graph and iterates through all logical expressions stored in the <code>d_logExpressions</code> member variable. For each expression, it checks if it has balanced brackets using the <code>createBrackets</code> method. If the brackets are balanced, it calls the <code>parseToVertex</code> method to parse the expression and construct the corresponding vertex in the graph. If parsing fails for any expression, the method returns false. Otherwise, it returns true indicating successful parsing of all expressions. </p><dl class="section return"><dt>Returns</dt><dd>True if parsing is successful for all expressions, false otherwise <div class="fragment"><div class="line">TO DO:</div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_a3602d3fde1e401b5fb352250232800b0_cgraph.png" border="0" usemap="#aclassParser_a3602d3fde1e401b5fb352250232800b0_cgraph" alt=""/></div>
+<map name="aclassParser_a3602d3fde1e401b5fb352250232800b0_cgraph" id="aclassParser_a3602d3fde1e401b5fb352250232800b0_cgraph">
+<area shape="rect" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="5,9,128,36"/>
+<area shape="rect" href="classParser.html#afda41ce76c448c85e3530b78c180cd60" title="createBrackets Creates pairs of bracket positions within a given logical expression" alt="" coords="649,5,816,32"/>
+<area shape="rect" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="176,64,339,91"/>
+<area shape="rect" href="classParser.html#ae2686bf3fdb12a709732363745943425" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="396,57,580,98"/>
+<area shape="rect" href="classParser.html#ab9b60493ebbae3daa502c72cde261ada" title="parseInputNot Parses an input variable with or without the NOT operation and returns its correspondin..." alt="" coords="407,123,569,149"/>
+<area shape="rect" href="classParser.html#a0c1744b41606f8601e0c6ed1c6f99dc1" title=" " alt="" coords="387,173,589,200"/>
+<area shape="rect" href="classParser.html#afdfa436849e6d5ace5227b12b7aade20" title="deleteExtraSpaces Deletes extra spaces from the beginning and end of a string" alt="" coords="637,148,828,175"/>
+<area shape="rect" href="classParser.html#a24e2a9a6369f0cc90afceb08c5af936e" title="inBrackets Checks if a given position is within any pair of brackets" alt="" coords="663,199,802,225"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab9b60493ebbae3daa502c72cde261ada"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9b60493ebbae3daa502c72cde261ada">&#9670;&nbsp;</a></span>parseInputNot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> Parser::parseInputNot </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>oper</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>parseInputNot Parses an input variable with or without the NOT operation and returns its corresponding vertex </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oper</td><td>The operation associated with the input variable ('input' for no operation, 'not' for the NOT operation) </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the input variable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the vertex representing the parsed input variable, with or without the NOT operation <div class="fragment"><div class="line">TO DO:</div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_ab9b60493ebbae3daa502c72cde261ada_icgraph.png" border="0" usemap="#aclassParser_ab9b60493ebbae3daa502c72cde261ada_icgraph" alt=""/></div>
+<map name="aclassParser_ab9b60493ebbae3daa502c72cde261ada_icgraph" id="aclassParser_ab9b60493ebbae3daa502c72cde261ada_icgraph">
+<area shape="rect" title="parseInputNot Parses an input variable with or without the NOT operation and returns its correspondin..." alt="" coords="387,5,549,32"/>
+<area shape="rect" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="176,5,339,32"/>
+<area shape="rect" href="classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="5,5,128,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4d5f1bc99199b99ef027f0a3a698a99f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d5f1bc99199b99ef027f0a3a698a99f">&#9670;&nbsp;</a></span>parseToVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> Parser::parseToVertex </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_expr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within the graph. </p>
+<p>It recursively parses sub-expressions until it constructs the complete expression tree </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_expr</td><td>The logical expression to parse </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the resulting vertex representing the expression, or nullptr on failure <div class="fragment"><div class="line"><a class="code" href="classParser.html">Parser</a> parser;</div>
+<div class="line">std::string expression = <span class="stringliteral">&quot;output A AND B&quot;</span>;</div>
+<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> result = parser.<a class="code" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f">parseToVertex</a>(expression);</div>
+<div class="line"><span class="keywordflow">if</span> (result)</div>
+<div class="line">{</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;Vertex successfully created.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line"><span class="keywordflow">else</span></div>
+<div class="line">{</div>
+<div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to parse the expression.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassParser_html_a4d5f1bc99199b99ef027f0a3a698a99f"><div class="ttname"><a href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f">Parser::parseToVertex</a></div><div class="ttdeci">VertexPtr parseToVertex(const std::string &amp;i_expr)</div><div class="ttdoc">parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within...</div><div class="ttdef"><b>Definition:</b> Parser.cpp:293</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_a4d5f1bc99199b99ef027f0a3a698a99f_cgraph.png" border="0" usemap="#aclassParser_a4d5f1bc99199b99ef027f0a3a698a99f_cgraph" alt=""/></div>
+<map name="aclassParser_a4d5f1bc99199b99ef027f0a3a698a99f_cgraph" id="aclassParser_a4d5f1bc99199b99ef027f0a3a698a99f_cgraph">
+<area shape="rect" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="5,66,168,93"/>
+<area shape="rect" href="classParser.html#afda41ce76c448c85e3530b78c180cd60" title="createBrackets Creates pairs of bracket positions within a given logical expression" alt="" coords="479,25,645,52"/>
+<area shape="rect" href="classParser.html#ae2686bf3fdb12a709732363745943425" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="225,30,409,71"/>
+<area shape="rect" href="classParser.html#ab9b60493ebbae3daa502c72cde261ada" title="parseInputNot Parses an input variable with or without the NOT operation and returns its correspondin..." alt="" coords="236,96,399,122"/>
+<area shape="rect" href="classParser.html#a0c1744b41606f8601e0c6ed1c6f99dc1" title=" " alt="" coords="216,146,419,173"/>
+<area shape="rect" href="classParser.html#afdfa436849e6d5ace5227b12b7aade20" title="deleteExtraSpaces Deletes extra spaces from the beginning and end of a string" alt="" coords="467,121,657,148"/>
+<area shape="rect" href="classParser.html#a24e2a9a6369f0cc90afceb08c5af936e" title="inBrackets Checks if a given position is within any pair of brackets" alt="" coords="493,172,631,198"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_a4d5f1bc99199b99ef027f0a3a698a99f_icgraph.png" border="0" usemap="#aclassParser_a4d5f1bc99199b99ef027f0a3a698a99f_icgraph" alt=""/></div>
+<map name="aclassParser_a4d5f1bc99199b99ef027f0a3a698a99f_icgraph" id="aclassParser_a4d5f1bc99199b99ef027f0a3a698a99f_icgraph">
+<area shape="rect" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="176,5,339,32"/>
+<area shape="rect" href="classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="5,5,128,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa3aac879ba833cb3d0e637e04bca631c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3aac879ba833cb3d0e637e04bca631c">&#9670;&nbsp;</a></span>setGatesInputsInfo() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parser::setGatesInputsInfo </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>i_info</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setGatesInputsInfo TO DO: Analog setGatesInputsInfo </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GatesInfo</td><td>= std::map&lt;Gates, std::vector&lt;int32_t&gt;&gt; </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0a27158ce7c8ca578b82140b4239bd26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a27158ce7c8ca578b82140b4239bd26">&#9670;&nbsp;</a></span>setGatesInputsInfo() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parser::setGatesInputsInfo </td>
+          <td>(</td>
+          <td class="paramtype">const std::map&lt; std::string, std::vector&lt; int32_t &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>i_info</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setGatesInputsInfo Set information about gates inputs </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_info</td><td>A map where keys are gate names as strings and values are vectors of integers specifying the number of inputs for each gate </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_a0a27158ce7c8ca578b82140b4239bd26_icgraph.png" border="0" usemap="#aclassParser_a0a27158ce7c8ca578b82140b4239bd26_icgraph" alt=""/></div>
+<map name="aclassParser_a0a27158ce7c8ca578b82140b4239bd26_icgraph" id="aclassParser_a0a27158ce7c8ca578b82140b4239bd26_icgraph">
+<area shape="rect" title="setGatesInputsInfo Set information about gates inputs" alt="" coords="1032,87,1225,113"/>
+<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="784,50,984,91"/>
+<area shape="rect" href="classParser.html#ac125790430e44895143aa868377ebb56" title=" " alt="" coords="829,116,939,143"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="505,5,736,61"/>
+<area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="515,86,727,127"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,42,164,83"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,71,431,113"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,137,457,164"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0c1744b41606f8601e0c6ed1c6f99dc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c1744b41606f8601e0c6ed1c6f99dc1">&#9670;&nbsp;</a></span>splitLogicExpression()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; int32_t, std::vector&lt; std::string &gt; &gt; Parser::splitLogicExpression </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>i_expr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_a0c1744b41606f8601e0c6ed1c6f99dc1_cgraph.png" border="0" usemap="#aclassParser_a0c1744b41606f8601e0c6ed1c6f99dc1_cgraph" alt=""/></div>
+<map name="aclassParser_a0c1744b41606f8601e0c6ed1c6f99dc1_cgraph" id="aclassParser_a0c1744b41606f8601e0c6ed1c6f99dc1_cgraph">
+<area shape="rect" title=" " alt="" coords="5,56,208,83"/>
+<area shape="rect" href="classParser.html#afda41ce76c448c85e3530b78c180cd60" title="createBrackets Creates pairs of bracket positions within a given logical expression" alt="" coords="268,5,435,32"/>
+<area shape="rect" href="classParser.html#afdfa436849e6d5ace5227b12b7aade20" title="deleteExtraSpaces Deletes extra spaces from the beginning and end of a string" alt="" coords="256,56,447,83"/>
+<area shape="rect" href="classParser.html#a24e2a9a6369f0cc90afceb08c5af936e" title="inBrackets Checks if a given position is within any pair of brackets" alt="" coords="282,107,421,133"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_a0c1744b41606f8601e0c6ed1c6f99dc1_icgraph.png" border="0" usemap="#aclassParser_a0c1744b41606f8601e0c6ed1c6f99dc1_icgraph" alt=""/></div>
+<map name="aclassParser_a0c1744b41606f8601e0c6ed1c6f99dc1_icgraph" id="aclassParser_a0c1744b41606f8601e0c6ed1c6f99dc1_icgraph">
+<area shape="rect" title=" " alt="" coords="387,5,589,32"/>
+<area shape="rect" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="176,5,339,32"/>
+<area shape="rect" href="classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="5,5,128,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a6d899f84fcc7c038b9b5c44fd4c8299f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d899f84fcc7c038b9b5c44fd4c8299f">&#9670;&nbsp;</a></span>d_gatesInputsInfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> Parser::d_gatesInputsInfo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac1e79bd59b7e8951114f982b81499ae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1e79bd59b7e8951114f982b81499ae2">&#9670;&nbsp;</a></span>d_graph</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> Parser::d_graph</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a997e3718a07e3299323cb6af7d75529b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a997e3718a07e3299323cb6af7d75529b">&#9670;&nbsp;</a></span>d_inputsByNames</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, <a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a>&gt; Parser::d_inputsByNames</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac01e81135d80b02d30b11d7f5803a835"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac01e81135d80b02d30b11d7f5803a835">&#9670;&nbsp;</a></span>d_logExpressions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; Parser::d_logExpressions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ffc50c76ae161a469328f37c183d8d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ffc50c76ae161a469328f37c183d8d2">&#9670;&nbsp;</a></span>d_notInputsByNames</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, <a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a>&gt; Parser::d_notInputsByNames</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae28bee9908099579213af0c6d2b720ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae28bee9908099579213af0c6d2b720ca">&#9670;&nbsp;</a></span>d_settings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classSettings.html">Settings</a>&gt; Parser::d_settings = <a class="el" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(&quot;Parser&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classParser.html">Parser</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

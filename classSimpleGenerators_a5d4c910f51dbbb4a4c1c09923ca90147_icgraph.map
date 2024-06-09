@@ -1,0 +1,8 @@
+<map id="SimpleGenerators::cnfFromTruthTable" name="SimpleGenerators::cnfFromTruthTable">
+<area shape="rect" id="node1" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="784,50,984,91"/>
+<area shape="rect" id="node2" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="505,5,736,61"/>
+<area shape="rect" id="node4" href="$classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="515,86,727,127"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,42,164,83"/>
+<area shape="rect" id="node5" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,71,431,113"/>
+<area shape="rect" id="node6" href="$classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,137,457,164"/>
+</map>

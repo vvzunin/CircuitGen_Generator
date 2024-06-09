@@ -1,807 +1,1503 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>GraphVertexBase class | CircuitGenGenerator</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: GraphVertexBase Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">CircuitGenGenerator</a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li>
-              <a href="pages.html">Pages</a>
-              <ol>
-                <li><a href="about.html">About</a></li>
-              </ol>
-            </li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          GraphVertexBase <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GraphVertexBase_8hpp.html">&lt;GraphVertexBase.hpp&gt;</a></div>
-        </h1>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#derived-classes">Derived classes</a></li>
-                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
-                <li><a href="#pro-attribs">Protected variables</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-<p>class <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a></p>
-        <section id="derived-classes">
-          <h2><a href="#derived-classes">Derived classes</a></h2>
-          <dl class="m-doc">
-            <dt>
-              class <a href="classGraphVertexGates.html" class="m-doc">GraphVertexGates</a>
-            </dt>
-            <dd><a href="classGraphVertexGates.html" class="m-doc">GraphVertexGates</a> Class representing a vertex in a graph with gates.</dd>
-            <dt>
-              class <a href="classGraphVertexInput.html" class="m-doc">GraphVertexInput</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              class <a href="classGraphVertexOutput.html" class="m-doc">GraphVertexOutput</a>
-            </dt>
-            <dd></dd>
-            <dt>
-              class <a href="classGraphVertexSubGraph.html" class="m-doc">GraphVertexSubGraph</a>
-            </dt>
-            <dd></dd>
-          </dl>
-        </section>
-        <section id="typeless-methods">
-          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
-          <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a006319f36efca3d9a910e61e0271ed14" class="m-doc">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span>
-            </dt>
-            <dd><a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> Constructs a <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> object with the specified vertex type and optional graph.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a72ec39807323365997afe38d65ecf670" class="m-doc">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
-              const std::string i_name,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span>
-            </dt>
-            <dd><a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> Constructs a <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> object with the specified vertex type, name, and optional graph.</dd>
-            <dt id="a3755c63c1abe080c5a6c6b7cb13b4028">
-              <span class="m-doc-wrap-bumper"><a href="#a3755c63c1abe080c5a6c6b7cb13b4028" class="m-doc-self">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&amp; other) <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="af51c6f7a544d5df9333eed7dd9af027b">
-              <span class="m-doc-wrap-bumper"><a href="#af51c6f7a544d5df9333eed7dd9af027b" class="m-doc-self">GraphVertexBase</a>(</span><span class="m-doc-wrap"><a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&amp;&amp; other) <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a97d09e7b5904ecd715a5ac057b8d737b">
-              <span class="m-doc-wrap-bumper"><a href="#a97d09e7b5904ecd715a5ac057b8d737b" class="m-doc-self">~GraphVertexBase</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="af41dbc7dedad885bceae83bfb85d976c">
-              <span class="m-doc-wrap-bumper">auto <a href="#af41dbc7dedad885bceae83bfb85d976c" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&amp; other) -&gt; <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a9ee2363dbed325ea17ef80ec6aacef30">
-              <span class="m-doc-wrap-bumper">auto <a href="#a9ee2363dbed325ea17ef80ec6aacef30" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&amp;&amp; other) -&gt; <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a59e8313bfa37fecd37e2dd4311bff814" class="m-doc">getType</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> <span class="m-label m-flat m-warning">final</span></span>
-            </dt>
-            <dd>getType This method returns the type of the vertex as a value of the VertexTypes enum</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#abba036744b90360643beae0ab1db977a" class="m-doc">getTypeName</a>(</span><span class="m-doc-wrap">) const -&gt; std::string <span class="m-label m-flat m-warning">final</span></span>
-            </dt>
-            <dd>getTypeName This method returns the string representation of the vertex type by parsing the vertex type enum value using the settings object associated with the vertex</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#adba8223322836a7de810416fbb9aa48a" class="m-doc">setName</a>(</span><span class="m-doc-wrap">const std::string i_name)</span>
-            </dt>
-            <dd>setName This method sets the name of the vertex to the specified string.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#af1d900fc4073ade5fc0fe0bf3346ff49" class="m-doc">getName</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
-            </dt>
-            <dd>getName Returns the name of the vertex</dd>
-            <dt id="a3d4c56b9a199587edd4c3ca9ec43fac7">
-              <span class="m-doc-wrap-bumper">auto <a href="#a3d4c56b9a199587edd4c3ca9ec43fac7" class="m-doc-self">getName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_prefix) const -&gt; std::string</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#af114ad99f885c77a28cee77f0c86fbcf" class="m-doc">getValue</a>(</span><span class="m-doc-wrap">) const -&gt; char <span class="m-label m-flat m-warning">virtual</span></span>
-            </dt>
-            <dd>getValue Returns the value of the vertex.</dd>
-            <dt id="a330ddc78ee52b8425a773cecc70954fe">
-              <span class="m-doc-wrap-bumper">auto <a href="#a330ddc78ee52b8425a773cecc70954fe" class="m-doc-self">updateValue</a>(</span><span class="m-doc-wrap">) -&gt; char <span class="m-label m-flat m-warning">pure virtual</span></span>
-            </dt>
-            <dd>updateValue TO DO:</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a4dbd33d715cab6cc5dbe4f80f883f82f" class="m-doc">setLevel</a>(</span><span class="m-doc-wrap">const uint32_t i_level)</span>
-            </dt>
-            <dd>setLevel Sets the level of the vertex</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a8edb68870f22e26a22d3937ffa03a409" class="m-doc">getLevel</a>(</span><span class="m-doc-wrap">) const -&gt; uint32_t</span>
-            </dt>
-            <dd>getLevel Returns the level of the vertex</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a5524af9e76e94937c16ff7c56efcf182" class="m-doc">updateLevel</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
-            </dt>
-            <dd>updateLevel This method updates the level of the vertex based on the levels of its input connections. It iterates through each input connection and sets the vertex level to the maximum level of its input connections plus one.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a1a69b367ea429636864e63c4cc9b6abc" class="m-doc">getGate</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> <span class="m-label m-flat m-warning">virtual</span></span>
-            </dt>
-            <dd>getGate Returns the type of the basic logic gate represented by this vertex. If the vertex does not correspond to any basic logic gate, it returns Gate Default</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a2aa06dde09dc4fe2698dd25faab1c80d" class="m-doc">getBaseGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="OrientedGraph_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767" class="m-doc">GraphPtrWeak</a></span>
-            </dt>
-            <dd>getBaseGraph</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ae608f01310a319a3ffa9d1a261d05177" class="m-doc">getInConnections</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a4b3939252a6663d832e60390edb3210b" class="m-doc">VertexPtrWeak</a>&gt;</span>
-            </dt>
-            <dd>getInConnections</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a8c984675497210531aab85e713eb16e5" class="m-doc">addVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert) -&gt; uint32_t</span>
-            </dt>
-            <dd>addVertexToInConnections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a97e6bb3b3782f86439a0069d775fbfe0" class="m-doc">removeVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert,
-              bool i_full = false) -&gt; bool</span>
-            </dt>
-            <dd>removeVertexToInConnections Removes a vertex from the input connections of this vertex.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#acba2074e04e2457be77680e218a0d45f" class="m-doc">getOutConnections</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
-            </dt>
-            <dd>getOutConnections</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ab4b49728b705bc687c94d1b189f38fc1" class="m-doc">addVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert) -&gt; bool</span>
-            </dt>
-            <dd>addVertexToOutConnections Adds a vertex to the output connections of this vertex if it is not already present</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ab1d8b7092aa986fb6d06cd37d8f9c643" class="m-doc">removeVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert) -&gt; bool</span>
-            </dt>
-            <dd>removeVertexToOutConnections Removes a vertex from the output connections of this vertex.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a07f6737b3622f2e057963849dea1c018" class="m-doc">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
-            </dt>
-            <dd>calculateHash Calculates the hash value for the vertex based on its outgoing connections.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ae4e70880a9cd7de29aa4a301ca208df6" class="m-doc">getInstance</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
-            </dt>
-            <dd>getInstance Generates an instance declaration for the vertex in Verilog format.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a246bbb9dc5234c74fe538bec28627cee" class="m-doc">toVerilog</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
-            </dt>
-            <dd>toVerilog Generates Verilog code for the vertex</dd>
-            <dt id="ad1e4734f26f7e0d8e0153a3f48e23519">
-              <span class="m-doc-wrap-bumper">auto <a href="#ad1e4734f26f7e0d8e0153a3f48e23519" class="m-doc-self">isSubgraphBuffer</a>(</span><span class="m-doc-wrap">) const -&gt; bool <span class="m-label m-flat m-warning">virtual</span></span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pro-attribs">
-          <h2><a href="#pro-attribs">Protected variables</a></h2>
-          <dl class="m-doc">
-            <dt id="a827a867771dc1307e26d0d9702516d4b">
-              <a href="OrientedGraph_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767" class="m-doc">GraphPtrWeak</a> <a href="#a827a867771dc1307e26d0d9702516d4b" class="m-doc-self">d_baseGraph</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a1c3745128ab685cb98f437781dfbaac8">
-              std::string <a href="#a1c3745128ab685cb98f437781dfbaac8" class="m-doc-self">d_name</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a46f5aa4aa4be388075c14617b38df563">
-              char <a href="#a46f5aa4aa4be388075c14617b38df563" class="m-doc-self">d_value</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="adb250a7d7e7c425dd8335773592b1067">
-              uint32_t <a href="#adb250a7d7e7c425dd8335773592b1067" class="m-doc-self">d_level</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a418e8e9b44810439133522e3cbfb2f9e">
-              std::vector&lt;<a href="OrientedGraph_8hpp.html#a4b3939252a6663d832e60390edb3210b" class="m-doc">VertexPtrWeak</a>&gt; <a href="#a418e8e9b44810439133522e3cbfb2f9e" class="m-doc-self">d_inConnections</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a5af02c2cb649c4413f5fea35a955360c">
-              std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; <a href="#a5af02c2cb649c4413f5fea35a955360c" class="m-doc-self">d_outConnections</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a05f5198fc2b7c9cb2806085bac5cf567">
-              std::shared_ptr&lt;<a href="classSettings.html" class="m-doc">Settings</a>&gt; <a href="#a05f5198fc2b7c9cb2806085bac5cf567" class="m-doc-self">d_settings</a>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a006319f36efca3d9a910e61e0271ed14"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"> GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a006319f36efca3d9a910e61e0271ed14" class="m-doc-self">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span></span>
-            </h3>
-            <p><a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> Constructs a <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> object with the specified vertex type and optional graph.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_type</td>
-                  <td>The type of the vertex (from the VertexTypes enum).</td>
-                </tr>
-                <tr>
-                  <td>i_graph</td>
-                  <td>Optional pointer to the graph containing the vertex</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a72ec39807323365997afe38d65ecf670"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"> GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a72ec39807323365997afe38d65ecf670" class="m-doc-self">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
-              const std::string i_name,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span></span>
-            </h3>
-            <p><a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> Constructs a <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> object with the specified vertex type, name, and optional graph.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_type</td>
-                  <td>The type of the vertex (from the VertexTypes enum)</td>
-                </tr>
-                <tr>
-                  <td>i_name</td>
-                  <td>The name of the vertex.</td>
-                </tr>
-                <tr>
-                  <td>i_graph</td>
-                  <td>Optional pointer to the graph containing the vertex.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a59e8313bfa37fecd37e2dd4311bff814"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a59e8313bfa37fecd37e2dd4311bff814" class="m-doc-self">getType</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">final</span></span></span>
-            </h3>
-            <p>getType This method returns the type of the vertex as a value of the VertexTypes enum</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td><p>The type of the vertex (from the VertexTypes enum).</p><pre class="m-code"><span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="n">VertexTypes</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getType</span><span class="p">();</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Type of the vertex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="abba036744b90360643beae0ab1db977a"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abba036744b90360643beae0ab1db977a" class="m-doc-self">getTypeName</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">final</span></span></span>
-            </h3>
-            <p>getTypeName This method returns the string representation of the vertex type by parsing the vertex type enum value using the settings object associated with the vertex</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td><p>The string representation of the vertex type.</p><pre class="m-code"><span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">typeName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getTypeName</span><span class="p">();</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;String representation of the vertex type: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">typeName</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="adba8223322836a7de810416fbb9aa48a"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#adba8223322836a7de810416fbb9aa48a" class="m-doc-self">setName</a>(</span><span class="m-doc-wrap">const std::string i_name)</span></span>
-            </h3>
-            <p>setName This method sets the name of the vertex to the specified string.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_name</td>
-                  <td><p>The new name for the vertex.</p><pre class="m-code"><span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="n">vertex</span><span class="p">.</span><span class="n">setName</span><span class="p">(</span><span class="s">&quot;new_vertex_name&quot;</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;New name of the vertex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getName</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="af1d900fc4073ade5fc0fe0bf3346ff49"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af1d900fc4073ade5fc0fe0bf3346ff49" class="m-doc-self">getName</a>(</span><span class="m-doc-wrap">) const</span></span>
-            </h3>
-            <p>getName Returns the name of the vertex</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td><p>The name of the vertex.</p><pre class="m-code"><span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getName</span><span class="p">();</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Name of the vertex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="af114ad99f885c77a28cee77f0c86fbcf"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">char GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af114ad99f885c77a28cee77f0c86fbcf" class="m-doc-self">getValue</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">virtual</span></span></span>
-            </h3>
-            <p>getValue Returns the value of the vertex.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td><p>The value of the vertex.</p><pre class="m-code"><span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="kt">char</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getValue</span><span class="p">();</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Value of the vertex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a4dbd33d715cab6cc5dbe4f80f883f82f"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4dbd33d715cab6cc5dbe4f80f883f82f" class="m-doc-self">setLevel</a>(</span><span class="m-doc-wrap">const uint32_t i_level)</span></span>
-            </h3>
-            <p>setLevel Sets the level of the vertex</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_level</td>
-                  <td><p>The new level for the vertex</p><pre class="m-code"><span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="n">vertex</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;New level of the vertex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getLevel</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span></pre></td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a8edb68870f22e26a22d3937ffa03a409"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">uint32_t GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8edb68870f22e26a22d3937ffa03a409" class="m-doc-self">getLevel</a>(</span><span class="m-doc-wrap">) const</span></span>
-            </h3>
-            <p>getLevel Returns the level of the vertex</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td><p>The level of the vertex</p><pre class="m-code"><span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="kt">uint32_t</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getLevel</span><span class="p">();</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Level of the vertex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a5524af9e76e94937c16ff7c56efcf182"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5524af9e76e94937c16ff7c56efcf182" class="m-doc-self">updateLevel</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
-            </h3>
-            <p>updateLevel This method updates the level of the vertex based on the levels of its input connections. It iterates through each input connection and sets the vertex level to the maximum level of its input connections plus one.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Exceptions</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">std::invalid_argument</td>
-                  <td>if any of the input connections are invalid (i.e., null pointers)</td>
-                </tr>
-              </tbody>
-            </table>
-<p><code class="m-code"><span class="n">TO</span><span class="w"> </span><span class="n">DO</span><span class="o">:</span></code></p>
-          </div></section>
-          <section class="m-doc-details" id="a1a69b367ea429636864e63c4cc9b6abc"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1a69b367ea429636864e63c4cc9b6abc" class="m-doc-self">getGate</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">virtual</span></span></span>
-            </h3>
-            <p>getGate Returns the type of the basic logic gate represented by this vertex. If the vertex does not correspond to any basic logic gate, it returns Gate Default</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td><p>The type of the basic logic gate represented by this vertex</p><pre class="m-code"><span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="n">Gates</span><span class="w"> </span><span class="n">gateType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getGate</span><span class="p">();</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a2aa06dde09dc4fe2698dd25faab1c80d"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="OrientedGraph_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767" class="m-doc">GraphPtrWeak</a> GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2aa06dde09dc4fe2698dd25faab1c80d" class="m-doc-self">getBaseGraph</a>(</span><span class="m-doc-wrap">) const</span></span>
-            </h3>
-            <p>getBaseGraph</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td>a weak pointer to the base graph associated with this vertex. <code class="m-code"><span class="n">TO</span><span class="w"> </span><span class="n">DO</span><span class="o">:</span></code></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="ae608f01310a319a3ffa9d1a261d05177"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::vector&lt;<a href="OrientedGraph_8hpp.html#a4b3939252a6663d832e60390edb3210b" class="m-doc">VertexPtrWeak</a>&gt; GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae608f01310a319a3ffa9d1a261d05177" class="m-doc-self">getInConnections</a>(</span><span class="m-doc-wrap">) const</span></span>
-            </h3>
-            <p>getInConnections</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td><p>A vector of weak pointers to the input connections of this vertex</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class</span>
-<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="c1">// Get the vector of the input connections of this vertex</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">VertexPtrWeak</span><span class="o">&gt;</span><span class="w"> </span><span class="n">inConnections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getInConnections</span><span class="p">();</span>
-<span class="c1">// Iterate over the input connections and do something with them</span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">inConnections</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="c1">// Checking if the connection is valid</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">connection</span><span class="p">.</span><span class="n">expired</span><span class="p">())</span>
-<span class="p">{</span>
-<span class="c1">// Getting shared_ptr from weak_ptr</span>
-<span class="n">VertexPtr</span><span class="w"> </span><span class="n">inputVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inputVertex</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="c1">// Doing something with the input Vertex</span>
-<span class="p">}</span>
-<span class="p">}</span>
-<span class="p">}</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a8c984675497210531aab85e713eb16e5"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">uint32_t GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8c984675497210531aab85e713eb16e5" class="m-doc-self">addVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert)</span></span>
-            </h3>
-            <p>addVertexToInConnections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_vert</td>
-                  <td>The vertex to be added to the input connections</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>The count of occurrences of the given vertex in the input connections after adding it</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class</span>
-<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="c1">// Creating another vertex</span>
-<span class="n">VertexPtr</span><span class="w"> </span><span class="n">anotherVertex</span><span class="w"> </span><span class="o">=</span>
-<span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex2&quot;</span><span class="p">);</span>
-<span class="c1">// Add the second vertex to the input connections of the first vertex</span>
-<span class="c1">// and get the number of occurrences</span>
-<span class="kt">uint32_t</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">addVertexToInConnections</span><span class="p">(</span><span class="n">anotherVertex</span><span class="p">);</span>
-<span class="c1">// Output the result</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The number of occurrences of the second vertex in the input</span>
-<span class="n">connections</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="n">vertex</span><span class="o">:</span><span class="w"> </span><span class="s">&quot; &lt;&lt; count &lt;&lt; std::endl;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-<p>addVertexToInConnections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections</p>
-          </div></section>
-          <section class="m-doc-details" id="a97e6bb3b3782f86439a0069d775fbfe0"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a97e6bb3b3782f86439a0069d775fbfe0" class="m-doc-self">removeVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert,
-              bool i_full = false)</span></span>
-            </h3>
-            <p>removeVertexToInConnections Removes a vertex from the input connections of this vertex.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_vert</td>
-                  <td>The vertex to be removed from the input connections.</td>
-                </tr>
-                <tr>
-                  <td>i_full</td>
-                  <td>lag indicating whether to remove all occurrences of the vertex from the input connections. If true, all occurrences will be removed. If false, only the first occurrence will be removed. Default - false</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>true if the vertex was successfully removed, false otherwise.</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class</span>
-<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="c1">// Creating another vertex</span>
-<span class="n">VertexPtr</span><span class="w"> </span><span class="n">anotherVertex</span><span class="w"> </span><span class="o">=</span>
-<span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex2&quot;</span><span class="p">);</span>
-<span class="c1">// Adding a second vertex to the input connections of the first vertex</span>
-<span class="n">vertex</span><span class="p">.</span><span class="n">addVertexToInConnections</span><span class="p">(</span><span class="n">anotherVertex</span><span class="p">);</span>
-<span class="c1">// Removing the second vertex from the input connections of the first</span>
-<span class="n">vertex</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">removed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">removeVertexToInConnections</span><span class="p">(</span><span class="n">anotherVertex</span><span class="p">,</span>
-<span class="nb">false</span><span class="p">);</span>
-<span class="c1">// Output of the result</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">removed</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The second vertex has been successfully removed from the</span>
-<span class="w">   </span><span class="n">input</span><span class="w"> </span><span class="n">connections</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="n">vertex</span><span class="s">&quot; &lt;&lt; std::endl;</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The second vertex was not found in the input connections</span>
-<span class="w">   </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="n">vertex</span><span class="s">&quot; &lt;&lt; std::endl;</span>
-<span class="p">}</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="acba2074e04e2457be77680e218a0d45f"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acba2074e04e2457be77680e218a0d45f" class="m-doc-self">getOutConnections</a>(</span><span class="m-doc-wrap">) const</span></span>
-            </h3>
-            <p>getOutConnections</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td><p>A vector of shared pointers to the output connections of this vertex</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class</span>
-<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="c1">// Creating another vertex</span>
-<span class="n">VertexPtr</span><span class="w"> </span><span class="n">anotherVertex</span><span class="w"> </span><span class="o">=</span>
-<span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex2&quot;</span><span class="p">);</span>
-<span class="c1">// Adding the second vertex to the output connections of the first vertex</span>
-<span class="n">vertex</span><span class="p">.</span><span class="n">addVertexToOutConnections</span><span class="p">(</span><span class="n">anotherVertex</span><span class="p">);</span>
-<span class="c1">// get the vector of the output connections of the first vertex</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">VertexPtr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">outConnections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getOutConnections</span><span class="p">();</span>
-<span class="c1">// output information about the output connections</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Output connections of the first vertex:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">outConnections</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">connection</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="ab4b49728b705bc687c94d1b189f38fc1"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab4b49728b705bc687c94d1b189f38fc1" class="m-doc-self">addVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert)</span></span>
-            </h3>
-            <p>addVertexToOutConnections Adds a vertex to the output connections of this vertex if it is not already present</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_vert</td>
-                  <td>The vertex to be added to the output connections</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td>true if the vertex was successfully added, false if it was already present in the output connections. <code class="m-code"><span class="n">TO</span><span class="w"> </span><span class="n">DO</span><span class="o">:</span></code></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="ab1d8b7092aa986fb6d06cd37d8f9c643"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab1d8b7092aa986fb6d06cd37d8f9c643" class="m-doc-self">removeVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert)</span></span>
-            </h3>
-            <p>removeVertexToOutConnections Removes a vertex from the output connections of this vertex.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_vert</td>
-                  <td>The vertex to be removed from the output connections.</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>true if the vertex was successfully removed, false otherwise.</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class</span>
-<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="c1">// Creating another vertex</span>
-<span class="n">VertexPtr</span><span class="w"> </span><span class="n">anotherVertex</span><span class="w"> </span><span class="o">=</span>
-<span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex2&quot;</span><span class="p">);</span>
-<span class="c1">// Adding the second vertex to the output connections of the first vertex</span>
-<span class="n">vertex</span><span class="p">.</span><span class="n">addVertexToOutConnections</span><span class="p">(</span><span class="n">anotherVertex</span><span class="p">);</span>
-<span class="c1">// Removing the second vertex from the output connections of the first</span>
-<span class="n">vertex</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">removed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">removeVertexToOutConnections</span><span class="p">(</span><span class="n">anotherVertex</span><span class="p">);</span>
-<span class="c1">// Output of the result</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">removed</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Вторая вершина успешно удалена из выходных соединений</span>
-<span class="w">  </span><span class="n">первой</span><span class="w"> </span><span class="n">вершины</span><span class="p">.</span><span class="s">&quot; &lt;&lt; std::endl;</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Вторая вершина не найдена в выходных соединениях первой</span>
-<span class="w">  </span><span class="n">вершины</span><span class="p">.</span><span class="s">&quot; &lt;&lt; std::endl;</span>
-<span class="p">}</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a07f6737b3622f2e057963849dea1c018"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a07f6737b3622f2e057963849dea1c018" class="m-doc-self">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) <span class="m-label m-warning">virtual</span></span></span>
-            </h3>
-            <p>calculateHash Calculates the hash value for the vertex based on its outgoing connections.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">recalculate</td>
-                  <td>Flag indicating whether to recalculate the hash value even if it has already been calculated. If true, the hash value will be recalculated. If false and the hash value has already been calculated, the cached hash value will be returned without recalculation.</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>The hash value of the vertex based on its outgoing connections.</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class</span>
-<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="c1">// Creating two more vertices</span>
-<span class="n">VertexPtr</span><span class="w"> </span><span class="n">vertex2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span>
-<span class="s">&quot;vertex2&quot;</span><span class="p">);</span><span class="w"> </span><span class="n">VertexPtr</span><span class="w"> </span><span class="n">vertex3</span><span class="w"> </span><span class="o">=</span>
-<span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex3&quot;</span><span class="p">);</span>
-<span class="c1">// Adding the second and third vertices to the output connections of the</span>
-<span class="n">first</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">addVertexToOutConnections</span><span class="p">(</span><span class="n">vertex2</span><span class="p">);</span>
-<span class="n">vertex</span><span class="p">.</span><span class="n">addVertexToOutConnections</span><span class="p">(</span><span class="n">vertex3</span><span class="p">);</span>
-<span class="c1">// Calculating the hash for the first vertex</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">hashValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">calculateHash</span><span class="p">();</span>
-<span class="c1">// Output of the result</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hash for the first vertex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">hashValue</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="ae4e70880a9cd7de29aa4a301ca208df6"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae4e70880a9cd7de29aa4a301ca208df6" class="m-doc-self">getInstance</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
-            </h3>
-            <p>getInstance Generates an instance declaration for the vertex in Verilog format.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td><p>A string containing the instance declaration for the vertex in Verilog format.</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class</span>
-<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
-<span class="c1">// Generating an instance for a vertex in Verilog format</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">instanceDeclaration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getInstance</span><span class="p">();</span>
-<span class="c1">// Displaying the instance on the screen</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Instance declaration for vertex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">instanceDeclaration</span><span class="w"> </span><span class="o">&lt;&lt;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a246bbb9dc5234c74fe538bec28627cee"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a246bbb9dc5234c74fe538bec28627cee" class="m-doc-self">toVerilog</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
-            </h3>
-            <p>toVerilog Generates Verilog code for the vertex</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td><p>A string containing Verilog code for the vertex, or an empty string if the vertex type is not &quot;output&quot; or if the incoming connection is invalid</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class with the type</span>
-<span class="s">&quot;output&quot;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="s">&quot;output_vertex&quot;</span>
-<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">outputVertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;output_vertex&quot;</span><span class="p">);</span>
-<span class="c1">// Creating another vertex with the type &quot;input&quot; and the name</span>
-<span class="s">&quot;input_vertex&quot;</span><span class="w"> </span><span class="n">VertexPtr</span><span class="w"> </span><span class="n">inputVertex</span><span class="w"> </span><span class="o">=</span>
-<span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;input_vertex&quot;</span><span class="p">);</span>
-<span class="c1">// Setting the input connection for the vertex &quot;output_vertex&quot;</span>
-<span class="n">outputVertex</span><span class="p">.</span><span class="n">addVertexToInConnections</span><span class="p">(</span><span class="n">inputVertex</span><span class="p">);</span>
-<span class="c1">// Generating the Verilog code for the vertex &quot;output_vertex&quot;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">verilogCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outputVertex</span><span class="p">.</span><span class="n">toVerilog</span><span class="p">();</span>
-<span class="c1">// Display the generated Verilog code on the screen</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Generated Verilog code:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">verilogCode</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGenGenerator. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classGraphVertexBase.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
+<a href="classGraphVertexBase-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">GraphVertexBase Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>class <a class="el" href="classGraphVertexBase.html" title="class GraphVertexBase">GraphVertexBase</a>  
+ <a href="classGraphVertexBase.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="GraphVertexBase_8hpp_source.html">GraphVertexBase.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for GraphVertexBase:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGraphVertexBase__inherit__graph.png" border="0" usemap="#aGraphVertexBase_inherit__map" alt="Inheritance graph"/></div>
+<map name="aGraphVertexBase_inherit__map" id="aGraphVertexBase_inherit__map">
+<area shape="rect" title="class GraphVertexBase" alt="" coords="286,5,457,361"/>
+<area shape="rect" href="classGraphVertexGates.html" title="GraphVertexGates Class representing a vertex in a graph with gates." alt="" coords="5,446,172,641"/>
+<area shape="rect" href="classGraphVertexInput.html" title="class GraphVertexInput Represents a vertex in a directed graph that serves as an input vertex." alt="" coords="196,475,357,611"/>
+<area shape="rect" href="classGraphVertexOutput.html" title="class GraphVertexOutput It is a vertex of the graph, specially designed for data output." alt="" coords="381,483,553,604"/>
+<area shape="rect" href="classGraphVertexSubGraph.html" title="class GraphVertexSubGraph It is a class, having a subGruph pointer inside." alt="" coords="577,409,821,677"/>
+<area shape="rect" href="classGraphVertexConstant.html" title="class GraphVertexConstant TO DO: Description" alt="" coords="183,725,370,861"/>
+</map>
+</div>
+<div class="dynheader">
+Collaboration diagram for GraphVertexBase:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGraphVertexBase__coll__graph.png" border="0" usemap="#aGraphVertexBase_coll__map" alt="Collaboration graph"/></div>
+<map name="aGraphVertexBase_coll__map" id="aGraphVertexBase_coll__map">
+<area shape="rect" title="class GraphVertexBase" alt="" coords="5,5,176,361"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a006319f36efca3d9a910e61e0271ed14"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a006319f36efca3d9a910e61e0271ed14">GraphVertexBase</a> (const <a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a> i_type, <a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> i_graph=nullptr)</td></tr>
+<tr class="memdesc:a006319f36efca3d9a910e61e0271ed14"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classGraphVertexBase.html" title="class GraphVertexBase">GraphVertexBase</a> Constructs a <a class="el" href="classGraphVertexBase.html" title="class GraphVertexBase">GraphVertexBase</a> object with the specified vertex type and optional graph.  <a href="classGraphVertexBase.html#a006319f36efca3d9a910e61e0271ed14">More...</a><br /></td></tr>
+<tr class="separator:a006319f36efca3d9a910e61e0271ed14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72ec39807323365997afe38d65ecf670"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a72ec39807323365997afe38d65ecf670">GraphVertexBase</a> (const <a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a> i_type, const std::string i_name, <a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> i_graph=nullptr)</td></tr>
+<tr class="memdesc:a72ec39807323365997afe38d65ecf670"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classGraphVertexBase.html" title="class GraphVertexBase">GraphVertexBase</a> Constructs a <a class="el" href="classGraphVertexBase.html" title="class GraphVertexBase">GraphVertexBase</a> object with the specified vertex type, name, and optional graph.  <a href="classGraphVertexBase.html#a72ec39807323365997afe38d65ecf670">More...</a><br /></td></tr>
+<tr class="separator:a72ec39807323365997afe38d65ecf670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af41dbc7dedad885bceae83bfb85d976c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#af41dbc7dedad885bceae83bfb85d976c">operator=</a> (const <a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &amp;other)=default</td></tr>
+<tr class="separator:af41dbc7dedad885bceae83bfb85d976c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ee2363dbed325ea17ef80ec6aacef30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a9ee2363dbed325ea17ef80ec6aacef30">operator=</a> (<a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &amp;&amp;other)=default</td></tr>
+<tr class="separator:a9ee2363dbed325ea17ef80ec6aacef30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3755c63c1abe080c5a6c6b7cb13b4028"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a3755c63c1abe080c5a6c6b7cb13b4028">GraphVertexBase</a> (const <a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &amp;other)=default</td></tr>
+<tr class="separator:a3755c63c1abe080c5a6c6b7cb13b4028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af51c6f7a544d5df9333eed7dd9af027b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#af51c6f7a544d5df9333eed7dd9af027b">GraphVertexBase</a> (<a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &amp;&amp;other)=default</td></tr>
+<tr class="separator:af51c6f7a544d5df9333eed7dd9af027b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97d09e7b5904ecd715a5ac057b8d737b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a97d09e7b5904ecd715a5ac057b8d737b">~GraphVertexBase</a> ()</td></tr>
+<tr class="separator:a97d09e7b5904ecd715a5ac057b8d737b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59e8313bfa37fecd37e2dd4311bff814"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a59e8313bfa37fecd37e2dd4311bff814">getType</a> () const final</td></tr>
+<tr class="memdesc:a59e8313bfa37fecd37e2dd4311bff814"><td class="mdescLeft">&#160;</td><td class="mdescRight">getType This method returns the type of the vertex as a value of the VertexTypes enum  <a href="classGraphVertexBase.html#a59e8313bfa37fecd37e2dd4311bff814">More...</a><br /></td></tr>
+<tr class="separator:a59e8313bfa37fecd37e2dd4311bff814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abba036744b90360643beae0ab1db977a"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#abba036744b90360643beae0ab1db977a">getTypeName</a> () const final</td></tr>
+<tr class="memdesc:abba036744b90360643beae0ab1db977a"><td class="mdescLeft">&#160;</td><td class="mdescRight">getTypeName This method returns the string representation of the vertex type by parsing the vertex type enum value using the settings object associated with the vertex  <a href="classGraphVertexBase.html#abba036744b90360643beae0ab1db977a">More...</a><br /></td></tr>
+<tr class="separator:abba036744b90360643beae0ab1db977a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adba8223322836a7de810416fbb9aa48a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#adba8223322836a7de810416fbb9aa48a">setName</a> (const std::string i_name)</td></tr>
+<tr class="memdesc:adba8223322836a7de810416fbb9aa48a"><td class="mdescLeft">&#160;</td><td class="mdescRight">setName This method sets the name of the vertex to the specified string.  <a href="classGraphVertexBase.html#adba8223322836a7de810416fbb9aa48a">More...</a><br /></td></tr>
+<tr class="separator:adba8223322836a7de810416fbb9aa48a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1d900fc4073ade5fc0fe0bf3346ff49"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#af1d900fc4073ade5fc0fe0bf3346ff49">getName</a> () const</td></tr>
+<tr class="memdesc:af1d900fc4073ade5fc0fe0bf3346ff49"><td class="mdescLeft">&#160;</td><td class="mdescRight">getName Returns the name of the vertex  <a href="classGraphVertexBase.html#af1d900fc4073ade5fc0fe0bf3346ff49">More...</a><br /></td></tr>
+<tr class="separator:af1d900fc4073ade5fc0fe0bf3346ff49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d4c56b9a199587edd4c3ca9ec43fac7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a3d4c56b9a199587edd4c3ca9ec43fac7">getName</a> (const std::string &amp;i_prefix) const</td></tr>
+<tr class="separator:a3d4c56b9a199587edd4c3ca9ec43fac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af114ad99f885c77a28cee77f0c86fbcf"><td class="memItemLeft" align="right" valign="top">virtual char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#af114ad99f885c77a28cee77f0c86fbcf">getValue</a> () const</td></tr>
+<tr class="memdesc:af114ad99f885c77a28cee77f0c86fbcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">getValue Returns the value of the vertex.  <a href="classGraphVertexBase.html#af114ad99f885c77a28cee77f0c86fbcf">More...</a><br /></td></tr>
+<tr class="separator:af114ad99f885c77a28cee77f0c86fbcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a330ddc78ee52b8425a773cecc70954fe"><td class="memItemLeft" align="right" valign="top">virtual char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a330ddc78ee52b8425a773cecc70954fe">updateValue</a> ()=0</td></tr>
+<tr class="memdesc:a330ddc78ee52b8425a773cecc70954fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">updateValue TO DO:  <a href="classGraphVertexBase.html#a330ddc78ee52b8425a773cecc70954fe">More...</a><br /></td></tr>
+<tr class="separator:a330ddc78ee52b8425a773cecc70954fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dbd33d715cab6cc5dbe4f80f883f82f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a4dbd33d715cab6cc5dbe4f80f883f82f">setLevel</a> (const uint32_t i_level)</td></tr>
+<tr class="memdesc:a4dbd33d715cab6cc5dbe4f80f883f82f"><td class="mdescLeft">&#160;</td><td class="mdescRight">setLevel Sets the level of the vertex  <a href="classGraphVertexBase.html#a4dbd33d715cab6cc5dbe4f80f883f82f">More...</a><br /></td></tr>
+<tr class="separator:a4dbd33d715cab6cc5dbe4f80f883f82f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8edb68870f22e26a22d3937ffa03a409"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a8edb68870f22e26a22d3937ffa03a409">getLevel</a> () const</td></tr>
+<tr class="memdesc:a8edb68870f22e26a22d3937ffa03a409"><td class="mdescLeft">&#160;</td><td class="mdescRight">getLevel Returns the level of the vertex  <a href="classGraphVertexBase.html#a8edb68870f22e26a22d3937ffa03a409">More...</a><br /></td></tr>
+<tr class="separator:a8edb68870f22e26a22d3937ffa03a409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5524af9e76e94937c16ff7c56efcf182"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a5524af9e76e94937c16ff7c56efcf182">updateLevel</a> ()</td></tr>
+<tr class="memdesc:a5524af9e76e94937c16ff7c56efcf182"><td class="mdescLeft">&#160;</td><td class="mdescRight">updateLevel This method updates the level of the vertex based on the levels of its input connections.  <a href="classGraphVertexBase.html#a5524af9e76e94937c16ff7c56efcf182">More...</a><br /></td></tr>
+<tr class="separator:a5524af9e76e94937c16ff7c56efcf182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a69b367ea429636864e63c4cc9b6abc"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a1a69b367ea429636864e63c4cc9b6abc">getGate</a> () const</td></tr>
+<tr class="memdesc:a1a69b367ea429636864e63c4cc9b6abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">getGate Returns the type of the basic logic gate represented by this vertex.  <a href="classGraphVertexBase.html#a1a69b367ea429636864e63c4cc9b6abc">More...</a><br /></td></tr>
+<tr class="separator:a1a69b367ea429636864e63c4cc9b6abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aa06dde09dc4fe2698dd25faab1c80d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="GraphVertexBase_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767">GraphPtrWeak</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a2aa06dde09dc4fe2698dd25faab1c80d">getBaseGraph</a> () const</td></tr>
+<tr class="memdesc:a2aa06dde09dc4fe2698dd25faab1c80d"><td class="mdescLeft">&#160;</td><td class="mdescRight">getBaseGraph  <a href="classGraphVertexBase.html#a2aa06dde09dc4fe2698dd25faab1c80d">More...</a><br /></td></tr>
+<tr class="separator:a2aa06dde09dc4fe2698dd25faab1c80d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae608f01310a319a3ffa9d1a261d05177"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#a4b3939252a6663d832e60390edb3210b">VertexPtrWeak</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#ae608f01310a319a3ffa9d1a261d05177">getInConnections</a> () const</td></tr>
+<tr class="memdesc:ae608f01310a319a3ffa9d1a261d05177"><td class="mdescLeft">&#160;</td><td class="mdescRight">getInConnections  <a href="classGraphVertexBase.html#ae608f01310a319a3ffa9d1a261d05177">More...</a><br /></td></tr>
+<tr class="separator:ae608f01310a319a3ffa9d1a261d05177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c984675497210531aab85e713eb16e5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a8c984675497210531aab85e713eb16e5">addVertexToInConnections</a> (<a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> i_vert)</td></tr>
+<tr class="memdesc:a8c984675497210531aab85e713eb16e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">addVertexToInConnections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections  <a href="classGraphVertexBase.html#a8c984675497210531aab85e713eb16e5">More...</a><br /></td></tr>
+<tr class="separator:a8c984675497210531aab85e713eb16e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97e6bb3b3782f86439a0069d775fbfe0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a97e6bb3b3782f86439a0069d775fbfe0">removeVertexToInConnections</a> (<a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> i_vert, bool i_full=false)</td></tr>
+<tr class="memdesc:a97e6bb3b3782f86439a0069d775fbfe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">removeVertexToInConnections Removes a vertex from the input connections of this vertex.  <a href="classGraphVertexBase.html#a97e6bb3b3782f86439a0069d775fbfe0">More...</a><br /></td></tr>
+<tr class="separator:a97e6bb3b3782f86439a0069d775fbfe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba2074e04e2457be77680e218a0d45f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#acba2074e04e2457be77680e218a0d45f">getOutConnections</a> () const</td></tr>
+<tr class="memdesc:acba2074e04e2457be77680e218a0d45f"><td class="mdescLeft">&#160;</td><td class="mdescRight">getOutConnections  <a href="classGraphVertexBase.html#acba2074e04e2457be77680e218a0d45f">More...</a><br /></td></tr>
+<tr class="separator:acba2074e04e2457be77680e218a0d45f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4b49728b705bc687c94d1b189f38fc1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#ab4b49728b705bc687c94d1b189f38fc1">addVertexToOutConnections</a> (<a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> i_vert)</td></tr>
+<tr class="memdesc:ab4b49728b705bc687c94d1b189f38fc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">addVertexToOutConnections Adds a vertex to the output connections of this vertex if it is not already present  <a href="classGraphVertexBase.html#ab4b49728b705bc687c94d1b189f38fc1">More...</a><br /></td></tr>
+<tr class="separator:ab4b49728b705bc687c94d1b189f38fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d8b7092aa986fb6d06cd37d8f9c643"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#ab1d8b7092aa986fb6d06cd37d8f9c643">removeVertexToOutConnections</a> (<a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> i_vert)</td></tr>
+<tr class="memdesc:ab1d8b7092aa986fb6d06cd37d8f9c643"><td class="mdescLeft">&#160;</td><td class="mdescRight">removeVertexToOutConnections Removes a vertex from the output connections of this vertex.  <a href="classGraphVertexBase.html#ab1d8b7092aa986fb6d06cd37d8f9c643">More...</a><br /></td></tr>
+<tr class="separator:ab1d8b7092aa986fb6d06cd37d8f9c643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07f6737b3622f2e057963849dea1c018"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a07f6737b3622f2e057963849dea1c018">calculateHash</a> (bool recalculate=false)</td></tr>
+<tr class="memdesc:a07f6737b3622f2e057963849dea1c018"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculateHash Calculates the hash value for the vertex based on its outgoing connections.  <a href="classGraphVertexBase.html#a07f6737b3622f2e057963849dea1c018">More...</a><br /></td></tr>
+<tr class="separator:a07f6737b3622f2e057963849dea1c018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4e70880a9cd7de29aa4a301ca208df6"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#ae4e70880a9cd7de29aa4a301ca208df6">getInstance</a> ()</td></tr>
+<tr class="memdesc:ae4e70880a9cd7de29aa4a301ca208df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">getInstance Generates an instance declaration for the vertex in Verilog format.  <a href="classGraphVertexBase.html#ae4e70880a9cd7de29aa4a301ca208df6">More...</a><br /></td></tr>
+<tr class="separator:ae4e70880a9cd7de29aa4a301ca208df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a246bbb9dc5234c74fe538bec28627cee"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a246bbb9dc5234c74fe538bec28627cee">toVerilog</a> ()</td></tr>
+<tr class="memdesc:a246bbb9dc5234c74fe538bec28627cee"><td class="mdescLeft">&#160;</td><td class="mdescRight">toVerilog Generates Verilog code for the vertex  <a href="classGraphVertexBase.html#a246bbb9dc5234c74fe538bec28627cee">More...</a><br /></td></tr>
+<tr class="separator:a246bbb9dc5234c74fe538bec28627cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1e4734f26f7e0d8e0153a3f48e23519"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#ad1e4734f26f7e0d8e0153a3f48e23519">isSubgraphBuffer</a> () const</td></tr>
+<tr class="separator:ad1e4734f26f7e0d8e0153a3f48e23519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a827a867771dc1307e26d0d9702516d4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="GraphVertexBase_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767">GraphPtrWeak</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a827a867771dc1307e26d0d9702516d4b">d_baseGraph</a></td></tr>
+<tr class="separator:a827a867771dc1307e26d0d9702516d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c3745128ab685cb98f437781dfbaac8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a1c3745128ab685cb98f437781dfbaac8">d_name</a></td></tr>
+<tr class="separator:a1c3745128ab685cb98f437781dfbaac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46f5aa4aa4be388075c14617b38df563"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a46f5aa4aa4be388075c14617b38df563">d_value</a></td></tr>
+<tr class="separator:a46f5aa4aa4be388075c14617b38df563"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb250a7d7e7c425dd8335773592b1067"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#adb250a7d7e7c425dd8335773592b1067">d_level</a></td></tr>
+<tr class="separator:adb250a7d7e7c425dd8335773592b1067"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a418e8e9b44810439133522e3cbfb2f9e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#a4b3939252a6663d832e60390edb3210b">VertexPtrWeak</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a418e8e9b44810439133522e3cbfb2f9e">d_inConnections</a></td></tr>
+<tr class="separator:a418e8e9b44810439133522e3cbfb2f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5af02c2cb649c4413f5fea35a955360c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a5af02c2cb649c4413f5fea35a955360c">d_outConnections</a></td></tr>
+<tr class="separator:a5af02c2cb649c4413f5fea35a955360c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05f5198fc2b7c9cb2806085bac5cf567"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classSettings.html">Settings</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a05f5198fc2b7c9cb2806085bac5cf567">d_settings</a></td></tr>
+<tr class="separator:a05f5198fc2b7c9cb2806085bac5cf567"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a6543b4eedd5220ef96f2c8815ced2a34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a6543b4eedd5220ef96f2c8815ced2a34">d_type</a></td></tr>
+<tr class="separator:a6543b4eedd5220ef96f2c8815ced2a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a495be57c86f63065b524e4e1420f5b28"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a495be57c86f63065b524e4e1420f5b28">hashed</a> = &quot;&quot;</td></tr>
+<tr class="separator:a495be57c86f63065b524e4e1420f5b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a2d1e57b08fccf0e3b0c2f98c1116534e"><td class="memItemLeft" align="right" valign="top">static std::atomic_uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphVertexBase.html#a2d1e57b08fccf0e3b0c2f98c1116534e">d_count</a> = 0</td></tr>
+<tr class="separator:a2d1e57b08fccf0e3b0c2f98c1116534e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>class <a class="el" href="classGraphVertexBase.html" title="class GraphVertexBase">GraphVertexBase</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d_baseGraph</td><td>A weak pointer to the base graph containing this vertex </td></tr>
+    <tr><td class="paramname">i_name</td><td>The name of the vertex. It is a string containing the name of a vertex </td></tr>
+    <tr><td class="paramname">d_value</td><td>The value of the vertex </td></tr>
+    <tr><td class="paramname">d_level</td><td>The vertex level is represented by the uint32_t type </td></tr>
+    <tr><td class="paramname">d_inConnections</td><td>vector of weak pointers to input connections with other vertices </td></tr>
+    <tr><td class="paramname">d_outConnections</td><td>vector of strong pointers to output connections with other vertices </td></tr>
+    <tr><td class="paramname">d_settings</td><td>A pointer to the settings object for this vertex </td></tr>
+    <tr><td class="paramname">d_type</td><td>Vertex Type - Defined by the VertexTypes enumeration </td></tr>
+    <tr><td class="paramname">d_count</td><td>Vertex counter for naming and other purposes. Represented by the uint_fast64_t type </td></tr>
+    <tr><td class="paramname">hashed</td><td>A string containing the calculated hash value for the vertex </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a006319f36efca3d9a910e61e0271ed14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a006319f36efca3d9a910e61e0271ed14">&#9670;&nbsp;</a></span>GraphVertexBase() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GraphVertexBase::GraphVertexBase </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a>&#160;</td>
+          <td class="paramname"><em>i_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>&#160;</td>
+          <td class="paramname"><em>i_graph</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classGraphVertexBase.html" title="class GraphVertexBase">GraphVertexBase</a> Constructs a <a class="el" href="classGraphVertexBase.html" title="class GraphVertexBase">GraphVertexBase</a> object with the specified vertex type and optional graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_type</td><td>The type of the vertex (from the VertexTypes enum). </td></tr>
+    <tr><td class="paramname">i_graph</td><td>Optional pointer to the graph containing the vertex </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGraphVertexBase_a006319f36efca3d9a910e61e0271ed14_cgraph.png" border="0" usemap="#aclassGraphVertexBase_a006319f36efca3d9a910e61e0271ed14_cgraph" alt=""/></div>
+<map name="aclassGraphVertexBase_a006319f36efca3d9a910e61e0271ed14_cgraph" id="aclassGraphVertexBase_a006319f36efca3d9a910e61e0271ed14_cgraph">
+<area shape="rect" title="GraphVertexBase Constructs a GraphVertexBase object with the specified vertex type and optional graph..." alt="" coords="5,5,261,32"/>
+<area shape="rect" href="classGraphVertexBase.html#abba036744b90360643beae0ab1db977a" title="getTypeName This method returns the string representation of the vertex type by parsing the vertex ty..." alt="" coords="309,5,543,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a72ec39807323365997afe38d65ecf670"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72ec39807323365997afe38d65ecf670">&#9670;&nbsp;</a></span>GraphVertexBase() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GraphVertexBase::GraphVertexBase </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a>&#160;</td>
+          <td class="paramname"><em>i_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramname"><em>i_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>&#160;</td>
+          <td class="paramname"><em>i_graph</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classGraphVertexBase.html" title="class GraphVertexBase">GraphVertexBase</a> Constructs a <a class="el" href="classGraphVertexBase.html" title="class GraphVertexBase">GraphVertexBase</a> object with the specified vertex type, name, and optional graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_type</td><td>The type of the vertex (from the VertexTypes enum) </td></tr>
+    <tr><td class="paramname">i_name</td><td>The name of the vertex. </td></tr>
+    <tr><td class="paramname">i_graph</td><td>Optional pointer to the graph containing the vertex. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGraphVertexBase_a72ec39807323365997afe38d65ecf670_cgraph.png" border="0" usemap="#aclassGraphVertexBase_a72ec39807323365997afe38d65ecf670_cgraph" alt=""/></div>
+<map name="aclassGraphVertexBase_a72ec39807323365997afe38d65ecf670_cgraph" id="aclassGraphVertexBase_a72ec39807323365997afe38d65ecf670_cgraph">
+<area shape="rect" title="GraphVertexBase Constructs a GraphVertexBase object with the specified vertex type,..." alt="" coords="5,5,261,32"/>
+<area shape="rect" href="classGraphVertexBase.html#abba036744b90360643beae0ab1db977a" title="getTypeName This method returns the string representation of the vertex type by parsing the vertex ty..." alt="" coords="309,5,543,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3755c63c1abe080c5a6c6b7cb13b4028"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3755c63c1abe080c5a6c6b7cb13b4028">&#9670;&nbsp;</a></span>GraphVertexBase() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GraphVertexBase::GraphVertexBase </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af51c6f7a544d5df9333eed7dd9af027b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af51c6f7a544d5df9333eed7dd9af027b">&#9670;&nbsp;</a></span>GraphVertexBase() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GraphVertexBase::GraphVertexBase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a97d09e7b5904ecd715a5ac057b8d737b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97d09e7b5904ecd715a5ac057b8d737b">&#9670;&nbsp;</a></span>~GraphVertexBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GraphVertexBase::~GraphVertexBase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8c984675497210531aab85e713eb16e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c984675497210531aab85e713eb16e5">&#9670;&nbsp;</a></span>addVertexToInConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t GraphVertexBase::addVertexToInConnections </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a>&#160;</td>
+          <td class="paramname"><em>i_vert</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>addVertexToInConnections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_vert</td><td>The vertex to be added to the input connections </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The count of occurrences of the given vertex in the input connections after adding it <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the GraphVertexBase class</span></div>
+<div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><span class="comment">// Creating another vertex</span></div>
+<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> anotherVertex =</div>
+<div class="line">std::make_shared&lt;GraphVertexBase&gt;(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex2&quot;</span>);</div>
+<div class="line"><span class="comment">// Add the second vertex to the input connections of the first vertex</span></div>
+<div class="line"><span class="comment">// and get the number of occurrences</span></div>
+<div class="line">uint32_t count = vertex.addVertexToInConnections(anotherVertex);</div>
+<div class="line"><span class="comment">// Output the result</span></div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;The number of occurrences of the second vertex in the input</span></div>
+<div class="line"><span class="stringliteral">connections of the first vertex: &quot;</span> &lt;&lt; count &lt;&lt; std::endl;</div>
+<div class="ttc" id="aGraphVertexBase_8hpp_html_a422e1ad1ea2471e71477f2cedbe6c23d"><div class="ttname"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a></div><div class="ttdeci">#define VertexPtr</div><div class="ttdef"><b>Definition:</b> GraphVertexBase.hpp:18</div></div>
+<div class="ttc" id="aSettings_8hpp_html_a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528"><div class="ttname"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">input</a></div><div class="ttdeci">@ input</div><div class="ttdoc">input vertex</div><div class="ttdef"><b>Definition:</b> Settings.hpp:19</div></div>
+<div class="ttc" id="aclassGraphVertexBase_html"><div class="ttname"><a href="classGraphVertexBase.html">GraphVertexBase</a></div><div class="ttdoc">class GraphVertexBase</div><div class="ttdef"><b>Definition:</b> GraphVertexBase.hpp:83</div></div>
+</div><!-- fragment --></dd></dl>
+<p>addVertexToInConnections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_vert</td><td>The vertex to be added to the input connections </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The count of occurrences of the given vertex in the input connections after adding it <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the GraphVertexBase class</span></div>
+<div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><span class="comment">// Creating another vertex</span></div>
+<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> anotherVertex =</div>
+<div class="line">std::make_shared&lt;GraphVertexBase&gt;(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex2&quot;</span>);</div>
+<div class="line"><span class="comment">// Adding a second vertex to the input connections of the first vertex</span></div>
+<div class="line">and getting the number of occurrences</div>
+<div class="line">uint32_t occurrences = vertex.addVertexToInConnections(anotherVertex);</div>
+<div class="line"><span class="comment">// Output of the result</span></div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;The number of occurrences of the second vertex in the input</span></div>
+<div class="line"><span class="stringliteral">connections of the first vertex: &quot;</span> &lt;&lt; occurrences &lt;&lt; std::endl;</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="ab4b49728b705bc687c94d1b189f38fc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4b49728b705bc687c94d1b189f38fc1">&#9670;&nbsp;</a></span>addVertexToOutConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GraphVertexBase::addVertexToOutConnections </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a>&#160;</td>
+          <td class="paramname"><em>i_vert</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>addVertexToOutConnections Adds a vertex to the output connections of this vertex if it is not already present </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_vert</td><td>The vertex to be added to the output connections </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the vertex was successfully added, false if it was already present in the output connections. <div class="fragment"><div class="line">TO DO:</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a07f6737b3622f2e057963849dea1c018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07f6737b3622f2e057963849dea1c018">&#9670;&nbsp;</a></span>calculateHash()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GraphVertexBase::calculateHash </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>recalculate</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>calculateHash Calculates the hash value for the vertex based on its outgoing connections. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">recalculate</td><td>Flag indicating whether to recalculate the hash value even if it has already been calculated. If true, the hash value will be recalculated. If false and the hash value has already been calculated, the cached hash value will be returned without recalculation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The hash value of the vertex based on its outgoing connections. <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the GraphVertexBase class</span></div>
+<div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545">VertexTypes::output</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><span class="comment">// Creating two more vertices</span></div>
+<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> vertex2 = std::make_shared&lt;GraphVertexBase&gt;(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>,</div>
+<div class="line"><span class="stringliteral">&quot;vertex2&quot;</span>); <a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> vertex3 =</div>
+<div class="line">std::make_shared&lt;GraphVertexBase&gt;(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex3&quot;</span>);</div>
+<div class="line"><span class="comment">// Adding the second and third vertices to the output connections of the</span></div>
+<div class="line">first vertex vertex.addVertexToOutConnections(vertex2);</div>
+<div class="line">vertex.addVertexToOutConnections(vertex3);</div>
+<div class="line"><span class="comment">// Calculating the hash for the first vertex</span></div>
+<div class="line">std::string hashValue = vertex.calculateHash();</div>
+<div class="line"><span class="comment">// Output of the result</span></div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Hash for the first vertex: &quot;</span> &lt;&lt; hashValue &lt;&lt; std::endl;</div>
+<div class="ttc" id="aSettings_8hpp_html_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545"><div class="ttname"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545">output</a></div><div class="ttdeci">@ output</div><div class="ttdoc">output vertex</div><div class="ttdef"><b>Definition:</b> Settings.hpp:20</div></div>
+</div><!-- fragment --> </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classGraphVertexGates.html#a910539228636bc20f5751611a87a5d47">GraphVertexGates</a>, and <a class="el" href="classGraphVertexSubGraph.html#adba79986a7c57da850b044bb1d34157e">GraphVertexSubGraph</a>.</p>
+
+</div>
+</div>
+<a id="a2aa06dde09dc4fe2698dd25faab1c80d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aa06dde09dc4fe2698dd25faab1c80d">&#9670;&nbsp;</a></span>getBaseGraph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="GraphVertexBase_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767">GraphPtrWeak</a> GraphVertexBase::getBaseGraph </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getBaseGraph </p>
+<dl class="section return"><dt>Returns</dt><dd>a weak pointer to the base graph associated with this vertex. <div class="fragment"><div class="line">TO DO:</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a1a69b367ea429636864e63c4cc9b6abc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a69b367ea429636864e63c4cc9b6abc">&#9670;&nbsp;</a></span>getGate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a> GraphVertexBase::getGate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>getGate Returns the type of the basic logic gate represented by this vertex. </p>
+<p>If the vertex does not correspond to any basic logic gate, it returns Gate Default </p><dl class="section return"><dt>Returns</dt><dd>The type of the basic logic gate represented by this vertex <div class="fragment"><div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><a class="code" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a> gateType = vertex.getGate();</div>
+<div class="ttc" id="aSettings_8hpp_html_a0963bd5066d6d6a58155d1ad79f56974"><div class="ttname"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a></div><div class="ttdeci">Gates</div><div class="ttdoc">Gates Enumeration of types of logical elements This enumeration defines the various types of logic el...</div><div class="ttdef"><b>Definition:</b> Settings.hpp:31</div></div>
+</div><!-- fragment --> </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classGraphVertexGates.html#a5232bce8a15a40c4f3d19553b79a69a9">GraphVertexGates</a>.</p>
+
+</div>
+</div>
+<a id="ae608f01310a319a3ffa9d1a261d05177"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae608f01310a319a3ffa9d1a261d05177">&#9670;&nbsp;</a></span>getInConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#a4b3939252a6663d832e60390edb3210b">VertexPtrWeak</a> &gt; GraphVertexBase::getInConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getInConnections </p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of weak pointers to the input connections of this vertex <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the GraphVertexBase class</span></div>
+<div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><span class="comment">// Get the vector of the input connections of this vertex</span></div>
+<div class="line">std::vector&lt;VertexPtrWeak&gt; inConnections = vertex.getInConnections();</div>
+<div class="line"><span class="comment">// Iterate over the input connections and do something with them</span></div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; connection : inConnections)</div>
+<div class="line">{</div>
+<div class="line"><span class="comment">// Checking if the connection is valid</span></div>
+<div class="line">  <span class="keywordflow">if</span> (!connection.expired())</div>
+<div class="line">{</div>
+<div class="line"><span class="comment">// Getting shared_ptr from weak_ptr</span></div>
+<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> inputVertex = connection.lock();</div>
+<div class="line"><span class="keywordflow">if</span> (inputVertex)</div>
+<div class="line">{</div>
+<div class="line">  <span class="comment">// Doing something with the input Vertex</span></div>
+<div class="line">}</div>
+<div class="line">}</div>
+<div class="line">}</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="ae4e70880a9cd7de29aa4a301ca208df6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4e70880a9cd7de29aa4a301ca208df6">&#9670;&nbsp;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GraphVertexBase::getInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>getInstance Generates an instance declaration for the vertex in Verilog format. </p>
+<dl class="section return"><dt>Returns</dt><dd>A string containing the instance declaration for the vertex in Verilog format. <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the GraphVertexBase class</span></div>
+<div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><span class="comment">// Generating an instance for a vertex in Verilog format</span></div>
+<div class="line">std::string instanceDeclaration = vertex.getInstance();</div>
+<div class="line"><span class="comment">// Displaying the instance on the screen</span></div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Instance declaration for vertex: &quot;</span> &lt;&lt; instanceDeclaration &lt;&lt;</div>
+<div class="line">std::endl;</div>
+</div><!-- fragment --> </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classGraphVertexSubGraph.html#aa17d5ad4d74428f86f76b2388a02c156">GraphVertexSubGraph</a>, and <a class="el" href="classGraphVertexConstant.html#afb5a7f4d443efca31a804ed2f31e648c">GraphVertexConstant</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGraphVertexBase_ae4e70880a9cd7de29aa4a301ca208df6_cgraph.png" border="0" usemap="#aclassGraphVertexBase_ae4e70880a9cd7de29aa4a301ca208df6_cgraph" alt=""/></div>
+<map name="aclassGraphVertexBase_ae4e70880a9cd7de29aa4a301ca208df6_cgraph" id="aclassGraphVertexBase_ae4e70880a9cd7de29aa4a301ca208df6_cgraph">
+<area shape="rect" title="getInstance Generates an instance declaration for the vertex in Verilog format." alt="" coords="5,13,224,39"/>
+<area shape="rect" href="namespaceVertexUtils.html#a58a8373cb1f0f5be90a30b7fc3b51abd" title="vertexTypeToComment Converts a vertex type enum value to its Verilog representation" alt="" coords="272,5,460,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8edb68870f22e26a22d3937ffa03a409"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8edb68870f22e26a22d3937ffa03a409">&#9670;&nbsp;</a></span>getLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t GraphVertexBase::getLevel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getLevel Returns the level of the vertex </p>
+<dl class="section return"><dt>Returns</dt><dd>The level of the vertex <div class="fragment"><div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line">uint32_t level = vertex.getLevel();</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Level of the vertex: &quot;</span> &lt;&lt; level &lt;&lt; std::endl;</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="af1d900fc4073ade5fc0fe0bf3346ff49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1d900fc4073ade5fc0fe0bf3346ff49">&#9670;&nbsp;</a></span>getName() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GraphVertexBase::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getName Returns the name of the vertex </p>
+<dl class="section return"><dt>Returns</dt><dd>The name of the vertex. <div class="fragment"><div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line">std::string name = vertex.getName();</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Name of the vertex: &quot;</span> &lt;&lt; name &lt;&lt; std::endl;</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a3d4c56b9a199587edd4c3ca9ec43fac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d4c56b9a199587edd4c3ca9ec43fac7">&#9670;&nbsp;</a></span>getName() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GraphVertexBase::getName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_prefix</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acba2074e04e2457be77680e218a0d45f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba2074e04e2457be77680e218a0d45f">&#9670;&nbsp;</a></span>getOutConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> &gt; GraphVertexBase::getOutConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getOutConnections </p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of shared pointers to the output connections of this vertex <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the GraphVertexBase class</span></div>
+<div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><span class="comment">// Creating another vertex</span></div>
+<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> anotherVertex =</div>
+<div class="line">std::make_shared&lt;GraphVertexBase&gt;(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545">VertexTypes::output</a>, <span class="stringliteral">&quot;vertex2&quot;</span>);</div>
+<div class="line"><span class="comment">// Adding the second vertex to the output connections of the first vertex</span></div>
+<div class="line">vertex.addVertexToOutConnections(anotherVertex);</div>
+<div class="line"><span class="comment">// get the vector of the output connections of the first vertex</span></div>
+<div class="line">std::vector&lt;VertexPtr&gt; outConnections = vertex.getOutConnections();</div>
+<div class="line"><span class="comment">// output information about the output connections</span></div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Output connections of the first vertex:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; connection : outConnections)</div>
+<div class="line">{</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; connection-&gt;getName() &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a59e8313bfa37fecd37e2dd4311bff814"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59e8313bfa37fecd37e2dd4311bff814">&#9670;&nbsp;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a> GraphVertexBase::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>getType This method returns the type of the vertex as a value of the VertexTypes enum </p>
+<dl class="section return"><dt>Returns</dt><dd>The type of the vertex (from the VertexTypes enum). <div class="fragment"><div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a> type = vertex.getType();</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Type of the vertex: &quot;</span> &lt;&lt; type &lt;&lt; std::endl;</div>
+<div class="ttc" id="aSettings_8hpp_html_a0205bad1987949fa63dc4d217e4e2e5d"><div class="ttname"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a></div><div class="ttdeci">VertexTypes</div><div class="ttdoc">VertexTypes Enumeration of vertex types.</div><div class="ttdef"><b>Definition:</b> Settings.hpp:18</div></div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="abba036744b90360643beae0ab1db977a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abba036744b90360643beae0ab1db977a">&#9670;&nbsp;</a></span>getTypeName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GraphVertexBase::getTypeName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>getTypeName This method returns the string representation of the vertex type by parsing the vertex type enum value using the settings object associated with the vertex </p>
+<dl class="section return"><dt>Returns</dt><dd>The string representation of the vertex type. <div class="fragment"><div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line">std::string typeName = vertex.getTypeName();</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;String representation of the vertex type: &quot;</span> &lt;&lt; typeName;</div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGraphVertexBase_abba036744b90360643beae0ab1db977a_icgraph.png" border="0" usemap="#aclassGraphVertexBase_abba036744b90360643beae0ab1db977a_icgraph" alt=""/></div>
+<map name="aclassGraphVertexBase_abba036744b90360643beae0ab1db977a_icgraph" id="aclassGraphVertexBase_abba036744b90360643beae0ab1db977a_icgraph">
+<area shape="rect" title="getTypeName This method returns the string representation of the vertex type by parsing the vertex ty..." alt="" coords="309,5,543,32"/>
+<area shape="rect" href="classGraphVertexBase.html#a006319f36efca3d9a910e61e0271ed14" title="GraphVertexBase Constructs a GraphVertexBase object with the specified vertex type and optional graph..." alt="" coords="5,5,261,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af114ad99f885c77a28cee77f0c86fbcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af114ad99f885c77a28cee77f0c86fbcf">&#9670;&nbsp;</a></span>getValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char GraphVertexBase::getValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>getValue Returns the value of the vertex. </p>
+<dl class="section return"><dt>Returns</dt><dd>The value of the vertex. <div class="fragment"><div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><span class="keywordtype">char</span> value = vertex.getValue();</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Value of the vertex: &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="ad1e4734f26f7e0d8e0153a3f48e23519"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1e4734f26f7e0d8e0153a3f48e23519">&#9670;&nbsp;</a></span>isSubgraphBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool GraphVertexBase::isSubgraphBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classGraphVertexGates.html#a946469866a698378c2885ccea85c1f11">GraphVertexGates</a>.</p>
+
+</div>
+</div>
+<a id="af41dbc7dedad885bceae83bfb85d976c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af41dbc7dedad885bceae83bfb85d976c">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGraphVertexBase.html">GraphVertexBase</a>&amp; GraphVertexBase::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ee2363dbed325ea17ef80ec6aacef30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ee2363dbed325ea17ef80ec6aacef30">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGraphVertexBase.html">GraphVertexBase</a>&amp; GraphVertexBase::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a97e6bb3b3782f86439a0069d775fbfe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97e6bb3b3782f86439a0069d775fbfe0">&#9670;&nbsp;</a></span>removeVertexToInConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GraphVertexBase::removeVertexToInConnections </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a>&#160;</td>
+          <td class="paramname"><em>i_vert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_full</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>removeVertexToInConnections Removes a vertex from the input connections of this vertex. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_vert</td><td>The vertex to be removed from the input connections. </td></tr>
+    <tr><td class="paramname">i_full</td><td>lag indicating whether to remove all occurrences of the vertex from the input connections. If true, all occurrences will be removed. If false, only the first occurrence will be removed. Default - false </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the vertex was successfully removed, false otherwise. <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the GraphVertexBase class</span></div>
+<div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><span class="comment">// Creating another vertex</span></div>
+<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> anotherVertex =</div>
+<div class="line">std::make_shared&lt;GraphVertexBase&gt;(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex2&quot;</span>);</div>
+<div class="line"><span class="comment">// Adding a second vertex to the input connections of the first vertex</span></div>
+<div class="line">vertex.addVertexToInConnections(anotherVertex);</div>
+<div class="line"><span class="comment">// Removing the second vertex from the input connections of the first</span></div>
+<div class="line">vertex <span class="keywordtype">bool</span> removed = vertex.removeVertexToInConnections(anotherVertex,</div>
+<div class="line"><span class="keyword">false</span>);</div>
+<div class="line"><span class="comment">// Output of the result</span></div>
+<div class="line"><span class="keywordflow">if</span> (removed)</div>
+<div class="line">{</div>
+<div class="line">   std::cout &lt;&lt; <span class="stringliteral">&quot;The second vertex has been successfully removed from the</span></div>
+<div class="line"><span class="stringliteral">   input connections of the first vertex&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line"><span class="keywordflow">else</span></div>
+<div class="line">{</div>
+<div class="line">   std::cout &lt;&lt; <span class="stringliteral">&quot;The second vertex was not found in the input connections</span></div>
+<div class="line"><span class="stringliteral">   of the first vertex&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="ab1d8b7092aa986fb6d06cd37d8f9c643"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1d8b7092aa986fb6d06cd37d8f9c643">&#9670;&nbsp;</a></span>removeVertexToOutConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GraphVertexBase::removeVertexToOutConnections </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a>&#160;</td>
+          <td class="paramname"><em>i_vert</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>removeVertexToOutConnections Removes a vertex from the output connections of this vertex. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_vert</td><td>The vertex to be removed from the output connections. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the vertex was successfully removed, false otherwise. <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the GraphVertexBase class</span></div>
+<div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line"><span class="comment">// Creating another vertex</span></div>
+<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> anotherVertex =</div>
+<div class="line">std::make_shared&lt;GraphVertexBase&gt;(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545">VertexTypes::output</a>, <span class="stringliteral">&quot;vertex2&quot;</span>);</div>
+<div class="line"><span class="comment">// Adding the second vertex to the output connections of the first vertex</span></div>
+<div class="line">vertex.addVertexToOutConnections(anotherVertex);</div>
+<div class="line"><span class="comment">// Removing the second vertex from the output connections of the first</span></div>
+<div class="line">vertex <span class="keywordtype">bool</span> removed = vertex.removeVertexToOutConnections(anotherVertex);</div>
+<div class="line"><span class="comment">// Output of the result</span></div>
+<div class="line"><span class="keywordflow">if</span> (removed)</div>
+<div class="line">{</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;Вторая вершина успешно удалена из выходных соединений</span></div>
+<div class="line"><span class="stringliteral">  первой вершины.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line"><span class="keywordflow">else</span></div>
+<div class="line">{</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;Вторая вершина не найдена в выходных соединениях первой</span></div>
+<div class="line"><span class="stringliteral">  вершины.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a4dbd33d715cab6cc5dbe4f80f883f82f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dbd33d715cab6cc5dbe4f80f883f82f">&#9670;&nbsp;</a></span>setLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GraphVertexBase::setLevel </td>
+          <td>(</td>
+          <td class="paramtype">const uint32_t&#160;</td>
+          <td class="paramname"><em>i_level</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setLevel Sets the level of the vertex </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_level</td><td>The new level for the vertex <div class="fragment"><div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line">vertex.setLevel(2);</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;New level of the vertex: &quot;</span> &lt;&lt; vertex.getLevel() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+</div><!-- fragment --> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adba8223322836a7de810416fbb9aa48a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adba8223322836a7de810416fbb9aa48a">&#9670;&nbsp;</a></span>setName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GraphVertexBase::setName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramname"><em>i_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setName This method sets the name of the vertex to the specified string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_name</td><td>The new name for the vertex. <div class="fragment"><div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> vertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;vertex1&quot;</span>);</div>
+<div class="line">vertex.setName(<span class="stringliteral">&quot;new_vertex_name&quot;</span>);</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;New name of the vertex: &quot;</span> &lt;&lt; vertex.getName() &lt;&lt; std::endl;</div>
+</div><!-- fragment --> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a246bbb9dc5234c74fe538bec28627cee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a246bbb9dc5234c74fe538bec28627cee">&#9670;&nbsp;</a></span>toVerilog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GraphVertexBase::toVerilog </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>toVerilog Generates Verilog code for the vertex </p>
+<dl class="section return"><dt>Returns</dt><dd>A string containing Verilog code for the vertex, or an empty string if the vertex type is not "output" or if the incoming connection is invalid <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the GraphVertexBase class with the type</span></div>
+<div class="line"><span class="stringliteral">&quot;output&quot;</span> and the name <span class="stringliteral">&quot;output_vertex&quot;</span></div>
+<div class="line"><a class="code" href="classGraphVertexBase.html">GraphVertexBase</a> outputVertex(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545">VertexTypes::output</a>, <span class="stringliteral">&quot;output_vertex&quot;</span>);</div>
+<div class="line"><span class="comment">// Creating another vertex with the type &quot;input&quot; and the name</span></div>
+<div class="line"><span class="stringliteral">&quot;input_vertex&quot;</span> <a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> inputVertex =</div>
+<div class="line">std::make_shared&lt;GraphVertexBase&gt;(<a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">VertexTypes::input</a>, <span class="stringliteral">&quot;input_vertex&quot;</span>);</div>
+<div class="line"><span class="comment">// Setting the input connection for the vertex &quot;output_vertex&quot;</span></div>
+<div class="line">outputVertex.addVertexToInConnections(inputVertex);</div>
+<div class="line"><span class="comment">// Generating the Verilog code for the vertex &quot;output_vertex&quot;</span></div>
+<div class="line">std::string verilogCode = outputVertex.toVerilog();</div>
+<div class="line"><span class="comment">// Display the generated Verilog code on the screen</span></div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Generated Verilog code:\n&quot;</span> &lt;&lt; verilogCode &lt;&lt; std::endl;</div>
+</div><!-- fragment --> </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classGraphVertexSubGraph.html#a3ef7ccb93efd390c6f90aba11eee2c88">GraphVertexSubGraph</a>, <a class="el" href="classGraphVertexConstant.html#a1e39779b684f06740e76dda4dd2e2004">GraphVertexConstant</a>, and <a class="el" href="classGraphVertexGates.html#a4d38ec95ed252a205cbcb08ed691941d">GraphVertexGates</a>.</p>
+
+</div>
+</div>
+<a id="a5524af9e76e94937c16ff7c56efcf182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5524af9e76e94937c16ff7c56efcf182">&#9670;&nbsp;</a></span>updateLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GraphVertexBase::updateLevel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>updateLevel This method updates the level of the vertex based on the levels of its input connections. </p>
+<p>It iterates through each input connection and sets the vertex level to the maximum level of its input connections plus one. </p><div class="fragment"><div class="line">TO DO:</div>
+</div><!-- fragment --> <dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>if any of the input connections are invalid (i.e., null pointers) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classGraphVertexOutput.html#aac5e4e2c2b661cf879acacc9d38d5b62">GraphVertexOutput</a>, <a class="el" href="classGraphVertexConstant.html#af4cb892fd50759407da39a96c045e7d1">GraphVertexConstant</a>, and <a class="el" href="classGraphVertexInput.html#a2fc1f6fbcf74f8670531d00173bc363c">GraphVertexInput</a>.</p>
+
+</div>
+</div>
+<a id="a330ddc78ee52b8425a773cecc70954fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a330ddc78ee52b8425a773cecc70954fe">&#9670;&nbsp;</a></span>updateValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual char GraphVertexBase::updateValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>updateValue TO DO: </p>
+
+<p>Implemented in <a class="el" href="classGraphVertexSubGraph.html#af18b1a71d768e2c8c01ea93a57995f7a">GraphVertexSubGraph</a>, <a class="el" href="classGraphVertexGates.html#aa23a50827498b0d74e8fd3245bc0c49f">GraphVertexGates</a>, <a class="el" href="classGraphVertexOutput.html#a68af7628ac372af632581f3a489e870e">GraphVertexOutput</a>, and <a class="el" href="classGraphVertexInput.html#af27b2c9067b9861882544ff172036be3">GraphVertexInput</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a827a867771dc1307e26d0d9702516d4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a827a867771dc1307e26d0d9702516d4b">&#9670;&nbsp;</a></span>d_baseGraph</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="GraphVertexBase_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767">GraphPtrWeak</a> GraphVertexBase::d_baseGraph</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2d1e57b08fccf0e3b0c2f98c1116534e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d1e57b08fccf0e3b0c2f98c1116534e">&#9670;&nbsp;</a></span>d_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic_uint64_t GraphVertexBase::d_count = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a418e8e9b44810439133522e3cbfb2f9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a418e8e9b44810439133522e3cbfb2f9e">&#9670;&nbsp;</a></span>d_inConnections</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="GraphVertexBase_8hpp.html#a4b3939252a6663d832e60390edb3210b">VertexPtrWeak</a>&gt; GraphVertexBase::d_inConnections</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adb250a7d7e7c425dd8335773592b1067"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb250a7d7e7c425dd8335773592b1067">&#9670;&nbsp;</a></span>d_level</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t GraphVertexBase::d_level</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1c3745128ab685cb98f437781dfbaac8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c3745128ab685cb98f437781dfbaac8">&#9670;&nbsp;</a></span>d_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GraphVertexBase::d_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5af02c2cb649c4413f5fea35a955360c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5af02c2cb649c4413f5fea35a955360c">&#9670;&nbsp;</a></span>d_outConnections</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a>&gt; GraphVertexBase::d_outConnections</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05f5198fc2b7c9cb2806085bac5cf567"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05f5198fc2b7c9cb2806085bac5cf567">&#9670;&nbsp;</a></span>d_settings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classSettings.html">Settings</a>&gt; GraphVertexBase::d_settings</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      <a class="code" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;GraphVertexBase&quot;</span>)</div>
+<div class="ttc" id="aclassSettings_html_a30ad5eb680e7894684c46fa5623870f3"><div class="ttname"><a href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a></div><div class="ttdeci">static std::shared_ptr&lt; Settings &gt; getInstance(const std::string &amp;i_value)</div><div class="ttdoc">getInstance Gets a single instance of the Settings class The method provides creation and receipt of ...</div><div class="ttdef"><b>Definition:</b> Settings.cpp:11</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6543b4eedd5220ef96f2c8815ced2a34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6543b4eedd5220ef96f2c8815ced2a34">&#9670;&nbsp;</a></span>d_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a> GraphVertexBase::d_type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46f5aa4aa4be388075c14617b38df563"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46f5aa4aa4be388075c14617b38df563">&#9670;&nbsp;</a></span>d_value</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char GraphVertexBase::d_value</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a495be57c86f63065b524e4e1420f5b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a495be57c86f63065b524e4e1420f5b28">&#9670;&nbsp;</a></span>hashed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GraphVertexBase::hashed = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classGraphVertexBase.html">GraphVertexBase</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

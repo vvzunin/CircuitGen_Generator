@@ -1,0 +1,4 @@
+<map id="SimpleGenerators::getRangomAndNumber" name="SimpleGenerators::getRangomAndNumber">
+<area shape="rect" id="node1" title="getRangomAndNumber The getRangomAndNumber method returns a random value from the list of possible inp..." alt="" coords="5,5,228,47"/>
+<area shape="rect" id="node2" href="$classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="276,5,479,47"/>
+</map>

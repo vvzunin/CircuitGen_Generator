@@ -1,168 +1,534 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>MutationParameters class | CircuitGenGenerator</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: MutationParameters Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">CircuitGenGenerator</a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li>
-              <a href="pages.html">Pages</a>
-              <ol>
-                <li><a href="about.html">About</a></li>
-              </ol>
-            </li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          MutationParameters <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="MutationParameters_8hpp.html">&lt;MutationParameters.hpp&gt;</a></div>
-        </h1>
-        <p><span></span></p>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <section id="typeless-methods">
-          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
-          <dl class="m-doc">
-            <dt id="a130fbf3e0ebb4d8bd6db2034a112b905">
-              <span class="m-doc-wrap-bumper"><a href="#a130fbf3e0ebb4d8bd6db2034a112b905" class="m-doc-self">MutationParameters</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="a50fa81cb73d42fe5c78f863e4d3c23bd">
-              <span class="m-doc-wrap-bumper">auto <a href="#a50fa81cb73d42fe5c78f863e4d3c23bd" class="m-doc-self">getMutationType</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8" class="m-doc">MutationTypes</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a53c3019a35847c1adfd5c542ce8cb775">
-              <span class="m-doc-wrap-bumper">auto <a href="#a53c3019a35847c1adfd5c542ce8cb775" class="m-doc-self">getProbabilityGen</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a917797d00f4940e36e513ba3f5594f47">
-              <span class="m-doc-wrap-bumper">auto <a href="#a917797d00f4940e36e513ba3f5594f47" class="m-doc-self">getExchangeType</a>(</span><span class="m-doc-wrap">) const -&gt; int32_t</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a0ea4221f67ba7e3726908d96b4accf43">
-              <span class="m-doc-wrap-bumper">auto <a href="#a0ea4221f67ba7e3726908d96b4accf43" class="m-doc-self">getProbabilityTruthTable</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a725d243ce3482cd9721a5937aa737d33">
-              <span class="m-doc-wrap-bumper">auto <a href="#a725d243ce3482cd9721a5937aa737d33" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="classMutationParameters.html" class="m-doc">MutationParameters</a>&amp; r) const -&gt; bool</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a4b05ee6984629a5f195fdeae6bbe3d8f">
-              <span class="m-doc-wrap-bumper">void <a href="#a4b05ee6984629a5f195fdeae6bbe3d8f" class="m-doc-self">setMutationType</a>(</span><span class="m-doc-wrap"><a href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8" class="m-doc">MutationTypes</a> i_mutationType)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="aef42fd112cd556b1898c70513bfbf618">
-              <span class="m-doc-wrap-bumper">void <a href="#aef42fd112cd556b1898c70513bfbf618" class="m-doc-self">setProbabilityGen</a>(</span><span class="m-doc-wrap">double i_probabilityGen)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a1d00e62314ecdbe09181c6ac98598d48">
-              <span class="m-doc-wrap-bumper">void <a href="#a1d00e62314ecdbe09181c6ac98598d48" class="m-doc-self">setExchangeType</a>(</span><span class="m-doc-wrap">int32_t i_exchangeType)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a84c936b8d93924e9e5bd665a5137686a">
-              <span class="m-doc-wrap-bumper">void <a href="#a84c936b8d93924e9e5bd665a5137686a" class="m-doc-self">setProbabilityTruthTable</a>(</span><span class="m-doc-wrap">double i_probabilityTruthTable)</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGenGenerator. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classMutationParameters.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classMutationParameters-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">MutationParameters Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="MutationParameters_8hpp_source.html">MutationParameters.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for MutationParameters:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMutationParameters__coll__graph.png" border="0" usemap="#aMutationParameters_coll__map" alt="Collaboration graph"/></div>
+<map name="aMutationParameters_coll__map" id="aMutationParameters_coll__map">
+<area shape="rect" title=" " alt="" coords="5,5,209,259"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a130fbf3e0ebb4d8bd6db2034a112b905"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a130fbf3e0ebb4d8bd6db2034a112b905">MutationParameters</a> ()=default</td></tr>
+<tr class="separator:a130fbf3e0ebb4d8bd6db2034a112b905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50fa81cb73d42fe5c78f863e4d3c23bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8">MutationTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a50fa81cb73d42fe5c78f863e4d3c23bd">getMutationType</a> () const</td></tr>
+<tr class="separator:a50fa81cb73d42fe5c78f863e4d3c23bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53c3019a35847c1adfd5c542ce8cb775"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a53c3019a35847c1adfd5c542ce8cb775">getProbabilityGen</a> () const</td></tr>
+<tr class="separator:a53c3019a35847c1adfd5c542ce8cb775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a917797d00f4940e36e513ba3f5594f47"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a917797d00f4940e36e513ba3f5594f47">getExchangeType</a> () const</td></tr>
+<tr class="separator:a917797d00f4940e36e513ba3f5594f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea4221f67ba7e3726908d96b4accf43"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a0ea4221f67ba7e3726908d96b4accf43">getProbabilityTruthTable</a> () const</td></tr>
+<tr class="separator:a0ea4221f67ba7e3726908d96b4accf43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725d243ce3482cd9721a5937aa737d33"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a725d243ce3482cd9721a5937aa737d33">operator==</a> (const <a class="el" href="classMutationParameters.html">MutationParameters</a> &amp;r) const</td></tr>
+<tr class="separator:a725d243ce3482cd9721a5937aa737d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b05ee6984629a5f195fdeae6bbe3d8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a4b05ee6984629a5f195fdeae6bbe3d8f">setMutationType</a> (<a class="el" href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8">MutationTypes</a> i_mutationType)</td></tr>
+<tr class="separator:a4b05ee6984629a5f195fdeae6bbe3d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef42fd112cd556b1898c70513bfbf618"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#aef42fd112cd556b1898c70513bfbf618">setProbabilityGen</a> (double i_probabilityGen)</td></tr>
+<tr class="separator:aef42fd112cd556b1898c70513bfbf618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d00e62314ecdbe09181c6ac98598d48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a1d00e62314ecdbe09181c6ac98598d48">setExchangeType</a> (int32_t i_exchangeType)</td></tr>
+<tr class="separator:a1d00e62314ecdbe09181c6ac98598d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84c936b8d93924e9e5bd665a5137686a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a84c936b8d93924e9e5bd665a5137686a">setProbabilityTruthTable</a> (double i_probabilityTruthTable)</td></tr>
+<tr class="separator:a84c936b8d93924e9e5bd665a5137686a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a36f8ba441deda13d0e03f062d6c9f6b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8">MutationTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a36f8ba441deda13d0e03f062d6c9f6b9">d_mutationType</a> = <a class="el" href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8ae27b0860dfa490c46dd387b06d21a04b">MutationTypes::Binary</a></td></tr>
+<tr class="separator:a36f8ba441deda13d0e03f062d6c9f6b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57788426267c0abafc54a9089648b5b6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a57788426267c0abafc54a9089648b5b6">d_probabilityGen</a> = 0.1</td></tr>
+<tr class="separator:a57788426267c0abafc54a9089648b5b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42aa43e26e569ecd640e8e84546d2a21"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#a42aa43e26e569ecd640e8e84546d2a21">d_exchangeType</a> = 0</td></tr>
+<tr class="separator:a42aa43e26e569ecd640e8e84546d2a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba49cca6ac358b4d56e4e88c53fed26b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMutationParameters.html#aba49cca6ac358b4d56e4e88c53fed26b">d_probabilityTruthTable</a> = 0.1</td></tr>
+<tr class="separator:aba49cca6ac358b4d56e4e88c53fed26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a130fbf3e0ebb4d8bd6db2034a112b905"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a130fbf3e0ebb4d8bd6db2034a112b905">&#9670;&nbsp;</a></span>MutationParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MutationParameters::MutationParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a917797d00f4940e36e513ba3f5594f47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a917797d00f4940e36e513ba3f5594f47">&#9670;&nbsp;</a></span>getExchangeType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t MutationParameters::getExchangeType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMutationParameters_a917797d00f4940e36e513ba3f5594f47_icgraph.png" border="0" usemap="#aclassMutationParameters_a917797d00f4940e36e513ba3f5594f47_icgraph" alt=""/></div>
+<map name="aclassMutationParameters_a917797d00f4940e36e513ba3f5594f47_icgraph" id="aclassMutationParameters_a917797d00f4940e36e513ba3f5594f47_icgraph">
+<area shape="rect" title=" " alt="" coords="363,5,517,47"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#ae5c5d2e30c5ebdcda47847c3d04071be" title=" " alt="" coords="164,5,315,47"/>
+<area shape="rect" href="Mutation_8cpp.html#a56b94446ca4cef0466970725a366f003" title=" " alt="" coords="5,13,116,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a50fa81cb73d42fe5c78f863e4d3c23bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50fa81cb73d42fe5c78f863e4d3c23bd">&#9670;&nbsp;</a></span>getMutationType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8">MutationTypes</a> MutationParameters::getMutationType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMutationParameters_a50fa81cb73d42fe5c78f863e4d3c23bd_icgraph.png" border="0" usemap="#aclassMutationParameters_a50fa81cb73d42fe5c78f863e4d3c23bd_icgraph" alt=""/></div>
+<map name="aclassMutationParameters_a50fa81cb73d42fe5c78f863e4d3c23bd_icgraph" id="aclassMutationParameters_a50fa81cb73d42fe5c78f863e4d3c23bd_icgraph">
+<area shape="rect" title=" " alt="" coords="164,5,319,47"/>
+<area shape="rect" href="Mutation_8cpp.html#a56b94446ca4cef0466970725a366f003" title=" " alt="" coords="5,13,116,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a53c3019a35847c1adfd5c542ce8cb775"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53c3019a35847c1adfd5c542ce8cb775">&#9670;&nbsp;</a></span>getProbabilityGen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double MutationParameters::getProbabilityGen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMutationParameters_a53c3019a35847c1adfd5c542ce8cb775_icgraph.png" border="0" usemap="#aclassMutationParameters_a53c3019a35847c1adfd5c542ce8cb775_icgraph" alt=""/></div>
+<map name="aclassMutationParameters_a53c3019a35847c1adfd5c542ce8cb775_icgraph" id="aclassMutationParameters_a53c3019a35847c1adfd5c542ce8cb775_icgraph">
+<area shape="rect" title=" " alt="" coords="387,136,541,177"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#ae554622fdbbce760b2ffe6c7a8da081e" title=" " alt="" coords="164,5,339,47"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#af76872073c88bbbbb274f6624f094f83" title=" " alt="" coords="178,71,325,112"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#aae53c642e6c61f30008a3e8e2f0e357e" title=" " alt="" coords="178,136,325,177"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#ae5c5d2e30c5ebdcda47847c3d04071be" title=" " alt="" coords="176,201,327,243"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#afa8359a4983c7fdf8b086c121c91f786" title=" " alt="" coords="178,267,325,308"/>
+<area shape="rect" href="Mutation_8cpp.html#a56b94446ca4cef0466970725a366f003" title=" " alt="" coords="5,143,116,170"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0ea4221f67ba7e3726908d96b4accf43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ea4221f67ba7e3726908d96b4accf43">&#9670;&nbsp;</a></span>getProbabilityTruthTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double MutationParameters::getProbabilityTruthTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMutationParameters_a0ea4221f67ba7e3726908d96b4accf43_icgraph.png" border="0" usemap="#aclassMutationParameters_a0ea4221f67ba7e3726908d96b4accf43_icgraph" alt=""/></div>
+<map name="aclassMutationParameters_a0ea4221f67ba7e3726908d96b4accf43_icgraph" id="aclassMutationParameters_a0ea4221f67ba7e3726908d96b4accf43_icgraph">
+<area shape="rect" title=" " alt="" coords="359,39,545,80"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#af76872073c88bbbbb274f6624f094f83" title=" " alt="" coords="164,5,311,47"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#aae53c642e6c61f30008a3e8e2f0e357e" title=" " alt="" coords="164,71,311,112"/>
+<area shape="rect" href="Mutation_8cpp.html#a56b94446ca4cef0466970725a366f003" title=" " alt="" coords="5,46,116,73"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a725d243ce3482cd9721a5937aa737d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a725d243ce3482cd9721a5937aa737d33">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MutationParameters::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMutationParameters.html">MutationParameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d00e62314ecdbe09181c6ac98598d48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d00e62314ecdbe09181c6ac98598d48">&#9670;&nbsp;</a></span>setExchangeType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MutationParameters::setExchangeType </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>i_exchangeType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMutationParameters_a1d00e62314ecdbe09181c6ac98598d48_icgraph.png" border="0" usemap="#aclassMutationParameters_a1d00e62314ecdbe09181c6ac98598d48_icgraph" alt=""/></div>
+<map name="aclassMutationParameters_a1d00e62314ecdbe09181c6ac98598d48_icgraph" id="aclassMutationParameters_a1d00e62314ecdbe09181c6ac98598d48_icgraph">
+<area shape="rect" title=" " alt="" coords="780,79,935,120"/>
+<area shape="rect" href="classGenerationParameters.html#a75a03a428648e04fee7f5f001d9b03e4" title=" " alt="" coords="549,79,732,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#abba5a22034bbcdd83bf85a971c9fc6e8" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a84a8be1b476410ae2dd0d23a555a7eb9" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4b05ee6984629a5f195fdeae6bbe3d8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b05ee6984629a5f195fdeae6bbe3d8f">&#9670;&nbsp;</a></span>setMutationType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MutationParameters::setMutationType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8">MutationTypes</a>&#160;</td>
+          <td class="paramname"><em>i_mutationType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMutationParameters_a4b05ee6984629a5f195fdeae6bbe3d8f_icgraph.png" border="0" usemap="#aclassMutationParameters_a4b05ee6984629a5f195fdeae6bbe3d8f_icgraph" alt=""/></div>
+<map name="aclassMutationParameters_a4b05ee6984629a5f195fdeae6bbe3d8f_icgraph" id="aclassMutationParameters_a4b05ee6984629a5f195fdeae6bbe3d8f_icgraph">
+<area shape="rect" title=" " alt="" coords="780,79,935,120"/>
+<area shape="rect" href="classGenerationParameters.html#a75a03a428648e04fee7f5f001d9b03e4" title=" " alt="" coords="549,79,732,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#abba5a22034bbcdd83bf85a971c9fc6e8" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a84a8be1b476410ae2dd0d23a555a7eb9" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aef42fd112cd556b1898c70513bfbf618"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef42fd112cd556b1898c70513bfbf618">&#9670;&nbsp;</a></span>setProbabilityGen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MutationParameters::setProbabilityGen </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>i_probabilityGen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMutationParameters_aef42fd112cd556b1898c70513bfbf618_icgraph.png" border="0" usemap="#aclassMutationParameters_aef42fd112cd556b1898c70513bfbf618_icgraph" alt=""/></div>
+<map name="aclassMutationParameters_aef42fd112cd556b1898c70513bfbf618_icgraph" id="aclassMutationParameters_aef42fd112cd556b1898c70513bfbf618_icgraph">
+<area shape="rect" title=" " alt="" coords="780,79,935,120"/>
+<area shape="rect" href="classGenerationParameters.html#a75a03a428648e04fee7f5f001d9b03e4" title=" " alt="" coords="549,79,732,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#abba5a22034bbcdd83bf85a971c9fc6e8" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a84a8be1b476410ae2dd0d23a555a7eb9" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a84c936b8d93924e9e5bd665a5137686a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84c936b8d93924e9e5bd665a5137686a">&#9670;&nbsp;</a></span>setProbabilityTruthTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MutationParameters::setProbabilityTruthTable </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>i_probabilityTruthTable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMutationParameters_a84c936b8d93924e9e5bd665a5137686a_icgraph.png" border="0" usemap="#aclassMutationParameters_a84c936b8d93924e9e5bd665a5137686a_icgraph" alt=""/></div>
+<map name="aclassMutationParameters_a84c936b8d93924e9e5bd665a5137686a_icgraph" id="aclassMutationParameters_a84c936b8d93924e9e5bd665a5137686a_icgraph">
+<area shape="rect" title=" " alt="" coords="780,79,967,120"/>
+<area shape="rect" href="classGenerationParameters.html#a75a03a428648e04fee7f5f001d9b03e4" title=" " alt="" coords="549,79,732,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#abba5a22034bbcdd83bf85a971c9fc6e8" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a84a8be1b476410ae2dd0d23a555a7eb9" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a42aa43e26e569ecd640e8e84546d2a21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42aa43e26e569ecd640e8e84546d2a21">&#9670;&nbsp;</a></span>d_exchangeType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t MutationParameters::d_exchangeType = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a36f8ba441deda13d0e03f062d6c9f6b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36f8ba441deda13d0e03f062d6c9f6b9">&#9670;&nbsp;</a></span>d_mutationType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8">MutationTypes</a> MutationParameters::d_mutationType = <a class="el" href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8ae27b0860dfa490c46dd387b06d21a04b">MutationTypes::Binary</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a57788426267c0abafc54a9089648b5b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57788426267c0abafc54a9089648b5b6">&#9670;&nbsp;</a></span>d_probabilityGen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double MutationParameters::d_probabilityGen = 0.1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba49cca6ac358b4d56e4e88c53fed26b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba49cca6ac358b4d56e4e88c53fed26b">&#9670;&nbsp;</a></span>d_probabilityTruthTable</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double MutationParameters::d_probabilityTruthTable = 0.1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classMutationParameters.html">MutationParameters</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

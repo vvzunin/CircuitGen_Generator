@@ -1,558 +1,758 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>AuxMethods namespace | CircuitGenGenerator</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: AuxMethods Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">CircuitGenGenerator</a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li>
-              <a href="pages.html">Pages</a>
-              <ol>
-                <li><a href="about.html">About</a></li>
-              </ol>
-            </li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          AuxMethods <span class="m-thin">namespace</span>
-        </h1>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#nested-classes">Classes</a></li>
-                <li><a href="#func-members">Functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-<p>namespace <a href="namespaceAuxMethods.html" class="m-doc">AuxMethods</a> It was created to organize a set of auxiliary functions and methods that can be used in various parts of a software project Functions: Random number generation, Reading files, Data sorting and processing (includes methods for sorting dictionaries by their values and for working with spaces in strings) TO DO: list the other functions</p>
-        <section id="nested-classes">
-          <h2><a href="#nested-classes">Classes</a></h2>
-          <dl class="m-doc">
-            <dt>
-              <div class="m-doc-template">template&lt;class Tuple, std::size_t N&gt;</div>
-              struct <a href="structAuxMethods_1_1TuplePrinter.html" class="m-doc">TuplePrinter</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <div class="m-doc-template">template&lt;class Tuple&gt;</div>
-              struct <a href="structAuxMethods_1_1TuplePrinter_3_01Tuple_00_011_01_4.html" class="m-doc">TuplePrinter&lt;Tuple, 1&gt;</a>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="func-members">
-          <h2><a href="#func-members">Functions</a></h2>
-          <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a5bd15903dbc7db95cb089304ca9e0277" class="m-doc">setRandSeed</a>(</span><span class="m-doc-wrap">std::uint_fast32_t seed)</span>
-            </dt>
-            <dd>setRandSeed Sets the grain to generate pseudorandom numbers</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a1ff433f6adb27f95ad4859e8ee9732c6" class="m-doc">getRandSeed</a>(</span><span class="m-doc-wrap">) -&gt; std::uint_fast32_t</span>
-            </dt>
-            <dd>getRandSeed Returns the current grain for generating pseudo-random numbers</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ad36a815c5be59f2b7d7283d1114b6207" class="m-doc">getRandInt</a>(</span><span class="m-doc-wrap">int32_t lower,
-              int32_t upper,
-              bool inclusively = false) -&gt; int32_t</span>
-            </dt>
-            <dd>getRandInt Returns a random integer in the specified range</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ad1cd19afad4489d0c7eb4938e106ec42" class="m-doc">getRandDouble</a>(</span><span class="m-doc-wrap">double lower,
-              double upper) -&gt; double</span>
-            </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a9ea2f6dad8245c55cc658bb6a95a00dc" class="m-doc">readAllFile</a>(</span><span class="m-doc-wrap">const std::string&amp; filename) -&gt; std::string</span>
-            </dt>
-            <dd>readAllFile Reads the contents of the file and returns it as a string</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a050af9429bfdb674caaa7c3d9cb4a648" class="m-doc">getRandomIntList</a>(</span><span class="m-doc-wrap">size_t i_n,
-              int32_t i_minNumber,
-              int32_t i_maxNumber,
-              bool repite = false) -&gt; std::vector&lt;int32_t&gt;</span>
-            </dt>
-            <dd>getRandomIntList Generates a list of random integers in a given range with certain restrictions on the number of elements and the presence of repetitions</dd>
-            <dt>
-              <div class="m-doc-template">template&lt;typename Key, typename Value&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#af9218449b862b94608c0f3f567bace90" class="m-doc">sortDictByValue</a>(</span><span class="m-doc-wrap">const std::map&lt;Key, Value&gt;&amp; i_dict,
-              bool up = true) -&gt; std::vector&lt;std::pair&lt;Key, Value&gt;&gt;</span>
-            </dt>
-            <dd>sortDictByValue Sorting the associative container by values and returning sorted key-value pairs as a vector. Sorting can be performed both in ascending and descending order of values</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a43e549d87cd504b8bb0fc7546239b577" class="m-doc">removeSpaces</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s) -&gt; std::string</span>
-            </dt>
-            <dd>removeSpaces Removes spaces, tabs, and newline characters from a string</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a6109c51838f3e8d1767a0459aee91aa1" class="m-doc">skipSpaces</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s,
-              size_t i_start = 0) -&gt; size_t</span>
-            </dt>
-            <dd>skipSpaces Skips whitespace characters in the string starting from the specified position. By default - 0</dd>
-            <dt>
-              <div class="m-doc-template">template&lt;typename T&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#af91905c8bf7e07464a2906f5b3a4a89a" class="m-doc">transpose</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::vector&lt;T&gt;&gt;&amp; matrix) -&gt; std::vector&lt;std::vector&lt;T&gt;&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a4436f31c3a25e213de267dc2d9cc9cb4" class="m-doc">intToStringWithZeroes</a>(</span><span class="m-doc-wrap">uint32_t i_num,
-              size_t i_totalDigits = 5) -&gt; std::string</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a59e455754cc12afc07d1cf3eba904ac7" class="m-doc">replacer</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s,
-              const std::string&amp; i_r) -&gt; std::string</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <div class="m-doc-template">template&lt;class... Args&gt;</div>
-              <span class="m-doc-wrap-bumper">auto <a href="#ae8c22181f69d49df8f7eee60103fe48c" class="m-doc">format</a>(</span><span class="m-doc-wrap">const std::string&amp; fmt,
-              Args &amp;&amp; ... args) -&gt; std::string</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a5bd15903dbc7db95cb089304ca9e0277"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5bd15903dbc7db95cb089304ca9e0277" class="m-doc-self">setRandSeed</a>(</span><span class="m-doc-wrap">std::uint_fast32_t seed)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-            </h3>
-            <p>setRandSeed Sets the grain to generate pseudorandom numbers</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">seed</td>
-                  <td><p>A grain for generating random numbers. Must be a positive integer</p><pre class="m-code"><span class="n">Setting</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">grain</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">generate</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="n">numbers</span>
-<span class="n">AuxMethods</span><span class="o">::</span><span class="n">setRandSeed</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span></pre></td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a1ff433f6adb27f95ad4859e8ee9732c6"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::uint_fast32_t AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1ff433f6adb27f95ad4859e8ee9732c6" class="m-doc-self">getRandSeed</a>(</span><span class="m-doc-wrap">)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-            </h3>
-            <p>getRandSeed Returns the current grain for generating pseudo-random numbers</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td>Grain for generating random numbers</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="ad36a815c5be59f2b7d7283d1114b6207"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">int32_t AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad36a815c5be59f2b7d7283d1114b6207" class="m-doc-self">getRandInt</a>(</span><span class="m-doc-wrap">int32_t lower,
-              int32_t upper,
-              bool inclusively = false)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-            </h3>
-            <p>getRandInt Returns a random integer in the specified range</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">lower</td>
-                  <td>The lower limit of the range</td>
-                </tr>
-                <tr>
-                  <td>upper</td>
-                  <td>The upper limit of the range</td>
-                </tr>
-                <tr>
-                  <td>inclusively</td>
-                  <td>Indicates whether the upper limit of the range is included in the possible values</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>A random integer in the specified range</p><pre class="m-code"><span class="n">Generating</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">]</span><span class="w"> </span><span class="n">inclusive</span>
-<span class="kt">uint32_t</span><span class="w"> </span><span class="n">randomNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AuxMethods</span><span class="o">::</span><span class="n">getRandInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
-<span class="c1">//randomNumber = 45;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="ad1cd19afad4489d0c7eb4938e106ec42"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">double AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad1cd19afad4489d0c7eb4938e106ec42" class="m-doc-self">getRandDouble</a>(</span><span class="m-doc-wrap">double lower,
-              double upper)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-            </h3>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">lower</td>
-                  <td>The lower limit of the range</td>
-                </tr>
-                <tr>
-                  <td>upper</td>
-                  <td>The upper limit of the range</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>A random floating point number in the specified range</p><pre class="m-code"><span class="n">Generating</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="n">floating</span><span class="w"> </span><span class="n">point</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">]</span>
-<span class="kt">double</span><span class="w"> </span><span class="n">randomNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AuxMethods</span><span class="o">::</span><span class="n">getRandDouble</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
-<span class="c1">// randomNumber = 0.35;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-<p>specified range</p>
-          </div></section>
-          <section class="m-doc-details" id="a9ea2f6dad8245c55cc658bb6a95a00dc"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9ea2f6dad8245c55cc658bb6a95a00dc" class="m-doc-self">readAllFile</a>(</span><span class="m-doc-wrap">const std::string&amp; filename)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-            </h3>
-            <p>readAllFile Reads the contents of the file and returns it as a string</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">filename</td>
-                  <td>The name of the file to read</td>
-                </tr>
-              </tbody>
-              <thead>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>The contents of the file as a string</p><pre class="m-code"><span class="c1">// Reading the contents &quot;example.txt &quot;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Auxiliary</span><span class="w"> </span><span class="n">methods</span><span class="o">::</span><span class="n">Reading</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">entire</span>
-<span class="n">file</span><span class="p">(</span><span class="s">&quot;example.txt &quot;</span><span class="p">)</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;File content:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </thead>
-              <thead>
-                <tr><th colspan="2">Exceptions</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>std::runtime_error</td>
-                  <td>if the file cannot be opened</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a050af9429bfdb674caaa7c3d9cb4a648"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::vector&lt;int32_t&gt; AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a050af9429bfdb674caaa7c3d9cb4a648" class="m-doc-self">getRandomIntList</a>(</span><span class="m-doc-wrap">size_t i_n,
-              int32_t i_minNumber,
-              int32_t i_maxNumber,
-              bool repite = false)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-            </h3>
-            <p>getRandomIntList Generates a list of random integers in a given range with certain restrictions on the number of elements and the presence of repetitions</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_n</td>
-                  <td>An integer indicating the desired size of the list</td>
-                </tr>
-                <tr>
-                  <td>i_minNumber</td>
-                  <td>The lower limit of the range for generating random numbers</td>
-                </tr>
-                <tr>
-                  <td>i_maxNumber</td>
-                  <td>The upper limit of the range for generating random numbers</td>
-                </tr>
-                <tr>
-                  <td>repite</td>
-                  <td>A flag indicating whether the repetition of numbers in the list is allowed (true - allowed, false - not allowed). Default - false</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>a vector&lt;uint32_t&gt; of random numbers according to the specified parameters</p><pre class="m-code"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w">  </span><span class="n">randomList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getRandomIntList</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Random list without repetition: &quot;</span><span class="p">;</span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">randomList</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="c1">// Conclusion: the vector contains 10 integers in the range from 1 to 100</span>
-<span class="c1">// and they are all different.</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="af9218449b862b94608c0f3f567bace90"><div>
-            <h3>
-              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-              <div class="m-doc-template">
-                template&lt;typename Key, typename Value&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">std::vector&lt;std::pair&lt;Key, Value&gt;&gt; AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af9218449b862b94608c0f3f567bace90" class="m-doc-self">sortDictByValue</a>(</span><span class="m-doc-wrap">const std::map&lt;Key, Value&gt;&amp; i_dict,
-              bool up = true)</span></span>
-            </h3>
-            <p>sortDictByValue Sorting the associative container by values and returning sorted key-value pairs as a vector. Sorting can be performed both in ascending and descending order of values</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Template parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">Key</td>
-                  <td>The key type of the associative container</td>
-                </tr>
-                <tr>
-                  <td>Value</td>
-                  <td>The value type of the associative container</td>
-                </tr>
-              </tbody>
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>i_dict</td>
-                  <td>A constant reference to an associative container that needs to be sorted by values</td>
-                </tr>
-                <tr>
-                  <td>up</td>
-                  <td>If <code>true</code>, the sorting takes place in ascending order, otherwise in descending order</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>A vector of key-value pairs containing dictionary elements sorted by values</p><pre class="m-code"><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myDict</span><span class="p">;</span>
-<span class="n">myDict</span><span class="p">[</span><span class="s">&quot;apple&quot;</span><span class="p">]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<span class="n">myDict</span><span class="p">[</span><span class="s">&quot;banana&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
-<span class="n">myDict</span><span class="p">[</span><span class="s">&quot;orange&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
-<span class="c1">// Sorting the dictionary by values in ascending order</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">sortedPairs</span><span class="w"> </span><span class="o">=</span>
-<span class="n">AuxMethods</span><span class="o">::</span><span class="n">sortDictByValue</span><span class="p">(</span><span class="n">myDict</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
-
-<span class="c1">// Output sorted key-value pairs</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Sorted dictionary by value in ascending order:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">sortedPairs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">pair</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">pair</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a43e549d87cd504b8bb0fc7546239b577"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a43e549d87cd504b8bb0fc7546239b577" class="m-doc-self">removeSpaces</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-            </h3>
-            <p>removeSpaces Removes spaces, tabs, and newline characters from a string</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_s</td>
-                  <td>The string to remove the whitespace characters from</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>A string without spaces</p><pre class="m-code"><span class="c1">// The original string with whitespace characters</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">inputString</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;  Hello</span><span class="se">\t</span><span class="s">World</span><span class="se">\n</span><span class="s">!&quot;</span><span class="p">;</span>
-<span class="c1">// Removing whitespace characters from a string</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">resultString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AuxMethods</span><span class="o">::</span><span class="n">removeSpaces</span><span class="p">(</span><span class="n">inputString</span><span class="p">);</span>
-<span class="n">Output</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">result</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Original string: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">inputString</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;String without spaces: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">resultString</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a6109c51838f3e8d1767a0459aee91aa1"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">size_t AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6109c51838f3e8d1767a0459aee91aa1" class="m-doc-self">skipSpaces</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s,
-              size_t i_start = 0)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-            </h3>
-            <p>skipSpaces Skips whitespace characters in the string starting from the specified position. By default - 0</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_s</td>
-                  <td>The line in which to skip the whitespace characters</td>
-                </tr>
-                <tr>
-                  <td>i_start</td>
-                  <td>The starting position from which to start searching for whitespace characters.</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>The index of the first character that is not whitespace, or the index outside the line,</p><pre class="m-code"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;    </span><span class="se">\t\n</span><span class="s">Hello, world!&quot;</span><span class="p">;</span>
-<span class="kt">size_t</span><span class="w"> </span><span class="n">startIndex</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="c1">// Skip the whitespace characters in the string</span>
-<span class="kt">size_t</span><span class="w"> </span><span class="n">nonSpaceIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AuxMethods</span><span class="o">::</span><span class="n">skipSpaces</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="n">startIndex</span><span class="p">);</span>
-<span class="c1">// Output the result</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nonSpaceIndex</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
-<span class="p">{</span>
-<span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The first non-whitespace character is found by the index: &quot;</span><span class="p">;</span>
-<span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">nonSpaceIndex</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="s">&quot;Symbol: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">str</span><span class="p">[</span><span class="n">nonSpaceIndex</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-<span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The string consists entirely of whitespace characters.&quot;</span><span class="p">;</span>
-<span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="af91905c8bf7e07464a2906f5b3a4a89a"><div>
-            <h3>
-              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-              <div class="m-doc-template">
-                template&lt;typename T&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">std::vector&lt;std::vector&lt;T&gt;&gt; AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af91905c8bf7e07464a2906f5b3a4a89a" class="m-doc-self">transpose</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::vector&lt;T&gt;&gt;&amp; matrix)</span></span>
-            </h3>
-            <p><span></span></p>
-          </div></section>
-          <section class="m-doc-details" id="a4436f31c3a25e213de267dc2d9cc9cb4"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4436f31c3a25e213de267dc2d9cc9cb4" class="m-doc-self">intToStringWithZeroes</a>(</span><span class="m-doc-wrap">uint32_t i_num,
-              size_t i_totalDigits = 5)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-            </h3>
-            <p><span></span></p>
-          </div></section>
-          <section class="m-doc-details" id="a59e455754cc12afc07d1cf3eba904ac7"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a59e455754cc12afc07d1cf3eba904ac7" class="m-doc-self">replacer</a>(</span><span class="m-doc-wrap">const std::string&amp; i_s,
-              const std::string&amp; i_r)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-            </h3>
-            <p><span></span></p>
-          </div></section>
-          <section class="m-doc-details" id="ae8c22181f69d49df8f7eee60103fe48c"><div>
-            <h3>
-              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="AuxiliaryMethods_8hpp.html">&lt;src/additional/AuxiliaryMethods.hpp&gt;</a></div>
-              <div class="m-doc-template">
-                template&lt;class... Args&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">std::string AuxMethods::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae8c22181f69d49df8f7eee60103fe48c" class="m-doc-self">format</a>(</span><span class="m-doc-wrap">const std::string&amp; fmt,
-              Args &amp;&amp; ... args)</span></span>
-            </h3>
-            <p><span></span></p>
-          </div></section>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGenGenerator. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('namespaceAuxMethods.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">AuxMethods Namespace Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>namespace <a class="el" href="namespaceAuxMethods.html" title="namespace AuxMethods It was created to organize a set of auxiliary functions and methods that can be ...">AuxMethods</a> It was created to organize a set of auxiliary functions and methods that can be used in various parts of a software project Functions: Random number generation, Reading files, Data sorting and processing (includes methods for sorting dictionaries by their values and for working with spaces in strings) TO DO: list the other functions  
+<a href="namespaceAuxMethods.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAuxMethods_1_1TuplePrinter.html">TuplePrinter</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAuxMethods_1_1TuplePrinter_3_01Tuple_00_011_01_4.html">TuplePrinter&lt; Tuple, 1 &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a5bd15903dbc7db95cb089304ca9e0277"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#a5bd15903dbc7db95cb089304ca9e0277">setRandSeed</a> (std::uint_fast32_t seed)</td></tr>
+<tr class="memdesc:a5bd15903dbc7db95cb089304ca9e0277"><td class="mdescLeft">&#160;</td><td class="mdescRight">setRandSeed Sets the grain to generate pseudorandom numbers  <a href="namespaceAuxMethods.html#a5bd15903dbc7db95cb089304ca9e0277">More...</a><br /></td></tr>
+<tr class="separator:a5bd15903dbc7db95cb089304ca9e0277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ff433f6adb27f95ad4859e8ee9732c6"><td class="memItemLeft" align="right" valign="top">std::uint_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#a1ff433f6adb27f95ad4859e8ee9732c6">getRandSeed</a> ()</td></tr>
+<tr class="memdesc:a1ff433f6adb27f95ad4859e8ee9732c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">getRandSeed Returns the current grain for generating pseudo-random numbers  <a href="namespaceAuxMethods.html#a1ff433f6adb27f95ad4859e8ee9732c6">More...</a><br /></td></tr>
+<tr class="separator:a1ff433f6adb27f95ad4859e8ee9732c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad36a815c5be59f2b7d7283d1114b6207"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207">getRandInt</a> (int32_t lower, int32_t upper, bool inclusively=false)</td></tr>
+<tr class="memdesc:ad36a815c5be59f2b7d7283d1114b6207"><td class="mdescLeft">&#160;</td><td class="mdescRight">getRandInt Returns a random integer in the specified range  <a href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207">More...</a><br /></td></tr>
+<tr class="separator:ad36a815c5be59f2b7d7283d1114b6207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1cd19afad4489d0c7eb4938e106ec42"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#ad1cd19afad4489d0c7eb4938e106ec42">getRandDouble</a> (double lower, double upper)</td></tr>
+<tr class="memdesc:ad1cd19afad4489d0c7eb4938e106ec42"><td class="mdescLeft">&#160;</td><td class="mdescRight">specified range  <a href="namespaceAuxMethods.html#ad1cd19afad4489d0c7eb4938e106ec42">More...</a><br /></td></tr>
+<tr class="separator:ad1cd19afad4489d0c7eb4938e106ec42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ea2f6dad8245c55cc658bb6a95a00dc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#a9ea2f6dad8245c55cc658bb6a95a00dc">readAllFile</a> (const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a9ea2f6dad8245c55cc658bb6a95a00dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">readAllFile Reads the contents of the file and returns it as a string  <a href="namespaceAuxMethods.html#a9ea2f6dad8245c55cc658bb6a95a00dc">More...</a><br /></td></tr>
+<tr class="separator:a9ea2f6dad8245c55cc658bb6a95a00dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a050af9429bfdb674caaa7c3d9cb4a648"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#a050af9429bfdb674caaa7c3d9cb4a648">getRandomIntList</a> (size_t i_n, int32_t i_minNumber, int32_t i_maxNumber, bool repite=false)</td></tr>
+<tr class="memdesc:a050af9429bfdb674caaa7c3d9cb4a648"><td class="mdescLeft">&#160;</td><td class="mdescRight">getRandomIntList Generates a list of random integers in a given range with certain restrictions on the number of elements and the presence of repetitions  <a href="namespaceAuxMethods.html#a050af9429bfdb674caaa7c3d9cb4a648">More...</a><br /></td></tr>
+<tr class="separator:a050af9429bfdb674caaa7c3d9cb4a648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9218449b862b94608c0f3f567bace90"><td class="memTemplParams" colspan="2">template&lt;typename Key , typename Value &gt; </td></tr>
+<tr class="memitem:af9218449b862b94608c0f3f567bace90"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; Key, Value &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#af9218449b862b94608c0f3f567bace90">sortDictByValue</a> (const std::map&lt; Key, Value &gt; &amp;i_dict, bool up=true)</td></tr>
+<tr class="memdesc:af9218449b862b94608c0f3f567bace90"><td class="mdescLeft">&#160;</td><td class="mdescRight">sortDictByValue Sorting the associative container by values and returning sorted key-value pairs as a vector.  <a href="namespaceAuxMethods.html#af9218449b862b94608c0f3f567bace90">More...</a><br /></td></tr>
+<tr class="separator:af9218449b862b94608c0f3f567bace90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43e549d87cd504b8bb0fc7546239b577"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#a43e549d87cd504b8bb0fc7546239b577">removeSpaces</a> (const std::string &amp;i_s)</td></tr>
+<tr class="memdesc:a43e549d87cd504b8bb0fc7546239b577"><td class="mdescLeft">&#160;</td><td class="mdescRight">removeSpaces Removes spaces, tabs, and newline characters from a string  <a href="namespaceAuxMethods.html#a43e549d87cd504b8bb0fc7546239b577">More...</a><br /></td></tr>
+<tr class="separator:a43e549d87cd504b8bb0fc7546239b577"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6109c51838f3e8d1767a0459aee91aa1"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#a6109c51838f3e8d1767a0459aee91aa1">skipSpaces</a> (const std::string &amp;i_s, size_t i_start=0)</td></tr>
+<tr class="memdesc:a6109c51838f3e8d1767a0459aee91aa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">skipSpaces Skips whitespace characters in the string starting from the specified position.  <a href="namespaceAuxMethods.html#a6109c51838f3e8d1767a0459aee91aa1">More...</a><br /></td></tr>
+<tr class="separator:a6109c51838f3e8d1767a0459aee91aa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af91905c8bf7e07464a2906f5b3a4a89a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af91905c8bf7e07464a2906f5b3a4a89a"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#af91905c8bf7e07464a2906f5b3a4a89a">transpose</a> (const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;matrix)</td></tr>
+<tr class="separator:af91905c8bf7e07464a2906f5b3a4a89a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4436f31c3a25e213de267dc2d9cc9cb4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#a4436f31c3a25e213de267dc2d9cc9cb4">intToStringWithZeroes</a> (uint32_t i_num, size_t i_totalDigits=5)</td></tr>
+<tr class="separator:a4436f31c3a25e213de267dc2d9cc9cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59e455754cc12afc07d1cf3eba904ac7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#a59e455754cc12afc07d1cf3eba904ac7">replacer</a> (const std::string &amp;i_s, const std::string &amp;i_r)</td></tr>
+<tr class="separator:a59e455754cc12afc07d1cf3eba904ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8c22181f69d49df8f7eee60103fe48c"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:ae8c22181f69d49df8f7eee60103fe48c"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceAuxMethods.html#ae8c22181f69d49df8f7eee60103fe48c">format</a> (const std::string &amp;fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ae8c22181f69d49df8f7eee60103fe48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>namespace <a class="el" href="namespaceAuxMethods.html" title="namespace AuxMethods It was created to organize a set of auxiliary functions and methods that can be ...">AuxMethods</a> It was created to organize a set of auxiliary functions and methods that can be used in various parts of a software project Functions: Random number generation, Reading files, Data sorting and processing (includes methods for sorting dictionaries by their values and for working with spaces in strings) TO DO: list the other functions </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ae8c22181f69d49df8f7eee60103fe48c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8c22181f69d49df8f7eee60103fe48c">&#9670;&nbsp;</a></span>format()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string AuxMethods::format </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad1cd19afad4489d0c7eb4938e106ec42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1cd19afad4489d0c7eb4938e106ec42">&#9670;&nbsp;</a></span>getRandDouble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double AuxMethods::getRandDouble </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>lower</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>upper</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>specified range </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lower</td><td>The lower limit of the range </td></tr>
+    <tr><td class="paramname">upper</td><td>The upper limit of the range </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A random floating point number in the specified range <div class="fragment"><div class="line">Generating a random floating point number in the range [0.0, 1.0]</div>
+<div class="line"><span class="keywordtype">double</span> randomNumber = <a class="code" href="namespaceAuxMethods.html#ad1cd19afad4489d0c7eb4938e106ec42">AuxMethods::getRandDouble</a>(0.0, 1.0);</div>
+<div class="line"><span class="comment">// randomNumber = 0.35;</span></div>
+<div class="ttc" id="anamespaceAuxMethods_html_ad1cd19afad4489d0c7eb4938e106ec42"><div class="ttname"><a href="namespaceAuxMethods.html#ad1cd19afad4489d0c7eb4938e106ec42">AuxMethods::getRandDouble</a></div><div class="ttdeci">double getRandDouble(double lower, double upper)</div><div class="ttdoc">specified range</div><div class="ttdef"><b>Definition:</b> AuxiliaryMethods.cpp:49</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceAuxMethods_ad1cd19afad4489d0c7eb4938e106ec42_icgraph.png" border="0" usemap="#anamespaceAuxMethods_ad1cd19afad4489d0c7eb4938e106ec42_icgraph" alt=""/></div>
+<map name="anamespaceAuxMethods_ad1cd19afad4489d0c7eb4938e106ec42_icgraph" id="anamespaceAuxMethods_ad1cd19afad4489d0c7eb4938e106ec42_icgraph">
+<area shape="rect" title="specified range" alt="" coords="452,5,663,32"/>
+<area shape="rect" href="classTruthTable.html#a09de48ba6c97632625188dc32ffd944b" title="generateTable Generate a truth table with specified probability." alt="" coords="216,5,404,32"/>
+<area shape="rect" href="classTruthTable.html#a83be2e572e709638fdd5bd2991dc6100" title=" " alt="" coords="5,5,168,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad36a815c5be59f2b7d7283d1114b6207"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad36a815c5be59f2b7d7283d1114b6207">&#9670;&nbsp;</a></span>getRandInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t AuxMethods::getRandInt </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>lower</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>upper</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>inclusively</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getRandInt Returns a random integer in the specified range </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lower</td><td>The lower limit of the range </td></tr>
+    <tr><td class="paramname">upper</td><td>The upper limit of the range </td></tr>
+    <tr><td class="paramname">inclusively</td><td>Indicates whether the upper limit of the range is included in the possible values </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A random integer in the specified range <div class="fragment"><div class="line">Generating a random number in the range [1, 100] inclusive</div>
+<div class="line">uint32_t randomNumber = <a class="code" href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207">AuxMethods::getRandInt</a>(1, 100, <span class="keyword">true</span>);</div>
+<div class="line"><span class="comment">//randomNumber = 45;</span></div>
+<div class="ttc" id="anamespaceAuxMethods_html_ad36a815c5be59f2b7d7283d1114b6207"><div class="ttname"><a href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207">AuxMethods::getRandInt</a></div><div class="ttdeci">int32_t getRandInt(int32_t lower, int32_t upper, bool inclusively=false)</div><div class="ttdoc">getRandInt Returns a random integer in the specified range</div><div class="ttdef"><b>Definition:</b> AuxiliaryMethods.cpp:45</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceAuxMethods_ad36a815c5be59f2b7d7283d1114b6207_icgraph.png" border="0" usemap="#anamespaceAuxMethods_ad36a815c5be59f2b7d7283d1114b6207_icgraph" alt=""/></div>
+<map name="anamespaceAuxMethods_ad36a815c5be59f2b7d7283d1114b6207_icgraph" id="anamespaceAuxMethods_ad36a815c5be59f2b7d7283d1114b6207_icgraph">
+<area shape="rect" title="getRandInt Returns a random integer in the specified range" alt="" coords="495,318,677,345"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#ae554622fdbbce760b2ffe6c7a8da081e" title=" " alt="" coords="239,5,413,47"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#a786f5907ec3edcb3db3b07f958c118ad" title=" " alt="" coords="253,71,399,112"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#ae5c5d2e30c5ebdcda47847c3d04071be" title=" " alt="" coords="251,136,401,177"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#afa8359a4983c7fdf8b086c121c91f786" title=" " alt="" coords="253,201,399,243"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html#a7924d950eb4cfb3a969a5486a5f2dc51" title=" " alt="" coords="259,267,393,294"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html#a42ea9145096083e2877a1388cbe2086e" title=" " alt="" coords="253,318,399,345"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html#a3a424e5e0a0a11e7c2b0eda046a03083" title=" " alt="" coords="261,369,391,395"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a6544678516b189bc8f507c678dd110ee" title=" " alt="" coords="206,419,446,475"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#aaa567867f022ed3e963eb2f7374f913c" title=" " alt="" coords="205,500,447,541"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#ab23b4239fad7f8a2907f1d7675fc3265" title=" " alt="" coords="213,565,439,607"/>
+<area shape="rect" href="namespaceSelectionsTruthTable.html#a9220cc304652ceb68108b55ec17742c4" title=" " alt="" coords="249,631,403,672"/>
+<area shape="rect" href="Mutation_8cpp.html#a56b94446ca4cef0466970725a366f003" title=" " alt="" coords="26,111,137,138"/>
+<area shape="rect" href="Parents_8hpp.html#aa0f6567dfb9a0622fc77f6ec2437fabe" title=" " alt="" coords="5,318,157,345"/>
+<area shape="rect" href="Recombinations_8hpp.html#aecbe35db0b1a8e02badfba0114d761e1" title=" " alt="" coords="6,507,157,534"/>
+<area shape="rect" href="Selections_8hpp.html#ab9b58854a49ca704792446a39a51ddb2" title=" " alt="" coords="25,638,137,665"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a050af9429bfdb674caaa7c3d9cb4a648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a050af9429bfdb674caaa7c3d9cb4a648">&#9670;&nbsp;</a></span>getRandomIntList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; int32_t &gt; AuxMethods::getRandomIntList </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i_n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>i_minNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>i_maxNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>repite</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getRandomIntList Generates a list of random integers in a given range with certain restrictions on the number of elements and the presence of repetitions </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_n</td><td>An integer indicating the desired size of the list </td></tr>
+    <tr><td class="paramname">i_minNumber</td><td>The lower limit of the range for generating random numbers </td></tr>
+    <tr><td class="paramname">i_maxNumber</td><td>The upper limit of the range for generating random numbers </td></tr>
+    <tr><td class="paramname">repite</td><td>A flag indicating whether the repetition of numbers in the list is allowed (true - allowed, false - not allowed). Default - false </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a vector&lt;uint32_t&gt; of random numbers according to the specified parameters <div class="fragment"><div class="line">std::vector&lt;uint32_t&gt;  randomList = <a class="code" href="namespaceAuxMethods.html#a050af9429bfdb674caaa7c3d9cb4a648">getRandomIntList</a>(10, 1, 100, <span class="keyword">false</span>);</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Random list without repetition: &quot;</span>;</div>
+<div class="line"><span class="keywordflow">for</span> (uint32_t num : randomList)</div>
+<div class="line">{</div>
+<div class="line">    std::cout &lt;&lt; num &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line">}</div>
+<div class="line"><span class="comment">// Conclusion: the vector contains 10 integers in the range from 1 to 100</span></div>
+<div class="line"><span class="comment">// and they are all different.</span></div>
+<div class="ttc" id="anamespaceAuxMethods_html_a050af9429bfdb674caaa7c3d9cb4a648"><div class="ttname"><a href="namespaceAuxMethods.html#a050af9429bfdb674caaa7c3d9cb4a648">AuxMethods::getRandomIntList</a></div><div class="ttdeci">std::vector&lt; int32_t &gt; getRandomIntList(size_t i_n, int32_t i_minNumber, int32_t i_maxNumber, bool repite=false)</div><div class="ttdoc">getRandomIntList Generates a list of random integers in a given range with certain restrictions on th...</div><div class="ttdef"><b>Definition:</b> AuxiliaryMethods.cpp:71</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceAuxMethods_a050af9429bfdb674caaa7c3d9cb4a648_icgraph.png" border="0" usemap="#anamespaceAuxMethods_a050af9429bfdb674caaa7c3d9cb4a648_icgraph" alt=""/></div>
+<map name="anamespaceAuxMethods_a050af9429bfdb674caaa7c3d9cb4a648_icgraph" id="anamespaceAuxMethods_a050af9429bfdb674caaa7c3d9cb4a648_icgraph">
+<area shape="rect" title="getRandomIntList Generates a list of random integers in a given range with certain restrictions on th..." alt="" coords="493,81,720,108"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html#a2fe782682498874b6d4e8a4f6bc4f57d" title=" " alt="" coords="252,48,399,75"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#afe03d3f827e51e707933204648165a7e" title=" " alt="" coords="205,99,445,155"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html#a5e28e819aaa037f9638fb8a99643d141" title=" " alt="" coords="19,5,144,32"/>
+<area shape="rect" href="Parents_8hpp.html#aa0f6567dfb9a0622fc77f6ec2437fabe" title=" " alt="" coords="5,56,157,83"/>
+<area shape="rect" href="Recombinations_8hpp.html#aecbe35db0b1a8e02badfba0114d761e1" title=" " alt="" coords="6,113,157,140"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1ff433f6adb27f95ad4859e8ee9732c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ff433f6adb27f95ad4859e8ee9732c6">&#9670;&nbsp;</a></span>getRandSeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::uint_fast32_t AuxMethods::getRandSeed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getRandSeed Returns the current grain for generating pseudo-random numbers </p>
+<dl class="section return"><dt>Returns</dt><dd>Grain for generating random numbers </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceAuxMethods_a1ff433f6adb27f95ad4859e8ee9732c6_icgraph.png" border="0" usemap="#anamespaceAuxMethods_a1ff433f6adb27f95ad4859e8ee9732c6_icgraph" alt=""/></div>
+<map name="anamespaceAuxMethods_a1ff433f6adb27f95ad4859e8ee9732c6_icgraph" id="anamespaceAuxMethods_a1ff433f6adb27f95ad4859e8ee9732c6_icgraph">
+<area shape="rect" title="getRandSeed Returns the current grain for generating pseudo&#45;random numbers" alt="" coords="245,78,443,105"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3aa3041280c117db599b1c21a87584c1" title="generateDataBaseFromRandomTruthTable The generate DataBase From Random Truth Table method of the Data..." alt="" coords="15,5,188,47"/>
+<area shape="rect" href="classSimpleGenerators.html#a2414b33a0e25130c1ba5629970135795" title=" " alt="" coords="5,71,197,112"/>
+<area shape="rect" href="classTruthTable.html#a64055d97eb8b502567ad21c0d97fc659" title=" " alt="" coords="20,137,183,163"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4436f31c3a25e213de267dc2d9cc9cb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4436f31c3a25e213de267dc2d9cc9cb4">&#9670;&nbsp;</a></span>intToStringWithZeroes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string AuxMethods::intToStringWithZeroes </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i_totalDigits</em> = <code>5</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceAuxMethods_a4436f31c3a25e213de267dc2d9cc9cb4_icgraph.png" border="0" usemap="#anamespaceAuxMethods_a4436f31c3a25e213de267dc2d9cc9cb4_icgraph" alt=""/></div>
+<map name="anamespaceAuxMethods_a4436f31c3a25e213de267dc2d9cc9cb4_icgraph" id="anamespaceAuxMethods_a4436f31c3a25e213de267dc2d9cc9cb4_icgraph">
+<area shape="rect" title=" " alt="" coords="227,5,437,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3aa3041280c117db599b1c21a87584c1" title="generateDataBaseFromRandomTruthTable The generate DataBase From Random Truth Table method of the Data..." alt="" coords="5,5,179,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9ea2f6dad8245c55cc658bb6a95a00dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ea2f6dad8245c55cc658bb6a95a00dc">&#9670;&nbsp;</a></span>readAllFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string AuxMethods::readAllFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>readAllFile Reads the contents of the file and returns it as a string </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>The name of the file to read </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The contents of the file as a string <div class="fragment"><div class="line"><span class="comment">// Reading the contents &quot;example.txt &quot;</span></div>
+<div class="line">std::string content = Auxiliary methods::Reading the entire</div>
+<div class="line">file(<span class="stringliteral">&quot;example.txt &quot;</span>)</div>
+<div class="line">std::cout &lt;&lt; &quot;File content:&quot; &lt;&lt; std::endl;</div>
+<div class="line">std::cout &lt;&lt; content &lt;&lt; std::endl;</div>
+</div><!-- fragment --> </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>if the file cannot be opened </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a43e549d87cd504b8bb0fc7546239b577"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43e549d87cd504b8bb0fc7546239b577">&#9670;&nbsp;</a></span>removeSpaces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string AuxMethods::removeSpaces </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>removeSpaces Removes spaces, tabs, and newline characters from a string </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_s</td><td>The string to remove the whitespace characters from </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A string without spaces <div class="fragment"><div class="line"><span class="comment">// The original string with whitespace characters</span></div>
+<div class="line">std::string inputString  = <span class="stringliteral">&quot;  Hello\tWorld\n!&quot;</span>;</div>
+<div class="line"><span class="comment">// Removing whitespace characters from a string</span></div>
+<div class="line">std::string resultString = <a class="code" href="namespaceAuxMethods.html#a43e549d87cd504b8bb0fc7546239b577">AuxMethods::removeSpaces</a>(inputString);</div>
+<div class="line">Output of the result</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Original string: &quot;</span> &lt;&lt; inputString &lt;&lt; std::endl;</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;String without spaces: &quot;</span> &lt;&lt; resultString &lt;&lt; std::endl;</div>
+<div class="ttc" id="anamespaceAuxMethods_html_a43e549d87cd504b8bb0fc7546239b577"><div class="ttname"><a href="namespaceAuxMethods.html#a43e549d87cd504b8bb0fc7546239b577">AuxMethods::removeSpaces</a></div><div class="ttdeci">std::string removeSpaces(const std::string &amp;i_s)</div><div class="ttdoc">removeSpaces Removes spaces, tabs, and newline characters from a string</div><div class="ttdef"><b>Definition:</b> AuxiliaryMethods.cpp:141</div></div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a59e455754cc12afc07d1cf3eba904ac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59e455754cc12afc07d1cf3eba904ac7">&#9670;&nbsp;</a></span>replacer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string AuxMethods::replacer </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5bd15903dbc7db95cb089304ca9e0277"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bd15903dbc7db95cb089304ca9e0277">&#9670;&nbsp;</a></span>setRandSeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AuxMethods::setRandSeed </td>
+          <td>(</td>
+          <td class="paramtype">std::uint_fast32_t&#160;</td>
+          <td class="paramname"><em>seed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setRandSeed Sets the grain to generate pseudorandom numbers </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seed</td><td>A grain for generating random numbers. Must be a positive integer <div class="fragment"><div class="line">Setting the grain to generate random numbers</div>
+<div class="line"><a class="code" href="namespaceAuxMethods.html#a5bd15903dbc7db95cb089304ca9e0277">AuxMethods::setRandSeed</a>(42);</div>
+<div class="ttc" id="anamespaceAuxMethods_html_a5bd15903dbc7db95cb089304ca9e0277"><div class="ttname"><a href="namespaceAuxMethods.html#a5bd15903dbc7db95cb089304ca9e0277">AuxMethods::setRandSeed</a></div><div class="ttdeci">void setRandSeed(std::uint_fast32_t seed)</div><div class="ttdoc">setRandSeed Sets the grain to generate pseudorandom numbers</div><div class="ttdef"><b>Definition:</b> AuxiliaryMethods.cpp:37</div></div>
+</div><!-- fragment --> </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceAuxMethods_a5bd15903dbc7db95cb089304ca9e0277_icgraph.png" border="0" usemap="#anamespaceAuxMethods_a5bd15903dbc7db95cb089304ca9e0277_icgraph" alt=""/></div>
+<map name="anamespaceAuxMethods_a5bd15903dbc7db95cb089304ca9e0277_icgraph" id="anamespaceAuxMethods_a5bd15903dbc7db95cb089304ca9e0277_icgraph">
+<area shape="rect" title="setRandSeed Sets the grain to generate pseudorandom numbers" alt="" coords="549,86,745,113"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#abba5a22034bbcdd83bf85a971c9fc6e8" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a84a8be1b476410ae2dd0d23a555a7eb9" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6109c51838f3e8d1767a0459aee91aa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6109c51838f3e8d1767a0459aee91aa1">&#9670;&nbsp;</a></span>skipSpaces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t AuxMethods::skipSpaces </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i_start</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>skipSpaces Skips whitespace characters in the string starting from the specified position. </p>
+<p>By default - 0 </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_s</td><td>The line in which to skip the whitespace characters </td></tr>
+    <tr><td class="paramname">i_start</td><td>The starting position from which to start searching for whitespace characters. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the first character that is not whitespace, or the index outside the line, <div class="fragment"><div class="line">std::string str = <span class="stringliteral">&quot;    \t\nHello, world!&quot;</span>;</div>
+<div class="line"><span class="keywordtype">size_t</span> startIndex    = 0;</div>
+<div class="line"><span class="comment">// Skip the whitespace characters in the string</span></div>
+<div class="line"><span class="keywordtype">size_t</span> nonSpaceIndex = <a class="code" href="namespaceAuxMethods.html#a6109c51838f3e8d1767a0459aee91aa1">AuxMethods::skipSpaces</a>(str, startIndex);</div>
+<div class="line"><span class="comment">// Output the result</span></div>
+<div class="line"><span class="keywordflow">if</span> (nonSpaceIndex &lt; str.size())</div>
+<div class="line">{</div>
+<div class="line"> std::cout &lt;&lt; <span class="stringliteral">&quot;The first non-whitespace character is found by the index: &quot;</span>;</div>
+<div class="line"> std::cout &lt;&lt; nonSpaceIndex &lt;&lt; std::endl;</div>
+<div class="line"> std::cout &lt;&lt;<span class="stringliteral">&quot;Symbol: &quot;</span> &lt;&lt; str[nonSpaceIndex] &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="line"><span class="keywordflow">else</span></div>
+<div class="line">{</div>
+<div class="line"> std::cout &lt;&lt; <span class="stringliteral">&quot;The string consists entirely of whitespace characters.&quot;</span>;</div>
+<div class="line"> std::endl;</div>
+<div class="line">}</div>
+<div class="ttc" id="anamespaceAuxMethods_html_a6109c51838f3e8d1767a0459aee91aa1"><div class="ttname"><a href="namespaceAuxMethods.html#a6109c51838f3e8d1767a0459aee91aa1">AuxMethods::skipSpaces</a></div><div class="ttdeci">size_t skipSpaces(const std::string &amp;i_s, size_t i_start=0)</div><div class="ttdoc">skipSpaces Skips whitespace characters in the string starting from the specified position.</div><div class="ttdef"><b>Definition:</b> AuxiliaryMethods.cpp:150</div></div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="af9218449b862b94608c0f3f567bace90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9218449b862b94608c0f3f567bace90">&#9670;&nbsp;</a></span>sortDictByValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Key , typename Value &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::pair&lt; Key, Value &gt; &gt; AuxMethods::sortDictByValue </td>
+          <td>(</td>
+          <td class="paramtype">const std::map&lt; Key, Value &gt; &amp;&#160;</td>
+          <td class="paramname"><em>i_dict</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>up</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sortDictByValue Sorting the associative container by values and returning sorted key-value pairs as a vector. </p>
+<p>Sorting can be performed both in ascending and descending order of values </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Key</td><td>The key type of the associative container </td></tr>
+    <tr><td class="paramname">Value</td><td>The value type of the associative container </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_dict</td><td>A constant reference to an associative container that needs to be sorted by values </td></tr>
+    <tr><td class="paramname">up</td><td>If <code>true</code>, the sorting takes place in ascending order, otherwise in descending order </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of key-value pairs containing dictionary elements sorted by values <div class="fragment"><div class="line">std::map&lt;std::string, int32_t&gt; myDict;</div>
+<div class="line">myDict[<span class="stringliteral">&quot;apple&quot;</span>]  = 5;</div>
+<div class="line">myDict[<span class="stringliteral">&quot;banana&quot;</span>] = 3;</div>
+<div class="line">myDict[<span class="stringliteral">&quot;orange&quot;</span>] = 7;</div>
+<div class="line"><span class="comment">// Sorting the dictionary by values in ascending order</span></div>
+<div class="line">std::vector&lt;std::pair&lt;std::string, int32_t&gt;&gt; sortedPairs =</div>
+<div class="line"><a class="code" href="namespaceAuxMethods.html#af9218449b862b94608c0f3f567bace90">AuxMethods::sortDictByValue</a>(myDict, <span class="keyword">true</span>);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Output sorted key-value pairs</span></div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Sorted dictionary by value in ascending order:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; pair : sortedPairs) {</div>
+<div class="line">std::cout &lt;&lt; pair.first &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; pair.second &lt;&lt; std::endl;</div>
+<div class="line">}</div>
+<div class="ttc" id="anamespaceAuxMethods_html_af9218449b862b94608c0f3f567bace90"><div class="ttname"><a href="namespaceAuxMethods.html#af9218449b862b94608c0f3f567bace90">AuxMethods::sortDictByValue</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; Key, Value &gt; &gt; sortDictByValue(const std::map&lt; Key, Value &gt; &amp;i_dict, bool up=true)</div><div class="ttdoc">sortDictByValue Sorting the associative container by values and returning sorted key-value pairs as a...</div><div class="ttdef"><b>Definition:</b> AuxiliaryMethods.cpp:82</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceAuxMethods_af9218449b862b94608c0f3f567bace90_icgraph.png" border="0" usemap="#anamespaceAuxMethods_af9218449b862b94608c0f3f567bace90_icgraph" alt=""/></div>
+<map name="anamespaceAuxMethods_af9218449b862b94608c0f3f567bace90_icgraph" id="anamespaceAuxMethods_af9218449b862b94608c0f3f567bace90_icgraph">
+<area shape="rect" title="sortDictByValue Sorting the associative container by values and returning sorted key&#45;value pairs as a..." alt="" coords="595,81,809,108"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html#a559b9833cd24915b42cc9211b975ebaf" title=" " alt="" coords="419,56,528,83"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html#a2fe782682498874b6d4e8a4f6bc4f57d" title=" " alt="" coords="400,107,547,133"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html#a7924d950eb4cfb3a969a5486a5f2dc51" title=" " alt="" coords="211,5,346,32"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html#a42ea9145096083e2877a1388cbe2086e" title=" " alt="" coords="205,56,352,83"/>
+<area shape="rect" href="Parents_8hpp.html#aa0f6567dfb9a0622fc77f6ec2437fabe" title=" " alt="" coords="5,56,157,83"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html#a5e28e819aaa037f9638fb8a99643d141" title=" " alt="" coords="216,157,341,184"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af91905c8bf7e07464a2906f5b3a4a89a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af91905c8bf7e07464a2906f5b3a4a89a">&#9670;&nbsp;</a></span>transpose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::vector&lt; T &gt; &gt; AuxMethods::transpose </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceAuxMethods.html">AuxMethods</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

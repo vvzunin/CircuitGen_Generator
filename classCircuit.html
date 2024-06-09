@@ -1,412 +1,1052 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>Circuit class | CircuitGenGenerator</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: Circuit Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">CircuitGenGenerator</a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li>
-              <a href="pages.html">Pages</a>
-              <ol>
-                <li><a href="about.html">About</a></li>
-              </ol>
-            </li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          Circuit <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Circuit_8hpp.html">&lt;Circuit.hpp&gt;</a></div>
-        </h1>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-<p>class <a href="classCircuit.html" class="m-doc">Circuit</a></p>
-        <section id="typeless-methods">
-          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
-          <dl class="m-doc">
-            <dt id="a88e02d7334ce8e82c5314391ea00e7d0">
-              <span class="m-doc-wrap-bumper"><a href="#a88e02d7334ce8e82c5314391ea00e7d0" class="m-doc-self">Circuit</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> const i_graph,
-              const std::vector&lt;std::string&gt;&amp; i_logExpressions = {})</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="a15e8b0a5b0050f6e0c5feb9c500444b3">
-              <span class="m-doc-wrap-bumper">void <a href="#a15e8b0a5b0050f6e0c5feb9c500444b3" class="m-doc-self">computeHash</a>(</span><span class="m-doc-wrap">)</span>
-            </dt>
-            <dd>computeHash A method for calculating the hash of a combinational scheme *&zwj;/</dd>
-            <dt id="ae9c9469260b96d79be75ef5491e1d626">
-              <span class="m-doc-wrap-bumper">void <a href="#ae9c9469260b96d79be75ef5491e1d626" class="m-doc-self">updateCircuitParameters</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph)</span>
-            </dt>
-            <dd>updateCircuitsParameters A method for updating the parameters of a combinational circuit</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a0fffbea37983706410ff674dd9eb08c9" class="m-doc">graphToVerilog</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path,
-              bool i_pathExists = false) -&gt; bool</span>
-            </dt>
-            <dd>graphToVerilog The graph To Verilog method in the <a href="classCircuit.html" class="m-doc">Circuit</a> class converts the combinational circuit into code in the Verilog hardware description language and writes it to a file.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a0d0427d7f384c2965b354ac4acb1cc34" class="m-doc">graphToGraphML</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path,
-              bool i_makeGraphMLClassic = false,
-              bool i_makeGraphMLPseudoABCD = false,
-              bool i_makeGraphMLOpenABCD = false,
-              bool i_pathExists = false) -&gt; bool</span>
-            </dt>
-            <dd>saveParameters The save Parameters method in the <a href="classCircuit.html" class="m-doc">Circuit</a> class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format.</dd>
-            <dt id="a3c42de8f6dbf2cb5f726fc480529bb0d">
-              <span class="m-doc-wrap-bumper">auto <a href="#a3c42de8f6dbf2cb5f726fc480529bb0d" class="m-doc-self">saveParameters</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph,
-              std::ofstream&amp; i_outputFile,
-              bool i_isSubGraph = false) -&gt; bool</span>
-            </dt>
-            <dd>saveAdditionalStats This save Additional Stats method is designed to save additional statistics related to the execution of the ABC command (a program for synthesizing digital circuits) in a JSON file.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#af2ec1ad53802bbf158f4003044c7e83e" class="m-doc">generate</a>(</span><span class="m-doc-wrap">bool i_makeGraphMLClassic = false,
-              bool i_makeGraphMLPseudoABCD = false,
-              bool i_makeGraphMLOpenABCD = false,
-              bool i_pathExists = false) -&gt; bool</span>
-            </dt>
-            <dd>generate This generate method is designed to generate various representations of a digital circuit (for example, Verilog, RTL, Bench) and perform optimizations using the ABC program (if necessary), as well as save digital circuit parameters and additional statistics</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a5afd009c717105e7f2c36c02e233661c" class="m-doc">setTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_tt)</span>
-            </dt>
-            <dd>setTable This method is designed to set up a truth table for a digital circuit.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a71e323bb28864ea40f60fdc1fd693add" class="m-doc">setPath</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path)</span>
-            </dt>
-            <dd>setPath This method is designed to set the path where the files associated with the digital circuit will be saved.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a6b0bf9c0af70133d2389c6a2b9c81299" class="m-doc">setCircuitName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_circName)</span>
-            </dt>
-            <dd>setCircuitName This method is used to set the name of the digital circuit.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a6d0f1678da06127a4587df5a3dae39e4" class="m-doc">getIndexOfWireName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_wireName) -&gt; std::vector&lt;std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt;&gt;</span>
-            </dt>
-            <dd>getIndexOfWireName This method is designed to get the index of the vertex in the graph by the name of the wire.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#abaecfe94d1e733757e28113a2aeec9e4" class="m-doc">setVerticeOperation</a>(</span><span class="m-doc-wrap">int32_t i_vertice,
-              const std::string&amp; i_operation)</span>
-            </dt>
-            <dd>setVerticeOperation This method sets up an operation for a given vertex in the graph.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a37ae459501ff0ca329c0e0359f9e436d" class="m-doc">fromVerilog</a>(</span><span class="m-doc-wrap">const std::string&amp; i_filepath) -&gt; <a href="classCircuit.html" class="m-doc">Circuit</a></span>
-            </dt>
-            <dd>fromVerilog</dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a0fffbea37983706410ff674dd9eb08c9"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0fffbea37983706410ff674dd9eb08c9" class="m-doc-self">graphToVerilog</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path,
-              bool i_pathExists = false)</span></span>
-            </h3>
-            <p>graphToVerilog The graph To Verilog method in the <a href="classCircuit.html" class="m-doc">Circuit</a> class converts the combinational circuit into code in the Verilog hardware description language and writes it to a file.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_path</td>
-                  <td>The path to the file where the Verilog code will be written.</td>
-                </tr>
-                <tr>
-                  <td>i_pathExists</td>
-                  <td>A flag indicating whether the path to the file already exists.</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td>true, indicating the successful completion of the operation. *&zwj;/</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a0d0427d7f384c2965b354ac4acb1cc34"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0d0427d7f384c2965b354ac4acb1cc34" class="m-doc-self">graphToGraphML</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path,
-              bool i_makeGraphMLClassic = false,
-              bool i_makeGraphMLPseudoABCD = false,
-              bool i_makeGraphMLOpenABCD = false,
-              bool i_pathExists = false)</span></span>
-            </h3>
-            <p>saveParameters The save Parameters method in the <a href="classCircuit.html" class="m-doc">Circuit</a> class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_path</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>i_makeGraphMLClassic</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>i_makeGraphMLPseudoABCD</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>i_makeGraphMLOpenABCD</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>i_pathExists</td>
-                  <td>A flag indicating whether there is already a path to save the file return The file is closed, and the method returns true if the parameters are saved successfully. *&zwj;/</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="af2ec1ad53802bbf158f4003044c7e83e"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af2ec1ad53802bbf158f4003044c7e83e" class="m-doc-self">generate</a>(</span><span class="m-doc-wrap">bool i_makeGraphMLClassic = false,
-              bool i_makeGraphMLPseudoABCD = false,
-              bool i_makeGraphMLOpenABCD = false,
-              bool i_pathExists = false)</span></span>
-            </h3>
-            <p>generate This generate method is designed to generate various representations of a digital circuit (for example, Verilog, RTL, Bench) and perform optimizations using the ABC program (if necessary), as well as save digital circuit parameters and additional statistics</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_makeGraphMLClassic</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>i_makeGraphMLPseudoABCD</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>i_makeGraphMLOpenABCD</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>i_pathExists</td>
-                  <td>A flag indicating whether there is already a path to save the file</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td>The method returns true if the generation and saving were successful *&zwj;/</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a5afd009c717105e7f2c36c02e233661c"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5afd009c717105e7f2c36c02e233661c" class="m-doc-self">setTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_tt)</span></span>
-            </h3>
-            <p>setTable This method is designed to set up a truth table for a digital circuit.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_tt</td>
-                  <td>The Truth Table, which must be installed for the digital circuit. *&zwj;/</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a71e323bb28864ea40f60fdc1fd693add"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a71e323bb28864ea40f60fdc1fd693add" class="m-doc-self">setPath</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path)</span></span>
-            </h3>
-            <p>setPath This method is designed to set the path where the files associated with the digital circuit will be saved.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_path</td>
-                  <td>A string containing the path to the directory where the digital circuit files will be saved *&zwj;/</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a6b0bf9c0af70133d2389c6a2b9c81299"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6b0bf9c0af70133d2389c6a2b9c81299" class="m-doc-self">setCircuitName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_circName)</span></span>
-            </h3>
-            <p>setCircuitName This method is used to set the name of the digital circuit.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_circName</td>
-                  <td>A string containing a new name for the digital circuit *&zwj;/</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a6d0f1678da06127a4587df5a3dae39e4"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::vector&lt;std::shared_ptr&lt;<a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>&gt;&gt; Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6d0f1678da06127a4587df5a3dae39e4" class="m-doc-self">getIndexOfWireName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_wireName)</span></span>
-            </h3>
-            <p>getIndexOfWireName This method is designed to get the index of the vertex in the graph by the name of the wire.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_wireName</td>
-                  <td>A string containing the name of the wire for which you want to get the vertex index in the graph of the circuit</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td>An integer value representing the index of a vertex in a graph of a digital circuit. If the vertex with the specified wire name is not found, the method returns -1. *&zwj;/</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="abaecfe94d1e733757e28113a2aeec9e4"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abaecfe94d1e733757e28113a2aeec9e4" class="m-doc-self">setVerticeOperation</a>(</span><span class="m-doc-wrap">int32_t i_vertice,
-              const std::string&amp; i_operation)</span></span>
-            </h3>
-            <p>setVerticeOperation This method sets up an operation for a given vertex in the graph.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_vertice</td>
-                  <td>Index of the vertex to set the operation for</td>
-                </tr>
-                <tr>
-                  <td>i_operation</td>
-                  <td>A string representing the operation to be set for the vertex *&zwj;/</td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a37ae459501ff0ca329c0e0359f9e436d"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="classCircuit.html" class="m-doc">Circuit</a> Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a37ae459501ff0ca329c0e0359f9e436d" class="m-doc-self">fromVerilog</a>(</span><span class="m-doc-wrap">const std::string&amp; i_filepath)</span></span>
-            </h3>
-            <p>fromVerilog</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_filepath</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-<aside class="m-note m-dim"><h4><a href="todo.html#_todo000002" class="m-doc">Todo</a></h4><p>: description fromVerilog</p></aside>
-          </div></section>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGenGenerator. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classCircuit.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classCircuit-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">Circuit Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>class <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a>  
+ <a href="classCircuit.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Circuit_8hpp_source.html">Circuit.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for Circuit:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit__coll__graph.png" border="0" usemap="#aCircuit_coll__map" alt="Collaboration graph"/></div>
+<map name="aCircuit_coll__map" id="aCircuit_coll__map">
+<area shape="rect" title="class Circuit" alt="" coords="122,652,330,979"/>
+<area shape="rect" href="classTruthTable.html" title="class TruthTable Represents a truth table for a combinational logic circuit This class encapsulates t..." alt="" coords="40,307,199,589"/>
+<area shape="rect" href="classRandomGeneratorWithSeed.html" title="class RandomGeneratorWithSeed The Random Generator With Seed class is a C++ class designed to generat..." alt="" coords="5,5,233,244"/>
+<area shape="rect" href="classCircuitParameters.html" title=" " alt="" coords="223,329,442,567"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a88e02d7334ce8e82c5314391ea00e7d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a88e02d7334ce8e82c5314391ea00e7d0">Circuit</a> (<a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> const i_graph, const std::vector&lt; std::string &gt; &amp;i_logExpressions={})</td></tr>
+<tr class="separator:a88e02d7334ce8e82c5314391ea00e7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15e8b0a5b0050f6e0c5feb9c500444b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a15e8b0a5b0050f6e0c5feb9c500444b3">computeHash</a> ()</td></tr>
+<tr class="memdesc:a15e8b0a5b0050f6e0c5feb9c500444b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">computeHash A method for calculating the hash of a combinational scheme *&zwj;/  <a href="classCircuit.html#a15e8b0a5b0050f6e0c5feb9c500444b3">More...</a><br /></td></tr>
+<tr class="separator:a15e8b0a5b0050f6e0c5feb9c500444b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9c9469260b96d79be75ef5491e1d626"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#ae9c9469260b96d79be75ef5491e1d626">updateCircuitParameters</a> (<a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> i_graph)</td></tr>
+<tr class="memdesc:ae9c9469260b96d79be75ef5491e1d626"><td class="mdescLeft">&#160;</td><td class="mdescRight">updateCircuitsParameters A method for updating the parameters of a combinational circuit  <a href="classCircuit.html#ae9c9469260b96d79be75ef5491e1d626">More...</a><br /></td></tr>
+<tr class="separator:ae9c9469260b96d79be75ef5491e1d626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fffbea37983706410ff674dd9eb08c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a0fffbea37983706410ff674dd9eb08c9">graphToVerilog</a> (const std::string &amp;i_path, bool i_pathExists=false)</td></tr>
+<tr class="memdesc:a0fffbea37983706410ff674dd9eb08c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">graphToVerilog The graph To Verilog method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class converts the combinational circuit into code in the Verilog hardware description language and writes it to a file.  <a href="classCircuit.html#a0fffbea37983706410ff674dd9eb08c9">More...</a><br /></td></tr>
+<tr class="separator:a0fffbea37983706410ff674dd9eb08c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d0427d7f384c2965b354ac4acb1cc34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34">graphToGraphML</a> (const std::string &amp;i_path, bool i_makeGraphMLClassic=false, bool i_makeGraphMLPseudoABCD=false, bool i_makeGraphMLOpenABCD=false, bool i_pathExists=false)</td></tr>
+<tr class="memdesc:a0d0427d7f384c2965b354ac4acb1cc34"><td class="mdescLeft">&#160;</td><td class="mdescRight">saveParameters The save Parameters method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format.  <a href="classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34">More...</a><br /></td></tr>
+<tr class="separator:a0d0427d7f384c2965b354ac4acb1cc34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c42de8f6dbf2cb5f726fc480529bb0d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d">saveParameters</a> (<a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> i_subGraph, std::ofstream &amp;i_outputFile, bool i_isSubGraph=false)</td></tr>
+<tr class="memdesc:a3c42de8f6dbf2cb5f726fc480529bb0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">saveAdditionalStats This save Additional Stats method is designed to save additional statistics related to the execution of the ABC command (a program for synthesizing digital circuits) in a JSON file.  <a href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d">More...</a><br /></td></tr>
+<tr class="separator:a3c42de8f6dbf2cb5f726fc480529bb0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2ec1ad53802bbf158f4003044c7e83e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e">generate</a> (bool i_makeGraphMLClassic=false, bool i_makeGraphMLPseudoABCD=false, bool i_makeGraphMLOpenABCD=false, bool i_pathExists=false)</td></tr>
+<tr class="memdesc:af2ec1ad53802bbf158f4003044c7e83e"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate This generate method is designed to generate various representations of a digital circuit (for example, Verilog, RTL, Bench) and perform optimizations using the ABC program (if necessary), as well as save digital circuit parameters and additional statistics  <a href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e">More...</a><br /></td></tr>
+<tr class="separator:af2ec1ad53802bbf158f4003044c7e83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5afd009c717105e7f2c36c02e233661c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a5afd009c717105e7f2c36c02e233661c">setTable</a> (const <a class="el" href="classTruthTable.html">TruthTable</a> &amp;i_tt)</td></tr>
+<tr class="memdesc:a5afd009c717105e7f2c36c02e233661c"><td class="mdescLeft">&#160;</td><td class="mdescRight">setTable This method is designed to set up a truth table for a digital circuit.  <a href="classCircuit.html#a5afd009c717105e7f2c36c02e233661c">More...</a><br /></td></tr>
+<tr class="separator:a5afd009c717105e7f2c36c02e233661c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71e323bb28864ea40f60fdc1fd693add"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a71e323bb28864ea40f60fdc1fd693add">setPath</a> (const std::string &amp;i_path)</td></tr>
+<tr class="memdesc:a71e323bb28864ea40f60fdc1fd693add"><td class="mdescLeft">&#160;</td><td class="mdescRight">setPath This method is designed to set the path where the files associated with the digital circuit will be saved.  <a href="classCircuit.html#a71e323bb28864ea40f60fdc1fd693add">More...</a><br /></td></tr>
+<tr class="separator:a71e323bb28864ea40f60fdc1fd693add"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b0bf9c0af70133d2389c6a2b9c81299"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299">setCircuitName</a> (const std::string &amp;i_circName)</td></tr>
+<tr class="memdesc:a6b0bf9c0af70133d2389c6a2b9c81299"><td class="mdescLeft">&#160;</td><td class="mdescRight">setCircuitName This method is used to set the name of the digital circuit.  <a href="classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299">More...</a><br /></td></tr>
+<tr class="separator:a6b0bf9c0af70133d2389c6a2b9c81299"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d0f1678da06127a4587df5a3dae39e4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a6d0f1678da06127a4587df5a3dae39e4">getIndexOfWireName</a> (const std::string &amp;i_wireName)</td></tr>
+<tr class="memdesc:a6d0f1678da06127a4587df5a3dae39e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">getIndexOfWireName This method is designed to get the index of the vertex in the graph by the name of the wire.  <a href="classCircuit.html#a6d0f1678da06127a4587df5a3dae39e4">More...</a><br /></td></tr>
+<tr class="separator:a6d0f1678da06127a4587df5a3dae39e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaecfe94d1e733757e28113a2aeec9e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#abaecfe94d1e733757e28113a2aeec9e4">setVerticeOperation</a> (int32_t i_vertice, const std::string &amp;i_operation)</td></tr>
+<tr class="memdesc:abaecfe94d1e733757e28113a2aeec9e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">setVerticeOperation This method sets up an operation for a given vertex in the graph.  <a href="classCircuit.html#abaecfe94d1e733757e28113a2aeec9e4">More...</a><br /></td></tr>
+<tr class="separator:abaecfe94d1e733757e28113a2aeec9e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37ae459501ff0ca329c0e0359f9e436d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCircuit.html">Circuit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a37ae459501ff0ca329c0e0359f9e436d">fromVerilog</a> (const std::string &amp;i_filepath)</td></tr>
+<tr class="memdesc:a37ae459501ff0ca329c0e0359f9e436d"><td class="mdescLeft">&#160;</td><td class="mdescRight">fromVerilog  <a href="classCircuit.html#a37ae459501ff0ca329c0e0359f9e436d">More...</a><br /></td></tr>
+<tr class="separator:a37ae459501ff0ca329c0e0359f9e436d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a36b3c7e5b6bb762b227620677aa05a4b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a36b3c7e5b6bb762b227620677aa05a4b">checkExistingHash</a> ()</td></tr>
+<tr class="memdesc:a36b3c7e5b6bb762b227620677aa05a4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">checkExistingHash  <a href="classCircuit.html#a36b3c7e5b6bb762b227620677aa05a4b">More...</a><br /></td></tr>
+<tr class="separator:a36b3c7e5b6bb762b227620677aa05a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac340800d917fd745ec19ce5ddef32468"><td class="memItemLeft" align="right" valign="top"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#ac340800d917fd745ec19ce5ddef32468">d_graph</a></td></tr>
+<tr class="separator:ac340800d917fd745ec19ce5ddef32468"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a46b7ad58c43e820bbe46e9a4aece58"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a3a46b7ad58c43e820bbe46e9a4aece58">d_logExpressions</a></td></tr>
+<tr class="separator:a3a46b7ad58c43e820bbe46e9a4aece58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35309993631f48e78a703c62a9dee312"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTruthTable.html">TruthTable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a35309993631f48e78a703c62a9dee312">d_tTable</a></td></tr>
+<tr class="separator:a35309993631f48e78a703c62a9dee312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8224db52877ef17a42c215a69f039565"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a8224db52877ef17a42c215a69f039565">d_path</a></td></tr>
+<tr class="separator:a8224db52877ef17a42c215a69f039565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea762822371bd9474e73c4365436cd87"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#aea762822371bd9474e73c4365436cd87">d_circuitName</a></td></tr>
+<tr class="separator:aea762822371bd9474e73c4365436cd87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa2a505e49cef1af3c52a461159b9327"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCircuitParameters.html">CircuitParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#afa2a505e49cef1af3c52a461159b9327">d_circuitParameters</a></td></tr>
+<tr class="separator:afa2a505e49cef1af3c52a461159b9327"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb9e88f260f291cd40be7990d470d445"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classSettings.html">Settings</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#abb9e88f260f291cd40be7990d470d445">d_settings</a> = <a class="el" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(&quot;Circuit&quot;)</td></tr>
+<tr class="separator:abb9e88f260f291cd40be7990d470d445"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>class <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OrientedGraph</td><td>pointer to a Oriented graph = nullptr </td></tr>
+    <tr><td class="paramname">d_logExpressions</td><td>A string vector containing logical expressions associated with a given <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> </td></tr>
+    <tr><td class="paramname">d_tTable</td><td>an object of the Truth Table class representing the truth table for the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a>. </td></tr>
+    <tr><td class="paramname">d_path</td><td>A string containing the path to the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> files </td></tr>
+    <tr><td class="paramname">d_circuitName</td><td>A string containing the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> name. </td></tr>
+    <tr><td class="paramname">d_circuitParameters</td><td>An object of the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> Parameters class containing circuit parameters such as the number of inputs, number of outputs, maximum level, etc. </td></tr>
+    <tr><td class="paramname">d_settings</td><td>a smart pointer to an object of the <a class="el" href="classSettings.html">Settings</a> class that represents the settings for this schema. It is usually used to adjust the parameters of the vertices of the graph *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a88e02d7334ce8e82c5314391ea00e7d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88e02d7334ce8e82c5314391ea00e7d0">&#9670;&nbsp;</a></span>Circuit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Circuit::Circuit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> const&#160;</td>
+          <td class="paramname"><em>i_graph</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>i_logExpressions</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a36b3c7e5b6bb762b227620677aa05a4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36b3c7e5b6bb762b227620677aa05a4b">&#9670;&nbsp;</a></span>checkExistingHash()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Circuit::checkExistingHash </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>checkExistingHash </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>: This method has some questions, maybe need rewriting </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_a36b3c7e5b6bb762b227620677aa05a4b_cgraph.png" border="0" usemap="#aclassCircuit_a36b3c7e5b6bb762b227620677aa05a4b_cgraph" alt=""/></div>
+<map name="aclassCircuit_a36b3c7e5b6bb762b227620677aa05a4b_cgraph" id="aclassCircuit_a36b3c7e5b6bb762b227620677aa05a4b_cgraph">
+<area shape="rect" title="checkExistingHash" alt="" coords="5,5,200,32"/>
+<area shape="rect" href="namespaceFilesTools.html#a592ca8e24c83ff3f1cfc892fa9f8a67d" title="getParentDirOf This method returns the parent directory for the specified path" alt="" coords="248,5,437,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a15e8b0a5b0050f6e0c5feb9c500444b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15e8b0a5b0050f6e0c5feb9c500444b3">&#9670;&nbsp;</a></span>computeHash()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Circuit::computeHash </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>computeHash A method for calculating the hash of a combinational scheme *&zwj;/ </p>
+
+</div>
+</div>
+<a id="a37ae459501ff0ca329c0e0359f9e436d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37ae459501ff0ca329c0e0359f9e436d">&#9670;&nbsp;</a></span>fromVerilog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCircuit.html">Circuit</a> Circuit::fromVerilog </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_filepath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fromVerilog </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>: description fromVerilog </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_filepath</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af2ec1ad53802bbf158f4003044c7e83e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2ec1ad53802bbf158f4003044c7e83e">&#9670;&nbsp;</a></span>generate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Circuit::generate </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_makeGraphMLClassic</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_makeGraphMLPseudoABCD</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_makeGraphMLOpenABCD</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_pathExists</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>generate This generate method is designed to generate various representations of a digital circuit (for example, Verilog, RTL, Bench) and perform optimizations using the ABC program (if necessary), as well as save digital circuit parameters and additional statistics </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_makeFirrtl</td><td>A flag indicating whether to create a FIRRTL representation for a digital circuit </td></tr>
+    <tr><td class="paramname">i_makeBench</td><td>A flag indicating whether to create a Bench view for a digital circuit. </td></tr>
+    <tr><td class="paramname">i_getAbcStats</td><td>A flag indicating whether to receive statistics from the ABC program after performing optimizations. </td></tr>
+    <tr><td class="paramname">libraryName</td><td>The name of the library used for optimization using the ABC program </td></tr>
+    <tr><td class="paramname">i_generateAig</td><td>A flag indicating whether to generate an AIG (And-Inverter Graph) after performing optimizations. </td></tr>
+    <tr><td class="paramname">i_pathExists</td><td>A flag indicating whether there is already a path to save the file </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The method returns true if the generation and saving were successful *&zwj;/ </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph.png" border="0" usemap="#aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph" alt=""/></div>
+<map name="aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph" id="aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph">
+<area shape="rect" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="5,81,136,108"/>
+<area shape="rect" href="classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="184,5,365,32"/>
+<area shape="rect" href="classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="191,56,359,83"/>
+<area shape="rect" href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="186,107,363,133"/>
+<area shape="rect" href="classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="413,132,647,159"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_af2ec1ad53802bbf158f4003044c7e83e_icgraph.png" border="0" usemap="#aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_icgraph" alt=""/></div>
+<map name="aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_icgraph" id="aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_icgraph">
+<area shape="rect" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="239,1002,484,1029"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6d0f1678da06127a4587df5a3dae39e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d0f1678da06127a4587df5a3dae39e4">&#9670;&nbsp;</a></span>getIndexOfWireName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classGraphVertexBase.html">GraphVertexBase</a> &gt; &gt; Circuit::getIndexOfWireName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_wireName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getIndexOfWireName This method is designed to get the index of the vertex in the graph by the name of the wire. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_wireName</td><td>A string containing the name of the wire for which you want to get the vertex index in the graph of the circuit</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An integer value representing the index of a vertex in a graph of a digital circuit. If the vertex with the specified wire name is not found, the method returns -1. *&zwj;/ </dd></dl>
+
+</div>
+</div>
+<a id="a0d0427d7f384c2965b354ac4acb1cc34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d0427d7f384c2965b354ac4acb1cc34">&#9670;&nbsp;</a></span>graphToGraphML()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Circuit::graphToGraphML </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_makeGraphMLClassic</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_makeGraphMLPseudoABCD</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_makeGraphMLOpenABCD</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_pathExists</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>saveParameters The save Parameters method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_getAbcStats</td><td>A flag indicating whether statistics from the ABC program should also be saved </td></tr>
+    <tr><td class="paramname">i_generateAig</td><td>A flag indicating whether to generate an AIG (And-Inverter Graph). </td></tr>
+    <tr><td class="paramname">i_pathExists</td><td>A flag indicating whether there is already a path to save the file return The file is closed, and the method returns true if the parameters are saved successfully. *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_a0d0427d7f384c2965b354ac4acb1cc34_icgraph.png" border="0" usemap="#aclassCircuit_a0d0427d7f384c2965b354ac4acb1cc34_icgraph" alt=""/></div>
+<map name="aclassCircuit_a0d0427d7f384c2965b354ac4acb1cc34_icgraph" id="aclassCircuit_a0d0427d7f384c2965b354ac4acb1cc34_icgraph">
+<area shape="rect" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="737,519,919,546"/>
+<area shape="rect" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="239,1002,484,1029"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0fffbea37983706410ff674dd9eb08c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fffbea37983706410ff674dd9eb08c9">&#9670;&nbsp;</a></span>graphToVerilog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Circuit::graphToVerilog </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_pathExists</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>graphToVerilog The graph To Verilog method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class converts the combinational circuit into code in the Verilog hardware description language and writes it to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_path</td><td>The path to the file where the Verilog code will be written. </td></tr>
+    <tr><td class="paramname">i_pathExists</td><td>A flag indicating whether the path to the file already exists. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, indicating the successful completion of the operation. *&zwj;/ </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_a0fffbea37983706410ff674dd9eb08c9_icgraph.png" border="0" usemap="#aclassCircuit_a0fffbea37983706410ff674dd9eb08c9_icgraph" alt=""/></div>
+<map name="aclassCircuit_a0fffbea37983706410ff674dd9eb08c9_icgraph" id="aclassCircuit_a0fffbea37983706410ff674dd9eb08c9_icgraph">
+<area shape="rect" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="737,519,905,546"/>
+<area shape="rect" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="239,1002,484,1029"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3c42de8f6dbf2cb5f726fc480529bb0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c42de8f6dbf2cb5f726fc480529bb0d">&#9670;&nbsp;</a></span>saveParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Circuit::saveParameters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>&#160;</td>
+          <td class="paramname"><em>i_subGraph</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::ofstream &amp;&#160;</td>
+          <td class="paramname"><em>i_outputFile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_isSubGraph</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>saveAdditionalStats This save Additional Stats method is designed to save additional statistics related to the execution of the ABC command (a program for synthesizing digital circuits) in a JSON file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_res</td><td>The result of the ABC command, containing the output of the command and information about the correctness of execution*** </td></tr>
+    <tr><td class="paramname">i_optimizationName</td><td>The name of the optimization or type of statistics to be saved </td></tr>
+    <tr><td class="paramname">i_lastData</td><td>A flag indicating whether the current statistics are the latest in the JSON file *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_cgraph.png" border="0" usemap="#aclassCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_cgraph" alt=""/></div>
+<map name="aclassCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_cgraph" id="aclassCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_cgraph">
+<area shape="rect" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="5,5,183,32"/>
+<area shape="rect" href="classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="231,5,464,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_icgraph.png" border="0" usemap="#aclassCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_icgraph" alt=""/></div>
+<map name="aclassCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_icgraph" id="aclassCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_icgraph">
+<area shape="rect" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="737,519,915,546"/>
+<area shape="rect" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="239,1002,484,1029"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6b0bf9c0af70133d2389c6a2b9c81299"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b0bf9c0af70133d2389c6a2b9c81299">&#9670;&nbsp;</a></span>setCircuitName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Circuit::setCircuitName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_circName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setCircuitName This method is used to set the name of the digital circuit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_circName</td><td>A string containing a new name for the digital circuit *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_a6b0bf9c0af70133d2389c6a2b9c81299_icgraph.png" border="0" usemap="#aclassCircuit_a6b0bf9c0af70133d2389c6a2b9c81299_icgraph" alt=""/></div>
+<map name="aclassCircuit_a6b0bf9c0af70133d2389c6a2b9c81299_icgraph" id="aclassCircuit_a6b0bf9c0af70133d2389c6a2b9c81299_icgraph">
+<area shape="rect" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="559,519,732,546"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="239,1002,484,1029"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a71e323bb28864ea40f60fdc1fd693add"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71e323bb28864ea40f60fdc1fd693add">&#9670;&nbsp;</a></span>setPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Circuit::setPath </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setPath This method is designed to set the path where the files associated with the digital circuit will be saved. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_path</td><td>A string containing the path to the directory where the digital circuit files will be saved *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_a71e323bb28864ea40f60fdc1fd693add_icgraph.png" border="0" usemap="#aclassCircuit_a71e323bb28864ea40f60fdc1fd693add_icgraph" alt=""/></div>
+<map name="aclassCircuit_a71e323bb28864ea40f60fdc1fd693add_icgraph" id="aclassCircuit_a71e323bb28864ea40f60fdc1fd693add_icgraph">
+<area shape="rect" title="setPath This method is designed to set the path where the files associated with the digital circuit w..." alt="" coords="559,519,679,546"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="239,1002,484,1029"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5afd009c717105e7f2c36c02e233661c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5afd009c717105e7f2c36c02e233661c">&#9670;&nbsp;</a></span>setTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Circuit::setTable </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTruthTable.html">TruthTable</a> &amp;&#160;</td>
+          <td class="paramname"><em>i_tt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setTable This method is designed to set up a truth table for a digital circuit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_tt</td><td>The Truth Table, which must be installed for the digital circuit. *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_a5afd009c717105e7f2c36c02e233661c_icgraph.png" border="0" usemap="#aclassCircuit_a5afd009c717105e7f2c36c02e233661c_icgraph" alt=""/></div>
+<map name="aclassCircuit_a5afd009c717105e7f2c36c02e233661c_icgraph" id="aclassCircuit_a5afd009c717105e7f2c36c02e233661c_icgraph">
+<area shape="rect" title="setTable This method is designed to set up a truth table for a digital circuit." alt="" coords="491,20,617,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="212,5,443,61"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,13,164,54"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abaecfe94d1e733757e28113a2aeec9e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaecfe94d1e733757e28113a2aeec9e4">&#9670;&nbsp;</a></span>setVerticeOperation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Circuit::setVerticeOperation </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>i_vertice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_operation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setVerticeOperation This method sets up an operation for a given vertex in the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_vertice</td><td>Index of the vertex to set the operation for </td></tr>
+    <tr><td class="paramname">i_operation</td><td>A string representing the operation to be set for the vertex *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae9c9469260b96d79be75ef5491e1d626"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9c9469260b96d79be75ef5491e1d626">&#9670;&nbsp;</a></span>updateCircuitParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Circuit::updateCircuitParameters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>&#160;</td>
+          <td class="paramname"><em>i_graph</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>updateCircuitsParameters A method for updating the parameters of a combinational circuit </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_getAbcStats</td><td>A flag indicating whether to receive statistics from the ABC program (a program for synthesizing digital circuits). </td></tr>
+    <tr><td class="paramname">libraryName</td><td>The name of the library associated with the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a>. *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_ae9c9469260b96d79be75ef5491e1d626_icgraph.png" border="0" usemap="#aclassCircuit_ae9c9469260b96d79be75ef5491e1d626_icgraph" alt=""/></div>
+<map name="aclassCircuit_ae9c9469260b96d79be75ef5491e1d626_icgraph" id="aclassCircuit_ae9c9469260b96d79be75ef5491e1d626_icgraph">
+<area shape="rect" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="963,519,1196,546"/>
+<area shape="rect" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="737,545,915,571"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="239,1002,484,1029"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aea762822371bd9474e73c4365436cd87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea762822371bd9474e73c4365436cd87">&#9670;&nbsp;</a></span>d_circuitName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Circuit::d_circuitName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afa2a505e49cef1af3c52a461159b9327"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa2a505e49cef1af3c52a461159b9327">&#9670;&nbsp;</a></span>d_circuitParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCircuitParameters.html">CircuitParameters</a> Circuit::d_circuitParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac340800d917fd745ec19ce5ddef32468"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac340800d917fd745ec19ce5ddef32468">&#9670;&nbsp;</a></span>d_graph</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> Circuit::d_graph</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a46b7ad58c43e820bbe46e9a4aece58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a46b7ad58c43e820bbe46e9a4aece58">&#9670;&nbsp;</a></span>d_logExpressions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; Circuit::d_logExpressions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8224db52877ef17a42c215a69f039565"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8224db52877ef17a42c215a69f039565">&#9670;&nbsp;</a></span>d_path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Circuit::d_path</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb9e88f260f291cd40be7990d470d445"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb9e88f260f291cd40be7990d470d445">&#9670;&nbsp;</a></span>d_settings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classSettings.html">Settings</a>&gt; Circuit::d_settings = <a class="el" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(&quot;Circuit&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35309993631f48e78a703c62a9dee312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35309993631f48e78a703c62a9dee312">&#9670;&nbsp;</a></span>d_tTable</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTruthTable.html">TruthTable</a> Circuit::d_tTable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classCircuit.html">Circuit</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

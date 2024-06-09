@@ -1,0 +1,26 @@
+<map id="DataBaseGenerator::generateDataBaseRandLevel" name="DataBaseGenerator::generateDataBaseRandLevel">
+<area shape="rect" id="node1" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="5,674,216,715"/>
+<area shape="rect" id="node2" href="$classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="313,107,444,133"/>
+<area shape="rect" id="node7" href="$classSimpleGenerators.html#aebea64983c4f49c3c1007a0390e06977" title="generatorRandLevel creates an oriented graph (represented by an OrientedGraph object) with a given le..." alt="" coords="273,183,484,225"/>
+<area shape="rect" id="node9" href="$classGenerationParameters.html#a1f1a65d45fc7335c144794305a34a7f2" title=" " alt="" coords="295,249,463,290"/>
+<area shape="rect" id="node10" href="$classGenerationParameters.html#ab5415cce0d7d4e0417491f460a0e3a3a" title=" " alt="" coords="295,314,463,355"/>
+<area shape="rect" id="node11" href="$classGenerationParameters.html#aed2938223a2a7b8fddd87218abb189d4" title=" " alt="" coords="283,379,474,421"/>
+<area shape="rect" id="node12" href="$classGenerationParameters.html#aeccc0983840788f03ae4cd9e06f1c1f3" title=" " alt="" coords="271,445,486,486"/>
+<area shape="rect" id="node13" href="$classGenerationParameters.html#abc21152ae59f53741545d14075dbde3d" title=" " alt="" coords="265,510,493,551"/>
+<area shape="rect" id="node14" href="$classGeneratorRandLevelParameters.html#ae960a0f5de529b919eb31c49eabf29b5" title=" " alt="" coords="264,575,493,617"/>
+<area shape="rect" id="node15" href="$classGeneratorRandLevelParameters.html#ae32766324c96779e796aa503832d16cd" title=" " alt="" coords="264,641,493,682"/>
+<area shape="rect" id="node16" href="$classGeneratorRandLevelParameters.html#a65b8f681835b5ffa2a3c60a31fdbc065" title=" " alt="" coords="264,706,493,747"/>
+<area shape="rect" id="node17" href="$classGeneratorRandLevelParameters.html#afddac5bc6a73efd2da3fd50dd871f918" title=" " alt="" coords="264,771,493,813"/>
+<area shape="rect" id="node18" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="295,837,463,878"/>
+<area shape="rect" id="node19" href="$classGenerationParameters.html#a1f3eb45bdbff9fddee1236d2f442a300" title=" " alt="" coords="295,902,463,943"/>
+<area shape="rect" id="node20" href="$classGenerationParameters.html#a26921547cfbee88bd5a89cbebc109012" title=" " alt="" coords="295,967,463,1009"/>
+<area shape="rect" id="node21" href="$classGenerationParameters.html#a07806a196e5976fce356ff2f3d91f822" title=" " alt="" coords="295,1033,463,1074"/>
+<area shape="rect" id="node22" href="$classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="292,1099,465,1125"/>
+<area shape="rect" id="node23" href="$classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06" title="generatorRandLevelExperimental The method generates a random level of complexity of the graph within ..." alt="" coords="276,1150,481,1191"/>
+<area shape="rect" id="node24" href="$classCircuit.html#a71e323bb28864ea40f60fdc1fd693add" title="setPath This method is designed to set the path where the files associated with the digital circuit w..." alt="" coords="319,1216,439,1243"/>
+<area shape="rect" id="node3" href="$classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="552,5,733,32"/>
+<area shape="rect" id="node4" href="$classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="559,56,727,83"/>
+<area shape="rect" id="node5" href="$classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="554,107,731,133"/>
+<area shape="rect" id="node6" href="$classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="792,132,1025,159"/>
+<area shape="rect" id="node8" href="$classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="541,209,744,250"/>
+</map>

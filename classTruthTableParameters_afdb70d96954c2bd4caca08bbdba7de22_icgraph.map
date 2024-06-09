@@ -1,0 +1,4 @@
+<map id="TruthTableParameters::size" name="TruthTableParameters::size">
+<area shape="rect" id="node1" title="size Returns the size of the truth table population" alt="" coords="216,5,379,47"/>
+<area shape="rect" id="node2" href="$classTruthTableParameters.html#a7d967d6f0ddd95cd61b9c606f0d131d2" title="getPopulationSize" alt="" coords="5,5,168,47"/>
+</map>

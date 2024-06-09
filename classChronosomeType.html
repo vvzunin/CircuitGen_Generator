@@ -1,162 +1,513 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>ChronosomeType class | CircuitGenGenerator</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: ChronosomeType&lt; Type, ParametersTypes &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">CircuitGenGenerator</a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li>
-              <a href="pages.html">Pages</a>
-              <ol>
-                <li><a href="about.html">About</a></li>
-              </ol>
-            </li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="ChronosomeType_8hpp.html">&lt;ChronosomeType.hpp&gt;</a></div>
-          <div class="m-doc-template">template&lt;typename Type, typename ParametersTypes&gt;</div>
-          ChronosomeType <span class="m-thin">class</span>
-        </h1>
-        <p><span></span></p>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <section id="typeless-methods">
-          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
-          <dl class="m-doc">
-            <dt id="a638e6638e406778d16f68251838327db">
-              <span class="m-doc-wrap-bumper"><a href="#a638e6638e406778d16f68251838327db" class="m-doc-self">ChronosomeType</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name,
-              const Type&amp; i_chronosome)</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="a996c885167165d279d3a4ec62486d959">
-              <span class="m-doc-wrap-bumper">auto <a href="#a996c885167165d279d3a4ec62486d959" class="m-doc-self">getChronosomeType</a>(</span><span class="m-doc-wrap">) const -&gt; const Type&amp;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a24b735f1f10d32864f40c13da31d9d2a">
-              <span class="m-doc-wrap-bumper">void <a href="#a24b735f1f10d32864f40c13da31d9d2a" class="m-doc-self">setChronosomeType</a>(</span><span class="m-doc-wrap">const Type&amp; i_chronosome)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a8e688b7977985f6f1365cccf96efa3ce">
-              <span class="m-doc-wrap-bumper">auto <a href="#a8e688b7977985f6f1365cccf96efa3ce" class="m-doc-self">getAdaptationIndex</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ab308a71e01a9cecec2ed35d6913a2a85">
-              <span class="m-doc-wrap-bumper">void <a href="#ab308a71e01a9cecec2ed35d6913a2a85" class="m-doc-self">setAdaptationIndex</a>(</span><span class="m-doc-wrap">double i_adaptationIndex)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a190ae781eb675e0d160e8405fe7b9118">
-              <span class="m-doc-wrap-bumper">auto <a href="#a190ae781eb675e0d160e8405fe7b9118" class="m-doc-self">getName</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="adef5d739aecc5a7874a07600bfac6a5f">
-              <span class="m-doc-wrap-bumper">void <a href="#adef5d739aecc5a7874a07600bfac6a5f" class="m-doc-self">adaptationFunction</a>(</span><span class="m-doc-wrap">)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="afe982fc3b9e00e1d09804b54f7fdcc7a">
-              <span class="m-doc-wrap-bumper">auto <a href="#afe982fc3b9e00e1d09804b54f7fdcc7a" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;Type, ParametersTypes&gt;&amp; r) const -&gt; bool</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGenGenerator. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classChronosomeType.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classChronosomeType-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">ChronosomeType&lt; Type, ParametersTypes &gt; Class Template Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="ChronosomeType_8hpp_source.html">ChronosomeType.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ChronosomeType&lt; Type, ParametersTypes &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="classChronosomeType__coll__graph.png" border="0" usemap="#aChronosomeType_3_01Type_00_01ParametersTypes_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="aChronosomeType_3_01Type_00_01ParametersTypes_01_4_coll__map" id="aChronosomeType_3_01Type_00_01ParametersTypes_01_4_coll__map">
+<area shape="rect" title=" " alt="" coords="5,5,188,244"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a638e6638e406778d16f68251838327db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#a638e6638e406778d16f68251838327db">ChronosomeType</a> (const std::string &amp;i_name, const Type &amp;i_chronosome)</td></tr>
+<tr class="separator:a638e6638e406778d16f68251838327db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a996c885167165d279d3a4ec62486d959"><td class="memItemLeft" align="right" valign="top">const Type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#a996c885167165d279d3a4ec62486d959">getChronosomeType</a> () const</td></tr>
+<tr class="separator:a996c885167165d279d3a4ec62486d959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24b735f1f10d32864f40c13da31d9d2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#a24b735f1f10d32864f40c13da31d9d2a">setChronosomeType</a> (const Type &amp;i_chronosome)</td></tr>
+<tr class="separator:a24b735f1f10d32864f40c13da31d9d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e688b7977985f6f1365cccf96efa3ce"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#a8e688b7977985f6f1365cccf96efa3ce">getAdaptationIndex</a> () const</td></tr>
+<tr class="separator:a8e688b7977985f6f1365cccf96efa3ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab308a71e01a9cecec2ed35d6913a2a85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#ab308a71e01a9cecec2ed35d6913a2a85">setAdaptationIndex</a> (double i_adaptationIndex)</td></tr>
+<tr class="separator:ab308a71e01a9cecec2ed35d6913a2a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a190ae781eb675e0d160e8405fe7b9118"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#a190ae781eb675e0d160e8405fe7b9118">getName</a> () const</td></tr>
+<tr class="separator:a190ae781eb675e0d160e8405fe7b9118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adef5d739aecc5a7874a07600bfac6a5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#adef5d739aecc5a7874a07600bfac6a5f">adaptationFunction</a> ()</td></tr>
+<tr class="separator:adef5d739aecc5a7874a07600bfac6a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe982fc3b9e00e1d09804b54f7fdcc7a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#afe982fc3b9e00e1d09804b54f7fdcc7a">operator==</a> (const <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt; &amp;r) const</td></tr>
+<tr class="separator:afe982fc3b9e00e1d09804b54f7fdcc7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a5171c0a56cf55bee3de6413736ab1421"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#a5171c0a56cf55bee3de6413736ab1421">d_adaptationIndex</a></td></tr>
+<tr class="separator:a5171c0a56cf55bee3de6413736ab1421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b94863711642b57b6be162b7a7994da"><td class="memItemLeft" align="right" valign="top">Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#a0b94863711642b57b6be162b7a7994da">d_chronosome</a></td></tr>
+<tr class="separator:a0b94863711642b57b6be162b7a7994da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b774c3b3782d066e5a769750ab2fc4b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classSettings.html">Settings</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#a9b774c3b3782d066e5a769750ab2fc4b">d_settings</a> = <a class="el" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(&quot;GraphVertex&quot;)</td></tr>
+<tr class="separator:a9b774c3b3782d066e5a769750ab2fc4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa24eaeb1b6d9c131cbc3819bd941544e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChronosomeType.html#aa24eaeb1b6d9c131cbc3819bd941544e">d_name</a></td></tr>
+<tr class="separator:aa24eaeb1b6d9c131cbc3819bd941544e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a638e6638e406778d16f68251838327db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a638e6638e406778d16f68251838327db">&#9670;&nbsp;</a></span>ChronosomeType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::<a class="el" href="classChronosomeType.html">ChronosomeType</a> </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Type &amp;&#160;</td>
+          <td class="paramname"><em>i_chronosome</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classChronosomeType_a638e6638e406778d16f68251838327db_cgraph.png" border="0" usemap="#aclassChronosomeType_a638e6638e406778d16f68251838327db_cgraph" alt=""/></div>
+<map name="aclassChronosomeType_a638e6638e406778d16f68251838327db_cgraph" id="aclassChronosomeType_a638e6638e406778d16f68251838327db_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,260,39"/>
+<area shape="rect" href="classChronosomeType.html#adef5d739aecc5a7874a07600bfac6a5f" title=" " alt="" coords="308,5,520,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="adef5d739aecc5a7874a07600bfac6a5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adef5d739aecc5a7874a07600bfac6a5f">&#9670;&nbsp;</a></span>adaptationFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::adaptationFunction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classChronosomeType_adef5d739aecc5a7874a07600bfac6a5f_icgraph.png" border="0" usemap="#aclassChronosomeType_adef5d739aecc5a7874a07600bfac6a5f_icgraph" alt=""/></div>
+<map name="aclassChronosomeType_adef5d739aecc5a7874a07600bfac6a5f_icgraph" id="aclassChronosomeType_adef5d739aecc5a7874a07600bfac6a5f_icgraph">
+<area shape="rect" title=" " alt="" coords="308,5,520,47"/>
+<area shape="rect" href="classChronosomeType.html#a638e6638e406778d16f68251838327db" title=" " alt="" coords="5,13,260,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8e688b7977985f6f1365cccf96efa3ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e688b7977985f6f1365cccf96efa3ce">&#9670;&nbsp;</a></span>getAdaptationIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::getAdaptationIndex </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a996c885167165d279d3a4ec62486d959"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a996c885167165d279d3a4ec62486d959">&#9670;&nbsp;</a></span>getChronosomeType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const Type&amp; <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::getChronosomeType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a190ae781eb675e0d160e8405fe7b9118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a190ae781eb675e0d160e8405fe7b9118">&#9670;&nbsp;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classChronosomeType_a190ae781eb675e0d160e8405fe7b9118_icgraph.png" border="0" usemap="#aclassChronosomeType_a190ae781eb675e0d160e8405fe7b9118_icgraph" alt=""/></div>
+<map name="aclassChronosomeType_a190ae781eb675e0d160e8405fe7b9118_icgraph" id="aclassChronosomeType_a190ae781eb675e0d160e8405fe7b9118_icgraph">
+<area shape="rect" title=" " alt="" coords="359,13,561,39"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#a786f5907ec3edcb3db3b07f958c118ad" title=" " alt="" coords="164,5,311,47"/>
+<area shape="rect" href="Mutation_8cpp.html#a56b94446ca4cef0466970725a366f003" title=" " alt="" coords="5,13,116,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afe982fc3b9e00e1d09804b54f7fdcc7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe982fc3b9e00e1d09804b54f7fdcc7a">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt; &amp;&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab308a71e01a9cecec2ed35d6913a2a85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab308a71e01a9cecec2ed35d6913a2a85">&#9670;&nbsp;</a></span>setAdaptationIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::setAdaptationIndex </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>i_adaptationIndex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24b735f1f10d32864f40c13da31d9d2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24b735f1f10d32864f40c13da31d9d2a">&#9670;&nbsp;</a></span>setChronosomeType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::setChronosomeType </td>
+          <td>(</td>
+          <td class="paramtype">const Type &amp;&#160;</td>
+          <td class="paramname"><em>i_chronosome</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5171c0a56cf55bee3de6413736ab1421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5171c0a56cf55bee3de6413736ab1421">&#9670;&nbsp;</a></span>d_adaptationIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::d_adaptationIndex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b94863711642b57b6be162b7a7994da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b94863711642b57b6be162b7a7994da">&#9670;&nbsp;</a></span>d_chronosome</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Type <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::d_chronosome</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa24eaeb1b6d9c131cbc3819bd941544e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa24eaeb1b6d9c131cbc3819bd941544e">&#9670;&nbsp;</a></span>d_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::d_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b774c3b3782d066e5a769750ab2fc4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b774c3b3782d066e5a769750ab2fc4b">&#9670;&nbsp;</a></span>d_settings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type , typename ParametersTypes &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classSettings.html">Settings</a>&gt; <a class="el" href="classChronosomeType.html">ChronosomeType</a>&lt; Type, ParametersTypes &gt;::d_settings = <a class="el" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(&quot;GraphVertex&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classChronosomeType.html">ChronosomeType</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>
