@@ -1,0 +1,7 @@
+<map id="detail::binary_writer::write_bson_unsigned" name="detail::binary_writer::write_bson_unsigned">
+<area shape="rect" id="node1" title="Writes a BSON element with key name and unsigned value." alt="" coords="5,49,172,90"/>
+<area shape="rect" id="node2" href="$namespacedetail.html#a266fb3d4bf633ad6c506434cc91164da" title=" " alt="" coords="220,31,331,57"/>
+<area shape="rect" id="node5" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="236,81,315,108"/>
+<area shape="rect" id="node3" href="$namespacedetail.html#a89f967b745cf8df11ba9d59f93d97753" title=" " alt="" coords="387,5,529,32"/>
+<area shape="rect" id="node4" href="$namespacedetail.html#ac185140ed8c8fcc07a302a890b714b0d" title=" " alt="" coords="379,56,537,83"/>
+</map>

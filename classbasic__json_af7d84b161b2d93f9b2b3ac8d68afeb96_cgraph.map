@@ -1,0 +1,4 @@
+<map id="basic_json::from_msgpack" name="basic_json::from_msgpack">
+<area shape="rect" id="node1" title="create a JSON value from an input in MessagePack format" alt="" coords="5,5,200,32"/>
+<area shape="rect" id="node2" href="$namespacedetail.html#a94ba526ee2dcd8db43be52cb621c1de3" title=" " alt="" coords="248,5,405,32"/>
+</map>

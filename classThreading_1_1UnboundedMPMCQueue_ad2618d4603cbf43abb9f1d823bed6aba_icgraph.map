@@ -1,0 +1,6 @@
+<map id="Threading::UnboundedMPMCQueue::take" name="Threading::UnboundedMPMCQueue::take">
+<area shape="rect" id="node1" title="Block current thread until no item will appearance in the queue or queue will be closed." alt="" coords="653,5,905,47"/>
+<area shape="rect" id="node2" href="$classThreading_1_1ThreadPool.html#aeaadc6fbbcbb380f4111cc238dcf204f" title=" " alt="" coords="437,5,605,47"/>
+<area shape="rect" id="node3" href="$classThreading_1_1ThreadPool.html#a41f65f9f1a382f62edac18cfce73326a" title=" " alt="" coords="221,5,389,47"/>
+<area shape="rect" id="node4" href="$classThreading_1_1ThreadPool.html#a476e732d00b62930f60ee345c44ef00a" title="Create thread pool with specified number of threads." alt="" coords="5,5,173,47"/>
+</map>

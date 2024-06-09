@@ -1,0 +1,27 @@
+var classGeneticParameters =
+[
+    [ "GeneticParameters", "classGeneticParameters.html#af3c513db2bdcad946e6c183c8c5b093a", null ],
+    [ "getInputs", "classGeneticParameters.html#aa1b4269bb8a929aa2501514cda0f4ba9", null ],
+    [ "getKeyEndProcessIndex", "classGeneticParameters.html#a75b2f2fd5c44a06929af0933d6c0a792", null ],
+    [ "getMutationParameters", "classGeneticParameters.html#a47b9aca9f0b6abf7c04945b2bd8767c9", null ],
+    [ "getNumOfCycles", "classGeneticParameters.html#ac7a8b45c6336142481451c7631dc57a2", null ],
+    [ "getOutputs", "classGeneticParameters.html#a6bb3be1205ed0202b9051e8c78282069", null ],
+    [ "getRecombinationParameters", "classGeneticParameters.html#afdacea030f6fdacdd08cf05fc5120f6b", null ],
+    [ "getSelectionParameters", "classGeneticParameters.html#a99ffc1f118b5727ef616c7222ee83ef0", null ],
+    [ "setInputs", "classGeneticParameters.html#a8c402aebed6a73dd096ec105b6d0366a", null ],
+    [ "setKeyEndProcessIndex", "classGeneticParameters.html#a69d2a71967ac4446244bf488fa982ac5", null ],
+    [ "setMutationParameters", "classGeneticParameters.html#a525ba7e07d9cb189c0ca014f56416dc8", null ],
+    [ "setNumOfCycles", "classGeneticParameters.html#add12682270462c462d9b8b251a5b32e1", null ],
+    [ "setOutputs", "classGeneticParameters.html#a5935bc550b7a0640c9f0c40f7cd9658b", null ],
+    [ "setPopulationSize", "classGeneticParameters.html#acf594eeceb1c75740eb82594f86b5209", null ],
+    [ "setRecombinationParameters", "classGeneticParameters.html#a151a6df29689fee335c405510539a385", null ],
+    [ "setSelectionParameters", "classGeneticParameters.html#a81ec40d33027039536aaf8ed006c5ae3", null ],
+    [ "d_inputs", "classGeneticParameters.html#a49f7dc31af5906ee6d17847c5a4dd613", null ],
+    [ "d_keyEndProcessIndex", "classGeneticParameters.html#a01048c9af4023cc0507032a972f405ea", null ],
+    [ "d_mutationParameters", "classGeneticParameters.html#a76fb51b61935b6141ff1ba7c7795a9ff", null ],
+    [ "d_numOfCycles", "classGeneticParameters.html#acba9553d32dafc1e9eb51a15ede694aa", null ],
+    [ "d_outputs", "classGeneticParameters.html#a82298ca566e63a166bd7a7c4dd235399", null ],
+    [ "d_populationSize", "classGeneticParameters.html#a72adb51236dda85d27a083d05c91c11f", null ],
+    [ "d_recombinationParameters", "classGeneticParameters.html#af70baaedd6de5324d76368d92d18bb4f", null ],
+    [ "d_selectionParameters", "classGeneticParameters.html#a4ac6780cccce51dc0d26fae181dfd3ec", null ]
+];

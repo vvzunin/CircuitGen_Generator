@@ -1,0 +1,52 @@
+<map id="DataBaseGenerator::getGenerateMethod" name="DataBaseGenerator::getGenerateMethod">
+<area shape="rect" id="node1" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,463,164,504"/>
+<area shape="rect" id="node2" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,1181,446,1223"/>
+<area shape="rect" id="node37" href="$classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" id="node38" href="$classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" id="node39" href="$classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,593,479,635"/>
+<area shape="rect" id="node40" href="$classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,201,459,243"/>
+<area shape="rect" id="node41" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,855,477,911"/>
+<area shape="rect" id="node42" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,5,458,47"/>
+<area shape="rect" id="node43" href="$classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,267,469,308"/>
+<area shape="rect" id="node44" href="$classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,332,464,373"/>
+<area shape="rect" id="node45" href="$classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,659,484,700"/>
+<area shape="rect" id="node46" href="$classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,397,451,439"/>
+<area shape="rect" id="node47" href="$classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,724,467,765"/>
+<area shape="rect" id="node48" href="$classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,789,511,831"/>
+<area shape="rect" id="node49" href="$classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,463,467,504"/>
+<area shape="rect" id="node50" href="$classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,528,467,569"/>
+<area shape="rect" id="node3" href="$classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="607,346,738,373"/>
+<area shape="rect" id="node4" href="$classGeneratorALUParameters.html#a690c947b170039329e9a4abbbf0154d9" title=" " alt="" coords="579,1508,766,1549"/>
+<area shape="rect" id="node5" href="$classGenerationParameters.html#a45496b83544a8d17202ae34b4b2ea308" title=" " alt="" coords="589,1573,757,1615"/>
+<area shape="rect" id="node6" href="$classGeneratorALUParameters.html#a075d95756c2dd24633c75b5e499120f1" title=" " alt="" coords="579,1639,766,1680"/>
+<area shape="rect" id="node7" href="$classGeneratorALUParameters.html#a83dbbc9b5597466856cb0aab95cbfa2d" title=" " alt="" coords="579,1704,766,1745"/>
+<area shape="rect" id="node8" href="$classGeneratorALUParameters.html#a9106361922072af106247c1e7eedf44f" title=" " alt="" coords="579,1769,766,1811"/>
+<area shape="rect" id="node9" href="$classGenerationParameters.html#a1f1a65d45fc7335c144794305a34a7f2" title=" " alt="" coords="589,593,757,635"/>
+<area shape="rect" id="node10" href="$classGenerationParameters.html#ab5415cce0d7d4e0417491f460a0e3a3a" title=" " alt="" coords="589,528,757,569"/>
+<area shape="rect" id="node11" href="$classGeneratorALUParameters.html#a0bb3e1df833a8e14ccdf08fd8310ea3e" title=" " alt="" coords="579,1835,766,1876"/>
+<area shape="rect" id="node12" href="$classGeneratorALUParameters.html#a2efd0125b4d39b9f8d837bdc2f5cf6fd" title=" " alt="" coords="579,1900,766,1941"/>
+<area shape="rect" id="node13" href="$classGenerationParameters.html#aed2938223a2a7b8fddd87218abb189d4" title=" " alt="" coords="577,397,768,439"/>
+<area shape="rect" id="node14" href="$classGenerationParameters.html#aeccc0983840788f03ae4cd9e06f1c1f3" title=" " alt="" coords="565,463,780,504"/>
+<area shape="rect" id="node15" href="$classGenerationParameters.html#abc21152ae59f53741545d14075dbde3d" title=" " alt="" coords="559,164,787,205"/>
+<area shape="rect" id="node16" href="$classGeneratorALUParameters.html#a4842022d37af161fbbf5d336f9df374e" title=" " alt="" coords="579,1965,766,2007"/>
+<area shape="rect" id="node17" href="$classGeneratorALUParameters.html#a69335630c3ec7873eba9d07134a267f6" title=" " alt="" coords="579,2031,766,2072"/>
+<area shape="rect" id="node18" href="$classGeneratorALUParameters.html#ac0f19c301905ab03e08bd744265b651f" title=" " alt="" coords="579,2096,766,2137"/>
+<area shape="rect" id="node19" href="$classGeneratorALUParameters.html#a586350de3e8cf7f41713f7a0d1158828" title=" " alt="" coords="579,2161,766,2203"/>
+<area shape="rect" id="node20" href="$classGeneratorALUParameters.html#a8a8c7545eeec7db77be713c730c9b968" title=" " alt="" coords="579,2227,766,2268"/>
+<area shape="rect" id="node21" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="589,229,757,271"/>
+<area shape="rect" id="node22" href="$classGeneratorALUParameters.html#ad8b89d7cc23a3f6b41fe0240c664d47a" title=" " alt="" coords="579,2292,766,2333"/>
+<area shape="rect" id="node23" href="$classGeneratorALUParameters.html#a3184f77229e3a702d069d5b550502032" title=" " alt="" coords="579,855,766,896"/>
+<area shape="rect" id="node24" href="$classGeneratorALUParameters.html#a90ba2c308d7013d10c9185b313a5f298" title=" " alt="" coords="579,920,766,961"/>
+<area shape="rect" id="node25" href="$classGeneratorALUParameters.html#a10afde9d25dc70015c7192175ea26962" title=" " alt="" coords="579,985,766,1027"/>
+<area shape="rect" id="node26" href="$classGeneratorALUParameters.html#a737259e89a04a5d2f9d969c4e01e9a99" title=" " alt="" coords="579,1051,766,1092"/>
+<area shape="rect" id="node27" href="$classGeneratorALUParameters.html#a9594df15bd686ea8e1f9fa05bb950833" title=" " alt="" coords="579,1116,766,1157"/>
+<area shape="rect" id="node28" href="$classGenerationParameters.html#a1f3eb45bdbff9fddee1236d2f442a300" title=" " alt="" coords="589,789,757,831"/>
+<area shape="rect" id="node29" href="$classGeneratorALUParameters.html#a25de989cfab96737b7fe2b3c4f2e6724" title=" " alt="" coords="579,1181,766,1223"/>
+<area shape="rect" id="node30" href="$classGenerationParameters.html#a07806a196e5976fce356ff2f3d91f822" title=" " alt="" coords="589,659,757,700"/>
+<area shape="rect" id="node31" href="$classGeneratorALUParameters.html#add12c1c21b85254b04b04de314aae167" title=" " alt="" coords="579,1247,766,1288"/>
+<area shape="rect" id="node32" href="$classGeneratorALUParameters.html#abaa6a4ed5cff5a460adfc230356bdd3d" title=" " alt="" coords="579,1312,766,1353"/>
+<area shape="rect" id="node33" href="$classGeneratorALUParameters.html#a2d18eb797f128a17856abe6486d5625a" title=" " alt="" coords="579,1377,766,1419"/>
+<area shape="rect" id="node34" href="$classGeneratorALUParameters.html#a48819482ebab57538b79fbd0ea1bdd75" title=" " alt="" coords="579,1443,766,1484"/>
+<area shape="rect" id="node35" href="$classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="586,295,759,322"/>
+<area shape="rect" id="node36" href="$classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06" title="generatorRandLevelExperimental The method generates a random level of complexity of the graph within ..." alt="" coords="570,724,775,765"/>
+</map>

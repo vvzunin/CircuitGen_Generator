@@ -1,0 +1,7 @@
+<map id="basic_json::json_value" name="basic_json::json_value">
+<area shape="rect" id="node1" title="constructor for empty values of a given type" alt="" coords="5,81,173,108"/>
+<area shape="rect" id="node2" href="$structjson__sax.html#a15d6c5d0dcaceb906405f427faf9b34e" title="a binary value was read" alt="" coords="259,5,387,32"/>
+<area shape="rect" id="node3" href="$structjson__sax.html#a19eafa3a92fc75e0258a842283396aa9" title="a floating&#45;point number was read" alt="" coords="236,56,409,83"/>
+<area shape="rect" id="node4" href="$structjson__sax.html#a46cc306b7677553d8f6bd8c9592eb1bd" title="an integer number was read" alt="" coords="227,107,418,133"/>
+<area shape="rect" id="node5" href="$structjson__sax.html#a32f8a32794cb384f0de3d3a96a6bb696" title="an unsigned integer number was read" alt="" coords="221,157,424,184"/>
+</map>

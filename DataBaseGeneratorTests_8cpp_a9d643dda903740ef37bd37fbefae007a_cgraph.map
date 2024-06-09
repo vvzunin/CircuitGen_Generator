@@ -1,0 +1,6 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,46,60,73"/>
+<area shape="rect" id="node2" href="$classDataBaseGenerator.html#ad00608fdb8d0d6eaffc6320400c8639f" title="generateTypeForGraph The generate Type method of the DataBase Generator class is responsible for gene..." alt="" coords="108,5,277,47"/>
+<area shape="rect" id="node3" href="$classGenerationParameters.html#a1555432e7175794ef8a0c447496ddf9b" title=" " alt="" coords="109,71,277,112"/>
+<area shape="rect" id="node4" href="$classCNNFromTruthTableParameters.html#a78ca7dc99edcc5c6c244251b2919529b" title=" " alt="" coords="325,71,549,112"/>
+</map>

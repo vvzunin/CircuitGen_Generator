@@ -1,0 +1,4 @@
+<map id="Threading::ThreadPool::work" name="Threading::ThreadPool::work">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,173,47"/>
+<area shape="rect" id="node2" href="$classThreading_1_1UnboundedMPMCQueue.html#ad2618d4603cbf43abb9f1d823bed6aba" title="Block current thread until no item will appearance in the queue or queue will be closed." alt="" coords="221,5,473,47"/>
+</map>

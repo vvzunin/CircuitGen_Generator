@@ -1,0 +1,8 @@
+<map id="TruthTableParameters" name="TruthTableParameters">
+<area shape="rect" id="node1" title="Parameters for generating truth tables The class provides the parameters needed to generate truth tab..." alt="" coords="264,881,451,1017"/>
+<area shape="rect" id="node2" href="$classGeneticParameters.html" title=" " alt="" coords="237,549,477,832"/>
+<area shape="rect" id="node3" href="$classRecombinationParameters.html" title=" " alt="" coords="5,219,245,487"/>
+<area shape="rect" id="node4" href="$classParentsParameters.html" title=" " alt="" coords="27,5,224,156"/>
+<area shape="rect" id="node5" href="$classSelectionParameters.html" title=" " alt="" coords="270,277,445,428"/>
+<area shape="rect" id="node6" href="$classMutationParameters.html" title=" " alt="" coords="469,226,673,479"/>
+</map>

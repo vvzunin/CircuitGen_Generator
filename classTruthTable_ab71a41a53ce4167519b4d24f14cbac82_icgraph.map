@@ -1,0 +1,22 @@
+<map id="TruthTable::getOutTable" name="TruthTable::getOutTable">
+<area shape="rect" id="node1" title="getOutTable Get the output table." alt="" coords="1069,271,1244,297"/>
+<area shape="rect" id="node2" href="$classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="803,106,1003,147"/>
+<area shape="rect" id="node9" href="$namespaceMutationTruthTable.html#a2c823de42c7cfa683c75afb784327a3b" title=" " alt="" coords="815,198,990,239"/>
+<area shape="rect" id="node12" href="$namespaceMutationTruthTable.html#a0e026a10e8a09abd3cc0eda3d5deaefc" title=" " alt="" coords="829,263,976,305"/>
+<area shape="rect" id="node14" href="$namespaceRecombinationsTruthTable.html#a7eaa1b1dcaac4608de62d2f616865309" title=" " alt="" coords="789,329,1016,370"/>
+<area shape="rect" id="node17" href="$namespaceRecombinationsTruthTable.html#a58e88aac3a0e98a2e3b6fe7b97e0a9b4" title=" " alt="" coords="784,446,1021,487"/>
+<area shape="rect" id="node19" href="$TruthTableTests_8cpp.html#a01bf33ff68f079488ecd912324711906" title=" " alt="" coords="875,395,930,421"/>
+<area shape="rect" id="node20" href="$classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="797,27,1008,69"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="505,5,736,61"/>
+<area shape="rect" id="node5" href="$classGeneticGenerator.html#aea417dcc4d2198ad417c4db7d1168f41" title=" " alt="" coords="515,137,727,178"/>
+<area shape="rect" id="node8" href="$SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="593,85,648,112"/>
+<area shape="rect" id="node4" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,82,164,123"/>
+<area shape="rect" id="node6" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,137,431,178"/>
+<area shape="rect" id="node7" href="$classGeneticGenerator.html#a06385f10266a65cd8328e5e8a9bca7b5" title=" " alt="" coords="212,85,457,112"/>
+<area shape="rect" id="node10" href="$Mutation_8cpp.html#ae59ceecb193edfa00f0fbb9b2307b0c9" title=" " alt="" coords="565,253,676,280"/>
+<area shape="rect" id="node11" href="$MutationTruthTableTests_8cpp.html#ae18ebeebc939ec47d95df4d067a20cd9" title=" " alt="" coords="593,203,648,229"/>
+<area shape="rect" id="node13" href="$MutationTruthTableTests_8cpp.html#a9747bd5e80994a7cbc6e0a82367fe577" title=" " alt="" coords="593,304,648,331"/>
+<area shape="rect" id="node15" href="$Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="545,405,696,432"/>
+<area shape="rect" id="node16" href="$RecombinationTruthTableTests_8cpp.html#a2f47aa30a8c65e48a9832dc43eef27f9" title=" " alt="" coords="593,355,648,381"/>
+<area shape="rect" id="node18" href="$RecombinationTruthTableTests_8cpp.html#a6599631a87f7c2992429de3c555da0ba" title=" " alt="" coords="593,456,648,483"/>
+</map>

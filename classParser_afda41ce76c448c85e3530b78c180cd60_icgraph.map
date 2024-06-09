@@ -1,0 +1,6 @@
+<map id="Parser::createBrackets" name="Parser::createBrackets">
+<area shape="rect" id="node1" title="createBrackets Creates pairs of bracket positions within a given logical expression" alt="" coords="637,31,804,57"/>
+<area shape="rect" id="node2" href="$classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="5,5,128,32"/>
+<area shape="rect" id="node3" href="$classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="176,31,339,57"/>
+<area shape="rect" id="node4" href="$classParser.html#a0c1744b41606f8601e0c6ed1c6f99dc1" title=" " alt="" coords="387,81,589,108"/>
+</map>

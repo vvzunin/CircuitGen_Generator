@@ -1,0 +1,5 @@
+<map id="Threading::ThreadPool::~ThreadPool" name="Threading::ThreadPool::~ThreadPool">
+<area shape="rect" id="node1" title="Custom destructor which are to stop workers." alt="" coords="5,5,173,47"/>
+<area shape="rect" id="node2" href="$classThreading_1_1ThreadPool.html#acab1831895d9b9dbaa11a951e04b894c" title="Stop workers." alt="" coords="221,5,389,47"/>
+<area shape="rect" id="node3" href="$classThreading_1_1UnboundedMPMCQueue.html#a210a8e95d243cc20f463a97fc7f97eb1" title="Close queue. All waiting threads will receive nullopt." alt="" coords="437,5,689,47"/>
+</map>

@@ -1,0 +1,3 @@
+<map id="Threading::UnboundedMPMCQueue&lt; T &gt;" name="Threading::UnboundedMPMCQueue&lt; T &gt;">
+<area shape="rect" id="node1" title="Allows to add tasks and blocking wait for element appearance for multiple writers (producers) and mul..." alt="" coords="5,5,296,229"/>
+</map>
