@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Добавление нового генератора | CircuitGenGenerator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">CircuitGenGenerator</a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li>
+              <a href="pages.html">Pages</a>
+              <ol>
+                <li><a href="about.html">About</a></li>
+              </ol>
+            </li>
+            <li><a href="namespaces.html">Namespaces</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          Добавление нового генератора
+        </h1>
+<p>Для добавления новых генераторов необходимо внести корректировки в следующие файлы:</p><section id="autotoc_md39"><h2><a href="#autotoc_md39">1.1 &lt;a href=&quot;src/settings/Settings.hpp&quot;&gt;Settings.hpp&lt;/a&gt;</a></h2><p>В файле необходимо отредактировать перечисление типа <strong>GenerationTypes</strong>, добавив в него название генератора. В качестве примера назовем его <strong>NewGeneratorName</strong>.</p></section><section id="autotoc_md40"><h2><a href="#autotoc_md40">1.2 &lt;a href=&quot;src/settings/Settings.hpp&quot;&gt;Settings.hpp&lt;/a&gt;</a></h2><p>В этом же необходимо внести изменения в поле <strong>generationTypeToPrefix</strong>. Необходимо добавить новый префикс для генерируемых в результате файлов формата .v, .json и других. Префикс должен начинаться с трех букв — <strong>CCG</strong>. Далее следует аббревиатура названия метода генерации. Используя название генератора из примера, получаем следующую вставку: <code class="m-code"><span class="p">{</span><span class="n">GenerationTypes</span><span class="o">::</span><span class="n">NewGeneratorName</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CCGNGN&quot;</span><span class="p">}</span></code> <strong>CCG</strong> — <strong>Combinational <a href="classCircuit.html" class="m-doc">Circuit</a> Generator</strong>, вместо <strong>NGN</strong> можно указать более подходящее на взгляд автора обозначения для созданного метода генерации.</p></section><section id="autotoc_md41"><h2><a href="#autotoc_md41">2. &lt;a href=&quot;src/generators/GenerationParameters.hpp&quot;&gt;GeneratorParameters.hpp&lt;/a&gt;</a></h2><p>В файле необходимо создать новый класс, в который нужно будет добавить дополнительные параметры для использования нового генератора. Название класса должно соответствовать требованию: <strong>Generator</strong> + &lt;имя генератор&gt; + <strong>Parameters</strong>. Используя генератор из примера, назовем класс так: <strong>GeneratorNewGeneratorNameParameters</strong>.</p><blockquote><p>[!IMPORTANT] Не нужно добавлять параметры, для количества входов и выходов схемы. Вся информация о них находится в классе <strong><a href="classGenerationParameters.html" class="m-doc">GenerationParameters</a></strong> в этом же файле.</p></blockquote><p>Далее необходимо в классе <strong><a href="classGenerationParameters.html" class="m-doc">GenerationParameters</a></strong> создать в разделе <em>private</em> переменную ранее созданного класса. Название переменной соответствует следующему требованию: <strong>d_generator</strong> + &lt;имя генератор&gt; + <strong>Parameters</strong>. Для примера переменная будет иметь следующее название: <strong>d_generatorNewGeneratorNameParameters</strong>. Для данной переменной необходимо создать геттер и сеттер. Геттер возвращает саму переменную, сеттер — получает на вход переменные для данного класса и записывает в переменную с параметрами.</p></section><section id="autotoc_md42"><h2><a href="#autotoc_md42">3. &lt;a href=&quot;src/generators/simple/SimpleGenerators.hpp&quot;&gt;SimpleGenerators.hpp&lt;/a&gt; и &lt;a href=&quot;src/generators/simple/SimpleGenerators.cpp&quot;&gt;SimpleGenerators.cpp&lt;/a&gt;</a></h2><p>В данных файлах необходимо реализовать сам генератор (метод для генерации схемы). В <strong>SimpleGenerators.h</strong> необходимо добавить описание метода генерации: <code class="m-code"><span class="n">GraphPtr</span><span class="w"> </span><span class="nf">generatorNewGeneratorName</span><span class="p">(...);</span></code> В качестве результата метод должен возвращать сгенерированную схему в формате <strong>GraphPtr</strong>, являющуюся, в свою очердедь, псевдонимом для типа <strong>std::shared_ptr&lt;OrientedGraph&gt;</strong>. В качестве входных данных метод должен принимать все необходмые для его использования переменные.</p><blockquote><p>[!IMPORTANT] Имена входных переменных должны начинаться с префикса <strong>i_</strong>.</p></blockquote><p>В <strong><a href="SimpleGenerators_8cpp.html" class="m-doc">SimpleGenerators.cpp</a></strong> необходимо реализовать сам генератор:</p><pre class="m-code"><span class="n">GraphPtr</span><span class="w"> </span><span class="nf">SimpleGenerators::generatorNewGeneratorName</span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="p">...</span>
+<span class="p">}</span></pre></section><section id="autotoc_md43"><h2><a href="#autotoc_md43">4. &lt;a href=&quot;src/database/DataBaseGenerator.hpp&quot;&gt;DataBaseGenerator.hpp&lt;/a&gt; и &lt;a href=&quot;src/database/DataBaseGenerator.cpp&quot;&gt;DataBaseGenerator.cpp&lt;/a&gt;</a></h2><p>В классе <strong><a href="classDataBaseGenerator.html" class="m-doc">DataBaseGenerator</a></strong> необходимо реализовать метод, который будет на вход получать константную ссылку на параметры генерации <em>i_param</em>, которая содержит все необходимые параметры генерации. В данном методе необходимо создать объект класса <strong>SimpleGenerator</strong> и запустить в нем ранее созданный метод, в который нужно передать все необходимые параметры из <em>i_param</em> в том же порядке, в котором они были описаны в реализации метода. Результат необходимо записать в переменную типа <strong>GraphPtr</strong>. После этого необходимо создать переменную типа <strong><a href="classCircuit.html" class="m-doc">Circuit</a></strong> и в качестве параметра конструктора передать полученный граф. После этого необходимо задать путь генерации (setPath) в качестве которого выступает <em>d_mainPath</em>. Также нужно задать название схемы (setCircuitName) присутствующее в параметрах генерации (i_param.getName()). После этого необходимо запустить генерацию схемы в формате Verilog и обсчет параметров (generate), передав набор параметров: i_param.getMakeGraphMLClassic(), i_param.getMakeGraphMLPseudoABCD(), i_param.getMakeGraphMLOpenABCD().</p><p>Используя приведенные ранее примеры названий методов, получаем следующий код для реализации метода:</p><pre class="m-code"><span class="kt">void</span><span class="w"> </span><span class="nf">DataBaseGenerator::generateNewGeneratorName</span><span class="p">(</span><span class="n">GenerationParameters</span><span class="w"> </span><span class="o">&amp;</span><span class="n">i_param</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">SimpleGenerators</span><span class="w"> </span><span class="n">sg</span><span class="p">;</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="n">GraphPtr</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sg</span><span class="p">.</span><span class="n">generatorNewGeneratorName</span><span class="p">(...);</span>
+<span class="w">  </span><span class="n">Circuit</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
+<span class="w">  </span><span class="n">c</span><span class="p">.</span><span class="n">setPath</span><span class="p">(</span><span class="n">d_mainPath</span><span class="p">);</span>
+<span class="w">  </span><span class="n">c</span><span class="p">.</span><span class="n">setCircuitName</span><span class="p">(</span><span class="n">i_param</span><span class="p">.</span><span class="n">getName</span><span class="p">());</span>
+<span class="w">  </span><span class="n">c</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
+<span class="w">    </span><span class="n">i_param</span><span class="p">.</span><span class="n">getMakeGraphMLClassic</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">i_param</span><span class="p">.</span><span class="n">getMakeGraphMLPseudoABCD</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">i_param</span><span class="p">.</span><span class="n">getMakeGraphMLOpenABCD</span><span class="p">()</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span></pre><p>И код для описания метода в header: <code class="m-code"><span class="kt">void</span><span class="w"> </span><span class="nf">generateNewGeneratorName</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GenerationParameters</span><span class="o">&amp;</span><span class="w"> </span><span class="n">i_param</span><span class="p">);</span></code> Далее в файле <a href="src/database/DataBaseGenerator.cpp">DataBaseGenerator.cpp</a> необходимо в функции <strong>getGenerateMethod</strong> реализовать обработку нового имени генератора (новый case в switch-конструкции). Используя название генератора из примера, получаем следующую вставку:</p><pre class="m-code"><span class="k">case</span><span class="w"> </span><span class="no">GenerationTypes</span><span class="o">::</span><span class="no">NewGeneratorName</span><span class="p">:</span>
+<span class="w">  </span><span class="n">generateMethodFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DataBaseGenerator</span><span class="o">::</span><span class="n">generateNewGeneratorName</span><span class="p">;</span>
+<span class="w">  </span><span class="k">break</span><span class="p">;</span></pre></section><section id="autotoc_md44"><h2><a href="#autotoc_md44">5. &lt;a href=&quot;src/CircuitGenGenerator.cpp&quot;&gt;CircuitGenGenerator.cpp&lt;/a&gt;</a></h2><p>Последним шагом является редактирование файла <strong><a href="CircuitGenGenerator_8cpp.html" class="m-doc">CircuitGenGenerator.cpp</a></strong>. В функцию <strong>runGenerationFromJson</strong> после инициализации <em>GenerationTypes gt</em> необходимо добавить условие на выбор метода генерации. Используя ранее заданное название генератора в качестве примера, получим следующий участок кода:</p><pre class="m-code"><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&quot;type_of_generation&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;NewGeneratorName&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">gt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationTypes</span><span class="o">::</span><span class="n">NewGeneratorName</span><span class="p">;</span></pre><p>Если для работы генератора требуются дополнительные параметры, то следует обратиться к переменной data, содержащей данные из json-файла с параметрами для генерации, и передать их в класс <strong><a href="classGenerationParameters.html" class="m-doc">GenerationParameters</a></strong> (имя переменной — <strong>gp</strong>) с помощью созданного ранее сеттера: <code class="m-code"><span class="n">gp</span><span class="p">.</span><span class="n">setNewGeneratorNameParameters</span><span class="p">(...);</span></code> На этом добавление генератора в программу закончено. Для непосредственной работы самого генератора необходимо создать файл json с соответствующими созданному генератору параметрами генерации.</p></section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>CircuitGenGenerator. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

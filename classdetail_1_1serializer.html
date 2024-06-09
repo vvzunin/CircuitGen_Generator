@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>detail::serializer class | CircuitGenGenerator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">CircuitGenGenerator</a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li>
+              <a href="pages.html">Pages</a>
+              <ol>
+                <li><a href="about.html">About</a></li>
+              </ol>
+            </li>
+            <li><a href="namespaces.html">Namespaces</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;json.hpp&gt;</a></div>
+          <div class="m-doc-template">template&lt;typename BasicJsonType&gt;</div>
+          <span class="m-breadcrumb"><a href="namespacedetail.html">detail</a>::<wbr/></span>serializer <span class="m-thin">class</span>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pub-attribs">Public variables</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a3d025f3aa1e8661554858b8aaab08c3b" class="m-doc">serializer</a>(</span><span class="m-doc-wrap"><a href="namespacedetail.html#a160eb5d333fe01b259af32d3d4798a7b" class="m-doc">output_<wbr />adapter_<wbr />t</a>&lt;char&gt; s,
+              const char ichar,
+              <a href="namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298" class="m-doc">error_<wbr />handler_<wbr />t</a> error_handler_ = <a href="namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298a2133fd717402a7966ee88d06f9e0b792" class="m-doc">error_handler_t::<wbr />strict</a>)</span>
+            </dt>
+            <dd></dd>
+            <dt id="aee27a802605bff8959928c98c2d81e8f">
+              <span class="m-doc-wrap-bumper"><a href="#aee27a802605bff8959928c98c2d81e8f" class="m-doc-self">serializer</a>(</span><span class="m-doc-wrap">const <a href="classdetail_1_1serializer.html" class="m-doc">serializer</a>&amp;) <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="af84deb8c14f27012063e02ce6b7a9c86">
+              <span class="m-doc-wrap-bumper"><a href="#af84deb8c14f27012063e02ce6b7a9c86" class="m-doc-self">serializer</a>(</span><span class="m-doc-wrap"><a href="classdetail_1_1serializer.html" class="m-doc">serializer</a>&amp;&amp;) <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6da545edc260d2582353b5cd58964a20">
+              <span class="m-doc-wrap-bumper"><a href="#a6da545edc260d2582353b5cd58964a20" class="m-doc-self">~serializer</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a491abc2de2affbc9c3490bde110b7f07">
+              <span class="m-doc-wrap-bumper"><a href="#a491abc2de2affbc9c3490bde110b7f07" class="m-doc-self">for</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a167710da81ad08541c61bc5640d15688">
+              <span class="m-doc-wrap-bumper"><a href="#a167710da81ad08541c61bc5640d15688" class="m-doc-self">if</a>(</span><span class="m-doc-wrap"><a href="json_8hpp.html#a355f2770653ff7bdd5c74b204b5a3ad0" class="m-doc">JSON_<wbr />HEDLEY_<wbr />LIKELY</a>(<a href="classdetail_1_1serializer.html#a2db3d61cfc616f83763b6d4a03d0d772" class="m-doc">state</a>==UTF8_ACCEPT))</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="a8e880742faf02f6a513239c6441cb5af">
+              <span class="m-doc-wrap-bumper">auto <a href="#a8e880742faf02f6a513239c6441cb5af" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classdetail_1_1serializer.html" class="m-doc">serializer</a>&amp;) -&gt; <a href="classdetail_1_1serializer.html" class="m-doc">serializer</a>&amp; <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a01d644f10c6d827d1a0e3c23b609902a">
+              <span class="m-doc-wrap-bumper">auto <a href="#a01d644f10c6d827d1a0e3c23b609902a" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classdetail_1_1serializer.html" class="m-doc">serializer</a>&amp;&amp;) -&gt; <a href="classdetail_1_1serializer.html" class="m-doc">serializer</a>&amp; <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#ae73c1bac64bcc810923b9f1261af8b09" class="m-doc">dump</a>(</span><span class="m-doc-wrap">const BasicJsonType&amp; val,
+              const bool pretty_print,
+              const bool ensure_ascii,
+              const unsigned int indent_step,
+              const unsigned int current_indent = 0)</span>
+            </dt>
+            <dd>internal implementation of the serialization function</dd>
+          </dl>
+        </section>
+        <section id="pub-attribs">
+          <h2><a href="#pub-attribs">Public variables</a></h2>
+          <dl class="m-doc">
+            <dt id="aae0aca92f2f35e72aac9c7d22e01312b">
+              <a href="json_8hpp.html#a2cf645f34610e7f7d6e09ab88a2ab917" class="m-doc">JSON_<wbr />PRIVATE_<wbr />UNLESS_<wbr />TESTED</a> <a href="#aae0aca92f2f35e72aac9c7d22e01312b" class="m-doc-self">__pad0__</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a414071fcc39c97fa8e64455a222d8d08">
+              <a href="json_8hpp.html#a2cf645f34610e7f7d6e09ab88a2ab917" class="m-doc">JSON_<wbr />PRIVATE_<wbr />UNLESS_<wbr />TESTED</a> const bool <a href="#a414071fcc39c97fa8e64455a222d8d08" class="m-doc-self">ensure_ascii</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a2db3d61cfc616f83763b6d4a03d0d772">
+              std::uint8_t <a href="#a2db3d61cfc616f83763b6d4a03d0d772" class="m-doc-self">state</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae08644483db303ce3d1580332ff0a458">
+              std::size_t <a href="#ae08644483db303ce3d1580332ff0a458" class="m-doc-self">bytes</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3c23eca4cc58a835a0a08ff580dcaae0">
+              std::size_t <a href="#a3c23eca4cc58a835a0a08ff580dcaae0" class="m-doc-self">bytes_after_last_accept</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a44a05646a5ac7caec54f97ba17cb893b">
+              std::size_t <a href="#a44a05646a5ac7caec54f97ba17cb893b" class="m-doc-self">undumped_chars</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a1cef7f1e504d729887dc828910497cd2">
+               <a href="#a1cef7f1e504d729887dc828910497cd2" class="m-doc-self">else</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ace18a55b8304310fee309d31e54a3e27">
+              std::array&lt;char, 64&gt; <a href="#ace18a55b8304310fee309d31e54a3e27" class="m-doc-self">number_buffer</a>
+            </dt>
+            <dd>a (hopefully) large enough character buffer</dd>
+            <dt id="a80ca90565eec446d377ab65a023297ab">
+              const std::lconv* <a href="#a80ca90565eec446d377ab65a023297ab" class="m-doc-self">loc</a>
+            </dt>
+            <dd>the locale</dd>
+            <dt id="a5b75b99511362e4e5d011c8a961e96bb">
+              const char <a href="#a5b75b99511362e4e5d011c8a961e96bb" class="m-doc-self">thousands_sep</a>
+            </dt>
+            <dd>the locale&#x27;s thousand separator character</dd>
+            <dt id="a5f01fcbf64cb1e5f36d8853ebcd96412">
+              const char <a href="#a5f01fcbf64cb1e5f36d8853ebcd96412" class="m-doc-self">decimal_point</a>
+            </dt>
+            <dd>the locale&#x27;s decimal point character</dd>
+            <dt id="a27a61728ed0fbc65de009286531a6e70">
+              std::array&lt;char, 512&gt; <a href="#a27a61728ed0fbc65de009286531a6e70" class="m-doc-self">string_buffer</a>
+            </dt>
+            <dd>string buffer</dd>
+            <dt id="acf6f783e3299d8b18ce4b5d9746f39f6">
+              const char <a href="#acf6f783e3299d8b18ce4b5d9746f39f6" class="m-doc-self">indent_char</a>
+            </dt>
+            <dd>the indentation character</dd>
+            <dt id="a7f6f1d36859514ab42984deb28d2521e">
+              string_t <a href="#a7f6f1d36859514ab42984deb28d2521e" class="m-doc-self">indent_string</a>
+            </dt>
+            <dd>the indentation string</dd>
+            <dt id="a79d25c7416dd71a0db8b10988ec360f7">
+              const <a href="namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298" class="m-doc">error_<wbr />handler_<wbr />t</a> <a href="#a79d25c7416dd71a0db8b10988ec360f7" class="m-doc-self">error_handler</a>
+            </dt>
+            <dd>error_handler how to react on decoding errors</dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a3d025f3aa1e8661554858b8aaab08c3b"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper"> detail::<wbr />serializer&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3d025f3aa1e8661554858b8aaab08c3b" class="m-doc-self">serializer</a>(</span><span class="m-doc-wrap"><a href="namespacedetail.html#a160eb5d333fe01b259af32d3d4798a7b" class="m-doc">output_<wbr />adapter_<wbr />t</a>&lt;char&gt; s,
+              const char ichar,
+              <a href="namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298" class="m-doc">error_<wbr />handler_<wbr />t</a> error_handler_ = <a href="namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298a2133fd717402a7966ee88d06f9e0b792" class="m-doc">error_handler_t::<wbr />strict</a>)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">s&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>output stream to serialize to</td>
+                </tr>
+                <tr>
+                  <td>ichar&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>indentation character to use</td>
+                </tr>
+                <tr>
+                  <td>error_handler_&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>how to react on decoding errors</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ae73c1bac64bcc810923b9f1261af8b09"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">void detail::<wbr />serializer&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae73c1bac64bcc810923b9f1261af8b09" class="m-doc-self">dump</a>(</span><span class="m-doc-wrap">const BasicJsonType&amp; val,
+              const bool pretty_print,
+              const bool ensure_ascii,
+              const unsigned int indent_step,
+              const unsigned int current_indent = 0)</span></span>
+            </h3>
+            <p>internal implementation of the serialization function</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">val&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>value to serialize</td>
+                </tr>
+                <tr>
+                  <td>pretty_print&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>whether the output shall be pretty-printed</td>
+                </tr>
+                <tr>
+                  <td>ensure_ascii&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>If <em>ensure_ascii</em> is true, all non-ASCII characters in the output are escaped with <code>\uXXXX</code> sequences, and the result consists of ASCII characters only.</td>
+                </tr>
+                <tr>
+                  <td>indent_step&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>the indent level</td>
+                </tr>
+                <tr>
+                  <td>current_indent&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>the current indent level (only used internally)</td>
+                </tr>
+              </tbody>
+            </table>
+<p>This function is called by the public member function dump and organizes the serialization internally. The indentation level is propagated as additional parameter. In case of arrays and objects, the function is called recursively.</p><ul><li>strings and object keys are escaped using <code>escape_string()</code></li><li>integer numbers are converted implicitly via <code>operator&lt;&lt;</code></li><li>floating-point numbers are converted to a string using <code>&quot;%g&quot;</code> format</li><li>binary values are serialized as objects containing the subtype and the byte array</li></ul>
+          </div></section>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>CircuitGenGenerator. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

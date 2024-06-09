@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>detail::dtoa_impl namespace | CircuitGenGenerator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">CircuitGenGenerator</a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li>
+              <a href="pages.html">Pages</a>
+              <ol>
+                <li><a href="about.html">About</a></li>
+              </ol>
+            </li>
+            <li><a href="namespaces.html">Namespaces</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <span class="m-breadcrumb"><a href="namespacedetail.html">detail</a>::<wbr/></span>dtoa_impl <span class="m-thin">namespace</span>
+        </h1>
+        <p>implements the Grisu2 algorithm for binary to decimal floating-point conversion.</p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#nested-classes">Classes</a></li>
+                <li><a href="#func-members">Functions</a></li>
+                <li><a href="#var-members">Variables</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+<p>This implementation is a slightly modified version of the reference implementation which may be obtained from <a href="http://florian.loitsch.com/publications">http:/<wbr />/<wbr />florian.loitsch.com/<wbr />publications</a> (bench.tar.gz).</p><p>The code is distributed under the MIT license, Copyright (c) 2009 Florian Loitsch.</p><p>For a detailed description of the algorithm see:</p><p>[1] Loitsch, &quot;Printing Floating-Point Numbers Quickly and Accurately with
+    Integers&quot;, Proceedings of the ACM SIGPLAN 2010 Conference on Programming Language Design and Implementation, PLDI 2010 [2] Burger, Dybvig, &quot;Printing Floating-Point Numbers Quickly and Accurately&quot;, Proceedings of the ACM SIGPLAN 1996 Conference on Programming Language Design and Implementation, PLDI 1996</p>
+        <section id="nested-classes">
+          <h2><a href="#nested-classes">Classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              struct <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              struct <a href="structdetail_1_1dtoa__impl_1_1boundaries.html" class="m-doc">boundaries</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              struct <a href="structdetail_1_1dtoa__impl_1_1cached__power.html" class="m-doc">cached_power</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="func-members">
+          <h2><a href="#func-members">Functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <div class="m-doc-template">template&lt;typename Target, typename Source&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3c879bf97b806cacbcbb2da07a5ff5c8" class="m-doc">reinterpret_bits</a>(</span><span class="m-doc-wrap">const Source source) -&gt; Target</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename FloatType&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6a5ccf11847aab7a0f42f587b33935df" class="m-doc">compute_boundaries</a>(</span><span class="m-doc-wrap">FloatType value) -&gt; <a href="structdetail_1_1dtoa__impl_1_1boundaries.html" class="m-doc">boundaries</a></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a29ae6574f6be09a5c8ab08da9a3f71b4" class="m-doc">get_cached_power_for_binary_exponent</a>(</span><span class="m-doc-wrap">int e) -&gt; <a href="structdetail_1_1dtoa__impl_1_1cached__power.html" class="m-doc">cached_<wbr />power</a></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a04eb234a28617519974fc962cd4da666" class="m-doc">find_largest_pow10</a>(</span><span class="m-doc-wrap">const std::uint32_t n,
+              std::uint32_t&amp; pow10) -&gt; int</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a73a15efcb5c2157ea0e1375b98ef0e83" class="m-doc">grisu2_round</a>(</span><span class="m-doc-wrap">char* buf,
+              int len,
+              std::uint64_t dist,
+              std::uint64_t delta,
+              std::uint64_t rest,
+              std::uint64_t ten_k)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#ae877aa13ab872c99a1c614e5e1524807" class="m-doc">grisu2_digit_gen</a>(</span><span class="m-doc-wrap">char* buffer,
+              int&amp; length,
+              int&amp; decimal_exponent,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> M_minus,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> w,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> M_plus)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#ad549352ed1a9676a092d143a2daa3dee" class="m-doc">grisu2</a>(</span><span class="m-doc-wrap">char* buf,
+              int&amp; len,
+              int&amp; decimal_exponent,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> m_minus,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> v,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> m_plus)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <div class="m-doc-template">template&lt;typename FloatType&gt;</div>
+              <span class="m-doc-wrap-bumper">void <a href="#abdf6bc05c54068a5930f66c2e803e8b8" class="m-doc">grisu2</a>(</span><span class="m-doc-wrap">char* buf,
+              int&amp; len,
+              int&amp; decimal_exponent,
+              FloatType value)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6efd46b9558b99b68c674ad02b395d25" class="m-doc">append_exponent</a>(</span><span class="m-doc-wrap">char* buf,
+              int e) -&gt; <a href="json_8hpp.html#a5f2aaec3b681d0a72f7d6e90b70cdcd1" class="m-doc">JSON_<wbr />HEDLEY_<wbr />RETURNS_<wbr />NON_<wbr />NULL</a> char*</span>
+            </dt>
+            <dd>appends a decimal representation of e to buf</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a7175c9997b110bce4526e3b7357e7b03" class="m-doc">format_buffer</a>(</span><span class="m-doc-wrap">char* buf,
+              int len,
+              int decimal_exponent,
+              int min_exp,
+              int max_exp) -&gt; <a href="json_8hpp.html#a5f2aaec3b681d0a72f7d6e90b70cdcd1" class="m-doc">JSON_<wbr />HEDLEY_<wbr />RETURNS_<wbr />NON_<wbr />NULL</a> char*</span>
+            </dt>
+            <dd>prettify v = buf * 10^decimal_exponent</dd>
+          </dl>
+        </section>
+        <section id="var-members">
+          <h2><a href="#var-members">Variables</a></h2>
+          <dl class="m-doc">
+            <dt>
+              int <a href="#a95c569b7627a9372686f1f77d73e8660" class="m-doc">kAlpha</a> <span class="m-label m-flat m-primary">constexpr</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              int <a href="#ae152a095d2dd1a6dd41ef8ad39c26e19" class="m-doc">kGamma</a> <span class="m-label m-flat m-primary">constexpr</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a3c879bf97b806cacbcbb2da07a5ff5c8"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename Target, typename Source&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">Target detail::<wbr />dtoa_impl::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3c879bf97b806cacbcbb2da07a5ff5c8" class="m-doc-self">reinterpret_bits</a>(</span><span class="m-doc-wrap">const Source source)</span></span>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a6a5ccf11847aab7a0f42f587b33935df"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename FloatType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper"><a href="structdetail_1_1dtoa__impl_1_1boundaries.html" class="m-doc">boundaries</a> detail::<wbr />dtoa_impl::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6a5ccf11847aab7a0f42f587b33935df" class="m-doc-self">compute_boundaries</a>(</span><span class="m-doc-wrap">FloatType value)</span></span>
+            </h3>
+<p>Compute the (normalized) diyfp representing the input number &#x27;value&#x27; and its boundaries.</p><aside class="m-note m-success"><h4>Precondition</h4><p>value must be finite and positive</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="a29ae6574f6be09a5c8ab08da9a3f71b4"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="structdetail_1_1dtoa__impl_1_1cached__power.html" class="m-doc">cached_<wbr />power</a> detail::<wbr />dtoa_impl::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a29ae6574f6be09a5c8ab08da9a3f71b4" class="m-doc-self">get_cached_power_for_binary_exponent</a>(</span><span class="m-doc-wrap">int e)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+            </h3>
+<p>For a normalized diyfp w = f * 2^e, this function returns a (normalized) cached power-of-ten c = f_c * 2^e_c, such that the exponent of the product w * c satisfies (Definition 3.2 from [1])</p><pre> alpha &lt;= e_c + e + q &lt;= gamma.
+</pre>
+          </div></section>
+          <section class="m-doc-details" id="a04eb234a28617519974fc962cd4da666"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int detail::<wbr />dtoa_impl::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a04eb234a28617519974fc962cd4da666" class="m-doc-self">find_largest_pow10</a>(</span><span class="m-doc-wrap">const std::uint32_t n,
+              std::uint32_t&amp; pow10)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+            </h3>
+<p>For n != 0, returns k, such that pow10 := 10^(k-1) &lt;= n &lt; 10^k. For n == 0, returns 1 and sets pow10 := 1.</p>
+          </div></section>
+          <section class="m-doc-details" id="a73a15efcb5c2157ea0e1375b98ef0e83"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void detail::<wbr />dtoa_impl::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a73a15efcb5c2157ea0e1375b98ef0e83" class="m-doc-self">grisu2_round</a>(</span><span class="m-doc-wrap">char* buf,
+              int len,
+              std::uint64_t dist,
+              std::uint64_t delta,
+              std::uint64_t rest,
+              std::uint64_t ten_k)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="ae877aa13ab872c99a1c614e5e1524807"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void detail::<wbr />dtoa_impl::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae877aa13ab872c99a1c614e5e1524807" class="m-doc-self">grisu2_digit_gen</a>(</span><span class="m-doc-wrap">char* buffer,
+              int&amp; length,
+              int&amp; decimal_exponent,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> M_minus,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> w,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> M_plus)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+            </h3>
+<p>Generates V = buffer * 10^decimal_exponent, such that M- &lt;= V &lt;= M+. M- and M+ must be normalized and share the same exponent -60 &lt;= e &lt;= -32.</p>
+          </div></section>
+          <section class="m-doc-details" id="ad549352ed1a9676a092d143a2daa3dee"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void detail::<wbr />dtoa_impl::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad549352ed1a9676a092d143a2daa3dee" class="m-doc-self">grisu2</a>(</span><span class="m-doc-wrap">char* buf,
+              int&amp; len,
+              int&amp; decimal_exponent,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> m_minus,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> v,
+              <a href="structdetail_1_1dtoa__impl_1_1diyfp.html" class="m-doc">diyfp</a> m_plus)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+            </h3>
+<p>v = buf * 10^decimal_exponent len is the length of the buffer (number of decimal digits) The buffer must be large enough, i.e. &gt;= max_digits10.</p>
+          </div></section>
+          <section class="m-doc-details" id="abdf6bc05c54068a5930f66c2e803e8b8"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;typename FloatType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">void detail::<wbr />dtoa_impl::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abdf6bc05c54068a5930f66c2e803e8b8" class="m-doc-self">grisu2</a>(</span><span class="m-doc-wrap">char* buf,
+              int&amp; len,
+              int&amp; decimal_exponent,
+              FloatType value)</span></span>
+            </h3>
+<p>v = buf * 10^decimal_exponent len is the length of the buffer (number of decimal digits) The buffer must be large enough, i.e. &gt;= max_digits10.</p>
+          </div></section>
+          <section class="m-doc-details" id="a6efd46b9558b99b68c674ad02b395d25"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="json_8hpp.html#a5f2aaec3b681d0a72f7d6e90b70cdcd1" class="m-doc">JSON_<wbr />HEDLEY_<wbr />RETURNS_<wbr />NON_<wbr />NULL</a> char* detail::<wbr />dtoa_impl::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6efd46b9558b99b68c674ad02b395d25" class="m-doc-self">append_exponent</a>(</span><span class="m-doc-wrap">char* buf,
+              int e)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+            </h3>
+            <p>appends a decimal representation of e to buf</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>a pointer to the element following the exponent.</td>
+                </tr>
+              </tfoot>
+            </table>
+<aside class="m-note m-success"><h4>Precondition</h4><p>-1000 &lt; e &lt; 1000</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="a7175c9997b110bce4526e3b7357e7b03"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="json_8hpp.html#a5f2aaec3b681d0a72f7d6e90b70cdcd1" class="m-doc">JSON_<wbr />HEDLEY_<wbr />RETURNS_<wbr />NON_<wbr />NULL</a> char* detail::<wbr />dtoa_impl::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7175c9997b110bce4526e3b7357e7b03" class="m-doc-self">format_buffer</a>(</span><span class="m-doc-wrap">char* buf,
+              int len,
+              int decimal_exponent,
+              int min_exp,
+              int max_exp)</span></span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+            </h3>
+            <p>prettify v = buf * 10^decimal_exponent</p>
+<p>If v is in the range [10^min_exp, 10^max_exp) it will be printed in fixed-point notation. Otherwise it will be printed in exponential notation.</p><aside class="m-note m-success"><h4>Precondition</h4><p>min_exp &lt; 0</p><p>max_exp &gt; 0</p></aside>
+          </div></section>
+        </section>
+        <section>
+          <h2>Variable documentation</h2>
+          <section class="m-doc-details" id="a95c569b7627a9372686f1f77d73e8660"><div>
+            <h3>
+              int detail::<wbr />dtoa_impl::<wbr /><a href="#a95c569b7627a9372686f1f77d73e8660" class="m-doc-self">kAlpha</a> <span class="m-label m-primary">constexpr</span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="ae152a095d2dd1a6dd41ef8ad39c26e19"><div>
+            <h3>
+              int detail::<wbr />dtoa_impl::<wbr /><a href="#ae152a095d2dd1a6dd41ef8ad39c26e19" class="m-doc-self">kGamma</a> <span class="m-label m-primary">constexpr</span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;lib/nlohmann/json.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>CircuitGenGenerator. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>
