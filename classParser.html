@@ -52,7 +52,6 @@
           Parser <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8hpp.html">&lt;Parser.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -65,27 +64,28 @@
             </li>
           </ul>
         </div>
+<p>class <a href="classParser.html" class="m-doc">Parser</a></p>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a50e4d814174c9b009e77181cd7abf209">
-              <span class="m-doc-wrap-bumper"><a href="#a50e4d814174c9b009e77181cd7abf209" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression,
-              const std::map&lt;std::string, std::vector&lt;int&gt;&gt;&amp; i_info)</span>
+            <dt id="ac125790430e44895143aa868377ebb56">
+              <span class="m-doc-wrap-bumper"><a href="#ac125790430e44895143aa868377ebb56" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression,
+              const std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;&amp; i_info)</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a03e02d51f8ea1cd579d7558c184443f3">
-              <span class="m-doc-wrap-bumper"><a href="#a03e02d51f8ea1cd579d7558c184443f3" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions,
-              const std::map&lt;std::string, std::vector&lt;int&gt;&gt;&amp; i_info)</span>
+            <dt id="a05491695a0ef40568716f046c5a557eb">
+              <span class="m-doc-wrap-bumper"><a href="#a05491695a0ef40568716f046c5a557eb" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions,
+              const std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;&amp; i_info)</span>
             </dt>
             <dd><span></span></dd>
             <dt id="adebcb112980269b90f9b476a5d8ca64a">
               <span class="m-doc-wrap-bumper"><a href="#adebcb112980269b90f9b476a5d8ca64a" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression,
-              const <a href="Parser_8hpp.html#acc732d3a2c1ab5f7d94419a55affee08" class="m-doc">GatesInfo</a>&amp; i_info)</span>
+              const <a href="Parser_8hpp.html#ac329a2734056446e2014455691347c87" class="m-doc">GatesInfo</a>&amp; i_info)</span>
             </dt>
             <dd><span></span></dd>
             <dt id="a780c2dc26dd90952984fd0ff8ce6d2bd">
               <span class="m-doc-wrap-bumper"><a href="#a780c2dc26dd90952984fd0ff8ce6d2bd" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions,
-              const <a href="Parser_8hpp.html#acc732d3a2c1ab5f7d94419a55affee08" class="m-doc">GatesInfo</a>&amp; i_info)</span>
+              const <a href="Parser_8hpp.html#ac329a2734056446e2014455691347c87" class="m-doc">GatesInfo</a>&amp; i_info)</span>
             </dt>
             <dd><span></span></dd>
             <dt id="a5208129b497bfdf7c8ecceeb70e4bba8">
@@ -98,14 +98,6 @@
             <dd><span></span></dd>
             <dt id="aaf729e2242d0c651412faea209cb879f">
               <span class="m-doc-wrap-bumper"><a href="#aaf729e2242d0c651412faea209cb879f" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap"><a href="classParser.html" class="m-doc">Parser</a>&amp;&amp; other) <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a19e5fef79c5e703b18464e18acf3a2a4" class="m-doc">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a3ddf263d00e942d9b296cf72ff77418b" class="m-doc">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions)</span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -121,97 +113,155 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a32a46aa1930b03db3f9386e7cd823eeb" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classParser.html" class="m-doc">Parser</a>&amp;&amp; other) -&gt; <a href="classParser.html" class="m-doc">Parser</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a4cea924dba7f7975cd4c4644633ead5e">
-              <span class="m-doc-wrap-bumper">auto <a href="#a4cea924dba7f7975cd4c4644633ead5e" class="m-doc-self">getGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6b489a7062dcddbb8e04b2a0f8e77ba1" class="m-doc">getGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            </dt>
+            <dd>getGraph Get the graph object This method returns a pointer to the graph object associated with the <a href="classParser.html" class="m-doc">Parser</a> instance</dd>
+            <dt id="a0c1744b41606f8601e0c6ed1c6f99dc1">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0c1744b41606f8601e0c6ed1c6f99dc1" class="m-doc-self">splitLogicExpression</a>(</span><span class="m-doc-wrap">std::string i_expr) -&gt; std::pair&lt;int32_t, std::vector&lt;std::string&gt;&gt;</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a4fd50e46000940a154a27c8ac8010b30">
-              <span class="m-doc-wrap-bumper">auto <a href="#a4fd50e46000940a154a27c8ac8010b30" class="m-doc-self">splitLogicExpression</a>(</span><span class="m-doc-wrap">std::string i_expr) -&gt; std::pair&lt;int32_t, std::vector&lt;std::string&gt;&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ae2686bf3fdb12a709732363745943425">
-              <span class="m-doc-wrap-bumper">auto <a href="#ae2686bf3fdb12a709732363745943425" class="m-doc-self">multipleVerteciesToOne</a>(</span><span class="m-doc-wrap">std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; curLayout,
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae2686bf3fdb12a709732363745943425" class="m-doc">multipleVerteciesToOne</a>(</span><span class="m-doc-wrap">std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; curLayout,
               <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> operation,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> graph) -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
+              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> graph) -&gt; <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a4d5f1bc99199b99ef027f0a3a698a99f">
-              <span class="m-doc-wrap-bumper">auto <a href="#a4d5f1bc99199b99ef027f0a3a698a99f" class="m-doc-self">parseToVertex</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr) -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a3602d3fde1e401b5fb352250232800b0">
-              <span class="m-doc-wrap-bumper">auto <a href="#a3602d3fde1e401b5fb352250232800b0" class="m-doc-self">parseAll</a>(</span><span class="m-doc-wrap">) -&gt; bool</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a0ddde84ac4684442a5a4d222453887c1">
-              <span class="m-doc-wrap-bumper">void <a href="#a0ddde84ac4684442a5a4d222453887c1" class="m-doc-self">setGatesInputsInfo</a>(</span><span class="m-doc-wrap">const std::map&lt;std::string, std::vector&lt;int&gt;&gt;&amp; i_info)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="aa3aac879ba833cb3d0e637e04bca631c">
-              <span class="m-doc-wrap-bumper">void <a href="#aa3aac879ba833cb3d0e637e04bca631c" class="m-doc-self">setGatesInputsInfo</a>(</span><span class="m-doc-wrap">const <a href="Parser_8hpp.html#acc732d3a2c1ab5f7d94419a55affee08" class="m-doc">GatesInfo</a>&amp; i_info)</span>
-            </dt>
-            <dd><span></span></dd>
+            <dd>multipleVerteciesToOne This method takes a vector of vertices representing the current layout, combines them into a single vertex using the specified logical operation, and returns the resulting vertex</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a4cea924dba7f7975cd4c4644633ead5e" class="m-doc">getGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a4d5f1bc99199b99ef027f0a3a698a99f" class="m-doc">parseToVertex</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr) -&gt; <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
             </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a84c6d41d243f2cd350a160e244be6a44" class="m-doc">splitLogicExpression</a>(</span><span class="m-doc-wrap">std::string i_expr) -&gt; std::pair&lt;int, std::vector&lt;std::string&gt;&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a71c1a8dc870186065f5be80fcf521508" class="m-doc">parse</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr) -&gt; bool</span>
-            </dt>
-            <dd><span></span></dd>
+            <dd>parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within the graph. It recursively parses sub-expressions until it constructs the complete expression tree</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3602d3fde1e401b5fb352250232800b0" class="m-doc">parseAll</a>(</span><span class="m-doc-wrap">) -&gt; bool</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>parseAll Parse all logical expressions and construct the graph. This method initializes a new oriented graph and iterates through all logical expressions stored in the <code>d_logExpressions</code> member variable. For each expression, it checks if it has balanced brackets using the <code>createBrackets</code> method. If the brackets are balanced, it calls the <code>parseToVertex</code> method to parse the expression and construct the corresponding vertex in the graph. If parsing fails for any expression, the method returns false. Otherwise, it returns true indicating successful parsing of all expressions.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a0a27158ce7c8ca578b82140b4239bd26" class="m-doc">setGatesInputsInfo</a>(</span><span class="m-doc-wrap">const std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;&amp; i_info)</span>
+            </dt>
+            <dd>setGatesInputsInfo Set information about gates inputs</dd>
+            <dt id="aa3aac879ba833cb3d0e637e04bca631c">
+              <span class="m-doc-wrap-bumper">void <a href="#aa3aac879ba833cb3d0e637e04bca631c" class="m-doc-self">setGatesInputsInfo</a>(</span><span class="m-doc-wrap">const <a href="Parser_8hpp.html#ac329a2734056446e2014455691347c87" class="m-doc">GatesInfo</a>&amp; i_info)</span>
+            </dt>
+            <dd>setGatesInputsInfo TO DO: Analog setGatesInputsInfo</dd>
           </dl>
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a19e5fef79c5e703b18464e18acf3a2a4"><div>
+          <section class="m-doc-details" id="a6b489a7062dcddbb8e04b2a0f8e77ba1"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a19e5fef79c5e703b18464e18acf3a2a4" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::string&amp; i_logExpression)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
+              <span class="m-doc-wrap-bumper"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6b489a7062dcddbb8e04b2a0f8e77ba1" class="m-doc-self">getGraph</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
-            <p><span></span></p>
+            <p>getGraph Get the graph object This method returns a pointer to the graph object associated with the <a href="classParser.html" class="m-doc">Parser</a> instance</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>A pointer to the graph object</td>
+                </tr>
+              </tfoot>
+            </table>
           </div></section>
-          <section class="m-doc-details" id="a3ddf263d00e942d9b296cf72ff77418b"><div>
+          <section class="m-doc-details" id="ae2686bf3fdb12a709732363745943425"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3ddf263d00e942d9b296cf72ff77418b" class="m-doc-self">Parser</a>(</span><span class="m-doc-wrap">const std::vector&lt;std::string&gt;&amp; i_logExpressions)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
+              <span class="m-doc-wrap-bumper"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae2686bf3fdb12a709732363745943425" class="m-doc-self">multipleVerteciesToOne</a>(</span><span class="m-doc-wrap">std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; curLayout,
+              <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> operation,
+              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> graph)</span></span>
             </h3>
-            <p><span></span></p>
+            <p>multipleVerteciesToOne This method takes a vector of vertices representing the current layout, combines them into a single vertex using the specified logical operation, and returns the resulting vertex</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">curLayout</td>
+                  <td>The vector of vertices representing the current layout</td>
+                </tr>
+                <tr>
+                  <td>operation</td>
+                  <td>The logical operation to apply</td>
+                </tr>
+                <tr>
+                  <td>graph</td>
+                  <td>A pointer to the graph object</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>A pointer to the resulting vertex after combining the input vertices</p><pre class="m-code"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">VertexPtr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">vertex1</span><span class="p">,</span><span class="w"> </span><span class="n">vertex2</span><span class="p">,</span><span class="w"> </span><span class="n">vertex3</span><span class="p">};</span>
+<span class="n">Gates</span><span class="w"> </span><span class="n">operation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Gates</span><span class="o">::</span><span class="n">AND</span><span class="p">;</span>
+<span class="n">GraphPtr</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Graph</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">Parser</span><span class="w"> </span><span class="n">parser</span><span class="p">;</span>
+<span class="n">VertexPtr</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parser</span><span class="p">.</span><span class="n">multipleVerteciesToOne</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span>
+<span class="n">graph</span><span class="p">);</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
           </div></section>
-          <section class="m-doc-details" id="a4cea924dba7f7975cd4c4644633ead5e"><div>
+          <section class="m-doc-details" id="a4d5f1bc99199b99ef027f0a3a698a99f"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"><a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4cea924dba7f7975cd4c4644633ead5e" class="m-doc-self">getGraph</a>(</span><span class="m-doc-wrap">) const</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
+              <span class="m-doc-wrap-bumper"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4d5f1bc99199b99ef027f0a3a698a99f" class="m-doc-self">parseToVertex</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr)</span></span>
             </h3>
-            <p><span></span></p>
-          </div></section>
-          <section class="m-doc-details" id="a84c6d41d243f2cd350a160e244be6a44"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::pair&lt;int, std::vector&lt;std::string&gt;&gt; Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a84c6d41d243f2cd350a160e244be6a44" class="m-doc-self">splitLogicExpression</a>(</span><span class="m-doc-wrap">std::string i_expr)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
-            </h3>
-            <p><span></span></p>
-          </div></section>
-          <section class="m-doc-details" id="a71c1a8dc870186065f5be80fcf521508"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a71c1a8dc870186065f5be80fcf521508" class="m-doc-self">parse</a>(</span><span class="m-doc-wrap">const std::string&amp; i_expr)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
-            </h3>
-            <p><span></span></p>
+            <p>parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within the graph. It recursively parses sub-expressions until it constructs the complete expression tree</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_expr</td>
+                  <td>The logical expression to parse</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>A pointer to the resulting vertex representing the expression, or nullptr on failure</p><pre class="m-code"><span class="n">Parser</span><span class="w"> </span><span class="n">parser</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;output A AND B&quot;</span><span class="p">;</span>
+<span class="n">VertexPtr</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parser</span><span class="p">.</span><span class="n">parseToVertex</span><span class="p">(</span><span class="n">expression</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Vertex successfully created.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to parse the expression.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
           </div></section>
           <section class="m-doc-details" id="a3602d3fde1e401b5fb352250232800b0"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3602d3fde1e401b5fb352250232800b0" class="m-doc-self">parseAll</a>(</span><span class="m-doc-wrap">)</span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="Parser_8h.html">&lt;src/generators/Genetic/Parser.h&gt;</a></div>
             </h3>
-            <p><span></span></p>
+            <p>parseAll Parse all logical expressions and construct the graph. This method initializes a new oriented graph and iterates through all logical expressions stored in the <code>d_logExpressions</code> member variable. For each expression, it checks if it has balanced brackets using the <code>createBrackets</code> method. If the brackets are balanced, it calls the <code>parseToVertex</code> method to parse the expression and construct the corresponding vertex in the graph. If parsing fails for any expression, the method returns false. Otherwise, it returns true indicating successful parsing of all expressions.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>True if parsing is successful for all expressions, false otherwise <code class="m-code"><span class="n">TO</span><span class="w"> </span><span class="n">DO</span><span class="o">:</span></code></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a0a27158ce7c8ca578b82140b4239bd26"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void Parser::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0a27158ce7c8ca578b82140b4239bd26" class="m-doc-self">setGatesInputsInfo</a>(</span><span class="m-doc-wrap">const std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;&amp; i_info)</span></span>
+            </h3>
+            <p>setGatesInputsInfo Set information about gates inputs</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_info</td>
+                  <td>A map where keys are gate names as strings and values are vectors of integers specifying the number of inputs for each gate</td>
+                </tr>
+              </tbody>
+            </table>
           </div></section>
         </section>
       </div>

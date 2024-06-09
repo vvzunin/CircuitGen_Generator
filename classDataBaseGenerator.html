@@ -52,7 +52,6 @@
           DataBaseGenerator <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="DataBaseGenerator_8hpp.html">&lt;DataBaseGenerator.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -65,25 +64,86 @@
             </li>
           </ul>
         </div>
+<p>class <a href="classDataBaseGenerator.html" class="m-doc">DataBaseGenerator</a></p>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a00481fbb8c06d03bda84618f1423df59">
-              <span class="m-doc-wrap-bumper"><a href="#a00481fbb8c06d03bda84618f1423df59" class="m-doc-self">DataBaseGenerator</a>(</span><span class="m-doc-wrap">const <a href="classDataBaseGeneratorParameters.html" class="m-doc">DataBaseGeneratorParameters</a>&amp; i_parameters)</span>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a00481fbb8c06d03bda84618f1423df59" class="m-doc">DataBaseGenerator</a>(</span><span class="m-doc-wrap">const <a href="classDataBaseGeneratorParameters.html" class="m-doc">DataBaseGeneratorParameters</a>&amp; i_parameters)</span>
             </dt>
-            <dd><span></span></dd>
+            <dd><a href="classDataBaseGenerator.html" class="m-doc">DataBaseGenerator</a>.</dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="ad9df9bf36ad7e5b90d53a5f89c1ed55b">
-              <span class="m-doc-wrap-bumper">void <a href="#ad9df9bf36ad7e5b90d53a5f89c1ed55b" class="m-doc-self">generateType</a>(</span><span class="m-doc-wrap">const <a href="classDataBaseGeneratorParameters.html" class="m-doc">DataBaseGeneratorParameters</a>&amp; i_gp,
-              bool parallel = true,
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ad00608fdb8d0d6eaffc6320400c8639f" class="m-doc">generateTypeForGraph</a>(</span><span class="m-doc-wrap">const <a href="classDataBaseGeneratorParameters.html" class="m-doc">DataBaseGeneratorParameters</a>&amp; i_gp,
+              uint8_t parallel = 1,
+              bool createIdDirectories = true) -&gt; <a href="DataBaseGenerator_8hpp.html#af365e9276e78fb465d972f19c76ddea1" class="m-doc">ResultGraph</a></span>
+            </dt>
+            <dd>generateTypeForGraph The generate Type method of the DataBase Generator class is responsible for generating a database of a certain type based on the passed parameters.</dd>
+            <dt id="a41bed423d71ea79c853e01d97cafa5b0">
+              <span class="m-doc-wrap-bumper">auto <a href="#a41bed423d71ea79c853e01d97cafa5b0" class="m-doc-self">generateTypeForPath</a>(</span><span class="m-doc-wrap">const <a href="classDataBaseGeneratorParameters.html" class="m-doc">DataBaseGeneratorParameters</a>&amp; i_gp,
+              uint8_t parallel = 1,
+              bool createIdDirectories = true) -&gt; <a href="DataBaseGenerator_8hpp.html#a142eeb582b980f0e5e1283e0ea989e99" class="m-doc">ResultPath</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a5a2d99c28cedf5f11b974682bd11b2d6">
+              <span class="m-doc-wrap-bumper">void <a href="#a5a2d99c28cedf5f11b974682bd11b2d6" class="m-doc-self">generateTypeDefault</a>(</span><span class="m-doc-wrap">const <a href="classDataBaseGeneratorParameters.html" class="m-doc">DataBaseGeneratorParameters</a>&amp; i_gp,
+              uint8_t parallel = 1,
               bool createIdDirectories = true)</span>
             </dt>
             <dd><span></span></dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a00481fbb8c06d03bda84618f1423df59"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> DataBaseGenerator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a00481fbb8c06d03bda84618f1423df59" class="m-doc-self">DataBaseGenerator</a>(</span><span class="m-doc-wrap">const <a href="classDataBaseGeneratorParameters.html" class="m-doc">DataBaseGeneratorParameters</a>&amp; i_parameters)</span></span>
+            </h3>
+            <p><a href="classDataBaseGenerator.html" class="m-doc">DataBaseGenerator</a>.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_parameters</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+<aside class="m-note m-dim"><h4><a href="todo.html#_todo000006" class="m-doc">Todo</a></h4><p>: description default constructor</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="ad00608fdb8d0d6eaffc6320400c8639f"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="DataBaseGenerator_8hpp.html#af365e9276e78fb465d972f19c76ddea1" class="m-doc">ResultGraph</a> DataBaseGenerator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad00608fdb8d0d6eaffc6320400c8639f" class="m-doc-self">generateTypeForGraph</a>(</span><span class="m-doc-wrap">const <a href="classDataBaseGeneratorParameters.html" class="m-doc">DataBaseGeneratorParameters</a>&amp; i_gp,
+              uint8_t parallel = 1,
+              bool createIdDirectories = true)</span></span>
+            </h3>
+            <p>generateTypeForGraph The generate Type method of the DataBase Generator class is responsible for generating a database of a certain type based on the passed parameters.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_gp</td>
+                  <td>An object of the DataBase Generator Parameters class containing parameters for generating a database</td>
+                </tr>
+                <tr>
+                  <td>parallel</td>
+                  <td>A flag indicating whether the generation should be performed in parallel. If set to true, generation will occur in parallel; otherwise, generation will be sequential</td>
+                </tr>
+                <tr>
+                  <td>createIdDirectories</td>
+                  <td>A flag indicating whether to create directories with IDs. If set to true, directories with IDs will be created, otherwise not.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

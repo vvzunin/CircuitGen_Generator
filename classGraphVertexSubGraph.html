@@ -65,28 +65,28 @@
             </li>
           </ul>
         </div>
-<p>class <a href="classGraphVertexSubGraph.html" class="m-doc">GraphVertexSubGraph</a> It is a class, having a subGruph pointer inside. Is used for storing this pointer for providing Grpah connectivity</p>
+<p>class <a href="classGraphVertexSubGraph.html" class="m-doc">GraphVertexSubGraph</a> It is a class, having a subGruph pointer inside. Is used for storing this pointer for providing graph connectivity</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
             <dt>
               class <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>
             </dt>
-            <dd><span></span></dd>
+            <dd></dd>
           </dl>
         </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
             <dt id="a677aa415395352cad6108576be2e76fe">
-              <span class="m-doc-wrap-bumper"><a href="#a677aa415395352cad6108576be2e76fe" class="m-doc-self">GraphVertexSubGraph</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
+              <span class="m-doc-wrap-bumper"><a href="#a677aa415395352cad6108576be2e76fe" class="m-doc-self">GraphVertexSubGraph</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph,
+              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
             </dt>
             <dd><span></span></dd>
             <dt id="ad7bdd7c92d76b0d92ef8cc8ab99dfba6">
-              <span class="m-doc-wrap-bumper"><a href="#ad7bdd7c92d76b0d92ef8cc8ab99dfba6" class="m-doc-self">GraphVertexSubGraph</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph,
+              <span class="m-doc-wrap-bumper"><a href="#ad7bdd7c92d76b0d92ef8cc8ab99dfba6" class="m-doc-self">GraphVertexSubGraph</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph,
               const std::string&amp; i_name,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
+              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -97,11 +97,11 @@
             <dt id="af18b1a71d768e2c8c01ea93a57995f7a">
               <span class="m-doc-wrap-bumper">auto <a href="#af18b1a71d768e2c8c01ea93a57995f7a" class="m-doc-self">updateValue</a>(</span><span class="m-doc-wrap">) -&gt; char <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a3ef7ccb93efd390c6f90aba11eee2c88">
-              <span class="m-doc-wrap-bumper">auto <a href="#a3ef7ccb93efd390c6f90aba11eee2c88" class="m-doc-self">toVerilog</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">override</span></span>
+            <dd>updateValue TO DO:</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3ef7ccb93efd390c6f90aba11eee2c88" class="m-doc">toVerilog</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd><span></span></dd>
+            <dd>toVerilog Generates Verilog code for the vertex</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a2ea1ba66149ba38de143dd849497206a" class="m-doc">toVerilog</a>(</span><span class="m-doc-wrap">std::string i_path,
               std::string i_filename = &quot;&quot;) -&gt; std::pair&lt;bool, std::string&gt;</span>
@@ -112,29 +112,63 @@
             </dt>
             <dd>This method is used as a substructure for <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a> methods.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a1b18f07b44a7968808fb465a553ff2c8" class="m-doc">toGraphML</a>(</span><span class="m-doc-wrap">int i_nesting = 0) const -&gt; std::string</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a57c98608bb17bca41e281904aca5f50e" class="m-doc">toGraphML</a>(</span><span class="m-doc-wrap">uint16_t i_indent = 0,
+              std::string i_prefix = &quot;&quot;) const -&gt; std::string</span>
             </dt>
             <dd>This method is used as a substructure for <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a> methods.</dd>
             <dt id="aa17d5ad4d74428f86f76b2388a02c156">
               <span class="m-doc-wrap-bumper">auto <a href="#aa17d5ad4d74428f86f76b2388a02c156" class="m-doc-self">getInstance</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd>This method is used as a substructure for <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a> methods.</dd>
-            <dt id="adba79986a7c57da850b044bb1d34157e">
-              <span class="m-doc-wrap-bumper">auto <a href="#adba79986a7c57da850b044bb1d34157e" class="m-doc-self">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#adba79986a7c57da850b044bb1d34157e" class="m-doc">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd><span></span></dd>
+            <dd>calculateHash Calculates the hash value for the vertex based on its outgoing connections.</dd>
             <dt id="a26ab0b39eb1c5cfc4b2e565d1f3e784f">
-              <span class="m-doc-wrap-bumper">void <a href="#a26ab0b39eb1c5cfc4b2e565d1f3e784f" class="m-doc-self">setSubGraph</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph)</span>
+              <span class="m-doc-wrap-bumper">void <a href="#a26ab0b39eb1c5cfc4b2e565d1f3e784f" class="m-doc-self">setSubGraph</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph)</span>
             </dt>
             <dd><span></span></dd>
             <dt id="ada55795fde0a7004c48abfd2c1aae1d7">
-              <span class="m-doc-wrap-bumper">auto <a href="#ada55795fde0a7004c48abfd2c1aae1d7" class="m-doc-self">getSubGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#ada55795fde0a7004c48abfd2c1aae1d7" class="m-doc-self">getSubGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="abc32bace61c67e2bf2168f5b87057d98">
+              <span class="m-doc-wrap-bumper">auto <a href="#abc32bace61c67e2bf2168f5b87057d98" class="m-doc-self">getOutputBuffersByOuterInput</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_outerInput) const -&gt; std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a689da66c9ebbb21d9b33ae18fb39a9a6">
+              <span class="m-doc-wrap-bumper">auto <a href="#a689da66c9ebbb21d9b33ae18fb39a9a6" class="m-doc-self">getOuterInputsByOutputBuffer</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_outputBuffer) const -&gt; std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
             </dt>
             <dd><span></span></dd>
           </dl>
         </section>
         <section>
           <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a3ef7ccb93efd390c6f90aba11eee2c88"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string GraphVertexSubGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3ef7ccb93efd390c6f90aba11eee2c88" class="m-doc-self">toVerilog</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <p>toVerilog Generates Verilog code for the vertex</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td><p>A string containing Verilog code for the vertex, or an empty string if the vertex type is not &quot;output&quot; or if the incoming connection is invalid</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class with the type</span>
+<span class="s">&quot;output&quot;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="s">&quot;output_vertex&quot;</span>
+<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">outputVertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;output_vertex&quot;</span><span class="p">);</span>
+<span class="c1">// Creating another vertex with the type &quot;input&quot; and the name</span>
+<span class="s">&quot;input_vertex&quot;</span><span class="w"> </span><span class="n">VertexPtr</span><span class="w"> </span><span class="n">inputVertex</span><span class="w"> </span><span class="o">=</span>
+<span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;input_vertex&quot;</span><span class="p">);</span>
+<span class="c1">// Setting the input connection for the vertex &quot;output_vertex&quot;</span>
+<span class="n">outputVertex</span><span class="p">.</span><span class="n">addVertexToInConnections</span><span class="p">(</span><span class="n">inputVertex</span><span class="p">);</span>
+<span class="c1">// Generating the Verilog code for the vertex &quot;output_vertex&quot;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">verilogCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outputVertex</span><span class="p">.</span><span class="n">toVerilog</span><span class="p">();</span>
+<span class="c1">// Display the generated Verilog code on the screen</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Generated Verilog code:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">verilogCode</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
           <section class="m-doc-details" id="a2ea1ba66149ba38de143dd849497206a"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::pair&lt;bool, std::string&gt; GraphVertexSubGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2ea1ba66149ba38de143dd849497206a" class="m-doc-self">toVerilog</a>(</span><span class="m-doc-wrap">std::string i_path,
@@ -152,7 +186,7 @@
                 </tr>
                 <tr>
                   <td>i_filename</td>
-                  <td>name of file to be created (default is same as grpah name)</td>
+                  <td>name of file to be created (default is same as graph name)</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -175,14 +209,21 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">i_fileStream</td>
-                  <td></td>
+                  <td>TO DO:</td>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>TO DO:</td>
+                </tr>
+              </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a1b18f07b44a7968808fb465a553ff2c8"><div>
+          <section class="m-doc-details" id="a57c98608bb17bca41e281904aca5f50e"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">std::string GraphVertexSubGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1b18f07b44a7968808fb465a553ff2c8" class="m-doc-self">toGraphML</a>(</span><span class="m-doc-wrap">int i_nesting = 0) const</span></span>
+              <span class="m-doc-wrap-bumper">std::string GraphVertexSubGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a57c98608bb17bca41e281904aca5f50e" class="m-doc-self">toGraphML</a>(</span><span class="m-doc-wrap">uint16_t i_indent = 0,
+              std::string i_prefix = &quot;&quot;) const</span></span>
             </h3>
             <p>This method is used as a substructure for <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a> methods.</p>
             <table class="m-table m-fullwidth m-flat">
@@ -191,10 +232,49 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">i_nesting</td>
+                  <td style="width: 1%">i_indent</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>i_prefix</td>
                   <td></td>
                 </tr>
               </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="adba79986a7c57da850b044bb1d34157e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string GraphVertexSubGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#adba79986a7c57da850b044bb1d34157e" class="m-doc-self">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <p>calculateHash Calculates the hash value for the vertex based on its outgoing connections.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">recalculate</td>
+                  <td>Flag indicating whether to recalculate the hash value even if it has already been calculated. If true, the hash value will be recalculated. If false and the hash value has already been calculated, the cached hash value will be returned without recalculation.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>The hash value of the vertex based on its outgoing connections.</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class</span>
+<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">vertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex1&quot;</span><span class="p">);</span>
+<span class="c1">// Creating two more vertices</span>
+<span class="n">VertexPtr</span><span class="w"> </span><span class="n">vertex2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span>
+<span class="s">&quot;vertex2&quot;</span><span class="p">);</span><span class="w"> </span><span class="n">VertexPtr</span><span class="w"> </span><span class="n">vertex3</span><span class="w"> </span><span class="o">=</span>
+<span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vertex3&quot;</span><span class="p">);</span>
+<span class="c1">// Adding the second and third vertices to the output connections of the</span>
+<span class="n">first</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">addVertexToOutConnections</span><span class="p">(</span><span class="n">vertex2</span><span class="p">);</span>
+<span class="n">vertex</span><span class="p">.</span><span class="n">addVertexToOutConnections</span><span class="p">(</span><span class="n">vertex3</span><span class="p">);</span>
+<span class="c1">// Calculating the hash for the first vertex</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">hashValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">calculateHash</span><span class="p">();</span>
+<span class="c1">// Output of the result</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hash for the first vertex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">hashValue</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
+                </tr>
+              </tfoot>
             </table>
           </div></section>
         </section>

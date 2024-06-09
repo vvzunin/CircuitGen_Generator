@@ -80,13 +80,13 @@
           <dl class="m-doc">
             <dt id="a8c35f68d3577eea008ad0ac468b631d7">
               <span class="m-doc-wrap-bumper"><a href="#a8c35f68d3577eea008ad0ac468b631d7" class="m-doc-self">GraphVertexConstant</a>(</span><span class="m-doc-wrap">char i_const,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
+              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
             </dt>
             <dd><span></span></dd>
             <dt id="a54fad0d4a1105992b6b95ba000831f9f">
               <span class="m-doc-wrap-bumper"><a href="#a54fad0d4a1105992b6b95ba000831f9f" class="m-doc-self">GraphVertexConstant</a>(</span><span class="m-doc-wrap">char i_const,
               const std::string i_name,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
+              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -98,11 +98,43 @@
               <span class="m-doc-wrap-bumper">void <a href="#af4cb892fd50759407da39a96c045e7d1" class="m-doc-self">updateLevel</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
             <dd>updateLevel updates the level of the current vertex in the graph based on the levels of its incoming connections</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1e39779b684f06740e76dda4dd2e2004" class="m-doc">toVerilog</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd>toVerilog Generates Verilog code for the vertex</dd>
             <dt id="afb5a7f4d443efca31a804ed2f31e648c">
               <span class="m-doc-wrap-bumper">auto <a href="#afb5a7f4d443efca31a804ed2f31e648c" class="m-doc-self">getInstance</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd><span></span></dd>
+            <dd>getInstance TO DO:</dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a1e39779b684f06740e76dda4dd2e2004"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string GraphVertexConstant::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1e39779b684f06740e76dda4dd2e2004" class="m-doc-self">toVerilog</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <p>toVerilog Generates Verilog code for the vertex</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td><p>A string containing Verilog code for the vertex, or an empty string if the vertex type is not &quot;output&quot; or if the incoming connection is invalid</p><pre class="m-code"><span class="c1">// Creating an instance of the GraphVertexBase class with the type</span>
+<span class="s">&quot;output&quot;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="s">&quot;output_vertex&quot;</span>
+<span class="n">GraphVertexBase</span><span class="w"> </span><span class="n">outputVertex</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;output_vertex&quot;</span><span class="p">);</span>
+<span class="c1">// Creating another vertex with the type &quot;input&quot; and the name</span>
+<span class="s">&quot;input_vertex&quot;</span><span class="w"> </span><span class="n">VertexPtr</span><span class="w"> </span><span class="n">inputVertex</span><span class="w"> </span><span class="o">=</span>
+<span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">GraphVertexBase</span><span class="o">&gt;</span><span class="p">(</span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;input_vertex&quot;</span><span class="p">);</span>
+<span class="c1">// Setting the input connection for the vertex &quot;output_vertex&quot;</span>
+<span class="n">outputVertex</span><span class="p">.</span><span class="n">addVertexToInConnections</span><span class="p">(</span><span class="n">inputVertex</span><span class="p">);</span>
+<span class="c1">// Generating the Verilog code for the vertex &quot;output_vertex&quot;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">verilogCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outputVertex</span><span class="p">.</span><span class="n">toVerilog</span><span class="p">();</span>
+<span class="c1">// Display the generated Verilog code on the screen</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Generated Verilog code:</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">verilogCode</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

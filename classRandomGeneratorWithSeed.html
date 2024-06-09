@@ -52,7 +52,6 @@
           RandomGeneratorWithSeed <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="RandomGeneratorWithSeed_8hpp.html">&lt;RandomGeneratorWithSeed.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -65,6 +64,7 @@
             </li>
           </ul>
         </div>
+<p>class <a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a> The Random Generator With Seed class is a C++ class designed to generate random numbers using a specified seed value</p>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
@@ -97,25 +97,25 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a5274590cc6d2d119a96b56cc4b089c1e" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a>&amp;&amp; other) -&gt; <a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a85e24c30cb4734b8899d9654c731513e">
-              <span class="m-doc-wrap-bumper">auto <a href="#a85e24c30cb4734b8899d9654c731513e" class="m-doc-self">getSeed</a>(</span><span class="m-doc-wrap">) const -&gt; std::uint_fast32_t</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a85e24c30cb4734b8899d9654c731513e" class="m-doc">getSeed</a>(</span><span class="m-doc-wrap">) const -&gt; std::uint_fast32_t</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>getSeed Get the current seed value This method returns the current seed value used to initialize the random number generator</dd>
             <dt id="a7600f3ce0a0d651e7fe28695db1d59b7">
               <span class="m-doc-wrap-bumper">void <a href="#a7600f3ce0a0d651e7fe28695db1d59b7" class="m-doc-self">setSeed</a>(</span><span class="m-doc-wrap">std::uint_fast32_t i_seed)</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="af94dddcdccd1ed551b1a6e6b3fdaedd6">
-              <span class="m-doc-wrap-bumper">auto <a href="#af94dddcdccd1ed551b1a6e6b3fdaedd6" class="m-doc-self">getRandInt</a>(</span><span class="m-doc-wrap">int lower,
-              int upper,
-              bool inclusively = false) -&gt; int</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a124a925dff79eb0fd459a6029432457d" class="m-doc">getRandInt</a>(</span><span class="m-doc-wrap">int32_t lower,
+              int32_t upper,
+              bool inclusively = false) -&gt; int32_t</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a8e6c9376aac7f4ce3fca4debf99bd545">
-              <span class="m-doc-wrap-bumper">auto <a href="#a8e6c9376aac7f4ce3fca4debf99bd545" class="m-doc-self">getRandomIntList</a>(</span><span class="m-doc-wrap">int i_n,
-              int i_minNumber,
-              int i_maxNumber,
-              bool repite = false) -&gt; std::vector&lt;int&gt;</span>
+            <dd>getRandInt Method to generate a random integer within a specified range.</dd>
+            <dt id="a549caf270995b4e1b787a956bcdd33a9">
+              <span class="m-doc-wrap-bumper">auto <a href="#a549caf270995b4e1b787a956bcdd33a9" class="m-doc-self">getRandomIntList</a>(</span><span class="m-doc-wrap">size_t i_n,
+              int32_t i_minNumber,
+              int32_t i_maxNumber,
+              bool repite = false) -&gt; std::vector&lt;int32_t&gt;</span>
             </dt>
             <dd><span></span></dd>
             <dt id="ae4fc25f1e3e318fa18880f72ac7e2efe">
@@ -124,6 +124,56 @@
             </dt>
             <dd><span></span></dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a85e24c30cb4734b8899d9654c731513e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::uint_fast32_t RandomGeneratorWithSeed::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a85e24c30cb4734b8899d9654c731513e" class="m-doc-self">getSeed</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getSeed Get the current seed value This method returns the current seed value used to initialize the random number generator</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The seed value as a 32-bit unsigned integer.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a124a925dff79eb0fd459a6029432457d"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int32_t RandomGeneratorWithSeed::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a124a925dff79eb0fd459a6029432457d" class="m-doc-self">getRandInt</a>(</span><span class="m-doc-wrap">int32_t lower,
+              int32_t upper,
+              bool inclusively = false)</span></span>
+            </h3>
+            <p>getRandInt Method to generate a random integer within a specified range.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">lower</td>
+                  <td>The lower limit of the range of random integers, inclusive, from which to generate a number</td>
+                </tr>
+                <tr>
+                  <td>upper</td>
+                  <td>The upper limit of the range of random integers, inclusive, from which to generate a number</td>
+                </tr>
+                <tr>
+                  <td>inclusively</td>
+                  <td>flag indicating whether the upper limit of the range is inclusive. If set to true, the upper bound is also included in the range of random numbers, otherwise it is excluded from the range</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>dis The generated integer in the range between lower and upper *&zwj;/</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

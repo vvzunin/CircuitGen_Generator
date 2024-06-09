@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>src/generators/Genetic/Mutations/MutationParameters.h file | CircuitGenGenerator</title>
+  <title>src/generators/Genetic/Parents/Parents.hpp file | CircuitGenGenerator</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,7 +49,7 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a>/</span><span class="m-breadcrumb"><a href="dir_481ff30a04be567a95a44689a1b1c394.html">generators</a>/</span><span class="m-breadcrumb"><a href="dir_e3c8d96ee5422dfebba0adbcc79f988c.html">Genetic</a>/</span><span class="m-breadcrumb"><a href="dir_33314a63cc994dd7e7b226746e52baa8.html">Mutations</a>/</span>MutationParameters.h <span class="m-thin">file</span>
+          <span class="m-breadcrumb"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a>/</span><span class="m-breadcrumb"><a href="dir_481ff30a04be567a95a44689a1b1c394.html">generators</a>/</span><span class="m-breadcrumb"><a href="dir_e3c8d96ee5422dfebba0adbcc79f988c.html">Genetic</a>/</span><span class="m-breadcrumb"><a href="dir_ec16f3e28a27bac828e2c4cebefb614a.html">Parents</a>/</span>Parents.hpp <span class="m-thin">file</span>
         </h1>
         <p><span></span></p>
         <div class="m-block m-default">
@@ -58,31 +58,24 @@
             <li>
               Reference
               <ul>
-                <li><a href="#nested-classes">Classes</a></li>
-                <li><a href="#enum-members">Enums</a></li>
+                <li><a href="#func-members">Functions</a></li>
               </ul>
             </li>
           </ul>
         </div>
-        <section id="nested-classes">
-          <h2><a href="#nested-classes">Classes</a></h2>
+        <section id="func-members">
+          <h2><a href="#func-members">Functions</a></h2>
           <dl class="m-doc">
-            <dt>
-              class <a href="classMutationParameters.html" class="m-doc">MutationParameters</a>
+            <dt id="a9478d16361ede6f1796c35bfb0ad91fe">
+              <div class="m-doc-template">template&lt;typename Type, typename ParametersType&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a9478d16361ede6f1796c35bfb0ad91fe" class="m-doc-self">ParentsTypesWorker</a>(</span><span class="m-doc-wrap"><a href="classParentsParameters.html" class="m-doc">ParentsParameters</a> i_parentsParameters,
+              std::vector&lt;<a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;Type, ParametersType&gt;&gt; i_population) -&gt; std::vector&lt;int32_t&gt;</span>
             </dt>
             <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="enum-members">
-          <h2><a href="#enum-members">Enums</a></h2>
-          <dl class="m-doc">
-            <dt id="a7b01179572d8f7532b68a5aa847f0ad8">
-              <span class="m-doc-wrap-bumper">enum <a href="#a7b01179572d8f7532b68a5aa847f0ad8" class="m-doc-self">MutationTypes</a> { </span><span class="m-doc-wrap"><a href="#a7b01179572d8f7532b68a5aa847f0ad8ae27b0860dfa490c46dd387b06d21a04b" class="m-doc">Binary</a>,
-              <a href="#a7b01179572d8f7532b68a5aa847f0ad8abcf40a5c3b5276f29b78fd9e8362caac" class="m-doc">Density</a>,
-              <a href="#a7b01179572d8f7532b68a5aa847f0ad8adf7103ea05e13f63d980f53988df378c" class="m-doc">AccessionDel</a>,
-              <a href="#a7b01179572d8f7532b68a5aa847f0ad8adcc803f07b544ed606b5daa1f454403b" class="m-doc">InsertDel</a>,
-              <a href="#a7b01179572d8f7532b68a5aa847f0ad8a89fe455d57ae52cfe608090a0ffe2979" class="m-doc">Exchange</a>,
-              <a href="#a7b01179572d8f7532b68a5aa847f0ad8af89e673477625e3afc8d736d14cd268a" class="m-doc">Delete</a> }</span>
+            <dt id="aa0f6567dfb9a0622fc77f6ec2437fabe">
+              <div class="m-doc-template">template&lt;&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#aa0f6567dfb9a0622fc77f6ec2437fabe" class="m-doc-self">ParentsTypesWorker</a>(</span><span class="m-doc-wrap"><a href="classParentsParameters.html" class="m-doc">ParentsParameters</a> i_parentsParameters,
+              std::vector&lt;<a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt; i_population) -&gt; std::vector&lt;int32_t&gt;</span>
             </dt>
             <dd><span></span></dd>
           </dl>

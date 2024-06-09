@@ -64,7 +64,7 @@
             </li>
           </ul>
         </div>
-<p>class <a href="classCircuitParameters.html" class="m-doc">CircuitParameters</a></p><p>This is the detailed one. More details</p>
+<aside class="m-note m-dim"><h4><a href="todo.html#_todo000004" class="m-doc">Todo</a></h4><p>: to add desc fields of the class class <a href="classCircuitParameters.html" class="m-doc">CircuitParameters</a></p></aside><p>This is the detailed one. More details</p>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
@@ -77,32 +77,32 @@
         <section id="pub-attribs">
           <h2><a href="#pub-attribs">Public variables</a></h2>
           <dl class="m-doc">
-            <dt id="a17bcb9155be908afffe815b8e639d494">
-              std::string <a href="#a17bcb9155be908afffe815b8e639d494" class="m-doc-self">d_name</a>
+            <dt>
+              std::string <a href="#a17bcb9155be908afffe815b8e639d494" class="m-doc">d_name</a>
+            </dt>
+            <dd></dd>
+            <dt id="ad6ed8ab3c65d39cda236a0b75c451dd6">
+              uint32_t <a href="#ad6ed8ab3c65d39cda236a0b75c451dd6" class="m-doc-self">d_numInputs</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="aa57df8538aebe82bdb7a37b07f6bf4a6">
-              int <a href="#aa57df8538aebe82bdb7a37b07f6bf4a6" class="m-doc-self">d_numInputs</a>
+            <dt id="a5d7b6ee9ec714cb3e4a6ce1489dcf0a1">
+              uint32_t <a href="#a5d7b6ee9ec714cb3e4a6ce1489dcf0a1" class="m-doc-self">d_numConstants</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="adcd9ef49fbfae585bcfcca0d31219f2e">
-              int <a href="#adcd9ef49fbfae585bcfcca0d31219f2e" class="m-doc-self">d_numConstants</a>
+            <dt id="a747cca192eb74368b01b3ad58801b470">
+              uint32_t <a href="#a747cca192eb74368b01b3ad58801b470" class="m-doc-self">d_numOutputs</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a857f5ed40370b67f70dd9a03d755621f">
-              int <a href="#a857f5ed40370b67f70dd9a03d755621f" class="m-doc-self">d_numOutputs</a>
+            <dt id="ab631092bf27b68daceb30c05ddcfb2df">
+              uint32_t <a href="#ab631092bf27b68daceb30c05ddcfb2df" class="m-doc-self">d_maxLevel</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a0ca45c90c5dc0985d9c31945df6bc4f7">
-              unsigned <a href="#a0ca45c90c5dc0985d9c31945df6bc4f7" class="m-doc-self">d_maxLevel</a>
+            <dt id="a2f18767b9c1c0051e573a112c52f3aee">
+              uint32_t <a href="#a2f18767b9c1c0051e573a112c52f3aee" class="m-doc-self">d_numEdges</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="aaf75328d37df2ddb6cf3477eb1a56f5c">
-              int <a href="#aaf75328d37df2ddb6cf3477eb1a56f5c" class="m-doc-self">d_numEdges</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a64e5a8844e8b72fe057a600df3060c3d">
-              int <a href="#a64e5a8844e8b72fe057a600df3060c3d" class="m-doc-self">d_numGates</a>
+            <dt id="a014364f12c6062f4189be2b04977a99d">
+              uint32_t <a href="#a014364f12c6062f4189be2b04977a99d" class="m-doc-self">d_numGates</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a26eb9f67257163382c6322efc48a9e78">
@@ -117,15 +117,24 @@
               std::string <a href="#a3af2415d7e4ee5045f123141aad1c0ef" class="m-doc-self">d_hashCode</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="ab44bb0efcefc28d1eb0bb629c87b4c2e">
-              std::map&lt;std::string, int&gt; <a href="#ab44bb0efcefc28d1eb0bb629c87b4c2e" class="m-doc-self">d_numElementsOfEachType</a>
+            <dt id="ac9d5054c648a94ab4f01861ccb574f4d">
+              std::map&lt;std::string, size_t&gt; <a href="#ac9d5054c648a94ab4f01861ccb574f4d" class="m-doc-self">d_numElementsOfEachType</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a40a32c31a16c3c5d27833281723688ae">
-              std::map&lt;std::pair&lt;std::string, std::string&gt;, int&gt; <a href="#a40a32c31a16c3c5d27833281723688ae" class="m-doc-self">d_numEdgesOfEachType</a>
+            <dt id="a7ed2e196b277e339e6be24d6b243d50b">
+              std::map&lt;std::pair&lt;std::string, std::string&gt;, size_t&gt; <a href="#a7ed2e196b277e339e6be24d6b243d50b" class="m-doc-self">d_numEdgesOfEachType</a>
             </dt>
             <dd><span></span></dd>
           </dl>
+        </section>
+        <section>
+          <h2>Variable documentation</h2>
+          <section class="m-doc-details" id="a17bcb9155be908afffe815b8e639d494"><div>
+            <h3>
+              std::string CircuitParameters::<wbr /><a href="#a17bcb9155be908afffe815b8e639d494" class="m-doc-self">d_name</a>
+            </h3>
+<aside class="m-note m-dim"><h4><a href="todo.html#_todo000005" class="m-doc">Todo</a></h4><p>: rewrite getters and setters</p></aside>
+          </div></section>
         </section>
       </div>
     </div>

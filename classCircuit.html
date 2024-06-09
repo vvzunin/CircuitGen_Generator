@@ -69,7 +69,7 @@
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
             <dt id="a88e02d7334ce8e82c5314391ea00e7d0">
-              <span class="m-doc-wrap-bumper"><a href="#a88e02d7334ce8e82c5314391ea00e7d0" class="m-doc-self">Circuit</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> const i_graph,
+              <span class="m-doc-wrap-bumper"><a href="#a88e02d7334ce8e82c5314391ea00e7d0" class="m-doc-self">Circuit</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> const i_graph,
               const std::vector&lt;std::string&gt;&amp; i_logExpressions = {})</span>
             </dt>
             <dd><span></span></dd>
@@ -83,7 +83,7 @@
             </dt>
             <dd>computeHash A method for calculating the hash of a combinational scheme *&zwj;/</dd>
             <dt id="ae9c9469260b96d79be75ef5491e1d626">
-              <span class="m-doc-wrap-bumper">void <a href="#ae9c9469260b96d79be75ef5491e1d626" class="m-doc-self">updateCircuitParameters</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph)</span>
+              <span class="m-doc-wrap-bumper">void <a href="#ae9c9469260b96d79be75ef5491e1d626" class="m-doc-self">updateCircuitParameters</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph)</span>
             </dt>
             <dd>updateCircuitsParameters A method for updating the parameters of a combinational circuit</dd>
             <dt>
@@ -92,18 +92,23 @@
             </dt>
             <dd>graphToVerilog The graph To Verilog method in the <a href="classCircuit.html" class="m-doc">Circuit</a> class converts the combinational circuit into code in the Verilog hardware description language and writes it to a file.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a5f9e1a5b9117f6e8c6547cf5a261047e" class="m-doc">graphToGraphML</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path,
+              <span class="m-doc-wrap-bumper">auto <a href="#a0d0427d7f384c2965b354ac4acb1cc34" class="m-doc">graphToGraphML</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path,
+              bool i_makeGraphMLClassic = false,
+              bool i_makeGraphMLPseudoABCD = false,
+              bool i_makeGraphMLOpenABCD = false,
               bool i_pathExists = false) -&gt; bool</span>
             </dt>
             <dd>saveParameters The save Parameters method in the <a href="classCircuit.html" class="m-doc">Circuit</a> class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format.</dd>
             <dt id="a3c42de8f6dbf2cb5f726fc480529bb0d">
-              <span class="m-doc-wrap-bumper">auto <a href="#a3c42de8f6dbf2cb5f726fc480529bb0d" class="m-doc-self">saveParameters</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph,
+              <span class="m-doc-wrap-bumper">auto <a href="#a3c42de8f6dbf2cb5f726fc480529bb0d" class="m-doc-self">saveParameters</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph,
               std::ofstream&amp; i_outputFile,
               bool i_isSubGraph = false) -&gt; bool</span>
             </dt>
             <dd>saveAdditionalStats This save Additional Stats method is designed to save additional statistics related to the execution of the ABC command (a program for synthesizing digital circuits) in a JSON file.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ac07f64884fb0732102b39c0ec1c38896" class="m-doc">generate</a>(</span><span class="m-doc-wrap">bool i_makeGraphML = false,
+              <span class="m-doc-wrap-bumper">auto <a href="#af2ec1ad53802bbf158f4003044c7e83e" class="m-doc">generate</a>(</span><span class="m-doc-wrap">bool i_makeGraphMLClassic = false,
+              bool i_makeGraphMLPseudoABCD = false,
+              bool i_makeGraphMLOpenABCD = false,
               bool i_pathExists = false) -&gt; bool</span>
             </dt>
             <dd>generate This generate method is designed to generate various representations of a digital circuit (for example, Verilog, RTL, Bench) and perform optimizations using the ABC program (if necessary), as well as save digital circuit parameters and additional statistics</dd>
@@ -124,14 +129,14 @@
             </dt>
             <dd>getIndexOfWireName This method is designed to get the index of the vertex in the graph by the name of the wire.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a3be6fbc1ba8457fc500bb7514d90f2db" class="m-doc">setVerticeOperation</a>(</span><span class="m-doc-wrap">int i_vertice,
+              <span class="m-doc-wrap-bumper">void <a href="#abaecfe94d1e733757e28113a2aeec9e4" class="m-doc">setVerticeOperation</a>(</span><span class="m-doc-wrap">int32_t i_vertice,
               const std::string&amp; i_operation)</span>
             </dt>
             <dd>setVerticeOperation This method sets up an operation for a given vertex in the graph.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a37ae459501ff0ca329c0e0359f9e436d" class="m-doc">fromVerilog</a>(</span><span class="m-doc-wrap">const std::string&amp; i_filepath) -&gt; <a href="classCircuit.html" class="m-doc">Circuit</a></span>
             </dt>
-            <dd>fromVerilog TO DO!!!</dd>
+            <dd>fromVerilog</dd>
           </dl>
         </section>
         <section>
@@ -164,9 +169,12 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a5f9e1a5b9117f6e8c6547cf5a261047e"><div>
+          <section class="m-doc-details" id="a0d0427d7f384c2965b354ac4acb1cc34"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">bool Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5f9e1a5b9117f6e8c6547cf5a261047e" class="m-doc-self">graphToGraphML</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path,
+              <span class="m-doc-wrap-bumper">bool Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0d0427d7f384c2965b354ac4acb1cc34" class="m-doc-self">graphToGraphML</a>(</span><span class="m-doc-wrap">const std::string&amp; i_path,
+              bool i_makeGraphMLClassic = false,
+              bool i_makeGraphMLPseudoABCD = false,
+              bool i_makeGraphMLOpenABCD = false,
               bool i_pathExists = false)</span></span>
             </h3>
             <p>saveParameters The save Parameters method in the <a href="classCircuit.html" class="m-doc">Circuit</a> class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format.</p>
@@ -180,15 +188,29 @@
                   <td></td>
                 </tr>
                 <tr>
+                  <td>i_makeGraphMLClassic</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>i_makeGraphMLPseudoABCD</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>i_makeGraphMLOpenABCD</td>
+                  <td></td>
+                </tr>
+                <tr>
                   <td>i_pathExists</td>
                   <td>A flag indicating whether there is already a path to save the file return The file is closed, and the method returns true if the parameters are saved successfully. *&zwj;/</td>
                 </tr>
               </tbody>
             </table>
           </div></section>
-          <section class="m-doc-details" id="ac07f64884fb0732102b39c0ec1c38896"><div>
+          <section class="m-doc-details" id="af2ec1ad53802bbf158f4003044c7e83e"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">bool Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac07f64884fb0732102b39c0ec1c38896" class="m-doc-self">generate</a>(</span><span class="m-doc-wrap">bool i_makeGraphML = false,
+              <span class="m-doc-wrap-bumper">bool Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af2ec1ad53802bbf158f4003044c7e83e" class="m-doc-self">generate</a>(</span><span class="m-doc-wrap">bool i_makeGraphMLClassic = false,
+              bool i_makeGraphMLPseudoABCD = false,
+              bool i_makeGraphMLOpenABCD = false,
               bool i_pathExists = false)</span></span>
             </h3>
             <p>generate This generate method is designed to generate various representations of a digital circuit (for example, Verilog, RTL, Bench) and perform optimizations using the ABC program (if necessary), as well as save digital circuit parameters and additional statistics</p>
@@ -198,7 +220,15 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">i_makeGraphML</td>
+                  <td style="width: 1%">i_makeGraphMLClassic</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>i_makeGraphMLPseudoABCD</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>i_makeGraphMLOpenABCD</td>
                   <td></td>
                 </tr>
                 <tr>
@@ -288,9 +318,9 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a3be6fbc1ba8457fc500bb7514d90f2db"><div>
+          <section class="m-doc-details" id="abaecfe94d1e733757e28113a2aeec9e4"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3be6fbc1ba8457fc500bb7514d90f2db" class="m-doc-self">setVerticeOperation</a>(</span><span class="m-doc-wrap">int i_vertice,
+              <span class="m-doc-wrap-bumper">void Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abaecfe94d1e733757e28113a2aeec9e4" class="m-doc-self">setVerticeOperation</a>(</span><span class="m-doc-wrap">int32_t i_vertice,
               const std::string&amp; i_operation)</span></span>
             </h3>
             <p>setVerticeOperation This method sets up an operation for a given vertex in the graph.</p>
@@ -314,8 +344,19 @@
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classCircuit.html" class="m-doc">Circuit</a> Circuit::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a37ae459501ff0ca329c0e0359f9e436d" class="m-doc-self">fromVerilog</a>(</span><span class="m-doc-wrap">const std::string&amp; i_filepath)</span></span>
             </h3>
-            <p>fromVerilog TO DO!!!</p>
-<p>*&zwj;/</p>
+            <p>fromVerilog</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_filepath</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+<aside class="m-note m-dim"><h4><a href="todo.html#_todo000002" class="m-doc">Todo</a></h4><p>: description fromVerilog</p></aside>
           </div></section>
         </section>
       </div>

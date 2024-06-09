@@ -50,9 +50,8 @@
       <div class="m-col-l-10 m-push-l-1">
         <h1>
           TruthTableParameters <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GeneticParameters_8h.html">&lt;GeneticParameters.h&gt;</a></div>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GeneticParameters_8hpp.html">&lt;GeneticParameters.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -66,45 +65,140 @@
             </li>
           </ul>
         </div>
+<p>Parameters for generating truth tables The class provides the parameters needed to generate truth tables. These parameters include the number of entries and exits, population size, parameters for selection, recombination and mutation operations, as well as termination criteria truth table generation process</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
             <dt>
               class <a href="classGeneticParameters.html" class="m-doc">GeneticParameters</a>
             </dt>
-            <dd><span></span></dd>
+            <dd></dd>
           </dl>
         </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="aff99e2d8931af5e179865f271fa302c0">
-              <span class="m-doc-wrap-bumper"><a href="#aff99e2d8931af5e179865f271fa302c0" class="m-doc-self">TruthTableParameters</a>(</span><span class="m-doc-wrap">int i_inputs = 0,
-              int i_outputs = 0)</span>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a2a1401c44f49a3ae4bd5672c60e5f5e1" class="m-doc">TruthTableParameters</a>(</span><span class="m-doc-wrap">uint32_t i_inputs = 0,
+              uint32_t i_outputs = 0)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a5aa0122fc9dcb9b0bc242ef425135893">
-              <span class="m-doc-wrap-bumper"><a href="#a5aa0122fc9dcb9b0bc242ef425135893" class="m-doc-self">TruthTableParameters</a>(</span><span class="m-doc-wrap">const <a href="classGeneticParameters.html" class="m-doc">GeneticParameters</a>&amp; i_gp)</span>
+            <dd><a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a5aa0122fc9dcb9b0bc242ef425135893" class="m-doc">TruthTableParameters</a>(</span><span class="m-doc-wrap">const <a href="classGeneticParameters.html" class="m-doc">GeneticParameters</a>&amp; i_gp)</span>
             </dt>
-            <dd><span></span></dd>
+            <dd><a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>.</dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="a85431954023d8b179833f24dece2bb10">
-              <span class="m-doc-wrap-bumper">auto <a href="#a85431954023d8b179833f24dece2bb10" class="m-doc-self">getPopulationSize</a>(</span><span class="m-doc-wrap">) -&gt; int</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a7d967d6f0ddd95cd61b9c606f0d131d2" class="m-doc">getPopulationSize</a>(</span><span class="m-doc-wrap">) -&gt; uint32_t</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a77762154681576267aac59b1768b399a">
-              <span class="m-doc-wrap-bumper">auto <a href="#a77762154681576267aac59b1768b399a" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
+            <dd>getPopulationSize</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#afdb70d96954c2bd4caca08bbdba7de22" class="m-doc">size</a>(</span><span class="m-doc-wrap">) const -&gt; uint32_t</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a25853ef41a7393e74c7fbebed40f75c9">
-              <span class="m-doc-wrap-bumper">auto <a href="#a25853ef41a7393e74c7fbebed40f75c9" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&amp; r) -&gt; bool</span>
+            <dd>size Returns the size of the truth table population</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a25853ef41a7393e74c7fbebed40f75c9" class="m-doc">operator==</a>(</span><span class="m-doc-wrap">const <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&amp; r) -&gt; bool</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>Overloaded comparison operator for Truth Table Parameters.</dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a2a1401c44f49a3ae4bd5672c60e5f5e1"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> TruthTableParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2a1401c44f49a3ae4bd5672c60e5f5e1" class="m-doc-self">TruthTableParameters</a>(</span><span class="m-doc-wrap">uint32_t i_inputs = 0,
+              uint32_t i_outputs = 0)</span></span>
+            </h3>
+            <p><a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_inputs</td>
+                  <td>Number of truth table inputs</td>
+                </tr>
+                <tr>
+                  <td>i_outputs</td>
+                  <td>Number of truth table outputs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a5aa0122fc9dcb9b0bc242ef425135893"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> TruthTableParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5aa0122fc9dcb9b0bc242ef425135893" class="m-doc-self">TruthTableParameters</a>(</span><span class="m-doc-wrap">const <a href="classGeneticParameters.html" class="m-doc">GeneticParameters</a>&amp; i_gp)</span></span>
+            </h3>
+            <p><a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_gp</td>
+                  <td>Genetic parameters used to generate the truth table</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a7d967d6f0ddd95cd61b9c606f0d131d2"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">uint32_t TruthTableParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7d967d6f0ddd95cd61b9c606f0d131d2" class="m-doc-self">getPopulationSize</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <p>getPopulationSize</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>truth table population size</td>
+                </tr>
+              </tfoot>
+            </table>
+<aside class="m-note m-dim"><h4><a href="todo.html#_todo000016" class="m-doc">Todo</a></h4><p>: Why is this method needed if there is a size</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="afdb70d96954c2bd4caca08bbdba7de22"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">uint32_t TruthTableParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afdb70d96954c2bd4caca08bbdba7de22" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>size Returns the size of the truth table population</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>truth table population size</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a25853ef41a7393e74c7fbebed40f75c9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool TruthTableParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a25853ef41a7393e74c7fbebed40f75c9" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&amp; r)</span></span>
+            </h3>
+            <p>Overloaded comparison operator for Truth Table Parameters.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">r</td>
+                  <td>Truth table parameters for comparison</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>true if the parameters are equal, otherwise false</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

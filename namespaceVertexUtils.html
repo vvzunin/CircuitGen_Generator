@@ -52,7 +52,7 @@
           VertexUtils <span class="m-thin">namespace</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GraphVertexBase_8hpp.html">&lt;src/baseStructures/graph/GraphVertexBase.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
+        <p><a href="namespaceVertexUtils.html" class="m-doc">VertexUtils</a> Namespace containing utility functions for working with vertices.</p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -67,19 +67,101 @@
         <section id="func-members">
           <h2><a href="#func-members">Functions</a></h2>
           <dl class="m-doc">
-            <dt id="a8140b975302d15b6226a4bfba79dd9d9">
-              <span class="m-doc-wrap-bumper">auto <a href="#a8140b975302d15b6226a4bfba79dd9d9" class="m-doc-self">gateToString</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> i_type) -&gt; std::string</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a8140b975302d15b6226a4bfba79dd9d9" class="m-doc">gateToString</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> i_type) -&gt; std::string</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a58a8373cb1f0f5be90a30b7fc3b51abd">
-              <span class="m-doc-wrap-bumper">auto <a href="#a58a8373cb1f0f5be90a30b7fc3b51abd" class="m-doc-self">vertexTypeToVerilog</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type) -&gt; std::string</span>
+            <dd>gateToString Converts a gate type enum value to its string representation</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a58a8373cb1f0f5be90a30b7fc3b51abd" class="m-doc">vertexTypeToVerilog</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type) -&gt; std::string</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a429cf39161c78a2a22dd45e6a0f41acf">
-              <span class="m-doc-wrap-bumper">auto <a href="#a429cf39161c78a2a22dd45e6a0f41acf" class="m-doc-self">vertexTypeToComment</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type) -&gt; std::string</span>
+            <dd>vertexTypeToComment Converts a vertex type enum value to its Verilog representation</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a429cf39161c78a2a22dd45e6a0f41acf" class="m-doc">vertexTypeToComment</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type) -&gt; std::string</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>vertexTypeToComment Converts a vertex type enum value to its comment representation This function takes a vertex type enum value (from the VertexTypes enum) and returns its corresponding comment representation. The comment representation is based on the vertex type and is used for generating comments or documentation</dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a8140b975302d15b6226a4bfba79dd9d9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string VertexUtils::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8140b975302d15b6226a4bfba79dd9d9" class="m-doc-self">gateToString</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> i_type)</span></span>
+            </h3>
+            <p>gateToString Converts a gate type enum value to its string representation</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_type</td>
+                  <td>The gate type enum value</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>The string representation of the gate type.</p><pre class="m-code"><span class="n">Gates</span><span class="w"> </span><span class="n">gateType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Gates</span><span class="o">::</span><span class="n">GateAnd</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">gateString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VertexUtils</span><span class="o">::</span><span class="n">gateToString</span><span class="p">(</span><span class="n">gateType</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;String representation of gate type: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">gateString</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="n">gateType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Gates</span><span class="o">::</span><span class="n">GateNot</span><span class="p">;</span><span class="w"> </span><span class="n">gateString</span><span class="w"> </span><span class="o">=</span>
+<span class="n">VertexUtils</span><span class="o">::</span><span class="n">gateToString</span><span class="p">(</span><span class="n">gateType</span><span class="p">);</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;String representation of</span>
+<span class="n">gate</span><span class="w"> </span><span class="n">type</span><span class="o">:</span><span class="w"> </span><span class="s">&quot; &lt;&lt; gateString &lt;&lt; std::endl;</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a58a8373cb1f0f5be90a30b7fc3b51abd"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string VertexUtils::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a58a8373cb1f0f5be90a30b7fc3b51abd" class="m-doc-self">vertexTypeToVerilog</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type)</span></span>
+            </h3>
+            <p>vertexTypeToComment Converts a vertex type enum value to its Verilog representation</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_type</td>
+                  <td>The vertex type enum value.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>The Verilog representation of the vertex type</p><pre class="m-code"><span class="n">VertexTypes</span><span class="w"> </span><span class="n">vertexType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">Input</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">verilogType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VertexUtils</span><span class="o">::</span><span class="n">vertexTypeToVerilog</span><span class="p">(</span><span class="n">vertexType</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Verilog representation of vertex type: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">verilogType</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a429cf39161c78a2a22dd45e6a0f41acf"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string VertexUtils::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a429cf39161c78a2a22dd45e6a0f41acf" class="m-doc-self">vertexTypeToComment</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type)</span></span>
+            </h3>
+            <p>vertexTypeToComment Converts a vertex type enum value to its comment representation This function takes a vertex type enum value (from the VertexTypes enum) and returns its corresponding comment representation. The comment representation is based on the vertex type and is used for generating comments or documentation</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_type</td>
+                  <td>The vertex type enum value (from the VertexTypes enum)</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>The comment representation of the vertex type.</p><pre class="m-code"><span class="n">VertexTypes</span><span class="w"> </span><span class="n">vertexType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">Input</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VertexUtils</span><span class="o">::</span><span class="n">vertexTypeToComment</span><span class="p">(</span><span class="n">vertexType</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Comment for input vertex type: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">comment</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

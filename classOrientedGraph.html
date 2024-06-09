@@ -52,7 +52,6 @@
           OrientedGraph <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="OrientedGraph_8hpp.html">&lt;OrientedGraph.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -65,6 +64,7 @@
             </li>
           </ul>
         </div>
+<p>class <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a></p>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
@@ -97,113 +97,105 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a5c21567c3074eae16dc5abda6eaf8606" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a>&amp;&amp; other) -&gt; <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
             </dt>
             <dd><span></span></dd>
-            <dt id="aefc41b7971eafbceb14caf5bcd4134da">
-              <span class="m-doc-wrap-bumper">auto <a href="#aefc41b7971eafbceb14caf5bcd4134da" class="m-doc-self">baseSize</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ad5dfda604c22d11c24f29a6ada4fd944" class="m-doc">baseSize</a>(</span><span class="m-doc-wrap">) const -&gt; size_t</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a8e24c573f2cdae9ba529c5582e4cc267">
-              <span class="m-doc-wrap-bumper">auto <a href="#a8e24c573f2cdae9ba529c5582e4cc267" class="m-doc-self">fullSize</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
+            <dd>baseSize returns the number of &quot;gate&quot; type vertices in the graph</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aabbc53d88d88abc4027f67035f27054c" class="m-doc">fullSize</a>(</span><span class="m-doc-wrap">) const -&gt; size_t</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="aaf73cce814718e9164734f7c8e023920">
-              <span class="m-doc-wrap-bumper">auto <a href="#aaf73cce814718e9164734f7c8e023920" class="m-doc-self">sumFullSize</a>(</span><span class="m-doc-wrap">) const -&gt; size_t</span>
+            <dd>fullSize returns the total number of vertices in the graph, including vertices from all subgraphs. It recursively traverses all the subgraphs and sums up the number of vertices in each of them</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aaf73cce814718e9164734f7c8e023920" class="m-doc">sumFullSize</a>(</span><span class="m-doc-wrap">) const -&gt; size_t</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>sumFullSize returns the total number of vertices of all types in the graph, including input vertices, constants, gates, and output vertices</dd>
             <dt id="a3300d2dce7ead0c962472a2fa43258ee">
               <span class="m-doc-wrap-bumper">auto <a href="#a3300d2dce7ead0c962472a2fa43258ee" class="m-doc-self">isEmpty</a>(</span><span class="m-doc-wrap">) const -&gt; bool</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="ad5e9c237db722c9e2e0156e42e02d837">
-              <span class="m-doc-wrap-bumper">auto <a href="#ad5e9c237db722c9e2e0156e42e02d837" class="m-doc-self">isEmptyFull</a>(</span><span class="m-doc-wrap">) const -&gt; bool</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ad5e9c237db722c9e2e0156e42e02d837" class="m-doc">isEmptyFull</a>(</span><span class="m-doc-wrap">) const -&gt; bool</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a0e41774fe0851347b2b48d153d3a4e24">
-              <span class="m-doc-wrap-bumper">void <a href="#a0e41774fe0851347b2b48d153d3a4e24" class="m-doc-self">setName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name)</span>
+            <dd>isEmptyFull It is used to check the emptiness of a graph, including all its subgraphs. It recursively traverses all the subgraphs and checks if they are empty</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a0e41774fe0851347b2b48d153d3a4e24" class="m-doc">setName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="afcfac2a2a89102159ae8562af875ecfa">
-              <span class="m-doc-wrap-bumper">auto <a href="#afcfac2a2a89102159ae8562af875ecfa" class="m-doc-self">getName</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
+            <dd>setName Used to set the name of the graph. It takes a string as an argument and sets the d_name field to this string</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#afcfac2a2a89102159ae8562af875ecfa" class="m-doc">getName</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a07ee04d5ab6ce7e2632df187ec586e44">
-              <span class="m-doc-wrap-bumper">auto <a href="#a07ee04d5ab6ce7e2632df187ec586e44" class="m-doc-self">needToUpdateLevel</a>(</span><span class="m-doc-wrap">) const -&gt; bool</span>
+            <dd>getName Used to get the name of the graph</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a07ee04d5ab6ce7e2632df187ec586e44" class="m-doc">needToUpdateLevel</a>(</span><span class="m-doc-wrap">) const -&gt; bool</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a0e22897ee2d5f51e88c8bf469b926f30">
-              <span class="m-doc-wrap-bumper">void <a href="#a0e22897ee2d5f51e88c8bf469b926f30" class="m-doc-self">updateLevels</a>(</span><span class="m-doc-wrap">)</span>
+            <dd>needToUpdateLevel it is used to check whether the vertex levels in the graph need to be updated</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a0e22897ee2d5f51e88c8bf469b926f30" class="m-doc">updateLevels</a>(</span><span class="m-doc-wrap">)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="af7c261584c12930c5aa5e70ff5105b81">
-              <span class="m-doc-wrap-bumper">auto <a href="#af7c261584c12930c5aa5e70ff5105b81" class="m-doc-self">getMaxLevel</a>(</span><span class="m-doc-wrap">) -&gt; unsigned</span>
+            <dd>updateLevels TO DO: the method body is commented out!!!</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ad32e660fa1d6345d613228df7e535d34" class="m-doc">getMaxLevel</a>(</span><span class="m-doc-wrap">) -&gt; uint32_t</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="aaa9e40c6b676350ce38d67c0167ba7ed">
-              <span class="m-doc-wrap-bumper">void <a href="#aaa9e40c6b676350ce38d67c0167ba7ed" class="m-doc-self">addParentGraph</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph)</span>
+            <dd>getMaxLevel Calculates and returns the maximum level of the output vertices in the graph</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a4032d7b68b8c789ae096f2484c45512e" class="m-doc">setCurrentParent</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> parent)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a0061be8f62bee660391673b1cfaa435b">
-              <span class="m-doc-wrap-bumper">auto <a href="#a0061be8f62bee660391673b1cfaa435b" class="m-doc-self">getParentGraphs</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767" class="m-doc">GraphPtrWeak</a>&gt;</span>
+            <dd>setCurrentParent Sets the current parent graph of the current graph</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#ad28ade19aea5e33287212e3263511ecb" class="m-doc">resetCounters</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> where)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a4032d7b68b8c789ae096f2484c45512e">
-              <span class="m-doc-wrap-bumper">void <a href="#a4032d7b68b8c789ae096f2484c45512e" class="m-doc-self">setCurrentParent</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> parent)</span>
+            <dd>resetCounters Resets counters associated with a specific graph instance</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a0c859a9197a0ccb61ee8cc77390190b2" class="m-doc">addInput</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name = &quot;&quot;) -&gt; <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="ad28ade19aea5e33287212e3263511ecb">
-              <span class="m-doc-wrap-bumper">void <a href="#ad28ade19aea5e33287212e3263511ecb" class="m-doc-self">resetCounters</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> where)</span>
+            <dd>addInput Adds an input vertex to the current graph</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a57404c5e548a8388b0bbbeb64f4cc049" class="m-doc">addOutput</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name = &quot;&quot;) -&gt; <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a0c859a9197a0ccb61ee8cc77390190b2">
-              <span class="m-doc-wrap-bumper">auto <a href="#a0c859a9197a0ccb61ee8cc77390190b2" class="m-doc-self">addInput</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name = &quot;&quot;) -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
+            <dd>addOutput Adds an output vertex to the current graph</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a39a19456af71baba506bce70e4d1bfb7" class="m-doc">addConst</a>(</span><span class="m-doc-wrap">const char&amp; i_value,
+              const std::string&amp; i_name = &quot;&quot;) -&gt; <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a57404c5e548a8388b0bbbeb64f4cc049">
-              <span class="m-doc-wrap-bumper">auto <a href="#a57404c5e548a8388b0bbbeb64f4cc049" class="m-doc-self">addOutput</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name = &quot;&quot;) -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
+            <dd>addConst Adds a constant vertex to the current graph</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aa94d5942af735685e97807ad850c8522" class="m-doc">addGate</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>&amp; i_gate,
+              const std::string&amp; i_name = &quot;&quot;) -&gt; <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a39a19456af71baba506bce70e4d1bfb7">
-              <span class="m-doc-wrap-bumper">auto <a href="#a39a19456af71baba506bce70e4d1bfb7" class="m-doc-self">addConst</a>(</span><span class="m-doc-wrap">const char&amp; i_value,
-              const std::string&amp; i_name = &quot;&quot;) -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
+            <dd>addGate Adds a gate vertex to the current graph</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a838f4dec4968f1ce88580428ef9e52b4" class="m-doc">addSubGraph</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph,
+              std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; i_inputs) -&gt; std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="aa94d5942af735685e97807ad850c8522">
-              <span class="m-doc-wrap-bumper">auto <a href="#aa94d5942af735685e97807ad850c8522" class="m-doc-self">addGate</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>&amp; i_gate,
-              const std::string&amp; i_name = &quot;&quot;) -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
+            <dd>addSubGraph Adds a subgraph to the current graph</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6d00cef19ee77216d3fea9a911b5a881" class="m-doc">addEdge</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> from,
+              <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> to) -&gt; bool</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a838f4dec4968f1ce88580428ef9e52b4">
-              <span class="m-doc-wrap-bumper">auto <a href="#a838f4dec4968f1ce88580428ef9e52b4" class="m-doc-self">addSubGraph</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph,
-              std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; i_inputs) -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
+            <dd>addEdge Adds an edge between two vertices in the current graph</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a2ac16606b2ddcd4f82e9a045f2498614" class="m-doc">addEdges</a>(</span><span class="m-doc-wrap">std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; from1,
+              <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> to) -&gt; bool</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a6d00cef19ee77216d3fea9a911b5a881">
-              <span class="m-doc-wrap-bumper">auto <a href="#a6d00cef19ee77216d3fea9a911b5a881" class="m-doc-self">addEdge</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> from,
-              <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> to) -&gt; bool</span>
+            <dd>addEdges Adds multiple edges from a vector of source vertices to a target vertex</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#afeb227c7795592ecca44f4aea7877b99" class="m-doc">getEdgesCount</a>(</span><span class="m-doc-wrap">) -&gt; size_t</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a2ac16606b2ddcd4f82e9a045f2498614">
-              <span class="m-doc-wrap-bumper">auto <a href="#a2ac16606b2ddcd4f82e9a045f2498614" class="m-doc-self">addEdges</a>(</span><span class="m-doc-wrap">std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; from1,
-              <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> to) -&gt; bool</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="afeb227c7795592ecca44f4aea7877b99">
-              <span class="m-doc-wrap-bumper">auto <a href="#afeb227c7795592ecca44f4aea7877b99" class="m-doc-self">getEdgesCount</a>(</span><span class="m-doc-wrap">) -&gt; size_t</span>
-            </dt>
-            <dd><span></span></dd>
+            <dd>getEdgesCount Retrieves the total number of edges in the graph</dd>
             <dt id="abf49e442c37d7ae6e5aa1bbb31502f65">
-              <span class="m-doc-wrap-bumper">auto <a href="#abf49e442c37d7ae6e5aa1bbb31502f65" class="m-doc-self">getSubGraphs</a>(</span><span class="m-doc-wrap">) const -&gt; std::set&lt;<a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a>&gt;</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#abf49e442c37d7ae6e5aa1bbb31502f65" class="m-doc-self">getSubGraphs</a>(</span><span class="m-doc-wrap">) const -&gt; std::set&lt;<a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a>&gt;</span>
             </dt>
             <dd><span></span></dd>
             <dt id="aed93480cd2aeec8e7ca3a1a576c81b09">
-              <span class="m-doc-wrap-bumper">auto <a href="#aed93480cd2aeec8e7ca3a1a576c81b09" class="m-doc-self">getSetSubGraphs</a>(</span><span class="m-doc-wrap">) const -&gt; std::set&lt;<a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a>&gt;</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#aed93480cd2aeec8e7ca3a1a576c81b09" class="m-doc-self">getSetSubGraphs</a>(</span><span class="m-doc-wrap">) const -&gt; std::set&lt;<a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a>&gt;</span>
             </dt>
             <dd><span></span></dd>
             <dt id="af26bf5a77ef3253745b3ecb8dc55d948">
-              <span class="m-doc-wrap-bumper">auto <a href="#af26bf5a77ef3253745b3ecb8dc55d948" class="m-doc-self">getBaseVertexes</a>(</span><span class="m-doc-wrap">) const -&gt; std::map&lt;<a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a>, std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;&gt;</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#af26bf5a77ef3253745b3ecb8dc55d948" class="m-doc-self">getBaseVertexes</a>(</span><span class="m-doc-wrap">) const -&gt; std::map&lt;<a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a>, std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;&gt;</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a555101c72488c870493a57529e5e24db">
-              <span class="m-doc-wrap-bumper">auto <a href="#a555101c72488c870493a57529e5e24db" class="m-doc-self">getVerticeByIndex</a>(</span><span class="m-doc-wrap">int idx) const -&gt; <a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
+            <dt id="a1f0d862e7db8f4c0b0417695ffb27c90">
+              <span class="m-doc-wrap-bumper">auto <a href="#a1f0d862e7db8f4c0b0417695ffb27c90" class="m-doc-self">getVerticeByIndex</a>(</span><span class="m-doc-wrap">size_t idx) const -&gt; <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a></span>
             </dt>
             <dd><span></span></dd>
             <dt id="acbe1413fa2ca608fb99ee6b1adde163b">
@@ -215,46 +207,599 @@
               std::string i_filename = &quot;&quot;) -&gt; std::pair&lt;bool, std::string&gt;</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a66c4876326cc7dca74856a97e705a282">
-              <span class="m-doc-wrap-bumper">auto <a href="#a66c4876326cc7dca74856a97e705a282" class="m-doc-self">toGraphML</a>(</span><span class="m-doc-wrap">std::ofstream&amp; i_fileStream) const -&gt; bool</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1189a4284cfbc29bc4523d3a59cc7a08" class="m-doc">toGraphMLClassic</a>(</span><span class="m-doc-wrap">std::ofstream&amp; i_fileStream) const -&gt; bool</span>
+            </dt>
+            <dd>toGraphML Writes the graph structure in GraphML format to the specified output stream</dd>
+            <dt id="a05ec5ae6fab3f595e510e20d85dd5599">
+              <span class="m-doc-wrap-bumper">auto <a href="#a05ec5ae6fab3f595e510e20d85dd5599" class="m-doc-self">toGraphMLPseudoABCD</a>(</span><span class="m-doc-wrap">std::ofstream&amp; i_fileStream) const -&gt; bool</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a35116775cd9c6681414603b24ed7a393">
-              <span class="m-doc-wrap-bumper">auto <a href="#a35116775cd9c6681414603b24ed7a393" class="m-doc-self">toGraphML</a>(</span><span class="m-doc-wrap">int i_nesting = 0) const -&gt; std::string</span>
+            <dt id="ae5b6b4e9ec73a46c4a9d0793c6cc1544">
+              <span class="m-doc-wrap-bumper">auto <a href="#ae5b6b4e9ec73a46c4a9d0793c6cc1544" class="m-doc-self">toGraphMLOpenABCD</a>(</span><span class="m-doc-wrap">std::ofstream&amp; i_fileStream) const -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a511ffd3d790404b668b595202a99b898">
+              <span class="m-doc-wrap-bumper">auto <a href="#a511ffd3d790404b668b595202a99b898" class="m-doc-self">toGraphMLClassic</a>(</span><span class="m-doc-wrap">uint16_t i_indent = 0,
+              const std::string&amp; i_prefix = &quot;&quot;) const -&gt; std::string</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6cfef10c654ef240364739a5c81e4f12">
+              <span class="m-doc-wrap-bumper">auto <a href="#a6cfef10c654ef240364739a5c81e4f12" class="m-doc-self">toGraphMLPseudoABCD</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a47a80577ca22faa49eb7854e8b97da27">
+              <span class="m-doc-wrap-bumper">auto <a href="#a47a80577ca22faa49eb7854e8b97da27" class="m-doc-self">toGraphMLOpenABCD</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
             </dt>
             <dd><span></span></dd>
             <dt id="a51b6f4a936fb5538a328c786122e8360">
               <span class="m-doc-wrap-bumper">auto <a href="#a51b6f4a936fb5538a328c786122e8360" class="m-doc-self">getVerticesByType</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a>&amp; i_type,
               const std::string&amp; i_name = &quot;&quot;,
-              const bool&amp; i_addSubGraphs = false) const -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
+              const bool&amp; i_addSubGraphs = false) const -&gt; std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="abaa66bf9d8246f7fc0a2c64439de1a24">
-              <span class="m-doc-wrap-bumper">auto <a href="#abaa66bf9d8246f7fc0a2c64439de1a24" class="m-doc-self">getVerticesByLevel</a>(</span><span class="m-doc-wrap">const int&amp; i_level) -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
+            <dt id="a191af65411f745ec41c5f37e685e1298">
+              <span class="m-doc-wrap-bumper">auto <a href="#a191af65411f745ec41c5f37e685e1298" class="m-doc-self">getVerticesByLevel</a>(</span><span class="m-doc-wrap">const uint32_t&amp; i_level) -&gt; std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
             </dt>
             <dd><span></span></dd>
             <dt id="aad47158a568dddada9661b1f92839825">
               <span class="m-doc-wrap-bumper">auto <a href="#aad47158a568dddada9661b1f92839825" class="m-doc-self">getVerticesByName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name,
-              const bool&amp; i_addSubGraphs = false) const -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
+              const bool&amp; i_addSubGraphs = false) const -&gt; std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
             </dt>
             <dd><span></span></dd>
             <dt id="acac6ce8ae89f789503fe56f6ebc54838">
               <span class="m-doc-wrap-bumper">auto <a href="#acac6ce8ae89f789503fe56f6ebc54838" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a>&amp; rhs) -&gt; bool</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="aeab88e9241158e8e1b04af8cfe2abc98">
-              <span class="m-doc-wrap-bumper">auto <a href="#aeab88e9241158e8e1b04af8cfe2abc98" class="m-doc-self">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) -&gt; std::string</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aeab88e9241158e8e1b04af8cfe2abc98" class="m-doc">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) -&gt; std::string</span>
+            </dt>
+            <dd>calculateHash calculates hash values for a graph based on the hash values of its vertices</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a898b4a0281ea97c7315f83a3104c1f0a" class="m-doc">getGatesCount</a>(</span><span class="m-doc-wrap">) const -&gt; std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, size_t&gt;</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a77e5f38755da7e7edb9d179cf92280d3" class="m-doc">getEdgesGatesCount</a>(</span><span class="m-doc-wrap">) const -&gt; std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, size_t&gt;&gt;</span>
+            </dt>
+            <dd>getEdgesGatesCount Returns a mapping containing the number of edges between different types of gates in the graph</dd>
+            <dt id="a0683e1ca5c389c1b3518fe0335e94c8e">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0683e1ca5c389c1b3518fe0335e94c8e" class="m-doc-self">isConnected</a>(</span><span class="m-doc-wrap">bool i_recalculate = false) -&gt; bool</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a0bbe1a68fd832bdd1c8ab19563f698ba">
-              <span class="m-doc-wrap-bumper">auto <a href="#a0bbe1a68fd832bdd1c8ab19563f698ba" class="m-doc-self">getGatesCount</a>(</span><span class="m-doc-wrap">) const -&gt; std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, int&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ae575f3170be647fc713fd3ce0f4ff355">
-              <span class="m-doc-wrap-bumper">auto <a href="#ae575f3170be647fc713fd3ce0f4ff355" class="m-doc-self">getEdgesGatesCount</a>(</span><span class="m-doc-wrap">) const -&gt; std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, int&gt;&gt;</span>
+            <dt id="a60d945d5c420775430c8dd149629ae7b">
+              <span class="m-doc-wrap-bumper">auto <a href="#a60d945d5c420775430c8dd149629ae7b" class="m-doc-self">unrollGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
             </dt>
             <dd><span></span></dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="ad5dfda604c22d11c24f29a6ada4fd944"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">size_t OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad5dfda604c22d11c24f29a6ada4fd944" class="m-doc-self">baseSize</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>baseSize returns the number of &quot;gate&quot; type vertices in the graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>An integer value representing the number of &quot;gate&quot; type vertices in the graph</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="aabbc53d88d88abc4027f67035f27054c"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">size_t OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aabbc53d88d88abc4027f67035f27054c" class="m-doc-self">fullSize</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>fullSize returns the total number of vertices in the graph, including vertices from all subgraphs. It recursively traverses all the subgraphs and sums up the number of vertices in each of them</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>An integer value representing the total number of vertices in the graph, including vertices from all subgraphs</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="aaf73cce814718e9164734f7c8e023920"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">size_t OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aaf73cce814718e9164734f7c8e023920" class="m-doc-self">sumFullSize</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>sumFullSize returns the total number of vertices of all types in the graph, including input vertices, constants, gates, and output vertices</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>the size of all vertices in the graph, summing the number of vertices of each type</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ad5e9c237db722c9e2e0156e42e02d837"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad5e9c237db722c9e2e0156e42e02d837" class="m-doc-self">isEmptyFull</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>isEmptyFull It is used to check the emptiness of a graph, including all its subgraphs. It recursively traverses all the subgraphs and checks if they are empty</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>bool - true if the graph and all its subgraphs are empty, and false if at least one of them contains vertice</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a0e41774fe0851347b2b48d153d3a4e24"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0e41774fe0851347b2b48d153d3a4e24" class="m-doc-self">setName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name)</span></span>
+            </h3>
+            <p>setName Used to set the name of the graph. It takes a string as an argument and sets the d_name field to this string</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_name</td>
+                  <td>the new name of the graph</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="afcfac2a2a89102159ae8562af875ecfa"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afcfac2a2a89102159ae8562af875ecfa" class="m-doc-self">getName</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getName Used to get the name of the graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>the name of the graph</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a07ee04d5ab6ce7e2632df187ec586e44"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a07ee04d5ab6ce7e2632df187ec586e44" class="m-doc-self">needToUpdateLevel</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>needToUpdateLevel it is used to check whether the vertex levels in the graph need to be updated</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>bool - true if updating the vertex levels in the graph is required, and false if not required</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a0e22897ee2d5f51e88c8bf469b926f30"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0e22897ee2d5f51e88c8bf469b926f30" class="m-doc-self">updateLevels</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <p>updateLevels TO DO: the method body is commented out!!!</p>
+<p>*&zwj;/</p>
+          </div></section>
+          <section class="m-doc-details" id="ad32e660fa1d6345d613228df7e535d34"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">uint32_t OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad32e660fa1d6345d613228df7e535d34" class="m-doc-self">getMaxLevel</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <p>getMaxLevel Calculates and returns the maximum level of the output vertices in the graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td><p>maximum level of the output vertices</p><pre class="m-code"><span class="w"> </span><span class="n">OrientedGraph</span><span class="w"> </span><span class="n">graph</span><span class="p">(</span><span class="s">&quot;ExampleGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Add vertices and edges to the graph (omitted for brevity)</span>
+<span class="c1">// Calculate the maximum level of output vertices</span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">maxLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="p">.</span><span class="n">getMaxLevel</span><span class="p">();</span>
+<span class="c1">// Output the result</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Maximum level of output vertices: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">maxLevel</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a4032d7b68b8c789ae096f2484c45512e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4032d7b68b8c789ae096f2484c45512e" class="m-doc-self">setCurrentParent</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> parent)</span></span>
+            </h3>
+            <p>setCurrentParent Sets the current parent graph of the current graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">parent</td>
+                  <td><p>A shared pointer to the parent graph to be set as the current parent</p><pre class="m-code"><span class="c1">// Create an instance of OrientedGraph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OrientedGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ExampleGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Create another instance of OrientedGraph to be set as the current</span>
+<span class="n">parent</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">parentGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OrientedGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ParentGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Set parentGraph as the current parent of graph</span>
+<span class="n">graph</span><span class="o">-&gt;</span><span class="n">setCurrentParent</span><span class="p">(</span><span class="n">parentGraph</span><span class="p">);</span>
+<span class="c1">// Now parentGraph is set as the current parent of graph</span></pre></td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ad28ade19aea5e33287212e3263511ecb"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad28ade19aea5e33287212e3263511ecb" class="m-doc-self">resetCounters</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> where)</span></span>
+            </h3>
+            <p>resetCounters Resets counters associated with a specific graph instance</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">where</td>
+                  <td>A shared pointer to the subgraph whose counters need to be reset</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a0c859a9197a0ccb61ee8cc77390190b2"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0c859a9197a0ccb61ee8cc77390190b2" class="m-doc-self">addInput</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name = &quot;&quot;)</span></span>
+            </h3>
+            <p>addInput Adds an input vertex to the current graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_name</td>
+                  <td>The name of the input vertex to be added</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>A shared pointer to the newly created input vertex</p><pre class="m-code"><span class="c1">// Create an instance of OrientedGraph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OrientedGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ExampleGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Add an input vertex to the graph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">inputVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addInput</span><span class="p">(</span><span class="s">&quot;Input1&quot;</span><span class="p">);</span>
+<span class="c1">// Now inputVertex is a shared pointer to the newly added input vertex</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a57404c5e548a8388b0bbbeb64f4cc049"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a57404c5e548a8388b0bbbeb64f4cc049" class="m-doc-self">addOutput</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name = &quot;&quot;)</span></span>
+            </h3>
+            <p>addOutput Adds an output vertex to the current graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_name</td>
+                  <td>The name of the output vertex to be added</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>A shared pointer to the newly created output vertex</p><pre class="m-code"><span class="c1">// Create an instance of OrientedGraph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OrientedGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ExampleGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Add an output vertex to the graph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">outputVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addOutput</span><span class="p">(</span><span class="s">&quot;Output1&quot;</span><span class="p">);</span>
+<span class="c1">// Now outputVertex is a shared pointer to the newly added output vertex</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a39a19456af71baba506bce70e4d1bfb7"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a39a19456af71baba506bce70e4d1bfb7" class="m-doc-self">addConst</a>(</span><span class="m-doc-wrap">const char&amp; i_value,
+              const std::string&amp; i_name = &quot;&quot;)</span></span>
+            </h3>
+            <p>addConst Adds a constant vertex to the current graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_value</td>
+                  <td>The value of the constant vertex to be added</td>
+                </tr>
+                <tr>
+                  <td>i_name</td>
+                  <td>The name of the constant vertex to be added</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>A shared pointer to the newly created constant vertex</p><pre class="m-code"><span class="c1">// Create an instance of OrientedGraph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OrientedGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ExampleGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Add a constant vertex to the graph with value &#39;A&#39; and name &quot;Constant1&quot;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">constantVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addConst</span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Constant1&quot;</span><span class="p">);</span>
+<span class="c1">// Now constantVertex is a shared pointer to the newly added constant</span>
+<span class="n">vertex</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="aa94d5942af735685e97807ad850c8522"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa94d5942af735685e97807ad850c8522" class="m-doc-self">addGate</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>&amp; i_gate,
+              const std::string&amp; i_name = &quot;&quot;)</span></span>
+            </h3>
+            <p>addGate Adds a gate vertex to the current graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_gate</td>
+                  <td>The type of the gate vertex to be added</td>
+                </tr>
+                <tr>
+                  <td>i_name</td>
+                  <td>The name of the gate vertex to be added</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>A shared pointer to the newly created gate vertex</p><pre class="m-code"><span class="c1">// Create an instance of OrientedGraph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OrientedGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ExampleGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Add a gate vertex to the graph with type GateAnd and name &quot;Gate1&quot;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">gateVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addGate</span><span class="p">(</span><span class="n">Gates</span><span class="o">::</span><span class="n">GateAnd</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gate1&quot;</span><span class="p">);</span>
+<span class="c1">// Now gateVertex is a shared pointer to the newly added gate vertex</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a838f4dec4968f1ce88580428ef9e52b4"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a838f4dec4968f1ce88580428ef9e52b4" class="m-doc-self">addSubGraph</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_subGraph,
+              std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; i_inputs)</span></span>
+            </h3>
+            <p>addSubGraph Adds a subgraph to the current graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_subGraph</td>
+                  <td>A shared pointer to the subgraph to be added</td>
+                </tr>
+                <tr>
+                  <td>i_inputs</td>
+                  <td>A vector containing the input vertices to be connected to the subgraph</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>A vector containing the output vertices of the subgraph</p><pre class="m-code"><span class="c1">// Create an instance of OrientedGraph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OrientedGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ExampleGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Create a subgraph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">subGraph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OrientedGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;SubGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Create input vertices for the subgraph</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">VertexPtr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">subGraphInputs</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">inputVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addInput</span><span class="p">(</span><span class="s">&quot;SubGraphInput&quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span><span class="w"> </span><span class="n">subGraphInputs</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">inputVertex</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Add the subgraph to the graph with its inputs</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">subGraphOutputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addSubGraph</span><span class="p">(</span><span class="n">subGraph</span><span class="p">,</span><span class="w"> </span><span class="n">subGraphInputs</span><span class="p">);</span>
+<span class="c1">// Now subGraphOutputs contains the output vertices of the subgraph</span></pre></td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>std::invalid_argument</td>
+                  <td>if the number of inputs does not match the number of input vertices in the subgraph</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a6d00cef19ee77216d3fea9a911b5a881"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6d00cef19ee77216d3fea9a911b5a881" class="m-doc-self">addEdge</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> from,
+              <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> to)</span></span>
+            </h3>
+            <p>addEdge Adds an edge between two vertices in the current graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">from</td>
+                  <td>A shared pointer to the vertex where the edge originates</td>
+                </tr>
+                <tr>
+                  <td>to</td>
+                  <td>A shared pointer to the vertex where the edge terminates</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>true if the edge was successfully added, false otherwise</p><pre class="m-code"><span class="c1">// Create an instance of OrientedGraph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OrientedGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ExampleGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Create two vertices</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">vertex1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addInput</span><span class="p">(</span><span class="s">&quot;Vertex1&quot;</span><span class="p">);</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">vertex2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addOutput</span><span class="p">(</span><span class="s">&quot;Vertex2&quot;</span><span class="p">);</span>
+<span class="c1">// Add an edge from vertex1 to vertex2</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">edgeAdded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addEdge</span><span class="p">(</span><span class="n">vertex1</span><span class="p">,</span><span class="w"> </span><span class="n">vertex2</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edgeAdded</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Edge successfully added between Vertex1 and Vertex2</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to add edge between Vertex1 and Vertex2</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>std::invalid_argument</td>
+                  <td>if attempting to add an edge from one subgraph to another when the &#x27;from&#x27; vertex is not an output, or when attempting to add an edge to another subgraph when the &#x27;to&#x27; vertex is not an input</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a2ac16606b2ddcd4f82e9a045f2498614"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2ac16606b2ddcd4f82e9a045f2498614" class="m-doc-self">addEdges</a>(</span><span class="m-doc-wrap">std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; from1,
+              <a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> to)</span></span>
+            </h3>
+            <p>addEdges Adds multiple edges from a vector of source vertices to a target vertex</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">from1</td>
+                  <td>A vector containing the source vertices from which edges will originate</td>
+                </tr>
+                <tr>
+                  <td>to</td>
+                  <td>A shared pointer to the target vertex where the edges will terminate</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>true if all edges were successfully added, false if at least one edge failed to be added</p><pre class="m-code"><span class="c1">// Create an instance of OrientedGraph</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">OrientedGraph</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ExampleGraph&quot;</span><span class="p">);</span>
+<span class="c1">// Create multiple source vertices</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">VertexPtr</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sources</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addInput</span><span class="p">(</span><span class="s">&quot;Source&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+<span class="w">  </span><span class="n">sources</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">vertex</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// Create a target vertex</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addOutput</span><span class="p">(</span><span class="s">&quot;Target&quot;</span><span class="p">);</span>
+<span class="c1">// Add edges from all source vertices to the target vertex</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">edgesAdded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addEdges</span><span class="p">(</span><span class="n">sources</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edgesAdded</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Edges successfully added from all sources to the</span>
+<span class="w">  </span><span class="n">target</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;;</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to add edges from one or more sources to the</span>
+<span class="w">  </span><span class="n">target</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;;</span>
+<span class="p">}</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="afeb227c7795592ecca44f4aea7877b99"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">size_t OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afeb227c7795592ecca44f4aea7877b99" class="m-doc-self">getEdgesCount</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <p>getEdgesCount Retrieves the total number of edges in the graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The total number of edges in the graph</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a1189a4284cfbc29bc4523d3a59cc7a08"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1189a4284cfbc29bc4523d3a59cc7a08" class="m-doc-self">toGraphMLClassic</a>(</span><span class="m-doc-wrap">std::ofstream&amp; i_fileStream) const</span></span>
+            </h3>
+            <p>toGraphML Writes the graph structure in GraphML format to the specified output stream</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_fileStream</td>
+                  <td>A reference to the std::ofstream object, which represents the file in which the graph structure will be written in GraphML format</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>bool: Returns true if the graph structure has been successfully written in GraphML format, and false otherwise. In this case, it always returns true.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="aeab88e9241158e8e1b04af8cfe2abc98"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aeab88e9241158e8e1b04af8cfe2abc98" class="m-doc-self">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false)</span></span>
+            </h3>
+            <p>calculateHash calculates hash values for a graph based on the hash values of its vertices</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">recalculate</td>
+                  <td>A Boolean value indicating whether the hash value should be recalculated even if it has already been previously calculated. By default, false.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>A string representing the hash value of the graph</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a898b4a0281ea97c7315f83a3104c1f0a"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, size_t&gt; OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a898b4a0281ea97c7315f83a3104c1f0a" class="m-doc-self">getGatesCount</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>A display where each key is a type of gate (Gates), and the corresponding value is the number of gates of this type in the graph</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>type in the graph</p>
+          </div></section>
+          <section class="m-doc-details" id="a77e5f38755da7e7edb9d179cf92280d3"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, size_t&gt;&gt; OrientedGraph::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a77e5f38755da7e7edb9d179cf92280d3" class="m-doc-self">getEdgesGatesCount</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getEdgesGatesCount Returns a mapping containing the number of edges between different types of gates in the graph</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>A mapping where each external key is a gate type, and the corresponding value is an internal mapping containing the number of edges between different types of gates in the graph</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

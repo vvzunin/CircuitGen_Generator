@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>src/generators/Genetic/Parents/ParentsParameters.h file | CircuitGenGenerator</title>
+  <title>src/generators/Genetic/Selections/Selections.hpp file | CircuitGenGenerator</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -49,7 +49,7 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a>/</span><span class="m-breadcrumb"><a href="dir_481ff30a04be567a95a44689a1b1c394.html">generators</a>/</span><span class="m-breadcrumb"><a href="dir_e3c8d96ee5422dfebba0adbcc79f988c.html">Genetic</a>/</span><span class="m-breadcrumb"><a href="dir_ec16f3e28a27bac828e2c4cebefb614a.html">Parents</a>/</span>ParentsParameters.h <span class="m-thin">file</span>
+          <span class="m-breadcrumb"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a>/</span><span class="m-breadcrumb"><a href="dir_481ff30a04be567a95a44689a1b1c394.html">generators</a>/</span><span class="m-breadcrumb"><a href="dir_e3c8d96ee5422dfebba0adbcc79f988c.html">Genetic</a>/</span><span class="m-breadcrumb"><a href="dir_e02ea4a53f9f733db7dda8f190efa68e.html">Selections</a>/</span>Selections.hpp <span class="m-thin">file</span>
         </h1>
         <p><span></span></p>
         <div class="m-block m-default">
@@ -58,30 +58,24 @@
             <li>
               Reference
               <ul>
-                <li><a href="#nested-classes">Classes</a></li>
-                <li><a href="#enum-members">Enums</a></li>
+                <li><a href="#func-members">Functions</a></li>
               </ul>
             </li>
           </ul>
         </div>
-        <section id="nested-classes">
-          <h2><a href="#nested-classes">Classes</a></h2>
+        <section id="func-members">
+          <h2><a href="#func-members">Functions</a></h2>
           <dl class="m-doc">
-            <dt>
-              class <a href="classParentsParameters.html" class="m-doc">ParentsParameters</a>
+            <dt id="a29d16606fee0536ac50b44789df00c3e">
+              <div class="m-doc-template">template&lt;typename Type, typename ParametersType&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a29d16606fee0536ac50b44789df00c3e" class="m-doc-self">SelectionType</a>(</span><span class="m-doc-wrap"><a href="classSelectionParameters.html" class="m-doc">SelectionParameters</a> i_selectionParameters,
+              std::vector&lt;<a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;Type, ParametersType&gt;&gt; i_population) -&gt; std::vector&lt;<a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;Type, ParametersType&gt;&gt;</span>
             </dt>
             <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="enum-members">
-          <h2><a href="#enum-members">Enums</a></h2>
-          <dl class="m-doc">
-            <dt id="a130c2b32927d9f98f3433218f8e84f75">
-              <span class="m-doc-wrap-bumper">enum <a href="#a130c2b32927d9f98f3433218f8e84f75" class="m-doc-self">ParentsTypes</a> { </span><span class="m-doc-wrap"><a href="#a130c2b32927d9f98f3433218f8e84f75af80afde4e6d6498f52ff85ca4d54219b" class="m-doc">Panmixia</a>,
-              <a href="#a130c2b32927d9f98f3433218f8e84f75a8c1a25dc272a3476f739b09fcb6d6812" class="m-doc">Inbringing</a>,
-              <a href="#a130c2b32927d9f98f3433218f8e84f75a6fe0202998e361fa9d504153f4dea7f4" class="m-doc">Outbrinding</a>,
-              <a href="#a130c2b32927d9f98f3433218f8e84f75a6f2802f0e29fb8b2e57a326f29208173" class="m-doc">Tournament</a>,
-              <a href="#a130c2b32927d9f98f3433218f8e84f75af0be1a1619a301ea7587fb0705434d6c" class="m-doc">Roulette</a> }</span>
+            <dt id="ab9b58854a49ca704792446a39a51ddb2">
+              <div class="m-doc-template">template&lt;&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab9b58854a49ca704792446a39a51ddb2" class="m-doc-self">SelectionType</a>(</span><span class="m-doc-wrap"><a href="classSelectionParameters.html" class="m-doc">SelectionParameters</a> i_selectionParameters,
+              std::vector&lt;<a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt; i_population) -&gt; std::vector&lt;<a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt;</span>
             </dt>
             <dd><span></span></dd>
           </dl>

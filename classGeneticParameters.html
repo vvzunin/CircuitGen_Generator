@@ -50,9 +50,8 @@
       <div class="m-col-l-10 m-push-l-1">
         <h1>
           GeneticParameters <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GeneticParameters_8h.html">&lt;GeneticParameters.h&gt;</a></div>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GeneticParameters_8hpp.html">&lt;GeneticParameters.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -67,48 +66,49 @@
             </li>
           </ul>
         </div>
+<aside class="m-note m-dim"><h4><a href="todo.html#_todo000014" class="m-doc">Todo</a></h4><p>: fill in the description of the class fields</p><p>Class representing genetic algorithm parameters</p></aside>
         <section id="derived-classes">
           <h2><a href="#derived-classes">Derived classes</a></h2>
           <dl class="m-doc">
             <dt>
               class <a href="classOrientedGraphParameters.html" class="m-doc">OrientedGraphParameters</a>
             </dt>
-            <dd><span></span></dd>
+            <dd></dd>
             <dt>
               class <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>
             </dt>
-            <dd><span></span></dd>
+            <dd></dd>
           </dl>
         </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a99d4a9086f804ac3b82617f18482a401">
-              <span class="m-doc-wrap-bumper"><a href="#a99d4a9086f804ac3b82617f18482a401" class="m-doc-self">GeneticParameters</a>(</span><span class="m-doc-wrap">int i_inputs = 0,
-              int outs = 0)</span>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#af3c513db2bdcad946e6c183c8c5b093a" class="m-doc">GeneticParameters</a>(</span><span class="m-doc-wrap">uint32_t i_inputs = 0,
+              uint32_t outs = 0)</span>
             </dt>
-            <dd><span></span></dd>
+            <dd><a href="classGeneticParameters.html" class="m-doc">GeneticParameters</a>.</dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="ad3f4355c9a9f01760da9f9227805b7a4">
-              <span class="m-doc-wrap-bumper">auto <a href="#ad3f4355c9a9f01760da9f9227805b7a4" class="m-doc-self">getInputs</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aa1b4269bb8a929aa2501514cda0f4ba9" class="m-doc">getInputs</a>(</span><span class="m-doc-wrap">) const -&gt; uint32_t</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a14ec018d27b218172ee573affd2d9ddc">
-              <span class="m-doc-wrap-bumper">void <a href="#a14ec018d27b218172ee573affd2d9ddc" class="m-doc-self">setInputs</a>(</span><span class="m-doc-wrap">int i_inputs)</span>
+            <dd>getInputs Get the number of inputs</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a8c402aebed6a73dd096ec105b6d0366a" class="m-doc">setInputs</a>(</span><span class="m-doc-wrap">uint32_t i_inputs)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a970addd75a43423df0b1d34a19309707">
-              <span class="m-doc-wrap-bumper">auto <a href="#a970addd75a43423df0b1d34a19309707" class="m-doc-self">getOutputs</a>(</span><span class="m-doc-wrap">) const -&gt; int</span>
+            <dd>setInputs Set the number of inputs</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6bb3be1205ed0202b9051e8c78282069" class="m-doc">getOutputs</a>(</span><span class="m-doc-wrap">) const -&gt; uint32_t</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a7a2e0b23d890c0821b17d25afcc11d86">
-              <span class="m-doc-wrap-bumper">void <a href="#a7a2e0b23d890c0821b17d25afcc11d86" class="m-doc-self">setOutputs</a>(</span><span class="m-doc-wrap">int i_outputs)</span>
+            <dd>getOutputs Get the number of outputs</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a5935bc550b7a0640c9f0c40f7cd9658b" class="m-doc">setOutputs</a>(</span><span class="m-doc-wrap">uint32_t i_outputs)</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>setOutputs Set the number of outputs</dd>
             <dt id="a99ffc1f118b5727ef616c7222ee83ef0">
               <span class="m-doc-wrap-bumper">auto <a href="#a99ffc1f118b5727ef616c7222ee83ef0" class="m-doc-self">getSelectionParameters</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classSelectionParameters.html" class="m-doc">SelectionParameters</a></span>
             </dt>
@@ -133,12 +133,12 @@
               <span class="m-doc-wrap-bumper">void <a href="#a525ba7e07d9cb189c0ca014f56416dc8" class="m-doc-self">setMutationParameters</a>(</span><span class="m-doc-wrap">const <a href="classMutationParameters.html" class="m-doc">MutationParameters</a>&amp; i_mp)</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a4895d45db78ba5041f5f45e93ef5a380">
-              <span class="m-doc-wrap-bumper">void <a href="#a4895d45db78ba5041f5f45e93ef5a380" class="m-doc-self">setPopulationSize</a>(</span><span class="m-doc-wrap">int i_populationSize)</span>
+            <dt id="acf594eeceb1c75740eb82594f86b5209">
+              <span class="m-doc-wrap-bumper">void <a href="#acf594eeceb1c75740eb82594f86b5209" class="m-doc-self">setPopulationSize</a>(</span><span class="m-doc-wrap">uint32_t i_populationSize)</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a50dddd3b0b4d179be3637f59bc9c4fbc">
-              <span class="m-doc-wrap-bumper">void <a href="#a50dddd3b0b4d179be3637f59bc9c4fbc" class="m-doc-self">setNumOfCycles</a>(</span><span class="m-doc-wrap">int i_numOfCycles)</span>
+            <dt id="add12682270462c462d9b8b251a5b32e1">
+              <span class="m-doc-wrap-bumper">void <a href="#add12682270462c462d9b8b251a5b32e1" class="m-doc-self">setNumOfCycles</a>(</span><span class="m-doc-wrap">uint32_t i_numOfCycles)</span>
             </dt>
             <dd><span></span></dd>
             <dt id="a69d2a71967ac4446244bf488fa982ac5">
@@ -149,8 +149,8 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a75b2f2fd5c44a06929af0933d6c0a792" class="m-doc-self">getKeyEndProcessIndex</a>(</span><span class="m-doc-wrap">) -&gt; double</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="a66a42803e1668bd51e24603945de112f">
-              <span class="m-doc-wrap-bumper">auto <a href="#a66a42803e1668bd51e24603945de112f" class="m-doc-self">getNumOfCycles</a>(</span><span class="m-doc-wrap">) -&gt; int</span>
+            <dt id="ac7a8b45c6336142481451c7631dc57a2">
+              <span class="m-doc-wrap-bumper">auto <a href="#ac7a8b45c6336142481451c7631dc57a2" class="m-doc-self">getNumOfCycles</a>(</span><span class="m-doc-wrap">) -&gt; uint32_t</span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -158,20 +158,20 @@
         <section id="pro-attribs">
           <h2><a href="#pro-attribs">Protected variables</a></h2>
           <dl class="m-doc">
-            <dt id="ab711d6fcf5d9ea81cde5bf033101324a">
-              int <a href="#ab711d6fcf5d9ea81cde5bf033101324a" class="m-doc-self">d_inputs</a>
+            <dt id="a49f7dc31af5906ee6d17847c5a4dd613">
+              uint32_t <a href="#a49f7dc31af5906ee6d17847c5a4dd613" class="m-doc-self">d_inputs</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a8637d3fbec85e070357daf43373e22fc">
-              int <a href="#a8637d3fbec85e070357daf43373e22fc" class="m-doc-self">d_outputs</a>
+            <dt id="a82298ca566e63a166bd7a7c4dd235399">
+              uint32_t <a href="#a82298ca566e63a166bd7a7c4dd235399" class="m-doc-self">d_outputs</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a4e04bc3bdad439bfeb9d788a3f818efb">
-              int <a href="#a4e04bc3bdad439bfeb9d788a3f818efb" class="m-doc-self">d_populationSize</a>
+            <dt id="a72adb51236dda85d27a083d05c91c11f">
+              uint32_t <a href="#a72adb51236dda85d27a083d05c91c11f" class="m-doc-self">d_populationSize</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a6b91973df19cf2921bf66a5589ae3436">
-              int <a href="#a6b91973df19cf2921bf66a5589ae3436" class="m-doc-self">d_numOfCycles</a>
+            <dt id="acba9553d32dafc1e9eb51a15ede694aa">
+              uint32_t <a href="#acba9553d32dafc1e9eb51a15ede694aa" class="m-doc-self">d_numOfCycles</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a4ac6780cccce51dc0d26fae181dfd3ec">
@@ -191,6 +191,93 @@
             </dt>
             <dd><span></span></dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="af3c513db2bdcad946e6c183c8c5b093a"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> GeneticParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af3c513db2bdcad946e6c183c8c5b093a" class="m-doc-self">GeneticParameters</a>(</span><span class="m-doc-wrap">uint32_t i_inputs = 0,
+              uint32_t outs = 0)</span></span>
+            </h3>
+            <p><a href="classGeneticParameters.html" class="m-doc">GeneticParameters</a>.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_inputs</td>
+                  <td>Number of inputs</td>
+                </tr>
+                <tr>
+                  <td>outs</td>
+                  <td>Number of outputs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="aa1b4269bb8a929aa2501514cda0f4ba9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">uint32_t GeneticParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa1b4269bb8a929aa2501514cda0f4ba9" class="m-doc-self">getInputs</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getInputs Get the number of inputs</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The number of inputs</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a8c402aebed6a73dd096ec105b6d0366a"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void GeneticParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8c402aebed6a73dd096ec105b6d0366a" class="m-doc-self">setInputs</a>(</span><span class="m-doc-wrap">uint32_t i_inputs)</span></span>
+            </h3>
+            <p>setInputs Set the number of inputs</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_inputs</td>
+                  <td>The number of inputs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a6bb3be1205ed0202b9051e8c78282069"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">uint32_t GeneticParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6bb3be1205ed0202b9051e8c78282069" class="m-doc-self">getOutputs</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getOutputs Get the number of outputs</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The number of outputs</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a5935bc550b7a0640c9f0c40f7cd9658b"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void GeneticParameters::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5935bc550b7a0640c9f0c40f7cd9658b" class="m-doc-self">setOutputs</a>(</span><span class="m-doc-wrap">uint32_t i_outputs)</span></span>
+            </h3>
+            <p>setOutputs Set the number of outputs</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_outputs</td>
+                  <td>The number of outputs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

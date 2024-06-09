@@ -49,11 +49,26 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="GenGenerator_8h.html">&lt;GenGenerator.h&gt;</a></div>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="GenGenerator_8hpp.html">&lt;GenGenerator.hpp&gt;</a></div>
           <div class="m-doc-template">template&lt;typename Type, typename ParametersType&gt;</div>
           GeneticGenerator <span class="m-thin">class</span>
         </h1>
-        <p><span></span></p>
+        <p><a href="classGeneticGenerator.html" class="m-doc">GeneticGenerator</a> Template class for generating genetic populations.</p>
+        <table class="m-table m-fullwidth m-flat">
+          <thead>
+            <tr><th colspan="2">Template parameters</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 1%">Type</td>
+              <td>Type of chromosome in a genetic population</td>
+            </tr>
+            <tr>
+              <td>ParametersType</td>
+              <td>Type of parameters used to generate genetics</td>
+            </tr>
+          </tbody>
+        </table>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -69,10 +84,11 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a09c15336d6d15f476729739a7992fb1a">
-              <span class="m-doc-wrap-bumper"><a href="#a09c15336d6d15f476729739a7992fb1a" class="m-doc-self">GeneticGenerator</a>(</span><span class="m-doc-wrap">const ParametersType&amp; i_parameters,
-              std::pair&lt;int, int&gt; i_inout,
-              const std::string&amp; i_mainPath)</span>
+            <dt id="a0796f95219d76c731b06b74be2e67282">
+              <span class="m-doc-wrap-bumper"><a href="#a0796f95219d76c731b06b74be2e67282" class="m-doc-self">GeneticGenerator</a>(</span><span class="m-doc-wrap">const ParametersType&amp; i_parameters,
+              std::pair&lt;int32_t, int32_t&gt; i_inout,
+              const std::string&amp; i_mainPath,
+              const std::string&amp; i_name)</span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -80,11 +96,35 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="afbf9f3e6ae4d839df3ba19ed9473739e">
-              <span class="m-doc-wrap-bumper">auto <a href="#afbf9f3e6ae4d839df3ba19ed9473739e" class="m-doc-self">generate</a>(</span><span class="m-doc-wrap">) -&gt; std::vector&lt;<a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;Type, ParametersType&gt;&gt;</span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#afbf9f3e6ae4d839df3ba19ed9473739e" class="m-doc">generate</a>(</span><span class="m-doc-wrap">) -&gt; std::vector&lt;<a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;Type, ParametersType&gt;&gt;</span>
+            </dt>
+            <dd>generate Generates a genetic population and carries out evolutionary processes The method creates an initial population, calculates the value of the process end function, and in a cycle performs the operations of recombination, mutation and selection until reaching criterion for completing a process or reaching the maximum number of cycles. On each iteration preserves the population. Upon completion, returns the final population.</dd>
+            <dt id="a7164ab47384bb476fd71aed42c3a882f">
+              <span class="m-doc-wrap-bumper">auto <a href="#a7164ab47384bb476fd71aed42c3a882f" class="m-doc-self">getGraphsFromPopulation</a>(</span><span class="m-doc-wrap">const std::vector&lt;<a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;Type, ParametersType&gt;&gt;&amp; i_population) -&gt; std::vector&lt;<a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a>&gt;</span>
             </dt>
             <dd><span></span></dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="afbf9f3e6ae4d839df3ba19ed9473739e"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename Type, typename ParametersType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::vector&lt;<a href="classChronosomeType.html" class="m-doc">ChronosomeType</a>&lt;Type, ParametersType&gt;&gt; GeneticGenerator&lt;Type, ParametersType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afbf9f3e6ae4d839df3ba19ed9473739e" class="m-doc-self">generate</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <p>generate Generates a genetic population and carries out evolutionary processes The method creates an initial population, calculates the value of the process end function, and in a cycle performs the operations of recombination, mutation and selection until reaching criterion for completing a process or reaching the maximum number of cycles. On each iteration preserves the population. Upon completion, returns the final population.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Final genetic population</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>

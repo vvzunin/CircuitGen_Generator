@@ -52,7 +52,7 @@
           GraphVertexGates <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GraphVertex_8hpp.html">&lt;GraphVertex.hpp&gt;</a></div>
         </h1>
-        <p><span></span></p>
+        <p><a href="classGraphVertexGates.html" class="m-doc">GraphVertexGates</a> Class representing a vertex in a graph with gates.</p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -72,7 +72,7 @@
             <dt>
               class <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a>
             </dt>
-            <dd><span></span></dd>
+            <dd></dd>
           </dl>
         </section>
         <section id="typeless-methods">
@@ -80,13 +80,13 @@
           <dl class="m-doc">
             <dt id="a1fa14a181bc885aaf65d701f77dd1dd1">
               <span class="m-doc-wrap-bumper"><a href="#a1fa14a181bc885aaf65d701f77dd1dd1" class="m-doc-self">GraphVertexGates</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> i_gate,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
+              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
             </dt>
             <dd><span></span></dd>
             <dt id="a16027575fa9f6b9546c09d7835f528e5">
               <span class="m-doc-wrap-bumper"><a href="#a16027575fa9f6b9546c09d7835f528e5" class="m-doc-self">GraphVertexGates</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> i_gate,
               const std::string i_name,
-              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
+              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_baseGraph = nullptr)</span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -94,27 +94,151 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="aa23a50827498b0d74e8fd3245bc0c49f">
-              <span class="m-doc-wrap-bumper">auto <a href="#aa23a50827498b0d74e8fd3245bc0c49f" class="m-doc-self">updateValue</a>(</span><span class="m-doc-wrap">) -&gt; char <span class="m-label m-flat m-warning">virtual</span></span>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aa23a50827498b0d74e8fd3245bc0c49f" class="m-doc">updateValue</a>(</span><span class="m-doc-wrap">) -&gt; char <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a910539228636bc20f5751611a87a5d47">
-              <span class="m-doc-wrap-bumper">auto <a href="#a910539228636bc20f5751611a87a5d47" class="m-doc-self">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
+            <dd>updateValue Updates the value of the vertex</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a910539228636bc20f5751611a87a5d47" class="m-doc">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a83f145b69fafe9ed340c656aa1e82940">
-              <span class="m-doc-wrap-bumper">auto <a href="#a83f145b69fafe9ed340c656aa1e82940" class="m-doc-self">getVerilogString</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
+            <dd>calculateHash Calculates the hash value of the vertex</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a83f145b69fafe9ed340c656aa1e82940" class="m-doc">getVerilogString</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a5232bce8a15a40c4f3d19553b79a69a9">
-              <span class="m-doc-wrap-bumper">auto <a href="#a5232bce8a15a40c4f3d19553b79a69a9" class="m-doc-self">getGate</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> <span class="m-label m-flat m-warning">virtual</span></span>
+            <dd>getVerilogString Gets a string in Verilog format representing the current vertex</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5232bce8a15a40c4f3d19553b79a69a9" class="m-doc">getGate</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a4d38ec95ed252a205cbcb08ed691941d">
-              <span class="m-doc-wrap-bumper">auto <a href="#a4d38ec95ed252a205cbcb08ed691941d" class="m-doc-self">toVerilog</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
+            <dd>getGate Returns the type of valve associated with the current vertex</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a4d38ec95ed252a205cbcb08ed691941d" class="m-doc">toVerilog</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd>toVerilog generates a string in Verilog format for the current vertex, representing the valve according to its type and input connections. If a vertex has no input connections, an empty string is returned. If any input connection is invalid, an exception is thrown.</dd>
+            <dt id="a946469866a698378c2885ccea85c1f11">
+              <span class="m-doc-wrap-bumper">auto <a href="#a946469866a698378c2885ccea85c1f11" class="m-doc-self">isSubgraphBuffer</a>(</span><span class="m-doc-wrap">) const -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd><span></span></dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="aa23a50827498b0d74e8fd3245bc0c49f"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">char GraphVertexGates::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa23a50827498b0d74e8fd3245bc0c49f" class="m-doc-self">updateValue</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <p>updateValue Updates the value of the vertex</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The updated value of the vertex <code class="m-code"><span class="n">TO</span><span class="w"> </span><span class="n">DO</span><span class="o">:</span></code></td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>std::invalid_argument</td>
+                  <td>if any of the input connections point to a nullptr</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a910539228636bc20f5751611a87a5d47"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string GraphVertexGates::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a910539228636bc20f5751611a87a5d47" class="m-doc-self">calculateHash</a>(</span><span class="m-doc-wrap">bool recalculate = false) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <p>calculateHash Calculates the hash value of the vertex</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">recalculate</td>
+                  <td>Flag indicating whether to recalculate the hash value (default false)</td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Returns</th>
+                  <td>The calculated hash value as a string</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>None.</td>
+                  <td><pre class="m-code"><span class="n">TO</span><span class="w"> </span><span class="n">DO</span><span class="o">:</span></pre></td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a83f145b69fafe9ed340c656aa1e82940"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string GraphVertexGates::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a83f145b69fafe9ed340c656aa1e82940" class="m-doc-self">getVerilogString</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getVerilogString Gets a string in Verilog format representing the current vertex</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>A string in Verilog format representing the current vertex</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>std::invalid_argument</td>
+                  <td>if any input connection is invalid</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a5232bce8a15a40c4f3d19553b79a69a9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> GraphVertexGates::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5232bce8a15a40c4f3d19553b79a69a9" class="m-doc-self">getGate</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <p>getGate Returns the type of valve associated with the current vertex</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td><p>The type of valve associated with the current vertex</p><pre class="m-code"><span class="n">GraphVertexGates</span><span class="w"> </span><span class="nf">vertex</span><span class="p">(</span><span class="n">Gates</span><span class="o">::</span><span class="n">GateAnd</span><span class="p">);</span>
+<span class="n">Gates</span><span class="w"> </span><span class="n">gateType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertex</span><span class="p">.</span><span class="n">getGate</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Gate type : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">gateType</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a4d38ec95ed252a205cbcb08ed691941d"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string GraphVertexGates::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4d38ec95ed252a205cbcb08ed691941d" class="m-doc-self">toVerilog</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <p>toVerilog generates a string in Verilog format for the current vertex, representing the valve according to its type and input connections. If a vertex has no input connections, an empty string is returned. If any input connection is invalid, an exception is thrown.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>A Verilog format string for the current vertex</td>
+                </tr>
+              </thead>
+              <thead>
+                <tr><th colspan="2">Exceptions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>std::invalid_argument</td>
+                  <td>if any input connection is invalid</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
         </section>
       </div>
     </div>
