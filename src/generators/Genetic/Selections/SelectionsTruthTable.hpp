@@ -3,18 +3,18 @@
 
 #include <additional/AuxiliaryMethods.hpp>
 
-#include "../ChronosomeType.hpp"
+#include "../ChromosomeType.hpp"
 
 namespace SelectionsTruthTable {
-inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+inline std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
     SelectionBase(
         SelectionParameters i_selectionParameters,
-        std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+        std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
             i_population
     ) {
   std::srand(std::time(0));
 
-  std::vector<ChronosomeType<TruthTable, TruthTableParameters>> survivors;
+  std::vector<ChromosomeType<TruthTable, TruthTableParameters>> survivors;
   while (survivors.size() < i_selectionParameters.getNumOfSurvivors()) {
     int32_t r1 = 0, r2 = 0;
     while (i_population.size() > 2 && r2 == r1) {

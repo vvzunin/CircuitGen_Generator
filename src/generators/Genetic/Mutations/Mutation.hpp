@@ -2,17 +2,17 @@
 
 #include <vector>
 
-#include "../ChronosomeType.hpp"
+#include "../ChromosomeType.hpp"
 #include "MutationParameters.hpp"
 #include "MutationTruthTable.hpp"
 
 template<typename Type, typename ParametersType>
-std::vector<ChronosomeType<Type, ParametersType>> MutationType(
+std::vector<ChromosomeType<Type, ParametersType>> MutationType(
     MutationParameters                                i_mutationParameters,
-    std::vector<ChronosomeType<Type, ParametersType>> i_population
+    std::vector<ChromosomeType<Type, ParametersType>> i_population
 );
 template<>
-std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationType(
+std::vector<ChromosomeType<TruthTable, TruthTableParameters>> MutationType(
     MutationParameters i_mutationParameters,
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+    std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population
 );

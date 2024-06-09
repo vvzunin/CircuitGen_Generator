@@ -5,19 +5,19 @@
 #include <string>
 #include <vector>
 
-#include "../ChronosomeType.hpp"
+#include "../ChromosomeType.hpp"
 #include "ParentsParameters.hpp"
 #include "ParentsTruthTable.hpp"
 
 template<typename Type, typename ParametersType>
 std::vector<int32_t> ParentsTypesWorker(
     ParentsParameters                                 i_parentsParameters,
-    std::vector<ChronosomeType<Type, ParametersType>> i_population
+    std::vector<ChromosomeType<Type, ParametersType>> i_population
 );
 template<>
 inline std::vector<int32_t> ParentsTypesWorker(
     ParentsParameters i_parentsParameters,
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+    std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   if (i_parentsParameters.getParentsType() == ParentsTypes::Panmixia)
     return ParentsPanmixia(i_parentsParameters, i_population);

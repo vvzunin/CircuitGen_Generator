@@ -5,7 +5,7 @@ enum GenotypeParametersTypes {
 };
 
 template<typename T>
-class Chronosome {
+class Chromosome {
 public:
   virtual void generateRandom(T i_gp) = 0;
 };

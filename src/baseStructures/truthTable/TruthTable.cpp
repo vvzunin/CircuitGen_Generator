@@ -18,7 +18,7 @@ TruthTable::TruthTable(uint_fast32_t i_seed) {
   d_settings = Settings::getInstance("TruthTable");
 }
 
-// TruthTable::TruthTable(const Chronosome<TruthTableParameters> &i_chr)
+// TruthTable::TruthTable(const Chromosome<TruthTableParameters> &i_chr)
 // {
 //     d_randGenerator.setSeed(AuxMethods::getRandSeed());
 //     d_settings = Settings::getInstance("TruthTable");

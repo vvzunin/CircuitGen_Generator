@@ -8,15 +8,15 @@
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
 
-#include "../ChronosomeType.hpp"
+#include "../ChromosomeType.hpp"
 
 inline std::vector<int32_t> GetHemming(
     int32_t                                                       i_t,
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+    std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   int32_t                        count = 0;
   std::vector<std::vector<bool>> p1 =
-      i_population[i_t].getChronosomeType().getOutTable();
+      i_population[i_t].getChromosomeType().getOutTable();
   std::map<int32_t, int32_t> dict;
   std::vector<int32_t>       res;
 
@@ -24,7 +24,7 @@ inline std::vector<int32_t> GetHemming(
     if (i != i_t) {
       count = 0;
       std::vector<std::vector<bool>> p2 =
-          i_population[i].getChronosomeType().getOutTable();
+          i_population[i].getChromosomeType().getOutTable();
       for (size_t j = 0; j < p1.size(); ++j) {
         for (size_t k = 0; k < p1[0].size(); ++k) {
           if (p2[j][k] == p1[j][k])  // what? is it Hemming dist?
@@ -45,7 +45,7 @@ inline std::vector<int32_t> GetHemming(
 
 inline std::vector<int32_t> ParentsPanmixia(
     ParentsParameters i_parentsParameters,
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+    std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   std::srand(std::time(0));
   int32_t parent1 = 0, parent2 = 0;
@@ -60,7 +60,7 @@ inline std::vector<int32_t> ParentsPanmixia(
 
 inline std::vector<int32_t> ParentsInbrinding(
     ParentsParameters i_parentsParameters,
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+    std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   std::srand(std::time(0));
 
@@ -72,7 +72,7 @@ inline std::vector<int32_t> ParentsInbrinding(
 
 inline std::vector<int32_t> ParentsOutbrinding(
     ParentsParameters i_parentsParameters,
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+    std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   std::srand(std::time(0));
 
@@ -84,7 +84,7 @@ inline std::vector<int32_t> ParentsOutbrinding(
 
 inline std::vector<int32_t> ParentsTournament(
     ParentsParameters i_parentsParameters,
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+    std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   std::vector<int32_t> beforeAdaptation = AuxMethods::getRandomIntList(
       i_parentsParameters.getTournamentNumber(), 0, i_population.size(), false
@@ -108,7 +108,7 @@ inline std::vector<int32_t> ParentsTournament(
 // TODO: is this ParentTournament???
 inline std::vector<int32_t> ParentsRoulette(
     ParentsParameters i_parentsParameters,
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+    std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   return ParentsTournament(i_parentsParameters, i_population);
 }
