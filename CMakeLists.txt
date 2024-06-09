@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.14)
 include(cmake/prelude.cmake)
 
 project(
-  CircuitGenGenerator
-  VERSION 0.1.0
+  CircuitGen_Generator
+  VERSION 1.1.0
   DESCRIPTION "Program for circuits dataset generation"
   HOMEPAGE_URL "https://github.com/vvzunin/CircuitGen_Generator"
   LANGUAGES CXX
@@ -63,8 +63,8 @@ set(SOURCES
   src/generators/simple/SimpleGenerators.cpp
   src/generators/Genetic/GeneticParameters.cpp
   src/generators/Genetic/GenGenerator.hpp
-  src/generators/Genetic/Chronosome.hpp
-  src/generators/Genetic/ChronosomeType.hpp
+  src/generators/Genetic/Chromosome.hpp
+  src/generators/Genetic/ChromosomeType.hpp
   src/generators/Genetic/Selections/Selections.hpp
   src/generators/Genetic/Selections/SelectionParameters.cpp
   src/generators/Genetic/Selections/SelectionsTruthTable.hpp

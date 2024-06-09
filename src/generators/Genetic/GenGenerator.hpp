@@ -12,7 +12,7 @@
 #include <circuit/Circuit.hpp>
 #include <generators/simple/SimpleGenerators.hpp>
 
-#include "ChronosomeType.hpp"
+#include "ChromosomeType.hpp"
 #include "Mutations/Mutation.hpp"
 #include "Recombination/Recombinations.hpp"
 #include "Selections/Selections.hpp"
@@ -66,18 +66,18 @@ public:
   /// population.
   /// @return Final genetic population
 
-  std::vector<ChronosomeType<Type, ParametersType>> generate() {
+  std::vector<ChromosomeType<Type, ParametersType>> generate() {
     createPopulation();
     double d = endProcessFunction();
     for (int32_t i = 0;
          (i < d_parameters.getNumOfCycles())
          && (endProcessFunction() < d_parameters.getKeyEndProcessIndex());
          ++i) {
-      std::vector<ChronosomeType<Type, ParametersType>> newPopulation =
+      std::vector<ChromosomeType<Type, ParametersType>> newPopulation =
           RecombinationType<Type, ParametersType>(
               d_parameters.getRecombinationParameters(), d_population
           );
-      std::vector<ChronosomeType<Type, ParametersType>> mutants =
+      std::vector<ChromosomeType<Type, ParametersType>> mutants =
           MutationType<Type, ParametersType>(
               d_parameters.getMutationParameters(), newPopulation
           );
@@ -92,13 +92,13 @@ public:
   }
 
   std::vector<GraphPtr> getGraphsFromPopulation(
-      const std::vector<ChronosomeType<Type, ParametersType>>& i_population
+      const std::vector<ChromosomeType<Type, ParametersType>>& i_population
   ) {
     std::vector<GraphPtr> result;
 
     for (const auto& ttp : i_population) {
       Type tt;
-      tt = ttp.getChronosomeType();
+      tt = ttp.getChromosomeType();
 
       SimpleGenerators tftt;
 
@@ -118,7 +118,7 @@ private:
   uint32_t                                          d_inputs;
   uint32_t                                          d_outputs;
   uint32_t                                          d_numCross;
-  std::vector<ChronosomeType<Type, ParametersType>> d_population;
+  std::vector<ChromosomeType<Type, ParametersType>> d_population;
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
   ParametersType            d_parameters;
   std::string               d_mainPath;
@@ -126,7 +126,7 @@ private:
   const GenerationTypes     d_generationType = Genetic;
 
   void                      savePopulation(
-                           const std::vector<ChronosomeType<Type, ParametersType>>& i_population
+                           const std::vector<ChromosomeType<Type, ParametersType>>& i_population
                        ) {
     auto graphs = getGraphsFromPopulation(i_population);
     for (auto graph : graphs) {
@@ -153,8 +153,8 @@ private:
       Type gen;
       gen.generateRandom(d_parameters);
 
-      ChronosomeType<Type, ParametersType> ind =
-          ChronosomeType<Type, ParametersType>(
+      ChromosomeType<Type, ParametersType> ind =
+          ChromosomeType<Type, ParametersType>(
               std::string("ind" + std::to_string(i)), gen
           );
       d_population.push_back(ind);
@@ -212,14 +212,14 @@ private:
 
 // template<typename Type, typename ParametersType>
 // void GeneticGenerator<Type, ParametersType>::savePopulation(
-//     const std::vector<ChronosomeType<Type, ParametersType>>& i_population
+//     const std::vector<ChromosomeType<Type, ParametersType>>& i_population
 // )
 
 // template<typename Type, typename ParametersType>
 // void GeneticGenerator<Type, ParametersType>::createPopulation()
 
 // template<typename Type, typename ParametersType>
-// std::vector<ChronosomeType<Type, ParametersType>> GeneticGenerator<Type,
+// std::vector<ChromosomeType<Type, ParametersType>> GeneticGenerator<Type,
 // ParametersType>::generate()
 
 // template<typename Type, typename ParametersType>
