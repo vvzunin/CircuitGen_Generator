@@ -249,17 +249,30 @@ target_include_directories(
 )
 add_test(NAME MutationTruthTableTests COMMAND CircuitGenGenerator_test_MutationTruthTableTests)
 
-# Test ParentParametersTests
-add_executable(CircuitGenGenerator_test_ParentParametersTests src/generators/Genetic/Parents/ParentParametersTests.cpp ${NEW_SOURCES})
+# Test ParentsParametersTests
+add_executable(CircuitGenGenerator_test_ParentsParametersTests src/generators/Genetic/Parents/ParentsParametersTests.cpp ${NEW_SOURCES})
 
-target_link_libraries(CircuitGenGenerator_test_ParentParametersTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
-target_compile_features(CircuitGenGenerator_test_ParentParametersTests PRIVATE cxx_std_17)
+target_link_libraries(CircuitGenGenerator_test_ParentsParametersTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_ParentsParametersTests PRIVATE cxx_std_17)
 target_include_directories(
-  CircuitGenGenerator_test_ParentParametersTests ${warning_guard}
+  CircuitGenGenerator_test_ParentsParametersTests ${warning_guard}
     PUBLIC
     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
 )
-add_test(NAME ParentParametersTests COMMAND CircuitGenGenerator_test_ParentParametersTests)
+add_test(NAME ParentsParametersTests COMMAND CircuitGenGenerator_test_ParentsParametersTests)
+
+# Test ParentsTruthTableTests
+add_executable(CircuitGenGenerator_test_ParentsTruthTableTests src/generators/Genetic/Parents/ParentsTruthTableTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_ParentsTruthTableTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_ParentsTruthTableTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_ParentsTruthTableTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME ParentsTruthTableTests COMMAND CircuitGenGenerator_test_ParentsTruthTableTests)
+
 # ---- End-of-file commands ----
 
 add_folders(Test)

@@ -1,6 +1,6 @@
-#include <gtest/gtest.h>
-
 #include "generators/Genetic/Parents/Parents.hpp"
+
+#include <gtest/gtest.h>
 
 TEST(ParentsParametersTest, SetAndGetParentsType) {
   ParentsParameters params;
