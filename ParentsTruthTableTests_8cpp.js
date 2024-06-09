@@ -1,7 +1,7 @@
 var ParentsTruthTableTests_8cpp =
 [
-    [ "createPopulation", "ParentsTruthTableTests_8cpp.html#a4286acb76e471420fef424413d1ba46b", null ],
-    [ "createRandomChromosome", "ParentsTruthTableTests_8cpp.html#abb1c4d63c1499ce3caf3c6551b1d81e1", null ],
+    [ "createPopulation", "ParentsTruthTableTests_8cpp.html#a2c665842bee5368a128a41ac36f6ae03", null ],
+    [ "createRandomChromosome", "ParentsTruthTableTests_8cpp.html#aebdd29d27efc647ed0fd2a0b95d0a08e", null ],
     [ "createRandomTruthTable", "ParentsTruthTableTests_8cpp.html#a2016de6cf6313287692ca64dafe2140d", null ],
     [ "TEST", "ParentsTruthTableTests_8cpp.html#aa98012c502fc6387573cce3b66abf77e", null ],
     [ "TEST", "ParentsTruthTableTests_8cpp.html#a9b9b02ac918a61cc845a43ba5fb4267d", null ],
