@@ -28,5 +28,41 @@ do
         break
     fi 
 done < "$file"
-OUTPUT=$(realpath ../../run.sh)
-/bin/bash $OUTPUT
+OUTPUT=$(realpath ../../buildGenerator.sh)
+# We can use `str3 = “$str1$str2″`
+
+removeTimeFromLog(){
+    local log=$1
+    strlen=${#log}
+    counter=0
+    needed_pos=-1
+    for (( i=0; i<strlen; i++ ))
+    do
+        char=${log:i:1}
+        if [[ "$char" == ' ' ]]; then
+            ((counter++)) 
+        fi 
+        if [[ $counter -eq 2 ]]; then
+            needed_pos=$i
+            break 
+        fi 
+    done 
+    ((needed_pos++))
+    return $needed_pos
+}
+pt="a b c123"
+removeTimeFromLog "$pt"
+$needed_length=$?
+echo ${needed_pos}
+strlen=${#pt}
+needed_length=$((strlen - needed_pos))
+echo ${pt:needed_pos:needed_length}
+
+# for dir in ./correct_logs/*/
+# do
+#     for file in $dir*
+#     do
+#         value=$(<$file)
+#         echo $value 
+#     done 
+# done 
