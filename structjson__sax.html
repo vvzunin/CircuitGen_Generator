@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>json_sax struct | CircuitGen_Generator Desc of Backeknd</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li><a href="pages.html">Pages</a></li>
+            <li><a href="namespaces.html">Namespaces</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;json.hpp&gt;</a></div>
+          <div class="m-doc-template">template&lt;typename BasicJsonType&gt;</div>
+          json_sax <span class="m-thin">struct</span>
+        </h1>
+        <p>SAX interface.</p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#pub-types">Public types</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+<p>This class describes the SAX interface used by nlohmann::json::sax_parse. Each function is called in different situations while the input is parsed. The boolean return value informs the parser whether to continue processing the input.</p>
+        <section id="pub-types">
+          <h2><a href="#pub-types">Public types</a></h2>
+          <dl class="m-doc">
+            <dt id="a5fd59c56514447ab1a7c5e7f0ab24601">
+              using <a href="#a5fd59c56514447ab1a7c5e7f0ab24601" class="m-doc-self">number_integer_t</a> = typename BasicJsonType::number_integer_t
+            </dt>
+            <dd><span></span></dd>
+            <dt id="acbd02515ccdc3bfe940688fc96ac1359">
+              using <a href="#acbd02515ccdc3bfe940688fc96ac1359" class="m-doc-self">number_unsigned_t</a> = typename BasicJsonType::number_unsigned_t
+            </dt>
+            <dd><span></span></dd>
+            <dt id="acb0bfbb3b0c6e9dc02cd6aab12c85654">
+              using <a href="#acb0bfbb3b0c6e9dc02cd6aab12c85654" class="m-doc-self">number_float_t</a> = typename BasicJsonType::number_float_t
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a62085d156a899aaf2913ac25ded93996">
+              using <a href="#a62085d156a899aaf2913ac25ded93996" class="m-doc-self">string_t</a> = typename BasicJsonType::string_t
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aeb5a583cc482d34e764d038a9c682e02">
+              using <a href="#aeb5a583cc482d34e764d038a9c682e02" class="m-doc-self">binary_t</a> = typename BasicJsonType::binary_t
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="a3603caf3847143337b9974d4b1c94f11">
+              <span class="m-doc-wrap-bumper"><a href="#a3603caf3847143337b9974d4b1c94f11" class="m-doc-self">json_sax</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a978a4d26990f64d60686ef22568e76eb">
+              <span class="m-doc-wrap-bumper"><a href="#a978a4d26990f64d60686ef22568e76eb" class="m-doc-self">json_sax</a>(</span><span class="m-doc-wrap">const <a href="structjson__sax.html" class="m-doc">json_<wbr />sax</a>&amp;) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="adb6b743b889faf0c050f80bfae890450">
+              <span class="m-doc-wrap-bumper"><a href="#adb6b743b889faf0c050f80bfae890450" class="m-doc-self">json_sax</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html" class="m-doc">json_<wbr />sax</a>&amp;&amp;) <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa6c51db3f302401a85a89b750b654ad9">
+              <span class="m-doc-wrap-bumper"><a href="#aa6c51db3f302401a85a89b750b654ad9" class="m-doc-self">~json_sax</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#acbcc09c0ada2782cd73cc4135823181d" class="m-doc">null</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>a null value was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab89f75382c0fd7fe81c95fc84cfa3150" class="m-doc">boolean</a>(</span><span class="m-doc-wrap">bool val) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>a boolean value was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a46cc306b7677553d8f6bd8c9592eb1bd" class="m-doc">number_integer</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#a5fd59c56514447ab1a7c5e7f0ab24601" class="m-doc">number_<wbr />integer_<wbr />t</a> val) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>an integer number was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a32f8a32794cb384f0de3d3a96a6bb696" class="m-doc">number_unsigned</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#acbd02515ccdc3bfe940688fc96ac1359" class="m-doc">number_<wbr />unsigned_<wbr />t</a> val) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>an unsigned integer number was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a19eafa3a92fc75e0258a842283396aa9" class="m-doc">number_float</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#acb0bfbb3b0c6e9dc02cd6aab12c85654" class="m-doc">number_<wbr />float_<wbr />t</a> val,
+              const <a href="structjson__sax.html#a62085d156a899aaf2913ac25ded93996" class="m-doc">string_<wbr />t</a>&amp; s) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>a floating-point number was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3da9ee0c61f1a37e6c6a3d2dccb16765" class="m-doc">string</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#a62085d156a899aaf2913ac25ded93996" class="m-doc">string_<wbr />t</a>&amp; val) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>a string value was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a15d6c5d0dcaceb906405f427faf9b34e" class="m-doc">binary</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#aeb5a583cc482d34e764d038a9c682e02" class="m-doc">binary_<wbr />t</a>&amp; val) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>a binary value was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a54a0883df64f40664395e3dad674aaa5" class="m-doc">start_object</a>(</span><span class="m-doc-wrap">std::size_t elements) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>the beginning of an object was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3355ecd7e3e9806dcb80b2f8842b82ce" class="m-doc">key</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#a62085d156a899aaf2913ac25ded93996" class="m-doc">string_<wbr />t</a>&amp; val) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>an object key was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ac34854cab5e023c5d0e8b381a11aba5b" class="m-doc">end_object</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>the end of an object was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#afc4d5c0d123f2e3c939060a778c4f22c" class="m-doc">start_array</a>(</span><span class="m-doc-wrap">std::size_t elements) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>the beginning of an array was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a81fbddbf7dc96eab21ef916625ad5f3b" class="m-doc">end_array</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>the end of an array was read</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#af165920966b60b78e57a2e4d92a63897" class="m-doc">parse_error</a>(</span><span class="m-doc-wrap">std::size_t position,
+              const std::string&amp; last_token,
+              const <a href="classdetail_1_1exception.html" class="m-doc">detail::<wbr />exception</a>&amp; ex) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>a parse error occurred</dd>
+            <dt id="a09ee025eef62b4297faf70ab964d557e">
+              <span class="m-doc-wrap-bumper">auto <a href="#a09ee025eef62b4297faf70ab964d557e" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="structjson__sax.html" class="m-doc">json_<wbr />sax</a>&amp;) -&gt; <a href="structjson__sax.html" class="m-doc">json_<wbr />sax</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="acd554bf068d498dccf90854f24888b8e">
+              <span class="m-doc-wrap-bumper">auto <a href="#acd554bf068d498dccf90854f24888b8e" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html" class="m-doc">json_<wbr />sax</a>&amp;&amp;) -&gt; <a href="structjson__sax.html" class="m-doc">json_<wbr />sax</a>&amp; <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-success">noexcept</span></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="acbcc09c0ada2782cd73cc4135823181d"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acbcc09c0ada2782cd73cc4135823181d" class="m-doc-self">null</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>a null value was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ab89f75382c0fd7fe81c95fc84cfa3150"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab89f75382c0fd7fe81c95fc84cfa3150" class="m-doc-self">boolean</a>(</span><span class="m-doc-wrap">bool val) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>a boolean value was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">val&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>boolean value</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a46cc306b7677553d8f6bd8c9592eb1bd"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a46cc306b7677553d8f6bd8c9592eb1bd" class="m-doc-self">number_integer</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#a5fd59c56514447ab1a7c5e7f0ab24601" class="m-doc">number_<wbr />integer_<wbr />t</a> val) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>an integer number was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">val&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>integer value</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a32f8a32794cb384f0de3d3a96a6bb696"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a32f8a32794cb384f0de3d3a96a6bb696" class="m-doc-self">number_unsigned</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#acbd02515ccdc3bfe940688fc96ac1359" class="m-doc">number_<wbr />unsigned_<wbr />t</a> val) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>an unsigned integer number was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">val&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>unsigned integer value</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a19eafa3a92fc75e0258a842283396aa9"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a19eafa3a92fc75e0258a842283396aa9" class="m-doc-self">number_float</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#acb0bfbb3b0c6e9dc02cd6aab12c85654" class="m-doc">number_<wbr />float_<wbr />t</a> val,
+              const <a href="structjson__sax.html#a62085d156a899aaf2913ac25ded93996" class="m-doc">string_<wbr />t</a>&amp; s) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>a floating-point number was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">val&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>floating-point value</td>
+                </tr>
+                <tr>
+                  <td>s&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>raw token value</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a3da9ee0c61f1a37e6c6a3d2dccb16765"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3da9ee0c61f1a37e6c6a3d2dccb16765" class="m-doc-self">string</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#a62085d156a899aaf2913ac25ded93996" class="m-doc">string_<wbr />t</a>&amp; val) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>a string value was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">val&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>string value</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+<aside class="m-note m-info"><h4>Note</h4><p>It is safe to move the passed string value.</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="a15d6c5d0dcaceb906405f427faf9b34e"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a15d6c5d0dcaceb906405f427faf9b34e" class="m-doc-self">binary</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#aeb5a583cc482d34e764d038a9c682e02" class="m-doc">binary_<wbr />t</a>&amp; val) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>a binary value was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">val&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>binary value</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+<aside class="m-note m-info"><h4>Note</h4><p>It is safe to move the passed binary value.</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="a54a0883df64f40664395e3dad674aaa5"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a54a0883df64f40664395e3dad674aaa5" class="m-doc-self">start_object</a>(</span><span class="m-doc-wrap">std::size_t elements) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>the beginning of an object was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">elements&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>number of object elements or -1 if unknown</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+<aside class="m-note m-info"><h4>Note</h4><p>binary formats may report the number of elements</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="a3355ecd7e3e9806dcb80b2f8842b82ce"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3355ecd7e3e9806dcb80b2f8842b82ce" class="m-doc-self">key</a>(</span><span class="m-doc-wrap"><a href="structjson__sax.html#a62085d156a899aaf2913ac25ded93996" class="m-doc">string_<wbr />t</a>&amp; val) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>an object key was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">val&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>object key</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+<aside class="m-note m-info"><h4>Note</h4><p>It is safe to move the passed string.</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="ac34854cab5e023c5d0e8b381a11aba5b"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac34854cab5e023c5d0e8b381a11aba5b" class="m-doc-self">end_object</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>the end of an object was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="afc4d5c0d123f2e3c939060a778c4f22c"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afc4d5c0d123f2e3c939060a778c4f22c" class="m-doc-self">start_array</a>(</span><span class="m-doc-wrap">std::size_t elements) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>the beginning of an array was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">elements&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>number of array elements or -1 if unknown</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+<aside class="m-note m-info"><h4>Note</h4><p>binary formats may report the number of elements</p></aside>
+          </div></section>
+          <section class="m-doc-details" id="a81fbddbf7dc96eab21ef916625ad5f3b"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a81fbddbf7dc96eab21ef916625ad5f3b" class="m-doc-self">end_array</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>the end of an array was read</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>whether parsing should proceed</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="af165920966b60b78e57a2e4d92a63897"><div>
+            <h3>
+              <div class="m-doc-template">
+                template&lt;typename BasicJsonType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">bool json_<wbr />sax&lt;BasicJsonType&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af165920966b60b78e57a2e4d92a63897" class="m-doc-self">parse_error</a>(</span><span class="m-doc-wrap">std::size_t position,
+              const std::string&amp; last_token,
+              const <a href="classdetail_1_1exception.html" class="m-doc">detail::<wbr />exception</a>&amp; ex) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>a parse error occurred</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">position&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>the position in the input where the error occurs</td>
+                </tr>
+                <tr>
+                  <td>last_token&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>the last read token</td>
+                </tr>
+                <tr>
+                  <td>ex&nbsp;<span class="m-label m-flat m-info">in</span></td>
+                  <td>an exception object describing the error</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>whether parsing should proceed (must return false)</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

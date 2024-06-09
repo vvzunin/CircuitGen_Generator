@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TruthTable class | CircuitGen_Generator Desc of Backeknd</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="favicon-dark.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li><a href="pages.html">Pages</a></li>
+            <li><a href="namespaces.html">Namespaces</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <use href="#m-doc-search-icon-path" />
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          TruthTable <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="TruthTable_8hpp.html">&lt;TruthTable.hpp&gt;</a></div>
+        </h1>
+        <p>class <a href="classTruthTable.html" class="m-doc">TruthTable</a> Represents a truth table for a combinational logic circuit This class encapsulates the functionality to generate, manipulate, and analyze truth tables for combinational logic circuits.</p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="a64055d97eb8b502567ad21c0d97fc659">
+              <span class="m-doc-wrap-bumper"><a href="#a64055d97eb8b502567ad21c0d97fc659" class="m-doc-self">TruthTable</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a054a736cb17674c24f108f2b15a02ea0">
+              <span class="m-doc-wrap-bumper"><a href="#a054a736cb17674c24f108f2b15a02ea0" class="m-doc-self">TruthTable</a>(</span><span class="m-doc-wrap">uint_fast32_t seed)</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab5efc8f64b235c3bbe801dedc9857ea8">
+              <span class="m-doc-wrap-bumper"><a href="#ab5efc8f64b235c3bbe801dedc9857ea8" class="m-doc-self">TruthTable</a>(</span><span class="m-doc-wrap"><a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp;&amp; other) <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a83be2e572e709638fdd5bd2991dc6100">
+              <span class="m-doc-wrap-bumper"><a href="#a83be2e572e709638fdd5bd2991dc6100" class="m-doc-self">TruthTable</a>(</span><span class="m-doc-wrap">int32_t i_input,
+              int32_t i_output,
+              const std::vector&lt;std::vector&lt;bool&gt;&gt;&amp; i_array = {})</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a364ede1151c4d025c889d2a89d6404cc">
+              <span class="m-doc-wrap-bumper"><a href="#a364ede1151c4d025c889d2a89d6404cc" class="m-doc-self">TruthTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_tt,
+              std::vector&lt;std::vector&lt;bool&gt;&gt; i_array = {})</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a6d2adc0f375a10b43dff61783552a906">
+              <span class="m-doc-wrap-bumper"><a href="#a6d2adc0f375a10b43dff61783552a906" class="m-doc-self">TruthTable</a>(</span><span class="m-doc-wrap">int32_t i_input,
+              int32_t i_output,
+              double i_p = 0.5)</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="af6a87aa8b863edc228891bb6cb9cf742">
+              <span class="m-doc-wrap-bumper">auto <a href="#af6a87aa8b863edc228891bb6cb9cf742" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; other) -&gt; <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4e4fb94616e496c329ebf3a3df6f597d">
+              <span class="m-doc-wrap-bumper">auto <a href="#a4e4fb94616e496c329ebf3a3df6f597d" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp;&amp; other) -&gt; <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#aad0cef0b80e2e1b6f4da70a15fcc4976" class="m-doc">setSeed</a>(</span><span class="m-doc-wrap">uint_fast32_t i_seed)</span>
+            </dt>
+            <dd>setSeed Set the seed for random number generation.</dd>
+            <dt id="a179439e404e050f49b58df88396da9ee">
+              <span class="m-doc-wrap-bumper">void <a href="#a179439e404e050f49b58df88396da9ee" class="m-doc-self">generateRandom</a>(</span><span class="m-doc-wrap"><a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a> i_gp)</span>
+            </dt>
+            <dd>generateTable The method generates a truth table for a combinational circuit with a given probability i_p for each output value.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a09de48ba6c97632625188dc32ffd944b" class="m-doc">generateTable</a>(</span><span class="m-doc-wrap">double i_p = 0)</span>
+            </dt>
+            <dd>generateTable Generate a truth table with specified probability.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a6c1a776a25eb693a3a59e6410bca23e7" class="m-doc">getInput</a>(</span><span class="m-doc-wrap">) const -&gt; int32_t</span>
+            </dt>
+            <dd>getInput Get the number of input variables in the truth table.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a87ce43a0f73da02698aa5b4e4e378a8e" class="m-doc">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; int32_t</span>
+            </dt>
+            <dd>getOutput Get the number of output variables in the truth table</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#af91eb4123d7254a4b623f6b5dfca211a" class="m-doc">size</a>(</span><span class="m-doc-wrap">) const -&gt; int32_t</span>
+            </dt>
+            <dd>size Get the size of the truth table.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab71a41a53ce4167519b4d24f14cbac82" class="m-doc">getOutTable</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;std::vector&lt;bool&gt;&gt;</span>
+            </dt>
+            <dd>getOutTable Get the output table.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a668e9ca6d6b275b84b8a91336bdc20c0" class="m-doc">getOutTable</a>(</span><span class="m-doc-wrap">int32_t i,
+              int32_t j) const -&gt; bool</span>
+            </dt>
+            <dd>getOutTable Get the truth value at a specific position in the output table.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5790cc7c8fc0e04547d83e5f9384efe9" class="m-doc">convToBinary</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;std::vector&lt;bool&gt;&gt;</span>
+            </dt>
+            <dd>convToBinary Convert truth table indices to binary representation This method converts the indices of the truth table into binary representation.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a171580e29f9322e00464448382f6bf4e" class="m-doc">printTable</a>(</span><span class="m-doc-wrap">) const</span>
+            </dt>
+            <dd>printTable Print the truth table.</dd>
+            <dt id="a1ec4a33fa7a9405b16c7c6c8b840f9ae">
+              <span class="m-doc-wrap-bumper">auto <a href="#a1ec4a33fa7a9405b16c7c6c8b840f9ae" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; r) const -&gt; bool</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="aad0cef0b80e2e1b6f4da70a15fcc4976"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void TruthTable::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aad0cef0b80e2e1b6f4da70a15fcc4976" class="m-doc-self">setSeed</a>(</span><span class="m-doc-wrap">uint_fast32_t i_seed)</span></span>
+            </h3>
+            <p>setSeed Set the seed for random number generation.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_seed</td>
+                  <td><p>The seed for random number generation.</p><pre class="m-code"><span class="n">TruthTable</span><span class="w"> </span><span class="n">table</span><span class="p">;</span>
+<span class="n">table</span><span class="p">.</span><span class="n">setSeed</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span></pre><p>For the getSeed method there is getSeed in <a href="RandomGeneratorWithSeed_8hpp.html" class="m-doc">RandomGeneratorWithSeed.hpp</a></p></td>
+                </tr>
+              </tbody>
+            </table>
+<p>This method sets the seed for the random number generator used in generating the truth table. Setting the seed allows for reproducible random number sequences.</p><aside class="m-note m-default"><h4>See also</h4><p><a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a></p></aside>
+          </div></section>
+          <section class="m-doc-details" id="a09de48ba6c97632625188dc32ffd944b"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void TruthTable::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a09de48ba6c97632625188dc32ffd944b" class="m-doc-self">generateTable</a>(</span><span class="m-doc-wrap">double i_p = 0)</span></span>
+            </h3>
+            <p>generateTable Generate a truth table with specified probability.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i_p</td>
+                  <td>The probability of generating a true value for each cell in the truth table.</td>
+                </tr>
+              </tbody>
+            </table>
+<p>This method generates a truth table with the given probability &#x27;i_p&quot;. If <code>i_p</code> is greater than 0 and less than or equal to 1.</p>
+          </div></section>
+          <section class="m-doc-details" id="a6c1a776a25eb693a3a59e6410bca23e7"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int32_t TruthTable::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6c1a776a25eb693a3a59e6410bca23e7" class="m-doc-self">getInput</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getInput Get the number of input variables in the truth table.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td><p>The number of input variables.</p><pre class="m-code"><span class="n">TruthTable</span><span class="w"> </span><span class="n">table</span><span class="p">;</span>
+<span class="kt">int32_t</span><span class="w"> </span><span class="n">numInputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table</span><span class="p">.</span><span class="n">getInput</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Number of input variables: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">numInputs</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a87ce43a0f73da02698aa5b4e4e378a8e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int32_t TruthTable::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a87ce43a0f73da02698aa5b4e4e378a8e" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getOutput Get the number of output variables in the truth table</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td><p>The number of output variables.</p><pre class="m-code"><span class="n">TruthTable</span><span class="w"> </span><span class="n">table</span><span class="p">;</span>
+<span class="kt">int32_t</span><span class="w"> </span><span class="n">numOutputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table</span><span class="p">.</span><span class="n">getOutput</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Number of output variables: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">numOutputs</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="af91eb4123d7254a4b623f6b5dfca211a"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int32_t TruthTable::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af91eb4123d7254a4b623f6b5dfca211a" class="m-doc-self">size</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>size Get the size of the truth table.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td><p>The size of the truth table (number of rows).</p><pre class="m-code"><span class="c1">// Creating a truth table with 3 input variables and 2 output variables</span>
+<span class="n">TruthTable</span><span class="w"> </span><span class="nf">table</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="kt">int32_t</span><span class="w"> </span><span class="n">tableSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Size of the truth table: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">tableSize</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+<p>This method returns the total number of rows in the truth table. Each rows corresponds to a unique combination of input values</p>
+          </div></section>
+          <section class="m-doc-details" id="ab71a41a53ce4167519b4d24f14cbac82"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::vector&lt;std::vector&lt;bool&gt;&gt; TruthTable::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab71a41a53ce4167519b4d24f14cbac82" class="m-doc-self">getOutTable</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>getOutTable Get the output table.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td><p>The output table as a two-dimensional vector of boolean values.</p><pre class="m-code"><span class="c1">// Assuming a truth table with 2 input variables and 1 output variable</span>
+<span class="n">TruthTable</span><span class="w"> </span><span class="nf">table</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">Get</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="n">table</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">outputTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table</span><span class="p">.</span><span class="n">getOutTable</span><span class="p">();</span>
+<span class="c1">// Print the output table</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Output Table: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">outputTable</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">row</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+<p>This method returns a copy of the entire output table of the truth table. The output table contains the truth values for each combination of input variables.</p>
+          </div></section>
+          <section class="m-doc-details" id="a668e9ca6d6b275b84b8a91336bdc20c0"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool TruthTable::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a668e9ca6d6b275b84b8a91336bdc20c0" class="m-doc-self">getOutTable</a>(</span><span class="m-doc-wrap">int32_t i,
+              int32_t j) const</span></span>
+            </h3>
+            <p>getOutTable Get the truth value at a specific position in the output table.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">i</td>
+                  <td>The row index of the output table.</td>
+                </tr>
+                <tr>
+                  <td>j</td>
+                  <td></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><p>The truth value at the specified position.</p><pre class="m-code"><span class="c1">// Assuming a truth table with 3 input variables and 2 output variable</span>
+<span class="n">TruthTable</span><span class="w"> </span><span class="nf">table</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="c1">// Get the truth value at position (1, 0) in the output table</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table</span><span class="p">.</span><span class="n">getOutTable</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+<p>This method returns the truth value at the specified position (i, j) in the output table. The position (i, j) corresponds to the i-th row and j-th column of the output table, representing a specific combination of input variables.</p><aside class="m-note m-dim"><h4><a href="todo.html#_todo000001" class="m-doc">Todo</a></h4></aside>
+          </div></section>
+          <section class="m-doc-details" id="a5790cc7c8fc0e04547d83e5f9384efe9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::vector&lt;std::vector&lt;bool&gt;&gt; TruthTable::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5790cc7c8fc0e04547d83e5f9384efe9" class="m-doc-self">convToBinary</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>convToBinary Convert truth table indices to binary representation This method converts the indices of the truth table into binary representation.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td><p>A two-dimensional vector representing the binary representation of each row index in the truth table.</p><pre class="m-code"><span class="c1">// Assuming a truth table with 3 input variables and 2 output variable</span>
+<span class="n">TruthTable</span><span class="w"> </span><span class="nf">table</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">Convert</span><span class="w"> </span><span class="n">truth</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">indices</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">binary</span><span class="w"> </span><span class="n">representation</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">binRepresentation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table</span><span class="p">.</span><span class="n">convToBinary</span><span class="p">();</span>
+<span class="c1">// Print the binary representation</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Binary Representation of Truth Table Indices&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">cosnt</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">row</span><span class="o">:</span><span class="w"> </span><span class="n">binRepresentation</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">row</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></pre></td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Each row index of the truth table corresponds to a unique combination of input variables, which is represented in binary form. For example, if the number of input variables is 3, the binary representation of the row index 5 (101 in binary) corresponds to the input combination [true, false, true].</p>
+          </div></section>
+          <section class="m-doc-details" id="a171580e29f9322e00464448382f6bf4e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void TruthTable::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a171580e29f9322e00464448382f6bf4e" class="m-doc-self">printTable</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <p>printTable Print the truth table.</p>
+<p>This method prints the entire truth table to the standard output stream. Each row of the truth table is printed as a space-separated sequence of boolean values. After printing the table, a newline character is inserted to separate rows.</p><pre class="m-code"><span class="c1">// Assuming a truth table with 3 input variables and 2 output variable</span>
+<span class="n">TruthTable</span><span class="w"> </span><span class="nf">table</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="c1">// Print the truth table</span>
+<span class="n">table</span><span class="p">.</span><span class="n">printTable</span><span class="p">();</span></pre>
+          </div></section>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search-v1.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>
