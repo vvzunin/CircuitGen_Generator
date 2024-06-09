@@ -12,19 +12,19 @@ TruthTable createRandomTruthTable(int32_t inputs, int32_t outputs) {
   return TruthTable(inputs, outputs, table);
 }
 
-ChronosomeType<TruthTable, TruthTableParameters> createRandomChromosome(
+ChromosomeType<TruthTable, TruthTableParameters> createRandomChromosome(
     const std::string& name,
     int32_t            inputs,
     int32_t            outputs
 ) {
-  return ChronosomeType<TruthTable, TruthTableParameters>(
+  return ChromosomeType<TruthTable, TruthTableParameters>(
       name, createRandomTruthTable(inputs, outputs)
   );
 }
 
-std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
     createPopulation(int32_t populationSize, int32_t inputs, int32_t outputs) {
-  std::vector<ChronosomeType<TruthTable, TruthTableParameters>> population;
+  std::vector<ChromosomeType<TruthTable, TruthTableParameters>> population;
   for (int32_t i = 0; i < populationSize; ++i) {
     population.push_back(createRandomChromosome(
         "Chromosome" + std::to_string(i), inputs, outputs
