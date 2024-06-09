@@ -28,3 +28,5 @@ do
         break
     fi 
 done < "$file"
+OUTPUT=$(realpath ../../run.sh)
+/bin/bash $OUTPUT
