@@ -99,11 +99,11 @@
             <dd><span></span></dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a5d4c910f51dbbb4a4c1c09923ca90147" class="m-doc">cnfFromTruthTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_table,
-              bool i_tp = true) -&gt; <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+              bool i_tp = true) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
             </dt>
             <dd>cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a vector of rows representing an expression in the form of a conjunctive normal form (KNF) that corresponds to this truth table. The conjunctive normal form form represents a logical expression in the form of a conjunction of disjunctions</dd>
             <dt id="abe2fb580fe65b11a84770b9f99ef3c99">
-              <span class="m-doc-wrap-bumper">auto <a href="#abe2fb580fe65b11a84770b9f99ef3c99" class="m-doc-self">zhegalkinFromTruthTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_table) -&gt; <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#abe2fb580fe65b11a84770b9f99ef3c99" class="m-doc-self">zhegalkinFromTruthTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_table) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
             </dt>
             <dd><span></span></dd>
             <dt>
@@ -112,7 +112,7 @@
               uint32_t i_minElements,
               uint32_t i_maxElements,
               uint32_t i_inputs,
-              uint32_t i_outputs) -&gt; <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
+              uint32_t i_outputs) -&gt; <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a></span>
             </dt>
             <dd>generatorRandLevel creates an oriented graph (represented by an <a href="classOrientedGraph.html" class="m-doc">OrientedGraph</a> object) with a given level of complexity and number of elements. The graph is a circuit consisting of logic gates, inputs and outputs The method starts by creating graph inputs (variables). Then he gradually adds levels with valves to the graph, while the number of valves at each level is randomly selected within the specified limits. For each valve, the type of operation is randomly selected from a predefined set, then the corresponding valve object is created and added to the graph. At the end, the method adds outputs from the graph, connecting them to the last level of the gates</dd>
             <dt>
@@ -129,7 +129,7 @@
           <h2>Function documentation</h2>
           <section class="m-doc-details" id="a5d4c910f51dbbb4a4c1c09923ca90147"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> SimpleGenerators::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5d4c910f51dbbb4a4c1c09923ca90147" class="m-doc-self">cnfFromTruthTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_table,
+              <span class="m-doc-wrap-bumper"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> SimpleGenerators::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5d4c910f51dbbb4a4c1c09923ca90147" class="m-doc-self">cnfFromTruthTable</a>(</span><span class="m-doc-wrap">const <a href="classTruthTable.html" class="m-doc">TruthTable</a>&amp; i_table,
               bool i_tp = true)</span></span>
             </h3>
             <p>cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a vector of rows representing an expression in the form of a conjunctive normal form (KNF) that corresponds to this truth table. The conjunctive normal form form represents a logical expression in the form of a conjunction of disjunctions</p>
@@ -157,7 +157,7 @@
           </div></section>
           <section class="m-doc-details" id="aebea64983c4f49c3c1007a0390e06977"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> SimpleGenerators::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aebea64983c4f49c3c1007a0390e06977" class="m-doc-self">generatorRandLevel</a>(</span><span class="m-doc-wrap">uint32_t i_minLevel,
+              <span class="m-doc-wrap-bumper"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> SimpleGenerators::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aebea64983c4f49c3c1007a0390e06977" class="m-doc-self">generatorRandLevel</a>(</span><span class="m-doc-wrap">uint32_t i_minLevel,
               uint32_t i_maxLevel,
               uint32_t i_minElements,
               uint32_t i_maxElements,

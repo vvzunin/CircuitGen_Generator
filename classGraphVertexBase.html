@@ -93,13 +93,13 @@
           <dl class="m-doc">
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#a006319f36efca3d9a910e61e0271ed14" class="m-doc">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
-              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span>
+              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span>
             </dt>
             <dd><a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> Constructs a <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> object with the specified vertex type and optional graph.</dd>
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#a72ec39807323365997afe38d65ecf670" class="m-doc">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
               const std::string i_name,
-              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span>
+              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span>
             </dt>
             <dd><a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> Constructs a <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> object with the specified vertex type, name, and optional graph.</dd>
             <dt id="a3755c63c1abe080c5a6c6b7cb13b4028">
@@ -172,32 +172,32 @@
             </dt>
             <dd>getGate Returns the type of the basic logic gate represented by this vertex. If the vertex does not correspond to any basic logic gate, it returns Gate Default</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a2aa06dde09dc4fe2698dd25faab1c80d" class="m-doc">getBaseGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="GraphVertexBase_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767" class="m-doc">GraphPtrWeak</a></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a2aa06dde09dc4fe2698dd25faab1c80d" class="m-doc">getBaseGraph</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="OrientedGraph_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767" class="m-doc">GraphPtrWeak</a></span>
             </dt>
             <dd>getBaseGraph</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ae608f01310a319a3ffa9d1a261d05177" class="m-doc">getInConnections</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;<a href="GraphVertexBase_8hpp.html#a4b3939252a6663d832e60390edb3210b" class="m-doc">VertexPtrWeak</a>&gt;</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae608f01310a319a3ffa9d1a261d05177" class="m-doc">getInConnections</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a4b3939252a6663d832e60390edb3210b" class="m-doc">VertexPtrWeak</a>&gt;</span>
             </dt>
             <dd>getInConnections</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a8c984675497210531aab85e713eb16e5" class="m-doc">addVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert) -&gt; uint32_t</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a8c984675497210531aab85e713eb16e5" class="m-doc">addVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert) -&gt; uint32_t</span>
             </dt>
             <dd>addVertexToInConnections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a97e6bb3b3782f86439a0069d775fbfe0" class="m-doc">removeVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert,
+              <span class="m-doc-wrap-bumper">auto <a href="#a97e6bb3b3782f86439a0069d775fbfe0" class="m-doc">removeVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert,
               bool i_full = false) -&gt; bool</span>
             </dt>
             <dd>removeVertexToInConnections Removes a vertex from the input connections of this vertex.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#acba2074e04e2457be77680e218a0d45f" class="m-doc">getOutConnections</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#acba2074e04e2457be77680e218a0d45f" class="m-doc">getOutConnections</a>(</span><span class="m-doc-wrap">) const -&gt; std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt;</span>
             </dt>
             <dd>getOutConnections</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ab4b49728b705bc687c94d1b189f38fc1" class="m-doc">addVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert) -&gt; bool</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab4b49728b705bc687c94d1b189f38fc1" class="m-doc">addVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert) -&gt; bool</span>
             </dt>
             <dd>addVertexToOutConnections Adds a vertex to the output connections of this vertex if it is not already present</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ab1d8b7092aa986fb6d06cd37d8f9c643" class="m-doc">removeVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert) -&gt; bool</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab1d8b7092aa986fb6d06cd37d8f9c643" class="m-doc">removeVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert) -&gt; bool</span>
             </dt>
             <dd>removeVertexToOutConnections Removes a vertex from the output connections of this vertex.</dd>
             <dt>
@@ -222,7 +222,7 @@
           <h2><a href="#pro-attribs">Protected variables</a></h2>
           <dl class="m-doc">
             <dt id="a827a867771dc1307e26d0d9702516d4b">
-              <a href="GraphVertexBase_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767" class="m-doc">GraphPtrWeak</a> <a href="#a827a867771dc1307e26d0d9702516d4b" class="m-doc-self">d_baseGraph</a>
+              <a href="OrientedGraph_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767" class="m-doc">GraphPtrWeak</a> <a href="#a827a867771dc1307e26d0d9702516d4b" class="m-doc-self">d_baseGraph</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a1c3745128ab685cb98f437781dfbaac8">
@@ -238,11 +238,11 @@
             </dt>
             <dd><span></span></dd>
             <dt id="a418e8e9b44810439133522e3cbfb2f9e">
-              std::vector&lt;<a href="GraphVertexBase_8hpp.html#a4b3939252a6663d832e60390edb3210b" class="m-doc">VertexPtrWeak</a>&gt; <a href="#a418e8e9b44810439133522e3cbfb2f9e" class="m-doc-self">d_inConnections</a>
+              std::vector&lt;<a href="OrientedGraph_8hpp.html#a4b3939252a6663d832e60390edb3210b" class="m-doc">VertexPtrWeak</a>&gt; <a href="#a418e8e9b44810439133522e3cbfb2f9e" class="m-doc-self">d_inConnections</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a5af02c2cb649c4413f5fea35a955360c">
-              std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; <a href="#a5af02c2cb649c4413f5fea35a955360c" class="m-doc-self">d_outConnections</a>
+              std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; <a href="#a5af02c2cb649c4413f5fea35a955360c" class="m-doc-self">d_outConnections</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a05f5198fc2b7c9cb2806085bac5cf567">
@@ -256,7 +256,7 @@
           <section class="m-doc-details" id="a006319f36efca3d9a910e61e0271ed14"><div>
             <h3>
               <span class="m-doc-wrap-bumper"> GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a006319f36efca3d9a910e61e0271ed14" class="m-doc-self">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
-              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span></span>
+              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span></span>
             </h3>
             <p><a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> Constructs a <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> object with the specified vertex type and optional graph.</p>
             <table class="m-table m-fullwidth m-flat">
@@ -279,7 +279,7 @@
             <h3>
               <span class="m-doc-wrap-bumper"> GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a72ec39807323365997afe38d65ecf670" class="m-doc-self">GraphVertexBase</a>(</span><span class="m-doc-wrap">const <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type,
               const std::string i_name,
-              <a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span></span>
+              <a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9" class="m-doc">GraphPtr</a> i_graph = nullptr)</span></span>
             </h3>
             <p><a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> Constructs a <a href="classGraphVertexBase.html" class="m-doc">GraphVertexBase</a> object with the specified vertex type, name, and optional graph.</p>
             <table class="m-table m-fullwidth m-flat">
@@ -455,7 +455,7 @@
           </div></section>
           <section class="m-doc-details" id="a2aa06dde09dc4fe2698dd25faab1c80d"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"><a href="GraphVertexBase_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767" class="m-doc">GraphPtrWeak</a> GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2aa06dde09dc4fe2698dd25faab1c80d" class="m-doc-self">getBaseGraph</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <span class="m-doc-wrap-bumper"><a href="OrientedGraph_8hpp.html#a5313b3b1d817cd6035ec0a01cb940767" class="m-doc">GraphPtrWeak</a> GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2aa06dde09dc4fe2698dd25faab1c80d" class="m-doc-self">getBaseGraph</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
             <p>getBaseGraph</p>
             <table class="m-table m-fullwidth m-flat">
@@ -469,7 +469,7 @@
           </div></section>
           <section class="m-doc-details" id="ae608f01310a319a3ffa9d1a261d05177"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">std::vector&lt;<a href="GraphVertexBase_8hpp.html#a4b3939252a6663d832e60390edb3210b" class="m-doc">VertexPtrWeak</a>&gt; GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae608f01310a319a3ffa9d1a261d05177" class="m-doc-self">getInConnections</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <span class="m-doc-wrap-bumper">std::vector&lt;<a href="OrientedGraph_8hpp.html#a4b3939252a6663d832e60390edb3210b" class="m-doc">VertexPtrWeak</a>&gt; GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae608f01310a319a3ffa9d1a261d05177" class="m-doc-self">getInConnections</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
             <p>getInConnections</p>
             <table class="m-table m-fullwidth m-flat">
@@ -500,7 +500,7 @@
           </div></section>
           <section class="m-doc-details" id="a8c984675497210531aab85e713eb16e5"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">uint32_t GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8c984675497210531aab85e713eb16e5" class="m-doc-self">addVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert)</span></span>
+              <span class="m-doc-wrap-bumper">uint32_t GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8c984675497210531aab85e713eb16e5" class="m-doc-self">addVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert)</span></span>
             </h3>
             <p>addVertexToInConnections Adds a vertex to the input connections of this vertex and returns the count of occurrences of the given vertex in the input connections</p>
             <table class="m-table m-fullwidth m-flat">
@@ -534,7 +534,7 @@
           </div></section>
           <section class="m-doc-details" id="a97e6bb3b3782f86439a0069d775fbfe0"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">bool GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a97e6bb3b3782f86439a0069d775fbfe0" class="m-doc-self">removeVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert,
+              <span class="m-doc-wrap-bumper">bool GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a97e6bb3b3782f86439a0069d775fbfe0" class="m-doc-self">removeVertexToInConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert,
               bool i_full = false)</span></span>
             </h3>
             <p>removeVertexToInConnections Removes a vertex from the input connections of this vertex.</p>
@@ -582,7 +582,7 @@
           </div></section>
           <section class="m-doc-details" id="acba2074e04e2457be77680e218a0d45f"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">std::vector&lt;<a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acba2074e04e2457be77680e218a0d45f" class="m-doc-self">getOutConnections</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <span class="m-doc-wrap-bumper">std::vector&lt;<a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a>&gt; GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acba2074e04e2457be77680e218a0d45f" class="m-doc-self">getOutConnections</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
             <p>getOutConnections</p>
             <table class="m-table m-fullwidth m-flat">
@@ -610,7 +610,7 @@
           </div></section>
           <section class="m-doc-details" id="ab4b49728b705bc687c94d1b189f38fc1"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">bool GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab4b49728b705bc687c94d1b189f38fc1" class="m-doc-self">addVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert)</span></span>
+              <span class="m-doc-wrap-bumper">bool GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab4b49728b705bc687c94d1b189f38fc1" class="m-doc-self">addVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert)</span></span>
             </h3>
             <p>addVertexToOutConnections Adds a vertex to the output connections of this vertex if it is not already present</p>
             <table class="m-table m-fullwidth m-flat">
@@ -633,7 +633,7 @@
           </div></section>
           <section class="m-doc-details" id="ab1d8b7092aa986fb6d06cd37d8f9c643"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">bool GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab1d8b7092aa986fb6d06cd37d8f9c643" class="m-doc-self">removeVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert)</span></span>
+              <span class="m-doc-wrap-bumper">bool GraphVertexBase::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab1d8b7092aa986fb6d06cd37d8f9c643" class="m-doc-self">removeVertexToOutConnections</a>(</span><span class="m-doc-wrap"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d" class="m-doc">VertexPtr</a> i_vert)</span></span>
             </h3>
             <p>removeVertexToOutConnections Removes a vertex from the output connections of this vertex.</p>
             <table class="m-table m-fullwidth m-flat">
