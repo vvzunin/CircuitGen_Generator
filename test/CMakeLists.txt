@@ -285,6 +285,17 @@ target_include_directories(
 )
 add_test(NAME RecombinationsTests COMMAND CircuitGenGenerator_test_RecombinationsTests)
 
+# Test RecombinationParametersTests
+add_executable(CircuitGenGenerator_test_RecombinationParametersTests src/generators/Genetic/Recombination/RecombinationParametersTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_RecombinationParametersTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_RecombinationParametersTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_RecombinationParametersTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME RecombinationParametersTests COMMAND CircuitGenGenerator_test_RecombinationParametersTests)
 # ---- End-of-file commands ----
 
 add_folders(Test)
