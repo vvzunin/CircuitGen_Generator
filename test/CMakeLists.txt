@@ -141,17 +141,17 @@ target_include_directories(
 add_test(NAME GraphVertexSubGraphTests COMMAND CircuitGenGenerator_test_GraphVertexSubGraphTests)
 
 
-# # Test OrientedGrahTests
-# add_executable(CircuitGenGenerator_test_OrientedGraphTests src/baseStructures/graph/OrientedGraphTests.cpp ${NEW_SOURCES})
+# Test OrientedGrahTests
+add_executable(CircuitGenGenerator_test_OrientedGraphTests src/baseStructures/graph/OrientedGraphTests.cpp ${NEW_SOURCES})
 
-# target_link_libraries(CircuitGenGenerator_test_OrientedGraphTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
-# target_compile_features(CircuitGenGenerator_test_OrientedGraphTests PRIVATE cxx_std_17)
-# target_include_directories(
-#   CircuitGenGenerator_test_OrientedGraphTests ${warning_guard}
-#     PUBLIC
-#     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
-# )
-# add_test(NAME OrientedGraphTests COMMAND CircuitGenGenerator_test_OrientedGraphTests)
+target_link_libraries(CircuitGenGenerator_test_OrientedGraphTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_OrientedGraphTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_OrientedGraphTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME OrientedGraphTests COMMAND CircuitGenGenerator_test_OrientedGraphTests)
 
 # Test TruthTableTests
 add_executable(CircuitGenGenerator_test_TruthTableTests src/baseStructures/truthTable/TruthTableTests.cpp ${NEW_SOURCES})
