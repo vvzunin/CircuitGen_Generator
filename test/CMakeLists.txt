@@ -128,17 +128,30 @@ target_include_directories(
 )
 add_test(NAME GraphVertexOutputTests COMMAND CircuitGenGenerator_test_GraphVertexOutputTests)
 
-# # Test OrientedGrahTests
-# add_executable(CircuitGenGenerator_test_OrientedGraphTests src/baseStructures/graph/OrientedGraphTests.cpp ${NEW_SOURCES})
+# Test GraphVertexSubGraphTests
+add_executable(CircuitGenGenerator_test_GraphVertexSubGraphTests src/baseStructures/graph/GraphVertexSubGraphTests.cpp ${NEW_SOURCES})
 
-# target_link_libraries(CircuitGenGenerator_test_OrientedGraphTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
-# target_compile_features(CircuitGenGenerator_test_OrientedGraphTests PRIVATE cxx_std_17)
-# target_include_directories(
-#   CircuitGenGenerator_test_OrientedGraphTests ${warning_guard}
-#     PUBLIC
-#     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
-# )
-# add_test(NAME OrientedGraphTests COMMAND CircuitGenGenerator_test_OrientedGraphTests)
+target_link_libraries(CircuitGenGenerator_test_GraphVertexSubGraphTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GraphVertexSubGraphTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_GraphVertexSubGraphTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GraphVertexSubGraphTests COMMAND CircuitGenGenerator_test_GraphVertexSubGraphTests)
+
+
+# Test OrientedGrahTests
+add_executable(CircuitGenGenerator_test_OrientedGraphTests src/baseStructures/graph/OrientedGraphTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_OrientedGraphTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_OrientedGraphTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_OrientedGraphTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME OrientedGraphTests COMMAND CircuitGenGenerator_test_OrientedGraphTests)
 
 # Test TruthTableTests
 add_executable(CircuitGenGenerator_test_TruthTableTests src/baseStructures/truthTable/TruthTableTests.cpp ${NEW_SOURCES})
@@ -200,6 +213,101 @@ target_include_directories(
 )
 add_test(NAME SettingsTests COMMAND CircuitGenGenerator_test_SettingsTests)
 
+# Test MutationParametersTests
+add_executable(CircuitGenGenerator_test_MutationParametersTests src/generators/Genetic/Mutations/MutationParametersTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_MutationParametersTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_MutationParametersTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_MutationParametersTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME MutationParametersTests COMMAND CircuitGenGenerator_test_MutationParametersTests)
+
+# Test GeneticParametersTests
+add_executable(CircuitGenGenerator_test_GeneticParametersTests src/generators/Genetic/GeneticParametersTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_GeneticParametersTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GeneticParametersTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_GeneticParametersTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GeneticParametersTests COMMAND CircuitGenGenerator_test_GeneticParametersTests)
+
+# Test MutationTruthTableTests
+add_executable(CircuitGenGenerator_test_MutationTruthTableTests src/generators/Genetic/Mutations/MutationTruthTableTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_MutationTruthTableTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_MutationTruthTableTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_MutationTruthTableTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME MutationTruthTableTests COMMAND CircuitGenGenerator_test_MutationTruthTableTests)
+
+# Test ParentsParametersTests
+add_executable(CircuitGenGenerator_test_ParentsParametersTests src/generators/Genetic/Parents/ParentsParametersTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_ParentsParametersTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_ParentsParametersTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_ParentsParametersTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME ParentsParametersTests COMMAND CircuitGenGenerator_test_ParentsParametersTests)
+
+# Test ParentsTruthTableTests
+add_executable(CircuitGenGenerator_test_ParentsTruthTableTests src/generators/Genetic/Parents/ParentsTruthTableTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_ParentsTruthTableTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_ParentsTruthTableTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_ParentsTruthTableTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME ParentsTruthTableTests COMMAND CircuitGenGenerator_test_ParentsTruthTableTests)
+
+# Test RecombinationsTests
+add_executable(CircuitGenGenerator_test_RecombinationsTests src/generators/Genetic/Recombination/RecombinationsTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_RecombinationsTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_RecombinationsTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_RecombinationsTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME RecombinationsTests COMMAND CircuitGenGenerator_test_RecombinationsTests)
+
+# Test RecombinationParametersTests
+add_executable(CircuitGenGenerator_test_RecombinationParametersTests src/generators/Genetic/Recombination/RecombinationParametersTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_RecombinationParametersTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_RecombinationParametersTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_RecombinationParametersTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME RecombinationParametersTests COMMAND CircuitGenGenerator_test_RecombinationParametersTests)
+
+# Test RecombinationTruthTableTests
+add_executable(CircuitGenGenerator_test_RecombinationTruthTableTests src/generators/Genetic/Recombination/RecombinationTruthTableTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_RecombinationTruthTableTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_RecombinationTruthTableTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_RecombinationTruthTableTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME RecombinationTruthTableTests COMMAND CircuitGenGenerator_test_RecombinationTruthTableTests)
 # ---- End-of-file commands ----
 
 add_folders(Test)

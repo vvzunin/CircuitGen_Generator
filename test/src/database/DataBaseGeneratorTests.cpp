@@ -159,48 +159,48 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
   std::filesystem::remove_all(mainDir + "/" + dir);
 }
 
-// // Circuits have different hashes
-// TEST(generateDataBaseNumOperations, EqualWithTheSameSeeds) {
-//   std::string          mainDir   = "dataset";
-//   std::string          dir       = "NumOperations";
+// Circuits have different hashes
+TEST(generateDataBaseNumOperations, EqualWithTheSameSeeds) {
+  std::string          mainDir   = "dataset";
+  std::string          dir       = "NumOperations";
 
-//   std::map<Gates, int> logicOper = {
-//       {Gates::GateAnd, 5},
-//       {Gates::GateOr, 5},
-//       {Gates::GateNot, 6},
-//       {Gates::GateNor, 6},
-//       {Gates::GateNand, 1},
-//       {Gates::GateXnor, 9},
-//       {Gates::GateXor, 12}};
-//   GenerationParameters gParams1(dir, "1", 5, 5, 1);
-//   gParams1.setNumOperationParameters(logicOper, false);
-//   DataBaseGeneratorParameters dbParams1(1, 5, 1, 5, 1, NumOperation,
-//   gParams1); DataBaseGenerator           generator1(dbParams1);
-//   generator1.generateTypeDefault(dbParams1);
+  std::map<Gates, int> logicOper = {
+      {Gates::GateAnd, 5},
+      {Gates::GateOr, 5},
+      {Gates::GateNot, 6},
+      {Gates::GateNor, 6},
+      {Gates::GateNand, 1},
+      {Gates::GateXnor, 9},
+      {Gates::GateXor, 12}};
+  GenerationParameters gParams1(dir, "1", 5, 5, 1);
+  gParams1.setNumOperationParameters(logicOper, false);
+  DataBaseGeneratorParameters dbParams1(1, 5, 1, 5, 1, NumOperation, gParams1);
+  DataBaseGenerator           generator1(dbParams1);
+  generator1.generateTypeDefault(dbParams1);
 
-//   GenerationParameters gParams2(dir, "2", 5, 5, 1);
-//   gParams2.setNumOperationParameters(logicOper, false);
-//   DataBaseGeneratorParameters dbParams2(1, 5, 1, 5, 1, NumOperation,
-//   gParams2); DataBaseGenerator           generator2(dbParams2);
-//   generator2.generateTypeDefault(dbParams2);
+  GenerationParameters gParams2(dir, "2", 5, 5, 1);
+  gParams2.setNumOperationParameters(logicOper, false);
+  DataBaseGeneratorParameters dbParams2(1, 5, 1, 5, 1, NumOperation, gParams2);
+  DataBaseGenerator           generator2(dbParams2);
+  generator2.generateTypeDefault(dbParams2);
 
-//   // receive all json files
-//   std::string              dir1   = mainDir + "/" + dir + "/" + "1";
-//   std::string              dir2   = mainDir + "/" + dir + "/" + "2";
-//   std::vector<std::string> jsons1 = getJsons(dir1);
-//   std::vector<std::string> jsons2 = getJsons(dir2);
-//   ASSERT_EQ(jsons1.empty(), false);
-//   ASSERT_EQ(jsons1.size(), jsons2.size());
+  // receive all json files
+  std::string              dir1   = mainDir + "/" + dir + "/" + "1";
+  std::string              dir2   = mainDir + "/" + dir + "/" + "2";
+  std::vector<std::string> jsons1 = getJsons(dir1);
+  std::vector<std::string> jsons2 = getJsons(dir2);
+  ASSERT_EQ(jsons1.empty(), false);
+  ASSERT_EQ(jsons1.size(), jsons2.size());
 
-//   for (int i = 0; i < jsons1.size(); ++i) {
-//     EXPECT_EQ(
-//         FilesTools::loadStringFile(jsons1[i]),
-//         FilesTools::loadStringFile(jsons2[i])
-//     );
-//   }
+  for (int i = 0; i < jsons1.size(); ++i) {
+    EXPECT_EQ(
+        FilesTools::loadStringFile(jsons1[i]),
+        FilesTools::loadStringFile(jsons2[i])
+    );
+  }
 
-//   std::filesystem::remove_all(mainDir + "/" + dir);
-// }
+  std::filesystem::remove_all(mainDir + "/" + dir);
+}
 
 TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
   std::string          mainDir = "dataset";
