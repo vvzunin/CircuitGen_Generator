@@ -9,12 +9,10 @@
     "min_out": 50,
     "max_out": 50,
     "repeat_n": 1,    
-    "multithread": true,
-    "calculate_stats_abc": true,
-    "make_optimized_files": false,
-    "make_firrtl": false,
-    "make_bench": false,
-    "make_graphml": true,
+    "multithread": 4,
+    "make_graphml_classic": true,
+    "make_graphml_pseudo_abc_d": true,
+    "make_graphml_open_abc_d": true,
     "create_id_directories": true,
     "library_name": "sky130",
     
@@ -27,9 +25,9 @@
       "xnor": [2, 16, 8]
     },
 
-    "min_level": 50,
-    "max_level": 50,
-    "min_elem": 100,
-    "max_elem": 100
+    "min_level": 100,
+    "max_level": 100,
+    "min_elem": 1000,
+    "max_elem": 1000
   }
 ]

@@ -47,11 +47,11 @@ std::uint_fast32_t getRandSeed();
 /// @return A random integer in the specified range
 /// @code
 /// Generating a random number in the range [1, 100] inclusive
-/// int randomNumber = AuxMethods::getRandInt(1, 100, true);
+/// uint32_t randomNumber = AuxMethods::getRandInt(1, 100, true);
 /// //randomNumber = 45;
 /// @endcode
 
-int                getRandInt(int lower, int upper, bool inclusively = false);
+int32_t     getRandInt(int32_t lower, int32_t upper, bool inclusively = false);
 
 // @brief getRandDouble Returns a random floating point number in the
 /// specified range
@@ -64,7 +64,7 @@ int                getRandInt(int lower, int upper, bool inclusively = false);
 /// // randomNumber = 0.35;
 /// @endcode
 
-double             getRandDouble(double lower, double upper);
+double      getRandDouble(double lower, double upper);
 
 /// @brief readAllFile Reads the contents of the file and returns it as a
 /// string
@@ -79,7 +79,7 @@ double             getRandDouble(double lower, double upper);
 /// @endcode
 /// @throws std::runtime_error if the file cannot be opened
 
-std::string        readAllFile(const std::string& filename);
+std::string readAllFile(const std::string& filename);
 
 /// @brief getRandomIntList Generates a list of random integers in a given
 /// range with certain restrictions on the number of elements and the
@@ -91,12 +91,12 @@ std::string        readAllFile(const std::string& filename);
 /// numbers
 /// @param repite A flag indicating whether the repetition of numbers in
 /// the list is allowed (true - allowed, false - not allowed). Default - false
-/// @return a vector<int> of random numbers according to the specified
+/// @return a vector<uint32_t> of random numbers according to the specified
 /// parameters
 /// @code
-/// std::vector<int>  randomList = getRandomIntList(10, 1, 100, false);
+/// std::vector<uint32_t>  randomList = getRandomIntList(10, 1, 100, false);
 /// std::cout << "Random list without repetition: ";
-/// for (int num : randomList)
+/// for (uint32_t num : randomList)
 /// {
 ///     std::cout << num << " ";
 /// }
@@ -104,12 +104,12 @@ std::string        readAllFile(const std::string& filename);
 /// // and they are all different.
 /// @endcode
 
-std::vector<int>   getRandomIntList(
-      int  i_n,
-      int  i_minNumber,
-      int  i_maxNumber,
-      bool repite = false
-  );
+std::vector<int32_t> getRandomIntList(
+    size_t  i_n,
+    int32_t i_minNumber,
+    int32_t i_maxNumber,
+    bool    repite = false
+);
 
 /// @brief sortDictByValue Sorting the associative container by values and
 /// returning sorted key-value pairs as a vector. Sorting can be performed both
@@ -123,12 +123,12 @@ std::vector<int>   getRandomIntList(
 /// @return A vector of key-value pairs containing dictionary elements sorted
 /// by values
 /// @code
-/// std::map<std::string, int> myDict;
+/// std::map<std::string, int32_t> myDict;
 /// myDict["apple"]  = 5;
 /// myDict["banana"] = 3;
 /// myDict["orange"] = 7;
 /// // Sorting the dictionary by values in ascending order
-/// std::vector<std::pair<std::string, int>> sortedPairs =
+/// std::vector<std::pair<std::string, int32_t>> sortedPairs =
 /// AuxMethods::sortDictByValue(myDict, true);
 
 /// // Output sorted key-value pairs
@@ -169,9 +169,9 @@ std::string removeSpaces(const std::string& i_s);
 /// index outside the line,
 /// @code
 /// std::string str = "    \t\nHello, world!";
-/// int startIndex    = 0;
+/// size_t startIndex    = 0;
 /// // Skip the whitespace characters in the string
-/// int nonSpaceIndex = AuxMethods::skipSpaces(str, startIndex);
+/// size_t nonSpaceIndex = AuxMethods::skipSpaces(str, startIndex);
 /// // Output the result
 /// if (nonSpaceIndex < str.size())
 /// {
@@ -186,15 +186,18 @@ std::string removeSpaces(const std::string& i_s);
 /// }
 /// @endcode
 
-int         skipSpaces(const std::string& i_s, int i_start = 0);
+size_t      skipSpaces(const std::string& i_s, size_t i_start = 0);
 
 template<typename T>
 std::vector<std::vector<T>> transpose(const std::vector<std::vector<T>>& matrix
 );
 
 // TODO: if need CopyDirectory
-std::string intToStringWithZeroes(int i_num, int i_totalDigits = 5);
+std::string intToStringWithZeroes(uint32_t i_num, size_t i_totalDigits = 5);
 
+std::string replacer(const std::string& i_s, const std::string& i_r);
+
+// code from here https://gist.github.com/en4bz/f07ef13706c3ae3a4fb2
 template<class Tuple, std::size_t N>
 struct TuplePrinter {
   static void print(const std::string& fmt, std::ostream& os, const Tuple& t) {

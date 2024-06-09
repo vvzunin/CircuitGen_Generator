@@ -21,9 +21,8 @@ int main(int argc, char **argv) {
   const char *const short_opts = "j:n:";
   const option long_opts[] = {{"json_path", required_argument, nullptr, 'j'},
                               {"num_nodes", required_argument, nullptr, 'n'}};
-  int c;
 
-  int opt;
+  int32_t opt;
   while ((opt = getopt_long(argc, argv, short_opts, long_opts, nullptr)) !=
          -1) {
     switch (opt) {
@@ -40,6 +39,9 @@ int main(int argc, char **argv) {
     }
   }
   
-  // json_path = "../examples/json/sampleALU.json";
+  // json_path = "../../examples/json/sampleGenetic.json";
+  // std::clog << std::filesystem::current_path() << std::endl;
   CircuitGenGenerator::runGenerationFromJson(json_path);
+
+  return 0;
 }

@@ -42,7 +42,7 @@ std::uint_fast32_t AuxMethods::getRandSeed() {
   return gen.getSeed();
 }
 
-int AuxMethods::getRandInt(int lower, int upper, bool inclusively) {
+int32_t AuxMethods::getRandInt(int32_t lower, int32_t upper, bool inclusively) {
   return gen.getRandInt(lower, upper, inclusively);
 }
 
@@ -68,11 +68,11 @@ std::string AuxMethods::readAllFile(const std::string& filename) {
   return buffer.str();
 }
 
-std::vector<int> AuxMethods::getRandomIntList(
-    int  i_n,
-    int  i_minNumber,
-    int  i_maxNumber,
-    bool repite
+std::vector<int32_t> AuxMethods::getRandomIntList(
+    size_t  i_n,
+    int32_t i_minNumber,
+    int32_t i_maxNumber,
+    bool    repite
 ) {
   return gen.getRandomIntList(i_n, i_minNumber, i_maxNumber, repite);
 }
@@ -122,16 +122,21 @@ template std::vector<std::vector<VertexPtr>> AuxMethods::transpose(
 // explicit instantiation of sortDictByValue
 // if you want to use this func with other types, just add corresponding
 // instantiation below, compilation error otherwise.
-template std::vector<std::pair<int, int>>
-    AuxMethods::sortDictByValue(const std::map<int, int>& i_dict, bool up);
-
-template std::vector<std::pair<int, double>>
-    AuxMethods::sortDictByValue(const std::map<int, double>& i_dict, bool up);
-
-template std::vector<std::pair<std::string, int>> AuxMethods::sortDictByValue(
-    const std::map<std::string, int>& i_dict,
+template std::vector<std::pair<int32_t, int32_t>> AuxMethods::sortDictByValue(
+    const std::map<int32_t, int32_t>& i_dict,
     bool                              up
 );
+
+template std::vector<std::pair<int32_t, double>> AuxMethods::sortDictByValue(
+    const std::map<int32_t, double>& i_dict,
+    bool                             up
+);
+
+template std::vector<std::pair<std::string, int32_t>>
+    AuxMethods::sortDictByValue(
+        const std::map<std::string, int32_t>& i_dict,
+        bool                                  up
+    );
 
 std::string AuxMethods::removeSpaces(const std::string& i_s) {
   std::string res = "";
@@ -142,8 +147,8 @@ std::string AuxMethods::removeSpaces(const std::string& i_s) {
   return res;
 }
 
-int AuxMethods::skipSpaces(const std::string& i_s, int i_start) {
-  int res = i_start;
+size_t AuxMethods::skipSpaces(const std::string& i_s, size_t i_start) {
+  size_t res = i_start;
   while (res < i_s.size()
          && (i_s[res] == ' ' || i_s[res] == '\t' || i_s[res] == '\n'
              || i_s[res] == '\r'))
@@ -151,10 +156,28 @@ int AuxMethods::skipSpaces(const std::string& i_s, int i_start) {
   return res;
 }
 
-std::string AuxMethods::intToStringWithZeroes(int i_num, int i_totalDigits) {
-  int numLength = std::to_string(i_num).length();
-  i_totalDigits = std::max(numLength, i_totalDigits);
+std::string
+    AuxMethods::intToStringWithZeroes(uint32_t i_num, size_t i_totalDigits) {
+  size_t numLength = std::to_string(i_num).length();
+  i_totalDigits    = std::max(numLength, i_totalDigits);
   std::stringstream ss;
-  ss << std::setw(i_totalDigits) << std::setfill('0') << i_num;
+  ss << std::setw((int)i_totalDigits) << std::setfill('0') << i_num;
   return ss.str();
+}
+
+std::string
+    AuxMethods::replacer(const std::string& i_s, const std::string& i_r) {
+  std::string res;
+  res.reserve(i_s.length() * 2);
+
+  std::string::size_type pos = 0, prev_pos = 0;
+
+  while ((pos = i_s.find('%', pos)) != std::string::npos) {
+    res.append(i_s, prev_pos, pos - prev_pos);
+    res.append(i_r);
+    prev_pos = ++pos;
+  }
+
+  res.append(i_s, prev_pos, i_s.length() - prev_pos);
+  return res;
 }

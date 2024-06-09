@@ -83,7 +83,9 @@
       "name": "ci-linux",
       "generator": "Unix Makefiles",
       "hidden": true,
-      "inherits": ["flags-gcc-clang", "ci-std"],
+      "inherits": [
+        "ci-std"
+      ],
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
       }

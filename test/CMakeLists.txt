@@ -32,7 +32,6 @@ message(${NEW_SOURCES})
 # ---- Tests ----
 
 # Test AuxiliaryMethodsTests
-
 configure_file(
   src/additional/testData_AuxiliaryMethodsTests/one_line_file.txt
   src/additional/testData_AuxiliaryMethodsTests/one_line_file.txt
@@ -51,7 +50,7 @@ configure_file(
 configure_file(
   src/additional/testData_AuxiliaryMethodsTests/test_two_line_with_tab.txt
   src/additional/testData_AuxiliaryMethodsTests/test_two_line_with_tab.txt
-    COPYONLY)
+  COPYONLY)
 
 configure_file(
   src/additional/testData_AuxiliaryMethodsTests/test_two_lines.txt
@@ -81,6 +80,114 @@ target_include_directories(
 )
 add_test(NAME FilesToolsTests COMMAND CircuitGenGenerator_test_FilesToolsTests)
 
+# Test GraphVertexConstantTests
+add_executable(CircuitGenGenerator_test_GraphVertexConstantTests src/baseStructures/graph/GraphVertexConstantTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_GraphVertexConstantTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GraphVertexConstantTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_GraphVertexConstantTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GraphVertexConstantTests COMMAND CircuitGenGenerator_test_GraphVertexConstantTests)
+
+# Test GraphVertexGatesTests
+add_executable(CircuitGenGenerator_test_GraphVertexGatesTests src/baseStructures/graph/GraphVertexGatesTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_GraphVertexGatesTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GraphVertexGatesTests PRIVATE cxx_std_17)
+target_include_directories(
+ CircuitGenGenerator_test_GraphVertexGatesTests ${warning_guard}
+   PUBLIC
+   "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GraphVertexGatesTests COMMAND CircuitGenGenerator_test_GraphVertexGatesTests)
+
+# Test GraphVertexInputTests
+add_executable(CircuitGenGenerator_test_GraphVertexInputTests src/baseStructures/graph/GraphVertexInputTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_GraphVertexInputTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GraphVertexInputTests PRIVATE cxx_std_17)
+target_include_directories(
+ CircuitGenGenerator_test_GraphVertexInputTests ${warning_guard}
+   PUBLIC
+   "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GraphVertexInputTests COMMAND CircuitGenGenerator_test_GraphVertexInputTests)
+
+# Test GraphVertexOutputTests
+add_executable(CircuitGenGenerator_test_GraphVertexOutputTests src/baseStructures/graph/GraphVertexOutputTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_GraphVertexOutputTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_GraphVertexOutputTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_GraphVertexOutputTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME GraphVertexOutputTests COMMAND CircuitGenGenerator_test_GraphVertexOutputTests)
+
+# # Test OrientedGrahTests
+# add_executable(CircuitGenGenerator_test_OrientedGraphTests src/baseStructures/graph/OrientedGraphTests.cpp ${NEW_SOURCES})
+
+# target_link_libraries(CircuitGenGenerator_test_OrientedGraphTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+# target_compile_features(CircuitGenGenerator_test_OrientedGraphTests PRIVATE cxx_std_17)
+# target_include_directories(
+#   CircuitGenGenerator_test_OrientedGraphTests ${warning_guard}
+#     PUBLIC
+#     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+# )
+# add_test(NAME OrientedGraphTests COMMAND CircuitGenGenerator_test_OrientedGraphTests)
+
+# Test TruthTableTests
+add_executable(CircuitGenGenerator_test_TruthTableTests src/baseStructures/truthTable/TruthTableTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_TruthTableTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_TruthTableTests PRIVATE cxx_std_17)
+target_include_directories(
+  CircuitGenGenerator_test_TruthTableTests ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME TruthTableTests COMMAND CircuitGenGenerator_test_TruthTableTests)
+
+# # Test CircuitTests
+# add_executable(CircuitGenGenerator_test_CircuitTests src/circuit/CircuitTests.cpp ${NEW_SOURCES})
+
+# target_link_libraries(CircuitGenGenerator_test_CircuitTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+# target_compile_features(CircuitGenGenerator_test_CircuitTests PRIVATE cxx_std_17)
+# target_include_directories(
+#  CircuitGenGenerator_test_CircuitTests ${warning_guard}
+#    PUBLIC
+#    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+# )
+# add_test(NAME CircuitTests COMMAND CircuitGenGenerator_test_CircuitTests)
+
+# Test DataBaseGeneratorTests
+add_executable(CircuitGenGenerator_test_DataBaseGeneratorTests src/database/DataBaseGeneratorTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_DataBaseGeneratorTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_DataBaseGeneratorTests PRIVATE cxx_std_17)
+target_include_directories(
+ CircuitGenGenerator_test_DataBaseGeneratorTests ${warning_guard}
+   PUBLIC
+   "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
+)
+add_test(NAME DataBaseGeneratorsTests COMMAND CircuitGenGenerator_test_DataBaseGeneratorTests)
+
+# Test SimpleGeneratorsTests
+add_executable(CircuitGenGenerator_test_SimpleGeneratorsTests src/generators/simple/SimpleGeneratorsTests.cpp ${NEW_SOURCES})
+
+target_link_libraries(CircuitGenGenerator_test_SimpleGeneratorsTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
+target_compile_features(CircuitGenGenerator_test_SimpleGeneratorsTests PRIVATE cxx_std_17)
+target_include_directories(
+ CircuitGenGenerator_test_SimpleGeneratorsTests ${warning_guard}
+   PUBLIC
+   "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"  
+)
+add_test(NAME SimpleGeneratorsTests COMMAND CircuitGenGenerator_test_SimpleGeneratorsTests)
+
 # Test SettingsTests
 add_executable(CircuitGenGenerator_test_SettingsTests src/settings/SettingsTests.cpp ${NEW_SOURCES})
 
@@ -92,18 +199,6 @@ target_include_directories(
     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
 )
 add_test(NAME SettingsTests COMMAND CircuitGenGenerator_test_SettingsTests)
-
-# Test SimpleGeneratorsTests
-add_executable(CircuitGenGenerator_test_SimpleGeneratorsTests src/generators/simple/SimpleGeneratorsTests.cpp ${NEW_SOURCES})
-
-target_link_libraries(CircuitGenGenerator_test_SimpleGeneratorsTests PRIVATE GTest::gtest_main ${EXTERNAL_LIBS})
-target_compile_features(CircuitGenGenerator_test_SimpleGeneratorsTests PRIVATE cxx_std_17)
-target_include_directories(
-  CircuitGenGenerator_test_SimpleGeneratorsTests ${warning_guard}
-    PUBLIC
-    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"  
-)
-add_test(NAME SimpleGeneratorsTests COMMAND CircuitGenGenerator_test_SimpleGeneratorsTests)
 
 # ---- End-of-file commands ----
 

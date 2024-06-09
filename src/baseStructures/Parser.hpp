@@ -6,8 +6,8 @@
 #include <string>
 #include <vector>
 
-#include "graph/OrientedGraph.hpp"
-using GatesInfo = std::map<Gates, std::vector<int>>;
+#include <CircuitGenGenerator/OrientedGraph.hpp>
+using GatesInfo = std::map<Gates, std::vector<int32_t>>;
 
 /// class Parser
 /// @param d_logExpressions It can represent a set of logical expressions
@@ -27,12 +27,12 @@ using GatesInfo = std::map<Gates, std::vector<int>>;
 class Parser {
 public:
   Parser(
-      const std::string&                             i_logExpression,
-      const std::map<std::string, std::vector<int>>& i_info
+      const std::string&                                 i_logExpression,
+      const std::map<std::string, std::vector<int32_t>>& i_info
   );
   Parser(
-      const std::vector<std::string>&                i_logExpressions,
-      const std::map<std::string, std::vector<int>>& i_info
+      const std::vector<std::string>&                    i_logExpressions,
+      const std::map<std::string, std::vector<int32_t>>& i_info
   );
 
   Parser(const std::string& i_logExpression, const GatesInfo& i_info);
@@ -126,13 +126,14 @@ public:
   /// @param i_info A map where keys are gate names as strings and values are
   /// vectors of integers specifying the number of inputs for each gate
 
-  void setGatesInputsInfo(const std::map<std::string, std::vector<int>>& i_info
-  );
+  void      setGatesInputsInfo(
+           const std::map<std::string, std::vector<int32_t>>& i_info
+       );
 
   /// @brief setGatesInputsInfo
   /// TO DO:
   /// Analog setGatesInputsInfo
-  /// @param GatesInfo = std::map<Gates, std::vector<int>>
+  /// @param GatesInfo = std::map<Gates, std::vector<int32_t>>
   void setGatesInputsInfo(const GatesInfo& i_info);
 
 private:

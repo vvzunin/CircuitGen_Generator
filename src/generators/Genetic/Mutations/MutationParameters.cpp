@@ -1,6 +1,6 @@
 #include <tuple>
 
-#include "MutationParameters.h"
+#include "MutationParameters.hpp"
 
 void MutationParameters::setMutationType(MutationTypes i_mutationType) {
   d_mutationType = i_mutationType;
@@ -10,7 +10,7 @@ void MutationParameters::setProbabilityGen(double i_probabilityGen) {
   d_probabilityGen = i_probabilityGen;
 }
 
-void MutationParameters::setExchangeType(int i_exchangeType) {
+void MutationParameters::setExchangeType(int32_t i_exchangeType) {
   d_exchangeType = i_exchangeType;
 }
 
@@ -27,7 +27,7 @@ double MutationParameters::getProbabilityGen() const {
   return d_probabilityGen;
 }
 
-int MutationParameters::getExchangeType() const {
+int32_t MutationParameters::getExchangeType() const {
   return d_exchangeType;
 }
 

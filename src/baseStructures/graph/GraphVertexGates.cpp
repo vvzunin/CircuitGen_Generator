@@ -34,7 +34,7 @@ char GraphVertexGates::updateValue() {
       d_value = tableBuf.at(ptr->getValue());
     if (d_gate == Gates::GateNot)
       d_value = tableNot.at(ptr->getValue());
-    for (int i = 1; i < d_inConnections.size(); i++) {
+    for (size_t i = 1; i < d_inConnections.size(); i++) {
       switch (d_gate) {
         case (Gates::GateAnd):
           table = tableAnd.at(d_value);
@@ -114,7 +114,7 @@ std::string GraphVertexGates::getVerilogString() const {
         || (d_gate == Gates::GateXnor))
       s = "~(" + s;
 
-    for (int i = 1; i < d_inConnections.size(); i++) {
+    for (size_t i = 1; i < d_inConnections.size(); i++) {
       // check if ptr is alive
       if (!(ptr = d_inConnections[i].lock())) {
         throw std::invalid_argument("Dead pointer!");
@@ -184,4 +184,11 @@ std::string GraphVertexGates::toVerilog() {
   }
 
   return basic;
+}
+
+bool GraphVertexGates::isSubgraphBuffer() const {
+  if (d_gate != Gates::GateBuf || d_inConnections.empty()) {
+    return false;
+  }
+  return d_inConnections[0].lock()->getType() == VertexTypes::subGraph;
 }

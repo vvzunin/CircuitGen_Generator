@@ -1,10 +1,59 @@
+#pragma once
+
 #include <cmath>
 #include <string>
 #include <tuple>
 
-#include "ChronosomeType.h"
+#include <baseStructures/truthTable/TruthTable.hpp>
+#include <settings/Settings.hpp>
 
-#include "../TruthTable.h"
+template<typename Type, typename ParametersTypes>
+class ChronosomeType {
+public:
+  ChronosomeType(const std::string& i_name, const Type& i_chronosome) {
+    d_chronosome = i_chronosome;
+    d_name       = i_name;
+    adaptationFunction();
+  }
+  // ChronosomeType(const ChronosomeType & r)
+  //   : d_chronosome(r.d_chronosome),
+  //     d_name(r.d_name),
+  //     d_adaptationIndex(r.d_adaptationIndex),
+  //     d_settings(Settings::getInstance("TruthTable"))
+  // { }
+
+  const Type& getChronosomeType() const { return d_chronosome; }
+  void        setChronosomeType(const Type& i_chronosome) {
+    d_chronosome = i_chronosome;
+  }
+  double getAdaptationIndex() const { return d_adaptationIndex; }
+  void   setAdaptationIndex(double i_adaptationIndex) {
+    d_adaptationIndex = i_adaptationIndex;
+  }
+  std::string getName() const { return d_name; }
+  void        adaptationFunction() {
+    if constexpr (std::is_same_v<Type, TruthTable>) {
+      uint32_t numInt = 0;
+      for (const auto& nucleosoms : d_chronosome.getOutTable())
+        for (const auto& nucleosom : nucleosoms)
+          if (nucleosom)
+            numInt++;
+      d_adaptationIndex =
+          abs(0.5 - (numInt / (d_chronosome.size() * d_chronosome.getOutput()))
+          );
+    }
+  }
+  bool operator==(const ChronosomeType<Type, ParametersTypes>& r) const {
+    return std::tie(d_adaptationIndex, d_chronosome, d_name)
+        == std::tie(r.d_adaptationIndex, r.d_chronosome, r.d_name);
+  }
+
+private:
+  double                    d_adaptationIndex;
+  Type                      d_chronosome;
+  std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
+  std::string               d_name;
+};
 
 // template<typename Type, typename ParametersTypes>
 // ChronosomeType<Type, ParametersTypes>::ChronosomeType(const std::string

@@ -1,35 +1,36 @@
+#include <cstdint>
 #include <tuple>
 
-#include "GeneticParameters.h"
+#include "GeneticParameters.hpp"
 
 void GeneticParameters::setKeyEndProcessIndex(double i_keyEndProcessIndex) {
   d_keyEndProcessIndex = i_keyEndProcessIndex;
 }
 
-void GeneticParameters::setPopulationSize(int i_populationSize) {
+void GeneticParameters::setPopulationSize(uint32_t i_populationSize) {
   d_populationSize = i_populationSize;
 }
 
-void GeneticParameters::setNumOfCycles(int i_numOfCycles) {
+void GeneticParameters::setNumOfCycles(uint32_t i_numOfCycles) {
   d_numOfCycles = i_numOfCycles;
 }
 
-GeneticParameters::GeneticParameters(int i_inputs, int i_outputs) :
+GeneticParameters::GeneticParameters(uint32_t i_inputs, uint32_t i_outputs) :
   d_inputs(i_inputs), d_outputs(i_outputs) {};
 
-int GeneticParameters::getInputs() const {
+uint32_t GeneticParameters::getInputs() const {
   return d_inputs;
 }
 
-void GeneticParameters::setInputs(int i_inputs) {
+void GeneticParameters::setInputs(uint32_t i_inputs) {
   d_inputs = i_inputs;
 }
 
-int GeneticParameters::getOutputs() const {
+uint32_t GeneticParameters::getOutputs() const {
   return d_outputs;
 }
 
-void GeneticParameters::setOutputs(int i_outputs) {
+void GeneticParameters::setOutputs(uint32_t i_outputs) {
   d_outputs = i_outputs;
 }
 
@@ -60,11 +61,11 @@ void GeneticParameters::setMutationParameters(const MutationParameters& i_mp) {
   d_mutationParameters = i_mp;
 }
 
-int OrientedGraphParameters::getMaxLevel() const {
+uint32_t OrientedGraphParameters::getMaxLevel() const {
   return d_maxLevel;
 }
 
-int OrientedGraphParameters::getMaxElements() const {
+uint32_t OrientedGraphParameters::getMaxElements() const {
   return d_maxElements;
 }
 
@@ -72,13 +73,16 @@ bool OrientedGraphParameters::empty() const {
   return d_maxLevel == 0 && d_maxElements == 0;
 }
 
-TruthTableParameters::TruthTableParameters(int i_inputs, int i_outputs) :
+TruthTableParameters::TruthTableParameters(
+    uint32_t i_inputs,
+    uint32_t i_outputs
+) :
   GeneticParameters(i_inputs, i_outputs) {}
 
 TruthTableParameters::TruthTableParameters(const GeneticParameters& i_gp) :
   GeneticParameters(i_gp) {}
 
-int TruthTableParameters::size() const {
+uint32_t TruthTableParameters::size() const {
   return 1u << d_inputs;
 }
 

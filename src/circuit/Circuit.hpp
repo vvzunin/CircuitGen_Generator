@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-#include <baseStructures/graph/OrientedGraph.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
+#include <CircuitGenGenerator/OrientedGraph.hpp>
 
 #include "CircuitParameters.hpp"
 
@@ -71,7 +71,13 @@ public:
   /// the parameters are saved successfully.
   /// */
 
-  bool graphToGraphML(const std::string& i_path, bool i_pathExists = false);
+  bool graphToGraphML(
+      const std::string& i_path,
+      bool               i_makeGraphMLClassic    = false,
+      bool               i_makeGraphMLPseudoABCD = false,
+      bool               i_makeGraphMLOpenABCD   = false,
+      bool               i_pathExists            = false
+  );
 
   /// @brief saveAdditionalStats This save Additional Stats method is designed
   /// to save additional statistics related to the execution of the ABC command
@@ -111,7 +117,12 @@ public:
   /// successful
   /// */
 
-  bool generate(bool i_makeGraphML = false, bool i_pathExists = false);
+  bool generate(
+      bool i_makeGraphMLClassic    = false,
+      bool i_makeGraphMLPseudoABCD = false,
+      bool i_makeGraphMLOpenABCD   = false,
+      bool i_pathExists            = false
+  );
 
   /// @brief setTable This method is designed to set up a truth table for a
   /// digital circuit.
@@ -159,7 +170,7 @@ public:
   /// vertex
   /// */
 
-  void    setVerticeOperation(int i_vertice, const std::string& i_operation);
+  void setVerticeOperation(int32_t i_vertice, const std::string& i_operation);
 
   /// @todo: description fromVerilog
   /// @brief fromVerilog
