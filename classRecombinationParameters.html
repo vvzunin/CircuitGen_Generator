@@ -1,162 +1,642 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>RecombinationParameters class | CircuitGen_Generator Desc of Backeknd</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: RecombinationParameters Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">1.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          RecombinationParameters <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="RecombinationParameters_8hpp.html">&lt;RecombinationParameters.hpp&gt;</a></div>
-        </h1>
-        <p><span></span></p>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#pub-methods">Public functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="a62de42c83fe4977bef95427e14b1d46e">
-              <span class="m-doc-wrap-bumper">auto <a href="#a62de42c83fe4977bef95427e14b1d46e" class="m-doc-self">getRecombinationType</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548" class="m-doc">RecombinationTypes</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a56737481f643f359ad307451d411c276">
-              <span class="m-doc-wrap-bumper">auto <a href="#a56737481f643f359ad307451d411c276" class="m-doc-self">getParentsParameters</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classParentsParameters.html" class="m-doc">ParentsParameters</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a5a156d899873c60e8f72710087c5a4d8">
-              <span class="m-doc-wrap-bumper">auto <a href="#a5a156d899873c60e8f72710087c5a4d8" class="m-doc-self">getRefPoints</a>(</span><span class="m-doc-wrap">) const -&gt; int32_t</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a619e705a197c834f62bdc152127be6d2">
-              <span class="m-doc-wrap-bumper">void <a href="#a619e705a197c834f62bdc152127be6d2" class="m-doc-self">setRefPoints</a>(</span><span class="m-doc-wrap">int32_t i_refPoints)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a69f528dd097913382d124cbccde6fdbc">
-              <span class="m-doc-wrap-bumper">auto <a href="#a69f528dd097913382d124cbccde6fdbc" class="m-doc-self">getMaskProbability</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a73a79a170bf5599e6651794161da1c17">
-              <span class="m-doc-wrap-bumper">void <a href="#a73a79a170bf5599e6651794161da1c17" class="m-doc-self">setRecombinationParameters</a>(</span><span class="m-doc-wrap">int32_t i_rp)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ae3f327647fb096602c20571a53eaa44d">
-              <span class="m-doc-wrap-bumper">auto <a href="#ae3f327647fb096602c20571a53eaa44d" class="m-doc-self">getRecombinationParameters</a>(</span><span class="m-doc-wrap">) const -&gt; int32_t</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a33fadab29b9d1c2d14e2888274d0518a">
-              <span class="m-doc-wrap-bumper">auto <a href="#a33fadab29b9d1c2d14e2888274d0518a" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="classRecombinationParameters.html" class="m-doc">RecombinationParameters</a>&amp; r) const -&gt; bool</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ace04d4faae73e5b0e21bb7b0fa2609f1">
-              <span class="m-doc-wrap-bumper">void <a href="#ace04d4faae73e5b0e21bb7b0fa2609f1" class="m-doc-self">setMaskProbability</a>(</span><span class="m-doc-wrap">double i_maskProbability)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a2820dc6406d8ef59ed9fa078cc593cb0">
-              <span class="m-doc-wrap-bumper">void <a href="#a2820dc6406d8ef59ed9fa078cc593cb0" class="m-doc-self">setParentsParameters</a>(</span><span class="m-doc-wrap"><a href="ParentsParameters_8hpp.html#a130c2b32927d9f98f3433218f8e84f75" class="m-doc">ParentsTypes</a> i_parentsType,
-              const int32_t i_tournamentSize)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a69754880cf45362261d6615dd36d3688">
-              <span class="m-doc-wrap-bumper">void <a href="#a69754880cf45362261d6615dd36d3688" class="m-doc-self">setRecombinationType</a>(</span><span class="m-doc-wrap"><a href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548" class="m-doc">RecombinationTypes</a> i_recombinationType)</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classRecombinationParameters.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classRecombinationParameters-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">RecombinationParameters Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="RecombinationParameters_8hpp_source.html">RecombinationParameters.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for RecombinationParameters:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters__coll__graph.png" border="0" usemap="#aRecombinationParameters_coll__map" alt="Collaboration graph"/></div>
+<map name="aRecombinationParameters_coll__map" id="aRecombinationParameters_coll__map">
+<area shape="rect" title=" " alt="" coords="5,219,245,487"/>
+<area shape="rect" href="classParentsParameters.html" title=" " alt="" coords="27,5,224,156"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a62de42c83fe4977bef95427e14b1d46e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548">RecombinationTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a62de42c83fe4977bef95427e14b1d46e">getRecombinationType</a> () const</td></tr>
+<tr class="separator:a62de42c83fe4977bef95427e14b1d46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56737481f643f359ad307451d411c276"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classParentsParameters.html">ParentsParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a56737481f643f359ad307451d411c276">getParentsParameters</a> () const</td></tr>
+<tr class="separator:a56737481f643f359ad307451d411c276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a156d899873c60e8f72710087c5a4d8"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a5a156d899873c60e8f72710087c5a4d8">getRefPoints</a> () const</td></tr>
+<tr class="separator:a5a156d899873c60e8f72710087c5a4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a619e705a197c834f62bdc152127be6d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a619e705a197c834f62bdc152127be6d2">setRefPoints</a> (int32_t i_refPoints)</td></tr>
+<tr class="separator:a619e705a197c834f62bdc152127be6d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69f528dd097913382d124cbccde6fdbc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a69f528dd097913382d124cbccde6fdbc">getMaskProbability</a> () const</td></tr>
+<tr class="separator:a69f528dd097913382d124cbccde6fdbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73a79a170bf5599e6651794161da1c17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a73a79a170bf5599e6651794161da1c17">setRecombinationParameters</a> (int32_t i_rp)</td></tr>
+<tr class="separator:a73a79a170bf5599e6651794161da1c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3f327647fb096602c20571a53eaa44d"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#ae3f327647fb096602c20571a53eaa44d">getRecombinationParameters</a> () const</td></tr>
+<tr class="separator:ae3f327647fb096602c20571a53eaa44d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33fadab29b9d1c2d14e2888274d0518a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a33fadab29b9d1c2d14e2888274d0518a">operator==</a> (const <a class="el" href="classRecombinationParameters.html">RecombinationParameters</a> &amp;r) const</td></tr>
+<tr class="separator:a33fadab29b9d1c2d14e2888274d0518a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace04d4faae73e5b0e21bb7b0fa2609f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#ace04d4faae73e5b0e21bb7b0fa2609f1">setMaskProbability</a> (double i_maskProbability)</td></tr>
+<tr class="separator:ace04d4faae73e5b0e21bb7b0fa2609f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2820dc6406d8ef59ed9fa078cc593cb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a2820dc6406d8ef59ed9fa078cc593cb0">setParentsParameters</a> (<a class="el" href="ParentsParameters_8hpp.html#a130c2b32927d9f98f3433218f8e84f75">ParentsTypes</a> i_parentsType, const int32_t i_tournamentSize)</td></tr>
+<tr class="separator:a2820dc6406d8ef59ed9fa078cc593cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69754880cf45362261d6615dd36d3688"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a69754880cf45362261d6615dd36d3688">setRecombinationType</a> (<a class="el" href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548">RecombinationTypes</a> i_recombinationType)</td></tr>
+<tr class="separator:a69754880cf45362261d6615dd36d3688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:abd028e910f6634ee300a2885a1f1c4c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548">RecombinationTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#abd028e910f6634ee300a2885a1f1c4c2">d_recombinationType</a></td></tr>
+<tr class="separator:abd028e910f6634ee300a2885a1f1c4c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fe9872140c8c5fa03f2aacbb4cd07c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classParentsParameters.html">ParentsParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a6fe9872140c8c5fa03f2aacbb4cd07c5">d_parentsParameters</a> = <a class="el" href="classParentsParameters.html">ParentsParameters</a>()</td></tr>
+<tr class="separator:a6fe9872140c8c5fa03f2aacbb4cd07c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5331d2eddc7262d906f56c622caec6e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#aa5331d2eddc7262d906f56c622caec6e">d_refPoints</a> = 1</td></tr>
+<tr class="separator:aa5331d2eddc7262d906f56c622caec6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96b4fc26136484e056c6a7f9dcdb3c1a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a96b4fc26136484e056c6a7f9dcdb3c1a">d_maskProbability</a> = 0.5</td></tr>
+<tr class="separator:a96b4fc26136484e056c6a7f9dcdb3c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7909f7600f6b93abaffe84b4ab3cf226"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecombinationParameters.html#a7909f7600f6b93abaffe84b4ab3cf226">d_recombinationNumber</a> = 1</td></tr>
+<tr class="separator:a7909f7600f6b93abaffe84b4ab3cf226"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a69f528dd097913382d124cbccde6fdbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69f528dd097913382d124cbccde6fdbc">&#9670;&nbsp;</a></span>getMaskProbability()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double RecombinationParameters::getMaskProbability </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_a69f528dd097913382d124cbccde6fdbc_icgraph.png" border="0" usemap="#aclassRecombinationParameters_a69f528dd097913382d124cbccde6fdbc_icgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_a69f528dd097913382d124cbccde6fdbc_icgraph" id="aclassRecombinationParameters_a69f528dd097913382d124cbccde6fdbc_icgraph">
+<area shape="rect" title=" " alt="" coords="489,81,684,122"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a7eaa1b1dcaac4608de62d2f616865309" title=" " alt="" coords="209,15,436,57"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a58e88aac3a0e98a2e3b6fe7b97e0a9b4" title=" " alt="" coords="204,81,441,122"/>
+<area shape="rect" href="RecombinationParametersTests_8cpp.html#aad47b04d53b8804a89604d71b31f0e8f" title=" " alt="" coords="295,147,350,173"/>
+<area shape="rect" href="Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="5,56,156,83"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a2f47aa30a8c65e48a9832dc43eef27f9" title=" " alt="" coords="53,5,108,32"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a6599631a87f7c2992429de3c555da0ba" title=" " alt="" coords="53,107,108,133"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a56737481f643f359ad307451d411c276"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56737481f643f359ad307451d411c276">&#9670;&nbsp;</a></span>getParentsParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classParentsParameters.html">ParentsParameters</a> RecombinationParameters::getParentsParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_a56737481f643f359ad307451d411c276_icgraph.png" border="0" usemap="#aclassRecombinationParameters_a56737481f643f359ad307451d411c276_icgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_a56737481f643f359ad307451d411c276_icgraph" id="aclassRecombinationParameters_a56737481f643f359ad307451d411c276_icgraph">
+<area shape="rect" title=" " alt="" coords="493,197,688,238"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#ac0187ad7c0da7cbf8e98988a653d9c39" title=" " alt="" coords="205,5,445,61"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a8e0d65dee457915b852827034eeabf5c" title=" " alt="" coords="205,152,445,208"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a5d53b7ce28de8e1e9246d6d3c22bb0c4" title=" " alt="" coords="204,86,445,127"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a7eaa1b1dcaac4608de62d2f616865309" title=" " alt="" coords="211,233,438,274"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a58e88aac3a0e98a2e3b6fe7b97e0a9b4" title=" " alt="" coords="206,298,443,339"/>
+<area shape="rect" href="RecombinationParametersTests_8cpp.html#aad47b04d53b8804a89604d71b31f0e8f" title=" " alt="" coords="297,364,352,391"/>
+<area shape="rect" href="Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="5,167,156,193"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a87fdee5212f4c27d7fdd00c6c897feb9" title=" " alt="" coords="53,20,108,47"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#ac641cfdaa8e32d9b09e577d01c64c343" title=" " alt="" coords="53,93,108,120"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a2f47aa30a8c65e48a9832dc43eef27f9" title=" " alt="" coords="53,240,108,267"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a6599631a87f7c2992429de3c555da0ba" title=" " alt="" coords="53,305,108,332"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae3f327647fb096602c20571a53eaa44d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3f327647fb096602c20571a53eaa44d">&#9670;&nbsp;</a></span>getRecombinationParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t RecombinationParameters::getRecombinationParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_ae3f327647fb096602c20571a53eaa44d_icgraph.png" border="0" usemap="#aclassRecombinationParameters_ae3f327647fb096602c20571a53eaa44d_icgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_ae3f327647fb096602c20571a53eaa44d_icgraph" id="aclassRecombinationParameters_ae3f327647fb096602c20571a53eaa44d_icgraph">
+<area shape="rect" title=" " alt="" coords="493,197,716,238"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#ac0187ad7c0da7cbf8e98988a653d9c39" title=" " alt="" coords="205,5,445,61"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a8e0d65dee457915b852827034eeabf5c" title=" " alt="" coords="205,152,445,208"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a5d53b7ce28de8e1e9246d6d3c22bb0c4" title=" " alt="" coords="204,86,445,127"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a7eaa1b1dcaac4608de62d2f616865309" title=" " alt="" coords="211,233,438,274"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#a58e88aac3a0e98a2e3b6fe7b97e0a9b4" title=" " alt="" coords="206,298,443,339"/>
+<area shape="rect" href="RecombinationParametersTests_8cpp.html#aad47b04d53b8804a89604d71b31f0e8f" title=" " alt="" coords="297,364,352,391"/>
+<area shape="rect" href="Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="5,167,156,193"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a87fdee5212f4c27d7fdd00c6c897feb9" title=" " alt="" coords="53,20,108,47"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#ac641cfdaa8e32d9b09e577d01c64c343" title=" " alt="" coords="53,93,108,120"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a2f47aa30a8c65e48a9832dc43eef27f9" title=" " alt="" coords="53,240,108,267"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a6599631a87f7c2992429de3c555da0ba" title=" " alt="" coords="53,305,108,332"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a62de42c83fe4977bef95427e14b1d46e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62de42c83fe4977bef95427e14b1d46e">&#9670;&nbsp;</a></span>getRecombinationType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548">RecombinationTypes</a> RecombinationParameters::getRecombinationType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_a62de42c83fe4977bef95427e14b1d46e_icgraph.png" border="0" usemap="#aclassRecombinationParameters_a62de42c83fe4977bef95427e14b1d46e_icgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_a62de42c83fe4977bef95427e14b1d46e_icgraph" id="aclassRecombinationParameters_a62de42c83fe4977bef95427e14b1d46e_icgraph">
+<area shape="rect" title=" " alt="" coords="204,23,399,65"/>
+<area shape="rect" href="Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" href="RecombinationParametersTests_8cpp.html#aad47b04d53b8804a89604d71b31f0e8f" title=" " alt="" coords="53,56,108,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5a156d899873c60e8f72710087c5a4d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a156d899873c60e8f72710087c5a4d8">&#9670;&nbsp;</a></span>getRefPoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t RecombinationParameters::getRefPoints </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_a5a156d899873c60e8f72710087c5a4d8_icgraph.png" border="0" usemap="#aclassRecombinationParameters_a5a156d899873c60e8f72710087c5a4d8_icgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_a5a156d899873c60e8f72710087c5a4d8_icgraph" id="aclassRecombinationParameters_a5a156d899873c60e8f72710087c5a4d8_icgraph">
+<area shape="rect" title=" " alt="" coords="492,57,687,98"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#ac0187ad7c0da7cbf8e98988a653d9c39" title=" " alt="" coords="204,16,444,72"/>
+<area shape="rect" href="RecombinationParametersTests_8cpp.html#aad47b04d53b8804a89604d71b31f0e8f" title=" " alt="" coords="297,96,351,123"/>
+<area shape="rect" href="Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a87fdee5212f4c27d7fdd00c6c897feb9" title=" " alt="" coords="53,56,108,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a33fadab29b9d1c2d14e2888274d0518a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33fadab29b9d1c2d14e2888274d0518a">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RecombinationParameters::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classRecombinationParameters.html">RecombinationParameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace04d4faae73e5b0e21bb7b0fa2609f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace04d4faae73e5b0e21bb7b0fa2609f1">&#9670;&nbsp;</a></span>setMaskProbability()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RecombinationParameters::setMaskProbability </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>i_maskProbability</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_ace04d4faae73e5b0e21bb7b0fa2609f1_icgraph.png" border="0" usemap="#aclassRecombinationParameters_ace04d4faae73e5b0e21bb7b0fa2609f1_icgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_ace04d4faae73e5b0e21bb7b0fa2609f1_icgraph" id="aclassRecombinationParameters_ace04d4faae73e5b0e21bb7b0fa2609f1_icgraph">
+<area shape="rect" title=" " alt="" coords="820,108,1015,149"/>
+<area shape="rect" href="classGenerationParameters.html#a4420efff17813616b01f26f938ecd6d4" title=" " alt="" coords="549,79,772,120"/>
+<area shape="rect" href="RecombinationParametersTests_8cpp.html#a4d76442baf3881e7a0b32d8b7688469c" title=" " alt="" coords="633,145,688,171"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2820dc6406d8ef59ed9fa078cc593cb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2820dc6406d8ef59ed9fa078cc593cb0">&#9670;&nbsp;</a></span>setParentsParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RecombinationParameters::setParentsParameters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ParentsParameters_8hpp.html#a130c2b32927d9f98f3433218f8e84f75">ParentsTypes</a>&#160;</td>
+          <td class="paramname"><em>i_parentsType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>i_tournamentSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_a2820dc6406d8ef59ed9fa078cc593cb0_cgraph.png" border="0" usemap="#aclassRecombinationParameters_a2820dc6406d8ef59ed9fa078cc593cb0_cgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_a2820dc6406d8ef59ed9fa078cc593cb0_cgraph" id="aclassRecombinationParameters_a2820dc6406d8ef59ed9fa078cc593cb0_cgraph">
+<area shape="rect" title=" " alt="" coords="5,39,200,80"/>
+<area shape="rect" href="classParentsParameters.html#ae1a9cfed9d7c39232549aedac8a201a9" title=" " alt="" coords="257,5,409,47"/>
+<area shape="rect" href="classParentsParameters.html#a47faee772b355268e5e88eee5250ae4d" title=" " alt="" coords="248,71,419,112"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_a2820dc6406d8ef59ed9fa078cc593cb0_icgraph.png" border="0" usemap="#aclassRecombinationParameters_a2820dc6406d8ef59ed9fa078cc593cb0_icgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_a2820dc6406d8ef59ed9fa078cc593cb0_icgraph" id="aclassRecombinationParameters_a2820dc6406d8ef59ed9fa078cc593cb0_icgraph">
+<area shape="rect" title=" " alt="" coords="820,108,1015,149"/>
+<area shape="rect" href="classGenerationParameters.html#a4420efff17813616b01f26f938ecd6d4" title=" " alt="" coords="549,79,772,120"/>
+<area shape="rect" href="RecombinationParametersTests_8cpp.html#a6ec467c6ed78649c8096c4b45406c8b8" title=" " alt="" coords="633,145,688,171"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a73a79a170bf5599e6651794161da1c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73a79a170bf5599e6651794161da1c17">&#9670;&nbsp;</a></span>setRecombinationParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RecombinationParameters::setRecombinationParameters </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>i_rp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_a73a79a170bf5599e6651794161da1c17_icgraph.png" border="0" usemap="#aclassRecombinationParameters_a73a79a170bf5599e6651794161da1c17_icgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_a73a79a170bf5599e6651794161da1c17_icgraph" id="aclassRecombinationParameters_a73a79a170bf5599e6651794161da1c17_icgraph">
+<area shape="rect" title=" " alt="" coords="820,108,1043,149"/>
+<area shape="rect" href="classGenerationParameters.html#a4420efff17813616b01f26f938ecd6d4" title=" " alt="" coords="549,79,772,120"/>
+<area shape="rect" href="RecombinationParametersTests_8cpp.html#ad14bd7f2c49b686231e6a160238c57ef" title=" " alt="" coords="633,145,688,171"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a69754880cf45362261d6615dd36d3688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69754880cf45362261d6615dd36d3688">&#9670;&nbsp;</a></span>setRecombinationType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RecombinationParameters::setRecombinationType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548">RecombinationTypes</a>&#160;</td>
+          <td class="paramname"><em>i_recombinationType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_a69754880cf45362261d6615dd36d3688_icgraph.png" border="0" usemap="#aclassRecombinationParameters_a69754880cf45362261d6615dd36d3688_icgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_a69754880cf45362261d6615dd36d3688_icgraph" id="aclassRecombinationParameters_a69754880cf45362261d6615dd36d3688_icgraph">
+<area shape="rect" title=" " alt="" coords="820,108,1015,149"/>
+<area shape="rect" href="classGenerationParameters.html#a4420efff17813616b01f26f938ecd6d4" title=" " alt="" coords="549,79,772,120"/>
+<area shape="rect" href="RecombinationParametersTests_8cpp.html#ad7ed485c90391698f3adb9b9f0763b50" title=" " alt="" coords="633,145,688,171"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a619e705a197c834f62bdc152127be6d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a619e705a197c834f62bdc152127be6d2">&#9670;&nbsp;</a></span>setRefPoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RecombinationParameters::setRefPoints </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>i_refPoints</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRecombinationParameters_a619e705a197c834f62bdc152127be6d2_icgraph.png" border="0" usemap="#aclassRecombinationParameters_a619e705a197c834f62bdc152127be6d2_icgraph" alt=""/></div>
+<map name="aclassRecombinationParameters_a619e705a197c834f62bdc152127be6d2_icgraph" id="aclassRecombinationParameters_a619e705a197c834f62bdc152127be6d2_icgraph">
+<area shape="rect" title=" " alt="" coords="820,108,1015,149"/>
+<area shape="rect" href="classGenerationParameters.html#a4420efff17813616b01f26f938ecd6d4" title=" " alt="" coords="549,79,772,120"/>
+<area shape="rect" href="RecombinationParametersTests_8cpp.html#a8027e87f4bc662df7d5bd028dfc7ba84" title=" " alt="" coords="633,145,688,171"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a96b4fc26136484e056c6a7f9dcdb3c1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96b4fc26136484e056c6a7f9dcdb3c1a">&#9670;&nbsp;</a></span>d_maskProbability</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double RecombinationParameters::d_maskProbability = 0.5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6fe9872140c8c5fa03f2aacbb4cd07c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fe9872140c8c5fa03f2aacbb4cd07c5">&#9670;&nbsp;</a></span>d_parentsParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classParentsParameters.html">ParentsParameters</a> RecombinationParameters::d_parentsParameters = <a class="el" href="classParentsParameters.html">ParentsParameters</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7909f7600f6b93abaffe84b4ab3cf226"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7909f7600f6b93abaffe84b4ab3cf226">&#9670;&nbsp;</a></span>d_recombinationNumber</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t RecombinationParameters::d_recombinationNumber = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abd028e910f6634ee300a2885a1f1c4c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd028e910f6634ee300a2885a1f1c4c2">&#9670;&nbsp;</a></span>d_recombinationType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548">RecombinationTypes</a> RecombinationParameters::d_recombinationType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      <a class="code" href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548a7178a5100ad02841a051ae051303c76d">RecombinationTypes::CrossingEachExitInTurnMany</a></div>
+<div class="ttc" id="aRecombinationParameters_8hpp_html_a5981086c64ece56169fab85e575fe548a7178a5100ad02841a051ae051303c76d"><div class="ttname"><a href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548a7178a5100ad02841a051ae051303c76d">CrossingEachExitInTurnMany</a></div><div class="ttdeci">@ CrossingEachExitInTurnMany</div><div class="ttdef"><b>Definition:</b> RecombinationParameters.hpp:7</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa5331d2eddc7262d906f56c622caec6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5331d2eddc7262d906f56c622caec6e">&#9670;&nbsp;</a></span>d_refPoints</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t RecombinationParameters::d_refPoints = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classRecombinationParameters.html">RecombinationParameters</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

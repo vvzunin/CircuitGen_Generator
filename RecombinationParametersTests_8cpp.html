@@ -1,151 +1,424 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>test/src/generators/Genetic/Recombination/RecombinationParametersTests.cpp file | CircuitGen_Generator Desc of Backeknd</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: test/src/generators/Genetic/Recombination/RecombinationParametersTests.cpp File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">1.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          <span class="m-breadcrumb"><a href="dir_13e138d54eb8818da29c3992edef070a.html">test</a>/</span><span class="m-breadcrumb"><a href="dir_7440c80a84150c89eded6c163cdc56e5.html">src</a>/</span><span class="m-breadcrumb"><a href="dir_3c0d3abef34064d323d24013b70959ad.html">generators</a>/</span><span class="m-breadcrumb"><a href="dir_1f4ad29c5396b8262dddd9d541e36ece.html">Genetic</a>/</span><span class="m-breadcrumb"><a href="dir_aaabc46ac1258f6de9f9e9677f5d450a.html">Recombination</a>/</span>RecombinationParametersTests.cpp <span class="m-thin">file</span>
-        </h1>
-        <p><span></span></p>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#func-members">Functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <section id="func-members">
-          <h2><a href="#func-members">Functions</a></h2>
-          <dl class="m-doc">
-            <dt id="aad47b04d53b8804a89604d71b31f0e8f">
-              <span class="m-doc-wrap-bumper"><a href="#aad47b04d53b8804a89604d71b31f0e8f" class="m-doc-self">TEST</a>(</span><span class="m-doc-wrap">RecombinationParametersTest,
-              DefaultConstructor)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ad7ed485c90391698f3adb9b9f0763b50">
-              <span class="m-doc-wrap-bumper"><a href="#ad7ed485c90391698f3adb9b9f0763b50" class="m-doc-self">TEST</a>(</span><span class="m-doc-wrap">RecombinationParametersTest,
-              SetAndGetRecombinationType)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a8027e87f4bc662df7d5bd028dfc7ba84">
-              <span class="m-doc-wrap-bumper"><a href="#a8027e87f4bc662df7d5bd028dfc7ba84" class="m-doc-self">TEST</a>(</span><span class="m-doc-wrap">RecombinationParametersTest,
-              SetAndGetRefPoints)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a4d76442baf3881e7a0b32d8b7688469c">
-              <span class="m-doc-wrap-bumper"><a href="#a4d76442baf3881e7a0b32d8b7688469c" class="m-doc-self">TEST</a>(</span><span class="m-doc-wrap">RecombinationParametersTest,
-              SetAndGetMaskProbability)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ad14bd7f2c49b686231e6a160238c57ef">
-              <span class="m-doc-wrap-bumper"><a href="#ad14bd7f2c49b686231e6a160238c57ef" class="m-doc-self">TEST</a>(</span><span class="m-doc-wrap">RecombinationParametersTest,
-              SetAndGetRecombinationParameters)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a6ec467c6ed78649c8096c4b45406c8b8">
-              <span class="m-doc-wrap-bumper"><a href="#a6ec467c6ed78649c8096c4b45406c8b8" class="m-doc-self">TEST</a>(</span><span class="m-doc-wrap">RecombinationParametersTest,
-              SetAndGetParentsParameters)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a74d99608ca7c8f4a9916087fa01601ce">
-              <span class="m-doc-wrap-bumper"><a href="#a74d99608ca7c8f4a9916087fa01601ce" class="m-doc-self">TEST</a>(</span><span class="m-doc-wrap">RecombinationParametersTest,
-              EqualityOperator)</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('RecombinationParametersTests_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">RecombinationParametersTests.cpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="RecombinationParameters_8hpp_source.html">generators/Genetic/Recombination/RecombinationParameters.hpp</a>&quot;</code><br />
+<code>#include &lt;gtest/gtest.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for RecombinationParametersTests.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="RecombinationParametersTests_8cpp__incl.png" border="0" usemap="#atest_2src_2generators_2Genetic_2Recombination_2RecombinationParametersTests_8cpp" alt=""/></div>
+<map name="atest_2src_2generators_2Genetic_2Recombination_2RecombinationParametersTests_8cpp" id="atest_2src_2generators_2Genetic_2Recombination_2RecombinationParametersTests_8cpp">
+<area shape="rect" title=" " alt="" coords="84,5,343,61"/>
+<area shape="rect" href="RecombinationParameters_8hpp.html" title=" " alt="" coords="5,109,232,165"/>
+<area shape="rect" title=" " alt="" coords="256,124,360,151"/>
+<area shape="rect" title=" " alt="" coords="85,288,152,315"/>
+<area shape="rect" href="ParentsParameters_8hpp.html" title=" " alt="" coords="78,213,314,240"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aad47b04d53b8804a89604d71b31f0e8f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RecombinationParametersTests_8cpp.html#aad47b04d53b8804a89604d71b31f0e8f">TEST</a> (RecombinationParametersTest, DefaultConstructor)</td></tr>
+<tr class="separator:aad47b04d53b8804a89604d71b31f0e8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7ed485c90391698f3adb9b9f0763b50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RecombinationParametersTests_8cpp.html#ad7ed485c90391698f3adb9b9f0763b50">TEST</a> (RecombinationParametersTest, SetAndGetRecombinationType)</td></tr>
+<tr class="separator:ad7ed485c90391698f3adb9b9f0763b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8027e87f4bc662df7d5bd028dfc7ba84"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RecombinationParametersTests_8cpp.html#a8027e87f4bc662df7d5bd028dfc7ba84">TEST</a> (RecombinationParametersTest, SetAndGetRefPoints)</td></tr>
+<tr class="separator:a8027e87f4bc662df7d5bd028dfc7ba84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d76442baf3881e7a0b32d8b7688469c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RecombinationParametersTests_8cpp.html#a4d76442baf3881e7a0b32d8b7688469c">TEST</a> (RecombinationParametersTest, SetAndGetMaskProbability)</td></tr>
+<tr class="separator:a4d76442baf3881e7a0b32d8b7688469c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad14bd7f2c49b686231e6a160238c57ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RecombinationParametersTests_8cpp.html#ad14bd7f2c49b686231e6a160238c57ef">TEST</a> (RecombinationParametersTest, SetAndGetRecombinationParameters)</td></tr>
+<tr class="separator:ad14bd7f2c49b686231e6a160238c57ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ec467c6ed78649c8096c4b45406c8b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RecombinationParametersTests_8cpp.html#a6ec467c6ed78649c8096c4b45406c8b8">TEST</a> (RecombinationParametersTest, SetAndGetParentsParameters)</td></tr>
+<tr class="separator:a6ec467c6ed78649c8096c4b45406c8b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74d99608ca7c8f4a9916087fa01601ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="RecombinationParametersTests_8cpp.html#a74d99608ca7c8f4a9916087fa01601ce">TEST</a> (RecombinationParametersTest, EqualityOperator)</td></tr>
+<tr class="separator:a74d99608ca7c8f4a9916087fa01601ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aad47b04d53b8804a89604d71b31f0e8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad47b04d53b8804a89604d71b31f0e8f">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">RecombinationParametersTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DefaultConstructor&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="RecombinationParametersTests_8cpp_aad47b04d53b8804a89604d71b31f0e8f_cgraph.png" border="0" usemap="#aRecombinationParametersTests_8cpp_aad47b04d53b8804a89604d71b31f0e8f_cgraph" alt=""/></div>
+<map name="aRecombinationParametersTests_8cpp_aad47b04d53b8804a89604d71b31f0e8f_cgraph" id="aRecombinationParametersTests_8cpp_aad47b04d53b8804a89604d71b31f0e8f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,143,60,170"/>
+<area shape="rect" href="classRecombinationParameters.html#a69f528dd097913382d124cbccde6fdbc" title=" " alt="" coords="122,5,317,47"/>
+<area shape="rect" href="classRecombinationParameters.html#a56737481f643f359ad307451d411c276" title=" " alt="" coords="122,71,317,112"/>
+<area shape="rect" href="classRecombinationParameters.html#ae3f327647fb096602c20571a53eaa44d" title=" " alt="" coords="108,136,331,177"/>
+<area shape="rect" href="classRecombinationParameters.html#a62de42c83fe4977bef95427e14b1d46e" title=" " alt="" coords="122,201,317,243"/>
+<area shape="rect" href="classRecombinationParameters.html#a5a156d899873c60e8f72710087c5a4d8" title=" " alt="" coords="122,267,317,308"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a74d99608ca7c8f4a9916087fa01601ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d99608ca7c8f4a9916087fa01601ce">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">RecombinationParametersTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EqualityOperator&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="RecombinationParametersTests_8cpp_a74d99608ca7c8f4a9916087fa01601ce_cgraph.png" border="0" usemap="#aRecombinationParametersTests_8cpp_a74d99608ca7c8f4a9916087fa01601ce_cgraph" alt=""/></div>
+<map name="aRecombinationParametersTests_8cpp_a74d99608ca7c8f4a9916087fa01601ce_cgraph" id="aRecombinationParametersTests_8cpp_a74d99608ca7c8f4a9916087fa01601ce_cgraph">
+<area shape="rect" title=" " alt="" coords="5,143,60,170"/>
+<area shape="rect" href="classRecombinationParameters.html#ace04d4faae73e5b0e21bb7b0fa2609f1" title=" " alt="" coords="122,5,317,47"/>
+<area shape="rect" href="classRecombinationParameters.html#a2820dc6406d8ef59ed9fa078cc593cb0" title=" " alt="" coords="122,71,317,112"/>
+<area shape="rect" href="classRecombinationParameters.html#a73a79a170bf5599e6651794161da1c17" title=" " alt="" coords="108,136,331,177"/>
+<area shape="rect" href="classRecombinationParameters.html#a69754880cf45362261d6615dd36d3688" title=" " alt="" coords="122,201,317,243"/>
+<area shape="rect" href="classRecombinationParameters.html#a619e705a197c834f62bdc152127be6d2" title=" " alt="" coords="122,267,317,308"/>
+<area shape="rect" href="classParentsParameters.html#ae1a9cfed9d7c39232549aedac8a201a9" title=" " alt="" coords="388,39,540,80"/>
+<area shape="rect" href="classParentsParameters.html#a47faee772b355268e5e88eee5250ae4d" title=" " alt="" coords="379,104,549,145"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4d76442baf3881e7a0b32d8b7688469c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d76442baf3881e7a0b32d8b7688469c">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">RecombinationParametersTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SetAndGetMaskProbability&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="RecombinationParametersTests_8cpp_a4d76442baf3881e7a0b32d8b7688469c_cgraph.png" border="0" usemap="#aRecombinationParametersTests_8cpp_a4d76442baf3881e7a0b32d8b7688469c_cgraph" alt=""/></div>
+<map name="aRecombinationParametersTests_8cpp_a4d76442baf3881e7a0b32d8b7688469c_cgraph" id="aRecombinationParametersTests_8cpp_a4d76442baf3881e7a0b32d8b7688469c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,46,60,73"/>
+<area shape="rect" href="classRecombinationParameters.html#a69f528dd097913382d124cbccde6fdbc" title=" " alt="" coords="108,5,303,47"/>
+<area shape="rect" href="classRecombinationParameters.html#ace04d4faae73e5b0e21bb7b0fa2609f1" title=" " alt="" coords="108,71,303,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6ec467c6ed78649c8096c4b45406c8b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ec467c6ed78649c8096c4b45406c8b8">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">RecombinationParametersTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SetAndGetParentsParameters&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="RecombinationParametersTests_8cpp_a6ec467c6ed78649c8096c4b45406c8b8_cgraph.png" border="0" usemap="#aRecombinationParametersTests_8cpp_a6ec467c6ed78649c8096c4b45406c8b8_cgraph" alt=""/></div>
+<map name="aRecombinationParametersTests_8cpp_a6ec467c6ed78649c8096c4b45406c8b8_cgraph" id="aRecombinationParametersTests_8cpp_a6ec467c6ed78649c8096c4b45406c8b8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,111,60,138"/>
+<area shape="rect" href="classRecombinationParameters.html#a56737481f643f359ad307451d411c276" title=" " alt="" coords="108,5,303,47"/>
+<area shape="rect" href="classParentsParameters.html#abe2470a940edd9bfe0d54cd086e8697e" title=" " alt="" coords="129,71,281,112"/>
+<area shape="rect" href="classParentsParameters.html#ab662acc4bc6847c56e4e129e3dcea77f" title=" " alt="" coords="119,136,291,177"/>
+<area shape="rect" href="classRecombinationParameters.html#a2820dc6406d8ef59ed9fa078cc593cb0" title=" " alt="" coords="108,201,303,243"/>
+<area shape="rect" href="classParentsParameters.html#ae1a9cfed9d7c39232549aedac8a201a9" title=" " alt="" coords="360,168,512,209"/>
+<area shape="rect" href="classParentsParameters.html#a47faee772b355268e5e88eee5250ae4d" title=" " alt="" coords="351,233,521,275"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad14bd7f2c49b686231e6a160238c57ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad14bd7f2c49b686231e6a160238c57ef">&#9670;&nbsp;</a></span>TEST() <span class="overload">[5/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">RecombinationParametersTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SetAndGetRecombinationParameters&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="RecombinationParametersTests_8cpp_ad14bd7f2c49b686231e6a160238c57ef_cgraph.png" border="0" usemap="#aRecombinationParametersTests_8cpp_ad14bd7f2c49b686231e6a160238c57ef_cgraph" alt=""/></div>
+<map name="aRecombinationParametersTests_8cpp_ad14bd7f2c49b686231e6a160238c57ef_cgraph" id="aRecombinationParametersTests_8cpp_ad14bd7f2c49b686231e6a160238c57ef_cgraph">
+<area shape="rect" title=" " alt="" coords="5,46,60,73"/>
+<area shape="rect" href="classRecombinationParameters.html#ae3f327647fb096602c20571a53eaa44d" title=" " alt="" coords="108,5,331,47"/>
+<area shape="rect" href="classRecombinationParameters.html#a73a79a170bf5599e6651794161da1c17" title=" " alt="" coords="108,71,331,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad7ed485c90391698f3adb9b9f0763b50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ed485c90391698f3adb9b9f0763b50">&#9670;&nbsp;</a></span>TEST() <span class="overload">[6/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">RecombinationParametersTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SetAndGetRecombinationType&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="RecombinationParametersTests_8cpp_ad7ed485c90391698f3adb9b9f0763b50_cgraph.png" border="0" usemap="#aRecombinationParametersTests_8cpp_ad7ed485c90391698f3adb9b9f0763b50_cgraph" alt=""/></div>
+<map name="aRecombinationParametersTests_8cpp_ad7ed485c90391698f3adb9b9f0763b50_cgraph" id="aRecombinationParametersTests_8cpp_ad7ed485c90391698f3adb9b9f0763b50_cgraph">
+<area shape="rect" title=" " alt="" coords="5,46,60,73"/>
+<area shape="rect" href="classRecombinationParameters.html#a62de42c83fe4977bef95427e14b1d46e" title=" " alt="" coords="108,5,303,47"/>
+<area shape="rect" href="classRecombinationParameters.html#a69754880cf45362261d6615dd36d3688" title=" " alt="" coords="108,71,303,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8027e87f4bc662df7d5bd028dfc7ba84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8027e87f4bc662df7d5bd028dfc7ba84">&#9670;&nbsp;</a></span>TEST() <span class="overload">[7/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">RecombinationParametersTest&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SetAndGetRefPoints&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="RecombinationParametersTests_8cpp_a8027e87f4bc662df7d5bd028dfc7ba84_cgraph.png" border="0" usemap="#aRecombinationParametersTests_8cpp_a8027e87f4bc662df7d5bd028dfc7ba84_cgraph" alt=""/></div>
+<map name="aRecombinationParametersTests_8cpp_a8027e87f4bc662df7d5bd028dfc7ba84_cgraph" id="aRecombinationParametersTests_8cpp_a8027e87f4bc662df7d5bd028dfc7ba84_cgraph">
+<area shape="rect" title=" " alt="" coords="5,46,60,73"/>
+<area shape="rect" href="classRecombinationParameters.html#a5a156d899873c60e8f72710087c5a4d8" title=" " alt="" coords="108,5,303,47"/>
+<area shape="rect" href="classRecombinationParameters.html#a619e705a197c834f62bdc152127be6d2" title=" " alt="" coords="108,71,303,112"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_13e138d54eb8818da29c3992edef070a.html">test</a></li><li class="navelem"><a class="el" href="dir_7440c80a84150c89eded6c163cdc56e5.html">src</a></li><li class="navelem"><a class="el" href="dir_3c0d3abef34064d323d24013b70959ad.html">generators</a></li><li class="navelem"><a class="el" href="dir_1f4ad29c5396b8262dddd9d541e36ece.html">Genetic</a></li><li class="navelem"><a class="el" href="dir_aaabc46ac1258f6de9f9e9677f5d450a.html">Recombination</a></li><li class="navelem"><a class="el" href="RecombinationParametersTests_8cpp.html">RecombinationParametersTests.cpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

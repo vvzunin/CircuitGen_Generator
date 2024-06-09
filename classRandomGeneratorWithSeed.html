@@ -1,223 +1,632 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>RandomGeneratorWithSeed class | CircuitGen_Generator Desc of Backeknd</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: RandomGeneratorWithSeed Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">1.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          RandomGeneratorWithSeed <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="RandomGeneratorWithSeed_8hpp.html">&lt;RandomGeneratorWithSeed.hpp&gt;</a></div>
-        </h1>
-        <p>class <a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a> The Random Generator With Seed class is a C++ class designed to generate random numbers using a specified seed value</p>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <section id="typeless-methods">
-          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
-          <dl class="m-doc">
-            <dt id="abaac4e7b1c933e3527a10b5ec2e628b7">
-              <span class="m-doc-wrap-bumper"><a href="#abaac4e7b1c933e3527a10b5ec2e628b7" class="m-doc-self">RandomGeneratorWithSeed</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a8032273cf9a79429192fba75159f0fde">
-              <span class="m-doc-wrap-bumper"><a href="#a8032273cf9a79429192fba75159f0fde" class="m-doc-self">RandomGeneratorWithSeed</a>(</span><span class="m-doc-wrap">std::uint_fast32_t i_seed)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ac466e5084e0b562f2f70fe3ebc57aa7e">
-              <span class="m-doc-wrap-bumper"><a href="#ac466e5084e0b562f2f70fe3ebc57aa7e" class="m-doc-self">RandomGeneratorWithSeed</a>(</span><span class="m-doc-wrap">const <a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a>&amp; other) <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a675634e2aea8271d6ad7836175441f13">
-              <span class="m-doc-wrap-bumper"><a href="#a675634e2aea8271d6ad7836175441f13" class="m-doc-self">RandomGeneratorWithSeed</a>(</span><span class="m-doc-wrap"><a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a>&amp;&amp; other) <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="ae6960782747d0937b63ad99a99b57bd5">
-              <span class="m-doc-wrap-bumper">auto <a href="#ae6960782747d0937b63ad99a99b57bd5" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a>&amp; other) -&gt; <a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a5274590cc6d2d119a96b56cc4b089c1e">
-              <span class="m-doc-wrap-bumper">auto <a href="#a5274590cc6d2d119a96b56cc4b089c1e" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a>&amp;&amp; other) -&gt; <a href="classRandomGeneratorWithSeed.html" class="m-doc">RandomGeneratorWithSeed</a>&amp; <span class="m-label m-flat m-info">defaulted</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a85e24c30cb4734b8899d9654c731513e" class="m-doc">getSeed</a>(</span><span class="m-doc-wrap">) const -&gt; std::uint_fast32_t</span>
-            </dt>
-            <dd>getSeed Get the current seed value This method returns the current seed value used to initialize the random number generator</dd>
-            <dt id="a7600f3ce0a0d651e7fe28695db1d59b7">
-              <span class="m-doc-wrap-bumper">void <a href="#a7600f3ce0a0d651e7fe28695db1d59b7" class="m-doc-self">setSeed</a>(</span><span class="m-doc-wrap">std::uint_fast32_t i_seed)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a124a925dff79eb0fd459a6029432457d" class="m-doc">getRandInt</a>(</span><span class="m-doc-wrap">int32_t lower,
-              int32_t upper,
-              bool inclusively = false) -&gt; int32_t</span>
-            </dt>
-            <dd>getRandInt Method to generate a random integer within a specified range.</dd>
-            <dt id="a549caf270995b4e1b787a956bcdd33a9">
-              <span class="m-doc-wrap-bumper">auto <a href="#a549caf270995b4e1b787a956bcdd33a9" class="m-doc-self">getRandomIntList</a>(</span><span class="m-doc-wrap">size_t i_n,
-              int32_t i_minNumber,
-              int32_t i_maxNumber,
-              bool repite = false) -&gt; std::vector&lt;int32_t&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ae4fc25f1e3e318fa18880f72ac7e2efe">
-              <span class="m-doc-wrap-bumper">auto <a href="#ae4fc25f1e3e318fa18880f72ac7e2efe" class="m-doc-self">getRandDouble</a>(</span><span class="m-doc-wrap">double lower,
-              double upper) -&gt; double</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a85e24c30cb4734b8899d9654c731513e"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::uint_fast32_t RandomGeneratorWithSeed::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a85e24c30cb4734b8899d9654c731513e" class="m-doc-self">getSeed</a>(</span><span class="m-doc-wrap">) const</span></span>
-            </h3>
-            <p>getSeed Get the current seed value This method returns the current seed value used to initialize the random number generator</p>
-            <table class="m-table m-fullwidth m-flat">
-              <tfoot>
-                <tr>
-                  <th style="width: 1%">Returns</th>
-                  <td>The seed value as a 32-bit unsigned integer.</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a124a925dff79eb0fd459a6029432457d"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">int32_t RandomGeneratorWithSeed::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a124a925dff79eb0fd459a6029432457d" class="m-doc-self">getRandInt</a>(</span><span class="m-doc-wrap">int32_t lower,
-              int32_t upper,
-              bool inclusively = false)</span></span>
-            </h3>
-            <p>getRandInt Method to generate a random integer within a specified range.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">lower</td>
-                  <td>The lower limit of the range of random integers, inclusive, from which to generate a number</td>
-                </tr>
-                <tr>
-                  <td>upper</td>
-                  <td>The upper limit of the range of random integers, inclusive, from which to generate a number</td>
-                </tr>
-                <tr>
-                  <td>inclusively</td>
-                  <td>flag indicating whether the upper limit of the range is inclusive. If set to true, the upper bound is also included in the range of random numbers, otherwise it is excluded from the range</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td>dis The generated integer in the range between lower and upper *&zwj;/</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classRandomGeneratorWithSeed.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classRandomGeneratorWithSeed-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">RandomGeneratorWithSeed Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>class <a class="el" href="classRandomGeneratorWithSeed.html" title="class RandomGeneratorWithSeed The Random Generator With Seed class is a C++ class designed to generat...">RandomGeneratorWithSeed</a> The Random Generator With Seed class is a C++ class designed to generate random numbers using a specified seed value  
+ <a href="classRandomGeneratorWithSeed.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="RandomGeneratorWithSeed_8hpp_source.html">RandomGeneratorWithSeed.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for RandomGeneratorWithSeed:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRandomGeneratorWithSeed__coll__graph.png" border="0" usemap="#aRandomGeneratorWithSeed_coll__map" alt="Collaboration graph"/></div>
+<map name="aRandomGeneratorWithSeed_coll__map" id="aRandomGeneratorWithSeed_coll__map">
+<area shape="rect" title="class RandomGeneratorWithSeed The Random Generator With Seed class is a C++ class designed to generat..." alt="" coords="5,5,233,244"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:abaac4e7b1c933e3527a10b5ec2e628b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#abaac4e7b1c933e3527a10b5ec2e628b7">RandomGeneratorWithSeed</a> ()=default</td></tr>
+<tr class="separator:abaac4e7b1c933e3527a10b5ec2e628b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8032273cf9a79429192fba75159f0fde"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#a8032273cf9a79429192fba75159f0fde">RandomGeneratorWithSeed</a> (std::uint_fast32_t i_seed)</td></tr>
+<tr class="separator:a8032273cf9a79429192fba75159f0fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac466e5084e0b562f2f70fe3ebc57aa7e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#ac466e5084e0b562f2f70fe3ebc57aa7e">RandomGeneratorWithSeed</a> (const <a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> &amp;other)=default</td></tr>
+<tr class="separator:ac466e5084e0b562f2f70fe3ebc57aa7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6960782747d0937b63ad99a99b57bd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#ae6960782747d0937b63ad99a99b57bd5">operator=</a> (const <a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> &amp;other)=default</td></tr>
+<tr class="separator:ae6960782747d0937b63ad99a99b57bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a675634e2aea8271d6ad7836175441f13"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#a675634e2aea8271d6ad7836175441f13">RandomGeneratorWithSeed</a> (<a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> &amp;&amp;other)=default</td></tr>
+<tr class="separator:a675634e2aea8271d6ad7836175441f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5274590cc6d2d119a96b56cc4b089c1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#a5274590cc6d2d119a96b56cc4b089c1e">operator=</a> (<a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> &amp;&amp;other)=default</td></tr>
+<tr class="separator:a5274590cc6d2d119a96b56cc4b089c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85e24c30cb4734b8899d9654c731513e"><td class="memItemLeft" align="right" valign="top">std::uint_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#a85e24c30cb4734b8899d9654c731513e">getSeed</a> () const</td></tr>
+<tr class="memdesc:a85e24c30cb4734b8899d9654c731513e"><td class="mdescLeft">&#160;</td><td class="mdescRight">getSeed Get the current seed value This method returns the current seed value used to initialize the random number generator  <a href="classRandomGeneratorWithSeed.html#a85e24c30cb4734b8899d9654c731513e">More...</a><br /></td></tr>
+<tr class="separator:a85e24c30cb4734b8899d9654c731513e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7600f3ce0a0d651e7fe28695db1d59b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#a7600f3ce0a0d651e7fe28695db1d59b7">setSeed</a> (std::uint_fast32_t i_seed)</td></tr>
+<tr class="separator:a7600f3ce0a0d651e7fe28695db1d59b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a124a925dff79eb0fd459a6029432457d"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d">getRandInt</a> (int32_t lower, int32_t upper, bool inclusively=false)</td></tr>
+<tr class="memdesc:a124a925dff79eb0fd459a6029432457d"><td class="mdescLeft">&#160;</td><td class="mdescRight">getRandInt Method to generate a random integer within a specified range.  <a href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d">More...</a><br /></td></tr>
+<tr class="separator:a124a925dff79eb0fd459a6029432457d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a549caf270995b4e1b787a956bcdd33a9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#a549caf270995b4e1b787a956bcdd33a9">getRandomIntList</a> (size_t i_n, int32_t i_minNumber, int32_t i_maxNumber, bool repite=false)</td></tr>
+<tr class="separator:a549caf270995b4e1b787a956bcdd33a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4fc25f1e3e318fa18880f72ac7e2efe"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#ae4fc25f1e3e318fa18880f72ac7e2efe">getRandDouble</a> (double lower, double upper)</td></tr>
+<tr class="separator:ae4fc25f1e3e318fa18880f72ac7e2efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a39e909b7dcbed2b8bd93205631f8d9eb"><td class="memItemLeft" align="right" valign="top">std::uint_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#a39e909b7dcbed2b8bd93205631f8d9eb">d_seed</a></td></tr>
+<tr class="separator:a39e909b7dcbed2b8bd93205631f8d9eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a176b14ab5717762fdbfdff25d58e1e44"><td class="memItemLeft" align="right" valign="top">std::minstd_rand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRandomGeneratorWithSeed.html#a176b14ab5717762fdbfdff25d58e1e44">d_gen</a></td></tr>
+<tr class="separator:a176b14ab5717762fdbfdff25d58e1e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>class <a class="el" href="classRandomGeneratorWithSeed.html" title="class RandomGeneratorWithSeed The Random Generator With Seed class is a C++ class designed to generat...">RandomGeneratorWithSeed</a> The Random Generator With Seed class is a C++ class designed to generate random numbers using a specified seed value </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d_seed</td><td>Holds the current seed value. </td></tr>
+    <tr><td class="paramname">d_gen</td><td>std::minstd_rand object used for generating random numbers. *&zwj;/ </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abaac4e7b1c933e3527a10b5ec2e628b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaac4e7b1c933e3527a10b5ec2e628b7">&#9670;&nbsp;</a></span>RandomGeneratorWithSeed() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RandomGeneratorWithSeed::RandomGeneratorWithSeed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8032273cf9a79429192fba75159f0fde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8032273cf9a79429192fba75159f0fde">&#9670;&nbsp;</a></span>RandomGeneratorWithSeed() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RandomGeneratorWithSeed::RandomGeneratorWithSeed </td>
+          <td>(</td>
+          <td class="paramtype">std::uint_fast32_t&#160;</td>
+          <td class="paramname"><em>i_seed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRandomGeneratorWithSeed_a8032273cf9a79429192fba75159f0fde_cgraph.png" border="0" usemap="#aclassRandomGeneratorWithSeed_a8032273cf9a79429192fba75159f0fde_cgraph" alt=""/></div>
+<map name="aclassRandomGeneratorWithSeed_a8032273cf9a79429192fba75159f0fde_cgraph" id="aclassRandomGeneratorWithSeed_a8032273cf9a79429192fba75159f0fde_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,216,47"/>
+<area shape="rect" href="classRandomGeneratorWithSeed.html#a7600f3ce0a0d651e7fe28695db1d59b7" title=" " alt="" coords="264,5,467,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac466e5084e0b562f2f70fe3ebc57aa7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac466e5084e0b562f2f70fe3ebc57aa7e">&#9670;&nbsp;</a></span>RandomGeneratorWithSeed() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RandomGeneratorWithSeed::RandomGeneratorWithSeed </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a675634e2aea8271d6ad7836175441f13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a675634e2aea8271d6ad7836175441f13">&#9670;&nbsp;</a></span>RandomGeneratorWithSeed() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RandomGeneratorWithSeed::RandomGeneratorWithSeed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae4fc25f1e3e318fa18880f72ac7e2efe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4fc25f1e3e318fa18880f72ac7e2efe">&#9670;&nbsp;</a></span>getRandDouble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double RandomGeneratorWithSeed::getRandDouble </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>lower</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>upper</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a124a925dff79eb0fd459a6029432457d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a124a925dff79eb0fd459a6029432457d">&#9670;&nbsp;</a></span>getRandInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t RandomGeneratorWithSeed::getRandInt </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>lower</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>upper</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>inclusively</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>getRandInt Method to generate a random integer within a specified range. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lower</td><td>The lower limit of the range of random integers, inclusive, from which to generate a number </td></tr>
+    <tr><td class="paramname">upper</td><td>The upper limit of the range of random integers, inclusive, from which to generate a number </td></tr>
+    <tr><td class="paramname">inclusively</td><td>flag indicating whether the upper limit of the range is inclusive. If set to true, the upper bound is also included in the range of random numbers, otherwise it is excluded from the range </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>dis The generated integer in the range between lower and upper *&zwj;/ </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRandomGeneratorWithSeed_a124a925dff79eb0fd459a6029432457d_cgraph.png" border="0" usemap="#aclassRandomGeneratorWithSeed_a124a925dff79eb0fd459a6029432457d_cgraph" alt=""/></div>
+<map name="aclassRandomGeneratorWithSeed_a124a925dff79eb0fd459a6029432457d_cgraph" id="aclassRandomGeneratorWithSeed_a124a925dff79eb0fd459a6029432457d_cgraph">
+<area shape="rect" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="5,5,208,47"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="256,13,335,39"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRandomGeneratorWithSeed_a124a925dff79eb0fd459a6029432457d_icgraph.png" border="0" usemap="#aclassRandomGeneratorWithSeed_a124a925dff79eb0fd459a6029432457d_icgraph" alt=""/></div>
+<map name="aclassRandomGeneratorWithSeed_a124a925dff79eb0fd459a6029432457d_icgraph" id="aclassRandomGeneratorWithSeed_a124a925dff79eb0fd459a6029432457d_icgraph">
+<area shape="rect" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="753,387,956,429"/>
+<area shape="rect" href="classTruthTable.html#a179439e404e050f49b58df88396da9ee" title="generateTable The method generates a truth table for a combinational circuit with a given probability..." alt="" coords="490,31,698,57"/>
+<area shape="rect" href="classTruthTable.html#a09de48ba6c97632625188dc32ffd944b" title="generateTable Generate a truth table with specified probability." alt="" coords="500,107,688,133"/>
+<area shape="rect" href="classSimpleGenerators.html#aebea64983c4f49c3c1007a0390e06977" title="generatorRandLevel creates an oriented graph (represented by an OrientedGraph object) with a given le..." alt="" coords="489,158,699,199"/>
+<area shape="rect" href="classSimpleGenerators.html#a158ef773a9b179bbb36c325d072eb145" title=" " alt="" coords="483,223,705,265"/>
+<area shape="rect" href="classRandomGeneratorWithSeed.html#a549caf270995b4e1b787a956bcdd33a9" title=" " alt="" coords="493,289,695,330"/>
+<area shape="rect" href="classSimpleGenerators.html#a6f09b4fa6037f3b2372830dee552143d" title="getRangomAndNumber The getRangomAndNumber method returns a random value from the list of possible inp..." alt="" coords="483,354,705,395"/>
+<area shape="rect" href="classSimpleGenerators.html#aaa4fbc93096de6e415d2725be15ea7fa" title="getRangomNandNumber The method returns a random value from the list of possible input ports for the &quot;..." alt="" coords="483,419,705,461"/>
+<area shape="rect" href="classSimpleGenerators.html#a93140822ad8cfefc14edf0510c61a541" title="getRangomNorNumber The method returns a random value from the list of possible input ports for the &quot;N..." alt="" coords="483,485,705,526"/>
+<area shape="rect" href="classSimpleGenerators.html#ac41192a4824fb4ed0a967f6bc8685ff3" title="getRangomOrNumber method is a random value from the list of possible input ports for the &quot;OR&quot; operato..." alt="" coords="483,550,705,591"/>
+<area shape="rect" href="classSimpleGenerators.html#a70ba69a48f75dab555f5debb1185f2e6" title="The method returns a random value from the list of possible input ports for the &quot;XNOR&quot; operator." alt="" coords="483,615,705,657"/>
+<area shape="rect" href="classSimpleGenerators.html#ac96cbd017c86d6c90dce3de2ba133514" title="getRangomXorNumber The method returns a random value from the list of possible input ports for the &quot;X..." alt="" coords="483,681,705,722"/>
+<area shape="rect" href="classSimpleGenerators.html#a61fd27b03d9ca22b9646ff581bc6da04" title=" " alt="" coords="495,746,693,787"/>
+<area shape="rect" href="classTruthTable.html#a364ede1151c4d025c889d2a89d6404cc" title=" " alt="" coords="242,5,405,32"/>
+<area shape="rect" href="TruthTableTests_8cpp.html#a01bf33ff68f079488ecd912324711906" title=" " alt="" coords="296,56,351,83"/>
+<area shape="rect" href="classTruthTable.html#a83be2e572e709638fdd5bd2991dc6100" title=" " alt="" coords="242,107,405,133"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="218,158,429,199"/>
+<area shape="rect" href="SimpleGeneratorsTests_8cpp.html#a1b063fd673d28c8ea8dc9d70428ec785" title=" " alt="" coords="296,224,351,251"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,158,164,199"/>
+<area shape="rect" href="classSimpleGenerators.html#ad624707927a0dfa980c6c19765beedfa" title=" " alt="" coords="212,275,435,317"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a549caf270995b4e1b787a956bcdd33a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a549caf270995b4e1b787a956bcdd33a9">&#9670;&nbsp;</a></span>getRandomIntList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int32_t&gt; RandomGeneratorWithSeed::getRandomIntList </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i_n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>i_minNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>i_maxNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>repite</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRandomGeneratorWithSeed_a549caf270995b4e1b787a956bcdd33a9_cgraph.png" border="0" usemap="#aclassRandomGeneratorWithSeed_a549caf270995b4e1b787a956bcdd33a9_cgraph" alt=""/></div>
+<map name="aclassRandomGeneratorWithSeed_a549caf270995b4e1b787a956bcdd33a9_cgraph" id="aclassRandomGeneratorWithSeed_a549caf270995b4e1b787a956bcdd33a9_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,208,47"/>
+<area shape="rect" href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="256,5,459,47"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="507,13,585,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a85e24c30cb4734b8899d9654c731513e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85e24c30cb4734b8899d9654c731513e">&#9670;&nbsp;</a></span>getSeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::uint_fast32_t RandomGeneratorWithSeed::getSeed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>getSeed Get the current seed value This method returns the current seed value used to initialize the random number generator </p>
+<dl class="section return"><dt>Returns</dt><dd>The seed value as a 32-bit unsigned integer. </dd></dl>
+
+</div>
+</div>
+<a id="ae6960782747d0937b63ad99a99b57bd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6960782747d0937b63ad99a99b57bd5">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a>&amp; RandomGeneratorWithSeed::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5274590cc6d2d119a96b56cc4b089c1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5274590cc6d2d119a96b56cc4b089c1e">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a>&amp; RandomGeneratorWithSeed::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7600f3ce0a0d651e7fe28695db1d59b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7600f3ce0a0d651e7fe28695db1d59b7">&#9670;&nbsp;</a></span>setSeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RandomGeneratorWithSeed::setSeed </td>
+          <td>(</td>
+          <td class="paramtype">std::uint_fast32_t&#160;</td>
+          <td class="paramname"><em>i_seed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRandomGeneratorWithSeed_a7600f3ce0a0d651e7fe28695db1d59b7_icgraph.png" border="0" usemap="#aclassRandomGeneratorWithSeed_a7600f3ce0a0d651e7fe28695db1d59b7_icgraph" alt=""/></div>
+<map name="aclassRandomGeneratorWithSeed_a7600f3ce0a0d651e7fe28695db1d59b7_icgraph" id="aclassRandomGeneratorWithSeed_a7600f3ce0a0d651e7fe28695db1d59b7_icgraph">
+<area shape="rect" title=" " alt="" coords="264,93,467,135"/>
+<area shape="rect" href="classRandomGeneratorWithSeed.html#a8032273cf9a79429192fba75159f0fde" title=" " alt="" coords="5,5,216,47"/>
+<area shape="rect" href="classTruthTable.html#aad0cef0b80e2e1b6f4da70a15fcc4976" title="setSeed Set the seed for random number generation." alt="" coords="37,71,185,98"/>
+<area shape="rect" href="classSimpleGenerators.html#a2414b33a0e25130c1ba5629970135795" title=" " alt="" coords="15,123,207,164"/>
+<area shape="rect" href="classTruthTable.html#a64055d97eb8b502567ad21c0d97fc659" title=" " alt="" coords="29,189,192,215"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a176b14ab5717762fdbfdff25d58e1e44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a176b14ab5717762fdbfdff25d58e1e44">&#9670;&nbsp;</a></span>d_gen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::minstd_rand RandomGeneratorWithSeed::d_gen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a39e909b7dcbed2b8bd93205631f8d9eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39e909b7dcbed2b8bd93205631f8d9eb">&#9670;&nbsp;</a></span>d_seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::uint_fast32_t RandomGeneratorWithSeed::d_seed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

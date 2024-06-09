@@ -1,131 +1,305 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>src/CircuitGenGenerator.cpp file | CircuitGen_Generator Desc of Backeknd</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: src/CircuitGenGenerator.cpp File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">1.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          <span class="m-breadcrumb"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a>/</span>CircuitGenGenerator.cpp <span class="m-thin">file</span>
-        </h1>
-        <p><span></span></p>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#namespaces">Namespaces</a></li>
-                <li><a href="#func-members">Functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <section id="namespaces">
-          <h2><a href="#namespaces">Namespaces</a></h2>
-          <dl class="m-doc">
-            <dt>namespace <a href="namespaceCircuitGenGenerator.html" class="m-doc">CircuitGenGenerator</a></dt>
-            <dd><span></span></dd>
-            <dt>namespace <a href="namespacestd_1_1chrono.html" class="m-doc">std::chrono</a></dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="func-members">
-          <h2><a href="#func-members">Functions</a></h2>
-          <dl class="m-doc">
-            <dt id="a069401944494f397436b755e78f14adf">
-              <span class="m-doc-wrap-bumper">void <a href="#a069401944494f397436b755e78f14adf" class="m-doc-self">runGeneration</a>(</span><span class="m-doc-wrap">std::string json_path,
-              std::function&lt;void(<a href="classDataBaseGenerator.html" class="m-doc">DataBaseGenerator</a>&amp;, const <a href="classDataBaseGeneratorParameters.html" class="m-doc">DataBaseGeneratorParameters</a>&amp;, uint8_t, bool)&gt; callable)</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('CircuitGenGenerator_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">CircuitGenGenerator.cpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;filesystem&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;map&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;<a class="el" href="AuxiliaryMethods_8hpp_source.html">additional/AuxiliaryMethods.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="DataBaseGenerator_8hpp_source.html">database/DataBaseGenerator.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="DataBaseGeneratorParameters_8hpp_source.html">database/DataBaseGeneratorParameters.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="GenerationParameters_8hpp_source.html">generators/GenerationParameters.hpp</a>&gt;</code><br />
+<code>#include &lt;getopt.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="json_8hpp_source.html">nlohmann/json.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="Settings_8hpp_source.html">settings/Settings.hpp</a>&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="export_8hpp_source.html">CircuitGenGenerator/export.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for CircuitGenGenerator.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="CircuitGenGenerator_8cpp__incl.png" border="0" usemap="#asrc_2CircuitGenGenerator_8cpp" alt=""/></div>
+<map name="asrc_2CircuitGenGenerator_8cpp" id="asrc_2CircuitGenGenerator_8cpp">
+<area shape="rect" title=" " alt="" coords="3654,5,3858,32"/>
+<area shape="rect" title=" " alt="" coords="5,341,91,367"/>
+<area shape="rect" title=" " alt="" coords="2288,341,2344,367"/>
+<area shape="rect" title=" " alt="" coords="4135,87,4201,114"/>
+<area shape="rect" title=" " alt="" coords="4225,87,4316,114"/>
+<area shape="rect" title=" " alt="" coords="3961,169,4034,196"/>
+<area shape="rect" title=" " alt="" coords="2369,341,2455,367"/>
+<area shape="rect" title=" " alt="" coords="4340,87,4420,114"/>
+<area shape="rect" title=" " alt="" coords="3416,423,3467,449"/>
+<area shape="rect" title=" " alt="" coords="2907,423,2965,449"/>
+<area shape="rect" title=" " alt="" coords="3738,423,3801,449"/>
+<area shape="rect" href="AuxiliaryMethods_8hpp.html" title="TODO: ToEnum TODO: if need LineReader TODO: if need CopyDirectory." alt="" coords="3639,87,3873,114"/>
+<area shape="rect" href="Settings_8hpp.html" title=" " alt="" coords="2915,341,3074,367"/>
+<area shape="rect" href="DataBaseGenerator_8hpp.html" title=" " alt="" coords="2898,87,3139,114"/>
+<area shape="rect" href="DataBaseGeneratorParameters_8hpp.html" title=" " alt="" coords="2729,169,2981,196"/>
+<area shape="rect" href="GenerationParameters_8hpp.html" title=" " alt="" coords="3057,251,3327,278"/>
+<area shape="rect" title=" " alt="" coords="4445,87,4521,114"/>
+<area shape="rect" href="json_8hpp.html" title=" " alt="" coords="1493,251,1640,278"/>
+<area shape="rect" title=" " alt="" coords="4545,87,4620,114"/>
+<area shape="rect" href="export_8hpp.html" title=" " alt="" coords="4644,80,4799,121"/>
+<area shape="rect" title=" " alt="" coords="2693,341,2760,367"/>
+<area shape="rect" title=" " alt="" coords="3707,341,3781,367"/>
+<area shape="rect" title=" " alt="" coords="2822,423,2882,449"/>
+<area shape="rect" href="Circuit_8hpp.html" title=" " alt="" coords="3583,169,3719,196"/>
+<area shape="rect" title=" " alt="" coords="3245,423,3323,449"/>
+<area shape="rect" href="OrientedGraph_8hpp.html" title=" " alt="" coords="3453,244,3608,285"/>
+<area shape="rect" title=" " alt="" coords="2785,341,2839,367"/>
+<area shape="rect" title=" " alt="" coords="3056,169,3120,196"/>
+<area shape="rect" href="RandomGeneratorWithSeed_8hpp.html" title=" " alt="" coords="2619,244,2829,285"/>
+<area shape="rect" title=" " alt="" coords="2582,341,2669,367"/>
+<area shape="rect" href="GeneticParameters_8hpp.html" title=" " alt="" coords="3099,333,3277,375"/>
+<area shape="rect" title=" " alt="" coords="166,341,237,367"/>
+<area shape="rect" title=" " alt="" coords="261,341,371,367"/>
+<area shape="rect" title=" " alt="" coords="396,341,460,367"/>
+<area shape="rect" title=" " alt="" coords="485,341,555,367"/>
+<area shape="rect" title=" " alt="" coords="580,341,679,367"/>
+<area shape="rect" title=" " alt="" coords="703,341,795,367"/>
+<area shape="rect" title=" " alt="" coords="819,341,943,367"/>
+<area shape="rect" title=" " alt="" coords="967,341,1043,367"/>
+<area shape="rect" title=" " alt="" coords="1067,341,1154,367"/>
+<area shape="rect" title=" " alt="" coords="1178,341,1243,367"/>
+<area shape="rect" title=" " alt="" coords="1268,341,1337,367"/>
+<area shape="rect" title=" " alt="" coords="1361,341,1420,367"/>
+<area shape="rect" title=" " alt="" coords="1444,341,1511,367"/>
+<area shape="rect" title=" " alt="" coords="1535,341,1598,367"/>
+<area shape="rect" title=" " alt="" coords="1623,341,1684,367"/>
+<area shape="rect" title=" " alt="" coords="1708,341,1783,367"/>
+<area shape="rect" title=" " alt="" coords="1807,341,1879,367"/>
+<area shape="rect" title=" " alt="" coords="1903,341,1971,367"/>
+<area shape="rect" title=" " alt="" coords="1995,341,2061,367"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceCircuitGenGenerator"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCircuitGenGenerator.html">CircuitGenGenerator</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a069401944494f397436b755e78f14adf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf">runGeneration</a> (std::string json_path, std::function&lt; void(<a class="el" href="classDataBaseGenerator.html">DataBaseGenerator</a> &amp;, const <a class="el" href="classDataBaseGeneratorParameters.html">DataBaseGeneratorParameters</a> &amp;, uint8_t, bool)&gt; callable)</td></tr>
+<tr class="separator:a069401944494f397436b755e78f14adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7462dfd4e91fa7663ecddeeea30bdeac"><td class="memItemLeft" align="right" valign="top">CIRCUITGENGENERATOR_EXPORT std::vector&lt; std::pair&lt; std::string, std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac">CircuitGenGenerator::runGenerationFromJsonForGraph</a> (std::string json_path)</td></tr>
+<tr class="separator:a7462dfd4e91fa7663ecddeeea30bdeac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5da6bca928375dcb7c1e460965d8aa6c"><td class="memItemLeft" align="right" valign="top">CIRCUITGENGENERATOR_EXPORT std::vector&lt; std::pair&lt; std::string, std::vector&lt; std::string &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c">CircuitGenGenerator::runGenerationFromJsonForPath</a> (std::string json_path)</td></tr>
+<tr class="separator:a5da6bca928375dcb7c1e460965d8aa6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41dfd9a88637c1961c7eebeec34025d2"><td class="memItemLeft" align="right" valign="top">CIRCUITGENGENERATOR_EXPORT void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2">CircuitGenGenerator::runGenerationFromJson</a> (std::string json_path)</td></tr>
+<tr class="separator:a41dfd9a88637c1961c7eebeec34025d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a069401944494f397436b755e78f14adf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a069401944494f397436b755e78f14adf">&#9670;&nbsp;</a></span>runGeneration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void runGeneration </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>json_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(<a class="el" href="classDataBaseGenerator.html">DataBaseGenerator</a> &amp;, const <a class="el" href="classDataBaseGeneratorParameters.html">DataBaseGeneratorParameters</a> &amp;, uint8_t, bool)&gt;&#160;</td>
+          <td class="paramname"><em>callable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="CircuitGenGenerator_8cpp_a069401944494f397436b755e78f14adf_cgraph.png" border="0" usemap="#aCircuitGenGenerator_8cpp_a069401944494f397436b755e78f14adf_cgraph" alt=""/></div>
+<map name="aCircuitGenGenerator_8cpp_a069401944494f397436b755e78f14adf_cgraph" id="aCircuitGenGenerator_8cpp_a069401944494f397436b755e78f14adf_cgraph">
+<area shape="rect" title=" " alt="" coords="5,1959,120,1985"/>
+<area shape="rect" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3" title="getInstance Gets a single instance of the Settings class The method provides creation and receipt of ..." alt="" coords="200,365,359,392"/>
+<area shape="rect" href="classGenerationParameters.html#af5f75407122515828eff6efc7676ee8a" title=" " alt="" coords="195,775,363,817"/>
+<area shape="rect" href="classGenerationParameters.html#a6a579996d93cf7232d818c48f8755eb3" title=" " alt="" coords="195,1494,363,1535"/>
+<area shape="rect" href="classGenerationParameters.html#a1555432e7175794ef8a0c447496ddf9b" title=" " alt="" coords="195,1559,363,1601"/>
+<area shape="rect" href="classGenerationParameters.html#ae3b6beac2abb151698fbd9dbc054ff64" title=" " alt="" coords="178,1625,381,1666"/>
+<area shape="rect" href="classGenerationParameters.html#af718fc63c7efe40ec1ae38e68c328b73" title=" " alt="" coords="195,1690,363,1731"/>
+<area shape="rect" href="classGenerationParameters.html#a3a8129ddff0a5f592c3046021f3c7daf" title=" " alt="" coords="187,1755,371,1797"/>
+<area shape="rect" href="classGenerationParameters.html#a75a03a428648e04fee7f5f001d9b03e4" title=" " alt="" coords="188,1821,371,1862"/>
+<area shape="rect" href="classGenerationParameters.html#a209394218aeae719e5fb8f59cfcbdc47" title=" " alt="" coords="195,1886,363,1927"/>
+<area shape="rect" href="classGenerationParameters.html#ac07cfbfe9a6b1350251326c4db5d0451" title=" " alt="" coords="170,1951,389,1993"/>
+<area shape="rect" href="classGenerationParameters.html#a1a2c26f08606084ba3ce44a1d37136cf" title=" " alt="" coords="195,2017,363,2058"/>
+<area shape="rect" href="classGenerationParameters.html#a1ce87963318d361d899f50612b653230" title=" " alt="" coords="183,2082,375,2123"/>
+<area shape="rect" href="namespaceAuxMethods.html#a5bd15903dbc7db95cb089304ca9e0277" title="setRandSeed Sets the grain to generate pseudorandom numbers" alt="" coords="181,2148,377,2175"/>
+<area shape="rect" href="classGenerationParameters.html#a4420efff17813616b01f26f938ecd6d4" title=" " alt="" coords="168,2199,391,2241"/>
+<area shape="rect" href="classGenerationParameters.html#a38bbf5b37c007495119fd2fc027549c6" title=" " alt="" coords="187,2265,371,2306"/>
+<area shape="rect" href="classGenerationParameters.html#a5a57d13129ceb1b1994be37bc41d3a87" title=" " alt="" coords="184,2330,375,2371"/>
+<area shape="rect" href="classGenerationParameters.html#a4659e3014d366ff00d7e5c57011fa6c1" title=" " alt="" coords="183,2395,375,2437"/>
+<area shape="rect" href="classGenerationParameters.html#aaa71d5307d34b8da2f64e45417c271b1" title=" " alt="" coords="195,2461,363,2502"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="240,2527,319,2553"/>
+<area shape="rect" href="classSettings.html#a692db3013821565d261527cc0edeeb0e" title=" " alt="" coords="490,5,626,32"/>
+<area shape="rect" href="classGeneratorALUParameters.html#af4756f18b8f286b89c8fb83ac9784fb1" title=" " alt="" coords="465,57,651,98"/>
+<area shape="rect" href="classGeneratorALUParameters.html#ac87e4da8a9f5ad9c98cf99879b6e6c31" title=" " alt="" coords="465,122,651,163"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a18b2791d1e6d948ce52331ea8d555507" title=" " alt="" coords="465,187,651,229"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a77cd97a07d53329ca5528049a533a156" title=" " alt="" coords="465,253,651,294"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a97a0b2541c227b04fdf012d31df7cd18" title=" " alt="" coords="465,318,651,359"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a0d48686254d46ad81d4c26a030397a6d" title=" " alt="" coords="465,383,651,425"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a5c987c458a5ef1a62fbc259748cbc99f" title=" " alt="" coords="465,449,651,490"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a025bda1ee0e0840c0e94972bbd05b634" title=" " alt="" coords="465,514,651,555"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a08d906376ee1ce8d4e828a98c642ec4b" title=" " alt="" coords="465,579,651,621"/>
+<area shape="rect" href="classGeneratorALUParameters.html#ae99c57b538c6e94ae2450ef131758a82" title=" " alt="" coords="465,645,651,686"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a230f393405edc837a3925f5638d703e5" title=" " alt="" coords="465,710,651,751"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a3f408741e56b0119165c3f0a766d6484" title=" " alt="" coords="465,775,651,817"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a102c7305556fd9b66d657280adcbd695" title=" " alt="" coords="465,841,651,882"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a55d9d06ba92546c5b388772b733d2f45" title=" " alt="" coords="465,906,651,947"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a909d0cefb998958e040c05f3d015157f" title=" " alt="" coords="465,971,651,1013"/>
+<area shape="rect" href="classGeneratorALUParameters.html#ad0f75c03c5823a67291f152aed57c8e1" title=" " alt="" coords="465,1037,651,1078"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a166f9c133b055a5e56298c5dc0a4342d" title=" " alt="" coords="465,1102,651,1143"/>
+<area shape="rect" href="classGeneratorALUParameters.html#af8be086484a4784d938800ec7a25f3e0" title=" " alt="" coords="465,1167,651,1209"/>
+<area shape="rect" href="classGeneratorALUParameters.html#aed4d6d62dca1af727cc58639d64ea084" title=" " alt="" coords="465,1233,651,1274"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a52c0772c285223c8694b2afd35c5d0e0" title=" " alt="" coords="465,1298,651,1339"/>
+<area shape="rect" href="classGeneratorALUParameters.html#ac5c5725278f50bf4b45a8971eaf31b44" title=" " alt="" coords="465,1363,651,1405"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a3745ca1969609b1378576bb94cf03305" title=" " alt="" coords="465,1429,651,1470"/>
+<area shape="rect" href="classCNNFromTruthTableParameters.html#a30a92f73e9489fc11f9b004ab26fbbc1" title=" " alt="" coords="446,1494,670,1535"/>
+<area shape="rect" href="classCNNFromTruthTableParameters.html#a78ca7dc99edcc5c6c244251b2919529b" title=" " alt="" coords="446,1559,670,1601"/>
+<area shape="rect" href="classGeneratorComparisonParameters.html#a7409c2905e0f6cd6a47e02f0c1b7d662" title=" " alt="" coords="439,1625,677,1666"/>
+<area shape="rect" href="classGeneratorComparisonParameters.html#aaf3c29c70b65dadc3209006bb0a9cb19" title=" " alt="" coords="439,1690,677,1731"/>
+<area shape="rect" href="classGeneratorComparisonParameters.html#a87b977c8eea8f95e2705d37162549196" title=" " alt="" coords="439,1755,677,1797"/>
+<area shape="rect" href="classGeneticParameters.html#a69d2a71967ac4446244bf488fa982ac5" title=" " alt="" coords="470,1821,646,1862"/>
+<area shape="rect" href="classMutationParameters.html#a1d00e62314ecdbe09181c6ac98598d48" title=" " alt="" coords="481,1886,635,1927"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="CircuitGenGenerator_8cpp_a069401944494f397436b755e78f14adf_icgraph.png" border="0" usemap="#aCircuitGenGenerator_8cpp_a069401944494f397436b755e78f14adf_icgraph" alt=""/></div>
+<map name="aCircuitGenGenerator_8cpp_a069401944494f397436b755e78f14adf_icgraph" id="aCircuitGenGenerator_8cpp_a069401944494f397436b755e78f14adf_icgraph">
+<area shape="rect" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="CircuitGenGenerator_8cpp.html">CircuitGenGenerator.cpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

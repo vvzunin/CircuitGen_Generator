@@ -1,278 +1,264 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>detail::lexer_base class | CircuitGen_Generator Desc of Backeknd</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: detail::lexer_base&lt; BasicJsonType &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">1.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="json_8hpp.html">&lt;json.hpp&gt;</a></div>
-          <div class="m-doc-template">template&lt;typename BasicJsonType&gt;</div>
-          <span class="m-breadcrumb"><a href="namespacedetail.html">detail</a>::<wbr/></span>lexer_base <span class="m-thin">class</span>
-        </h1>
-        <p><span></span></p>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#derived-classes">Derived classes</a></li>
-                <li><a href="#pub-types">Public types</a></li>
-                <li><a href="#pub-static-methods">Public static functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <section id="derived-classes">
-          <h2><a href="#derived-classes">Derived classes</a></h2>
-          <dl class="m-doc">
-            <dt>
-              <div class="m-doc-template">template&lt;typename BasicJsonType, typename InputAdapterType&gt;</div>
-              class <a href="classdetail_1_1lexer.html" class="m-doc">lexer</a>
-            </dt>
-            <dd>lexical analysis</dd>
-          </dl>
-        </section>
-        <section id="pub-types">
-          <h2><a href="#pub-types">Public types</a></h2>
-          <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper">enum class <a href="#add65fa7a85aa15052963809fbcc04540" class="m-doc">token_type</a> { </span><span class="m-doc-wrap"><a href="#add65fa7a85aa15052963809fbcc04540a42dd1a73d072bb6bf3f494f22b15db8e" class="m-doc">uninitialized</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540a85cc1a37b0aaa52de40e72f0ed4e0c0d" class="m-doc">literal_true</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540afab1694b1b3937a079f4625fe0b6108b" class="m-doc">literal_false</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540ab7ae4c0e46d86f884677768160b26e9e" class="m-doc">literal_null</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540a2b490e8bf366b4cbe3ebd99b26ce15ce" class="m-doc">value_string</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540aaf1f040fcd2f674d2e5893d7a731078f" class="m-doc">value_unsigned</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540a5064b6655d88a50ae16665cf7751c0ee" class="m-doc">value_integer</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540a0d2671a6f81efb91e77f6ac3bdb11443" class="m-doc">value_float</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540a16c226b4425b68560fea322b46dabe01" class="m-doc">begin_array</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540a9a9ffd53b6869d4eca271b1ed5b57fe8" class="m-doc">begin_object</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540a2f3e68e7f111a1e5c7728742b3ca2b7f" class="m-doc">end_array</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540a7d5b4427866814de4d8f132721d59c87" class="m-doc">end_object</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540acc3c64f8ae08c00de1b33f19a4d2913a" class="m-doc">name_separator</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540a745373036100d7392ad62c617cab59af" class="m-doc">value_separator</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540a456e19aeafa334241c7ff3f589547f9d" class="m-doc">parse_error</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540aca11f56dd477c09e06583dbdcda0985f" class="m-doc">end_of_input</a>,
-              <a href="#add65fa7a85aa15052963809fbcc04540ad2a8e6f6721cccec0b466301dd9495a5" class="m-doc">literal_or_value</a> }</span>
-            </dt>
-            <dd>token types for the parser</dd>
-          </dl>
-        </section>
-        <section id="pub-static-methods">
-          <h2><a href="#pub-static-methods">Public static functions</a></h2>
-          <dl class="m-doc">
-            <dt id="a83551c8bbda1da474a617ca0392e3fad">
-              <span class="m-doc-wrap-bumper">static auto <a href="#a83551c8bbda1da474a617ca0392e3fad" class="m-doc-self">token_type_name</a>(</span><span class="m-doc-wrap">const <a href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540" class="m-doc">token_<wbr />type</a> t) -&gt; <a href="json_8hpp.html#a5f2aaec3b681d0a72f7d6e90b70cdcd1" class="m-doc">JSON_<wbr />HEDLEY_<wbr />RETURNS_<wbr />NON_<wbr />NULL</a> static <a href="json_8hpp.html#a0d17bf1a54fc45a04ced6d3aa86a96e3" class="m-doc">JSON_<wbr />HEDLEY_<wbr />CONST</a> const char* <span class="m-label m-flat m-success">noexcept</span></span>
-            </dt>
-            <dd>return name of values of type token_type (only used for errors)</dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Enum documentation</h2>
-          <section class="m-doc-details" id="add65fa7a85aa15052963809fbcc04540"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;typename BasicJsonType&gt;
-              </div>
-              enum class detail::<wbr />lexer_base&lt;BasicJsonType&gt;::<wbr /><a href="#add65fa7a85aa15052963809fbcc04540" class="m-doc-self">token_type</a>
-            </h3>
-            <p>token types for the parser</p>
-            <table class="m-table m-fullwidth m-flat m-doc">
-              <thead><tr><th style="width: 1%">Enumerators</th><th></th></tr></thead>
-              <tbody>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a42dd1a73d072bb6bf3f494f22b15db8e" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a42dd1a73d072bb6bf3f494f22b15db8e">uninitialized</a></td>
-                  <td>
-                  <p>indicating the scanner is uninitialized</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a85cc1a37b0aaa52de40e72f0ed4e0c0d" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a85cc1a37b0aaa52de40e72f0ed4e0c0d">literal_true</a></td>
-                  <td>
-                  <p>the <code>true</code> literal</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540afab1694b1b3937a079f4625fe0b6108b" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540afab1694b1b3937a079f4625fe0b6108b">literal_false</a></td>
-                  <td>
-                  <p>the <code>false</code> literal</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540ab7ae4c0e46d86f884677768160b26e9e" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540ab7ae4c0e46d86f884677768160b26e9e">literal_null</a></td>
-                  <td>
-                  <p>the <code>null</code> literal</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a2b490e8bf366b4cbe3ebd99b26ce15ce" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a2b490e8bf366b4cbe3ebd99b26ce15ce">value_string</a></td>
-                  <td>
-                  <p>a string &ndash; use get_string() for actual value</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540aaf1f040fcd2f674d2e5893d7a731078f" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540aaf1f040fcd2f674d2e5893d7a731078f">value_unsigned</a></td>
-                  <td>
-                  <p>an unsigned integer &ndash; use get_number_unsigned() for actual value</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a5064b6655d88a50ae16665cf7751c0ee" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a5064b6655d88a50ae16665cf7751c0ee">value_integer</a></td>
-                  <td>
-                  <p>a signed integer &ndash; use get_number_integer() for actual value</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a0d2671a6f81efb91e77f6ac3bdb11443" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a0d2671a6f81efb91e77f6ac3bdb11443">value_float</a></td>
-                  <td>
-                  <p>an floating point number &ndash; use get_number_float() for actual value</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a16c226b4425b68560fea322b46dabe01" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a16c226b4425b68560fea322b46dabe01">begin_array</a></td>
-                  <td>
-                  <p>the character for array begin <code>[</code></p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a9a9ffd53b6869d4eca271b1ed5b57fe8" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a9a9ffd53b6869d4eca271b1ed5b57fe8">begin_object</a></td>
-                  <td>
-                  <p>the character for object begin <code>{</code></p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a2f3e68e7f111a1e5c7728742b3ca2b7f" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a2f3e68e7f111a1e5c7728742b3ca2b7f">end_array</a></td>
-                  <td>
-                  <p>the character for array end <code>]</code></p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a7d5b4427866814de4d8f132721d59c87" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a7d5b4427866814de4d8f132721d59c87">end_object</a></td>
-                  <td>
-                  <p>the character for object end <code>}</code></p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540acc3c64f8ae08c00de1b33f19a4d2913a" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540acc3c64f8ae08c00de1b33f19a4d2913a">name_separator</a></td>
-                  <td>
-                  <p>the name separator <code>:</code></p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a745373036100d7392ad62c617cab59af" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a745373036100d7392ad62c617cab59af">value_separator</a></td>
-                  <td>
-                  <p>the value separator <code>,</code></p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540a456e19aeafa334241c7ff3f589547f9d" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540a456e19aeafa334241c7ff3f589547f9d">parse_error</a></td>
-                  <td>
-                  <p>indicating a parse error</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540aca11f56dd477c09e06583dbdcda0985f" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540aca11f56dd477c09e06583dbdcda0985f">end_of_input</a></td>
-                  <td>
-                  <p>indicating the end of the input buffer</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#add65fa7a85aa15052963809fbcc04540ad2a8e6f6721cccec0b466301dd9495a5" class="m-doc-self" id="add65fa7a85aa15052963809fbcc04540ad2a8e6f6721cccec0b466301dd9495a5">literal_or_value</a></td>
-                  <td>
-                  <p>a literal or the begin of a value (only for diagnostics)</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classdetail_1_1lexer__base.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classdetail_1_1lexer__base-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">detail::lexer_base&lt; BasicJsonType &gt; Class Template Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="json_8hpp_source.html">json.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for detail::lexer_base&lt; BasicJsonType &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdetail_1_1lexer__base__inherit__graph.png" border="0" usemap="#adetail_1_1lexer__base_3_01BasicJsonType_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="adetail_1_1lexer__base_3_01BasicJsonType_01_4_inherit__map" id="adetail_1_1lexer__base_3_01BasicJsonType_01_4_inherit__map">
+<area shape="rect" title=" " alt="" coords="19,5,182,97"/>
+<area shape="rect" href="classdetail_1_1lexer.html" title="lexical analysis" alt="" coords="5,145,196,751"/>
+</map>
+</div>
+<div class="dynheader">
+Collaboration diagram for detail::lexer_base&lt; BasicJsonType &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="classdetail_1_1lexer__base__coll__graph.png" border="0" usemap="#adetail_1_1lexer__base_3_01BasicJsonType_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="adetail_1_1lexer__base_3_01BasicJsonType_01_4_coll__map" id="adetail_1_1lexer__base_3_01BasicJsonType_01_4_coll__map">
+<area shape="rect" title=" " alt="" coords="5,5,168,97"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:add65fa7a85aa15052963809fbcc04540"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540">token_type</a> { <br />
+&#160;&#160;<a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a42dd1a73d072bb6bf3f494f22b15db8e">uninitialized</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a85cc1a37b0aaa52de40e72f0ed4e0c0d">literal_true</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540afab1694b1b3937a079f4625fe0b6108b">literal_false</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540ab7ae4c0e46d86f884677768160b26e9e">literal_null</a>
+, <br />
+&#160;&#160;<a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a2b490e8bf366b4cbe3ebd99b26ce15ce">value_string</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540aaf1f040fcd2f674d2e5893d7a731078f">value_unsigned</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a5064b6655d88a50ae16665cf7751c0ee">value_integer</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a0d2671a6f81efb91e77f6ac3bdb11443">value_float</a>
+, <br />
+&#160;&#160;<a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a16c226b4425b68560fea322b46dabe01">begin_array</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a9a9ffd53b6869d4eca271b1ed5b57fe8">begin_object</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a2f3e68e7f111a1e5c7728742b3ca2b7f">end_array</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a7d5b4427866814de4d8f132721d59c87">end_object</a>
+, <br />
+&#160;&#160;<a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540acc3c64f8ae08c00de1b33f19a4d2913a">name_separator</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a745373036100d7392ad62c617cab59af">value_separator</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540a456e19aeafa334241c7ff3f589547f9d">parse_error</a>
+, <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540aca11f56dd477c09e06583dbdcda0985f">end_of_input</a>
+, <br />
+&#160;&#160;<a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540ad2a8e6f6721cccec0b466301dd9495a5">literal_or_value</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:add65fa7a85aa15052963809fbcc04540"><td class="mdescLeft">&#160;</td><td class="mdescRight">token types for the parser  <a href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540">More...</a><br /></td></tr>
+<tr class="separator:add65fa7a85aa15052963809fbcc04540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a83551c8bbda1da474a617ca0392e3fad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="json_8hpp.html#a5f2aaec3b681d0a72f7d6e90b70cdcd1">JSON_HEDLEY_RETURNS_NON_NULL</a> static <a class="el" href="json_8hpp.html#a0d17bf1a54fc45a04ced6d3aa86a96e3">JSON_HEDLEY_CONST</a> const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdetail_1_1lexer__base.html#a83551c8bbda1da474a617ca0392e3fad">token_type_name</a> (const <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540">token_type</a> t) noexcept</td></tr>
+<tr class="memdesc:a83551c8bbda1da474a617ca0392e3fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">return name of values of type token_type (only used for errors)  <a href="classdetail_1_1lexer__base.html#a83551c8bbda1da474a617ca0392e3fad">More...</a><br /></td></tr>
+<tr class="separator:a83551c8bbda1da474a617ca0392e3fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="add65fa7a85aa15052963809fbcc04540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add65fa7a85aa15052963809fbcc04540">&#9670;&nbsp;</a></span>token_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename BasicJsonType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540">detail::lexer_base::token_type</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>token types for the parser </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a42dd1a73d072bb6bf3f494f22b15db8e"></a>uninitialized&#160;</td><td class="fielddoc"><p>indicating the scanner is uninitialized </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a85cc1a37b0aaa52de40e72f0ed4e0c0d"></a>literal_true&#160;</td><td class="fielddoc"><p>the <code>true</code> literal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540afab1694b1b3937a079f4625fe0b6108b"></a>literal_false&#160;</td><td class="fielddoc"><p>the <code>false</code> literal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540ab7ae4c0e46d86f884677768160b26e9e"></a>literal_null&#160;</td><td class="fielddoc"><p>the <code>null</code> literal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a2b490e8bf366b4cbe3ebd99b26ce15ce"></a>value_string&#160;</td><td class="fielddoc"><p>a string &ndash; use get_string() for actual value </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540aaf1f040fcd2f674d2e5893d7a731078f"></a>value_unsigned&#160;</td><td class="fielddoc"><p>an unsigned integer &ndash; use get_number_unsigned() for actual value </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a5064b6655d88a50ae16665cf7751c0ee"></a>value_integer&#160;</td><td class="fielddoc"><p>a signed integer &ndash; use get_number_integer() for actual value </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a0d2671a6f81efb91e77f6ac3bdb11443"></a>value_float&#160;</td><td class="fielddoc"><p>an floating point number &ndash; use get_number_float() for actual value </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a16c226b4425b68560fea322b46dabe01"></a>begin_array&#160;</td><td class="fielddoc"><p>the character for array begin <code>[</code> </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a9a9ffd53b6869d4eca271b1ed5b57fe8"></a>begin_object&#160;</td><td class="fielddoc"><p>the character for object begin <code>{</code> </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a2f3e68e7f111a1e5c7728742b3ca2b7f"></a>end_array&#160;</td><td class="fielddoc"><p>the character for array end <code>]</code> </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a7d5b4427866814de4d8f132721d59c87"></a>end_object&#160;</td><td class="fielddoc"><p>the character for object end <code>}</code> </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540acc3c64f8ae08c00de1b33f19a4d2913a"></a>name_separator&#160;</td><td class="fielddoc"><p>the name separator <code>:</code> </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a745373036100d7392ad62c617cab59af"></a>value_separator&#160;</td><td class="fielddoc"><p>the value separator <code>,</code> </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540a456e19aeafa334241c7ff3f589547f9d"></a>parse_error&#160;</td><td class="fielddoc"><p>indicating a parse error </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540aca11f56dd477c09e06583dbdcda0985f"></a>end_of_input&#160;</td><td class="fielddoc"><p>indicating the end of the input buffer </p>
+</td></tr>
+<tr><td class="fieldname"><a id="add65fa7a85aa15052963809fbcc04540ad2a8e6f6721cccec0b466301dd9495a5"></a>literal_or_value&#160;</td><td class="fielddoc"><p>a literal or the begin of a value (only for diagnostics) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a83551c8bbda1da474a617ca0392e3fad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83551c8bbda1da474a617ca0392e3fad">&#9670;&nbsp;</a></span>token_type_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename BasicJsonType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="json_8hpp.html#a5f2aaec3b681d0a72f7d6e90b70cdcd1">JSON_HEDLEY_RETURNS_NON_NULL</a> static <a class="el" href="json_8hpp.html#a0d17bf1a54fc45a04ced6d3aa86a96e3">JSON_HEDLEY_CONST</a> const char* <a class="el" href="classdetail_1_1lexer__base.html">detail::lexer_base</a>&lt; BasicJsonType &gt;::token_type_name </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540">token_type</a>&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>return name of values of type token_type (only used for errors) </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacedetail.html">detail</a></li><li class="navelem"><a class="el" href="classdetail_1_1lexer__base.html">lexer_base</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,142 +1,388 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>RecombinationsTruthTable namespace | CircuitGen_Generator Desc of Backeknd</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: RecombinationsTruthTable Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">1.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          RecombinationsTruthTable <span class="m-thin">namespace</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="RecombinationsTruthTable_8hpp.html">&lt;src/generators/Genetic/Recombination/RecombinationsTruthTable.hpp&gt;</a></div>
-        </h1>
-        <p><span></span></p>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#func-members">Functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <section id="func-members">
-          <h2><a href="#func-members">Functions</a></h2>
-          <dl class="m-doc">
-            <dt id="ac0187ad7c0da7cbf8e98988a653d9c39">
-              <span class="m-doc-wrap-bumper">auto <a href="#ac0187ad7c0da7cbf8e98988a653d9c39" class="m-doc-self">RecombinationCrossingEachExitInTurnMany</a>(</span><span class="m-doc-wrap"><a href="classRecombinationParameters.html" class="m-doc">RecombinationParameters</a> i_recombinationParameters,
-              std::vector&lt;<a href="classChromosomeType.html" class="m-doc">ChromosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt; i_population) -&gt; std::vector&lt;<a href="classChromosomeType.html" class="m-doc">ChromosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a58e88aac3a0e98a2e3b6fe7b97e0a9b4">
-              <span class="m-doc-wrap-bumper">auto <a href="#a58e88aac3a0e98a2e3b6fe7b97e0a9b4" class="m-doc-self">RecombinationCrossingUniform</a>(</span><span class="m-doc-wrap"><a href="classRecombinationParameters.html" class="m-doc">RecombinationParameters</a> i_recombinationParameters,
-              std::vector&lt;<a href="classChromosomeType.html" class="m-doc">ChromosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt; i_population) -&gt; std::vector&lt;<a href="classChromosomeType.html" class="m-doc">ChromosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a7eaa1b1dcaac4608de62d2f616865309">
-              <span class="m-doc-wrap-bumper">auto <a href="#a7eaa1b1dcaac4608de62d2f616865309" class="m-doc-self">RecombinationCrossingTriadic</a>(</span><span class="m-doc-wrap"><a href="classRecombinationParameters.html" class="m-doc">RecombinationParameters</a> i_recombinationParameters,
-              std::vector&lt;<a href="classChromosomeType.html" class="m-doc">ChromosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt; i_population) -&gt; std::vector&lt;<a href="classChromosomeType.html" class="m-doc">ChromosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a8e0d65dee457915b852827034eeabf5c">
-              <span class="m-doc-wrap-bumper">auto <a href="#a8e0d65dee457915b852827034eeabf5c" class="m-doc-self">RecombinationCrossingReducedReplacement</a>(</span><span class="m-doc-wrap"><a href="classRecombinationParameters.html" class="m-doc">RecombinationParameters</a> i_recombinationParameters,
-              std::vector&lt;<a href="classChromosomeType.html" class="m-doc">ChromosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt; i_population) -&gt; std::vector&lt;<a href="classChromosomeType.html" class="m-doc">ChromosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a5d53b7ce28de8e1e9246d6d3c22bb0c4">
-              <span class="m-doc-wrap-bumper">auto <a href="#a5d53b7ce28de8e1e9246d6d3c22bb0c4" class="m-doc-self">RecombinationCrossingShuffling</a>(</span><span class="m-doc-wrap"><a href="classRecombinationParameters.html" class="m-doc">RecombinationParameters</a> i_recombinationParameters,
-              std::vector&lt;<a href="classChromosomeType.html" class="m-doc">ChromosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt; i_population) -&gt; std::vector&lt;<a href="classChromosomeType.html" class="m-doc">ChromosomeType</a>&lt;<a href="classTruthTable.html" class="m-doc">TruthTable</a>, <a href="classTruthTableParameters.html" class="m-doc">TruthTableParameters</a>&gt;&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('namespaceRecombinationsTruthTable.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">RecombinationsTruthTable Namespace Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac0187ad7c0da7cbf8e98988a653d9c39"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceRecombinationsTruthTable.html#ac0187ad7c0da7cbf8e98988a653d9c39">RecombinationCrossingEachExitInTurnMany</a> (<a class="el" href="classRecombinationParameters.html">RecombinationParameters</a> i_recombinationParameters, std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt;&gt; i_population)</td></tr>
+<tr class="separator:ac0187ad7c0da7cbf8e98988a653d9c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58e88aac3a0e98a2e3b6fe7b97e0a9b4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceRecombinationsTruthTable.html#a58e88aac3a0e98a2e3b6fe7b97e0a9b4">RecombinationCrossingUniform</a> (<a class="el" href="classRecombinationParameters.html">RecombinationParameters</a> i_recombinationParameters, std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt;&gt; i_population)</td></tr>
+<tr class="separator:a58e88aac3a0e98a2e3b6fe7b97e0a9b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eaa1b1dcaac4608de62d2f616865309"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceRecombinationsTruthTable.html#a7eaa1b1dcaac4608de62d2f616865309">RecombinationCrossingTriadic</a> (<a class="el" href="classRecombinationParameters.html">RecombinationParameters</a> i_recombinationParameters, std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt;&gt; i_population)</td></tr>
+<tr class="separator:a7eaa1b1dcaac4608de62d2f616865309"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e0d65dee457915b852827034eeabf5c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceRecombinationsTruthTable.html#a8e0d65dee457915b852827034eeabf5c">RecombinationCrossingReducedReplacement</a> (<a class="el" href="classRecombinationParameters.html">RecombinationParameters</a> i_recombinationParameters, std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt;&gt; i_population)</td></tr>
+<tr class="separator:a8e0d65dee457915b852827034eeabf5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d53b7ce28de8e1e9246d6d3c22bb0c4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceRecombinationsTruthTable.html#a5d53b7ce28de8e1e9246d6d3c22bb0c4">RecombinationCrossingShuffling</a> (<a class="el" href="classRecombinationParameters.html">RecombinationParameters</a> i_recombinationParameters, std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt;&gt; i_population)</td></tr>
+<tr class="separator:a5d53b7ce28de8e1e9246d6d3c22bb0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ac0187ad7c0da7cbf8e98988a653d9c39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0187ad7c0da7cbf8e98988a653d9c39">&#9670;&nbsp;</a></span>RecombinationCrossingEachExitInTurnMany()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt; &gt; RecombinationsTruthTable::RecombinationCrossingEachExitInTurnMany </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRecombinationParameters.html">RecombinationParameters</a>&#160;</td>
+          <td class="paramname"><em>i_recombinationParameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt;&gt;&#160;</td>
+          <td class="paramname"><em>i_population</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceRecombinationsTruthTable_ac0187ad7c0da7cbf8e98988a653d9c39_cgraph.png" border="0" usemap="#anamespaceRecombinationsTruthTable_ac0187ad7c0da7cbf8e98988a653d9c39_cgraph" alt=""/></div>
+<map name="anamespaceRecombinationsTruthTable_ac0187ad7c0da7cbf8e98988a653d9c39_cgraph" id="anamespaceRecombinationsTruthTable_ac0187ad7c0da7cbf8e98988a653d9c39_cgraph">
+<area shape="rect" title=" " alt="" coords="5,149,245,205"/>
+<area shape="rect" href="classRecombinationParameters.html#a56737481f643f359ad307451d411c276" title=" " alt="" coords="309,5,504,47"/>
+<area shape="rect" href="namespaceAuxMethods.html#a050af9429bfdb674caaa7c3d9cb4a648" title="getRandomIntList Generates a list of random integers in a given range with certain restrictions on th..." alt="" coords="293,71,520,98"/>
+<area shape="rect" href="classRecombinationParameters.html#ae3f327647fb096602c20571a53eaa44d" title=" " alt="" coords="295,123,518,164"/>
+<area shape="rect" href="classRecombinationParameters.html#a5a156d899873c60e8f72710087c5a4d8" title=" " alt="" coords="309,188,504,229"/>
+<area shape="rect" href="Parents_8hpp.html#a5a618016552591ab1fc3a5c990fc2553" title=" " alt="" coords="331,254,483,281"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="367,305,446,331"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceRecombinationsTruthTable_ac0187ad7c0da7cbf8e98988a653d9c39_icgraph.png" border="0" usemap="#anamespaceRecombinationsTruthTable_ac0187ad7c0da7cbf8e98988a653d9c39_icgraph" alt=""/></div>
+<map name="anamespaceRecombinationsTruthTable_ac0187ad7c0da7cbf8e98988a653d9c39_icgraph" id="anamespaceRecombinationsTruthTable_ac0187ad7c0da7cbf8e98988a653d9c39_icgraph">
+<area shape="rect" title=" " alt="" coords="204,16,444,72"/>
+<area shape="rect" href="Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a87fdee5212f4c27d7fdd00c6c897feb9" title=" " alt="" coords="53,56,108,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8e0d65dee457915b852827034eeabf5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e0d65dee457915b852827034eeabf5c">&#9670;&nbsp;</a></span>RecombinationCrossingReducedReplacement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt; &gt; RecombinationsTruthTable::RecombinationCrossingReducedReplacement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRecombinationParameters.html">RecombinationParameters</a>&#160;</td>
+          <td class="paramname"><em>i_recombinationParameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt;&gt;&#160;</td>
+          <td class="paramname"><em>i_population</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceRecombinationsTruthTable_a8e0d65dee457915b852827034eeabf5c_cgraph.png" border="0" usemap="#anamespaceRecombinationsTruthTable_a8e0d65dee457915b852827034eeabf5c_cgraph" alt=""/></div>
+<map name="anamespaceRecombinationsTruthTable_a8e0d65dee457915b852827034eeabf5c_cgraph" id="anamespaceRecombinationsTruthTable_a8e0d65dee457915b852827034eeabf5c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,115,245,171"/>
+<area shape="rect" href="classRecombinationParameters.html#a56737481f643f359ad307451d411c276" title=" " alt="" coords="307,5,502,47"/>
+<area shape="rect" href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207" title="getRandInt Returns a random integer in the specified range" alt="" coords="313,71,496,98"/>
+<area shape="rect" href="classRecombinationParameters.html#ae3f327647fb096602c20571a53eaa44d" title=" " alt="" coords="293,123,516,164"/>
+<area shape="rect" href="Parents_8hpp.html#a5a618016552591ab1fc3a5c990fc2553" title=" " alt="" coords="329,189,481,215"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="365,239,444,266"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceRecombinationsTruthTable_a8e0d65dee457915b852827034eeabf5c_icgraph.png" border="0" usemap="#anamespaceRecombinationsTruthTable_a8e0d65dee457915b852827034eeabf5c_icgraph" alt=""/></div>
+<map name="anamespaceRecombinationsTruthTable_a8e0d65dee457915b852827034eeabf5c_icgraph" id="anamespaceRecombinationsTruthTable_a8e0d65dee457915b852827034eeabf5c_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,444,61"/>
+<area shape="rect" href="Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="5,20,156,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5d53b7ce28de8e1e9246d6d3c22bb0c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d53b7ce28de8e1e9246d6d3c22bb0c4">&#9670;&nbsp;</a></span>RecombinationCrossingShuffling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt; &gt; RecombinationsTruthTable::RecombinationCrossingShuffling </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRecombinationParameters.html">RecombinationParameters</a>&#160;</td>
+          <td class="paramname"><em>i_recombinationParameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt;&gt;&#160;</td>
+          <td class="paramname"><em>i_population</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceRecombinationsTruthTable_a5d53b7ce28de8e1e9246d6d3c22bb0c4_cgraph.png" border="0" usemap="#anamespaceRecombinationsTruthTable_a5d53b7ce28de8e1e9246d6d3c22bb0c4_cgraph" alt=""/></div>
+<map name="anamespaceRecombinationsTruthTable_a5d53b7ce28de8e1e9246d6d3c22bb0c4_cgraph" id="anamespaceRecombinationsTruthTable_a5d53b7ce28de8e1e9246d6d3c22bb0c4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,152,247,193"/>
+<area shape="rect" href="classRecombinationParameters.html#a56737481f643f359ad307451d411c276" title=" " alt="" coords="309,5,503,47"/>
+<area shape="rect" href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207" title="getRandInt Returns a random integer in the specified range" alt="" coords="315,71,497,98"/>
+<area shape="rect" href="classRecombinationParameters.html#ae3f327647fb096602c20571a53eaa44d" title=" " alt="" coords="295,123,517,164"/>
+<area shape="rect" href="Parents_8hpp.html#a5a618016552591ab1fc3a5c990fc2553" title=" " alt="" coords="330,189,482,215"/>
+<area shape="rect" href="namespacestd.html#a4874fd00297ff5aef2872379cb521783" title="exchanges the values of two JSON objects" alt="" coords="364,239,448,266"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="367,290,445,317"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceRecombinationsTruthTable_a5d53b7ce28de8e1e9246d6d3c22bb0c4_icgraph.png" border="0" usemap="#anamespaceRecombinationsTruthTable_a5d53b7ce28de8e1e9246d6d3c22bb0c4_icgraph" alt=""/></div>
+<map name="anamespaceRecombinationsTruthTable_a5d53b7ce28de8e1e9246d6d3c22bb0c4_icgraph" id="anamespaceRecombinationsTruthTable_a5d53b7ce28de8e1e9246d6d3c22bb0c4_icgraph">
+<area shape="rect" title=" " alt="" coords="204,23,445,65"/>
+<area shape="rect" href="Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#ac641cfdaa8e32d9b09e577d01c64c343" title=" " alt="" coords="53,56,108,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7eaa1b1dcaac4608de62d2f616865309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eaa1b1dcaac4608de62d2f616865309">&#9670;&nbsp;</a></span>RecombinationCrossingTriadic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt; &gt; RecombinationsTruthTable::RecombinationCrossingTriadic </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRecombinationParameters.html">RecombinationParameters</a>&#160;</td>
+          <td class="paramname"><em>i_recombinationParameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt;&gt;&#160;</td>
+          <td class="paramname"><em>i_population</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceRecombinationsTruthTable_a7eaa1b1dcaac4608de62d2f616865309_cgraph.png" border="0" usemap="#anamespaceRecombinationsTruthTable_a7eaa1b1dcaac4608de62d2f616865309_cgraph" alt=""/></div>
+<map name="anamespaceRecombinationsTruthTable_a7eaa1b1dcaac4608de62d2f616865309_cgraph" id="anamespaceRecombinationsTruthTable_a7eaa1b1dcaac4608de62d2f616865309_cgraph">
+<area shape="rect" title=" " alt="" coords="5,211,232,252"/>
+<area shape="rect" href="classRecombinationParameters.html#a69f528dd097913382d124cbccde6fdbc" title=" " alt="" coords="294,5,489,47"/>
+<area shape="rect" href="classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82" title="getOutTable Get the output table." alt="" coords="304,71,479,98"/>
+<area shape="rect" href="classRecombinationParameters.html#a56737481f643f359ad307451d411c276" title=" " alt="" coords="294,123,489,164"/>
+<area shape="rect" href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207" title="getRandInt Returns a random integer in the specified range" alt="" coords="300,189,483,215"/>
+<area shape="rect" href="classRecombinationParameters.html#ae3f327647fb096602c20571a53eaa44d" title=" " alt="" coords="280,240,503,281"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#af2c6f7eed444dd2dafc62c068d063ccf" title=" " alt="" coords="318,305,465,347"/>
+<area shape="rect" href="Parents_8hpp.html#a5a618016552591ab1fc3a5c990fc2553" title=" " alt="" coords="315,371,467,398"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="352,422,431,449"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceRecombinationsTruthTable_a7eaa1b1dcaac4608de62d2f616865309_icgraph.png" border="0" usemap="#anamespaceRecombinationsTruthTable_a7eaa1b1dcaac4608de62d2f616865309_icgraph" alt=""/></div>
+<map name="anamespaceRecombinationsTruthTable_a7eaa1b1dcaac4608de62d2f616865309_icgraph" id="anamespaceRecombinationsTruthTable_a7eaa1b1dcaac4608de62d2f616865309_icgraph">
+<area shape="rect" title=" " alt="" coords="204,23,431,65"/>
+<area shape="rect" href="Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a2f47aa30a8c65e48a9832dc43eef27f9" title=" " alt="" coords="53,56,108,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a58e88aac3a0e98a2e3b6fe7b97e0a9b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58e88aac3a0e98a2e3b6fe7b97e0a9b4">&#9670;&nbsp;</a></span>RecombinationCrossingUniform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt; &gt; RecombinationsTruthTable::RecombinationCrossingUniform </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRecombinationParameters.html">RecombinationParameters</a>&#160;</td>
+          <td class="paramname"><em>i_recombinationParameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classChromosomeType.html">ChromosomeType</a>&lt; <a class="el" href="classTruthTable.html">TruthTable</a>, <a class="el" href="classTruthTableParameters.html">TruthTableParameters</a> &gt;&gt;&#160;</td>
+          <td class="paramname"><em>i_population</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceRecombinationsTruthTable_a58e88aac3a0e98a2e3b6fe7b97e0a9b4_cgraph.png" border="0" usemap="#anamespaceRecombinationsTruthTable_a58e88aac3a0e98a2e3b6fe7b97e0a9b4_cgraph" alt=""/></div>
+<map name="anamespaceRecombinationsTruthTable_a58e88aac3a0e98a2e3b6fe7b97e0a9b4_cgraph" id="anamespaceRecombinationsTruthTable_a58e88aac3a0e98a2e3b6fe7b97e0a9b4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,156,243,197"/>
+<area shape="rect" href="classRecombinationParameters.html#a69f528dd097913382d124cbccde6fdbc" title=" " alt="" coords="305,5,499,47"/>
+<area shape="rect" href="classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82" title="getOutTable Get the output table." alt="" coords="315,71,489,98"/>
+<area shape="rect" href="classRecombinationParameters.html#a56737481f643f359ad307451d411c276" title=" " alt="" coords="305,123,499,164"/>
+<area shape="rect" href="classRecombinationParameters.html#ae3f327647fb096602c20571a53eaa44d" title=" " alt="" coords="291,188,513,229"/>
+<area shape="rect" href="Parents_8hpp.html#a5a618016552591ab1fc3a5c990fc2553" title=" " alt="" coords="326,254,478,281"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="363,305,441,331"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceRecombinationsTruthTable_a58e88aac3a0e98a2e3b6fe7b97e0a9b4_icgraph.png" border="0" usemap="#anamespaceRecombinationsTruthTable_a58e88aac3a0e98a2e3b6fe7b97e0a9b4_icgraph" alt=""/></div>
+<map name="anamespaceRecombinationsTruthTable_a58e88aac3a0e98a2e3b6fe7b97e0a9b4_icgraph" id="anamespaceRecombinationsTruthTable_a58e88aac3a0e98a2e3b6fe7b97e0a9b4_icgraph">
+<area shape="rect" title=" " alt="" coords="204,23,441,65"/>
+<area shape="rect" href="Recombinations_8hpp.html#a15f86527bdb63069bfc1922061c9c5f5" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a6599631a87f7c2992429de3c555da0ba" title=" " alt="" coords="53,56,108,83"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceRecombinationsTruthTable.html">RecombinationsTruthTable</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

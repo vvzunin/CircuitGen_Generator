@@ -1,379 +1,384 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>src/settings/Settings.hpp file | CircuitGen_Generator Desc of Backeknd</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: src/settings/Settings.hpp File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">1.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          <span class="m-breadcrumb"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a>/</span><span class="m-breadcrumb"><a href="dir_ded1f21a39ae19e27d2bdf7bc3638045.html">settings</a>/</span>Settings.hpp <span class="m-thin">file</span>
-        </h1>
-        <p><span></span></p>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#nested-classes">Classes</a></li>
-                <li><a href="#enum-members">Enums</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <section id="nested-classes">
-          <h2><a href="#nested-classes">Classes</a></h2>
-          <dl class="m-doc">
-            <dt>
-              class <a href="classSettings.html" class="m-doc">Settings</a>
-            </dt>
-            <dd></dd>
-          </dl>
-        </section>
-        <section id="enum-members">
-          <h2><a href="#enum-members">Enums</a></h2>
-          <dl class="m-doc">
-            <dt id="a71bf501f63160ba5aa5adb9552290dc9">
-              <span class="m-doc-wrap-bumper">enum <a href="#a71bf501f63160ba5aa5adb9552290dc9" class="m-doc-self">LibrariesTypes</a> { </span><span class="m-doc-wrap"><a href="#a71bf501f63160ba5aa5adb9552290dc9abb1eba077962bf4055f96f72d94e8cab" class="m-doc">SKY_LIB</a> }</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">enum <a href="#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> { </span><span class="m-doc-wrap"><a href="#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528" class="m-doc">input</a>,
-              <a href="#a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545" class="m-doc">output</a>,
-              <a href="#a0205bad1987949fa63dc4d217e4e2e5da995640a12d5339aabee76a933fb5f519" class="m-doc">constant</a>,
-              <a href="#a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516" class="m-doc">gate</a>,
-              <a href="#a0205bad1987949fa63dc4d217e4e2e5da22c78580446133d737f326835778c076" class="m-doc">subGraph</a> }</span>
-            </dt>
-            <dd>VertexTypes Enumeration of vertex types.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">enum <a href="#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> { </span><span class="m-doc-wrap"><a href="#a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680" class="m-doc">GateAnd</a>,
-              <a href="#a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69" class="m-doc">GateNand</a>,
-              <a href="#a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2" class="m-doc">GateOr</a>,
-              <a href="#a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec" class="m-doc">GateNor</a>,
-              <a href="#a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64" class="m-doc">GateXor</a>,
-              <a href="#a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba" class="m-doc">GateXnor</a>,
-              <a href="#a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45" class="m-doc">GateNot</a>,
-              <a href="#a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e" class="m-doc">GateBuf</a>,
-              <a href="#a0963bd5066d6d6a58155d1ad79f56974ac2976809a913c91ef0f17c57113a882a" class="m-doc">GateDefault</a> }</span>
-            </dt>
-            <dd>Gates Enumeration of types of logical elements This enumeration defines the various types of logic elements that can be used in digital circuits.</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">enum <a href="#aac6be41377264526a1152c994f4f6265" class="m-doc">GenerationTypes</a> { </span><span class="m-doc-wrap"><a href="#aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d" class="m-doc">FromRandomTruthTable</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c" class="m-doc">RandLevel</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265a250ce0215fa3b94c1c5113edeedc6f4a" class="m-doc">RandLevelExperimental</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265a9ade0b294c4074fbe2f4d1da34a4134d" class="m-doc">NumOperation</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265a74feb9d0bc2dfab619f7413964796c4f" class="m-doc">Genetic</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f" class="m-doc">Summator</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b" class="m-doc">Comparison</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265a618b82de6e239a7e1603c26ec7fcb9f9" class="m-doc">Encoder</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265a4f15853557f908ae40fd266dccef4413" class="m-doc">Subtractor</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51" class="m-doc">Multiplexer</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265a9ec009dfeaf56f731f3943183fcc19e0" class="m-doc">Demultiplexer</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e" class="m-doc">Multiplier</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265abd35cc832d8523cd2d3284f0cd831897" class="m-doc">Decoder</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265a965c12cc1bd600342bea10723c5fa7a8" class="m-doc">Parity</a>,
-              <a href="#aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35" class="m-doc">ALU</a> }</span>
-            </dt>
-            <dd>GenerationTypes Enumeration of the types of digital circuit generation.</dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Enum documentation</h2>
-          <section class="m-doc-details" id="a0205bad1987949fa63dc4d217e4e2e5d"><div>
-            <h3>
-              enum <a href="#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc-self">VertexTypes</a>
-            </h3>
-            <p>VertexTypes Enumeration of vertex types.</p>
-            <table class="m-table m-fullwidth m-flat m-doc">
-              <thead><tr><th style="width: 1%">Enumerators</th><th></th></tr></thead>
-              <tbody>
-                <tr>
-                  <td><a href="#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528" class="m-doc-self" id="a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">input</a></td>
-                  <td>
-                  <p>input vertex</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545" class="m-doc-self" id="a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545">output</a></td>
-                  <td>
-                  <p>output vertex</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0205bad1987949fa63dc4d217e4e2e5da995640a12d5339aabee76a933fb5f519" class="m-doc-self" id="a0205bad1987949fa63dc4d217e4e2e5da995640a12d5339aabee76a933fb5f519">constant</a></td>
-                  <td>
-                  <p>constant vertex</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516" class="m-doc-self" id="a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516">gate</a></td>
-                  <td>
-                  <p>vertex representing a logical element</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0205bad1987949fa63dc4d217e4e2e5da22c78580446133d737f326835778c076" class="m-doc-self" id="a0205bad1987949fa63dc4d217e4e2e5da22c78580446133d737f326835778c076">subGraph</a></td>
-                  <td>
-                  <p>subgraph that makes up the vertex</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a0963bd5066d6d6a58155d1ad79f56974"><div>
-            <h3>
-              enum <a href="#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc-self">Gates</a>
-            </h3>
-            <p>Gates Enumeration of types of logical elements This enumeration defines the various types of logic elements that can be used in digital circuits.</p>
-            <table class="m-table m-fullwidth m-flat m-doc">
-              <thead><tr><th style="width: 1%">Enumerators</th><th></th></tr></thead>
-              <tbody>
-                <tr>
-                  <td><a href="#a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680" class="m-doc-self" id="a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680">GateAnd</a></td>
-                  <td>
-                  <p>logical element - &quot;AND&quot; (AND)</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69" class="m-doc-self" id="a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69">GateNand</a></td>
-                  <td>
-                  <p>logical element &quot;AND-NOT&quot; (NAND)</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2" class="m-doc-self" id="a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2">GateOr</a></td>
-                  <td>
-                  <p>logical element - &quot;OR&quot; (OR)</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec" class="m-doc-self" id="a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec">GateNor</a></td>
-                  <td>
-                  <p>logical element - &quot;OR-NOT&quot; (NOR)</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64" class="m-doc-self" id="a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64">GateXor</a></td>
-                  <td>
-                  <p>lofical element - &quot;Exclusive OR&quot; (XOR)</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba" class="m-doc-self" id="a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba">GateXnor</a></td>
-                  <td>
-                  <p>logical element - XNOR</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45" class="m-doc-self" id="a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45">GateNot</a></td>
-                  <td>
-                  <p>logical element - NOT</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e" class="m-doc-self" id="a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e">GateBuf</a></td>
-                  <td>
-                  <p>logical element - Buffer</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#a0963bd5066d6d6a58155d1ad79f56974ac2976809a913c91ef0f17c57113a882a" class="m-doc-self" id="a0963bd5066d6d6a58155d1ad79f56974ac2976809a913c91ef0f17c57113a882a">GateDefault</a></td>
-                  <td>
-                  <p>default logical element</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="aac6be41377264526a1152c994f4f6265"><div>
-            <h3>
-              enum <a href="#aac6be41377264526a1152c994f4f6265" class="m-doc-self">GenerationTypes</a>
-            </h3>
-            <p>GenerationTypes Enumeration of the types of digital circuit generation.</p>
-<p>This enumeration defines the various types of digital circuit generation that can be used to create a variety of logic circuits.</p>
-            <table class="m-table m-fullwidth m-flat m-doc">
-              <thead><tr><th style="width: 1%">Enumerators</th><th></th></tr></thead>
-              <tbody>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d">FromRandomTruthTable</a></td>
-                  <td>
-                  <p>Generating a circuit from a random truth table.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c">RandLevel</a></td>
-                  <td>
-                  <p>Random level (experimental)</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265a250ce0215fa3b94c1c5113edeedc6f4a" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265a250ce0215fa3b94c1c5113edeedc6f4a">RandLevelExperimental</a></td>
-                  <td>
-                  <p>Experimental random level generation.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265a9ade0b294c4074fbe2f4d1da34a4134d" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265a9ade0b294c4074fbe2f4d1da34a4134d">NumOperation</a></td>
-                  <td>
-                  <p>Generating a circuit with numerical operations.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265a74feb9d0bc2dfab619f7413964796c4f" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265a74feb9d0bc2dfab619f7413964796c4f">Genetic</a></td>
-                  <td>
-                  <p>Genetic generation of the circuit.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f">Summator</a></td>
-                  <td>
-                  <p>Adder.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b">Comparison</a></td>
-                  <td>
-                  <p>The comparison block.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265a618b82de6e239a7e1603c26ec7fcb9f9" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265a618b82de6e239a7e1603c26ec7fcb9f9">Encoder</a></td>
-                  <td>
-                  <p>The encoder.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265a4f15853557f908ae40fd266dccef4413" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265a4f15853557f908ae40fd266dccef4413">Subtractor</a></td>
-                  <td>
-                  <p>Subtractor.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51">Multiplexer</a></td>
-                  <td>
-                  <p>Multiplexer.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265a9ec009dfeaf56f731f3943183fcc19e0" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265a9ec009dfeaf56f731f3943183fcc19e0">Demultiplexer</a></td>
-                  <td>
-                  <p>Demultiplexer.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e">Multiplier</a></td>
-                  <td>
-                  <p>Multiplier.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265abd35cc832d8523cd2d3284f0cd831897" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265abd35cc832d8523cd2d3284f0cd831897">Decoder</a></td>
-                  <td>
-                  <p>Decoder.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265a965c12cc1bd600342bea10723c5fa7a8" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265a965c12cc1bd600342bea10723c5fa7a8">Parity</a></td>
-                  <td>
-                  <p>Parity.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="#aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35" class="m-doc-self" id="aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35">ALU</a></td>
-                  <td>
-                  <p>Arithmetic Logic Unit (ALU)</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div></section>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('Settings_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
+  <div class="headertitle">
+<div class="title">Settings.hpp File Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;map&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for Settings.hpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="Settings_8hpp__incl.png" border="0" usemap="#asrc_2settings_2Settings_8hpp" alt=""/></div>
+<map name="asrc_2settings_2Settings_8hpp" id="asrc_2settings_2Settings_8hpp">
+<area shape="rect" title=" " alt="" coords="119,5,302,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,56,107"/>
+<area shape="rect" title=" " alt="" coords="80,80,157,107"/>
+<area shape="rect" title=" " alt="" coords="181,80,240,107"/>
+<area shape="rect" title=" " alt="" coords="265,80,325,107"/>
+<area shape="rect" title=" " alt="" coords="349,80,411,107"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="Settings_8hpp__dep__incl.png" border="0" usemap="#asrc_2settings_2Settings_8hppdep" alt=""/></div>
+<map name="asrc_2settings_2Settings_8hppdep" id="asrc_2settings_2Settings_8hppdep">
+<area shape="rect" title=" " alt="" coords="4604,5,4787,32"/>
+<area shape="rect" href="OrientedGraph_8hpp.html" title=" " alt="" coords="2633,169,2787,211"/>
+<area shape="rect" href="GraphVertexBase_8hpp.html" title=" " alt="" coords="2067,259,2275,300"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html" title=" " alt="" coords="5160,445,5364,471"/>
+<area shape="rect" href="DataBaseGenerator_8hpp.html" title=" " alt="" coords="4649,266,4913,293"/>
+<area shape="rect" href="SimpleGenerators_8hpp.html" title="TO DO: Description generatorNumOperation TO DO: check and change the body if necessary generatorSumma..." alt="" coords="2989,259,3159,300"/>
+<area shape="rect" href="enums_8hpp.html" title=" " alt="" coords="3104,80,3247,121"/>
+<area shape="rect" href="TruthTable_8hpp.html" title=" " alt="" coords="4017,169,4206,211"/>
+<area shape="rect" href="ChromosomeType_8hpp.html" title=" " alt="" coords="4442,348,4613,389"/>
+<area shape="rect" href="DataBaseGeneratorParameters_8hpp.html" title=" " alt="" coords="4891,169,5129,211"/>
+<area shape="rect" href="GenerationParameters_8hpp.html" title=" " alt="" coords="4915,80,5105,121"/>
+<area shape="rect" href="Settings_8cpp.html" title=" " alt="" coords="5350,87,5531,114"/>
+<area shape="rect" href="SettingsTests_8cpp.html" title=" " alt="" coords="5556,80,5739,121"/>
+<area shape="rect" href="CircuitGenGenerator_8hpp.html" title=" " alt="" coords="2747,259,2934,300"/>
+<area shape="rect" href="OrientedGraph_8cpp.html" title=" " alt="" coords="2343,437,2533,479"/>
+<area shape="rect" href="GraphVertexOutputTests_8cpp.html" title=" " alt="" coords="2067,437,2319,479"/>
+<area shape="rect" href="Parser_8hpp.html" title=" " alt="" coords="2499,348,2641,389"/>
+<area shape="rect" href="SimpleGenerators_8cpp.html" title=" " alt="" coords="2775,437,2946,479"/>
+<area shape="rect" href="Circuit_8hpp.html" title=" " alt="" coords="3480,266,3639,293"/>
+<area shape="rect" href="OrientedGraphTests_8cpp.html" title=" " alt="" coords="2400,259,2623,300"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="2717,355,2823,382"/>
+<area shape="rect" href="GraphVertex_8hpp.html" title="TO DO: Maybe Description some virtual methods for Graph&#39;s classes, such as GraphVertexGates." alt="" coords="1490,348,1666,389"/>
+<area shape="rect" href="GraphVertexBase_8cpp.html" title=" " alt="" coords="1259,348,1465,389"/>
+<area shape="rect" href="GraphVertexConstant_8cpp.html" title=" " alt="" coords="1096,437,1329,479"/>
+<area shape="rect" href="GraphVertexGates_8cpp.html" title=" " alt="" coords="1354,437,1567,479"/>
+<area shape="rect" href="GraphVertexInput_8cpp.html" title=" " alt="" coords="1591,437,1799,479"/>
+<area shape="rect" href="GraphVertexOutput_8cpp.html" title=" " alt="" coords="1823,437,2042,479"/>
+<area shape="rect" href="GraphVertexSubGraph_8cpp.html" title=" " alt="" coords="5,437,244,479"/>
+<area shape="rect" href="GraphVertexConstantTests_8cpp.html" title=" " alt="" coords="269,437,535,479"/>
+<area shape="rect" href="GraphVertexGatesTests_8cpp.html" title=" " alt="" coords="560,437,807,479"/>
+<area shape="rect" href="GraphVertexInputTests_8cpp.html" title=" " alt="" coords="831,437,1072,479"/>
+<area shape="rect" href="Parser_8cpp.html" title=" " alt="" coords="2608,437,2751,479"/>
+<area shape="rect" href="DataBaseGenerator_8cpp.html" title=" " alt="" coords="3423,899,3685,925"/>
+<area shape="rect" href="AuxiliaryMethods_8hpp.html" title="TODO: ToEnum TODO: if need LineReader TODO: if need CopyDirectory." alt="" coords="3661,348,3833,389"/>
+<area shape="rect" href="Circuit_8cpp.html" title=" " alt="" coords="3357,445,3516,471"/>
+<area shape="rect" href="GenGenerator_8hpp.html" title=" " alt="" coords="3889,809,4059,851"/>
+<area shape="rect" href="CircuitTests_8cpp.html" title=" " alt="" coords="3426,348,3586,389"/>
+<area shape="rect" href="DataBaseGeneratorTests_8cpp.html" title=" " alt="" coords="4011,348,4212,389"/>
+<area shape="rect" href="TruthTable_8cpp.html" title=" " alt="" coords="3592,437,3780,479"/>
+<area shape="rect" href="ParentsTruthTable_8hpp.html" title=" " alt="" coords="4763,437,4983,479"/>
+<area shape="rect" href="SelectionsTruthTable_8hpp.html" title=" " alt="" coords="3957,437,4215,479"/>
+<area shape="rect" href="Parents_8hpp.html" title=" " alt="" coords="4788,527,4957,568"/>
+<area shape="rect" href="RecombinationsTruthTable_8hpp.html" title=" " alt="" coords="4507,616,4740,672"/>
+<area shape="rect" href="Recombinations_8hpp.html" title=" " alt="" coords="4493,720,4754,761"/>
+<area shape="rect" href="Selections_8hpp.html" title=" " alt="" coords="3990,527,4182,568"/>
+<area shape="rect" href="SimpleGeneratorsTests_8cpp.html" title=" " alt="" coords="2949,348,3199,389"/>
+<area shape="rect" href="MutationTruthTable_8hpp.html" title=" " alt="" coords="4391,437,4637,479"/>
+<area shape="rect" href="TruthTableTests_8cpp.html" title=" " alt="" coords="3663,259,3885,300"/>
+<area shape="rect" href="Mutation_8hpp.html" title=" " alt="" coords="4506,527,4687,568"/>
+<area shape="rect" href="DataBaseGeneratorParameters_8cpp.html" title=" " alt="" coords="4937,259,5174,300"/>
+</map>
+</div>
+</div>
+<p><a href="Settings_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html">Settings</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a71bf501f63160ba5aa5adb9552290dc9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Settings_8hpp.html#a71bf501f63160ba5aa5adb9552290dc9">LibrariesTypes</a> { <a class="el" href="Settings_8hpp.html#a71bf501f63160ba5aa5adb9552290dc9abb1eba077962bf4055f96f72d94e8cab">SKY_LIB</a>
+ }</td></tr>
+<tr class="separator:a71bf501f63160ba5aa5adb9552290dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0205bad1987949fa63dc4d217e4e2e5d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a> { <br />
+&#160;&#160;<a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528">input</a>
+, <a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545">output</a>
+, <a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da995640a12d5339aabee76a933fb5f519">constant</a>
+, <a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516">gate</a>
+, <br />
+&#160;&#160;<a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5da22c78580446133d737f326835778c076">subGraph</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a0205bad1987949fa63dc4d217e4e2e5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">VertexTypes Enumeration of vertex types.  <a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">More...</a><br /></td></tr>
+<tr class="separator:a0205bad1987949fa63dc4d217e4e2e5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0963bd5066d6d6a58155d1ad79f56974"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a> { <br />
+&#160;&#160;<a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680">GateAnd</a>
+, <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69">GateNand</a>
+, <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2">GateOr</a>
+, <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec">GateNor</a>
+, <br />
+&#160;&#160;<a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64">GateXor</a>
+, <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba">GateXnor</a>
+, <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45">GateNot</a>
+, <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e">GateBuf</a>
+, <br />
+&#160;&#160;<a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974ac2976809a913c91ef0f17c57113a882a">GateDefault</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a0963bd5066d6d6a58155d1ad79f56974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gates Enumeration of types of logical elements This enumeration defines the various types of logic elements that can be used in digital circuits.  <a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">More...</a><br /></td></tr>
+<tr class="separator:a0963bd5066d6d6a58155d1ad79f56974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac6be41377264526a1152c994f4f6265"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265">GenerationTypes</a> { <br />
+&#160;&#160;<a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d">FromRandomTruthTable</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c">RandLevel</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a250ce0215fa3b94c1c5113edeedc6f4a">RandLevelExperimental</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a9ade0b294c4074fbe2f4d1da34a4134d">NumOperation</a>
+, <br />
+&#160;&#160;<a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a74feb9d0bc2dfab619f7413964796c4f">Genetic</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f">Summator</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b">Comparison</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a618b82de6e239a7e1603c26ec7fcb9f9">Encoder</a>
+, <br />
+&#160;&#160;<a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a4f15853557f908ae40fd266dccef4413">Subtractor</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51">Multiplexer</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a9ec009dfeaf56f731f3943183fcc19e0">Demultiplexer</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e">Multiplier</a>
+, <br />
+&#160;&#160;<a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265abd35cc832d8523cd2d3284f0cd831897">Decoder</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a965c12cc1bd600342bea10723c5fa7a8">Parity</a>
+, <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35">ALU</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:aac6be41377264526a1152c994f4f6265"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenerationTypes Enumeration of the types of digital circuit generation.  <a href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265">More...</a><br /></td></tr>
+<tr class="separator:aac6be41377264526a1152c994f4f6265"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a0963bd5066d6d6a58155d1ad79f56974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0963bd5066d6d6a58155d1ad79f56974">&#9670;&nbsp;</a></span>Gates</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gates Enumeration of types of logical elements This enumeration defines the various types of logic elements that can be used in digital circuits. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680"></a>GateAnd&#160;</td><td class="fielddoc"><p>logical element - "AND" (AND) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0963bd5066d6d6a58155d1ad79f56974af21a306ee30bb9dfb9ef3b4d47f16e69"></a>GateNand&#160;</td><td class="fielddoc"><p>logical element "AND-NOT" (NAND) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0963bd5066d6d6a58155d1ad79f56974ad19a5599fc0db4d0fab4305b4418c4f2"></a>GateOr&#160;</td><td class="fielddoc"><p>logical element - "OR" (OR) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0963bd5066d6d6a58155d1ad79f56974ade214b848a51f8e2d2047b5f3ab8f7ec"></a>GateNor&#160;</td><td class="fielddoc"><p>logical element - "OR-NOT" (NOR) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0963bd5066d6d6a58155d1ad79f56974aec2070cdd992fbeca28dd9c4c416fd64"></a>GateXor&#160;</td><td class="fielddoc"><p>lofical element - "Exclusive OR" (XOR) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0963bd5066d6d6a58155d1ad79f56974a40ac05fe631678158bada6453a6185ba"></a>GateXnor&#160;</td><td class="fielddoc"><p>logical element - XNOR </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45"></a>GateNot&#160;</td><td class="fielddoc"><p>logical element - NOT </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0963bd5066d6d6a58155d1ad79f56974af2c0e36c3abd940d27017e0d6966943e"></a>GateBuf&#160;</td><td class="fielddoc"><p>logical element - Buffer </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0963bd5066d6d6a58155d1ad79f56974ac2976809a913c91ef0f17c57113a882a"></a>GateDefault&#160;</td><td class="fielddoc"><p>default logical element </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="aac6be41377264526a1152c994f4f6265"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac6be41377264526a1152c994f4f6265">&#9670;&nbsp;</a></span>GenerationTypes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265">GenerationTypes</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>GenerationTypes Enumeration of the types of digital circuit generation. </p>
+<p>This enumeration defines the various types of digital circuit generation that can be used to create a variety of logic circuits. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265a703688a3f69abd6d6e48686d0f9b1a8d"></a>FromRandomTruthTable&#160;</td><td class="fielddoc"><p>Generating a circuit from a random truth table. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c"></a>RandLevel&#160;</td><td class="fielddoc"><p>Random level (experimental) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265a250ce0215fa3b94c1c5113edeedc6f4a"></a>RandLevelExperimental&#160;</td><td class="fielddoc"><p>Experimental random level generation. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265a9ade0b294c4074fbe2f4d1da34a4134d"></a>NumOperation&#160;</td><td class="fielddoc"><p>Generating a circuit with numerical operations. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265a74feb9d0bc2dfab619f7413964796c4f"></a>Genetic&#160;</td><td class="fielddoc"><p>Genetic generation of the circuit. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f"></a>Summator&#160;</td><td class="fielddoc"><p>Adder. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b"></a>Comparison&#160;</td><td class="fielddoc"><p>The comparison block. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265a618b82de6e239a7e1603c26ec7fcb9f9"></a>Encoder&#160;</td><td class="fielddoc"><p>The encoder. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265a4f15853557f908ae40fd266dccef4413"></a>Subtractor&#160;</td><td class="fielddoc"><p>Subtractor. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51"></a>Multiplexer&#160;</td><td class="fielddoc"><p>Multiplexer. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265a9ec009dfeaf56f731f3943183fcc19e0"></a>Demultiplexer&#160;</td><td class="fielddoc"><p>Demultiplexer. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e"></a>Multiplier&#160;</td><td class="fielddoc"><p>Multiplier. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265abd35cc832d8523cd2d3284f0cd831897"></a>Decoder&#160;</td><td class="fielddoc"><p>Decoder. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265a965c12cc1bd600342bea10723c5fa7a8"></a>Parity&#160;</td><td class="fielddoc"><p>Parity. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35"></a>ALU&#160;</td><td class="fielddoc"><p>Arithmetic Logic Unit (ALU) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a71bf501f63160ba5aa5adb9552290dc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71bf501f63160ba5aa5adb9552290dc9">&#9670;&nbsp;</a></span>LibrariesTypes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="Settings_8hpp.html#a71bf501f63160ba5aa5adb9552290dc9">LibrariesTypes</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a71bf501f63160ba5aa5adb9552290dc9abb1eba077962bf4055f96f72d94e8cab"></a>SKY_LIB&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a0205bad1987949fa63dc4d217e4e2e5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0205bad1987949fa63dc4d217e4e2e5d">&#9670;&nbsp;</a></span>VertexTypes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>VertexTypes Enumeration of vertex types. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0205bad1987949fa63dc4d217e4e2e5da37943061a284187ff6e555ac7093f528"></a>input&#160;</td><td class="fielddoc"><p>input vertex </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545"></a>output&#160;</td><td class="fielddoc"><p>output vertex </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0205bad1987949fa63dc4d217e4e2e5da995640a12d5339aabee76a933fb5f519"></a>constant&#160;</td><td class="fielddoc"><p>constant vertex </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0205bad1987949fa63dc4d217e4e2e5da5221c03ccb4065b74a01f3c3f1d93516"></a>gate&#160;</td><td class="fielddoc"><p>vertex representing a logical element </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0205bad1987949fa63dc4d217e4e2e5da22c78580446133d737f326835778c076"></a>subGraph&#160;</td><td class="fielddoc"><p>subgraph that makes up the vertex </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_ded1f21a39ae19e27d2bdf7bc3638045.html">settings</a></li><li class="navelem"><a class="el" href="Settings_8hpp.html">Settings.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

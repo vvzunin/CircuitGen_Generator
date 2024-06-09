@@ -1,338 +1,2839 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>GenerationParameters class | CircuitGen_Generator Desc of Backeknd</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: GenerationParameters Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">1.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          GenerationParameters <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GenerationParameters_8hpp.html">&lt;GenerationParameters.hpp&gt;</a></div>
-        </h1>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-<aside class="m-note m-dim"><h4><a href="todo.html#_todo000012" class="m-doc">Todo</a></h4><p>: To add desc some fields class <a href="classGenerationParameters.html" class="m-doc">GenerationParameters</a></p></aside><p>*&zwj;/</p><aside class="m-note m-dim"><h4><a href="todo.html#_todo000013" class="m-doc">Todo</a></h4><p>: To add desc some fields class <a href="classGenerationParameters.html" class="m-doc">GenerationParameters</a></p></aside><p>*&zwj;/</p>
-        <section id="typeless-methods">
-          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
-          <dl class="m-doc">
-            <dt id="a93ae4bae2bdba6db7b57d289e9d44e29">
-              <span class="m-doc-wrap-bumper"><a href="#a93ae4bae2bdba6db7b57d289e9d44e29" class="m-doc-self">GenerationParameters</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name,
-              const std::string&amp; i_requestId,
-              uint32_t i_inputs,
-              uint32_t i_outputs,
-              uint32_t i_iteration,
-              bool i_makeGraphMLClassic = false,
-              bool i_makeGraphMLPsedoABCD = false,
-              bool i_makeGraphMLOpenABCD = false)</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt id="a3220cd863174ccbfd31f4a7965759350">
-              <span class="m-doc-wrap-bumper">auto <a href="#a3220cd863174ccbfd31f4a7965759350" class="m-doc-self">getName</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a07db704beeefe9fb8958bd625ad6a6ad">
-              <span class="m-doc-wrap-bumper">void <a href="#a07db704beeefe9fb8958bd625ad6a6ad" class="m-doc-self">setName</a>(</span><span class="m-doc-wrap">const std::string&amp; i_name)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ab5c7b845f70600bdfb9cca6109aba209">
-              <span class="m-doc-wrap-bumper">auto <a href="#ab5c7b845f70600bdfb9cca6109aba209" class="m-doc-self">getRequestId</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ab5415cce0d7d4e0417491f460a0e3a3a">
-              <span class="m-doc-wrap-bumper">auto <a href="#ab5415cce0d7d4e0417491f460a0e3a3a" class="m-doc-self">getInputs</a>(</span><span class="m-doc-wrap">) const -&gt; uint32_t</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a0421d22d9323fdc6ef0c9ac2ea69e53a">
-              <span class="m-doc-wrap-bumper">void <a href="#a0421d22d9323fdc6ef0c9ac2ea69e53a" class="m-doc-self">setInputs</a>(</span><span class="m-doc-wrap">uint32_t i_inputs)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a1f3eb45bdbff9fddee1236d2f442a300">
-              <span class="m-doc-wrap-bumper">auto <a href="#a1f3eb45bdbff9fddee1236d2f442a300" class="m-doc-self">getOutputs</a>(</span><span class="m-doc-wrap">) const -&gt; uint32_t</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a5c830b0ae8588c80899a3a6df8f48a4b">
-              <span class="m-doc-wrap-bumper">void <a href="#a5c830b0ae8588c80899a3a6df8f48a4b" class="m-doc-self">setOutputs</a>(</span><span class="m-doc-wrap">uint32_t i_outputs)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ab867b15035b3cb2b87131feab25f5857">
-              <span class="m-doc-wrap-bumper">auto <a href="#ab867b15035b3cb2b87131feab25f5857" class="m-doc-self">getIteration</a>(</span><span class="m-doc-wrap">) const -&gt; uint32_t</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a1f6aa75be11b3197663bcefa91662135">
-              <span class="m-doc-wrap-bumper">void <a href="#a1f6aa75be11b3197663bcefa91662135" class="m-doc-self">setIteration</a>(</span><span class="m-doc-wrap">uint32_t i_iteration)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="aed2938223a2a7b8fddd87218abb189d4">
-              <span class="m-doc-wrap-bumper">auto <a href="#aed2938223a2a7b8fddd87218abb189d4" class="m-doc-self">getMakeGraphMLClassic</a>(</span><span class="m-doc-wrap">) const -&gt; bool</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="abc21152ae59f53741545d14075dbde3d">
-              <span class="m-doc-wrap-bumper">auto <a href="#abc21152ae59f53741545d14075dbde3d" class="m-doc-self">getMakeGraphMLPseudoABCD</a>(</span><span class="m-doc-wrap">) const -&gt; bool</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="aeccc0983840788f03ae4cd9e06f1c1f3">
-              <span class="m-doc-wrap-bumper">auto <a href="#aeccc0983840788f03ae4cd9e06f1c1f3" class="m-doc-self">getMakeGraphMLOpenABCD</a>(</span><span class="m-doc-wrap">) const -&gt; bool</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a07806a196e5976fce356ff2f3d91f822">
-              <span class="m-doc-wrap-bumper">auto <a href="#a07806a196e5976fce356ff2f3d91f822" class="m-doc-self">getSeed</a>(</span><span class="m-doc-wrap">) const -&gt; std::uint_fast32_t</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="adc3ea9fd2752d5631c44ead12ec97007">
-              <span class="m-doc-wrap-bumper">void <a href="#adc3ea9fd2752d5631c44ead12ec97007" class="m-doc-self">setSeed</a>(</span><span class="m-doc-wrap">std::uint_fast32_t i_seed)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a1f1a65d45fc7335c144794305a34a7f2">
-              <span class="m-doc-wrap-bumper">auto <a href="#a1f1a65d45fc7335c144794305a34a7f2" class="m-doc-self">getGatesInputsInfo</a>(</span><span class="m-doc-wrap">) const -&gt; std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="af718fc63c7efe40ec1ae38e68c328b73">
-              <span class="m-doc-wrap-bumper">void <a href="#af718fc63c7efe40ec1ae38e68c328b73" class="m-doc-self">setGatesInputInfo</a>(</span><span class="m-doc-wrap">const std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;&amp; i_gatesInputsInfo)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a2f4ad9ff5987e4d4d3a658e2f10fef83">
-              <span class="m-doc-wrap-bumper">auto <a href="#a2f4ad9ff5987e4d4d3a658e2f10fef83" class="m-doc-self">getCNF</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classCNNFromTruthTableParameters.html" class="m-doc">CNNFromTruthTableParameters</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ad9124167a78b118d3ecfe254ebdd984a">
-              <span class="m-doc-wrap-bumper">auto <a href="#ad9124167a78b118d3ecfe254ebdd984a" class="m-doc-self">getZhegalkin</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classzhegalkinFromTruthTableParameters.html" class="m-doc">zhegalkinFromTruthTableParameters</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a26921547cfbee88bd5a89cbebc109012">
-              <span class="m-doc-wrap-bumper">auto <a href="#a26921547cfbee88bd5a89cbebc109012" class="m-doc-self">getRandLevel</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorRandLevelParameters.html" class="m-doc">GeneratorRandLevelParameters</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a81882d5f752dd8a621483f38befab80a">
-              <span class="m-doc-wrap-bumper">auto <a href="#a81882d5f752dd8a621483f38befab80a" class="m-doc-self">getNumOperations</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorNumOperationParameters.html" class="m-doc">GeneratorNumOperationParameters</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a903b41beefe6e8295235ed8a7eb8aae6">
-              <span class="m-doc-wrap-bumper">auto <a href="#a903b41beefe6e8295235ed8a7eb8aae6" class="m-doc-self">getSummator</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorSummatorParameters.html" class="m-doc">GeneratorSummatorParameters</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a2d8cea359034ed45dfff44f32b39904b">
-              <span class="m-doc-wrap-bumper">auto <a href="#a2d8cea359034ed45dfff44f32b39904b" class="m-doc-self">getComparison</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorComparisonParameters.html" class="m-doc">GeneratorComparisonParameters</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="af8dab16d88edadfb06af56786af3b37e">
-              <span class="m-doc-wrap-bumper">auto <a href="#af8dab16d88edadfb06af56786af3b37e" class="m-doc-self">getSubtractor</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorSubtractorParameters.html" class="m-doc">GeneratorSubtractorParameters</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a45496b83544a8d17202ae34b4b2ea308">
-              <span class="m-doc-wrap-bumper">auto <a href="#a45496b83544a8d17202ae34b4b2ea308" class="m-doc-self">getALU</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneratorALUParameters.html" class="m-doc">GeneratorALUParameters</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ab66c082601d3c2e4fd3b664a66592b96">
-              <span class="m-doc-wrap-bumper">auto <a href="#ab66c082601d3c2e4fd3b664a66592b96" class="m-doc-self">getGenetic</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classGeneticParameters.html" class="m-doc">GeneticParameters</a></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a6a579996d93cf7232d818c48f8755eb3">
-              <span class="m-doc-wrap-bumper">void <a href="#a6a579996d93cf7232d818c48f8755eb3" class="m-doc-self">setCNFF</a>(</span><span class="m-doc-wrap">bool i_CNFF)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a1555432e7175794ef8a0c447496ddf9b">
-              <span class="m-doc-wrap-bumper">void <a href="#a1555432e7175794ef8a0c447496ddf9b" class="m-doc-self">setCNFT</a>(</span><span class="m-doc-wrap">bool i_CNFT)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="aa67f35e786d343ffcbeae198332093cd">
-              <span class="m-doc-wrap-bumper">void <a href="#aa67f35e786d343ffcbeae198332093cd" class="m-doc-self">setLimit</a>(</span><span class="m-doc-wrap">bool i_limit)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a1ce87963318d361d899f50612b653230">
-              <span class="m-doc-wrap-bumper">void <a href="#a1ce87963318d361d899f50612b653230" class="m-doc-self">setRandLevelParameters</a>(</span><span class="m-doc-wrap">uint32_t i_minLevel,
-              uint32_t i_maxLevel,
-              uint32_t i_minElements,
-              uint32_t i_maxElements)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ac07cfbfe9a6b1350251326c4db5d0451">
-              <span class="m-doc-wrap-bumper">void <a href="#ac07cfbfe9a6b1350251326c4db5d0451" class="m-doc-self">setNumOperationParameters</a>(</span><span class="m-doc-wrap">const std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, int32_t&gt;&amp; i_m,
-              bool i_LeaveEmptyOut)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a5a57d13129ceb1b1994be37bc41d3a87">
-              <span class="m-doc-wrap-bumper">void <a href="#a5a57d13129ceb1b1994be37bc41d3a87" class="m-doc-self">setSubtractorParameters</a>(</span><span class="m-doc-wrap">bool i_overflowIn,
-              bool i_overflowOut,
-              bool i_sub)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a4659e3014d366ff00d7e5c57011fa6c1">
-              <span class="m-doc-wrap-bumper">void <a href="#a4659e3014d366ff00d7e5c57011fa6c1" class="m-doc-self">setSummatorParameters</a>(</span><span class="m-doc-wrap">bool i_overflowIn,
-              bool i_overflowOut,
-              bool i_minus)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="ae3b6beac2abb151698fbd9dbc054ff64">
-              <span class="m-doc-wrap-bumper">void <a href="#ae3b6beac2abb151698fbd9dbc054ff64" class="m-doc-self">setComparisonParameters</a>(</span><span class="m-doc-wrap">bool i_compare0,
-              bool i_compare1,
-              bool i_compare2)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="af5f75407122515828eff6efc7676ee8a">
-              <span class="m-doc-wrap-bumper">void <a href="#af5f75407122515828eff6efc7676ee8a" class="m-doc-self">setALUParameters</a>(</span><span class="m-doc-wrap">bool i_ALL,
-              bool i_SUM,
-              bool i_SUB,
-              bool i_NSUM,
-              bool i_NSUB,
-              bool i_MULT,
-              bool i_COM,
-              bool i_AND,
-              bool i_NAND,
-              bool i_OR,
-              bool i_NOR,
-              bool i_XOR,
-              bool i_XNOR,
-              bool i_CNF,
-              bool i_RNL,
-              bool i_NUM_OP,
-              uint32_t i_minLevel,
-              uint32_t i_maxLevel,
-              uint32_t i_minElement,
-              uint32_t i_maxElement,
-              std::map&lt;<a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a>, int32_t&gt; i_m,
-              bool i_LeaveEmptyOut)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="aaa71d5307d34b8da2f64e45417c271b1">
-              <span class="m-doc-wrap-bumper">void <a href="#aaa71d5307d34b8da2f64e45417c271b1" class="m-doc-self">setZhegalkin</a>(</span><span class="m-doc-wrap">bool i_zhegalkin)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a209394218aeae719e5fb8f59cfcbdc47">
-              <span class="m-doc-wrap-bumper">void <a href="#a209394218aeae719e5fb8f59cfcbdc47" class="m-doc-self">setNumOfCycles</a>(</span><span class="m-doc-wrap">uint32_t i_numOfCycles)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a1a2c26f08606084ba3ce44a1d37136cf">
-              <span class="m-doc-wrap-bumper">void <a href="#a1a2c26f08606084ba3ce44a1d37136cf" class="m-doc-self">setPopulationSize</a>(</span><span class="m-doc-wrap">uint32_t i_populationSize)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a4420efff17813616b01f26f938ecd6d4">
-              <span class="m-doc-wrap-bumper">void <a href="#a4420efff17813616b01f26f938ecd6d4" class="m-doc-self">setRecombinationParameters</a>(</span><span class="m-doc-wrap"><a href="ParentsParameters_8hpp.html#a130c2b32927d9f98f3433218f8e84f75" class="m-doc">ParentsTypes</a> i_parentsTypes,
-              uint32_t i_tournamentNumber,
-              <a href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548" class="m-doc">RecombinationTypes</a> i_recombinationType,
-              uint32_t i_refPoints,
-              double maskProbability,
-              uint32_t i_recombinationNumber)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a75a03a428648e04fee7f5f001d9b03e4">
-              <span class="m-doc-wrap-bumper">void <a href="#a75a03a428648e04fee7f5f001d9b03e4" class="m-doc-self">setMutationParameters</a>(</span><span class="m-doc-wrap"><a href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8" class="m-doc">MutationTypes</a> i_mutationType,
-              double i_probabilityGen,
-              uint32_t i_exchangeType,
-              double i_probabilityTruthTable)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a38bbf5b37c007495119fd2fc027549c6">
-              <span class="m-doc-wrap-bumper">void <a href="#a38bbf5b37c007495119fd2fc027549c6" class="m-doc-self">setSelectionParameters</a>(</span><span class="m-doc-wrap"><a href="SelectionParameters_8hpp.html#a50daa29c84869b18e0b12d7456de94e2" class="m-doc">SelectionTypes</a> i_selectionType,
-              uint32_t i_numOfSurvivors)</span>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a3a8129ddff0a5f592c3046021f3c7daf">
-              <span class="m-doc-wrap-bumper">void <a href="#a3a8129ddff0a5f592c3046021f3c7daf" class="m-doc-self">setKeyEndProcessIndex</a>(</span><span class="m-doc-wrap">double i_keyEndProcessIndex)</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classGenerationParameters.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classGenerationParameters-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">GenerationParameters Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="GenerationParameters_8hpp_source.html">GenerationParameters.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for GenerationParameters:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters__coll__graph.png" border="0" usemap="#aGenerationParameters_coll__map" alt="Collaboration graph"/></div>
+<map name="aGenerationParameters_coll__map" id="aGenerationParameters_coll__map">
+<area shape="rect" title=" " alt="" coords="1043,997,1267,1353"/>
+<area shape="rect" href="classzhegalkinFromTruthTableParameters.html" title="zhegalkinFromTruthTableParameters" alt="" coords="5,689,264,781"/>
+<area shape="rect" href="classGeneratorComparisonParameters.html" title="class GeneratorComparisonParameters" alt="" coords="289,645,527,825"/>
+<area shape="rect" href="classGeneticParameters.html" title=" " alt="" coords="552,593,792,876"/>
+<area shape="rect" href="classRecombinationParameters.html" title=" " alt="" coords="320,219,560,487"/>
+<area shape="rect" href="classParentsParameters.html" title=" " alt="" coords="341,5,539,156"/>
+<area shape="rect" href="classSelectionParameters.html" title=" " alt="" coords="585,277,759,428"/>
+<area shape="rect" href="classMutationParameters.html" title=" " alt="" coords="783,226,987,479"/>
+<area shape="rect" href="classGeneratorALUParameters.html" title=" " alt="" coords="816,549,1003,920"/>
+<area shape="rect" href="classGeneratorNumOperationParameters.html" title="class GeneratorNumOperationParameters" alt="" coords="1027,652,1283,817"/>
+<area shape="rect" href="classGeneratorRandLevelParameters.html" title="class GeneratorRandLevelParameters" alt="" coords="1307,623,1536,847"/>
+<area shape="rect" href="classGeneratorSummatorParameters.html" title="GeneratorSummatorParameters." alt="" coords="1560,645,1789,825"/>
+<area shape="rect" href="classGeneratorSubtractorParameters.html" title=" " alt="" coords="1817,645,2045,825"/>
+<area shape="rect" href="classCNNFromTruthTableParameters.html" title="class CNNFromTruthTableParameters" alt="" coords="2079,652,2303,817"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a93ae4bae2bdba6db7b57d289e9d44e29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a93ae4bae2bdba6db7b57d289e9d44e29">GenerationParameters</a> (const std::string &amp;i_name, const std::string &amp;i_requestId, uint32_t i_inputs, uint32_t i_outputs, uint32_t i_iteration, bool i_makeGraphMLClassic=false, bool i_makeGraphMLPsedoABCD=false, bool i_makeGraphMLOpenABCD=false)</td></tr>
+<tr class="separator:a93ae4bae2bdba6db7b57d289e9d44e29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3220cd863174ccbfd31f4a7965759350"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350">getName</a> () const</td></tr>
+<tr class="separator:a3220cd863174ccbfd31f4a7965759350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07db704beeefe9fb8958bd625ad6a6ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a07db704beeefe9fb8958bd625ad6a6ad">setName</a> (const std::string &amp;i_name)</td></tr>
+<tr class="separator:a07db704beeefe9fb8958bd625ad6a6ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5c7b845f70600bdfb9cca6109aba209"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#ab5c7b845f70600bdfb9cca6109aba209">getRequestId</a> () const</td></tr>
+<tr class="separator:ab5c7b845f70600bdfb9cca6109aba209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5415cce0d7d4e0417491f460a0e3a3a"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#ab5415cce0d7d4e0417491f460a0e3a3a">getInputs</a> () const</td></tr>
+<tr class="separator:ab5415cce0d7d4e0417491f460a0e3a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0421d22d9323fdc6ef0c9ac2ea69e53a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a0421d22d9323fdc6ef0c9ac2ea69e53a">setInputs</a> (uint32_t i_inputs)</td></tr>
+<tr class="separator:a0421d22d9323fdc6ef0c9ac2ea69e53a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f3eb45bdbff9fddee1236d2f442a300"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a1f3eb45bdbff9fddee1236d2f442a300">getOutputs</a> () const</td></tr>
+<tr class="separator:a1f3eb45bdbff9fddee1236d2f442a300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c830b0ae8588c80899a3a6df8f48a4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a5c830b0ae8588c80899a3a6df8f48a4b">setOutputs</a> (uint32_t i_outputs)</td></tr>
+<tr class="separator:a5c830b0ae8588c80899a3a6df8f48a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab867b15035b3cb2b87131feab25f5857"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#ab867b15035b3cb2b87131feab25f5857">getIteration</a> () const</td></tr>
+<tr class="separator:ab867b15035b3cb2b87131feab25f5857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f6aa75be11b3197663bcefa91662135"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a1f6aa75be11b3197663bcefa91662135">setIteration</a> (uint32_t i_iteration)</td></tr>
+<tr class="separator:a1f6aa75be11b3197663bcefa91662135"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed2938223a2a7b8fddd87218abb189d4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#aed2938223a2a7b8fddd87218abb189d4">getMakeGraphMLClassic</a> () const</td></tr>
+<tr class="separator:aed2938223a2a7b8fddd87218abb189d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc21152ae59f53741545d14075dbde3d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#abc21152ae59f53741545d14075dbde3d">getMakeGraphMLPseudoABCD</a> () const</td></tr>
+<tr class="separator:abc21152ae59f53741545d14075dbde3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeccc0983840788f03ae4cd9e06f1c1f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#aeccc0983840788f03ae4cd9e06f1c1f3">getMakeGraphMLOpenABCD</a> () const</td></tr>
+<tr class="separator:aeccc0983840788f03ae4cd9e06f1c1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07806a196e5976fce356ff2f3d91f822"><td class="memItemLeft" align="right" valign="top">std::uint_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a07806a196e5976fce356ff2f3d91f822">getSeed</a> () const</td></tr>
+<tr class="separator:a07806a196e5976fce356ff2f3d91f822"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc3ea9fd2752d5631c44ead12ec97007"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#adc3ea9fd2752d5631c44ead12ec97007">setSeed</a> (std::uint_fast32_t i_seed)</td></tr>
+<tr class="separator:adc3ea9fd2752d5631c44ead12ec97007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1a65d45fc7335c144794305a34a7f2"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::vector&lt; int32_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a1f1a65d45fc7335c144794305a34a7f2">getGatesInputsInfo</a> () const</td></tr>
+<tr class="separator:a1f1a65d45fc7335c144794305a34a7f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af718fc63c7efe40ec1ae38e68c328b73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#af718fc63c7efe40ec1ae38e68c328b73">setGatesInputInfo</a> (const std::map&lt; std::string, std::vector&lt; int32_t &gt;&gt; &amp;i_gatesInputsInfo)</td></tr>
+<tr class="separator:af718fc63c7efe40ec1ae38e68c328b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f4ad9ff5987e4d4d3a658e2f10fef83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCNNFromTruthTableParameters.html">CNNFromTruthTableParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a2f4ad9ff5987e4d4d3a658e2f10fef83">getCNF</a> () const</td></tr>
+<tr class="separator:a2f4ad9ff5987e4d4d3a658e2f10fef83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9124167a78b118d3ecfe254ebdd984a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classzhegalkinFromTruthTableParameters.html">zhegalkinFromTruthTableParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#ad9124167a78b118d3ecfe254ebdd984a">getZhegalkin</a> () const</td></tr>
+<tr class="separator:ad9124167a78b118d3ecfe254ebdd984a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26921547cfbee88bd5a89cbebc109012"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorRandLevelParameters.html">GeneratorRandLevelParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a26921547cfbee88bd5a89cbebc109012">getRandLevel</a> () const</td></tr>
+<tr class="separator:a26921547cfbee88bd5a89cbebc109012"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81882d5f752dd8a621483f38befab80a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorNumOperationParameters.html">GeneratorNumOperationParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a81882d5f752dd8a621483f38befab80a">getNumOperations</a> () const</td></tr>
+<tr class="separator:a81882d5f752dd8a621483f38befab80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a903b41beefe6e8295235ed8a7eb8aae6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorSummatorParameters.html">GeneratorSummatorParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a903b41beefe6e8295235ed8a7eb8aae6">getSummator</a> () const</td></tr>
+<tr class="separator:a903b41beefe6e8295235ed8a7eb8aae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d8cea359034ed45dfff44f32b39904b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorComparisonParameters.html">GeneratorComparisonParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a2d8cea359034ed45dfff44f32b39904b">getComparison</a> () const</td></tr>
+<tr class="separator:a2d8cea359034ed45dfff44f32b39904b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8dab16d88edadfb06af56786af3b37e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorSubtractorParameters.html">GeneratorSubtractorParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#af8dab16d88edadfb06af56786af3b37e">getSubtractor</a> () const</td></tr>
+<tr class="separator:af8dab16d88edadfb06af56786af3b37e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45496b83544a8d17202ae34b4b2ea308"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorALUParameters.html">GeneratorALUParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a45496b83544a8d17202ae34b4b2ea308">getALU</a> () const</td></tr>
+<tr class="separator:a45496b83544a8d17202ae34b4b2ea308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab66c082601d3c2e4fd3b664a66592b96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneticParameters.html">GeneticParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#ab66c082601d3c2e4fd3b664a66592b96">getGenetic</a> () const</td></tr>
+<tr class="separator:ab66c082601d3c2e4fd3b664a66592b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a579996d93cf7232d818c48f8755eb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a6a579996d93cf7232d818c48f8755eb3">setCNFF</a> (bool i_CNFF)</td></tr>
+<tr class="separator:a6a579996d93cf7232d818c48f8755eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1555432e7175794ef8a0c447496ddf9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a1555432e7175794ef8a0c447496ddf9b">setCNFT</a> (bool i_CNFT)</td></tr>
+<tr class="separator:a1555432e7175794ef8a0c447496ddf9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa67f35e786d343ffcbeae198332093cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#aa67f35e786d343ffcbeae198332093cd">setLimit</a> (bool i_limit)</td></tr>
+<tr class="separator:aa67f35e786d343ffcbeae198332093cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ce87963318d361d899f50612b653230"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a1ce87963318d361d899f50612b653230">setRandLevelParameters</a> (uint32_t i_minLevel, uint32_t i_maxLevel, uint32_t i_minElements, uint32_t i_maxElements)</td></tr>
+<tr class="separator:a1ce87963318d361d899f50612b653230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac07cfbfe9a6b1350251326c4db5d0451"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#ac07cfbfe9a6b1350251326c4db5d0451">setNumOperationParameters</a> (const std::map&lt; <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a>, int32_t &gt; &amp;i_m, bool i_LeaveEmptyOut)</td></tr>
+<tr class="separator:ac07cfbfe9a6b1350251326c4db5d0451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a57d13129ceb1b1994be37bc41d3a87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a5a57d13129ceb1b1994be37bc41d3a87">setSubtractorParameters</a> (bool i_overflowIn, bool i_overflowOut, bool i_sub)</td></tr>
+<tr class="separator:a5a57d13129ceb1b1994be37bc41d3a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4659e3014d366ff00d7e5c57011fa6c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a4659e3014d366ff00d7e5c57011fa6c1">setSummatorParameters</a> (bool i_overflowIn, bool i_overflowOut, bool i_minus)</td></tr>
+<tr class="separator:a4659e3014d366ff00d7e5c57011fa6c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3b6beac2abb151698fbd9dbc054ff64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#ae3b6beac2abb151698fbd9dbc054ff64">setComparisonParameters</a> (bool i_compare0, bool i_compare1, bool i_compare2)</td></tr>
+<tr class="separator:ae3b6beac2abb151698fbd9dbc054ff64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5f75407122515828eff6efc7676ee8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#af5f75407122515828eff6efc7676ee8a">setALUParameters</a> (bool i_ALL, bool i_SUM, bool i_SUB, bool i_NSUM, bool i_NSUB, bool i_MULT, bool i_COM, bool i_AND, bool i_NAND, bool i_OR, bool i_NOR, bool i_XOR, bool i_XNOR, bool i_CNF, bool i_RNL, bool i_NUM_OP, uint32_t i_minLevel, uint32_t i_maxLevel, uint32_t i_minElement, uint32_t i_maxElement, std::map&lt; <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a>, int32_t &gt; i_m, bool i_LeaveEmptyOut)</td></tr>
+<tr class="separator:af5f75407122515828eff6efc7676ee8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa71d5307d34b8da2f64e45417c271b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#aaa71d5307d34b8da2f64e45417c271b1">setZhegalkin</a> (bool i_zhegalkin)</td></tr>
+<tr class="separator:aaa71d5307d34b8da2f64e45417c271b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a209394218aeae719e5fb8f59cfcbdc47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a209394218aeae719e5fb8f59cfcbdc47">setNumOfCycles</a> (uint32_t i_numOfCycles)</td></tr>
+<tr class="separator:a209394218aeae719e5fb8f59cfcbdc47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a2c26f08606084ba3ce44a1d37136cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a1a2c26f08606084ba3ce44a1d37136cf">setPopulationSize</a> (uint32_t i_populationSize)</td></tr>
+<tr class="separator:a1a2c26f08606084ba3ce44a1d37136cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4420efff17813616b01f26f938ecd6d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a4420efff17813616b01f26f938ecd6d4">setRecombinationParameters</a> (<a class="el" href="ParentsParameters_8hpp.html#a130c2b32927d9f98f3433218f8e84f75">ParentsTypes</a> i_parentsTypes, uint32_t i_tournamentNumber, <a class="el" href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548">RecombinationTypes</a> i_recombinationType, uint32_t i_refPoints, double maskProbability, uint32_t i_recombinationNumber)</td></tr>
+<tr class="separator:a4420efff17813616b01f26f938ecd6d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75a03a428648e04fee7f5f001d9b03e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a75a03a428648e04fee7f5f001d9b03e4">setMutationParameters</a> (<a class="el" href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8">MutationTypes</a> i_mutationType, double i_probabilityGen, uint32_t i_exchangeType, double i_probabilityTruthTable)</td></tr>
+<tr class="separator:a75a03a428648e04fee7f5f001d9b03e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38bbf5b37c007495119fd2fc027549c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a38bbf5b37c007495119fd2fc027549c6">setSelectionParameters</a> (<a class="el" href="SelectionParameters_8hpp.html#a50daa29c84869b18e0b12d7456de94e2">SelectionTypes</a> i_selectionType, uint32_t i_numOfSurvivors)</td></tr>
+<tr class="separator:a38bbf5b37c007495119fd2fc027549c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a8129ddff0a5f592c3046021f3c7daf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a3a8129ddff0a5f592c3046021f3c7daf">setKeyEndProcessIndex</a> (double i_keyEndProcessIndex)</td></tr>
+<tr class="separator:a3a8129ddff0a5f592c3046021f3c7daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a4f5a434e76f4f2d9806cf25666d918e2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a4f5a434e76f4f2d9806cf25666d918e2">d_name</a> = &quot;&quot;</td></tr>
+<tr class="separator:a4f5a434e76f4f2d9806cf25666d918e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f843e685a83b353b2909b1d5c2f4152"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a0f843e685a83b353b2909b1d5c2f4152">d_requestId</a></td></tr>
+<tr class="separator:a0f843e685a83b353b2909b1d5c2f4152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0550ce658f8c26917be67412b615a4da"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a0550ce658f8c26917be67412b615a4da">d_inputs</a> = 0</td></tr>
+<tr class="separator:a0550ce658f8c26917be67412b615a4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee9506b5a654afb08bd59d5a20fe0144"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#aee9506b5a654afb08bd59d5a20fe0144">d_outputs</a> = 0</td></tr>
+<tr class="separator:aee9506b5a654afb08bd59d5a20fe0144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e606917d264caac129f8505088cad8c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a2e606917d264caac129f8505088cad8c">d_iteration</a> = 0</td></tr>
+<tr class="separator:a2e606917d264caac129f8505088cad8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41853a387c7403967109a1e1e03a4eca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a41853a387c7403967109a1e1e03a4eca">d_makeGraphMLClassic</a></td></tr>
+<tr class="separator:a41853a387c7403967109a1e1e03a4eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba5b59216b7491c8e4c0a3408fa8c075"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#aba5b59216b7491c8e4c0a3408fa8c075">d_makeGraphMLPseudoABCD</a></td></tr>
+<tr class="separator:aba5b59216b7491c8e4c0a3408fa8c075"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4fed4995f8149796c16ccbfb59a340f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#ae4fed4995f8149796c16ccbfb59a340f">d_makeGraphMLOpenABCD</a></td></tr>
+<tr class="separator:ae4fed4995f8149796c16ccbfb59a340f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37e2ecfe060f147156281c4c65844497"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::vector&lt; int32_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a37e2ecfe060f147156281c4c65844497">d_gatesInputsInfo</a></td></tr>
+<tr class="separator:a37e2ecfe060f147156281c4c65844497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ca04c8afd44be06f1b17b3132394503"><td class="memItemLeft" align="right" valign="top">std::uint_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a2ca04c8afd44be06f1b17b3132394503">d_seed</a> = 0</td></tr>
+<tr class="separator:a2ca04c8afd44be06f1b17b3132394503"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dabfecada6012d10562a8f1ebc67195"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCNNFromTruthTableParameters.html">CNNFromTruthTableParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a1dabfecada6012d10562a8f1ebc67195">d_cnfFromTruthTableParameters</a></td></tr>
+<tr class="separator:a1dabfecada6012d10562a8f1ebc67195"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a704bba4d8ab5c89d98dac94c6031ecff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classzhegalkinFromTruthTableParameters.html">zhegalkinFromTruthTableParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a704bba4d8ab5c89d98dac94c6031ecff">d_ZhegalkinFromTruthTableParameters</a></td></tr>
+<tr class="separator:a704bba4d8ab5c89d98dac94c6031ecff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ba5d709b75e68c17694f4be9c3c7b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorRandLevelParameters.html">GeneratorRandLevelParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a80ba5d709b75e68c17694f4be9c3c7b6">d_generatorRandLevelParameters</a></td></tr>
+<tr class="separator:a80ba5d709b75e68c17694f4be9c3c7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d7d08d03c87b94182efa41dc6472ba8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorNumOperationParameters.html">GeneratorNumOperationParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a2d7d08d03c87b94182efa41dc6472ba8">d_generatorNumOperationParameters</a></td></tr>
+<tr class="separator:a2d7d08d03c87b94182efa41dc6472ba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af87aa9cbcf8464aebce237a5765607de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorSummatorParameters.html">GeneratorSummatorParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#af87aa9cbcf8464aebce237a5765607de">d_generatorSummatorParameters</a></td></tr>
+<tr class="separator:af87aa9cbcf8464aebce237a5765607de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac535c1713c98821642a90a8fb280720b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorComparisonParameters.html">GeneratorComparisonParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#ac535c1713c98821642a90a8fb280720b">d_generatorComparisonParameters</a></td></tr>
+<tr class="separator:ac535c1713c98821642a90a8fb280720b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ca73198f6b93339fe8270adea2c2fe7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorSubtractorParameters.html">GeneratorSubtractorParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a1ca73198f6b93339fe8270adea2c2fe7">d_generatorSubtractorParameters</a></td></tr>
+<tr class="separator:a1ca73198f6b93339fe8270adea2c2fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac0abd8cf4d1da6816551c65977c0735"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneratorALUParameters.html">GeneratorALUParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#aac0abd8cf4d1da6816551c65977c0735">d_generatorALUParameters</a></td></tr>
+<tr class="separator:aac0abd8cf4d1da6816551c65977c0735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a152d1bb6843b402bd5b6c90ea5f8b6b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGeneticParameters.html">GeneticParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerationParameters.html#a152d1bb6843b402bd5b6c90ea5f8b6b9">d_geneticParameters</a></td></tr>
+<tr class="separator:a152d1bb6843b402bd5b6c90ea5f8b6b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>: To add desc some fields class <a class="el" href="classGenerationParameters.html">GenerationParameters</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d_name</td><td>Generation name </td></tr>
+    <tr><td class="paramname">d_requestId</td><td>request ID </td></tr>
+    <tr><td class="paramname">d_inputs</td><td>number of inputs </td></tr>
+    <tr><td class="paramname">d_outputs</td><td>number of outputs </td></tr>
+    <tr><td class="paramname">d_iteration</td><td>??? </td></tr>
+    <tr><td class="paramname">d_makeGraphMl</td><td>A Boolean value indicating whether to create graph ml files </td></tr>
+    <tr><td class="paramname">d_gatesInputsInfo</td><td>A mapping where the key is a string representing information about the inputs, and the value is a vector of integers representing information about the inputs for the gates***</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>*&zwj;/ </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>: To add desc some fields class <a class="el" href="classGenerationParameters.html">GenerationParameters</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d_name</td><td>Generation name </td></tr>
+    <tr><td class="paramname">d_requestId</td><td>request ID </td></tr>
+    <tr><td class="paramname">d_libraryName</td><td>library name*** </td></tr>
+    <tr><td class="paramname">d_inputs</td><td>number of inputs </td></tr>
+    <tr><td class="paramname">d_outputs</td><td>number of outputs </td></tr>
+    <tr><td class="paramname">d_iteration</td><td>??? </td></tr>
+    <tr><td class="paramname">d_calculateStatsAbc</td><td>A Boolean value indicating whether ABC statistics should be calculated </td></tr>
+    <tr><td class="paramname">d_makeOptimizedFiles</td><td>A Boolean value indicating whether optimized files should be created </td></tr>
+    <tr><td class="paramname">d_makeFirrtl</td><td>A Boolean value indicating whether FIRRTL files should be created </td></tr>
+    <tr><td class="paramname">d_makeBench</td><td>A Boolean value indicating whether to create Bench files </td></tr>
+    <tr><td class="paramname">d_gatesInputsInfo</td><td>A mapping where the key is a string representing information about the inputs, and the value is a vector of integers representing information about the inputs for the gates***</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>*&zwj;/ </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a93ae4bae2bdba6db7b57d289e9d44e29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93ae4bae2bdba6db7b57d289e9d44e29">&#9670;&nbsp;</a></span>GenerationParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GenerationParameters::GenerationParameters </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_requestId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_inputs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_outputs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_iteration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_makeGraphMLClassic</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_makeGraphMLPsedoABCD</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_makeGraphMLOpenABCD</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a45496b83544a8d17202ae34b4b2ea308"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45496b83544a8d17202ae34b4b2ea308">&#9670;&nbsp;</a></span>getALU()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorALUParameters.html">GeneratorALUParameters</a> GenerationParameters::getALU </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a45496b83544a8d17202ae34b4b2ea308_icgraph.png" border="0" usemap="#aclassGenerationParameters_a45496b83544a8d17202ae34b4b2ea308_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a45496b83544a8d17202ae34b4b2ea308_icgraph" id="aclassGenerationParameters_a45496b83544a8d17202ae34b4b2ea308_icgraph">
+<area shape="rect" title=" " alt="" coords="429,5,597,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="212,5,381,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,5,164,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2f4ad9ff5987e4d4d3a658e2f10fef83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f4ad9ff5987e4d4d3a658e2f10fef83">&#9670;&nbsp;</a></span>getCNF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCNNFromTruthTableParameters.html">CNNFromTruthTableParameters</a> GenerationParameters::getCNF </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a2f4ad9ff5987e4d4d3a658e2f10fef83_icgraph.png" border="0" usemap="#aclassGenerationParameters_a2f4ad9ff5987e4d4d3a658e2f10fef83_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a2f4ad9ff5987e4d4d3a658e2f10fef83_icgraph" id="aclassGenerationParameters_a2f4ad9ff5987e4d4d3a658e2f10fef83_icgraph">
+<area shape="rect" title=" " alt="" coords="491,13,659,54"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="212,5,443,61"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,13,164,54"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2d8cea359034ed45dfff44f32b39904b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d8cea359034ed45dfff44f32b39904b">&#9670;&nbsp;</a></span>getComparison()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorComparisonParameters.html">GeneratorComparisonParameters</a> GenerationParameters::getComparison </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a2d8cea359034ed45dfff44f32b39904b_icgraph.png" border="0" usemap="#aclassGenerationParameters_a2d8cea359034ed45dfff44f32b39904b_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a2d8cea359034ed45dfff44f32b39904b_icgraph" id="aclassGenerationParameters_a2d8cea359034ed45dfff44f32b39904b_icgraph">
+<area shape="rect" title=" " alt="" coords="481,5,649,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="212,5,433,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,5,164,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1f1a65d45fc7335c144794305a34a7f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f1a65d45fc7335c144794305a34a7f2">&#9670;&nbsp;</a></span>getGatesInputsInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, std::vector&lt;int32_t&gt; &gt; GenerationParameters::getGatesInputsInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a1f1a65d45fc7335c144794305a34a7f2_icgraph.png" border="0" usemap="#aclassGenerationParameters_a1f1a65d45fc7335c144794305a34a7f2_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a1f1a65d45fc7335c144794305a34a7f2_icgraph" id="aclassGenerationParameters_a1f1a65d45fc7335c144794305a34a7f2_icgraph">
+<area shape="rect" title=" " alt="" coords="559,447,727,488"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,413,469,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,479,464,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,544,484,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,609,451,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,675,467,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,740,511,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,805,467,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,447,164,488"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab66c082601d3c2e4fd3b664a66592b96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab66c082601d3c2e4fd3b664a66592b96">&#9670;&nbsp;</a></span>getGenetic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneticParameters.html">GeneticParameters</a> GenerationParameters::getGenetic </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_ab66c082601d3c2e4fd3b664a66592b96_icgraph.png" border="0" usemap="#aclassGenerationParameters_ab66c082601d3c2e4fd3b664a66592b96_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_ab66c082601d3c2e4fd3b664a66592b96_icgraph" id="aclassGenerationParameters_ab66c082601d3c2e4fd3b664a66592b96_icgraph">
+<area shape="rect" title=" " alt="" coords="453,5,621,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="212,5,405,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,5,164,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab5415cce0d7d4e0417491f460a0e3a3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5415cce0d7d4e0417491f460a0e3a3a">&#9670;&nbsp;</a></span>getInputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t GenerationParameters::getInputs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_ab5415cce0d7d4e0417491f460a0e3a3a_icgraph.png" border="0" usemap="#aclassGenerationParameters_ab5415cce0d7d4e0417491f460a0e3a3a_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_ab5415cce0d7d4e0417491f460a0e3a3a_icgraph" id="aclassGenerationParameters_ab5415cce0d7d4e0417491f460a0e3a3a_icgraph">
+<area shape="rect" title=" " alt="" coords="559,413,727,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,201,459,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,267,477,323"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,348,469,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,413,464,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,479,484,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,544,451,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,609,467,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,675,511,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,805,467,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,413,164,455"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab867b15035b3cb2b87131feab25f5857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab867b15035b3cb2b87131feab25f5857">&#9670;&nbsp;</a></span>getIteration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t GenerationParameters::getIteration </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aed2938223a2a7b8fddd87218abb189d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed2938223a2a7b8fddd87218abb189d4">&#9670;&nbsp;</a></span>getMakeGraphMLClassic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GenerationParameters::getMakeGraphMLClassic </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_aed2938223a2a7b8fddd87218abb189d4_icgraph.png" border="0" usemap="#aclassGenerationParameters_aed2938223a2a7b8fddd87218abb189d4_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_aed2938223a2a7b8fddd87218abb189d4_icgraph" id="aclassGenerationParameters_aed2938223a2a7b8fddd87218abb189d4_icgraph">
+<area shape="rect" title=" " alt="" coords="559,479,749,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aeccc0983840788f03ae4cd9e06f1c1f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeccc0983840788f03ae4cd9e06f1c1f3">&#9670;&nbsp;</a></span>getMakeGraphMLOpenABCD()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GenerationParameters::getMakeGraphMLOpenABCD </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_aeccc0983840788f03ae4cd9e06f1c1f3_icgraph.png" border="0" usemap="#aclassGenerationParameters_aeccc0983840788f03ae4cd9e06f1c1f3_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_aeccc0983840788f03ae4cd9e06f1c1f3_icgraph" id="aclassGenerationParameters_aeccc0983840788f03ae4cd9e06f1c1f3_icgraph">
+<area shape="rect" title=" " alt="" coords="559,479,773,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abc21152ae59f53741545d14075dbde3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc21152ae59f53741545d14075dbde3d">&#9670;&nbsp;</a></span>getMakeGraphMLPseudoABCD()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GenerationParameters::getMakeGraphMLPseudoABCD </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_abc21152ae59f53741545d14075dbde3d_icgraph.png" border="0" usemap="#aclassGenerationParameters_abc21152ae59f53741545d14075dbde3d_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_abc21152ae59f53741545d14075dbde3d_icgraph" id="aclassGenerationParameters_abc21152ae59f53741545d14075dbde3d_icgraph">
+<area shape="rect" title=" " alt="" coords="559,479,787,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3220cd863174ccbfd31f4a7965759350"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3220cd863174ccbfd31f4a7965759350">&#9670;&nbsp;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GenerationParameters::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a3220cd863174ccbfd31f4a7965759350_icgraph.png" border="0" usemap="#aclassGenerationParameters_a3220cd863174ccbfd31f4a7965759350_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a3220cd863174ccbfd31f4a7965759350_icgraph" id="aclassGenerationParameters_a3220cd863174ccbfd31f4a7965759350_icgraph">
+<area shape="rect" title=" " alt="" coords="559,512,727,553"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3aa3041280c117db599b1c21a87584c1" title="generateDataBaseFromRandomTruthTable The generate DataBase From Random Truth Table method of the Data..." alt="" coords="275,1001,448,1043"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a81882d5f752dd8a621483f38befab80a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81882d5f752dd8a621483f38befab80a">&#9670;&nbsp;</a></span>getNumOperations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorNumOperationParameters.html">GeneratorNumOperationParameters</a> GenerationParameters::getNumOperations </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a81882d5f752dd8a621483f38befab80a_icgraph.png" border="0" usemap="#aclassGenerationParameters_a81882d5f752dd8a621483f38befab80a_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a81882d5f752dd8a621483f38befab80a_icgraph" id="aclassGenerationParameters_a81882d5f752dd8a621483f38befab80a_icgraph">
+<area shape="rect" title=" " alt="" coords="505,5,673,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="212,5,457,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,5,164,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1f3eb45bdbff9fddee1236d2f442a300"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f3eb45bdbff9fddee1236d2f442a300">&#9670;&nbsp;</a></span>getOutputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t GenerationParameters::getOutputs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a1f3eb45bdbff9fddee1236d2f442a300_icgraph.png" border="0" usemap="#aclassGenerationParameters_a1f3eb45bdbff9fddee1236d2f442a300_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a1f3eb45bdbff9fddee1236d2f442a300_icgraph" id="aclassGenerationParameters_a1f3eb45bdbff9fddee1236d2f442a300_icgraph">
+<area shape="rect" title=" " alt="" coords="559,181,727,223"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,71,479,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,137,477,193"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,217,484,259"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,283,467,324"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,348,511,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,181,164,223"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a26921547cfbee88bd5a89cbebc109012"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26921547cfbee88bd5a89cbebc109012">&#9670;&nbsp;</a></span>getRandLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorRandLevelParameters.html">GeneratorRandLevelParameters</a> GenerationParameters::getRandLevel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a26921547cfbee88bd5a89cbebc109012_icgraph.png" border="0" usemap="#aclassGenerationParameters_a26921547cfbee88bd5a89cbebc109012_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a26921547cfbee88bd5a89cbebc109012_icgraph" id="aclassGenerationParameters_a26921547cfbee88bd5a89cbebc109012_icgraph">
+<area shape="rect" title=" " alt="" coords="559,39,727,80"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,5,467,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,71,511,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,39,164,80"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab5c7b845f70600bdfb9cca6109aba209"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5c7b845f70600bdfb9cca6109aba209">&#9670;&nbsp;</a></span>getRequestId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GenerationParameters::getRequestId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_ab5c7b845f70600bdfb9cca6109aba209_icgraph.png" border="0" usemap="#aclassGenerationParameters_ab5c7b845f70600bdfb9cca6109aba209_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_ab5c7b845f70600bdfb9cca6109aba209_icgraph" id="aclassGenerationParameters_ab5c7b845f70600bdfb9cca6109aba209_icgraph">
+<area shape="rect" title=" " alt="" coords="227,5,395,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3aa3041280c117db599b1c21a87584c1" title="generateDataBaseFromRandomTruthTable The generate DataBase From Random Truth Table method of the Data..." alt="" coords="5,5,179,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a07806a196e5976fce356ff2f3d91f822"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07806a196e5976fce356ff2f3d91f822">&#9670;&nbsp;</a></span>getSeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::uint_fast32_t GenerationParameters::getSeed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a07806a196e5976fce356ff2f3d91f822_icgraph.png" border="0" usemap="#aclassGenerationParameters_a07806a196e5976fce356ff2f3d91f822_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a07806a196e5976fce356ff2f3d91f822_icgraph" id="aclassGenerationParameters_a07806a196e5976fce356ff2f3d91f822_icgraph">
+<area shape="rect" title=" " alt="" coords="559,447,727,488"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,413,469,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,479,464,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,544,484,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,609,451,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,675,467,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,740,511,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,805,467,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,447,164,488"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af8dab16d88edadfb06af56786af3b37e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8dab16d88edadfb06af56786af3b37e">&#9670;&nbsp;</a></span>getSubtractor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorSubtractorParameters.html">GeneratorSubtractorParameters</a> GenerationParameters::getSubtractor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_af8dab16d88edadfb06af56786af3b37e_icgraph.png" border="0" usemap="#aclassGenerationParameters_af8dab16d88edadfb06af56786af3b37e_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_af8dab16d88edadfb06af56786af3b37e_icgraph" id="aclassGenerationParameters_af8dab16d88edadfb06af56786af3b37e_icgraph">
+<area shape="rect" title=" " alt="" coords="471,5,639,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="212,5,423,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,5,164,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a903b41beefe6e8295235ed8a7eb8aae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a903b41beefe6e8295235ed8a7eb8aae6">&#9670;&nbsp;</a></span>getSummator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorSummatorParameters.html">GeneratorSummatorParameters</a> GenerationParameters::getSummator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a903b41beefe6e8295235ed8a7eb8aae6_icgraph.png" border="0" usemap="#aclassGenerationParameters_a903b41beefe6e8295235ed8a7eb8aae6_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a903b41beefe6e8295235ed8a7eb8aae6_icgraph" id="aclassGenerationParameters_a903b41beefe6e8295235ed8a7eb8aae6_icgraph">
+<area shape="rect" title=" " alt="" coords="471,5,639,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="212,5,423,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,5,164,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad9124167a78b118d3ecfe254ebdd984a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9124167a78b118d3ecfe254ebdd984a">&#9670;&nbsp;</a></span>getZhegalkin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classzhegalkinFromTruthTableParameters.html">zhegalkinFromTruthTableParameters</a> GenerationParameters::getZhegalkin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_ad9124167a78b118d3ecfe254ebdd984a_icgraph.png" border="0" usemap="#aclassGenerationParameters_ad9124167a78b118d3ecfe254ebdd984a_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_ad9124167a78b118d3ecfe254ebdd984a_icgraph" id="aclassGenerationParameters_ad9124167a78b118d3ecfe254ebdd984a_icgraph">
+<area shape="rect" title=" " alt="" coords="491,13,659,54"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="212,5,443,61"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,13,164,54"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af5f75407122515828eff6efc7676ee8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5f75407122515828eff6efc7676ee8a">&#9670;&nbsp;</a></span>setALUParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setALUParameters </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_ALL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_SUM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_SUB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_NSUM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_NSUB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_MULT</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_COM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_AND</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_NAND</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_OR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_NOR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_XOR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_XNOR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_CNF</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_RNL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_NUM_OP</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_minLevel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_maxLevel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_minElement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_maxElement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a>, int32_t &gt;&#160;</td>
+          <td class="paramname"><em>i_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_LeaveEmptyOut</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_af5f75407122515828eff6efc7676ee8a_cgraph.png" border="0" usemap="#aclassGenerationParameters_af5f75407122515828eff6efc7676ee8a_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_af5f75407122515828eff6efc7676ee8a_cgraph" id="aclassGenerationParameters_af5f75407122515828eff6efc7676ee8a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,692,173,733"/>
+<area shape="rect" href="classGeneratorALUParameters.html#af4756f18b8f286b89c8fb83ac9784fb1" title=" " alt="" coords="221,5,408,47"/>
+<area shape="rect" href="classGeneratorALUParameters.html#ac87e4da8a9f5ad9c98cf99879b6e6c31" title=" " alt="" coords="221,71,408,112"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a18b2791d1e6d948ce52331ea8d555507" title=" " alt="" coords="221,136,408,177"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a77cd97a07d53329ca5528049a533a156" title=" " alt="" coords="221,201,408,243"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a97a0b2541c227b04fdf012d31df7cd18" title=" " alt="" coords="221,267,408,308"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a0d48686254d46ad81d4c26a030397a6d" title=" " alt="" coords="221,332,408,373"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a5c987c458a5ef1a62fbc259748cbc99f" title=" " alt="" coords="221,397,408,439"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a025bda1ee0e0840c0e94972bbd05b634" title=" " alt="" coords="221,463,408,504"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a08d906376ee1ce8d4e828a98c642ec4b" title=" " alt="" coords="221,528,408,569"/>
+<area shape="rect" href="classGeneratorALUParameters.html#ae99c57b538c6e94ae2450ef131758a82" title=" " alt="" coords="221,593,408,635"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a230f393405edc837a3925f5638d703e5" title=" " alt="" coords="221,659,408,700"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a3f408741e56b0119165c3f0a766d6484" title=" " alt="" coords="221,724,408,765"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a102c7305556fd9b66d657280adcbd695" title=" " alt="" coords="221,789,408,831"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a55d9d06ba92546c5b388772b733d2f45" title=" " alt="" coords="221,855,408,896"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a909d0cefb998958e040c05f3d015157f" title=" " alt="" coords="221,920,408,961"/>
+<area shape="rect" href="classGeneratorALUParameters.html#ad0f75c03c5823a67291f152aed57c8e1" title=" " alt="" coords="221,985,408,1027"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a166f9c133b055a5e56298c5dc0a4342d" title=" " alt="" coords="221,1051,408,1092"/>
+<area shape="rect" href="classGeneratorALUParameters.html#af8be086484a4784d938800ec7a25f3e0" title=" " alt="" coords="221,1116,408,1157"/>
+<area shape="rect" href="classGeneratorALUParameters.html#aed4d6d62dca1af727cc58639d64ea084" title=" " alt="" coords="221,1181,408,1223"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a52c0772c285223c8694b2afd35c5d0e0" title=" " alt="" coords="221,1247,408,1288"/>
+<area shape="rect" href="classGeneratorALUParameters.html#ac5c5725278f50bf4b45a8971eaf31b44" title=" " alt="" coords="221,1312,408,1353"/>
+<area shape="rect" href="classGeneratorALUParameters.html#a3745ca1969609b1378576bb94cf03305" title=" " alt="" coords="221,1377,408,1419"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_af5f75407122515828eff6efc7676ee8a_icgraph.png" border="0" usemap="#aclassGenerationParameters_af5f75407122515828eff6efc7676ee8a_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_af5f75407122515828eff6efc7676ee8a_icgraph" id="aclassGenerationParameters_af5f75407122515828eff6efc7676ee8a_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,717,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6a579996d93cf7232d818c48f8755eb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a579996d93cf7232d818c48f8755eb3">&#9670;&nbsp;</a></span>setCNFF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setCNFF </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_CNFF</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a6a579996d93cf7232d818c48f8755eb3_cgraph.png" border="0" usemap="#aclassGenerationParameters_a6a579996d93cf7232d818c48f8755eb3_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a6a579996d93cf7232d818c48f8755eb3_cgraph" id="aclassGenerationParameters_a6a579996d93cf7232d818c48f8755eb3_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,173,47"/>
+<area shape="rect" href="classCNNFromTruthTableParameters.html#a30a92f73e9489fc11f9b004ab26fbbc1" title=" " alt="" coords="221,5,445,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a6a579996d93cf7232d818c48f8755eb3_icgraph.png" border="0" usemap="#aclassGenerationParameters_a6a579996d93cf7232d818c48f8755eb3_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a6a579996d93cf7232d818c48f8755eb3_icgraph" id="aclassGenerationParameters_a6a579996d93cf7232d818c48f8755eb3_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,717,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1555432e7175794ef8a0c447496ddf9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1555432e7175794ef8a0c447496ddf9b">&#9670;&nbsp;</a></span>setCNFT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setCNFT </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_CNFT</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a1555432e7175794ef8a0c447496ddf9b_cgraph.png" border="0" usemap="#aclassGenerationParameters_a1555432e7175794ef8a0c447496ddf9b_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a1555432e7175794ef8a0c447496ddf9b_cgraph" id="aclassGenerationParameters_a1555432e7175794ef8a0c447496ddf9b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,173,47"/>
+<area shape="rect" href="classCNNFromTruthTableParameters.html#a78ca7dc99edcc5c6c244251b2919529b" title=" " alt="" coords="221,5,445,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a1555432e7175794ef8a0c447496ddf9b_icgraph.png" border="0" usemap="#aclassGenerationParameters_a1555432e7175794ef8a0c447496ddf9b_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a1555432e7175794ef8a0c447496ddf9b_icgraph" id="aclassGenerationParameters_a1555432e7175794ef8a0c447496ddf9b_icgraph">
+<area shape="rect" title=" " alt="" coords="549,104,717,145"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="DataBaseGeneratorTests_8cpp.html#a9d643dda903740ef37bd37fbefae007a" title=" " alt="" coords="417,137,471,163"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae3b6beac2abb151698fbd9dbc054ff64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3b6beac2abb151698fbd9dbc054ff64">&#9670;&nbsp;</a></span>setComparisonParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setComparisonParameters </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_compare0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_compare1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_compare2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64_cgraph.png" border="0" usemap="#aclassGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64_cgraph" id="aclassGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64_cgraph">
+<area shape="rect" title=" " alt="" coords="5,71,208,112"/>
+<area shape="rect" href="classGeneratorComparisonParameters.html#a7409c2905e0f6cd6a47e02f0c1b7d662" title=" " alt="" coords="256,5,495,47"/>
+<area shape="rect" href="classGeneratorComparisonParameters.html#aaf3c29c70b65dadc3209006bb0a9cb19" title=" " alt="" coords="256,71,495,112"/>
+<area shape="rect" href="classGeneratorComparisonParameters.html#a87b977c8eea8f95e2705d37162549196" title=" " alt="" coords="256,136,495,177"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64_icgraph.png" border="0" usemap="#aclassGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64_icgraph" id="aclassGenerationParameters_ae3b6beac2abb151698fbd9dbc054ff64_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,752,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af718fc63c7efe40ec1ae38e68c328b73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af718fc63c7efe40ec1ae38e68c328b73">&#9670;&nbsp;</a></span>setGatesInputInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setGatesInputInfo </td>
+          <td>(</td>
+          <td class="paramtype">const std::map&lt; std::string, std::vector&lt; int32_t &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>i_gatesInputsInfo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_af718fc63c7efe40ec1ae38e68c328b73_icgraph.png" border="0" usemap="#aclassGenerationParameters_af718fc63c7efe40ec1ae38e68c328b73_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_af718fc63c7efe40ec1ae38e68c328b73_icgraph" id="aclassGenerationParameters_af718fc63c7efe40ec1ae38e68c328b73_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,717,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0421d22d9323fdc6ef0c9ac2ea69e53a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0421d22d9323fdc6ef0c9ac2ea69e53a">&#9670;&nbsp;</a></span>setInputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setInputs </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_inputs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a0421d22d9323fdc6ef0c9ac2ea69e53a_icgraph.png" border="0" usemap="#aclassGenerationParameters_a0421d22d9323fdc6ef0c9ac2ea69e53a_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a0421d22d9323fdc6ef0c9ac2ea69e53a_icgraph" id="aclassGenerationParameters_a0421d22d9323fdc6ef0c9ac2ea69e53a_icgraph">
+<area shape="rect" title=" " alt="" coords="277,5,445,47"/>
+<area shape="rect" href="classDataBaseGeneratorParameters.html#a81a6588a4133df1509437d01cc2b969e" title="setInputs The method sets the number of input signals to generate the database" alt="" coords="5,5,229,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1f6aa75be11b3197663bcefa91662135"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f6aa75be11b3197663bcefa91662135">&#9670;&nbsp;</a></span>setIteration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setIteration </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_iteration</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a1f6aa75be11b3197663bcefa91662135_icgraph.png" border="0" usemap="#aclassGenerationParameters_a1f6aa75be11b3197663bcefa91662135_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a1f6aa75be11b3197663bcefa91662135_icgraph" id="aclassGenerationParameters_a1f6aa75be11b3197663bcefa91662135_icgraph">
+<area shape="rect" title=" " alt="" coords="277,5,445,47"/>
+<area shape="rect" href="classDataBaseGeneratorParameters.html#a66d024f4c811cd3e5d2fce81db378bf5" title="setIteration The method sets the iteration number for database generation" alt="" coords="5,5,229,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3a8129ddff0a5f592c3046021f3c7daf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a8129ddff0a5f592c3046021f3c7daf">&#9670;&nbsp;</a></span>setKeyEndProcessIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setKeyEndProcessIndex </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>i_keyEndProcessIndex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf_cgraph.png" border="0" usemap="#aclassGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf_cgraph" id="aclassGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,189,47"/>
+<area shape="rect" href="classGeneticParameters.html#a69d2a71967ac4446244bf488fa982ac5" title=" " alt="" coords="237,5,413,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf_icgraph.png" border="0" usemap="#aclassGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf_icgraph" id="aclassGenerationParameters_a3a8129ddff0a5f592c3046021f3c7daf_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,733,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa67f35e786d343ffcbeae198332093cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa67f35e786d343ffcbeae198332093cd">&#9670;&nbsp;</a></span>setLimit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setLimit </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_limit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_aa67f35e786d343ffcbeae198332093cd_cgraph.png" border="0" usemap="#aclassGenerationParameters_aa67f35e786d343ffcbeae198332093cd_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_aa67f35e786d343ffcbeae198332093cd_cgraph" id="aclassGenerationParameters_aa67f35e786d343ffcbeae198332093cd_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,173,47"/>
+<area shape="rect" href="classCNNFromTruthTableParameters.html#a8866163921b8186e86759a9a98ef1bab" title=" " alt="" coords="221,5,445,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a75a03a428648e04fee7f5f001d9b03e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75a03a428648e04fee7f5f001d9b03e4">&#9670;&nbsp;</a></span>setMutationParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setMutationParameters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8">MutationTypes</a>&#160;</td>
+          <td class="paramname"><em>i_mutationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>i_probabilityGen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_exchangeType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>i_probabilityTruthTable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a75a03a428648e04fee7f5f001d9b03e4_cgraph.png" border="0" usemap="#aclassGenerationParameters_a75a03a428648e04fee7f5f001d9b03e4_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a75a03a428648e04fee7f5f001d9b03e4_cgraph" id="aclassGenerationParameters_a75a03a428648e04fee7f5f001d9b03e4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,136,188,177"/>
+<area shape="rect" href="classMutationParameters.html#a1d00e62314ecdbe09181c6ac98598d48" title=" " alt="" coords="252,5,407,47"/>
+<area shape="rect" href="classGeneticParameters.html#a525ba7e07d9cb189c0ca014f56416dc8" title=" " alt="" coords="242,71,417,112"/>
+<area shape="rect" href="classMutationParameters.html#a4b05ee6984629a5f195fdeae6bbe3d8f" title=" " alt="" coords="252,136,407,177"/>
+<area shape="rect" href="classMutationParameters.html#aef42fd112cd556b1898c70513bfbf618" title=" " alt="" coords="252,201,407,243"/>
+<area shape="rect" href="classMutationParameters.html#a84c936b8d93924e9e5bd665a5137686a" title=" " alt="" coords="236,267,423,308"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a75a03a428648e04fee7f5f001d9b03e4_icgraph.png" border="0" usemap="#aclassGenerationParameters_a75a03a428648e04fee7f5f001d9b03e4_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a75a03a428648e04fee7f5f001d9b03e4_icgraph" id="aclassGenerationParameters_a75a03a428648e04fee7f5f001d9b03e4_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,732,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a07db704beeefe9fb8958bd625ad6a6ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07db704beeefe9fb8958bd625ad6a6ad">&#9670;&nbsp;</a></span>setName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a07db704beeefe9fb8958bd625ad6a6ad_icgraph.png" border="0" usemap="#aclassGenerationParameters_a07db704beeefe9fb8958bd625ad6a6ad_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a07db704beeefe9fb8958bd625ad6a6ad_icgraph" id="aclassGenerationParameters_a07db704beeefe9fb8958bd625ad6a6ad_icgraph">
+<area shape="rect" title=" " alt="" coords="277,5,445,47"/>
+<area shape="rect" href="classDataBaseGeneratorParameters.html#a46539c9183d979e5b3e71f5e142e444e" title="setName The method is used to set the name for database generation" alt="" coords="5,5,229,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a209394218aeae719e5fb8f59cfcbdc47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a209394218aeae719e5fb8f59cfcbdc47">&#9670;&nbsp;</a></span>setNumOfCycles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setNumOfCycles </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_numOfCycles</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a209394218aeae719e5fb8f59cfcbdc47_cgraph.png" border="0" usemap="#aclassGenerationParameters_a209394218aeae719e5fb8f59cfcbdc47_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a209394218aeae719e5fb8f59cfcbdc47_cgraph" id="aclassGenerationParameters_a209394218aeae719e5fb8f59cfcbdc47_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,173,47"/>
+<area shape="rect" href="classGeneticParameters.html#add12682270462c462d9b8b251a5b32e1" title=" " alt="" coords="221,5,376,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a209394218aeae719e5fb8f59cfcbdc47_icgraph.png" border="0" usemap="#aclassGenerationParameters_a209394218aeae719e5fb8f59cfcbdc47_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a209394218aeae719e5fb8f59cfcbdc47_icgraph" id="aclassGenerationParameters_a209394218aeae719e5fb8f59cfcbdc47_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,717,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac07cfbfe9a6b1350251326c4db5d0451"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac07cfbfe9a6b1350251326c4db5d0451">&#9670;&nbsp;</a></span>setNumOperationParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setNumOperationParameters </td>
+          <td>(</td>
+          <td class="paramtype">const std::map&lt; <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a>, int32_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>i_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_LeaveEmptyOut</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_ac07cfbfe9a6b1350251326c4db5d0451_cgraph.png" border="0" usemap="#aclassGenerationParameters_ac07cfbfe9a6b1350251326c4db5d0451_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_ac07cfbfe9a6b1350251326c4db5d0451_cgraph" id="aclassGenerationParameters_ac07cfbfe9a6b1350251326c4db5d0451_cgraph">
+<area shape="rect" title=" " alt="" coords="5,39,224,80"/>
+<area shape="rect" href="classGeneratorNumOperationParameters.html#a129c291513df4fb9aa2b9331a2a2b91a" title=" " alt="" coords="272,5,528,47"/>
+<area shape="rect" href="classGeneratorNumOperationParameters.html#ad68325580b032521adc95840aad58c62" title=" " alt="" coords="272,71,528,112"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_ac07cfbfe9a6b1350251326c4db5d0451_icgraph.png" border="0" usemap="#aclassGenerationParameters_ac07cfbfe9a6b1350251326c4db5d0451_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_ac07cfbfe9a6b1350251326c4db5d0451_icgraph" id="aclassGenerationParameters_ac07cfbfe9a6b1350251326c4db5d0451_icgraph">
+<area shape="rect" title=" " alt="" coords="549,104,768,145"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="DataBaseGeneratorTests_8cpp.html#a0185238c25b05a13685cc52554f1306f" title=" " alt="" coords="417,137,471,163"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5c830b0ae8588c80899a3a6df8f48a4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c830b0ae8588c80899a3a6df8f48a4b">&#9670;&nbsp;</a></span>setOutputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setOutputs </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_outputs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a5c830b0ae8588c80899a3a6df8f48a4b_icgraph.png" border="0" usemap="#aclassGenerationParameters_a5c830b0ae8588c80899a3a6df8f48a4b_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a5c830b0ae8588c80899a3a6df8f48a4b_icgraph" id="aclassGenerationParameters_a5c830b0ae8588c80899a3a6df8f48a4b_icgraph">
+<area shape="rect" title=" " alt="" coords="277,5,445,47"/>
+<area shape="rect" href="classDataBaseGeneratorParameters.html#abbeee5e54c662f852a9ef0a069bfca69" title="setOutputs The method sets the number of output signals to generate the database" alt="" coords="5,5,229,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1a2c26f08606084ba3ce44a1d37136cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a2c26f08606084ba3ce44a1d37136cf">&#9670;&nbsp;</a></span>setPopulationSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setPopulationSize </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_populationSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a1a2c26f08606084ba3ce44a1d37136cf_cgraph.png" border="0" usemap="#aclassGenerationParameters_a1a2c26f08606084ba3ce44a1d37136cf_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a1a2c26f08606084ba3ce44a1d37136cf_cgraph" id="aclassGenerationParameters_a1a2c26f08606084ba3ce44a1d37136cf_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,173,47"/>
+<area shape="rect" href="classGeneticParameters.html#acf594eeceb1c75740eb82594f86b5209" title=" " alt="" coords="221,5,376,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a1a2c26f08606084ba3ce44a1d37136cf_icgraph.png" border="0" usemap="#aclassGenerationParameters_a1a2c26f08606084ba3ce44a1d37136cf_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a1a2c26f08606084ba3ce44a1d37136cf_icgraph" id="aclassGenerationParameters_a1a2c26f08606084ba3ce44a1d37136cf_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,717,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1ce87963318d361d899f50612b653230"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ce87963318d361d899f50612b653230">&#9670;&nbsp;</a></span>setRandLevelParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setRandLevelParameters </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_minLevel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_maxLevel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_minElements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_maxElements</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a1ce87963318d361d899f50612b653230_cgraph.png" border="0" usemap="#aclassGenerationParameters_a1ce87963318d361d899f50612b653230_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a1ce87963318d361d899f50612b653230_cgraph" id="aclassGenerationParameters_a1ce87963318d361d899f50612b653230_cgraph">
+<area shape="rect" title=" " alt="" coords="5,104,197,145"/>
+<area shape="rect" href="classGeneratorRandLevelParameters.html#aabafd18d4c8da78698406fee37ac9dfe" title=" " alt="" coords="245,5,475,47"/>
+<area shape="rect" href="classGeneratorRandLevelParameters.html#af4d0a734a31aca6fe5a469a1b36f0303" title=" " alt="" coords="245,71,475,112"/>
+<area shape="rect" href="classGeneratorRandLevelParameters.html#a807cf4b754a0bc344072b7e076bdf035" title=" " alt="" coords="245,136,475,177"/>
+<area shape="rect" href="classGeneratorRandLevelParameters.html#a8bca9577a428463ab94b1e7632c21637" title=" " alt="" coords="245,201,475,243"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a1ce87963318d361d899f50612b653230_icgraph.png" border="0" usemap="#aclassGenerationParameters_a1ce87963318d361d899f50612b653230_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a1ce87963318d361d899f50612b653230_icgraph" id="aclassGenerationParameters_a1ce87963318d361d899f50612b653230_icgraph">
+<area shape="rect" title=" " alt="" coords="549,104,741,145"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="DataBaseGeneratorTests_8cpp.html#a54fad7f50fbe8a92938b378449760a82" title=" " alt="" coords="417,137,471,163"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4420efff17813616b01f26f938ecd6d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4420efff17813616b01f26f938ecd6d4">&#9670;&nbsp;</a></span>setRecombinationParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setRecombinationParameters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ParentsParameters_8hpp.html#a130c2b32927d9f98f3433218f8e84f75">ParentsTypes</a>&#160;</td>
+          <td class="paramname"><em>i_parentsTypes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_tournamentNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548">RecombinationTypes</a>&#160;</td>
+          <td class="paramname"><em>i_recombinationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_refPoints</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>maskProbability</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_recombinationNumber</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a4420efff17813616b01f26f938ecd6d4_cgraph.png" border="0" usemap="#aclassGenerationParameters_a4420efff17813616b01f26f938ecd6d4_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a4420efff17813616b01f26f938ecd6d4_cgraph" id="aclassGenerationParameters_a4420efff17813616b01f26f938ecd6d4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,169,228,211"/>
+<area shape="rect" href="classRecombinationParameters.html#ace04d4faae73e5b0e21bb7b0fa2609f1" title=" " alt="" coords="290,5,485,47"/>
+<area shape="rect" href="classRecombinationParameters.html#a2820dc6406d8ef59ed9fa078cc593cb0" title=" " alt="" coords="290,71,485,112"/>
+<area shape="rect" href="classGeneticParameters.html#a151a6df29689fee335c405510539a385" title=" " alt="" coords="280,136,495,177"/>
+<area shape="rect" href="classRecombinationParameters.html#a73a79a170bf5599e6651794161da1c17" title=" " alt="" coords="276,201,499,243"/>
+<area shape="rect" href="classRecombinationParameters.html#a69754880cf45362261d6615dd36d3688" title=" " alt="" coords="290,267,485,308"/>
+<area shape="rect" href="classRecombinationParameters.html#a619e705a197c834f62bdc152127be6d2" title=" " alt="" coords="290,332,485,373"/>
+<area shape="rect" href="classParentsParameters.html#ae1a9cfed9d7c39232549aedac8a201a9" title=" " alt="" coords="556,39,708,80"/>
+<area shape="rect" href="classParentsParameters.html#a47faee772b355268e5e88eee5250ae4d" title=" " alt="" coords="547,104,717,145"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a4420efff17813616b01f26f938ecd6d4_icgraph.png" border="0" usemap="#aclassGenerationParameters_a4420efff17813616b01f26f938ecd6d4_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a4420efff17813616b01f26f938ecd6d4_icgraph" id="aclassGenerationParameters_a4420efff17813616b01f26f938ecd6d4_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,772,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adc3ea9fd2752d5631c44ead12ec97007"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc3ea9fd2752d5631c44ead12ec97007">&#9670;&nbsp;</a></span>setSeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setSeed </td>
+          <td>(</td>
+          <td class="paramtype">std::uint_fast32_t&#160;</td>
+          <td class="paramname"><em>i_seed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_adc3ea9fd2752d5631c44ead12ec97007_icgraph.png" border="0" usemap="#aclassGenerationParameters_adc3ea9fd2752d5631c44ead12ec97007_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_adc3ea9fd2752d5631c44ead12ec97007_icgraph" id="aclassGenerationParameters_adc3ea9fd2752d5631c44ead12ec97007_icgraph">
+<area shape="rect" title=" " alt="" coords="227,5,395,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3aa3041280c117db599b1c21a87584c1" title="generateDataBaseFromRandomTruthTable The generate DataBase From Random Truth Table method of the Data..." alt="" coords="5,5,179,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a38bbf5b37c007495119fd2fc027549c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38bbf5b37c007495119fd2fc027549c6">&#9670;&nbsp;</a></span>setSelectionParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setSelectionParameters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="SelectionParameters_8hpp.html#a50daa29c84869b18e0b12d7456de94e2">SelectionTypes</a>&#160;</td>
+          <td class="paramname"><em>i_selectionType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>i_numOfSurvivors</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a38bbf5b37c007495119fd2fc027549c6_cgraph.png" border="0" usemap="#aclassGenerationParameters_a38bbf5b37c007495119fd2fc027549c6_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a38bbf5b37c007495119fd2fc027549c6_cgraph" id="aclassGenerationParameters_a38bbf5b37c007495119fd2fc027549c6_cgraph">
+<area shape="rect" title=" " alt="" coords="5,71,189,112"/>
+<area shape="rect" href="classSelectionParameters.html#aed42cf4341f8a57e1f5758e00b21cbf8" title=" " alt="" coords="247,5,404,47"/>
+<area shape="rect" href="classGeneticParameters.html#a81ec40d33027039536aaf8ed006c5ae3" title=" " alt="" coords="237,71,413,112"/>
+<area shape="rect" href="classSelectionParameters.html#a18aac495a171307c02d5ee78651e0254" title=" " alt="" coords="247,136,403,177"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a38bbf5b37c007495119fd2fc027549c6_icgraph.png" border="0" usemap="#aclassGenerationParameters_a38bbf5b37c007495119fd2fc027549c6_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a38bbf5b37c007495119fd2fc027549c6_icgraph" id="aclassGenerationParameters_a38bbf5b37c007495119fd2fc027549c6_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,733,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5a57d13129ceb1b1994be37bc41d3a87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a57d13129ceb1b1994be37bc41d3a87">&#9670;&nbsp;</a></span>setSubtractorParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setSubtractorParameters </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_overflowIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_overflowOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_sub</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87_cgraph.png" border="0" usemap="#aclassGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87_cgraph" id="aclassGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87_cgraph">
+<area shape="rect" title=" " alt="" coords="5,71,196,112"/>
+<area shape="rect" href="classGeneratorSubtractorParameters.html#a944e2d6a57fbbd319d2e60ad274f9be1" title=" " alt="" coords="244,5,472,47"/>
+<area shape="rect" href="classGeneratorSubtractorParameters.html#afeee55f1f2e4120ca6cae4e7efd37324" title=" " alt="" coords="244,71,472,112"/>
+<area shape="rect" href="classGeneratorSubtractorParameters.html#a13e649679848f5817636dd811f6b887c" title=" " alt="" coords="244,136,472,177"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87_icgraph.png" border="0" usemap="#aclassGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87_icgraph" id="aclassGenerationParameters_a5a57d13129ceb1b1994be37bc41d3a87_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,740,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4659e3014d366ff00d7e5c57011fa6c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4659e3014d366ff00d7e5c57011fa6c1">&#9670;&nbsp;</a></span>setSummatorParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setSummatorParameters </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_overflowIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_overflowOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_minus</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1_cgraph.png" border="0" usemap="#aclassGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1_cgraph" id="aclassGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1_cgraph">
+<area shape="rect" title=" " alt="" coords="5,71,197,112"/>
+<area shape="rect" href="classGeneratorSummatorParameters.html#ae70d2e8ca787a5c1ad8d9dbbed189c26" title=" " alt="" coords="245,5,475,47"/>
+<area shape="rect" href="classGeneratorSummatorParameters.html#abd5dc0e29aaf111f0c539efe5a3b24ca" title=" " alt="" coords="245,71,475,112"/>
+<area shape="rect" href="classGeneratorSummatorParameters.html#a35cbb588c388a54d8c98156aa2ad1229" title=" " alt="" coords="245,136,475,177"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1_icgraph.png" border="0" usemap="#aclassGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1_icgraph" id="aclassGenerationParameters_a4659e3014d366ff00d7e5c57011fa6c1_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,741,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aaa71d5307d34b8da2f64e45417c271b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa71d5307d34b8da2f64e45417c271b1">&#9670;&nbsp;</a></span>setZhegalkin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerationParameters::setZhegalkin </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_zhegalkin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1_cgraph.png" border="0" usemap="#aclassGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1_cgraph" alt=""/></div>
+<map name="aclassGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1_cgraph" id="aclassGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,173,47"/>
+<area shape="rect" href="classzhegalkinFromTruthTableParameters.html#aa46d1419dd83c6ca51fd62ef0f000cd4" title=" " alt="" coords="221,5,480,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1_icgraph.png" border="0" usemap="#aclassGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1_icgraph" alt=""/></div>
+<map name="aclassGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1_icgraph" id="aclassGenerationParameters_aaa71d5307d34b8da2f64e45417c271b1_icgraph">
+<area shape="rect" title=" " alt="" coords="549,79,717,120"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="387,86,501,113"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
+<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a1dabfecada6012d10562a8f1ebc67195"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dabfecada6012d10562a8f1ebc67195">&#9670;&nbsp;</a></span>d_cnfFromTruthTableParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCNNFromTruthTableParameters.html">CNNFromTruthTableParameters</a> GenerationParameters::d_cnfFromTruthTableParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37e2ecfe060f147156281c4c65844497"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37e2ecfe060f147156281c4c65844497">&#9670;&nbsp;</a></span>d_gatesInputsInfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, std::vector&lt;int32_t&gt; &gt; GenerationParameters::d_gatesInputsInfo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac0abd8cf4d1da6816551c65977c0735"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac0abd8cf4d1da6816551c65977c0735">&#9670;&nbsp;</a></span>d_generatorALUParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorALUParameters.html">GeneratorALUParameters</a> GenerationParameters::d_generatorALUParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac535c1713c98821642a90a8fb280720b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac535c1713c98821642a90a8fb280720b">&#9670;&nbsp;</a></span>d_generatorComparisonParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorComparisonParameters.html">GeneratorComparisonParameters</a> GenerationParameters::d_generatorComparisonParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2d7d08d03c87b94182efa41dc6472ba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d7d08d03c87b94182efa41dc6472ba8">&#9670;&nbsp;</a></span>d_generatorNumOperationParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorNumOperationParameters.html">GeneratorNumOperationParameters</a> GenerationParameters::d_generatorNumOperationParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a80ba5d709b75e68c17694f4be9c3c7b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80ba5d709b75e68c17694f4be9c3c7b6">&#9670;&nbsp;</a></span>d_generatorRandLevelParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorRandLevelParameters.html">GeneratorRandLevelParameters</a> GenerationParameters::d_generatorRandLevelParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ca73198f6b93339fe8270adea2c2fe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ca73198f6b93339fe8270adea2c2fe7">&#9670;&nbsp;</a></span>d_generatorSubtractorParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorSubtractorParameters.html">GeneratorSubtractorParameters</a> GenerationParameters::d_generatorSubtractorParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af87aa9cbcf8464aebce237a5765607de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af87aa9cbcf8464aebce237a5765607de">&#9670;&nbsp;</a></span>d_generatorSummatorParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneratorSummatorParameters.html">GeneratorSummatorParameters</a> GenerationParameters::d_generatorSummatorParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a152d1bb6843b402bd5b6c90ea5f8b6b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a152d1bb6843b402bd5b6c90ea5f8b6b9">&#9670;&nbsp;</a></span>d_geneticParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGeneticParameters.html">GeneticParameters</a> GenerationParameters::d_geneticParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0550ce658f8c26917be67412b615a4da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0550ce658f8c26917be67412b615a4da">&#9670;&nbsp;</a></span>d_inputs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t GenerationParameters::d_inputs = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2e606917d264caac129f8505088cad8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e606917d264caac129f8505088cad8c">&#9670;&nbsp;</a></span>d_iteration</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t GenerationParameters::d_iteration = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41853a387c7403967109a1e1e03a4eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41853a387c7403967109a1e1e03a4eca">&#9670;&nbsp;</a></span>d_makeGraphMLClassic</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GenerationParameters::d_makeGraphMLClassic</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4fed4995f8149796c16ccbfb59a340f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4fed4995f8149796c16ccbfb59a340f">&#9670;&nbsp;</a></span>d_makeGraphMLOpenABCD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GenerationParameters::d_makeGraphMLOpenABCD</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba5b59216b7491c8e4c0a3408fa8c075"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba5b59216b7491c8e4c0a3408fa8c075">&#9670;&nbsp;</a></span>d_makeGraphMLPseudoABCD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GenerationParameters::d_makeGraphMLPseudoABCD</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4f5a434e76f4f2d9806cf25666d918e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f5a434e76f4f2d9806cf25666d918e2">&#9670;&nbsp;</a></span>d_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GenerationParameters::d_name = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aee9506b5a654afb08bd59d5a20fe0144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee9506b5a654afb08bd59d5a20fe0144">&#9670;&nbsp;</a></span>d_outputs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t GenerationParameters::d_outputs = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f843e685a83b353b2909b1d5c2f4152"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f843e685a83b353b2909b1d5c2f4152">&#9670;&nbsp;</a></span>d_requestId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GenerationParameters::d_requestId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ca04c8afd44be06f1b17b3132394503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ca04c8afd44be06f1b17b3132394503">&#9670;&nbsp;</a></span>d_seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::uint_fast32_t GenerationParameters::d_seed = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a704bba4d8ab5c89d98dac94c6031ecff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a704bba4d8ab5c89d98dac94c6031ecff">&#9670;&nbsp;</a></span>d_ZhegalkinFromTruthTableParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classzhegalkinFromTruthTableParameters.html">zhegalkinFromTruthTableParameters</a> GenerationParameters::d_ZhegalkinFromTruthTableParameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classGenerationParameters.html">GenerationParameters</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

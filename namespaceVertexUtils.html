@@ -1,212 +1,264 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>VertexUtils namespace | CircuitGen_Generator Desc of Backeknd</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: VertexUtils Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">1.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          VertexUtils <span class="m-thin">namespace</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="GraphVertexBase_8hpp.html">&lt;src/baseStructures/graph/GraphVertexBase.hpp&gt;</a></div>
-        </h1>
-        <p><a href="namespaceVertexUtils.html" class="m-doc">VertexUtils</a> Namespace containing utility functions for working with vertices.</p>
-        <div class="m-block m-default">
-          <h3>Contents</h3>
-          <ul>
-            <li>
-              Reference
-              <ul>
-                <li><a href="#func-members">Functions</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <section id="func-members">
-          <h2><a href="#func-members">Functions</a></h2>
-          <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a8140b975302d15b6226a4bfba79dd9d9" class="m-doc">gateToString</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> i_type) -&gt; std::string</span>
-            </dt>
-            <dd>gateToString Converts a gate type enum value to its string representation</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a58a8373cb1f0f5be90a30b7fc3b51abd" class="m-doc">vertexTypeToVerilog</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type) -&gt; std::string</span>
-            </dt>
-            <dd>vertexTypeToComment Converts a vertex type enum value to its Verilog representation</dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a429cf39161c78a2a22dd45e6a0f41acf" class="m-doc">vertexTypeToComment</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type) -&gt; std::string</span>
-            </dt>
-            <dd>vertexTypeToComment Converts a vertex type enum value to its comment representation This function takes a vertex type enum value (from the VertexTypes enum) and returns its corresponding comment representation.</dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a8140b975302d15b6226a4bfba79dd9d9"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string VertexUtils::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8140b975302d15b6226a4bfba79dd9d9" class="m-doc-self">gateToString</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974" class="m-doc">Gates</a> i_type)</span></span>
-            </h3>
-            <p>gateToString Converts a gate type enum value to its string representation</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_type</td>
-                  <td>The gate type enum value</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>The string representation of the gate type.</p><pre class="m-code"><span class="n">Gates</span><span class="w"> </span><span class="n">gateType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Gates</span><span class="o">::</span><span class="n">GateAnd</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">gateString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VertexUtils</span><span class="o">::</span><span class="n">gateToString</span><span class="p">(</span><span class="n">gateType</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;String representation of gate type: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">gateString</span><span class="w"> </span><span class="o">&lt;&lt;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="n">gateType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Gates</span><span class="o">::</span><span class="n">GateNot</span><span class="p">;</span><span class="w"> </span><span class="n">gateString</span><span class="w"> </span><span class="o">=</span>
-<span class="n">VertexUtils</span><span class="o">::</span><span class="n">gateToString</span><span class="p">(</span><span class="n">gateType</span><span class="p">);</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;String representation of</span>
-<span class="n">gate</span><span class="w"> </span><span class="n">type</span><span class="o">:</span><span class="w"> </span><span class="s">&quot; &lt;&lt; gateString &lt;&lt; std::endl;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a58a8373cb1f0f5be90a30b7fc3b51abd"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string VertexUtils::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a58a8373cb1f0f5be90a30b7fc3b51abd" class="m-doc-self">vertexTypeToVerilog</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type)</span></span>
-            </h3>
-            <p>vertexTypeToComment Converts a vertex type enum value to its Verilog representation</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_type</td>
-                  <td>The vertex type enum value.</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>The Verilog representation of the vertex type</p><pre class="m-code"><span class="n">VertexTypes</span><span class="w"> </span><span class="n">vertexType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">Input</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">verilogType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VertexUtils</span><span class="o">::</span><span class="n">vertexTypeToVerilog</span><span class="p">(</span><span class="n">vertexType</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Verilog representation of vertex type: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">verilogType</span><span class="w"> </span><span class="o">&lt;&lt;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="a429cf39161c78a2a22dd45e6a0f41acf"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::string VertexUtils::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a429cf39161c78a2a22dd45e6a0f41acf" class="m-doc-self">vertexTypeToComment</a>(</span><span class="m-doc-wrap"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d" class="m-doc">VertexTypes</a> i_type)</span></span>
-            </h3>
-            <p>vertexTypeToComment Converts a vertex type enum value to its comment representation This function takes a vertex type enum value (from the VertexTypes enum) and returns its corresponding comment representation.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">i_type</td>
-                  <td>The vertex type enum value (from the VertexTypes enum)</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td><p>The comment representation of the vertex type.</p><pre class="m-code"><span class="n">VertexTypes</span><span class="w"> </span><span class="n">vertexType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VertexTypes</span><span class="o">::</span><span class="n">Input</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VertexUtils</span><span class="o">::</span><span class="n">vertexTypeToComment</span><span class="p">(</span><span class="n">vertexType</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Comment for input vertex type: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">comment</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></pre></td>
-                </tr>
-              </tfoot>
-            </table>
-<p>The comment representation is based on the vertex type and is used for generating comments or documentation</p>
-          </div></section>
-        </section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('namespaceVertexUtils.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">VertexUtils Namespace Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><a class="el" href="namespaceVertexUtils.html" title="VertexUtils Namespace containing utility functions for working with vertices.">VertexUtils</a> Namespace containing utility functions for working with vertices.  
+<a href="namespaceVertexUtils.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a8140b975302d15b6226a4bfba79dd9d9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceVertexUtils.html#a8140b975302d15b6226a4bfba79dd9d9">gateToString</a> (<a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a> i_type)</td></tr>
+<tr class="memdesc:a8140b975302d15b6226a4bfba79dd9d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">gateToString Converts a gate type enum value to its string representation  <a href="namespaceVertexUtils.html#a8140b975302d15b6226a4bfba79dd9d9">More...</a><br /></td></tr>
+<tr class="separator:a8140b975302d15b6226a4bfba79dd9d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58a8373cb1f0f5be90a30b7fc3b51abd"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceVertexUtils.html#a58a8373cb1f0f5be90a30b7fc3b51abd">vertexTypeToVerilog</a> (<a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a> i_type)</td></tr>
+<tr class="memdesc:a58a8373cb1f0f5be90a30b7fc3b51abd"><td class="mdescLeft">&#160;</td><td class="mdescRight">vertexTypeToComment Converts a vertex type enum value to its Verilog representation  <a href="namespaceVertexUtils.html#a58a8373cb1f0f5be90a30b7fc3b51abd">More...</a><br /></td></tr>
+<tr class="separator:a58a8373cb1f0f5be90a30b7fc3b51abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a429cf39161c78a2a22dd45e6a0f41acf"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceVertexUtils.html#a429cf39161c78a2a22dd45e6a0f41acf">vertexTypeToComment</a> (<a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a> i_type)</td></tr>
+<tr class="memdesc:a429cf39161c78a2a22dd45e6a0f41acf"><td class="mdescLeft">&#160;</td><td class="mdescRight">vertexTypeToComment Converts a vertex type enum value to its comment representation This function takes a vertex type enum value (from the VertexTypes enum) and returns its corresponding comment representation.  <a href="namespaceVertexUtils.html#a429cf39161c78a2a22dd45e6a0f41acf">More...</a><br /></td></tr>
+<tr class="separator:a429cf39161c78a2a22dd45e6a0f41acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="namespaceVertexUtils.html" title="VertexUtils Namespace containing utility functions for working with vertices.">VertexUtils</a> Namespace containing utility functions for working with vertices. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a8140b975302d15b6226a4bfba79dd9d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8140b975302d15b6226a4bfba79dd9d9">&#9670;&nbsp;</a></span>gateToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string VertexUtils::gateToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a>&#160;</td>
+          <td class="paramname"><em>i_type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gateToString Converts a gate type enum value to its string representation </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_type</td><td>The gate type enum value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The string representation of the gate type. <div class="fragment"><div class="line"><a class="code" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a> gateType = <a class="code" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680">Gates::GateAnd</a>;</div>
+<div class="line">std::string gateString = <a class="code" href="namespaceVertexUtils.html#a8140b975302d15b6226a4bfba79dd9d9">VertexUtils::gateToString</a>(gateType);</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;String representation of gate type: &quot;</span> &lt;&lt; gateString &lt;&lt;</div>
+<div class="line">std::endl; gateType = <a class="code" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45">Gates::GateNot</a>; gateString =</div>
+<div class="line"><a class="code" href="namespaceVertexUtils.html#a8140b975302d15b6226a4bfba79dd9d9">VertexUtils::gateToString</a>(gateType); std::cout &lt;&lt; <span class="stringliteral">&quot;String representation of</span></div>
+<div class="line"><span class="stringliteral">gate type: &quot;</span> &lt;&lt; gateString &lt;&lt; std::endl;</div>
+<div class="ttc" id="aSettings_8hpp_html_a0963bd5066d6d6a58155d1ad79f56974"><div class="ttname"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a></div><div class="ttdeci">Gates</div><div class="ttdoc">Gates Enumeration of types of logical elements This enumeration defines the various types of logic el...</div><div class="ttdef"><b>Definition:</b> Settings.hpp:31</div></div>
+<div class="ttc" id="aSettings_8hpp_html_a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45"><div class="ttname"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974a07ac69b6fe14844c256301fcf19f4b45">GateNot</a></div><div class="ttdeci">@ GateNot</div><div class="ttdoc">logical element - NOT</div><div class="ttdef"><b>Definition:</b> Settings.hpp:38</div></div>
+<div class="ttc" id="aSettings_8hpp_html_a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680"><div class="ttname"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974ab9bd660ea3d58aa44fa8d9d7a1d58680">GateAnd</a></div><div class="ttdeci">@ GateAnd</div><div class="ttdoc">logical element - &quot;AND&quot; (AND)</div><div class="ttdef"><b>Definition:</b> Settings.hpp:32</div></div>
+<div class="ttc" id="anamespaceVertexUtils_html_a8140b975302d15b6226a4bfba79dd9d9"><div class="ttname"><a href="namespaceVertexUtils.html#a8140b975302d15b6226a4bfba79dd9d9">VertexUtils::gateToString</a></div><div class="ttdeci">std::string gateToString(Gates i_type)</div><div class="ttdoc">gateToString Converts a gate type enum value to its string representation</div><div class="ttdef"><b>Definition:</b> GraphVertexBase.cpp:9</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9_icgraph.png" border="0" usemap="#anamespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9_icgraph" alt=""/></div>
+<map name="anamespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9_icgraph" id="anamespaceVertexUtils_a8140b975302d15b6226a4bfba79dd9d9_icgraph">
+<area shape="rect" title="gateToString Converts a gate type enum value to its string representation" alt="" coords="371,42,553,69"/>
+<area shape="rect" href="classGraphVertexGates.html#a83f145b69fafe9ed340c656aa1e82940" title="getVerilogString Gets a string in Verilog format representing the current vertex" alt="" coords="108,5,323,47"/>
+<area shape="rect" href="classGraphVertexGates.html#a4d38ec95ed252a205cbcb08ed691941d" title="toVerilog generates a string in Verilog format for the current vertex, representing the valve accordi..." alt="" coords="112,71,319,98"/>
+<area shape="rect" href="GraphVertexGatesTests_8cpp.html#aede59dd57e654acd9da80b5db53c7b4a" title=" " alt="" coords="5,13,60,39"/>
+<area shape="rect" href="GraphVertexGatesTests_8cpp.html#ace4d5ed91b7866c52fcbaa9311dc257d" title=" " alt="" coords="5,71,60,98"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a429cf39161c78a2a22dd45e6a0f41acf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a429cf39161c78a2a22dd45e6a0f41acf">&#9670;&nbsp;</a></span>vertexTypeToComment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string VertexUtils::vertexTypeToComment </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a>&#160;</td>
+          <td class="paramname"><em>i_type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>vertexTypeToComment Converts a vertex type enum value to its comment representation This function takes a vertex type enum value (from the VertexTypes enum) and returns its corresponding comment representation. </p>
+<p>The comment representation is based on the vertex type and is used for generating comments or documentation </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_type</td><td>The vertex type enum value (from the VertexTypes enum) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The comment representation of the vertex type. <div class="fragment"><div class="line"><a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a> vertexType = VertexTypes::Input;</div>
+<div class="line">std::string comment = <a class="code" href="namespaceVertexUtils.html#a429cf39161c78a2a22dd45e6a0f41acf">VertexUtils::vertexTypeToComment</a>(vertexType);</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Comment for input vertex type: &quot;</span> &lt;&lt; comment &lt;&lt; std::endl;</div>
+<div class="ttc" id="aSettings_8hpp_html_a0205bad1987949fa63dc4d217e4e2e5d"><div class="ttname"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a></div><div class="ttdeci">VertexTypes</div><div class="ttdoc">VertexTypes Enumeration of vertex types.</div><div class="ttdef"><b>Definition:</b> Settings.hpp:18</div></div>
+<div class="ttc" id="anamespaceVertexUtils_html_a429cf39161c78a2a22dd45e6a0f41acf"><div class="ttname"><a href="namespaceVertexUtils.html#a429cf39161c78a2a22dd45e6a0f41acf">VertexUtils::vertexTypeToComment</a></div><div class="ttdeci">std::string vertexTypeToComment(VertexTypes i_type)</div><div class="ttdoc">vertexTypeToComment Converts a vertex type enum value to its comment representation This function tak...</div><div class="ttdef"><b>Definition:</b> GraphVertexBase.cpp:46</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceVertexUtils_a429cf39161c78a2a22dd45e6a0f41acf_icgraph.png" border="0" usemap="#anamespaceVertexUtils_a429cf39161c78a2a22dd45e6a0f41acf_icgraph" alt=""/></div>
+<map name="anamespaceVertexUtils_a429cf39161c78a2a22dd45e6a0f41acf_icgraph" id="anamespaceVertexUtils_a429cf39161c78a2a22dd45e6a0f41acf_icgraph">
+<area shape="rect" title="vertexTypeToComment Converts a vertex type enum value to its comment representation This function tak..." alt="" coords="236,5,424,47"/>
+<area shape="rect" href="classOrientedGraph.html#a2eb2d7be1861f101eade432faadb6161" title=" " alt="" coords="5,13,188,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a58a8373cb1f0f5be90a30b7fc3b51abd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58a8373cb1f0f5be90a30b7fc3b51abd">&#9670;&nbsp;</a></span>vertexTypeToVerilog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string VertexUtils::vertexTypeToVerilog </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a>&#160;</td>
+          <td class="paramname"><em>i_type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>vertexTypeToComment Converts a vertex type enum value to its Verilog representation </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_type</td><td>The vertex type enum value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The Verilog representation of the vertex type <div class="fragment"><div class="line"><a class="code" href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5d">VertexTypes</a> vertexType = VertexTypes::Input;</div>
+<div class="line">std::string verilogType = <a class="code" href="namespaceVertexUtils.html#a58a8373cb1f0f5be90a30b7fc3b51abd">VertexUtils::vertexTypeToVerilog</a>(vertexType);</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Verilog representation of vertex type: &quot;</span> &lt;&lt; verilogType &lt;&lt;</div>
+<div class="line">std::endl;</div>
+<div class="ttc" id="anamespaceVertexUtils_html_a58a8373cb1f0f5be90a30b7fc3b51abd"><div class="ttname"><a href="namespaceVertexUtils.html#a58a8373cb1f0f5be90a30b7fc3b51abd">VertexUtils::vertexTypeToVerilog</a></div><div class="ttdeci">std::string vertexTypeToVerilog(VertexTypes i_type)</div><div class="ttdoc">vertexTypeToComment Converts a vertex type enum value to its Verilog representation</div><div class="ttdef"><b>Definition:</b> GraphVertexBase.cpp:30</div></div>
+</div><!-- fragment --> </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespaceVertexUtils_a58a8373cb1f0f5be90a30b7fc3b51abd_icgraph.png" border="0" usemap="#anamespaceVertexUtils_a58a8373cb1f0f5be90a30b7fc3b51abd_icgraph" alt=""/></div>
+<map name="anamespaceVertexUtils_a58a8373cb1f0f5be90a30b7fc3b51abd_icgraph" id="anamespaceVertexUtils_a58a8373cb1f0f5be90a30b7fc3b51abd_icgraph">
+<area shape="rect" title="vertexTypeToComment Converts a vertex type enum value to its Verilog representation" alt="" coords="272,23,460,65"/>
+<area shape="rect" href="classGraphVertexBase.html#ae4e70880a9cd7de29aa4a301ca208df6" title="getInstance Generates an instance declaration for the vertex in Verilog format." alt="" coords="5,5,224,32"/>
+<area shape="rect" href="classOrientedGraph.html#a2eb2d7be1861f101eade432faadb6161" title=" " alt="" coords="23,56,206,83"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceVertexUtils.html">VertexUtils</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

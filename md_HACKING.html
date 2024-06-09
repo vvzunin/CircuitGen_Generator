@@ -1,138 +1,203 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8" />
-  <title>Hacking | CircuitGen_Generator Desc of Backeknd</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
-  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
-  <link rel="icon" href="favicon-dark.png" type="image/png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#22272e" />
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CircuitGen_Generator: Hacking</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<header><nav id="navigation">
-  <div class="m-container">
-    <div class="m-row">
-      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m"><img src="logo_1.png" alt="" />CircuitGen_Generator <span class="m-thin">Desc of Backeknd</span></a>
-      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
-        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-          <path id="m-doc-search-icon-path" d="m6 0c-3.31 0-6 2.69-6 6 0 3.31 2.69 6 6 6 1.49 0 2.85-0.541 3.89-1.44-0.0164 0.338 0.147 0.759 0.5 1.15l3.22 3.79c0.552 0.614 1.45 0.665 2 0.115 0.55-0.55 0.499-1.45-0.115-2l-3.79-3.22c-0.392-0.353-0.812-0.515-1.15-0.5 0.895-1.05 1.44-2.41 1.44-3.89 0-3.31-2.69-6-6-6zm0 1.56a4.44 4.44 0 0 1 4.44 4.44 4.44 4.44 0 0 1-4.44 4.44 4.44 4.44 0 0 1-4.44-4.44 4.44 4.44 0 0 1 4.44-4.44z"/>
-        </svg></a>
-        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
-        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
-      </div>
-      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
-        <div class="m-row">
-          <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html">Pages</a></li>
-            <li><a href="namespaces.html">Namespaces</a></li>
-          </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
-            <li><a href="annotated.html">Classes</a></li>
-            <li><a href="files.html">Files</a></li>
-            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
-              <use href="#m-doc-search-icon-path" />
-            </svg></a></li>
-          </ol>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">CircuitGen_Generator
+   &#160;<span id="projectnumber">1.1.0</span>
+   </div>
+   <div id="projectbrief">Desc of Backeknd</div>
+  </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.svg"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
         </div>
-      </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-</nav></header>
-<main><article>
-  <div class="m-container m-container-inflatable">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <h1>
-          Hacking
-        </h1>
-<p>Вот несколько советов, которые помогут вам создать и протестировать этот проект в качестве разработчика и потенциального участника.</p><section id="autotoc_md9"><h2><a href="#autotoc_md9">Режим разработчика</a></h2><p>Цели системы сборки, которые полезны только для разработчиков этого проекта, скрыты, если опция <code>CircuitGen_Generator_DEVELOPER_MODE</code> отключена. Включение этой опции делает доступными тесты и другие цели и параметры разработчика. Если вы не включите эту опцию, вы являетесь потребителем этого проекта и, следовательно, вам не нужны эти цели и параметры.</p><p>Режим разработчика всегда включен в рабочих процессах CI.</p><section id="autotoc_md10"><h3><a href="#autotoc_md10">Правила именования переменных</a></h3><p>Правила именования переменных:</p><ul><li>d_anything означает поле класса;</li><li>i_anything принимаемый аргумент в функцию.</li></ul></section><section id="autotoc_md11"><h3><a href="#autotoc_md11">Пресеты</a></h3><p>В этом проекте используются <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">пресеты</a> для упрощения процесса настройки проекта. Как разработчику вам рекомендуется всегда устанавливать <a href="https://cmake.org/download/">последнюю версию CMake</a>, чтобы использовать последние дополнения качества жизни.</p><p>У вас есть несколько вариантов передачи <code>CircuitGen_Generator_DEVELOPER_MODE</code> в команду настройки, но в этом проекте предпочитают использовать пресеты.</p><p>Как разработчик, вы должны создать файл <code>CMakeUserPresets.json</code> в корне проекта:</p><pre class="m-code"><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;cmakeMinimumRequired&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;major&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;minor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;patch&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;configurePresets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dev&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;binaryDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${sourceDir}/build/dev&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;inherits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;dev-mode&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ci-linux&quot;</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;cacheVariables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;CMAKE_BUILD_TYPE&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Debug&quot;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;buildPresets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dev&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;configurePreset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dev&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Debug&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;testPresets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dev&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;configurePreset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dev&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Debug&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;outputOnFailure&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span></pre><p>Вам следует заменить <code>&lt;os&gt;</code> в новом файле настроек на имя вашей операционной системы, которая может быть <code>win64</code>, <code>linux</code> или <code>darwin</code>. Вы можете увидеть, чему они соответствуют, в файле <a href="CMakePresets.json"><code>CMakePresets.json</code></a>.</p><p><code>CMakeUserPresets.json</code> также является идеальным местом, куда вы можете поместить все, что в противном случае вы хотели бы передать команде configure в терминале.</p><blockquote><p><strong>Примечание</strong> Некоторые редакторы довольно жадны в открытии проектов с пресетами. Некоторые просто случайно выбирают пресет и начинают настраивать без вашего согласия, что может сбить с толку. Убедитесь, что Ваш редактор настраивается, когда Вам на самом деле этого хочется, например, в CLion Вам нужно убедиться, что только в <code>dev-dev preset</code> установлен флажок <code>Включить профиль</code> <code>Файл &gt; Настройки... &gt; Сборка, выполнение, развертывание &gt; CMake</code> и в Visual Studio Вам необходимо установить опцию «Никогда не запускать шаг настройки автоматически» в <code>Инструменты &gt; Параметры &gt; CMake</code> <strong>до открытия проекта</strong>, после чего Вы можете настроить вручную, используя «Проект &gt; Настроить кэш».</p></blockquote></section><section id="autotoc_md12"><h3><a href="#autotoc_md12">Настройка, сборка и тестирование</a></h3><p>Если Вы следовали приведенным выше инструкциям, то Вы можете настроить, собрать и протестировать проект соответственно с помощью следующих команд из корня проекта в любой операционной системе с любой системой сборки:</p><pre class="m-code">cmake<span class="w"> </span>--preset<span class="o">=</span>dev
-cmake<span class="w"> </span>--build<span class="w"> </span>--preset<span class="o">=</span>dev
-ctest<span class="w"> </span>--preset<span class="o">=</span>dev</pre><p>Если вы используете совместимый редактор (например, VSCode) или IDE (например, CLion, VS), вы также сможете выбрать созданные выше пользовательские пресеты для автоматической интеграции.</p><p>Обратите внимание, что и команды сборки, и команды тестирования принимают флаг <code>-j</code> для указания количества используемых заданий, которое в идеале должно быть указано в соответствии с количеством потоков вашего процессора. Вы также можете добавить это в свой пресет, используя свойство <code>jobs</code>, более подробную информацию можно найти в <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">документации по пресетам</a>.</p></section><section id="autotoc_md13"><h3><a href="#autotoc_md13">Цели режима разработчика</a></h3><p>Это цели, которые вы можете вызвать с помощью приведенной выше команды сборки с дополнительным флагом <code>-t &lt;target&gt;</code>:</p><section id="autotoc_md14"><h4><a href="#autotoc_md14">&lt;tt&gt;coverage&lt;/tt&gt;</a></h4><p>Доступно, если включен <code>ENABLE_COVERAGE</code>. Эта цель обрабатывает выходные данные ранее запущенных тестов при построении с конфигурацией покрытия. Команды, которые выполняет эта цель, можно найти в переменных кэша <code>COVERAGE_TRACE_COMMAND</code> и <code>COVERAGE_HTML_COMMAND</code>. Команда трассировки по умолчанию создает информационный файл, который можно отправить в службы с интеграцией CI. Команда HTML использует выходные данные команды трассировки для создания HTML-документа в <code>&lt;binary-dir&gt;/coverage_html</code> по умолчанию.</p></section><section id="autotoc_md15"><h4><a href="#autotoc_md15">&lt;tt&gt;docs&lt;/tt&gt;</a></h4><p>Доступно, если включен <code>BUILD_MCSS_DOCS</code>. Сборка документации с использованием Doxygen и m.css. По умолчанию вывод будет идти в <code>&lt;binary-dir&gt;/docs</code> (настраивается с помощью <code>DOXYGEN_OUTPUT_DIRECTORY</code>).</p></section><section id="autotoc_md16"><h4><a href="#autotoc_md16">&lt;tt&gt;format-check&lt;/tt&gt; и &lt;tt&gt;format-fix&lt;/tt&gt;</a></h4><p>Эти цели запускают инструмент формата clang в базе кода для проверки ошибок и их исправления соответственно. Доступна настройка с использованием переменных кэша <code>FORMAT_PATTERNS</code> и <code>FORMAT_COMMAND</code>.</p></section><section id="autotoc_md17"><h4><a href="#autotoc_md17">&lt;tt&gt;run-exe&lt;/tt&gt;</a></h4><p>Запускает исполняемый целевой файл <code>CircuitGen_Generator_exe</code>.</p></section><section id="autotoc_md18"><h4><a href="#autotoc_md18">&lt;tt&gt;spell-check&lt;/tt&gt; и &lt;tt&gt;spell-fix&lt;/tt&gt;</a></h4><p>Эти цели запускают инструмент кодирования в базе кода для проверки ошибок и их исправления соответственно. Доступна настройка с использованием переменной кэша <code>SPELL_COMMAND</code>.</p></section></section><section id="autotoc_md19"><h3><a href="#autotoc_md19">Правила документирования кода</a></h3><ul><li>1: Все описания и комментирование кода/добавление TO DO пишутся в файлах с расширение .hpp</li><li><p>2: Всё содержимое должно заключаться в ///</p><pre class="m-code"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-
-<span class="c1">///</span></pre></li><li>3: TO DO пишутся после подключения библиотек. Перед</li></ul></section></section>
-      </div>
-    </div>
-  </div>
-</article></main>
-<div class="m-doc-search" id="search">
-  <a href="#!" onclick="return hideSearch()"></a>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-m-8 m-push-m-2">
-        <div class="m-doc-search-header m-text m-small">
-          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
-          <div id="search-symbolcount">&hellip;</div>
-        </div>
-        <div class="m-doc-search-content">
-          <form>
-            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
-          </form>
-          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
-          <div id="search-help" class="m-text m-dim m-text-center">
-            <p class="m-noindent">Search for symbols, directories, files, pages or
-            modules. You can omit any prefix from the symbol or file path; adding a
-            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
-            directory.</p>
-            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
-            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
-            <span class="m-label m-dim">Enter</span> to go.
-            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
-            copy a link to the result using <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
-            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
-          </div>
-          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
-          <ul id="search-results"></ul>
-        </div>
-      </div>
-    </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
-<footer><nav>
-  <div class="m-container">
-    <div class="m-row">
-      <div class="m-col-l-10 m-push-l-1">
-        <p>CircuitGen_Generator Desc of Backeknd. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
-      </div>
-    </div>
-  </div>
-</nav></footer>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('md_HACKING.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Hacking </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Вот несколько советов, которые помогут вам создать и протестировать этот проект в качестве разработчика и потенциального участника.</p>
+<h1><a class="anchor" id="autotoc_md9"></a>
+Режим разработчика</h1>
+<p>Цели системы сборки, которые полезны только для разработчиков этого проекта, скрыты, если опция <code>CircuitGen_Generator_DEVELOPER_MODE</code> отключена. Включение этой опции делает доступными тесты и другие цели и параметры разработчика. Если вы не включите эту опцию, вы являетесь потребителем этого проекта и, следовательно, вам не нужны эти цели и параметры.</p>
+<p>Режим разработчика всегда включен в рабочих процессах CI.</p>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Правила именования переменных</h2>
+<p>Правила именования переменных:</p><ul>
+<li>d_anything означает поле класса;</li>
+<li>i_anything принимаемый аргумент в функцию.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Пресеты</h2>
+<p>В этом проекте используются <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">пресеты</a> для упрощения процесса настройки проекта. Как разработчику вам рекомендуется всегда устанавливать <a href="https://cmake.org/download/">последнюю версию CMake</a>, чтобы использовать последние дополнения качества жизни.</p>
+<p>У вас есть несколько вариантов передачи <code>CircuitGen_Generator_DEVELOPER_MODE</code> в команду настройки, но в этом проекте предпочитают использовать пресеты.</p>
+<p>Как разработчик, вы должны создать файл <code>CMakeUserPresets.json</code> в корне проекта:</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">  &quot;version&quot;: 2,</div>
+<div class="line">  &quot;cmakeMinimumRequired&quot;: {</div>
+<div class="line">    &quot;major&quot;: 3,</div>
+<div class="line">    &quot;minor&quot;: 14,</div>
+<div class="line">    &quot;patch&quot;: 0</div>
+<div class="line">  },</div>
+<div class="line">  &quot;configurePresets&quot;: [</div>
+<div class="line">    {</div>
+<div class="line">      &quot;name&quot;: &quot;dev&quot;,</div>
+<div class="line">      &quot;binaryDir&quot;: &quot;${sourceDir}/build/dev&quot;,</div>
+<div class="line">      &quot;inherits&quot;: [&quot;dev-mode&quot;, &quot;ci-linux&quot;],</div>
+<div class="line">      &quot;cacheVariables&quot;: {</div>
+<div class="line">        &quot;CMAKE_BUILD_TYPE&quot;: &quot;Debug&quot;</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">  ],</div>
+<div class="line">  &quot;buildPresets&quot;: [</div>
+<div class="line">    {</div>
+<div class="line">      &quot;name&quot;: &quot;dev&quot;,</div>
+<div class="line">      &quot;configurePreset&quot;: &quot;dev&quot;,</div>
+<div class="line">      &quot;configuration&quot;: &quot;Debug&quot;</div>
+<div class="line">    }</div>
+<div class="line">  ],</div>
+<div class="line">  &quot;testPresets&quot;: [</div>
+<div class="line">    {</div>
+<div class="line">      &quot;name&quot;: &quot;dev&quot;,</div>
+<div class="line">      &quot;configurePreset&quot;: &quot;dev&quot;,</div>
+<div class="line">      &quot;configuration&quot;: &quot;Debug&quot;,</div>
+<div class="line">      &quot;output&quot;: {</div>
+<div class="line">        &quot;outputOnFailure&quot;: true</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">  ]</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>Вам следует заменить <code>&lt;os&gt;</code> в новом файле настроек на имя вашей операционной системы, которая может быть <code>win64</code>, <code>linux</code> или <code>darwin</code>. Вы можете увидеть, чему они соответствуют, в файле <a href="CMakePresets.json"><code>CMakePresets.json</code></a>.</p>
+<p><code>CMakeUserPresets.json</code> также является идеальным местом, куда вы можете поместить все, что в противном случае вы хотели бы передать команде configure в терминале.</p>
+<blockquote class="doxtable">
+<p><b>Примечание</b> Некоторые редакторы довольно жадны в открытии проектов с пресетами. Некоторые просто случайно выбирают пресет и начинают настраивать без вашего согласия, что может сбить с толку. Убедитесь, что Ваш редактор настраивается, когда Вам на самом деле этого хочется, например, в CLion Вам нужно убедиться, что только в <code>dev-dev preset</code> установлен флажок <code>Включить профиль</code> <code>Файл &gt; Настройки... &gt; Сборка, выполнение, развертывание &gt; CMake</code> и в Visual Studio Вам необходимо установить опцию «Никогда не запускать шаг настройки автоматически» в <code>Инструменты &gt; Параметры &gt; CMake</code> <b>до открытия проекта</b>, после чего Вы можете настроить вручную, используя «Проект &gt; Настроить кэш». </p>
+</blockquote>
+<h2><a class="anchor" id="autotoc_md12"></a>
+Настройка, сборка и тестирование</h2>
+<p>Если Вы следовали приведенным выше инструкциям, то Вы можете настроить, собрать и протестировать проект соответственно с помощью следующих команд из корня проекта в любой операционной системе с любой системой сборки:</p>
+<div class="fragment"><div class="line">cmake --preset=dev</div>
+<div class="line">cmake --build --preset=dev</div>
+<div class="line">ctest --preset=dev</div>
+</div><!-- fragment --><p>Если вы используете совместимый редактор (например, VSCode) или IDE (например, CLion, VS), вы также сможете выбрать созданные выше пользовательские пресеты для автоматической интеграции.</p>
+<p>Обратите внимание, что и команды сборки, и команды тестирования принимают флаг <code>-j</code> для указания количества используемых заданий, которое в идеале должно быть указано в соответствии с количеством потоков вашего процессора. Вы также можете добавить это в свой пресет, используя свойство <code>jobs</code>, более подробную информацию можно найти в <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">документации по пресетам</a>.</p>
+<h2><a class="anchor" id="autotoc_md13"></a>
+Цели режима разработчика</h2>
+<p>Это цели, которые вы можете вызвать с помощью приведенной выше команды сборки с дополнительным флагом <code>-t &lt;target&gt;</code>:</p>
+<h3><a class="anchor" id="autotoc_md14"></a>
+&lt;tt&gt;coverage&lt;/tt&gt;</h3>
+<p>Доступно, если включен <code>ENABLE_COVERAGE</code>. Эта цель обрабатывает выходные данные ранее запущенных тестов при построении с конфигурацией покрытия. Команды, которые выполняет эта цель, можно найти в переменных кэша <code>COVERAGE_TRACE_COMMAND</code> и <code>COVERAGE_HTML_COMMAND</code>. Команда трассировки по умолчанию создает информационный файл, который можно отправить в службы с интеграцией CI. Команда HTML использует выходные данные команды трассировки для создания HTML-документа в <code>&lt;binary-dir&gt;/coverage_html</code> по умолчанию.</p>
+<h3><a class="anchor" id="autotoc_md15"></a>
+&lt;tt&gt;docs&lt;/tt&gt;</h3>
+<p>Доступно, если включен <code>BUILD_MCSS_DOCS</code>. Сборка документации с использованием Doxygen и m.css. По умолчанию вывод будет идти в <code>&lt;binary-dir&gt;/docs</code> (настраивается с помощью <code>DOXYGEN_OUTPUT_DIRECTORY</code>).</p>
+<h3><a class="anchor" id="autotoc_md16"></a>
+&lt;tt&gt;format-check&lt;/tt&gt; и &lt;tt&gt;format-fix&lt;/tt&gt;</h3>
+<p>Эти цели запускают инструмент формата clang в базе кода для проверки ошибок и их исправления соответственно. Доступна настройка с использованием переменных кэша <code>FORMAT_PATTERNS</code> и <code>FORMAT_COMMAND</code>.</p>
+<h3><a class="anchor" id="autotoc_md17"></a>
+&lt;tt&gt;run-exe&lt;/tt&gt;</h3>
+<p>Запускает исполняемый целевой файл <code>CircuitGen_Generator_exe</code>.</p>
+<h3><a class="anchor" id="autotoc_md18"></a>
+&lt;tt&gt;spell-check&lt;/tt&gt; и &lt;tt&gt;spell-fix&lt;/tt&gt;</h3>
+<p>Эти цели запускают инструмент кодирования в базе кода для проверки ошибок и их исправления соответственно. Доступна настройка с использованием переменной кэша <code>SPELL_COMMAND</code>.</p>
+<h2><a class="anchor" id="autotoc_md19"></a>
+Правила документирования кода</h2>
+<ul>
+<li>1: Все описания и комментирование кода/добавление TO DO пишутся в файлах с расширение .hpp</li>
+<li>2: Всё содержимое должно заключаться в /// <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">///</span></div>
+</div><!-- fragment --></li>
+<li>3: TO DO пишутся после подключения библиотек. Перед </li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>
