@@ -1,5 +1,7 @@
 <map id="VertexUtils::gateToString" name="VertexUtils::gateToString">
-<area shape="rect" id="node1" title="gateToString Converts a gate type enum value to its string representation" alt="" coords="268,42,451,69"/>
-<area shape="rect" id="node2" href="$classGraphVertexGates.html#a83f145b69fafe9ed340c656aa1e82940" title="getVerilogString Gets a string in Verilog format representing the current vertex" alt="" coords="5,5,220,47"/>
-<area shape="rect" id="node3" href="$classGraphVertexGates.html#a4d38ec95ed252a205cbcb08ed691941d" title="toVerilog generates a string in Verilog format for the current vertex, representing the valve accordi..." alt="" coords="9,71,216,98"/>
+<area shape="rect" id="node1" title="gateToString Converts a gate type enum value to its string representation" alt="" coords="371,42,553,69"/>
+<area shape="rect" id="node2" href="$classGraphVertexGates.html#a83f145b69fafe9ed340c656aa1e82940" title="getVerilogString Gets a string in Verilog format representing the current vertex" alt="" coords="108,5,323,47"/>
+<area shape="rect" id="node4" href="$classGraphVertexGates.html#a4d38ec95ed252a205cbcb08ed691941d" title="toVerilog generates a string in Verilog format for the current vertex, representing the valve accordi..." alt="" coords="112,71,319,98"/>
+<area shape="rect" id="node3" href="$GraphVertexGatesTests_8cpp.html#aede59dd57e654acd9da80b5db53c7b4a" title=" " alt="" coords="5,13,60,39"/>
+<area shape="rect" id="node5" href="$GraphVertexGatesTests_8cpp.html#ace4d5ed91b7866c52fcbaa9311dc257d" title=" " alt="" coords="5,71,60,98"/>
 </map>

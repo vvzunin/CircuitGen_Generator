@@ -1,5 +1,6 @@
 <map id="AuxMethods::getRandDouble" name="AuxMethods::getRandDouble">
-<area shape="rect" id="node1" title="specified range" alt="" coords="452,5,663,32"/>
-<area shape="rect" id="node2" href="$classTruthTable.html#a09de48ba6c97632625188dc32ffd944b" title="generateTable Generate a truth table with specified probability." alt="" coords="216,5,404,32"/>
-<area shape="rect" id="node3" href="$classTruthTable.html#a83be2e572e709638fdd5bd2991dc6100" title=" " alt="" coords="5,5,168,32"/>
+<area shape="rect" id="node1" title="specified range" alt="" coords="452,31,663,57"/>
+<area shape="rect" id="node2" href="$classTruthTable.html#a09de48ba6c97632625188dc32ffd944b" title="generateTable Generate a truth table with specified probability." alt="" coords="216,31,404,57"/>
+<area shape="rect" id="node3" href="$TruthTableTests_8cpp.html#a01bf33ff68f079488ecd912324711906" title=" " alt="" coords="59,5,114,32"/>
+<area shape="rect" id="node4" href="$classTruthTable.html#a83be2e572e709638fdd5bd2991dc6100" title=" " alt="" coords="5,56,168,83"/>
 </map>

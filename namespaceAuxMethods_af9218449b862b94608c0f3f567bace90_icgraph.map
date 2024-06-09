@@ -1,9 +1,15 @@
 <map id="AuxMethods::sortDictByValue" name="AuxMethods::sortDictByValue">
-<area shape="rect" id="node1" title="sortDictByValue Sorting the associative container by values and returning sorted key&#45;value pairs as a..." alt="" coords="595,81,809,108"/>
-<area shape="rect" id="node2" href="$ParentsTruthTable_8hpp.html#a559b9833cd24915b42cc9211b975ebaf" title=" " alt="" coords="419,56,528,83"/>
-<area shape="rect" id="node6" href="$ParentsTruthTable_8hpp.html#a2fe782682498874b6d4e8a4f6bc4f57d" title=" " alt="" coords="400,107,547,133"/>
-<area shape="rect" id="node3" href="$ParentsTruthTable_8hpp.html#a7924d950eb4cfb3a969a5486a5f2dc51" title=" " alt="" coords="211,5,346,32"/>
-<area shape="rect" id="node5" href="$ParentsTruthTable_8hpp.html#a42ea9145096083e2877a1388cbe2086e" title=" " alt="" coords="205,56,352,83"/>
-<area shape="rect" id="node4" href="$Parents_8hpp.html#aa0f6567dfb9a0622fc77f6ec2437fabe" title=" " alt="" coords="5,56,157,83"/>
-<area shape="rect" id="node7" href="$ParentsTruthTable_8hpp.html#a5e28e819aaa037f9638fb8a99643d141" title=" " alt="" coords="216,157,341,184"/>
+<area shape="rect" id="node1" title="sortDictByValue Sorting the associative container by values and returning sorted key&#45;value pairs as a..." alt="" coords="595,171,809,197"/>
+<area shape="rect" id="node2" href="$ParentsTruthTable_8hpp.html#a559b9833cd24915b42cc9211b975ebaf" title=" " alt="" coords="419,95,528,121"/>
+<area shape="rect" id="node9" href="$ParentsTruthTable_8hpp.html#a2fe782682498874b6d4e8a4f6bc4f57d" title=" " alt="" coords="400,171,547,197"/>
+<area shape="rect" id="node13" href="$AuxiliaryMethodsTests_8cpp.html#aea730033f066206884f730b0ad5f0f7a" title=" " alt="" coords="446,221,501,248"/>
+<area shape="rect" id="node3" href="$ParentsTruthTable_8hpp.html#a7924d950eb4cfb3a969a5486a5f2dc51" title=" " alt="" coords="211,107,346,133"/>
+<area shape="rect" id="node6" href="$ParentsTruthTable_8hpp.html#a42ea9145096083e2877a1388cbe2086e" title=" " alt="" coords="205,5,352,32"/>
+<area shape="rect" id="node8" href="$ParentsTruthTableTests_8cpp.html#aa98012c502fc6387573cce3b66abf77e" title=" " alt="" coords="251,56,306,83"/>
+<area shape="rect" id="node4" href="$Parents_8hpp.html#aa0f6567dfb9a0622fc77f6ec2437fabe" title=" " alt="" coords="5,132,157,159"/>
+<area shape="rect" id="node5" href="$ParentsTruthTableTests_8cpp.html#a9b9b02ac918a61cc845a43ba5fb4267d" title=" " alt="" coords="54,81,109,108"/>
+<area shape="rect" id="node7" href="$ParentsTruthTableTests_8cpp.html#a6316d8415078121ab73f1ca338b3f9f2" title=" " alt="" coords="54,5,109,32"/>
+<area shape="rect" id="node10" href="$ParentsTruthTable_8hpp.html#a5e28e819aaa037f9638fb8a99643d141" title=" " alt="" coords="216,208,341,235"/>
+<area shape="rect" id="node12" href="$ParentsTruthTableTests_8cpp.html#a2f0938971b26d6b1f411c591ecf3ccd3" title=" " alt="" coords="251,259,306,285"/>
+<area shape="rect" id="node11" href="$ParentsTruthTableTests_8cpp.html#a6d23bfdbdbbe50c71321f599563cd71c" title=" " alt="" coords="54,208,109,235"/>
 </map>

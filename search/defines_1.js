@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['vertexptr_1315',['VertexPtr',['../GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d',1,'GraphVertexBase.hpp']]],
-  ['vertexptrweak_1316',['VertexPtrWeak',['../GraphVertexBase_8hpp.html#a4b3939252a6663d832e60390edb3210b',1,'GraphVertexBase.hpp']]]
+  ['include_5fnlohmann_5fjson_5ffwd_5fhpp_5f_3392',['INCLUDE_NLOHMANN_JSON_FWD_HPP_',['../json_8hpp.html#ae7fdc438c6d6cb1f17c4373bce5a802d',1,'json.hpp']]]
 ];

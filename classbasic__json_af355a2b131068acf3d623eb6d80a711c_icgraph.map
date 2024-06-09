@@ -1,0 +1,5 @@
+<map id="basic_json::is_object" name="basic_json::is_object">
+<area shape="rect" id="node1" title="return whether value is an object" alt="" coords="236,31,392,57"/>
+<area shape="rect" id="node2" href="$classbasic__json.html#a5699c685383c0e4c824a084cb36e99ba" title=" " alt="" coords="23,5,170,32"/>
+<area shape="rect" id="node3" href="$classbasic__json.html#a8676ac2433fe299b8d420f00a0741395" title="applies a JSON Merge Patch" alt="" coords="5,56,188,83"/>
+</map>

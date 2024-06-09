@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('Circuit_8hpp_source.html',''); initRes
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="TruthTable_8hpp.html">baseStructures/truthTable/TruthTable.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;CircuitGenGenerator/OrientedGraph.hpp&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="OrientedGraph_8hpp.html">CircuitGenGenerator/OrientedGraph.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="CircuitParameters_8hpp.html">CircuitParameters.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('Circuit_8hpp_source.html',''); initRes
 <div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classCircuit.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCircuit.html">Circuit</a> {</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <a class="code" href="classCircuit.html#a88e02d7334ce8e82c5314391ea00e7d0">Circuit</a>(</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      <a class="code" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> <span class="keyword">const</span>                  i_graph,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      <a class="code" href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> <span class="keyword">const</span>                  i_graph,</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;      <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; i_logExpressions = {}</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  );</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('Circuit_8hpp_source.html',''); initRes
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classCircuit.html#a15e8b0a5b0050f6e0c5feb9c500444b3">computeHash</a>();</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classCircuit.html#ae9c9469260b96d79be75ef5491e1d626">updateCircuitParameters</a>(<a class="code" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> i_graph);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classCircuit.html#ae9c9469260b96d79be75ef5491e1d626">updateCircuitParameters</a>(<a class="code" href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> i_graph);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classCircuit.html#a0fffbea37983706410ff674dd9eb08c9">graphToVerilog</a>(<span class="keyword">const</span> std::string&amp; i_path, <span class="keywordtype">bool</span> i_pathExists = <span class="keyword">false</span>);</div>
@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('Circuit_8hpp_source.html',''); initRes
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d">saveParameters</a>(</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;      <a class="code" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>       i_subGraph,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;      <a class="code" href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>       i_subGraph,</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;      std::ofstream&amp; i_outputFile,</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;      <span class="keywordtype">bool</span>           i_isSubGraph = <span class="keyword">false</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  );</div>
@@ -171,7 +171,7 @@ $(document).ready(function(){initNavTree('Circuit_8hpp_source.html',''); initRes
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <a class="code" href="classCircuit.html">Circuit</a> <a class="code" href="classCircuit.html#a37ae459501ff0ca329c0e0359f9e436d">fromVerilog</a>(<span class="keyword">const</span> std::string&amp; i_filepath);</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classCircuit.html#ac340800d917fd745ec19ce5ddef32468">  183</a></span>&#160;  <a class="code" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>                  <a class="code" href="classCircuit.html#ac340800d917fd745ec19ce5ddef32468">d_graph</a>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classCircuit.html#ac340800d917fd745ec19ce5ddef32468">  183</a></span>&#160;  <a class="code" href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>                  <a class="code" href="classCircuit.html#ac340800d917fd745ec19ce5ddef32468">d_graph</a>;</div>
 <div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="classCircuit.html#a3a46b7ad58c43e820bbe46e9a4aece58">  184</a></span>&#160;  std::vector&lt;std::string&gt;  <a class="code" href="classCircuit.html#a3a46b7ad58c43e820bbe46e9a4aece58">d_logExpressions</a>;</div>
 <div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="classCircuit.html#a35309993631f48e78a703c62a9dee312">  185</a></span>&#160;  <a class="code" href="classTruthTable.html">TruthTable</a>                <a class="code" href="classCircuit.html#a35309993631f48e78a703c62a9dee312">d_tTable</a>;</div>
 <div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="classCircuit.html#a8224db52877ef17a42c215a69f039565">  186</a></span>&#160;  std::string               <a class="code" href="classCircuit.html#a8224db52877ef17a42c215a69f039565">d_path</a>;</div>
@@ -182,7 +182,8 @@ $(document).ready(function(){initNavTree('Circuit_8hpp_source.html',''); initRes
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <span class="keywordtype">bool</span>                      <a class="code" href="classCircuit.html#a36b3c7e5b6bb762b227620677aa05a4b">checkExistingHash</a>();</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;};</div>
 <div class="ttc" id="aCircuitParameters_8hpp_html"><div class="ttname"><a href="CircuitParameters_8hpp.html">CircuitParameters.hpp</a></div></div>
-<div class="ttc" id="aGraphVertexBase_8hpp_html_afc9ace2881a918ee869eca6ecf10dbe9"><div class="ttname"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a></div><div class="ttdeci">#define GraphPtr</div><div class="ttdef"><b>Definition:</b> GraphVertexBase.hpp:15</div></div>
+<div class="ttc" id="aOrientedGraph_8hpp_html"><div class="ttname"><a href="OrientedGraph_8hpp.html">OrientedGraph.hpp</a></div></div>
+<div class="ttc" id="aOrientedGraph_8hpp_html_afc9ace2881a918ee869eca6ecf10dbe9"><div class="ttname"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a></div><div class="ttdeci">#define GraphPtr</div><div class="ttdef"><b>Definition:</b> OrientedGraph.hpp:21</div></div>
 <div class="ttc" id="aTruthTable_8hpp_html"><div class="ttname"><a href="TruthTable_8hpp.html">TruthTable.hpp</a></div></div>
 <div class="ttc" id="aclassCircuitParameters_html"><div class="ttname"><a href="classCircuitParameters.html">CircuitParameters</a></div><div class="ttdef"><b>Definition:</b> CircuitParameters.hpp:38</div></div>
 <div class="ttc" id="aclassCircuit_html"><div class="ttname"><a href="classCircuit.html">Circuit</a></div><div class="ttdoc">class Circuit</div><div class="ttdef"><b>Definition:</b> Circuit.hpp:28</div></div>

@@ -28,13 +28,72 @@ var NAVTREE =
     [ "About", "about.html", [
       [ "Doxygen documentation", "about.html#about-doxygen", null ]
     ] ],
+    [ "Генератор комбинационных схем", "md_README.html", [
+      [ "Режим разработчика", "md_README.html#autotoc_md1", null ],
+      [ "Добавление нового генератора", "md_README.html#autotoc_md2", null ],
+      [ "Сборка программы", "md_README.html#autotoc_md3", null ],
+      [ "Запуск генерации комбинационных схем из командной строки", "md_README.html#autotoc_md4", null ],
+      [ "JSON файлы", "md_README.html#autotoc_md5", null ],
+      [ "Описание префикса папок генерации", "md_README.html#autotoc_md6", null ],
+      [ "Лицензия", "md_README.html#autotoc_md7", null ]
+    ] ],
+    [ "Hacking", "md_HACKING.html", [
+      [ "Режим разработчика", "md_HACKING.html#autotoc_md9", [
+        [ "Правила именования переменных", "md_HACKING.html#autotoc_md10", null ],
+        [ "Пресеты", "md_HACKING.html#autotoc_md11", null ],
+        [ "Настройка, сборка и тестирование", "md_HACKING.html#autotoc_md12", null ],
+        [ "Цели режима разработчика", "md_HACKING.html#autotoc_md13", [
+          [ "<tt>coverage</tt>", "md_HACKING.html#autotoc_md14", null ],
+          [ "<tt>docs</tt>", "md_HACKING.html#autotoc_md15", null ],
+          [ "<tt>format-check</tt> и <tt>format-fix</tt>", "md_HACKING.html#autotoc_md16", null ],
+          [ "<tt>run-exe</tt>", "md_HACKING.html#autotoc_md17", null ],
+          [ "<tt>spell-check</tt> и <tt>spell-fix</tt>", "md_HACKING.html#autotoc_md18", null ]
+        ] ],
+        [ "Правила документирования кода", "md_HACKING.html#autotoc_md19", null ]
+      ] ]
+    ] ],
+    [ "Вклад", "md_CONTRIBUTING.html", [
+      [ "Нормы поведения", "md_CONTRIBUTING.html#autotoc_md21", null ],
+      [ "Начальные шаги", "md_CONTRIBUTING.html#autotoc_md22", null ]
+    ] ],
+    [ "Сборка с помощью CMake", "md_BUILDING.html", [
+      [ "Сборка", "md_BUILDING.html#autotoc_md24", [
+        [ "Сборка с MSVC", "md_BUILDING.html#autotoc_md25", null ],
+        [ "Сборка на Apple Silicon", "md_BUILDING.html#autotoc_md26", null ]
+      ] ],
+      [ "Установка", "md_BUILDING.html#autotoc_md27", [
+        [ "Пакет CMake", "md_BUILDING.html#autotoc_md28", null ],
+        [ "Дальнейшее использование", "md_BUILDING.html#autotoc_md29", [
+          [ "runGenerationFromJson", "md_BUILDING.html#autotoc_md30", null ],
+          [ "runGenerationFromJsonForGraph", "md_BUILDING.html#autotoc_md31", null ],
+          [ "runGenerationFromJsonForPath", "md_BUILDING.html#autotoc_md32", null ]
+        ] ],
+        [ "Note to packagers", "md_BUILDING.html#autotoc_md33", null ]
+      ] ]
+    ] ],
+    [ "Нормы поведения", "md_CODE_OF_CONDUCT.html", null ],
+    [ "Стиль кодирования", "md_docs_CodeStyle.html", null ],
+    [ "Описание префикса папок генерации", "md_GeneratorsPrefixes.html", null ],
+    [ "JSON файлы", "md_json.html", null ],
+    [ "Добавление нового генератора", "md_NewGenerator.html", [
+      [ "1.1 <a href=\"src/settings/Settings.hpp\">Settings.hpp</a>", "md_NewGenerator.html#autotoc_md39", null ],
+      [ "1.2 <a href=\"src/settings/Settings.hpp\">Settings.hpp</a>", "md_NewGenerator.html#autotoc_md40", null ],
+      [ "2. <a href=\"src/generators/GenerationParameters.hpp\">GeneratorParameters.hpp</a>", "md_NewGenerator.html#autotoc_md41", null ],
+      [ "3. <a href=\"src/generators/simple/SimpleGenerators.hpp\">SimpleGenerators.hpp</a> и <a href=\"src/generators/simple/SimpleGenerators.cpp\">SimpleGenerators.cpp</a>", "md_NewGenerator.html#autotoc_md42", null ],
+      [ "4. <a href=\"src/database/DataBaseGenerator.hpp\">DataBaseGenerator.hpp</a> и <a href=\"src/database/DataBaseGenerator.cpp\">DataBaseGenerator.cpp</a>", "md_NewGenerator.html#autotoc_md43", null ],
+      [ "5. <a href=\"src/CircuitGenGenerator.cpp\">CircuitGenGenerator.cpp</a>", "md_NewGenerator.html#autotoc_md44", null ]
+    ] ],
     [ "Todo List", "todo.html", null ],
+    [ "Deprecated List", "deprecated.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ]
+        [ "All", "namespacemembers.html", "namespacemembers_dup" ],
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -44,20 +103,23 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
-        [ "Typedefs", "functions_type.html", null ]
+        [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Typedefs", "functions_type.html", "functions_type" ],
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ],
+        [ "Related Functions", "functions_rela.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ],
+        [ "All", "globals.html", "globals_dup" ],
+        [ "Functions", "globals_func.html", "globals_func" ],
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
-        [ "Macros", "globals_defs.html", null ]
+        [ "Macros", "globals_defs.html", "globals_defs" ]
       ] ]
     ] ]
   ] ]
@@ -65,10 +127,20 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AuxiliaryMethods_8cpp.html",
-"classChronosomeType.html#a996c885167165d279d3a4ec62486d959",
-"classGeneratorRandLevelParameters.html#ae32766324c96779e796aa503832d16cd",
-"classSettings.html#a2b6e2dca09331c1ca30b748867428edc"
+"AuxiliaryMethodsTests_8cpp.html",
+"GraphVertex_8hpp_source.html",
+"ThreadPool_8hpp_source.html",
+"classGeneratorALUParameters.html#ac0f19c301905ab03e08bd744265b651f",
+"classOrientedGraph.html#aad47158a568dddada9661b1f92839825",
+"classbasic__json.html#a08c04c85a95df9e2fcad67398fff07f2",
+"classdetail_1_1binary__reader.html",
+"classdetail_1_1json__sax__acceptor.html#a356a53a3cdc5816f794597112756ce01",
+"classdetail_1_1wide__string__input__adapter.html#a529076d03d62e56ec1ec12fe2da1e0c9",
+"globals_p.html",
+"json_8hpp.html#a8f25d249f0af16eaac3b8444bd79e66b",
+"md_GeneratorsPrefixes.html",
+"namespacedetail.html#afec90a20ceefded031faabdf7d83ec3b",
+"structdetail_1_1output__adapter__protocol.html#abc3c05de1a9637889969f59da9ba0a03"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

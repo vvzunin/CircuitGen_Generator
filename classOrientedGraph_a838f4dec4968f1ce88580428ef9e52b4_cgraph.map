@@ -1,0 +1,5 @@
+<map id="OrientedGraph::addSubGraph" name="OrientedGraph::addSubGraph">
+<area shape="rect" id="node1" title="addSubGraph Adds a subgraph to the current graph" alt="" coords="5,5,217,32"/>
+<area shape="rect" id="node2" href="$classOrientedGraph.html#a6d00cef19ee77216d3fea9a911b5a881" title="addEdge Adds an edge between two vertices in the current graph" alt="" coords="501,5,683,32"/>
+<area shape="rect" id="node3" href="$classOrientedGraph.html#a2ac16606b2ddcd4f82e9a045f2498614" title="addEdges Adds multiple edges from a vector of source vertices to a target vertex" alt="" coords="265,31,453,57"/>
+</map>

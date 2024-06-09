@@ -1,4 +1,5 @@
 <map id="GraphVertexBase::GraphVertexBase" name="GraphVertexBase::GraphVertexBase">
-<area shape="rect" id="node1" title="GraphVertexBase Constructs a GraphVertexBase object with the specified vertex type,..." alt="" coords="5,5,261,32"/>
+<area shape="rect" id="node1" title="GraphVertexBase Constructs a GraphVertexBase object with the specified vertex type,..." alt="" coords="5,31,261,57"/>
 <area shape="rect" id="node2" href="$classGraphVertexBase.html#abba036744b90360643beae0ab1db977a" title="getTypeName This method returns the string representation of the vertex type by parsing the vertex ty..." alt="" coords="309,5,543,32"/>
+<area shape="rect" id="node3" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="387,56,465,83"/>
 </map>

@@ -1,0 +1,4 @@
+<map id="Threading::ThreadPool::stop" name="Threading::ThreadPool::stop">
+<area shape="rect" id="node1" title="Stop workers." alt="" coords="221,5,389,47"/>
+<area shape="rect" id="node2" href="$classThreading_1_1ThreadPool.html#a44d3d2ab618970605e684efc216655eb" title="Custom destructor which are to stop workers." alt="" coords="5,5,173,47"/>
+</map>

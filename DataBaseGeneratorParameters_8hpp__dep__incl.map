@@ -1,7 +1,8 @@
 <map id="src/database/DataBaseGeneratorParameters.hpp" name="src/database/DataBaseGeneratorParameters.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="158,5,395,47"/>
-<area shape="rect" id="node2" href="$CircuitGenGenerator_8cpp.html" title=" " alt="" coords="5,184,209,211"/>
-<area shape="rect" id="node3" href="$DataBaseGenerator_8hpp.html" title=" " alt="" coords="145,102,409,129"/>
-<area shape="rect" id="node5" href="$DataBaseGeneratorParameters_8cpp.html" title=" " alt="" coords="433,95,670,136"/>
-<area shape="rect" id="node4" href="$DataBaseGenerator_8cpp.html" title=" " alt="" coords="233,184,496,211"/>
+<area shape="rect" id="node1" title=" " alt="" coords="223,5,461,47"/>
+<area shape="rect" id="node2" href="$CircuitGenGenerator_8cpp.html" title=" " alt="" coords="5,191,209,218"/>
+<area shape="rect" id="node3" href="$DataBaseGenerator_8hpp.html" title=" " alt="" coords="210,102,474,129"/>
+<area shape="rect" id="node6" href="$DataBaseGeneratorParameters_8cpp.html" title=" " alt="" coords="498,95,735,136"/>
+<area shape="rect" id="node4" href="$DataBaseGenerator_8cpp.html" title=" " alt="" coords="233,191,496,218"/>
+<area shape="rect" id="node5" href="$DataBaseGeneratorTests_8cpp.html" title=" " alt="" coords="520,184,721,225"/>
 </map>

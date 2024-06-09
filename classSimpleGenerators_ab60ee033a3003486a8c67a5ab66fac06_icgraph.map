@@ -1,5 +1,5 @@
 <map id="SimpleGenerators::setGatesInputsInfo" name="SimpleGenerators::setGatesInputsInfo">
-<area shape="rect" id="node1" title="generatorRandLevelExperimental The method generates a random level of complexity of the graph within ..." alt="" coords="559,447,764,488"/>
+<area shape="rect" id="node1" title="generatorRandLevelExperimental The method generates a random level of complexity of the graph within ..." alt="" coords="559,479,764,520"/>
 <area shape="rect" id="node2" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
 <area shape="rect" id="node4" href="$classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
 <area shape="rect" id="node5" href="$classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
@@ -14,5 +14,6 @@
 <area shape="rect" id="node14" href="$classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,740,511,781"/>
 <area shape="rect" id="node15" href="$classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,805,467,847"/>
 <area shape="rect" id="node16" href="$classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" id="node17" href="$SimpleGeneratorsTests_8cpp.html#a1b063fd673d28c8ea8dc9d70428ec785" title=" " alt="" coords="334,937,389,963"/>
 <area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,447,164,488"/>
 </map>

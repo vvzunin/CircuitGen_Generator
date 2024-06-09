@@ -103,11 +103,11 @@ $(document).ready(function(){initNavTree('namespaceCircuitGenGenerator.html','')
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:abba5a22034bbcdd83bf85a971c9fc6e8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="DataBaseGenerator_8hpp.html#af365e9276e78fb465d972f19c76ddea1">ResultGraph</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCircuitGenGenerator.html#abba5a22034bbcdd83bf85a971c9fc6e8">runGenerationFromJsonForGraph</a> (std::string json_path)</td></tr>
-<tr class="separator:abba5a22034bbcdd83bf85a971c9fc6e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84a8be1b476410ae2dd0d23a555a7eb9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="DataBaseGenerator_8hpp.html#a142eeb582b980f0e5e1283e0ea989e99">ResultPath</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCircuitGenGenerator.html#a84a8be1b476410ae2dd0d23a555a7eb9">runGenerationFromJsonForPath</a> (std::string json_path)</td></tr>
-<tr class="separator:a84a8be1b476410ae2dd0d23a555a7eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41dfd9a88637c1961c7eebeec34025d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2">runGenerationFromJson</a> (std::string json_path)</td></tr>
+<tr class="memitem:a7462dfd4e91fa7663ecddeeea30bdeac"><td class="memItemLeft" align="right" valign="top">CIRCUITGENGENERATOR_EXPORT std::vector&lt; std::pair&lt; std::string, std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac">runGenerationFromJsonForGraph</a> (std::string json_path)</td></tr>
+<tr class="separator:a7462dfd4e91fa7663ecddeeea30bdeac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5da6bca928375dcb7c1e460965d8aa6c"><td class="memItemLeft" align="right" valign="top">CIRCUITGENGENERATOR_EXPORT std::vector&lt; std::pair&lt; std::string, std::vector&lt; std::string &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c">runGenerationFromJsonForPath</a> (std::string json_path)</td></tr>
+<tr class="separator:a5da6bca928375dcb7c1e460965d8aa6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41dfd9a88637c1961c7eebeec34025d2"><td class="memItemLeft" align="right" valign="top">CIRCUITGENGENERATOR_EXPORT void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2">runGenerationFromJson</a> (std::string json_path)</td></tr>
 <tr class="separator:a41dfd9a88637c1961c7eebeec34025d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -131,9 +131,9 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceCircuitGenGenerator_a41dfd9a88637c1961c7eebeec34025d2_cgraph.png" border="0" usemap="#anamespaceCircuitGenGenerator_a41dfd9a88637c1961c7eebeec34025d2_cgraph" alt=""/></div>
 <map name="anamespaceCircuitGenGenerator_a41dfd9a88637c1961c7eebeec34025d2_cgraph" id="anamespaceCircuitGenGenerator_a41dfd9a88637c1961c7eebeec34025d2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,1890,188,1931"/>
-<area shape="rect" href="classDataBaseGenerator.html#a5a2d99c28cedf5f11b974682bd11b2d6" title=" " alt="" coords="236,1861,395,1902"/>
-<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="258,1927,373,1953"/>
+<area shape="rect" title=" " alt="" coords="5,1922,188,1963"/>
+<area shape="rect" href="classDataBaseGenerator.html#a5a2d99c28cedf5f11b974682bd11b2d6" title=" " alt="" coords="236,1893,395,1934"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="258,1959,373,1985"/>
 <area shape="rect" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3" title="getInstance Gets a single instance of the Settings class The method provides creation and receipt of ..." alt="" coords="475,365,633,392"/>
 <area shape="rect" href="classGenerationParameters.html#af5f75407122515828eff6efc7676ee8a" title=" " alt="" coords="470,775,638,817"/>
 <area shape="rect" href="classGenerationParameters.html#a6a579996d93cf7232d818c48f8755eb3" title=" " alt="" coords="470,1494,638,1535"/>
@@ -152,6 +152,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classGenerationParameters.html#a5a57d13129ceb1b1994be37bc41d3a87" title=" " alt="" coords="459,2330,649,2371"/>
 <area shape="rect" href="classGenerationParameters.html#a4659e3014d366ff00d7e5c57011fa6c1" title=" " alt="" coords="458,2395,650,2437"/>
 <area shape="rect" href="classGenerationParameters.html#aaa71d5307d34b8da2f64e45417c271b1" title=" " alt="" coords="470,2461,638,2502"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="515,2527,593,2553"/>
 <area shape="rect" href="classSettings.html#a692db3013821565d261527cc0edeeb0e" title=" " alt="" coords="765,5,901,32"/>
 <area shape="rect" href="classGeneratorALUParameters.html#af4756f18b8f286b89c8fb83ac9784fb1" title=" " alt="" coords="739,57,926,98"/>
 <area shape="rect" href="classGeneratorALUParameters.html#ac87e4da8a9f5ad9c98cf99879b6e6c31" title=" " alt="" coords="739,122,926,163"/>
@@ -180,7 +181,6 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classGeneratorComparisonParameters.html#a7409c2905e0f6cd6a47e02f0c1b7d662" title=" " alt="" coords="713,1625,952,1666"/>
 <area shape="rect" href="classGeneratorComparisonParameters.html#aaf3c29c70b65dadc3209006bb0a9cb19" title=" " alt="" coords="713,1690,952,1731"/>
 <area shape="rect" href="classGeneratorComparisonParameters.html#a87b977c8eea8f95e2705d37162549196" title=" " alt="" coords="713,1755,952,1797"/>
-<area shape="rect" href="classGeneticParameters.html#a69d2a71967ac4446244bf488fa982ac5" title=" " alt="" coords="745,1821,921,1862"/>
 </map>
 </div>
 <div class="dynheader">
@@ -195,14 +195,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="abba5a22034bbcdd83bf85a971c9fc6e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abba5a22034bbcdd83bf85a971c9fc6e8">&#9670;&nbsp;</a></span>runGenerationFromJsonForGraph()</h2>
+<a id="a7462dfd4e91fa7663ecddeeea30bdeac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7462dfd4e91fa7663ecddeeea30bdeac">&#9670;&nbsp;</a></span>runGenerationFromJsonForGraph()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="DataBaseGenerator_8hpp.html#af365e9276e78fb465d972f19c76ddea1">ResultGraph</a>&gt; CircuitGenGenerator::runGenerationFromJsonForGraph </td>
+          <td class="memname">std::vector&lt; <a class="el" href="DataBaseGenerator_8hpp.html#af365e9276e78fb465d972f19c76ddea1">ResultGraph</a> &gt; CircuitGenGenerator::runGenerationFromJsonForGraph </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>json_path</em></td><td>)</td>
@@ -213,11 +213,11 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespaceCircuitGenGenerator_abba5a22034bbcdd83bf85a971c9fc6e8_cgraph.png" border="0" usemap="#anamespaceCircuitGenGenerator_abba5a22034bbcdd83bf85a971c9fc6e8_cgraph" alt=""/></div>
-<map name="anamespaceCircuitGenGenerator_abba5a22034bbcdd83bf85a971c9fc6e8_cgraph" id="anamespaceCircuitGenGenerator_abba5a22034bbcdd83bf85a971c9fc6e8_cgraph">
-<area shape="rect" title=" " alt="" coords="5,1883,208,1939"/>
-<area shape="rect" href="classDataBaseGenerator.html#ad00608fdb8d0d6eaffc6320400c8639f" title="generateTypeForGraph The generate Type method of the DataBase Generator class is responsible for gene..." alt="" coords="256,1861,425,1902"/>
-<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="283,1927,398,1953"/>
+<div class="center"><img src="namespaceCircuitGenGenerator_a7462dfd4e91fa7663ecddeeea30bdeac_cgraph.png" border="0" usemap="#anamespaceCircuitGenGenerator_a7462dfd4e91fa7663ecddeeea30bdeac_cgraph" alt=""/></div>
+<map name="anamespaceCircuitGenGenerator_a7462dfd4e91fa7663ecddeeea30bdeac_cgraph" id="anamespaceCircuitGenGenerator_a7462dfd4e91fa7663ecddeeea30bdeac_cgraph">
+<area shape="rect" title=" " alt="" coords="5,1915,208,1971"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad00608fdb8d0d6eaffc6320400c8639f" title="generateTypeForGraph The generate Type method of the DataBase Generator class is responsible for gene..." alt="" coords="256,1893,425,1934"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="283,1959,398,1985"/>
 <area shape="rect" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3" title="getInstance Gets a single instance of the Settings class The method provides creation and receipt of ..." alt="" coords="505,365,664,392"/>
 <area shape="rect" href="classGenerationParameters.html#af5f75407122515828eff6efc7676ee8a" title=" " alt="" coords="501,775,669,817"/>
 <area shape="rect" href="classGenerationParameters.html#a6a579996d93cf7232d818c48f8755eb3" title=" " alt="" coords="501,1494,669,1535"/>
@@ -236,6 +236,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classGenerationParameters.html#a5a57d13129ceb1b1994be37bc41d3a87" title=" " alt="" coords="489,2330,680,2371"/>
 <area shape="rect" href="classGenerationParameters.html#a4659e3014d366ff00d7e5c57011fa6c1" title=" " alt="" coords="489,2395,681,2437"/>
 <area shape="rect" href="classGenerationParameters.html#aaa71d5307d34b8da2f64e45417c271b1" title=" " alt="" coords="501,2461,669,2502"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="545,2527,624,2553"/>
 <area shape="rect" href="classSettings.html#a692db3013821565d261527cc0edeeb0e" title=" " alt="" coords="795,5,931,32"/>
 <area shape="rect" href="classGeneratorALUParameters.html#af4756f18b8f286b89c8fb83ac9784fb1" title=" " alt="" coords="770,57,957,98"/>
 <area shape="rect" href="classGeneratorALUParameters.html#ac87e4da8a9f5ad9c98cf99879b6e6c31" title=" " alt="" coords="770,122,957,163"/>
@@ -264,20 +265,19 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classGeneratorComparisonParameters.html#a7409c2905e0f6cd6a47e02f0c1b7d662" title=" " alt="" coords="744,1625,983,1666"/>
 <area shape="rect" href="classGeneratorComparisonParameters.html#aaf3c29c70b65dadc3209006bb0a9cb19" title=" " alt="" coords="744,1690,983,1731"/>
 <area shape="rect" href="classGeneratorComparisonParameters.html#a87b977c8eea8f95e2705d37162549196" title=" " alt="" coords="744,1755,983,1797"/>
-<area shape="rect" href="classGeneticParameters.html#a69d2a71967ac4446244bf488fa982ac5" title=" " alt="" coords="775,1821,951,1862"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a84a8be1b476410ae2dd0d23a555a7eb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84a8be1b476410ae2dd0d23a555a7eb9">&#9670;&nbsp;</a></span>runGenerationFromJsonForPath()</h2>
+<a id="a5da6bca928375dcb7c1e460965d8aa6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5da6bca928375dcb7c1e460965d8aa6c">&#9670;&nbsp;</a></span>runGenerationFromJsonForPath()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="DataBaseGenerator_8hpp.html#a142eeb582b980f0e5e1283e0ea989e99">ResultPath</a>&gt; CircuitGenGenerator::runGenerationFromJsonForPath </td>
+          <td class="memname">std::vector&lt; <a class="el" href="DataBaseGenerator_8hpp.html#a142eeb582b980f0e5e1283e0ea989e99">ResultPath</a> &gt; CircuitGenGenerator::runGenerationFromJsonForPath </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>json_path</em></td><td>)</td>
@@ -288,11 +288,11 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespaceCircuitGenGenerator_a84a8be1b476410ae2dd0d23a555a7eb9_cgraph.png" border="0" usemap="#anamespaceCircuitGenGenerator_a84a8be1b476410ae2dd0d23a555a7eb9_cgraph" alt=""/></div>
-<map name="anamespaceCircuitGenGenerator_a84a8be1b476410ae2dd0d23a555a7eb9_cgraph" id="anamespaceCircuitGenGenerator_a84a8be1b476410ae2dd0d23a555a7eb9_cgraph">
-<area shape="rect" title=" " alt="" coords="5,1890,236,1931"/>
-<area shape="rect" href="classDataBaseGenerator.html#a41bed423d71ea79c853e01d97cafa5b0" title=" " alt="" coords="284,1861,443,1902"/>
-<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="306,1927,421,1953"/>
+<div class="center"><img src="namespaceCircuitGenGenerator_a5da6bca928375dcb7c1e460965d8aa6c_cgraph.png" border="0" usemap="#anamespaceCircuitGenGenerator_a5da6bca928375dcb7c1e460965d8aa6c_cgraph" alt=""/></div>
+<map name="anamespaceCircuitGenGenerator_a5da6bca928375dcb7c1e460965d8aa6c_cgraph" id="anamespaceCircuitGenGenerator_a5da6bca928375dcb7c1e460965d8aa6c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,1922,236,1963"/>
+<area shape="rect" href="classDataBaseGenerator.html#a41bed423d71ea79c853e01d97cafa5b0" title=" " alt="" coords="284,1893,443,1934"/>
+<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="306,1959,421,1985"/>
 <area shape="rect" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3" title="getInstance Gets a single instance of the Settings class The method provides creation and receipt of ..." alt="" coords="523,365,681,392"/>
 <area shape="rect" href="classGenerationParameters.html#af5f75407122515828eff6efc7676ee8a" title=" " alt="" coords="518,775,686,817"/>
 <area shape="rect" href="classGenerationParameters.html#a6a579996d93cf7232d818c48f8755eb3" title=" " alt="" coords="518,1494,686,1535"/>
@@ -311,6 +311,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classGenerationParameters.html#a5a57d13129ceb1b1994be37bc41d3a87" title=" " alt="" coords="507,2330,697,2371"/>
 <area shape="rect" href="classGenerationParameters.html#a4659e3014d366ff00d7e5c57011fa6c1" title=" " alt="" coords="506,2395,698,2437"/>
 <area shape="rect" href="classGenerationParameters.html#aaa71d5307d34b8da2f64e45417c271b1" title=" " alt="" coords="518,2461,686,2502"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="563,2527,641,2553"/>
 <area shape="rect" href="classSettings.html#a692db3013821565d261527cc0edeeb0e" title=" " alt="" coords="813,5,949,32"/>
 <area shape="rect" href="classGeneratorALUParameters.html#af4756f18b8f286b89c8fb83ac9784fb1" title=" " alt="" coords="787,57,974,98"/>
 <area shape="rect" href="classGeneratorALUParameters.html#ac87e4da8a9f5ad9c98cf99879b6e6c31" title=" " alt="" coords="787,122,974,163"/>
@@ -339,7 +340,6 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classGeneratorComparisonParameters.html#a7409c2905e0f6cd6a47e02f0c1b7d662" title=" " alt="" coords="761,1625,1000,1666"/>
 <area shape="rect" href="classGeneratorComparisonParameters.html#aaf3c29c70b65dadc3209006bb0a9cb19" title=" " alt="" coords="761,1690,1000,1731"/>
 <area shape="rect" href="classGeneratorComparisonParameters.html#a87b977c8eea8f95e2705d37162549196" title=" " alt="" coords="761,1755,1000,1797"/>
-<area shape="rect" href="classGeneticParameters.html#a69d2a71967ac4446244bf488fa982ac5" title=" " alt="" coords="793,1821,969,1862"/>
 </map>
 </div>
 

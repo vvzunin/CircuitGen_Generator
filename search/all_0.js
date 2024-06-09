@@ -1,14 +1,12 @@
 var searchData=
 [
-  ['about_0',['About',['../about.html',1,'']]],
-  ['about_2edox_1',['about.dox',['../about_8dox.html',1,'']]],
-  ['accessiondel_2',['AccessionDel',['../MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8adf7103ea05e13f63d980f53988df378c',1,'MutationParameters.hpp']]],
-  ['adaptationfunction_3',['adaptationFunction',['../classChronosomeType.html#adef5d739aecc5a7874a07600bfac6a5f',1,'ChronosomeType']]],
-  ['adddatatoreturn_4',['addDataToReturn',['../classDataBaseGenerator.html#a94466568c48188b9c520c4d2756f5a8e',1,'DataBaseGenerator']]],
-  ['addvertextoinconnections_5',['addVertexToInConnections',['../classGraphVertexBase.html#a8c984675497210531aab85e713eb16e5',1,'GraphVertexBase']]],
-  ['addvertextooutconnections_6',['addVertexToOutConnections',['../classGraphVertexBase.html#ab4b49728b705bc687c94d1b189f38fc1',1,'GraphVertexBase']]],
-  ['alu_7',['ALU',['../Settings_8hpp.html#aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35',1,'Settings.hpp']]],
-  ['auxiliarymethods_2ecpp_8',['AuxiliaryMethods.cpp',['../AuxiliaryMethods_8cpp.html',1,'']]],
-  ['auxiliarymethods_2ehpp_9',['AuxiliaryMethods.hpp',['../AuxiliaryMethods_8hpp.html',1,'']]],
-  ['auxmethods_10',['AuxMethods',['../namespaceAuxMethods.html',1,'']]]
+  ['binary_5freader_0',['binary_reader',['../classbasic__json.html#aa226ed5103dfd10e27e562d35a3a106b',1,'basic_json']]],
+  ['binary_5fwriter_1',['binary_writer',['../classbasic__json.html#a69d491bbda88ade6d3c7a2b11309e8bf',1,'basic_json']]],
+  ['exception_2',['exception',['../classbasic__json.html#abdcb15d025676b4d3db0f32a50f4393f',1,'basic_json']]],
+  ['iter_5fimpl_3',['iter_impl',['../classbasic__json.html#a842e5c7ca096025c18b11e715d3401f4',1,'basic_json']]],
+  ['json_5fliterals_4',['json_literals',['../namespaceliterals_1_1json__literals.html',1,'']]],
+  ['json_5fpointer_5',['json_pointer',['../classbasic__json.html#a43f901b14cf3f7135269b0c75c9ac233',1,'basic_json']]],
+  ['json_5fsax_5fdom_5fcallback_5fparser_6',['json_sax_dom_callback_parser',['../classbasic__json.html#a95574da8d12905ea99dc348934c837da',1,'basic_json']]],
+  ['json_5fsax_5fdom_5fparser_7',['json_sax_dom_parser',['../classbasic__json.html#a47aabb1eceae32e8a6e8e7f0ff34be60',1,'basic_json']]],
+  ['parser_8',['parser',['../classbasic__json.html#ac8f3125911eb018ef4ab00d879487baf',1,'basic_json']]]
 ];

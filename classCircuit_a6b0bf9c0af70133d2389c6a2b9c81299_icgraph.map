@@ -1,5 +1,5 @@
 <map id="Circuit::setCircuitName" name="Circuit::setCircuitName">
-<area shape="rect" id="node1" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="559,519,732,546"/>
+<area shape="rect" id="node1" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="559,551,732,578"/>
 <area shape="rect" id="node2" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
 <area shape="rect" id="node4" href="$classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
 <area shape="rect" id="node5" href="$classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
@@ -16,5 +16,6 @@
 <area shape="rect" id="node16" href="$classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
 <area shape="rect" id="node17" href="$classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
 <area shape="rect" id="node18" href="$classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="239,1002,484,1029"/>
+<area shape="rect" id="node19" href="$CircuitTests_8cpp.html#ab0e85b100caaebc468682880bd1291ec" title=" " alt="" coords="334,1053,389,1079"/>
 <area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
 </map>

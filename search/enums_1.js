@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['librariestypes_1254',['LibrariesTypes',['../Settings_8hpp.html#a71bf501f63160ba5aa5adb9552290dc9',1,'Settings.hpp']]]
+  ['error_5fhandler_5ft_3258',['error_handler_t',['../namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298',1,'detail']]]
 ];

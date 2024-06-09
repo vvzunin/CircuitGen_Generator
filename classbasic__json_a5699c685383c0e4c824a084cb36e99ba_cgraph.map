@@ -1,0 +1,6 @@
+<map id="basic_json::destroy" name="basic_json::destroy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,152,83"/>
+<area shape="rect" id="node2" href="$structjson__sax.html#a15d6c5d0dcaceb906405f427faf9b34e" title="a binary value was read" alt="" coords="214,5,342,32"/>
+<area shape="rect" id="node3" href="$classbasic__json.html#a184ba4a6b47e6da3703af19349bd776f" title="return whether value is an array" alt="" coords="203,56,353,83"/>
+<area shape="rect" id="node4" href="$classbasic__json.html#af355a2b131068acf3d623eb6d80a711c" title="return whether value is an object" alt="" coords="200,107,356,133"/>
+</map>

@@ -1,4 +1,5 @@
 <map id="RecombinationsTruthTable::RecombinationCrossingShuffling" name="RecombinationsTruthTable::RecombinationCrossingShuffling">
-<area shape="rect" id="node1" title=" " alt="" coords="204,5,445,47"/>
-<area shape="rect" id="node2" href="$Recombinations_8hpp.html#aecbe35db0b1a8e02badfba0114d761e1" title=" " alt="" coords="5,13,156,39"/>
+<area shape="rect" id="node1" title=" " alt="" coords="204,23,445,65"/>
+<area shape="rect" id="node2" href="$Recombinations_8hpp.html#aecbe35db0b1a8e02badfba0114d761e1" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node3" href="$RecombinationTruthTableTests_8cpp.html#ac641cfdaa8e32d9b09e577d01c64c343" title=" " alt="" coords="53,56,108,83"/>
 </map>

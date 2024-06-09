@@ -1,0 +1,4 @@
+<map id="detail::escape" name="detail::escape">
+<area shape="rect" id="node1" title="string escaping as described in RFC 6901 (Sect. 4)" alt="" coords="5,5,119,32"/>
+<area shape="rect" id="node2" href="$namespacedetail.html#a6fd295e53b1dd4f46e235e6afee26d5e" title="replace all occurrences of a substring by another string" alt="" coords="167,5,349,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="detail::binary_reader::parse_bson_element_list" name="detail::binary_reader::parse_bson_element_list">
+<area shape="rect" id="node1" title="Read a BSON element list (as specified in the BSON&#45;spec)" alt="" coords="5,23,197,65"/>
+<area shape="rect" id="node2" href="$namespacedetail.html#a7116703ea757fe9821bf2e903b91c160" title=" " alt="" coords="257,5,345,32"/>
+<area shape="rect" id="node3" href="$structjson__sax.html#a3355ecd7e3e9806dcb80b2f8842b82ce" title="an object key was read" alt="" coords="245,56,356,83"/>
+</map>

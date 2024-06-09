@@ -103,6 +103,12 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 <li>d_ALL
 : <a class="el" href="classGeneratorALUParameters.html#a52698cd243d985b3f5a42f24107aef2c">GeneratorALUParameters</a>
 </li>
+<li>d_allSubGraphsOutputs
+: <a class="el" href="classOrientedGraph.html#a8d972d9fd645eb068c9663c02094feb7">OrientedGraph</a>
+</li>
+<li>d_alreadyParsed
+: <a class="el" href="classOrientedGraph.html#a2f011a77b7ecba83bf834fee6d8f29eb">OrientedGraph</a>
+</li>
 <li>d_AND
 : <a class="el" href="classGeneratorALUParameters.html#a14cca30f46508e92208146bf4c16dc67">GeneratorALUParameters</a>
 </li>
@@ -148,11 +154,23 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 <li>d_compare2
 : <a class="el" href="classGeneratorComparisonParameters.html#a0efba590017db6332ece9b67672d00f1">GeneratorComparisonParameters</a>
 </li>
+<li>d_connected
+: <a class="el" href="classOrientedGraph.html#ae4eba997cefeaba51667206b862bfcf0">OrientedGraph</a>
+</li>
 <li>d_count
 : <a class="el" href="classGraphVertexBase.html#a2d1e57b08fccf0e3b0c2f98c1116534e">GraphVertexBase</a>
 </li>
+<li>d_countGraph
+: <a class="el" href="classOrientedGraph.html#a5029b270fc1399f66b64b2f2217fef44">OrientedGraph</a>
+</li>
+<li>d_countNewGraphInstance
+: <a class="el" href="classOrientedGraph.html#ae0760fd172030f61cc08ad6e624f229f">OrientedGraph</a>
+</li>
 <li>d_csvdataset
 : <a class="el" href="classSettings.html#ab4fadb73ca581ee3340a022a05bb5f6d">Settings</a>
+</li>
+<li>d_currentParentGraph
+: <a class="el" href="classOrientedGraph.html#a04d996bfc86c08730fc69b6a877dff5f">OrientedGraph</a>
 </li>
 <li>d_datasetPath
 : <a class="el" href="classSettings.html#ac2c5e889e5f79932bff53afcd28b09d5">Settings</a>
@@ -163,6 +181,12 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 <li>d_eachIteration
 : <a class="el" href="classDataBaseGeneratorParameters.html#ae331114aee85a34b14e565a715c8597b">DataBaseGeneratorParameters</a>
 </li>
+<li>d_edgesCount
+: <a class="el" href="classOrientedGraph.html#a2203c5e3ce5898aa7249385c9aa226c5">OrientedGraph</a>
+</li>
+<li>d_edgesGatesCount
+: <a class="el" href="classOrientedGraph.html#a74c89e1066ae080d3e986f346bdb2166">OrientedGraph</a>
+</li>
 <li>d_exchangeType
 : <a class="el" href="classMutationParameters.html#a42aa43e26e569ecd640e8e84546d2a21">MutationParameters</a>
 </li>
@@ -171,6 +195,9 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 </li>
 <li>d_gate
 : <a class="el" href="classGraphVertexGates.html#a129f56fc347d7127f7ad934e20a1c386">GraphVertexGates</a>
+</li>
+<li>d_gatesCount
+: <a class="el" href="classOrientedGraph.html#aab11e5340f4c39b3bb34cd09ad1035de">OrientedGraph</a>
 </li>
 <li>d_gatesInputsInfo
 : <a class="el" href="classGenerationParameters.html#a37e2ecfe060f147156281c4c65844497">GenerationParameters</a>
@@ -223,8 +250,17 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 : <a class="el" href="classCircuit.html#ac340800d917fd745ec19ce5ddef32468">Circuit</a>
 , <a class="el" href="classParser.html#ac1e79bd59b7e8951114f982b81499ae2">Parser</a>
 </li>
+<li>d_graphID
+: <a class="el" href="classOrientedGraph.html#a63644cc622e456ec854eb7519ec21b73">OrientedGraph</a>
+</li>
+<li>d_graphInstanceToVerilogCount
+: <a class="el" href="classOrientedGraph.html#aea4b54776346401112e5f27000e9505c">OrientedGraph</a>
+</li>
 <li>d_hashCode
 : <a class="el" href="classCircuitParameters.html#a3af2415d7e4ee5045f123141aad1c0ef">CircuitParameters</a>
+</li>
+<li>d_hashed
+: <a class="el" href="classOrientedGraph.html#a7a1fa47e345b8a2e080513a479dad613">OrientedGraph</a>
 </li>
 <li>d_inConnections
 : <a class="el" href="classGraphVertexBase.html#a418e8e9b44810439133522e3cbfb2f9e">GraphVertexBase</a>
@@ -239,6 +275,9 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 </li>
 <li>d_inputsByNames
 : <a class="el" href="classParser.html#a997e3718a07e3299323cb6af7d75529b">Parser</a>
+</li>
+<li>d_isSubGraph
+: <a class="el" href="classOrientedGraph.html#a557a037344d6ed677e113be55cd6537c">OrientedGraph</a>
 </li>
 <li>d_iteration
 : <a class="el" href="classGenerationParameters.html#a2e606917d264caac129f8505088cad8c">GenerationParameters</a>
@@ -354,10 +393,14 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 , <a class="el" href="classGenerationParameters.html#a4f5a434e76f4f2d9806cf25666d918e2">GenerationParameters</a>
 , <a class="el" href="classGeneticGenerator.html#a21b84f0efa017a05128fa95eacaad619">GeneticGenerator&lt; Type, ParametersType &gt;</a>
 , <a class="el" href="classGraphVertexBase.html#a1c3745128ab685cb98f437781dfbaac8">GraphVertexBase</a>
+, <a class="el" href="classOrientedGraph.html#a3522b16d0534e9fe8e37a67c95ba9e43">OrientedGraph</a>
 , <a class="el" href="classSettings.html#a30645ad6e1b4134078cc3e6847d7f21d">Settings</a>
 </li>
 <li>d_NAND
 : <a class="el" href="classGeneratorALUParameters.html#abc0da8780a6b0859e4ae6014c29a52f6">GeneratorALUParameters</a>
+</li>
+<li>d_needLevelUpdate
+: <a class="el" href="classOrientedGraph.html#ac3d3d5663207c3ba84c54f2ea856e92b">OrientedGraph</a>
 </li>
 <li>d_NOR
 : <a class="el" href="classGeneratorALUParameters.html#ac642ad8f2e14578c71b7decaf18ed0ef">GeneratorALUParameters</a>
@@ -506,6 +549,7 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 , <a class="el" href="classDataBaseGenerator.html#a7356615dd0de27b0fb6533bb9e98b27b">DataBaseGenerator</a>
 , <a class="el" href="classGeneticGenerator.html#a10876e71adc807de7375e9d415388681">GeneticGenerator&lt; Type, ParametersType &gt;</a>
 , <a class="el" href="classGraphVertexBase.html#a05f5198fc2b7c9cb2806085bac5cf567">GraphVertexBase</a>
+, <a class="el" href="classOrientedGraph.html#ac2ddf5a765f8dc959b36c5f636b38755">OrientedGraph</a>
 , <a class="el" href="classParser.html#ae28bee9908099579213af0c6d2b720ca">Parser</a>
 , <a class="el" href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">SimpleGenerators</a>
 , <a class="el" href="classTruthTable.html#a180d66f59c72b1efd0fdab8ec0c05870">TruthTable</a>
@@ -526,6 +570,15 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 <li>d_subGraph
 : <a class="el" href="classGraphVertexSubGraph.html#ae1a4fc9e88f572807f82f10ffa3b790e">GraphVertexSubGraph</a>
 </li>
+<li>d_subGraphs
+: <a class="el" href="classOrientedGraph.html#a4e173d5d5f917c4da3fae13e270b334a">OrientedGraph</a>
+</li>
+<li>d_subGraphsInputsPtr
+: <a class="el" href="classOrientedGraph.html#ac0a5375bdc9f2ae5710e8b4cc0bba766">OrientedGraph</a>
+</li>
+<li>d_subGraphsOutputsPtr
+: <a class="el" href="classOrientedGraph.html#a066ec09f2e90df3b58d35dbc3d9beda5">OrientedGraph</a>
+</li>
 <li>d_SUM
 : <a class="el" href="classGeneratorALUParameters.html#af16379e59e7c4ff98e1e5b809a763552">GeneratorALUParameters</a>
 </li>
@@ -542,6 +595,9 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 <li>d_value
 : <a class="el" href="classGraphVertexBase.html#a46f5aa4aa4be388075c14617b38df563">GraphVertexBase</a>
 </li>
+<li>d_vertexes
+: <a class="el" href="classOrientedGraph.html#ae13ea6fbb4ea382f1b5ee751c760c52a">OrientedGraph</a>
+</li>
 <li>d_XNOR
 : <a class="el" href="classGeneratorALUParameters.html#afb90a8fb0bbdefda48c03ec0d6cae60c">GeneratorALUParameters</a>
 </li>
@@ -554,17 +610,63 @@ $(document).ready(function(){initNavTree('functions_d.html',''); initResizable()
 <li>d_ZhegalkinFromTruthTableParameters
 : <a class="el" href="classGenerationParameters.html#a704bba4d8ab5c89d98dac94c6031ecff">GenerationParameters</a>
 </li>
+<li>data()
+: <a class="el" href="classbasic__json.html#a416abf41e6c61061dd2be762a88cceb8">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
+</li>
 <li>DataBaseGenerator()
 : <a class="el" href="classDataBaseGenerator.html#a00481fbb8c06d03bda84618f1423df59">DataBaseGenerator</a>
 </li>
 <li>DataBaseGeneratorParameters()
 : <a class="el" href="classDataBaseGeneratorParameters.html#ae17727ba4b2052fafdb56aaaf614d2cf">DataBaseGeneratorParameters</a>
 </li>
+<li>decimal_point
+: <a class="el" href="classdetail_1_1serializer.html#a5f01fcbf64cb1e5f36d8853ebcd96412">detail::serializer&lt; BasicJsonType &gt;</a>
+</li>
+<li>decimal_point_char
+: <a class="el" href="classdetail_1_1lexer.html#a58b33ff095052c2463255f1e121db74e">detail::lexer&lt; BasicJsonType, InputAdapterType &gt;</a>
+</li>
+<li>default_object_comparator_t
+: <a class="el" href="classbasic__json.html#a991d005e7f648cbf37bb36daf85183ca">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
+</li>
 <li>deleteExtraSpaces()
 : <a class="el" href="classParser.html#afdfa436849e6d5ace5227b12b7aade20">Parser</a>
 </li>
 <li>delNull()
 : <a class="el" href="classSimpleGenerators.html#ab5174470fe9c5bfc4e0b562ae6c371b3">SimpleGenerators</a>
+</li>
+<li>destroy()
+: <a class="el" href="classbasic__json.html#a5699c685383c0e4c824a084cb36e99ba">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
+</li>
+<li>detail::external_constructor
+: <a class="el" href="classbasic__json.html#a6275ed57bae6866cdf5db5370a7ad47c">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
+</li>
+<li>dfs()
+: <a class="el" href="classOrientedGraph.html#a68effe24ee04fe2d54fd3a2fb8e3b685">OrientedGraph</a>
+</li>
+<li>diagnostics()
+: <a class="el" href="classdetail_1_1exception.html#a6b4a786b5c1c25dd3edaceb1bf2d5120">detail::exception</a>
+</li>
+<li>diff()
+: <a class="el" href="classbasic__json.html#a699ef418df577e75f28dfce6b04d6c2f">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
+</li>
+<li>difference_type
+: <a class="el" href="classbasic__json.html#ae45e8f7ce7c3e62035cd097a39910399">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
+, <a class="el" href="classdetail_1_1iter__impl.html#a6d51e1372282929d1c240223aa973c6e">detail::iter_impl&lt; BasicJsonType &gt;</a>
+, <a class="el" href="classdetail_1_1iteration__proxy__value.html#a3365781ff806e15a1cd99e6d0987c68d">detail::iteration_proxy_value&lt; IteratorType &gt;</a>
+, <a class="el" href="structdetail_1_1iterator__traits_3_01T_01_5_00_01enable__if__t_3_01std_1_1is__object_3_01T_01_4_1_1value_01_4_01_4.html#ad08ccea3ab6f13f11bcd790866ee1dc8">detail::iterator_traits&lt; T *, enable_if_t&lt; std::is_object&lt; T &gt;::value &gt; &gt;</a>
+, <a class="el" href="structdetail_1_1iterator__types_3_01It_00_01void__t_3_01typename_01It_1_1difference__type_00_01tce77e1bdc2e5b392df295e4bdf270278.html#a3d9338ab90d2fd007e139856eca8e00e">detail::iterator_types&lt; It, void_t&lt; typename It::difference_type, typename It::value_type, typename It::pointer, typename It::reference, typename It::iterator_category &gt; &gt;</a>
+, <a class="el" href="classdetail_1_1json__reverse__iterator.html#a474e450284b0bb060b248d20f2b03f93">detail::json_reverse_iterator&lt; Base &gt;</a>
+, <a class="el" href="classdetail_1_1primitive__iterator__t.html#af276ab0e7f7cbdb869a72cd74d6a987d">detail::primitive_iterator_t</a>
+</li>
+<li>discarded
+: <a class="el" href="classdetail_1_1json__sax__dom__callback__parser.html#ab6586c88a5c4de92098d7682fdfab591">detail::json_sax_dom_callback_parser&lt; BasicJsonType &gt;</a>
+</li>
+<li>diyfp()
+: <a class="el" href="structdetail_1_1dtoa__impl_1_1diyfp.html#a7c8377d2b931fcb3088d54c41b99c53b">detail::dtoa_impl::diyfp</a>
+</li>
+<li>dump()
+: <a class="el" href="classbasic__json.html#a85df48caed9e341bb14d98ab88891d1e">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
+, <a class="el" href="classdetail_1_1serializer.html#ae73c1bac64bcc810923b9f1261af8b09">detail::serializer&lt; BasicJsonType &gt;</a>
 </li>
 </ul>
 </div><!-- contents -->

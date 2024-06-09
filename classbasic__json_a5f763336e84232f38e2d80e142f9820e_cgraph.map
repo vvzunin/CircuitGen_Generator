@@ -1,0 +1,4 @@
+<map id="basic_json::erase" name="basic_json::erase">
+<area shape="rect" id="node1" title="remove element from a JSON object given a key" alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node2" href="$structjson__sax.html#a3355ecd7e3e9806dcb80b2f8842b82ce" title="an object key was read" alt="" coords="188,5,299,32"/>
+</map>

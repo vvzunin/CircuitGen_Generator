@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['selectiontypes_1259',['SelectionTypes',['../SelectionParameters_8hpp.html#a50daa29c84869b18e0b12d7456de94e2',1,'SelectionParameters.hpp']]]
+  ['mutationtypes_3264',['MutationTypes',['../MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8',1,'MutationParameters.hpp']]]
 ];

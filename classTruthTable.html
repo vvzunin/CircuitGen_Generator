@@ -321,6 +321,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classTruthTable.html#a09de48ba6c97632625188dc32ffd944b" title="generateTable Generate a truth table with specified probability." alt="" coords="216,35,404,61"/>
 <area shape="rect" href="namespaceAuxMethods.html#ad1cd19afad4489d0c7eb4938e106ec42" title="specified range" alt="" coords="452,5,663,32"/>
 <area shape="rect" href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="456,57,659,98"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="711,64,789,91"/>
 </map>
 </div>
 
@@ -363,6 +364,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="472,136,675,177"/>
 <area shape="rect" href="classGeneticParameters.html#a8c402aebed6a73dd096ec105b6d0366a" title="setInputs Set the number of inputs" alt="" coords="496,201,651,243"/>
 <area shape="rect" href="classGeneticParameters.html#a5935bc550b7a0640c9f0c40f7cd9658b" title="setOutputs Set the number of outputs" alt="" coords="496,267,651,308"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="723,143,801,170"/>
 </map>
 </div>
 
@@ -408,6 +410,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classTruthTable.html#a09de48ba6c97632625188dc32ffd944b" title="generateTable Generate a truth table with specified probability." alt="" coords="216,35,404,61"/>
 <area shape="rect" href="namespaceAuxMethods.html#ad1cd19afad4489d0c7eb4938e106ec42" title="specified range" alt="" coords="452,5,663,32"/>
 <area shape="rect" href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="456,57,659,98"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="711,64,789,91"/>
 </map>
 </div>
 
@@ -432,7 +435,7 @@ Here is the call graph for this function:</div>
 <p>convToBinary Convert truth table indices to binary representation This method converts the indices of the truth table into binary representation. </p>
 <p>Each row index of the truth table corresponds to a unique combination of input variables, which is represented in binary form. For example, if the number of input variables is 3, the binary representation of the row index 5 (101 in binary) corresponds to the input combination [true, false, true]. </p><dl class="section return"><dt>Returns</dt><dd>A two-dimensional vector representing the binary representation of each row index in the truth table. <div class="fragment"><div class="line"><span class="comment">// Assuming a truth table with 3 input variables and 2 output variable</span></div>
 <div class="line"><a class="code" href="classTruthTable.html">TruthTable</a> table(3, 2);</div>
-<div class="line">Convert truth table indices to binary representation</div>
+<div class="line">Convert truth table indices to <a class="code" href="namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632a9d7183f16acce70658f686ae7f1a4d20">binary</a> representation</div>
 <div class="line">std::vector&lt;std::vector&lt;bool&gt;&gt; binRepresentation = table.convToBinary();</div>
 <div class="line"><span class="comment">// Print the binary representation</span></div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Binary Representation of Truth Table Indices&quot;</span> &lt;&lt; std::endl;</div>
@@ -445,19 +448,22 @@ Here is the call graph for this function:</div>
 <div class="line">  std::cout &lt;&lt; std::endl;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclassTruthTable_html"><div class="ttname"><a href="classTruthTable.html">TruthTable</a></div><div class="ttdoc">class TruthTable Represents a truth table for a combinational logic circuit This class encapsulates t...</div><div class="ttdef"><b>Definition:</b> TruthTable.hpp:21</div></div>
+<div class="ttc" id="anamespacedetail_html_a917c3efabea8a20dc72d9ae2c673d632a9d7183f16acce70658f686ae7f1a4d20"><div class="ttname"><a href="namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632a9d7183f16acce70658f686ae7f1a4d20">detail::value_t::binary</a></div><div class="ttdeci">@ binary</div><div class="ttdoc">binary array (ordered collection of bytes)</div></div>
 </div><!-- fragment --> </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTruthTable_a5790cc7c8fc0e04547d83e5f9384efe9_icgraph.png" border="0" usemap="#aclassTruthTable_a5790cc7c8fc0e04547d83e5f9384efe9_icgraph" alt=""/></div>
 <map name="aclassTruthTable_a5790cc7c8fc0e04547d83e5f9384efe9_icgraph" id="aclassTruthTable_a5790cc7c8fc0e04547d83e5f9384efe9_icgraph">
-<area shape="rect" title="convToBinary Convert truth table indices to binary representation This method converts the indices of..." alt="" coords="1032,57,1215,84"/>
-<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="784,50,984,91"/>
-<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="505,5,736,61"/>
-<area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="515,86,727,127"/>
-<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,42,164,83"/>
-<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,71,431,113"/>
-<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,137,457,164"/>
+<area shape="rect" title="convToBinary Convert truth table indices to binary representation This method converts the indices of..." alt="" coords="1013,123,1196,149"/>
+<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="765,86,965,127"/>
+<area shape="rect" href="TruthTableTests_8cpp.html#af95f059095cd515ffd275e973a3291e5" title=" " alt="" coords="838,152,893,179"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="219,5,450,61"/>
+<area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="505,86,717,127"/>
+<area shape="rect" href="SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="584,152,639,179"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,50,164,91"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,86,431,127"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,152,457,179"/>
 </map>
 </div>
 
@@ -497,6 +503,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="261,136,464,177"/>
 <area shape="rect" href="classGeneticParameters.html#a8c402aebed6a73dd096ec105b6d0366a" title="setInputs Set the number of inputs" alt="" coords="285,201,440,243"/>
 <area shape="rect" href="classGeneticParameters.html#a5935bc550b7a0640c9f0c40f7cd9658b" title="setOutputs Set the number of outputs" alt="" coords="285,267,440,308"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="512,143,591,170"/>
 </map>
 </div>
 <div class="dynheader">
@@ -542,6 +549,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="generateTable Generate a truth table with specified probability." alt="" coords="5,35,193,61"/>
 <area shape="rect" href="namespaceAuxMethods.html#ad1cd19afad4489d0c7eb4938e106ec42" title="specified range" alt="" coords="241,5,452,32"/>
 <area shape="rect" href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="245,57,448,98"/>
+<area shape="rect" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="500,64,579,91"/>
 </map>
 </div>
 <div class="dynheader">
@@ -549,8 +557,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTruthTable_a09de48ba6c97632625188dc32ffd944b_icgraph.png" border="0" usemap="#aclassTruthTable_a09de48ba6c97632625188dc32ffd944b_icgraph" alt=""/></div>
 <map name="aclassTruthTable_a09de48ba6c97632625188dc32ffd944b_icgraph" id="aclassTruthTable_a09de48ba6c97632625188dc32ffd944b_icgraph">
-<area shape="rect" title="generateTable Generate a truth table with specified probability." alt="" coords="216,5,404,32"/>
-<area shape="rect" href="classTruthTable.html#a83be2e572e709638fdd5bd2991dc6100" title=" " alt="" coords="5,5,168,32"/>
+<area shape="rect" title="generateTable Generate a truth table with specified probability." alt="" coords="216,31,404,57"/>
+<area shape="rect" href="TruthTableTests_8cpp.html#a01bf33ff68f079488ecd912324711906" title=" " alt="" coords="59,5,114,32"/>
+<area shape="rect" href="classTruthTable.html#a83be2e572e709638fdd5bd2991dc6100" title=" " alt="" coords="5,56,168,83"/>
 </map>
 </div>
 
@@ -582,17 +591,20 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTruthTable_a6c1a776a25eb693a3a59e6410bca23e7_icgraph.png" border="0" usemap="#aclassTruthTable_a6c1a776a25eb693a3a59e6410bca23e7_icgraph" alt=""/></div>
 <map name="aclassTruthTable_a6c1a776a25eb693a3a59e6410bca23e7_icgraph" id="aclassTruthTable_a6c1a776a25eb693a3a59e6410bca23e7_icgraph">
-<area shape="rect" title="getInput Get the number of input variables in the truth table." alt="" coords="1043,119,1193,145"/>
-<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="789,78,989,119"/>
-<area shape="rect" href="namespaceMutationTruthTable.html#ae554622fdbbce760b2ffe6c7a8da081e" title=" " alt="" coords="802,143,977,185"/>
-<area shape="rect" href="namespaceMutationTruthTable.html#aae53c642e6c61f30008a3e8e2f0e357e" title=" " alt="" coords="816,209,963,250"/>
-<area shape="rect" href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="784,13,995,54"/>
+<area shape="rect" title="getInput Get the number of input variables in the truth table." alt="" coords="1043,164,1193,191"/>
+<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="789,102,989,143"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#ae554622fdbbce760b2ffe6c7a8da081e" title=" " alt="" coords="802,189,977,230"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#aae53c642e6c61f30008a3e8e2f0e357e" title=" " alt="" coords="816,254,963,295"/>
+<area shape="rect" href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="784,22,995,63"/>
 <area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="505,5,736,61"/>
 <area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="515,86,727,127"/>
+<area shape="rect" href="SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="593,152,648,179"/>
 <area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,42,164,83"/>
 <area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,71,431,113"/>
 <area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,137,457,164"/>
-<area shape="rect" href="Mutation_8cpp.html#a56b94446ca4cef0466970725a366f003" title=" " alt="" coords="565,184,676,211"/>
+<area shape="rect" href="Mutation_8cpp.html#a56b94446ca4cef0466970725a366f003" title=" " alt="" coords="565,253,676,280"/>
+<area shape="rect" href="MutationTruthTableTests_8cpp.html#ae18ebeebc939ec47d95df4d067a20cd9" title=" " alt="" coords="593,203,648,229"/>
+<area shape="rect" href="MutationTruthTableTests_8cpp.html#a24006d880acdf55b8da7df3d09515cf8" title=" " alt="" coords="593,304,648,331"/>
 </map>
 </div>
 
@@ -624,11 +636,12 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTruthTable_a87ce43a0f73da02698aa5b4e4e378a8e_icgraph.png" border="0" usemap="#aclassTruthTable_a87ce43a0f73da02698aa5b4e4e378a8e_icgraph" alt=""/></div>
 <map name="aclassTruthTable_a87ce43a0f73da02698aa5b4e4e378a8e_icgraph" id="aclassTruthTable_a87ce43a0f73da02698aa5b4e4e378a8e_icgraph">
-<area shape="rect" title="getOutput Get the number of output variables in the truth table" alt="" coords="1043,53,1204,80"/>
-<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="789,78,989,119"/>
-<area shape="rect" href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="784,13,995,54"/>
+<area shape="rect" title="getOutput Get the number of output variables in the truth table" alt="" coords="1043,57,1204,84"/>
+<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="789,82,989,123"/>
+<area shape="rect" href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="784,15,995,57"/>
 <area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="505,5,736,61"/>
 <area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="515,86,727,127"/>
+<area shape="rect" href="SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="593,152,648,179"/>
 <area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,42,164,83"/>
 <area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,71,431,113"/>
 <area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,137,457,164"/>
@@ -663,31 +676,38 @@ Here is the caller graph for this function:</div>
 <div class="line">{</div>
 <div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">bool</span> value : row)</div>
 <div class="line">  {</div>
-<div class="line">    std:: cout &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line">    std:: cout &lt;&lt; <a class="code" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
 <div class="line">  }</div>
 <div class="line">  std::cout &lt;&lt; endl;</div>
 <div class="line">}</div>
 <div class="ttc" id="aSettings_8hpp_html_a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545"><div class="ttname"><a href="Settings_8hpp.html#a0205bad1987949fa63dc4d217e4e2e5dae6eb596f7e638118128651043ff38545">output</a></div><div class="ttdeci">@ output</div><div class="ttdoc">output vertex</div><div class="ttdef"><b>Definition:</b> Settings.hpp:20</div></div>
+<div class="ttc" id="anamespacedetail_html_a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804"><div class="ttname"><a href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">detail::parse_event_t::value</a></div><div class="ttdeci">@ value</div><div class="ttdoc">the parser finished reading a JSON value</div></div>
 </div><!-- fragment --> </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTruthTable_ab71a41a53ce4167519b4d24f14cbac82_icgraph.png" border="0" usemap="#aclassTruthTable_ab71a41a53ce4167519b4d24f14cbac82_icgraph" alt=""/></div>
 <map name="aclassTruthTable_ab71a41a53ce4167519b4d24f14cbac82_icgraph" id="aclassTruthTable_ab71a41a53ce4167519b4d24f14cbac82_icgraph">
-<area shape="rect" title="getOutTable Get the output table." alt="" coords="1069,184,1244,211"/>
-<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="803,78,1003,119"/>
-<area shape="rect" href="namespaceMutationTruthTable.html#ae554622fdbbce760b2ffe6c7a8da081e" title=" " alt="" coords="815,143,990,185"/>
-<area shape="rect" href="namespaceMutationTruthTable.html#afa8359a4983c7fdf8b086c121c91f786" title=" " alt="" coords="829,209,976,250"/>
-<area shape="rect" href="namespaceRecombinationsTruthTable.html#ab23b4239fad7f8a2907f1d7675fc3265" title=" " alt="" coords="789,274,1016,315"/>
-<area shape="rect" href="namespaceRecombinationsTruthTable.html#aeb0a50b0defe1fbe91da2212b757350b" title=" " alt="" coords="784,339,1021,381"/>
-<area shape="rect" href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="797,13,1008,54"/>
+<area shape="rect" title="getOutTable Get the output table." alt="" coords="1069,271,1244,297"/>
+<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="803,106,1003,147"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#ae554622fdbbce760b2ffe6c7a8da081e" title=" " alt="" coords="815,198,990,239"/>
+<area shape="rect" href="namespaceMutationTruthTable.html#afa8359a4983c7fdf8b086c121c91f786" title=" " alt="" coords="829,263,976,305"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#ab23b4239fad7f8a2907f1d7675fc3265" title=" " alt="" coords="789,329,1016,370"/>
+<area shape="rect" href="namespaceRecombinationsTruthTable.html#aeb0a50b0defe1fbe91da2212b757350b" title=" " alt="" coords="784,446,1021,487"/>
+<area shape="rect" href="TruthTableTests_8cpp.html#a01bf33ff68f079488ecd912324711906" title=" " alt="" coords="875,395,930,421"/>
+<area shape="rect" href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="797,27,1008,69"/>
 <area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="505,5,736,61"/>
-<area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="515,86,727,127"/>
-<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,42,164,83"/>
-<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,71,431,113"/>
-<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,137,457,164"/>
-<area shape="rect" href="Mutation_8cpp.html#a56b94446ca4cef0466970725a366f003" title=" " alt="" coords="565,184,676,211"/>
-<area shape="rect" href="Recombinations_8hpp.html#aecbe35db0b1a8e02badfba0114d761e1" title=" " alt="" coords="545,313,696,340"/>
+<area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="515,137,727,178"/>
+<area shape="rect" href="SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="593,85,648,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,82,164,123"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,137,431,178"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,85,457,112"/>
+<area shape="rect" href="Mutation_8cpp.html#a56b94446ca4cef0466970725a366f003" title=" " alt="" coords="565,253,676,280"/>
+<area shape="rect" href="MutationTruthTableTests_8cpp.html#ae18ebeebc939ec47d95df4d067a20cd9" title=" " alt="" coords="593,203,648,229"/>
+<area shape="rect" href="MutationTruthTableTests_8cpp.html#a9747bd5e80994a7cbc6e0a82367fe577" title=" " alt="" coords="593,304,648,331"/>
+<area shape="rect" href="Recombinations_8hpp.html#aecbe35db0b1a8e02badfba0114d761e1" title=" " alt="" coords="545,405,696,432"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a2f47aa30a8c65e48a9832dc43eef27f9" title=" " alt="" coords="593,355,648,381"/>
+<area shape="rect" href="RecombinationTruthTableTests_8cpp.html#a6599631a87f7c2992429de3c555da0ba" title=" " alt="" coords="593,456,648,483"/>
 </map>
 </div>
 
@@ -731,7 +751,7 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>The truth value at the specified position. <div class="fragment"><div class="line"><span class="comment">// Assuming a truth table with 3 input variables and 2 output variable</span></div>
 <div class="line"><a class="code" href="classTruthTable.html">TruthTable</a> table(3, 2);</div>
 <div class="line"><span class="comment">// Get the truth value at position (1, 0) in the output table</span></div>
-<div class="line"><span class="keywordtype">bool</span> value = table.getOutTable(1,0);</div>
+<div class="line"><span class="keywordtype">bool</span> <a class="code" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = table.getOutTable(1,0);</div>
 </div><!-- fragment --> </dd></dl>
 
 </div>
@@ -894,11 +914,12 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTruthTable_af91eb4123d7254a4b623f6b5dfca211a_icgraph.png" border="0" usemap="#aclassTruthTable_af91eb4123d7254a4b623f6b5dfca211a_icgraph" alt=""/></div>
 <map name="aclassTruthTable_af91eb4123d7254a4b623f6b5dfca211a_icgraph" id="aclassTruthTable_af91eb4123d7254a4b623f6b5dfca211a_icgraph">
-<area shape="rect" title="size Get the size of the truth table." alt="" coords="1043,53,1165,80"/>
-<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="789,78,989,119"/>
-<area shape="rect" href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="784,13,995,54"/>
+<area shape="rect" title="size Get the size of the truth table." alt="" coords="1043,57,1165,84"/>
+<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="789,82,989,123"/>
+<area shape="rect" href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="784,15,995,57"/>
 <area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="505,5,736,61"/>
 <area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="515,86,727,127"/>
+<area shape="rect" href="SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="593,152,648,179"/>
 <area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,42,164,83"/>
 <area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,71,431,113"/>
 <area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,137,457,164"/>

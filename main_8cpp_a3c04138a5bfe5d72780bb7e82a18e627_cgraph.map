@@ -1,26 +1,27 @@
 <map id="main" name="main">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1897,60,1924"/>
-<area shape="rect" id="node2" href="$namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="108,1890,291,1931"/>
-<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a5a2d99c28cedf5f11b974682bd11b2d6" title=" " alt="" coords="339,1861,497,1902"/>
-<area shape="rect" id="node4" href="$CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="361,1927,475,1953"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,1929,60,1956"/>
+<area shape="rect" id="node2" href="$namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="108,1922,291,1963"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a5a2d99c28cedf5f11b974682bd11b2d6" title=" " alt="" coords="339,1893,497,1934"/>
+<area shape="rect" id="node4" href="$CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="361,1959,475,1985"/>
 <area shape="rect" id="node5" href="$classSettings.html#a30ad5eb680e7894684c46fa5623870f3" title="getInstance Gets a single instance of the Settings class The method provides creation and receipt of ..." alt="" coords="577,365,736,392"/>
 <area shape="rect" id="node7" href="$classGenerationParameters.html#af5f75407122515828eff6efc7676ee8a" title=" " alt="" coords="573,775,741,817"/>
 <area shape="rect" id="node30" href="$classGenerationParameters.html#a6a579996d93cf7232d818c48f8755eb3" title=" " alt="" coords="573,1494,741,1535"/>
 <area shape="rect" id="node32" href="$classGenerationParameters.html#a1555432e7175794ef8a0c447496ddf9b" title=" " alt="" coords="573,1559,741,1601"/>
 <area shape="rect" id="node34" href="$classGenerationParameters.html#ae3b6beac2abb151698fbd9dbc054ff64" title=" " alt="" coords="555,1625,758,1666"/>
-<area shape="rect" id="node38" href="$classGenerationParameters.html#af718fc63c7efe40ec1ae38e68c328b73" title=" " alt="" coords="573,1690,741,1731"/>
-<area shape="rect" id="node39" href="$classGenerationParameters.html#a3a8129ddff0a5f592c3046021f3c7daf" title=" " alt="" coords="565,1755,749,1797"/>
-<area shape="rect" id="node40" href="$classGenerationParameters.html#a75a03a428648e04fee7f5f001d9b03e4" title=" " alt="" coords="565,1821,748,1862"/>
-<area shape="rect" id="node41" href="$classGenerationParameters.html#a209394218aeae719e5fb8f59cfcbdc47" title=" " alt="" coords="573,1886,741,1927"/>
-<area shape="rect" id="node42" href="$classGenerationParameters.html#ac07cfbfe9a6b1350251326c4db5d0451" title=" " alt="" coords="547,1951,766,1993"/>
-<area shape="rect" id="node43" href="$classGenerationParameters.html#a1a2c26f08606084ba3ce44a1d37136cf" title=" " alt="" coords="573,2017,741,2058"/>
-<area shape="rect" id="node44" href="$classGenerationParameters.html#a1ce87963318d361d899f50612b653230" title=" " alt="" coords="561,2082,753,2123"/>
-<area shape="rect" id="node45" href="$namespaceAuxMethods.html#a5bd15903dbc7db95cb089304ca9e0277" title="setRandSeed Sets the grain to generate pseudorandom numbers" alt="" coords="559,2148,755,2175"/>
-<area shape="rect" id="node46" href="$classGenerationParameters.html#a4420efff17813616b01f26f938ecd6d4" title=" " alt="" coords="545,2199,768,2241"/>
-<area shape="rect" id="node47" href="$classGenerationParameters.html#a38bbf5b37c007495119fd2fc027549c6" title=" " alt="" coords="565,2265,749,2306"/>
-<area shape="rect" id="node48" href="$classGenerationParameters.html#a5a57d13129ceb1b1994be37bc41d3a87" title=" " alt="" coords="561,2330,752,2371"/>
-<area shape="rect" id="node49" href="$classGenerationParameters.html#a4659e3014d366ff00d7e5c57011fa6c1" title=" " alt="" coords="561,2395,753,2437"/>
-<area shape="rect" id="node50" href="$classGenerationParameters.html#aaa71d5307d34b8da2f64e45417c271b1" title=" " alt="" coords="573,2461,741,2502"/>
+<area shape="rect" id="node37" href="$classGenerationParameters.html#af718fc63c7efe40ec1ae38e68c328b73" title=" " alt="" coords="573,1690,741,1731"/>
+<area shape="rect" id="node38" href="$classGenerationParameters.html#a3a8129ddff0a5f592c3046021f3c7daf" title=" " alt="" coords="565,1755,749,1797"/>
+<area shape="rect" id="node39" href="$classGenerationParameters.html#a75a03a428648e04fee7f5f001d9b03e4" title=" " alt="" coords="565,1821,748,1862"/>
+<area shape="rect" id="node40" href="$classGenerationParameters.html#a209394218aeae719e5fb8f59cfcbdc47" title=" " alt="" coords="573,1886,741,1927"/>
+<area shape="rect" id="node41" href="$classGenerationParameters.html#ac07cfbfe9a6b1350251326c4db5d0451" title=" " alt="" coords="547,1951,766,1993"/>
+<area shape="rect" id="node42" href="$classGenerationParameters.html#a1a2c26f08606084ba3ce44a1d37136cf" title=" " alt="" coords="573,2017,741,2058"/>
+<area shape="rect" id="node43" href="$classGenerationParameters.html#a1ce87963318d361d899f50612b653230" title=" " alt="" coords="561,2082,753,2123"/>
+<area shape="rect" id="node44" href="$namespaceAuxMethods.html#a5bd15903dbc7db95cb089304ca9e0277" title="setRandSeed Sets the grain to generate pseudorandom numbers" alt="" coords="559,2148,755,2175"/>
+<area shape="rect" id="node45" href="$classGenerationParameters.html#a4420efff17813616b01f26f938ecd6d4" title=" " alt="" coords="545,2199,768,2241"/>
+<area shape="rect" id="node46" href="$classGenerationParameters.html#a38bbf5b37c007495119fd2fc027549c6" title=" " alt="" coords="565,2265,749,2306"/>
+<area shape="rect" id="node47" href="$classGenerationParameters.html#a5a57d13129ceb1b1994be37bc41d3a87" title=" " alt="" coords="561,2330,752,2371"/>
+<area shape="rect" id="node48" href="$classGenerationParameters.html#a4659e3014d366ff00d7e5c57011fa6c1" title=" " alt="" coords="561,2395,753,2437"/>
+<area shape="rect" id="node49" href="$classGenerationParameters.html#aaa71d5307d34b8da2f64e45417c271b1" title=" " alt="" coords="573,2461,741,2502"/>
+<area shape="rect" id="node50" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="617,2527,696,2553"/>
 <area shape="rect" id="node6" href="$classSettings.html#a692db3013821565d261527cc0edeeb0e" title=" " alt="" coords="867,5,1003,32"/>
 <area shape="rect" id="node8" href="$classGeneratorALUParameters.html#af4756f18b8f286b89c8fb83ac9784fb1" title=" " alt="" coords="842,57,1029,98"/>
 <area shape="rect" id="node9" href="$classGeneratorALUParameters.html#ac87e4da8a9f5ad9c98cf99879b6e6c31" title=" " alt="" coords="842,122,1029,163"/>
@@ -48,5 +49,4 @@
 <area shape="rect" id="node33" href="$classCNNFromTruthTableParameters.html#a78ca7dc99edcc5c6c244251b2919529b" title=" " alt="" coords="823,1559,1047,1601"/>
 <area shape="rect" id="node35" href="$classGeneratorComparisonParameters.html#a7409c2905e0f6cd6a47e02f0c1b7d662" title=" " alt="" coords="816,1625,1055,1666"/>
 <area shape="rect" id="node36" href="$classGeneratorComparisonParameters.html#aaf3c29c70b65dadc3209006bb0a9cb19" title=" " alt="" coords="816,1690,1055,1731"/>
-<area shape="rect" id="node37" href="$classGeneratorComparisonParameters.html#a87b977c8eea8f95e2705d37162549196" title=" " alt="" coords="816,1755,1055,1797"/>
 </map>

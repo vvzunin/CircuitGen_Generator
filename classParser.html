@@ -641,12 +641,12 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the resulting vertex after combining the input vertices <div class="fragment"><div class="line">std::vector&lt;VertexPtr&gt; vertices = {vertex1, vertex2, vertex3};</div>
 <div class="line"><a class="code" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a> operation = Gates::AND;</div>
-<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> graph = std::make_shared&lt;Graph&gt;();</div>
+<div class="line"><a class="code" href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> graph = std::make_shared&lt;Graph&gt;();</div>
 <div class="line"><a class="code" href="classParser.html">Parser</a> parser;</div>
-<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> result = parser.<a class="code" href="classParser.html#ae2686bf3fdb12a709732363745943425">multipleVerteciesToOne</a>(vertices, operation,</div>
+<div class="line"><a class="code" href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> result = parser.<a class="code" href="classParser.html#ae2686bf3fdb12a709732363745943425">multipleVerteciesToOne</a>(vertices, operation,</div>
 <div class="line">graph);</div>
-<div class="ttc" id="aGraphVertexBase_8hpp_html_a422e1ad1ea2471e71477f2cedbe6c23d"><div class="ttname"><a href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a></div><div class="ttdeci">#define VertexPtr</div><div class="ttdef"><b>Definition:</b> GraphVertexBase.hpp:18</div></div>
-<div class="ttc" id="aGraphVertexBase_8hpp_html_afc9ace2881a918ee869eca6ecf10dbe9"><div class="ttname"><a href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a></div><div class="ttdeci">#define GraphPtr</div><div class="ttdef"><b>Definition:</b> GraphVertexBase.hpp:15</div></div>
+<div class="ttc" id="aOrientedGraph_8hpp_html_a422e1ad1ea2471e71477f2cedbe6c23d"><div class="ttname"><a href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a></div><div class="ttdeci">#define VertexPtr</div><div class="ttdef"><b>Definition:</b> OrientedGraph.hpp:24</div></div>
+<div class="ttc" id="aOrientedGraph_8hpp_html_afc9ace2881a918ee869eca6ecf10dbe9"><div class="ttname"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a></div><div class="ttdeci">#define GraphPtr</div><div class="ttdef"><b>Definition:</b> OrientedGraph.hpp:21</div></div>
 <div class="ttc" id="aSettings_8hpp_html_a0963bd5066d6d6a58155d1ad79f56974"><div class="ttname"><a href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a></div><div class="ttdeci">Gates</div><div class="ttdoc">Gates Enumeration of types of logical elements This enumeration defines the various types of logic el...</div><div class="ttdef"><b>Definition:</b> Settings.hpp:31</div></div>
 <div class="ttc" id="aclassParser_html_ae2686bf3fdb12a709732363745943425"><div class="ttname"><a href="classParser.html#ae2686bf3fdb12a709732363745943425">Parser::multipleVerteciesToOne</a></div><div class="ttdeci">VertexPtr multipleVerteciesToOne(std::vector&lt; VertexPtr &gt; curLayout, Gates operation, GraphPtr graph)</div><div class="ttdoc">multipleVerteciesToOne This method takes a vector of vertices representing the current layout,...</div><div class="ttdef"><b>Definition:</b> Parser.cpp:193</div></div>
 </div><!-- fragment --> </dd></dl>
@@ -655,15 +655,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classParser_ae2686bf3fdb12a709732363745943425_icgraph.png" border="0" usemap="#aclassParser_ae2686bf3fdb12a709732363745943425_icgraph" alt=""/></div>
 <map name="aclassParser_ae2686bf3fdb12a709732363745943425_icgraph" id="aclassParser_ae2686bf3fdb12a709732363745943425_icgraph">
-<area shape="rect" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="1013,115,1197,157"/>
-<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="765,86,965,127"/>
-<area shape="rect" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="784,152,947,179"/>
+<area shape="rect" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="1013,141,1197,182"/>
+<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="765,99,965,141"/>
+<area shape="rect" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="784,177,947,204"/>
 <area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="219,5,450,61"/>
 <area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="505,86,717,127"/>
+<area shape="rect" href="SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="584,152,639,179"/>
 <area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,50,164,91"/>
 <area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,86,431,127"/>
 <area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,152,457,179"/>
-<area shape="rect" href="classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="550,152,673,179"/>
+<area shape="rect" href="classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="550,203,673,229"/>
 </map>
 </div>
 
@@ -839,7 +840,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the resulting vertex representing the expression, or nullptr on failure <div class="fragment"><div class="line"><a class="code" href="classParser.html">Parser</a> parser;</div>
 <div class="line">std::string expression = <span class="stringliteral">&quot;output A AND B&quot;</span>;</div>
-<div class="line"><a class="code" href="GraphVertexBase_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> result = parser.<a class="code" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f">parseToVertex</a>(expression);</div>
+<div class="line"><a class="code" href="OrientedGraph_8hpp.html#a422e1ad1ea2471e71477f2cedbe6c23d">VertexPtr</a> result = parser.<a class="code" href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f">parseToVertex</a>(expression);</div>
 <div class="line"><span class="keywordflow">if</span> (result)</div>
 <div class="line">{</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;Vertex successfully created.&quot;</span> &lt;&lt; std::endl;</div>
@@ -930,14 +931,15 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classParser_a0a27158ce7c8ca578b82140b4239bd26_icgraph.png" border="0" usemap="#aclassParser_a0a27158ce7c8ca578b82140b4239bd26_icgraph" alt=""/></div>
 <map name="aclassParser_a0a27158ce7c8ca578b82140b4239bd26_icgraph" id="aclassParser_a0a27158ce7c8ca578b82140b4239bd26_icgraph">
-<area shape="rect" title="setGatesInputsInfo Set information about gates inputs" alt="" coords="1032,87,1225,113"/>
-<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="784,50,984,91"/>
-<area shape="rect" href="classParser.html#ac125790430e44895143aa868377ebb56" title=" " alt="" coords="829,116,939,143"/>
-<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="505,5,736,61"/>
-<area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="515,86,727,127"/>
-<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,42,164,83"/>
-<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,71,431,113"/>
-<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,137,457,164"/>
+<area shape="rect" title="setGatesInputsInfo Set information about gates inputs" alt="" coords="1013,123,1207,149"/>
+<area shape="rect" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="765,86,965,127"/>
+<area shape="rect" href="classParser.html#ac125790430e44895143aa868377ebb56" title=" " alt="" coords="810,152,921,179"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="219,5,450,61"/>
+<area shape="rect" href="classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="505,86,717,127"/>
+<area shape="rect" href="SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="584,152,639,179"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,50,164,91"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,86,431,127"/>
+<area shape="rect" href="classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,152,457,179"/>
 </map>
 </div>
 

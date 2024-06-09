@@ -1,11 +1,12 @@
 <map id="Parser::multipleVerteciesToOne" name="Parser::multipleVerteciesToOne">
-<area shape="rect" id="node1" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="1013,115,1197,157"/>
-<area shape="rect" id="node2" href="$classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="765,86,965,127"/>
-<area shape="rect" id="node8" href="$classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="784,152,947,179"/>
+<area shape="rect" id="node1" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="1013,141,1197,182"/>
+<area shape="rect" id="node2" href="$classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="765,99,965,141"/>
+<area shape="rect" id="node9" href="$classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f" title="parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within..." alt="" coords="784,177,947,204"/>
 <area shape="rect" id="node3" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="219,5,450,61"/>
 <area shape="rect" id="node5" href="$classGeneticGenerator.html#a7164ab47384bb476fd71aed42c3a882f" title=" " alt="" coords="505,86,717,127"/>
+<area shape="rect" id="node8" href="$SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="584,152,639,179"/>
 <area shape="rect" id="node4" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,50,164,91"/>
 <area shape="rect" id="node6" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,86,431,127"/>
 <area shape="rect" id="node7" href="$classGeneticGenerator.html#aea3ad73fd1f0edbd96ab4a7c8387328e" title=" " alt="" coords="212,152,457,179"/>
-<area shape="rect" id="node9" href="$classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="550,152,673,179"/>
+<area shape="rect" id="node10" href="$classParser.html#a3602d3fde1e401b5fb352250232800b0" title="parseAll Parse all logical expressions and construct the graph." alt="" coords="550,203,673,229"/>
 </map>

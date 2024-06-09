@@ -1,6 +1,6 @@
 <map id="GeneticGenerator::getGraphsFromPopulation" name="GeneticGenerator::getGraphsFromPopulation">
-<area shape="rect" id="node1" title=" " alt="" coords="5,150,217,191"/>
-<area shape="rect" id="node2" href="$classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="265,150,465,191"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,179,217,221"/>
+<area shape="rect" id="node2" href="$classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="265,179,465,221"/>
 <area shape="rect" id="node3" href="$classTruthTable.html#a5790cc7c8fc0e04547d83e5f9384efe9" title="convToBinary Convert truth table indices to binary representation This method converts the indices of..." alt="" coords="519,5,701,32"/>
 <area shape="rect" id="node4" href="$classTruthTable.html#a6c1a776a25eb693a3a59e6410bca23e7" title="getInput Get the number of input variables in the truth table." alt="" coords="535,56,685,83"/>
 <area shape="rect" id="node5" href="$classTruthTable.html#a87ce43a0f73da02698aa5b4e4e378a8e" title="getOutput Get the number of output variables in the truth table" alt="" coords="529,107,691,133"/>
@@ -8,4 +8,5 @@
 <area shape="rect" id="node7" href="$classParser.html#ae2686bf3fdb12a709732363745943425" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="518,209,702,250"/>
 <area shape="rect" id="node8" href="$classParser.html#a0a27158ce7c8ca578b82140b4239bd26" title="setGatesInputsInfo Set information about gates inputs" alt="" coords="513,275,707,301"/>
 <area shape="rect" id="node9" href="$classTruthTable.html#af91eb4123d7254a4b623f6b5dfca211a" title="size Get the size of the truth table." alt="" coords="549,325,671,352"/>
+<area shape="rect" id="node10" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="571,376,649,403"/>
 </map>

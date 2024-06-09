@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['multiplexer_1296',['Multiplexer',['../Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51',1,'Settings.hpp']]],
-  ['multiplier_1297',['Multiplier',['../Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e',1,'Settings.hpp']]]
+  ['json_3324',['json',['../namespacedetail.html#a0ab3b338d0eadc6890b72cccef0ea04fa466deec76ecdf5fca6d38571f6324d54',1,'detail']]]
 ];

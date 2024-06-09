@@ -1,5 +1,7 @@
 <map id="RecombinationParameters::getRefPoints" name="RecombinationParameters::getRefPoints">
-<area shape="rect" id="node1" title=" " alt="" coords="492,13,687,54"/>
-<area shape="rect" id="node2" href="$namespaceRecombinationsTruthTable.html#afe03d3f827e51e707933204648165a7e" title=" " alt="" coords="204,5,444,61"/>
-<area shape="rect" id="node3" href="$Recombinations_8hpp.html#aecbe35db0b1a8e02badfba0114d761e1" title=" " alt="" coords="5,20,156,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="492,57,687,98"/>
+<area shape="rect" id="node2" href="$namespaceRecombinationsTruthTable.html#afe03d3f827e51e707933204648165a7e" title=" " alt="" coords="204,16,444,72"/>
+<area shape="rect" id="node5" href="$RecombinationParametersTests_8cpp.html#aad47b04d53b8804a89604d71b31f0e8f" title=" " alt="" coords="297,96,351,123"/>
+<area shape="rect" id="node3" href="$Recombinations_8hpp.html#aecbe35db0b1a8e02badfba0114d761e1" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node4" href="$RecombinationTruthTableTests_8cpp.html#a87fdee5212f4c27d7fdd00c6c897feb9" title=" " alt="" coords="53,56,108,83"/>
 </map>

@@ -1,0 +1,52 @@
+<map id="detail::concat_into" name="detail::concat_into">
+<area shape="rect" id="node1" title=" " alt="" coords="933,1303,1076,1330"/>
+<area shape="rect" id="node2" href="$namespacedetail.html#a266fb3d4bf633ad6c506434cc91164da" title=" " alt="" coords="759,1278,869,1304"/>
+<area shape="rect" id="node50" href="$namespacedetail.html#aa16fc2d4a149a0e3ac68ceb98b153815" title=" " alt="" coords="743,1328,885,1355"/>
+<area shape="rect" id="node3" href="$classjson__pointer.html#a2177a553764f3be9b0e565b922039d5d" title=" " alt="" coords="37,648,181,689"/>
+<area shape="rect" id="node4" href="$classbasic__json.html#a899e4623fe377af5c9ad14c40c64280c" title="access specified array element with bounds checking" alt="" coords="529,84,640,111"/>
+<area shape="rect" id="node5" href="$classbasic__json.html#af97b4fcd01509076c8a7b32ec1a10aec" title="construct a JSON container given an iterator range" alt="" coords="501,135,668,162"/>
+<area shape="rect" id="node6" href="$classdetail_1_1binary__writer.html#aad96b5f9b144981e2bbeac6621830d00" title=" " alt="" coords="475,186,695,228"/>
+<area shape="rect" id="node7" href="$classdetail_1_1parse__error.html#a07046ea9f33d28f120af188ed674d6df" title="create a parse error exception" alt="" coords="273,506,414,548"/>
+<area shape="rect" id="node8" href="$classjson__pointer.html#a3c44d736e76ee2dea2a18fbc98591d86" title="split the string input to reference tokens" alt="" coords="39,438,178,464"/>
+<area shape="rect" id="node9" href="$classdetail_1_1invalid__iterator.html#a35d0b713b151188622791891314949f9" title=" " alt="" coords="260,576,427,617"/>
+<area shape="rect" id="node10" href="$classdetail_1_1type__error.html#a2d25372628cf1e09ec67718f4bc42762" title=" " alt="" coords="276,237,411,278"/>
+<area shape="rect" id="node11" href="$namespacedetail.html#ac8fc7fc4703cbd8edd7bb43a94adf92b" title=" " alt="" coords="43,110,175,136"/>
+<area shape="rect" id="node12" href="$namespacedetail.html#ad10dc6af43ec8e72954eb2ac08c8698b" title=" " alt="" coords="27,266,190,308"/>
+<area shape="rect" id="node13" href="$classdetail_1_1out__of__range.html#a79ea0d3ec02a853629dc827e045ecff5" title=" " alt="" coords="267,648,419,689"/>
+<area shape="rect" id="node14" href="$classjson__pointer.html#a1b7dab7d88094e60dadb3266fd9c8b6a" title=" " alt="" coords="13,499,204,526"/>
+<area shape="rect" id="node15" href="$classjson__pointer.html#a801e50b883dc303786386952f97e8548" title="return a reference to the pointed to value" alt="" coords="5,1606,212,1632"/>
+<area shape="rect" id="node16" href="$classdetail_1_1other__error.html#a687565ec69bfdf7a15f9a672038b0f0f" title=" " alt="" coords="274,716,413,757"/>
+<area shape="rect" id="node17" href="$classdetail_1_1exception.html#af3739c53fe56a1712754d13dfa561f80" title=" " alt="" coords="515,776,654,817"/>
+<area shape="rect" id="node18" href="$classbasic__json.html#a699ef418df577e75f28dfce6b04d6c2f" title="creates a diff as a JSON patch" alt="" coords="284,2123,403,2150"/>
+<area shape="rect" id="node19" href="$classbasic__json.html#ac366495e80b2f51a09f07471006cde28" title="add an object to an object if key does not exist" alt="" coords="507,892,662,919"/>
+<area shape="rect" id="node20" href="$classbasic__json.html#ac5f0a15957842b188826aea98a9cfd3d" title="add an object to an array" alt="" coords="489,943,681,970"/>
+<area shape="rect" id="node21" href="$classbasic__json.html#a7d0fef086b1b72372113db6ce7446189" title="remove element given an iterator" alt="" coords="517,994,652,1020"/>
+<area shape="rect" id="node22" href="$classbasic__json.html#a9737aa07030fa0c9e2909d2c5c03f460" title=" " alt="" coords="489,1044,680,1071"/>
+<area shape="rect" id="node23" href="$classdetail_1_1binary__reader.html#a39c740811882a0023f6386858a5d5270" title=" " alt="" coords="505,1096,665,1137"/>
+<area shape="rect" id="node24" href="$classdetail_1_1parser.html#a13621f12e55437efd6c1af970f071a92" title=" " alt="" coords="495,1161,675,1202"/>
+<area shape="rect" id="node25" href="$classjson__pointer.html#a89528f614c6b3c387d71abfee814be50" title=" " alt="" coords="509,1227,661,1254"/>
+<area shape="rect" id="node26" href="$classdetail_1_1serializer.html#a491abc2de2affbc9c3490bde110b7f07" title=" " alt="" coords="508,1278,661,1304"/>
+<area shape="rect" id="node27" href="$classbasic__json.html#ac55de1b3601085c32e4a1dc32ef6d32d" title="get a binary value" alt="" coords="501,1328,668,1355"/>
+<area shape="rect" id="node28" href="$classdetail_1_1binary__reader.html#afd4a59072e687d5d07f53d7320a4ac4d" title="Parses a byte array input of length len from the BSON input." alt="" coords="506,1380,663,1421"/>
+<area shape="rect" id="node29" href="$classdetail_1_1binary__reader.html#ad8eda2acffbc76cb622e6f52a13bebea" title="Parses a zero&#45;terminated string of length len from the BSON input." alt="" coords="506,1445,663,1486"/>
+<area shape="rect" id="node30" href="$classdetail_1_1binary__reader.html#a6fcde744e6311dc0646735123ee83831" title="reads a CBOR byte array" alt="" coords="506,1510,663,1552"/>
+<area shape="rect" id="node31" href="$classdetail_1_1binary__reader.html#af739624b7c49bb1a0bc70ac6f5066a24" title="reads a CBOR string" alt="" coords="506,1576,663,1617"/>
+<area shape="rect" id="node32" href="$classbasic__json.html#a2fda70d85381ed122d055de8ff66da3c" title="get a boolean (explicit)" alt="" coords="507,1642,662,1668"/>
+<area shape="rect" id="node33" href="$classdetail_1_1binary__reader.html#a39289c89b50b1d53cd6e066f50ad2f01" title="reads a MessagePack string" alt="" coords="504,1693,665,1734"/>
+<area shape="rect" id="node34" href="$classbasic__json.html#a3fb599679fd8e475a5c82a7098d2f693" title="helper function to implement get_ref()" alt="" coords="495,1759,675,1786"/>
+<area shape="rect" id="node35" href="$classdetail_1_1binary__reader.html#a3e86be40b4ec5679c13147056fb089c8" title=" " alt="" coords="483,1810,686,1866"/>
+<area shape="rect" id="node36" href="$classdetail_1_1binary__reader.html#a0380c1d2d3332eddf36105009ff8f9fb" title="determine the type and size for a container" alt="" coords="499,1890,670,1932"/>
+<area shape="rect" id="node37" href="$classdetail_1_1binary__reader.html#a45cdf02020f3bc5c27fada582f37516c" title=" " alt="" coords="506,1956,663,1997"/>
+<area shape="rect" id="node38" href="$classbasic__json.html#a7f3817060c2bec896a99cb2c236b9c27" title="inserts element into array" alt="" coords="517,2123,652,2150"/>
+<area shape="rect" id="node39" href="$classbasic__json.html#a7b435c2ed2db99cb1daa78ae3c6c4580" title="returns version information on the library" alt="" coords="519,2072,651,2099"/>
+<area shape="rect" id="node40" href="$classdetail_1_1exception.html#a8f1eb56b9964c8dd84d89d0da98d883b" title=" " alt="" coords="497,572,673,599"/>
+<area shape="rect" id="node41" href="$classbasic__json.html#ab4f511db82b9d5eba85d5b2b8e1c6dbb" title="access specified array element" alt="" coords="503,2174,666,2200"/>
+<area shape="rect" id="node42" href="$classdetail_1_1binary__reader.html#a510e89bbd4e8940bc726f5840c318221" title="Read a BSON document element of the given element_type." alt="" coords="502,2224,667,2280"/>
+<area shape="rect" id="node43" href="$classdetail_1_1binary__reader.html#abf6970bcdc650b3290b25767eb696685" title=" " alt="" coords="505,2305,664,2346"/>
+<area shape="rect" id="node44" href="$classdetail_1_1binary__reader.html#a2d96e387bda511bc8048c672113040f1" title=" " alt="" coords="490,2370,679,2412"/>
+<area shape="rect" id="node45" href="$classdetail_1_1parse__error.html#a19cdccb06cba79d7b4efc51f501ced8b" title=" " alt="" coords="514,506,655,548"/>
+<area shape="rect" id="node46" href="$classbasic__json.html#aca01ca3a9bc310e5c5d067a39dca6933" title="add an object to an array" alt="" coords="501,2436,668,2463"/>
+<area shape="rect" id="node47" href="$classdetail_1_1binary__reader.html#a8e1b5452ae426e1d7b48761859e7f52d" title=" " alt="" coords="506,2538,663,2580"/>
+<area shape="rect" id="node48" href="$classdetail_1_1parser.html#a362fc204b9a1027d6288deabc3b3360a" title=" " alt="" coords="515,2604,654,2645"/>
+<area shape="rect" id="node49" href="$classdetail_1_1json__sax__dom__parser.html#af6e857ad7aaf6eba2440c67d4b5f360e" title=" " alt="" coords="505,2669,665,2710"/>
+</map>

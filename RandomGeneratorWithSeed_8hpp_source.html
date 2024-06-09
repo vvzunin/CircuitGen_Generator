@@ -139,8 +139,8 @@ $(document).ready(function(){initNavTree('RandomGeneratorWithSeed_8hpp_source.ht
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">if</span> (upper &lt; lower)</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <span class="keywordflow">throw</span> std::invalid_argument(</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;          <span class="stringliteral">&quot;RandomGeneratorWithSeed random int: upper: &quot;</span> + std::to_string(upper)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;          + <span class="stringliteral">&quot; boder is bigger than lower: &quot;</span> + std::to_string(lower)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;          <span class="stringliteral">&quot;RandomGeneratorWithSeed random int: upper: &quot;</span> + <a class="code" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4">std::to_string</a>(upper)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;          + <span class="stringliteral">&quot; boder is bigger than lower: &quot;</span> + <a class="code" href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4">std::to_string</a>(lower)</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      );</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    std::uniform_int_distribution&lt;&gt; dis(lower, upper);</div>
@@ -201,6 +201,7 @@ $(document).ready(function(){initNavTree('RandomGeneratorWithSeed_8hpp_source.ht
 <div class="ttc" id="aclassRandomGeneratorWithSeed_html_ac466e5084e0b562f2f70fe3ebc57aa7e"><div class="ttname"><a href="classRandomGeneratorWithSeed.html#ac466e5084e0b562f2f70fe3ebc57aa7e">RandomGeneratorWithSeed::RandomGeneratorWithSeed</a></div><div class="ttdeci">RandomGeneratorWithSeed(const RandomGeneratorWithSeed &amp;other)=default</div></div>
 <div class="ttc" id="aclassRandomGeneratorWithSeed_html_ae4fc25f1e3e318fa18880f72ac7e2efe"><div class="ttname"><a href="classRandomGeneratorWithSeed.html#ae4fc25f1e3e318fa18880f72ac7e2efe">RandomGeneratorWithSeed::getRandDouble</a></div><div class="ttdeci">double getRandDouble(double lower, double upper)</div><div class="ttdef"><b>Definition:</b> RandomGeneratorWithSeed.hpp:101</div></div>
 <div class="ttc" id="aclassRandomGeneratorWithSeed_html_ae6960782747d0937b63ad99a99b57bd5"><div class="ttname"><a href="classRandomGeneratorWithSeed.html#ae6960782747d0937b63ad99a99b57bd5">RandomGeneratorWithSeed::operator=</a></div><div class="ttdeci">RandomGeneratorWithSeed &amp; operator=(const RandomGeneratorWithSeed &amp;other)=default</div></div>
+<div class="ttc" id="ajson_8hpp_html_a5b9ca6dc52cf4226c68d67f895b2a1d4"><div class="ttname"><a href="json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4">to_string</a></div><div class="ttdeci">NLOHMANN_BASIC_JSON_TPL_DECLARATION std::string to_string(const NLOHMANN_BASIC_JSON_TPL &amp;j)</div><div class="ttdoc">user-defined to_string function for JSON values</div><div class="ttdef"><b>Definition:</b> json.hpp:24457</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
