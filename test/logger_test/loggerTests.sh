@@ -11,10 +11,11 @@ do
         for (( i=strlen-1; i>=0; i-- ))
         do
             char=${line:i:1}
+            
             if [[ "$char" == '"' ]]; then
                 r_double_quote=$i
                 break
-            fi 
+            fi
         done  
         for (( i=0; i<strlen; i++ ))
         do
@@ -24,16 +25,17 @@ do
                 break
             fi
         done
-        path_to_current_logger_files=${line:l_double_quote+1:r_double_quote-l_double_quote-2}
+        path_to_current_logger_files=${line:l_double_quote+2:r_double_quote-l_double_quote-2}
         break
     fi 
 done < "$file"
 OUTPUT=$(realpath ../../run.sh)
+echo $OUTPUT
 # We can use `str3 = “$str1$str2″`
 
 removeTimeFromLog(){
-    local log="2024-06-10 00:29:38,762 INFO minInputs: 50; maxInputs: 50; minOutputs: 50; maxOutputs: 50; eachIteration: 1; generationParameters:"
-    local ch=" "
+    local log=$1
+    local ch=$2
     strlen=${#log}
     counter=0
     needed_pos=-1
@@ -83,9 +85,7 @@ findLastPosOfCharacter(){
 
 for dir in ./correct_logs/*/
 do
-    findLastPosOfCharacter $dir "/"
     name_of_json_file=$dir
-    pos_of_slash=$?
     strlen=${#name_of_json_file}
     needed_length=$((strlen-1))
     name_of_json_file=${name_of_json_file:0:needed_length}
@@ -99,9 +99,10 @@ do
     name_of_json_file=${name_of_json_file:pos_of_slash:needed_length}
  
 
-    /bin/bash $OUTPUT $name_of_json_file.json
-    log_for_database="`cat $dir/log_for_database_generator_parameters.log`"
-    log_for_generation="`cat $dir/log_for_generation_parameters.log`"
+    /bin/bash $OUTPUT $name_of_json_file.json # Запуск генерации с параметром $name_of_json_file.json, то есть json файл
+                                              # с которым мы хотим генерировать.
+    log_for_database="`cat $dir/log_for_database_generator_parameters.log`" # Получение эталонных логов
+    log_for_generation="`cat $dir/log_for_generation_parameters.log`"       # Получение эталонных логов
 
     
     # Search include directory
@@ -115,8 +116,7 @@ do
     
     examined_log_for_database=""
     examined_log_for_generation=""
-
-    path="$cur/include/path/to"
+    path="$cur$path_to_current_logger_files"
     for dir2 in $path/*/
     do
         examined_log_for_database="`cat $dir2/log_for_database_generator_parameters.log`"
@@ -125,7 +125,7 @@ do
 
 
 
-
+    echo $examined_log_for_database
     strlen=${#examined_log_for_database}
     counter=0
     needed_pos=-1
@@ -147,7 +147,7 @@ do
     examined_log_for_database=${examined_log_for_database:needed_pos:needed_length}
     
 
-
+    
 
 
     strlen=${#examined_log_for_generation}
@@ -165,6 +165,10 @@ do
         fi 
     done 
     ((needed_pos++))
+    # removeTimeFromLog "$examined_log_for_database" " "
+    # needed_pos=$?
+    echo "needed pos"
+    echo $needed_pos
     strlen=${#examined_log_for_generation}
     needed_length=$((strlen - needed_pos))
     #examined_log_for_database2=${examined_log_for_database, needed_pos, needed_length2}
@@ -216,7 +220,7 @@ do
     #examined_log_for_database2=${examined_log_for_database, needed_pos, needed_length2}
     log_for_generation=${log_for_generation:needed_pos:needed_length}
 
-    if [[ "$log_for_generation" != "$examined_log_for_generation" ]]; then
+    if [[ "$log_for_database" != "$examined_log_for_database" ]]; then
         echo "The json that program generated differ from standard. Please fix all bugs."
         echo $log_for_generation
         echo $examined_log_for_generation

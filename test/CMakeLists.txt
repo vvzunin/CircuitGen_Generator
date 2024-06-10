@@ -6,7 +6,7 @@ project(CircuitGenGeneratorTests LANGUAGES CXX)
 include(ExternalProject)
 include(FetchContent)
 
-ADD_DEFINITIONS( -D_PATH_TO_LOGGING=\"./include/path/to/\" )
+ADD_DEFINITIONS( -D_PATH_TO_LOGGING=\"./include/path/to\" )
 
 # Get googletest
 FetchContent_Declare(
