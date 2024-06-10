@@ -1,0 +1,1 @@
+2024-06-10 05:28:05,113 INFO  name: 11; requestId: 2; libraryName: sky130; inputs: 50; outputs: 50; iteration: 1; calculateStatsAbc: true; makeOptimizedFiles: true; makeFirrtl: true; makeBench: true; makeGraphML: true

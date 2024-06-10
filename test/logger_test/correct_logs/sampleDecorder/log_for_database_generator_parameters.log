@@ -1,1 +1,0 @@
-2024-06-09 22:26:07,662 INFO  minInputs: 4; maxInputs: 5; minOutputs: 4; maxOutputs: 5; eachIteration: 1; generationParameters: { name: 3; requestId: 0; libraryName: sky130; inputs: 4; outputs: 4; iteration: 1; calculateStatsAbc: true; makeOptimizedFiles: true; makeFirrtl: true; makeBench: true; makeGraphML: true }
