@@ -6,7 +6,6 @@
 #include <CircuitGenGenerator/OrientedGraph.hpp>
 #include <gtest/gtest.h>
 
-#include "additional/filesTools/FilesTools.hpp"
 /*
   Need to add toVerilogTest, setCurrentParentTest,
     resetCountersTest, getGraphInstanceTest

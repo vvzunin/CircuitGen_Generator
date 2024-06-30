@@ -37,48 +37,9 @@ set(
   Threads::Threads
 )
 
-set(PUBLIC_HEADERS
-  include/CircuitGenGenerator/export.hpp
-  include/CircuitGenGenerator/CircuitGenGenerator.hpp
-  include/CircuitGenGenerator/OrientedGraph.hpp
-  include/CircuitGenGenerator/ThreadPool.hpp
-)
+file(GLOB_RECURSE PUBLIC_HEADERS RELATIVE ${CMAKE_SOURCE_DIR} "/include/CircuitGenGenerator/*.hpp")
 
-set(SOURCES
-  src/additional/AuxiliaryMethods.cpp
-  src/additional/filesTools/FilesTools.cpp
-  src/additional/threadPool/ThreadPool.cpp
-  src/baseStructures/graph/GraphVertexBase.cpp
-  src/baseStructures/graph/GraphVertexConstant.cpp
-  src/baseStructures/graph/GraphVertexSubGraph.cpp
-  src/baseStructures/graph/GraphVertexInput.cpp
-  src/baseStructures/graph/GraphVertexGates.cpp
-  src/baseStructures/graph/GraphVertexOutput.cpp
-  src/baseStructures/graph/OrientedGraph.cpp
-  src/baseStructures/Parser.cpp
-  src/baseStructures/truthTable/TruthTable.cpp
-  src/circuit/Circuit.cpp
-  src/database/DataBaseGenerator.cpp
-  src/database/DataBaseGeneratorParameters.cpp
-  src/generators/simple/SimpleGenerators.cpp
-  src/generators/Genetic/GeneticParameters.cpp
-  src/generators/Genetic/GenGenerator.hpp
-  src/generators/Genetic/Chronosome.hpp
-  src/generators/Genetic/ChronosomeType.hpp
-  src/generators/Genetic/Selections/Selections.hpp
-  src/generators/Genetic/Selections/SelectionParameters.cpp
-  src/generators/Genetic/Selections/SelectionsTruthTable.hpp
-  src/generators/Genetic/Recombination/Recombinations.hpp
-  src/generators/Genetic/Recombination/RecombinationParameters.cpp
-  src/generators/Genetic/Recombination/RecombinationsTruthTable.cpp
-  src/generators/Genetic/Parents/Parents.hpp
-  src/generators/Genetic/Parents/ParentsParameters.cpp
-  src/generators/Genetic/Parents/ParentsTruthTable.hpp
-  src/generators/Genetic/Mutations/Mutation.cpp
-  src/generators/Genetic/Mutations/MutationParameters.cpp
-  src/generators/Genetic/Mutations/MutationTruthTable.cpp
-  src/settings/Settings.cpp
-)
+file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/**.cpp" "src/**.hpp")
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES src/CircuitGenGenerator.cpp ${SOURCES})
 
