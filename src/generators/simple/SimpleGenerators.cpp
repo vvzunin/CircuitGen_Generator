@@ -11,8 +11,8 @@
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/Parser.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
-#include <CircuitGenGenerator/OrientedGraph.hpp>
 #include <CircuitGenGenerator/ThreadPool.hpp>
+#include <CircuitGenGraph/OrientedGraph.hpp>
 #include <generators/Genetic/GeneticParameters.hpp>
 #include <math.h>
 
