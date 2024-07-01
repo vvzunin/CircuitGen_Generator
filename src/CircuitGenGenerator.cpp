@@ -133,15 +133,15 @@ void runGeneration(
     }
 
     // for GraphML
-    bool makeGraphMLClassic =
-        data.contains("make_graphml_classic")
-        ? (bool)data["make_graphml_classic"] : false;
-    bool makeGraphMLPseudoABCD =
-        data.contains("make_graphml_pseudo_abc_d")
-        ? (bool)data["make_graphml_pseudo_abc_d"] : false;
-    bool makeGraphMLOpenABCD =
-        data.contains("make_graphml_open_abc_d")
-        ? (bool)data["make_graphml_open_abc_d"] : false;
+    bool makeGraphMLClassic    = data.contains("make_graphml_classic")
+                                   ? (bool)data["make_graphml_classic"]
+                                   : false;
+    bool makeGraphMLPseudoABCD = data.contains("make_graphml_pseudo_abc_d")
+                                   ? (bool)data["make_graphml_pseudo_abc_d"]
+                                   : false;
+    bool makeGraphMLOpenABCD   = data.contains("make_graphml_open_abc_d")
+                                   ? (bool)data["make_graphml_open_abc_d"]
+                                   : false;
 
     // Считывание информации по логичсеким элементам.
     std::map<std::string, std::vector<int32_t>> gatesInputsInfo;
@@ -174,8 +174,14 @@ void runGeneration(
     // TODO:: make function that return DataBaseGeneratorParameters from json
     // Recording of json data to gp
     GenerationParameters gp(
-        datasetId, requestId, minInputs, minOutputs, repeats,
-        makeGraphMLClassic, makeGraphMLPseudoABCD, makeGraphMLOpenABCD
+        datasetId,
+        requestId,
+        minInputs,
+        minOutputs,
+        repeats,
+        makeGraphMLClassic,
+        makeGraphMLPseudoABCD,
+        makeGraphMLOpenABCD
     );
 
     gp.setGatesInputInfo(gatesInputsInfo);
@@ -547,17 +553,20 @@ void runGeneration(
 
     DataBaseGenerator generator(dbgp);
 
+    uint8_t           parallel =
+        data.contains("multithread") ? (uint8_t)data["multithread"] : 1;
+    if (!parallel) {
+      parallel = 1;
+    }
+
+    Settings::getInstance("CircuitGenGenerator")->setNumThread(parallel);
+
     if (data.contains("dataset_path")) {
       Settings::getInstance("CircuitGenGenerator")
           ->setDatasetPath(static_cast<std::string>(data["dataset_path"]));
     }
 
-    auto    start = high_resolution_clock::now();
-    uint8_t parallel =
-        data.contains("multithread") ? (uint8_t)data["multithread"] : 1;
-    if (!parallel) {
-      parallel = 1;
-    }
+    auto start = high_resolution_clock::now();
 
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
     callable(

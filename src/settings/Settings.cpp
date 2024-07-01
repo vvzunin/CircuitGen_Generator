@@ -133,6 +133,10 @@ uint16_t Settings::getNumThread() const {
   return d_numThreads;
 }
 
+void Settings::setNumThread(uint16_t i_numThreads) {
+  d_numThreads = i_numThreads;
+}
+
 std::string Settings::getPathNadezhda() const {
   return d_pathToNadezhda;
 }

@@ -330,6 +330,7 @@ public:
   /// @endcode
 
   uint16_t                 getNumThread() const;
+  void                     setNumThread(uint16_t i_numThreads);
 
   /// @brief parseStringToGate Converts a string representation of a gate to
   /// its corresponding enum value
