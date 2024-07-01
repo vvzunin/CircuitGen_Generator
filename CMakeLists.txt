@@ -37,11 +37,60 @@ set(
   Threads::Threads
 )
 
-file(GLOB_RECURSE PUBLIC_HEADERS RELATIVE ${CMAKE_SOURCE_DIR} "/include/CircuitGenGenerator/*.hpp")
+include(ExternalProject)
+include(FetchContent)
 
-file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/**.cpp" "src/**.hpp")
+FetchContent_Declare(
+  CircuitGenGraph
+  GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
+  GIT_TAG 59e20e8
+)
+FetchContent_MakeAvailable(CircuitGenGraph)
 
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES src/CircuitGenGenerator.cpp ${SOURCES})
+set(PUBLIC_HEADERS
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/export.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/CircuitGenGenerator.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/OrientedGraph.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/ThreadPool.hpp
+)
+
+set(SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/additional/AuxiliaryMethods.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/additional/filesTools/FilesTools.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/additional/threadPool/ThreadPool.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexBase.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexConstant.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexSubGraph.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexInput.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexGates.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexOutput.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/OrientedGraph.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/Parser.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/truthTable/TruthTable.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/circuit/Circuit.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/database/DataBaseGenerator.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/database/DataBaseGeneratorParameters.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/simple/SimpleGenerators.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/GeneticParameters.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/GenGenerator.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Chromosome.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/ChromosomeType.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Selections/Selections.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Selections/SelectionParameters.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Selections/SelectionsTruthTable.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Recombination/Recombinations.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Recombination/RecombinationParameters.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Recombination/RecombinationsTruthTable.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Parents/Parents.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Parents/ParentsParameters.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Parents/ParentsTruthTable.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Mutations/Mutation.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Mutations/MutationParameters.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Mutations/MutationTruthTable.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/settings/Settings.cpp
+)
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/CircuitGenGenerator.cpp ${SOURCES})
 
 add_library(
   CircuitGenGenerator_lib
@@ -100,7 +149,7 @@ list(APPEND PUBLIC_HEADERS
 # list(APPEND SOURCES
 # "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
 include(CMakePackageConfigHelpers)
-target_sources(CircuitGenGenerator_lib PRIVATE src/CircuitGenGenerator.cpp ${SOURCES})
+target_sources(CircuitGenGenerator_lib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/CircuitGenGenerator.cpp ${SOURCES})
 
 target_include_directories(
   CircuitGenGenerator_lib ${warning_guard}
@@ -125,7 +174,11 @@ target_include_directories(CircuitGenGenerator_lib
   PRIVATE
   "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
-target_link_libraries(CircuitGenGenerator_lib PRIVATE ${EXTERNAL_LIBS})
+target_link_libraries(
+  CircuitGenGenerator_lib PRIVATE 
+  ${EXTERNAL_LIBS} 
+  CircuitGenGraph::CircuitGenGraph
+)
 
 target_include_directories(
   CircuitGenGenerator_lib ${warning_guard}
@@ -188,14 +241,18 @@ if(MSVC)
 endif()
 
 # ---- Declare executable ----
-add_executable(CircuitGenGenerator_exe src/main.cpp)
+add_executable(CircuitGenGenerator_exe ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 add_executable(CircuitGenGenerator::exe ALIAS CircuitGenGenerator_exe)
 
 set_property(TARGET CircuitGenGenerator_exe PROPERTY OUTPUT_NAME CircuitGenGenerator)
 
 target_compile_features(CircuitGenGenerator_exe PRIVATE cxx_std_17)
 
-target_link_libraries(CircuitGenGenerator_exe PRIVATE CircuitGenGenerator::CircuitGenGenerator)
+target_link_libraries(
+  CircuitGenGenerator_exe PRIVATE
+  CircuitGenGenerator::CircuitGenGenerator 
+  CircuitGenGraph::CircuitGenGraph
+)
 
 # ---- Install rules ----
 if(NOT CMAKE_SKIP_INSTALL_RULES)
