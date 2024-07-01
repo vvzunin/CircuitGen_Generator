@@ -11,9 +11,25 @@
 #include <additional/AuxiliaryMethods.hpp>
 #include <baseStructures/Parser.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
-#include <CircuitGenGenerator/OrientedGraph.hpp>
+#include <CircuitGenGenerator/ThreadPool.hpp>
+#include <CircuitGenGraph/OrientedGraph.hpp>
 #include <generators/Genetic/GeneticParameters.hpp>
 #include <math.h>
+
+#define ADD_WITH_MUTEX_TO_VEC(val) \
+  ({ \
+    mtx.lock(); \
+    outputs_gens.push_back(val); \
+    mtx.unlock(); \
+  })
+
+#define ADD_WITH_MUTEX_TO_GRAPH(g, inp) \
+  ({ \
+    mtx.lock(); \
+    auto addedGr = graph->addSubGraph(g, inp); \
+    outputs_gens.push_back(addedGr); \
+    mtx.unlock(); \
+  })
 
 int32_t SimpleGenerators::getRangomAndNumber() {
   return d_gatesInputsInfo[Gates::GateAnd][d_randGenerator.getRandInt(
@@ -1453,9 +1469,10 @@ GraphPtr SimpleGenerators::generatorALU(
     std::map<Gates, int32_t> m,
     bool                     LeaveEmptyOut
 ) {
-  GraphPtr  graph(new OrientedGraph);
-  VertexPtr const_0 = graph->addConst('0', "const_0");
-  int32_t   x       = 0;
+  GraphPtr     graph(new OrientedGraph);
+  GraphPtrWeak weakGraph = graph;
+  VertexPtr    const_0   = graph->addConst('0', "const_0");
+  int32_t      x         = 0;
   if (ALL) {
     SUM    = true;
     SUB    = true;
@@ -1512,6 +1529,9 @@ GraphPtr SimpleGenerators::generatorALU(
   std::vector<VertexPtr>              inputs_A(i_bits);
   std::vector<VertexPtr>              inputs_B(i_bits);
   std::vector<std::vector<VertexPtr>> outputs_gens;
+  std::mutex                          mtx;
+
+  auto pool = Threading::ThreadPool(d_settings->getNumThread());
 
   for (int32_t i = 0; i < i_bits; i++) {
     std::string A     = std::to_string(i);
@@ -1533,7 +1553,7 @@ GraphPtr SimpleGenerators::generatorALU(
       graph->addEdges({inputs_A[i], inputs_B[i]}, and_ALU);
       ands.push_back(and_ALU);
     }
-    outputs_gens.push_back(ands);
+    ADD_WITH_MUTEX_TO_VEC(ands);
   }
   if (NAND) {
     std::vector<VertexPtr> nands;
@@ -1543,7 +1563,7 @@ GraphPtr SimpleGenerators::generatorALU(
       graph->addEdges({inputs_A[i], inputs_B[i]}, nand_ALU);
       nands.push_back(nand_ALU);
     }
-    outputs_gens.push_back(nands);
+    ADD_WITH_MUTEX_TO_VEC(nands);
   }
   if (OR) {
     std::vector<VertexPtr> ors;
@@ -1553,7 +1573,7 @@ GraphPtr SimpleGenerators::generatorALU(
       graph->addEdges({inputs_A[i], inputs_B[i]}, or_ALU);
       ors.push_back(or_ALU);
     }
-    outputs_gens.push_back(ors);
+    ADD_WITH_MUTEX_TO_VEC(ors);
   }
   if (XOR) {
     std::vector<VertexPtr> xors;
@@ -1563,7 +1583,7 @@ GraphPtr SimpleGenerators::generatorALU(
       graph->addEdges({inputs_A[i], inputs_B[i]}, xor_ALU);
       xors.push_back(xor_ALU);
     }
-    outputs_gens.push_back(xors);
+    ADD_WITH_MUTEX_TO_VEC(xors);
   }
   if (NOR) {
     std::vector<VertexPtr> nors;
@@ -1573,7 +1593,7 @@ GraphPtr SimpleGenerators::generatorALU(
       graph->addEdges({inputs_A[i], inputs_B[i]}, nor_ALU);
       nors.push_back(nor_ALU);
     }
-    outputs_gens.push_back(nors);
+    ADD_WITH_MUTEX_TO_VEC(nors);
   }
   if (XNOR) {
     std::vector<VertexPtr> xnors;
@@ -1583,178 +1603,225 @@ GraphPtr SimpleGenerators::generatorALU(
       graph->addEdges({inputs_A[i], inputs_B[i]}, xnor_ALU);
       xnors.push_back(xnor_ALU);
     }
-    outputs_gens.push_back(xnors);
+    ADD_WITH_MUTEX_TO_VEC(xnors);
   }
-
-  VertexPtr add;
 
   if (SUM) {
-    std::vector<VertexPtr> output_sum;
+    auto lambda1 = [&]() {
+      auto localInp = inputs;
 
-    output_sum = graph->addSubGraph(
-        generatorSummator(i_bits, false, false, false), inputs
-    );
-    outputs_gens.push_back(output_sum);
-    output_sum = graph->addSubGraph(
-        generatorSummator(i_bits, false, true, false), inputs
-    );
-    outputs_gens.push_back(output_sum);
+      auto curGraph = generatorSummator(i_bits, false, false, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInp);
 
-    add = graph->addInput("sum_p0");
-    inputs.insert(inputs.begin() + 2, add);
+      curGraph = generatorSummator(i_bits, false, true, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInp);
+    };
 
-    output_sum = graph->addSubGraph(
-        generatorSummator(i_bits, true, true, false), inputs
-    );
-    outputs_gens.push_back(output_sum);
-    output_sum = graph->addSubGraph(
-        generatorSummator(i_bits, true, false, false), inputs
-    );
-    outputs_gens.push_back(output_sum);
+    auto lambda2 = [&]() {
+      std::vector<VertexPtr> newInputs = inputs;
 
-    inputs.erase(inputs.begin() + 2);
+      mtx.lock();
+      auto add = graph->addInput("sum_p0");
+      mtx.unlock();
+
+      newInputs.insert(newInputs.begin() + 2, add);
+
+      auto curGraph = generatorSummator(i_bits, true, true, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, newInputs);
+
+      curGraph = generatorSummator(i_bits, true, false, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, newInputs);
+    };
+
+    pool.submit(lambda1);
+    pool.submit(lambda2);
   }
   if (SUB) {
-    std::vector<VertexPtr> output_sub;
+    auto lambda1 = [&]() {
+      auto localInpSub = inputs;
 
-    output_sub = graph->addSubGraph(
-        generatorSubtractor(i_bits, false, false, false), inputs
-    );
-    outputs_gens.push_back(output_sub);
-    output_sub = graph->addSubGraph(
-        generatorSubtractor(i_bits, false, true, false), inputs
-    );
-    outputs_gens.push_back(output_sub);
+      auto curGraph    = generatorSubtractor(i_bits, false, false, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpSub);
 
-    add = graph->addInput("sub_z0");
-    inputs.insert(inputs.begin() + 2, add);
+      curGraph = generatorSubtractor(i_bits, false, true, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpSub);
+    };
 
-    output_sub = graph->addSubGraph(
-        generatorSubtractor(i_bits, true, true, false), inputs
-    );
-    outputs_gens.push_back(output_sub);
-    output_sub = graph->addSubGraph(
-        generatorSubtractor(i_bits, true, false, false), inputs
-    );
-    outputs_gens.push_back(output_sub);
+    auto lambda2 = [&]() {
+      std::vector<VertexPtr> newInputs = inputs;
 
-    inputs.erase(inputs.begin() + 2);
+      mtx.lock();
+      auto add = graph->addInput("sub_z0");
+      mtx.unlock();
+
+      newInputs.insert(newInputs.begin() + 2, add);
+
+      auto curGraph = generatorSubtractor(i_bits, true, true, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, newInputs);
+
+      curGraph = generatorSubtractor(i_bits, true, false, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, newInputs);
+    };
+
+    pool.submit(lambda1);
+    pool.submit(lambda2);
   }
   if (NSUM) {
-    std::vector<VertexPtr> output_nsum;
+    auto lambda1 = [&]() {
+      auto localInp = inputs;
 
-    output_nsum = graph->addSubGraph(
-        generatorSummator(i_bits, false, false, true), inputs
-    );
-    outputs_gens.push_back(output_nsum);
-    output_nsum = graph->addSubGraph(
-        generatorSummator(i_bits, false, true, true), inputs
-    );
-    outputs_gens.push_back(output_nsum);
+      auto curGraph = generatorSummator(i_bits, false, false, true);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInp);
 
-    add = graph->addInput("nsum_p0");
-    inputs.insert(inputs.begin() + 2, add);
+      curGraph = generatorSummator(i_bits, false, true, true);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInp);
+    };
 
-    output_nsum =
-        graph->addSubGraph(generatorSummator(i_bits, true, true, true), inputs);
-    outputs_gens.push_back(output_nsum);
-    output_nsum = graph->addSubGraph(
-        generatorSummator(i_bits, true, false, true), inputs
-    );
-    outputs_gens.push_back(output_nsum);
+    auto lambda2 = [&]() {
+      std::vector<VertexPtr> newInputs = inputs;
 
-    inputs.erase(inputs.begin() + 2);
+      mtx.lock();
+      auto add = graph->addInput("nsum_p0");
+      mtx.unlock();
+
+      newInputs.insert(newInputs.begin() + 2, add);
+
+      auto curGraph = generatorSummator(i_bits, true, true, true);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, newInputs);
+
+      curGraph = generatorSummator(i_bits, true, false, true);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, newInputs);
+    };
+
+    pool.submit(lambda1);
+    pool.submit(lambda2);
   }
   if (NSUB) {
-    std::vector<VertexPtr> output_nsub;
+    auto lambda1 = [&]() {
+      auto localInpSub = inputs;
 
-    output_nsub = graph->addSubGraph(
-        generatorSubtractor(i_bits, false, false, true), inputs
-    );
-    outputs_gens.push_back(output_nsub);
-    output_nsub = graph->addSubGraph(
-        generatorSubtractor(i_bits, false, true, true), inputs
-    );
-    outputs_gens.push_back(output_nsub);
+      auto curGraph    = generatorSubtractor(i_bits, false, false, true);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpSub);
 
-    add = graph->addInput("nsub_z0");
-    inputs.insert(inputs.begin() + 2, add);
+      curGraph = generatorSubtractor(i_bits, false, true, true);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpSub);
+    };
 
-    output_nsub = graph->addSubGraph(
-        generatorSubtractor(i_bits, true, true, true), inputs
-    );
-    outputs_gens.push_back(output_nsub);
-    output_nsub = graph->addSubGraph(
-        generatorSubtractor(i_bits, true, false, true), inputs
-    );
-    outputs_gens.push_back(output_nsub);
+    auto lambda2 = [&]() {
+      std::vector<VertexPtr> newInputs = inputs;
 
-    inputs.erase(inputs.begin() + 2);
+      mtx.lock();
+      auto add = graph->addInput("nsub_z0");
+      mtx.unlock();
+
+      newInputs.insert(newInputs.begin() + 2, add);
+
+      auto curGraph = generatorSubtractor(i_bits, true, true, true);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, newInputs);
+
+      curGraph = generatorSubtractor(i_bits, true, false, true);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, newInputs);
+    };
+
+    pool.submit(lambda1);
+    pool.submit(lambda2);
   }
   if (MULT) {
-    std::vector<VertexPtr> output_mult;
+    auto lambda = [&]() {
+      auto localInpMult = inputs;
 
-    output_mult = graph->addSubGraph(generatorMultiplier(i_bits), inputs);
-    outputs_gens.push_back(output_mult);
+      auto curGraph     = generatorMultiplier(i_bits);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpMult);
+    };
+
+    pool.submit(lambda);
   }
   if (COM) {
-    std::vector<VertexPtr> output_com;
+    auto lambda1 = [&]() {
+      auto localInpCom = inputs;
 
-    output_com = graph->addSubGraph(
-        generatorComparison(i_bits, true, false, false), inputs
-    );
-    outputs_gens.push_back(output_com);
-    output_com = graph->addSubGraph(
-        generatorComparison(i_bits, false, true, false), inputs
-    );
-    outputs_gens.push_back(output_com);
-    output_com = graph->addSubGraph(
-        generatorComparison(i_bits, false, false, true), inputs
-    );
-    outputs_gens.push_back(output_com);
+      auto curGraph    = generatorComparison(i_bits, true, false, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpCom);
+    };
+
+    auto lambda2 = [&]() {
+      auto localInpCom = inputs;
+
+      auto curGraph    = generatorComparison(i_bits, false, true, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpCom);
+    };
+
+    auto lambda3 = [&]() {
+      auto localInpCom = inputs;
+
+      auto curGraph    = generatorComparison(i_bits, false, false, true);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpCom);
+    };
+
+    pool.submit(lambda1);
+    pool.submit(lambda2);
+    pool.submit(lambda3);
   }
 
+  TruthTable           gen;
+  TruthTableParameters d_parameters(i_bits, i_outbits);
   if (CNF) {
-    std::vector<VertexPtr> output_cnf;
-
-    TruthTable             gen;
-    TruthTableParameters   d_parameters(i_bits, i_outbits);
-
     gen.generateRandom(d_parameters);
 
-    output_cnf = graph->addSubGraph(zhegalkinFromTruthTable(gen), inputs_A);
-    outputs_gens.push_back(output_cnf);
+    auto lambda1 = [&]() {
+      auto localInpZheg = inputs_A;
+      auto genCopy      = gen;
 
-    output_cnf = graph->addSubGraph(cnfFromTruthTable(gen, true), inputs_A);
-    outputs_gens.push_back(output_cnf);
+      auto curGraph     = zhegalkinFromTruthTable(genCopy);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpZheg);
+    };
 
-    output_cnf = graph->addSubGraph(cnfFromTruthTable(gen, false), inputs_A);
-    outputs_gens.push_back(output_cnf);
+    auto lambda2 = [&]() {
+      auto localInpCnft = inputs_A;
+      auto genCopy      = gen;
+
+      auto curGraph     = cnfFromTruthTable(genCopy, true);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpCnft);
+    };
+
+    auto lambda3 = [&]() {
+      auto localInpCnff = inputs_A;
+      auto genCopy      = gen;
+
+      auto curGraph     = cnfFromTruthTable(genCopy, false);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpCnff);
+    };
+
+    pool.submit(lambda1);
+    pool.submit(lambda2);
+    pool.submit(lambda3);
   }
 
   if (RNL) {
-    std::vector<VertexPtr> output_rnl;
+    auto lambda = [&]() {
+      auto localInpRNL = inputs_A;
 
-    output_rnl = graph->addSubGraph(
-        generatorRandLevel(
-            minLevel, maxLevel, minElement, maxElement, i_bits, i_outbits
-        ),
-        inputs_A
-    );
-    outputs_gens.push_back(output_rnl);
+      auto curGraph    = generatorRandLevel(
+          minLevel, maxLevel, minElement, maxElement, i_bits, i_outbits
+      );
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpRNL);
+    };
+
+    pool.submit(lambda);
   }
-  /// when generating Num Operation, a segmentation fault occurs
-  /// when the number of outputs becomes greater than the number of
-  /// inputs (this applies to both the min and max).
-  /// TODO: need to find the cause of the outs issue
   if (NUM_OP) {
-    std::vector<VertexPtr> output_num_op;
+    auto lambda = [&]() {
+      auto localInpNUM_OP = inputs_A;
 
-    output_num_op = graph->addSubGraph(
-        generatorNumOperation(i_bits, i_outbits, m, LeaveEmptyOut), inputs_A
-    );
-    outputs_gens.push_back(output_num_op);
+      auto curGraph =
+          generatorNumOperation(i_bits, i_outbits, m, LeaveEmptyOut);
+      ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpNUM_OP);
+    };
+
+    pool.submit(lambda);
   }
+
+  pool.wait();
 
   size_t max = 0;
   for (size_t i = 0; i < outputs_gens.size(); i++) {

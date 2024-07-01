@@ -12,7 +12,7 @@
 
 #include <additional/AuxiliaryMethods.hpp>
 #include <additional/filesTools/FilesTools.hpp>
-#include <baseStructures/graph/enums.hpp>
+#include <CircuitGenGraph/enums.hpp>
 
 Circuit::Circuit(
     GraphPtr const                  i_graph,

@@ -6,7 +6,9 @@
 #include <string>
 #include <vector>
 
-#include <CircuitGenGenerator/OrientedGraph.hpp>
+#include <CircuitGenGraph/OrientedGraph.hpp>
+#include <settings/Settings.hpp>
+
 using GatesInfo = std::map<Gates, std::vector<int32_t>>;
 
 /// class Parser

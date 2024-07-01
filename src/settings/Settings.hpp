@@ -6,38 +6,12 @@
 #include <utility>
 #include <vector>
 
+#include <CircuitGenGraph/DefaultSettings.hpp>
+
 /// @file Settings.hpp
 
 enum LibrariesTypes {
   SKY_LIB
-};
-
-/// @brief VertexTypes
-/// Enumeration of vertex types
-
-enum VertexTypes {  ///  input vertex
-  input,            ///  output vertex
-  output,           /// constant vertex
-  constant,         /// vertex representing a logical element
-  gate,             /// subgraph that makes up the vertex
-  subGraph
-};
-
-/// @brief Gates
-/// Enumeration of types of logical elements
-/// This enumeration defines the various types of logic elements that can be
-/// used in digital circuits.
-
-enum Gates {  /// logical element - "AND" (AND)
-  GateAnd,    /// logical element "AND-NOT" (NAND)
-  GateNand,   /// logical element - "OR" (OR)
-  GateOr,     /// logical element - "OR-NOT" (NOR)
-  GateNor,    /// lofical element - "Exclusive OR" (XOR)
-  GateXor,    /// logical element - XNOR
-  GateXnor,   /// logical element - NOT
-  GateNot,    /// logical element - Buffer
-  GateBuf,    /// default logical element
-  GateDefault
 };
 
 /// @brief GenerationTypes
@@ -100,9 +74,9 @@ enum GenerationTypes {    /// Generating a circuit from a random truth table
 ///
 ///
 
-class Settings {
+class Settings : public DefaultSettings {
 protected:
-  Settings(const std::string& i_path) : d_path(i_path) {}
+  Settings(const std::string& i_path) : DefaultSettings(i_path) {}
 
 public:
   Settings(Settings& other)                                   = delete;

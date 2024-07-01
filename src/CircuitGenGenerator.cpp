@@ -10,6 +10,7 @@
 #include <vector>
 
 #include <additional/AuxiliaryMethods.hpp>
+#include <CircuitGenGraph/OrientedGraph.hpp>
 #include <database/DataBaseGenerator.hpp>
 #include <database/DataBaseGeneratorParameters.hpp>
 #include <generators/GenerationParameters.hpp>

@@ -37,24 +37,28 @@ set(
   Threads::Threads
 )
 
+include(ExternalProject)
+include(FetchContent)
+
+set(ORIENTED_GRAPH CircuitGenGraph)
+
+FetchContent_Declare(
+  ${ORIENTED_GRAPH}
+  GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
+  GIT_TAG v1.0.0
+)
+FetchContent_MakeAvailable(${ORIENTED_GRAPH})
+
 set(PUBLIC_HEADERS
-  include/CircuitGenGenerator/export.hpp
-  include/CircuitGenGenerator/CircuitGenGenerator.hpp
-  include/CircuitGenGenerator/OrientedGraph.hpp
-  include/CircuitGenGenerator/ThreadPool.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/export.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/CircuitGenGenerator.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/ThreadPool.hpp
 )
 
 set(SOURCES
   src/additional/AuxiliaryMethods.cpp
   src/additional/filesTools/FilesTools.cpp
   src/additional/threadPool/ThreadPool.cpp
-  src/baseStructures/graph/GraphVertexBase.cpp
-  src/baseStructures/graph/GraphVertexConstant.cpp
-  src/baseStructures/graph/GraphVertexSubGraph.cpp
-  src/baseStructures/graph/GraphVertexInput.cpp
-  src/baseStructures/graph/GraphVertexGates.cpp
-  src/baseStructures/graph/GraphVertexOutput.cpp
-  src/baseStructures/graph/OrientedGraph.cpp
   src/baseStructures/Parser.cpp
   src/baseStructures/truthTable/TruthTable.cpp
   src/circuit/Circuit.cpp
@@ -80,7 +84,11 @@ set(SOURCES
   src/settings/Settings.cpp
 )
 
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES src/CircuitGenGenerator.cpp ${SOURCES})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 
+  FILES 
+  src/CircuitGenGenerator.cpp 
+  ${SOURCES}
+)
 
 add_library(
   CircuitGenGenerator_lib
@@ -123,9 +131,6 @@ generate_export_header(
 
 set_target_properties(
   CircuitGenGenerator_lib PROPERTIES
-
-  # CXX_VISIBILITY_PRESET hidden
-  # VISIBILITY_INLINES_HIDDEN YES
   VERSION "${PROJECT_VERSION}"
   SOVERSION "${PROJECT_VERSION_MAJOR}"
   EXPORT_NAME CircuitGenGenerator
@@ -136,10 +141,18 @@ set_target_properties(
 list(APPEND PUBLIC_HEADERS
   "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
 
-# list(APPEND SOURCES
-# "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
 include(CMakePackageConfigHelpers)
-target_sources(CircuitGenGenerator_lib PRIVATE src/CircuitGenGenerator.cpp ${SOURCES})
+
+target_link_libraries(
+  CircuitGenGenerator_lib PRIVATE 
+  ${EXTERNAL_LIBS} 
+  CircuitGenGraph::CircuitGenGraph
+)
+
+target_sources(CircuitGenGenerator_lib 
+  PRIVATE 
+  src/CircuitGenGenerator.cpp ${SOURCES}
+)
 
 target_include_directories(
   CircuitGenGenerator_lib ${warning_guard}
@@ -162,9 +175,7 @@ target_include_directories(CircuitGenGenerator_lib
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
   PRIVATE
-  "${CMAKE_CURRENT_SOURCE_DIR}/src")
-
-target_link_libraries(CircuitGenGenerator_lib PRIVATE ${EXTERNAL_LIBS})
+  "src")
 
 target_include_directories(
   CircuitGenGenerator_lib ${warning_guard}
@@ -234,7 +245,10 @@ set_property(TARGET CircuitGenGenerator_exe PROPERTY OUTPUT_NAME CircuitGenGener
 
 target_compile_features(CircuitGenGenerator_exe PRIVATE cxx_std_17)
 
-target_link_libraries(CircuitGenGenerator_exe PRIVATE CircuitGenGenerator::CircuitGenGenerator)
+target_link_libraries(
+  CircuitGenGenerator_exe PRIVATE
+  CircuitGenGenerator::CircuitGenGenerator
+)
 
 # ---- Install rules ----
 if(NOT CMAKE_SKIP_INSTALL_RULES)

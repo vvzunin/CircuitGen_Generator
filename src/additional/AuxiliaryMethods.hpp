@@ -3,6 +3,7 @@
 #include <fstream>
 #include <map>
 #include <sstream>
+#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -21,6 +22,7 @@
 /// </summary>
 
 #include <circuit/Circuit.hpp>
+#include <CircuitGenGraph/DefaultAuxiliaryMethods.hpp>
 
 namespace AuxMethods {
 
@@ -195,34 +197,4 @@ std::vector<std::vector<T>> transpose(const std::vector<std::vector<T>>& matrix
 // TODO: if need CopyDirectory
 std::string intToStringWithZeroes(uint32_t i_num, size_t i_totalDigits = 5);
 
-std::string replacer(const std::string& i_s, const std::string& i_r);
-
-// code from here https://gist.github.com/en4bz/f07ef13706c3ae3a4fb2
-template<class Tuple, std::size_t N>
-struct TuplePrinter {
-  static void print(const std::string& fmt, std::ostream& os, const Tuple& t) {
-    const size_t idx = fmt.find_last_of('%');
-    TuplePrinter<Tuple, N - 1>::print(std::string(fmt, 0, idx), os, t);
-    os << std::get<N - 1>(t) << std::string(fmt, idx + 1);
-  }
-};
-
-template<class Tuple>
-struct TuplePrinter<Tuple, 1> {
-  static void print(const std::string& fmt, std::ostream& os, const Tuple& t) {
-    const size_t idx = fmt.find_first_of('%');
-    os << std::string(fmt, 0, idx) << std::get<0>(t)
-       << std::string(fmt, idx + 1);
-  }
-};
-
-template<class... Args>
-std::string format(const std::string& fmt, Args&&... args) {
-  std::stringstream ss;
-
-  const auto        t = std::make_tuple(std::forward<Args>(args)...);
-
-  TuplePrinter<decltype(t), sizeof...(Args)>::print(fmt, ss, t);
-  return ss.str();
-}
 }  // namespace AuxMethods
