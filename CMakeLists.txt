@@ -49,12 +49,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(${ORIENTED_GRAPH})
 
-FetchContent_GetProperties(${ORIENTED_GRAPH} SOURCE_DIR GRAPH_SOURCE_DIR)
-
 set(PUBLIC_HEADERS
   ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/export.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/CircuitGenGenerator.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/OrientedGraph.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/ThreadPool.hpp
 )
 
@@ -98,14 +95,6 @@ add_library(
 )
 add_library(CircuitGenGenerator::CircuitGenGenerator ALIAS CircuitGenGenerator_lib)
 
-target_include_directories(CircuitGenGenerator_lib
-    PRIVATE
-        ${GRAPH_SOURCE_DIR}/include)
-
-target_link_directories(CircuitGenGenerator_lib
-    PRIVATE
-        ${GRAPH_SOURCE_DIR}/src)
-
 include(cmake/utils.cmake)
 include(GNUInstallDirs)
 
@@ -142,9 +131,6 @@ generate_export_header(
 
 set_target_properties(
   CircuitGenGenerator_lib PROPERTIES
-
-  # CXX_VISIBILITY_PRESET hidden
-  # VISIBILITY_INLINES_HIDDEN YES
   VERSION "${PROJECT_VERSION}"
   SOVERSION "${PROJECT_VERSION_MAJOR}"
   EXPORT_NAME CircuitGenGenerator
@@ -155,8 +141,6 @@ set_target_properties(
 list(APPEND PUBLIC_HEADERS
   "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
 
-# list(APPEND SOURCES
-# "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
 include(CMakePackageConfigHelpers)
 
 target_link_libraries(
