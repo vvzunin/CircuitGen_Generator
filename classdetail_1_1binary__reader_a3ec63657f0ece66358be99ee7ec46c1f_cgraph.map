@@ -1,5 +1,4 @@
 <map id="detail::binary_reader::get_binary" name="detail::binary_reader::get_binary">
-<area shape="rect" id="node1" title="create a byte array by reading bytes from the input" alt="" coords="5,23,163,65"/>
-<area shape="rect" id="node2" href="$namespaceAuxMethods.html#ae8c22181f69d49df8f7eee60103fe48c" title=" " alt="" coords="211,5,365,32"/>
-<area shape="rect" id="node3" href="$namespacedetail.html#a7116703ea757fe9821bf2e903b91c160" title=" " alt="" coords="244,56,332,83"/>
+<area shape="rect" id="node1" title="create a byte array by reading bytes from the input" alt="" coords="5,5,163,47"/>
+<area shape="rect" id="node2" href="$namespacedetail.html#a7116703ea757fe9821bf2e903b91c160" title=" " alt="" coords="211,13,299,39"/>
 </map>

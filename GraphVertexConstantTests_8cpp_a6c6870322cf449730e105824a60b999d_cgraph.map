@@ -1,5 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,35,60,61"/>
-<area shape="rect" id="node2" href="$classGraphVertexBase.html#a8edb68870f22e26a22d3937ffa03a409" title="getLevel Returns the level of the vertex" alt="" coords="108,5,307,32"/>
-<area shape="rect" id="node3" href="$classGraphVertexConstant.html#af4cb892fd50759407da39a96c045e7d1" title="updateLevel updates the level of the current vertex in the graph based on the levels of its incoming ..." alt="" coords="127,57,288,98"/>
-</map>

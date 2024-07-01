@@ -100,32 +100,30 @@ $(document).ready(function(){initNavTree('CircuitGenGenerator_8hpp_source.html',
 <div class="contents">
 <a href="CircuitGenGenerator_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="export_8hpp.html">CircuitGenGenerator/export.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="OrientedGraph_8hpp.html">OrientedGraph.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespaceCircuitGenGenerator.html">   10</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceCircuitGenGenerator.html">CircuitGenGenerator</a> {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// TODO add some other export functions</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// to return void and call function, giving there a graph</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// and return just void</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;CIRCUITGENGENERATOR_EXPORT</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;std::vector&lt;std::pair&lt;std::string, std::vector&lt;GraphPtr&gt;&gt;&gt;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac">runGenerationFromJsonForGraph</a>(std::string json_path);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;CIRCUITGENGENERATOR_EXPORT</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;std::vector&lt;std::pair&lt;std::string, std::vector&lt;std::string&gt;&gt;&gt;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c">runGenerationFromJsonForPath</a>(std::string json_path);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;CIRCUITGENGENERATOR_EXPORT <span class="keywordtype">void</span> <a class="code" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2">runGenerationFromJson</a>(std::string json_path);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}  <span class="comment">// namespace CircuitGenGenerator</span></div>
-<div class="ttc" id="aOrientedGraph_8hpp_html"><div class="ttname"><a href="OrientedGraph_8hpp.html">OrientedGraph.hpp</a></div></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="export_8hpp.html">CircuitGenGenerator/export.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">class </span>OrientedGraph;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespaceCircuitGenGenerator.html">   11</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceCircuitGenGenerator.html">CircuitGenGenerator</a> {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;CIRCUITGENGENERATOR_EXPORT</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;std::vector&lt;std::pair&lt;std::string, std::vector&lt;std::shared_ptr&lt;OrientedGraph&gt;&gt;&gt;&gt;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac">runGenerationFromJsonForGraph</a>(std::string json_path);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;CIRCUITGENGENERATOR_EXPORT</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;std::vector&lt;std::pair&lt;std::string, std::vector&lt;std::string&gt;&gt;&gt;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c">runGenerationFromJsonForPath</a>(std::string json_path);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;CIRCUITGENGENERATOR_EXPORT <span class="keywordtype">void</span> <a class="code" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2">runGenerationFromJson</a>(std::string json_path);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}  <span class="comment">// namespace CircuitGenGenerator</span></div>
 <div class="ttc" id="aexport_8hpp_html"><div class="ttname"><a href="export_8hpp.html">export.hpp</a></div></div>
-<div class="ttc" id="anamespaceCircuitGenGenerator_html"><div class="ttname"><a href="namespaceCircuitGenGenerator.html">CircuitGenGenerator</a></div><div class="ttdef"><b>Definition:</b> CircuitGenGenerator.hpp:10</div></div>
-<div class="ttc" id="anamespaceCircuitGenGenerator_html_a41dfd9a88637c1961c7eebeec34025d2"><div class="ttname"><a href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2">CircuitGenGenerator::runGenerationFromJson</a></div><div class="ttdeci">CIRCUITGENGENERATOR_EXPORT void runGenerationFromJson(std::string json_path)</div><div class="ttdef"><b>Definition:</b> CircuitGenGenerator.cpp:616</div></div>
-<div class="ttc" id="anamespaceCircuitGenGenerator_html_a5da6bca928375dcb7c1e460965d8aa6c"><div class="ttname"><a href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c">CircuitGenGenerator::runGenerationFromJsonForPath</a></div><div class="ttdeci">CIRCUITGENGENERATOR_EXPORT std::vector&lt; std::pair&lt; std::string, std::vector&lt; std::string &gt; &gt; &gt; runGenerationFromJsonForPath(std::string json_path)</div><div class="ttdef"><b>Definition:</b> CircuitGenGenerator.cpp:597</div></div>
-<div class="ttc" id="anamespaceCircuitGenGenerator_html_a7462dfd4e91fa7663ecddeeea30bdeac"><div class="ttname"><a href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac">CircuitGenGenerator::runGenerationFromJsonForGraph</a></div><div class="ttdeci">CIRCUITGENGENERATOR_EXPORT std::vector&lt; std::pair&lt; std::string, std::vector&lt; GraphPtr &gt; &gt; &gt; runGenerationFromJsonForGraph(std::string json_path)</div><div class="ttdef"><b>Definition:</b> CircuitGenGenerator.cpp:579</div></div>
+<div class="ttc" id="anamespaceCircuitGenGenerator_html"><div class="ttname"><a href="namespaceCircuitGenGenerator.html">CircuitGenGenerator</a></div><div class="ttdef"><b>Definition:</b> CircuitGenGenerator.hpp:11</div></div>
+<div class="ttc" id="anamespaceCircuitGenGenerator_html_a41dfd9a88637c1961c7eebeec34025d2"><div class="ttname"><a href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2">CircuitGenGenerator::runGenerationFromJson</a></div><div class="ttdeci">CIRCUITGENGENERATOR_EXPORT void runGenerationFromJson(std::string json_path)</div><div class="ttdef"><b>Definition:</b> CircuitGenGenerator.cpp:617</div></div>
+<div class="ttc" id="anamespaceCircuitGenGenerator_html_a5da6bca928375dcb7c1e460965d8aa6c"><div class="ttname"><a href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c">CircuitGenGenerator::runGenerationFromJsonForPath</a></div><div class="ttdeci">CIRCUITGENGENERATOR_EXPORT std::vector&lt; std::pair&lt; std::string, std::vector&lt; std::string &gt; &gt; &gt; runGenerationFromJsonForPath(std::string json_path)</div><div class="ttdef"><b>Definition:</b> CircuitGenGenerator.cpp:598</div></div>
+<div class="ttc" id="anamespaceCircuitGenGenerator_html_a7462dfd4e91fa7663ecddeeea30bdeac"><div class="ttname"><a href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac">CircuitGenGenerator::runGenerationFromJsonForGraph</a></div><div class="ttdeci">CIRCUITGENGENERATOR_EXPORT std::vector&lt; std::pair&lt; std::string, std::vector&lt; std::shared_ptr&lt; OrientedGraph &gt; &gt; &gt; &gt; runGenerationFromJsonForGraph(std::string json_path)</div><div class="ttdef"><b>Definition:</b> CircuitGenGenerator.cpp:580</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

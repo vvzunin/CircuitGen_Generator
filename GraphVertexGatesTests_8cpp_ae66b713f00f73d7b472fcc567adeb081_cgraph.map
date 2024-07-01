@@ -1,5 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,60,32"/>
-<area shape="rect" id="node2" href="$classGraphVertexGates.html#a4d38ec95ed252a205cbcb08ed691941d" title="toVerilog generates a string in Verilog format for the current vertex, representing the valve accordi..." alt="" coords="108,5,315,32"/>
-<area shape="rect" id="node3" href="$namespaceVertexUtils.html#a8140b975302d15b6226a4bfba79dd9d9" title="gateToString Converts a gate type enum value to its string representation" alt="" coords="363,5,545,32"/>
-</map>

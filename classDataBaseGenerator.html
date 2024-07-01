@@ -198,12 +198,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a25632c1511ff0efd653809da5b9a004f"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(const <a class="el" href="classGenerationParameters.html">GenerationParameters</a> &amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f">getGenerateMethod</a> (const <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265">GenerationTypes</a> i_methodType)</td></tr>
 <tr class="memdesc:a25632c1511ff0efd653809da5b9a004f"><td class="mdescLeft">&#160;</td><td class="mdescRight">getGenerateMethod Retrieves a method for generating a database based on the provided generation type  <a href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f">More...</a><br /></td></tr>
 <tr class="separator:a25632c1511ff0efd653809da5b9a004f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94466568c48188b9c520c4d2756f5a8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataBaseGenerator.html#a94466568c48188b9c520c4d2756f5a8e">addDataToReturn</a> (<a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> graph)</td></tr>
+<tr class="memitem:a94466568c48188b9c520c4d2756f5a8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataBaseGenerator.html#a94466568c48188b9c520c4d2756f5a8e">addDataToReturn</a> (GraphPtr graph)</td></tr>
 <tr class="separator:a94466568c48188b9c520c4d2756f5a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a20a0ae116aa56aedbb99dab6c87e8fb1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataBaseGenerator.html#a20a0ae116aa56aedbb99dab6c87e8fb1">d_generatedGraphs</a></td></tr>
+<tr class="memitem:a20a0ae116aa56aedbb99dab6c87e8fb1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; GraphPtr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataBaseGenerator.html#a20a0ae116aa56aedbb99dab6c87e8fb1">d_generatedGraphs</a></td></tr>
 <tr class="separator:a20a0ae116aa56aedbb99dab6c87e8fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bec85b2044cdb7d11d6413a07cf3988"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataBaseGenerator.html#a9bec85b2044cdb7d11d6413a07cf3988">d_generatedGraphsNames</a></td></tr>
 <tr class="separator:a9bec85b2044cdb7d11d6413a07cf3988"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -283,7 +283,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void DataBaseGenerator::addDataToReturn </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>&#160;</td>
+          <td class="paramtype">GraphPtr&#160;</td>
           <td class="paramname"><em>graph</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1710,7 +1710,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="GraphVertexBase_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a>&gt; DataBaseGenerator::d_generatedGraphs</td>
+          <td class="memname">std::vector&lt;GraphPtr&gt; DataBaseGenerator::d_generatedGraphs</td>
         </tr>
       </table>
   </td>

@@ -1,6 +1,0 @@
-<map id="TEST" name="TEST">
-<area shape="rect" id="node1" title=" " alt="" coords="5,71,60,98"/>
-<area shape="rect" id="node2" href="$classGraphVertexBase.html#a8c984675497210531aab85e713eb16e5" title="addVertexToInConnections Adds a vertex to the input connections of this vertex and returns the count ..." alt="" coords="108,5,317,47"/>
-<area shape="rect" id="node3" href="$classGraphVertexBase.html#af114ad99f885c77a28cee77f0c86fbcf" title="getValue Returns the value of the vertex." alt="" coords="113,71,313,98"/>
-<area shape="rect" id="node4" href="$classGraphVertexOutput.html#a68af7628ac372af632581f3a489e870e" title="updateValue updates the value of the current vertex of the graph based on the values of its incoming ..." alt="" coords="135,123,290,164"/>
-</map>

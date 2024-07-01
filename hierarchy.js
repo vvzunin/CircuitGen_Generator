@@ -31,12 +31,12 @@ var hierarchy =
     [ "detail::container_input_adapter_factory_impl::container_input_adapter_factory< ContainerType, void_t< decltype(begin(std::declval< ContainerType >()), end(std::declval< ContainerType >()))> >", "structdetail_1_1container__input__adapter__factory__impl_1_1container__input__adapter__factory_3983614ac0e8828aa386ca24b1ddc2bd1.html", null ],
     [ "DataBaseGenerator", "classDataBaseGenerator.html", null ],
     [ "DataBaseGeneratorParameters", "classDataBaseGeneratorParameters.html", null ],
+    [ "DefaultSettings", null, [
+      [ "Settings", "classSettings.html", null ]
+    ] ],
     [ "detail::detector< Default, AlwaysVoid, Op, Args >", "structdetail_1_1detector.html", null ],
     [ "detail::detector< Default, void_t< Op< Args... > >, Op, Args... >", "structdetail_1_1detector_3_01Default_00_01void__t_3_01Op_3_01Args_8_8_8_01_4_01_4_00_01Op_00_01Args_8_8_8_01_4.html", null ],
     [ "detail::dtoa_impl::diyfp", "structdetail_1_1dtoa__impl_1_1diyfp.html", null ],
-    [ "std::enable_shared_from_this", null, [
-      [ "OrientedGraph", "classOrientedGraph.html", null ]
-    ] ],
     [ "std::exception", null, [
       [ "detail::exception", "classdetail_1_1exception.html", [
         [ "detail::invalid_iterator", "classdetail_1_1invalid__iterator.html", null ],
@@ -104,14 +104,6 @@ var hierarchy =
     [ "GeneticParameters", "classGeneticParameters.html", [
       [ "OrientedGraphParameters", "classOrientedGraphParameters.html", null ],
       [ "TruthTableParameters", "classTruthTableParameters.html", null ]
-    ] ],
-    [ "GraphVertexBase", "classGraphVertexBase.html", [
-      [ "GraphVertexGates", "classGraphVertexGates.html", null ],
-      [ "GraphVertexInput", "classGraphVertexInput.html", [
-        [ "GraphVertexConstant", "classGraphVertexConstant.html", null ]
-      ] ],
-      [ "GraphVertexOutput", "classGraphVertexOutput.html", null ],
-      [ "GraphVertexSubGraph", "classGraphVertexSubGraph.html", null ]
     ] ],
     [ "detail::has_from_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >", "structdetail_1_1has__from__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_9is__basic__json_3_01T_01_4_1_1value_01_4_01_4.html", null ],
     [ "detail::has_non_default_from_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >", "structdetail_1_1has__non__default__from__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_912047717fa07cfa9d99fe9eafcf1e11e.html", null ],
@@ -202,7 +194,6 @@ var hierarchy =
     ] ],
     [ "SelectionParameters", "classSelectionParameters.html", null ],
     [ "detail::serializer< BasicJsonType >", "classdetail_1_1serializer.html", null ],
-    [ "Settings", "classSettings.html", null ],
     [ "SimpleGenerators", "classSimpleGenerators.html", null ],
     [ "detail::span_input_adapter", "classdetail_1_1span__input__adapter.html", null ],
     [ "detail::static_const< T >", "structdetail_1_1static__const.html", null ],
@@ -242,8 +233,6 @@ var hierarchy =
     ] ],
     [ "TruthTable", "classTruthTable.html", null ],
     [ "std::tuple_element< N, ::nlohmann::detail::iteration_proxy_value< IteratorType > >", "classstd_1_1tuple__element_3_01N_00_01_1_1nlohmann_1_1detail_1_1iteration__proxy__value_3_01IteratorType_01_4_01_4.html", null ],
-    [ "AuxMethods::TuplePrinter< Tuple, N >", "structAuxMethods_1_1TuplePrinter.html", null ],
-    [ "AuxMethods::TuplePrinter< Tuple, 1 >", "structAuxMethods_1_1TuplePrinter_3_01Tuple_00_011_01_4.html", null ],
     [ "detail::is_ordered_map< T >::two", "structdetail_1_1is__ordered__map_1_1two.html", null ],
     [ "std::conditional::type", null, [
       [ "detail::conjunction< B, Bn... >", "structdetail_1_1conjunction_3_01B_00_01Bn_8_8_8_01_4.html", null ]

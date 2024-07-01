@@ -114,12 +114,11 @@ $(document).ready(function(){initNavTree('md_NewGenerator.html',''); initResizab
 <p>Далее необходимо в классе <b><a class="el" href="classGenerationParameters.html">GenerationParameters</a></b> создать в разделе <em>private</em> переменную ранее созданного класса. Название переменной соответствует следующему требованию: <b>d_generator</b> + &lt;имя генератор&gt; + <b>Parameters</b>. Для примера переменная будет иметь следующее название: <b>d_generatorNewGeneratorNameParameters</b>. Для данной переменной необходимо создать геттер и сеттер. Геттер возвращает саму переменную, сеттер — получает на вход переменные для данного класса и записывает в переменную с параметрами. </p>
 <h1><a class="anchor" id="autotoc_md42"></a>
 3. &lt;a href="src/generators/simple/SimpleGenerators.hpp"&gt;SimpleGenerators.hpp&lt;/a&gt; и &lt;a href="src/generators/simple/SimpleGenerators.cpp"&gt;SimpleGenerators.cpp&lt;/a&gt;</h1>
-<p>В данных файлах необходимо реализовать сам генератор (метод для генерации схемы). В <b>SimpleGenerators.h</b> необходимо добавить описание метода генерации: </p><div class="fragment"><div class="line"><a class="code" href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> generatorNewGeneratorName(...);</div>
-<div class="ttc" id="aOrientedGraph_8hpp_html_afc9ace2881a918ee869eca6ecf10dbe9"><div class="ttname"><a href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a></div><div class="ttdeci">#define GraphPtr</div><div class="ttdef"><b>Definition:</b> OrientedGraph.hpp:21</div></div>
+<p>В данных файлах необходимо реализовать сам генератор (метод для генерации схемы). В <b>SimpleGenerators.h</b> необходимо добавить описание метода генерации: </p><div class="fragment"><div class="line">GraphPtr generatorNewGeneratorName(...);</div>
 </div><!-- fragment --><p> В качестве результата метод должен возвращать сгенерированную схему в формате <b>GraphPtr</b>, являющуюся, в свою очердедь, псевдонимом для типа <b>std::shared_ptr&lt;OrientedGraph&gt;</b>. В качестве входных данных метод должен принимать все необходмые для его использования переменные. </p><blockquote class="doxtable">
 <p>[!IMPORTANT] Имена входных переменных должны начинаться с префикса <b>i_</b>. </p>
 </blockquote>
-<p>В <b><a class="el" href="SimpleGenerators_8cpp.html">SimpleGenerators.cpp</a></b> необходимо реализовать сам генератор: </p><div class="fragment"><div class="line"><a class="code" href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> SimpleGenerators::generatorNewGeneratorName(...) {</div>
+<p>В <b><a class="el" href="SimpleGenerators_8cpp.html">SimpleGenerators.cpp</a></b> необходимо реализовать сам генератор: </p><div class="fragment"><div class="line">GraphPtr SimpleGenerators::generatorNewGeneratorName(...) {</div>
 <div class="line">   ...</div>
 <div class="line">}</div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md43"></a>
@@ -128,7 +127,7 @@ $(document).ready(function(){initNavTree('md_NewGenerator.html',''); initResizab
 <p>Используя приведенные ранее примеры названий методов, получаем следующий код для реализации метода: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> DataBaseGenerator::generateNewGeneratorName(<a class="code" href="classGenerationParameters.html">GenerationParameters</a> &amp;i_param) {</div>
 <div class="line">  <a class="code" href="classSimpleGenerators.html">SimpleGenerators</a> sg;</div>
 <div class="line">  ...</div>
-<div class="line">  <a class="code" href="OrientedGraph_8hpp.html#afc9ace2881a918ee869eca6ecf10dbe9">GraphPtr</a> graph = sg.generatorNewGeneratorName(...);</div>
+<div class="line">  GraphPtr graph = sg.generatorNewGeneratorName(...);</div>
 <div class="line">  <a class="code" href="classCircuit.html">Circuit</a> c (graph);</div>
 <div class="line">  c.setPath(<a class="code" href="classDataBaseGenerator.html#a7a9deffc7172454afd25ec87a6bc21b2">d_mainPath</a>);</div>
 <div class="line">  c.setCircuitName(i_param.<a class="code" href="classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350">getName</a>());</div>

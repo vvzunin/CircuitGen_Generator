@@ -1,5 +1,5 @@
 <map id="detail::get" name="detail::get">
-<area shape="rect" id="node1" title=" " alt="" coords="468,943,556,970"/>
+<area shape="rect" id="node1" title=" " alt="" coords="468,911,556,938"/>
 <area shape="rect" id="node2" href="$classdetail_1_1binary__reader.html#a3ec63657f0ece66358be99ee7ec46c1f" title="create a byte array by reading bytes from the input" alt="" coords="240,5,397,47"/>
 <area shape="rect" id="node3" href="$classdetail_1_1binary__reader.html#a899a51f4cd0ad49a8989de586f9dd7a2" title="Parses a C&#45;style string from the BSON input." alt="" coords="240,71,397,112"/>
 <area shape="rect" id="node4" href="$classdetail_1_1binary__reader.html#ad8eda2acffbc76cb622e6f52a13bebea" title="Parses a zero&#45;terminated string of length len from the BSON input." alt="" coords="240,136,397,177"/>
@@ -21,13 +21,12 @@
 <area shape="rect" id="node20" href="$classdetail_1_1binary__reader.html#a29ecec318fab8ccfa64b0e75536a40e4" title="Read a BSON element list (as specified in the BSON&#45;spec)" alt="" coords="223,1213,415,1255"/>
 <area shape="rect" id="node21" href="$classdetail_1_1binary__reader.html#abf6970bcdc650b3290b25767eb696685" title=" " alt="" coords="239,1279,398,1320"/>
 <area shape="rect" id="node22" href="$classdetail_1_1binary__reader.html#a2d96e387bda511bc8048c672113040f1" title=" " alt="" coords="224,1344,413,1385"/>
-<area shape="rect" id="node23" href="$structAuxMethods_1_1TuplePrinter.html#ae907366533ccef0638b8de51123b6a40" title=" " alt="" coords="225,1409,413,1451"/>
-<area shape="rect" id="node24" href="$classdetail_1_1binary__reader.html#a8e1b5452ae426e1d7b48761859e7f52d" title=" " alt="" coords="240,1475,397,1516"/>
-<area shape="rect" id="node26" href="$classdetail_1_1lexer.html#a7182c4e7a87e32686cc06be2c31cbc5f" title="scan a comment" alt="" coords="250,1540,387,1581"/>
-<area shape="rect" id="node27" href="$classdetail_1_1lexer.html#abefd991e3a77297b30698495531f01df" title=" " alt="" coords="250,1605,387,1647"/>
-<area shape="rect" id="node28" href="$classdetail_1_1lexer.html#aab65133db39717a496764cb97fcf3f46" title="scan a number literal" alt="" coords="250,1671,387,1712"/>
-<area shape="rect" id="node29" href="$classdetail_1_1lexer.html#a13c79af5cade626e08f321ead26b83f9" title="scan a string literal" alt="" coords="250,1736,387,1777"/>
-<area shape="rect" id="node30" href="$classdetail_1_1lexer.html#a04ae0c7807a761f4162ff42290be5490" title="skip the UTF&#45;8 byte order mark" alt="" coords="233,1802,404,1829"/>
-<area shape="rect" id="node31" href="$classdetail_1_1lexer.html#a230468eb9130a7173e0636fc1fc5606b" title=" " alt="" coords="251,1853,386,1895"/>
-<area shape="rect" id="node25" href="$classbasic__json.html#addedd5e53fa6eff6cd621f1615741c3d" title=" " alt="" coords="5,1482,169,1509"/>
+<area shape="rect" id="node23" href="$classdetail_1_1binary__reader.html#a8e1b5452ae426e1d7b48761859e7f52d" title=" " alt="" coords="240,1409,397,1451"/>
+<area shape="rect" id="node25" href="$classdetail_1_1lexer.html#a7182c4e7a87e32686cc06be2c31cbc5f" title="scan a comment" alt="" coords="250,1475,387,1516"/>
+<area shape="rect" id="node26" href="$classdetail_1_1lexer.html#abefd991e3a77297b30698495531f01df" title=" " alt="" coords="250,1540,387,1581"/>
+<area shape="rect" id="node27" href="$classdetail_1_1lexer.html#aab65133db39717a496764cb97fcf3f46" title="scan a number literal" alt="" coords="250,1605,387,1647"/>
+<area shape="rect" id="node28" href="$classdetail_1_1lexer.html#a13c79af5cade626e08f321ead26b83f9" title="scan a string literal" alt="" coords="250,1671,387,1712"/>
+<area shape="rect" id="node29" href="$classdetail_1_1lexer.html#a04ae0c7807a761f4162ff42290be5490" title="skip the UTF&#45;8 byte order mark" alt="" coords="233,1737,404,1763"/>
+<area shape="rect" id="node30" href="$classdetail_1_1lexer.html#a230468eb9130a7173e0636fc1fc5606b" title=" " alt="" coords="251,1788,386,1829"/>
+<area shape="rect" id="node24" href="$classbasic__json.html#addedd5e53fa6eff6cd621f1615741c3d" title=" " alt="" coords="5,1417,169,1443"/>
 </map>

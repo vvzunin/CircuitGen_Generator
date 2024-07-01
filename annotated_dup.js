@@ -1,9 +1,5 @@
 var annotated_dup =
 [
-    [ "AuxMethods", "namespaceAuxMethods.html", [
-      [ "TuplePrinter", "structAuxMethods_1_1TuplePrinter.html", null ],
-      [ "TuplePrinter< Tuple, 1 >", "structAuxMethods_1_1TuplePrinter_3_01Tuple_00_011_01_4.html", null ]
-    ] ],
     [ "detail", "namespacedetail.html", [
       [ "container_input_adapter_factory_impl", "namespacedetail_1_1container__input__adapter__factory__impl.html", [
         [ "container_input_adapter_factory", "structdetail_1_1container__input__adapter__factory__impl_1_1container__input__adapter__factory.html", null ],
@@ -196,17 +192,10 @@ var annotated_dup =
     [ "GeneratorSummatorParameters", "classGeneratorSummatorParameters.html", "classGeneratorSummatorParameters" ],
     [ "GeneticGenerator", "classGeneticGenerator.html", "classGeneticGenerator" ],
     [ "GeneticParameters", "classGeneticParameters.html", "classGeneticParameters" ],
-    [ "GraphVertexBase", "classGraphVertexBase.html", "classGraphVertexBase" ],
-    [ "GraphVertexConstant", "classGraphVertexConstant.html", "classGraphVertexConstant" ],
-    [ "GraphVertexGates", "classGraphVertexGates.html", "classGraphVertexGates" ],
-    [ "GraphVertexInput", "classGraphVertexInput.html", "classGraphVertexInput" ],
-    [ "GraphVertexOutput", "classGraphVertexOutput.html", "classGraphVertexOutput" ],
-    [ "GraphVertexSubGraph", "classGraphVertexSubGraph.html", "classGraphVertexSubGraph" ],
     [ "json_pointer", "classjson__pointer.html", "classjson__pointer" ],
     [ "json_sax", "structjson__sax.html", "structjson__sax" ],
     [ "MutationParameters", "classMutationParameters.html", "classMutationParameters" ],
     [ "ordered_map", "structordered__map.html", "structordered__map" ],
-    [ "OrientedGraph", "classOrientedGraph.html", "classOrientedGraph" ],
     [ "OrientedGraphParameters", "classOrientedGraphParameters.html", "classOrientedGraphParameters" ],
     [ "ParentsParameters", "classParentsParameters.html", "classParentsParameters" ],
     [ "Parser", "classParser.html", "classParser" ],

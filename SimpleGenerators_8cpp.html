@@ -94,6 +94,8 @@ $(document).ready(function(){initNavTree('SimpleGenerators_8cpp.html',''); initR
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">SimpleGenerators.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -109,7 +111,8 @@ $(document).ready(function(){initNavTree('SimpleGenerators_8cpp.html',''); initR
 <code>#include &lt;<a class="el" href="AuxiliaryMethods_8hpp_source.html">additional/AuxiliaryMethods.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="Parser_8hpp_source.html">baseStructures/Parser.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="TruthTable_8hpp_source.html">baseStructures/truthTable/TruthTable.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="OrientedGraph_8hpp_source.html">CircuitGenGenerator/OrientedGraph.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="ThreadPool_8hpp_source.html">CircuitGenGenerator/ThreadPool.hpp</a>&gt;</code><br />
+<code>#include &lt;CircuitGenGraph/OrientedGraph.hpp&gt;</code><br />
 <code>#include &lt;<a class="el" href="GeneticParameters_8hpp_source.html">generators/Genetic/GeneticParameters.hpp</a>&gt;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -117,49 +120,120 @@ Include dependency graph for SimpleGenerators.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="SimpleGenerators_8cpp__incl.png" border="0" usemap="#asrc_2generators_2simple_2SimpleGenerators_8cpp" alt=""/></div>
 <map name="asrc_2generators_2simple_2SimpleGenerators_8cpp" id="asrc_2generators_2simple_2SimpleGenerators_8cpp">
-<area shape="rect" title=" " alt="" coords="1059,5,1230,47"/>
-<area shape="rect" title=" " alt="" coords="1098,251,1183,278"/>
-<area shape="rect" title=" " alt="" coords="631,95,690,121"/>
-<area shape="rect" title=" " alt="" coords="714,95,783,121"/>
-<area shape="rect" title=" " alt="" coords="807,95,866,121"/>
-<area shape="rect" title=" " alt="" coords="891,95,977,121"/>
-<area shape="rect" title=" " alt="" coords="1002,95,1082,121"/>
-<area shape="rect" title=" " alt="" coords="936,430,1023,457"/>
-<area shape="rect" href="SimpleGenerators_8hpp.html" title="TO DO: Description generatorNumOperation TO DO: check and change the body if necessary generatorSumma..." alt="" coords="1352,169,1519,196"/>
-<area shape="rect" href="TruthTable_8hpp.html" title=" " alt="" coords="1557,244,1745,285"/>
-<area shape="rect" href="GeneticParameters_8hpp.html" title=" " alt="" coords="505,333,683,375"/>
-<area shape="rect" href="OrientedGraph_8hpp.html" title=" " alt="" coords="2165,244,2319,285"/>
-<area shape="rect" href="AuxiliaryMethods_8hpp.html" title="TODO: ToEnum TODO: if need LineReader TODO: if need CopyDirectory." alt="" coords="1645,95,1879,121"/>
-<area shape="rect" href="Parser_8hpp.html" title=" " alt="" coords="2820,169,3011,196"/>
-<area shape="rect" title=" " alt="" coords="2072,95,2140,121"/>
-<area shape="rect" title=" " alt="" coords="1814,587,1865,613"/>
-<area shape="rect" title=" " alt="" coords="2019,587,2097,613"/>
-<area shape="rect" title=" " alt="" coords="2493,587,2556,613"/>
-<area shape="rect" href="RandomGeneratorWithSeed_8hpp.html" title=" " alt="" coords="1250,333,1461,375"/>
-<area shape="rect" href="Settings_8hpp.html" title=" " alt="" coords="1979,512,2137,539"/>
-<area shape="rect" title=" " alt="" coords="1259,251,1329,278"/>
-<area shape="rect" title=" " alt="" coords="562,587,629,613"/>
-<area shape="rect" title=" " alt="" coords="1319,430,1391,457"/>
-<area shape="rect" title=" " alt="" coords="1687,430,1802,457"/>
-<area shape="rect" href="MutationParameters_8hpp.html" title=" " alt="" coords="602,512,861,539"/>
-<area shape="rect" href="RecombinationParameters_8hpp.html" title=" " alt="" coords="345,423,576,464"/>
-<area shape="rect" href="SelectionParameters_8hpp.html" title=" " alt="" coords="5,512,268,539"/>
-<area shape="rect" href="ParentsParameters_8hpp.html" title=" " alt="" coords="343,512,579,539"/>
-<area shape="rect" title=" " alt="" coords="2819,587,2878,613"/>
-<area shape="rect" title=" " alt="" coords="1912,587,1972,613"/>
-<area shape="rect" title=" " alt="" coords="2517,430,2583,457"/>
-<area shape="rect" title=" " alt="" coords="2511,341,2554,367"/>
-<area shape="rect" title=" " alt="" coords="1815,341,1890,367"/>
-<area shape="rect" title=" " alt="" coords="2579,341,2633,367"/>
-<area shape="rect" href="enums_8hpp.html" title=" " alt="" coords="1978,423,2138,464"/>
-<area shape="rect" href="GraphVertexBase_8hpp.html" title=" " alt="" coords="2219,333,2385,375"/>
-<area shape="rect" title=" " alt="" coords="1872,169,1945,196"/>
-<area shape="rect" href="Circuit_8hpp.html" title=" " alt="" coords="2174,169,2310,196"/>
-<area shape="rect" href="CircuitParameters_8hpp.html" title=" " alt="" coords="2963,512,3129,539"/>
-<area shape="rect" title=" " alt="" coords="3205,251,3263,278"/>
+<area shape="rect" title=" " alt="" coords="849,5,1020,47"/>
+<area shape="rect" title=" " alt="" coords="212,281,297,307"/>
+<area shape="rect" title=" " alt="" coords="207,102,265,129"/>
+<area shape="rect" title=" " alt="" coords="2009,281,2079,307"/>
+<area shape="rect" title=" " alt="" coords="551,102,609,129"/>
+<area shape="rect" title=" " alt="" coords="2061,191,2147,218"/>
+<area shape="rect" title=" " alt="" coords="684,102,764,129"/>
+<area shape="rect" title=" " alt="" coords="310,459,397,486"/>
+<area shape="rect" href="SimpleGenerators_8hpp.html" title="TO DO: Description generatorNumOperation TO DO: check and change the body if necessary generatorSumma..." alt="" coords="429,191,595,218"/>
+<area shape="rect" href="TruthTable_8hpp.html" title=" " alt="" coords="1069,273,1257,315"/>
+<area shape="rect" href="GeneticParameters_8hpp.html" title=" " alt="" coords="1828,363,2007,404"/>
+<area shape="rect" title=" " alt="" coords="671,273,860,315"/>
+<area shape="rect" href="AuxiliaryMethods_8hpp.html" title="TODO: ToEnum TODO: if need LineReader TODO: if need CopyDirectory." alt="" coords="1487,102,1721,129"/>
+<area shape="rect" href="Parser_8hpp.html" title=" " alt="" coords="839,191,1030,218"/>
+<area shape="rect" href="ThreadPool_8hpp.html" title=" " alt="" coords="2111,95,2265,136"/>
+<area shape="rect" title=" " alt="" coords="2290,102,2358,129"/>
+<area shape="rect" title=" " alt="" coords="608,459,659,486"/>
+<area shape="rect" title=" " alt="" coords="891,459,968,486"/>
+<area shape="rect" title=" " alt="" coords="1287,459,1350,486"/>
+<area shape="rect" href="RandomGeneratorWithSeed_8hpp.html" title=" " alt="" coords="5,363,216,404"/>
+<area shape="rect" href="Settings_8hpp.html" title=" " alt="" coords="997,370,1155,397"/>
+<area shape="rect" title=" " alt="" coords="373,281,443,307"/>
+<area shape="rect" title=" " alt="" coords="1421,616,1488,643"/>
+<area shape="rect" title=" " alt="" coords="75,459,147,486"/>
+<area shape="rect" title=" " alt="" coords="171,459,285,486"/>
+<area shape="rect" href="MutationParameters_8hpp.html" title=" " alt="" coords="1748,541,2007,568"/>
+<area shape="rect" href="RecombinationParameters_8hpp.html" title=" " alt="" coords="1585,452,1815,493"/>
+<area shape="rect" href="SelectionParameters_8hpp.html" title=" " alt="" coords="1461,541,1723,568"/>
+<area shape="rect" href="ParentsParameters_8hpp.html" title=" " alt="" coords="1201,541,1437,568"/>
+<area shape="rect" title=" " alt="" coords="1417,459,1476,486"/>
+<area shape="rect" title=" " alt="" coords="1501,459,1561,486"/>
+<area shape="rect" title=" " alt="" coords="993,459,1255,486"/>
+<area shape="rect" title=" " alt="" coords="1530,191,1603,218"/>
+<area shape="rect" title=" " alt="" coords="1679,191,1753,218"/>
+<area shape="rect" title=" " alt="" coords="1829,191,1883,218"/>
+<area shape="rect" href="Circuit_8hpp.html" title=" " alt="" coords="1369,191,1505,218"/>
+<area shape="rect" title=" " alt="" coords="1106,184,1345,225"/>
+<area shape="rect" href="CircuitParameters_8hpp.html" title=" " alt="" coords="1485,370,1651,397"/>
+<area shape="rect" title=" " alt="" coords="935,281,993,307"/>
+<area shape="rect" title=" " alt="" coords="2172,191,2236,218"/>
+<area shape="rect" href="UnboundedMPMCQueue_8hpp.html" title=" " alt="" coords="2261,191,2467,218"/>
+<area shape="rect" title=" " alt="" coords="2159,281,2302,307"/>
+<area shape="rect" title=" " alt="" coords="2326,281,2389,307"/>
+<area shape="rect" title=" " alt="" coords="2413,281,2477,307"/>
+<area shape="rect" title=" " alt="" coords="2501,281,2576,307"/>
 </map>
 </div>
-</div></div><!-- contents -->
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a3815ff74137173f13d565f0e6914a7d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SimpleGenerators_8cpp.html#a3815ff74137173f13d565f0e6914a7d8">ADD_WITH_MUTEX_TO_VEC</a>(val)</td></tr>
+<tr class="separator:a3815ff74137173f13d565f0e6914a7d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85f1088874fda767e0b8de9b1677fca7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SimpleGenerators_8cpp.html#a85f1088874fda767e0b8de9b1677fca7">ADD_WITH_MUTEX_TO_GRAPH</a>(g,  inp)</td></tr>
+<tr class="separator:a85f1088874fda767e0b8de9b1677fca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a85f1088874fda767e0b8de9b1677fca7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85f1088874fda767e0b8de9b1677fca7">&#9670;&nbsp;</a></span>ADD_WITH_MUTEX_TO_GRAPH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ADD_WITH_MUTEX_TO_GRAPH</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">g, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">inp&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">  ({ \</div>
+<div class="line">    mtx.lock(); \</div>
+<div class="line">    auto addedGr = graph-&gt;addSubGraph(g, inp); \</div>
+<div class="line">    outputs_gens.push_back(addedGr); \</div>
+<div class="line">    mtx.unlock(); \</div>
+<div class="line">  })</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3815ff74137173f13d565f0e6914a7d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3815ff74137173f13d565f0e6914a7d8">&#9670;&nbsp;</a></span>ADD_WITH_MUTEX_TO_VEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ADD_WITH_MUTEX_TO_VEC</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">val</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">  ({ \</div>
+<div class="line">    mtx.lock(); \</div>
+<div class="line">    outputs_gens.push_back(val); \</div>
+<div class="line">    mtx.unlock(); \</div>
+<div class="line">  })</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

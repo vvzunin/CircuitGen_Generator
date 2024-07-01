@@ -4,7 +4,19 @@ var namespaces_dup =
       [ "operator\"\"_json", "namespaceliterals_1_1json__literals.html#ae61a268eddc25d7a0fee62021a3e4f34", null ],
       [ "operator\"\"_json_pointer", "namespaceliterals_1_1json__literals.html#a6ecf43f6a3b7dbb6008788fd0cd572c0", null ]
     ] ],
-    [ "AuxMethods", "namespaceAuxMethods.html", "namespaceAuxMethods" ],
+    [ "AuxMethods", "namespaceAuxMethods.html", [
+      [ "getRandDouble", "namespaceAuxMethods.html#ad1cd19afad4489d0c7eb4938e106ec42", null ],
+      [ "getRandInt", "namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207", null ],
+      [ "getRandomIntList", "namespaceAuxMethods.html#a050af9429bfdb674caaa7c3d9cb4a648", null ],
+      [ "getRandSeed", "namespaceAuxMethods.html#a1ff433f6adb27f95ad4859e8ee9732c6", null ],
+      [ "intToStringWithZeroes", "namespaceAuxMethods.html#a4436f31c3a25e213de267dc2d9cc9cb4", null ],
+      [ "readAllFile", "namespaceAuxMethods.html#a9ea2f6dad8245c55cc658bb6a95a00dc", null ],
+      [ "removeSpaces", "namespaceAuxMethods.html#a43e549d87cd504b8bb0fc7546239b577", null ],
+      [ "setRandSeed", "namespaceAuxMethods.html#a5bd15903dbc7db95cb089304ca9e0277", null ],
+      [ "skipSpaces", "namespaceAuxMethods.html#a6109c51838f3e8d1767a0459aee91aa1", null ],
+      [ "sortDictByValue", "namespaceAuxMethods.html#af9218449b862b94608c0f3f567bace90", null ],
+      [ "transpose", "namespaceAuxMethods.html#af91905c8bf7e07464a2906f5b3a4a89a", null ]
+    ] ],
     [ "CircuitGenGenerator", "namespaceCircuitGenGenerator.html", [
       [ "runGenerationFromJson", "namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2", null ],
       [ "runGenerationFromJsonForGraph", "namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac", null ],
@@ -42,10 +54,5 @@ var namespaces_dup =
       [ "SelectionBase", "namespaceSelectionsTruthTable.html#ac5bb70bee68ee3b6b93fd9c74ba89395", null ]
     ] ],
     [ "std", "namespacestd.html", "namespacestd" ],
-    [ "Threading", "namespaceThreading.html", "namespaceThreading" ],
-    [ "VertexUtils", "namespaceVertexUtils.html", [
-      [ "gateToString", "namespaceVertexUtils.html#a8140b975302d15b6226a4bfba79dd9d9", null ],
-      [ "vertexTypeToComment", "namespaceVertexUtils.html#a429cf39161c78a2a22dd45e6a0f41acf", null ],
-      [ "vertexTypeToVerilog", "namespaceVertexUtils.html#a58a8373cb1f0f5be90a30b7fc3b51abd", null ]
-    ] ]
+    [ "Threading", "namespaceThreading.html", "namespaceThreading" ]
 ];

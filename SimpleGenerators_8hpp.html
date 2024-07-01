@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('SimpleGenerators_8hpp.html',''); initR
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;<a class="el" href="RandomGeneratorWithSeed_8hpp_source.html">additional/RandomGeneratorWithSeed.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="TruthTable_8hpp_source.html">baseStructures/truthTable/TruthTable.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="OrientedGraph_8hpp_source.html">CircuitGenGenerator/OrientedGraph.hpp</a>&gt;</code><br />
+<code>#include &lt;CircuitGenGraph/OrientedGraph.hpp&gt;</code><br />
 <code>#include &lt;limits.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="Settings_8hpp_source.html">settings/Settings.hpp</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -118,33 +118,28 @@ Include dependency graph for SimpleGenerators.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="SimpleGenerators_8hpp__incl.png" border="0" usemap="#asrc_2generators_2simple_2SimpleGenerators_8hpp" alt=""/></div>
 <map name="asrc_2generators_2simple_2SimpleGenerators_8hpp" id="asrc_2generators_2simple_2SimpleGenerators_8hpp">
-<area shape="rect" title="TO DO: Description generatorNumOperation TO DO: check and change the body if necessary generatorSumma..." alt="" coords="1315,5,1486,47"/>
-<area shape="rect" title=" " alt="" coords="913,102,998,129"/>
-<area shape="rect" title=" " alt="" coords="1562,437,1613,464"/>
-<area shape="rect" title=" " alt="" coords="1270,437,1347,464"/>
-<area shape="rect" title=" " alt="" coords="1856,437,1919,464"/>
-<area shape="rect" href="RandomGeneratorWithSeed_8hpp.html" title=" " alt="" coords="259,184,470,225"/>
-<area shape="rect" href="TruthTable_8hpp.html" title=" " alt="" coords="1073,95,1261,136"/>
-<area shape="rect" href="Settings_8hpp.html" title=" " alt="" coords="1651,363,1809,389"/>
-<area shape="rect" href="OrientedGraph_8hpp.html" title=" " alt="" coords="1707,95,1862,136"/>
-<area shape="rect" title=" " alt="" coords="2341,102,2412,129"/>
-<area shape="rect" title=" " alt="" coords="526,437,593,464"/>
-<area shape="rect" title=" " alt="" coords="117,281,189,307"/>
-<area shape="rect" title=" " alt="" coords="5,281,92,307"/>
-<area shape="rect" title=" " alt="" coords="393,281,507,307"/>
-<area shape="rect" href="GeneticParameters_8hpp.html" title=" " alt="" coords="709,184,887,225"/>
-<area shape="rect" href="MutationParameters_8hpp.html" title=" " alt="" coords="263,363,522,389"/>
-<area shape="rect" href="RecombinationParameters_8hpp.html" title=" " alt="" coords="599,273,829,315"/>
-<area shape="rect" href="SelectionParameters_8hpp.html" title=" " alt="" coords="856,363,1119,389"/>
-<area shape="rect" href="ParentsParameters_8hpp.html" title=" " alt="" coords="596,363,832,389"/>
-<area shape="rect" title=" " alt="" coords="1943,437,2002,464"/>
-<area shape="rect" title=" " alt="" coords="1700,437,1760,464"/>
-<area shape="rect" title=" " alt="" coords="2025,281,2091,307"/>
-<area shape="rect" title=" " alt="" coords="1893,191,1935,218"/>
-<area shape="rect" title=" " alt="" coords="1959,191,2034,218"/>
-<area shape="rect" title=" " alt="" coords="2109,191,2164,218"/>
-<area shape="rect" href="enums_8hpp.html" title=" " alt="" coords="1599,273,1759,315"/>
-<area shape="rect" href="GraphVertexBase_8hpp.html" title=" " alt="" coords="1701,184,1868,225"/>
+<area shape="rect" title="TO DO: Description generatorNumOperation TO DO: check and change the body if necessary generatorSumma..." alt="" coords="467,5,637,47"/>
+<area shape="rect" title=" " alt="" coords="144,102,229,129"/>
+<area shape="rect" title=" " alt="" coords="5,281,56,307"/>
+<area shape="rect" title=" " alt="" coords="535,281,612,307"/>
+<area shape="rect" title=" " alt="" coords="637,281,699,307"/>
+<area shape="rect" href="RandomGeneratorWithSeed_8hpp.html" title=" " alt="" coords="1080,184,1291,225"/>
+<area shape="rect" href="TruthTable_8hpp.html" title=" " alt="" coords="590,95,778,136"/>
+<area shape="rect" href="Settings_8hpp.html" title=" " alt="" coords="305,191,463,218"/>
+<area shape="rect" title=" " alt="" coords="853,95,1043,136"/>
+<area shape="rect" title=" " alt="" coords="1067,102,1138,129"/>
+<area shape="rect" title=" " alt="" coords="995,437,1061,464"/>
+<area shape="rect" title=" " alt="" coords="1271,281,1343,307"/>
+<area shape="rect" title=" " alt="" coords="1367,281,1454,307"/>
+<area shape="rect" title=" " alt="" coords="1081,281,1196,307"/>
+<area shape="rect" href="GeneticParameters_8hpp.html" title=" " alt="" coords="703,184,881,225"/>
+<area shape="rect" href="MutationParameters_8hpp.html" title=" " alt="" coords="628,363,887,389"/>
+<area shape="rect" href="RecombinationParameters_8hpp.html" title=" " alt="" coords="826,273,1057,315"/>
+<area shape="rect" href="SelectionParameters_8hpp.html" title=" " alt="" coords="341,363,603,389"/>
+<area shape="rect" href="ParentsParameters_8hpp.html" title=" " alt="" coords="910,363,1146,389"/>
+<area shape="rect" title=" " alt="" coords="80,281,139,307"/>
+<area shape="rect" title=" " alt="" coords="163,281,223,307"/>
+<area shape="rect" title=" " alt="" coords="247,281,510,307"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -170,7 +165,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ac329a2734056446e2014455691347c87"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SimpleGenerators_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> = std::map&lt; <a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a>, std::vector&lt; int32_t &gt; &gt;</td></tr>
+<tr class="memitem:ac329a2734056446e2014455691347c87"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SimpleGenerators_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> = std::map&lt; Gates, std::vector&lt; int32_t &gt; &gt;</td></tr>
 <tr class="separator:ac329a2734056446e2014455691347c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -198,7 +193,7 @@ Typedefs</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> =  std::map&lt;<a class="el" href="Settings_8hpp.html#a0963bd5066d6d6a58155d1ad79f56974">Gates</a>, std::vector&lt;int32_t&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> =  std::map&lt;Gates, std::vector&lt;int32_t&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
