@@ -5,9 +5,9 @@
 #include "MutationTruthTable.hpp"
 
 template<>
-std::vector<ChronosomeType<TruthTable, TruthTableParameters>> MutationType(
+std::vector<ChromosomeType<TruthTable, TruthTableParameters>> MutationType(
     MutationParameters i_mutationParameters,
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>> i_population
+    std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population
 ) {
   if (i_mutationParameters.getMutationType() == MutationTypes::Binary)
     return MutationTruthTable::MutationBinary(

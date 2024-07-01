@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.14)
 include(cmake/prelude.cmake)
 
 project(
-  CircuitGenGenerator
-  VERSION 0.1.0
+  CircuitGen_Generator
+  VERSION 1.1.0
   DESCRIPTION "Program for circuits dataset generation"
   HOMEPAGE_URL "https://github.com/vvzunin/CircuitGen_Generator"
   LANGUAGES CXX
@@ -43,7 +43,7 @@ include(FetchContent)
 FetchContent_Declare(
   CircuitGenGraph
   GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
-  GIT_TAG 59e20e8
+  GIT_TAG 0735c56
 )
 FetchContent_MakeAvailable(CircuitGenGraph)
 
@@ -55,42 +55,46 @@ set(PUBLIC_HEADERS
 )
 
 set(SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/additional/AuxiliaryMethods.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/additional/filesTools/FilesTools.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/additional/threadPool/ThreadPool.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexBase.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexConstant.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexSubGraph.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexInput.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexGates.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/GraphVertexOutput.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/graph/OrientedGraph.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/Parser.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/baseStructures/truthTable/TruthTable.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/circuit/Circuit.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/database/DataBaseGenerator.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/database/DataBaseGeneratorParameters.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/simple/SimpleGenerators.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/GeneticParameters.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/GenGenerator.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Chromosome.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/ChromosomeType.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Selections/Selections.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Selections/SelectionParameters.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Selections/SelectionsTruthTable.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Recombination/Recombinations.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Recombination/RecombinationParameters.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Recombination/RecombinationsTruthTable.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Parents/Parents.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Parents/ParentsParameters.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Parents/ParentsTruthTable.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Mutations/Mutation.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Mutations/MutationParameters.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/generators/Genetic/Mutations/MutationTruthTable.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/settings/Settings.cpp
+  src/additional/AuxiliaryMethods.cpp
+  src/additional/filesTools/FilesTools.cpp
+  src/additional/threadPool/ThreadPool.cpp
+  src/baseStructures/graph/GraphVertexBase.cpp
+  src/baseStructures/graph/GraphVertexConstant.cpp
+  src/baseStructures/graph/GraphVertexSubGraph.cpp
+  src/baseStructures/graph/GraphVertexInput.cpp
+  src/baseStructures/graph/GraphVertexGates.cpp
+  src/baseStructures/graph/GraphVertexOutput.cpp
+  src/baseStructures/graph/OrientedGraph.cpp
+  src/baseStructures/Parser.cpp
+  src/baseStructures/truthTable/TruthTable.cpp
+  src/circuit/Circuit.cpp
+  src/database/DataBaseGenerator.cpp
+  src/database/DataBaseGeneratorParameters.cpp
+  src/generators/simple/SimpleGenerators.cpp
+  src/generators/Genetic/GeneticParameters.cpp
+  src/generators/Genetic/GenGenerator.hpp
+  src/generators/Genetic/Chromosome.hpp
+  src/generators/Genetic/ChromosomeType.hpp
+  src/generators/Genetic/Selections/Selections.hpp
+  src/generators/Genetic/Selections/SelectionParameters.cpp
+  src/generators/Genetic/Selections/SelectionsTruthTable.hpp
+  src/generators/Genetic/Recombination/Recombinations.hpp
+  src/generators/Genetic/Recombination/RecombinationParameters.cpp
+  src/generators/Genetic/Recombination/RecombinationsTruthTable.cpp
+  src/generators/Genetic/Parents/Parents.hpp
+  src/generators/Genetic/Parents/ParentsParameters.cpp
+  src/generators/Genetic/Parents/ParentsTruthTable.hpp
+  src/generators/Genetic/Mutations/Mutation.cpp
+  src/generators/Genetic/Mutations/MutationParameters.cpp
+  src/generators/Genetic/Mutations/MutationTruthTable.cpp
+  src/settings/Settings.cpp
 )
 
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/CircuitGenGenerator.cpp ${SOURCES})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 
+  FILES 
+  src/CircuitGenGenerator.cpp 
+  ${SOURCES}
+)
 
 add_library(
   CircuitGenGenerator_lib
@@ -149,7 +153,7 @@ list(APPEND PUBLIC_HEADERS
 # list(APPEND SOURCES
 # "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
 include(CMakePackageConfigHelpers)
-target_sources(CircuitGenGenerator_lib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/CircuitGenGenerator.cpp ${SOURCES})
+target_sources(CircuitGenGenerator_lib PRIVATE src/CircuitGenGenerator.cpp ${SOURCES})
 
 target_include_directories(
   CircuitGenGenerator_lib ${warning_guard}
@@ -172,7 +176,7 @@ target_include_directories(CircuitGenGenerator_lib
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
   PRIVATE
-  "${CMAKE_CURRENT_SOURCE_DIR}/src")
+  "src")
 
 target_link_libraries(
   CircuitGenGenerator_lib PRIVATE 
@@ -241,7 +245,7 @@ if(MSVC)
 endif()
 
 # ---- Declare executable ----
-add_executable(CircuitGenGenerator_exe ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+add_executable(CircuitGenGenerator_exe src/main.cpp)
 add_executable(CircuitGenGenerator::exe ALIAS CircuitGenGenerator_exe)
 
 set_property(TARGET CircuitGenGenerator_exe PROPERTY OUTPUT_NAME CircuitGenGenerator)
@@ -250,8 +254,7 @@ target_compile_features(CircuitGenGenerator_exe PRIVATE cxx_std_17)
 
 target_link_libraries(
   CircuitGenGenerator_exe PRIVATE
-  CircuitGenGenerator::CircuitGenGenerator 
-  CircuitGenGraph::CircuitGenGraph
+  CircuitGenGenerator::CircuitGenGenerator
 )
 
 # ---- Install rules ----

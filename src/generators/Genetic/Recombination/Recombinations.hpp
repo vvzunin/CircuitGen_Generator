@@ -4,28 +4,28 @@
 #include <string>
 #include <vector>
 
-#include "../ChronosomeType.hpp"
+#include "../ChromosomeType.hpp"
 #include "RecombinationParameters.hpp"
 #include "RecombinationsTruthTable.hpp"
 
 template<typename Type, typename ParametersType>
-std::vector<ChronosomeType<Type, ParametersType>> RecombinationType(
+std::vector<ChromosomeType<Type, ParametersType>> RecombinationType(
     RecombinationParameters                           i_recombinationParameters,
-    std::vector<ChronosomeType<Type, ParametersType>> i_population
+    std::vector<ChromosomeType<Type, ParametersType>> i_population
 );
 
 template<>
-inline std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+inline std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
     RecombinationType(
         RecombinationParameters i_recombinationParameters,
-        std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+        std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
             i_population
     ) {
   RecombinationTypes help_1 = i_recombinationParameters.getRecombinationType();
   RecombinationTypes help_2 = CrossingEachExitInTurnMany;
   if (help_1 == CrossingEachExitInTurnMany) {
     // std::cout << "1" << std::endl;
-    std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+    std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
         newPopulation =
             RecombinationsTruthTable::RecombinationCrossingEachExitInTurnMany(
                 i_recombinationParameters, i_population

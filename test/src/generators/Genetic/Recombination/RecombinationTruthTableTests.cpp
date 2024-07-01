@@ -2,9 +2,9 @@
 
 #include "generators/Genetic/Recombination/RecombinationsTruthTable.hpp"
 
-std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
+std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
     createPopulation(int numIndividuals, int inputSize, int outputSize) {
-  std::vector<ChronosomeType<TruthTable, TruthTableParameters>> population;
+  std::vector<ChromosomeType<TruthTable, TruthTableParameters>> population;
   for (int i = 0; i < numIndividuals; ++i) {
     std::vector<std::vector<bool>> table(
         inputSize, std::vector<bool>(outputSize)
@@ -15,7 +15,7 @@ std::vector<ChronosomeType<TruthTable, TruthTableParameters>>
       }
     }
     TruthTable tt(inputSize, outputSize, table);
-    ChronosomeType<TruthTable, TruthTableParameters> chr(
+    ChromosomeType<TruthTable, TruthTableParameters> chr(
         "ind" + std::to_string(i + 1), tt
     );
     population.push_back(chr);
