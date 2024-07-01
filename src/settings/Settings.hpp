@@ -76,8 +76,7 @@ enum GenerationTypes {    /// Generating a circuit from a random truth table
 
 class Settings : public DefaultSettings {
 protected:
-  Settings(const std::string& i_path)
-   : DefaultSettings(i_path) {}
+  Settings(const std::string& i_path) : DefaultSettings(i_path) {}
 
 public:
   Settings(Settings& other)                                   = delete;
