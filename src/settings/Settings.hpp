@@ -330,6 +330,7 @@ public:
   /// @endcode
 
   uint16_t                 getNumThread() const;
+  void                     setNumThread(uint16_t i_numThreads);
 
   /// @brief parseStringToGate Converts a string representation of a gate to
   /// its corresponding enum value
@@ -416,7 +417,8 @@ private:
       {"python", "python3"},
       {"resynthesis", "Nadezhda/Scripts/resynthesis_local_rewriting.pyc"},
       {"reliability", "Nadezhda/Scripts/check_reliability.pyc"},
-      {"liberty", "Nadezda/Test/Nangate.lib"}};
+      {"liberty", "Nadezda/Test/Nangate.lib"}
+  };
   uint16_t                                               d_numThreads      = 4;
   std::map<std::string, std::pair<std::string, int32_t>> d_logicOperations = {
       {"input", {"", 10}},
@@ -441,7 +443,8 @@ private:
       {"not", Gates::GateNot},
       {"buf", Gates::GateBuf},
       {"xor", Gates::GateXor},
-      {"xnor", Gates::GateXnor}};
+      {"xnor", Gates::GateXnor}
+  };
 
   std::map<Gates, std::string> gateToString = {
       {Gates::GateAnd, "and"},
@@ -452,7 +455,8 @@ private:
       {Gates::GateBuf, "buf"},
       {Gates::GateXor, "xor"},
       {Gates::GateXnor, "xnor"},
-      {Gates::GateDefault, "ERROR"}};
+      {Gates::GateDefault, "ERROR"}
+  };
 
   std::vector<Gates> d_logicElements = {
       Gates::GateAnd,
@@ -462,14 +466,16 @@ private:
       Gates::GateXor,
       Gates::GateXnor,
       Gates::GateNot,
-      Gates::GateBuf};
+      Gates::GateBuf
+  };
 
   std::map<VertexTypes, std::string> vertexToString = {
       {VertexTypes::input, "input"},
       {VertexTypes::output, "output"},
       {VertexTypes::constant, "const"},
       {VertexTypes::subGraph, "subGraph"},
-      {VertexTypes::gate, "g"}};
+      {VertexTypes::gate, "g"}
+  };
 
   std::map<GenerationTypes, std::string> generationTypeToPrefix = {
       {GenerationTypes::FromRandomTruthTable, "CCGRTT"},
@@ -486,7 +492,8 @@ private:
       {GenerationTypes::Demultiplexer, "CCGTCDMP"},
       {GenerationTypes::Multiplexer, "CCGTCMP"},
       {GenerationTypes::Decoder, "CCGDCR"},
-      {GenerationTypes::ALU, "CCGALU"}};
+      {GenerationTypes::ALU, "CCGALU"}
+  };
 
   std::map<int32_t, std::vector<std::string>> d_operationsToHierarchy;
   std::map<std::string, std::string>          d_operationsToName;

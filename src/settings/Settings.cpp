@@ -94,7 +94,7 @@ void Settings::loadSettings() {
         toName   = "input";  // fromName take operation, but the operation that
                              // input have, is an empty string so it is going to
                              // take directly input.
-      }                      // So that I check it out right here
+      }  // So that I check it out right here
       else
         readFile >> toName;
       d_operationsToName[fromName] = toName;
@@ -131,6 +131,10 @@ std::pair<std::vector<bool>, std::vector<Gates>>
 
 uint16_t Settings::getNumThread() const {
   return d_numThreads;
+}
+
+void Settings::setNumThread(uint16_t i_numThreads) {
+  d_numThreads = i_numThreads;
 }
 
 std::string Settings::getPathNadezhda() const {

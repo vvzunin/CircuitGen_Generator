@@ -137,8 +137,11 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
       if (child->getType() == VertexTypes::output) {
         continue;
       }
-      ++d_circuitParameters.d_numEdgesOfEachType[{
-          "const", d_settings->parseGateToString(child->getGate())}];
+      std::string to = child->getGate() != Gates::GateDefault
+                         ? d_settings->parseGateToString(child->getGate())
+                         : child->getTypeName();
+      
+      ++d_circuitParameters.d_numEdgesOfEachType[{"const", to}];
     }
   }
 
