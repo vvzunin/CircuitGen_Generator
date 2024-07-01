@@ -140,7 +140,7 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
       std::string to = child->getGate() != Gates::GateDefault
                          ? d_settings->parseGateToString(child->getGate())
                          : child->getTypeName();
-      
+
       ++d_circuitParameters.d_numEdgesOfEachType[{"const", to}];
     }
   }
