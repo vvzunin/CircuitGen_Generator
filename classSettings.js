@@ -25,6 +25,7 @@ var classSettings =
     [ "parseVertexToString", "classSettings.html#a0237bbfae43cdc7ed6a8d68877f1bd35", null ],
     [ "SaveSettings", "classSettings.html#a19d1e2e2df8600f7e2cd1c64363fe60f", null ],
     [ "setDatasetPath", "classSettings.html#aa58689526fd6afebad1d1171d200a75c", null ],
+    [ "setNumThread", "classSettings.html#af4733c4f52a79f3f0f992d784bfa7412", null ],
     [ "d_csvdataset", "classSettings.html#ab4fadb73ca581ee3340a022a05bb5f6d", null ],
     [ "d_datasetPath", "classSettings.html#ac2c5e889e5f79932bff53afcd28b09d5", null ],
     [ "d_fileName", "classSettings.html#aa5da8389cf8876967f44415262d58a7b", null ],

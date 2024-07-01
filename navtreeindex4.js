@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"classbasic__json.html#a50644d655c9283aaf0e2a0f3a5428867":[13,0,4,39],
 "classbasic__json.html#a5299b166ebd27030235e2314a0cf5882":[13,0,4,232],
 "classbasic__json.html#a53b6bf8ee18c48f4609c8bdd4bb95107":[13,0,4,38],
 "classbasic__json.html#a54aba2f4314135e3ccf511fb17ca45a5":[13,0,4,235],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "classdetail_1_1binary__writer.html#a5b4f1bfcd0f3f7b57060c059e008c45b":[13,0,0,146,3],
 "classdetail_1_1binary__writer.html#a6df4a13e59faa87a72b0fbe8c5f838ba":[13,0,0,146,23],
 "classdetail_1_1binary__writer.html#a6df4a13e59faa87a72b0fbe8c5f838ba":[13,0,0,146,24],
-"classdetail_1_1binary__writer.html#a6df4a13e59faa87a72b0fbe8c5f838ba":[13,0,0,146,25],
-"classdetail_1_1binary__writer.html#a882debd723dd172f42e0690f84d4b94f":[13,0,0,146,11]
+"classdetail_1_1binary__writer.html#a6df4a13e59faa87a72b0fbe8c5f838ba":[13,0,0,146,25]
 };
