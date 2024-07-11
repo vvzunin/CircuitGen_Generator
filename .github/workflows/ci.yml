@@ -130,7 +130,7 @@ jobs:
         Add-Content "$env:GITHUB_ENV" 'EnforceProcessCountAcrossBuilds=true'
 
     - name: Configure
-      shell: pwsh
+      # shell: pwsh
       run: cmake "--preset=ci-$("${{ matrix.os }}".split("-")[0])"
 
     - name: Build
@@ -142,7 +142,7 @@ jobs:
     - name: Test
       working-directory: build
       run: ctest --output-on-failure --no-tests=error -C Release -j $(nproc)
-
+      
   docs:
     # Deploy docs only when builds succeed
     needs: [sanitize, test]
