@@ -11,7 +11,8 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
+    # runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v4
@@ -32,7 +33,8 @@ jobs:
   coverage:
     needs: [lint]
 
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
+    # runs-on: ubuntu-22.04
     
     if: github.repository_owner == 'vvzunin'
 
@@ -65,7 +67,8 @@ jobs:
   sanitize:
     needs: [lint]
 
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
+    # runs-on: ubuntu-22.04
 
     env: { CXX: clang++-14 }
 
@@ -94,7 +97,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-22.04]
+        os: [self-hosted] #[ubuntu-22.04]
         #os: [macos-12, ubuntu-22.04, windows-2022]
 
     runs-on: ${{ matrix.os }}
@@ -104,6 +107,15 @@ jobs:
 
     - name: Install static analyzers
       if: matrix.os == 'ubuntu-22.04'
+      run: >-
+        sudo apt-get install clang-tidy-15 cppcheck -y -q
+
+        sudo update-alternatives --install
+        /usr/bin/clang-tidy clang-tidy
+        /usr/bin/clang-tidy-15 150
+        
+    - name: Install static analyzers
+      if: matrix.os == 'self-hosted'
       run: >-
         sudo apt-get install clang-tidy-15 cppcheck -y -q
 
@@ -135,7 +147,8 @@ jobs:
     # Deploy docs only when builds succeed
     needs: [sanitize, test]
 
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
+    # runs-on: ubuntu-22.04
 
     if: github.ref == 'refs/heads/main'
       && github.event_name == 'push'
