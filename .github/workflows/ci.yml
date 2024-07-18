@@ -11,8 +11,8 @@ on:
 
 jobs:
   lint:
-    runs-on: self-hosted
-    # runs-on: ubuntu-22.04
+    # runs-on: self-hosted
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v4
@@ -33,8 +33,8 @@ jobs:
   coverage:
     needs: [lint]
 
-    runs-on: self-hosted
-    # runs-on: ubuntu-22.04
+    # runs-on: self-hosted
+    runs-on: ubuntu-22.04
     
     if: github.repository_owner == 'vvzunin'
 
@@ -67,8 +67,8 @@ jobs:
   sanitize:
     needs: [lint]
 
-    runs-on: self-hosted
-    # runs-on: ubuntu-22.04
+    # runs-on: self-hosted
+    runs-on: ubuntu-22.04
 
     env: { CXX: clang++-14 }
 
@@ -97,8 +97,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [self-hosted] #[ubuntu-22.04]
-        #os: [macos-12, ubuntu-22.04, windows-2022]
+        # os: [self-hosted] #[ubuntu-22.04]
+        os: [macos-12, ubuntu-22.04, windows-2022]
 
     runs-on: ${{ matrix.os }}
 
@@ -130,7 +130,7 @@ jobs:
         Add-Content "$env:GITHUB_ENV" 'EnforceProcessCountAcrossBuilds=true'
 
     - name: Configure
-      # shell: pwsh
+      shell: pwsh
       run: cmake "--preset=ci-$("${{ matrix.os }}".split("-")[0])"
 
     - name: Build
@@ -147,8 +147,8 @@ jobs:
     # Deploy docs only when builds succeed
     needs: [sanitize, test]
 
-    runs-on: self-hosted
-    # runs-on: ubuntu-22.04
+    # runs-on: self-hosted
+    runs-on: ubuntu-22.04
 
     if: github.ref == 'refs/heads/main'
       && github.event_name == 'push'
