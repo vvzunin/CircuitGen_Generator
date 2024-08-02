@@ -4,7 +4,7 @@ include(cmake/prelude.cmake)
 
 project(
   CircuitGen_Generator
-  VERSION 1.1.0
+  VERSION 1.3.0
   DESCRIPTION "Program for circuits dataset generation"
   HOMEPAGE_URL "https://github.com/vvzunin/CircuitGen_Generator"
   LANGUAGES CXX
@@ -43,7 +43,7 @@ set(ORIENTED_GRAPH CircuitGenGraph)
 FetchContent_Declare(
   ${ORIENTED_GRAPH}
   GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
-  GIT_TAG 2b497ef65570246610281b3e1d3c8f3814bbcb5e
+  GIT_TAG v1.1.2
 )
 FetchContent_MakeAvailable(${ORIENTED_GRAPH})
 
