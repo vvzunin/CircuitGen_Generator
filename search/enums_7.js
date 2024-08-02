@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['recombinationtypes_3021',['RecombinationTypes',['../RecombinationParameters_8hpp.html#a5981086c64ece56169fab85e575fe548',1,'RecombinationParameters.hpp']]],
-  ['returntype_3022',['ReturnType',['../DataBaseGenerator_8hpp.html#a36a419f0b50a0c1d2d4cf712e0ba64cc',1,'DataBaseGenerator.hpp']]]
+  ['mutationtypes_4253',['MutationTypes',['../MutationParameters_8hpp.html#a7b01179572d8f7532b68a5aa847f0ad8',1,'MutationParameters.hpp']]]
 ];

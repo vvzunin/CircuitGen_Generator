@@ -1,0 +1,5 @@
+<map id="el::base::utils::RegistryWithPred&lt; T_Ptr, Pred &gt;" name="el::base::utils::RegistryWithPred&lt; T_Ptr, Pred &gt;">
+<area shape="rect" id="node1" title="A pointer registry mechanism to manage memory and provide search functionalities." alt="" coords="15,593,197,803"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1utils_1_1AbstractRegistry.html" title=" " alt="" coords="5,204,207,545"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html" title="Base of thread safe class, this class is inheritable&#45;only." alt="" coords="35,5,177,156"/>
+</map>

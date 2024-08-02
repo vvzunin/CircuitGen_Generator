@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value_5ft_3025',['value_t',['../namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632',1,'detail']]]
+  ['selectiontypes_4258',['SelectionTypes',['../SelectionParameters_8hpp.html#a50daa29c84869b18e0b12d7456de94e2',1,'SelectionParameters.hpp']]]
 ];

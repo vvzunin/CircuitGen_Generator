@@ -27,8 +27,12 @@ var hierarchy =
     [ "Circuit", "classCircuit.html", null ],
     [ "CircuitParameters", "classCircuitParameters.html", null ],
     [ "CNNFromTruthTableParameters", "classCNNFromTruthTableParameters.html", null ],
+    [ "el::base::utils::CommandLineArgs", "classel_1_1base_1_1utils_1_1CommandLineArgs.html", null ],
+    [ "el::ConfigurationStringToTypeItem", "structel_1_1ConfigurationStringToTypeItem.html", null ],
     [ "detail::container_input_adapter_factory_impl::container_input_adapter_factory< ContainerType, Enable >", "structdetail_1_1container__input__adapter__factory__impl_1_1container__input__adapter__factory.html", null ],
     [ "detail::container_input_adapter_factory_impl::container_input_adapter_factory< ContainerType, void_t< decltype(begin(std::declval< ContainerType >()), end(std::declval< ContainerType >()))> >", "structdetail_1_1container__input__adapter__factory__impl_1_1container__input__adapter__factory_3983614ac0e8828aa386ca24b1ddc2bd1.html", null ],
+    [ "el::base::debug::CrashHandler", "classel_1_1base_1_1debug_1_1CrashHandler.html", null ],
+    [ "el::CustomFormatSpecifier", "classel_1_1CustomFormatSpecifier.html", null ],
     [ "DataBaseGenerator", "classDataBaseGenerator.html", null ],
     [ "DataBaseGeneratorParameters", "classDataBaseGeneratorParameters.html", null ],
     [ "DefaultSettings", null, [
@@ -108,7 +112,9 @@ var hierarchy =
     [ "detail::has_from_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >", "structdetail_1_1has__from__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_9is__basic__json_3_01T_01_4_1_1value_01_4_01_4.html", null ],
     [ "detail::has_non_default_from_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >", "structdetail_1_1has__non__default__from__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_912047717fa07cfa9d99fe9eafcf1e11e.html", null ],
     [ "detail::has_to_json< BasicJsonType, T, enable_if_t< !is_basic_json< T >::value > >", "structdetail_1_1has__to__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_9is__basic__json_3_01T_01_4_1_1value_01_4_01_4.html", null ],
+    [ "std::hash< el::Level >", "structstd_1_1hash_3_01el_1_1Level_01_4.html", null ],
     [ "std::hash< nlohmann::NLOHMANN_BASIC_JSON_TPL >", "structstd_1_1hash_3_01nlohmann_1_1NLOHMANN__BASIC__JSON__TPL_01_4.html", null ],
+    [ "el::base::HitCounter", "classel_1_1base_1_1HitCounter.html", null ],
     [ "detail::identity_tag< T >", "structdetail_1_1identity__tag.html", null ],
     [ "detail::input_stream_adapter", "classdetail_1_1input__stream__adapter.html", null ],
     [ "detail::integer_sequence< T, Ints >", "structdetail_1_1integer__sequence.html", null ],
@@ -171,8 +177,30 @@ var hierarchy =
     [ "detail::lexer_base< BasicJsonType >", "classdetail_1_1lexer__base.html", [
       [ "detail::lexer< BasicJsonType, InputAdapterType >", "classdetail_1_1lexer.html", null ]
     ] ],
+    [ "el::LogDispatchData", "classel_1_1LogDispatchData.html", null ],
+    [ "el::Loggable", "classel_1_1Loggable.html", [
+      [ "el::Configuration", "classel_1_1Configuration.html", null ],
+      [ "el::Logger", "classel_1_1Logger.html", null ],
+      [ "el::base::LogFormat", "classel_1_1base_1_1LogFormat.html", null ]
+    ] ],
+    [ "el::LogMessage", "classel_1_1LogMessage.html", null ],
     [ "detail::make_void< Ts >", "structdetail_1_1make__void.html", null ],
+    [ "el::base::MessageBuilder", "classel_1_1base_1_1MessageBuilder.html", null ],
     [ "MutationParameters", "classMutationParameters.html", null ],
+    [ "el::base::NoCopy", "classel_1_1base_1_1NoCopy.html", [
+      [ "el::LogBuilder", "classel_1_1LogBuilder.html", [
+        [ "el::base::DefaultLogBuilder", "classel_1_1base_1_1DefaultLogBuilder.html", null ]
+      ] ],
+      [ "el::base::LogDispatcher", "classel_1_1base_1_1LogDispatcher.html", null ],
+      [ "el::base::NullWriter", "classel_1_1base_1_1NullWriter.html", null ],
+      [ "el::base::Storage", "classel_1_1base_1_1Storage.html", null ],
+      [ "el::base::VRegistry", "classel_1_1base_1_1VRegistry.html", null ],
+      [ "el::base::Writer", "classel_1_1base_1_1Writer.html", [
+        [ "el::base::PErrorWriter", "classel_1_1base_1_1PErrorWriter.html", null ]
+      ] ],
+      [ "el::base::threading::internal::NoMutex", "classel_1_1base_1_1threading_1_1internal_1_1NoMutex.html", null ],
+      [ "el::base::threading::internal::NoScopedLock< Mutex >", "classel_1_1base_1_1threading_1_1internal_1_1NoScopedLock.html", null ]
+    ] ],
     [ "detail::nonesuch", "structdetail_1_1nonesuch.html", null ],
     [ "detail::output_adapter< CharType, StringType >", "classdetail_1_1output__adapter.html", null ],
     [ "detail::output_adapter_protocol< CharType >", "structdetail_1_1output__adapter__protocol.html", [
@@ -184,6 +212,8 @@ var hierarchy =
     [ "detail::parser< BasicJsonType, InputAdapterType >", "classdetail_1_1parser.html", null ],
     [ "Parser", "classParser.html", null ],
     [ "detail::position_t", "structdetail_1_1position__t.html", null ],
+    [ "el::base::HitCounter::Predicate", "classel_1_1base_1_1HitCounter_1_1Predicate.html", null ],
+    [ "el::Configuration::Predicate", "classel_1_1Configuration_1_1Predicate.html", null ],
     [ "detail::primitive_iterator_t", "classdetail_1_1primitive__iterator__t.html", null ],
     [ "detail::priority_tag< N >", "structdetail_1_1priority__tag.html", null ],
     [ "detail::priority_tag< 0 >", "structdetail_1_1priority__tag_3_010_01_4.html", null ],
@@ -192,14 +222,66 @@ var hierarchy =
     [ "std::reverse_iterator", null, [
       [ "detail::json_reverse_iterator< Base >", "classdetail_1_1json__reverse__iterator.html", null ]
     ] ],
+    [ "el::Loggers::ScopedAddFlag", "classel_1_1Loggers_1_1ScopedAddFlag.html", null ],
+    [ "el::Loggers::ScopedRemoveFlag", "classel_1_1Loggers_1_1ScopedRemoveFlag.html", null ],
     [ "SelectionParameters", "classSelectionParameters.html", null ],
     [ "detail::serializer< BasicJsonType >", "classdetail_1_1serializer.html", null ],
     [ "SimpleGenerators", "classSimpleGenerators.html", null ],
     [ "detail::span_input_adapter", "classdetail_1_1span__input__adapter.html", null ],
     [ "detail::static_const< T >", "structdetail_1_1static__const.html", null ],
+    [ "el::base::StaticClass", "classel_1_1base_1_1StaticClass.html", [
+      [ "el::ConfigurationTypeHelper", "classel_1_1ConfigurationTypeHelper.html", null ],
+      [ "el::Configurations::Parser", "classel_1_1Configurations_1_1Parser.html", null ],
+      [ "el::Helpers", "classel_1_1Helpers.html", null ],
+      [ "el::LevelHelper", "classel_1_1LevelHelper.html", null ],
+      [ "el::Loggers", "classel_1_1Loggers.html", null ],
+      [ "el::VersionInfo", "classel_1_1VersionInfo.html", null ],
+      [ "el::base::utils::DateTime", "classel_1_1base_1_1utils_1_1DateTime.html", null ],
+      [ "el::base::utils::File", "classel_1_1base_1_1utils_1_1File.html", null ],
+      [ "el::base::utils::OS", "classel_1_1base_1_1utils_1_1OS.html", null ],
+      [ "el::base::utils::Str", "classel_1_1base_1_1utils_1_1Str.html", null ]
+    ] ],
     [ "json_pointer< RefStringType >::string_t_helper< T >", "structjson__pointer_1_1string__t__helper.html", null ],
     [ "json_pointer< RefStringType >::string_t_helper< NLOHMANN_BASIC_JSON_TPL >", "structjson__pointer_1_1string__t__helper_3_01NLOHMANN__BASIC__JSON__TPL_01_4.html", null ],
+    [ "el::StringToLevelItem", "structel_1_1StringToLevelItem.html", null ],
+    [ "el::base::SubsecondPrecision", "classel_1_1base_1_1SubsecondPrecision.html", null ],
+    [ "el::SysLogInitializer", "classel_1_1SysLogInitializer.html", null ],
     [ "Threading::ThreadPool", "classThreading_1_1ThreadPool.html", null ],
+    [ "el::base::threading::ThreadSafe", "classel_1_1base_1_1threading_1_1ThreadSafe.html", [
+      [ "el::Callback< Logger >", "classel_1_1Callback.html", [
+        [ "el::LoggerRegistrationCallback", "classel_1_1LoggerRegistrationCallback.html", null ]
+      ] ],
+      [ "el::Callback< LogDispatchData >", "classel_1_1Callback.html", [
+        [ "el::LogDispatchCallback", "classel_1_1LogDispatchCallback.html", [
+          [ "el::base::DefaultLogDispatchCallback", "classel_1_1base_1_1DefaultLogDispatchCallback.html", null ]
+        ] ]
+      ] ],
+      [ "el::Callback< PerformanceTrackingData >", "classel_1_1Callback.html", [
+        [ "el::PerformanceTrackingCallback", "classel_1_1PerformanceTrackingCallback.html", null ]
+      ] ],
+      [ "el::base::utils::AbstractRegistry< T_Ptr, std::unordered_map< const char *, T_Ptr * > >", "classel_1_1base_1_1utils_1_1AbstractRegistry.html", [
+        [ "el::base::utils::Registry< T_Ptr, T_Key >", "classel_1_1base_1_1utils_1_1Registry.html", null ]
+      ] ],
+      [ "el::base::utils::AbstractRegistry< T_Ptr, std::vector< T_Ptr * > >", "classel_1_1base_1_1utils_1_1AbstractRegistry.html", [
+        [ "el::base::utils::RegistryWithPred< T_Ptr, Pred >", "classel_1_1base_1_1utils_1_1RegistryWithPred.html", null ]
+      ] ],
+      [ "el::Callback< T >", "classel_1_1Callback.html", null ],
+      [ "el::Logger", "classel_1_1Logger.html", null ],
+      [ "el::base::Storage", "classel_1_1base_1_1Storage.html", null ],
+      [ "el::base::TypedConfigurations", "classel_1_1base_1_1TypedConfigurations.html", null ],
+      [ "el::base::VRegistry", "classel_1_1base_1_1VRegistry.html", null ],
+      [ "el::base::utils::AbstractRegistry< T_Ptr, Container >", "classel_1_1base_1_1utils_1_1AbstractRegistry.html", [
+        [ "el::base::utils::Registry< Logger, std::string >", "classel_1_1base_1_1utils_1_1Registry.html", [
+          [ "el::base::RegisteredLoggers", "classel_1_1base_1_1RegisteredLoggers.html", null ]
+        ] ],
+        [ "el::base::utils::RegistryWithPred< Configuration, Configuration::Predicate >", "classel_1_1base_1_1utils_1_1RegistryWithPred.html", [
+          [ "el::Configurations", "classel_1_1Configurations.html", null ]
+        ] ],
+        [ "el::base::utils::RegistryWithPred< base::HitCounter, base::HitCounter::Predicate >", "classel_1_1base_1_1utils_1_1RegistryWithPred.html", [
+          [ "el::base::RegisteredHitCounters", "classel_1_1base_1_1RegisteredHitCounters.html", null ]
+        ] ]
+      ] ]
+    ] ],
     [ "detail::to_json_fn", "structdetail_1_1to__json__fn.html", null ],
     [ "std::true_type", null, [
       [ "detail::conjunction< is_default_constructible< Ts >... >", "structdetail_1_1conjunction.html", [
@@ -239,6 +321,7 @@ var hierarchy =
     ] ],
     [ "Threading::UnboundedMPMCQueue< T >", "classThreading_1_1UnboundedMPMCQueue.html", null ],
     [ "Threading::UnboundedMPMCQueue< Task >", "classThreading_1_1UnboundedMPMCQueue.html", null ],
+    [ "el::base::utils::Utils", "classel_1_1base_1_1utils_1_1Utils.html", null ],
     [ "detail::value_in_range_of_impl1< OfType, T, NeverOutOfRange, typename >", "structdetail_1_1value__in__range__of__impl1.html", null ],
     [ "detail::value_in_range_of_impl1< OfType, T, false >", "structdetail_1_1value__in__range__of__impl1_3_01OfType_00_01T_00_01false_01_4.html", null ],
     [ "detail::value_in_range_of_impl1< OfType, T, true >", "structdetail_1_1value__in__range__of__impl1_3_01OfType_00_01T_00_01true_01_4.html", null ],

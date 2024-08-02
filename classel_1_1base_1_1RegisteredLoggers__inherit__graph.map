@@ -1,0 +1,6 @@
+<map id="el::base::RegisteredLoggers" name="el::base::RegisteredLoggers">
+<area shape="rect" id="node1" title="Loggers repository." alt="" coords="5,836,240,1192"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1utils_1_1Registry.html" title=" " alt="" coords="37,579,208,788"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1utils_1_1AbstractRegistry.html" title="Abstract registry (aka repository) that provides basic interface for pointer repository specified by ..." alt="" coords="17,204,228,531"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html" title="Base of thread safe class, this class is inheritable&#45;only." alt="" coords="51,5,194,156"/>
+</map>

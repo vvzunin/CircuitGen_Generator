@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['input_5fformat_5ft_3016',['input_format_t',['../namespacedetail.html#a0ab3b338d0eadc6890b72cccef0ea04f',1,'detail']]]
+  ['formatflags_4246',['FormatFlags',['../namespaceel_1_1base.html#a28939c5a884e67fcf12259f4b8848e00',1,'el::base']]]
 ];

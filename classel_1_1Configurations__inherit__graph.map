@@ -1,0 +1,6 @@
+<map id="el::Configurations" name="el::Configurations">
+<area shape="rect" id="node1" title="Thread&#45;safe Configuration repository." alt="" coords="25,851,196,1148"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1utils_1_1RegistryWithPred.html" title=" " alt="" coords="12,579,209,803"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1utils_1_1AbstractRegistry.html" title="Abstract registry (aka repository) that provides basic interface for pointer repository specified by ..." alt="" coords="5,204,216,531"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html" title="Base of thread safe class, this class is inheritable&#45;only." alt="" coords="39,5,182,156"/>
+</map>

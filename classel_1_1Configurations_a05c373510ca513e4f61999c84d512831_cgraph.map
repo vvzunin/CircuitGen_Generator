@@ -1,0 +1,8 @@
+<map id="el::Configurations::unsafeSet" name="el::Configurations::unsafeSet">
+<area shape="rect" id="node1" title="Thread unsafe set." alt="" coords="5,111,141,153"/>
+<area shape="rect" id="node2" href="$namespacedetail.html#a7116703ea757fe9821bf2e903b91c160" title=" " alt="" coords="239,5,327,32"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1utils_1_1RegistryWithPred.html#a561a5d418106a16473ff94d43a4b6b04" title=" " alt="" coords="189,57,376,127"/>
+<area shape="rect" id="node4" href="$classel_1_1Configurations.html#a800efb58724eb771027135b282eae512" title="Sets configurations (Unsafely) for all levels including Level::Global if includeGlobalLevel is true." alt="" coords="208,151,357,193"/>
+<area shape="rect" id="node5" href="$classel_1_1LevelHelper.html#a1279f27df29a003df5ecc3d0bf4dacbb" title="Casts int(ushort) to level, useful for iterating through enum." alt="" coords="424,129,629,156"/>
+<area shape="rect" id="node6" href="$classel_1_1LevelHelper.html#a7f0dbfceb2354a72c2802d02c300430d" title="Applies specified function to each level starting from startIndex." alt="" coords="438,181,615,222"/>
+</map>

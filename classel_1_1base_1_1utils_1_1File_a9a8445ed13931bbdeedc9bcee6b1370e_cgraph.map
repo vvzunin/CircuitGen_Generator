@@ -1,0 +1,4 @@
+<map id="el::base::utils::File::createPath" name="el::base::utils::File::createPath">
+<area shape="rect" id="node1" title="Creates specified path on file system." alt="" coords="5,5,145,47"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1utils_1_1File.html#a43ffda98fdd01d23af20459fa1a65cac" title="Determines whether or not provided path exist in current file system." alt="" coords="193,5,333,47"/>
+</map>

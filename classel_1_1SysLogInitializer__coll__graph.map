@@ -1,0 +1,3 @@
+<map id="el::SysLogInitializer" name="el::SysLogInitializer">
+<area shape="rect" id="node1" title="Initializes syslog with process ID, options and facility. calls closelog() on d&#39;tor." alt="" coords="5,5,171,97"/>
+</map>

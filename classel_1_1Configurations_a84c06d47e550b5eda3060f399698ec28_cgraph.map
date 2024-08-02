@@ -1,0 +1,9 @@
+<map id="el::Configurations::unsafeSetIfNotExist" name="el::Configurations::unsafeSetIfNotExist">
+<area shape="rect" id="node1" title="Unsafely sets configuration if does not already exist." alt="" coords="5,42,164,83"/>
+<area shape="rect" id="node2" href="$namespacedetail.html#a7116703ea757fe9821bf2e903b91c160" title=" " alt="" coords="445,5,533,32"/>
+<area shape="rect" id="node3" href="$classel_1_1Configurations.html#a05c373510ca513e4f61999c84d512831" title="Thread unsafe set." alt="" coords="212,71,348,113"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1utils_1_1RegistryWithPred.html#a561a5d418106a16473ff94d43a4b6b04" title=" " alt="" coords="396,57,583,127"/>
+<area shape="rect" id="node5" href="$classel_1_1Configurations.html#a800efb58724eb771027135b282eae512" title="Sets configurations (Unsafely) for all levels including Level::Global if includeGlobalLevel is true." alt="" coords="415,151,564,193"/>
+<area shape="rect" id="node6" href="$classel_1_1LevelHelper.html#a1279f27df29a003df5ecc3d0bf4dacbb" title="Casts int(ushort) to level, useful for iterating through enum." alt="" coords="631,129,836,156"/>
+<area shape="rect" id="node7" href="$classel_1_1LevelHelper.html#a7f0dbfceb2354a72c2802d02c300430d" title="Applies specified function to each level starting from startIndex." alt="" coords="645,181,822,222"/>
+</map>

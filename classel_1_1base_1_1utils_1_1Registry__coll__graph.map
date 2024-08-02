@@ -1,0 +1,7 @@
+<map id="el::base::utils::Registry&lt; T_Ptr, T_Key &gt;" name="el::base::utils::Registry&lt; T_Ptr, T_Key &gt;">
+<area shape="rect" id="node1" title="A pointer registry mechanism to manage memory and provide search functionalities." alt="" coords="37,951,207,1160"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1utils_1_1AbstractRegistry.html" title=" " alt="" coords="5,560,239,901"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html" title="Base of thread safe class, this class is inheritable&#45;only." alt="" coords="51,360,193,511"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1threading_1_1internal_1_1NoMutex.html" title="Mutex wrapper used when multi&#45;threading is disabled." alt="" coords="49,161,195,297"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1NoCopy.html" title="Internal helper class that prevent copy constructor for class." alt="" coords="56,5,188,112"/>
+</map>

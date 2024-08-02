@@ -1,0 +1,5 @@
+<map id="el::base::utils::OS::currentUser" name="el::base::utils::OS::currentUser">
+<area shape="rect" id="node1" title="Gets current username." alt="" coords="5,5,140,47"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1utils_1_1OS.html#a34bf91e851eed1d4264cd594bb621b78" title="Gets environment variable." alt="" coords="188,5,375,47"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1utils_1_1OS.html#a58c32a7c4c30342b6cdf2ee04d540d0f" title="Runs command on terminal and returns the output." alt="" coords="423,5,557,47"/>
+</map>

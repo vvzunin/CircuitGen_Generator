@@ -1,0 +1,6 @@
+<map id="el::Configurations::configurationFile" name="el::Configurations::configurationFile">
+<area shape="rect" id="node1" title="Gets configuration file used in parsing this configurations." alt="" coords="592,27,731,68"/>
+<area shape="rect" id="node2" href="$classel_1_1Configurations.html#ae341bd647734d1180a5a138222d2f1ea" title="Constructor used to set configurations using configuration file." alt="" coords="5,5,141,47"/>
+<area shape="rect" id="node3" href="$classel_1_1Configurations.html#aaa098126d64a5ee04a3944b1a65dcdca" title="Parses configuration from file." alt="" coords="189,35,325,76"/>
+<area shape="rect" id="node4" href="$classel_1_1Configurations_1_1Parser.html#ab8e266318b9feaeee4d3169e4a7ca275" title="Parses configuration from file." alt="" coords="373,85,544,127"/>
+</map>

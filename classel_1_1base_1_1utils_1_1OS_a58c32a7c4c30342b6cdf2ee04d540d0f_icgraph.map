@@ -1,0 +1,7 @@
+<map id="el::base::utils::OS::getBashOutput" name="el::base::utils::OS::getBashOutput">
+<area shape="rect" id="node1" title="Runs command on terminal and returns the output." alt="" coords="440,71,575,112"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1utils_1_1OS.html#a34bf91e851eed1d4264cd594bb621b78" title="Gets environment variable." alt="" coords="205,71,392,112"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1utils_1_1OS.html#a18f3550076801780816d659339ec1eef" title="Gets current host name or computer name." alt="" coords="14,5,149,47"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1utils_1_1OS.html#a85801f331f58c0cd186c8f6a05dfb7dd" title="Gets current username." alt="" coords="14,71,149,112"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1utils_1_1OS.html#accd095c4a86d2c2c4aebe57122fdca16" title="Whether or not terminal supports colors." alt="" coords="5,136,157,177"/>
+</map>

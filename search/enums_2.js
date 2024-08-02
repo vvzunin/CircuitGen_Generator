@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['generationtypes_3014',['GenerationTypes',['../Settings_8hpp.html#aac6be41377264526a1152c994f4f6265',1,'Settings.hpp']]],
-  ['genotypeparameterstypes_3015',['GenotypeParametersTypes',['../Chromosome_8hpp.html#a15c764be1d756bc9fca583b800998ced',1,'Chromosome.hpp']]]
+  ['error_5fhandler_5ft_4245',['error_handler_t',['../namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298',1,'detail']]]
 ];

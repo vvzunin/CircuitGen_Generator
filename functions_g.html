@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CircuitGen_Generator
-   &#160;<span id="projectnumber">1.1.0</span>
+   &#160;<span id="projectnumber">1.3.0</span>
    </div>
    <div id="projectbrief">Desc of Backeknd</div>
   </td>
@@ -188,6 +188,10 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 , <a class="el" href="classdetail_1_1binary__reader.html#a9aeb80d0dd19032e1b2128b3f093a794">detail::binary_reader&lt; BasicJsonType, InputAdapterType, SAX &gt;</a>
 , <a class="el" href="classdetail_1_1lexer.html#a558196cb9fc24015d009969c9df8707b">detail::lexer&lt; BasicJsonType, InputAdapterType &gt;</a>
 , <a class="el" href="classdetail_1_1span__input__adapter.html#af0ab348e01ae00da4067cba95d0beb64">detail::span_input_adapter</a>
+, <a class="el" href="classel_1_1base_1_1RegisteredLoggers.html#a1ca66763d892f3d2dc62926eb9dc56d3">el::base::RegisteredLoggers</a>
+, <a class="el" href="classel_1_1base_1_1utils_1_1Registry.html#a18c332267f2acbe78c97a611dec2e5c2">el::base::utils::Registry&lt; T_Ptr, T_Key &gt;</a>
+, <a class="el" href="classel_1_1base_1_1utils_1_1RegistryWithPred.html#a811d9cc011d945bc7237e6ae1cf2f096">el::base::utils::RegistryWithPred&lt; T_Ptr, Pred &gt;</a>
+, <a class="el" href="classel_1_1Configurations.html#a6da4bc9bd6a14dc44feaf25163e998ca">el::Configurations</a>
 </li>
 <li>get_allocator()
 : <a class="el" href="classbasic__json.html#a4bceecf563151eb58af179416d8e6299">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
@@ -215,7 +219,7 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 : <a class="el" href="classdetail_1_1binary__reader.html#a6fcde744e6311dc0646735123ee83831">detail::binary_reader&lt; BasicJsonType, InputAdapterType, SAX &gt;</a>
 </li>
 <li>get_cbor_float_prefix()
-: <a class="el" href="classdetail_1_1binary__writer.html#aeac61e27c0d1b834a8e0114170511a97">detail::binary_writer&lt; BasicJsonType, CharType &gt;</a>
+: <a class="el" href="classdetail_1_1binary__writer.html#a56a61a6c22a3b3f7a4ac40a20b7f518f">detail::binary_writer&lt; BasicJsonType, CharType &gt;</a>
 </li>
 <li>get_cbor_object()
 : <a class="el" href="classdetail_1_1binary__reader.html#a6a8ec4dc630e18ebacca8fb90f2b9b37">detail::binary_reader&lt; BasicJsonType, InputAdapterType, SAX &gt;</a>
@@ -281,7 +285,7 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 : <a class="el" href="classdetail_1_1lexer.html#a569266654a88a2dc6f0e9a587067fc9d">detail::lexer&lt; BasicJsonType, InputAdapterType &gt;</a>
 </li>
 <li>get_ptr()
-: <a class="el" href="classbasic__json.html#a9db8d5e59277a70a736f899c4aec0af0">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
+: <a class="el" href="classbasic__json.html#aba60354728e2f7f64e3e5c6b02c5b820">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
 </li>
 <li>get_ref()
 : <a class="el" href="classbasic__json.html#a3697078e748abc4a99c23e36e321b439">basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass &gt;</a>
@@ -348,6 +352,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>getAND()
 : <a class="el" href="classGeneratorALUParameters.html#a075d95756c2dd24633c75b5e499120f1">GeneratorALUParameters</a>
 </li>
+<li>getBashOutput()
+: <a class="el" href="classel_1_1base_1_1utils_1_1OS.html#a58c32a7c4c30342b6cdf2ee04d540d0f">el::base::utils::OS</a>
+</li>
 <li>getChromosomeType()
 : <a class="el" href="classChromosomeType.html#a3a3c547d69b25afd184c1c5ba9fdcf8f">ChromosomeType&lt; Type, ParametersTypes &gt;</a>
 </li>
@@ -376,11 +383,26 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>getComparison()
 : <a class="el" href="classGenerationParameters.html#a2d8cea359034ed45dfff44f32b39904b">GenerationParameters</a>
 </li>
+<li>getConfigByRef()
+: <a class="el" href="classel_1_1base_1_1TypedConfigurations.html#a6c5c8a6a1bddd54d5cb1cfc70ac21847">el::base::TypedConfigurations</a>
+</li>
+<li>getConfigByVal()
+: <a class="el" href="classel_1_1base_1_1TypedConfigurations.html#a0f48ab593ba7ef99aa92267ce4ed470f">el::base::TypedConfigurations</a>
+</li>
+<li>getCounter()
+: <a class="el" href="classel_1_1base_1_1RegisteredHitCounters.html#ae97474e9e70bcbbde91fb6d6c89cc406">el::base::RegisteredHitCounters</a>
+</li>
 <li>getDatasetPath()
 : <a class="el" href="classSettings.html#a838dbb2c30102f84ff0f9532aac665c8">Settings</a>
 </li>
+<li>getDateTime()
+: <a class="el" href="classel_1_1base_1_1utils_1_1DateTime.html#acc31fad280188b0b0e8f04dec0e21310">el::base::utils::DateTime</a>
+</li>
 <li>getEachIteration()
 : <a class="el" href="classDataBaseGeneratorParameters.html#adb18f8b4fb2794816f907d98cbe6be9c">DataBaseGeneratorParameters</a>
+</li>
+<li>getEnvironmentVariable()
+: <a class="el" href="classel_1_1base_1_1utils_1_1OS.html#a34bf91e851eed1d4264cd594bb621b78">el::base::utils::OS</a>
 </li>
 <li>getExchangeType()
 : <a class="el" href="classMutationParameters.html#a917797d00f4940e36e513ba3f5594f47">MutationParameters</a>
@@ -441,6 +463,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>getLibraryPath()
 : <a class="el" href="classSettings.html#a679f8d3ddc029d89e1185505bf0c1baa">Settings</a>
+</li>
+<li>getLogger()
+: <a class="el" href="classel_1_1Loggers.html#a53ebc2f38cf05bcffa6e1a5550ea5d02">el::Loggers</a>
 </li>
 <li>getLogicOper()
 : <a class="el" href="classGeneratorNumOperationParameters.html#aa0cdee37d9d8e0757e8e1475dac98b49">GeneratorNumOperationParameters</a>
@@ -572,7 +597,7 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 , <a class="el" href="classGeneticParameters.html#a6bb3be1205ed0202b9051e8c78282069">GeneticParameters</a>
 </li>
 <li>getOutTable()
-: <a class="el" href="classTruthTable.html#a668e9ca6d6b275b84b8a91336bdc20c0">TruthTable</a>
+: <a class="el" href="classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82">TruthTable</a>
 </li>
 <li>getOverFlowIn()
 : <a class="el" href="classGeneratorSubtractorParameters.html#a8155065ea8a73ea45d7bf2806629639b">GeneratorSubtractorParameters</a>
@@ -581,6 +606,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>getOverFlowOut()
 : <a class="el" href="classGeneratorSubtractorParameters.html#a1cadd156d7820b3fdd83a67a641f986b">GeneratorSubtractorParameters</a>
 , <a class="el" href="classGeneratorSummatorParameters.html#a14fa2311678b9a04ba99d7b7f099c87e">GeneratorSummatorParameters</a>
+</li>
+<li>getParamValue()
+: <a class="el" href="classel_1_1base_1_1utils_1_1CommandLineArgs.html#aaf9b11a61b3e1445c81408fdc4d6cc9d">el::base::utils::CommandLineArgs</a>
 </li>
 <li>getParentsParameters()
 : <a class="el" href="classRecombinationParameters.html#a56737481f643f359ad307451d411c276">RecombinationParameters</a>
@@ -659,6 +687,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>getSelectionType()
 : <a class="el" href="classSelectionParameters.html#ab8ec6a063241974b52ea54330cec6b21">SelectionParameters</a>
 </li>
+<li>getSizeOfFile()
+: <a class="el" href="classel_1_1base_1_1utils_1_1File.html#a9d6a7a5203667fffcbba62fc9ddd40c4">el::base::utils::File</a>
+</li>
 <li>getSUB()
 : <a class="el" href="classGeneratorALUParameters.html#add12c1c21b85254b04b04de314aae167">GeneratorALUParameters</a>
 </li>
@@ -674,8 +705,21 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>getSummator()
 : <a class="el" href="classGenerationParameters.html#a903b41beefe6e8295235ed8a7eb8aae6">GenerationParameters</a>
 </li>
+<li>getThreadName()
+: <a class="el" href="classel_1_1base_1_1Storage.html#aefa8cd1b921eab81d233ae8c5a79f3ee">el::base::Storage</a>
+, <a class="el" href="classel_1_1Helpers.html#ae19cb3baa6d8081a9e922736a384f70b">el::Helpers</a>
+</li>
+<li>getTimeDifference()
+: <a class="el" href="classel_1_1base_1_1utils_1_1DateTime.html#a6635a2a31d6f3d79d47012ea3ccf9d31">el::base::utils::DateTime</a>
+</li>
+<li>gettimeofday()
+: <a class="el" href="classel_1_1base_1_1utils_1_1DateTime.html#a7197976eff45378efdca75ae070492e7">el::base::utils::DateTime</a>
+</li>
 <li>getTournamentNumber()
 : <a class="el" href="classParentsParameters.html#ab662acc4bc6847c56e4e129e3dcea77f">ParentsParameters</a>
+</li>
+<li>getULong()
+: <a class="el" href="classel_1_1base_1_1TypedConfigurations.html#a9fe66d8b0c001d3651bff2fc31bd2883">el::base::TypedConfigurations</a>
 </li>
 <li>getXNOR()
 : <a class="el" href="classGeneratorALUParameters.html#a2d18eb797f128a17856abe6486d5625a">GeneratorALUParameters</a>

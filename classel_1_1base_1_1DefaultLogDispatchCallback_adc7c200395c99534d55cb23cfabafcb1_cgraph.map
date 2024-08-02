@@ -1,0 +1,21 @@
+<map id="el::base::DefaultLogDispatchCallback::dispatch" name="el::base::DefaultLogDispatchCallback::dispatch">
+<area shape="rect" id="node1" title=" " alt="" coords="5,427,215,468"/>
+<area shape="rect" id="node2" href="$classel_1_1LogBuilder.html#a229244f323f25bdbd7725f8bbf983a17" title=" " alt="" coords="278,5,461,47"/>
+<area shape="rect" id="node3" href="$classel_1_1LevelHelper.html#ad8a9958d58a2912ef58d00ab0ade7587" title="Converts level to associated const char*." alt="" coords="281,71,458,112"/>
+<area shape="rect" id="node4" href="$classel_1_1LogDispatchData.html#aa7f834fbd4c8440d25ba1958ccf51ea7" title=" " alt="" coords="293,136,446,177"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1TypedConfigurations.html#a6e989a8496b9e08e6e8c9ac4d3fe5b1e" title=" " alt="" coords="263,201,476,243"/>
+<area shape="rect" id="node6" href="$classel_1_1base_1_1TypedConfigurations.html#af39c020c90e67b5f817f318fcb11e611" title=" " alt="" coords="263,267,476,308"/>
+<area shape="rect" id="node7" href="$classel_1_1Logger.html#a9a89d454008b1ee1a197eec4b92ce22a" title="Flushes logger to sync all log files for all levels." alt="" coords="307,333,432,359"/>
+<area shape="rect" id="node11" href="$classel_1_1Logger.html#a8583bfdeea4cb781396fd635addd64e9" title=" " alt="" coords="316,383,423,410"/>
+<area shape="rect" id="node12" href="$classel_1_1Logger.html#abdf56c00388c71d1cbaa7e2df4449202" title=" " alt="" coords="274,434,465,461"/>
+<area shape="rect" id="node13" href="$classel_1_1LogMessage.html#a222670d05b4aab11da4083b69eeb8dea" title=" " alt="" coords="288,485,451,511"/>
+<area shape="rect" id="node14" href="$classel_1_1Logger.html#ac7d79707cdbcb0851913d1e07338bc13" title=" " alt="" coords="289,535,449,562"/>
+<area shape="rect" id="node15" href="$classel_1_1LogMessage.html#a94e23201866cc1f9b9ff5bd1da8c9d98" title=" " alt="" coords="283,586,455,613"/>
+<area shape="rect" id="node16" href="$classel_1_1LogDispatchData.html#a456673f303f61bd311333fa527f2e664" title=" " alt="" coords="293,637,446,679"/>
+<area shape="rect" id="node17" href="$classel_1_1base_1_1TypedConfigurations.html#a20b9a1bd152cad3b72b558f97de3876b" title=" " alt="" coords="263,703,476,744"/>
+<area shape="rect" id="node18" href="$classel_1_1base_1_1TypedConfigurations.html#aeaa7bf7448319bc41e4e226124288c7e" title=" " alt="" coords="263,768,476,809"/>
+<area shape="rect" id="node19" href="$classel_1_1base_1_1utils_1_1Str.html#a6672f1ba9c6fbb54240d1981b87c064f" title="Converts wchar* to char* NOTE: Need to free return value after use!" alt="" coords="295,833,444,875"/>
+<area shape="rect" id="node8" href="$classel_1_1LevelHelper.html#a1279f27df29a003df5ecc3d0bf4dacbb" title="Casts int(ushort) to level, useful for iterating through enum." alt="" coords="524,274,729,301"/>
+<area shape="rect" id="node9" href="$classel_1_1LevelHelper.html#a7f0dbfceb2354a72c2802d02c300430d" title="Applies specified function to each level starting from startIndex." alt="" coords="538,325,715,367"/>
+<area shape="rect" id="node10" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html#affb45b35790a7305d0a659562c8104fc" title=" " alt="" coords="555,391,698,432"/>
+</map>

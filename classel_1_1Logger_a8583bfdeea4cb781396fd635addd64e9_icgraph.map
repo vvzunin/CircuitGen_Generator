@@ -1,0 +1,12 @@
+<map id="el::Logger::id" name="el::Logger::id">
+<area shape="rect" id="node1" title=" " alt="" coords="753,105,860,131"/>
+<area shape="rect" id="node2" href="$classel_1_1Loggers.html#adedfcc17831fe3d3f14026c91e8df88c" title="Sets configurations from global configuration file." alt="" coords="503,5,698,47"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1Writer.html#ab1678300b6c7144041e09be423821682" title=" " alt="" coords="506,73,695,99"/>
+<area shape="rect" id="node7" href="$classel_1_1base_1_1DefaultLogDispatchCallback.html#adc7c200395c99534d55cb23cfabafcb1" title=" " alt="" coords="496,127,705,168"/>
+<area shape="rect" id="node9" href="$classel_1_1base_1_1RegisteredLoggers.html#ad8fa8f829fdb6a03e6f5a38704811e7b" title=" " alt="" coords="499,192,702,233"/>
+<area shape="rect" id="node3" href="$classel_1_1Loggers.html#a44f58d08d3ccb502e639db1c61893194" title="Configures loggers using command line arg." alt="" coords="232,11,448,38"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1Writer.html#a1c7d90bd4e00af4e7307f5936e1b6507" title=" " alt="" coords="254,63,426,104"/>
+<area shape="rect" id="node6" href="$classel_1_1base_1_1Writer.html#a692d05d209840d6ae8c2c8e0bea21d29" title=" " alt="" coords="5,63,184,104"/>
+<area shape="rect" id="node8" href="$classel_1_1base_1_1DefaultLogDispatchCallback.html#acdac30f202c245500e6d94c55eee6d95" title=" " alt="" coords="235,128,445,169"/>
+<area shape="rect" id="node10" href="$classel_1_1base_1_1RegisteredLoggers.html#a4d17dc9673f6aa6216571e182097400a" title=" " alt="" coords="239,193,441,235"/>
+</map>

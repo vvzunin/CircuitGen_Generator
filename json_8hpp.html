@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CircuitGen_Generator
-   &#160;<span id="projectnumber">1.1.0</span>
+   &#160;<span id="projectnumber">1.3.0</span>
    </div>
    <div id="projectbrief">Desc of Backeknd</div>
   </td>
@@ -5154,8 +5154,8 @@ Variables</h2></td></tr>
 <div class="line">    template&lt;<span class="keyword">typename</span>... T&gt;                                                       \</div>
 <div class="line">    struct would_call_std_##std_name                                              \</div>
 <div class="line">    {                                                                             \</div>
-<div class="line">        static constexpr <span class="keyword">auto</span> <span class="keyword">const</span> <a class="code" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = ::nlohmann::detail::                  \</div>
-<div class="line">                                            is_detected_exact&lt;std_name##_tag, result_of_##std_name, T...&gt;::value; \</div>
+<div class="line">        static constexpr <span class="keyword">auto</span> <span class="keyword">const</span> <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a> = <a class="code" href="namespaceel_1_1base_1_1consts.html#a2b4b9cbcbf8c93a7e770c7d9efe33560">::nlohmann::detail</a>::                  \</div>
+<div class="line">                                            is_detected_exact&lt;std_name##_tag, result_of_##std_name, T...&gt;<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">::value</a>; \</div>
 <div class="line">    };                                                                            \</div>
 <div class="line">    } <span class="comment">/* namespace detail2 */</span> \</div>
 <div class="line">    \</div>
@@ -5164,7 +5164,8 @@ Variables</h2></td></tr>
 <div class="line">    {                                                                             \</div>
 <div class="line">    }</div>
 <div class="ttc" id="anamespacedetail_html"><div class="ttname"><a href="namespacedetail.html">detail</a></div><div class="ttdoc">detail namespace with internal helper functions</div><div class="ttdef"><b>Definition:</b> json.hpp:249</div></div>
-<div class="ttc" id="anamespacedetail_html_a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804"><div class="ttname"><a href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">detail::parse_event_t::value</a></div><div class="ttdeci">@ value</div><div class="ttdoc">the parser finished reading a JSON value</div></div>
+<div class="ttc" id="anamespaceel_1_1base_1_1consts_html_a2b4b9cbcbf8c93a7e770c7d9efe33560"><div class="ttname"><a href="namespaceel_1_1base_1_1consts.html#a2b4b9cbcbf8c93a7e770c7d9efe33560">el::base::consts::detail</a></div><div class="ttdeci">const char * detail</div><div class="ttdef"><b>Definition:</b> easylogging++.h:781</div></div>
+<div class="ttc" id="anamespaceel_1_1base_1_1consts_html_a7463944511904d9ca3dd4b6933a3e6f1"><div class="ttname"><a href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">el::base::consts::value</a></div><div class="ttdeci">double value</div><div class="ttdef"><b>Definition:</b> easylogging++.h:766</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -19671,7 +19672,7 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> BasicJsonType&gt;                                                            \</div>
 <div class="line">    inline <span class="keywordtype">void</span> <a class="code" href="namespacedetail.html#a3f5949a32eedf94fb0b98fd189fda0d6">to_json</a>(BasicJsonType&amp; j, <span class="keyword">const</span> ENUM_TYPE&amp; e)                                   \</div>
 <div class="line">    {                                                                                           \</div>
-<div class="line">        static_assert(std::is_enum&lt;ENUM_TYPE&gt;::value, #ENUM_TYPE <span class="stringliteral">&quot; must be an enum!&quot;</span>);          \</div>
+<div class="line">        static_assert(<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">std::is_enum&lt;ENUM_TYPE&gt;::value</a>, #ENUM_TYPE <span class="stringliteral">&quot; must be an enum!&quot;</span>);          \</div>
 <div class="line">        static <span class="keyword">const</span> std::pair&lt;ENUM_TYPE, BasicJsonType&gt; m[] = __VA_ARGS__;                     \</div>
 <div class="line">        auto it = std::find_if(std::begin(m), std::end(m),                                      \</div>
 <div class="line">                               [e](<span class="keyword">const</span> std::pair&lt;ENUM_TYPE, BasicJsonType&gt;&amp; ej_pair) -&gt; <span class="keywordtype">bool</span>  \</div>
@@ -19683,7 +19684,7 @@ Variables</h2></td></tr>
 <div class="line">    template&lt;typename BasicJsonType&gt;                                                            \</div>
 <div class="line">    inline <span class="keywordtype">void</span> <a class="code" href="namespacedetail.html#a6b60b3f3a22e35323af3ecbb1d7e2464">from_json</a>(<span class="keyword">const</span> BasicJsonType&amp; j, ENUM_TYPE&amp; e)                                 \</div>
 <div class="line">    {                                                                                           \</div>
-<div class="line">        static_assert(std::is_enum&lt;ENUM_TYPE&gt;::value, #ENUM_TYPE <span class="stringliteral">&quot; must be an enum!&quot;</span>);          \</div>
+<div class="line">        static_assert(<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">std::is_enum&lt;ENUM_TYPE&gt;::value</a>, #ENUM_TYPE <span class="stringliteral">&quot; must be an enum!&quot;</span>);          \</div>
 <div class="line">        static <span class="keyword">const</span> std::pair&lt;ENUM_TYPE, BasicJsonType&gt; m[] = __VA_ARGS__;                     \</div>
 <div class="line">        auto it = std::find_if(std::begin(m), std::end(m),                                      \</div>
 <div class="line">                               [&amp;j](<span class="keyword">const</span> std::pair&lt;ENUM_TYPE, BasicJsonType&gt;&amp; ej_pair) -&gt; <span class="keywordtype">bool</span> \</div>

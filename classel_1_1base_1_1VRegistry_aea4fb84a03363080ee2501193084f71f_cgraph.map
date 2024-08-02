@@ -1,0 +1,5 @@
+<map id="el::base::VRegistry::setLevel" name="el::base::VRegistry::setLevel">
+<area shape="rect" id="node1" title="Sets verbose level. Accepted range is 0&#45;9." alt="" coords="5,39,149,80"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1VRegistry.html#aa39f3774ffc25a2ad18bb86c8c4b8b7c" title=" " alt="" coords="197,5,341,47"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html#affb45b35790a7305d0a659562c8104fc" title=" " alt="" coords="198,71,341,112"/>
+</map>

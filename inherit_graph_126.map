@@ -1,3 +1,38 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structjson__sax.html" title="SAX interface." alt="" coords="5,5,207,32"/>
+<area shape="rect" id="node1" href="$classel_1_1Loggable.html" title="Base of Easylogging++ friendly class." alt="" coords="26,56,127,83"/>
+<area shape="rect" id="node2" href="$classel_1_1Configuration.html" title="Represents single configuration that has representing level, configuration type and a string based va..." alt="" coords="248,56,377,83"/>
+<area shape="rect" id="node3" href="$classel_1_1Logger.html" title="Represents a logger holding ID and configurations we need to write logs." alt="" coords="269,107,356,133"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1LogFormat.html" title="Represents log format containing flags and date format. This is used internally to start initial log." alt="" coords="237,5,388,32"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1NoCopy.html" title="Internal helper class that prevent copy constructor for class." alt="" coords="11,864,143,891"/>
+<area shape="rect" id="node6" href="$classel_1_1LogBuilder.html" title=" " alt="" coords="257,967,368,993"/>
+<area shape="rect" id="node8" href="$classel_1_1base_1_1LogDispatcher.html" title="Dispatches log messages." alt="" coords="225,1017,400,1044"/>
+<area shape="rect" id="node9" href="$classel_1_1base_1_1NullWriter.html" title="Writes nothing &#45; Used when certain log is disabled." alt="" coords="239,1068,386,1095"/>
+<area shape="rect" id="node10" href="$classel_1_1base_1_1Storage.html" title="Easylogging++ management storage." alt="" coords="247,719,378,745"/>
+<area shape="rect" id="node11" href="$classel_1_1base_1_1VRegistry.html" title="Represents registries for verbose logging." alt="" coords="241,668,385,695"/>
+<area shape="rect" id="node12" href="$classel_1_1base_1_1Writer.html" title="Main entry point of each logging." alt="" coords="252,769,373,796"/>
+<area shape="rect" id="node14" href="$classel_1_1base_1_1threading_1_1internal_1_1NoMutex.html" title="Mutex wrapper used when multi&#45;threading is disabled." alt="" coords="239,821,386,862"/>
+<area shape="rect" id="node15" href="$classel_1_1base_1_1threading_1_1internal_1_1NoScopedLock.html" title="Lock guard wrapper used when multi&#45;threading is disabled." alt="" coords="221,887,404,943"/>
+<area shape="rect" id="node7" href="$classel_1_1base_1_1DefaultLogBuilder.html" title=" " alt="" coords="495,967,694,993"/>
+<area shape="rect" id="node13" href="$classel_1_1base_1_1PErrorWriter.html" title=" " alt="" coords="515,769,675,796"/>
+<area shape="rect" id="node16" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html" title="Base of thread safe class, this class is inheritable&#45;only." alt="" coords="5,414,148,455"/>
+<area shape="rect" id="node17" href="$classel_1_1Callback.html" title=" " alt="" coords="227,224,399,251"/>
+<area shape="rect" id="node19" href="$classel_1_1Callback.html" title=" " alt="" coords="216,275,409,317"/>
+<area shape="rect" id="node22" href="$classel_1_1Callback.html" title=" " alt="" coords="215,341,411,382"/>
+<area shape="rect" id="node24" href="$classel_1_1base_1_1utils_1_1AbstractRegistry.html" title=" " alt="" coords="196,407,429,463"/>
+<area shape="rect" id="node26" href="$classel_1_1base_1_1utils_1_1AbstractRegistry.html" title=" " alt="" coords="212,487,413,543"/>
+<area shape="rect" id="node28" href="$classel_1_1Callback.html" title=" " alt="" coords="245,567,381,593"/>
+<area shape="rect" id="node29" href="$classel_1_1base_1_1TypedConfigurations.html" title="Configurations with data types." alt="" coords="206,617,419,644"/>
+<area shape="rect" id="node30" href="$classel_1_1base_1_1utils_1_1AbstractRegistry.html" title="Abstract registry (aka repository) that provides basic interface for pointer repository specified by ..." alt="" coords="207,158,418,199"/>
+<area shape="rect" id="node18" href="$classel_1_1LoggerRegistrationCallback.html" title=" " alt="" coords="484,232,705,259"/>
+<area shape="rect" id="node20" href="$classel_1_1LogDispatchCallback.html" title=" " alt="" coords="505,283,684,309"/>
+<area shape="rect" id="node21" href="$classel_1_1base_1_1DefaultLogDispatchCallback.html" title=" " alt="" coords="769,275,979,317"/>
+<area shape="rect" id="node23" href="$classel_1_1PerformanceTrackingCallback.html" title=" " alt="" coords="477,348,712,375"/>
+<area shape="rect" id="node25" href="$classel_1_1base_1_1utils_1_1Registry.html" title="A pointer registry mechanism to manage memory and provide search functionalities." alt="" coords="509,414,680,455"/>
+<area shape="rect" id="node27" href="$classel_1_1base_1_1utils_1_1RegistryWithPred.html" title="A pointer registry mechanism to manage memory and provide search functionalities." alt="" coords="504,494,685,535"/>
+<area shape="rect" id="node31" href="$classel_1_1base_1_1utils_1_1Registry.html" title=" " alt="" coords="509,6,680,47"/>
+<area shape="rect" id="node33" href="$classel_1_1base_1_1utils_1_1RegistryWithPred.html" title=" " alt="" coords="496,72,693,128"/>
+<area shape="rect" id="node35" href="$classel_1_1base_1_1utils_1_1RegistryWithPred.html" title=" " alt="" coords="485,152,704,208"/>
+<area shape="rect" id="node32" href="$classel_1_1base_1_1RegisteredLoggers.html" title="Loggers repository." alt="" coords="773,13,975,40"/>
+<area shape="rect" id="node34" href="$classel_1_1Configurations.html" title="Thread&#45;safe Configuration repository." alt="" coords="806,87,942,113"/>
+<area shape="rect" id="node36" href="$classel_1_1base_1_1RegisteredHitCounters.html" title="Repository for hit counters used across the application." alt="" coords="760,167,988,193"/>
 </map>

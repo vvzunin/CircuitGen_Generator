@@ -1,0 +1,13 @@
+<map id="el::base::NoCopy" name="el::base::NoCopy">
+<area shape="rect" id="node1" title="Internal helper class that prevent copy constructor for class." alt="" coords="777,5,909,112"/>
+<area shape="rect" id="node2" href="$classel_1_1LogBuilder.html" title=" " alt="" coords="5,314,209,435"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1LogDispatcher.html" title="Dispatches log messages." alt="" coords="233,314,408,435"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1NullWriter.html" title="Writes nothing &#45; Used when certain log is disabled." alt="" coords="433,314,579,435"/>
+<area shape="rect" id="node6" href="$classel_1_1base_1_1Storage.html" title="Easylogging++ management storage." alt="" coords="603,160,854,589"/>
+<area shape="rect" id="node7" href="$classel_1_1base_1_1VRegistry.html" title="Represents registries for verbose logging." alt="" coords="878,263,1041,487"/>
+<area shape="rect" id="node8" href="$classel_1_1base_1_1Writer.html" title="Main entry point of each logging." alt="" coords="1065,189,1227,560"/>
+<area shape="rect" id="node10" href="$classel_1_1base_1_1threading_1_1internal_1_1NoMutex.html" title="Mutex wrapper used when multi&#45;threading is disabled." alt="" coords="1251,307,1398,443"/>
+<area shape="rect" id="node11" href="$classel_1_1base_1_1threading_1_1internal_1_1NoScopedLock.html" title="Lock guard wrapper used when multi&#45;threading is disabled." alt="" coords="1423,307,1605,443"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1DefaultLogBuilder.html" title=" " alt="" coords="8,645,207,722"/>
+<area shape="rect" id="node9" href="$classel_1_1base_1_1PErrorWriter.html" title=" " alt="" coords="1066,637,1226,729"/>
+</map>

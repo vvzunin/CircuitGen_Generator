@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wide_5fstring_5finput_5fhelper_3128',['wide_string_input_helper',['../classdetail_1_1iterator__input__adapter.html#ab86106ba230f1542b94dcd96e6ab3221',1,'detail::iterator_input_adapter']]]
+  ['swap_4438',['swap',['../classbasic__json.html#a44c98b48b8a0b5e53087776fbb63961f',1,'basic_json']]]
 ];

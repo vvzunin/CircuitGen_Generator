@@ -1,0 +1,10 @@
+<map id="el::base::RegisteredLoggers::get" name="el::base::RegisteredLoggers::get">
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,236,159"/>
+<area shape="rect" id="node2" href="$classel_1_1Callback.html#aab4afe42d3f4b6282e69e90efdaa8ea7" title=" " alt="" coords="304,5,463,32"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1utils_1_1Registry.html#a18c332267f2acbe78c97a611dec2e5c2" title="Gets pointer from repository. If none found, nullptr is returned." alt="" coords="284,56,483,83"/>
+<area shape="rect" id="node4" href="$classel_1_1Callback.html#a8997c7971d65062c374ef24e653061be" title=" " alt="" coords="308,107,459,133"/>
+<area shape="rect" id="node5" href="$classel_1_1Logger.html#ab134ceead9e69cab71380af41e3ee5d3" title=" " alt="" coords="309,157,458,184"/>
+<area shape="rect" id="node7" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html#affb45b35790a7305d0a659562c8104fc" title=" " alt="" coords="312,209,455,250"/>
+<area shape="rect" id="node8" href="$classel_1_1base_1_1utils_1_1Registry.html#ab10b3dd25ff0df036e7a015635a15dee" title="Registers new registry to repository." alt="" coords="298,275,469,331"/>
+<area shape="rect" id="node6" href="$classel_1_1base_1_1utils_1_1Str.html#a1b4b61f9018c964cdf581e641c464947" title="Returns true if c exist in str." alt="" coords="531,150,665,191"/>
+</map>

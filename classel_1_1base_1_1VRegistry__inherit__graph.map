@@ -1,0 +1,5 @@
+<map id="el::base::VRegistry" name="el::base::VRegistry">
+<area shape="rect" id="node1" title="Represents registries for verbose logging." alt="" coords="70,204,233,428"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1NoCopy.html" title="Internal helper class that prevent copy constructor for class." alt="" coords="5,27,137,134"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html" title="Base of thread safe class, this class is inheritable&#45;only." alt="" coords="161,5,304,156"/>
+</map>

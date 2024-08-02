@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CircuitGen_Generator
-   &#160;<span id="projectnumber">1.1.0</span>
+   &#160;<span id="projectnumber">1.3.0</span>
    </div>
    <div id="projectbrief">Desc of Backeknd</div>
   </td>
@@ -163,9 +163,9 @@ template&lt;typename BasicJsonType , typename ConstructibleObjectType &gt; </div
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">        (is_default_constructible&lt;ConstructibleObjectType&gt;::value &amp;&amp;</div>
-<div class="line">         (std::is_move_assignable&lt;ConstructibleObjectType&gt;::value ||</div>
-<div class="line">          std::is_copy_assignable&lt;ConstructibleObjectType&gt;::value) &amp;&amp;</div>
+<div class="line">        (<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">is_default_constructible&lt;ConstructibleObjectType&gt;::value</a> &amp;&amp;</div>
+<div class="line">         (<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">std::is_move_assignable&lt;ConstructibleObjectType&gt;::value</a> ||</div>
+<div class="line">          <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">std::is_copy_assignable&lt;ConstructibleObjectType&gt;::value</a>) &amp;&amp;</div>
 <div class="line">         (is_constructible&lt;<span class="keyword">typename</span> ConstructibleObjectType::key_type,</div>
 <div class="line">          <span class="keyword">typename</span> object_t::key_type&gt;::<a class="code" href="structdetail_1_1is__constructible__object__type__impl_3_01BasicJsonType_00_01ConstructibleObject435b838380c31b9738383402f7bb5943.html#ab3313b72e45caf312e3464d32fff3e67">value</a> &amp;&amp;</div>
 <div class="line">          std::is_same &lt;</div>
@@ -176,6 +176,7 @@ template&lt;typename BasicJsonType , typename ConstructibleObjectType &gt; </div
 <div class="line">         has_non_default_from_json &lt;</div>
 <div class="line">         BasicJsonType,</div>
 <div class="line">         <span class="keyword">typename</span> ConstructibleObjectType::mapped_type &gt;::<a class="code" href="structdetail_1_1is__constructible__object__type__impl_3_01BasicJsonType_00_01ConstructibleObject435b838380c31b9738383402f7bb5943.html#ab3313b72e45caf312e3464d32fff3e67">value</a>)</div>
+<div class="ttc" id="anamespaceel_1_1base_1_1consts_html_a7463944511904d9ca3dd4b6933a3e6f1"><div class="ttname"><a href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">el::base::consts::value</a></div><div class="ttdeci">double value</div><div class="ttdef"><b>Definition:</b> easylogging++.h:766</div></div>
 <div class="ttc" id="astructdetail_1_1is__constructible__object__type__impl_3_01BasicJsonType_00_01ConstructibleObject435b838380c31b9738383402f7bb5943_html_ab3313b72e45caf312e3464d32fff3e67"><div class="ttname"><a href="structdetail_1_1is__constructible__object__type__impl_3_01BasicJsonType_00_01ConstructibleObject435b838380c31b9738383402f7bb5943.html#ab3313b72e45caf312e3464d32fff3e67">detail::is_constructible_object_type_impl&lt; BasicJsonType, ConstructibleObjectType, enable_if_t&lt; is_detected&lt; mapped_type_t, ConstructibleObjectType &gt;::value &amp;&amp;is_detected&lt; key_type_t, ConstructibleObjectType &gt;::value &gt; &gt;::value</a></div><div class="ttdeci">static constexpr bool value</div><div class="ttdef"><b>Definition:</b> json.hpp:3795</div></div>
 </div><!-- fragment -->
 </div>

@@ -1,0 +1,6 @@
+<map id="el::base::utils::Str::wcharPtrToCharPtr" name="el::base::utils::Str::wcharPtrToCharPtr">
+<area shape="rect" id="node1" title="Converts wchar* to char* NOTE: Need to free return value after use!" alt="" coords="520,39,669,80"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1DefaultLogDispatchCallback.html#adc7c200395c99534d55cb23cfabafcb1" title=" " alt="" coords="263,5,472,47"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1MessageBuilder.html#a8fc274c8a031e1913854d554496d737f" title=" " alt="" coords="275,71,460,112"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1DefaultLogDispatchCallback.html#acdac30f202c245500e6d94c55eee6d95" title=" " alt="" coords="5,5,215,47"/>
+</map>

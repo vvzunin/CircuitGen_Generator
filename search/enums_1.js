@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error_5fhandler_5ft_3013',['error_handler_t',['../namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298',1,'detail']]]
+  ['dispatchaction_4244',['DispatchAction',['../namespaceel_1_1base.html#a3aa2563d38e47388ba242a1694fc2839',1,'el::base']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['librariestypes_3017',['LibrariesTypes',['../Settings_8hpp.html#a71bf501f63160ba5aa5adb9552290dc9',1,'Settings.hpp']]]
+  ['generationtypes_4247',['GenerationTypes',['../Settings_8hpp.html#aac6be41377264526a1152c994f4f6265',1,'Settings.hpp']]],
+  ['genotypeparameterstypes_4248',['GenotypeParametersTypes',['../Chromosome_8hpp.html#a15c764be1d756bc9fca583b800998ced',1,'Chromosome.hpp']]]
 ];

@@ -1,0 +1,12 @@
+<map id="el::base::MessageBuilder" name="el::base::MessageBuilder">
+<area shape="rect" id="node1" title=" " alt="" coords="122,2671,320,2836"/>
+<area shape="rect" id="node2" href="$classel_1_1Logger.html" title="Represents a logger holding ID and configurations we need to write logs." alt="" coords="116,2223,326,2608"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html" title="Base of thread safe class, this class is inheritable&#45;only." alt="" coords="22,360,164,511"/>
+<area shape="rect" id="node7" href="$classel_1_1base_1_1TypedConfigurations.html" title="Configurations with data types." alt="" coords="48,1569,264,2160"/>
+<area shape="rect" id="node10" href="$classel_1_1base_1_1utils_1_1AbstractRegistry.html" title="Abstract registry (aka repository) that provides basic interface for pointer repository specified by ..." alt="" coords="130,560,341,887"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1threading_1_1internal_1_1NoMutex.html" title="Mutex wrapper used when multi&#45;threading is disabled." alt="" coords="20,161,166,297"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1NoCopy.html" title="Internal helper class that prevent copy constructor for class." alt="" coords="27,5,159,112"/>
+<area shape="rect" id="node6" href="$classel_1_1Loggable.html" title="Base of Easylogging++ friendly class." alt="" coords="457,1819,574,1911"/>
+<area shape="rect" id="node8" href="$classel_1_1Configurations.html" title="Thread&#45;safe Configuration repository." alt="" coords="150,1209,321,1507"/>
+<area shape="rect" id="node9" href="$classel_1_1base_1_1utils_1_1RegistryWithPred.html" title=" " alt="" coords="137,936,334,1160"/>
+</map>

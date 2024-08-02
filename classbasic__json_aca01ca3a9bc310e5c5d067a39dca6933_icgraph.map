@@ -1,6 +1,4 @@
 <map id="basic_json::push_back" name="basic_json::push_back">
-<area shape="rect" id="node1" title="add an object to an array" alt="" coords="275,31,441,57"/>
-<area shape="rect" id="node2" href="$classbasic__json.html#a699ef418df577e75f28dfce6b04d6c2f" title="creates a diff as a JSON patch" alt="" coords="108,5,227,32"/>
-<area shape="rect" id="node3" href="$DataBaseGeneratorTests_8cpp.html#a5fd4c9a4c5ab299f2113163e088e8112" title=" " alt="" coords="129,56,206,83"/>
-<area shape="rect" id="node4" href="$DataBaseGeneratorTests_8cpp.html#a54fad7f50fbe8a92938b378449760a82" title=" " alt="" coords="5,56,60,83"/>
+<area shape="rect" id="node1" title="add an object to an array" alt="" coords="172,5,339,32"/>
+<area shape="rect" id="node2" href="$classbasic__json.html#a699ef418df577e75f28dfce6b04d6c2f" title="creates a diff as a JSON patch" alt="" coords="5,5,124,32"/>
 </map>

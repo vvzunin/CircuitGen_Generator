@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_1.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CircuitGen_Generator
-   &#160;<span id="projectnumber">1.1.0</span>
+   &#160;<span id="projectnumber">1.3.0</span>
    </div>
    <div id="projectbrief">Desc of Backeknd</div>
   </td>
@@ -122,8 +122,8 @@ $(document).ready(function(){initNavTree('SimpleGenerators_8hpp_source.html','')
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  }</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  int32_t res = (*i_map.begin()).second;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, value] : i_map) {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    res = std::max(res, value);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>] : i_map) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    res = std::max(res, <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  }</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keywordflow">return</span> res;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
@@ -252,14 +252,14 @@ $(document).ready(function(){initNavTree('SimpleGenerators_8hpp_source.html','')
 <div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;  ) {</div>
 <div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a> = INT_MAX;</div>
 <div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160; </div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; [key, value] : i_info) {</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; [key, <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>] : i_info) {</div>
 <div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;      <a class="code" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">d_maxGateNumber</a> = std::max(</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;          *std::max_element(value.begin(), value.end()), <a class="code" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">d_maxGateNumber</a></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;          *std::max_element(<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.begin(), <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.end()), <a class="code" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">d_maxGateNumber</a></div>
 <div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;      );</div>
 <div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;      <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a> = std::min(</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;          *std::max_element(value.begin(), value.end()), <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a></div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;          *std::max_element(<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.begin(), <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.end()), <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a></div>
 <div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;      );</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;      <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>[<a class="code" href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">d_settings</a>-&gt;parseStringToGate(key)] = value;</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;      <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>[<a class="code" href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">d_settings</a>-&gt;parseStringToGate(key)] = <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>;</div>
 <div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    }</div>
 <div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160; </div>
 <div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    <span class="comment">// TODO is it a good idea to add here hew gates</span></div>
@@ -343,6 +343,7 @@ $(document).ready(function(){initNavTree('SimpleGenerators_8hpp_source.html','')
 <div class="ttc" id="aclassSimpleGenerators_html_adae9cbc58b7fbb8e48228a2bafa26505"><div class="ttname"><a href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">SimpleGenerators::d_maxGateNumber</a></div><div class="ttdeci">int32_t d_maxGateNumber</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:550</div></div>
 <div class="ttc" id="aclassSimpleGenerators_html_aebea64983c4f49c3c1007a0390e06977"><div class="ttname"><a href="classSimpleGenerators.html#aebea64983c4f49c3c1007a0390e06977">SimpleGenerators::generatorRandLevel</a></div><div class="ttdeci">GraphPtr generatorRandLevel(uint32_t i_minLevel, uint32_t i_maxLevel, uint32_t i_minElements, uint32_t i_maxElements, uint32_t i_inputs, uint32_t i_outputs)</div><div class="ttdoc">generatorRandLevel creates an oriented graph (represented by an OrientedGraph object) with a given le...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:285</div></div>
 <div class="ttc" id="aclassTruthTable_html"><div class="ttname"><a href="classTruthTable.html">TruthTable</a></div><div class="ttdoc">class TruthTable Represents a truth table for a combinational logic circuit This class encapsulates t...</div><div class="ttdef"><b>Definition:</b> TruthTable.hpp:21</div></div>
+<div class="ttc" id="anamespaceel_1_1base_1_1consts_html_a7463944511904d9ca3dd4b6933a3e6f1"><div class="ttname"><a href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">el::base::consts::value</a></div><div class="ttdeci">double value</div><div class="ttdef"><b>Definition:</b> easylogging++.h:766</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

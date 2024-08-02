@@ -1,0 +1,10 @@
+<map id="el::base::LogFormat::LogFormat" name="el::base::LogFormat::LogFormat">
+<area shape="rect" id="node1" title=" " alt="" coords="5,123,156,164"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1LogFormat.html#ab7c1b15cfdad24cfbc6dbced8b9d66eb" title="Updates format to be used while logging." alt="" coords="204,123,355,164"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1LogFormat.html#ae55910f533a6eb3b41eb75b131e522bf" title=" " alt="" coords="403,5,554,47"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1LogFormat.html#ab52a480241cd721b553f43bd75686a80" title=" " alt="" coords="619,123,769,164"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1LogFormat.html#a966bed1ee6f8597152d08d4ed70a5855" title="Updates date time format if available in currFormat." alt="" coords="403,123,555,164"/>
+<area shape="rect" id="node6" href="$classel_1_1base_1_1LogFormat.html#aa3c2ddecf237d0ec3eca4b2a3a442e67" title="Updates level from format. This is so that we dont have to do it at log&#45;writing&#45;time...." alt="" coords="403,188,555,229"/>
+<area shape="rect" id="node8" href="$classel_1_1base_1_1LogFormat.html#a3ed7232a8a89d816513844ce6380c15d" title=" " alt="" coords="403,253,554,295"/>
+<area shape="rect" id="node7" href="$classel_1_1base_1_1utils_1_1Str.html#a0f271d7da2bb3c1f2fa062219c0e0ba2" title=" " alt="" coords="603,188,785,229"/>
+</map>

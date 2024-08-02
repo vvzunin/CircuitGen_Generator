@@ -1,0 +1,7 @@
+<map id="el::base::utils::DateTime::getDateTime" name="el::base::utils::DateTime::getDateTime">
+<area shape="rect" id="node1" title="Gets current date and time with a subsecond part." alt="" coords="5,39,187,80"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1utils_1_1DateTime.html#a7197976eff45378efdca75ae070492e7" title="Cross platform gettimeofday for Windows and unix platform." alt="" coords="235,5,416,47"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1utils_1_1DateTime.html#a535546a91e5fa6cd30d2ac2a980d442a" title="Converts timeval (struct from ctime) to string using specified format and subsecond precision." alt="" coords="235,71,416,112"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1utils_1_1DateTime.html#ad0b327f1a8512fbccaee6788f942e717" title=" " alt="" coords="464,37,645,79"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1utils_1_1DateTime.html#ae9e46f004059acb5447885e1103c3ea8" title=" " alt="" coords="464,103,645,144"/>
+</map>

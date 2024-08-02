@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['name_5fseparator_3074',['name_separator',['../classdetail_1_1lexer__base.html#add65fa7a85aa15052963809fbcc04540acc3c64f8ae08c00de1b33f19a4d2913a',1,'detail::lexer_base']]],
-  ['null_3075',['null',['../namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632a37a6259cc0c1dae299a7866489dff0bd',1,'detail']]],
-  ['number_5ffloat_3076',['number_float',['../namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632ad9966ecb59667235a57b4b999a649eef',1,'detail']]],
-  ['number_5finteger_3077',['number_integer',['../namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632a5763da164f8659d94a56e29df64b4bcc',1,'detail']]],
-  ['number_5funsigned_3078',['number_unsigned',['../namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632adce7cc8ec29055c4158828921f2f265e',1,'detail']]],
-  ['numoperation_3079',['NumOperation',['../Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a9ade0b294c4074fbe2f4d1da34a4134d',1,'Settings.hpp']]]
+  ['maxlogfilesize_4343',['MaxLogFileSize',['../namespaceel.html#a281f5db6d6163678bc68a8b23b59e124a4b35e615142d60db6383426f051e700b',1,'el']]],
+  ['microsecond_4344',['Microsecond',['../namespaceel_1_1base.html#a1b886858c6409097395b24b1bdf03c39a1f14b3811ca5de688daa740d8471249e',1,'el::base']]],
+  ['millisecond_4345',['Millisecond',['../namespaceel_1_1base.html#a1b886858c6409097395b24b1bdf03c39a988bbeeb80e7e0a6b4651aab5a76b413',1,'el::base']]],
+  ['millisecondswidth_4346',['MillisecondsWidth',['../namespaceel.html#a281f5db6d6163678bc68a8b23b59e124a052bf0f0c813b3c41c5b5046ebc26529',1,'el']]],
+  ['minute_4347',['Minute',['../namespaceel_1_1base.html#a1b886858c6409097395b24b1bdf03c39a62902641c38f3a4a8eb3212454360e24',1,'el::base']]],
+  ['msgpack_4348',['msgpack',['../namespacedetail.html#a0ab3b338d0eadc6890b72cccef0ea04fac40d516627022a54003ac2b74a82688a',1,'detail']]],
+  ['multiloggersupport_4349',['MultiLoggerSupport',['../namespaceel.html#a2784aacd04cb7816ac1c0b20fcbf83cbaa2ce18adf399149a1b75bdafa773617e',1,'el']]],
+  ['multiplexer_4350',['Multiplexer',['../Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a5d288a0b580a3f50f902f0d97ef82b51',1,'Settings.hpp']]],
+  ['multiplier_4351',['Multiplier',['../Settings_8hpp.html#aac6be41377264526a1152c994f4f6265a8f445ea91fc84b5f69a81db529bc266e',1,'Settings.hpp']]]
 ];

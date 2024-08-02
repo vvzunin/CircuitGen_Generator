@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['Вклад_1628',['Вклад',['../md_CONTRIBUTING.html',1,'']]]
+  ['Вклад_2392',['Вклад',['../md_CONTRIBUTING.html',1,'']]]
 ];

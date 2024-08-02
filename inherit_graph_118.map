@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classGeneratorRandLevelParameters.html" title="class GeneratorRandLevelParameters" alt="" coords="5,5,235,32"/>
+<area shape="rect" id="node1" href="$classel_1_1base_1_1StaticClass.html" title="Internal helper class that makes all default constructors private." alt="" coords="5,249,159,276"/>
+<area shape="rect" id="node2" href="$classel_1_1ConfigurationTypeHelper.html" title="Static class that contains helper functions for el::ConfigurationType." alt="" coords="207,5,409,32"/>
+<area shape="rect" id="node3" href="$classel_1_1Configurations_1_1Parser.html" title="Parser used internally to parse configurations from file or text." alt="" coords="240,57,376,98"/>
+<area shape="rect" id="node4" href="$classel_1_1Helpers.html" title="Static helpers for developers." alt="" coords="262,123,354,149"/>
+<area shape="rect" id="node5" href="$classel_1_1LevelHelper.html" title="Static class that contains helper functions for el::Level." alt="" coords="248,173,368,200"/>
+<area shape="rect" id="node6" href="$classel_1_1Loggers.html" title="Static helpers to deal with loggers and their configurations." alt="" coords="261,224,355,251"/>
+<area shape="rect" id="node7" href="$classel_1_1VersionInfo.html" title=" " alt="" coords="251,275,365,301"/>
+<area shape="rect" id="node8" href="$classel_1_1base_1_1utils_1_1DateTime.html" title="Contains utilities for cross&#45;platform date/time. This class make use of el::base::utils::Str." alt="" coords="217,325,399,352"/>
+<area shape="rect" id="node9" href="$classel_1_1base_1_1utils_1_1File.html" title=" " alt="" coords="238,376,378,403"/>
+<area shape="rect" id="node10" href="$classel_1_1base_1_1utils_1_1OS.html" title="Operating System helper static class used internally. You should not use it." alt="" coords="241,427,375,453"/>
+<area shape="rect" id="node11" href="$classel_1_1base_1_1utils_1_1Str.html" title="String utilities helper class used internally. You should not use it." alt="" coords="241,477,375,504"/>
 </map>

@@ -27,6 +27,7 @@ var namespaces_dup =
       [ "LINKS_NAVBAR1", "namespaceconf.html#ad9813b1d90f05dd309a18cf89fb7adce", null ]
     ] ],
     [ "detail", "namespacedetail.html", "namespacedetail" ],
+    [ "el", "namespaceel.html", "namespaceel" ],
     [ "FilesTools", "namespaceFilesTools.html", [
       [ "getDirectories", "namespaceFilesTools.html#a092635d608973c4d6e39bac79929fafd", null ],
       [ "getParentDirOf", "namespaceFilesTools.html#a592ca8e24c83ff3f1cfc892fa9f8a67d", null ],

@@ -1,0 +1,8 @@
+<map id="el::base::RegisteredHitCounters" name="el::base::RegisteredHitCounters">
+<area shape="rect" id="node1" title="Repository for hit counters used across the application." alt="" coords="5,1209,233,1331"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1utils_1_1RegistryWithPred.html" title=" " alt="" coords="10,936,229,1160"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1utils_1_1AbstractRegistry.html" title="Abstract registry (aka repository) that provides basic interface for pointer repository specified by ..." alt="" coords="14,560,225,887"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html" title="Base of thread safe class, this class is inheritable&#45;only." alt="" coords="48,360,191,511"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1threading_1_1internal_1_1NoMutex.html" title="Mutex wrapper used when multi&#45;threading is disabled." alt="" coords="46,161,193,297"/>
+<area shape="rect" id="node6" href="$classel_1_1base_1_1NoCopy.html" title="Internal helper class that prevent copy constructor for class." alt="" coords="53,5,185,112"/>
+</map>

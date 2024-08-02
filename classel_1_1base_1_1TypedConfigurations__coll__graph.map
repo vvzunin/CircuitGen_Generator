@@ -1,0 +1,9 @@
+<map id="el::base::TypedConfigurations" name="el::base::TypedConfigurations">
+<area shape="rect" id="node1" title="Configurations with data types." alt="" coords="5,1569,221,2160"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html" title="Base of thread safe class, this class is inheritable&#45;only." alt="" coords="37,360,179,511"/>
+<area shape="rect" id="node7" href="$classel_1_1base_1_1utils_1_1AbstractRegistry.html" title="Abstract registry (aka repository) that provides basic interface for pointer repository specified by ..." alt="" coords="129,560,340,887"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1threading_1_1internal_1_1NoMutex.html" title="Mutex wrapper used when multi&#45;threading is disabled." alt="" coords="35,161,181,297"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1NoCopy.html" title="Internal helper class that prevent copy constructor for class." alt="" coords="42,5,174,112"/>
+<area shape="rect" id="node5" href="$classel_1_1Configurations.html" title="Thread&#45;safe Configuration repository." alt="" coords="136,1209,307,1507"/>
+<area shape="rect" id="node6" href="$classel_1_1base_1_1utils_1_1RegistryWithPred.html" title=" " alt="" coords="132,936,329,1160"/>
+</map>

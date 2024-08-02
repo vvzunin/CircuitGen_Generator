@@ -1,0 +1,21 @@
+<map id="el::base::Writer::triggerDispatch" name="el::base::Writer::triggerDispatch">
+<area shape="rect" id="node1" title=" " alt="" coords="5,357,177,398"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1Writer.html#ab1678300b6c7144041e09be423821682" title=" " alt="" coords="226,97,415,124"/>
+<area shape="rect" id="node10" href="$classel_1_1base_1_1LogDispatcher.html#a88d4a644364bb454136c85338f05da7a" title=" " alt="" coords="233,323,408,365"/>
+<area shape="rect" id="node18" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html#a95bb166242b9691f861274a9b8ced2d9" title=" " alt="" coords="225,389,416,430"/>
+<area shape="rect" id="node19" href="$classel_1_1Logger.html#add143e52020c9df44b0d40cd6006a65f" title=" " alt="" coords="251,455,391,481"/>
+<area shape="rect" id="node3" href="$classel_1_1Logger.html#a8583bfdeea4cb781396fd635addd64e9" title=" " alt="" coords="517,5,624,32"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1MessageBuilder.html#a61729d9b620eb7b3e6ac1af69364553c" title=" " alt="" coords="478,57,663,98"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1Writer.html#ae687ebbee62b086f318ee4c8d1a655c4" title=" " alt="" coords="478,122,663,163"/>
+<area shape="rect" id="node6" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html#a59db719b214f7118f0919846a85077bf" title=" " alt="" coords="725,38,916,79"/>
+<area shape="rect" id="node7" href="$classel_1_1LevelHelper.html#a6576fd7cd6d1d839952145115c6e4b38" title="Casts level to int, useful for iterating through enum." alt="" coords="727,104,914,131"/>
+<area shape="rect" id="node8" href="$classel_1_1Logger.html#aa577392f6bd9f3a48b447fc0c7e5f8dc" title=" " alt="" coords="747,155,894,181"/>
+<area shape="rect" id="node9" href="$classel_1_1base_1_1Writer.html#a50ce36cd8d9e60391da37658623a88a0" title=" " alt="" coords="736,205,905,232"/>
+<area shape="rect" id="node11" href="$classel_1_1Callback.html#aab4afe42d3f4b6282e69e90efdaa8ea7" title=" " alt="" coords="491,188,650,215"/>
+<area shape="rect" id="node12" href="$classel_1_1LogDispatchCallback.html#ae6665785add9325f7b30512534ea1e9d" title=" " alt="" coords="481,239,660,281"/>
+<area shape="rect" id="node13" href="$classel_1_1LogMessage.html#a222670d05b4aab11da4083b69eeb8dea" title=" " alt="" coords="489,305,652,332"/>
+<area shape="rect" id="node14" href="$classel_1_1LogMessage.html#a94e23201866cc1f9b9ff5bd1da8c9d98" title=" " alt="" coords="485,356,657,383"/>
+<area shape="rect" id="node15" href="$classel_1_1LogDispatchData.html#ae85d1d70f93b81ec57f058cf4bda27d4" title=" " alt="" coords="494,407,647,449"/>
+<area shape="rect" id="node16" href="$classel_1_1LogDispatchData.html#a09fcf704874e1f0a9d9061fafdaa0ce8" title=" " alt="" coords="494,473,647,514"/>
+<area shape="rect" id="node17" href="$classel_1_1base_1_1TypedConfigurations.html#af371459159951b76f7f138a0580cfb3c" title=" " alt="" coords="464,538,677,579"/>
+</map>

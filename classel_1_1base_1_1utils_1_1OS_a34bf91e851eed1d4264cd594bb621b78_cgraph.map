@@ -1,0 +1,4 @@
+<map id="el::base::utils::OS::getEnvironmentVariable" name="el::base::utils::OS::getEnvironmentVariable">
+<area shape="rect" id="node1" title="Gets environment variable." alt="" coords="5,5,192,47"/>
+<area shape="rect" id="node2" href="$classel_1_1base_1_1utils_1_1OS.html#a58c32a7c4c30342b6cdf2ee04d540d0f" title="Runs command on terminal and returns the output." alt="" coords="240,5,375,47"/>
+</map>

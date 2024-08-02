@@ -1,0 +1,7 @@
+<map id="el::LogDispatchCallback" name="el::LogDispatchCallback">
+<area shape="rect" id="node1" title=" " alt="" coords="5,759,184,851"/>
+<area shape="rect" id="node2" href="$classel_1_1Callback.html" title=" " alt="" coords="131,573,325,709"/>
+<area shape="rect" id="node3" href="$classel_1_1base_1_1threading_1_1ThreadSafe.html" title="Base of thread safe class, this class is inheritable&#45;only." alt="" coords="145,360,287,511"/>
+<area shape="rect" id="node4" href="$classel_1_1base_1_1threading_1_1internal_1_1NoMutex.html" title="Mutex wrapper used when multi&#45;threading is disabled." alt="" coords="27,161,173,297"/>
+<area shape="rect" id="node5" href="$classel_1_1base_1_1NoCopy.html" title="Internal helper class that prevent copy constructor for class." alt="" coords="34,5,166,112"/>
+</map>
