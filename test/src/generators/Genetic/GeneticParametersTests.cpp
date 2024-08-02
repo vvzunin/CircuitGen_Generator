@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
+
 TEST(GeneticParametersTest, ConstructorTest) {
   GeneticParameters gp(5, 3);
   EXPECT_EQ(gp.getInputs(), 5);

@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
+
 // CNF
 TEST(CnfFromTruthTableTest, EqualWithTheSameParametrs) {
   SimpleGenerators generator1 = SimpleGenerators(1);

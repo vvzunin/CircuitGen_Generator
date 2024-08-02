@@ -8,6 +8,7 @@
 
 #include "additional/filesTools/FilesTools.hpp"
 #include "circuit/Circuit.hpp"
+#include "easylogging++Init.hpp"
 
 std::vector<std::string> getJsons(std::string& path) {
   std::vector<std::string> names = FilesTools::getDirectories(path);

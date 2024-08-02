@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
+
 TEST(RecombinationParametersTest, DefaultConstructor) {
   RecombinationParameters params;
 

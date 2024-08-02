@@ -4,6 +4,7 @@
 
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
 #include "fstream"
 
 const std::string testDirectory = std::filesystem::current_path();

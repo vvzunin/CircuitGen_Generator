@@ -12,3 +12,4 @@ CMakeLists.txt.user
 CMakeUserPresets.json
 dataset/
 settings.json
+*.log

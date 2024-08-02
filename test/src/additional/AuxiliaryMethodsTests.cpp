@@ -5,6 +5,8 @@
 
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
+
 TEST(test_aux_methods, test_remove_spaces_without_spaces) {
   std::string answer = "word";
   EXPECT_EQ(answer, AuxMethods::removeSpaces(answer));

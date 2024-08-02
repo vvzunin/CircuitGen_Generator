@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
+
 TEST(ParentsParametersTest, SetAndGetParentsType) {
   ParentsParameters params;
   params.setParentsType(ParentsTypes::Tournament);

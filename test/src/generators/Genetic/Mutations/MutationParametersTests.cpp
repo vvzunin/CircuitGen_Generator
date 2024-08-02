@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
+
 TEST(MutationParametersTest, SetAndGetMutationType) {
   MutationParameters params;
   params.setMutationType(MutationTypes::Density);
