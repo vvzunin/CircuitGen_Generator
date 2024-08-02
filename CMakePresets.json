@@ -92,22 +92,6 @@
       }
     },
     {
-      "name": "ci-darwin",
-      "generator": "Unix Makefiles",
-      "hidden": true,
-      "inherits": ["flags-appleclang", "ci-std"],
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
-      }
-    },
-    {
-      "name": "ci-win64",
-      "inherits": ["flags-msvc", "ci-std"],
-      "generator": "Visual Studio 17 2022",
-      "architecture": "x64",
-      "hidden": true
-    },
-    {
       "name": "coverage-linux",
       "binaryDir": "${sourceDir}/build/coverage",
       "inherits": "ci-linux",
@@ -142,20 +126,12 @@
       "hidden": true
     },
     {
-      "name": "ci-macos",
-      "inherits": ["ci-build", "ci-darwin", "dev-mode"]
-    },
-    {
       "name": "ci-ubuntu",
       "inherits": ["ci-build", "ci-linux", "clang-tidy", "cppcheck", "dev-mode"]
     },
     {
       "name": "ci-self",
       "inherits": ["ci-build", "ci-linux", "clang-tidy", "cppcheck", "dev-mode"]
-    },
-    {
-      "name": "ci-windows",
-      "inherits": ["ci-build", "ci-win64", "dev-mode"]
     }
   ]
 }
