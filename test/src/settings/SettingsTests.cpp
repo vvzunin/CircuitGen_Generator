@@ -8,6 +8,8 @@
 
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
+
 std::string fileName =
     "settings.dat";  // To test LoadSettings by default. See below.
 // If the d_fileName will assign to another value by default you also have to

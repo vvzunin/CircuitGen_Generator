@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
+
 TEST(MutationTruthTableTest, MutationTable) {
   std::vector<std::vector<bool>> table = {
       {true, false, true}, {false, true, false}, {true, true, false}};

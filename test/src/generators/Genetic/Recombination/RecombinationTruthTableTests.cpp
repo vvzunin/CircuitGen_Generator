@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
 #include "generators/Genetic/Recombination/RecombinationsTruthTable.hpp"
 
 std::vector<ChromosomeType<TruthTable, TruthTableParameters>>

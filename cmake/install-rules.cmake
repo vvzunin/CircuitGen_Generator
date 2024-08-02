@@ -26,7 +26,7 @@ install(
 )
 
 install(
-    TARGETS CircuitGenGenerator_lib
+    TARGETS CircuitGenGenerator_lib easylogging++
     EXPORT CircuitGenGeneratorTargets
     RUNTIME #
     COMPONENT CircuitGenGenerator_Runtime

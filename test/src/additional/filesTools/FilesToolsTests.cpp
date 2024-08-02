@@ -3,6 +3,8 @@
 #include "additional/filesTools/FilesTools.hpp"
 
 #include <gtest/gtest.h>
+
+#include "easylogging++Init.hpp"
 namespace fs = std::filesystem;
 using namespace FilesTools;
 // I check the using of getDirectories and I can confirm that in test we can let
