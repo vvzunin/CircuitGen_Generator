@@ -351,7 +351,7 @@ bool Circuit::generate(
 
   // std::clog << "Writing verilog ended for " << d_circuitName << std::endl;
 
-  std::clog << "Writing GraphML for " << d_circuitName << std::endl;
+  // std::clog << "Writing GraphML for " << d_circuitName << std::endl;
   if (graphToGraphML(
           d_path,
           i_makeGraphMLClassic,
@@ -359,7 +359,7 @@ bool Circuit::generate(
           i_makeGraphMLOpenABCD,
           i_pathExists
       )) {
-    std::clog << "Writing GraphML ended for " << d_circuitName << std::endl;
+    // std::clog << "Writing GraphML ended for " << d_circuitName << std::endl;
   }
 
   updateCircuitParameters(d_graph);
