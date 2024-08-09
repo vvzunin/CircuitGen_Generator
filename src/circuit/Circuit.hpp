@@ -58,6 +58,17 @@ public:
 
   bool graphToVerilog(const std::string& i_path, bool i_pathExists = false);
 
+  /// @brief graphToDOT The graph To DOT method in the Circuit class
+  /// converts the combinational circuit into code in the DOT hardware
+  /// description language and writes it to a file.
+  /// @param i_path The path to the file where the DOT code will be written.
+  /// @param i_pathExists A flag indicating whether the path to the file already
+  /// exists.
+  /// @return true, indicating the successful completion of the operation.
+  /// */
+
+  bool graphToDOT(const std::string& i_path, bool i_pathExists = false);
+
   /// @brief saveParameters The save Parameters method in the Circuit class is
   /// designed to save circuit parameters to a file in JSON format
   /// The method saves the main parameters of the circuit, such as the name,

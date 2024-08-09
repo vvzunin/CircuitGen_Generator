@@ -43,7 +43,7 @@ set(ORIENTED_GRAPH CircuitGenGraph)
 FetchContent_Declare(
   ${ORIENTED_GRAPH}
   GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
-  GIT_TAG ee4ec5172773d9da9e916b955e09d9033471bfae
+  GIT_TAG 1b83cd46d8ccc0ed4dc237d880bdd8dcda3ee542
 )
 FetchContent_MakeAvailable(${ORIENTED_GRAPH})
 

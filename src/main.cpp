@@ -28,7 +28,7 @@ void initLogging(std::string testName, std::string subtestName) {
 
 int main(int argc, char **argv) {
   initLogging("main", "main");
-  LOG(INFO) << "Programm started";
+  LOG(INFO) << "Program started";
 
   std::string json_path;
   // Use getopt to parse command line arguments

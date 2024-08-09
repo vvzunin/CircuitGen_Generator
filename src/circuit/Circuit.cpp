@@ -187,6 +187,50 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
   return d_graph->toVerilog(d_path, d_circuitName + ".v").first;
 }
 
+bool Circuit::graphToDOT(const std::string& i_path, bool i_pathExists) {
+  if (d_graph->isEmptyFull())
+    return false;
+
+  /* if (!i_pathExists) // TODO: work with directory
+      if
+  (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() +
+  i_path)) std::filesystem::create_directory(i_path);
+  */
+
+  d_graph->printCounters();
+  for (auto subGr : d_graph->getSubGraphs()) {
+    d_graph->resetCounters(subGr);
+  }
+  d_graph->printCounters();
+
+  static std::string filename;
+  static std::string s;
+
+  size_t             previousSizeOfFileName = filename.size();
+
+  if (!d_graph->getSubGraphs().empty()) {
+    std::string folderSubgraphs = d_path + "/submodulesDOT";
+    std::filesystem::create_directory(folderSubgraphs);
+  }
+  filename    = d_path + "/" + d_circuitName + ".dot";
+
+  size_t pos  = (s.find_last_of('/')) + 1;
+  size_t pos2 = (filename.find_last_of('/')) + 1;
+
+  if (previousSizeOfFileName == 0)
+    s = std::filesystem::current_path().string() + "/"
+      + filename;  // static variable will be created one time and then will be
+                   // used through running of the program
+  else
+    s.replace(
+        pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName
+    );
+
+  bool f = std::filesystem::exists(s);
+
+  return d_graph->toDOT(d_path, d_circuitName + ".dot").first;
+}
+
 bool Circuit::graphToGraphML(
     const std::string& i_path,
     bool               i_makeGraphMLClassic,
@@ -352,10 +396,17 @@ bool Circuit::generate(
   // if (!i_pathExists)
   // d_path += d_circuitName;
   LOG(INFO) << "Writing verilog for " << d_circuitName;
+  d_graph->printCounters();
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
-
   LOG(INFO) << "Writing verilog ended for " << d_circuitName;
+  d_graph->printCounters();
+
+  LOG(INFO) << "Writing DOT for " << d_circuitName;
+  if (!graphToDOT(d_path, i_pathExists))
+    return false;
+
+  LOG(INFO) << "Writing DOT ended for " << d_circuitName;
 
   LOG(INFO) << "Writing GraphML for " << d_circuitName;
   if (graphToGraphML(
