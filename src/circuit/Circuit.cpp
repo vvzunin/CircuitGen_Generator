@@ -197,11 +197,9 @@ bool Circuit::graphToDOT(const std::string& i_path, bool i_pathExists) {
   i_path)) std::filesystem::create_directory(i_path);
   */
 
-  d_graph->printCounters();
   for (auto subGr : d_graph->getSubGraphs()) {
     d_graph->resetCounters(subGr);
   }
-  d_graph->printCounters();
 
   static std::string filename;
   static std::string s;
@@ -396,16 +394,13 @@ bool Circuit::generate(
   // if (!i_pathExists)
   // d_path += d_circuitName;
   LOG(INFO) << "Writing verilog for " << d_circuitName;
-  d_graph->printCounters();
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
   LOG(INFO) << "Writing verilog ended for " << d_circuitName;
-  d_graph->printCounters();
 
   LOG(INFO) << "Writing DOT for " << d_circuitName;
   if (!graphToDOT(d_path, i_pathExists))
     return false;
-
   LOG(INFO) << "Writing DOT ended for " << d_circuitName;
 
   LOG(INFO) << "Writing GraphML for " << d_circuitName;
