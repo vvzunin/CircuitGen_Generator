@@ -1,7 +1,8 @@
 <map id="Circuit::generate" name="Circuit::generate">
-<area shape="rect" id="node1" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="5,81,136,108"/>
-<area shape="rect" id="node2" href="$classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="184,5,365,32"/>
-<area shape="rect" id="node3" href="$classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="191,56,359,83"/>
-<area shape="rect" id="node4" href="$classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="186,107,363,133"/>
-<area shape="rect" id="node5" href="$classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="413,132,647,159"/>
+<area shape="rect" id="node1" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="5,107,136,133"/>
+<area shape="rect" id="node2" href="$classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f" title="graphToDOT The graph To DOT method in the Circuit class converts the combinational circuit into code ..." alt="" coords="199,5,350,32"/>
+<area shape="rect" id="node3" href="$classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="184,56,365,83"/>
+<area shape="rect" id="node4" href="$classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="191,107,359,133"/>
+<area shape="rect" id="node5" href="$classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="186,157,363,184"/>
+<area shape="rect" id="node6" href="$classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="413,183,647,209"/>
 </map>

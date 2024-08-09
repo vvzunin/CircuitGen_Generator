@@ -1,5 +1,6 @@
 var NAVTREEINDEX10 =
 {
+"easylogging_09_09_8h.html#a9196909d7235022edc356abff3b491a7":[14,0,4,0,1,62],
 "easylogging_09_09_8h.html#a93a5060fb0bd19fd27afe0545d6e175a":[14,0,4,0,1,209],
 "easylogging_09_09_8h.html#a942916fc02955011d6882c0450881de5":[14,0,4,0,1,144],
 "easylogging_09_09_8h.html#a94d89be3a82c2a46a9c2a066f30ed10a":[14,0,4,0,1,188],
@@ -212,8 +213,8 @@ var NAVTREEINDEX10 =
 "functions_type_v.html":[13,3,3,17],
 "functions_u.html":[13,3,0,22],
 "functions_v.html":[13,3,0,23],
-"functions_vars.html":[13,3,2],
 "functions_vars.html":[13,3,2,0],
+"functions_vars.html":[13,3,2],
 "functions_vars_a.html":[13,3,2,1],
 "functions_vars_b.html":[13,3,2,2],
 "functions_vars_c.html":[13,3,2,3],
@@ -245,9 +246,8 @@ var NAVTREEINDEX10 =
 "globals_b.html":[14,1,0,1],
 "globals_c.html":[14,1,0,2],
 "globals_d.html":[14,1,0,3],
-"globals_defs.html":[14,1,6],
 "globals_defs.html":[14,1,6,0],
+"globals_defs.html":[14,1,6],
 "globals_defs_c.html":[14,1,6,1],
-"globals_defs_d.html":[14,1,6,2],
-"globals_defs_e.html":[14,1,6,3]
+"globals_defs_d.html":[14,1,6,2]
 };

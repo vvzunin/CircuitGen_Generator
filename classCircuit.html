@@ -113,7 +113,7 @@ Collaboration diagram for Circuit:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCircuit__coll__graph.png" border="0" usemap="#aCircuit_coll__map" alt="Collaboration graph"/></div>
 <map name="aCircuit_coll__map" id="aCircuit_coll__map">
-<area shape="rect" title="class Circuit" alt="" coords="122,652,330,979"/>
+<area shape="rect" title="class Circuit" alt="" coords="122,652,330,993"/>
 <area shape="rect" href="classTruthTable.html" title="class TruthTable Represents a truth table for a combinational logic circuit This class encapsulates t..." alt="" coords="40,307,199,589"/>
 <area shape="rect" href="classRandomGeneratorWithSeed.html" title="class RandomGeneratorWithSeed The Random Generator With Seed class is a C++ class designed to generat..." alt="" coords="5,5,233,244"/>
 <area shape="rect" href="classCircuitParameters.html" title=" " alt="" coords="223,329,442,567"/>
@@ -133,6 +133,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0fffbea37983706410ff674dd9eb08c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a0fffbea37983706410ff674dd9eb08c9">graphToVerilog</a> (const std::string &amp;i_path, bool i_pathExists=false)</td></tr>
 <tr class="memdesc:a0fffbea37983706410ff674dd9eb08c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">graphToVerilog The graph To Verilog method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class converts the combinational circuit into code in the Verilog hardware description language and writes it to a file.  <a href="classCircuit.html#a0fffbea37983706410ff674dd9eb08c9">More...</a><br /></td></tr>
 <tr class="separator:a0fffbea37983706410ff674dd9eb08c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34dd6d70848e31e3d579bacfa239e65f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f">graphToDOT</a> (const std::string &amp;i_path, bool i_pathExists=false)</td></tr>
+<tr class="memdesc:a34dd6d70848e31e3d579bacfa239e65f"><td class="mdescLeft">&#160;</td><td class="mdescRight">graphToDOT The graph To DOT method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class converts the combinational circuit into code in the DOT hardware description language and writes it to a file.  <a href="classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f">More...</a><br /></td></tr>
+<tr class="separator:a34dd6d70848e31e3d579bacfa239e65f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d0427d7f384c2965b354ac4acb1cc34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34">graphToGraphML</a> (const std::string &amp;i_path, bool i_makeGraphMLClassic=false, bool i_makeGraphMLPseudoABCD=false, bool i_makeGraphMLOpenABCD=false, bool i_pathExists=false)</td></tr>
 <tr class="memdesc:a0d0427d7f384c2965b354ac4acb1cc34"><td class="mdescLeft">&#160;</td><td class="mdescRight">saveParameters The save Parameters method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format.  <a href="classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34">More...</a><br /></td></tr>
 <tr class="separator:a0d0427d7f384c2965b354ac4acb1cc34"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -370,11 +373,12 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph.png" border="0" usemap="#aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph" alt=""/></div>
 <map name="aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph" id="aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph">
-<area shape="rect" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="5,81,136,108"/>
-<area shape="rect" href="classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="184,5,365,32"/>
-<area shape="rect" href="classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="191,56,359,83"/>
-<area shape="rect" href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="186,107,363,133"/>
-<area shape="rect" href="classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="413,132,647,159"/>
+<area shape="rect" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="5,107,136,133"/>
+<area shape="rect" href="classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f" title="graphToDOT The graph To DOT method in the Circuit class converts the combinational circuit into code ..." alt="" coords="199,5,350,32"/>
+<area shape="rect" href="classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="184,56,365,83"/>
+<area shape="rect" href="classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="191,107,359,133"/>
+<area shape="rect" href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="186,157,363,184"/>
+<area shape="rect" href="classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="413,183,647,209"/>
 </map>
 </div>
 <div class="dynheader">
@@ -429,6 +433,70 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An integer value representing the index of a vertex in a graph of a digital circuit. If the vertex with the specified wire name is not found, the method returns -1. *&zwj;/ </dd></dl>
+
+</div>
+</div>
+<a id="a34dd6d70848e31e3d579bacfa239e65f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34dd6d70848e31e3d579bacfa239e65f">&#9670;&nbsp;</a></span>graphToDOT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Circuit::graphToDOT </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>i_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>i_pathExists</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>graphToDOT The graph To DOT method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class converts the combinational circuit into code in the DOT hardware description language and writes it to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i_path</td><td>The path to the file where the DOT code will be written. </td></tr>
+    <tr><td class="paramname">i_pathExists</td><td>A flag indicating whether the path to the file already exists. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true, indicating the successful completion of the operation. *&zwj;/ </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCircuit_a34dd6d70848e31e3d579bacfa239e65f_icgraph.png" border="0" usemap="#aclassCircuit_a34dd6d70848e31e3d579bacfa239e65f_icgraph" alt=""/></div>
+<map name="aclassCircuit_a34dd6d70848e31e3d579bacfa239e65f_icgraph" id="aclassCircuit_a34dd6d70848e31e3d579bacfa239e65f_icgraph">
+<area shape="rect" title="graphToDOT The graph To DOT method in the Circuit class converts the combinational circuit into code ..." alt="" coords="737,519,888,546"/>
+<area shape="rect" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
+<area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
+<area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
+<area shape="rect" href="classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,201,479,243"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,267,459,308"/>
+<area shape="rect" href="classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,333,477,389"/>
+<area shape="rect" href="classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,413,458,455"/>
+<area shape="rect" href="classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,479,469,520"/>
+<area shape="rect" href="classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,544,464,585"/>
+<area shape="rect" href="classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,609,484,651"/>
+<area shape="rect" href="classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,675,451,716"/>
+<area shape="rect" href="classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,740,467,781"/>
+<area shape="rect" href="classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,805,511,847"/>
+<area shape="rect" href="classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,871,467,912"/>
+<area shape="rect" href="classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,936,467,977"/>
+<area shape="rect" href="classGeneticGenerator.html#a06385f10266a65cd8328e5e8a9bca7b5" title=" " alt="" coords="239,1002,484,1029"/>
+<area shape="rect" href="classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,479,164,520"/>
+</map>
+</div>
 
 </div>
 </div>

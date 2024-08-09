@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['log_4813',['LOG',['../easylogging_09_09_8h.html#acecfb113caaa2f52fe8e764fe04476bc',1,'easylogging++.h']]],
-  ['log_5fafter_5fn_4814',['LOG_AFTER_N',['../easylogging_09_09_8h.html#ac364203bd0697cbdd69ea7b67d4c6308',1,'easylogging++.h']]],
-  ['log_5fevery_5fn_4815',['LOG_EVERY_N',['../easylogging_09_09_8h.html#af0e94c66f305df244e47ffea2bb87ddf',1,'easylogging++.h']]],
-  ['log_5fif_4816',['LOG_IF',['../easylogging_09_09_8h.html#a7653cdff7e16b34fd407218c487d3d71',1,'easylogging++.h']]],
-  ['log_5fn_5ftimes_4817',['LOG_N_TIMES',['../easylogging_09_09_8h.html#a2d56c301af20eb0f182006f56b97a46b',1,'easylogging++.h']]]
+  ['log_4815',['LOG',['../easylogging_09_09_8h.html#acecfb113caaa2f52fe8e764fe04476bc',1,'easylogging++.h']]],
+  ['log_5fafter_5fn_4816',['LOG_AFTER_N',['../easylogging_09_09_8h.html#ac364203bd0697cbdd69ea7b67d4c6308',1,'easylogging++.h']]],
+  ['log_5fevery_5fn_4817',['LOG_EVERY_N',['../easylogging_09_09_8h.html#af0e94c66f305df244e47ffea2bb87ddf',1,'easylogging++.h']]],
+  ['log_5fif_4818',['LOG_IF',['../easylogging_09_09_8h.html#a7653cdff7e16b34fd407218c487d3d71',1,'easylogging++.h']]],
+  ['log_5fn_5ftimes_4819',['LOG_N_TIMES',['../easylogging_09_09_8h.html#a2d56c301af20eb0f182006f56b97a46b',1,'easylogging++.h']]]
 ];

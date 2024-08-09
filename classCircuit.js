@@ -6,6 +6,7 @@ var classCircuit =
     [ "fromVerilog", "classCircuit.html#a37ae459501ff0ca329c0e0359f9e436d", null ],
     [ "generate", "classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e", null ],
     [ "getIndexOfWireName", "classCircuit.html#a6d0f1678da06127a4587df5a3dae39e4", null ],
+    [ "graphToDOT", "classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f", null ],
     [ "graphToGraphML", "classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34", null ],
     [ "graphToVerilog", "classCircuit.html#a0fffbea37983706410ff674dd9eb08c9", null ],
     [ "saveParameters", "classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d", null ],

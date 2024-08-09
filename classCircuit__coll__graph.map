@@ -1,5 +1,5 @@
 <map id="Circuit" name="Circuit">
-<area shape="rect" id="node1" title="class Circuit" alt="" coords="122,652,330,979"/>
+<area shape="rect" id="node1" title="class Circuit" alt="" coords="122,652,330,993"/>
 <area shape="rect" id="node2" href="$classTruthTable.html" title="class TruthTable Represents a truth table for a combinational logic circuit This class encapsulates t..." alt="" coords="40,307,199,589"/>
 <area shape="rect" id="node3" href="$classRandomGeneratorWithSeed.html" title="class RandomGeneratorWithSeed The Random Generator With Seed class is a C++ class designed to generat..." alt="" coords="5,5,233,244"/>
 <area shape="rect" id="node4" href="$classCircuitParameters.html" title=" " alt="" coords="223,329,442,567"/>

@@ -1,35 +1,36 @@
 <map id="DataBaseGenerator::generateDataBaseFromRandomTruthTable" name="DataBaseGenerator::generateDataBaseFromRandomTruthTable">
-<area shape="rect" id="node1" title=" " alt="" coords="5,921,236,977"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,947,236,1003"/>
 <area shape="rect" id="node2" href="$classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="313,201,513,242"/>
-<area shape="rect" id="node11" href="$classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="348,452,479,479"/>
-<area shape="rect" id="node16" href="$classGenerationParameters.html#a2f4ad9ff5987e4d4d3a658e2f10fef83" title=" " alt="" coords="329,503,497,545"/>
-<area shape="rect" id="node17" href="$classCNNFromTruthTableParameters.html#a1f0b1d57ffe32026525230f2de39ccd0" title=" " alt="" coords="301,569,525,610"/>
-<area shape="rect" id="node18" href="$classCNNFromTruthTableParameters.html#a12b5f0f950abdf4058da9409809c6662" title=" " alt="" coords="301,634,525,675"/>
-<area shape="rect" id="node19" href="$classGenerationParameters.html#a1f1a65d45fc7335c144794305a34a7f2" title=" " alt="" coords="329,699,497,741"/>
-<area shape="rect" id="node20" href="$classGenerationParameters.html#ab5415cce0d7d4e0417491f460a0e3a3a" title=" " alt="" coords="329,765,497,806"/>
-<area shape="rect" id="node21" href="$classGenerationParameters.html#aed2938223a2a7b8fddd87218abb189d4" title=" " alt="" coords="318,830,509,871"/>
-<area shape="rect" id="node22" href="$classGenerationParameters.html#aeccc0983840788f03ae4cd9e06f1c1f3" title=" " alt="" coords="306,895,521,937"/>
-<area shape="rect" id="node23" href="$classGenerationParameters.html#abc21152ae59f53741545d14075dbde3d" title=" " alt="" coords="299,961,527,1002"/>
-<area shape="rect" id="node24" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="329,1026,497,1067"/>
-<area shape="rect" id="node25" href="$classGenerationParameters.html#a1f3eb45bdbff9fddee1236d2f442a300" title=" " alt="" coords="329,1091,497,1133"/>
-<area shape="rect" id="node26" href="$classGenerationParameters.html#a07806a196e5976fce356ff2f3d91f822" title=" " alt="" coords="329,1157,497,1198"/>
-<area shape="rect" id="node27" href="$classzhegalkinFromTruthTableParameters.html#a153865fe9c9e75894cfbfbcfcd2437a3" title=" " alt="" coords="284,1222,543,1263"/>
-<area shape="rect" id="node28" href="$classGenerationParameters.html#ad9124167a78b118d3ecfe254ebdd984a" title=" " alt="" coords="329,1287,497,1329"/>
-<area shape="rect" id="node29" href="$classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="327,1353,500,1380"/>
-<area shape="rect" id="node30" href="$classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06" title="generatorRandLevelExperimental The method generates a random level of complexity of the graph within ..." alt="" coords="311,1405,516,1446"/>
-<area shape="rect" id="node31" href="$classCircuit.html#a71e323bb28864ea40f60fdc1fd693add" title="setPath This method is designed to set the path where the files associated with the digital circuit w..." alt="" coords="353,1471,473,1497"/>
-<area shape="rect" id="node32" href="$classCircuit.html#a5afd009c717105e7f2c36c02e233661c" title="setTable This method is designed to set up a truth table for a digital circuit." alt="" coords="350,1521,477,1548"/>
-<area shape="rect" id="node33" href="$classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="308,118,519,159"/>
+<area shape="rect" id="node11" href="$classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="348,477,479,504"/>
+<area shape="rect" id="node17" href="$classGenerationParameters.html#a2f4ad9ff5987e4d4d3a658e2f10fef83" title=" " alt="" coords="329,529,497,570"/>
+<area shape="rect" id="node18" href="$classCNNFromTruthTableParameters.html#a1f0b1d57ffe32026525230f2de39ccd0" title=" " alt="" coords="301,594,525,635"/>
+<area shape="rect" id="node19" href="$classCNNFromTruthTableParameters.html#a12b5f0f950abdf4058da9409809c6662" title=" " alt="" coords="301,659,525,701"/>
+<area shape="rect" id="node20" href="$classGenerationParameters.html#a1f1a65d45fc7335c144794305a34a7f2" title=" " alt="" coords="329,725,497,766"/>
+<area shape="rect" id="node21" href="$classGenerationParameters.html#ab5415cce0d7d4e0417491f460a0e3a3a" title=" " alt="" coords="329,790,497,831"/>
+<area shape="rect" id="node22" href="$classGenerationParameters.html#aed2938223a2a7b8fddd87218abb189d4" title=" " alt="" coords="318,855,509,897"/>
+<area shape="rect" id="node23" href="$classGenerationParameters.html#aeccc0983840788f03ae4cd9e06f1c1f3" title=" " alt="" coords="306,921,521,962"/>
+<area shape="rect" id="node24" href="$classGenerationParameters.html#abc21152ae59f53741545d14075dbde3d" title=" " alt="" coords="299,986,527,1027"/>
+<area shape="rect" id="node25" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="329,1051,497,1093"/>
+<area shape="rect" id="node26" href="$classGenerationParameters.html#a1f3eb45bdbff9fddee1236d2f442a300" title=" " alt="" coords="329,1117,497,1158"/>
+<area shape="rect" id="node27" href="$classGenerationParameters.html#a07806a196e5976fce356ff2f3d91f822" title=" " alt="" coords="329,1182,497,1223"/>
+<area shape="rect" id="node28" href="$classzhegalkinFromTruthTableParameters.html#a153865fe9c9e75894cfbfbcfcd2437a3" title=" " alt="" coords="284,1247,543,1289"/>
+<area shape="rect" id="node29" href="$classGenerationParameters.html#ad9124167a78b118d3ecfe254ebdd984a" title=" " alt="" coords="329,1313,497,1354"/>
+<area shape="rect" id="node30" href="$classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="327,1379,500,1405"/>
+<area shape="rect" id="node31" href="$classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06" title="generatorRandLevelExperimental The method generates a random level of complexity of the graph within ..." alt="" coords="311,1430,516,1471"/>
+<area shape="rect" id="node32" href="$classCircuit.html#a71e323bb28864ea40f60fdc1fd693add" title="setPath This method is designed to set the path where the files associated with the digital circuit w..." alt="" coords="353,1496,473,1523"/>
+<area shape="rect" id="node33" href="$classCircuit.html#a5afd009c717105e7f2c36c02e233661c" title="setTable This method is designed to set up a truth table for a digital circuit." alt="" coords="350,1547,477,1573"/>
+<area shape="rect" id="node34" href="$classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99" title=" " alt="" coords="308,118,519,159"/>
 <area shape="rect" id="node3" href="$classTruthTable.html#a5790cc7c8fc0e04547d83e5f9384efe9" title="convToBinary Convert truth table indices to binary representation This method converts the indices of..." alt="" coords="596,259,779,285"/>
-<area shape="rect" id="node4" href="$classTruthTable.html#a6c1a776a25eb693a3a59e6410bca23e7" title="getInput Get the number of input variables in the truth table." alt="" coords="612,107,763,133"/>
-<area shape="rect" id="node5" href="$classTruthTable.html#a87ce43a0f73da02698aa5b4e4e378a8e" title="getOutput Get the number of output variables in the truth table" alt="" coords="607,157,768,184"/>
-<area shape="rect" id="node6" href="$classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82" title="getOutTable Get the output table." alt="" coords="600,208,775,235"/>
+<area shape="rect" id="node4" href="$classTruthTable.html#a6c1a776a25eb693a3a59e6410bca23e7" title="getInput Get the number of input variables in the truth table." alt="" coords="612,5,763,32"/>
+<area shape="rect" id="node5" href="$classTruthTable.html#a87ce43a0f73da02698aa5b4e4e378a8e" title="getOutput Get the number of output variables in the truth table" alt="" coords="607,56,768,83"/>
+<area shape="rect" id="node6" href="$classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82" title="getOutTable Get the output table." alt="" coords="600,107,775,133"/>
 <area shape="rect" id="node7" href="$classParser.html#ae2686bf3fdb12a709732363745943425" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="595,310,779,351"/>
 <area shape="rect" id="node8" href="$classParser.html#a0a27158ce7c8ca578b82140b4239bd26" title="setGatesInputsInfo Set information about gates inputs" alt="" coords="591,376,784,403"/>
-<area shape="rect" id="node9" href="$classTruthTable.html#af91eb4123d7254a4b623f6b5dfca211a" title="size Get the size of the truth table." alt="" coords="626,5,749,32"/>
-<area shape="rect" id="node10" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="648,56,727,83"/>
-<area shape="rect" id="node12" href="$classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="597,427,778,453"/>
-<area shape="rect" id="node13" href="$classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="603,477,771,504"/>
-<area shape="rect" id="node14" href="$classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="599,579,776,605"/>
-<area shape="rect" id="node15" href="$classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="832,553,1065,580"/>
+<area shape="rect" id="node9" href="$classTruthTable.html#af91eb4123d7254a4b623f6b5dfca211a" title="size Get the size of the truth table." alt="" coords="626,157,749,184"/>
+<area shape="rect" id="node10" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="648,208,727,235"/>
+<area shape="rect" id="node12" href="$classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f" title="graphToDOT The graph To DOT method in the Circuit class converts the combinational circuit into code ..." alt="" coords="612,629,763,656"/>
+<area shape="rect" id="node13" href="$classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="597,427,778,453"/>
+<area shape="rect" id="node14" href="$classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="603,477,771,504"/>
+<area shape="rect" id="node15" href="$classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="599,528,776,555"/>
+<area shape="rect" id="node16" href="$classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="832,553,1065,580"/>
 </map>

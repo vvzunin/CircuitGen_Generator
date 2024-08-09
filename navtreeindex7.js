@@ -1,5 +1,6 @@
 var NAVTREEINDEX7 =
 {
+"classel_1_1LogBuilder.html#ae45008e1c004367ef611b22662e7ed72":[13,0,1,14,1],
 "classel_1_1LogBuilder.html#af102ce9fe1f2018a4010480a02b57c6d":[13,0,1,14,5],
 "classel_1_1LogDispatchCallback.html":[13,0,1,11],
 "classel_1_1LogDispatchCallback.html#a6d501ca4bc6082c4c021a929d72badb7":[13,0,1,11,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX7 =
 "classel_1_1base_1_1Storage.html#ac2fc0a10ded3c8607239a7e12f62a368":[13,0,1,0,12,43],
 "classel_1_1base_1_1Storage.html#acef53d022f493b46faa70bb0b5fa4219":[13,0,1,0,12,18],
 "classel_1_1base_1_1Storage.html#ad09c13eed65ec6d2248d0693357b1e60":[13,0,1,0,12,26],
-"classel_1_1base_1_1Storage.html#addc88a3c2b5720871d4a9ca954f47aa6":[13,0,1,0,12,17],
-"classel_1_1base_1_1Storage.html#ae369b599364fe21956aa075d45d8bed4":[13,0,1,0,12,38]
+"classel_1_1base_1_1Storage.html#addc88a3c2b5720871d4a9ca954f47aa6":[13,0,1,0,12,17]
 };
