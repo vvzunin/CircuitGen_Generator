@@ -1,4 +1,5 @@
+rm -rf build
 cmake --preset=dev
 cmake --build --preset=dev -t format-fix  -j $(nproc)
 cmake --build --preset=dev -j $(nproc)
-ctest --preset=dev
+ctest --preset=dev -j $(nproc)
