@@ -25,6 +25,7 @@ std::vector<std::string> getJsons(std::string& path) {
 }
 
 TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
+  initLogging("GenerateDataBaseFromRandomTruthTable", "EqualWithTheSameSeeds");
   std::string mainDir = "dataset";
   std::string dir     = "FromRandomTruthTable";
 

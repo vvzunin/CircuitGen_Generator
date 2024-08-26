@@ -188,8 +188,11 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
 }
 
 bool Circuit::graphToDOT(const std::string& i_path, bool i_pathExists) {
-  if (d_graph->isEmptyFull())
+  LOG(INFO) << "Starting graphToDOT";
+  if (d_graph->isEmptyFull()) {
+    LOG(INFO) << "Graph empty. Returning";
     return false;
+  }
 
   /* if (!i_pathExists) // TODO: work with directory
       if
@@ -197,9 +200,9 @@ bool Circuit::graphToDOT(const std::string& i_path, bool i_pathExists) {
   i_path)) std::filesystem::create_directory(i_path);
   */
 
-  for (auto subGr : d_graph->getSubGraphs()) {
-    d_graph->resetCounters(subGr);
-  }
+  // for (auto subGr : d_graph->getSubGraphs()) {
+  //   d_graph->resetCounters(subGr);
+  // }
 
   static std::string filename;
   static std::string s;
@@ -225,8 +228,15 @@ bool Circuit::graphToDOT(const std::string& i_path, bool i_pathExists) {
     );
 
   bool f = std::filesystem::exists(s);
+  LOG(INFO) << "Pathes created.";
 
-  return d_graph->toDOT(d_path, d_circuitName + ".dot").first;
+  GraphPtr graphPtr = d_graph;
+  if (!d_graph->getVerticesByType(VertexTypes::subGraph).empty()) {
+    graphPtr = d_graph->unrollGraph();
+    LOG(INFO) << "Graph unrolled";
+  }
+  LOG(INFO) << "Ready to creating DOT file. Starting.";
+  return graphPtr->toDOT(d_path, d_circuitName + ".dot").first;
 }
 
 bool Circuit::graphToGraphML(
