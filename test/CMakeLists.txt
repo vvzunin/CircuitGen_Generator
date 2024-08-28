@@ -174,7 +174,7 @@ target_include_directories(
    PUBLIC
    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
 )
-add_test(NAME DataBaseGeneratorsTests COMMAND CircuitGenGenerator_test_DataBaseGeneratorTests)
+add_test(NAME DataBaseGeneratorTests COMMAND CircuitGenGenerator_test_DataBaseGeneratorTests)
 
 # Test SimpleGeneratorsTests
 add_executable(CircuitGenGenerator_test_SimpleGeneratorsTests src/generators/simple/SimpleGeneratorsTests.cpp ${NEW_SOURCES})

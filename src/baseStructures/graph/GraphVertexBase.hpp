@@ -225,7 +225,7 @@ public:
   /// Gates gateType = vertex.getGate();
   /// @endcode
 
-  virtual Gates              getGate() const { return Gates::GateDefault; };
+  virtual Gates              getGate() const { return Gates::GateDefault; }
 
   // Get-Set для базового графа
   // void setBaseGraph(std::shared_ptr<OrientedGraph> const i_baseGraph);

@@ -23,7 +23,7 @@ using namespace std::chrono;
 using namespace Threading;
 
 void DataBaseGenerator::runGeneratorByDefault(
-    const DataBaseGeneratorParameters& i_dbgp,
+    DataBaseGeneratorParameters& i_dbgp,
     uint8_t                            parallel,
     bool                               createIdDirectories
 ) {
@@ -81,18 +81,18 @@ void DataBaseGenerator::runGeneratorByDefault(
   for (int i = i_dbgp.getMinInputs(); i <= i_dbgp.getMaxInputs(); ++i) {
     for (int j = i_dbgp.getMinOutputs(); j <= i_dbgp.getMaxOutputs(); ++j) {
       auto iter = seeds.begin();
-      d_parameters.setInputs(i);
-      d_parameters.setOutputs(j);
+      i_dbgp.setInputs(i);
+      i_dbgp.setOutputs(j);
 
       if (parallel > 1) {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
-          d_parameters.setIteration(tt);
-          d_parameters.setName(
+          i_dbgp.setIteration(tt);
+          i_dbgp.setName(
               d_settings->getGenerationMethodPrefix(gt)
               + AuxMethods::intToStringWithZeroes(d_dirCount)
           );
 
-          GenerationParameters param = d_parameters.getGenerationParameters();
+          GenerationParameters param = i_dbgp.getGenerationParameters();
           param.setSeed(*iter + i + j);
 
           auto runGenerator = [generator, param]() { generator(param); };
@@ -105,13 +105,13 @@ void DataBaseGenerator::runGeneratorByDefault(
       } else {
         for (int tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
           // TODO: it is that Rustam told about iteration?
-          d_parameters.setIteration(tt);
-          d_parameters.setName(
+          i_dbgp.setIteration(tt);
+          i_dbgp.setName(
               d_settings->getGenerationMethodPrefix(gt)
               + AuxMethods::intToStringWithZeroes(d_dirCount)
           );
 
-          GenerationParameters param = d_parameters.getGenerationParameters();
+          GenerationParameters param = i_dbgp.getGenerationParameters();
           param.setSeed(*iter);
 
           generator(param);
@@ -126,7 +126,7 @@ void DataBaseGenerator::runGeneratorByDefault(
 }
 
 ResultGraph DataBaseGenerator::generateTypeForGraph(
-    const DataBaseGeneratorParameters& i_dbgp,
+    DataBaseGeneratorParameters& i_dbgp,
     uint8_t                            parallel,
     bool                               createIdDirectories
 ) {
@@ -138,7 +138,7 @@ ResultGraph DataBaseGenerator::generateTypeForGraph(
 }
 
 ResultPath DataBaseGenerator::generateTypeForPath(
-    const DataBaseGeneratorParameters& i_dbgp,
+    DataBaseGeneratorParameters& i_dbgp,
     uint8_t                            parallel,
     bool                               createIdDirectories
 ) {
@@ -150,7 +150,7 @@ ResultPath DataBaseGenerator::generateTypeForPath(
 }
 
 void DataBaseGenerator::generateTypeDefault(
-    const DataBaseGeneratorParameters& i_dbgp,
+    DataBaseGeneratorParameters& i_dbgp,
     uint8_t                            parallel,
     bool                               createIdDirectories
 ) {

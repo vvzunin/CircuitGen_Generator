@@ -28,9 +28,6 @@ enum ReturnType {
 /// directory
 /// @param d_settings A smart pointer to an object of the Settings class
 /// representing the settings for the database generator
-/// @param d_parameters An object of the DataBase Generator Parameters class
-/// containing parameters for generating a database. This object is used to
-/// configure database generation
 /// @param d_dirCount An integer value representing the number of directories
 /// created during database generation
 /// @param d_randGenerator Random number generator with seed
@@ -41,8 +38,14 @@ public:
   /// @brief DataBaseGenerator
   /// @param i_parameters
 
-  DataBaseGenerator(const DataBaseGeneratorParameters& i_parameters) :
-    d_parameters(i_parameters) {};
+  DataBaseGenerator()
+  {};
+
+  void runGeneratorByDefault(
+    DataBaseGeneratorParameters& i_dbgp,
+    uint8_t                            parallel,
+    bool                               createIdDirectories
+);
 
   /// @brief generateTypeForGraph The generate Type method of the DataBase
   /// Generator class is responsible for generating a database of a certain type
@@ -58,19 +61,19 @@ public:
   ///
 
   ResultGraph generateTypeForGraph(
-      const DataBaseGeneratorParameters& i_gp,
+      DataBaseGeneratorParameters& i_gp,
       uint8_t                            parallel            = 1,
       bool                               createIdDirectories = true
   );
 
   ResultPath generateTypeForPath(
-      const DataBaseGeneratorParameters& i_gp,
+      DataBaseGeneratorParameters& i_gp,
       uint8_t                            parallel            = 1,
       bool                               createIdDirectories = true
   );
 
   void generateTypeDefault(
-      const DataBaseGeneratorParameters& i_gp,
+      DataBaseGeneratorParameters& i_gp,
       uint8_t                            parallel            = 1,
       bool                               createIdDirectories = true
   );
@@ -83,7 +86,6 @@ private:
   std::string               d_mainPath = ".";
   std::shared_ptr<Settings> d_settings =
       Settings::getInstance("DataBaseGenerator");
-  DataBaseGeneratorParameters d_parameters;  // why we need this var?
   int                         d_dirCount = 0;
 
   /// @brief generateDataBaseFromRandomTruthTable The generate DataBase From

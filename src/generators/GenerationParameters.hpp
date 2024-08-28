@@ -78,6 +78,37 @@ private:
   int d_maxElements = 0;
 };
 
+/// class GeneratorRandLevelExperimentalParameters
+/// @param d_maxLevel It can mean the maximum number of levels in the graph or
+/// structure that the level generator generates.
+/// @param d_maxElements It can mean the maximum number of logical elements or
+/// notes that can be created at each level of the graph structure
+
+class GeneratorRandLevelExperimentalParameters {
+public:
+  int  getMinLevel() const { return d_minLevel; }
+
+  void setMinLevel(int i_minLevel) { d_minLevel = i_minLevel; }
+
+  int  getMaxLevel() const { return d_maxLevel; }
+
+  void setMaxLevel(int i_maxLevel) { d_maxLevel = i_maxLevel; }
+
+  int  getMinElements() const { return d_minElements; }
+
+  void setMinElements(int i_minElements) { d_minElements = i_minElements; }
+
+  int  getMaxElements() const { return d_maxElements; }
+
+  void setMaxElements(int i_maxElements) { d_maxElements = i_maxElements; }
+
+private:
+  int d_minLevel    = 0;
+  int d_maxLevel    = 0;
+  int d_minElements = 0;
+  int d_maxElements = 0;
+};
+
 /// class GeneratorNumOperationParameters
 /// @param d_logicOper This is used to store information about logical
 /// operations that can be used to generate combinational circuits. Map
@@ -262,35 +293,7 @@ private:
 /// @param d_inputs number of inputs
 /// @param d_outputs number of outputs
 /// @param d_iteration ???
-/// @param d_calculateStatsAbc A Boolean value indicating whether ABC statistics
-/// should be calculated
-/// @param d_makeOptimizedFiles A Boolean value indicating whether optimized
-/// files should be created
-/// @param d_makeFirrtl A Boolean value indicating whether FIRRTL files should
-/// be created
-/// @param d_makeBench A Boolean value indicating whether to create Bench files
-/// @param d_gatesInputsInfo A mapping where the key is a string representing
-/// information about the inputs, and the value is a vector of integers
-/// representing information about the inputs for the gates***
-///
-///
-/// */
-
-/// @todo: To add desc some fields
-/// class GenerationParameters
-/// @param d_name Generation name
-/// @param d_requestId request ID
-/// @param d_libraryName library name***
-/// @param d_inputs number of inputs
-/// @param d_outputs number of outputs
-/// @param d_iteration ???
-/// @param d_calculateStatsAbc A Boolean value indicating whether ABC statistics
-/// should be calculated
-/// @param d_makeOptimizedFiles A Boolean value indicating whether optimized
-/// files should be created
-/// @param d_makeFirrtl A Boolean value indicating whether FIRRTL files should
-/// be created
-/// @param d_makeBench A Boolean value indicating whether to create Bench files
+/// @param d_makeGraphML A Boolean value indicating whether to create GraphML files
 /// @param d_gatesInputsInfo A mapping where the key is a string representing
 /// information about the inputs, and the value is a vector of integers
 /// representing information about the inputs for the gates***
@@ -303,26 +306,10 @@ public:
   GenerationParameters(
       const std::string& i_name,
       const std::string& i_requestId,
-      int                i_inputs,
-      int                i_outputs,
-      int                i_iteration,
-      std::string        i_libraryName        = "",
-      bool               i_calculateStatsAbc  = false,
-      bool               i_makeOptimizedFiles = false,
-      bool               i_makeFirrtl         = false,
-      bool               i_makeBench          = false,
       bool               i_makeGraphML        = false
   ) :
     d_name(i_name),
     d_requestId(i_requestId),
-    d_inputs(i_inputs),
-    d_outputs(i_outputs),
-    d_iteration(i_iteration),
-    d_libraryName(i_libraryName),
-    d_calculateStatsAbc(i_calculateStatsAbc),
-    d_makeOptimizedFiles(i_makeOptimizedFiles),
-    d_makeFirrtl(i_makeFirrtl),
-    d_makeBench(i_makeBench),
     d_makeGraphML(i_makeGraphML) {};
 
   std::string getName() const { return d_name; }
@@ -330,12 +317,6 @@ public:
   void        setName(const std::string& i_name) { d_name = i_name; }
 
   std::string getRequestId() const { return d_requestId; }
-
-  std::string getLibraryName() const { return d_libraryName; }
-
-  void        setLibraryName(std::string i_libraryName) {
-    d_libraryName = i_libraryName;
-  }
 
   int  getInputs() const { return d_inputs; }
 
@@ -403,6 +384,17 @@ public:
     d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
     d_generatorRandLevelParameters.setMinElements(i_minElements);
     d_generatorRandLevelParameters.setMaxElements(i_maxElements);
+  }
+  void setRandLevelExperimentalParameters(
+      int i_minLevel,
+      int i_maxLevel,
+      int i_minElements,
+      int i_maxElements
+  ) {
+    d_generatorRandLevelExperimentalParameters.setMinLevel(i_minLevel);
+    d_generatorRandLevelExperimentalParameters.setMaxLevel(i_maxLevel);
+    d_generatorRandLevelExperimentalParameters.setMinElements(i_minElements);
+    d_generatorRandLevelExperimentalParameters.setMaxElements(i_maxElements);
   }
   void setNumOperationParameters(
       const std::map<Gates, int>& i_m,
@@ -540,14 +532,9 @@ public:
 private:
   std::string                             d_name = "";
   std::string                             d_requestId;
-  std::string                             d_libraryName;
   int                                     d_inputs    = 0;
   int                                     d_outputs   = 0;
   int                                     d_iteration = 0;
-  bool                                    d_calculateStatsAbc;
-  bool                                    d_makeOptimizedFiles;
-  bool                                    d_makeFirrtl;
-  bool                                    d_makeBench;
   bool                                    d_makeGraphML;
   std::map<std::string, std::vector<int>> d_gatesInputsInfo;
 
@@ -556,6 +543,7 @@ private:
   CNNFromTruthTableParameters             d_cnfFromTruthTableParameters;
   zhegalkinFromTruthTableParameters       d_ZhegalkinFromTruthTableParameters;
   GeneratorRandLevelParameters            d_generatorRandLevelParameters;
+  GeneratorRandLevelExperimentalParameters d_generatorRandLevelExperimentalParameters;
   GeneratorNumOperationParameters         d_generatorNumOperationParameters;
   GeneratorSummatorParameters             d_generatorSummatorParameters;
   GeneratorComparisonParameters           d_generatorComparisonParameters;

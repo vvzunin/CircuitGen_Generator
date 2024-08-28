@@ -32,7 +32,10 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
     }
   };
 
-  GenerationParameters gParams1(dir, "1", 1, 1, 1);
+  GenerationParameters gParams1(dir, "1");
+  gParams1.setInputs(1);
+  gParams1.setOutputs(1);
+  gParams1.setIteration(1);
   gParams1.setCNFT(true);
   DataBaseGeneratorParameters dbParams1(
       1, 4, 1, 5, 1, FromRandomTruthTable, gParams1
@@ -41,7 +44,10 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
   auto              part1 = generator1.generateTypeForGraph(dbParams1).second;
   std::sort(part1.begin(), part1.end(), by_hash());
 
-  GenerationParameters gParams2(dir, "2", 1, 1, 1);
+  GenerationParameters gParams2(dir, "2");
+  gParams2.setInputs(1);
+  gParams2.setOutputs(1);
+  gParams2.setIteration(1);
   gParams2.setCNFT(true);
   DataBaseGeneratorParameters dbParams2(
       1, 4, 1, 5, 1, FromRandomTruthTable, gParams2
@@ -69,7 +75,10 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
     EXPECT_EQ(part1[i]->calculateHash(), part2[i]->calculateHash());
   }
 
-  GenerationParameters gParams3("FromRandomTruthTable", "3", 1, 1, 1);
+  GenerationParameters gParams3("FromRandomTruthTable", "3");
+  gParams3.setInputs(1);
+  gParams3.setOutputs(1);
+  gParams3.setIteration(1);
   gParams3.setCNFT(true);
   DataBaseGeneratorParameters dbParams3(
       2, 6, 2, 6, 1, FromRandomTruthTable, gParams3
@@ -78,7 +87,10 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
   auto              part3 = generator3.generateTypeForGraph(dbParams3).second;
   std::sort(part3.begin(), part3.end(), by_hash());
 
-  GenerationParameters gParams4("FromRandomTruthTable", "4", 1, 1, 1);
+  GenerationParameters gParams4("FromRandomTruthTable", "4");
+  gParams4.setInputs(1);
+  gParams4.setOutputs(1);
+  gParams4.setIteration(1);
   gParams4.setCNFT(true);
   DataBaseGeneratorParameters dbParams4(
       2, 6, 2, 6, 1, FromRandomTruthTable, gParams4
@@ -104,13 +116,19 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
   std::string          mainDir = "dataset";
   std::string          dir     = "RandLevel";
 
-  GenerationParameters gParams1(dir, "1", 1, 1, 1);
+  GenerationParameters gParams1(dir, "1");
+  gParams1.setInputs(1);
+  gParams1.setOutputs(1);
+  gParams1.setIteration(1);
   gParams1.setRandLevelParameters(1, 5, 1, 5);
   DataBaseGeneratorParameters dbParams1(1, 5, 1, 5, 1, RandLevel, gParams1);
   DataBaseGenerator           generator1(dbParams1);
   generator1.generateTypeDefault(dbParams1);
 
-  GenerationParameters gParams2(dir, "2", 1, 1, 1);
+  GenerationParameters gParams2(dir, "2");
+  gParams2.setInputs(1);
+  gParams2.setOutputs(1);
+  gParams2.setIteration(1);
   gParams2.setRandLevelParameters(1, 5, 1, 5);
   DataBaseGeneratorParameters dbParams2(1, 5, 1, 5, 1, RandLevel, gParams2);
   DataBaseGenerator           generator2(dbParams2);
@@ -130,13 +148,19 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
     );
   }
 
-  GenerationParameters gParams3(dir, "3", 1, 1, 1);
+  GenerationParameters gParams3(dir, "3");
+  gParams3.setInputs(1);
+  gParams3.setOutputs(1);
+  gParams3.setIteration(1);
   gParams3.setRandLevelParameters(1, 10, 1, 10);
   DataBaseGeneratorParameters dbParams3(2, 6, 2, 6, 4, RandLevel, gParams3);
   DataBaseGenerator           generator3(dbParams3);
   generator1.generateTypeDefault(dbParams3);
 
-  GenerationParameters gParams4(dir, "4", 1, 1, 1);
+  GenerationParameters gParams4(dir, "4");
+  gParams4.setInputs(1);
+  gParams4.setOutputs(1);
+  gParams4.setIteration(1);
   gParams4.setRandLevelParameters(1, 10, 1, 10);
   DataBaseGeneratorParameters dbParams4(2, 6, 2, 6, 4, RandLevel, gParams4);
   DataBaseGenerator           generator4(dbParams4);
@@ -171,13 +195,19 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
 //       {Gates::GateNand, 1},
 //       {Gates::GateXnor, 9},
 //       {Gates::GateXor, 12}};
-//   GenerationParameters gParams1(dir, "1", 5, 5, 1);
+//   GenerationParameters gParams1(dir, "1");
+//   gParams1.setInputs(5);
+//   gParams1.setOutputs(5);
+//   gParams1.setIteration(1);
 //   gParams1.setNumOperationParameters(logicOper, false);
 //   DataBaseGeneratorParameters dbParams1(1, 5, 1, 5, 1, NumOperation,
 //   gParams1); DataBaseGenerator           generator1(dbParams1);
 //   generator1.generateTypeDefault(dbParams1);
 
-//   GenerationParameters gParams2(dir, "2", 5, 5, 1);
+//   GenerationParameters gParams2(dir, "2");
+//   gParams2.setInputs(5);
+//   gParams2.setOutputs(5);
+//   gParams2.setIteration(1);
 //   gParams2.setNumOperationParameters(logicOper, false);
 //   DataBaseGeneratorParameters dbParams2(1, 5, 1, 5, 1, NumOperation,
 //   gParams2); DataBaseGenerator           generator2(dbParams2);
@@ -205,7 +235,10 @@ TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
   std::string          mainDir = "dataset";
   std::string          dir     = "RandLevelExperimental";
 
-  GenerationParameters gParams1(dir, "1", 5, 5, 1);
+  GenerationParameters gParams1(dir, "1");
+  gParams1.setInputs(5);
+  gParams1.setOutputs(5);
+  gParams1.setIteration(1);
   gParams1.setRandLevelParameters(1, 5, 1, 5);
   DataBaseGeneratorParameters dbParams1(
       1, 5, 1, 5, 1, RandLevelExperimental, gParams1
@@ -213,7 +246,10 @@ TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
   DataBaseGenerator generator1(dbParams1);
   generator1.generateTypeDefault(dbParams1);
 
-  GenerationParameters gParams2(dir, "2", 5, 5, 1);
+  GenerationParameters gParams2(dir, "2");
+  gParams2.setInputs(5);
+  gParams2.setOutputs(5);
+  gParams2.setIteration(1);
   gParams2.setRandLevelParameters(1, 5, 1, 5);
   DataBaseGeneratorParameters dbParams2(
       1, 5, 1, 5, 1, RandLevelExperimental, gParams2
@@ -236,7 +272,10 @@ TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
     );
   }
 
-  GenerationParameters gParams3(dir, "3", 1, 1, 1);
+  GenerationParameters gParams3(dir, "3");
+  gParams3.setInputs(1);
+  gParams3.setOutputs(1);
+  gParams3.setIteration(1);
   gParams3.setRandLevelParameters(2, 10, 2, 10);
   DataBaseGeneratorParameters dbParams3(
       2, 7, 2, 7, 3, RandLevelExperimental, gParams3
@@ -244,7 +283,10 @@ TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
   DataBaseGenerator generator3(dbParams3);
   generator3.generateTypeDefault(dbParams3);
 
-  GenerationParameters gParams4(dir, "4", 1, 1, 1);
+  GenerationParameters gParams4(dir, "4");
+  gParams4.setInputs(1);
+  gParams4.setOutputs(1);
+  gParams4.setIteration(1);
   gParams4.setRandLevelParameters(2, 10, 2, 10);
   DataBaseGeneratorParameters dbParams4(
       2, 7, 2, 7, 3, RandLevelExperimental, gParams4
