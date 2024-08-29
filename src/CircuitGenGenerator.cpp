@@ -91,6 +91,7 @@ void runGeneration(
       std::cerr << "Unsupported generation type" << std::endl;
       return;
     }
+    std::clog << "Type of generation: " << data["type_of_generation"];
 
     std::string datasetId    = data.contains("dataset_id")
                                  ? static_cast<std::string>(data["dataset_id"])
