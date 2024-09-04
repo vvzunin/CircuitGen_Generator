@@ -10,6 +10,7 @@ project(
   LANGUAGES CXX
 )
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_INIT} -std=c++17 -fPIC")
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
@@ -43,7 +44,7 @@ set(ORIENTED_GRAPH CircuitGenGraph)
 FetchContent_Declare(
   ${ORIENTED_GRAPH}
   GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
-  GIT_TAG 1b83cd46d8ccc0ed4dc237d880bdd8dcda3ee542
+  GIT_TAG fe72b68
 )
 FetchContent_MakeAvailable(${ORIENTED_GRAPH})
 

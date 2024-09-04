@@ -56,18 +56,18 @@ TEST(TestSettings, TestDefaultLoadSettings) {
   std::shared_ptr<Settings> t =
       Settings::getInstance("test_default_load_settings");
 
-  std::map<int32_t, std::vector<std::string>> operToHierAns;
-  operToHierAns[0]  = {"="};
-  operToHierAns[1]  = {"xnor"};
-  operToHierAns[2]  = {"xor"};
-  operToHierAns[3]  = {"nand"};
-  operToHierAns[4]  = {"and"};
-  operToHierAns[5]  = {"nor"};
-  operToHierAns[6]  = {"or"};
-  operToHierAns[7]  = {"not"};
-  operToHierAns[8]  = {"buf"};
-  operToHierAns[9]  = {"1'b0"};
-  operToHierAns[10] = {""};
+  std::vector<std::string_view> operToHierAns(11);
+  operToHierAns[0]  = "=";
+  operToHierAns[1]  = "xnor";
+  operToHierAns[2]  = "xor";
+  operToHierAns[3]  = "nand";
+  operToHierAns[4]  = "and";
+  operToHierAns[5]  = "nor";
+  operToHierAns[6]  = "or";
+  operToHierAns[7]  = "not";
+  operToHierAns[8]  = "buf";
+  operToHierAns[9]  = "1'b0";
+  operToHierAns[10] = "";
 
   std::map<std::string, std::string> operToNameAns;
 
@@ -83,8 +83,10 @@ TEST(TestSettings, TestDefaultLoadSettings) {
   operToNameAns["xor"]  = "xor";
   operToNameAns["xnor"] = "xnor";
 
-  for (const auto& [key, value] : operToHierAns) {
-    EXPECT_EQ(value, t->fromOperationsToHierarchy(key));
+  int32_t count = 0;
+  for (auto value : operToHierAns) {
+    EXPECT_EQ(value, t->fromOperationsToHierarchy(count));
+    ++count;
   }
 
   for (const auto& [key, value] : operToNameAns) {
@@ -130,22 +132,22 @@ TEST(
         Settings::getInstance(" ");  // Here we call implicitly loadSettings.
     // Below I going to write down correct samples that I want to use to compare
     // with the output of the loadSettings
-    std::map<int32_t, std::vector<std::string>> correctOperationsToHierarchy = {
-        {10, {""}},
-        {0, {"="}},
-        {9, {"1'b0"}},
-        {4, {"and"}},
-        {3, {"nand"}},
-        {6, {"or"}},
-        {5, {"nor"}},
-        {7, {"not"}},
-        {8, {"buf"}},
-        {2, {"xor"}},
-        {1, {"xnor"}}};
+    std::map<int32_t, std::string_view> correctOperationsToHierarchy = {
+        {10, ""},
+        {0, "="},
+        {9, "1'b0"},
+        {4, "and"},
+        {3, "nand"},
+        {6, "or"},
+        {5, "nor"},
+        {7, "not"},
+        {8, "buf"},
+        {2, "xor"},
+        {1, "xnor"}};
 
     for (auto const& [key, val] : correctOperationsToHierarchy) {
       EXPECT_EQ(
-          correctOperationsToHierarchy[key],
+          val,
           SetPtr->fromOperationsToHierarchy(key)
       );
     }
@@ -162,7 +164,7 @@ TEST(
     // Below I going to write down correct samples that I want to use to compare
     // with the output of the loadSettings
 
-    std::map<std::string, std::string> correctOperationsToName = {
+    std::map<std::string_view, std::string> correctOperationsToName = {
         {"", "input"},
         {"=", "output"},
         {"1'b0", "const"},
@@ -173,11 +175,12 @@ TEST(
         {"not", "not"},
         //     {"buf" , "buf"},
         {"xor", "xor"},
-        {"xnor", "xnor"}};
+        {"xnor", "xnor"}
+    };
 
-    for (auto const& [key, val] : correctOperationsToName) {
+    for (auto [key, val] : correctOperationsToName) {
       EXPECT_EQ(
-          correctOperationsToName[key], SetPtr->fromOperationsToName(key)
+          val, SetPtr->fromOperationsToName(key)
       );
     }
   }

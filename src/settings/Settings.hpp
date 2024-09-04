@@ -75,10 +75,10 @@ enum GenerationTypes {    /// Generating a circuit from a random truth table
 ///
 
 class Settings : public DefaultSettings {
-protected:
+public:
   Settings(const std::string& i_path) : DefaultSettings(i_path) {}
 
-public:
+  static void resetSingletone() { d_singleton = nullptr; }
   Settings(Settings& other)                                   = delete;
   void                             operator=(const Settings&) = delete;
 
@@ -116,30 +116,6 @@ public:
   /// @return std::string Name of the current instance of settings
 
   std::string                      getInstanceName() const;
-
-  /// @brief getLogicOperation Gets information about a logical operation by
-  /// its name
-  /// @param i_op A string containing the name of the logical operation
-  /// @return std::pair<std::string, int32_t> A pair containing the name and ID
-  /// of the logical operation
-  /// @code
-  /// Settings settingsInstance;
-  /// try {
-  /// // Get information about the logical operation "and"
-  /// std::pair<std::string, int32_t> operationInfo =
-  /// settingsInstance.getLogicOperation("and");
-  /// // Output information about the logical operation
-  /// std::cout << "Operation name: " << operationInfo.first << std::endl;
-  /// std::cout << "Operation ID: " << operationInfo.second << std::endl;
-  /// } catch (const std::out_of_range& e) {
-  /// // Handle an exception if the operation is not found
-  /// std::cerr << "Error: " << e.what() << std::endl;
-  /// }
-  /// @endcode
-  /// @throws std::out_of_range If the passed operation name does not exist
-  /// in the list of logical operations
-
-  std::pair<std::string, int32_t>  getLogicOperation(const std::string& i_op);
 
   /// @brief getLogicOperationsKeys Returns the keys of logical operations
   /// @return std::vector<Gates> A vector containing the keys of logical
@@ -187,29 +163,6 @@ public:
 
   std::pair<std::vector<bool>, std::vector<Gates>> getLogicOperationsWithGates(
   );
-
-  /// @brief fromOperationsToName Converts the operation to its name
-  /// @param i_op a string representing the operation
-  /// @return std::string Operation name
-  /// @code
-  /// // Creating an instance of the Settings class or getting it from
-  /// an existing object
-  /// std::shared_ptr<Settings> settingsInstance =
-  /// Settings::getInstance("/path/to/settings");
-  /// Convert the operation to its name
-  /// std::string operationName;
-  /// try
-  /// {
-  /// operationName = settingsInstance->fromOperationsToName("and");
-  /// std::cout << "Operation name: " << operationName << std::endl;
-  /// } catch (const std::out_of_range& e) {
-  /// std::cerr << "Error: " << e.what() << std::endl;
-  /// }
-  /// @endcode
-  /// @throw std::out_of_range If the passed operation does not exist in the
-  /// list of operations
-
-  std::string fromOperationsToName(const std::string& i_op) const;
 
   /// @brief getDatasetPath Returns the path to the dataset
   /// @return std::string The path to the dataset
@@ -284,7 +237,7 @@ public:
   /// @brief getPathNadezhda Returns the path to Nadezhda
   /// @return std::string Path to Nadezhda
 
-  std::string              getPathNadezhda() const;
+  std::string getPathNadezhda() const;
 
   /// @brief getNadezhdaVar Gets the value of a variable from the Nadezhda
   /// dictionary by key
@@ -292,31 +245,7 @@ public:
   /// @return std::string The value corresponding to the provided key in the
   /// Nadezhda dictionary
 
-  std::string              getNadezhdaVar(const std::string& key) const;
-
-  /// @brief fromOperationsToHierarchy Converts an operation key to its
-  /// corresponding hierarchy
-  /// @param key The key representing the operation
-  /// @return std::vector<std::string> The hierarchy associated with the
-  /// operation key
-  /// @code
-  /// // Creating an instance of the Settings class or getting it from an
-  /// existing object std::shared_ptr<Settings> settingsInstance =
-  /// Settings::getInstance("/path/to/settings");
-  /// // Get the hierarchy associated with the operation key 5
-  /// std::vector<std::string> operationHierarchy =
-  /// settingsInstance->fromOperationsToHierarchy(5);
-  /// // Output the hierarchy
-  /// for(const auto& element : operationHierarchy)
-  /// {
-  ///     std::cout << element << " ";
-  /// }
-  /// std::cout << std::endl;
-  /// @endcode
-  /// @throws std::out_of_range If the provided key does not exist in the
-  /// internal map of operation keys to hierarchies
-
-  std::vector<std::string> fromOperationsToHierarchy(int32_t key) const;
+  std::string getNadezhdaVar(const std::string& key) const;
 
   /// @brief getNumThread Retrieves the number of threads used for processing
   /// @return uint16_t The number of threads configured for processing
@@ -329,24 +258,8 @@ public:
   /// std::cout << "Number of threads: " << numThreads << std::endl;
   /// @endcode
 
-  uint16_t                 getNumThread() const;
-  void                     setNumThread(uint16_t i_numThreads);
-
-  /// @brief parseStringToGate Converts a string representation of a gate to
-  /// its corresponding enum value
-  /// @param i_gate The string representation of the gate
-  /// @return Gates The enum value corresponding to the provided string
-  /// representation of the gate
-  /// @code
-  /// // Creating an instance of the Settings class or getting it from an
-  /// existing object std::shared_ptr<Settings> settingsInstance =
-  /// Settings::getInstance("/path/to/settings");
-  /// // Convert the string representation "and" to its corresponding enum value
-  /// Gates gate = settingsInstance->parseStringToGate("and");
-  /// std::cout << "Enum value of 'and': " << gate << std::endl;
-  /// @endcode
-
-  Gates                    parseStringToGate(std::string i_gate) const;
+  uint16_t    getNumThread() const;
+  void        setNumThread(uint16_t i_numThreads);
 
   /// @brief parseGateToString Converts an enum value of a gate to its
   /// corresponding string representation
@@ -366,26 +279,6 @@ public:
   /// settingsInstance->parseGateToString(Gates::GateAnd); std::cout << "String
   /// representation of Gates::GateAnd: " << gateString << std::endl;
   /// @endcode
-
-  std::string              parseGateToString(Gates gate) const;
-
-  /// @brief parseVertexToString Converts an enum value of a vertex type to its
-  /// corresponding string representation
-  /// @param vertex The enum value representing the vertex type
-  /// @return std::string The string representation of the provided vertex type
-  /// enum value
-  /// @code
-  /// // Creating an instance of the Settings class or getting it from an
-  /// existing object std::shared_ptr<Settings> settingsInstance =
-  /// Settings::getInstance("/path/to/settings");
-  /// // Convert the enum value VertexTypes::input to its corresponding string
-  /// representation std::string vertexString =
-  /// settingsInstance->parseVertexToString(VertexTypes::input); std::cout <<
-  /// "String representation of VertexTypes::input: " << vertexString <<
-  /// std::endl;
-  /// @endcode
-
-  std::string              parseVertexToString(VertexTypes vertex) const;
 
 private:
   /// @brief SaveSettings Saves the current settings to a file
@@ -418,59 +311,7 @@ private:
       {"resynthesis", "Nadezhda/Scripts/resynthesis_local_rewriting.pyc"},
       {"reliability", "Nadezhda/Scripts/check_reliability.pyc"},
       {"liberty", "Nadezda/Test/Nangate.lib"}};
-  uint16_t                                               d_numThreads      = 4;
-  std::map<std::string, std::pair<std::string, int32_t>> d_logicOperations = {
-      {"input", {"", 10}},
-      {"output", {"=", 0}},
-      {"const", {"1'b0", 9}},
-      {"and", {"and", 4}},
-      {"nand", {"nand", 3}},
-      {"or", {"or", 6}},
-      {"nor", {"nor", 5}},
-      {"not", {"not", 7}},
-      {"buf", {"buf", 8}},
-      {"xor", {"xor", 2}},
-      {"xnor", {"xnor", 1}}
-
-  };
-
-  std::map<std::string, Gates> stringToGate = {
-      {"and", Gates::GateAnd},
-      {"nand", Gates::GateNand},
-      {"or", Gates::GateOr},
-      {"nor", Gates::GateNor},
-      {"not", Gates::GateNot},
-      {"buf", Gates::GateBuf},
-      {"xor", Gates::GateXor},
-      {"xnor", Gates::GateXnor}};
-
-  std::map<Gates, std::string> gateToString = {
-      {Gates::GateAnd, "and"},
-      {Gates::GateNand, "nand"},
-      {Gates::GateOr, "or"},
-      {Gates::GateNor, "nor"},
-      {Gates::GateNot, "not"},
-      {Gates::GateBuf, "buf"},
-      {Gates::GateXor, "xor"},
-      {Gates::GateXnor, "xnor"},
-      {Gates::GateDefault, "ERROR"}};
-
-  std::vector<Gates> d_logicElements = {
-      Gates::GateAnd,
-      Gates::GateNand,
-      Gates::GateOr,
-      Gates::GateNor,
-      Gates::GateXor,
-      Gates::GateXnor,
-      Gates::GateNot,
-      Gates::GateBuf};
-
-  std::map<VertexTypes, std::string> vertexToString = {
-      {VertexTypes::input, "input"},
-      {VertexTypes::output, "output"},
-      {VertexTypes::constant, "const"},
-      {VertexTypes::subGraph, "subGraph"},
-      {VertexTypes::gate, "g"}};
+  uint16_t                               d_numThreads           = 4;
 
   std::map<GenerationTypes, std::string> generationTypeToPrefix = {
       {GenerationTypes::FromRandomTruthTable, "CCGRTT"},
@@ -489,8 +330,6 @@ private:
       {GenerationTypes::Decoder, "CCGDCR"},
       {GenerationTypes::ALU, "CCGALU"}};
 
-  std::map<int32_t, std::vector<std::string>> d_operationsToHierarchy;
-  std::map<std::string, std::string>          d_operationsToName;
-  uint32_t                                    d_maxInputs  = 50;
-  uint32_t                                    d_maxOutputs = 50;
+  uint32_t d_maxInputs  = 50;
+  uint32_t d_maxOutputs = 50;
 };

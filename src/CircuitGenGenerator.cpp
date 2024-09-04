@@ -231,8 +231,7 @@ void runGeneration(
           "num_nor",
           "num_buf",
           "num_xor",
-          "num_xnor"
-      };
+          "num_xnor"};
 
       std::map<std::string, Gates> stringToGate = {
           {"and", Gates::GateAnd},
@@ -242,8 +241,7 @@ void runGeneration(
           {"not", Gates::GateNot},
           {"buf", Gates::GateBuf},
           {"xor", Gates::GateXor},
-          {"xnor", Gates::GateXnor}
-      };
+          {"xnor", Gates::GateXnor}};
 
       std::map<Gates, int32_t> m;
 
@@ -503,8 +501,7 @@ void runGeneration(
           "num_nor",
           "num_buf",
           "num_xor",
-          "num_xnor"
-      };
+          "num_xnor"};
       std::map<std::string, Gates> stringToGate = {
           {"and", Gates::GateAnd},
           {"nand", Gates::GateNand},
@@ -513,8 +510,7 @@ void runGeneration(
           {"not", Gates::GateNot},
           {"buf", Gates::GateBuf},
           {"xor", Gates::GateXor},
-          {"xnor", Gates::GateXnor}
-      };
+          {"xnor", Gates::GateXnor}};
       std::map<Gates, int32_t> m;
       bool                     LeaveEmptyOut = false;
       if (data.contains("leave_empty_out"))
