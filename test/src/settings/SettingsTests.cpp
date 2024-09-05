@@ -83,7 +83,7 @@ TEST(TestSettings, TestDefaultLoadSettings) {
   operToNameAns["xor"]  = "xor";
   operToNameAns["xnor"] = "xnor";
 
-  int32_t count = 0;
+  int32_t count         = 0;
   for (auto value : operToHierAns) {
     EXPECT_EQ(value, t->fromOperationsToHierarchy(count));
     ++count;
@@ -146,10 +146,7 @@ TEST(
         {1, "xnor"}};
 
     for (auto const& [key, val] : correctOperationsToHierarchy) {
-      EXPECT_EQ(
-          val,
-          SetPtr->fromOperationsToHierarchy(key)
-      );
+      EXPECT_EQ(val, SetPtr->fromOperationsToHierarchy(key));
     }
   }
 }
@@ -175,13 +172,10 @@ TEST(
         {"not", "not"},
         //     {"buf" , "buf"},
         {"xor", "xor"},
-        {"xnor", "xnor"}
-    };
+        {"xnor", "xnor"}};
 
     for (auto [key, val] : correctOperationsToName) {
-      EXPECT_EQ(
-          val, SetPtr->fromOperationsToName(key)
-      );
+      EXPECT_EQ(val, SetPtr->fromOperationsToName(key));
     }
   }
 }
