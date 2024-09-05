@@ -392,17 +392,17 @@ bool Circuit::generate(
   LOG(INFO) << "Writing verilog for " << d_circuitName;
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
-  // LOG(INFO) << "Writing verilog ended for " << d_circuitName;
+  LOG(INFO) << "Writing verilog ended for " << d_circuitName;
   if (i_makeGraphMLClassic || i_makeGraphMLOpenABCD
       || i_makeGraphMLPseudoABCD) {
     d_graph->updateLevels();
   }
-  // LOG(INFO) << "Writing DOT for " << d_circuitName;
-  // if (!graphToDOT(d_path, i_pathExists))
-  //   return false;
-  // LOG(INFO) << "Writing DOT ended for " << d_circuitName;
+  LOG(INFO) << "Writing DOT for " << d_circuitName;
+  if (!graphToDOT(d_path, i_pathExists))
+    return false;
+  LOG(INFO) << "Writing DOT ended for " << d_circuitName;
 
-  // LOG(INFO) << "Writing GraphML for " << d_circuitName;
+  LOG(INFO) << "Writing GraphML for " << d_circuitName;
   if (graphToGraphML(
           d_path,
           i_makeGraphMLClassic,
@@ -410,7 +410,7 @@ bool Circuit::generate(
           i_makeGraphMLOpenABCD,
           i_pathExists
       )) {
-    // LOG(INFO) << "Writing GraphML ended for " << d_circuitName;
+    LOG(INFO) << "Writing GraphML ended for " << d_circuitName;
   }
 
   updateCircuitParameters(d_graph);
@@ -419,7 +419,7 @@ bool Circuit::generate(
   std::ofstream i_outputFile(filename);
 
   saveParameters(d_graph, i_outputFile);
-  // LOG(INFO) << "Circuit parameters saved." << d_circuitName;
+  LOG(INFO) << "Circuit parameters saved." << d_circuitName;
 
   // TODO: costul
   // if (checkExistingHash() || d_circuitParameters.d_reliability == 0 ||
