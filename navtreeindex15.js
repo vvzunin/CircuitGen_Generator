@@ -1,18 +1,5 @@
 var NAVTREEINDEX15 =
 {
-"structdetail_1_1has__key__compare.html":[13,0,0,31],
-"structdetail_1_1has__non__default__from__json.html":[13,0,0,27],
-"structdetail_1_1has__non__default__from__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_912047717fa07cfa9d99fe9eafcf1e11e.html":[13,0,0,28],
-"structdetail_1_1has__non__default__from__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_912047717fa07cfa9d99fe9eafcf1e11e.html#a581e9f301c4309a0b261bfe2d13f605c":[13,0,0,28,0],
-"structdetail_1_1has__to__json.html":[13,0,0,29],
-"structdetail_1_1has__to__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_9is__basic__json_3_01T_01_4_1_1value_01_4_01_4.html":[13,0,0,30],
-"structdetail_1_1has__to__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_9is__basic__json_3_01T_01_4_1_1value_01_4_01_4.html#a883483f80299ff65db2469aa18b2cf78":[13,0,0,30,0],
-"structdetail_1_1identity__tag.html":[13,0,0,102],
-"structdetail_1_1integer__sequence.html":[13,0,0,9],
-"structdetail_1_1integer__sequence.html#a37ef697ff49523bc0fe5e83afabd8a09":[13,0,0,9,0],
-"structdetail_1_1internal__iterator.html":[13,0,0,137],
-"structdetail_1_1internal__iterator.html#a2ad2dc9ea8bba2b50811e34f905350bd":[13,0,0,137,0],
-"structdetail_1_1internal__iterator.html#a8bb8034d2d35fb129e0dd742ce024e44":[13,0,0,137,2],
 "structdetail_1_1internal__iterator.html#acf787101c4778e750cfdb0f44066a6ef":[13,0,0,137,1],
 "structdetail_1_1is__basic__json.html":[13,0,0,18],
 "structdetail_1_1is__basic__json_3_01NLOHMANN__BASIC__JSON__TPL_01_4.html":[13,0,0,19],
@@ -249,5 +236,6 @@ var NAVTREEINDEX15 =
 "structstd_1_1hash_3_01nlohmann_1_1NLOHMANN__BASIC__JSON__TPL_01_4.html":[13,0,2,3],
 "structstd_1_1hash_3_01nlohmann_1_1NLOHMANN__BASIC__JSON__TPL_01_4.html#aeadbcf51ae3e58f8daa2025aa7737dd8":[13,0,2,3,0],
 "structstd_1_1less_3_01_1_1nlohmann_1_1detail_1_1value__t_01_4.html":[13,0,2,4],
-"structstd_1_1less_3_01_1_1nlohmann_1_1detail_1_1value__t_01_4.html#acb798e1a5706e5e08b18ca182cd17027":[13,0,2,4,0]
+"structstd_1_1less_3_01_1_1nlohmann_1_1detail_1_1value__t_01_4.html#acb798e1a5706e5e08b18ca182cd17027":[13,0,2,4,0],
+"todo.html":[9]
 };

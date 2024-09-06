@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['formatflags_4248',['FormatFlags',['../namespaceel_1_1base.html#a28939c5a884e67fcf12259f4b8848e00',1,'el::base']]]
+  ['formatflags_4225',['FormatFlags',['../namespaceel_1_1base.html#a28939c5a884e67fcf12259f4b8848e00',1,'el::base']]]
 ];

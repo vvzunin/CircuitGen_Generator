@@ -97,7 +97,6 @@ $(document).ready(function(){initNavTree('classSettings.html',''); initResizable
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
@@ -113,7 +112,7 @@ Inheritance diagram for Settings:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSettings__inherit__graph.png" border="0" usemap="#aSettings_inherit__map" alt="Inheritance graph"/></div>
 <map name="aSettings_inherit__map" id="aSettings_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,131,247,560"/>
+<area shape="rect" title=" " alt="" coords="5,131,247,575"/>
 <area shape="rect" title=" " alt="" coords="65,5,187,83"/>
 </map>
 </div>
@@ -122,13 +121,15 @@ Collaboration diagram for Settings:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSettings__coll__graph.png" border="0" usemap="#aSettings_coll__map" alt="Collaboration graph"/></div>
 <map name="aSettings_coll__map" id="aSettings_coll__map">
-<area shape="rect" title=" " alt="" coords="5,131,247,560"/>
+<area shape="rect" title=" " alt="" coords="5,131,247,575"/>
 <area shape="rect" title=" " alt="" coords="65,5,187,83"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a692db3013821565d261527cc0edeeb0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a692db3013821565d261527cc0edeeb0e">Settings</a> (const std::string &amp;i_path)</td></tr>
+<tr class="separator:a692db3013821565d261527cc0edeeb0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae25bcc96acb95e2bab23f2df682c9803"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#ae25bcc96acb95e2bab23f2df682c9803">Settings</a> (<a class="el" href="classSettings.html">Settings</a> &amp;other)=delete</td></tr>
 <tr class="separator:ae25bcc96acb95e2bab23f2df682c9803"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac1daa80e77ea4fd79c9506b31852765"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#aac1daa80e77ea4fd79c9506b31852765">operator=</a> (const <a class="el" href="classSettings.html">Settings</a> &amp;)=delete</td></tr>
@@ -139,18 +140,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a518f942310a5e9283f5a7e07ce1bf018"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a518f942310a5e9283f5a7e07ce1bf018">getInstanceName</a> () const</td></tr>
 <tr class="memdesc:a518f942310a5e9283f5a7e07ce1bf018"><td class="mdescLeft">&#160;</td><td class="mdescRight">getInstanceName Gets the name of the current instance of settings  <a href="classSettings.html#a518f942310a5e9283f5a7e07ce1bf018">More...</a><br /></td></tr>
 <tr class="separator:a518f942310a5e9283f5a7e07ce1bf018"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada5c1478fe34510f10a9ada26bf80d86"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::string, int32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#ada5c1478fe34510f10a9ada26bf80d86">getLogicOperation</a> (const std::string &amp;i_op)</td></tr>
-<tr class="memdesc:ada5c1478fe34510f10a9ada26bf80d86"><td class="mdescLeft">&#160;</td><td class="mdescRight">getLogicOperation Gets information about a logical operation by its name  <a href="classSettings.html#ada5c1478fe34510f10a9ada26bf80d86">More...</a><br /></td></tr>
-<tr class="separator:ada5c1478fe34510f10a9ada26bf80d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77b6cdd4b2358694786317ccbc2488fb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Gates &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a77b6cdd4b2358694786317ccbc2488fb">getLogicOperationsKeys</a> ()</td></tr>
 <tr class="memdesc:a77b6cdd4b2358694786317ccbc2488fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">getLogicOperationsKeys Returns the keys of logical operations  <a href="classSettings.html#a77b6cdd4b2358694786317ccbc2488fb">More...</a><br /></td></tr>
 <tr class="separator:a77b6cdd4b2358694786317ccbc2488fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ac97e84dd5832932cbc2adfcc46c418"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::vector&lt; bool &gt;, std::vector&lt; Gates &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a8ac97e84dd5832932cbc2adfcc46c418">getLogicOperationsWithGates</a> ()</td></tr>
 <tr class="memdesc:a8ac97e84dd5832932cbc2adfcc46c418"><td class="mdescLeft">&#160;</td><td class="mdescRight">getLogicOperationsWithGates Returns logical operations along with information about the presence of a single input The method returns a pair of vectors: the first vector contains information about whether each a logical operation has only one input(true if this is the case, false otherwise), and the second vector contains the keys(enumerated values) of all available logical operations  <a href="classSettings.html#a8ac97e84dd5832932cbc2adfcc46c418">More...</a><br /></td></tr>
 <tr class="separator:a8ac97e84dd5832932cbc2adfcc46c418"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f1c541b2966bafedef3cb6f73f94978"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a5f1c541b2966bafedef3cb6f73f94978">fromOperationsToName</a> (const std::string &amp;i_op) const</td></tr>
-<tr class="memdesc:a5f1c541b2966bafedef3cb6f73f94978"><td class="mdescLeft">&#160;</td><td class="mdescRight">fromOperationsToName Converts the operation to its name  <a href="classSettings.html#a5f1c541b2966bafedef3cb6f73f94978">More...</a><br /></td></tr>
-<tr class="separator:a5f1c541b2966bafedef3cb6f73f94978"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a838dbb2c30102f84ff0f9532aac665c8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a838dbb2c30102f84ff0f9532aac665c8">getDatasetPath</a> () const</td></tr>
 <tr class="memdesc:a838dbb2c30102f84ff0f9532aac665c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">getDatasetPath Returns the path to the dataset  <a href="classSettings.html#a838dbb2c30102f84ff0f9532aac665c8">More...</a><br /></td></tr>
 <tr class="separator:a838dbb2c30102f84ff0f9532aac665c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,39 +176,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2b6e2dca09331c1ca30b748867428edc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a2b6e2dca09331c1ca30b748867428edc">getNadezhdaVar</a> (const std::string &amp;key) const</td></tr>
 <tr class="memdesc:a2b6e2dca09331c1ca30b748867428edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">getNadezhdaVar Gets the value of a variable from the Nadezhda dictionary by key  <a href="classSettings.html#a2b6e2dca09331c1ca30b748867428edc">More...</a><br /></td></tr>
 <tr class="separator:a2b6e2dca09331c1ca30b748867428edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7108e99e67b7e1ff105a26662db1ddf9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a7108e99e67b7e1ff105a26662db1ddf9">fromOperationsToHierarchy</a> (int32_t key) const</td></tr>
-<tr class="memdesc:a7108e99e67b7e1ff105a26662db1ddf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">fromOperationsToHierarchy Converts an operation key to its corresponding hierarchy  <a href="classSettings.html#a7108e99e67b7e1ff105a26662db1ddf9">More...</a><br /></td></tr>
-<tr class="separator:a7108e99e67b7e1ff105a26662db1ddf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa19d3234df7aef337a47622299a7b37"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#aaa19d3234df7aef337a47622299a7b37">getNumThread</a> () const</td></tr>
 <tr class="memdesc:aaa19d3234df7aef337a47622299a7b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">getNumThread Retrieves the number of threads used for processing  <a href="classSettings.html#aaa19d3234df7aef337a47622299a7b37">More...</a><br /></td></tr>
 <tr class="separator:aaa19d3234df7aef337a47622299a7b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4733c4f52a79f3f0f992d784bfa7412"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#af4733c4f52a79f3f0f992d784bfa7412">setNumThread</a> (uint16_t i_numThreads)</td></tr>
 <tr class="separator:af4733c4f52a79f3f0f992d784bfa7412"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a888d5cd6415b67280d17711cb5ede9"><td class="memItemLeft" align="right" valign="top">Gates&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a5a888d5cd6415b67280d17711cb5ede9">parseStringToGate</a> (std::string i_gate) const</td></tr>
-<tr class="memdesc:a5a888d5cd6415b67280d17711cb5ede9"><td class="mdescLeft">&#160;</td><td class="mdescRight">parseStringToGate Converts a string representation of a gate to its corresponding enum value  <a href="classSettings.html#a5a888d5cd6415b67280d17711cb5ede9">More...</a><br /></td></tr>
-<tr class="separator:a5a888d5cd6415b67280d17711cb5ede9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada36e22edd22840668ca152e58261293"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#ada36e22edd22840668ca152e58261293">parseGateToString</a> (Gates gate) const</td></tr>
-<tr class="memdesc:ada36e22edd22840668ca152e58261293"><td class="mdescLeft">&#160;</td><td class="mdescRight">parseGateToString Converts an enum value of a gate to its corresponding string representation  <a href="classSettings.html#ada36e22edd22840668ca152e58261293">More...</a><br /></td></tr>
-<tr class="separator:ada36e22edd22840668ca152e58261293"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0237bbfae43cdc7ed6a8d68877f1bd35"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a0237bbfae43cdc7ed6a8d68877f1bd35">parseVertexToString</a> (VertexTypes vertex) const</td></tr>
-<tr class="memdesc:a0237bbfae43cdc7ed6a8d68877f1bd35"><td class="mdescLeft">&#160;</td><td class="mdescRight">parseVertexToString Converts an enum value of a vertex type to its corresponding string representation  <a href="classSettings.html#a0237bbfae43cdc7ed6a8d68877f1bd35">More...</a><br /></td></tr>
-<tr class="separator:a0237bbfae43cdc7ed6a8d68877f1bd35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab1d726005016651620aca607e4794b24"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#ab1d726005016651620aca607e4794b24">resetSingletone</a> ()</td></tr>
+<tr class="separator:ab1d726005016651620aca607e4794b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30ad5eb680e7894684c46fa5623870f3"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classSettings.html">Settings</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">getInstance</a> (const std::string &amp;i_value)</td></tr>
 <tr class="memdesc:a30ad5eb680e7894684c46fa5623870f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">getInstance Gets a single instance of the <a class="el" href="classSettings.html">Settings</a> class The method provides creation and receipt of a single instance of the <a class="el" href="classSettings.html">Settings</a> class with the specified value of the settings path.  <a href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">More...</a><br /></td></tr>
 <tr class="separator:a30ad5eb680e7894684c46fa5623870f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a692db3013821565d261527cc0edeeb0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a692db3013821565d261527cc0edeeb0e">Settings</a> (const std::string &amp;i_path)</td></tr>
-<tr class="separator:a692db3013821565d261527cc0edeeb0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a19d1e2e2df8600f7e2cd1c64363fe60f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a19d1e2e2df8600f7e2cd1c64363fe60f">SaveSettings</a> ()</td></tr>
-<tr class="memdesc:a19d1e2e2df8600f7e2cd1c64363fe60f"><td class="mdescLeft">&#160;</td><td class="mdescRight">SaveSettings Saves the current settings to a file This method saves the current settings of the <a class="el" href="classSettings.html">Settings</a> object to a file specified by d_fileName.  <a href="classSettings.html#a19d1e2e2df8600f7e2cd1c64363fe60f">More...</a><br /></td></tr>
+<tr class="memdesc:a19d1e2e2df8600f7e2cd1c64363fe60f"><td class="mdescLeft">&#160;</td><td class="mdescRight">parseGateToString Converts an enum value of a gate to its corresponding string representation  <a href="classSettings.html#a19d1e2e2df8600f7e2cd1c64363fe60f">More...</a><br /></td></tr>
 <tr class="separator:a19d1e2e2df8600f7e2cd1c64363fe60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -236,22 +216,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a4100bd61a767f0904a54dd50de6ae98d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf4d7718bc1b94373f846b41cd370caf"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#aaf4d7718bc1b94373f846b41cd370caf">d_numThreads</a> = 4</td></tr>
 <tr class="separator:aaf4d7718bc1b94373f846b41cd370caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb92c590b1be39c06849f13dce1a1f20"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::pair&lt; std::string, int32_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#abb92c590b1be39c06849f13dce1a1f20">d_logicOperations</a></td></tr>
-<tr class="separator:abb92c590b1be39c06849f13dce1a1f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe5072472603b12235614b71022a4140"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, Gates &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#afe5072472603b12235614b71022a4140">stringToGate</a></td></tr>
-<tr class="separator:afe5072472603b12235614b71022a4140"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab74bc9714f5f5875fb4ee9febf7600f7"><td class="memItemLeft" align="right" valign="top">std::map&lt; Gates, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#ab74bc9714f5f5875fb4ee9febf7600f7">gateToString</a></td></tr>
-<tr class="separator:ab74bc9714f5f5875fb4ee9febf7600f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96e7f9cd3204378ac43d671ea72aeb8e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Gates &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a96e7f9cd3204378ac43d671ea72aeb8e">d_logicElements</a></td></tr>
-<tr class="separator:a96e7f9cd3204378ac43d671ea72aeb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3baf3952239682c56079b605c7a462f"><td class="memItemLeft" align="right" valign="top">std::map&lt; VertexTypes, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#ac3baf3952239682c56079b605c7a462f">vertexToString</a></td></tr>
-<tr class="separator:ac3baf3952239682c56079b605c7a462f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac36e1b1e5631eb3f2881e6eb8a8c7855"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265">GenerationTypes</a>, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#ac36e1b1e5631eb3f2881e6eb8a8c7855">generationTypeToPrefix</a></td></tr>
 <tr class="separator:ac36e1b1e5631eb3f2881e6eb8a8c7855"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17f47556f92815f26b23ebaee487d9dc"><td class="memItemLeft" align="right" valign="top">std::map&lt; int32_t, std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#a17f47556f92815f26b23ebaee487d9dc">d_operationsToHierarchy</a></td></tr>
-<tr class="separator:a17f47556f92815f26b23ebaee487d9dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaae7b30262048d55ba5d001df6b61bb6"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#aaae7b30262048d55ba5d001df6b61bb6">d_operationsToName</a></td></tr>
-<tr class="separator:aaae7b30262048d55ba5d001df6b61bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacfd5e6641413b73a40a69db3ed1de3a"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#aacfd5e6641413b73a40a69db3ed1de3a">d_maxInputs</a> = 50</td></tr>
 <tr class="separator:aacfd5e6641413b73a40a69db3ed1de3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab58104213fa914bd08426dbb58cf3a3d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSettings.html#ab58104213fa914bd08426dbb58cf3a3d">d_maxOutputs</a> = 50</td></tr>
@@ -304,26 +270,10 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classSettings_a692db3013821565d261527cc0edeeb0e_icgraph.png" border="0" usemap="#aclassSettings_a692db3013821565d261527cc0edeeb0e_icgraph" alt=""/></div>
-<map name="aclassSettings_a692db3013821565d261527cc0edeeb0e_icgraph" id="aclassSettings_a692db3013821565d261527cc0edeeb0e_icgraph">
-<area shape="rect" title=" " alt="" coords="804,137,940,163"/>
-<area shape="rect" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3" title="getInstance Gets a single instance of the Settings class The method provides creation and receipt of ..." alt="" coords="597,137,756,163"/>
-<area shape="rect" href="CircuitGenGenerator_8cpp.html#a069401944494f397436b755e78f14adf" title=" " alt="" coords="411,86,525,113"/>
-<area shape="rect" href="SettingsTests_8cpp.html#a4ffef1fe1734df815214a9e3752cf63a" title=" " alt="" coords="441,137,495,163"/>
-<area shape="rect" href="classTruthTable.html#a64055d97eb8b502567ad21c0d97fc659" title=" " alt="" coords="387,187,549,214"/>
-<area shape="rect" href="namespaceCircuitGenGenerator.html#a41dfd9a88637c1961c7eebeec34025d2" title=" " alt="" coords="132,5,315,47"/>
-<area shape="rect" href="namespaceCircuitGenGenerator.html#a7462dfd4e91fa7663ecddeeea30bdeac" title=" " alt="" coords="122,71,325,127"/>
-<area shape="rect" href="namespaceCircuitGenGenerator.html#a5da6bca928375dcb7c1e460965d8aa6c" title=" " alt="" coords="108,152,339,193"/>
-<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -354,99 +304,6 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7108e99e67b7e1ff105a26662db1ddf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7108e99e67b7e1ff105a26662db1ddf9">&#9670;&nbsp;</a></span>fromOperationsToHierarchy()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; std::string &gt; Settings::fromOperationsToHierarchy </td>
-          <td>(</td>
-          <td class="paramtype">int32_t&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>fromOperationsToHierarchy Converts an operation key to its corresponding hierarchy </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>The key representing the operation </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; The hierarchy associated with the operation key <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the Settings class or getting it from an</span></div>
-<div class="line">existing <span class="keywordtype">object</span> std::shared_ptr&lt;Settings&gt; settingsInstance =</div>
-<div class="line"><a class="code" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;/path/to/settings&quot;</span>);</div>
-<div class="line"><span class="comment">// Get the hierarchy associated with the operation key 5</span></div>
-<div class="line">std::vector&lt;std::string&gt; operationHierarchy =</div>
-<div class="line">settingsInstance-&gt;fromOperationsToHierarchy(5);</div>
-<div class="line"><span class="comment">// Output the hierarchy</span></div>
-<div class="line"><span class="keywordflow">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; element : operationHierarchy)</div>
-<div class="line">{</div>
-<div class="line">    std::cout &lt;&lt; element &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line">}</div>
-<div class="line">std::cout &lt;&lt; std::endl;</div>
-<div class="ttc" id="aclassSettings_html_a30ad5eb680e7894684c46fa5623870f3"><div class="ttname"><a href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a></div><div class="ttdeci">static std::shared_ptr&lt; Settings &gt; getInstance(const std::string &amp;i_value)</div><div class="ttdoc">getInstance Gets a single instance of the Settings class The method provides creation and receipt of ...</div><div class="ttdef"><b>Definition:</b> Settings.cpp:11</div></div>
-</div><!-- fragment --> </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::out_of_range</td><td>If the provided key does not exist in the internal map of operation keys to hierarchies </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a5f1c541b2966bafedef3cb6f73f94978"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f1c541b2966bafedef3cb6f73f94978">&#9670;&nbsp;</a></span>fromOperationsToName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Settings::fromOperationsToName </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>i_op</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>fromOperationsToName Converts the operation to its name </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">i_op</td><td>a string representing the operation </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>std::string Operation name <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the Settings class or getting it from</span></div>
-<div class="line">an existing <span class="keywordtype">object</span></div>
-<div class="line">std::shared_ptr&lt;Settings&gt; settingsInstance =</div>
-<div class="line"><a class="code" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;/path/to/settings&quot;</span>);</div>
-<div class="line">Convert the operation to its <a class="code" href="namespaceel_1_1base_1_1consts.html#a190f5acd3504cafb1adeae14e95cae5f">name</a></div>
-<div class="line">std::string operationName;</div>
-<div class="line"><span class="keywordflow">try</span></div>
-<div class="line">{</div>
-<div class="line">operationName = settingsInstance-&gt;fromOperationsToName(<span class="stringliteral">&quot;and&quot;</span>);</div>
-<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Operation name: &quot;</span> &lt;&lt; operationName &lt;&lt; std::endl;</div>
-<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::out_of_range&amp; e) {</div>
-<div class="line">std::cerr &lt;&lt; <span class="stringliteral">&quot;Error: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
-<div class="line">}</div>
-<div class="ttc" id="anamespaceel_1_1base_1_1consts_html_a190f5acd3504cafb1adeae14e95cae5f"><div class="ttname"><a href="namespaceel_1_1base_1_1consts.html#a190f5acd3504cafb1adeae14e95cae5f">el::base::consts::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> easylogging++.h:779</div></div>
-</div><!-- fragment --> </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::out_of_range</td><td>If the passed operation does not exist in the list of operations </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a838dbb2c30102f84ff0f9532aac665c8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a838dbb2c30102f84ff0f9532aac665c8">&#9670;&nbsp;</a></span>getDatasetPath()</h2>
 
@@ -501,6 +358,7 @@ Here is the caller graph for this function:</div>
 <div class="line">std::endl;</div>
 <div class="ttc" id="aSettings_8hpp_html_aac6be41377264526a1152c994f4f6265"><div class="ttname"><a href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265">GenerationTypes</a></div><div class="ttdeci">GenerationTypes</div><div class="ttdoc">GenerationTypes Enumeration of the types of digital circuit generation.</div><div class="ttdef"><b>Definition:</b> Settings.hpp:22</div></div>
 <div class="ttc" id="aSettings_8hpp_html_aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c"><div class="ttname"><a href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265afca604aafafeb1c0464871f718ef867c">RandLevel</a></div><div class="ttdeci">@ RandLevel</div><div class="ttdoc">Random level (experimental)</div><div class="ttdef"><b>Definition:</b> Settings.hpp:24</div></div>
+<div class="ttc" id="aclassSettings_html_a30ad5eb680e7894684c46fa5623870f3"><div class="ttname"><a href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a></div><div class="ttdeci">static std::shared_ptr&lt; Settings &gt; getInstance(const std::string &amp;i_value)</div><div class="ttdoc">getInstance Gets a single instance of the Settings class The method provides creation and receipt of ...</div><div class="ttdef"><b>Definition:</b> Settings.cpp:11</div></div>
 </div><!-- fragment --> </dd></dl>
 
 </div>
@@ -546,15 +404,6 @@ Here is the caller graph for this function:</div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Dataset path: &quot;</span> &lt;&lt; datasetPath &lt;&lt; std::endl;</div>
 </div><!-- fragment --> </dd></dl>
 <p>This is a safer way to create an instance. instance = new Singleton is dangeruous in case two instance threads wants to access at the same time</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classSettings_a30ad5eb680e7894684c46fa5623870f3_cgraph.png" border="0" usemap="#aclassSettings_a30ad5eb680e7894684c46fa5623870f3_cgraph" alt=""/></div>
-<map name="aclassSettings_a30ad5eb680e7894684c46fa5623870f3_cgraph" id="aclassSettings_a30ad5eb680e7894684c46fa5623870f3_cgraph">
-<area shape="rect" title="getInstance Gets a single instance of the Settings class The method provides creation and receipt of ..." alt="" coords="5,5,164,32"/>
-<area shape="rect" href="classSettings.html#a692db3013821565d261527cc0edeeb0e" title=" " alt="" coords="212,5,348,32"/>
-</map>
-</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -637,53 +486,6 @@ Here is the caller graph for this function:</div>
 
 <p>getLibraryPath Returns the path to the library </p>
 <dl class="section return"><dt>Returns</dt><dd>std::string Library path </dd></dl>
-
-</div>
-</div>
-<a id="ada5c1478fe34510f10a9ada26bf80d86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada5c1478fe34510f10a9ada26bf80d86">&#9670;&nbsp;</a></span>getLogicOperation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::pair&lt; std::string, int32_t &gt; Settings::getLogicOperation </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>i_op</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>getLogicOperation Gets information about a logical operation by its name </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">i_op</td><td>A string containing the name of the logical operation </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>std::pair&lt;std::string, int32_t&gt; A pair containing the name and ID of the logical operation <div class="fragment"><div class="line"><a class="code" href="classSettings.html">Settings</a> settingsInstance;</div>
-<div class="line"><span class="keywordflow">try</span> {</div>
-<div class="line"><span class="comment">// Get information about the logical operation &quot;and&quot;</span></div>
-<div class="line">std::pair&lt;std::string, int32_t&gt; operationInfo =</div>
-<div class="line">settingsInstance.<a class="code" href="classSettings.html#ada5c1478fe34510f10a9ada26bf80d86">getLogicOperation</a>(<span class="stringliteral">&quot;and&quot;</span>);</div>
-<div class="line"><span class="comment">// Output information about the logical operation</span></div>
-<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Operation name: &quot;</span> &lt;&lt; operationInfo.first &lt;&lt; std::endl;</div>
-<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Operation ID: &quot;</span> &lt;&lt; operationInfo.second &lt;&lt; std::endl;</div>
-<div class="line">} <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::out_of_range&amp; e) {</div>
-<div class="line"><span class="comment">// Handle an exception if the operation is not found</span></div>
-<div class="line">std::cerr &lt;&lt; <span class="stringliteral">&quot;Error: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
-<div class="line">}</div>
-<div class="ttc" id="aclassSettings_html"><div class="ttname"><a href="classSettings.html">Settings</a></div><div class="ttdef"><b>Definition:</b> Settings.hpp:77</div></div>
-<div class="ttc" id="aclassSettings_html_ada5c1478fe34510f10a9ada26bf80d86"><div class="ttname"><a href="classSettings.html#ada5c1478fe34510f10a9ada26bf80d86">Settings::getLogicOperation</a></div><div class="ttdeci">std::pair&lt; std::string, int32_t &gt; getLogicOperation(const std::string &amp;i_op)</div><div class="ttdoc">getLogicOperation Gets information about a logical operation by its name</div><div class="ttdef"><b>Definition:</b> Settings.cpp:111</div></div>
-</div><!-- fragment --> </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::out_of_range</td><td>If the passed operation name does not exist in the list of logical operations </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -931,105 +733,28 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ada36e22edd22840668ca152e58261293"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada36e22edd22840668ca152e58261293">&#9670;&nbsp;</a></span>parseGateToString()</h2>
+<a id="ab1d726005016651620aca607e4794b24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1d726005016651620aca607e4794b24">&#9670;&nbsp;</a></span>resetSingletone()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Settings::parseGateToString </td>
+          <td class="memname">static void Settings::resetSingletone </td>
           <td>(</td>
-          <td class="paramtype">Gates&#160;</td>
-          <td class="paramname"><em>gate</em></td><td>)</td>
-          <td> const</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-
-<p>parseGateToString Converts an enum value of a gate to its corresponding string representation </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">gate</td><td>The enum value representing the gate </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>std::string The string representation of the provided gate enum value This method converts an enum value representing a gate to its corresponding string representation. It retrieves the string representation from the internal map date ToString, which maps enum values of gates to their string representations. <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the Settings class or getting it from an</span></div>
-<div class="line">existing <span class="keywordtype">object</span> std::shared_ptr&lt;Settings&gt; settingsInstance =</div>
-<div class="line"><a class="code" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;/path/to/settings&quot;</span>);</div>
-<div class="line"><span class="comment">// Convert the enum value Gates::GateAnd to its corresponding string</span></div>
-<div class="line">representation std::string gateString =</div>
-<div class="line">settingsInstance-&gt;parseGateToString(Gates::GateAnd); std::cout &lt;&lt; <span class="stringliteral">&quot;String</span></div>
-<div class="line"><span class="stringliteral">representation of Gates::GateAnd: &quot;</span> &lt;&lt; gateString &lt;&lt; std::endl;</div>
-</div><!-- fragment --> </dd></dl>
-
-</div>
-</div>
-<a id="a5a888d5cd6415b67280d17711cb5ede9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a888d5cd6415b67280d17711cb5ede9">&#9670;&nbsp;</a></span>parseStringToGate()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Gates Settings::parseStringToGate </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>i_gate</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>parseStringToGate Converts a string representation of a gate to its corresponding enum value </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">i_gate</td><td>The string representation of the gate </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Gates The enum value corresponding to the provided string representation of the gate <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the Settings class or getting it from an</span></div>
-<div class="line">existing <span class="keywordtype">object</span> std::shared_ptr&lt;Settings&gt; settingsInstance =</div>
-<div class="line"><a class="code" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;/path/to/settings&quot;</span>);</div>
-<div class="line"><span class="comment">// Convert the string representation &quot;and&quot; to its corresponding enum value</span></div>
-<div class="line">Gates gate = settingsInstance-&gt;parseStringToGate(<span class="stringliteral">&quot;and&quot;</span>);</div>
-<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Enum value of &#39;and&#39;: &quot;</span> &lt;&lt; gate &lt;&lt; std::endl;</div>
-</div><!-- fragment --> </dd></dl>
-
-</div>
-</div>
-<a id="a0237bbfae43cdc7ed6a8d68877f1bd35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0237bbfae43cdc7ed6a8d68877f1bd35">&#9670;&nbsp;</a></span>parseVertexToString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Settings::parseVertexToString </td>
-          <td>(</td>
-          <td class="paramtype">VertexTypes&#160;</td>
-          <td class="paramname"><em>vertex</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>parseVertexToString Converts an enum value of a vertex type to its corresponding string representation </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">vertex</td><td>The enum value representing the vertex type </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>std::string The string representation of the provided vertex type enum value <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the Settings class or getting it from an</span></div>
-<div class="line">existing <span class="keywordtype">object</span> std::shared_ptr&lt;Settings&gt; settingsInstance =</div>
-<div class="line"><a class="code" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;/path/to/settings&quot;</span>);</div>
-<div class="line"><span class="comment">// Convert the enum value VertexTypes::input to its corresponding string</span></div>
-<div class="line">representation std::string vertexString =</div>
-<div class="line">settingsInstance-&gt;parseVertexToString(VertexTypes::input); std::cout &lt;&lt;</div>
-<div class="line"><span class="stringliteral">&quot;String representation of VertexTypes::input: &quot;</span> &lt;&lt; vertexString &lt;&lt;</div>
-<div class="line">std::endl;</div>
-</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -1056,8 +781,22 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>SaveSettings Saves the current settings to a file This method saves the current settings of the <a class="el" href="classSettings.html">Settings</a> object to a file specified by d_fileName. </p>
-<p>It writes various settings parameters, such as dataset information, Nadezhda dictionary, number of threads, logical operations, operation hierarchies, operation names, and maximum inputs/outputs, to the file in a structured format </p><div class="fragment"><div class="line"><span class="comment">// Creating an instance of the Settings class or getting it from an</span></div>
+<p>parseGateToString Converts an enum value of a gate to its corresponding string representation </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gate</td><td>The enum value representing the gate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string The string representation of the provided gate enum value This method converts an enum value representing a gate to its corresponding string representation. It retrieves the string representation from the internal map date ToString, which maps enum values of gates to their string representations. <div class="fragment"><div class="line"><span class="comment">// Creating an instance of the Settings class or getting it from an</span></div>
+<div class="line">existing <span class="keywordtype">object</span> std::shared_ptr&lt;Settings&gt; settingsInstance =</div>
+<div class="line"><a class="code" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;/path/to/settings&quot;</span>);</div>
+<div class="line"><span class="comment">// Convert the enum value Gates::GateAnd to its corresponding string</span></div>
+<div class="line">representation std::string gateString =</div>
+<div class="line">settingsInstance-&gt;parseGateToString(Gates::GateAnd); std::cout &lt;&lt; <span class="stringliteral">&quot;String</span></div>
+<div class="line"><span class="stringliteral">representation of Gates::GateAnd: &quot;</span> &lt;&lt; gateString &lt;&lt; std::endl;</div>
+</div><!-- fragment --></dd></dl>
+<p>SaveSettings Saves the current settings to a file This method saves the current settings of the <a class="el" href="classSettings.html">Settings</a> object to a file specified by d_fileName. It writes various settings parameters, such as dataset information, Nadezhda dictionary, number of threads, logical operations, operation hierarchies, operation names, and maximum inputs/outputs, to the file in a structured format </p><div class="fragment"><div class="line"><span class="comment">// Creating an instance of the Settings class or getting it from an</span></div>
 <div class="line">existing <span class="keywordtype">object</span> std::shared_ptr&lt;Settings&gt; settingsInstance =</div>
 <div class="line"><a class="code" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;/path/to/settings&quot;</span>);</div>
 <div class="line"><span class="comment">// Save the current settings to a file</span></div>
@@ -1198,73 +937,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a96e7f9cd3204378ac43d671ea72aeb8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96e7f9cd3204378ac43d671ea72aeb8e">&#9670;&nbsp;</a></span>d_logicElements</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;Gates&gt; Settings::d_logicElements</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">      Gates::GateAnd,</div>
-<div class="line">      Gates::GateNand,</div>
-<div class="line">      Gates::GateOr,</div>
-<div class="line">      Gates::GateNor,</div>
-<div class="line">      Gates::GateXor,</div>
-<div class="line">      Gates::GateXnor,</div>
-<div class="line">      Gates::GateNot,</div>
-<div class="line">      Gates::GateBuf}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="abb92c590b1be39c06849f13dce1a1f20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb92c590b1be39c06849f13dce1a1f20">&#9670;&nbsp;</a></span>d_logicOperations</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::map&lt;std::string, std::pair&lt;std::string, int32_t&gt; &gt; Settings::d_logicOperations</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">      {<span class="stringliteral">&quot;input&quot;</span>, {<span class="stringliteral">&quot;&quot;</span>, 10}},</div>
-<div class="line">      {<span class="stringliteral">&quot;output&quot;</span>, {<span class="stringliteral">&quot;=&quot;</span>, 0}},</div>
-<div class="line">      {<span class="stringliteral">&quot;const&quot;</span>, {<span class="stringliteral">&quot;1&#39;b0&quot;</span>, 9}},</div>
-<div class="line">      {<span class="stringliteral">&quot;and&quot;</span>, {<span class="stringliteral">&quot;and&quot;</span>, 4}},</div>
-<div class="line">      {<span class="stringliteral">&quot;nand&quot;</span>, {<span class="stringliteral">&quot;nand&quot;</span>, 3}},</div>
-<div class="line">      {<span class="stringliteral">&quot;or&quot;</span>, {<span class="stringliteral">&quot;or&quot;</span>, 6}},</div>
-<div class="line">      {<span class="stringliteral">&quot;nor&quot;</span>, {<span class="stringliteral">&quot;nor&quot;</span>, 5}},</div>
-<div class="line">      {<span class="stringliteral">&quot;not&quot;</span>, {<span class="stringliteral">&quot;not&quot;</span>, 7}},</div>
-<div class="line">      {<span class="stringliteral">&quot;buf&quot;</span>, {<span class="stringliteral">&quot;buf&quot;</span>, 8}},</div>
-<div class="line">      {<span class="stringliteral">&quot;xor&quot;</span>, {<span class="stringliteral">&quot;xor&quot;</span>, 2}},</div>
-<div class="line">      {<span class="stringliteral">&quot;xnor&quot;</span>, {<span class="stringliteral">&quot;xnor&quot;</span>, 1}}</div>
-<div class="line"> </div>
-<div class="line">  }</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a id="aacfd5e6641413b73a40a69db3ed1de3a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aacfd5e6641413b73a40a69db3ed1de3a">&#9670;&nbsp;</a></span>d_maxInputs</h2>
 
@@ -1380,50 +1052,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a17f47556f92815f26b23ebaee487d9dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17f47556f92815f26b23ebaee487d9dc">&#9670;&nbsp;</a></span>d_operationsToHierarchy</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::map&lt;int32_t, std::vector&lt;std::string&gt; &gt; Settings::d_operationsToHierarchy</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aaae7b30262048d55ba5d001df6b61bb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaae7b30262048d55ba5d001df6b61bb6">&#9670;&nbsp;</a></span>d_operationsToName</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::map&lt;std::string, std::string&gt; Settings::d_operationsToName</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a7bba8dce46df65412fd5aba15afb7c3a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7bba8dce46df65412fd5aba15afb7c3a">&#9670;&nbsp;</a></span>d_path</h2>
 
@@ -1490,38 +1118,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ab74bc9714f5f5875fb4ee9febf7600f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab74bc9714f5f5875fb4ee9febf7600f7">&#9670;&nbsp;</a></span>gateToString</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::map&lt;Gates, std::string&gt; Settings::gateToString</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">      {Gates::GateAnd, <span class="stringliteral">&quot;and&quot;</span>},</div>
-<div class="line">      {Gates::GateNand, <span class="stringliteral">&quot;nand&quot;</span>},</div>
-<div class="line">      {Gates::GateOr, <span class="stringliteral">&quot;or&quot;</span>},</div>
-<div class="line">      {Gates::GateNor, <span class="stringliteral">&quot;nor&quot;</span>},</div>
-<div class="line">      {Gates::GateNot, <span class="stringliteral">&quot;not&quot;</span>},</div>
-<div class="line">      {Gates::GateBuf, <span class="stringliteral">&quot;buf&quot;</span>},</div>
-<div class="line">      {Gates::GateXor, <span class="stringliteral">&quot;xor&quot;</span>},</div>
-<div class="line">      {Gates::GateXnor, <span class="stringliteral">&quot;xnor&quot;</span>},</div>
-<div class="line">      {Gates::GateDefault, <span class="stringliteral">&quot;ERROR&quot;</span>}}</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a id="ac36e1b1e5631eb3f2881e6eb8a8c7855"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac36e1b1e5631eb3f2881e6eb8a8c7855">&#9670;&nbsp;</a></span>generationTypeToPrefix</h2>
 
@@ -1571,65 +1167,6 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="aSettings_8hpp_html_aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f"><div class="ttname"><a href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265abed334d3637056fe102ddc3b1b033d3f">Summator</a></div><div class="ttdeci">@ Summator</div><div class="ttdoc">Adder.</div><div class="ttdef"><b>Definition:</b> Settings.hpp:28</div></div>
 <div class="ttc" id="aSettings_8hpp_html_aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b"><div class="ttname"><a href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265ad11bc24d834784a11753be2a787eea8b">Comparison</a></div><div class="ttdeci">@ Comparison</div><div class="ttdoc">The comparison block.</div><div class="ttdef"><b>Definition:</b> Settings.hpp:29</div></div>
 <div class="ttc" id="aSettings_8hpp_html_aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35"><div class="ttname"><a href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35">ALU</a></div><div class="ttdeci">@ ALU</div><div class="ttdoc">Arithmetic Logic Unit (ALU)</div><div class="ttdef"><b>Definition:</b> Settings.hpp:37</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="afe5072472603b12235614b71022a4140"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe5072472603b12235614b71022a4140">&#9670;&nbsp;</a></span>stringToGate</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::map&lt;std::string, Gates&gt; Settings::stringToGate</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">      {<span class="stringliteral">&quot;and&quot;</span>, Gates::GateAnd},</div>
-<div class="line">      {<span class="stringliteral">&quot;nand&quot;</span>, Gates::GateNand},</div>
-<div class="line">      {<span class="stringliteral">&quot;or&quot;</span>, Gates::GateOr},</div>
-<div class="line">      {<span class="stringliteral">&quot;nor&quot;</span>, Gates::GateNor},</div>
-<div class="line">      {<span class="stringliteral">&quot;not&quot;</span>, Gates::GateNot},</div>
-<div class="line">      {<span class="stringliteral">&quot;buf&quot;</span>, Gates::GateBuf},</div>
-<div class="line">      {<span class="stringliteral">&quot;xor&quot;</span>, Gates::GateXor},</div>
-<div class="line">      {<span class="stringliteral">&quot;xnor&quot;</span>, Gates::GateXnor}}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ac3baf3952239682c56079b605c7a462f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3baf3952239682c56079b605c7a462f">&#9670;&nbsp;</a></span>vertexToString</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::map&lt;VertexTypes, std::string&gt; Settings::vertexToString</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">      {VertexTypes::input, <span class="stringliteral">&quot;input&quot;</span>},</div>
-<div class="line">      {VertexTypes::output, <span class="stringliteral">&quot;output&quot;</span>},</div>
-<div class="line">      {VertexTypes::constant, <span class="stringliteral">&quot;const&quot;</span>},</div>
-<div class="line">      {VertexTypes::subGraph, <span class="stringliteral">&quot;subGraph&quot;</span>},</div>
-<div class="line">      {VertexTypes::gate, <span class="stringliteral">&quot;g&quot;</span>}}</div>
 </div><!-- fragment -->
 </div>
 </div>
