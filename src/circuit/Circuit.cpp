@@ -18,8 +18,7 @@ Circuit::Circuit(
     GraphPtr const                  i_graph,
     const std::vector<std::string>& i_logExpressions
 ) {
-  d_graph = i_graph;
-  d_graph->updateLevels();
+  d_graph          = i_graph;
   d_logExpressions = i_logExpressions;
 }
 
@@ -42,10 +41,6 @@ void Circuit::computeHash() {
   for (auto [key, value] : d_circuitParameters.d_numEdgesOfEachType)
     stream << "\t\t\"" << key.first << "-" << key.second << "\": " << value
            << '\n';
-
-  {
-    // TODO: write logic of get SHA256
-  }
 }
 
 void Circuit::updateCircuitParameters(GraphPtr i_graph) {
@@ -96,8 +91,8 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   for (auto [from, sub] : i_graph->getEdgesGatesCount()) {
     for (auto [to, count] : sub) {
       d_circuitParameters.d_numEdgesOfEachType[{
-          d_settings->parseGateToString(from),
-          d_settings->parseGateToString(to)}] = count;
+          DefaultSettings::parseGateToString(from),
+          DefaultSettings::parseGateToString(to)}] = count;
     }
   }
 
@@ -105,7 +100,7 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   for (auto inp : inputs) {
     for (auto child : inp->getOutConnections()) {
       std::string to = child->getGate() != Gates::GateDefault
-                         ? d_settings->parseGateToString(child->getGate())
+                         ? DefaultSettings::parseGateToString(child->getGate())
                          : child->getTypeName();
       ++d_circuitParameters.d_numEdgesOfEachType[{"input", to}];
     }
@@ -120,9 +115,10 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
           continue;
         }
 
-        std::string from = ptr->getGate() != Gates::GateDefault
-                             ? d_settings->parseGateToString(ptr->getGate())
-                             : ptr->getTypeName();
+        std::string from =
+            ptr->getGate() != Gates::GateDefault
+                ? DefaultSettings::parseGateToString(ptr->getGate())
+                : ptr->getTypeName();
         ++d_circuitParameters.d_numEdgesOfEachType[{from, "output"}];
       } else {
         throw std::invalid_argument("Dead pointer!");
@@ -138,7 +134,7 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
         continue;
       }
       std::string to = child->getGate() != Gates::GateDefault
-                         ? d_settings->parseGateToString(child->getGate())
+                         ? DefaultSettings::parseGateToString(child->getGate())
                          : child->getTypeName();
 
       ++d_circuitParameters.d_numEdgesOfEachType[{"const", to}];
@@ -397,7 +393,10 @@ bool Circuit::generate(
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
   LOG(INFO) << "Writing verilog ended for " << d_circuitName;
-
+  if (i_makeGraphMLClassic || i_makeGraphMLOpenABCD
+      || i_makeGraphMLPseudoABCD) {
+    d_graph->updateLevels();
+  }
   LOG(INFO) << "Writing DOT for " << d_circuitName;
   if (!graphToDOT(d_path, i_pathExists))
     return false;

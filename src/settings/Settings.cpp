@@ -14,22 +14,14 @@ std::shared_ptr<Settings> Settings::getInstance(const std::string& i_value) {
    * dangeruous in case two instance threads wants to access at the same time
    */
   if (d_singleton == nullptr) {
-    d_singleton.reset(new Settings(i_value));
+    d_singleton = std::make_shared<Settings>(i_value);
     d_singleton->loadSettings();
   }
   return d_singleton;
 }
 
 void Settings::loadSettings() {
-  for (const auto& [key, value] : d_logicOperations) {
-    int32_t i = value.second;
-    if (!d_operationsToHierarchy.count(i))
-      d_operationsToHierarchy[i] = {};
-    d_operationsToHierarchy[i].push_back(value.first);
-  }
-
-  for (const auto& [key, value] : d_logicOperations)
-    d_operationsToName[value.first] = key;
+  DefaultSettings::loadSettings();
 
   if (std::filesystem::exists(d_fileName)) {
     std::ifstream readFile(d_fileName);
@@ -48,41 +40,43 @@ void Settings::loadSettings() {
 
     uint32_t logicOperationCount;
     readFile >> logicOperationCount;
-    for (uint32_t i = 0; i < logicOperationCount; ++i) {
-      std::string operation, operationName, operationId;
-      readFile >> operation;  // When it comes to input    there have to be
-                              // empty string at operationName,    so it is
-                              // unreasonable to read from file.
-      if (operation != "input") {
-        readFile >> operationName;
-      } else {
-        operationName =
-            "";  // When we get input there must be empty string in
-                 // OperationName . Empty string cannot be read from file.
-      }
-      readFile >> operationId;
-      d_logicOperations[operation] = {operationName, std::stoi(operationId)};
-    }
+    // for (uint32_t i = 0; i < logicOperationCount; ++i) {
+    //   std::string operation, operationName, operationId;
+    //   readFile >> operation;  // When it comes to input    there have to be
+    //                           // empty string at operationName,    so it is
+    //                           // unreasonable to read from file.
+    //   if (operation != "input") {
+    //     readFile >> operationName;
+    //   } else {
+    //     operationName =
+    //         "";  // When we get input there must be empty string in
+    //              // OperationName . Empty string cannot be read from file.
+    //   }
+    //   readFile >> operationId;
+    //   d_logicOperations[operation] = {operationName, std::stoi(operationId)};
+    // }
 
     int32_t operationHierarchyCount;
     readFile >> operationHierarchyCount;
-    for (int32_t i = 0; i < operationHierarchyCount; ++i) {
-      int32_t                  operationId, operationHierarchyCount;
-      std::vector<std::string> operations;
-      readFile >> operationId >> operationHierarchyCount;
+    // for (int32_t i = 0; i < operationHierarchyCount; ++i) {
+    //   int32_t                  operationId, operationHierarchyCount;
+    //   std::vector<std::string> operations;
+    //   readFile >> operationId >> operationHierarchyCount;
 
-      std::string operation;
-      for (int32_t j = 0; j < operationHierarchyCount; ++j) {
-        if (operationId == 10)
-          operation = "";  // If we get the index 10 it means we deal with input
-                           // that have empty string as operation and so that we
-                           // cannot read from file.
-        else
-          readFile >> operation;
-        operations.push_back(operation);
-      }
-      d_operationsToHierarchy[operationId] = operations;
-    }
+    //   std::string operation;
+    //   for (int32_t j = 0; j < operationHierarchyCount; ++j) {
+    //     if (operationId == 10)
+    //       operation = "";  // If we get the index 10 it means we deal with
+    //       input
+    //                        // that have empty string as operation and so that
+    //                        we
+    //                        // cannot read from file.
+    //     else
+    //       readFile >> operation;
+    //     operations.push_back(operation);
+    //   }
+    //   d_operationsToHierarchy[operationId] = operations;
+    // }
 
     uint32_t operationsCount;
     readFile >> operationsCount;
@@ -106,12 +100,6 @@ void Settings::loadSettings() {
 
 std::string Settings::getInstanceName() const {
   return d_name;
-}
-
-std::pair<std::string, int32_t> Settings::getLogicOperation(
-    const std::string& i_op
-) {
-  return d_logicOperations.at(i_op);
 }
 
 std::vector<Gates> Settings::getLogicOperationsKeys() {
@@ -145,15 +133,6 @@ std::string Settings::getNadezhdaVar(const std::string& key) const {
   return d_nadezhda.at(key);
 }
 
-std::vector<std::string> Settings::fromOperationsToHierarchy(int32_t key
-) const {
-  return d_operationsToHierarchy.at(key);
-}
-
-std::string Settings::fromOperationsToName(const std::string& i_op) const {
-  return d_operationsToName.at(i_op);
-}
-
 void Settings::SaveSettings() {
   std::ofstream writeFile(d_fileName);
   writeFile << d_csvdataset << ' ' << d_fileName << ' ' << d_datasetPath << ' '
@@ -169,13 +148,13 @@ void Settings::SaveSettings() {
   for (const auto& [key, value] : d_logicOperations)
     writeFile << key << ' ' << value.first << ' ' << value.second << std::endl;
 
-  writeFile << d_operationsToHierarchy.size() << std::endl;
-  for (const auto& [key, value] : d_operationsToHierarchy) {
-    writeFile << key << ' ' << value.size() << std::endl;
-    for (const auto& operation : value)
-      writeFile << operation << ' ';
-    writeFile << std::endl;
-  }
+  // writeFile << d_operationsToHierarchy.size() << std::endl;
+  // for (const auto& [key, value] : d_operationsToHierarchy) {
+  //   writeFile << key << ' ' << value.size() << std::endl;
+  //   for (const auto& operation : value)
+  //     writeFile << operation << ' ';
+  //   writeFile << std::endl;
+  // }
 
   writeFile << d_operationsToName.size() << std::endl;
   for (const auto& [key, value] : d_operationsToName)
@@ -223,15 +202,3 @@ std::map<std::string, std::pair<std::string, int32_t>>
     Settings::getLogicOperations() const {
   return d_logicOperations;
 }
-
-Gates Settings::parseStringToGate(std::string i_gate) const {
-  return stringToGate.at(i_gate);
-}
-
-std::string Settings::parseGateToString(Gates gate) const {
-  return gateToString.at(gate);
-}
-
-std::string Settings::parseVertexToString(VertexTypes vertex) const {
-  return vertexToString.at(vertex);
-};

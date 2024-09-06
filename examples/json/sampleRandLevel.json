@@ -4,9 +4,9 @@
     "dataset_id": "11",
     "id": 2,
     "type_of_generation": "Rand Level",
-    "min_in": 50,
+    "min_in": 55,
     "max_in": 55,
-    "min_out": 50,
+    "min_out": 55,
     "max_out": 55,
     "repeat_n": 1,    
     "multithread": 4,
@@ -18,7 +18,7 @@
 
     "min_level": 100,
     "max_level": 100,
-    "min_elem": 1000,
-    "max_elem": 1000
+    "min_elem": 100,
+    "max_elem": 100
   }
 ]

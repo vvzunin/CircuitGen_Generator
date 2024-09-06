@@ -188,7 +188,7 @@ GraphPtr
         if (bin[tmp][k] ^ i_tp) {
           if (!inputs_not.count(x_input)) {
             inputs_not[x_input] =
-                graph->addGate(Gates::GateNot, x_input->getName() + "_not");
+                graph->addGate(Gates::GateNot, x_input->getName("not_"));
           }
 
           // Get NOT operation
@@ -304,11 +304,9 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
   auto [hasOneGate, logOper] = d_settings->getLogicOperationsWithGates();
 
-  // maxLevel++ // what?
-
   int32_t     choice;
   std::string expr;
-  GraphPtr    graph(new OrientedGraph);
+  GraphPtr    graph = std::make_shared<OrientedGraph>();
   int32_t     child1, child2;
 
   for (int32_t i = 0; i < i_inputs; ++i) {
@@ -364,6 +362,7 @@ GraphPtr SimpleGenerators::generatorRandLevel(
     VertexPtr newVertex = graph->addOutput(expr);
     graph->addEdge(graph->getVerticeByIndex(child1), newVertex);
   }
+  // std::clog << "end\n";
 
   return graph;
 }

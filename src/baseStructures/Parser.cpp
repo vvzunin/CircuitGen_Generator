@@ -130,59 +130,54 @@ std::pair<int32_t, std::vector<std::string>> Parser::splitLogicExpression(
   int32_t l = 0;
 
   while (l <= d_settings->getLogicOperation("input").second) {
-    std::vector<std::string> operations =
-        d_settings->fromOperationsToHierarchy(l);
-
-    for (const auto& oper : operations) {
-      // so, what was the problem
-      // here we have been looking for a substr in string, substr was
-      // an operation. Or has higher (I meen lower code number) priority,
-      // than it has xor. So, firstly we have been looking for or,
-      // than xor. so, we can have two possible variants.
-      // Check, if operation in fact is xor, not or, or just to
-      // find firstly xor, than or. Was chosen second variant
-      size_t index = i_expr.find(oper);
-      std::pair<bool, std::vector<std::pair<int32_t, int32_t>>> brackets =
-          createBrackets(i_expr);
-      std::vector<std::string> lst;
-
-      while (index != std::string::npos) {
-        // if we have xor in fact, go to next iteration
-        if ((oper == "or" || oper == "nor") && index > 0
-            && i_expr[index - 1] == 'x') {
-          index = i_expr.find(oper, index + 1);
-          continue;
-        }
-
-        if (!inBrackets(brackets.second, index)) {
-          std::string newOp = d_settings->fromOperationsToName(oper);
-
-          if (lst.empty())
-            lst.push_back(deleteExtraSpaces(newOp));
-
-          if (newOp == "not" || newOp == "buf") {
-            lst.push_back(deleteExtraSpaces(i_expr.substr(index + oper.length())
-            ));
-          } else if (newOp == "input" || newOp == "const") {
-            lst.push_back(deleteExtraSpaces(i_expr));
-          } else {
-            lst.push_back(deleteExtraSpaces(i_expr.substr(0, index)));
-
-            i_expr   = deleteExtraSpaces(i_expr.substr(index + oper.length()));
-            brackets = createBrackets(i_expr);
-
-            size_t idx = i_expr.find(oper);
-            // now we are trying to parse whole operations
-            if (idx != std::string::npos && !inBrackets(brackets.second, idx)) {
-              index = idx;
-              continue;
-            }
-            lst.push_back(i_expr);
-          }
-          return {index, lst};  // what?
-        }
+    std::string_view oper  = d_settings->fromOperationsToHierarchy(l);
+    // so, what was the problem
+    // here we have been looking for a substr in string, substr was
+    // an operation. Or has higher (I meen lower code number) priority,
+    // than it has xor. So, firstly we have been looking for or,
+    // than xor. so, we can have two possible variants.
+    // Check, if operation in fact is xor, not or, or just to
+    // find firstly xor, than or. Was chosen second variant
+    size_t           index = i_expr.find(oper);
+    std::pair<bool, std::vector<std::pair<int32_t, int32_t>>> brackets =
+        createBrackets(i_expr);
+    std::vector<std::string> lst;
+    while (index != std::string::npos) {
+      // if we have xor in fact, go to next iteration
+      if ((oper == "or" || oper == "nor") && index > 0
+          && i_expr[index - 1] == 'x') {
         index = i_expr.find(oper, index + 1);
+        continue;
       }
+
+      if (!inBrackets(brackets.second, index)) {
+        std::string newOp = d_settings->fromOperationsToName(oper);
+
+        if (lst.empty())
+          lst.push_back(deleteExtraSpaces(newOp));
+
+        if (newOp == "not" || newOp == "buf") {
+          lst.push_back(deleteExtraSpaces(i_expr.substr(index + oper.length()))
+          );
+        } else if (newOp == "input" || newOp == "const") {
+          lst.push_back(deleteExtraSpaces(i_expr));
+        } else {
+          lst.push_back(deleteExtraSpaces(i_expr.substr(0, index)));
+
+          i_expr     = deleteExtraSpaces(i_expr.substr(index + oper.length()));
+          brackets   = createBrackets(i_expr);
+
+          size_t idx = i_expr.find(oper);
+          // now we are trying to parse whole operations
+          if (idx != std::string::npos && !inBrackets(brackets.second, idx)) {
+            index = idx;
+            continue;
+          }
+          lst.push_back(i_expr);
+        }
+        return {index, lst};  // what?
+      }
+      index = i_expr.find(oper, index + 1);
     }
 
     l++;
