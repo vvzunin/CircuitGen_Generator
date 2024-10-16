@@ -558,18 +558,18 @@ void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
       i_param.getALU().getm(),
       i_param.getALU().getLeaveEmptyOut()
   );
-  LOG(INFO) << "Generation ALU complete!";
+  // LOG(INFO) << "Generation ALU complete!";
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
-  LOG(INFO) << "Start circuit generation!";
+  // LOG(INFO) << "Start circuit generation!";
   c.generate(
       i_param.getMakeGraphMLClassic(),
       i_param.getMakeGraphMLPseudoABCD(),
       i_param.getMakeGraphMLOpenABCD()
   );
 
-  LOG(INFO) << "Full ALU complete!";
+  // LOG(INFO) << "Full ALU complete!";
 
   addDataToReturn(graph);
 }
