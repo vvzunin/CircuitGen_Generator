@@ -238,13 +238,13 @@ bool Circuit::graphToGraphML(
     d_graph->toGraphMLClassic(w);
     w.close();
   }
-  LOG(INFO) << "GraphMLClassic complete";
+  // LOG(INFO) << "GraphMLClassic complete";
   if (i_makeGraphMLPseudoABCD) {
     std::ofstream w(i_path + "/" + d_circuitName + "_PseudoABC-D.graphml");
     d_graph->toGraphMLPseudoABCD(w);
     w.close();
   }
-  LOG(INFO) << "GraphMLPseudoABCD complete";
+  // LOG(INFO) << "GraphMLPseudoABCD complete";
   if (i_makeGraphMLOpenABCD) {
     std::ofstream w(i_path + "/" + d_circuitName + "_OpenABC-D.graphml");
     d_graph->toGraphMLOpenABCD(w);
@@ -259,7 +259,7 @@ bool Circuit::saveParameters(
     std::ofstream& i_outputFile,
     bool           i_isSubGraph
 ) {
-  LOG(INFO) << "saveParameters started";
+  // LOG(INFO) << "saveParameters started";
   std::string tab = i_isSubGraph ? "\t\t\t" : "\t";
   if (!i_outputFile)
     return false;
@@ -389,10 +389,10 @@ bool Circuit::generate(
 
   // if (!i_pathExists)
   // d_path += d_circuitName;
-  LOG(INFO) << "Writing verilog for " << d_circuitName;
+  // LOG(INFO) << "Writing verilog for " << d_circuitName;
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
-  LOG(INFO) << "Writing verilog ended for " << d_circuitName;
+  // LOG(INFO) << "Writing verilog ended for " << d_circuitName;
   if (i_makeGraphMLClassic || i_makeGraphMLOpenABCD
       || i_makeGraphMLPseudoABCD) {
     d_graph->updateLevels();
