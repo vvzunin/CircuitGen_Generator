@@ -48,7 +48,7 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
     return;
 
   i_graph->updateLevels();
-  LOG(INFO) << "Update ended. Calc started";
+  // LOG(INFO) << "Update ended. Calc started";
 
   d_circuitParameters.d_name = i_graph->getName();
 
@@ -232,25 +232,25 @@ bool Circuit::graphToGraphML(
     bool               i_makeGraphMLOpenABCD,
     bool               i_pathExists
 ) {
-  LOG(INFO) << "Start graphToGraphML";
+  // LOG(INFO) << "Start graphToGraphML";
   if (i_makeGraphMLClassic) {
     std::ofstream w(i_path + "/" + d_circuitName + "_Classic.graphml");
     d_graph->toGraphMLClassic(w);
     w.close();
   }
-  LOG(INFO) << "GraphMLClassic complete";
+  // // LOG(INFO) << "GraphMLClassic complete";
   if (i_makeGraphMLPseudoABCD) {
     std::ofstream w(i_path + "/" + d_circuitName + "_PseudoABC-D.graphml");
     d_graph->toGraphMLPseudoABCD(w);
     w.close();
   }
-  LOG(INFO) << "GraphMLPseudoABCD complete";
+  // // LOG(INFO) << "GraphMLPseudoABCD complete";
   if (i_makeGraphMLOpenABCD) {
     std::ofstream w(i_path + "/" + d_circuitName + "_OpenABC-D.graphml");
     d_graph->toGraphMLOpenABCD(w);
     w.close();
   }
-  LOG(INFO) << "GraphMLOpenABCD complete";
+  // LOG(INFO) << "GraphMLOpenABCD complete";
   return true;
 }
 
@@ -259,7 +259,7 @@ bool Circuit::saveParameters(
     std::ofstream& i_outputFile,
     bool           i_isSubGraph
 ) {
-  LOG(INFO) << "saveParameters started";
+  // // LOG(INFO) << "saveParameters started";
   std::string tab = i_isSubGraph ? "\t\t\t" : "\t";
   if (!i_outputFile)
     return false;
@@ -335,7 +335,7 @@ bool Circuit::saveParameters(
     i_outputFile << tab << "\"submodules\" : {" << std::endl;
     std::set<GraphPtr> subSet = d_graph->getSetSubGraphs();
     for (auto sub = subSet.begin(); sub != subSet.end();) {
-      LOG(INFO) << "Submodule " << sub->get()->getName();
+      // LOG(INFO) << "Submodule " << sub->get()->getName();
       updateCircuitParameters(*sub);
 
       saveParameters(*sub, i_outputFile, true);
@@ -389,20 +389,20 @@ bool Circuit::generate(
 
   // if (!i_pathExists)
   // d_path += d_circuitName;
-  LOG(INFO) << "Writing verilog for " << d_circuitName;
+  // // LOG(INFO) << "Writing verilog for " << d_circuitName;
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
-  LOG(INFO) << "Writing verilog ended for " << d_circuitName;
+  // // LOG(INFO) << "Writing verilog ended for " << d_circuitName;
   if (i_makeGraphMLClassic || i_makeGraphMLOpenABCD
       || i_makeGraphMLPseudoABCD) {
     d_graph->updateLevels();
   }
-  LOG(INFO) << "Writing DOT for " << d_circuitName;
+  // LOG(INFO) << "Writing DOT for " << d_circuitName;
   if (!graphToDOT(d_path, i_pathExists))
     return false;
-  LOG(INFO) << "Writing DOT ended for " << d_circuitName;
+  // LOG(INFO) << "Writing DOT ended for " << d_circuitName;
 
-  LOG(INFO) << "Writing GraphML for " << d_circuitName;
+  // LOG(INFO) << "Writing GraphML for " << d_circuitName;
   if (graphToGraphML(
           d_path,
           i_makeGraphMLClassic,
@@ -410,7 +410,7 @@ bool Circuit::generate(
           i_makeGraphMLOpenABCD,
           i_pathExists
       )) {
-    LOG(INFO) << "Writing GraphML ended for " << d_circuitName;
+    // LOG(INFO) << "Writing GraphML ended for " << d_circuitName;
   }
 
   updateCircuitParameters(d_graph);
@@ -419,7 +419,7 @@ bool Circuit::generate(
   std::ofstream i_outputFile(filename);
 
   saveParameters(d_graph, i_outputFile);
-  LOG(INFO) << "Circuit parameters saved." << d_circuitName;
+  // LOG(INFO) << "Circuit parameters saved." << d_circuitName;
 
   // TODO: costul
   // if (checkExistingHash() || d_circuitParameters.d_reliability == 0 ||

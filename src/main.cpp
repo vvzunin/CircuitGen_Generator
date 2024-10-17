@@ -31,7 +31,7 @@ void initLogging(std::string testName, std::string subtestName) {
 
 int main(int argc, char** argv) {
   initLogging("main", "main");
-  LOG(INFO) << "Program started";
+  // LOG(INFO) << "Program started";
 
   std::string       json_path;
   // Use getopt to parse command line arguments
@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
         return 1;
     }
   }
-  LOG(INFO) << "Starting generation ...";
+  // LOG(INFO) << "Starting generation ...";
   // json_path = "../../examples/json/sampleRandLevel.json";
   // std::clog << std::filesystem::current_path() << std::endl;
   CircuitGenGenerator::runGenerationFromJson(json_path);
