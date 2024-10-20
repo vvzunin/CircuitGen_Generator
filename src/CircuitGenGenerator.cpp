@@ -563,7 +563,7 @@ void runGeneration(
     }
 
     auto start = high_resolution_clock::now();
-    LOG(INFO) << "Generation started.";
+    // LOG(INFO) << "Generation started.";
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
     callable(
         generator,
@@ -573,7 +573,7 @@ void runGeneration(
             ? (bool)data["create_id_directories"]
             : true
     );
-    LOG(INFO) << "Generation complete!";
+    // LOG(INFO) << "Generation complete!";
 
     auto stop     = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
