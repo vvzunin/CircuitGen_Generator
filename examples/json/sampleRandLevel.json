@@ -8,7 +8,7 @@
     "max_in": 5,
     "min_out": 5,
     "max_out": 5,
-    "repeat_n": 20,    
+    "repeat_n": 1,    
     "multithread": 16,
     "make_graphml_classic": true,
     "make_graphml_pseudo_abc_d": true,

@@ -313,9 +313,9 @@ GraphPtr SimpleGenerators::generatorRandLevel(
   int32_t     choice;
   std::string expr;
   GraphPtr    graph = std::make_shared<OrientedGraph>(
-      // "",
-      // (i_maxElements * i_minElements + i_inputs + i_outputs)
-      //     * sizeof(GraphVertexBase)
+      "",
+      (i_maxElements * i_minElements + i_inputs + i_outputs)
+          * sizeof(GraphVertexBase)
   );
   int32_t child1, child2;
 
