@@ -170,7 +170,7 @@ public:
   /// found, the method returns -1.
   /// */
 
-  std::vector<std::shared_ptr<GraphVertexBase>> getIndexOfWireName(
+  std::vector<VertexPtr> getIndexOfWireName(
       const std::string& i_wireName
   );
 

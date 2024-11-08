@@ -14,7 +14,6 @@
     "make_graphml_pseudo_abc_d": true,
     "make_graphml_open_abc_d": true,
     "create_id_directories": true,
-    "library_name": "sky130",
     
     "gates_inputs_info": {
       "and": [2, 8],

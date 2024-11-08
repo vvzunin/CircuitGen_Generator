@@ -52,11 +52,11 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
 
   d_circuitParameters.d_name = i_graph->getName();
 
-  std::vector<std::shared_ptr<GraphVertexBase>> inputs =
+  std::vector<VertexPtr> inputs =
       i_graph->getVerticesByType(VertexTypes::input);
-  std::vector<std::shared_ptr<GraphVertexBase>> constants =
+  std::vector<VertexPtr> constants =
       i_graph->getVerticesByType(VertexTypes::constant);
-  std::vector<std::shared_ptr<GraphVertexBase>> outputs =
+  std::vector<VertexPtr> outputs =
       i_graph->getVerticesByType(VertexTypes::output);
 
   d_circuitParameters.d_numInputs    = inputs.size();
@@ -109,16 +109,16 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   // iterate through outputs
   for (auto out : outputs) {
     for (auto child : out->getInConnections()) {
-      if (auto ptr = child.lock()) {
+      if (child) {
         // here we do not parse pair input-output
-        if (ptr->getType() == VertexTypes::input) {
+        if (child->getType() == VertexTypes::input) {
           continue;
         }
 
         std::string from =
-            ptr->getGate() != Gates::GateDefault
-                ? DefaultSettings::parseGateToString(ptr->getGate())
-                : ptr->getTypeName();
+            child->getGate() != Gates::GateDefault
+                ? DefaultSettings::parseGateToString(child->getGate())
+                : child->getTypeName();
         ++d_circuitParameters.d_numEdgesOfEachType[{from, "output"}];
       } else {
         throw std::invalid_argument("Dead pointer!");
@@ -451,7 +451,7 @@ void Circuit::setCircuitName(const std::string& i_circName) {
   d_graph->setName(i_circName);
 }
 
-std::vector<std::shared_ptr<GraphVertexBase>> Circuit::getIndexOfWireName(
+std::vector<VertexPtr> Circuit::getIndexOfWireName(
     const std::string& i_wireName
 ) {
   return d_graph->getVerticesByName(i_wireName);

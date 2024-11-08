@@ -118,10 +118,16 @@ GraphPtr
     SimpleGenerators::cnfFromTruthTable(const TruthTable& i_table, bool i_tp) {
   std::vector<std::string> fun;
   fun.reserve(i_table.getOutput());
-  std::vector<std::vector<bool>> bin = i_table.convToBinary();
+  std::vector<std::vector<bool>> bin   = i_table.convToBinary();
 
-  GraphPtr                       graph(new OrientedGraph());
-  std::vector<VertexPtr>         inputs;
+  GraphPtr                       graph = std::make_shared<OrientedGraph>(
+      "",
+      (2
+       + (i_table.getInput() + 1) * ((i_table.getInput() - 1))
+             * (i_table.getOutput() + 1))
+          * sizeof(GraphVertexBase)
+  );
+  std::vector<VertexPtr> inputs;
   inputs.reserve(i_table.getInput());
   for (size_t k = 0; k < i_table.getInput(); ++k) {
     inputs.push_back(graph->addInput("x" + std::to_string(k)));
@@ -136,7 +142,7 @@ GraphPtr
   }
 
   std::map<VertexPtr, VertexPtr> inputs_not;
-  VertexPtr                      constGate_0(nullptr), constGate_1(nullptr);
+  GraphVertexBase *              constGate_0 = nullptr, *constGate_1 = nullptr;
 
   Parser                         parserMany;
   parserMany.setGatesInputsInfo(d_gatesInputsInfo);
@@ -306,8 +312,12 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
   int32_t     choice;
   std::string expr;
-  GraphPtr    graph = std::make_shared<OrientedGraph>();
-  int32_t     child1, child2;
+  GraphPtr    graph = std::make_shared<OrientedGraph>(
+      // "",
+      // (i_maxElements * i_minElements + i_inputs + i_outputs)
+      //     * sizeof(GraphVertexBase)
+  );
+  int32_t child1, child2;
 
   for (int32_t i = 0; i < i_inputs; ++i) {
     expr = "x" + std::to_string(i);
@@ -340,8 +350,8 @@ GraphPtr SimpleGenerators::generatorRandLevel(
 
         VertexPtr newVertex = graph->addGate(logOper[choice]);
         graph->addEdges(
-            {graph->getVerticeByIndex(child2),
-             graph->getVerticeByIndex(child1)},
+            {graph->getVerticeByIndex(child2), graph->getVerticeByIndex(child1)
+            },
             newVertex
         );
       }
@@ -398,7 +408,7 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
   // minimum gates number of a logical element, so we can use inputs in such
   // case
   // b) need to swap gates
-  std::vector<VertexPtrWeak> inputs;
+  std::vector<VertexPtr> inputs;
   inputs.reserve(i_inputs);
 
   for (auto i : graph->getVerticesByType(VertexTypes::input)) {
@@ -425,7 +435,7 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
             : i_maxElements;
 
     // write allowed gates to be used as parent
-    std::vector<VertexPtrWeak> futureGates;
+    std::vector<VertexPtr> futureGates;
     curLen += curGates.size();
 
     for (int32_t j = 0; j < elemLevel; ++j) {
@@ -464,7 +474,7 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
         auto idx = curGates.begin() + fromWhichShuffle;
 
         // add first parent
-        parents.push_back((*idx).lock());
+        parents.push_back((*idx));
         // move to second
         // it's impossible to have 1-element vector here
         // else we would have curLen = 1 and only buf/not
@@ -491,7 +501,7 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
             idx = curGates.begin();
           }
 
-          parents.push_back((*idx).lock());
+          parents.push_back((*idx));
         }
 
         graph->addEdges(parents, newVertex);
@@ -512,9 +522,8 @@ GraphPtr SimpleGenerators::generatorRandLevelExperimental(
 
   // std::clog << "writing out gates" << std::endl;
   for (int32_t i = 0; i < i_outputs; ++i) {
-    auto child1 =
-        curGates[d_randGenerator.getRandInt(0, curGates.size())].lock();
-    expr                = "f" + std::to_string(i + 1);
+    auto child1 = curGates[d_randGenerator.getRandInt(0, curGates.size())];
+    expr        = "f" + std::to_string(i + 1);
     VertexPtr newVertex = graph->addOutput(expr);
 
     graph->addEdge(child1, newVertex);
@@ -920,7 +929,7 @@ GraphPtr SimpleGenerators::generatorEncoder(uint32_t i_bits) {
       graph->addEdges(ors, or_xs);
       n           *= 2;
 
-      VertexPtr y = graph->addOutput("y" + std::to_string(i));
+      VertexPtr y  = graph->addOutput("y" + std::to_string(i));
       graph->addEdge(or_xs, y);
     }
   }
@@ -950,8 +959,8 @@ GraphPtr SimpleGenerators::generatorSubtractor(
   VertexPtr curr_z;  // нынешний заём
 
   for (uint32_t i = 0; i < i_bits; i++) {
-    std::string Z = std::to_string(i);          // нынешний индекс
-    std::string NextZ = std::to_string(i + 1);  // следующий индекс
+    std::string Z       = std::to_string(i);      // нынешний индекс
+    std::string NextZ   = std::to_string(i + 1);  // следующий индекс
     std::string x       = "suba" + cond + Z;
     std::string y       = "subb" + cond + Z;
     VertexPtr   input_x = graph->addInput(x);
@@ -1373,16 +1382,16 @@ GraphPtr SimpleGenerators::generatorMultiplier(uint32_t i_bits) {
             graph->addEdge(sum, m);
 
             n += 1;
-            N = std::to_string(n);
+            N  = std::to_string(n);
 
-            m = graph->addOutput("m" + N);
+            m  = graph->addOutput("m" + N);
             graph->addEdge(pNext, m);
           }
         } else {
           std::string S = IA + IB;
           std::string
-              p_str;  // создание переноса нынешнего сумматора в следующий
-          VertexPtr   p;
+                    p_str;  // создание переноса нынешнего сумматора в следующий
+          VertexPtr p;
           std::string pi_str =
               "pSum" + IA + IB;  // перенос из прошлого сумматора
           VertexPtr pi     = pSum;
