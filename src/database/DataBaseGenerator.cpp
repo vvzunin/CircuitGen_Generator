@@ -5,6 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <vector>
+#include <limits.h> // INT_MAX
 
 #include "DataBaseGenerator.hpp"
 
@@ -17,7 +18,15 @@
 #include <CircuitGenGenerator/ThreadPool.hpp>
 #include <generators/Genetic/GeneticParameters.hpp>
 #include <generators/Genetic/GenGenerator.hpp>
-#include <generators/simple/SimpleGenerators.hpp>
+#include <generators/simple/ArithmeticGenerator.hpp>
+#include <generators/simple/FromTruthTableGenerator.hpp>
+#include <generators/simple/CoderGenerator.hpp>
+#include <generators/simple/RandLevelGenerator.hpp>
+#include <generators/simple/PlexerGenerator.hpp>
+#include <generators/simple/ALUGenerator.hpp>
+#include <generators/simple/ComparisonGenerator.hpp>
+#include <generators/simple/NumOperationsGenerator.hpp>
+#include <generators/simple/ParityGenerator.hpp>
 
 using namespace std::chrono;
 using namespace Threading;
@@ -165,8 +174,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     const GenerationParameters &i_param) {
   TruthTable tt(i_param.getInputs(), i_param.getOutputs(), 0.0);
 
-  SimpleGenerators tftt(i_param.getSeed());
-  tftt.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  FromTruthTableGenerator tftt(i_param);
 
   std::vector<GraphPtr> allGraphs;
 
@@ -204,9 +212,9 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
 }
 
 void DataBaseGenerator::generateDataBaseRandLevel(
-    const GenerationParameters &i_param) {
-  SimpleGenerators generator(i_param.getSeed());
-  generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  RandLevelGenerator generator(i_param);
 
   GraphPtr graph =
       generator.generatorRandLevel(i_param.getRandLevel().getMinLevel(),
@@ -226,9 +234,9 @@ void DataBaseGenerator::generateDataBaseRandLevel(
 }
 
 void DataBaseGenerator::generateDataBaseRandLevelExperimental(
-    const GenerationParameters &i_param) {
-  SimpleGenerators generator(i_param.getSeed());
-  generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  RandLevelGenerator generator(i_param);
 
   auto start = high_resolution_clock::now();
   GraphPtr graph = generator.generatorRandLevelExperimental(
@@ -257,9 +265,9 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
 }
 
 void DataBaseGenerator::generateDataBaseNumOperations(
-    const GenerationParameters &i_param) {
-  SimpleGenerators generator(i_param.getSeed());
-  generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  NumOperationsGenerator generator(i_param);
 
   std::vector<std::pair<std::string, GraphPtr>> circs;
   circs.push_back(
@@ -303,9 +311,9 @@ void DataBaseGenerator::generateDataBaseGenetic(
 }
 
 void DataBaseGenerator::generateDataBaseSummator(
-    const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  ArithmeticGenerator sg(i_param);
 
   int32_t bits = i_param.getInputs();
   bool overflowIn = i_param.getSummator().getOverFlowIn();
@@ -323,9 +331,9 @@ void DataBaseGenerator::generateDataBaseSummator(
 }
 
 void DataBaseGenerator::generateDataBaseComparison(
-    const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  ComparisonGenerator sg(i_param);
 
   int32_t i_bits = i_param.getInputs();
   bool compare0 = i_param.getComparison().getCompare0();
@@ -343,9 +351,9 @@ void DataBaseGenerator::generateDataBaseComparison(
 }
 
 void DataBaseGenerator::generateDataBaseEncoder(
-    const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  CoderGenerator sg(i_param);
 
   int32_t i_bits = i_param.getInputs();
   GraphPtr graph = sg.generatorEncoder(i_bits);
@@ -360,9 +368,9 @@ void DataBaseGenerator::generateDataBaseEncoder(
 }
 
 void DataBaseGenerator::generateDataBaseParity(
-    const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  ParityGenerator sg(i_param);
 
   int32_t bits = i_param.getInputs();
   GraphPtr graph = sg.generatorParity(bits);
@@ -377,9 +385,9 @@ void DataBaseGenerator::generateDataBaseParity(
 }
 
 void DataBaseGenerator::generateDataBaseSubtractor(
-    const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  ArithmeticGenerator sg(i_param);
 
   GraphPtr graph = sg.generatorSubtractor(
       i_param.getInputs(), i_param.getSubtractor().getOverFlowIn(),
@@ -396,9 +404,9 @@ void DataBaseGenerator::generateDataBaseSubtractor(
 }
 
 void DataBaseGenerator::generateDataBaseMultiplexer(
-    const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  PlexerGenerator sg(i_param);
 
   int32_t i_bits = i_param.getInputs();
   GraphPtr graph = sg.generatorMultiplexer(i_bits);
@@ -413,9 +421,9 @@ void DataBaseGenerator::generateDataBaseMultiplexer(
 }
 
 void DataBaseGenerator::generateDataBaseDemultiplexer(
-    const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  PlexerGenerator sg(i_param);
 
   int32_t i_bits = i_param.getOutputs();
   GraphPtr graph = sg.generatorDemultiplexer(i_bits);
@@ -430,9 +438,9 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
 }
 
 void DataBaseGenerator::generateDataBaseMultiplier(
-    const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  ArithmeticGenerator sg(i_param);
 
   GraphPtr graph = sg.generatorMultiplier(i_param.getInputs());
   Circuit c(graph);
@@ -446,9 +454,9 @@ void DataBaseGenerator::generateDataBaseMultiplier(
 }
 
 void DataBaseGenerator::generateDataBaseDecoder(
-    const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+    const GenerationParameters& i_param
+) {
+  CoderGenerator sg(i_param);
 
   GraphPtr graph = sg.generatorDecoder(i_param.getInputs());
   Circuit c(graph);
@@ -461,10 +469,9 @@ void DataBaseGenerator::generateDataBaseDecoder(
   addDataToReturn(graph);
 }
 
-void DataBaseGenerator::generateDataBaseALU(
-    const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
+) {
+  ALUGenerator sg(i_param);
 
   GraphPtr graph = sg.generatorALU(
       i_param.getInputs(), i_param.getOutputs(), i_param.getALU().getALL(),

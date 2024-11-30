@@ -10,12 +10,12 @@
 #include <additional/filesTools/FilesTools.hpp>
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <circuit/Circuit.hpp>
-#include <generators/simple/SimpleGenerators.hpp>
 
 #include "ChromosomeType.hpp"
 #include "Mutations/Mutation.hpp"
 #include "Recombination/Recombinations.hpp"
 #include "Selections/Selections.hpp"
+#include <generators/simple/FromTruthTableGenerator.hpp>
 
 bool isNumber(const std::string &s) {
   for (auto c: s) {
@@ -91,7 +91,7 @@ public:
       Type tt;
       tt = ttp.getChromosomeType();
 
-      SimpleGenerators tftt;
+      FromTruthTableGenerator tftt;
 
       auto graph = tftt.cnfFromTruthTable(tt, true);
       graph->setName(d_name + "_CNFT");
