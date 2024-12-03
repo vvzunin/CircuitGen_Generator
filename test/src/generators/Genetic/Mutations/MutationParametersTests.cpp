@@ -12,21 +12,21 @@ TEST(MutationParametersTest, SetAndGetMutationType) {
 
 TEST(MutationParametersTest, SetAndGetProbabilityGen) {
   MutationParameters params;
-  double             probGen = 0.5;
+  double probGen = 0.5;
   params.setProbabilityGen(probGen);
   EXPECT_DOUBLE_EQ(params.getProbabilityGen(), probGen);
 }
 
 TEST(MutationParametersTest, SetAndGetExchangeType) {
   MutationParameters params;
-  int32_t            exchangeType = 2;
+  int32_t exchangeType = 2;
   params.setExchangeType(exchangeType);
   EXPECT_EQ(params.getExchangeType(), exchangeType);
 }
 
 TEST(MutationParametersTest, SetAndGetProbabilityTruthTable) {
   MutationParameters params;
-  double             probTruthTable = 0.7;
+  double probTruthTable = 0.7;
   params.setProbabilityTruthTable(probTruthTable);
   EXPECT_DOUBLE_EQ(params.getProbabilityTruthTable(), probTruthTable);
 }

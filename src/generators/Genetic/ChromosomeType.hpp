@@ -10,9 +10,9 @@
 template<typename Type, typename ParametersTypes>
 class ChromosomeType {
 public:
-  ChromosomeType(const std::string& i_name, const Type& i_Chromosome) {
+  ChromosomeType(const std::string &i_name, const Type &i_Chromosome) {
     d_Chromosome = i_Chromosome;
-    d_name       = i_name;
+    d_name = i_name;
     adaptationFunction();
   }
   // ChromosomeType(const ChromosomeType & r)
@@ -22,37 +22,36 @@ public:
   //     d_settings(Settings::getInstance("TruthTable"))
   // { }
 
-  const Type& getChromosomeType() const { return d_Chromosome; }
-  void        setChromosomeType(const Type& i_Chromosome) {
+  const Type &getChromosomeType() const { return d_Chromosome; }
+  void setChromosomeType(const Type &i_Chromosome) {
     d_Chromosome = i_Chromosome;
   }
   double getAdaptationIndex() const { return d_adaptationIndex; }
-  void   setAdaptationIndex(double i_adaptationIndex) {
+  void setAdaptationIndex(double i_adaptationIndex) {
     d_adaptationIndex = i_adaptationIndex;
   }
   std::string getName() const { return d_name; }
-  void        adaptationFunction() {
+  void adaptationFunction() {
     if constexpr (std::is_same_v<Type, TruthTable>) {
       uint32_t numInt = 0;
-      for (const auto& nucleosoms : d_Chromosome.getOutTable())
-        for (const auto& nucleosom : nucleosoms)
+      for (const auto &nucleosoms: d_Chromosome.getOutTable())
+        for (const auto &nucleosom: nucleosoms)
           if (nucleosom)
             numInt++;
-      d_adaptationIndex =
-          abs(0.5 - (numInt / (d_Chromosome.size() * d_Chromosome.getOutput()))
-          );
+      d_adaptationIndex = abs(
+          0.5 - (numInt / (d_Chromosome.size() * d_Chromosome.getOutput())));
     }
   }
-  bool operator==(const ChromosomeType<Type, ParametersTypes>& r) const {
-    return std::tie(d_adaptationIndex, d_Chromosome, d_name)
-        == std::tie(r.d_adaptationIndex, r.d_Chromosome, r.d_name);
+  bool operator==(const ChromosomeType<Type, ParametersTypes> &r) const {
+    return std::tie(d_adaptationIndex, d_Chromosome, d_name) ==
+           std::tie(r.d_adaptationIndex, r.d_Chromosome, r.d_name);
   }
 
 private:
-  double                    d_adaptationIndex;
-  Type                      d_Chromosome;
+  double d_adaptationIndex;
+  Type d_Chromosome;
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
-  std::string               d_name;
+  std::string d_name;
 };
 
 // template<typename Type, typename ParametersTypes>

@@ -28,29 +28,25 @@ void TruthTable::setSeed(uint_fast32_t i_seed) {
   d_randGenerator.setSeed(i_seed);
 }
 
-TruthTable::TruthTable(
-    int32_t                               i_input,
-    int32_t                               i_output,
-    const std::vector<std::vector<bool>>& i_array
-) :
-  d_input(i_input), d_output(i_output) {
+TruthTable::TruthTable(int32_t i_input, int32_t i_output,
+                       const std::vector<std::vector<bool>> &i_array) :
+    d_input(i_input),
+    d_output(i_output) {
   d_size = 1u << d_input;
-  if (i_array.size() == 0 || i_array.size() != d_size
-      || i_array[0].size() != d_output)
+  if (i_array.size() == 0 || i_array.size() != d_size ||
+      i_array[0].size() != d_output)
     generateTable(0);
   else
     d_array = i_array;
 }
 
-TruthTable::TruthTable(
-    const TruthTable&              i_tt,
-    std::vector<std::vector<bool>> i_array
-) {
-  d_input  = i_tt.d_input;
+TruthTable::TruthTable(const TruthTable &i_tt,
+                       std::vector<std::vector<bool>> i_array) {
+  d_input = i_tt.d_input;
   d_output = i_tt.d_output;
-  d_size   = i_tt.d_size;
-  if (i_array.empty() || i_array.size() != d_size
-      || i_array[0].size() != d_output) {
+  d_size = i_tt.d_size;
+  if (i_array.empty() || i_array.size() != d_size ||
+      i_array[0].size() != d_output) {
     generateRandom(TruthTableParameters(d_input, d_output));
   } else {
     d_array = i_array;
@@ -58,7 +54,7 @@ TruthTable::TruthTable(
 }
 
 TruthTable::TruthTable(int32_t i_input, int32_t i_output, double i_p) :
-  d_input(i_input), d_output(i_output) {
+    d_input(i_input), d_output(i_output) {
   d_size = (1u << i_input);
   generateTable(i_p);
 }
@@ -68,7 +64,7 @@ std::vector<std::vector<bool>> TruthTable::convToBinary() const {
   for (int32_t i = 0; i < d_size; ++i) {
     for (int32_t j = d_input - 1, tmp = i; j >= 0; --j) {
       bin[i][j] = (tmp % 2) == 1;
-      tmp       /= 2;
+      tmp /= 2;
     }
   }
   return bin;
@@ -102,9 +98,9 @@ void TruthTable::generateRandom(TruthTableParameters i_gp) {
     i_gp.setOutputs(d_randGenerator.getRandInt(0, d_settings->getMaxOutputs()));
   }
 
-  d_input  = i_gp.getInputs();
+  d_input = i_gp.getInputs();
   d_output = i_gp.getOutputs();
-  d_size   = 1u << d_input;
+  d_size = 1u << d_input;
 
   d_array.clear();
   d_array.resize(d_size);
@@ -139,14 +135,14 @@ void TruthTable::generateTable(double i_p) {
   }
 }
 
-bool TruthTable::operator==(const TruthTable& r) const {
-  return std::tie(d_input, d_output, d_size, d_array)
-      == std::tie(r.d_input, r.d_output, r.d_size, r.d_array);
+bool TruthTable::operator==(const TruthTable &r) const {
+  return std::tie(d_input, d_output, d_size, d_array) ==
+         std::tie(r.d_input, r.d_output, r.d_size, r.d_array);
 }
 
 void TruthTable::printTable() const {
   std::stringstream ss;
-  for (const auto& row : d_array) {
+  for (const auto &row: d_array) {
     std::copy(row.begin(), row.end(), std::ostream_iterator<bool>(ss, " "));
     ss << '\n';
   }

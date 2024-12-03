@@ -28,26 +28,20 @@ using GatesInfo = std::map<Gates, std::vector<int32_t>>;
 
 class Parser {
 public:
-  Parser(
-      const std::string&                                 i_logExpression,
-      const std::map<std::string, std::vector<int32_t>>& i_info
-  );
-  Parser(
-      const std::vector<std::string>&                    i_logExpressions,
-      const std::map<std::string, std::vector<int32_t>>& i_info
-  );
+  Parser(const std::string &i_logExpression,
+         const std::map<std::string, std::vector<int32_t>> &i_info);
+  Parser(const std::vector<std::string> &i_logExpressions,
+         const std::map<std::string, std::vector<int32_t>> &i_info);
 
-  Parser(const std::string& i_logExpression, const GatesInfo& i_info);
-  Parser(
-      const std::vector<std::string>& i_logExpressions,
-      const GatesInfo&                i_info
-  );
+  Parser(const std::string &i_logExpression, const GatesInfo &i_info);
+  Parser(const std::vector<std::string> &i_logExpressions,
+         const GatesInfo &i_info);
 
-  Parser()                               = default;
-  Parser(const Parser& other)            = default;
-  Parser& operator=(const Parser& other) = default;
-  Parser(Parser&& other)                 = default;
-  Parser&  operator=(Parser&& other)     = default;
+  Parser() = default;
+  Parser(const Parser &other) = default;
+  Parser &operator=(const Parser &other) = default;
+  Parser(Parser &&other) = default;
+  Parser &operator=(Parser &&other) = default;
 
   /// @brief getGraph
   /// Get the graph object
@@ -55,9 +49,8 @@ public:
   /// Parser instance
   /// @return A pointer to the graph object
   GraphPtr getGraph() const;
-  std::pair<int32_t, std::vector<std::string>> splitLogicExpression(
-      std::string i_expr
-  );
+  std::pair<int32_t, std::vector<std::string>>
+  splitLogicExpression(std::string i_expr);
 
   /// @brief multipleVerteciesToOne
   /// This method takes a vector of vertices representing the current layout,
@@ -77,11 +70,8 @@ public:
   /// graph);
   /// @endcode
 
-  VertexPtr multipleVerteciesToOne(
-      std::vector<VertexPtr> curLayout,
-      Gates                  operation,
-      GraphPtr               graph
-  );
+  VertexPtr multipleVerteciesToOne(std::vector<VertexPtr> curLayout,
+                                   Gates operation, GraphPtr graph);
 
   /// @brief parseToVertex
   /// This method takes a logical expression, splits it, and converts it into a
@@ -104,7 +94,7 @@ public:
   /// }
   /// @endcode
 
-  VertexPtr parseToVertex(const std::string& i_expr);
+  VertexPtr parseToVertex(const std::string &i_expr);
 
   /// @brief parseAll
   /// Parse all logical expressions and construct the graph.
@@ -121,27 +111,26 @@ public:
   /// TO DO:
   /// @endcode
 
-  bool      parseAll();
+  bool parseAll();
 
   /// @brief setGatesInputsInfo
   /// Set information about gates inputs
   /// @param i_info A map where keys are gate names as strings and values are
   /// vectors of integers specifying the number of inputs for each gate
 
-  void      setGatesInputsInfo(
-           const std::map<std::string, std::vector<int32_t>>& i_info
-       );
+  void
+  setGatesInputsInfo(const std::map<std::string, std::vector<int32_t>> &i_info);
 
   /// @brief setGatesInputsInfo
   /// TO DO:
   /// Analog setGatesInputsInfo
   /// @param GatesInfo = std::map<Gates, std::vector<int32_t>>
-  void setGatesInputsInfo(const GatesInfo& i_info);
+  void setGatesInputsInfo(const GatesInfo &i_info);
 
 private:
-  std::vector<std::string>  d_logExpressions;
+  std::vector<std::string> d_logExpressions;
 
-  GraphPtr                  d_graph;
+  GraphPtr d_graph;
   std::shared_ptr<Settings> d_settings = Settings::getInstance("Parser");
 
   /// @brief createBrackets
@@ -154,9 +143,8 @@ private:
   /// TO DO:
   /// @endcode
 
-  std::pair<bool, std::vector<std::pair<int32_t, int32_t>>> createBrackets(
-      const std::string& i_expr
-  );
+  std::pair<bool, std::vector<std::pair<int32_t, int32_t>>>
+  createBrackets(const std::string &i_expr);
   /// @brief inBrackets
   /// Checks if a given position is within any pair of brackets
   /// @param i_brackets The vector of pairs representing the positions of
@@ -176,10 +164,8 @@ private:
   /// pair of brackets: " << std::boolalpha << result2 << "\n";
   /// @endcode
 
-  bool inBrackets(
-      const std::vector<std::pair<int32_t, int32_t>>& i_brackets,
-      int32_t                                         i_position
-  ) const;
+  bool inBrackets(const std::vector<std::pair<int32_t, int32_t>> &i_brackets,
+                  int32_t i_position) const;
 
   /// @brief parseInputNot
   /// Parses an input variable with or without the NOT operation and returns
@@ -193,7 +179,7 @@ private:
   /// TO DO:
   /// @endcode
 
-  VertexPtr   parseInputNot(std::string oper, std::string name);
+  VertexPtr parseInputNot(std::string oper, std::string name);
 
   /// @brief deleteExtraSpaces
   /// Deletes extra spaces from the beginning and end of a string
@@ -212,5 +198,5 @@ private:
   std::map<std::string, VertexPtr> d_inputsByNames;
   std::map<std::string, VertexPtr> d_notInputsByNames;
 
-  GatesInfo                        d_gatesInputsInfo;
+  GatesInfo d_gatesInputsInfo;
 };

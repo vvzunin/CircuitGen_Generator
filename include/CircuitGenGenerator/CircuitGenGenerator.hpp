@@ -12,10 +12,10 @@ namespace CircuitGenGenerator {
 
 CIRCUITGENGENERATOR_EXPORT
 std::vector<std::pair<std::string, std::vector<std::shared_ptr<OrientedGraph>>>>
-    runGenerationFromJsonForGraph(std::string json_path);
+runGenerationFromJsonForGraph(std::string json_path);
 CIRCUITGENGENERATOR_EXPORT
 std::vector<std::pair<std::string, std::vector<std::string>>>
-    runGenerationFromJsonForPath(std::string json_path);
+runGenerationFromJsonForPath(std::string json_path);
 CIRCUITGENGENERATOR_EXPORT void runGenerationFromJson(std::string json_path);
 
-}  // namespace CircuitGenGenerator
+} // namespace CircuitGenGenerator

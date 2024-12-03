@@ -10,30 +10,28 @@
 
 /// @file Settings.hpp
 
-enum LibrariesTypes {
-  SKY_LIB
-};
+enum LibrariesTypes { SKY_LIB };
 
 /// @brief GenerationTypes
 /// Enumeration of the types of digital circuit generation.
 /// This enumeration defines the various types of digital circuit generation
 /// that can be used to create a variety of logic circuits.
 
-enum GenerationTypes {    /// Generating a circuit from a random truth table
-  FromRandomTruthTable,   /// Random level (experimental)
-  RandLevel,              /// Experimental random level generation
-  RandLevelExperimental,  /// Generating a circuit with numerical operations
-  NumOperation,           /// Genetic generation of the circuit
-  Genetic,                /// Adder
-  Summator,               /// The comparison block
-  Comparison,             /// The encoder
-  Encoder,                /// Subtractor
-  Subtractor,             /// Multiplexer
-  Multiplexer,            /// Demultiplexer
-  Demultiplexer,          /// Multiplier
-  Multiplier,             /// Decoder
-  Decoder,                /// Parity
-  Parity,                 /// Arithmetic Logic Unit (ALU)
+enum GenerationTypes {   /// Generating a circuit from a random truth table
+  FromRandomTruthTable,  /// Random level (experimental)
+  RandLevel,             /// Experimental random level generation
+  RandLevelExperimental, /// Generating a circuit with numerical operations
+  NumOperation,          /// Genetic generation of the circuit
+  Genetic,               /// Adder
+  Summator,              /// The comparison block
+  Comparison,            /// The encoder
+  Encoder,               /// Subtractor
+  Subtractor,            /// Multiplexer
+  Multiplexer,           /// Demultiplexer
+  Demultiplexer,         /// Multiplier
+  Multiplier,            /// Decoder
+  Decoder,               /// Parity
+  Parity,                /// Arithmetic Logic Unit (ALU)
   ALU
 };
 
@@ -76,11 +74,11 @@ enum GenerationTypes {    /// Generating a circuit from a random truth table
 
 class Settings : public DefaultSettings {
 public:
-  Settings(const std::string& i_path) : DefaultSettings(i_path) {}
+  Settings(const std::string &i_path) : DefaultSettings(i_path) {}
 
   static void resetSingletone() { d_singleton = nullptr; }
-  Settings(Settings& other)                                   = delete;
-  void                             operator=(const Settings&) = delete;
+  Settings(Settings &other) = delete;
+  void operator=(const Settings &) = delete;
 
   /// @brief getInstance Gets a single instance of the Settings class
   /// The method provides creation and receipt of a single instance of the
@@ -102,7 +100,7 @@ public:
   /// std::cout << "Dataset path: " << datasetPath << std::endl;
   /// @endcode
 
-  static std::shared_ptr<Settings> getInstance(const std::string& i_value);
+  static std::shared_ptr<Settings> getInstance(const std::string &i_value);
 
   /// @brief loadSettings Downloads settings from a file
   /// The method loads the settings from a file with the name specified in
@@ -110,18 +108,18 @@ public:
   /// settings values from it and updates the corresponding data members of
   /// the class
 
-  void                             loadSettings();
+  void loadSettings();
 
   /// @brief getInstanceName Gets the name of the current instance of settings
   /// @return std::string Name of the current instance of settings
 
-  std::string                      getInstanceName() const;
+  std::string getInstanceName() const;
 
   /// @brief getLogicOperationsKeys Returns the keys of logical operations
   /// @return std::vector<Gates> A vector containing the keys of logical
   /// operations
 
-  std::vector<Gates>               getLogicOperationsKeys();
+  std::vector<Gates> getLogicOperationsKeys();
 
   /// @brief getLogicOperationsWithGates Returns logical operations along with
   /// information about the presence of a single input
@@ -161,8 +159,8 @@ public:
   /// }
   /// @endcode
 
-  std::pair<std::vector<bool>, std::vector<Gates>> getLogicOperationsWithGates(
-  );
+  std::pair<std::vector<bool>, std::vector<Gates>>
+  getLogicOperationsWithGates();
 
   /// @brief getDatasetPath Returns the path to the dataset
   /// @return std::string The path to the dataset
@@ -172,7 +170,7 @@ public:
   /// @brief setDatasetPath Sets the path to the dataset
   /// @param i_datasetPath a string representing the path to the dataset
 
-  void        setDatasetPath(const std::string& i_datasetPath);
+  void setDatasetPath(const std::string &i_datasetPath);
 
   /// @brief getGenerationMethodPrefix Gets the prefix of the generation
   /// method by its corresponding GenerationTypes
@@ -195,8 +193,8 @@ public:
   /// std::endl;
   /// @endcode
 
-  std::string getGenerationMethodPrefix(const GenerationTypes i_methodType
-  ) const;
+  std::string
+  getGenerationMethodPrefix(const GenerationTypes i_methodType) const;
 
   /// @brief getLibraryPath Returns the path to the library
   /// @return std::string Library path
@@ -209,17 +207,17 @@ public:
   /// library
   /// @return std::string Library name
 
-  std::string getLibraryNameFromEnum(const LibrariesTypes& library) const;
+  std::string getLibraryNameFromEnum(const LibrariesTypes &library) const;
 
   /// @brief getMaxInputs Gets the maximum number of inputs
   /// @return uint32_t Maximum number of inputs
 
-  uint32_t    getMaxInputs() const;
+  uint32_t getMaxInputs() const;
 
   /// @brief getMaxOutputs Returns the maximum number of outputs
   /// @return uint32_t Maximum number of outputs
 
-  uint32_t    getMaxOutputs() const;
+  uint32_t getMaxOutputs() const;
 
   /// @brief getLogicOperations all logical operations
   /// The method returns a dictionary containing all logical operations
@@ -231,8 +229,8 @@ public:
   /// @return std::map<std::string, std::pair<std::string, int32_t>> Dictionary
   /// with logical operations
 
-  std::map<std::string, std::pair<std::string, int32_t>> getLogicOperations(
-  ) const;
+  std::map<std::string, std::pair<std::string, int32_t>>
+  getLogicOperations() const;
 
   /// @brief getPathNadezhda Returns the path to Nadezhda
   /// @return std::string Path to Nadezhda
@@ -245,7 +243,7 @@ public:
   /// @return std::string The value corresponding to the provided key in the
   /// Nadezhda dictionary
 
-  std::string getNadezhdaVar(const std::string& key) const;
+  std::string getNadezhdaVar(const std::string &key) const;
 
   /// @brief getNumThread Retrieves the number of threads used for processing
   /// @return uint16_t The number of threads configured for processing
@@ -258,8 +256,8 @@ public:
   /// std::cout << "Number of threads: " << numThreads << std::endl;
   /// @endcode
 
-  uint16_t    getNumThread() const;
-  void        setNumThread(uint16_t i_numThreads);
+  uint16_t getNumThread() const;
+  void setNumThread(uint16_t i_numThreads);
 
   /// @brief parseGateToString Converts an enum value of a gate to its
   /// corresponding string representation
@@ -295,15 +293,15 @@ private:
   /// settingsInstance->SaveSettings();
   /// @endcode
 
-  void                             SaveSettings();
+  void SaveSettings();
 
-  std::string                      d_name;
+  std::string d_name;
   static std::shared_ptr<Settings> d_singleton;
-  std::string                      d_path;
-  std::string                      d_csvdataset  = "dataset.csv";
-  std::string                      d_fileName    = "settings.dat";
-  std::string                      d_datasetPath = "./dataset";
-  std::string                      d_libraryPath = "Generator/libs";
+  std::string d_path;
+  std::string d_csvdataset = "dataset.csv";
+  std::string d_fileName = "settings.dat";
+  std::string d_datasetPath = "./dataset";
+  std::string d_libraryPath = "Generator/libs";
   // Settings d_instance;
   std::string d_pathToNadezhda = "./Generator/source/data/Nadezhda";
   std::map<std::string, std::string> d_nadezhda = {
@@ -311,7 +309,7 @@ private:
       {"resynthesis", "Nadezhda/Scripts/resynthesis_local_rewriting.pyc"},
       {"reliability", "Nadezhda/Scripts/check_reliability.pyc"},
       {"liberty", "Nadezda/Test/Nangate.lib"}};
-  uint16_t                               d_numThreads           = 4;
+  uint16_t d_numThreads = 4;
 
   std::map<GenerationTypes, std::string> generationTypeToPrefix = {
       {GenerationTypes::FromRandomTruthTable, "CCGRTT"},
@@ -330,6 +328,6 @@ private:
       {GenerationTypes::Decoder, "CCGDCR"},
       {GenerationTypes::ALU, "CCGALU"}};
 
-  uint32_t d_maxInputs  = 50;
+  uint32_t d_maxInputs = 50;
   uint32_t d_maxOutputs = 50;
 };

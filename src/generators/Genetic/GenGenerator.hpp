@@ -17,8 +17,8 @@
 #include "Recombination/Recombinations.hpp"
 #include "Selections/Selections.hpp"
 
-bool isNumber(const std::string& s) {
-  for (auto c : s) {
+bool isNumber(const std::string &s) {
+  for (auto c: s) {
     if (!std::isdigit(c))
       return false;
   }
@@ -41,17 +41,12 @@ bool isNumber(const std::string& s) {
 template<typename Type, typename ParametersType>
 class GeneticGenerator {
 public:
-  GeneticGenerator(
-      const ParametersType&       i_parameters,
-      std::pair<int32_t, int32_t> i_inout,
-      const std::string&          i_mainPath,
-      const std::string&          i_name
-  ) :
-    d_parameters(i_parameters),
-    d_inputs(i_inout.first),
-    d_outputs(i_inout.second),
-    d_mainPath(i_mainPath),
-    d_name(i_name) {
+  GeneticGenerator(const ParametersType &i_parameters,
+                   std::pair<int32_t, int32_t> i_inout,
+                   const std::string &i_mainPath, const std::string &i_name) :
+      d_parameters(i_parameters),
+      d_inputs(i_inout.first), d_outputs(i_inout.second),
+      d_mainPath(i_mainPath), d_name(i_name) {
     d_parameters.setInputs(d_inputs);
     d_parameters.setOutputs(d_outputs);
   }
@@ -70,20 +65,17 @@ public:
     createPopulation();
     double d = endProcessFunction();
     for (int32_t i = 0;
-         (i < d_parameters.getNumOfCycles())
-         && (endProcessFunction() < d_parameters.getKeyEndProcessIndex());
+         (i < d_parameters.getNumOfCycles()) &&
+         (endProcessFunction() < d_parameters.getKeyEndProcessIndex());
          ++i) {
       std::vector<ChromosomeType<Type, ParametersType>> newPopulation =
           RecombinationType<Type, ParametersType>(
-              d_parameters.getRecombinationParameters(), d_population
-          );
+              d_parameters.getRecombinationParameters(), d_population);
       std::vector<ChromosomeType<Type, ParametersType>> mutants =
           MutationType<Type, ParametersType>(
-              d_parameters.getMutationParameters(), newPopulation
-          );
+              d_parameters.getMutationParameters(), newPopulation);
       d_population = SelectionType<Type, ParametersType>(
-          d_parameters.getSelectionParameters(), mutants
-      );
+          d_parameters.getSelectionParameters(), mutants);
       // TODO make flag if necessary
       // savePopulation(d_population);
     }
@@ -92,17 +84,16 @@ public:
   }
 
   std::vector<GraphPtr> getGraphsFromPopulation(
-      const std::vector<ChromosomeType<Type, ParametersType>>& i_population
-  ) {
+      const std::vector<ChromosomeType<Type, ParametersType>> &i_population) {
     std::vector<GraphPtr> result;
 
-    for (const auto& ttp : i_population) {
+    for (const auto &ttp: i_population) {
       Type tt;
       tt = ttp.getChromosomeType();
 
       SimpleGenerators tftt;
 
-      auto             graph = tftt.cnfFromTruthTable(tt, true);
+      auto graph = tftt.cnfFromTruthTable(tt, true);
       graph->setName(d_name + "_CNFT");
       result.push_back(graph);
 
@@ -115,21 +106,20 @@ public:
   }
 
 private:
-  uint32_t                                          d_inputs;
-  uint32_t                                          d_outputs;
-  uint32_t                                          d_numCross;
+  uint32_t d_inputs;
+  uint32_t d_outputs;
+  uint32_t d_numCross;
   std::vector<ChromosomeType<Type, ParametersType>> d_population;
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
-  ParametersType            d_parameters;
-  std::string               d_mainPath;
-  std::string               d_name;
-  const GenerationTypes     d_generationType = Genetic;
+  ParametersType d_parameters;
+  std::string d_mainPath;
+  std::string d_name;
+  const GenerationTypes d_generationType = Genetic;
 
-  void                      savePopulation(
-                           const std::vector<ChromosomeType<Type, ParametersType>>& i_population
-                       ) {
+  void savePopulation(
+      const std::vector<ChromosomeType<Type, ParametersType>> &i_population) {
     auto graphs = getGraphsFromPopulation(i_population);
-    for (auto graph : graphs) {
+    for (auto graph: graphs) {
       Circuit c(graph);
       // c.setTable(tt);
       c.setPath(d_mainPath);
@@ -155,8 +145,7 @@ private:
 
       ChromosomeType<Type, ParametersType> ind =
           ChromosomeType<Type, ParametersType>(
-              std::string("ind" + std::to_string(i)), gen
-          );
+              std::string("ind" + std::to_string(i)), gen);
       d_population.push_back(ind);
     }
     // TODO make flag if necessary
@@ -173,7 +162,7 @@ private:
 
   double endProcessFunction() const {
     double max = 0;
-    for (const auto& i : d_population) {
+    for (const auto &i: d_population) {
       max = std::max(max, i.getAdaptationIndex());
     }
 

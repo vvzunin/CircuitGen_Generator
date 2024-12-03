@@ -14,11 +14,9 @@
 #include <additional/filesTools/FilesTools.hpp>
 #include <CircuitGenGraph/enums.hpp>
 
-Circuit::Circuit(
-    GraphPtr const                  i_graph,
-    const std::vector<std::string>& i_logExpressions
-) {
-  d_graph          = i_graph;
+Circuit::Circuit(GraphPtr const i_graph,
+                 const std::vector<std::string> &i_logExpressions) {
+  d_graph = i_graph;
   d_logExpressions = i_logExpressions;
 }
 
@@ -35,10 +33,10 @@ void Circuit::computeHash() {
   stream << std::setfill(' ') << std::setw(10) << d_circuitParameters.d_numEdges
          << '\n';
 
-  for (auto [key, value] : d_circuitParameters.d_numElementsOfEachType)
+  for (auto [key, value]: d_circuitParameters.d_numElementsOfEachType)
     stream << "\t\t\"" << key << "\": " << value << '\n';
 
-  for (auto [key, value] : d_circuitParameters.d_numEdgesOfEachType)
+  for (auto [key, value]: d_circuitParameters.d_numEdgesOfEachType)
     stream << "\t\t\"" << key.first << "-" << key.second << "\": " << value
            << '\n';
 }
@@ -52,20 +50,20 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
 
   d_circuitParameters.d_name = i_graph->getName();
 
-  std::vector<std::shared_ptr<GraphVertexBase>> inputs =
+  std::vector<VertexPtr> inputs =
       i_graph->getVerticesByType(VertexTypes::input);
-  std::vector<std::shared_ptr<GraphVertexBase>> constants =
+  std::vector<VertexPtr> constants =
       i_graph->getVerticesByType(VertexTypes::constant);
-  std::vector<std::shared_ptr<GraphVertexBase>> outputs =
+  std::vector<VertexPtr> outputs =
       i_graph->getVerticesByType(VertexTypes::output);
 
-  d_circuitParameters.d_numInputs    = inputs.size();
+  d_circuitParameters.d_numInputs = inputs.size();
   d_circuitParameters.d_numConstants = constants.size();
-  d_circuitParameters.d_numOutputs   = outputs.size();
+  d_circuitParameters.d_numOutputs = outputs.size();
 
-  d_circuitParameters.d_maxLevel     = i_graph->getMaxLevel();
+  d_circuitParameters.d_maxLevel = i_graph->getMaxLevel();
 
-  d_circuitParameters.d_numEdges     = i_graph->getEdgesCount();
+  d_circuitParameters.d_numEdges = i_graph->getEdgesCount();
   // TODO: Добавить корректную реализацию
   // for (const auto &row : i_graph->getAdjacencyMatrixReference())
   //     for (auto el : row)
@@ -75,50 +73,52 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   d_circuitParameters.d_numElementsOfEachType.clear();
   // const std::vector<GraphVertex> &gv = i_graph->getVerticesReference();
 
-  for (auto [key, value] : i_graph->getGatesCount()) {
+  for (auto [key, value]: i_graph->getGatesCount()) {
     d_circuitParameters
         .d_numElementsOfEachType[d_settings->parseGateToString(key)] = value;
-    d_circuitParameters.d_numGates                                   += value;
+    d_circuitParameters.d_numGates += value;
   }
 
-  d_circuitParameters.d_numElementsOfEachType["input"]  = inputs.size();
+  d_circuitParameters.d_numElementsOfEachType["input"] = inputs.size();
   d_circuitParameters.d_numElementsOfEachType["output"] = outputs.size();
-  d_circuitParameters.d_numElementsOfEachType["const"]  = constants.size();
+  d_circuitParameters.d_numElementsOfEachType["const"] = constants.size();
 
   d_circuitParameters.d_numEdgesOfEachType.clear();
 
   // calc gate-gate
-  for (auto [from, sub] : i_graph->getEdgesGatesCount()) {
-    for (auto [to, count] : sub) {
-      d_circuitParameters.d_numEdgesOfEachType[{
-          DefaultSettings::parseGateToString(from),
-          DefaultSettings::parseGateToString(to)}] = count;
+  for (auto [from, sub]: i_graph->getEdgesGatesCount()) {
+    for (auto [to, count]: sub) {
+      d_circuitParameters
+          .d_numEdgesOfEachType[{DefaultSettings::parseGateToString(from),
+                                 DefaultSettings::parseGateToString(to)}] =
+          count;
     }
   }
 
   // iterate through inputs
-  for (auto inp : inputs) {
-    for (auto child : inp->getOutConnections()) {
-      std::string to = child->getGate() != Gates::GateDefault
-                         ? DefaultSettings::parseGateToString(child->getGate())
-                         : child->getTypeName();
+  for (auto inp: inputs) {
+    for (auto child: inp->getOutConnections()) {
+      std::string to =
+          child->getGate() != Gates::GateDefault
+              ? DefaultSettings::parseGateToString(child->getGate())
+              : child->getTypeName();
       ++d_circuitParameters.d_numEdgesOfEachType[{"input", to}];
     }
   }
 
   // iterate through outputs
-  for (auto out : outputs) {
-    for (auto child : out->getInConnections()) {
-      if (auto ptr = child.lock()) {
+  for (auto out: outputs) {
+    for (auto child: out->getInConnections()) {
+      if (child) {
         // here we do not parse pair input-output
-        if (ptr->getType() == VertexTypes::input) {
+        if (child->getType() == VertexTypes::input) {
           continue;
         }
 
         std::string from =
-            ptr->getGate() != Gates::GateDefault
-                ? DefaultSettings::parseGateToString(ptr->getGate())
-                : ptr->getTypeName();
+            child->getGate() != Gates::GateDefault
+                ? DefaultSettings::parseGateToString(child->getGate())
+                : child->getTypeName();
         ++d_circuitParameters.d_numEdgesOfEachType[{from, "output"}];
       } else {
         throw std::invalid_argument("Dead pointer!");
@@ -127,15 +127,16 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   }
 
   // iterate through constants
-  for (auto inp : constants) {
-    for (auto child : inp->getOutConnections()) {
+  for (auto inp: constants) {
+    for (auto child: inp->getOutConnections()) {
       // here we do not parse pair const-output
       if (child->getType() == VertexTypes::output) {
         continue;
       }
-      std::string to = child->getGate() != Gates::GateDefault
-                         ? DefaultSettings::parseGateToString(child->getGate())
-                         : child->getTypeName();
+      std::string to =
+          child->getGate() != Gates::GateDefault
+              ? DefaultSettings::parseGateToString(child->getGate())
+              : child->getTypeName();
 
       ++d_circuitParameters.d_numEdgesOfEachType[{"const", to}];
     }
@@ -145,7 +146,7 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   // computeHash();
 }
 
-bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
+bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists) {
   if (d_graph->isEmptyFull())
     return false;
 
@@ -158,32 +159,31 @@ bool Circuit::graphToVerilog(const std::string& i_path, bool i_pathExists) {
   static std::string filename;
   static std::string s;
 
-  size_t             previousSizeOfFileName = filename.size();
+  size_t previousSizeOfFileName = filename.size();
 
   if (!d_graph->getSubGraphs().empty()) {
     std::string folderSubgraphs = d_path + "/submodules";
     std::filesystem::create_directory(folderSubgraphs);
   }
-  filename    = d_path + "/" + d_circuitName + ".v";
+  filename = d_path + "/" + d_circuitName + ".v";
 
-  size_t pos  = (s.find_last_of('/')) + 1;
+  size_t pos = (s.find_last_of('/')) + 1;
   size_t pos2 = (filename.find_last_of('/')) + 1;
 
   if (previousSizeOfFileName == 0)
-    s = std::filesystem::current_path().string() + "/"
-      + filename;  // static variable will be created one time and then will be
-                   // used through running of the program
+    s = std::filesystem::current_path().string() + "/" +
+        filename; // static variable will be created one time and then will be
+                  // used through running of the program
   else
-    s.replace(
-        pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName
-    );
+    s.replace(pos, previousSizeOfFileName, filename, pos2,
+              previousSizeOfFileName);
 
   bool f = std::filesystem::exists(s);
 
   return d_graph->toVerilog(d_path, d_circuitName + ".v").first;
 }
 
-bool Circuit::graphToDOT(const std::string& i_path, bool i_pathExists) {
+bool Circuit::graphToDOT(const std::string &i_path, bool i_pathExists) {
   if (d_graph->isEmptyFull())
     return false;
 
@@ -193,45 +193,41 @@ bool Circuit::graphToDOT(const std::string& i_path, bool i_pathExists) {
   i_path)) std::filesystem::create_directory(i_path);
   */
 
-  for (auto subGr : d_graph->getSubGraphs()) {
+  for (auto subGr: d_graph->getSubGraphs()) {
     d_graph->resetCounters(subGr);
   }
 
   static std::string filename;
   static std::string s;
 
-  size_t             previousSizeOfFileName = filename.size();
+  size_t previousSizeOfFileName = filename.size();
 
   if (!d_graph->getSubGraphs().empty()) {
     std::string folderSubgraphs = d_path + "/submodulesDOT";
     std::filesystem::create_directory(folderSubgraphs);
   }
-  filename    = d_path + "/" + d_circuitName + ".dot";
+  filename = d_path + "/" + d_circuitName + ".dot";
 
-  size_t pos  = (s.find_last_of('/')) + 1;
+  size_t pos = (s.find_last_of('/')) + 1;
   size_t pos2 = (filename.find_last_of('/')) + 1;
 
   if (previousSizeOfFileName == 0)
-    s = std::filesystem::current_path().string() + "/"
-      + filename;  // static variable will be created one time and then will be
-                   // used through running of the program
+    s = std::filesystem::current_path().string() + "/" +
+        filename; // static variable will be created one time and then will be
+                  // used through running of the program
   else
-    s.replace(
-        pos, previousSizeOfFileName, filename, pos2, previousSizeOfFileName
-    );
+    s.replace(pos, previousSizeOfFileName, filename, pos2,
+              previousSizeOfFileName);
 
   bool f = std::filesystem::exists(s);
 
   return d_graph->toDOT(d_path, d_circuitName + ".dot").first;
 }
 
-bool Circuit::graphToGraphML(
-    const std::string& i_path,
-    bool               i_makeGraphMLClassic,
-    bool               i_makeGraphMLPseudoABCD,
-    bool               i_makeGraphMLOpenABCD,
-    bool               i_pathExists
-) {
+bool Circuit::graphToGraphML(const std::string &i_path,
+                             bool i_makeGraphMLClassic,
+                             bool i_makeGraphMLPseudoABCD,
+                             bool i_makeGraphMLOpenABCD, bool i_pathExists) {
   // LOG(INFO) << "Start graphToGraphML";
   if (i_makeGraphMLClassic) {
     std::ofstream w(i_path + "/" + d_circuitName + "_Classic.graphml");
@@ -254,11 +250,8 @@ bool Circuit::graphToGraphML(
   return true;
 }
 
-bool Circuit::saveParameters(
-    GraphPtr       i_graph,
-    std::ofstream& i_outputFile,
-    bool           i_isSubGraph
-) {
+bool Circuit::saveParameters(GraphPtr i_graph, std::ofstream &i_outputFile,
+                             bool i_isSubGraph) {
   // // LOG(INFO) << "saveParameters started";
   std::string tab = i_isSubGraph ? "\t\t\t" : "\t";
   if (!i_outputFile)
@@ -292,7 +285,7 @@ bool Circuit::saveParameters(
   i_outputFile << tab << "\"numElementsOfEachType\": {" << std::endl;
 
   bool first = true;
-  for (const auto& [key, value] : d_circuitParameters.d_numElementsOfEachType) {
+  for (const auto &[key, value]: d_circuitParameters.d_numElementsOfEachType) {
     if (value != 0) {
       if (first) {
         first = false;
@@ -309,7 +302,7 @@ bool Circuit::saveParameters(
 
   i_outputFile << tab << "\"numEdgesOfEachType\": {" << std::endl;
   first = true;
-  for (const auto& [key, value] : d_circuitParameters.d_numEdgesOfEachType) {
+  for (const auto &[key, value]: d_circuitParameters.d_numEdgesOfEachType) {
     if (value != 0) {
       if (first) {
         first = false;
@@ -355,8 +348,8 @@ bool Circuit::saveParameters(
   return true;
 }
 
-bool Circuit::checkExistingHash()  // TODO: is it really need return true when
-                                   // hash wrong?
+bool Circuit::checkExistingHash() // TODO: is it really need return true when
+                                  // hash wrong?
 {
   std::string path = FilesTools::getParentDirOf(d_path);
   if (path == "" || !std::filesystem::exists(path))
@@ -364,26 +357,22 @@ bool Circuit::checkExistingHash()  // TODO: is it really need return true when
 
   std::ifstream r(path);
 
-  std::string   hash = "";
+  std::string hash = "";
 
   r >> hash;
 
   while (r >> hash)
     if (hash != d_circuitParameters.d_hashCode)
-      return false;  // TODO: costul
+      return false; // TODO: costul
 
   return false;
 }
 
-bool Circuit::generate(
-    bool i_makeGraphMLClassic,
-    bool i_makeGraphMLPseudoABCD,
-    bool i_makeGraphMLOpenABCD,
-    bool i_pathExists
-) {
+bool Circuit::generate(bool i_makeGraphMLClassic, bool i_makeGraphMLPseudoABCD,
+                       bool i_makeGraphMLOpenABCD, bool i_pathExists) {
   // creating all files in sub directories
   std::string d_path_temp = d_path + d_circuitName;
-  d_path                  += d_circuitName + "/";
+  d_path += d_circuitName + "/";
 
   std::filesystem::create_directories(d_path);
 
@@ -393,8 +382,8 @@ bool Circuit::generate(
   if (!graphToVerilog(d_path, i_pathExists))
     return false;
   // // LOG(INFO) << "Writing verilog ended for " << d_circuitName;
-  if (i_makeGraphMLClassic || i_makeGraphMLOpenABCD
-      || i_makeGraphMLPseudoABCD) {
+  if (i_makeGraphMLClassic || i_makeGraphMLOpenABCD ||
+      i_makeGraphMLPseudoABCD) {
     d_graph->updateLevels();
   }
   // LOG(INFO) << "Writing DOT for " << d_circuitName;
@@ -403,19 +392,14 @@ bool Circuit::generate(
   // LOG(INFO) << "Writing DOT ended for " << d_circuitName;
 
   // LOG(INFO) << "Writing GraphML for " << d_circuitName;
-  if (graphToGraphML(
-          d_path,
-          i_makeGraphMLClassic,
-          i_makeGraphMLPseudoABCD,
-          i_makeGraphMLOpenABCD,
-          i_pathExists
-      )) {
+  if (graphToGraphML(d_path, i_makeGraphMLClassic, i_makeGraphMLPseudoABCD,
+                     i_makeGraphMLOpenABCD, i_pathExists)) {
     // LOG(INFO) << "Writing GraphML ended for " << d_circuitName;
   }
 
   updateCircuitParameters(d_graph);
 
-  std::string   filename = d_path + "/" + d_circuitName + ".json";
+  std::string filename = d_path + "/" + d_circuitName + ".json";
   std::ofstream i_outputFile(filename);
 
   saveParameters(d_graph, i_outputFile);
@@ -438,33 +422,32 @@ bool Circuit::generate(
   return true;
 }
 
-void Circuit::setTable(const TruthTable& i_tt) {
+void Circuit::setTable(const TruthTable &i_tt) {
   d_tTable = i_tt;
 }
 
-void Circuit::setPath(const std::string& i_path) {
+void Circuit::setPath(const std::string &i_path) {
   d_path = i_path;
 }
 
-void Circuit::setCircuitName(const std::string& i_circName) {
+void Circuit::setCircuitName(const std::string &i_circName) {
   d_circuitName = i_circName;
   d_graph->setName(i_circName);
 }
 
-std::vector<std::shared_ptr<GraphVertexBase>> Circuit::getIndexOfWireName(
-    const std::string& i_wireName
-) {
+std::vector<VertexPtr>
+Circuit::getIndexOfWireName(const std::string &i_wireName) {
   return d_graph->getVerticesByName(i_wireName);
 }
 
-Circuit Circuit::fromVerilog(const std::string& i_filepath) {
+Circuit Circuit::fromVerilog(const std::string &i_filepath) {
   // const int MODULE_WORD_SIZE = 7;
   // const int INPUT_WORD_SIZE = 6;
   // const int OUTPUT_WORD_SIZE = 7;
   // const int WIRE_WORD_SIZE = 5;
 
   GraphPtr graph;
-  Circuit  circuit(graph, {});
+  Circuit circuit(graph, {});
   // circuit.setPath(i_filepath);
 
   // std::string verilog_module = readAllFile(i_filepath);

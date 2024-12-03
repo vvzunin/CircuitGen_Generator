@@ -7,9 +7,9 @@
 TEST(MutationTruthTableTest, MutationTable) {
   std::vector<std::vector<bool>> table = {
       {true, false, true}, {false, true, false}, {true, true, false}};
-  double probability  = 0.5;
+  double probability = 0.5;
 
-  auto   mutatedTable = MutationTruthTable::MutationTable(table, probability);
+  auto mutatedTable = MutationTruthTable::MutationTable(table, probability);
 
   ASSERT_EQ(mutatedTable.size(), table.size());
   ASSERT_EQ(mutatedTable[0].size(), table[0].size());
@@ -20,7 +20,7 @@ TEST(MutationTruthTableTest, MutationBinary) {
   params.setProbabilityGen(0.5);
   std::vector<ChromosomeType<TruthTable, TruthTableParameters>> population;
 
-  TruthTable                                       table(2, 2, 0.5);
+  TruthTable table(2, 2, 0.5);
   ChromosomeType<TruthTable, TruthTableParameters> Chromosome("Test", table);
   population.push_back(Chromosome);
 
@@ -28,10 +28,8 @@ TEST(MutationTruthTableTest, MutationBinary) {
       MutationTruthTable::MutationBinary(params, population);
 
   ASSERT_EQ(mutatedPopulation.size(), population.size());
-  ASSERT_NE(
-      mutatedPopulation[0].getChromosomeType().getOutTable(),
-      table.getOutTable()
-  );
+  ASSERT_NE(mutatedPopulation[0].getChromosomeType().getOutTable(),
+            table.getOutTable());
 }
 
 TEST(MutationTruthTableTest, MutationDensity) {
@@ -40,7 +38,7 @@ TEST(MutationTruthTableTest, MutationDensity) {
   params.setProbabilityTruthTable(0.5);
   std::vector<ChromosomeType<TruthTable, TruthTableParameters>> population;
 
-  TruthTable                                       table(2, 2, 0.5);
+  TruthTable table(2, 2, 0.5);
   ChromosomeType<TruthTable, TruthTableParameters> Chromosome("Test", table);
   population.push_back(Chromosome);
 
@@ -48,10 +46,8 @@ TEST(MutationTruthTableTest, MutationDensity) {
       MutationTruthTable::MutationDensity(params, population);
 
   ASSERT_EQ(mutatedPopulation.size(), population.size());
-  ASSERT_NE(
-      mutatedPopulation[0].getChromosomeType().getOutTable(),
-      table.getOutTable()
-  );
+  ASSERT_NE(mutatedPopulation[0].getChromosomeType().getOutTable(),
+            table.getOutTable());
 }
 
 TEST(MutationTruthTableTest, MutationAccessionDel) {
@@ -59,7 +55,7 @@ TEST(MutationTruthTableTest, MutationAccessionDel) {
   params.setProbabilityGen(0.5);
   std::vector<ChromosomeType<TruthTable, TruthTableParameters>> population;
 
-  TruthTable                                       table(2, 2, 0.5);
+  TruthTable table(2, 2, 0.5);
   ChromosomeType<TruthTable, TruthTableParameters> Chromosome("Test", table);
   population.push_back(Chromosome);
 
@@ -67,10 +63,8 @@ TEST(MutationTruthTableTest, MutationAccessionDel) {
       MutationTruthTable::MutationAccessionDel(params, population);
 
   ASSERT_EQ(mutatedPopulation.size(), population.size());
-  ASSERT_NE(
-      mutatedPopulation[0].getChromosomeType().getOutTable(),
-      table.getOutTable()
-  );
+  ASSERT_NE(mutatedPopulation[0].getChromosomeType().getOutTable(),
+            table.getOutTable());
 }
 
 TEST(MutationTruthTableTest, MutationInsertDel) {
@@ -78,7 +72,7 @@ TEST(MutationTruthTableTest, MutationInsertDel) {
   params.setProbabilityGen(0.5);
   std::vector<ChromosomeType<TruthTable, TruthTableParameters>> population;
 
-  TruthTable                                       table(2, 2, 0.5);
+  TruthTable table(2, 2, 0.5);
   ChromosomeType<TruthTable, TruthTableParameters> Chromosome("Test", table);
   population.push_back(Chromosome);
 
@@ -86,10 +80,8 @@ TEST(MutationTruthTableTest, MutationInsertDel) {
       MutationTruthTable::MutationInsertDel(params, population);
 
   ASSERT_EQ(mutatedPopulation.size(), population.size());
-  ASSERT_NE(
-      mutatedPopulation[0].getChromosomeType().getOutTable(),
-      table.getOutTable()
-  );
+  ASSERT_NE(mutatedPopulation[0].getChromosomeType().getOutTable(),
+            table.getOutTable());
 }
 
 // Работает только если изменить в MutationTruthTable
@@ -118,7 +110,7 @@ TEST(MutationTruthTableTest, MutationDelete) {
   params.setProbabilityTruthTable(0.5);
   std::vector<ChromosomeType<TruthTable, TruthTableParameters>> population;
 
-  TruthTable                                       table(2, 2, 0.5);
+  TruthTable table(2, 2, 0.5);
   ChromosomeType<TruthTable, TruthTableParameters> Chromosome("Test", table);
   population.push_back(Chromosome);
 
@@ -126,8 +118,6 @@ TEST(MutationTruthTableTest, MutationDelete) {
       MutationTruthTable::MutationDelete(params, population);
 
   ASSERT_EQ(mutatedPopulation.size(), population.size());
-  ASSERT_NE(
-      mutatedPopulation[0].getChromosomeType().getOutTable(),
-      table.getOutTable()
-  );
+  ASSERT_NE(mutatedPopulation[0].getChromosomeType().getOutTable(),
+            table.getOutTable());
 }

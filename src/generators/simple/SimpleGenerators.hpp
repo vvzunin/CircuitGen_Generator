@@ -31,20 +31,20 @@ namespace {
 /// @note The function assumes that the map values are of type int32_t
 /// @}
 template<typename T>
-int32_t maxValueInMap(const std::map<T, int32_t>& i_map) {
+int32_t maxValueInMap(const std::map<T, int32_t> &i_map) {
   if (i_map.size() == 0) {
     return -1;
   }
   int32_t res = (*i_map.begin()).second;
 
-  for (const auto& [key, value] : i_map) {
+  for (const auto &[key, value]: i_map) {
     res = std::max(res, value);
   }
   return res;
 }
 
 // namespace end
-}  // namespace
+} // namespace
 
 /// class SimpleGenerators
 /// @param d_settings A pointer to an object of the Settings class, which is a
@@ -69,10 +69,10 @@ public:
   SimpleGenerators();
   SimpleGenerators(uint_fast32_t i_seed);
 
-  SimpleGenerators(const SimpleGenerators& other)            = delete;
-  SimpleGenerators& operator=(const SimpleGenerators& other) = delete;
-  SimpleGenerators(SimpleGenerators&& other)                 = delete;
-  SimpleGenerators& operator=(SimpleGenerators&& other)      = delete;
+  SimpleGenerators(const SimpleGenerators &other) = delete;
+  SimpleGenerators &operator=(const SimpleGenerators &other) = delete;
+  SimpleGenerators(SimpleGenerators &&other) = delete;
+  SimpleGenerators &operator=(SimpleGenerators &&other) = delete;
 
   /// @brief cnfFromTruthTable accepts a truth table as an input in the form of
   /// a Truth Table object and returns a vector of rows representing an
@@ -98,8 +98,8 @@ public:
   /// // @todo: Examples
   /// @endcode
 
-  GraphPtr cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
-  GraphPtr zhegalkinFromTruthTable(const TruthTable& i_table);
+  GraphPtr cnfFromTruthTable(const TruthTable &i_table, bool i_tp = true);
+  GraphPtr zhegalkinFromTruthTable(const TruthTable &i_table);
 
   /// @brief generatorRandLevel creates an oriented graph (represented by
   /// an OrientedGraph object) with a given level of complexity and number
@@ -122,14 +122,9 @@ public:
   /// @param i_inputs The number of inputs to the graph
   /// @param i_outputs The number of exits from the graph
 
-  GraphPtr generatorRandLevel(
-      uint32_t i_minLevel,
-      uint32_t i_maxLevel,
-      uint32_t i_minElements,
-      uint32_t i_maxElements,
-      uint32_t i_inputs,
-      uint32_t i_outputs
-  );
+  GraphPtr generatorRandLevel(uint32_t i_minLevel, uint32_t i_maxLevel,
+                              uint32_t i_minElements, uint32_t i_maxElements,
+                              uint32_t i_inputs, uint32_t i_outputs);
 
   /// @brief generatorRandLevelExperimental The method generates a random level
   /// of complexity of the graph within the specified boundaries. After that,
@@ -165,14 +160,10 @@ public:
   /// maximum or the minimum number of elements is greater than the maximum,
   /// the method throws an exception std::invalid_argument.
 
-  GraphPtr generatorRandLevelExperimental(
-      uint32_t i_minLevel,
-      uint32_t i_maxLevel,
-      uint32_t i_minElements,
-      uint32_t i_maxElements,
-      uint32_t i_inputs,
-      uint32_t i_outputs
-  );
+  GraphPtr
+  generatorRandLevelExperimental(uint32_t i_minLevel, uint32_t i_maxLevel,
+                                 uint32_t i_minElements, uint32_t i_maxElements,
+                                 uint32_t i_inputs, uint32_t i_outputs);
 
   /// @todo: Description algorithm
   /// @brief generatorNumOperation
@@ -187,12 +178,9 @@ public:
   /// output vertices will remain empty, if false, they will be deleted
   /// @return the created OrientedGraph
 
-  GraphPtr generatorNumOperation(
-      uint32_t                 i_input,
-      uint32_t                 i_output,
-      std::map<Gates, int32_t> i_logicOper,
-      bool                     i_leaveEmptyOut = true
-  );
+  GraphPtr generatorNumOperation(uint32_t i_input, uint32_t i_output,
+                                 std::map<Gates, int32_t> i_logicOper,
+                                 bool i_leaveEmptyOut = true);
 
   /// @brief generatorSummator represents the generation of a combinational
   /// adder circuit. It is based on the arithmetic operation of addition in the
@@ -212,12 +200,8 @@ public:
   /// logical vertices of type NOT to the graph to select a negative sum
   /// @return the created OrientedGraph
 
-  GraphPtr generatorSummator(
-      uint32_t i_bits,
-      bool     i_overflowIn,
-      bool     i_overflowOut,
-      bool     i_minus
-  );
+  GraphPtr generatorSummator(uint32_t i_bits, bool i_overflowIn,
+                             bool i_overflowOut, bool i_minus);
 
   /// @brief generatorComparison represents the generation of a combinational
   /// comparator circuit. It is able to compare the submitted data in three
@@ -238,12 +222,8 @@ public:
   /// numbers.
   /// @return the created OrientedGraph
 
-  GraphPtr generatorComparison(
-      uint32_t i_bits,
-      bool     compare0,
-      bool     compare1,
-      bool     compare2
-  );
+  GraphPtr generatorComparison(uint32_t i_bits, bool compare0, bool compare1,
+                               bool compare2);
 
   /// @brief generatorEncoder represents the generation of a combinational
   /// scheme of a standard binary encoder. The number of incoming bits (n) must
@@ -277,12 +257,8 @@ public:
   /// is executed, if true, then A-B)
   /// @return the created OrientedGraph
 
-  GraphPtr generatorSubtractor(
-      uint32_t i_bits,
-      bool     i_overflowIn,
-      bool     i_overflowOut,
-      bool     i_sub
-  );
+  GraphPtr generatorSubtractor(uint32_t i_bits, bool i_overflowIn,
+                               bool i_overflowOut, bool i_sub);
 
   /// @brief generatorMultiplexer represents the generation of a combinational
   /// multiplexer circuit. When generating to the standard input vertices,
@@ -410,32 +386,13 @@ public:
   /// false, they will be deleted
   /// @return the created OrientedGraph
 
-  GraphPtr generatorALU(
-      int32_t                  i_bits,
-      int32_t                  i_outbits,
-      bool                     ALL,
-      bool                     SUM,
-      bool                     SUB,
-      bool                     NSUM,
-      bool                     NSUB,
-      bool                     MULT,
-      bool                     COM,
-      bool                     AND,
-      bool                     NAND,
-      bool                     OR,
-      bool                     NOR,
-      bool                     XOR,
-      bool                     XNOR,
-      bool                     CNF,
-      bool                     RNL,
-      bool                     NUM_OP,
-      uint32_t                 minLevel,
-      uint32_t                 maxLevel,
-      uint32_t                 minElement,
-      uint32_t                 maxElement,
-      std::map<Gates, int32_t> m,
-      bool                     LeaveEmptyOut
-  );
+  GraphPtr generatorALU(int32_t i_bits, int32_t i_outbits, bool ALL, bool SUM,
+                        bool SUB, bool NSUM, bool NSUB, bool MULT, bool COM,
+                        bool AND, bool NAND, bool OR, bool NOR, bool XOR,
+                        bool XNOR, bool CNF, bool RNL, bool NUM_OP,
+                        uint32_t minLevel, uint32_t maxLevel,
+                        uint32_t minElement, uint32_t maxElement,
+                        std::map<Gates, int32_t> m, bool LeaveEmptyOut);
 
   /// @brief setGatesInputsInfo It is designed to set information about the
   /// inputs for various logic gates. It takes as an argument a dictionary,
@@ -459,17 +416,14 @@ public:
   /// @endcode
 
   void setGatesInputsInfo(
-      const std::map<std::string, std::vector<int32_t>>& i_info
-  ) {
+      const std::map<std::string, std::vector<int32_t>> &i_info) {
     d_minGateNumber = INT_MAX;
 
-    for (auto& [key, value] : i_info) {
-      d_maxGateNumber = std::max(
-          *std::max_element(value.begin(), value.end()), d_maxGateNumber
-      );
-      d_minGateNumber = std::min(
-          *std::max_element(value.begin(), value.end()), d_minGateNumber
-      );
+    for (auto &[key, value]: i_info) {
+      d_maxGateNumber = std::max(*std::max_element(value.begin(), value.end()),
+                                 d_maxGateNumber);
+      d_minGateNumber = std::min(*std::max_element(value.begin(), value.end()),
+                                 d_minGateNumber);
       d_gatesInputsInfo[d_settings->parseStringToGate(key)] = value;
     }
 
@@ -482,11 +436,11 @@ public:
 
 private:
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
-  std::map<Gates, int32_t>  delNull(std::map<Gates, int32_t> i_copyLogicOper);
+  std::map<Gates, int32_t> delNull(std::map<Gates, int32_t> i_copyLogicOper);
 
   // moved it here, because we need to use templates
   template<typename T>
-  T randomGenerator(const std::map<T, int32_t>& i_map) {
+  T randomGenerator(const std::map<T, int32_t> &i_map) {
     // rand element of map
     auto val = i_map.begin();
     std::advance(val, d_randGenerator.getRandInt(0, i_map.size()));
@@ -494,7 +448,7 @@ private:
     return val->first;
   }
 
-  std::pair<Gates, int32_t> getRandomElement(const GatesInfo& i_info);
+  std::pair<Gates, int32_t> getRandomElement(const GatesInfo &i_info);
   std::pair<Gates, int32_t> getRandomElement(uint32_t i_gatesLimit);
 
   /// @brief getRangomAndNumber The getRangomAndNumber method returns a random
@@ -503,7 +457,7 @@ private:
   /// operator.
   /// */
 
-  int32_t                   getRangomAndNumber();
+  int32_t getRangomAndNumber();
 
   /// @brief getRangomOrNumber method is a random value from the list of
   /// possible input ports for the "OR" operator
@@ -511,7 +465,7 @@ private:
   /// operator.
   /// */
 
-  int32_t                   getRangomOrNumber();
+  int32_t getRangomOrNumber();
 
   /// @brief getRangomNandNumber The method returns a random value from the list
   /// of possible input ports for the "NAND" operator.
@@ -519,7 +473,7 @@ private:
   /// operator
   /// */
 
-  int32_t                   getRangomNandNumber();
+  int32_t getRangomNandNumber();
 
   /// @brief getRangomNorNumber The method returns a random value from the list
   /// of possible input ports for the "NOR" operator.
@@ -527,7 +481,7 @@ private:
   /// operator
   /// */
 
-  int32_t                   getRangomNorNumber();
+  int32_t getRangomNorNumber();
 
   /// @brief getRangomXorNumber The method returns a random value from the list
   /// of possible input ports for the "XOR" operator.
@@ -535,7 +489,7 @@ private:
   /// operator.
   /// */
 
-  int32_t                   getRangomXorNumber();
+  int32_t getRangomXorNumber();
 
   /// @brief The method returns a random value from the list of possible input
   /// ports for the "XNOR" operator.
@@ -543,10 +497,10 @@ private:
   /// operator
   /// */
 
-  int32_t                   getRangomXnorNumber();
+  int32_t getRangomXnorNumber();
 
-  GatesInfo                 d_gatesInputsInfo;
-  RandomGeneratorWithSeed   d_randGenerator;
-  int32_t                   d_maxGateNumber = 0;
-  int32_t                   d_minGateNumber = 0;
+  GatesInfo d_gatesInputsInfo;
+  RandomGeneratorWithSeed d_randGenerator;
+  int32_t d_maxGateNumber = 0;
+  int32_t d_minGateNumber = 0;
 };

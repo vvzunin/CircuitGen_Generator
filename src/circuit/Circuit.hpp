@@ -27,10 +27,8 @@
 
 class Circuit {
 public:
-  Circuit(
-      GraphPtr const                  i_graph,
-      const std::vector<std::string>& i_logExpressions = {}
-  );
+  Circuit(GraphPtr const i_graph,
+          const std::vector<std::string> &i_logExpressions = {});
 
   /// @brief computeHash A method for calculating the hash of a combinational
   /// scheme
@@ -56,7 +54,7 @@ public:
   /// @return true, indicating the successful completion of the operation.
   /// */
 
-  bool graphToVerilog(const std::string& i_path, bool i_pathExists = false);
+  bool graphToVerilog(const std::string &i_path, bool i_pathExists = false);
 
   /// @brief graphToDOT The graph To DOT method in the Circuit class
   /// converts the combinational circuit into code in the DOT hardware
@@ -67,7 +65,7 @@ public:
   /// @return true, indicating the successful completion of the operation.
   /// */
 
-  bool graphToDOT(const std::string& i_path, bool i_pathExists = false);
+  bool graphToDOT(const std::string &i_path, bool i_pathExists = false);
 
   /// @brief saveParameters The save Parameters method in the Circuit class is
   /// designed to save circuit parameters to a file in JSON format
@@ -82,13 +80,11 @@ public:
   /// the parameters are saved successfully.
   /// */
 
-  bool graphToGraphML(
-      const std::string& i_path,
-      bool               i_makeGraphMLClassic    = false,
-      bool               i_makeGraphMLPseudoABCD = false,
-      bool               i_makeGraphMLOpenABCD   = false,
-      bool               i_pathExists            = false
-  );
+  bool graphToGraphML(const std::string &i_path,
+                      bool i_makeGraphMLClassic = false,
+                      bool i_makeGraphMLPseudoABCD = false,
+                      bool i_makeGraphMLOpenABCD = false,
+                      bool i_pathExists = false);
 
   /// @brief saveAdditionalStats This save Additional Stats method is designed
   /// to save additional statistics related to the execution of the ABC command
@@ -101,11 +97,8 @@ public:
   /// latest in the JSON file
   /// */
 
-  bool saveParameters(
-      GraphPtr       i_subGraph,
-      std::ofstream& i_outputFile,
-      bool           i_isSubGraph = false
-  );
+  bool saveParameters(GraphPtr i_subGraph, std::ofstream &i_outputFile,
+                      bool i_isSubGraph = false);
 
   /// @brief generate This generate method is designed to generate various
   /// representations of a digital circuit (for example, Verilog, RTL, Bench)
@@ -128,12 +121,9 @@ public:
   /// successful
   /// */
 
-  bool generate(
-      bool i_makeGraphMLClassic    = false,
-      bool i_makeGraphMLPseudoABCD = false,
-      bool i_makeGraphMLOpenABCD   = false,
-      bool i_pathExists            = false
-  );
+  bool generate(bool i_makeGraphMLClassic = false,
+                bool i_makeGraphMLPseudoABCD = false,
+                bool i_makeGraphMLOpenABCD = false, bool i_pathExists = false);
 
   /// @brief setTable This method is designed to set up a truth table for a
   /// digital circuit.
@@ -141,7 +131,7 @@ public:
   /// circuit.
   /// */
 
-  void setTable(const TruthTable& i_tt);
+  void setTable(const TruthTable &i_tt);
 
   /// @brief setPath This method is designed to set the path where the files
   /// associated with the digital circuit will be saved.
@@ -150,7 +140,7 @@ public:
   /// digital circuit files will be saved
   /// */
 
-  void setPath(const std::string& i_path);
+  void setPath(const std::string &i_path);
 
   /// @brief setCircuitName This method is used to set the name of the digital
   /// circuit.
@@ -158,7 +148,7 @@ public:
   /// @param i_circName A string containing a new name for the digital circuit
   /// */
 
-  void setCircuitName(const std::string& i_circName);
+  void setCircuitName(const std::string &i_circName);
 
   /// @brief getIndexOfWireName This method is designed to get the index of the
   /// vertex in the graph by the name of the wire.
@@ -170,9 +160,7 @@ public:
   /// found, the method returns -1.
   /// */
 
-  std::vector<std::shared_ptr<GraphVertexBase>> getIndexOfWireName(
-      const std::string& i_wireName
-  );
+  std::vector<VertexPtr> getIndexOfWireName(const std::string &i_wireName);
 
   /// @brief setVerticeOperation This method sets up an operation for a given
   /// vertex in the graph.
@@ -181,26 +169,26 @@ public:
   /// vertex
   /// */
 
-  void setVerticeOperation(int32_t i_vertice, const std::string& i_operation);
+  void setVerticeOperation(int32_t i_vertice, const std::string &i_operation);
 
   /// @todo: description fromVerilog
   /// @brief fromVerilog
   ///
   /// @param i_filepath
 
-  Circuit fromVerilog(const std::string& i_filepath);
+  Circuit fromVerilog(const std::string &i_filepath);
 
 private:
-  GraphPtr                  d_graph;
-  std::vector<std::string>  d_logExpressions;
-  TruthTable                d_tTable;
-  std::string               d_path;
-  std::string               d_circuitName;
-  CircuitParameters         d_circuitParameters;
+  GraphPtr d_graph;
+  std::vector<std::string> d_logExpressions;
+  TruthTable d_tTable;
+  std::string d_path;
+  std::string d_circuitName;
+  CircuitParameters d_circuitParameters;
   std::shared_ptr<Settings> d_settings = Settings::getInstance("Circuit");
 
   /// @todo: This method has some questions, maybe need rewriting
   /// @brief checkExistingHash
   /// @return
-  bool                      checkExistingHash();
+  bool checkExistingHash();
 };

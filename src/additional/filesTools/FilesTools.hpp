@@ -22,7 +22,7 @@ namespace FilesTools {
 /// specified directory
 /// */
 
-std::vector<std::string> getDirectories(std::string& path);
+std::vector<std::string> getDirectories(std::string &path);
 
 /// @brief isDirectoryExists This method checks if the specified directory
 /// exists
@@ -30,7 +30,7 @@ std::vector<std::string> getDirectories(std::string& path);
 /// @return true if the directory exists and it is a directory; otherwise false.
 /// */
 
-bool                     isDirectoryExists(const std::string& i_path);
+bool isDirectoryExists(const std::string &i_path);
 
 /// @brief getParentDirOf This method returns the parent directory for the
 /// specified path
@@ -40,12 +40,12 @@ bool                     isDirectoryExists(const std::string& i_path);
 /// specified path
 /// */
 
-std::string              getParentDirOf(const std::string& i_path);
+std::string getParentDirOf(const std::string &i_path);
 
 /// @brief loadStringFile This method loads the contents of the file as a string
 /// @param p The path to the file whose contents you want to download
 /// @return A string containing the contents of the file*
 /// */
 
-std::string              loadStringFile(const std::filesystem::path& p);
-}  // namespace FilesTools
+std::string loadStringFile(const std::filesystem::path &p);
+} // namespace FilesTools

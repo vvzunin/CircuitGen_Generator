@@ -17,7 +17,7 @@
 /// TODO: Description parameters from class UnboundedMPMCQueue
 
 #ifndef PLACER_UNBOUNDEDMPMCQUEUE_H
-#  define PLACER_UNBOUNDEDMPMCQUEUE_H
+#define PLACER_UNBOUNDEDMPMCQUEUE_H
 
 namespace Threading {
 
@@ -39,18 +39,18 @@ template<typename T>
 class UnboundedMPMCQueue {
 public:
   /// Create open queue, which will be ready to accept items.
-  UnboundedMPMCQueue()                                            = default;
+  UnboundedMPMCQueue() = default;
 
   // Not allow copy.
-  UnboundedMPMCQueue(const UnboundedMPMCQueue& other)             = delete;
+  UnboundedMPMCQueue(const UnboundedMPMCQueue &other) = delete;
 
-  UnboundedMPMCQueue& operator=(const UnboundedMPMCQueue& other)  = delete;
+  UnboundedMPMCQueue &operator=(const UnboundedMPMCQueue &other) = delete;
 
   // Not allow move (FIXME).
-  UnboundedMPMCQueue(UnboundedMPMCQueue&& other)                  = delete;
+  UnboundedMPMCQueue(UnboundedMPMCQueue &&other) = delete;
 
   // Not allow move-copy.
-  UnboundedMPMCQueue& operator=(const UnboundedMPMCQueue&& other) = delete;
+  UnboundedMPMCQueue &operator=(const UnboundedMPMCQueue &&other) = delete;
 
   /// Add task.
 
@@ -67,12 +67,11 @@ public:
   /// @throw std::runtime_error. It is thrown out if an attempt is made to
   /// add an item to a closed queue
 
-  void                add(T item) {
+  void add(T item) {
     std::unique_lock lock(mtx);
     if (closed) {
       throw std::runtime_error(
-          "Trying to add in the closed queue, which is not allowed"
-      );
+          "Trying to add in the closed queue, which is not allowed");
     }
     queue.emplace_back(std::move(item));
     not_empty_or_closed.notify_one();
@@ -114,12 +113,12 @@ public:
   }
 
 private:
-  bool                    closed {false};
-  std::mutex              mtx {};
-  std::condition_variable not_empty_or_closed {};
-  std::deque<T>           queue;
+  bool closed{false};
+  std::mutex mtx{};
+  std::condition_variable not_empty_or_closed{};
+  std::deque<T> queue;
 };
 
-}  // namespace Threading.
+} // namespace Threading.
 
-#endif  // PLACER_UNBOUNDEDMPMCQUEUE_H
+#endif // PLACER_UNBOUNDEDMPMCQUEUE_H

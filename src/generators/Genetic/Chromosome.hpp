@@ -1,8 +1,6 @@
 #pragma once
 
-enum GenotypeParametersTypes {
-  TruthTableEnum
-};
+enum GenotypeParametersTypes { TruthTableEnum };
 
 template<typename T>
 class Chromosome {

@@ -7,11 +7,9 @@
 
 namespace SelectionsTruthTable {
 inline std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
-    SelectionBase(
-        SelectionParameters i_selectionParameters,
-        std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
-            i_population
-    ) {
+SelectionBase(SelectionParameters i_selectionParameters,
+              std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
+                  i_population) {
   std::srand(std::time(0));
 
   std::vector<ChromosomeType<TruthTable, TruthTableParameters>> survivors;
@@ -22,24 +20,23 @@ inline std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
       r2 = AuxMethods::getRandInt(0, i_population.size());
     }
 
-    if ((i_population[r1].getAdaptationIndex()
-         < i_population[r2].getAdaptationIndex())
-        && (std::find(survivors.begin(), survivors.end(), i_population[r1])
-            == survivors.end())) {
+    if ((i_population[r1].getAdaptationIndex() <
+         i_population[r2].getAdaptationIndex()) &&
+        (std::find(survivors.begin(), survivors.end(), i_population[r1]) ==
+         survivors.end())) {
       survivors.push_back(i_population[r1]);
-    } else if ((i_population[r1].getAdaptationIndex()
-                > i_population[r2].getAdaptationIndex())
-               && (std::find(
-                       survivors.begin(), survivors.end(), i_population[r2]
-                   )
-                   == survivors.end())) {
+    } else if ((i_population[r1].getAdaptationIndex() >
+                i_population[r2].getAdaptationIndex()) &&
+               (std::find(survivors.begin(), survivors.end(),
+                          i_population[r2]) == survivors.end())) {
       survivors.push_back(i_population[r2]);
-    } else if (i_population[r1].getAdaptationIndex() == i_population[r2].getAdaptationIndex()) {
-      if (std::find(survivors.begin(), survivors.end(), i_population[r1])
-          == survivors.end())
+    } else if (i_population[r1].getAdaptationIndex() ==
+               i_population[r2].getAdaptationIndex()) {
+      if (std::find(survivors.begin(), survivors.end(), i_population[r1]) ==
+          survivors.end())
         survivors.push_back(i_population[r1]);
-      else if (std::find(survivors.begin(), survivors.end(), i_population[r1])
-               == survivors.end())
+      else if (std::find(survivors.begin(), survivors.end(),
+                         i_population[r1]) == survivors.end())
         survivors.push_back(i_population[r1]);
       else if (i_population.size() < i_selectionParameters.getNumOfSurvivors())
         survivors.push_back(i_population[r1]);
@@ -48,4 +45,4 @@ inline std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
   return survivors;
 }
 // namespace end
-}  // namespace SelectionsTruthTable
+} // namespace SelectionsTruthTable

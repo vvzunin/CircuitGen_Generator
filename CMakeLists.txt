@@ -44,7 +44,7 @@ set(ORIENTED_GRAPH CircuitGenGraph)
 FetchContent_Declare(
   ${ORIENTED_GRAPH}
   GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
-  GIT_TAG 059f860
+  GIT_TAG v1.3.0
 )
 FetchContent_MakeAvailable(${ORIENTED_GRAPH})
 
@@ -107,6 +107,20 @@ configure_file(
   easylogging++.conf
   COPYONLY
 )
+
+find_program(CLANG_TIDY NAMES clang-tidy)
+
+if (CLANG_TIDY)
+  set(GENERATOR_CLANG_TIDY
+    ${CLANG_TIDY};
+    -line-filter=[{"name":".hpp"},{"name":".cpp"}]
+  )
+  set_target_properties(CircuitGenGenerator_lib PROPERTIES
+    CXX_CLANG_TIDY "${GENERATOR_CLANG_TIDY}"
+  )
+else()
+  message("clang-tidy not found")
+endif()
 
 include(cmake/utils.cmake)
 include(GNUInstallDirs)
