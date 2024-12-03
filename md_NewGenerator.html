@@ -99,20 +99,20 @@ $(document).ready(function(){initNavTree('md_NewGenerator.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>Для добавления новых генераторов необходимо внести корректировки в следующие файлы: </p>
-<h1><a class="anchor" id="autotoc_md39"></a>
+<h1><a class="anchor" id="autotoc_md42"></a>
 1.1 &lt;a href="src/settings/Settings.hpp"&gt;Settings.hpp&lt;/a&gt;</h1>
 <p>В файле необходимо отредактировать перечисление типа <b>GenerationTypes</b>, добавив в него название генератора. В качестве примера назовем его <b>NewGeneratorName</b>. </p>
-<h1><a class="anchor" id="autotoc_md40"></a>
+<h1><a class="anchor" id="autotoc_md43"></a>
 1.2 &lt;a href="src/settings/Settings.hpp"&gt;Settings.hpp&lt;/a&gt;</h1>
 <p>В этом же необходимо внести изменения в поле <b>generationTypeToPrefix</b>. Необходимо добавить новый префикс для генерируемых в результате файлов формата .v, .json и других. Префикс должен начинаться с трех букв — <b>CCG</b>. Далее следует аббревиатура названия метода генерации. Используя название генератора из примера, получаем следующую вставку: </p><div class="fragment"><div class="line">{GenerationTypes::NewGeneratorName, <span class="stringliteral">&quot;CCGNGN&quot;</span>}</div>
 </div><!-- fragment --><p> <b>CCG</b> — <b>Combinational <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> Generator</b>, вместо <b>NGN</b> можно указать более подходящее на взгляд автора обозначения для созданного метода генерации. </p>
-<h1><a class="anchor" id="autotoc_md41"></a>
+<h1><a class="anchor" id="autotoc_md44"></a>
 2. &lt;a href="src/generators/GenerationParameters.hpp"&gt;GeneratorParameters.hpp&lt;/a&gt;</h1>
 <p>В файле необходимо создать новый класс, в который нужно будет добавить дополнительные параметры для использования нового генератора. Название класса должно соответствовать требованию: <b>Generator</b> + &lt;имя генератор&gt; + <b>Parameters</b>. Используя генератор из примера, назовем класс так: <b>GeneratorNewGeneratorNameParameters</b>. </p><blockquote class="doxtable">
 <p>[!IMPORTANT] Не нужно добавлять параметры, для количества входов и выходов схемы. Вся информация о них находится в классе <b><a class="el" href="classGenerationParameters.html">GenerationParameters</a></b> в этом же файле. </p>
 </blockquote>
 <p>Далее необходимо в классе <b><a class="el" href="classGenerationParameters.html">GenerationParameters</a></b> создать в разделе <em>private</em> переменную ранее созданного класса. Название переменной соответствует следующему требованию: <b>d_generator</b> + &lt;имя генератор&gt; + <b>Parameters</b>. Для примера переменная будет иметь следующее название: <b>d_generatorNewGeneratorNameParameters</b>. Для данной переменной необходимо создать геттер и сеттер. Геттер возвращает саму переменную, сеттер — получает на вход переменные для данного класса и записывает в переменную с параметрами. </p>
-<h1><a class="anchor" id="autotoc_md42"></a>
+<h1><a class="anchor" id="autotoc_md45"></a>
 3. &lt;a href="src/generators/simple/SimpleGenerators.hpp"&gt;SimpleGenerators.hpp&lt;/a&gt; и &lt;a href="src/generators/simple/SimpleGenerators.cpp"&gt;SimpleGenerators.cpp&lt;/a&gt;</h1>
 <p>В данных файлах необходимо реализовать сам генератор (метод для генерации схемы). В <b>SimpleGenerators.h</b> необходимо добавить описание метода генерации: </p><div class="fragment"><div class="line">GraphPtr generatorNewGeneratorName(...);</div>
 </div><!-- fragment --><p> В качестве результата метод должен возвращать сгенерированную схему в формате <b>GraphPtr</b>, являющуюся, в свою очердедь, псевдонимом для типа <b>std::shared_ptr&lt;OrientedGraph&gt;</b>. В качестве входных данных метод должен принимать все необходмые для его использования переменные. </p><blockquote class="doxtable">
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('md_NewGenerator.html',''); initResizab
 <p>В <b><a class="el" href="SimpleGenerators_8cpp.html">SimpleGenerators.cpp</a></b> необходимо реализовать сам генератор: </p><div class="fragment"><div class="line">GraphPtr SimpleGenerators::generatorNewGeneratorName(...) {</div>
 <div class="line">   ...</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md43"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md46"></a>
 4. &lt;a href="src/database/DataBaseGenerator.hpp"&gt;DataBaseGenerator.hpp&lt;/a&gt; и &lt;a href="src/database/DataBaseGenerator.cpp"&gt;DataBaseGenerator.cpp&lt;/a&gt;</h1>
 <p>В классе <b><a class="el" href="classDataBaseGenerator.html" title="class DataBaseGenerator">DataBaseGenerator</a></b> необходимо реализовать метод, который будет на вход получать константную ссылку на параметры генерации <em>i_param</em>, которая содержит все необходимые параметры генерации. В данном методе необходимо создать объект класса <b>SimpleGenerator</b> и запустить в нем ранее созданный метод, в который нужно передать все необходимые параметры из <em>i_param</em> в том же порядке, в котором они были описаны в реализации метода. Результат необходимо записать в переменную типа <b>GraphPtr</b>. После этого необходимо создать переменную типа <b><a class="el" href="classCircuit.html" title="class Circuit">Circuit</a></b> и в качестве параметра конструктора передать полученный граф. После этого необходимо задать путь генерации (setPath) в качестве которого выступает <em>d_mainPath</em>. Также нужно задать название схемы (setCircuitName) присутствующее в параметрах генерации (i_param.getName()). После этого необходимо запустить генерацию схемы в формате Verilog и обсчет параметров (generate), передав набор параметров: i_param.getMakeGraphMLClassic(), i_param.getMakeGraphMLPseudoABCD(), i_param.getMakeGraphMLOpenABCD().</p>
 <p>Используя приведенные ранее примеры названий методов, получаем следующий код для реализации метода: </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> DataBaseGenerator::generateNewGeneratorName(<a class="code" href="classGenerationParameters.html">GenerationParameters</a> &amp;i_param) {</div>
@@ -149,7 +149,7 @@ $(document).ready(function(){initNavTree('md_NewGenerator.html',''); initResizab
 </div><!-- fragment --><p> Далее в файле <a href="src/database/DataBaseGenerator.cpp">DataBaseGenerator.cpp</a> необходимо в функции <b>getGenerateMethod</b> реализовать обработку нового имени генератора (новый case в switch-конструкции). Используя название генератора из примера, получаем следующую вставку: </p><div class="fragment"><div class="line"><span class="keywordflow">case</span> GenerationTypes::NewGeneratorName:</div>
 <div class="line">  generateMethodFunc = &amp;DataBaseGenerator::generateNewGeneratorName;</div>
 <div class="line">  <span class="keywordflow">break</span>;</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md44"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md47"></a>
 5. &lt;a href="src/CircuitGenGenerator.cpp"&gt;CircuitGenGenerator.cpp&lt;/a&gt;</h1>
 <p>Последним шагом является редактирование файла <b><a class="el" href="CircuitGenGenerator_8cpp.html">CircuitGenGenerator.cpp</a></b>. В функцию <b>runGenerationFromJson</b> после инициализации <em>GenerationTypes gt</em> необходимо добавить условие на выбор метода генерации. Используя ранее заданное название генератора в качестве примера, получим следующий участок кода: </p><div class="fragment"><div class="line"><span class="keywordflow">else</span> <span class="keywordflow">if</span> (data[<span class="stringliteral">&quot;type_of_generation&quot;</span>] == <span class="stringliteral">&quot;NewGeneratorName&quot;</span>)</div>
 <div class="line">  gt = GenerationTypes::NewGeneratorName;</div>

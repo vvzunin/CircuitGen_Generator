@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('md_BUILDING.html',''); initResizable()
 <div class="title">Сборка с помощью CMake </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md24"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md27"></a>
 Сборка</h1>
 <p>Для упрощения сборки этот проект не требует каких-либо специальных флагов командной строки.</p>
 <p>Вот шаги для сборки в режиме выпуска с помощью генератора одной конфигурации, такого как Unix Makefiles:</p>
@@ -107,13 +107,13 @@ $(document).ready(function(){initNavTree('md_BUILDING.html',''); initResizable()
 </div><!-- fragment --><p>Вот шаги для сборки в режиме выпуска с помощью генератора нескольких конфигураций, такого как Visual Studio:</p>
 <div class="fragment"><div class="line">cmake -S . -B build</div>
 <div class="line">cmake --build build --config Release</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md25"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
 Сборка с MSVC</h2>
 <p>Обратите внимание, что MSVC по умолчанию не соответствует стандартам, и вам необходимо передать некоторые флаги, чтобы он работал правильно. См. предустановку <code>flags-msvc</code> в файле <a href="CMakePresets.json">CMakePresets.json</a>, где указаны флаги и переменная, которую нужно предоставить CMake во время настройки.</p>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Сборка на Apple Silicon</h2>
 <p>CMake правильно поддерживает сборку на Apple Silicon, начиная с версии 3.20.1. Убедитесь, что у вас установлена <a href="https://cmake.org/download/">последняя версия</a>.</p>
-<h1><a class="anchor" id="autotoc_md27"></a>
+<h1><a class="anchor" id="autotoc_md30"></a>
 Установка</h1>
 <p>Этот проект не требует каких-либо специальных флагов командной строки для установки, чтобы все было просто. Предварительным условием является то, что проект уже должен быть собран с использованием вышеуказанных команд.</p>
 <p>Для запуска приведенных ниже команд требуется как минимум CMake 3.15, поскольку это версия, в которой был добавлен <a href="https://cmake.org/cmake/help/latest/manual/cmake.1.html#install-a-project">Установить проект</a>.</p>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('md_BUILDING.html',''); initResizable()
 <div class="fragment"><div class="line">cmake --install build</div>
 </div><!-- fragment --><p>Вот команда для установки артефактов режима выпуска с помощью генератора нескольких конфигураций, такого как Visual Studio:</p>
 <div class="fragment"><div class="line">cmake --install build --config Release</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
 Пакет CMake</h2>
 <p>Этот проект экспортирует пакет CMake для использования с CMake командой <a href="https://cmake.org/cmake/help/latest/command/find_package.html"><code>find_package</code></a>:</p>
 <ul>
@@ -141,20 +141,20 @@ $(document).ready(function(){initNavTree('md_BUILDING.html',''); initResizable()
 <div class="line">    app PRIVATE</div>
 <div class="line">    CircuitGenGenerator::CircuitGenGenerator</div>
 <div class="line">)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md29"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md32"></a>
 Дальнейшее использование</h2>
 <p>После подключения библиотеки для использования доступны три различные функции. Для их использования требуется подключить хедер <a class="el" href="CircuitGenGenerator_8hpp.html">CircuitGenGenerator.hpp</a></p>
 <div class="fragment"><div class="line">#include &lt;CircuitGenGenerator/CircuitGenGenerator.hpp&gt;</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md30"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md33"></a>
 runGenerationFromJson</h3>
 <p>На вход получает путь до json файла. Не возвращает ничего </p>
-<h3><a class="anchor" id="autotoc_md31"></a>
+<h3><a class="anchor" id="autotoc_md34"></a>
 runGenerationFromJsonForGraph</h3>
 <p>Аналогично, получает на вход путь до файла json. В отличие от предыдущей функции, возвращает следующую структуру: <code>std::vector&lt;std::pair&lt;std::string, std::vector&lt;GraphPtr&gt;&gt;&gt;</code>. Для <code>std::pair&lt;std::string, std::vector&lt;GraphPtr&gt;&gt;</code> существует псевдоним ResultGraph. Первым значением в паре является путь до папки, где находятся сгенерированные verilog-файлы. Второе значение пары, вектор, содержит ссылки на графы, сгенерированные по данному пути. </p>
-<h3><a class="anchor" id="autotoc_md32"></a>
+<h3><a class="anchor" id="autotoc_md35"></a>
 runGenerationFromJsonForPath</h3>
 <p>Аналогично, получает на вход путь до файла json. Возвращает <code>std::vector&lt;std::pair&lt;std::string, std::vector&lt;std::string&gt;&gt;&gt;</code>. В отличие от предыдущей функции, вместо графов возвращаются их имена, используемые как имена папок с созданными Verilog-файлами соответствующих графов, а также в качестве имен файлов.</p>
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md36"></a>
 Note to packagers</h2>
 <p>Для <code>CMAKE_INSTALL_INCLUDEDIR</code> задан путь, отличный от просто <code>include</code>, если проект настроен как проект верхнего уровня, чтобы избежать косвенного включения других библиотек при установке с общим префиксом. Просмотрите файл <a href="cmake/install-rules.cmake">install-rules.cmake</a> для получения полного набора правил установки. </p>
 </div></div><!-- contents -->

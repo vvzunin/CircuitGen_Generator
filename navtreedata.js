@@ -26,46 +26,50 @@ var NAVTREE =
 [
   [ "CircuitGen_Generator", "index.html", [
     [ "Генератор комбинационных схем", "index.html", [
-      [ "Режим разработчика", "index.html#autotoc_md1", null ],
-      [ "Добавление нового генератора", "index.html#autotoc_md2", null ],
-      [ "Сборка программы", "index.html#autotoc_md3", null ],
-      [ "Запуск генерации комбинационных схем из командной строки", "index.html#autotoc_md4", null ],
-      [ "JSON файлы", "index.html#autotoc_md5", null ],
-      [ "Описание префикса папок генерации", "index.html#autotoc_md6", null ],
-      [ "Лицензия", "index.html#autotoc_md7", null ]
+      [ "Установка необходимых пакетов", "index.html#autotoc_md1", [
+        [ "Установка пакетов с помощью apt", "index.html#autotoc_md2", null ],
+        [ "Установка cmake 3.28.1", "index.html#autotoc_md3", null ]
+      ] ],
+      [ "Режим разработчика", "index.html#autotoc_md4", null ],
+      [ "Добавление нового генератора", "index.html#autotoc_md5", null ],
+      [ "Сборка программы", "index.html#autotoc_md6", null ],
+      [ "Запуск генерации комбинационных схем из командной строки", "index.html#autotoc_md7", null ],
+      [ "JSON файлы", "index.html#autotoc_md8", null ],
+      [ "Описание префикса папок генерации", "index.html#autotoc_md9", null ],
+      [ "Лицензия", "index.html#autotoc_md10", null ]
     ] ],
     [ "Hacking", "md_HACKING.html", [
-      [ "Режим разработчика", "md_HACKING.html#autotoc_md9", [
-        [ "Правила именования переменных", "md_HACKING.html#autotoc_md10", null ],
-        [ "Пресеты", "md_HACKING.html#autotoc_md11", null ],
-        [ "Настройка, сборка и тестирование", "md_HACKING.html#autotoc_md12", null ],
-        [ "Цели режима разработчика", "md_HACKING.html#autotoc_md13", [
-          [ "<tt>coverage</tt>", "md_HACKING.html#autotoc_md14", null ],
-          [ "<tt>docs</tt>", "md_HACKING.html#autotoc_md15", null ],
-          [ "<tt>format-check</tt> и <tt>format-fix</tt>", "md_HACKING.html#autotoc_md16", null ],
-          [ "<tt>run-exe</tt>", "md_HACKING.html#autotoc_md17", null ],
-          [ "<tt>spell-check</tt> и <tt>spell-fix</tt>", "md_HACKING.html#autotoc_md18", null ]
+      [ "Режим разработчика", "md_HACKING.html#autotoc_md12", [
+        [ "Правила именования переменных", "md_HACKING.html#autotoc_md13", null ],
+        [ "Пресеты", "md_HACKING.html#autotoc_md14", null ],
+        [ "Настройка, сборка и тестирование", "md_HACKING.html#autotoc_md15", null ],
+        [ "Цели режима разработчика", "md_HACKING.html#autotoc_md16", [
+          [ "<tt>coverage</tt>", "md_HACKING.html#autotoc_md17", null ],
+          [ "<tt>docs</tt>", "md_HACKING.html#autotoc_md18", null ],
+          [ "<tt>format-check</tt> и <tt>format-fix</tt>", "md_HACKING.html#autotoc_md19", null ],
+          [ "<tt>run-exe</tt>", "md_HACKING.html#autotoc_md20", null ],
+          [ "<tt>spell-check</tt> и <tt>spell-fix</tt>", "md_HACKING.html#autotoc_md21", null ]
         ] ],
-        [ "Правила документирования кода", "md_HACKING.html#autotoc_md19", null ]
+        [ "Правила документирования кода", "md_HACKING.html#autotoc_md22", null ]
       ] ]
     ] ],
     [ "Вклад", "md_CONTRIBUTING.html", [
-      [ "Нормы поведения", "md_CONTRIBUTING.html#autotoc_md21", null ],
-      [ "Начальные шаги", "md_CONTRIBUTING.html#autotoc_md22", null ]
+      [ "Нормы поведения", "md_CONTRIBUTING.html#autotoc_md24", null ],
+      [ "Начальные шаги", "md_CONTRIBUTING.html#autotoc_md25", null ]
     ] ],
     [ "Сборка с помощью CMake", "md_BUILDING.html", [
-      [ "Сборка", "md_BUILDING.html#autotoc_md24", [
-        [ "Сборка с MSVC", "md_BUILDING.html#autotoc_md25", null ],
-        [ "Сборка на Apple Silicon", "md_BUILDING.html#autotoc_md26", null ]
+      [ "Сборка", "md_BUILDING.html#autotoc_md27", [
+        [ "Сборка с MSVC", "md_BUILDING.html#autotoc_md28", null ],
+        [ "Сборка на Apple Silicon", "md_BUILDING.html#autotoc_md29", null ]
       ] ],
-      [ "Установка", "md_BUILDING.html#autotoc_md27", [
-        [ "Пакет CMake", "md_BUILDING.html#autotoc_md28", null ],
-        [ "Дальнейшее использование", "md_BUILDING.html#autotoc_md29", [
-          [ "runGenerationFromJson", "md_BUILDING.html#autotoc_md30", null ],
-          [ "runGenerationFromJsonForGraph", "md_BUILDING.html#autotoc_md31", null ],
-          [ "runGenerationFromJsonForPath", "md_BUILDING.html#autotoc_md32", null ]
+      [ "Установка", "md_BUILDING.html#autotoc_md30", [
+        [ "Пакет CMake", "md_BUILDING.html#autotoc_md31", null ],
+        [ "Дальнейшее использование", "md_BUILDING.html#autotoc_md32", [
+          [ "runGenerationFromJson", "md_BUILDING.html#autotoc_md33", null ],
+          [ "runGenerationFromJsonForGraph", "md_BUILDING.html#autotoc_md34", null ],
+          [ "runGenerationFromJsonForPath", "md_BUILDING.html#autotoc_md35", null ]
         ] ],
-        [ "Note to packagers", "md_BUILDING.html#autotoc_md33", null ]
+        [ "Note to packagers", "md_BUILDING.html#autotoc_md36", null ]
       ] ]
     ] ],
     [ "Нормы поведения", "md_CODE_OF_CONDUCT.html", null ],
@@ -73,12 +77,12 @@ var NAVTREE =
     [ "Описание префикса папок генерации", "md_GeneratorsPrefixes.html", null ],
     [ "JSON файлы", "md_json.html", null ],
     [ "Добавление нового генератора", "md_NewGenerator.html", [
-      [ "1.1 <a href=\"src/settings/Settings.hpp\">Settings.hpp</a>", "md_NewGenerator.html#autotoc_md39", null ],
-      [ "1.2 <a href=\"src/settings/Settings.hpp\">Settings.hpp</a>", "md_NewGenerator.html#autotoc_md40", null ],
-      [ "2. <a href=\"src/generators/GenerationParameters.hpp\">GeneratorParameters.hpp</a>", "md_NewGenerator.html#autotoc_md41", null ],
-      [ "3. <a href=\"src/generators/simple/SimpleGenerators.hpp\">SimpleGenerators.hpp</a> и <a href=\"src/generators/simple/SimpleGenerators.cpp\">SimpleGenerators.cpp</a>", "md_NewGenerator.html#autotoc_md42", null ],
-      [ "4. <a href=\"src/database/DataBaseGenerator.hpp\">DataBaseGenerator.hpp</a> и <a href=\"src/database/DataBaseGenerator.cpp\">DataBaseGenerator.cpp</a>", "md_NewGenerator.html#autotoc_md43", null ],
-      [ "5. <a href=\"src/CircuitGenGenerator.cpp\">CircuitGenGenerator.cpp</a>", "md_NewGenerator.html#autotoc_md44", null ]
+      [ "1.1 <a href=\"src/settings/Settings.hpp\">Settings.hpp</a>", "md_NewGenerator.html#autotoc_md42", null ],
+      [ "1.2 <a href=\"src/settings/Settings.hpp\">Settings.hpp</a>", "md_NewGenerator.html#autotoc_md43", null ],
+      [ "2. <a href=\"src/generators/GenerationParameters.hpp\">GeneratorParameters.hpp</a>", "md_NewGenerator.html#autotoc_md44", null ],
+      [ "3. <a href=\"src/generators/simple/SimpleGenerators.hpp\">SimpleGenerators.hpp</a> и <a href=\"src/generators/simple/SimpleGenerators.cpp\">SimpleGenerators.cpp</a>", "md_NewGenerator.html#autotoc_md45", null ],
+      [ "4. <a href=\"src/database/DataBaseGenerator.hpp\">DataBaseGenerator.hpp</a> и <a href=\"src/database/DataBaseGenerator.cpp\">DataBaseGenerator.cpp</a>", "md_NewGenerator.html#autotoc_md46", null ],
+      [ "5. <a href=\"src/CircuitGenGenerator.cpp\">CircuitGenGenerator.cpp</a>", "md_NewGenerator.html#autotoc_md47", null ]
     ] ],
     [ "Todo List", "todo.html", null ],
     [ "Deprecated List", "deprecated.html", null ],
@@ -136,10 +140,10 @@ var NAVTREEINDEX =
 "dir_d28a4824dc47e487b107a5db32ef43c4.html",
 "easylogging_09_09_8h.html#a9e8b154363eb8282279f660d0bbaaea1",
 "globals_f.html",
-"json_8hpp.html#a866beb938b64216218cd062e18602eb9",
-"main_8cpp.html",
-"namespacedetail.html#af4eec865929224a2edcdd86e0e2f5381",
-"structdetail_1_1internal__iterator.html#acf787101c4778e750cfdb0f44066a6ef"
+"json_8hpp.html#a82dd889f447e7a1383b8757be27f66e9",
+"json__fwd_8hpp.html#ae6eede511f01c9f33342044d36a388fa",
+"namespacedetail.html#af0210e44153a964b7c8fa438b10123d4",
+"structdetail_1_1internal__iterator.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

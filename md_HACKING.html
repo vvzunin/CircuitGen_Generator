@@ -99,17 +99,17 @@ $(document).ready(function(){initNavTree('md_HACKING.html',''); initResizable();
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>Вот несколько советов, которые помогут вам создать и протестировать этот проект в качестве разработчика и потенциального участника.</p>
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
 Режим разработчика</h1>
 <p>Цели системы сборки, которые полезны только для разработчиков этого проекта, скрыты, если опция <code>CircuitGen_Generator_DEVELOPER_MODE</code> отключена. Включение этой опции делает доступными тесты и другие цели и параметры разработчика. Если вы не включите эту опцию, вы являетесь потребителем этого проекта и, следовательно, вам не нужны эти цели и параметры.</p>
 <p>Режим разработчика всегда включен в рабочих процессах CI.</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Правила именования переменных</h2>
 <p>Правила именования переменных:</p><ul>
 <li>d_anything означает поле класса;</li>
 <li>i_anything принимаемый аргумент в функцию.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Пресеты</h2>
 <p>В этом проекте используются <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">пресеты</a> для упрощения процесса настройки проекта. Как разработчику вам рекомендуется всегда устанавливать <a href="https://cmake.org/download/">последнюю версию CMake</a>, чтобы использовать последние дополнения качества жизни.</p>
 <p>У вас есть несколько вариантов передачи <code>CircuitGen_Generator_DEVELOPER_MODE</code> в команду настройки, но в этом проекте предпочитают использовать пресеты.</p>
@@ -154,7 +154,7 @@ $(document).ready(function(){initNavTree('md_HACKING.html',''); initResizable();
 <blockquote class="doxtable">
 <p><b>Примечание</b> Некоторые редакторы довольно жадны в открытии проектов с пресетами. Некоторые просто случайно выбирают пресет и начинают настраивать без вашего согласия, что может сбить с толку. Убедитесь, что Ваш редактор настраивается, когда Вам на самом деле этого хочется, например, в CLion Вам нужно убедиться, что только в <code>dev-dev preset</code> установлен флажок <code>Включить профиль</code> <code>Файл &gt; Настройки... &gt; Сборка, выполнение, развертывание &gt; CMake</code> и в Visual Studio Вам необходимо установить опцию «Никогда не запускать шаг настройки автоматически» в <code>Инструменты &gt; Параметры &gt; CMake</code> <b>до открытия проекта</b>, после чего Вы можете настроить вручную, используя «Проект &gt; Настроить кэш». </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Настройка, сборка и тестирование</h2>
 <p>Если Вы следовали приведенным выше инструкциям, то Вы можете настроить, собрать и протестировать проект соответственно с помощью следующих команд из корня проекта в любой операционной системе с любой системой сборки:</p>
 <div class="fragment"><div class="line">cmake --preset=dev</div>
@@ -162,25 +162,25 @@ $(document).ready(function(){initNavTree('md_HACKING.html',''); initResizable();
 <div class="line">ctest --preset=dev</div>
 </div><!-- fragment --><p>Если вы используете совместимый редактор (например, VSCode) или IDE (например, CLion, VS), вы также сможете выбрать созданные выше пользовательские пресеты для автоматической интеграции.</p>
 <p>Обратите внимание, что и команды сборки, и команды тестирования принимают флаг <code>-j</code> для указания количества используемых заданий, которое в идеале должно быть указано в соответствии с количеством потоков вашего процессора. Вы также можете добавить это в свой пресет, используя свойство <code>jobs</code>, более подробную информацию можно найти в <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">документации по пресетам</a>.</p>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 Цели режима разработчика</h2>
 <p>Это цели, которые вы можете вызвать с помощью приведенной выше команды сборки с дополнительным флагом <code>-t &lt;target&gt;</code>:</p>
-<h3><a class="anchor" id="autotoc_md14"></a>
+<h3><a class="anchor" id="autotoc_md17"></a>
 &lt;tt&gt;coverage&lt;/tt&gt;</h3>
 <p>Доступно, если включен <code>ENABLE_COVERAGE</code>. Эта цель обрабатывает выходные данные ранее запущенных тестов при построении с конфигурацией покрытия. Команды, которые выполняет эта цель, можно найти в переменных кэша <code>COVERAGE_TRACE_COMMAND</code> и <code>COVERAGE_HTML_COMMAND</code>. Команда трассировки по умолчанию создает информационный файл, который можно отправить в службы с интеграцией CI. Команда HTML использует выходные данные команды трассировки для создания HTML-документа в <code>&lt;binary-dir&gt;/coverage_html</code> по умолчанию.</p>
-<h3><a class="anchor" id="autotoc_md15"></a>
+<h3><a class="anchor" id="autotoc_md18"></a>
 &lt;tt&gt;docs&lt;/tt&gt;</h3>
 <p>Доступно, если включен <code>BUILD_MCSS_DOCS</code>. Сборка документации с использованием Doxygen и m.css. По умолчанию вывод будет идти в <code>&lt;binary-dir&gt;/docs</code> (настраивается с помощью <code>DOXYGEN_OUTPUT_DIRECTORY</code>).</p>
-<h3><a class="anchor" id="autotoc_md16"></a>
+<h3><a class="anchor" id="autotoc_md19"></a>
 &lt;tt&gt;format-check&lt;/tt&gt; и &lt;tt&gt;format-fix&lt;/tt&gt;</h3>
 <p>Эти цели запускают инструмент формата clang в базе кода для проверки ошибок и их исправления соответственно. Доступна настройка с использованием переменных кэша <code>FORMAT_PATTERNS</code> и <code>FORMAT_COMMAND</code>.</p>
-<h3><a class="anchor" id="autotoc_md17"></a>
+<h3><a class="anchor" id="autotoc_md20"></a>
 &lt;tt&gt;run-exe&lt;/tt&gt;</h3>
 <p>Запускает исполняемый целевой файл <code>CircuitGen_Generator_exe</code>.</p>
-<h3><a class="anchor" id="autotoc_md18"></a>
+<h3><a class="anchor" id="autotoc_md21"></a>
 &lt;tt&gt;spell-check&lt;/tt&gt; и &lt;tt&gt;spell-fix&lt;/tt&gt;</h3>
 <p>Эти цели запускают инструмент кодирования в базе кода для проверки ошибок и их исправления соответственно. Доступна настройка с использованием переменной кэша <code>SPELL_COMMAND</code>.</p>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 Правила документирования кода</h2>
 <ul>
 <li>1: Все описания и комментирование кода/добавление TO DO пишутся в файлах с расширение .hpp</li>
