@@ -16,7 +16,7 @@ void GeneticParameters::setNumOfCycles(uint32_t i_numOfCycles) {
 }
 
 GeneticParameters::GeneticParameters(uint32_t i_inputs, uint32_t i_outputs) :
-    d_inputs(i_inputs), d_outputs(i_outputs) {};
+    d_inputs(i_inputs), d_outputs(i_outputs){};
 
 uint32_t GeneticParameters::getInputs() const {
   return d_inputs;

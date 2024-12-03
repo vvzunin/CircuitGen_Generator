@@ -44,8 +44,9 @@ public:
   GeneticGenerator(const ParametersType &i_parameters,
                    std::pair<int32_t, int32_t> i_inout,
                    const std::string &i_mainPath, const std::string &i_name) :
-      d_parameters(i_parameters), d_inputs(i_inout.first),
-      d_outputs(i_inout.second), d_mainPath(i_mainPath), d_name(i_name) {
+      d_parameters(i_parameters),
+      d_inputs(i_inout.first), d_outputs(i_inout.second),
+      d_mainPath(i_mainPath), d_name(i_name) {
     d_parameters.setInputs(d_inputs);
     d_parameters.setOutputs(d_outputs);
   }

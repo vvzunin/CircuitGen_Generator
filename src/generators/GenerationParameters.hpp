@@ -300,11 +300,11 @@ public:
                        bool i_makeGraphMLClassic = false,
                        bool i_makeGraphMLPsedoABCD = false,
                        bool i_makeGraphMLOpenABCD = false) :
-      d_name(i_name), d_requestId(i_requestId), d_inputs(i_inputs),
-      d_outputs(i_outputs), d_iteration(i_iteration),
-      d_makeGraphMLClassic(i_makeGraphMLClassic),
+      d_name(i_name),
+      d_requestId(i_requestId), d_inputs(i_inputs), d_outputs(i_outputs),
+      d_iteration(i_iteration), d_makeGraphMLClassic(i_makeGraphMLClassic),
       d_makeGraphMLPseudoABCD(i_makeGraphMLPsedoABCD),
-      d_makeGraphMLOpenABCD(i_makeGraphMLOpenABCD) {};
+      d_makeGraphMLOpenABCD(i_makeGraphMLOpenABCD){};
 
   std::string getName() const { return d_name; }
 
