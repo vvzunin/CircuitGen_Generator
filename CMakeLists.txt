@@ -108,6 +108,20 @@ configure_file(
   COPYONLY
 )
 
+find_program(CLANG_TIDY NAMES clang-tidy)
+
+if (CLANG_TIDY)
+  set(GENERATOR_CLANG_TIDY
+    ${CLANG_TIDY};
+    -line-filter=[{"name":".hpp"},{"name":".cpp"}]
+  )
+  set_target_properties(CircuitGenGenerator_lib PROPERTIES
+    CXX_CLANG_TIDY "${GENERATOR_CLANG_TIDY}"
+  )
+else()
+  message("clang-tidy not found")
+endif()
+
 include(cmake/utils.cmake)
 include(GNUInstallDirs)
 
