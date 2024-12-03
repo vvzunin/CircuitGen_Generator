@@ -21,15 +21,10 @@
 /// GenerationParameters?
 class DataBaseGeneratorParameters {
 public:
-  DataBaseGeneratorParameters(
-      uint32_t             i_minInputs,
-      uint32_t             i_maxInputs,
-      uint32_t             i_minOutputs,
-      uint32_t             i_maxOutputs,
-      uint32_t             i_eachIteration,
-      GenerationTypes      i_gt,
-      GenerationParameters i_gp
-  );
+  DataBaseGeneratorParameters(uint32_t i_minInputs, uint32_t i_maxInputs,
+                              uint32_t i_minOutputs, uint32_t i_maxOutputs,
+                              uint32_t i_eachIteration, GenerationTypes i_gt,
+                              GenerationParameters i_gp);
 
   /// @brief setInputs The method sets the number of input signals to generate
   /// the database
@@ -37,7 +32,7 @@ public:
   /// that must be set to generate the database
   /// */
 
-  void                 setInputs(uint32_t i_inputs);
+  void setInputs(uint32_t i_inputs);
 
   /// @brief setOutputs The method sets the number of output signals to generate
   /// the database
@@ -45,7 +40,7 @@ public:
   /// signals that must be set to generate the database
   /// */
 
-  void                 setOutputs(uint32_t i_outputs);
+  void setOutputs(uint32_t i_outputs);
 
   /// @brief setIteration The method sets the iteration number for database
   /// generation
@@ -53,42 +48,42 @@ public:
   /// must be set to generate the database
   /// */
 
-  void                 setIteration(uint32_t i_iteration);
+  void setIteration(uint32_t i_iteration);
 
   /// @brief setName The method is used to set the name for database generation
   /// @param i_name A string containing the name to be set to generate the
   /// database
   /// */
 
-  void                 setName(const std::string& i_name);
+  void setName(const std::string &i_name);
 
   /// @brief getMinInputs This method is used to get the minimum number of
   /// inputs set in the database generation parameters.
   /// @return Minimum number of inputs for database generation
   /// */
 
-  uint32_t             getMinInputs() const;
+  uint32_t getMinInputs() const;
 
   /// @brief getMaxInputs This method is used to get the maximum number of
   /// inputs set in the database generation parameters.
   /// @return Maximum number of inputs for database generation
   /// */
 
-  uint32_t             getMaxInputs() const;
+  uint32_t getMaxInputs() const;
 
   /// @brief getMinOutputs This method is used to get the minimum number of
   /// outputs set in the database generation parameters.
   /// @return The minimum number of outputs for database generation.
   /// */
 
-  uint32_t             getMinOutputs() const;
+  uint32_t getMinOutputs() const;
 
   /// @brief getMaxOutputs This one is used to get the maximum number of outputs
   /// set in the database generation parameters.
   /// @return Maximum number of outputs for database generation
   /// */
 
-  uint32_t             getMaxOutputs() const;
+  uint32_t getMaxOutputs() const;
 
   /// @brief getEachIteration This method is used to get the number of
   /// iterations that need to be performed for each combination of inputs and
@@ -97,7 +92,7 @@ public:
   /// outputs during database generation.
   /// */
 
-  uint32_t             getEachIteration() const;
+  uint32_t getEachIteration() const;
 
   /// @brief getGenerationParameters This method is used to get the database
   /// generation parameters
@@ -110,14 +105,14 @@ public:
   /// variable representing the database generation type
   /// @return GenerationTypes of the database generation type
   /// */
-  GenerationTypes      getGenerationType() const;
+  GenerationTypes getGenerationType() const;
 
 private:
-  uint32_t        d_minInputs       = 0;
-  uint32_t        d_maxInputs       = 0;
-  uint32_t        d_minOutputs      = 0;
-  uint32_t        d_maxOutputs      = 0;
-  uint32_t        d_eachIteration   = 0;
+  uint32_t d_minInputs = 0;
+  uint32_t d_maxInputs = 0;
+  uint32_t d_minOutputs = 0;
+  uint32_t d_maxOutputs = 0;
+  uint32_t d_eachIteration = 0;
   GenerationTypes d_generationTypes = GenerationTypes::FromRandomTruthTable;
   GenerationParameters d_generationParameters;
 };

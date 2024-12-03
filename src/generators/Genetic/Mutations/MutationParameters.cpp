@@ -14,8 +14,8 @@ void MutationParameters::setExchangeType(int32_t i_exchangeType) {
   d_exchangeType = i_exchangeType;
 }
 
-void MutationParameters::setProbabilityTruthTable(double i_probabilityTruthTable
-) {
+void MutationParameters::setProbabilityTruthTable(
+    double i_probabilityTruthTable) {
   d_probabilityTruthTable = i_probabilityTruthTable;
 }
 
@@ -35,17 +35,9 @@ double MutationParameters::getProbabilityTruthTable() const {
   return d_probabilityTruthTable;
 }
 
-bool MutationParameters::operator==(const MutationParameters& r) const {
-  return std::tie(
-             d_mutationType,
-             d_probabilityGen,
-             d_exchangeType,
-             d_probabilityTruthTable
-         )
-      == std::tie(
-             r.d_mutationType,
-             r.d_probabilityGen,
-             r.d_exchangeType,
-             r.d_probabilityTruthTable
-      );
+bool MutationParameters::operator==(const MutationParameters &r) const {
+  return std::tie(d_mutationType, d_probabilityGen, d_exchangeType,
+                  d_probabilityTruthTable) ==
+         std::tie(r.d_mutationType, r.d_probabilityGen, r.d_exchangeType,
+                  r.d_probabilityTruthTable);
 }

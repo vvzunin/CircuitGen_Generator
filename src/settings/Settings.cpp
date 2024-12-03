@@ -8,7 +8,7 @@
 
 std::shared_ptr<Settings> Settings::d_singleton = nullptr;
 
-std::shared_ptr<Settings> Settings::getInstance(const std::string& i_value) {
+std::shared_ptr<Settings> Settings::getInstance(const std::string &i_value) {
   /**
    * This is a safer way to create an instance. instance = new Singleton is
    * dangeruous in case two instance threads wants to access at the same time
@@ -85,10 +85,10 @@ void Settings::loadSettings() {
       readFile >> fromName;
       if (fromName == "input") {
         fromName = "";
-        toName   = "input";  // fromName take operation, but the operation that
-                             // input have, is an empty string so it is going to
-                             // take directly input.
-      }                      // So that I check it out right here
+        toName = "input"; // fromName take operation, but the operation that
+                          // input have, is an empty string so it is going to
+                          // take directly input.
+      } // So that I check it out right here
       else
         readFile >> toName;
       d_operationsToName[fromName] = toName;
@@ -107,10 +107,10 @@ std::vector<Gates> Settings::getLogicOperationsKeys() {
 }
 
 std::pair<std::vector<bool>, std::vector<Gates>>
-    Settings::getLogicOperationsWithGates() {
+Settings::getLogicOperationsWithGates() {
   std::vector<bool> oneGate;
 
-  for (const auto& key : d_logicElements) {
+  for (const auto &key: d_logicElements) {
     oneGate.push_back(key == Gates::GateBuf || key == Gates::GateNot);
   }
 
@@ -129,7 +129,7 @@ std::string Settings::getPathNadezhda() const {
   return d_pathToNadezhda;
 }
 
-std::string Settings::getNadezhdaVar(const std::string& key) const {
+std::string Settings::getNadezhdaVar(const std::string &key) const {
   return d_nadezhda.at(key);
 }
 
@@ -139,13 +139,13 @@ void Settings::SaveSettings() {
             << d_pathToNadezhda << std::endl;
 
   writeFile << d_nadezhda.size() << std::endl;
-  for (const auto& [key, value] : d_nadezhda)
+  for (const auto &[key, value]: d_nadezhda)
     writeFile << key << ' ' << value << std::endl;
 
   writeFile << d_numThreads << std::endl;
 
   writeFile << d_logicOperations.size() << std::endl;
-  for (const auto& [key, value] : d_logicOperations)
+  for (const auto &[key, value]: d_logicOperations)
     writeFile << key << ' ' << value.first << ' ' << value.second << std::endl;
 
   // writeFile << d_operationsToHierarchy.size() << std::endl;
@@ -157,7 +157,7 @@ void Settings::SaveSettings() {
   // }
 
   writeFile << d_operationsToName.size() << std::endl;
-  for (const auto& [key, value] : d_operationsToName)
+  for (const auto &[key, value]: d_operationsToName)
     writeFile << key << ' ' << value << std::endl;
 
   writeFile << d_maxInputs << ' ' << d_maxOutputs << std::endl;
@@ -167,7 +167,7 @@ std::string Settings::getDatasetPath() const {
   return d_datasetPath;
 }
 
-void Settings::setDatasetPath(const std::string& i_datasetPath) {
+void Settings::setDatasetPath(const std::string &i_datasetPath) {
   d_datasetPath = i_datasetPath;
 }
 
@@ -175,14 +175,13 @@ std::string Settings::getLibraryPath() const {
   return d_libraryPath;
 }
 
-std::string Settings::getGenerationMethodPrefix(
-    const GenerationTypes i_methodType
-) const {
+std::string
+Settings::getGenerationMethodPrefix(const GenerationTypes i_methodType) const {
   return generationTypeToPrefix.at(i_methodType);
 }
 
-std::string Settings::getLibraryNameFromEnum(const LibrariesTypes& library
-) const {
+std::string
+Settings::getLibraryNameFromEnum(const LibrariesTypes &library) const {
   switch (library) {
     case SKY_LIB:
     default:
@@ -199,6 +198,6 @@ uint32_t Settings::getMaxOutputs() const {
 }
 
 std::map<std::string, std::pair<std::string, int32_t>>
-    Settings::getLogicOperations() const {
+Settings::getLogicOperations() const {
   return d_logicOperations;
 }

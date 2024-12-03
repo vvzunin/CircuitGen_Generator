@@ -10,7 +10,7 @@
 using namespace Threading;
 
 void ThreadPool::submit(ThreadPool::Task task) {
-  {  // Add not processed.
+  { // Add not processed.
     std::unique_lock lock(mtx);
     ++notProcessed;
   }
@@ -30,8 +30,8 @@ void ThreadPool::wait() {
 
 void ThreadPool::work() {
   while (true) {
-    auto taskOpt = queue.take();  // block here while there are no tasks or
-                                  // queue not closed.
+    auto taskOpt = queue.take(); // block here while there are no tasks or
+                                 // queue not closed.
     if (taskOpt.has_value()) {
       // execute task.
       taskOpt.value()();
@@ -45,7 +45,7 @@ void ThreadPool::work() {
           processedAll.notify_one();
         }
       }
-    } else {  // queue closed.
+    } else { // queue closed.
       break;
     }
   }
@@ -66,7 +66,7 @@ void ThreadPool::stop() {
   queue.close();
 
   // Wait for workers are done.
-  for (auto&& worker : workers) {
+  for (auto &&worker: workers) {
     worker.join();
   }
 

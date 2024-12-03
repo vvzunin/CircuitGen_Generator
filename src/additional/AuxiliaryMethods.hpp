@@ -33,7 +33,7 @@ namespace AuxMethods {
 /// Setting the grain to generate random numbers
 /// AuxMethods::setRandSeed(42);
 /// @endcode
-void               setRandSeed(std::uint_fast32_t seed);
+void setRandSeed(std::uint_fast32_t seed);
 
 /// @brief getRandSeed Returns the current grain for generating
 /// pseudo-random numbers
@@ -53,7 +53,7 @@ std::uint_fast32_t getRandSeed();
 /// //randomNumber = 45;
 /// @endcode
 
-int32_t     getRandInt(int32_t lower, int32_t upper, bool inclusively = false);
+int32_t getRandInt(int32_t lower, int32_t upper, bool inclusively = false);
 
 // @brief getRandDouble Returns a random floating point number in the
 /// specified range
@@ -66,7 +66,7 @@ int32_t     getRandInt(int32_t lower, int32_t upper, bool inclusively = false);
 /// // randomNumber = 0.35;
 /// @endcode
 
-double      getRandDouble(double lower, double upper);
+double getRandDouble(double lower, double upper);
 
 /// @brief readAllFile Reads the contents of the file and returns it as a
 /// string
@@ -81,7 +81,7 @@ double      getRandDouble(double lower, double upper);
 /// @endcode
 /// @throws std::runtime_error if the file cannot be opened
 
-std::string readAllFile(const std::string& filename);
+std::string readAllFile(const std::string &filename);
 
 /// @brief getRandomIntList Generates a list of random integers in a given
 /// range with certain restrictions on the number of elements and the
@@ -106,12 +106,8 @@ std::string readAllFile(const std::string& filename);
 /// // and they are all different.
 /// @endcode
 
-std::vector<int32_t> getRandomIntList(
-    size_t  i_n,
-    int32_t i_minNumber,
-    int32_t i_maxNumber,
-    bool    repite = false
-);
+std::vector<int32_t> getRandomIntList(size_t i_n, int32_t i_minNumber,
+                                      int32_t i_maxNumber, bool repite = false);
 
 /// @brief sortDictByValue Sorting the associative container by values and
 /// returning sorted key-value pairs as a vector. Sorting can be performed both
@@ -142,7 +138,7 @@ std::vector<int32_t> getRandomIntList(
 
 template<typename Key, typename Value>
 std::vector<std::pair<Key, Value>>
-            sortDictByValue(const std::map<Key, Value>& i_dict, bool up = true);
+sortDictByValue(const std::map<Key, Value> &i_dict, bool up = true);
 // TODO: ToEnum
 // TODO: if need LineReader
 
@@ -160,7 +156,7 @@ std::vector<std::pair<Key, Value>>
 /// std::cout << "String without spaces: " << resultString << std::endl;
 /// @endcode
 
-std::string removeSpaces(const std::string& i_s);
+std::string removeSpaces(const std::string &i_s);
 
 /// @brief skipSpaces Skips whitespace characters in the string starting
 /// from the specified position. By default - 0
@@ -188,13 +184,13 @@ std::string removeSpaces(const std::string& i_s);
 /// }
 /// @endcode
 
-size_t      skipSpaces(const std::string& i_s, size_t i_start = 0);
+size_t skipSpaces(const std::string &i_s, size_t i_start = 0);
 
 template<typename T>
-std::vector<std::vector<T>> transpose(const std::vector<std::vector<T>>& matrix
-);
+std::vector<std::vector<T>>
+transpose(const std::vector<std::vector<T>> &matrix);
 
 // TODO: if need CopyDirectory
 std::string intToStringWithZeroes(uint32_t i_num, size_t i_totalDigits = 5);
 
-}  // namespace AuxMethods
+} // namespace AuxMethods

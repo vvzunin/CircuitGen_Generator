@@ -23,17 +23,17 @@ public:
   explicit ThreadPool(size_t useThreads);
 
   // Not allow copy.
-  ThreadPool(const ThreadPool& other)            = delete;
+  ThreadPool(const ThreadPool &other) = delete;
 
-  ThreadPool& operator=(const ThreadPool& other) = delete;
+  ThreadPool &operator=(const ThreadPool &other) = delete;
 
   // Not movable (FIX ME).
-  ThreadPool(ThreadPool&& other)                 = delete;
+  ThreadPool(ThreadPool &&other) = delete;
 
   // Not allow move-copy.
-  ThreadPool& operator=(ThreadPool&& other)      = delete;
+  ThreadPool &operator=(ThreadPool &&other) = delete;
 
-  using Task                                     = std::function<void()>;
+  using Task = std::function<void()>;
 
   /// Schedule task on execution.
   void submit(Task task);
@@ -51,18 +51,18 @@ public:
 
 private:
   // All multithreading is here.
-  void                     work();
+  void work();
 
-  void                     spawnWorker();
+  void spawnWorker();
 
   UnboundedMPMCQueue<Task> queue;
 
   std::vector<std::thread> workers;
 
-  size_t                   notProcessed {0};
-  std::mutex               mtx;
+  size_t notProcessed{0};
+  std::mutex mtx;
 
-  std::condition_variable  processedAll;
+  std::condition_variable processedAll;
 };
 
-}  // namespace Threading
+} // namespace Threading

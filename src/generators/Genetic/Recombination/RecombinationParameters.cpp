@@ -6,17 +6,14 @@ void RecombinationParameters::setMaskProbability(double i_maskProbability) {
   d_maskProbability = i_maskProbability;
 }
 
-void RecombinationParameters::setParentsParameters(
-    ParentsTypes i_parentsType,
-    int32_t      i_tournamentSize
-) {
+void RecombinationParameters::setParentsParameters(ParentsTypes i_parentsType,
+                                                   int32_t i_tournamentSize) {
   d_parentsParameters.setParentsType(i_parentsType);
   d_parentsParameters.setTournamentNumber(i_tournamentSize);
 }
 
 void RecombinationParameters::setRecombinationType(
-    RecombinationTypes i_recombinationType
-) {
+    RecombinationTypes i_recombinationType) {
   d_recombinationType = i_recombinationType;
 }
 
@@ -48,20 +45,10 @@ int32_t RecombinationParameters::getRecombinationParameters() const {
   return d_recombinationNumber;
 }
 
-bool RecombinationParameters::operator==(const RecombinationParameters& r
-) const {
-  return std::tie(
-             d_recombinationType,
-             d_parentsParameters,
-             d_refPoints,
-             d_maskProbability,
-             d_recombinationNumber
-         )
-      == std::tie(
-             r.d_recombinationType,
-             r.d_parentsParameters,
-             r.d_refPoints,
-             r.d_maskProbability,
-             r.d_recombinationNumber
-      );
+bool RecombinationParameters::operator==(
+    const RecombinationParameters &r) const {
+  return std::tie(d_recombinationType, d_parentsParameters, d_refPoints,
+                  d_maskProbability, d_recombinationNumber) ==
+         std::tie(r.d_recombinationType, r.d_parentsParameters, r.d_refPoints,
+                  r.d_maskProbability, r.d_recombinationNumber);
 }

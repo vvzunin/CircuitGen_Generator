@@ -7,10 +7,8 @@
 TEST(RecombinationParametersTest, DefaultConstructor) {
   RecombinationParameters params;
 
-  ASSERT_EQ(
-      params.getRecombinationType(),
-      RecombinationTypes::CrossingEachExitInTurnMany
-  );
+  ASSERT_EQ(params.getRecombinationType(),
+            RecombinationTypes::CrossingEachExitInTurnMany);
   ASSERT_EQ(params.getRefPoints(), 1);
   ASSERT_DOUBLE_EQ(params.getMaskProbability(), 0.5);
   ASSERT_EQ(params.getRecombinationParameters(), 1);
@@ -49,8 +47,8 @@ TEST(RecombinationParametersTest, SetAndGetRecombinationParameters) {
 
 TEST(RecombinationParametersTest, SetAndGetParentsParameters) {
   RecombinationParameters params;
-  ParentsTypes            parentType     = ParentsTypes::Tournament;
-  int32_t                 tournamentSize = 3;
+  ParentsTypes parentType = ParentsTypes::Tournament;
+  int32_t tournamentSize = 3;
 
   params.setParentsParameters(parentType, tournamentSize);
 
@@ -89,8 +87,8 @@ TEST(RecombinationParametersTest, EqualityOperator) {
   params2.setRecombinationParameters(10);
   ASSERT_TRUE(params1 == params2);
 
-  ParentsTypes parentType     = ParentsTypes::Tournament;
-  int32_t      tournamentSize = 3;
+  ParentsTypes parentType = ParentsTypes::Tournament;
+  int32_t tournamentSize = 3;
 
   params1.setParentsParameters(parentType, tournamentSize);
   ASSERT_FALSE(params1 == params2);

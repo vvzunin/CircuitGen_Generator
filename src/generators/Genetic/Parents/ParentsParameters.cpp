@@ -19,7 +19,7 @@ int32_t ParentsParameters::getTournamentNumber() const {
   return d_tournamentNumber;
 }
 
-bool ParentsParameters::operator==(const ParentsParameters& r) const {
-  return std::tuple(d_tournamentNumber, d_parentsType)
-      == std::tuple(r.d_tournamentNumber, r.d_parentsType);
+bool ParentsParameters::operator==(const ParentsParameters &r) const {
+  return std::tuple(d_tournamentNumber, d_parentsType) ==
+         std::tuple(r.d_tournamentNumber, r.d_parentsType);
 }

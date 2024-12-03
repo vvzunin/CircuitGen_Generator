@@ -16,7 +16,7 @@ void GeneticParameters::setNumOfCycles(uint32_t i_numOfCycles) {
 }
 
 GeneticParameters::GeneticParameters(uint32_t i_inputs, uint32_t i_outputs) :
-  d_inputs(i_inputs), d_outputs(i_outputs) {};
+    d_inputs(i_inputs), d_outputs(i_outputs) {};
 
 uint32_t GeneticParameters::getInputs() const {
   return d_inputs;
@@ -38,8 +38,8 @@ SelectionParameters GeneticParameters::getSelectionParameters() const {
   return d_selectionParameters;
 }
 
-void GeneticParameters::setSelectionParameters(const SelectionParameters& i_sp
-) {
+void GeneticParameters::setSelectionParameters(
+    const SelectionParameters &i_sp) {
   d_selectionParameters = i_sp;
 }
 
@@ -48,8 +48,7 @@ RecombinationParameters GeneticParameters::getRecombinationParameters() const {
 }
 
 void GeneticParameters::setRecombinationParameters(
-    const RecombinationParameters& i_rp
-) {
+    const RecombinationParameters &i_rp) {
   d_recombinationParameters = i_rp;
 }
 
@@ -57,7 +56,7 @@ MutationParameters GeneticParameters::getMutationParameters() const {
   return d_mutationParameters;
 }
 
-void GeneticParameters::setMutationParameters(const MutationParameters& i_mp) {
+void GeneticParameters::setMutationParameters(const MutationParameters &i_mp) {
   d_mutationParameters = i_mp;
 }
 
@@ -73,38 +72,24 @@ bool OrientedGraphParameters::empty() const {
   return d_maxLevel == 0 && d_maxElements == 0;
 }
 
-TruthTableParameters::TruthTableParameters(
-    uint32_t i_inputs,
-    uint32_t i_outputs
-) :
-  GeneticParameters(i_inputs, i_outputs) {}
+TruthTableParameters::TruthTableParameters(uint32_t i_inputs,
+                                           uint32_t i_outputs) :
+    GeneticParameters(i_inputs, i_outputs) {
+}
 
-TruthTableParameters::TruthTableParameters(const GeneticParameters& i_gp) :
-  GeneticParameters(i_gp) {}
+TruthTableParameters::TruthTableParameters(const GeneticParameters &i_gp) :
+    GeneticParameters(i_gp) {
+}
 
 uint32_t TruthTableParameters::size() const {
   return 1u << d_inputs;
 }
 
-bool TruthTableParameters::operator==(const TruthTableParameters& r) {
-  return std::tie(
-             d_inputs,
-             d_outputs,
-             d_populationSize,
-             d_numOfCycles,
-             d_selectionParameters,
-             d_recombinationParameters,
-             d_mutationParameters,
-             d_keyEndProcessIndex
-         )
-      == std::tie(
-             r.d_inputs,
-             r.d_outputs,
-             r.d_populationSize,
-             r.d_numOfCycles,
-             r.d_selectionParameters,
-             r.d_recombinationParameters,
-             r.d_mutationParameters,
-             r.d_keyEndProcessIndex
-      );
+bool TruthTableParameters::operator==(const TruthTableParameters &r) {
+  return std::tie(d_inputs, d_outputs, d_populationSize, d_numOfCycles,
+                  d_selectionParameters, d_recombinationParameters,
+                  d_mutationParameters, d_keyEndProcessIndex) ==
+         std::tie(r.d_inputs, r.d_outputs, r.d_populationSize, r.d_numOfCycles,
+                  r.d_selectionParameters, r.d_recombinationParameters,
+                  r.d_mutationParameters, r.d_keyEndProcessIndex);
 }

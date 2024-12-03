@@ -35,21 +35,21 @@ TEST(GeneticParametersTest, GetAndSetNumOfCycles) {
 }
 
 TEST(GeneticParametersTest, GetAndSetSelectionParameters) {
-  GeneticParameters   gp(0, 0);
+  GeneticParameters gp(0, 0);
   SelectionParameters sp;
   gp.setSelectionParameters(sp);
   EXPECT_EQ(gp.getSelectionParameters(), sp);
 }
 
 TEST(GeneticParametersTest, GetAndSetRecombinationParameters) {
-  GeneticParameters       gp(0, 0);
+  GeneticParameters gp(0, 0);
   RecombinationParameters rp;
   gp.setRecombinationParameters(rp);
   EXPECT_EQ(gp.getRecombinationParameters(), rp);
 }
 
 TEST(GeneticParametersTest, GetAndSetMutationParameters) {
-  GeneticParameters  gp(0, 0);
+  GeneticParameters gp(0, 0);
   MutationParameters mp;
   gp.setMutationParameters(mp);
   EXPECT_EQ(gp.getMutationParameters(), mp);
@@ -70,11 +70,11 @@ TEST(TruthTableParametersTest, ConstructorTest) {
   TruthTableParameters ttp(3, 2);
   EXPECT_EQ(ttp.getInputs(), 3);
   EXPECT_EQ(ttp.getOutputs(), 2);
-  EXPECT_EQ(ttp.size(), 8);  // 2^3 = 8
+  EXPECT_EQ(ttp.size(), 8); // 2^3 = 8
 }
 
 TEST(TruthTableParametersTest, CopyConstructorTest) {
-  GeneticParameters    gp(4, 1);
+  GeneticParameters gp(4, 1);
   TruthTableParameters ttp(gp);
   EXPECT_EQ(ttp.getInputs(), 4);
   EXPECT_EQ(ttp.getOutputs(), 1);
