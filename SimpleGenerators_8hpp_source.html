@@ -116,20 +116,20 @@ $(document).ready(function(){initNavTree('SimpleGenerators_8hpp_source.html','')
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span>{</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;int32_t maxValueInMap(<span class="keyword">const</span> std::map&lt;T, int32_t&gt;&amp; i_map) {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;int32_t maxValueInMap(<span class="keyword">const</span> std::map&lt;T, int32_t&gt; &amp;i_map) {</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keywordflow">if</span> (i_map.size() == 0) {</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  }</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  int32_t res = (*i_map.begin()).second;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>] : i_map) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;[key, <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>]: i_map) {</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    res = std::max(res, <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  }</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keywordflow">return</span> res;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// namespace end</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}  <span class="comment">// namespace</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;} <span class="comment">// namespace</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
 <div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html">   65</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSimpleGenerators.html">SimpleGenerators</a> {</div>
@@ -139,176 +139,130 @@ $(document).ready(function(){initNavTree('SimpleGenerators_8hpp_source.html','')
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <a class="code" href="classSimpleGenerators.html#a2414b33a0e25130c1ba5629970135795">SimpleGenerators</a>();</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <a class="code" href="classSimpleGenerators.html#a2414b33a0e25130c1ba5629970135795">SimpleGenerators</a>(uint_fast32_t i_seed);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a5a178b2f7c560fa4112ddac8b08b281f">   72</a></span>&#160;  <a class="code" href="classSimpleGenerators.html#a5a178b2f7c560fa4112ddac8b08b281f">SimpleGenerators</a>(<span class="keyword">const</span> <a class="code" href="classSimpleGenerators.html">SimpleGenerators</a>&amp; other)            = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a575aa8ac25bbc7688425c54f881fbf88">   73</a></span>&#160;  <a class="code" href="classSimpleGenerators.html">SimpleGenerators</a>&amp; <a class="code" href="classSimpleGenerators.html#a575aa8ac25bbc7688425c54f881fbf88">operator=</a>(<span class="keyword">const</span> <a class="code" href="classSimpleGenerators.html">SimpleGenerators</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a3b17c344184a99ea33ddf50ab495ae0c">   74</a></span>&#160;  <a class="code" href="classSimpleGenerators.html#a3b17c344184a99ea33ddf50ab495ae0c">SimpleGenerators</a>(<a class="code" href="classSimpleGenerators.html">SimpleGenerators</a>&amp;&amp; other)                 = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a73f972dfd033b02eb4d71ef7bb2e3413">   75</a></span>&#160;  <a class="code" href="classSimpleGenerators.html">SimpleGenerators</a>&amp; <a class="code" href="classSimpleGenerators.html#a73f972dfd033b02eb4d71ef7bb2e3413">operator=</a>(<a class="code" href="classSimpleGenerators.html">SimpleGenerators</a>&amp;&amp; other)      = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a5a178b2f7c560fa4112ddac8b08b281f">   72</a></span>&#160;  <a class="code" href="classSimpleGenerators.html#a5a178b2f7c560fa4112ddac8b08b281f">SimpleGenerators</a>(<span class="keyword">const</span> <a class="code" href="classSimpleGenerators.html">SimpleGenerators</a> &amp;other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a575aa8ac25bbc7688425c54f881fbf88">   73</a></span>&#160;  <a class="code" href="classSimpleGenerators.html">SimpleGenerators</a> &amp;<a class="code" href="classSimpleGenerators.html#a575aa8ac25bbc7688425c54f881fbf88">operator=</a>(<span class="keyword">const</span> <a class="code" href="classSimpleGenerators.html">SimpleGenerators</a> &amp;other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a3b17c344184a99ea33ddf50ab495ae0c">   74</a></span>&#160;  <a class="code" href="classSimpleGenerators.html#a3b17c344184a99ea33ddf50ab495ae0c">SimpleGenerators</a>(<a class="code" href="classSimpleGenerators.html">SimpleGenerators</a> &amp;&amp;other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a73f972dfd033b02eb4d71ef7bb2e3413">   75</a></span>&#160;  <a class="code" href="classSimpleGenerators.html">SimpleGenerators</a> &amp;<a class="code" href="classSimpleGenerators.html#a73f972dfd033b02eb4d71ef7bb2e3413">operator=</a>(<a class="code" href="classSimpleGenerators.html">SimpleGenerators</a> &amp;&amp;other) = <span class="keyword">delete</span>;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  GraphPtr <a class="code" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147">cnfFromTruthTable</a>(<span class="keyword">const</span> <a class="code" href="classTruthTable.html">TruthTable</a>&amp; i_table, <span class="keywordtype">bool</span> i_tp = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  GraphPtr <a class="code" href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99">zhegalkinFromTruthTable</a>(<span class="keyword">const</span> <a class="code" href="classTruthTable.html">TruthTable</a>&amp; i_table);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  GraphPtr <a class="code" href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147">cnfFromTruthTable</a>(<span class="keyword">const</span> <a class="code" href="classTruthTable.html">TruthTable</a> &amp;i_table, <span class="keywordtype">bool</span> i_tp = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  GraphPtr <a class="code" href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99">zhegalkinFromTruthTable</a>(<span class="keyword">const</span> <a class="code" href="classTruthTable.html">TruthTable</a> &amp;i_table);</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  GraphPtr <a class="code" href="classSimpleGenerators.html#aebea64983c4f49c3c1007a0390e06977">generatorRandLevel</a>(</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;      uint32_t i_minLevel,</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;      uint32_t i_maxLevel,</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;      uint32_t i_minElements,</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;      uint32_t i_maxElements,</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;      uint32_t i_inputs,</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;      uint32_t i_outputs</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  );</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  GraphPtr <a class="code" href="classSimpleGenerators.html#aebea64983c4f49c3c1007a0390e06977">generatorRandLevel</a>(uint32_t i_minLevel, uint32_t i_maxLevel,</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                              uint32_t i_minElements, uint32_t i_maxElements,</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                              uint32_t i_inputs, uint32_t i_outputs);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;  GraphPtr</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  generatorRandLevelExperimental(uint32_t i_minLevel, uint32_t i_maxLevel,</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                                 uint32_t i_minElements, uint32_t i_maxElements,</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                                 uint32_t i_inputs, uint32_t i_outputs);</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  GraphPtr generatorRandLevelExperimental(</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      uint32_t i_minLevel,</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;      uint32_t i_maxLevel,</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;      uint32_t i_minElements,</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;      uint32_t i_maxElements,</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      uint32_t i_inputs,</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;      uint32_t i_outputs</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  );</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  GraphPtr generatorNumOperation(</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;      uint32_t                 i_input,</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;      uint32_t                 i_output,</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;      std::map&lt;Gates, int32_t&gt; i_logicOper,</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;      <span class="keywordtype">bool</span>                     i_leaveEmptyOut = <span class="keyword">true</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  );</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;  GraphPtr generatorSummator(</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;      uint32_t i_bits,</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;      <span class="keywordtype">bool</span>     i_overflowIn,</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;      <span class="keywordtype">bool</span>     i_overflowOut,</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;      <span class="keywordtype">bool</span>     i_minus</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;  );</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  GraphPtr generatorNumOperation(uint32_t i_input, uint32_t i_output,</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                                 std::map&lt;Gates, int32_t&gt; i_logicOper,</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                                 <span class="keywordtype">bool</span> i_leaveEmptyOut = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;  GraphPtr generatorSummator(uint32_t i_bits, <span class="keywordtype">bool</span> i_overflowIn,</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                             <span class="keywordtype">bool</span> i_overflowOut, <span class="keywordtype">bool</span> i_minus);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;  GraphPtr generatorComparison(uint32_t i_bits, <span class="keywordtype">bool</span> compare0, <span class="keywordtype">bool</span> compare1,</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                               <span class="keywordtype">bool</span> compare2);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  GraphPtr generatorEncoder(uint32_t i_bits);</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160; </div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;  GraphPtr generatorComparison(</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;      uint32_t i_bits,</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;      <span class="keywordtype">bool</span>     compare0,</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;      <span class="keywordtype">bool</span>     compare1,</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;      <span class="keywordtype">bool</span>     compare2</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;  );</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;  GraphPtr generatorEncoder(uint32_t i_bits);</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;  GraphPtr generatorSubtractor(</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;      uint32_t i_bits,</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;      <span class="keywordtype">bool</span>     i_overflowIn,</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;      <span class="keywordtype">bool</span>     i_overflowOut,</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;      <span class="keywordtype">bool</span>     i_sub</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;  );</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;  GraphPtr generatorSubtractor(uint32_t i_bits, <span class="keywordtype">bool</span> i_overflowIn,</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                               <span class="keywordtype">bool</span> i_overflowOut, <span class="keywordtype">bool</span> i_sub);</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; </div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;  GraphPtr generatorMultiplexer(uint32_t i_bits);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160; </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;  GraphPtr generatorDemultiplexer(uint32_t i_bits);</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;  GraphPtr generatorMultiplexer(uint32_t i_bits);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;  GraphPtr generatorDemultiplexer(uint32_t i_bits);</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160; </div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;  GraphPtr generatorDecoder(uint32_t i_bits);</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;  GraphPtr generatorParity(uint32_t i_bits);</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160; </div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160; </div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;  GraphPtr generatorMultiplier(uint32_t i_bits);</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160; </div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160; </div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;  GraphPtr generatorALU(</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;      int32_t                  i_bits,</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;      int32_t                  i_outbits,</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;      <span class="keywordtype">bool</span>                     ALL,</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;      <span class="keywordtype">bool</span>                     SUM,</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;      <span class="keywordtype">bool</span>                     SUB,</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;      <span class="keywordtype">bool</span>                     NSUM,</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;      <span class="keywordtype">bool</span>                     NSUB,</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;      <span class="keywordtype">bool</span>                     MULT,</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;      <span class="keywordtype">bool</span>                     COM,</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;      <span class="keywordtype">bool</span>                     AND,</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;      <span class="keywordtype">bool</span>                     NAND,</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;      <span class="keywordtype">bool</span>                     OR,</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;      <span class="keywordtype">bool</span>                     NOR,</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;      <span class="keywordtype">bool</span>                     XOR,</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;      <span class="keywordtype">bool</span>                     XNOR,</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;      <span class="keywordtype">bool</span>                     CNF,</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;      <span class="keywordtype">bool</span>                     RNL,</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;      <span class="keywordtype">bool</span>                     NUM_OP,</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;      uint32_t                 minLevel,</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;      uint32_t                 maxLevel,</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;      uint32_t                 minElement,</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;      uint32_t                 maxElement,</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;      std::map&lt;Gates, int32_t&gt; m,</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;      <span class="keywordtype">bool</span>                     LeaveEmptyOut</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;  );</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160; </div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160; </div>
-<div class="line"><a name="l00461"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06">  461</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06">setGatesInputsInfo</a>(</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;      <span class="keyword">const</span> std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt;&amp; i_info</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;  ) {</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a> = INT_MAX;</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160; </div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; [key, <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>] : i_info) {</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;      <a class="code" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">d_maxGateNumber</a> = std::max(</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;          *std::max_element(<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.begin(), <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.end()), <a class="code" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">d_maxGateNumber</a></div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;      );</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;      <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a> = std::min(</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;          *std::max_element(<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.begin(), <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.end()), <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a></div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;      );</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;      <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>[<a class="code" href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">d_settings</a>-&gt;parseStringToGate(key)] = <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>;</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    }</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;  GraphPtr generatorDecoder(uint32_t i_bits);</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;  GraphPtr generatorParity(uint32_t i_bits);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;  GraphPtr generatorMultiplier(uint32_t i_bits);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;  GraphPtr generatorALU(int32_t i_bits, int32_t i_outbits, <span class="keywordtype">bool</span> ALL, <span class="keywordtype">bool</span> SUM,</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                        <span class="keywordtype">bool</span> SUB, <span class="keywordtype">bool</span> NSUM, <span class="keywordtype">bool</span> NSUB, <span class="keywordtype">bool</span> MULT, <span class="keywordtype">bool</span> COM,</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                        <span class="keywordtype">bool</span> AND, <span class="keywordtype">bool</span> NAND, <span class="keywordtype">bool</span> OR, <span class="keywordtype">bool</span> NOR, <span class="keywordtype">bool</span> XOR,</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                        <span class="keywordtype">bool</span> XNOR, <span class="keywordtype">bool</span> CNF, <span class="keywordtype">bool</span> RNL, <span class="keywordtype">bool</span> NUM_OP,</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                        uint32_t minLevel, uint32_t maxLevel,</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                        uint32_t minElement, uint32_t maxElement,</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                        std::map&lt;Gates, int32_t&gt; m, <span class="keywordtype">bool</span> LeaveEmptyOut);</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160; </div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160; </div>
+<div class="line"><a name="l00418"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06">  418</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06">setGatesInputsInfo</a>(</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;      <span class="keyword">const</span> std::map&lt;std::string, std::vector&lt;int32_t&gt;&gt; &amp;i_info) {</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a> = INT_MAX;</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160; </div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;[key, <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>]: i_info) {</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;      <a class="code" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">d_maxGateNumber</a> = std::max(*std::max_element(<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.begin(), <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.end()),</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                                 <a class="code" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">d_maxGateNumber</a>);</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;      <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a> = std::min(*std::max_element(<a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.begin(), <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>.end()),</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                                 <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a>);</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;      <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>[<a class="code" href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">d_settings</a>-&gt;parseStringToGate(key)] = <a class="code" href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">value</a>;</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    }</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160; </div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    <span class="comment">// TODO is it a good idea to add here hew gates</span></div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>[Gates::GateNot] = {1};</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>[Gates::GateBuf] = {1};</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;  }</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160; </div>
+<div class="line"><a name="l00435"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a966319874fc1e50594028533680ccbc1">  435</a></span>&#160;  <a class="code" href="classSimpleGenerators.html#a9df2833dd2e2a7229703b4e5eb009b7d">GatesInfo</a> <a class="code" href="classSimpleGenerators.html#a966319874fc1e50594028533680ccbc1">getGatesInputsInfo</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>; }</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160; </div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00438"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">  438</a></span>&#160;  std::shared_ptr&lt;Settings&gt; <a class="code" href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">d_settings</a> = <a class="code" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;GraphVertex&quot;</span>);</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;  std::map&lt;Gates, int32_t&gt; <a class="code" href="classSimpleGenerators.html#ab5174470fe9c5bfc4e0b562ae6c371b3">delNull</a>(std::map&lt;Gates, int32_t&gt; i_copyLogicOper);</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160; </div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;  <span class="comment">// moved it here, because we need to use templates</span></div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00443"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a61fd27b03d9ca22b9646ff581bc6da04">  443</a></span>&#160;  T <a class="code" href="classSimpleGenerators.html#a61fd27b03d9ca22b9646ff581bc6da04">randomGenerator</a>(<span class="keyword">const</span> std::map&lt;T, int32_t&gt; &amp;i_map) {</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <span class="comment">// rand element of map</span></div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keyword">auto</span> val = i_map.begin();</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    std::advance(val, <a class="code" href="classSimpleGenerators.html#a33d7d09e22ab9e6d0539df9e4f89ae91">d_randGenerator</a>.<a class="code" href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d">getRandInt</a>(0, i_map.size()));</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160; </div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="keywordflow">return</span> val-&gt;first;</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;  }</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160; </div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;  std::pair&lt;Gates, int32_t&gt; <a class="code" href="classSimpleGenerators.html#a158ef773a9b179bbb36c325d072eb145">getRandomElement</a>(<span class="keyword">const</span> <a class="code" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a> &amp;i_info);</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;  std::pair&lt;Gates, int32_t&gt; <a class="code" href="classSimpleGenerators.html#a158ef773a9b179bbb36c325d072eb145">getRandomElement</a>(uint32_t i_gatesLimit);</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160; </div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160; </div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;  int32_t <a class="code" href="classSimpleGenerators.html#a6f09b4fa6037f3b2372830dee552143d">getRangomAndNumber</a>();</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160; </div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160; </div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;  int32_t <a class="code" href="classSimpleGenerators.html#ac41192a4824fb4ed0a967f6bc8685ff3">getRangomOrNumber</a>();</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160; </div>
 <div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160; </div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    <span class="comment">// TODO is it a good idea to add here hew gates</span></div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>[Gates::GateNot] = {1};</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;    <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>[Gates::GateBuf] = {1};</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;  }</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160; </div>
-<div class="line"><a name="l00481"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a966319874fc1e50594028533680ccbc1">  481</a></span>&#160;  <a class="code" href="classSimpleGenerators.html#a9df2833dd2e2a7229703b4e5eb009b7d">GatesInfo</a> <a class="code" href="classSimpleGenerators.html#a966319874fc1e50594028533680ccbc1">getGatesInputsInfo</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>; }</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160; </div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00484"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">  484</a></span>&#160;  std::shared_ptr&lt;Settings&gt; <a class="code" href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">d_settings</a> = <a class="code" href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a>(<span class="stringliteral">&quot;GraphVertex&quot;</span>);</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;  std::map&lt;Gates, int32_t&gt;  <a class="code" href="classSimpleGenerators.html#ab5174470fe9c5bfc4e0b562ae6c371b3">delNull</a>(std::map&lt;Gates, int32_t&gt; i_copyLogicOper);</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160; </div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;  <span class="comment">// moved it here, because we need to use templates</span></div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00489"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a61fd27b03d9ca22b9646ff581bc6da04">  489</a></span>&#160;  T <a class="code" href="classSimpleGenerators.html#a61fd27b03d9ca22b9646ff581bc6da04">randomGenerator</a>(<span class="keyword">const</span> std::map&lt;T, int32_t&gt;&amp; i_map) {</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    <span class="comment">// rand element of map</span></div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    <span class="keyword">auto</span> val = i_map.begin();</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    std::advance(val, <a class="code" href="classSimpleGenerators.html#a33d7d09e22ab9e6d0539df9e4f89ae91">d_randGenerator</a>.<a class="code" href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d">getRandInt</a>(0, i_map.size()));</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;  int32_t <a class="code" href="classSimpleGenerators.html#aaa4fbc93096de6e415d2725be15ea7fa">getRangomNandNumber</a>();</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160; </div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160; </div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;  int32_t <a class="code" href="classSimpleGenerators.html#a93140822ad8cfefc14edf0510c61a541">getRangomNorNumber</a>();</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160; </div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160; </div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;  int32_t <a class="code" href="classSimpleGenerators.html#ac96cbd017c86d6c90dce3de2ba133514">getRangomXorNumber</a>();</div>
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160; </div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;    <span class="keywordflow">return</span> val-&gt;first;</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;  }</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160; </div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;  std::pair&lt;Gates, int32_t&gt; <a class="code" href="classSimpleGenerators.html#a158ef773a9b179bbb36c325d072eb145">getRandomElement</a>(<span class="keyword">const</span> <a class="code" href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a>&amp; i_info);</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;  std::pair&lt;Gates, int32_t&gt; <a class="code" href="classSimpleGenerators.html#a158ef773a9b179bbb36c325d072eb145">getRandomElement</a>(uint32_t i_gatesLimit);</div>
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160; </div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160; </div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;  int32_t                   <a class="code" href="classSimpleGenerators.html#a6f09b4fa6037f3b2372830dee552143d">getRangomAndNumber</a>();</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160; </div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160; </div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;  int32_t                   <a class="code" href="classSimpleGenerators.html#ac41192a4824fb4ed0a967f6bc8685ff3">getRangomOrNumber</a>();</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160; </div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160; </div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;  int32_t                   <a class="code" href="classSimpleGenerators.html#aaa4fbc93096de6e415d2725be15ea7fa">getRangomNandNumber</a>();</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160; </div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160; </div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;  int32_t                   <a class="code" href="classSimpleGenerators.html#a93140822ad8cfefc14edf0510c61a541">getRangomNorNumber</a>();</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160; </div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160; </div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;  int32_t                   <a class="code" href="classSimpleGenerators.html#ac96cbd017c86d6c90dce3de2ba133514">getRangomXorNumber</a>();</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160; </div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160; </div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;  int32_t                   <a class="code" href="classSimpleGenerators.html#a70ba69a48f75dab555f5debb1185f2e6">getRangomXnorNumber</a>();</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160; </div>
-<div class="line"><a name="l00548"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">  548</a></span>&#160;  <a class="code" href="classSimpleGenerators.html#a9df2833dd2e2a7229703b4e5eb009b7d">GatesInfo</a>                 <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>;</div>
-<div class="line"><a name="l00549"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a33d7d09e22ab9e6d0539df9e4f89ae91">  549</a></span>&#160;  <a class="code" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a>   <a class="code" href="classSimpleGenerators.html#a33d7d09e22ab9e6d0539df9e4f89ae91">d_randGenerator</a>;</div>
-<div class="line"><a name="l00550"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">  550</a></span>&#160;  int32_t                   <a class="code" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">d_maxGateNumber</a> = 0;</div>
-<div class="line"><a name="l00551"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">  551</a></span>&#160;  int32_t                   <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a> = 0;</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;};</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;  int32_t <a class="code" href="classSimpleGenerators.html#a70ba69a48f75dab555f5debb1185f2e6">getRangomXnorNumber</a>();</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160; </div>
+<div class="line"><a name="l00502"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">  502</a></span>&#160;  <a class="code" href="classSimpleGenerators.html#a9df2833dd2e2a7229703b4e5eb009b7d">GatesInfo</a> <a class="code" href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">d_gatesInputsInfo</a>;</div>
+<div class="line"><a name="l00503"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a33d7d09e22ab9e6d0539df9e4f89ae91">  503</a></span>&#160;  <a class="code" href="classRandomGeneratorWithSeed.html">RandomGeneratorWithSeed</a> <a class="code" href="classSimpleGenerators.html#a33d7d09e22ab9e6d0539df9e4f89ae91">d_randGenerator</a>;</div>
+<div class="line"><a name="l00504"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">  504</a></span>&#160;  int32_t <a class="code" href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">d_maxGateNumber</a> = 0;</div>
+<div class="line"><a name="l00505"></a><span class="lineno"><a class="line" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">  505</a></span>&#160;  int32_t <a class="code" href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">d_minGateNumber</a> = 0;</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;};</div>
 <div class="ttc" id="aParser_8hpp_html_ac329a2734056446e2014455691347c87"><div class="ttname"><a href="Parser_8hpp.html#ac329a2734056446e2014455691347c87">GatesInfo</a></div><div class="ttdeci">std::map&lt; Gates, std::vector&lt; int32_t &gt; &gt; GatesInfo</div><div class="ttdef"><b>Definition:</b> Parser.hpp:12</div></div>
 <div class="ttc" id="aRandomGeneratorWithSeed_8hpp_html"><div class="ttname"><a href="RandomGeneratorWithSeed_8hpp.html">RandomGeneratorWithSeed.hpp</a></div></div>
 <div class="ttc" id="aSettings_8hpp_html"><div class="ttname"><a href="Settings_8hpp.html">Settings.hpp</a></div></div>
@@ -317,31 +271,31 @@ $(document).ready(function(){initNavTree('SimpleGenerators_8hpp_source.html','')
 <div class="ttc" id="aclassRandomGeneratorWithSeed_html_a124a925dff79eb0fd459a6029432457d"><div class="ttname"><a href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d">RandomGeneratorWithSeed::getRandInt</a></div><div class="ttdeci">int32_t getRandInt(int32_t lower, int32_t upper, bool inclusively=false)</div><div class="ttdoc">getRandInt Method to generate a random integer within a specified range.</div><div class="ttdef"><b>Definition:</b> RandomGeneratorWithSeed.hpp:55</div></div>
 <div class="ttc" id="aclassSettings_html_a30ad5eb680e7894684c46fa5623870f3"><div class="ttname"><a href="classSettings.html#a30ad5eb680e7894684c46fa5623870f3">Settings::getInstance</a></div><div class="ttdeci">static std::shared_ptr&lt; Settings &gt; getInstance(const std::string &amp;i_value)</div><div class="ttdoc">getInstance Gets a single instance of the Settings class The method provides creation and receipt of ...</div><div class="ttdef"><b>Definition:</b> Settings.cpp:11</div></div>
 <div class="ttc" id="aclassSimpleGenerators_html"><div class="ttname"><a href="classSimpleGenerators.html">SimpleGenerators</a></div><div class="ttdoc">class SimpleGenerators</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:65</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_a158ef773a9b179bbb36c325d072eb145"><div class="ttname"><a href="classSimpleGenerators.html#a158ef773a9b179bbb36c325d072eb145">SimpleGenerators::getRandomElement</a></div><div class="ttdeci">std::pair&lt; Gates, int32_t &gt; getRandomElement(const GatesInfo &amp;i_info)</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:70</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_a2414b33a0e25130c1ba5629970135795"><div class="ttname"><a href="classSimpleGenerators.html#a2414b33a0e25130c1ba5629970135795">SimpleGenerators::SimpleGenerators</a></div><div class="ttdeci">SimpleGenerators()</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:109</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_a2dd9ec163e7c96dd90993434fa5eec05"><div class="ttname"><a href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">SimpleGenerators::d_settings</a></div><div class="ttdeci">std::shared_ptr&lt; Settings &gt; d_settings</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:484</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_a2e598b541ef7a890ac757f8f9bb37781"><div class="ttname"><a href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">SimpleGenerators::d_minGateNumber</a></div><div class="ttdeci">int32_t d_minGateNumber</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:551</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_a33d7d09e22ab9e6d0539df9e4f89ae91"><div class="ttname"><a href="classSimpleGenerators.html#a33d7d09e22ab9e6d0539df9e4f89ae91">SimpleGenerators::d_randGenerator</a></div><div class="ttdeci">RandomGeneratorWithSeed d_randGenerator</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:549</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_a158ef773a9b179bbb36c325d072eb145"><div class="ttname"><a href="classSimpleGenerators.html#a158ef773a9b179bbb36c325d072eb145">SimpleGenerators::getRandomElement</a></div><div class="ttdeci">std::pair&lt; Gates, int32_t &gt; getRandomElement(const GatesInfo &amp;i_info)</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:65</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_a2414b33a0e25130c1ba5629970135795"><div class="ttname"><a href="classSimpleGenerators.html#a2414b33a0e25130c1ba5629970135795">SimpleGenerators::SimpleGenerators</a></div><div class="ttdeci">SimpleGenerators()</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:100</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_a2dd9ec163e7c96dd90993434fa5eec05"><div class="ttname"><a href="classSimpleGenerators.html#a2dd9ec163e7c96dd90993434fa5eec05">SimpleGenerators::d_settings</a></div><div class="ttdeci">std::shared_ptr&lt; Settings &gt; d_settings</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:438</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_a2e598b541ef7a890ac757f8f9bb37781"><div class="ttname"><a href="classSimpleGenerators.html#a2e598b541ef7a890ac757f8f9bb37781">SimpleGenerators::d_minGateNumber</a></div><div class="ttdeci">int32_t d_minGateNumber</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:505</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_a33d7d09e22ab9e6d0539df9e4f89ae91"><div class="ttname"><a href="classSimpleGenerators.html#a33d7d09e22ab9e6d0539df9e4f89ae91">SimpleGenerators::d_randGenerator</a></div><div class="ttdeci">RandomGeneratorWithSeed d_randGenerator</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:503</div></div>
 <div class="ttc" id="aclassSimpleGenerators_html_a3b17c344184a99ea33ddf50ab495ae0c"><div class="ttname"><a href="classSimpleGenerators.html#a3b17c344184a99ea33ddf50ab495ae0c">SimpleGenerators::SimpleGenerators</a></div><div class="ttdeci">SimpleGenerators(SimpleGenerators &amp;&amp;other)=delete</div></div>
 <div class="ttc" id="aclassSimpleGenerators_html_a575aa8ac25bbc7688425c54f881fbf88"><div class="ttname"><a href="classSimpleGenerators.html#a575aa8ac25bbc7688425c54f881fbf88">SimpleGenerators::operator=</a></div><div class="ttdeci">SimpleGenerators &amp; operator=(const SimpleGenerators &amp;other)=delete</div></div>
 <div class="ttc" id="aclassSimpleGenerators_html_a5a178b2f7c560fa4112ddac8b08b281f"><div class="ttname"><a href="classSimpleGenerators.html#a5a178b2f7c560fa4112ddac8b08b281f">SimpleGenerators::SimpleGenerators</a></div><div class="ttdeci">SimpleGenerators(const SimpleGenerators &amp;other)=delete</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_a5d4c910f51dbbb4a4c1c09923ca90147"><div class="ttname"><a href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147">SimpleGenerators::cnfFromTruthTable</a></div><div class="ttdeci">GraphPtr cnfFromTruthTable(const TruthTable &amp;i_table, bool i_tp=true)</div><div class="ttdoc">cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:118</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_a61fd27b03d9ca22b9646ff581bc6da04"><div class="ttname"><a href="classSimpleGenerators.html#a61fd27b03d9ca22b9646ff581bc6da04">SimpleGenerators::randomGenerator</a></div><div class="ttdeci">T randomGenerator(const std::map&lt; T, int32_t &gt; &amp;i_map)</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:489</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_a5d4c910f51dbbb4a4c1c09923ca90147"><div class="ttname"><a href="classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147">SimpleGenerators::cnfFromTruthTable</a></div><div class="ttdeci">GraphPtr cnfFromTruthTable(const TruthTable &amp;i_table, bool i_tp=true)</div><div class="ttdoc">cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:108</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_a61fd27b03d9ca22b9646ff581bc6da04"><div class="ttname"><a href="classSimpleGenerators.html#a61fd27b03d9ca22b9646ff581bc6da04">SimpleGenerators::randomGenerator</a></div><div class="ttdeci">T randomGenerator(const std::map&lt; T, int32_t &gt; &amp;i_map)</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:443</div></div>
 <div class="ttc" id="aclassSimpleGenerators_html_a6f09b4fa6037f3b2372830dee552143d"><div class="ttname"><a href="classSimpleGenerators.html#a6f09b4fa6037f3b2372830dee552143d">SimpleGenerators::getRangomAndNumber</a></div><div class="ttdeci">int32_t getRangomAndNumber()</div><div class="ttdoc">getRangomAndNumber The getRangomAndNumber method returns a random value from the list of possible inp...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:34</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_a70ba69a48f75dab555f5debb1185f2e6"><div class="ttname"><a href="classSimpleGenerators.html#a70ba69a48f75dab555f5debb1185f2e6">SimpleGenerators::getRangomXnorNumber</a></div><div class="ttdeci">int32_t getRangomXnorNumber()</div><div class="ttdoc">The method returns a random value from the list of possible input ports for the &quot;XNOR&quot; operator.</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:64</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_a70ba69a48f75dab555f5debb1185f2e6"><div class="ttname"><a href="classSimpleGenerators.html#a70ba69a48f75dab555f5debb1185f2e6">SimpleGenerators::getRangomXnorNumber</a></div><div class="ttdeci">int32_t getRangomXnorNumber()</div><div class="ttdoc">The method returns a random value from the list of possible input ports for the &quot;XNOR&quot; operator.</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:59</div></div>
 <div class="ttc" id="aclassSimpleGenerators_html_a73f972dfd033b02eb4d71ef7bb2e3413"><div class="ttname"><a href="classSimpleGenerators.html#a73f972dfd033b02eb4d71ef7bb2e3413">SimpleGenerators::operator=</a></div><div class="ttdeci">SimpleGenerators &amp; operator=(SimpleGenerators &amp;&amp;other)=delete</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_a93140822ad8cfefc14edf0510c61a541"><div class="ttname"><a href="classSimpleGenerators.html#a93140822ad8cfefc14edf0510c61a541">SimpleGenerators::getRangomNorNumber</a></div><div class="ttdeci">int32_t getRangomNorNumber()</div><div class="ttdoc">getRangomNorNumber The method returns a random value from the list of possible input ports for the &quot;N...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:52</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_a966319874fc1e50594028533680ccbc1"><div class="ttname"><a href="classSimpleGenerators.html#a966319874fc1e50594028533680ccbc1">SimpleGenerators::getGatesInputsInfo</a></div><div class="ttdeci">GatesInfo getGatesInputsInfo() const</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:481</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_a93140822ad8cfefc14edf0510c61a541"><div class="ttname"><a href="classSimpleGenerators.html#a93140822ad8cfefc14edf0510c61a541">SimpleGenerators::getRangomNorNumber</a></div><div class="ttdeci">int32_t getRangomNorNumber()</div><div class="ttdoc">getRangomNorNumber The method returns a random value from the list of possible input ports for the &quot;N...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:49</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_a966319874fc1e50594028533680ccbc1"><div class="ttname"><a href="classSimpleGenerators.html#a966319874fc1e50594028533680ccbc1">SimpleGenerators::getGatesInputsInfo</a></div><div class="ttdeci">GatesInfo getGatesInputsInfo() const</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:435</div></div>
 <div class="ttc" id="aclassSimpleGenerators_html_a9df2833dd2e2a7229703b4e5eb009b7d"><div class="ttname"><a href="classSimpleGenerators.html#a9df2833dd2e2a7229703b4e5eb009b7d">SimpleGenerators::GatesInfo</a></div><div class="ttdeci">std::map&lt; Gates, std::vector&lt; int32_t &gt; &gt; GatesInfo</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:66</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_aaa4fbc93096de6e415d2725be15ea7fa"><div class="ttname"><a href="classSimpleGenerators.html#aaa4fbc93096de6e415d2725be15ea7fa">SimpleGenerators::getRangomNandNumber</a></div><div class="ttdeci">int32_t getRangomNandNumber()</div><div class="ttdoc">getRangomNandNumber The method returns a random value from the list of possible input ports for the &quot;...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:46</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_ab5174470fe9c5bfc4e0b562ae6c371b3"><div class="ttname"><a href="classSimpleGenerators.html#ab5174470fe9c5bfc4e0b562ae6c371b3">SimpleGenerators::delNull</a></div><div class="ttdeci">std::map&lt; Gates, int32_t &gt; delNull(std::map&lt; Gates, int32_t &gt; i_copyLogicOper)</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:637</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_ab60ee033a3003486a8c67a5ab66fac06"><div class="ttname"><a href="classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06">SimpleGenerators::setGatesInputsInfo</a></div><div class="ttdeci">void setGatesInputsInfo(const std::map&lt; std::string, std::vector&lt; int32_t &gt;&gt; &amp;i_info)</div><div class="ttdoc">generatorRandLevelExperimental The method generates a random level of complexity of the graph within ...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:461</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_abe2fb580fe65b11a84770b9f99ef3c99"><div class="ttname"><a href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99">SimpleGenerators::zhegalkinFromTruthTable</a></div><div class="ttdeci">GraphPtr zhegalkinFromTruthTable(const TruthTable &amp;i_table)</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:219</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_abfef0293dd7a4e07b15f827b5d6d7868"><div class="ttname"><a href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">SimpleGenerators::d_gatesInputsInfo</a></div><div class="ttdeci">GatesInfo d_gatesInputsInfo</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:548</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_ac41192a4824fb4ed0a967f6bc8685ff3"><div class="ttname"><a href="classSimpleGenerators.html#ac41192a4824fb4ed0a967f6bc8685ff3">SimpleGenerators::getRangomOrNumber</a></div><div class="ttdeci">int32_t getRangomOrNumber()</div><div class="ttdoc">getRangomOrNumber method is a random value from the list of possible input ports for the &quot;OR&quot; operato...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:40</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_ac96cbd017c86d6c90dce3de2ba133514"><div class="ttname"><a href="classSimpleGenerators.html#ac96cbd017c86d6c90dce3de2ba133514">SimpleGenerators::getRangomXorNumber</a></div><div class="ttdeci">int32_t getRangomXorNumber()</div><div class="ttdoc">getRangomXorNumber The method returns a random value from the list of possible input ports for the &quot;X...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:58</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_adae9cbc58b7fbb8e48228a2bafa26505"><div class="ttname"><a href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">SimpleGenerators::d_maxGateNumber</a></div><div class="ttdeci">int32_t d_maxGateNumber</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:550</div></div>
-<div class="ttc" id="aclassSimpleGenerators_html_aebea64983c4f49c3c1007a0390e06977"><div class="ttname"><a href="classSimpleGenerators.html#aebea64983c4f49c3c1007a0390e06977">SimpleGenerators::generatorRandLevel</a></div><div class="ttdeci">GraphPtr generatorRandLevel(uint32_t i_minLevel, uint32_t i_maxLevel, uint32_t i_minElements, uint32_t i_maxElements, uint32_t i_inputs, uint32_t i_outputs)</div><div class="ttdoc">generatorRandLevel creates an oriented graph (represented by an OrientedGraph object) with a given le...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:285</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_aaa4fbc93096de6e415d2725be15ea7fa"><div class="ttname"><a href="classSimpleGenerators.html#aaa4fbc93096de6e415d2725be15ea7fa">SimpleGenerators::getRangomNandNumber</a></div><div class="ttdeci">int32_t getRangomNandNumber()</div><div class="ttdoc">getRangomNandNumber The method returns a random value from the list of possible input ports for the &quot;...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:44</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_ab5174470fe9c5bfc4e0b562ae6c371b3"><div class="ttname"><a href="classSimpleGenerators.html#ab5174470fe9c5bfc4e0b562ae6c371b3">SimpleGenerators::delNull</a></div><div class="ttdeci">std::map&lt; Gates, int32_t &gt; delNull(std::map&lt; Gates, int32_t &gt; i_copyLogicOper)</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:610</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_ab60ee033a3003486a8c67a5ab66fac06"><div class="ttname"><a href="classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06">SimpleGenerators::setGatesInputsInfo</a></div><div class="ttdeci">void setGatesInputsInfo(const std::map&lt; std::string, std::vector&lt; int32_t &gt;&gt; &amp;i_info)</div><div class="ttdoc">generatorRandLevelExperimental The method generates a random level of complexity of the graph within ...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:418</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_abe2fb580fe65b11a84770b9f99ef3c99"><div class="ttname"><a href="classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99">SimpleGenerators::zhegalkinFromTruthTable</a></div><div class="ttdeci">GraphPtr zhegalkinFromTruthTable(const TruthTable &amp;i_table)</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:211</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_abfef0293dd7a4e07b15f827b5d6d7868"><div class="ttname"><a href="classSimpleGenerators.html#abfef0293dd7a4e07b15f827b5d6d7868">SimpleGenerators::d_gatesInputsInfo</a></div><div class="ttdeci">GatesInfo d_gatesInputsInfo</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:502</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_ac41192a4824fb4ed0a967f6bc8685ff3"><div class="ttname"><a href="classSimpleGenerators.html#ac41192a4824fb4ed0a967f6bc8685ff3">SimpleGenerators::getRangomOrNumber</a></div><div class="ttdeci">int32_t getRangomOrNumber()</div><div class="ttdoc">getRangomOrNumber method is a random value from the list of possible input ports for the &quot;OR&quot; operato...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:39</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_ac96cbd017c86d6c90dce3de2ba133514"><div class="ttname"><a href="classSimpleGenerators.html#ac96cbd017c86d6c90dce3de2ba133514">SimpleGenerators::getRangomXorNumber</a></div><div class="ttdeci">int32_t getRangomXorNumber()</div><div class="ttdoc">getRangomXorNumber The method returns a random value from the list of possible input ports for the &quot;X...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:54</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_adae9cbc58b7fbb8e48228a2bafa26505"><div class="ttname"><a href="classSimpleGenerators.html#adae9cbc58b7fbb8e48228a2bafa26505">SimpleGenerators::d_maxGateNumber</a></div><div class="ttdeci">int32_t d_maxGateNumber</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.hpp:504</div></div>
+<div class="ttc" id="aclassSimpleGenerators_html_aebea64983c4f49c3c1007a0390e06977"><div class="ttname"><a href="classSimpleGenerators.html#aebea64983c4f49c3c1007a0390e06977">SimpleGenerators::generatorRandLevel</a></div><div class="ttdeci">GraphPtr generatorRandLevel(uint32_t i_minLevel, uint32_t i_maxLevel, uint32_t i_minElements, uint32_t i_maxElements, uint32_t i_inputs, uint32_t i_outputs)</div><div class="ttdoc">generatorRandLevel creates an oriented graph (represented by an OrientedGraph object) with a given le...</div><div class="ttdef"><b>Definition:</b> SimpleGenerators.cpp:277</div></div>
 <div class="ttc" id="aclassTruthTable_html"><div class="ttname"><a href="classTruthTable.html">TruthTable</a></div><div class="ttdoc">class TruthTable Represents a truth table for a combinational logic circuit This class encapsulates t...</div><div class="ttdef"><b>Definition:</b> TruthTable.hpp:21</div></div>
 <div class="ttc" id="anamespaceel_1_1base_1_1consts_html_a7463944511904d9ca3dd4b6933a3e6f1"><div class="ttname"><a href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">el::base::consts::value</a></div><div class="ttdeci">double value</div><div class="ttdef"><b>Definition:</b> easylogging++.h:766</div></div>
 </div><!-- fragment --></div><!-- contents -->

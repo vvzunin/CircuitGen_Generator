@@ -495,7 +495,7 @@ Here is the caller graph for this function:</div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Original string: &#39;&quot;</span> &lt;&lt; input &lt;&lt; <span class="stringliteral">&quot;&#39;\n&quot;</span>;</div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Cleaned string: &#39;&quot;</span> &lt;&lt; cleanedString &lt;&lt; <span class="stringliteral">&quot;&#39;\n&quot;</span>;</div>
 <div class="ttc" id="aclassParser_html"><div class="ttname"><a href="classParser.html">Parser</a></div><div class="ttdoc">class Parser</div><div class="ttdef"><b>Definition:</b> Parser.hpp:29</div></div>
-<div class="ttc" id="aclassParser_html_afdfa436849e6d5ace5227b12b7aade20"><div class="ttname"><a href="classParser.html#afdfa436849e6d5ace5227b12b7aade20">Parser::deleteExtraSpaces</a></div><div class="ttdeci">std::string deleteExtraSpaces(std::string i_s)</div><div class="ttdoc">deleteExtraSpaces Deletes extra spaces from the beginning and end of a string</div><div class="ttdef"><b>Definition:</b> Parser.cpp:389</div></div>
+<div class="ttc" id="aclassParser_html_afdfa436849e6d5ace5227b12b7aade20"><div class="ttname"><a href="classParser.html#afdfa436849e6d5ace5227b12b7aade20">Parser::deleteExtraSpaces</a></div><div class="ttdeci">std::string deleteExtraSpaces(std::string i_s)</div><div class="ttdoc">deleteExtraSpaces Deletes extra spaces from the beginning and end of a string</div><div class="ttdef"><b>Definition:</b> Parser.cpp:373</div></div>
 </div><!-- fragment --> </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -581,7 +581,7 @@ Here is the caller graph for this function:</div>
 <div class="line">position1 &lt;&lt; <span class="stringliteral">&quot; is within any pair of brackets: &quot;</span> &lt;&lt; std::boolalpha &lt;&lt;</div>
 <div class="line">result1 &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>; std::cout &lt;&lt; <span class="stringliteral">&quot;Position &quot;</span> &lt;&lt; position2 &lt;&lt; <span class="stringliteral">&quot; is within any</span></div>
 <div class="line"><span class="stringliteral">pair of brackets: &quot;</span> &lt;&lt; std::boolalpha &lt;&lt; result2 &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="ttc" id="aclassParser_html_a24e2a9a6369f0cc90afceb08c5af936e"><div class="ttname"><a href="classParser.html#a24e2a9a6369f0cc90afceb08c5af936e">Parser::inBrackets</a></div><div class="ttdeci">bool inBrackets(const std::vector&lt; std::pair&lt; int32_t, int32_t &gt;&gt; &amp;i_brackets, int32_t i_position) const</div><div class="ttdoc">inBrackets Checks if a given position is within any pair of brackets</div><div class="ttdef"><b>Definition:</b> Parser.cpp:98</div></div>
+<div class="ttc" id="aclassParser_html_a24e2a9a6369f0cc90afceb08c5af936e"><div class="ttname"><a href="classParser.html#a24e2a9a6369f0cc90afceb08c5af936e">Parser::inBrackets</a></div><div class="ttdeci">bool inBrackets(const std::vector&lt; std::pair&lt; int32_t, int32_t &gt;&gt; &amp;i_brackets, int32_t i_position) const</div><div class="ttdoc">inBrackets Checks if a given position is within any pair of brackets</div><div class="ttdef"><b>Definition:</b> Parser.cpp:91</div></div>
 </div><!-- fragment --> </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -644,7 +644,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><a class="code" href="classParser.html">Parser</a> parser;</div>
 <div class="line">VertexPtr result = parser.<a class="code" href="classParser.html#ae2686bf3fdb12a709732363745943425">multipleVerteciesToOne</a>(vertices, operation,</div>
 <div class="line">graph);</div>
-<div class="ttc" id="aclassParser_html_ae2686bf3fdb12a709732363745943425"><div class="ttname"><a href="classParser.html#ae2686bf3fdb12a709732363745943425">Parser::multipleVerteciesToOne</a></div><div class="ttdeci">VertexPtr multipleVerteciesToOne(std::vector&lt; VertexPtr &gt; curLayout, Gates operation, GraphPtr graph)</div><div class="ttdoc">multipleVerteciesToOne This method takes a vector of vertices representing the current layout,...</div><div class="ttdef"><b>Definition:</b> Parser.cpp:188</div></div>
+<div class="ttc" id="aclassParser_html_ae2686bf3fdb12a709732363745943425"><div class="ttname"><a href="classParser.html#ae2686bf3fdb12a709732363745943425">Parser::multipleVerteciesToOne</a></div><div class="ttdeci">VertexPtr multipleVerteciesToOne(std::vector&lt; VertexPtr &gt; curLayout, Gates operation, GraphPtr graph)</div><div class="ttdoc">multipleVerteciesToOne This method takes a vector of vertices representing the current layout,...</div><div class="ttdef"><b>Definition:</b> Parser.cpp:176</div></div>
 </div><!-- fragment --> </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -845,7 +845,7 @@ Here is the caller graph for this function:</div>
 <div class="line">{</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to parse the expression.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassParser_html_a4d5f1bc99199b99ef027f0a3a698a99f"><div class="ttname"><a href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f">Parser::parseToVertex</a></div><div class="ttdeci">VertexPtr parseToVertex(const std::string &amp;i_expr)</div><div class="ttdoc">parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within...</div><div class="ttdef"><b>Definition:</b> Parser.cpp:288</div></div>
+<div class="ttc" id="aclassParser_html_a4d5f1bc99199b99ef027f0a3a698a99f"><div class="ttname"><a href="classParser.html#a4d5f1bc99199b99ef027f0a3a698a99f">Parser::parseToVertex</a></div><div class="ttdeci">VertexPtr parseToVertex(const std::string &amp;i_expr)</div><div class="ttdoc">parseToVertex This method takes a logical expression, splits it, and converts it into a vertex within...</div><div class="ttdef"><b>Definition:</b> Parser.cpp:273</div></div>
 </div><!-- fragment --> </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>

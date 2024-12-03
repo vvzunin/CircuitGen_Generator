@@ -107,7 +107,7 @@ var searchData=
   ['getgraph_3046',['getGraph',['../classParser.html#a6b489a7062dcddbb8e04b2a0f8e77ba1',1,'Parser']]],
   ['getgraphsfrompopulation_3047',['getGraphsFromPopulation',['../classGeneticGenerator.html#aea417dcc4d2198ad417c4db7d1168f41',1,'GeneticGenerator']]],
   ['gethemming_3048',['GetHemming',['../ParentsTruthTable_8hpp.html#a463499c6ae2752f0f41b4fc6e6dfd598',1,'ParentsTruthTable.hpp']]],
-  ['getindexofwirename_3049',['getIndexOfWireName',['../classCircuit.html#a6d0f1678da06127a4587df5a3dae39e4',1,'Circuit']]],
+  ['getindexofwirename_3049',['getIndexOfWireName',['../classCircuit.html#aec6025731c05cfb926856eeeeca403e1',1,'Circuit']]],
   ['getinput_3050',['getInput',['../classTruthTable.html#a6c1a776a25eb693a3a59e6410bca23e7',1,'TruthTable']]],
   ['getinputs_3051',['getInputs',['../classGenerationParameters.html#ab5415cce0d7d4e0417491f460a0e3a3a',1,'GenerationParameters::getInputs()'],['../classGeneticParameters.html#aa1b4269bb8a929aa2501514cda0f4ba9',1,'GeneticParameters::getInputs()']]],
   ['getinstance_3052',['getInstance',['../classSettings.html#a30ad5eb680e7894684c46fa5623870f3',1,'Settings']]],

@@ -986,14 +986,10 @@ Here is the call graph for this function:</div>
 <div class="line">    maximum or the minimum number of elements is greater than the maximum,</div>
 <div class="line">    the method <span class="keywordflow">throws</span> an exception std::invalid_argument.</div>
 <div class="line"> </div>
-<div class="line">GraphPtr generatorRandLevelExperimental(</div>
-<div class="line">    uint32_t i_minLevel,</div>
-<div class="line">    uint32_t i_maxLevel,</div>
-<div class="line">    uint32_t i_minElements,</div>
-<div class="line">    uint32_t i_maxElements,</div>
-<div class="line">    uint32_t i_inputs,</div>
-<div class="line">    uint32_t i_outputs</div>
-<div class="line">);</div>
+<div class="line">GraphPtr</div>
+<div class="line">generatorRandLevelExperimental(uint32_t i_minLevel, uint32_t i_maxLevel,</div>
+<div class="line">                               uint32_t i_minElements, uint32_t i_maxElements,</div>
+<div class="line">                               uint32_t i_inputs, uint32_t i_outputs);</div>
 <div class="line"> </div>
 <div class="line">    @todo: Description algorithm</div>
 <div class="line">    @<a class="code" href="namespaceel_1_1base_1_1consts.html#a4f2c476d5b8958d5e3e7bb9d1935dea1">brief</a> generatorNumOperation</div>
@@ -1008,12 +1004,9 @@ Here is the call graph for this function:</div>
 <div class="line">    output vertices will remain empty, <span class="keywordflow">if</span> <span class="keyword">false</span>, they will be deleted</div>
 <div class="line">    @<span class="keywordflow">return</span> the created OrientedGraph</div>
 <div class="line"> </div>
-<div class="line">GraphPtr generatorNumOperation(</div>
-<div class="line">    uint32_t                 i_input,</div>
-<div class="line">    uint32_t                 i_output,</div>
-<div class="line">    std::map&lt;Gates, int32_t&gt; i_logicOper,</div>
-<div class="line">    <span class="keywordtype">bool</span>                     i_leaveEmptyOut = <span class="keyword">true</span></div>
-<div class="line">);</div>
+<div class="line">GraphPtr generatorNumOperation(uint32_t i_input, uint32_t i_output,</div>
+<div class="line">                               std::map&lt;Gates, int32_t&gt; i_logicOper,</div>
+<div class="line">                               <span class="keywordtype">bool</span> i_leaveEmptyOut = <span class="keyword">true</span>);</div>
 <div class="line"> </div>
 <div class="line">    @<a class="code" href="namespaceel_1_1base_1_1consts.html#a4f2c476d5b8958d5e3e7bb9d1935dea1">brief</a> generatorSummator represents the generation of a combinational</div>
 <div class="line">    adder circuit. It is based on the arithmetic operation of addition in the</div>
@@ -1033,12 +1026,8 @@ Here is the call graph for this function:</div>
 <div class="line">    logical vertices of type NOT to the graph to select a negative sum</div>
 <div class="line">    @<span class="keywordflow">return</span> the created OrientedGraph</div>
 <div class="line"> </div>
-<div class="line">GraphPtr generatorSummator(</div>
-<div class="line">    uint32_t i_bits,</div>
-<div class="line">    <span class="keywordtype">bool</span>     i_overflowIn,</div>
-<div class="line">    <span class="keywordtype">bool</span>     i_overflowOut,</div>
-<div class="line">    <span class="keywordtype">bool</span>     i_minus</div>
-<div class="line">);</div>
+<div class="line">GraphPtr generatorSummator(uint32_t i_bits, <span class="keywordtype">bool</span> i_overflowIn,</div>
+<div class="line">                           <span class="keywordtype">bool</span> i_overflowOut, <span class="keywordtype">bool</span> i_minus);</div>
 <div class="line"> </div>
 <div class="line">    @<a class="code" href="namespaceel_1_1base_1_1consts.html#a4f2c476d5b8958d5e3e7bb9d1935dea1">brief</a> generatorComparison represents the generation of a combinational</div>
 <div class="line">    comparator circuit. It is able to compare the submitted data in three</div>
@@ -1059,12 +1048,8 @@ Here is the call graph for this function:</div>
 <div class="line">    numbers.</div>
 <div class="line">    @<span class="keywordflow">return</span> the created OrientedGraph</div>
 <div class="line"> </div>
-<div class="line">GraphPtr generatorComparison(</div>
-<div class="line">    uint32_t i_bits,</div>
-<div class="line">    <span class="keywordtype">bool</span>     compare0,</div>
-<div class="line">    <span class="keywordtype">bool</span>     compare1,</div>
-<div class="line">    <span class="keywordtype">bool</span>     compare2</div>
-<div class="line">);</div>
+<div class="line">GraphPtr generatorComparison(uint32_t i_bits, <span class="keywordtype">bool</span> compare0, <span class="keywordtype">bool</span> compare1,</div>
+<div class="line">                             <span class="keywordtype">bool</span> compare2);</div>
 <div class="line"> </div>
 <div class="line">    @<a class="code" href="namespaceel_1_1base_1_1consts.html#a4f2c476d5b8958d5e3e7bb9d1935dea1">brief</a> generatorEncoder represents the generation of a combinational</div>
 <div class="line">    scheme of a standard <a class="code" href="namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632a9d7183f16acce70658f686ae7f1a4d20">binary</a> encoder. The number of incoming bits (n) must</div>
@@ -1098,12 +1083,8 @@ Here is the call graph for this function:</div>
 <div class="line">    is executed, <span class="keywordflow">if</span> <span class="keyword">true</span>, then A-B)</div>
 <div class="line">    @<span class="keywordflow">return</span> the created OrientedGraph</div>
 <div class="line"> </div>
-<div class="line">GraphPtr generatorSubtractor(</div>
-<div class="line">    uint32_t i_bits,</div>
-<div class="line">    <span class="keywordtype">bool</span>     i_overflowIn,</div>
-<div class="line">    <span class="keywordtype">bool</span>     i_overflowOut,</div>
-<div class="line">    <span class="keywordtype">bool</span>     i_sub</div>
-<div class="line">);</div>
+<div class="line">GraphPtr generatorSubtractor(uint32_t i_bits, <span class="keywordtype">bool</span> i_overflowIn,</div>
+<div class="line">                             <span class="keywordtype">bool</span> i_overflowOut, <span class="keywordtype">bool</span> i_sub);</div>
 <div class="line"> </div>
 <div class="line">    @<a class="code" href="namespaceel_1_1base_1_1consts.html#a4f2c476d5b8958d5e3e7bb9d1935dea1">brief</a> generatorMultiplexer represents the generation of a combinational</div>
 <div class="line">    multiplexer circuit. When generating to the standard input vertices,</div>
@@ -1231,32 +1212,13 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="stringliteral">    false, they will be deleted</span></div>
 <div class="line"><span class="stringliteral">    @return the created OrientedGraph</span></div>
 <div class="line"><span class="stringliteral"></span> </div>
-<div class="line"><span class="stringliteral">GraphPtr generatorALU(</span></div>
-<div class="line"><span class="stringliteral">    int32_t                  i_bits,</span></div>
-<div class="line"><span class="stringliteral">    int32_t                  i_outbits,</span></div>
-<div class="line"><span class="stringliteral">    bool                     ALL,</span></div>
-<div class="line"><span class="stringliteral">    bool                     SUM,</span></div>
-<div class="line"><span class="stringliteral">    bool                     SUB,</span></div>
-<div class="line"><span class="stringliteral">    bool                     NSUM,</span></div>
-<div class="line"><span class="stringliteral">    bool                     NSUB,</span></div>
-<div class="line"><span class="stringliteral">    bool                     MULT,</span></div>
-<div class="line"><span class="stringliteral">    bool                     COM,</span></div>
-<div class="line"><span class="stringliteral">    bool                     AND,</span></div>
-<div class="line"><span class="stringliteral">    bool                     NAND,</span></div>
-<div class="line"><span class="stringliteral">    bool                     OR,</span></div>
-<div class="line"><span class="stringliteral">    bool                     NOR,</span></div>
-<div class="line"><span class="stringliteral">    bool                     XOR,</span></div>
-<div class="line"><span class="stringliteral">    bool                     XNOR,</span></div>
-<div class="line"><span class="stringliteral">    bool                     CNF,</span></div>
-<div class="line"><span class="stringliteral">    bool                     RNL,</span></div>
-<div class="line"><span class="stringliteral">    bool                     NUM_OP,</span></div>
-<div class="line"><span class="stringliteral">    uint32_t                 minLevel,</span></div>
-<div class="line"><span class="stringliteral">    uint32_t                 maxLevel,</span></div>
-<div class="line"><span class="stringliteral">    uint32_t                 minElement,</span></div>
-<div class="line"><span class="stringliteral">    uint32_t                 maxElement,</span></div>
-<div class="line"><span class="stringliteral">    std::map&lt;Gates, int32_t&gt; m,</span></div>
-<div class="line"><span class="stringliteral">    bool                     LeaveEmptyOut</span></div>
-<div class="line"><span class="stringliteral">);</span></div>
+<div class="line"><span class="stringliteral">GraphPtr generatorALU(int32_t i_bits, int32_t i_outbits, bool ALL, bool SUM,</span></div>
+<div class="line"><span class="stringliteral">                      bool SUB, bool NSUM, bool NSUB, bool MULT, bool COM,</span></div>
+<div class="line"><span class="stringliteral">                      bool AND, bool NAND, bool OR, bool NOR, bool XOR,</span></div>
+<div class="line"><span class="stringliteral">                      bool XNOR, bool CNF, bool RNL, bool NUM_OP,</span></div>
+<div class="line"><span class="stringliteral">                      uint32_t minLevel, uint32_t maxLevel,</span></div>
+<div class="line"><span class="stringliteral">                      uint32_t minElement, uint32_t maxElement,</span></div>
+<div class="line"><span class="stringliteral">                      std::map&lt;Gates, int32_t&gt; m, bool LeaveEmptyOut);</span></div>
 <div class="line"><span class="stringliteral"></span> </div>
 <div class="line"><span class="stringliteral">    @brief setGatesInputsInfo It is designed to set information about the</span></div>
 <div class="line"><span class="stringliteral">    inputs for various logic gates. It takes as an argument a dictionary,</span></div>
@@ -1277,7 +1239,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="stringliteral">    };</span></div>
 <div class="line"><span class="stringliteral">    // Set the input information for logic gates</span></div>
 <div class="line"><span class="stringliteral">    generators.setGatesInputsInfo(gateInputsInfo);</span></div>
-<div class="ttc" id="aSettings_8hpp_html_aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35"><div class="ttname"><a href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35">ALU</a></div><div class="ttdeci">@ ALU</div><div class="ttdoc">Arithmetic Logic Unit (ALU)</div><div class="ttdef"><b>Definition:</b> Settings.hpp:37</div></div>
+<div class="ttc" id="aSettings_8hpp_html_aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35"><div class="ttname"><a href="Settings_8hpp.html#aac6be41377264526a1152c994f4f6265af6ae22069d0427bb2d19adad213f2b35">ALU</a></div><div class="ttdeci">@ ALU</div><div class="ttdoc">Arithmetic Logic Unit (ALU)</div><div class="ttdef"><b>Definition:</b> Settings.hpp:35</div></div>
 <div class="ttc" id="anamespacedetail_html_a917c3efabea8a20dc72d9ae2c673d632a9d7183f16acce70658f686ae7f1a4d20"><div class="ttname"><a href="namespacedetail.html#a917c3efabea8a20dc72d9ae2c673d632a9d7183f16acce70658f686ae7f1a4d20">detail::value_t::binary</a></div><div class="ttdeci">@ binary</div><div class="ttdoc">binary array (ordered collection of bytes)</div></div>
 <div class="ttc" id="anamespaceel_1_1base_1_1consts_html_a4f2c476d5b8958d5e3e7bb9d1935dea1"><div class="ttname"><a href="namespaceel_1_1base_1_1consts.html#a4f2c476d5b8958d5e3e7bb9d1935dea1">el::base::consts::brief</a></div><div class="ttdeci">const char * brief</div><div class="ttdef"><b>Definition:</b> easylogging++.h:780</div></div>
 <div class="ttc" id="anamespaceel_1_1base_1_1consts_html_a7463944511904d9ca3dd4b6933a3e6f1"><div class="ttname"><a href="namespaceel_1_1base_1_1consts.html#a7463944511904d9ca3dd4b6933a3e6f1">el::base::consts::value</a></div><div class="ttdeci">double value</div><div class="ttdef"><b>Definition:</b> easylogging++.h:766</div></div>

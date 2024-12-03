@@ -107,51 +107,48 @@ $(document).ready(function(){initNavTree('SelectionsTruthTable_8hpp_source.html'
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="namespaceSelectionsTruthTable.html">    8</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceSelectionsTruthTable.html">SelectionsTruthTable</a> {</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">inline</span> std::vector&lt;ChromosomeType&lt;TruthTable, TruthTableParameters&gt;&gt;</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespaceSelectionsTruthTable.html#ac5bb70bee68ee3b6b93fd9c74ba89395">   10</a></span>&#160;    <a class="code" href="namespaceSelectionsTruthTable.html#ac5bb70bee68ee3b6b93fd9c74ba89395">SelectionBase</a>(</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="classSelectionParameters.html">SelectionParameters</a> i_selectionParameters,</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        std::vector&lt;<a class="code" href="classChromosomeType.html">ChromosomeType&lt;TruthTable, TruthTableParameters&gt;</a>&gt;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            i_population</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    ) {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  std::srand(std::time(0));</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  std::vector&lt;ChromosomeType&lt;TruthTable, TruthTableParameters&gt;&gt; survivors;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  <span class="keywordflow">while</span> (survivors.size() &lt; i_selectionParameters.<a class="code" href="classSelectionParameters.html#a2312360122891a0db1429bb07ad40a40">getNumOfSurvivors</a>()) {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    int32_t r1 = 0, r2 = 0;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">while</span> (i_population.size() &gt; 2 &amp;&amp; r2 == r1) {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;      r1 = <a class="code" href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207">AuxMethods::getRandInt</a>(0, i_population.size());</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;      r2 = <a class="code" href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207">AuxMethods::getRandInt</a>(0, i_population.size());</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span> ((i_population[r1].getAdaptationIndex()</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;         &lt; i_population[r2].getAdaptationIndex())</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        &amp;&amp; (std::find(survivors.begin(), survivors.end(), i_population[r1])</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            == survivors.end())) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;      survivors.push_back(i_population[r1]);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((i_population[r1].getAdaptationIndex()</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                &gt; i_population[r2].getAdaptationIndex())</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;               &amp;&amp; (std::find(</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                       survivors.begin(), survivors.end(), i_population[r2]</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                   )</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                   == survivors.end())) {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;      survivors.push_back(i_population[r2]);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i_population[r1].getAdaptationIndex() == i_population[r2].getAdaptationIndex()) {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;      <span class="keywordflow">if</span> (std::find(survivors.begin(), survivors.end(), i_population[r1])</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;          == survivors.end())</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespaceSelectionsTruthTable.html#ac5bb70bee68ee3b6b93fd9c74ba89395">   10</a></span>&#160;<a class="code" href="namespaceSelectionsTruthTable.html#ac5bb70bee68ee3b6b93fd9c74ba89395">SelectionBase</a>(<a class="code" href="classSelectionParameters.html">SelectionParameters</a> i_selectionParameters,</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;              std::vector&lt;<a class="code" href="classChromosomeType.html">ChromosomeType&lt;TruthTable, TruthTableParameters&gt;</a>&gt;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                  i_population) {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  std::srand(std::time(0));</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  std::vector&lt;ChromosomeType&lt;TruthTable, TruthTableParameters&gt;&gt; survivors;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  <span class="keywordflow">while</span> (survivors.size() &lt; i_selectionParameters.<a class="code" href="classSelectionParameters.html#a2312360122891a0db1429bb07ad40a40">getNumOfSurvivors</a>()) {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    int32_t r1 = 0, r2 = 0;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">while</span> (i_population.size() &gt; 2 &amp;&amp; r2 == r1) {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;      r1 = <a class="code" href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207">AuxMethods::getRandInt</a>(0, i_population.size());</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;      r2 = <a class="code" href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207">AuxMethods::getRandInt</a>(0, i_population.size());</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span> ((i_population[r1].getAdaptationIndex() &lt;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;         i_population[r2].getAdaptationIndex()) &amp;&amp;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        (std::find(survivors.begin(), survivors.end(), i_population[r1]) ==</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;         survivors.end())) {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      survivors.push_back(i_population[r1]);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((i_population[r1].getAdaptationIndex() &gt;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                i_population[r2].getAdaptationIndex()) &amp;&amp;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;               (std::find(survivors.begin(), survivors.end(),</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                          i_population[r2]) == survivors.end())) {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;      survivors.push_back(i_population[r2]);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i_population[r1].getAdaptationIndex() ==</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;               i_population[r2].getAdaptationIndex()) {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;      <span class="keywordflow">if</span> (std::find(survivors.begin(), survivors.end(), i_population[r1]) ==</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;          survivors.end())</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        survivors.push_back(i_population[r1]);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (std::find(survivors.begin(), survivors.end(),</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                         i_population[r1]) == survivors.end())</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        survivors.push_back(i_population[r1]);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (std::find(survivors.begin(), survivors.end(), i_population[r1])</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;               == survivors.end())</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        survivors.push_back(i_population[r1]);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i_population.size() &lt; i_selectionParameters.<a class="code" href="classSelectionParameters.html#a2312360122891a0db1429bb07ad40a40">getNumOfSurvivors</a>())</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        survivors.push_back(i_population[r1]);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keywordflow">return</span> survivors;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">// namespace end</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}  <span class="comment">// namespace SelectionsTruthTable</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (i_population.size() &lt; i_selectionParameters.<a class="code" href="classSelectionParameters.html#a2312360122891a0db1429bb07ad40a40">getNumOfSurvivors</a>())</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        survivors.push_back(i_population[r1]);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordflow">return</span> survivors;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// namespace end</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <span class="comment">// namespace SelectionsTruthTable</span></div>
 <div class="ttc" id="aAuxiliaryMethods_8hpp_html"><div class="ttname"><a href="AuxiliaryMethods_8hpp.html">AuxiliaryMethods.hpp</a></div><div class="ttdoc">TODO: ToEnum TODO: if need LineReader TODO: if need CopyDirectory.</div></div>
 <div class="ttc" id="aclassChromosomeType_html"><div class="ttname"><a href="classChromosomeType.html">ChromosomeType</a></div><div class="ttdef"><b>Definition:</b> ChromosomeType.hpp:11</div></div>
-<div class="ttc" id="aclassSelectionParameters_html"><div class="ttname"><a href="classSelectionParameters.html">SelectionParameters</a></div><div class="ttdef"><b>Definition:</b> SelectionParameters.hpp:9</div></div>
+<div class="ttc" id="aclassSelectionParameters_html"><div class="ttname"><a href="classSelectionParameters.html">SelectionParameters</a></div><div class="ttdef"><b>Definition:</b> SelectionParameters.hpp:7</div></div>
 <div class="ttc" id="aclassSelectionParameters_html_a2312360122891a0db1429bb07ad40a40"><div class="ttname"><a href="classSelectionParameters.html#a2312360122891a0db1429bb07ad40a40">SelectionParameters::getNumOfSurvivors</a></div><div class="ttdeci">int32_t getNumOfSurvivors() const</div><div class="ttdef"><b>Definition:</b> SelectionParameters.cpp:14</div></div>
 <div class="ttc" id="anamespaceAuxMethods_html_ad36a815c5be59f2b7d7283d1114b6207"><div class="ttname"><a href="namespaceAuxMethods.html#ad36a815c5be59f2b7d7283d1114b6207">AuxMethods::getRandInt</a></div><div class="ttdeci">int32_t getRandInt(int32_t lower, int32_t upper, bool inclusively=false)</div><div class="ttdoc">getRandInt Returns a random integer in the specified range</div><div class="ttdef"><b>Definition:</b> AuxiliaryMethods.cpp:45</div></div>
 <div class="ttc" id="anamespaceSelectionsTruthTable_html"><div class="ttname"><a href="namespaceSelectionsTruthTable.html">SelectionsTruthTable</a></div><div class="ttdef"><b>Definition:</b> SelectionsTruthTable.hpp:8</div></div>
