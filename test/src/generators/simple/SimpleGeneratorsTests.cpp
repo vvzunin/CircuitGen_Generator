@@ -1,4 +1,11 @@
-#include "generators/simple/SimpleGenerators.hpp"
+#include <generators/simple/ArithmeticGenerator.hpp>
+#include <generators/simple/FromTruthTableGenerator.hpp>
+#include <generators/simple/CoderGenerator.hpp>
+#include <generators/simple/RandLevelGenerator.hpp>
+#include <generators/simple/PlexerGenerator.hpp>
+#include <generators/simple/ComparisonGenerator.hpp>
+#include <generators/simple/NumOperationsGenerator.hpp>
+#include <generators/simple/ParityGenerator.hpp>
 
 #include <gtest/gtest.h>
 
@@ -6,10 +13,10 @@
 
 // CNF
 TEST(CnfFromTruthTableTest, EqualWithTheSameParametrs) {
-  SimpleGenerators generator1 = SimpleGenerators(1);
-  SimpleGenerators generator2 = SimpleGenerators(1);
-  SimpleGenerators generator3 = SimpleGenerators(2);
-  SimpleGenerators generator4 = SimpleGenerators(2);
+  auto generator1 = FromTruthTableGenerator(1);
+  auto generator2 = FromTruthTableGenerator(1);
+  auto generator3 = FromTruthTableGenerator(2);
+  auto generator4 = FromTruthTableGenerator(2);
 
   TruthTable table =
       TruthTable{1, 1, std::vector<std::vector<bool>>({{1}, {1}})};
@@ -57,13 +64,13 @@ TEST(GeneratorRandLevelTest, EqualWithTheSameParametrs) {
       {"and", {2, 4, 8}},  {"nand", {2, 4, 8}}, {"or", {2, 8}},
       {"nor", {16, 4, 8}}, {"xor", {2, 8, 4}},  {"xnor", {2, 16, 8}}};
 
-  SimpleGenerators generator1 = SimpleGenerators(1);
+  auto generator1 = RandLevelGenerator(1);
   generator1.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators generator2 = SimpleGenerators(1);
+  auto generator2 = RandLevelGenerator(1);
   generator2.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators generator3 = SimpleGenerators(2);
+  auto generator3 = RandLevelGenerator(2);
   generator3.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators generator4 = SimpleGenerators(2);
+  auto generator4 = RandLevelGenerator(2);
   generator4.setGatesInputsInfo(gatesInfo);
 
   std::shared_ptr<OrientedGraph> graphPtr1 =
@@ -97,13 +104,13 @@ TEST(GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
       {"and", {2, 4, 8}},  {"nand", {2, 4, 8}}, {"or", {2, 8}},
       {"nor", {16, 4, 8}}, {"xor", {2, 8, 4}},  {"xnor", {2, 16, 8}}};
 
-  SimpleGenerators generator1 = SimpleGenerators(1);
+  auto generator1 = RandLevelGenerator(1);
   generator1.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators generator2 = SimpleGenerators(1);
+  auto generator2 = RandLevelGenerator(1);
   generator2.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators generator3 = SimpleGenerators(2);
+  auto generator3 = RandLevelGenerator(2);
   generator3.setGatesInputsInfo(gatesInfo);
-  SimpleGenerators generator4 = SimpleGenerators(2);
+  auto generator4 = RandLevelGenerator(2);
   generator4.setGatesInputsInfo(gatesInfo);
 
   std::shared_ptr<OrientedGraph> graphPtr1 =
@@ -134,10 +141,10 @@ TEST(GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
 
 // NumOperations
 TEST(GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
-  SimpleGenerators generator1 = SimpleGenerators(1);
-  SimpleGenerators generator2 = SimpleGenerators(1);
-  SimpleGenerators generator3 = SimpleGenerators(2);
-  SimpleGenerators generator4 = SimpleGenerators(2);
+  auto generator1 = NumOperationsGenerator(1);
+  auto generator2 = NumOperationsGenerator(1);
+  auto generator3 = NumOperationsGenerator(2);
+  auto generator4 = NumOperationsGenerator(2);
 
   std::map<Gates, int32_t> logicOper = {
       {Gates::GateAnd, 2}, {Gates::GateOr, 2}, {Gates::GateNot, 1}};
@@ -214,8 +221,8 @@ TEST(GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
 }
 
 TEST(GeneratorParityTest, EqualToEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ParityGenerators S_gen_1(1);
+  ParityGenerators S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorParity(2);
   GraphPtr graph_2 = S_gen_2.generatorParity(2);
   std::string str1 = graph_1->calculateHash();
@@ -228,8 +235,8 @@ TEST(GeneratorParityTest, EqualToEachOther) {
   EXPECT_TRUE(str1 == str2);
 }
 TEST(GeneratorParityTest, DifferentToEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ParityGenerator S_gen_1(1);
+  ParityGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorParity(2);
   GraphPtr graph_2 = S_gen_2.generatorParity(3);
   std::string str1 = graph_1->calculateHash();
@@ -243,8 +250,8 @@ TEST(GeneratorParityTest, DifferentToEachOther) {
 }
 // TEST(GeneratorParityTest, NumOfElements)
 // {
-//     SimpleGenerators S_gen_1(1);
-//     SimpleGenerators S_gen_2(1);
+//     ParityGenerator S_gen_1(1);
+//     ParityGenerator S_gen_2(1);
 //     int bits = 2;
 //     GraphPtr graph_1 = S_gen_1.generatorParity(bits);
 //     GraphPtr graph_2 = S_gen_2.generatorParity(3);
@@ -254,8 +261,8 @@ TEST(GeneratorParityTest, DifferentToEachOther) {
 // }
 // Comparison
 TEST(GeneratorComparisonTest, EqualToEachOver) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ComparisonGenerator S_gen_1(1);
+  ComparisonGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorComparison(2, true, false, false);
   GraphPtr graph_2 = S_gen_2.generatorComparison(2, true, false, false);
   std::string str1 = graph_1->calculateHash();
@@ -268,8 +275,8 @@ TEST(GeneratorComparisonTest, EqualToEachOver) {
   EXPECT_TRUE(str1 == str2);
 }
 TEST(GeneratorComparisonTest, DifferentFromEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ComparisonGenerator S_gen_1(1);
+  ComparisonGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorComparison(4, true, false, false);
   GraphPtr graph_2 = S_gen_2.generatorComparison(5, true, false, false);
   std::string str1 = graph_1->calculateHash();
@@ -283,7 +290,7 @@ TEST(GeneratorComparisonTest, DifferentFromEachOther) {
 }
 TEST(GeneratorComparisonTest, GraphSizeTest) {
   uint32_t bits = 1;
-  SimpleGenerators generator;
+  ComparisonGenerator generator;
   GraphPtr graph = generator.generatorComparison(bits, true, false, false);
 
   ASSERT_NE(graph, nullptr);
@@ -294,8 +301,8 @@ TEST(GeneratorComparisonTest, GraphSizeTest) {
 }
 // Decoder
 TEST(GeneratorDecoderTest, EqualToEachOver) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  CoderGenerator S_gen_1(1);
+  CoderGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorDecoder(2);
   GraphPtr graph_2 = S_gen_2.generatorDecoder(2);
   std::string str1 = graph_1->calculateHash();
@@ -308,8 +315,8 @@ TEST(GeneratorDecoderTest, EqualToEachOver) {
   EXPECT_TRUE(str1 == str2);
 }
 TEST(GeneratorDecoderTest, DifferentFromEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  CoderGenerator S_gen_1(1);
+  CoderGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorDecoder(4);
   GraphPtr graph_2 = S_gen_2.generatorDecoder(5);
   std::string str1 = graph_1->calculateHash();
@@ -323,8 +330,8 @@ TEST(GeneratorDecoderTest, DifferentFromEachOther) {
 }
 // Summator
 TEST(GeneratorSummatorTest, EqualToEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ArithmeticGenerator S_gen_1(1);
+  ArithmeticGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorSummator(2, true, false, false);
   GraphPtr graph_2 = S_gen_2.generatorSummator(2, true, false, false);
   std::string str1 = graph_1->calculateHash();
@@ -337,8 +344,8 @@ TEST(GeneratorSummatorTest, EqualToEachOther) {
   EXPECT_TRUE(str1 == str2);
 }
 TEST(GeneratorSummatorTest, DifferentFromEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ArithmeticGenerator S_gen_1(1);
+  ArithmeticGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorSummator(4, true, false, false);
   GraphPtr graph_2 = S_gen_2.generatorSummator(5, true, false, false);
   std::string str1 = graph_1->calculateHash();
@@ -351,8 +358,8 @@ TEST(GeneratorSummatorTest, DifferentFromEachOther) {
   EXPECT_FALSE(str1 == str2);
 }
 TEST(GeneratorSummatorTest, NumOfElements) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ArithmeticGenerator S_gen_1(1);
+  ArithmeticGenerator S_gen_2(1);
   uint32_t bits = 1;
   GraphPtr graph_1 = S_gen_1.generatorSummator(bits, false, false, false);
   EXPECT_EQ(graph_1->sumFullSize(), 6);
@@ -363,8 +370,8 @@ TEST(GeneratorSummatorTest, NumOfElements) {
 
 // Encoder
 TEST(GeneratorEncoderTest, EqualToEachOver) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  CoderGenerator S_gen_1(1);
+  CoderGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorEncoder(2);
   GraphPtr graph_2 = S_gen_2.generatorEncoder(2);
   std::string str1 = graph_1->calculateHash();
@@ -377,8 +384,8 @@ TEST(GeneratorEncoderTest, EqualToEachOver) {
   EXPECT_TRUE(str1 == str2);
 }
 TEST(GeneratorEncoderTest, DifferentFromEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  CoderGenerator S_gen_1(1);
+  CoderGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorEncoder(4);
   GraphPtr graph_2 = S_gen_2.generatorEncoder(5);
   std::string str1 = graph_1->calculateHash();
@@ -392,8 +399,8 @@ TEST(GeneratorEncoderTest, DifferentFromEachOther) {
 }
 // Subtractor
 TEST(GeneratorSubtractorTest, EqualToEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ArithmeticGenerator S_gen_1(1);
+  ArithmeticGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorSubtractor(2, true, false, false);
   GraphPtr graph_2 = S_gen_2.generatorSubtractor(2, true, false, false);
   std::string str1 = graph_1->calculateHash();
@@ -406,8 +413,8 @@ TEST(GeneratorSubtractorTest, EqualToEachOther) {
   EXPECT_TRUE(str1 == str2);
 }
 TEST(GeneratorSubtractorTest, DifferentFromEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ArithmeticGenerator S_gen_1(1);
+  ArithmeticGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorSubtractor(4, true, false, false);
   GraphPtr graph_2 = S_gen_2.generatorSubtractor(5, true, false, false);
   std::string str1 = graph_1->calculateHash();
@@ -421,8 +428,8 @@ TEST(GeneratorSubtractorTest, DifferentFromEachOther) {
 }
 // Multiplexer
 TEST(GeneratorMultiplexerTest, EqualToEachOver) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  PlexerGenerator S_gen_1(1);
+  PlexerGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorMultiplexer(2);
   GraphPtr graph_2 = S_gen_2.generatorMultiplexer(2);
   std::string str1 = graph_1->calculateHash();
@@ -435,8 +442,8 @@ TEST(GeneratorMultiplexerTest, EqualToEachOver) {
   EXPECT_TRUE(str1 == str2);
 }
 TEST(GeneratorMultiplexerTest, DifferentFromEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  PlexerGenerator S_gen_1(1);
+  PlexerGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorMultiplexer(4);
   GraphPtr graph_2 = S_gen_2.generatorMultiplexer(5);
   std::string str1 = graph_1->calculateHash();
@@ -451,8 +458,8 @@ TEST(GeneratorMultiplexerTest, DifferentFromEachOther) {
 
 // Demultiplexer
 TEST(GeneratorDemultiplexerTest, EqualToEachOver) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  PlexerGenerator S_gen_1(1);
+  PlexerGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorDemultiplexer(2);
   GraphPtr graph_2 = S_gen_2.generatorDemultiplexer(2);
   std::string str1 = graph_1->calculateHash();
@@ -465,8 +472,8 @@ TEST(GeneratorDemultiplexerTest, EqualToEachOver) {
   EXPECT_TRUE(str1 == str2);
 }
 TEST(GeneratorDemultiplexerTest, DifferentFromEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  PlexerGenerator S_gen_1(1);
+  PlexerGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorDemultiplexer(4);
   GraphPtr graph_2 = S_gen_2.generatorDemultiplexer(5);
   std::string str1 = graph_1->calculateHash();
@@ -480,8 +487,8 @@ TEST(GeneratorDemultiplexerTest, DifferentFromEachOther) {
 }
 // Multiplier
 TEST(GeneratorMultiplierTest, EqualToEachOver) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ArithmeticGenerator S_gen_1(1);
+  ArithmeticGenerator S_gen_2(1);
   ;
   GraphPtr graph_1 = S_gen_1.generatorMultiplier(2);
   GraphPtr graph_2 = S_gen_2.generatorMultiplier(2);
@@ -495,8 +502,8 @@ TEST(GeneratorMultiplierTest, EqualToEachOver) {
   EXPECT_TRUE(str1 == str2);
 }
 TEST(GeneratorMultiplierTest, DifferentFromEachOther) {
-  SimpleGenerators S_gen_1(1);
-  SimpleGenerators S_gen_2(1);
+  ArithmeticGenerator S_gen_1(1);
+  ArithmeticGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorMultiplier(4);
   GraphPtr graph_2 = S_gen_2.generatorMultiplier(5);
   std::string str1 = graph_1->calculateHash();
