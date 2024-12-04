@@ -143,3 +143,19 @@ GraphPtr CoderGenerator::generatorDecoder(uint32_t i_bits) {
   return graph;
 }
 
+GraphPtr CoderGenerator::generatorEncoder(const GenerationParameters &i_param) {
+  int32_t i_bits = i_param.getInputs();
+  return generatorEncoder(i_bits);
+}
+
+GraphPtr CoderGenerator::generatorDecoder(const GenerationParameters &i_param) {
+  return generatorDecoder(i_param.getInputs());
+}
+
+GraphPtr CoderGenerator::generatorEncoder() {
+  return generatorEncoder(getParameters());
+}
+
+GraphPtr CoderGenerator::generatorDecoder() {
+  return generatorDecoder(getParameters());
+}

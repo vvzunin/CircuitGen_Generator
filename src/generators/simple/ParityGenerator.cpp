@@ -53,3 +53,12 @@ GraphPtr ParityGenerator::generatorParity(uint32_t i_bits) {
   return graph;
 }
 
+GraphPtr ParityGenerator::generatorParity(const GenerationParameters &i_param) {
+  int32_t bits = i_param.getInputs();
+  return generatorParity(bits);
+}
+
+GraphPtr ParityGenerator::generatorParity() {
+  return generatorParity(getParameters());
+}
+

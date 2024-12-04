@@ -22,4 +22,16 @@ public:
   );
 
   GraphPtr generatorMultiplier(uint32_t i_bits);
+
+  GraphPtr generatorSummator(const GenerationParameters &i_param);
+
+  GraphPtr generatorSubtractor(const GenerationParameters &i_param);
+
+  GraphPtr generatorMultiplier(const GenerationParameters &i_param);
+
+  GraphPtr generatorSummator();
+
+  GraphPtr generatorSubtractor();
+
+  GraphPtr generatorMultiplier();
 };

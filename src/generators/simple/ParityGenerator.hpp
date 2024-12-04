@@ -8,4 +8,7 @@ public:
   ParityGenerator(const GenerationParameters& i_param);
 
   GraphPtr generatorParity(uint32_t i_bits);
+
+  GraphPtr generatorParity(const GenerationParameters &i_param);
+  GraphPtr generatorParity();
 };

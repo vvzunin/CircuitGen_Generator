@@ -35,9 +35,8 @@ public:
       bool                     LeaveEmptyOut
   );
 
-private:
-  GenerationParameters&                 getParameters() const;
-  std::shared_ptr<GenerationParameters> parameters;
+  GraphPtr generatorALU(const GenerationParameters &i_param);
+  GraphPtr generatorALU();
 
 private:
   GraphPtr generatorSummator(

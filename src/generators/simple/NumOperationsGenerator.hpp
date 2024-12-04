@@ -13,4 +13,7 @@ public:
       std::map<Gates, int32_t> i_logicOper,
       bool                     i_leaveEmptyOut = true
   );
+
+  GraphPtr generatorNumOperation(const GenerationParameters &i_param);
+  GraphPtr generatorNumOperation();
 };

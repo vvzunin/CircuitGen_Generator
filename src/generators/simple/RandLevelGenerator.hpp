@@ -16,6 +16,8 @@ public:
       uint32_t i_outputs
   );
 
+  GraphPtr generatorRandLevel(const GenerationParameters &i_param);
+
   GraphPtr generatorRandLevelExperimental(
         uint32_t i_minLevel,
         uint32_t i_maxLevel,
@@ -24,4 +26,10 @@ public:
         uint32_t i_inputs,
         uint32_t i_outputs
     );
+
+  GraphPtr generatorRandLevelExperimental(const GenerationParameters &i_param);
+
+  GraphPtr generatorRandLevel();
+
+  GraphPtr generatorRandLevelExperimental();
 };

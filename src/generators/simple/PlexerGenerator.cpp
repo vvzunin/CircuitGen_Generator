@@ -150,4 +150,22 @@ GraphPtr PlexerGenerator::generatorDemultiplexer(uint32_t i_bits) {
   return graph;
 }
 
+GraphPtr PlexerGenerator::generatorMultiplexer(const GenerationParameters &i_param) {
+  int32_t i_bits = i_param.getInputs();
+  return generatorMultiplexer(i_bits);
+}
+
+GraphPtr PlexerGenerator::generatorDemultiplexer(const GenerationParameters &i_param) {
+  int32_t i_bits = i_param.getOutputs();
+  return generatorDemultiplexer(i_bits);
+}
+
+GraphPtr PlexerGenerator::generatorMultiplexer() {
+  return generatorMultiplexer(getParameters());
+}
+
+GraphPtr PlexerGenerator::generatorDemultiplexer() {
+  return generatorDemultiplexer(getParameters());
+}
+
 

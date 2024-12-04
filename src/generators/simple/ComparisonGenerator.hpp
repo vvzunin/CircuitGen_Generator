@@ -13,4 +13,6 @@ public:
       bool     compare1,
       bool     compare2
   );
+  GraphPtr generatorComparison(const GenerationParameters &i_param);
+  GraphPtr generatorComparison();
 };

@@ -30,6 +30,7 @@ public:
   GatesInfo             getGatesInputsInfo() const;
 
 protected:
+  GenerationParameters &getParameters() const;
 
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
   std::map<Gates, int32_t>  delNull(std::map<Gates, int32_t> i_copyLogicOper);
@@ -99,4 +100,7 @@ protected:
   RandomGeneratorWithSeed   d_randGenerator;
   int32_t                   d_maxGateNumber = 0;
   int32_t                   d_minGateNumber = 0;
+
+private:
+  std::shared_ptr<GenerationParameters> d_parameters;
 };

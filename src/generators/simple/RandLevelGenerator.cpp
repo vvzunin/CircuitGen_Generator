@@ -234,3 +234,27 @@ GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
   return graph;
 }
 
+GraphPtr RandLevelGenerator::generatorRandLevel(const GenerationParameters &i_param) {
+  return generatorRandLevel(i_param.getRandLevel().getMinLevel(),
+                            i_param.getRandLevel().getMaxLevel(),
+                            i_param.getRandLevel().getMinElements(),
+                            i_param.getRandLevel().getMaxElements(),
+                            i_param.getInputs(), i_param.getOutputs());
+}
+
+GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
+    const GenerationParameters &i_param) {
+  return generatorRandLevelExperimental(i_param.getRandLevel().getMinLevel(),
+                            i_param.getRandLevel().getMaxLevel(),
+                            i_param.getRandLevel().getMinElements(),
+                            i_param.getRandLevel().getMaxElements(),
+                            i_param.getInputs(), i_param.getOutputs());
+}
+
+GraphPtr RandLevelGenerator::generatorRandLevel() {
+  return generatorRandLevel(getParameters());
+}
+
+GraphPtr RandLevelGenerator::generatorRandLevelExperimental() {
+  return generatorRandLevelExperimental(getParameters());
+}

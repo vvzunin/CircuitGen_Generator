@@ -9,4 +9,10 @@ public:
 
   GraphPtr generatorMultiplexer(uint32_t i_bits);
   GraphPtr generatorDemultiplexer(uint32_t i_bits);
+
+  GraphPtr generatorMultiplexer(const GenerationParameters &i_param);
+  GraphPtr generatorDemultiplexer(const GenerationParameters &i_param);
+
+  GraphPtr generatorMultiplexer();
+  GraphPtr generatorDemultiplexer();
 };

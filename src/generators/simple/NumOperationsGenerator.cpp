@@ -145,4 +145,16 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
   return graph;
 }
 
+GraphPtr NumOperationsGenerator::generatorNumOperation(
+    const GenerationParameters &i_param) {
+    return generatorNumOperation(
+                           i_param.getInputs(), i_param.getOutputs(),
+                           i_param.getNumOperations().getLogicOpers(),
+                           i_param.getNumOperations().getLeaveEmptyOut());
+}
+
+GraphPtr NumOperationsGenerator::generatorNumOperation() {
+  return generatorNumOperation(getParameters());
+}
+
 

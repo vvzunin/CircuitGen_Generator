@@ -118,3 +118,15 @@ GraphPtr ComparisonGenerator::generatorComparison(
   return graph;
 }
 
+GraphPtr ComparisonGenerator::generatorComparison(const GenerationParameters &i_param) {
+  int32_t i_bits = i_param.getInputs();
+  bool compare0 = i_param.getComparison().getCompare0();
+  bool compare1 = i_param.getComparison().getCompare1();
+  bool compare2 = i_param.getComparison().getCompare2();
+  return generatorComparison(i_bits, compare0, compare1, compare2);
+}
+
+GraphPtr ComparisonGenerator::generatorComparison() {
+  return generatorComparison(getParameters());
+}
+

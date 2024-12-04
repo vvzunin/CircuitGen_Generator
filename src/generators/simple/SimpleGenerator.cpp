@@ -11,10 +11,14 @@ SimpleGenerator::SimpleGenerator(uint_fast32_t i_seed) {
   d_randGenerator.setSeed(i_seed);
 }
 
-SimpleGenerator::SimpleGenerator(const GenerationParameters& i_param){
-
+SimpleGenerator::SimpleGenerator(const GenerationParameters& i_param)
+   : d_parameters(std::make_shared<GenerationParameters>(i_param)) {
   d_randGenerator.setSeed(i_param.getSeed());
   setGatesInputsInfo(i_param.getGatesInputsInfo());
+}
+
+GenerationParameters& SimpleGenerator::getParameters() const {
+  return *d_parameters.get();
 }
 
 void SimpleGenerator::setGatesInputsInfo(

@@ -30,12 +30,7 @@ ALUGenerator::ALUGenerator(uint_fast32_t i_seed) :
   SimpleGenerator(i_seed) {}
 
 ALUGenerator::ALUGenerator(const GenerationParameters& i_param)
- : parameters(std::make_shared<GenerationParameters>(i_param)),
-  SimpleGenerator(i_param) {}
-
-GenerationParameters& ALUGenerator::getParameters() const {
-  return *parameters.get();
-}
+ : SimpleGenerator(i_param) {}
 
 GraphPtr ALUGenerator::generatorALU(
     int32_t                  i_bits,
@@ -522,5 +517,25 @@ GraphPtr ALUGenerator::generatorNumOperation(
 ) {
   return NumOperationsGenerator(getParameters())
       .generatorNumOperation(i_input, i_output, i_logicOper, i_leaveEmptyOut);
+}
+
+GraphPtr ALUGenerator::generatorALU(const GenerationParameters &i_param) {
+  return generatorALU(
+      i_param.getInputs(), i_param.getOutputs(), i_param.getALU().getALL(),
+      i_param.getALU().getSUM(), i_param.getALU().getSUB(),
+      i_param.getALU().getNSUM(), i_param.getALU().getNSUB(),
+      i_param.getALU().getMULT(), i_param.getALU().getCOM(),
+      i_param.getALU().getAND(), i_param.getALU().getNAND(),
+      i_param.getALU().getOR(), i_param.getALU().getNOR(),
+      i_param.getALU().getXOR(), i_param.getALU().getXNOR(),
+      i_param.getALU().getCNF(), i_param.getALU().getRNL(),
+      i_param.getALU().getNUMOP(), i_param.getALU().getminLevel(),
+      i_param.getALU().getmaxLevel(), i_param.getALU().getminElement(),
+      i_param.getALU().getmaxElement(), i_param.getALU().getm(),
+      i_param.getALU().getLeaveEmptyOut());
+}
+
+GraphPtr ALUGenerator::generatorALU() {
+  return generatorALU(getParameters());
 }
 
