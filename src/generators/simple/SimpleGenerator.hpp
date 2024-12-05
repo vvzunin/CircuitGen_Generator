@@ -24,6 +24,27 @@ public:
   //SimpleGenerator(SimpleGenerator&& other)                 = delete;
   //SimpleGenerator& operator=(SimpleGenerator&& other)      = delete;
 
+  /// @brief setGatesInputsInfo It is designed to set information about the
+  /// inputs for various logic gates. It takes as an argument a dictionary,
+  /// where the keys are the names of logical gates (Gates), and the values
+  /// are vectors of integers representing the entry ports for each gate.
+  /// @param i_info A map containing information about the entrances to
+  /// various gates. The map keys are the names of the gates, and the values
+  /// are vectors of integers representing the entry ports for each gate
+  /// @code
+  /// SimpleGenerators generators;
+  /// // Define input information for logic gates
+  /// std::map<std::string, std::vector<int32_t>> gateInputsInfo =
+  /// {
+  /// {"AND", {2, 3}},
+  /// {"OR", {2, 3}},
+  /// {"NOT", {1}},
+  /// // Add more gate input information as needed
+  /// };
+  /// // Set the input information for logic gates
+  /// generators.setGatesInputsInfo(gateInputsInfo);
+  /// @endcode
+
   void setGatesInputsInfo(
       const std::map<std::string, std::vector<int32_t>>& i_info
   );

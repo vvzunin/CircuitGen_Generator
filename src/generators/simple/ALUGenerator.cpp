@@ -33,56 +33,36 @@ ALUGenerator::ALUGenerator(const GenerationParameters& i_param)
  : SimpleGenerator(i_param) {}
 
 GraphPtr ALUGenerator::generatorALU(
-    int32_t                  i_bits,
-    int32_t                  i_outbits,
-    bool                     ALL,
-    bool                     SUM,
-    bool                     SUB,
-    bool                     NSUM,
-    bool                     NSUB,
-    bool                     MULT,
-    bool                     COM,
-    bool                     AND,
-    bool                     NAND,
-    bool                     OR,
-    bool                     NOR,
-    bool                     XOR,
-    bool                     XNOR,
-    bool                     CNF,
-    bool                     RNL,
-    bool                     NUM_OP,
-    uint32_t                 minLevel,
-    uint32_t                 maxLevel,
-    uint32_t                 minElement,
-    uint32_t                 maxElement,
-    std::map<Gates, int32_t> m,
-    bool                     LeaveEmptyOut
-) {
-  GraphPtr     graph(new OrientedGraph);
+    int32_t i_bits, int32_t i_outbits, bool ALL, bool SUM, bool SUB, bool NSUM,
+    bool NSUB, bool MULT, bool COM, bool AND, bool NAND, bool OR, bool NOR,
+    bool XOR, bool XNOR, bool CNF, bool RNL, bool NUM_OP, uint32_t minLevel,
+    uint32_t maxLevel, uint32_t minElement, uint32_t maxElement,
+    std::map<Gates, int32_t> m, bool LeaveEmptyOut) {
+  GraphPtr graph(new OrientedGraph);
   GraphPtrWeak weakGraph = graph;
-  VertexPtr    const_0   = graph->addConst('0', "const_0");
-  int32_t      x         = 0;
+  VertexPtr const_0 = graph->addConst('0', "const_0");
+  int32_t x = 0;
   if (ALL) {
-    SUM    = true;
-    SUB    = true;
-    NSUM   = true;
-    NSUB   = true;
-    MULT   = true;
-    COM    = true;
-    AND    = true;
-    OR     = true;
-    XOR    = true;
-    XNOR   = true;
-    CNF    = true;
-    RNL    = true;
+    SUM = true;
+    SUB = true;
+    NSUM = true;
+    NSUB = true;
+    MULT = true;
+    COM = true;
+    AND = true;
+    OR = true;
+    XOR = true;
+    XNOR = true;
+    CNF = true;
+    RNL = true;
     NUM_OP = true;
   }
 
   // количество входов мультиплексора
-  x = x + (SUM ? 4 : 0) + (SUB ? 4 : 0) + (NSUM ? 4 : 0) + (NSUB ? 4 : 0)
-    + (MULT ? 1 : 0) + (COM ? 3 : 0) + (AND ? 1 : 0) + (NAND ? 1 : 0)
-    + (OR ? 1 : 0) + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0)
-    + (CNF ? 3 : 0) + (RNL ? 1 : 0) + (NUM_OP ? 1 : 0);
+  x = x + (SUM ? 4 : 0) + (SUB ? 4 : 0) + (NSUM ? 4 : 0) + (NSUB ? 4 : 0) +
+      (MULT ? 1 : 0) + (COM ? 3 : 0) + (AND ? 1 : 0) + (NAND ? 1 : 0) +
+      (OR ? 1 : 0) + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0) +
+      (CNF ? 3 : 0) + (RNL ? 1 : 0) + (NUM_OP ? 1 : 0);
 
   // размерность АЛУ (сколько генераций мультиплексоров необходимо выполнить)
   int32_t size = i_bits;
@@ -111,24 +91,24 @@ GraphPtr ALUGenerator::generatorALU(
 
   for (int32_t i = 0; i < k; i++) {
     std::string s = std::to_string(i);
-    controls[i]   = graph->addInput("cont_ALU" + s);
+    controls[i] = graph->addInput("cont_ALU" + s);
   }
 
-  std::vector<VertexPtr>              inputs;
-  std::vector<VertexPtr>              inputs_A(i_bits);
-  std::vector<VertexPtr>              inputs_B(i_bits);
+  std::vector<VertexPtr> inputs;
+  std::vector<VertexPtr> inputs_A(i_bits);
+  std::vector<VertexPtr> inputs_B(i_bits);
   std::vector<std::vector<VertexPtr>> outputs_gens;
-  std::mutex                          mtx;
+  std::mutex mtx;
 
   auto pool = Threading::ThreadPool(d_settings->getNumThread());
 
   for (int32_t i = 0; i < i_bits; i++) {
-    std::string A     = std::to_string(i);
-    VertexPtr   A_alu = graph->addInput("A_alu" + A);
-    VertexPtr   B_alu = graph->addInput("B_alu" + A);
+    std::string A = std::to_string(i);
+    VertexPtr A_alu = graph->addInput("A_alu" + A);
+    VertexPtr B_alu = graph->addInput("B_alu" + A);
 
-    inputs_A[i]       = A_alu;
-    inputs_B[i]       = B_alu;
+    inputs_A[i] = A_alu;
+    inputs_B[i] = B_alu;
     inputs.push_back(A_alu);
     inputs.push_back(B_alu);
   }
@@ -137,7 +117,7 @@ GraphPtr ALUGenerator::generatorALU(
   if (AND) {
     std::vector<VertexPtr> ands;
     for (int32_t i = 0; i < i_bits; i++) {
-      A                 = std::to_string(i);
+      A = std::to_string(i);
       VertexPtr and_ALU = graph->addGate(Gates::GateAnd, "and_ALU" + A);
       graph->addEdges({inputs_A[i], inputs_B[i]}, and_ALU);
       ands.push_back(and_ALU);
@@ -147,7 +127,7 @@ GraphPtr ALUGenerator::generatorALU(
   if (NAND) {
     std::vector<VertexPtr> nands;
     for (int32_t i = 0; i < i_bits; i++) {
-      A                  = std::to_string(i);
+      A = std::to_string(i);
       VertexPtr nand_ALU = graph->addGate(Gates::GateNand, "nand_ALU" + A);
       graph->addEdges({inputs_A[i], inputs_B[i]}, nand_ALU);
       nands.push_back(nand_ALU);
@@ -157,7 +137,7 @@ GraphPtr ALUGenerator::generatorALU(
   if (OR) {
     std::vector<VertexPtr> ors;
     for (int32_t i = 0; i < i_bits; i++) {
-      A                = std::to_string(i);
+      A = std::to_string(i);
       VertexPtr or_ALU = graph->addGate(Gates::GateOr, "or_ALU" + A);
       graph->addEdges({inputs_A[i], inputs_B[i]}, or_ALU);
       ors.push_back(or_ALU);
@@ -167,7 +147,7 @@ GraphPtr ALUGenerator::generatorALU(
   if (XOR) {
     std::vector<VertexPtr> xors;
     for (int32_t i = 0; i < i_bits; i++) {
-      A                 = std::to_string(i);
+      A = std::to_string(i);
       VertexPtr xor_ALU = graph->addGate(Gates::GateXor, "xor_ALU" + A);
       graph->addEdges({inputs_A[i], inputs_B[i]}, xor_ALU);
       xors.push_back(xor_ALU);
@@ -177,7 +157,7 @@ GraphPtr ALUGenerator::generatorALU(
   if (NOR) {
     std::vector<VertexPtr> nors;
     for (int32_t i = 0; i < i_bits; i++) {
-      A                 = std::to_string(i);
+      A = std::to_string(i);
       VertexPtr nor_ALU = graph->addGate(Gates::GateNor, "nor_ALU" + A);
       graph->addEdges({inputs_A[i], inputs_B[i]}, nor_ALU);
       nors.push_back(nor_ALU);
@@ -187,7 +167,7 @@ GraphPtr ALUGenerator::generatorALU(
   if (XNOR) {
     std::vector<VertexPtr> xnors;
     for (int32_t i = 0; i < i_bits; i++) {
-      A                  = std::to_string(i);
+      A = std::to_string(i);
       VertexPtr xnor_ALU = graph->addGate(Gates::GateXnor, "xnor_ALU" + A);
       graph->addEdges({inputs_A[i], inputs_B[i]}, xnor_ALU);
       xnors.push_back(xnor_ALU);
@@ -229,7 +209,7 @@ GraphPtr ALUGenerator::generatorALU(
     auto lambda1 = [&]() {
       auto localInpSub = inputs;
 
-      auto curGraph    = generatorSubtractor(i_bits, false, false, false);
+      auto curGraph = generatorSubtractor(i_bits, false, false, false);
       ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpSub);
 
       curGraph = generatorSubtractor(i_bits, false, true, false);
@@ -289,7 +269,7 @@ GraphPtr ALUGenerator::generatorALU(
     auto lambda1 = [&]() {
       auto localInpSub = inputs;
 
-      auto curGraph    = generatorSubtractor(i_bits, false, false, true);
+      auto curGraph = generatorSubtractor(i_bits, false, false, true);
       ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpSub);
 
       curGraph = generatorSubtractor(i_bits, false, true, true);
@@ -319,7 +299,7 @@ GraphPtr ALUGenerator::generatorALU(
     auto lambda = [&]() {
       auto localInpMult = inputs;
 
-      auto curGraph     = generatorMultiplier(i_bits);
+      auto curGraph = generatorMultiplier(i_bits);
       ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpMult);
     };
 
@@ -329,21 +309,21 @@ GraphPtr ALUGenerator::generatorALU(
     auto lambda1 = [&]() {
       auto localInpCom = inputs;
 
-      auto curGraph    = generatorComparison(i_bits, true, false, false);
+      auto curGraph = generatorComparison(i_bits, true, false, false);
       ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpCom);
     };
 
     auto lambda2 = [&]() {
       auto localInpCom = inputs;
 
-      auto curGraph    = generatorComparison(i_bits, false, true, false);
+      auto curGraph = generatorComparison(i_bits, false, true, false);
       ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpCom);
     };
 
     auto lambda3 = [&]() {
       auto localInpCom = inputs;
 
-      auto curGraph    = generatorComparison(i_bits, false, false, true);
+      auto curGraph = generatorComparison(i_bits, false, false, true);
       ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpCom);
     };
 
@@ -352,32 +332,32 @@ GraphPtr ALUGenerator::generatorALU(
     pool.submit(lambda3);
   }
 
-  TruthTable           gen;
+  TruthTable gen;
   TruthTableParameters d_parameters(i_bits, i_outbits);
   if (CNF) {
     gen.generateRandom(d_parameters);
 
     auto lambda1 = [&]() {
       auto localInpZheg = inputs_A;
-      auto genCopy      = gen;
+      auto genCopy = gen;
 
-      auto curGraph     = zhegalkinFromTruthTable(genCopy);
+      auto curGraph = zhegalkinFromTruthTable(genCopy);
       ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpZheg);
     };
 
     auto lambda2 = [&]() {
       auto localInpCnft = inputs_A;
-      auto genCopy      = gen;
+      auto genCopy = gen;
 
-      auto curGraph     = cnfFromTruthTable(genCopy, true);
+      auto curGraph = cnfFromTruthTable(genCopy, true);
       ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpCnft);
     };
 
     auto lambda3 = [&]() {
       auto localInpCnff = inputs_A;
-      auto genCopy      = gen;
+      auto genCopy = gen;
 
-      auto curGraph     = cnfFromTruthTable(genCopy, false);
+      auto curGraph = cnfFromTruthTable(genCopy, false);
       ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpCnff);
     };
 
@@ -390,9 +370,8 @@ GraphPtr ALUGenerator::generatorALU(
     auto lambda = [&]() {
       auto localInpRNL = inputs_A;
 
-      auto curGraph    = generatorRandLevel(
-          minLevel, maxLevel, minElement, maxElement, i_bits, i_outbits
-      );
+      auto curGraph = generatorRandLevel(minLevel, maxLevel, minElement,
+                                         maxElement, i_bits, i_outbits);
       ADD_WITH_MUTEX_TO_GRAPH(curGraph, localInpRNL);
     };
 
@@ -429,14 +408,13 @@ GraphPtr ALUGenerator::generatorALU(
   std::vector<VertexPtr> outputs_alu;
 
   for (size_t i = 0; i < inputs_alu.size(); i++) {
-    inputs_alu[i].insert(
-        inputs_alu[i].begin(), controls.begin(), controls.end()
-    );
+    inputs_alu[i].insert(inputs_alu[i].begin(), controls.begin(),
+                         controls.end());
   }
 
   GraphPtr mult = generatorMultiplexer(x);
 
-  for (auto vertices : inputs_alu) {
+  for (auto vertices: inputs_alu) {
     outputs_alu.push_back(graph->addSubGraph(mult, vertices).back());
   }
 

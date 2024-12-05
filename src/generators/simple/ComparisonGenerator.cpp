@@ -8,32 +8,29 @@ ComparisonGenerator::ComparisonGenerator(uint_fast32_t i_seed) :
 ComparisonGenerator::ComparisonGenerator(const GenerationParameters& i_param) :
   SimpleGenerator(i_param) {}
 
-GraphPtr ComparisonGenerator::generatorComparison(
-    uint32_t i_bits,
-    bool     compare0,
-    bool     compare1,
-    bool     compare2
-) {
-  GraphPtr    graph(new OrientedGraph);
-  VertexPtr   prev_p0_;
-  VertexPtr   prev_p1_;
-  VertexPtr   prev_p2_;
+GraphPtr ComparisonGenerator::generatorComparison(uint32_t i_bits,
+                                                  bool compare0,
+                                               bool compare1, bool compare2) {
+  GraphPtr graph(new OrientedGraph);
+  VertexPtr prev_p0_;
+  VertexPtr prev_p1_;
+  VertexPtr prev_p2_;
 
-  VertexPtr   prev_np1_;
-  VertexPtr   prev_np2_;
-  std::string cond = std::string(compare0 ? "t" : "f") + (compare1 ? "t" : "f")
-                   + (compare2 ? "t" : "f");
+  VertexPtr prev_np1_;
+  VertexPtr prev_np2_;
+  std::string cond = std::string(compare0 ? "t" : "f") +
+                     (compare1 ? "t" : "f") + (compare2 ? "t" : "f");
   for (int32_t i = i_bits - 1; i >= 0; i--) {
-    std::string C     = std::to_string(i);
+    std::string C = std::to_string(i);
     std::string NextC = std::to_string(i - 1);
-    std::string x     = "coma" + cond + C;
-    std::string y     = "comb" + cond + C;
+    std::string x = "coma" + cond + C;
+    std::string y = "comb" + cond + C;
     if (i == 0) {
       NextC = "X";
     }
     VertexPtr input_x = graph->addInput(x);
     VertexPtr input_y = graph->addInput(y);
-    VertexPtr nb      = graph->addGate(Gates::GateNot, "nb" + C);
+    VertexPtr nb = graph->addGate(Gates::GateNot, "nb" + C);
     graph->addEdge(input_y, nb);
     VertexPtr na = graph->addGate(Gates::GateNot, "na" + C);
     graph->addEdge(input_x, na);
@@ -44,7 +41,7 @@ GraphPtr ComparisonGenerator::generatorComparison(
     VertexPtr Enand1_;
     VertexPtr pEn_;
     if (compare0) {
-      En_           = graph->addOutput("E0_" + C);
+      En_ = graph->addOutput("E0_" + C);
       VertexPtr nab = graph->addGate(Gates::GateAnd, "nab" + C);
       graph->addEdges({na, nb}, nab);
       VertexPtr ab = graph->addGate(Gates::GateAnd, "ab" + C);
@@ -85,7 +82,7 @@ GraphPtr ComparisonGenerator::generatorComparison(
         graph->addEdges({P11_, P12_}, pEn_);
         graph->addEdge(pEn_, En_);
       }
-      prev_p1_  = pn_;
+      prev_p1_ = pn_;
       prev_np1_ = np1_;
     }
     if (compare2) {
@@ -111,12 +108,13 @@ GraphPtr ComparisonGenerator::generatorComparison(
         graph->addEdges({P21_, P22_}, pEn_);
         graph->addEdge(pEn_, En_);
       }
-      prev_p2_  = pn_;
+      prev_p2_ = pn_;
       prev_np2_ = np2_;
     }
   }
   return graph;
 }
+
 
 GraphPtr ComparisonGenerator::generatorComparison(const GenerationParameters &i_param) {
   int32_t i_bits = i_param.getInputs();

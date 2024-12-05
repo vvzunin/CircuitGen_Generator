@@ -19,7 +19,7 @@ GraphPtr ParityGenerator::generatorParity(uint32_t i_bits) {
     std::cout << "Недостаточно входных сигналов" << std::endl;
     return graph;
   }
-  VertexPtr              output_f = graph->addOutput("F");
+  VertexPtr output_f = graph->addOutput("F");
   std::vector<VertexPtr> elem(i_bits);
   std::vector<VertexPtr> xors;
 
@@ -28,16 +28,16 @@ GraphPtr ParityGenerator::generatorParity(uint32_t i_bits) {
   }
 
   int32_t k = 0;
-  bool    shift;
+  bool shift;
   int32_t count = i_bits;
   while (count != 1) {
     count % 2 == 1 ? shift = true : shift = false;
     xors.clear();
     std::string str_k = std::to_string(k);
-    int32_t     n     = 0;
+    int32_t n = 0;
     for (int32_t i = 1; i < count; i += 2) {
       std::string str_n = std::to_string(n);
-      VertexPtr   Xor =
+      VertexPtr Xor =
           graph->addGate(Gates::GateXor, "xor_" + str_k + "_" + str_n);
       n++;
       graph->addEdges({elem[i - 1], elem[i]}, Xor);

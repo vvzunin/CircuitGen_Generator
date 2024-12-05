@@ -11,6 +11,7 @@ FromTruthTableGenerator::FromTruthTableGenerator(
 ) :
   SimpleGenerator(i_param) {}
 
+
 GraphPtr FromTruthTableGenerator::cnfFromTruthTable(const TruthTable &i_table,
                                              bool i_tp) {
   std::vector<std::string> fun;
@@ -113,7 +114,6 @@ GraphPtr FromTruthTableGenerator::cnfFromTruthTable(const TruthTable &i_table,
 
   return graph;
 }
-
 GraphPtr FromTruthTableGenerator::zhegalkinFromTruthTable(const TruthTable &i_table) {
   int32_t num_inputs = i_table.getInput();
   int32_t num_outputs = i_table.getOutput();

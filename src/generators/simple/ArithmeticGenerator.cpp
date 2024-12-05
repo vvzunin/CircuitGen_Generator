@@ -8,36 +8,33 @@ ArithmeticGenerator::ArithmeticGenerator(uint_fast32_t i_seed) :
 ArithmeticGenerator::ArithmeticGenerator(const GenerationParameters& i_param) :
   SimpleGenerator(i_param) {}
 
-GraphPtr ArithmeticGenerator::generatorSummator(
-    uint32_t i_bits,
-    bool     i_overflowIn,
-    bool     i_overflowOut,
-    bool     i_minus
-) {
-  GraphPtr    graph(new OrientedGraph);
+GraphPtr ArithmeticGenerator::generatorSummator(uint32_t i_bits,
+                                                bool i_overflowIn,
+                                             bool i_overflowOut, bool i_minus) {
+  GraphPtr graph(new OrientedGraph);
   std::string str_x;
   std::string str_y;
 
-  VertexPtr   const_1;
+  VertexPtr const_1;
 
-  std::string cond = std::string(i_overflowIn ? "t" : "f")
-                   + (i_overflowOut ? "t" : "f") + (i_minus ? "t" : "f");
-  std::string z = std::string(i_minus ? "n" : "") + "s"
-                + (!i_overflowIn && !i_overflowOut
+  std::string cond = std::string(i_overflowIn ? "t" : "f") +
+                     (i_overflowOut ? "t" : "f") + (i_minus ? "t" : "f");
+  std::string z = std::string(i_minus ? "n" : "") + "s" +
+                  (!i_overflowIn && !i_overflowOut
                        ? "0"
                        : (!i_overflowIn && i_overflowOut
                               ? "1"
-                              : (i_overflowIn && !i_overflowOut ? "2" : "3")))
-                + "_";
+                              : (i_overflowIn && !i_overflowOut ? "2" : "3"))) +
+                  "_";
   VertexPtr curr_p;
   VertexPtr next_p;
 
   for (int32_t i = 0; i < i_bits; i++) {
-    std::string S     = std::to_string(i);
+    std::string S = std::to_string(i);
     std::string NextS = std::to_string(i + 1);
 
-    str_x             = "sum_a" + cond + S;
-    str_y             = "sum_b" + cond + S;
+    str_x = "sum_a" + cond + S;
+    str_y = "sum_b" + cond + S;
 
     VertexPtr input_x = graph->addInput(str_x);
     VertexPtr input_y = graph->addInput(str_y);
@@ -52,7 +49,7 @@ GraphPtr ArithmeticGenerator::generatorSummator(
     }
     VertexPtr output_sum;
 
-    output_sum      = graph->addOutput(z + S);
+    output_sum = graph->addOutput(z + S);
 
     VertexPtr xorab = graph->addGate(Gates::GateXor, "xorab" + S);
     graph->addEdges({i_minus ? nx : input_x, i_minus ? ny : input_y}, xorab);
@@ -61,7 +58,7 @@ GraphPtr ArithmeticGenerator::generatorSummator(
 
     if (i == 0) {
       if (i_overflowIn) {
-        curr_p           = graph->addInput("p" + S);
+        curr_p = graph->addInput("p" + S);
 
         VertexPtr xorabp = graph->addGate(Gates::GateXor, "xorabp" + S);
         graph->addEdges({xorab, curr_p}, xorabp);
@@ -100,38 +97,36 @@ GraphPtr ArithmeticGenerator::generatorSummator(
   return graph;
 }
 
-GraphPtr ArithmeticGenerator::generatorSubtractor(
-    uint32_t i_bits,
-    bool     i_overflowIn,
-    bool     i_overflowOut,
-    bool     i_sub
-) {
-  GraphPtr    graph(new OrientedGraph);
-  VertexPtr   const_1;
 
-  std::string cond = std::string(i_overflowIn ? "t" : "f")
-                   + (i_overflowOut ? "t" : "f") + (i_sub ? "t" : "f");
-  std::string s = std::string(i_sub ? "n" : "") + "d"
-                + (!i_overflowIn && !i_overflowOut
+GraphPtr ArithmeticGenerator::generatorSubtractor(uint32_t i_bits,
+                                               bool i_overflowIn,
+                                               bool i_overflowOut, bool i_sub) {
+  GraphPtr graph(new OrientedGraph);
+  VertexPtr const_1;
+
+  std::string cond = std::string(i_overflowIn ? "t" : "f") +
+                     (i_overflowOut ? "t" : "f") + (i_sub ? "t" : "f");
+  std::string s = std::string(i_sub ? "n" : "") + "d" +
+                  (!i_overflowIn && !i_overflowOut
                        ? "0"
                        : (!i_overflowIn && i_overflowOut
                               ? "1"
-                              : (i_overflowIn && !i_overflowOut ? "2" : "3")))
-                + "_";
+                              : (i_overflowIn && !i_overflowOut ? "2" : "3"))) +
+                  "_";
 
-  VertexPtr next_z;  // следующий заем
-  VertexPtr curr_z;  // нынешний заём
+  VertexPtr next_z; // следующий заем
+  VertexPtr curr_z; // нынешний заём
 
   for (uint32_t i = 0; i < i_bits; i++) {
-    std::string Z = std::to_string(i);          // нынешний индекс
-    std::string NextZ = std::to_string(i + 1);  // следующий индекс
-    std::string x       = "suba" + cond + Z;
-    std::string y       = "subb" + cond + Z;
-    VertexPtr   input_x = graph->addInput(x);
-    VertexPtr   input_y = graph->addInput(y);
-    VertexPtr   output_sub;
+    std::string Z = std::to_string(i);         // нынешний индекс
+    std::string NextZ = std::to_string(i + 1); // следующий индекс
+    std::string x = "suba" + cond + Z;
+    std::string y = "subb" + cond + Z;
+    VertexPtr input_x = graph->addInput(x);
+    VertexPtr input_y = graph->addInput(y);
+    VertexPtr output_sub;
 
-    output_sub      = graph->addOutput(s + Z);
+    output_sub = graph->addOutput(s + Z);
 
     VertexPtr abxor = graph->addGate(Gates::GateXor, "abxor" + Z);
     graph->addEdges({input_x, input_y}, abxor);
@@ -153,10 +148,10 @@ GraphPtr ArithmeticGenerator::generatorSubtractor(
       graph->addEdges({input_x, ny}, abandn);
     }
 
-    VertexPtr d;  // результат
+    VertexPtr d; // результат
 
     if (i_overflowIn) {
-      d      = graph->addGate(Gates::GateXor, "d" + Z);
+      d = graph->addGate(Gates::GateXor, "d" + Z);
       next_z = graph->addGate(Gates::GateOr, "z" + NextZ);
       if (i == 0)
         curr_z = graph->addInput("z" + Z);
@@ -167,7 +162,7 @@ GraphPtr ArithmeticGenerator::generatorSubtractor(
       VertexPtr nabxorz = graph->addGate(Gates::GateAnd, "abxornz" + Z);
       graph->addEdges({curr_z, nabxor}, nabxorz);
 
-      graph->addEdges({nabxorz, abandn}, next_z);  // перенос заема
+      graph->addEdges({nabxorz, abandn}, next_z); // перенос заема
       graph->addEdges({abxor, curr_z}, d);
 
       graph->addEdge(d, output_sub);
@@ -179,8 +174,8 @@ GraphPtr ArithmeticGenerator::generatorSubtractor(
         graph->addEdge(abandn, next_z);
       }
       if (i > 0) {
-        d                = graph->addGate(Gates::GateXor, "d" + Z);
-        next_z           = graph->addGate(Gates::GateOr, "z" + NextZ);
+        d = graph->addGate(Gates::GateXor, "d" + Z);
+        next_z = graph->addGate(Gates::GateOr, "z" + NextZ);
 
         VertexPtr nabxor = graph->addGate(Gates::GateNot, "nabxor" + Z);
         graph->addEdge(abxor, nabxor);
@@ -188,7 +183,7 @@ GraphPtr ArithmeticGenerator::generatorSubtractor(
         VertexPtr nabxorz = graph->addGate(Gates::GateAnd, "abxornz" + Z);
         graph->addEdges({curr_z, nabxor}, nabxorz);
 
-        graph->addEdges({nabxorz, abandn}, next_z);  // перенос заема
+        graph->addEdges({nabxorz, abandn}, next_z); // перенос заема
         graph->addEdges({abxor, curr_z}, d);
         graph->addEdge(d, output_sub);
       }
@@ -203,48 +198,48 @@ GraphPtr ArithmeticGenerator::generatorSubtractor(
 }
 
 GraphPtr ArithmeticGenerator::generatorMultiplier(uint32_t i_bits) {
-  GraphPtr               graph(new OrientedGraph);
-  VertexPtr              const_1;
+  GraphPtr graph(new OrientedGraph);
+  VertexPtr const_1;
 
-  VertexPtr              input_xa;
+  VertexPtr input_xa;
   // a - бит первого множителя
-  VertexPtr              input_xb;
+  VertexPtr input_xb;
   // b - бит второго множителя
-  VertexPtr              c;
+  VertexPtr c;
   // с - результат логического и
   std::vector<VertexPtr> C_sum(i_bits);
   // C_sum - хранит результаты вычислений прошлой итерации b
-  VertexPtr              sum;
+  VertexPtr sum;
   // sum - результат суммы
-  VertexPtr              pSum;
-  VertexPtr              pNext;
+  VertexPtr pSum;
+  VertexPtr pNext;
   // pSum - перенос между сумматорами одного уровня, pNext - разных уровней
-  VertexPtr              m;
+  VertexPtr m;
   // m - бит полученного умножения, выход
 
-  int32_t                n = 1;
+  int32_t n = 1;
   // n - числовой порядок выходов
   for (int32_t ib = 1; ib <= i_bits; ib++) {
     std::string str_i = std::to_string(ib);
-    input_xb          = graph->addInput("xb" + str_i);
-    input_xa          = graph->addInput("xa" + str_i);
+    input_xb = graph->addInput("xb" + str_i);
+    input_xa = graph->addInput("xa" + str_i);
 
-    std::string IB    = std::to_string(ib);      // IB - index b
-    std::string IBP   = std::to_string(ib - 1);  // IBP - index b past
-    std::string IBN   = std::to_string(ib + 1);  // IBN - index b next
+    std::string IB = std::to_string(ib);      // IB - index b
+    std::string IBP = std::to_string(ib - 1); // IBP - index b past
+    std::string IBN = std::to_string(ib + 1); // IBN - index b next
 
-    VertexPtr   xb    = input_xb;
-    VertexPtr   ABsum;
+    VertexPtr xb = input_xb;
+    VertexPtr ABsum;
     // ABsum - получает
     // информацию о результате прошлой итерации b
 
     for (int32_t ia = 1; ia <= i_bits; ia++) {
-      std::string IA  = std::to_string(ia);      // IA - index a
-      std::string IAN = std::to_string(ia + 1);  // IAN - index a next
+      std::string IA = std::to_string(ia);      // IA - index a
+      std::string IAN = std::to_string(ia + 1); // IAN - index a next
 
-      VertexPtr   xa  = input_xa;
+      VertexPtr xa = input_xa;
 
-      c               = graph->addGate(Gates::GateAnd, "c" + IA + IB);
+      c = graph->addGate(Gates::GateAnd, "c" + IA + IB);
       graph->addEdges({xb, xa}, c);
       if (ib == 1)
         C_sum[ia - 1] = c;
@@ -252,7 +247,7 @@ GraphPtr ArithmeticGenerator::generatorMultiplier(uint32_t i_bits) {
       if (ib == 1) {
         if (ia == 1) {
           std::string N = std::to_string(n);
-          m             = graph->addOutput("m" + N);
+          m = graph->addOutput("m" + N);
           graph->addEdge(c, m);
           n += 1;
         }
@@ -273,7 +268,7 @@ GraphPtr ArithmeticGenerator::generatorMultiplier(uint32_t i_bits) {
         // ABsum = "sum" + IAN + IBP;
 
         if (ia == i_bits) {
-          ABsum = pNext;  // для левых боковых сумматоров
+          ABsum = pNext; // для левых боковых сумматоров
           if (i_bits == 2) {
             ABsum = pSum;
           }
@@ -282,13 +277,13 @@ GraphPtr ArithmeticGenerator::generatorMultiplier(uint32_t i_bits) {
 
         std::string nSum;
         if (ia < i_bits)
-          nSum = IAN + IB;  // nSum - next Summator, по разряду a
+          nSum = IAN + IB; // nSum - next Summator, по разряду a
         if (ia == i_bits)
-          nSum = IA + IBN;  // по разряду b
+          nSum = IA + IBN; // по разряду b
 
         if (ia == 1) {
           std::string N = std::to_string(n);
-          pSum          = graph->addGate(Gates::GateAnd, "pSum" + nSum);
+          pSum = graph->addGate(Gates::GateAnd, "pSum" + nSum);
           graph->addEdges({nowAB, ABsum}, pSum);
           sum = graph->addGate(Gates::GateXor, "sum" + IA + IB);
           graph->addEdges({nowAB, ABsum}, sum);
@@ -305,25 +300,25 @@ GraphPtr ArithmeticGenerator::generatorMultiplier(uint32_t i_bits) {
 
           if (i_bits == 2) {
             std::string N = std::to_string(n);
-            m             = graph->addOutput("m" + N);
+            m = graph->addOutput("m" + N);
             graph->addEdge(sum, m);
 
             n += 1;
-            N  = std::to_string(n);
+            N = std::to_string(n);
 
-            m  = graph->addOutput("m" + N);
+            m = graph->addOutput("m" + N);
             graph->addEdge(pNext, m);
           }
         } else {
           std::string S = IA + IB;
           std::string
-              p_str;  // создание переноса нынешнего сумматора в следующий
-          VertexPtr   p;
+              p_str; // создание переноса нынешнего сумматора в следующий
+          VertexPtr p;
           std::string pi_str =
-              "pSum" + IA + IB;  // перенос из прошлого сумматора
-          VertexPtr pi     = pSum;
+              "pSum" + IA + IB; // перенос из прошлого сумматора
+          VertexPtr pi = pSum;
 
-          VertexPtr andab  = graph->addGate(Gates::GateAnd, "andab" + S);
+          VertexPtr andab = graph->addGate(Gates::GateAnd, "andab" + S);
           VertexPtr andapi = graph->addGate(Gates::GateAnd, "anda" + pi_str);
           VertexPtr andbpi = graph->addGate(Gates::GateAnd, "andb" + pi_str);
 
@@ -332,10 +327,10 @@ GraphPtr ArithmeticGenerator::generatorMultiplier(uint32_t i_bits) {
           graph->addEdges({pi, ABsum}, andbpi);
 
           if (ia < i_bits) {
-            p_str = "pSum" + nSum;  // для соседнего сумматора
+            p_str = "pSum" + nSum; // для соседнего сумматора
           }
           if (ia == i_bits) {
-            p_str = "pNext" + nSum;  // для левых боковых сумматоров
+            p_str = "pNext" + nSum; // для левых боковых сумматоров
           }
 
           p = graph->addGate(Gates::GateOr, p_str);
@@ -361,7 +356,7 @@ GraphPtr ArithmeticGenerator::generatorMultiplier(uint32_t i_bits) {
           if (ib == i_bits) {
             std::string N = std::to_string(n);
 
-            m             = graph->addOutput("m" + N);
+            m = graph->addOutput("m" + N);
             graph->addEdge(sum, m);
             n += 1;
             if (ia == i_bits) {

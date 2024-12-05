@@ -12,37 +12,37 @@ PlexerGenerator::PlexerGenerator(
   SimpleGenerator(i_param) {}
 
 GraphPtr PlexerGenerator::generatorMultiplexer(uint32_t i_bits) {
-  GraphPtr               graph(new OrientedGraph);
-  VertexPtr              output_f = graph->addOutput("f");
+  GraphPtr graph(new OrientedGraph);
+  VertexPtr output_f = graph->addOutput("f");
   std::vector<VertexPtr> inputs_x;
-  int32_t                k = 0;
+  int32_t k = 0;
   for (uint32_t t = 0; t <= i_bits; t++) {
     if (i_bits - 1 >= std::pow(2, t))
       k++;
   }
 
   std::vector<std::string> F(i_bits);
-  std::vector<VertexPtr>   ands(i_bits);
+  std::vector<VertexPtr> ands(i_bits);
   std::vector<std::string> S(k);
-  std::vector<VertexPtr>   Sp(k);
-  std::vector<VertexPtr>   NSp(k);
+  std::vector<VertexPtr> Sp(k);
+  std::vector<VertexPtr> NSp(k);
   std::vector<std::string> Z(i_bits);
-  std::vector<VertexPtr>   Zp(i_bits);
+  std::vector<VertexPtr> Zp(i_bits);
 
   if (i_bits > 1) {
     // механизм создания управляющих входов и их инверсий
     for (int32_t p = 0; p < k; p++) {
-      S[p]   = std::to_string(p);
-      Sp[p]  = graph->addInput("a" + S[p]);
+      S[p] = std::to_string(p);
+      Sp[p] = graph->addInput("a" + S[p]);
       // graph->addVertex("not a" + S[p], "not", "not a" + S[p]);
       NSp[p] = graph->addGate(Gates::GateNot, "not_a" + S[p]);
       graph->addEdge(Sp[p], NSp[p]);
     }
     // механизм создания входов
     for (int32_t i = 0; i < i_bits; i++) {
-      Z[i]  = std::to_string(i);
+      Z[i] = std::to_string(i);
       Zp[i] = graph->addInput("x" + Z[i]);
-      F[i]  = std::bitset<8>(i).to_string();
+      F[i] = std::bitset<8>(i).to_string();
     }
     // механизм создания связей между входами и and
     for (int32_t i = 0; i < i_bits; i++) {
@@ -69,7 +69,7 @@ GraphPtr PlexerGenerator::generatorMultiplexer(uint32_t i_bits) {
     graph->addEdges(ands, common_or);
     graph->addEdge(common_or, output_f);
   } else if (i_bits == 1) {
-    Zp[0]           = graph->addInput("x" + Z[0]);
+    Zp[0] = graph->addInput("x" + Z[0]);
     VertexPtr inBuf = graph->addGate(Gates::GateBuf, "buf");
     graph->addEdge(Zp[0], inBuf);
     graph->addEdge(inBuf, output_f);
@@ -92,36 +92,36 @@ GraphPtr PlexerGenerator::generatorDemultiplexer(uint32_t i_bits) {
   // разрядность числа хi u - переменная для чтения одного символа из строки
   // F[i]
 
-  GraphPtr  graph(new OrientedGraph);
+  GraphPtr graph(new OrientedGraph);
   VertexPtr input_f = graph->addInput("f");
 
-  int32_t   k       = 0;
+  int32_t k = 0;
   for (uint32_t t = 0; t <= i_bits; t++) {
     if (i_bits - 1 >= std::pow(2, t))
       k++;
   }
 
   std::vector<std::string> F(i_bits);
-  std::vector<VertexPtr>   ands(i_bits);
+  std::vector<VertexPtr> ands(i_bits);
   std::vector<std::string> S(k);
-  std::vector<VertexPtr>   Sp(k);
-  std::vector<VertexPtr>   NSp(k);
+  std::vector<VertexPtr> Sp(k);
+  std::vector<VertexPtr> NSp(k);
   std::vector<std::string> Z(i_bits);
-  std::vector<VertexPtr>   Zp(i_bits);
+  std::vector<VertexPtr> Zp(i_bits);
 
   if (i_bits > 1) {
     for (int32_t p = 0; p <= k - 1; p++) {
-      S[p]   = std::to_string(p);
-      Sp[p]  = graph->addInput("a" + S[p]);
+      S[p] = std::to_string(p);
+      Sp[p] = graph->addInput("a" + S[p]);
       // graph->addVertex("not a" + S[p], "not", "not a" + S[p]);
       NSp[p] = graph->addGate(Gates::GateNot, "not_a" + S[p]);
       graph->addEdge(Sp[p], NSp[p]);
     }
 
     for (int32_t i = 0; i <= i_bits - 1; i++) {
-      Z[i]  = std::to_string(i);
+      Z[i] = std::to_string(i);
       Zp[i] = graph->addOutput("x" + Z[i]);
-      F[i]  = std::bitset<8>(i).to_string();
+      F[i] = std::bitset<8>(i).to_string();
     }
 
     for (int32_t i = 0; i <= i_bits - 1; i++) {

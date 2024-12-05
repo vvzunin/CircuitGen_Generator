@@ -36,20 +36,18 @@ NumOperationsGenerator::NumOperationsGenerator(const GenerationParameters& i_par
   SimpleGenerator(i_param) {}
 
 GraphPtr NumOperationsGenerator::generatorNumOperation(
-    uint32_t                 i_input,
-    uint32_t                 i_output,
-    std::map<Gates, int32_t> i_logicOper,
-    bool                     i_leaveEmptyOut
-) {
-  int32_t                          sumOper = 0, maxLvl;
-  std::string                      name;
-  VertexPtr                        name_ptr;
-  std::map<Gates, int32_t>         copyLogicOper;
-  std::map<std::string, int32_t>   levelName;
+    uint32_t i_input, uint32_t i_output,
+                                        std::map<Gates, int32_t> i_logicOper,
+                                        bool i_leaveEmptyOut) {
+  int32_t sumOper = 0, maxLvl;
+  std::string name;
+  VertexPtr name_ptr;
+  std::map<Gates, int32_t> copyLogicOper;
+  std::map<std::string, int32_t> levelName;
   std::map<std::string, VertexPtr> levelNamePtr;
-  std::vector<VertexPtr>           nameOut, nameInput;
+  std::vector<VertexPtr> nameOut, nameInput;
 
-  for (const auto& elem : i_logicOper) {
+  for (const auto &elem: i_logicOper) {
     std::cout << elem.first << " " << elem.second << "\n";
   }
 
@@ -58,23 +56,23 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
   GraphPtr graph(new OrientedGraph());
 
   for (int32_t i = 0; i < i_input; ++i) {
-    name                              = "x" + std::to_string(i);
-    name_ptr                          = graph->addInput(name);
+    name = "x" + std::to_string(i);
+    name_ptr = graph->addInput(name);
 
     // TODO and how can it be changed?
-    levelName[name_ptr->getName()]    = name_ptr->getLevel();
+    levelName[name_ptr->getName()] = name_ptr->getLevel();
     levelNamePtr[name_ptr->getName()] = name_ptr;
     if (!i_leaveEmptyOut)
       nameInput.push_back(name_ptr);
   }
 
   for (int32_t i = 0; i < i_output; ++i) {
-    name     = "f" + std::to_string(i);
+    name = "f" + std::to_string(i);
     name_ptr = graph->addOutput(name);
     nameOut.push_back(name_ptr);
   }
 
-  for (const auto& [key, value] : copyLogicOper)
+  for (const auto &[key, value]: copyLogicOper)
     sumOper += value;
 
   copyLogicOper = delNull(copyLogicOper);
@@ -87,16 +85,16 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
 
     if (oper == Gates::GateNot || oper == Gates::GateBuf) {
       std::string ver1_name = randomGenerator(levelName);
-      auto        ver1      = levelNamePtr[ver1_name];
+      auto ver1 = levelNamePtr[ver1_name];
 
       // name = d_settings->getLogicOperation(oper).first + "(" + ver1 + ")";
-      name_ptr              = graph->addGate(oper);
+      name_ptr = graph->addGate(oper);
       graph->addEdge(ver1, name_ptr);
     } else {
       std::string ver1_name = randomGenerator(levelName);
       std::string ver2_name = randomGenerator(levelName);
-      VertexPtr   ver1      = levelNamePtr[ver1_name];
-      VertexPtr   ver2      = levelNamePtr[ver2_name];
+      VertexPtr ver1 = levelNamePtr[ver1_name];
+      VertexPtr ver2 = levelNamePtr[ver2_name];
       // name = "(" + ver1 + ") " + d_settings->getLogicOperation(oper).first +
       //        "(" + ver2 + ")";
 
@@ -105,9 +103,9 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
       //                           d_settings->getLogicOperation(oper).first +
       //                           "(" + ver1 + ")";
 
-      name_ptr              = graph->addGate(oper);
+      name_ptr = graph->addGate(oper);
       graph->addEdges({ver1, ver2}, name_ptr);
-      levelName[name_ptr->getName()]    = name_ptr->getLevel();
+      levelName[name_ptr->getName()] = name_ptr->getLevel();
       levelNamePtr[name_ptr->getName()] = name_ptr;
     }
 
@@ -115,13 +113,13 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
       copyLogicOper.erase(oper);
   }
 
-  while ((nameOut.size() > 0)
-         & ((levelName.size() > 0 || i_leaveEmptyOut == false))) {
+  while ((nameOut.size() > 0) &
+         ((levelName.size() > 0 || i_leaveEmptyOut == false))) {
     if (levelName.size() > 0) {
       std::vector<std::string> help;
       maxLvl = maxValueInMap(levelName);
 
-      for (const auto& [key, value] : levelName) {
+      for (const auto &[key, value]: levelName) {
         if (value == maxLvl)
           help.push_back(key);
       }
