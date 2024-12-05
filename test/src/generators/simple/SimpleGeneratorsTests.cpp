@@ -13,10 +13,10 @@
 
 // CNF
 TEST(CnfFromTruthTableTest, EqualWithTheSameParametrs) {
-  auto generator1 = FromTruthTableGenerator(1);
-  auto generator2 = FromTruthTableGenerator(1);
-  auto generator3 = FromTruthTableGenerator(2);
-  auto generator4 = FromTruthTableGenerator(2);
+  FromTruthTableGenerator generator1 = FromTruthTableGenerator(1);
+  FromTruthTableGenerator generator2 = FromTruthTableGenerator(1);
+  FromTruthTableGenerator generator3 = FromTruthTableGenerator(2);
+  FromTruthTableGenerator generator4 = FromTruthTableGenerator(2);
 
   TruthTable table =
       TruthTable{1, 1, std::vector<std::vector<bool>>({{1}, {1}})};
@@ -64,13 +64,13 @@ TEST(GeneratorRandLevelTest, EqualWithTheSameParametrs) {
       {"and", {2, 4, 8}},  {"nand", {2, 4, 8}}, {"or", {2, 8}},
       {"nor", {16, 4, 8}}, {"xor", {2, 8, 4}},  {"xnor", {2, 16, 8}}};
 
-  auto generator1 = RandLevelGenerator(1);
+  RandLevelGenerator generator1 = RandLevelGenerator(1);
   generator1.setGatesInputsInfo(gatesInfo);
-  auto generator2 = RandLevelGenerator(1);
+  RandLevelGenerator generator2 = RandLevelGenerator(1);
   generator2.setGatesInputsInfo(gatesInfo);
-  auto generator3 = RandLevelGenerator(2);
+  RandLevelGenerator generator3 = RandLevelGenerator(2);
   generator3.setGatesInputsInfo(gatesInfo);
-  auto generator4 = RandLevelGenerator(2);
+  RandLevelGenerator generator4 = RandLevelGenerator(2);
   generator4.setGatesInputsInfo(gatesInfo);
 
   std::shared_ptr<OrientedGraph> graphPtr1 =
@@ -104,13 +104,13 @@ TEST(GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
       {"and", {2, 4, 8}},  {"nand", {2, 4, 8}}, {"or", {2, 8}},
       {"nor", {16, 4, 8}}, {"xor", {2, 8, 4}},  {"xnor", {2, 16, 8}}};
 
-  auto generator1 = RandLevelGenerator(1);
+  RandLevelGenerator generator1 = RandLevelGenerator(1);
   generator1.setGatesInputsInfo(gatesInfo);
-  auto generator2 = RandLevelGenerator(1);
+  RandLevelGenerator generator2 = RandLevelGenerator(1);
   generator2.setGatesInputsInfo(gatesInfo);
-  auto generator3 = RandLevelGenerator(2);
+  RandLevelGenerator generator3 = RandLevelGenerator(2);
   generator3.setGatesInputsInfo(gatesInfo);
-  auto generator4 = RandLevelGenerator(2);
+  RandLevelGenerator generator4 = RandLevelGenerator(2);
   generator4.setGatesInputsInfo(gatesInfo);
 
   std::shared_ptr<OrientedGraph> graphPtr1 =
@@ -141,10 +141,10 @@ TEST(GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
 
 // NumOperations
 TEST(GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
-  auto generator1 = NumOperationsGenerator(1);
-  auto generator2 = NumOperationsGenerator(1);
-  auto generator3 = NumOperationsGenerator(2);
-  auto generator4 = NumOperationsGenerator(2);
+  NumOperationsGenerator generator1 = NumOperationsGenerator(1);
+  NumOperationsGenerator generator2 = NumOperationsGenerator(1);
+  NumOperationsGenerator generator3 = NumOperationsGenerator(2);
+  NumOperationsGenerator generator4 = NumOperationsGenerator(2);
 
   std::map<Gates, int32_t> logicOper = {
       {Gates::GateAnd, 2}, {Gates::GateOr, 2}, {Gates::GateNot, 1}};
