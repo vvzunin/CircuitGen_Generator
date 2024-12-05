@@ -212,8 +212,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
 }
 
 void DataBaseGenerator::generateDataBaseRandLevel(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   RandLevelGenerator generator(i_param);
   GraphPtr graph = generator.generatorRandLevel();
 
@@ -228,8 +227,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(
 }
 
 void DataBaseGenerator::generateDataBaseRandLevelExperimental(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   RandLevelGenerator generator(i_param);
 
   auto start = high_resolution_clock::now();
@@ -254,13 +252,11 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
 }
 
 void DataBaseGenerator::generateDataBaseNumOperations(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   NumOperationsGenerator generator(i_param);
 
   std::vector<std::pair<std::string, GraphPtr>> circs;
-  circs.push_back(
-      {"NumOperation", generator.generatorNumOperation()});
+  circs.push_back({"NumOperation", generator.generatorNumOperation()});
 
   for (auto [name, graph]: circs) {
     Circuit c(graph);
@@ -297,8 +293,7 @@ void DataBaseGenerator::generateDataBaseGenetic(
 }
 
 void DataBaseGenerator::generateDataBaseSummator(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorSummator();
 
@@ -313,8 +308,7 @@ void DataBaseGenerator::generateDataBaseSummator(
 }
 
 void DataBaseGenerator::generateDataBaseComparison(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   ComparisonGenerator sg(i_param);
   GraphPtr graph = sg.generatorComparison();
 
@@ -329,8 +323,7 @@ void DataBaseGenerator::generateDataBaseComparison(
 }
 
 void DataBaseGenerator::generateDataBaseEncoder(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   CoderGenerator sg(i_param);
   GraphPtr graph = sg.generatorEncoder();
 
@@ -345,8 +338,7 @@ void DataBaseGenerator::generateDataBaseEncoder(
 }
 
 void DataBaseGenerator::generateDataBaseParity(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   ParityGenerator sg(i_param);
   GraphPtr graph = sg.generatorParity();
 
@@ -361,8 +353,7 @@ void DataBaseGenerator::generateDataBaseParity(
 }
 
 void DataBaseGenerator::generateDataBaseSubtractor(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorSubtractor();
 
@@ -377,8 +368,7 @@ void DataBaseGenerator::generateDataBaseSubtractor(
 }
 
 void DataBaseGenerator::generateDataBaseMultiplexer(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   PlexerGenerator sg(i_param);
   GraphPtr graph = sg.generatorMultiplexer();
 
@@ -393,8 +383,7 @@ void DataBaseGenerator::generateDataBaseMultiplexer(
 }
 
 void DataBaseGenerator::generateDataBaseDemultiplexer(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   PlexerGenerator sg(i_param);
   GraphPtr graph = sg.generatorDemultiplexer();
 
@@ -409,8 +398,7 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
 }
 
 void DataBaseGenerator::generateDataBaseMultiplier(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorMultiplier();
 
@@ -425,8 +413,7 @@ void DataBaseGenerator::generateDataBaseMultiplier(
 }
 
 void DataBaseGenerator::generateDataBaseDecoder(
-    const GenerationParameters& i_param
-) {
+    const GenerationParameters &i_param) {
   CoderGenerator sg(i_param);
   GraphPtr graph = sg.generatorDecoder();
 
@@ -440,8 +427,8 @@ void DataBaseGenerator::generateDataBaseDecoder(
   addDataToReturn(graph);
 }
 
-void DataBaseGenerator::generateDataBaseALU(const GenerationParameters& i_param
-) {
+void DataBaseGenerator::generateDataBaseALU(
+    const GenerationParameters &i_param) {
   ALUGenerator sg(i_param);
   GraphPtr graph = sg.generatorALU();
 

@@ -1,15 +1,16 @@
 ﻿#include <bitset>
 #include "PlexerGenerator.hpp"
 
-PlexerGenerator::PlexerGenerator() : SimpleGenerator() {}
+PlexerGenerator::PlexerGenerator() : SimpleGenerator() {
+}
 
 PlexerGenerator::PlexerGenerator(uint_fast32_t i_seed) :
-  SimpleGenerator(i_seed) {}
+    SimpleGenerator(i_seed) {
+}
 
-PlexerGenerator::PlexerGenerator(
-    const GenerationParameters& i_param
-) :
-  SimpleGenerator(i_param) {}
+PlexerGenerator::PlexerGenerator(const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
+}
 
 GraphPtr PlexerGenerator::generatorMultiplexer(uint32_t i_bits) {
   GraphPtr graph(new OrientedGraph);
@@ -150,12 +151,14 @@ GraphPtr PlexerGenerator::generatorDemultiplexer(uint32_t i_bits) {
   return graph;
 }
 
-GraphPtr PlexerGenerator::generatorMultiplexer(const GenerationParameters &i_param) {
+GraphPtr
+PlexerGenerator::generatorMultiplexer(const GenerationParameters &i_param) {
   int32_t i_bits = i_param.getInputs();
   return generatorMultiplexer(i_bits);
 }
 
-GraphPtr PlexerGenerator::generatorDemultiplexer(const GenerationParameters &i_param) {
+GraphPtr
+PlexerGenerator::generatorDemultiplexer(const GenerationParameters &i_param) {
   int32_t i_bits = i_param.getOutputs();
   return generatorDemultiplexer(i_bits);
 }
@@ -167,5 +170,3 @@ GraphPtr PlexerGenerator::generatorMultiplexer() {
 GraphPtr PlexerGenerator::generatorDemultiplexer() {
   return generatorDemultiplexer(getParameters());
 }
-
-

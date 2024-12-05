@@ -5,9 +5,8 @@ class PlexerGenerator : public SimpleGenerator {
 public:
   PlexerGenerator();
   PlexerGenerator(uint_fast32_t i_seed);
-  PlexerGenerator(const GenerationParameters& i_param);
+  PlexerGenerator(const GenerationParameters &i_param);
 
-  
   /// @brief generatorMultiplexer represents the generation of a combinational
   /// multiplexer circuit. When generating to the standard input vertices,
   /// additional ones are created, which are control inputs in the multiplexer
@@ -29,7 +28,7 @@ public:
   /// @param i_bits The number of bits, or in other words, input vertices
   /// (variables) in the graph.
   /// @return the created OrientedGraph
-  
+
   GraphPtr generatorDemultiplexer(uint32_t i_bits);
 
   GraphPtr generatorMultiplexer(const GenerationParameters &i_param);

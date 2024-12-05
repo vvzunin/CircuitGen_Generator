@@ -1,14 +1,15 @@
 ﻿#include "RandLevelGenerator.hpp"
 
-RandLevelGenerator::RandLevelGenerator() : SimpleGenerator() {}
+RandLevelGenerator::RandLevelGenerator() : SimpleGenerator() {
+}
 
 RandLevelGenerator::RandLevelGenerator(uint_fast32_t i_seed) :
-  SimpleGenerator(i_seed) {}
+    SimpleGenerator(i_seed) {
+}
 
-RandLevelGenerator::RandLevelGenerator(
-    const GenerationParameters& i_param
-) :
-  SimpleGenerator(i_param) {}
+RandLevelGenerator::RandLevelGenerator(const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
+}
 
 GraphPtr RandLevelGenerator::generatorRandLevel(
     uint32_t i_minLevel, uint32_t i_maxLevel, uint32_t i_minElements,
@@ -234,8 +235,8 @@ GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
   return graph;
 }
 
-
-GraphPtr RandLevelGenerator::generatorRandLevel(const GenerationParameters &i_param) {
+GraphPtr
+RandLevelGenerator::generatorRandLevel(const GenerationParameters &i_param) {
   return generatorRandLevel(i_param.getRandLevel().getMinLevel(),
                             i_param.getRandLevel().getMaxLevel(),
                             i_param.getRandLevel().getMinElements(),
@@ -246,10 +247,11 @@ GraphPtr RandLevelGenerator::generatorRandLevel(const GenerationParameters &i_pa
 GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
     const GenerationParameters &i_param) {
   return generatorRandLevelExperimental(i_param.getRandLevel().getMinLevel(),
-                            i_param.getRandLevel().getMaxLevel(),
-                            i_param.getRandLevel().getMinElements(),
-                            i_param.getRandLevel().getMaxElements(),
-                            i_param.getInputs(), i_param.getOutputs());
+                                        i_param.getRandLevel().getMaxLevel(),
+                                        i_param.getRandLevel().getMinElements(),
+                                        i_param.getRandLevel().getMaxElements(),
+                                        i_param.getInputs(),
+                                        i_param.getOutputs());
 }
 
 GraphPtr RandLevelGenerator::generatorRandLevel() {

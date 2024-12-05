@@ -2,15 +2,15 @@
 
 #include "CoderGenerator.hpp"
 
-CoderGenerator::CoderGenerator() : SimpleGenerator() {}
+CoderGenerator::CoderGenerator() : SimpleGenerator() {
+}
 
-CoderGenerator::CoderGenerator(uint_fast32_t i_seed) :
-  SimpleGenerator(i_seed) {}
+CoderGenerator::CoderGenerator(uint_fast32_t i_seed) : SimpleGenerator(i_seed) {
+}
 
-CoderGenerator::CoderGenerator(
-    const GenerationParameters& i_param
-) :
-  SimpleGenerator(i_param) {}
+CoderGenerator::CoderGenerator(const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
+}
 
 GraphPtr CoderGenerator::generatorEncoder(uint32_t i_bits) {
   GraphPtr graph(new OrientedGraph);

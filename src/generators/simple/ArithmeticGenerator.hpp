@@ -5,7 +5,7 @@ class ArithmeticGenerator : public SimpleGenerator {
 public:
   ArithmeticGenerator();
   ArithmeticGenerator(uint_fast32_t i_seed);
-  ArithmeticGenerator(const GenerationParameters& i_param);
+  ArithmeticGenerator(const GenerationParameters &i_param);
 
   /// @brief generatorSummator represents the generation of a combinational
   /// adder circuit. It is based on the arithmetic operation of addition in the
@@ -25,12 +25,8 @@ public:
   /// logical vertices of type NOT to the graph to select a negative sum
   /// @return the created OrientedGraph
 
-  GraphPtr generatorSummator(
-      uint32_t i_bits,
-      bool     i_overflowIn,
-      bool     i_overflowOut,
-      bool     i_minus
-  );
+  GraphPtr generatorSummator(uint32_t i_bits, bool i_overflowIn,
+                             bool i_overflowOut, bool i_minus);
 
   /// @brief generatorComparison represents the generation of a combinational
   /// comparator circuit. It is able to compare the submitted data in three
@@ -51,13 +47,8 @@ public:
   /// numbers.
   /// @return the created OrientedGraph
 
-
-  GraphPtr generatorSubtractor(
-      uint32_t i_bits,
-      bool     i_overflowIn,
-      bool     i_overflowOut,
-      bool     i_sub
-  );
+  GraphPtr generatorSubtractor(uint32_t i_bits, bool i_overflowIn,
+                               bool i_overflowOut, bool i_sub);
 
   GraphPtr generatorMultiplier(uint32_t i_bits);
 

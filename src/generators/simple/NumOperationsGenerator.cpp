@@ -12,33 +12,36 @@ namespace {
 /// @note The function assumes that the map values are of type int32_t
 /// @}
 template<typename T>
-int32_t maxValueInMap(const std::map<T, int32_t>& i_map) {
+int32_t maxValueInMap(const std::map<T, int32_t> &i_map) {
   if (i_map.size() == 0) {
     return -1;
   }
   int32_t res = (*i_map.begin()).second;
 
-  for (const auto& [key, value] : i_map) {
+  for (const auto &[key, value]: i_map) {
     res = std::max(res, value);
   }
   return res;
 }
 
 // namespace end
-}  // namespace
+} // namespace
 
-NumOperationsGenerator::NumOperationsGenerator() : SimpleGenerator() {}
+NumOperationsGenerator::NumOperationsGenerator() : SimpleGenerator() {
+}
 
 NumOperationsGenerator::NumOperationsGenerator(uint_fast32_t i_seed) :
-  SimpleGenerator(i_seed) {}
+    SimpleGenerator(i_seed) {
+}
 
-NumOperationsGenerator::NumOperationsGenerator(const GenerationParameters& i_param) :
-  SimpleGenerator(i_param) {}
+NumOperationsGenerator::NumOperationsGenerator(
+    const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
+}
 
 GraphPtr NumOperationsGenerator::generatorNumOperation(
-    uint32_t i_input, uint32_t i_output,
-                                        std::map<Gates, int32_t> i_logicOper,
-                                        bool i_leaveEmptyOut) {
+    uint32_t i_input, uint32_t i_output, std::map<Gates, int32_t> i_logicOper,
+    bool i_leaveEmptyOut) {
   int32_t sumOper = 0, maxLvl;
   std::string name;
   VertexPtr name_ptr;
@@ -145,14 +148,11 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
 
 GraphPtr NumOperationsGenerator::generatorNumOperation(
     const GenerationParameters &i_param) {
-    return generatorNumOperation(
-                           i_param.getInputs(), i_param.getOutputs(),
-                           i_param.getNumOperations().getLogicOpers(),
-                           i_param.getNumOperations().getLeaveEmptyOut());
+  return generatorNumOperation(i_param.getInputs(), i_param.getOutputs(),
+                               i_param.getNumOperations().getLogicOpers(),
+                               i_param.getNumOperations().getLeaveEmptyOut());
 }
 
 GraphPtr NumOperationsGenerator::generatorNumOperation() {
   return generatorNumOperation(getParameters());
 }
-
-

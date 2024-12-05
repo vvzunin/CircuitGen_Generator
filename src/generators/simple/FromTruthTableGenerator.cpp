@@ -1,19 +1,20 @@
 ﻿#include "FromTruthTableGenerator.hpp"
 #include <baseStructures/Parser.hpp>
 
-FromTruthTableGenerator::FromTruthTableGenerator() : SimpleGenerator() {}
+FromTruthTableGenerator::FromTruthTableGenerator() : SimpleGenerator() {
+}
 
 FromTruthTableGenerator::FromTruthTableGenerator(uint_fast32_t i_seed) :
-  SimpleGenerator(i_seed) {}
+    SimpleGenerator(i_seed) {
+}
 
 FromTruthTableGenerator::FromTruthTableGenerator(
-    const GenerationParameters& i_param
-) :
-  SimpleGenerator(i_param) {}
-
+    const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
+}
 
 GraphPtr FromTruthTableGenerator::cnfFromTruthTable(const TruthTable &i_table,
-                                             bool i_tp) {
+                                                    bool i_tp) {
   std::vector<std::string> fun;
   fun.reserve(i_table.getOutput());
   std::vector<std::vector<bool>> bin = i_table.convToBinary();
@@ -114,7 +115,8 @@ GraphPtr FromTruthTableGenerator::cnfFromTruthTable(const TruthTable &i_table,
 
   return graph;
 }
-GraphPtr FromTruthTableGenerator::zhegalkinFromTruthTable(const TruthTable &i_table) {
+GraphPtr
+FromTruthTableGenerator::zhegalkinFromTruthTable(const TruthTable &i_table) {
   int32_t num_inputs = i_table.getInput();
   int32_t num_outputs = i_table.getOutput();
 

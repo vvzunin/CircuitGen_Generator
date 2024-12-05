@@ -5,8 +5,7 @@ class CoderGenerator : public SimpleGenerator {
 public:
   CoderGenerator();
   CoderGenerator(uint_fast32_t i_seed);
-  CoderGenerator(const GenerationParameters& i_param);
-
+  CoderGenerator(const GenerationParameters &i_param);
 
   /// @brief generatorEncoder represents the generation of a combinational
   /// scheme of a standard binary encoder. The number of incoming bits (n) must

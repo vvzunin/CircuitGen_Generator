@@ -1,16 +1,19 @@
 ﻿#include "ComparisonGenerator.hpp"
 
-ComparisonGenerator::ComparisonGenerator() : SimpleGenerator() {}
+ComparisonGenerator::ComparisonGenerator() : SimpleGenerator() {
+}
 
 ComparisonGenerator::ComparisonGenerator(uint_fast32_t i_seed) :
-  SimpleGenerator(i_seed) {}
+    SimpleGenerator(i_seed) {
+}
 
-ComparisonGenerator::ComparisonGenerator(const GenerationParameters& i_param) :
-  SimpleGenerator(i_param) {}
+ComparisonGenerator::ComparisonGenerator(const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
+}
 
 GraphPtr ComparisonGenerator::generatorComparison(uint32_t i_bits,
-                                                  bool compare0,
-                                               bool compare1, bool compare2) {
+                                                  bool compare0, bool compare1,
+                                                  bool compare2) {
   GraphPtr graph(new OrientedGraph);
   VertexPtr prev_p0_;
   VertexPtr prev_p1_;
@@ -115,8 +118,8 @@ GraphPtr ComparisonGenerator::generatorComparison(uint32_t i_bits,
   return graph;
 }
 
-
-GraphPtr ComparisonGenerator::generatorComparison(const GenerationParameters &i_param) {
+GraphPtr
+ComparisonGenerator::generatorComparison(const GenerationParameters &i_param) {
   int32_t i_bits = i_param.getInputs();
   bool compare0 = i_param.getComparison().getCompare0();
   bool compare1 = i_param.getComparison().getCompare1();
@@ -127,4 +130,3 @@ GraphPtr ComparisonGenerator::generatorComparison(const GenerationParameters &i_
 GraphPtr ComparisonGenerator::generatorComparison() {
   return generatorComparison(getParameters());
 }
-

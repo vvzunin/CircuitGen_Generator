@@ -24,13 +24,15 @@
     mtx.unlock(); \
   })
 
-ALUGenerator::ALUGenerator() : SimpleGenerator() {}
+ALUGenerator::ALUGenerator() : SimpleGenerator() {
+}
 
-ALUGenerator::ALUGenerator(uint_fast32_t i_seed) :
-  SimpleGenerator(i_seed) {}
+ALUGenerator::ALUGenerator(uint_fast32_t i_seed) : SimpleGenerator(i_seed) {
+}
 
-ALUGenerator::ALUGenerator(const GenerationParameters& i_param)
- : SimpleGenerator(i_param) {}
+ALUGenerator::ALUGenerator(const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
+}
 
 GraphPtr ALUGenerator::generatorALU(
     int32_t i_bits, int32_t i_outbits, bool ALL, bool SUM, bool SUB, bool NSUM,
@@ -425,74 +427,55 @@ GraphPtr ALUGenerator::generatorALU(
   return graph;
 }
 
-GraphPtr ALUGenerator::generatorSummator(
-    uint32_t i_bits,
-    bool     i_overflowIn,
-    bool     i_overflowOut,
-    bool     i_minus
-) {
+GraphPtr ALUGenerator::generatorSummator(uint32_t i_bits, bool i_overflowIn,
+                                         bool i_overflowOut, bool i_minus) {
   return ArithmeticGenerator(getParameters())
       .generatorSummator(i_bits, i_overflowIn, i_overflowOut, i_minus);
 }
 
-GraphPtr ALUGenerator::generatorSubtractor(
-    uint32_t i_bits,
-    bool     i_overflowIn,
-    bool     i_overflowOut,
-    bool     i_sub
-) {
+GraphPtr ALUGenerator::generatorSubtractor(uint32_t i_bits, bool i_overflowIn,
+                                           bool i_overflowOut, bool i_sub) {
   return ArithmeticGenerator(getParameters())
       .generatorSubtractor(i_bits, i_overflowIn, i_overflowOut, i_sub);
 }
 
 GraphPtr ALUGenerator::generatorMultiplier(uint32_t i_bits) {
-  return ArithmeticGenerator(getParameters())
-      .generatorMultiplier(i_bits);
+  return ArithmeticGenerator(getParameters()).generatorMultiplier(i_bits);
 }
 
-GraphPtr ALUGenerator::generatorComparison(
-    uint32_t i_bits,
-    bool     compare0,
-    bool     compare1,
-    bool     compare2
-) {
+GraphPtr ALUGenerator::generatorComparison(uint32_t i_bits, bool compare0,
+                                           bool compare1, bool compare2) {
   return ComparisonGenerator(getParameters())
       .generatorComparison(i_bits, compare0, compare1, compare2);
 }
 
 GraphPtr ALUGenerator::generatorMultiplexer(uint32_t i_bits) {
-  return PlexerGenerator(getParameters())
-      .generatorMultiplexer(i_bits);
+  return PlexerGenerator(getParameters()).generatorMultiplexer(i_bits);
 }
 
-GraphPtr ALUGenerator::cnfFromTruthTable(const TruthTable& i_table, bool i_tp) {
+GraphPtr ALUGenerator::cnfFromTruthTable(const TruthTable &i_table, bool i_tp) {
   return FromTruthTableGenerator(getParameters())
       .cnfFromTruthTable(i_table, i_tp);
 }
 
-GraphPtr ALUGenerator::zhegalkinFromTruthTable(const TruthTable& i_table) {
+GraphPtr ALUGenerator::zhegalkinFromTruthTable(const TruthTable &i_table) {
   return FromTruthTableGenerator(getParameters())
       .zhegalkinFromTruthTable(i_table);
 }
 
-GraphPtr ALUGenerator::generatorRandLevel(
-    uint32_t i_minLevel,
-    uint32_t i_maxLevel,
-    uint32_t i_minElements,
-    uint32_t i_maxElements,
-    uint32_t i_inputs,
-    uint32_t i_outputs
-) {
+GraphPtr
+ALUGenerator::generatorRandLevel(uint32_t i_minLevel, uint32_t i_maxLevel,
+                                 uint32_t i_minElements, uint32_t i_maxElements,
+                                 uint32_t i_inputs, uint32_t i_outputs) {
   return RandLevelGenerator(getParameters())
-      .generatorRandLevel(i_minLevel, i_maxLevel, i_minElements, i_maxElements, i_inputs, i_outputs);
+      .generatorRandLevel(i_minLevel, i_maxLevel, i_minElements, i_maxElements,
+                          i_inputs, i_outputs);
 }
 
-GraphPtr ALUGenerator::generatorNumOperation(
-    uint32_t                 i_input,
-    uint32_t                 i_output,
-    std::map<Gates, int32_t> i_logicOper,
-    bool                     i_leaveEmptyOut
-) {
+GraphPtr
+ALUGenerator::generatorNumOperation(uint32_t i_input, uint32_t i_output,
+                                    std::map<Gates, int32_t> i_logicOper,
+                                    bool i_leaveEmptyOut) {
   return NumOperationsGenerator(getParameters())
       .generatorNumOperation(i_input, i_output, i_logicOper, i_leaveEmptyOut);
 }
@@ -516,4 +499,3 @@ GraphPtr ALUGenerator::generatorALU(const GenerationParameters &i_param) {
 GraphPtr ALUGenerator::generatorALU() {
   return generatorALU(getParameters());
 }
-

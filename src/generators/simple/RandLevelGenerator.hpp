@@ -5,7 +5,7 @@ class RandLevelGenerator : public SimpleGenerator {
 public:
   RandLevelGenerator();
   RandLevelGenerator(uint_fast32_t i_seed);
-  RandLevelGenerator(const GenerationParameters& i_param);
+  RandLevelGenerator(const GenerationParameters &i_param);
 
   /// @brief generatorRandLevel creates an oriented graph (represented by
   /// an OrientedGraph object) with a given level of complexity and number
@@ -28,14 +28,9 @@ public:
   /// @param i_inputs The number of inputs to the graph
   /// @param i_outputs The number of exits from the graph
 
-  GraphPtr generatorRandLevel(
-      uint32_t i_minLevel,
-      uint32_t i_maxLevel,
-      uint32_t i_minElements,
-      uint32_t i_maxElements,
-      uint32_t i_inputs,
-      uint32_t i_outputs
-  );
+  GraphPtr generatorRandLevel(uint32_t i_minLevel, uint32_t i_maxLevel,
+                              uint32_t i_minElements, uint32_t i_maxElements,
+                              uint32_t i_inputs, uint32_t i_outputs);
 
   GraphPtr generatorRandLevel(const GenerationParameters &i_param);
 
@@ -73,16 +68,10 @@ public:
   /// maximum or the minimum number of elements is greater than the maximum,
   /// the method throws an exception std::invalid_argument.
 
-  GraphPtr generatorRandLevelExperimental(
-        uint32_t i_minLevel,
-        uint32_t i_maxLevel,
-        uint32_t i_minElements,
-        uint32_t i_maxElements,
-        uint32_t i_inputs,
-        uint32_t i_outputs
-    );
-
-
+  GraphPtr
+  generatorRandLevelExperimental(uint32_t i_minLevel, uint32_t i_maxLevel,
+                                 uint32_t i_minElements, uint32_t i_maxElements,
+                                 uint32_t i_inputs, uint32_t i_outputs);
 
   GraphPtr generatorRandLevelExperimental(const GenerationParameters &i_param);
 

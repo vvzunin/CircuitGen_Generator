@@ -1,16 +1,20 @@
 ﻿#include "ArithmeticGenerator.hpp"
 
-ArithmeticGenerator::ArithmeticGenerator() : SimpleGenerator() {}
+ArithmeticGenerator::ArithmeticGenerator() : SimpleGenerator() {
+}
 
 ArithmeticGenerator::ArithmeticGenerator(uint_fast32_t i_seed) :
-  SimpleGenerator(i_seed) {}
+    SimpleGenerator(i_seed) {
+}
 
-ArithmeticGenerator::ArithmeticGenerator(const GenerationParameters& i_param) :
-  SimpleGenerator(i_param) {}
+ArithmeticGenerator::ArithmeticGenerator(const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
+}
 
 GraphPtr ArithmeticGenerator::generatorSummator(uint32_t i_bits,
                                                 bool i_overflowIn,
-                                             bool i_overflowOut, bool i_minus) {
+                                                bool i_overflowOut,
+                                                bool i_minus) {
   GraphPtr graph(new OrientedGraph);
   std::string str_x;
   std::string str_y;
@@ -97,10 +101,10 @@ GraphPtr ArithmeticGenerator::generatorSummator(uint32_t i_bits,
   return graph;
 }
 
-
 GraphPtr ArithmeticGenerator::generatorSubtractor(uint32_t i_bits,
-                                               bool i_overflowIn,
-                                               bool i_overflowOut, bool i_sub) {
+                                                  bool i_overflowIn,
+                                                  bool i_overflowOut,
+                                                  bool i_sub) {
   GraphPtr graph(new OrientedGraph);
   VertexPtr const_1;
 
@@ -373,7 +377,8 @@ GraphPtr ArithmeticGenerator::generatorMultiplier(uint32_t i_bits) {
   return graph;
 }
 
-GraphPtr ArithmeticGenerator::generatorSummator(const GenerationParameters &i_param) {
+GraphPtr
+ArithmeticGenerator::generatorSummator(const GenerationParameters &i_param) {
   int32_t bits = i_param.getInputs();
   bool overflowIn = i_param.getSummator().getOverFlowIn();
   bool overflowOut = i_param.getSummator().getOverFlowOut();
@@ -381,14 +386,16 @@ GraphPtr ArithmeticGenerator::generatorSummator(const GenerationParameters &i_pa
   return generatorSummator(bits, overflowIn, overflowOut, minus);
 }
 
-GraphPtr ArithmeticGenerator::generatorSubtractor(const GenerationParameters &i_param) {
-  return generatorSubtractor(
-      i_param.getInputs(), i_param.getSubtractor().getOverFlowIn(),
-      i_param.getSubtractor().getOverFlowOut(),
-      i_param.getSubtractor().getSub());
+GraphPtr
+ArithmeticGenerator::generatorSubtractor(const GenerationParameters &i_param) {
+  return generatorSubtractor(i_param.getInputs(),
+                             i_param.getSubtractor().getOverFlowIn(),
+                             i_param.getSubtractor().getOverFlowOut(),
+                             i_param.getSubtractor().getSub());
 }
 
-GraphPtr ArithmeticGenerator::generatorMultiplier(const GenerationParameters &i_param) {
+GraphPtr
+ArithmeticGenerator::generatorMultiplier(const GenerationParameters &i_param) {
   return generatorMultiplier(i_param.getInputs());
 }
 

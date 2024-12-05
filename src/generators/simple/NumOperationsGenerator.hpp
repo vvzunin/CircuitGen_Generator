@@ -6,8 +6,7 @@ public:
   NumOperationsGenerator();
   NumOperationsGenerator(uint_fast32_t i_seed);
 
-
-  NumOperationsGenerator(const GenerationParameters& i_param);
+  NumOperationsGenerator(const GenerationParameters &i_param);
 
   /// @todo: Description algorithm
   /// @brief generatorNumOperation
@@ -22,12 +21,9 @@ public:
   /// output vertices will remain empty, if false, they will be deleted
   /// @return the created OrientedGraph
 
-  GraphPtr generatorNumOperation(
-      uint32_t                 i_input,
-      uint32_t                 i_output,
-      std::map<Gates, int32_t> i_logicOper,
-      bool                     i_leaveEmptyOut = true
-  );
+  GraphPtr generatorNumOperation(uint32_t i_input, uint32_t i_output,
+                                 std::map<Gates, int32_t> i_logicOper,
+                                 bool i_leaveEmptyOut = true);
 
   GraphPtr generatorNumOperation(const GenerationParameters &i_param);
   GraphPtr generatorNumOperation();

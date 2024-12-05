@@ -6,7 +6,7 @@ class FromTruthTableGenerator : public SimpleGenerator {
 public:
   FromTruthTableGenerator();
   FromTruthTableGenerator(uint_fast32_t i_seed);
-  FromTruthTableGenerator(const GenerationParameters& i_param);
+  FromTruthTableGenerator(const GenerationParameters &i_param);
 
   /// @brief cnfFromTruthTable accepts a truth table as an input in the form of
   /// a Truth Table object and returns a vector of rows representing an
@@ -32,6 +32,6 @@ public:
   /// // @todo: Examples
   /// @endcode
 
-  GraphPtr cnfFromTruthTable(const TruthTable& i_table, bool i_tp = true);
-  GraphPtr zhegalkinFromTruthTable(const TruthTable& i_table);
+  GraphPtr cnfFromTruthTable(const TruthTable &i_table, bool i_tp = true);
+  GraphPtr zhegalkinFromTruthTable(const TruthTable &i_table);
 };

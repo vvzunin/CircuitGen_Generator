@@ -1,12 +1,15 @@
 ﻿#include "ParityGenerator.hpp"
 
-ParityGenerator::ParityGenerator() : SimpleGenerator() {}
+ParityGenerator::ParityGenerator() : SimpleGenerator() {
+}
 
 ParityGenerator::ParityGenerator(uint_fast32_t i_seed) :
-  SimpleGenerator(i_seed) {}
+    SimpleGenerator(i_seed) {
+}
 
-ParityGenerator::ParityGenerator(const GenerationParameters& i_param) :
-  SimpleGenerator(i_param) {}
+ParityGenerator::ParityGenerator(const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
+}
 
 GraphPtr ParityGenerator::generatorParity(uint32_t i_bits) {
   // i_bits - количество входов
@@ -61,4 +64,3 @@ GraphPtr ParityGenerator::generatorParity(const GenerationParameters &i_param) {
 GraphPtr ParityGenerator::generatorParity() {
   return generatorParity(getParameters());
 }
-

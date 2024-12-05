@@ -5,7 +5,7 @@ class ParityGenerator : public SimpleGenerator {
 public:
   ParityGenerator();
   ParityGenerator(uint_fast32_t i_seed);
-  ParityGenerator(const GenerationParameters& i_param);
+  ParityGenerator(const GenerationParameters &i_param);
 
   /// @brief generatorParity represents the generation of a combinational parity
   /// check scheme. The graph is based on the logical XOR operation, which is
