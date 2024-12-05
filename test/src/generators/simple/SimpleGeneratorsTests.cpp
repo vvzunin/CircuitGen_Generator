@@ -221,8 +221,8 @@ TEST(GeneratorNumOperationsTest, EqualWithTheSameParametrs) {
 }
 
 TEST(GeneratorParityTest, EqualToEachOther) {
-  ParityGenerators S_gen_1(1);
-  ParityGenerators S_gen_2(1);
+  ParityGenerator S_gen_1(1);
+  ParityGenerator S_gen_2(1);
   GraphPtr graph_1 = S_gen_1.generatorParity(2);
   GraphPtr graph_2 = S_gen_2.generatorParity(2);
   std::string str1 = graph_1->calculateHash();
