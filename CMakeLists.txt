@@ -63,7 +63,6 @@ set(SOURCES
   src/circuit/Circuit.cpp
   src/database/DataBaseGenerator.cpp
   src/database/DataBaseGeneratorParameters.cpp
-  src/generators/simple/SimpleGenerators.cpp
   src/generators/Genetic/GeneticParameters.cpp
   src/generators/Genetic/GenGenerator.hpp
   src/generators/Genetic/Chromosome.hpp
@@ -81,6 +80,16 @@ set(SOURCES
   src/generators/Genetic/Mutations/MutationParameters.cpp
   src/generators/Genetic/Mutations/MutationTruthTable.cpp
   src/settings/Settings.cpp
+  src/generators/simple/SimpleGenerator.cpp
+  src/generators/simple/ArithmeticGenerator.cpp
+  src/generators/simple/FromTruthTableGenerator.cpp
+  src/generators/simple/CoderGenerator.cpp
+  src/generators/simple/RandLevelGenerator.cpp
+  src/generators/simple/PlexerGenerator.cpp
+  src/generators/simple/ALUGenerator.cpp
+  src/generators/simple/ComparisonGenerator.cpp
+  src/generators/simple/NumOperationsGenerator.cpp
+  src/generators/simple/ParityGenerator.cpp
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 
