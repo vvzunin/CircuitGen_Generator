@@ -1,4 +1,4 @@
-﻿#include <limits.h>
+﻿#include <limits.h> // INT_MAX
 
 #include "SimpleGenerator.hpp"
 #include <additional/AuxiliaryMethods.hpp>
@@ -12,13 +12,13 @@ SimpleGenerator::SimpleGenerator(uint_fast32_t i_seed) {
 }
 
 SimpleGenerator::SimpleGenerator(const GenerationParameters &i_param) :
-    d_parameters(std::make_shared<GenerationParameters>(i_param)) {
+    d_parameters(&i_param) {
   d_randGenerator.setSeed(i_param.getSeed());
   setGatesInputsInfo(i_param.getGatesInputsInfo());
 }
 
-GenerationParameters &SimpleGenerator::getParameters() const {
-  return *d_parameters.get();
+const GenerationParameters &SimpleGenerator::getParameters() const {
+  return *d_parameters;
 }
 
 void SimpleGenerator::setGatesInputsInfo(
@@ -42,6 +42,7 @@ GatesInfo SimpleGenerator::getGatesInputsInfo() const {
   return d_gatesInputsInfo;
 }
 
+#if FALSE
 int32_t SimpleGenerator::getRangomAndNumber() {
   return d_gatesInputsInfo[Gates::GateAnd][d_randGenerator.getRandInt(
       0, d_gatesInputsInfo[Gates::GateAnd].size())];
@@ -71,6 +72,7 @@ int32_t SimpleGenerator::getRangomXnorNumber() {
   return d_gatesInputsInfo[Gates::GateXnor][d_randGenerator.getRandInt(
       0, d_gatesInputsInfo[Gates::GateXnor].size())];
 }
+#endif
 
 std::pair<Gates, int32_t>
 SimpleGenerator::getRandomElement(const GatesInfo &i_info) {

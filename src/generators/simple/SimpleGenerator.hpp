@@ -50,7 +50,7 @@ public:
   GatesInfo getGatesInputsInfo() const;
 
 protected:
-  GenerationParameters &getParameters() const;
+  const GenerationParameters &getParameters() const;
 
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
   std::map<Gates, int32_t> delNull(std::map<Gates, int32_t> i_copyLogicOper);
@@ -67,6 +67,8 @@ protected:
 
   std::pair<Gates, int32_t> getRandomElement(const GatesInfo &i_info);
   std::pair<Gates, int32_t> getRandomElement(uint32_t i_gatesLimit);
+
+#if FALSE
 
   /// @brief getRangomAndNumber The getRangomAndNumber method returns a random
   /// value from the list of possible input ports for the "AND" operator.
@@ -116,11 +118,13 @@ protected:
 
   int32_t getRangomXnorNumber();
 
+#endif
+
   GatesInfo d_gatesInputsInfo;
   RandomGeneratorWithSeed d_randGenerator;
   int32_t d_maxGateNumber = 0;
   int32_t d_minGateNumber = 0;
 
 private:
-  std::shared_ptr<GenerationParameters> d_parameters;
+  const GenerationParameters *d_parameters = nullptr;
 };
