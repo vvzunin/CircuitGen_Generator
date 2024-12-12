@@ -226,7 +226,16 @@ var hierarchy =
     [ "el::Loggers::ScopedRemoveFlag", "classel_1_1Loggers_1_1ScopedRemoveFlag.html", null ],
     [ "SelectionParameters", "classSelectionParameters.html", null ],
     [ "detail::serializer< BasicJsonType >", "classdetail_1_1serializer.html", null ],
-    [ "SimpleGenerators", "classSimpleGenerators.html", null ],
+    [ "SimpleGenerator", "classSimpleGenerator.html", [
+      [ "ALUGenerator", "classALUGenerator.html", null ],
+      [ "ArithmeticGenerator", "classArithmeticGenerator.html", null ],
+      [ "CoderGenerator", "classCoderGenerator.html", null ],
+      [ "ComparisonGenerator", "classComparisonGenerator.html", null ],
+      [ "FromTruthTableGenerator", "classFromTruthTableGenerator.html", null ],
+      [ "NumOperationsGenerator", "classNumOperationsGenerator.html", null ],
+      [ "ParityGenerator", "classParityGenerator.html", null ],
+      [ "PlexerGenerator", "classPlexerGenerator.html", null ]
+    ] ],
     [ "detail::span_input_adapter", "classdetail_1_1span__input__adapter.html", null ],
     [ "detail::static_const< T >", "structdetail_1_1static__const.html", null ],
     [ "el::base::StaticClass", "classel_1_1base_1_1StaticClass.html", [

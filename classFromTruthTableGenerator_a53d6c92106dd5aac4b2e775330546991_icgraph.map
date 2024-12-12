@@ -1,0 +1,8 @@
+<map id="FromTruthTableGenerator::zhegalkinFromTruthTable" name="FromTruthTableGenerator::zhegalkinFromTruthTable">
+<area shape="rect" id="node1" title=" " alt="" coords="973,46,1165,87"/>
+<area shape="rect" id="node2" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="429,5,660,61"/>
+<area shape="rect" id="node4" href="$classALUGenerator.html#af4e759cb6bc2c74efafbb54b312a3366" title=" " alt="" coords="708,75,925,117"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,46,164,87"/>
+<area shape="rect" id="node5" href="$classALUGenerator.html#af65a400ed2efb31ea199e77bcfcaa267" title="generatorALU represents the generation of a combinational circuit of an ALU (Arithmetic Logic Unit)." alt="" coords="439,85,650,112"/>
+<area shape="rect" id="node6" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="212,75,381,117"/>
+</map>

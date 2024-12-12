@@ -1,10 +1,8 @@
 <map id="GenerationParameters::getOutputs" name="GenerationParameters::getOutputs">
-<area shape="rect" id="node1" title=" " alt="" coords="559,181,727,223"/>
-<area shape="rect" id="node2" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
-<area shape="rect" id="node4" href="$classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,71,479,112"/>
-<area shape="rect" id="node5" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,137,477,193"/>
-<area shape="rect" id="node6" href="$classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,217,484,259"/>
-<area shape="rect" id="node7" href="$classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,283,467,324"/>
-<area shape="rect" id="node8" href="$classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,348,511,389"/>
-<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,181,164,223"/>
+<area shape="rect" id="node1" title=" " alt="" coords="491,107,659,149"/>
+<area shape="rect" id="node2" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="212,5,443,61"/>
+<area shape="rect" id="node4" href="$classALUGenerator.html#ae77617c9d661a13e2992fa081a4e49bc" title=" " alt="" coords="222,85,433,112"/>
+<area shape="rect" id="node5" href="$classPlexerGenerator.html#adb116b755b2f8565190cf532e5762e5c" title=" " alt="" coords="228,137,427,178"/>
+<area shape="rect" id="node6" href="$classNumOperationsGenerator.html#a7133adcd10250fcd16f1d8e8a33bbcef" title=" " alt="" coords="233,202,422,243"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,13,164,54"/>
 </map>

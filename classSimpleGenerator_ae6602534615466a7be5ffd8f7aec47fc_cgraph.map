@@ -1,0 +1,7 @@
+<map id="SimpleGenerator::SimpleGenerator" name="SimpleGenerator::SimpleGenerator">
+<area shape="rect" id="node1" title=" " alt="" coords="5,111,256,138"/>
+<area shape="rect" id="node2" href="$classGenerationParameters.html#a1f1a65d45fc7335c144794305a34a7f2" title=" " alt="" coords="321,5,489,47"/>
+<area shape="rect" id="node3" href="$classGenerationParameters.html#a07806a196e5976fce356ff2f3d91f822" title=" " alt="" coords="321,71,489,112"/>
+<area shape="rect" id="node4" href="$classSimpleGenerator.html#a9ec97636c4a57f2723b4d37d4305a28f" title="setGatesInputsInfo It is designed to set information about the inputs for various logic gates." alt="" coords="306,136,505,177"/>
+<area shape="rect" id="node5" href="$classRandomGeneratorWithSeed.html#a7600f3ce0a0d651e7fe28695db1d59b7" title=" " alt="" coords="304,201,507,243"/>
+</map>

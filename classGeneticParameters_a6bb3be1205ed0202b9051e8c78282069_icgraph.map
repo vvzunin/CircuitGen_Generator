@@ -1,6 +1,9 @@
 <map id="GeneticParameters::getOutputs" name="GeneticParameters::getOutputs">
-<area shape="rect" id="node1" title="getOutputs Get the number of outputs" alt="" coords="472,23,627,65"/>
-<area shape="rect" id="node2" href="$classTruthTable.html#a179439e404e050f49b58df88396da9ee" title="generateTable The method generates a truth table for a combinational circuit with a given probability..." alt="" coords="216,5,424,32"/>
-<area shape="rect" id="node4" href="$GeneticParametersTests_8cpp.html#aa0e460ba9f56d8ac40a653df7c3ee379" title=" " alt="" coords="293,56,347,83"/>
-<area shape="rect" id="node3" href="$classTruthTable.html#a364ede1151c4d025c889d2a89d6404cc" title=" " alt="" coords="5,5,168,32"/>
+<area shape="rect" id="node1" title="getOutputs Get the number of outputs" alt="" coords="944,56,1099,97"/>
+<area shape="rect" id="node2" href="$classTruthTable.html#a179439e404e050f49b58df88396da9ee" title="generateTable The method generates a truth table for a combinational circuit with a given probability..." alt="" coords="688,38,896,65"/>
+<area shape="rect" id="node7" href="$GeneticParametersTests_8cpp.html#aa0e460ba9f56d8ac40a653df7c3ee379" title=" " alt="" coords="765,89,819,115"/>
+<area shape="rect" id="node3" href="$classALUGenerator.html#af65a400ed2efb31ea199e77bcfcaa267" title="generatorALU represents the generation of a combinational circuit of an ALU (Arithmetic Logic Unit)." alt="" coords="429,13,640,39"/>
+<area shape="rect" id="node6" href="$classTruthTable.html#a364ede1151c4d025c889d2a89d6404cc" title=" " alt="" coords="453,63,616,90"/>
+<area shape="rect" id="node4" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="212,5,381,47"/>
+<area shape="rect" id="node5" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,5,164,47"/>
 </map>

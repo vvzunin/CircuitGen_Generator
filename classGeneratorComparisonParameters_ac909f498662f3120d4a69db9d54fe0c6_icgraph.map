@@ -1,5 +1,4 @@
 <map id="GeneratorComparisonParameters::getCompare1" name="GeneratorComparisonParameters::getCompare1">
-<area shape="rect" id="node1" title=" " alt="" coords="481,5,720,47"/>
-<area shape="rect" id="node2" href="$classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="212,5,433,47"/>
-<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,5,164,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="224,5,463,47"/>
+<area shape="rect" id="node2" href="$classComparisonGenerator.html#a0a9c8ac9ccbb245c9ebcc82b373acf43" title=" " alt="" coords="5,5,176,47"/>
 </map>

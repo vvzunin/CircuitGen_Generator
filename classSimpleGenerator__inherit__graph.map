@@ -1,0 +1,11 @@
+<map id="SimpleGenerator" name="SimpleGenerator">
+<area shape="rect" id="node1" title=" " alt="" coords="744,5,920,288"/>
+<area shape="rect" id="node2" href="$classALUGenerator.html" title=" " alt="" coords="5,336,208,619"/>
+<area shape="rect" id="node3" href="$classArithmeticGenerator.html" title=" " alt="" coords="233,358,413,597"/>
+<area shape="rect" id="node4" href="$classCoderGenerator.html" title=" " alt="" coords="437,380,601,575"/>
+<area shape="rect" id="node5" href="$classComparisonGenerator.html" title=" " alt="" coords="625,402,815,553"/>
+<area shape="rect" id="node6" href="$classFromTruthTableGenerator.html" title=" " alt="" coords="840,409,1051,545"/>
+<area shape="rect" id="node7" href="$classNumOperationsGenerator.html" title=" " alt="" coords="1075,402,1290,553"/>
+<area shape="rect" id="node8" href="$classParityGenerator.html" title=" " alt="" coords="1315,402,1464,553"/>
+<area shape="rect" id="node9" href="$classPlexerGenerator.html" title=" " alt="" coords="1488,380,1691,575"/>
+</map>

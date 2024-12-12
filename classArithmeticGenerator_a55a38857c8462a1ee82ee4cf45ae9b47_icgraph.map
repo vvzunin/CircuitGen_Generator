@@ -1,0 +1,9 @@
+<map id="ArithmeticGenerator::generatorMultiplier" name="ArithmeticGenerator::generatorMultiplier">
+<area shape="rect" id="node1" title=" " alt="" coords="983,63,1137,104"/>
+<area shape="rect" id="node2" href="$classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="432,5,637,47"/>
+<area shape="rect" id="node4" href="$classALUGenerator.html#ad13ce4d360481f9b9519f2adc06a060e" title=" " alt="" coords="688,70,935,97"/>
+<area shape="rect" id="node7" href="$SimpleGeneratorsTests_8cpp.html#a77c8d878f9b7f578456a03a5592d4fa6" title=" " alt="" coords="784,121,839,147"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,35,164,76"/>
+<area shape="rect" id="node5" href="$classALUGenerator.html#af65a400ed2efb31ea199e77bcfcaa267" title="generatorALU represents the generation of a combinational circuit of an ALU (Arithmetic Logic Unit)." alt="" coords="429,71,640,98"/>
+<area shape="rect" id="node6" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="212,64,381,105"/>
+</map>

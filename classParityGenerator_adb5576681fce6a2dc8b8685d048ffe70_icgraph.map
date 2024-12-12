@@ -1,0 +1,6 @@
+<map id="ParityGenerator::generatorParity" name="ParityGenerator::generatorParity">
+<area shape="rect" id="node1" title="generatorParity represents the generation of a combinational parity check scheme." alt="" coords="440,35,635,76"/>
+<area shape="rect" id="node2" href="$classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="212,5,392,47"/>
+<area shape="rect" id="node4" href="$SimpleGeneratorsTests_8cpp.html#a721f8a591afc092d00f70d30547b804a" title=" " alt="" coords="275,71,329,98"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,5,164,47"/>
+</map>

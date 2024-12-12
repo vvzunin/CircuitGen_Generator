@@ -1,43 +1,51 @@
 <map id="DataBaseGenerator::generateDataBaseALU" name="DataBaseGenerator::generateDataBaseALU">
-<area shape="rect" id="node1" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="5,1203,175,1245"/>
-<area shape="rect" id="node2" href="$classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="271,107,402,133"/>
-<area shape="rect" id="node8" href="$classGeneratorALUParameters.html#a690c947b170039329e9a4abbbf0154d9" title=" " alt="" coords="243,158,430,199"/>
-<area shape="rect" id="node9" href="$classGenerationParameters.html#a45496b83544a8d17202ae34b4b2ea308" title=" " alt="" coords="253,223,421,265"/>
-<area shape="rect" id="node10" href="$classGeneratorALUParameters.html#a075d95756c2dd24633c75b5e499120f1" title=" " alt="" coords="243,289,430,330"/>
-<area shape="rect" id="node11" href="$classGeneratorALUParameters.html#a83dbbc9b5597466856cb0aab95cbfa2d" title=" " alt="" coords="243,354,430,395"/>
-<area shape="rect" id="node12" href="$classGeneratorALUParameters.html#a9106361922072af106247c1e7eedf44f" title=" " alt="" coords="243,419,430,461"/>
-<area shape="rect" id="node13" href="$classGenerationParameters.html#a1f1a65d45fc7335c144794305a34a7f2" title=" " alt="" coords="253,485,421,526"/>
-<area shape="rect" id="node14" href="$classGenerationParameters.html#ab5415cce0d7d4e0417491f460a0e3a3a" title=" " alt="" coords="253,550,421,591"/>
-<area shape="rect" id="node15" href="$classGeneratorALUParameters.html#a0bb3e1df833a8e14ccdf08fd8310ea3e" title=" " alt="" coords="243,615,430,657"/>
-<area shape="rect" id="node16" href="$classGeneratorALUParameters.html#a2efd0125b4d39b9f8d837bdc2f5cf6fd" title=" " alt="" coords="243,681,430,722"/>
-<area shape="rect" id="node17" href="$classGenerationParameters.html#aed2938223a2a7b8fddd87218abb189d4" title=" " alt="" coords="241,746,432,787"/>
-<area shape="rect" id="node18" href="$classGenerationParameters.html#aeccc0983840788f03ae4cd9e06f1c1f3" title=" " alt="" coords="229,811,444,853"/>
-<area shape="rect" id="node19" href="$classGenerationParameters.html#abc21152ae59f53741545d14075dbde3d" title=" " alt="" coords="223,877,451,918"/>
-<area shape="rect" id="node20" href="$classGeneratorALUParameters.html#a4842022d37af161fbbf5d336f9df374e" title=" " alt="" coords="243,942,430,983"/>
-<area shape="rect" id="node21" href="$classGeneratorALUParameters.html#a69335630c3ec7873eba9d07134a267f6" title=" " alt="" coords="243,1007,430,1049"/>
-<area shape="rect" id="node22" href="$classGeneratorALUParameters.html#ac0f19c301905ab03e08bd744265b651f" title=" " alt="" coords="243,1073,430,1114"/>
-<area shape="rect" id="node23" href="$classGeneratorALUParameters.html#a586350de3e8cf7f41713f7a0d1158828" title=" " alt="" coords="243,1138,430,1179"/>
-<area shape="rect" id="node24" href="$classGeneratorALUParameters.html#a8a8c7545eeec7db77be713c730c9b968" title=" " alt="" coords="243,1203,430,1245"/>
-<area shape="rect" id="node25" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="253,1269,421,1310"/>
-<area shape="rect" id="node26" href="$classGeneratorALUParameters.html#ad8b89d7cc23a3f6b41fe0240c664d47a" title=" " alt="" coords="243,1334,430,1375"/>
-<area shape="rect" id="node27" href="$classGeneratorALUParameters.html#a3184f77229e3a702d069d5b550502032" title=" " alt="" coords="243,1399,430,1441"/>
-<area shape="rect" id="node28" href="$classGeneratorALUParameters.html#a90ba2c308d7013d10c9185b313a5f298" title=" " alt="" coords="243,1465,430,1506"/>
-<area shape="rect" id="node29" href="$classGeneratorALUParameters.html#a10afde9d25dc70015c7192175ea26962" title=" " alt="" coords="243,1530,430,1571"/>
-<area shape="rect" id="node30" href="$classGeneratorALUParameters.html#a737259e89a04a5d2f9d969c4e01e9a99" title=" " alt="" coords="243,1595,430,1637"/>
-<area shape="rect" id="node31" href="$classGeneratorALUParameters.html#a9594df15bd686ea8e1f9fa05bb950833" title=" " alt="" coords="243,1661,430,1702"/>
-<area shape="rect" id="node32" href="$classGenerationParameters.html#a1f3eb45bdbff9fddee1236d2f442a300" title=" " alt="" coords="253,1726,421,1767"/>
-<area shape="rect" id="node33" href="$classGeneratorALUParameters.html#a25de989cfab96737b7fe2b3c4f2e6724" title=" " alt="" coords="243,1791,430,1833"/>
-<area shape="rect" id="node34" href="$classGenerationParameters.html#a07806a196e5976fce356ff2f3d91f822" title=" " alt="" coords="253,1857,421,1898"/>
-<area shape="rect" id="node35" href="$classGeneratorALUParameters.html#add12c1c21b85254b04b04de314aae167" title=" " alt="" coords="243,1922,430,1963"/>
-<area shape="rect" id="node36" href="$classGeneratorALUParameters.html#abaa6a4ed5cff5a460adfc230356bdd3d" title=" " alt="" coords="243,1987,430,2029"/>
-<area shape="rect" id="node37" href="$classGeneratorALUParameters.html#a2d18eb797f128a17856abe6486d5625a" title=" " alt="" coords="243,2053,430,2094"/>
-<area shape="rect" id="node38" href="$classGeneratorALUParameters.html#a48819482ebab57538b79fbd0ea1bdd75" title=" " alt="" coords="243,2118,430,2159"/>
-<area shape="rect" id="node39" href="$classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="250,2184,423,2211"/>
-<area shape="rect" id="node40" href="$classSimpleGenerators.html#ab60ee033a3003486a8c67a5ab66fac06" title="generatorRandLevelExperimental The method generates a random level of complexity of the graph within ..." alt="" coords="234,2235,439,2277"/>
-<area shape="rect" id="node41" href="$classCircuit.html#a71e323bb28864ea40f60fdc1fd693add" title="setPath This method is designed to set the path where the files associated with the digital circuit w..." alt="" coords="277,2301,397,2328"/>
-<area shape="rect" id="node3" href="$classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f" title="graphToDOT The graph To DOT method in the Circuit class converts the combinational circuit into code ..." alt="" coords="514,5,665,32"/>
-<area shape="rect" id="node4" href="$classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="499,56,680,83"/>
-<area shape="rect" id="node5" href="$classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="505,107,673,133"/>
-<area shape="rect" id="node6" href="$classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="501,157,678,184"/>
-<area shape="rect" id="node7" href="$classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="728,183,961,209"/>
+<area shape="rect" id="node1" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="5,776,175,817"/>
+<area shape="rect" id="node2" href="$classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="271,115,402,142"/>
+<area shape="rect" id="node8" href="$classALUGenerator.html#af65a400ed2efb31ea199e77bcfcaa267" title="generatorALU represents the generation of a combinational circuit of an ALU (Arithmetic Logic Unit)." alt="" coords="231,626,442,653"/>
+<area shape="rect" id="node44" href="$classGenerationParameters.html#aed2938223a2a7b8fddd87218abb189d4" title=" " alt="" coords="241,677,432,719"/>
+<area shape="rect" id="node45" href="$classGenerationParameters.html#aeccc0983840788f03ae4cd9e06f1c1f3" title=" " alt="" coords="229,743,444,784"/>
+<area shape="rect" id="node46" href="$classGenerationParameters.html#abc21152ae59f53741545d14075dbde3d" title=" " alt="" coords="223,808,451,849"/>
+<area shape="rect" id="node47" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="253,873,421,915"/>
+<area shape="rect" id="node48" href="$classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="250,939,423,966"/>
+<area shape="rect" id="node49" href="$classCircuit.html#a71e323bb28864ea40f60fdc1fd693add" title="setPath This method is designed to set the path where the files associated with the digital circuit w..." alt="" coords="277,990,397,1017"/>
+<area shape="rect" id="node3" href="$classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f" title="graphToDOT The graph To DOT method in the Circuit class converts the combinational circuit into code ..." alt="" coords="555,39,705,66"/>
+<area shape="rect" id="node4" href="$classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="539,90,721,117"/>
+<area shape="rect" id="node5" href="$classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="546,141,714,167"/>
+<area shape="rect" id="node6" href="$classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="541,191,719,218"/>
+<area shape="rect" id="node7" href="$classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="810,90,1043,117"/>
+<area shape="rect" id="node9" href="$classALUGenerator.html#ae5f0cc483eedc4c0829ed74eab06794b" title=" " alt="" coords="527,619,733,660"/>
+<area shape="rect" id="node18" href="$json_8hpp.html#a5b9ca6dc52cf4226c68d67f895b2a1d4" title="user&#45;defined to_string function for JSON values" alt="" coords="1645,786,1724,813"/>
+<area shape="rect" id="node20" href="$classTruthTable.html#a179439e404e050f49b58df88396da9ee" title="generateTable The method generates a truth table for a combinational circuit with a given probability..." alt="" coords="526,1315,734,1342"/>
+<area shape="rect" id="node26" href="$classALUGenerator.html#ab8288176ff5dfd425ccba8592e541026" title=" " alt="" coords="499,815,761,842"/>
+<area shape="rect" id="node28" href="$classALUGenerator.html#a79e1174cb3d6be06299cc5a100fddd55" title=" " alt="" coords="501,866,759,893"/>
+<area shape="rect" id="node30" href="$classALUGenerator.html#ad13ce4d360481f9b9519f2adc06a060e" title=" " alt="" coords="507,917,753,943"/>
+<area shape="rect" id="node32" href="$classALUGenerator.html#a8c77e737b0c8bd1c50989d75f8b2815d" title=" " alt="" coords="523,749,737,791"/>
+<area shape="rect" id="node36" href="$classALUGenerator.html#aa2e7adc0e2c4d1c505c8d9fba5eca110" title=" " alt="" coords="521,684,739,725"/>
+<area shape="rect" id="node37" href="$classALUGenerator.html#a70b5a65cb22ea2b50c7d60ef868f5cab" title=" " alt="" coords="505,401,755,427"/>
+<area shape="rect" id="node39" href="$classALUGenerator.html#a95559ef22583b65e001ee5ce25ebd78c" title=" " alt="" coords="504,502,756,529"/>
+<area shape="rect" id="node41" href="$namespaceAuxMethods.html#af91905c8bf7e07464a2906f5b3a4a89a" title=" " alt="" coords="543,451,717,478"/>
+<area shape="rect" id="node42" href="$classALUGenerator.html#af4e759cb6bc2c74efafbb54b312a3366" title=" " alt="" coords="521,553,739,595"/>
+<area shape="rect" id="node10" href="$classFromTruthTableGenerator.html#af62aed8e75fa2f22340420c3993c41f0" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="833,619,1020,660"/>
+<area shape="rect" id="node19" href="$classSimpleGenerator.html#a0883ee8407b3ee88fc511427d41d2734" title=" " alt="" coords="809,691,1044,718"/>
+<area shape="rect" id="node11" href="$classTruthTable.html#a5790cc7c8fc0e04547d83e5f9384efe9" title="convToBinary Convert truth table indices to binary representation This method converts the indices of..." alt="" coords="1128,651,1311,678"/>
+<area shape="rect" id="node12" href="$classTruthTable.html#a6c1a776a25eb693a3a59e6410bca23e7" title="getInput Get the number of input variables in the truth table." alt="" coords="1144,499,1295,526"/>
+<area shape="rect" id="node13" href="$classTruthTable.html#a87ce43a0f73da02698aa5b4e4e378a8e" title="getOutput Get the number of output variables in the truth table" alt="" coords="1139,550,1300,577"/>
+<area shape="rect" id="node14" href="$classTruthTable.html#ab71a41a53ce4167519b4d24f14cbac82" title="getOutTable Get the output table." alt="" coords="1132,601,1307,627"/>
+<area shape="rect" id="node15" href="$classParser.html#ae2686bf3fdb12a709732363745943425" title="multipleVerteciesToOne This method takes a vector of vertices representing the current layout,..." alt="" coords="1127,753,1311,795"/>
+<area shape="rect" id="node16" href="$classParser.html#a0a27158ce7c8ca578b82140b4239bd26" title="setGatesInputsInfo Set information about gates inputs" alt="" coords="1123,819,1316,846"/>
+<area shape="rect" id="node17" href="$classTruthTable.html#af91eb4123d7254a4b623f6b5dfca211a" title="size Get the size of the truth table." alt="" coords="1158,449,1281,475"/>
+<area shape="rect" id="node21" href="$classGeneticParameters.html#aa1b4269bb8a929aa2501514cda0f4ba9" title="getInputs Get the number of inputs" alt="" coords="849,1472,1004,1513"/>
+<area shape="rect" id="node22" href="$classGeneticParameters.html#a6bb3be1205ed0202b9051e8c78282069" title="getOutputs Get the number of outputs" alt="" coords="849,1276,1004,1317"/>
+<area shape="rect" id="node23" href="$classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d" title="getRandInt Method to generate a random integer within a specified range." alt="" coords="1395,924,1597,965"/>
+<area shape="rect" id="node24" href="$classGeneticParameters.html#a8c402aebed6a73dd096ec105b6d0366a" title="setInputs Set the number of inputs" alt="" coords="849,1341,1004,1383"/>
+<area shape="rect" id="node25" href="$classGeneticParameters.html#a5935bc550b7a0640c9f0c40f7cd9658b" title="setOutputs Set the number of outputs" alt="" coords="849,1407,1004,1448"/>
+<area shape="rect" id="node27" href="$classComparisonGenerator.html#a9fad15ecee92f178702d774e8d41f733" title=" " alt="" coords="1411,996,1581,1037"/>
+<area shape="rect" id="node29" href="$classPlexerGenerator.html#a25f22db1821adb09525a5bac4d780282" title="generatorMultiplexer represents the generation of a combinational multiplexer circuit." alt="" coords="1397,1073,1595,1115"/>
+<area shape="rect" id="node31" href="$classArithmeticGenerator.html#a55a38857c8462a1ee82ee4cf45ae9b47" title=" " alt="" coords="1419,1163,1573,1204"/>
+<area shape="rect" id="node33" href="$classNumOperationsGenerator.html#a4d82ad0aaf80da7e2ee12fae22c7591e" title="generatorNumOperation" alt="" coords="832,913,1021,955"/>
+<area shape="rect" id="node34" href="$classSimpleGenerator.html#ae59286cbbef8e78abdb3fb1906b6f137" title=" " alt="" coords="1126,971,1313,998"/>
+<area shape="rect" id="node35" href="$classSimpleGenerator.html#a35cd816d74f521c53709fb899e85f830" title=" " alt="" coords="1092,921,1347,947"/>
+<area shape="rect" id="node38" href="$classArithmeticGenerator.html#ac5469df5a0f4656f619b1e004722692d" title="generatorComparison represents the generation of a combinational comparator circuit." alt="" coords="1416,293,1576,335"/>
+<area shape="rect" id="node40" href="$classArithmeticGenerator.html#a8af0387cfad23d47151915b27bc2a56f" title="generatorSummator represents the generation of a combinational adder circuit." alt="" coords="1415,359,1577,400"/>
+<area shape="rect" id="node43" href="$classFromTruthTableGenerator.html#a53d6c92106dd5aac4b2e775330546991" title=" " alt="" coords="831,517,1023,559"/>
 </map>

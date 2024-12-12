@@ -1,11 +1,14 @@
 <map id="TruthTable::convToBinary" name="TruthTable::convToBinary">
-<area shape="rect" id="node1" title="convToBinary Convert truth table indices to binary representation This method converts the indices of..." alt="" coords="1013,123,1196,149"/>
-<area shape="rect" id="node2" href="$classSimpleGenerators.html#a5d4c910f51dbbb4a4c1c09923ca90147" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="765,86,965,127"/>
-<area shape="rect" id="node9" href="$TruthTableTests_8cpp.html#af95f059095cd515ffd275e973a3291e5" title=" " alt="" coords="838,152,893,179"/>
-<area shape="rect" id="node3" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="219,5,450,61"/>
-<area shape="rect" id="node5" href="$classGeneticGenerator.html#aea417dcc4d2198ad417c4db7d1168f41" title=" " alt="" coords="505,86,717,127"/>
-<area shape="rect" id="node8" href="$SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="584,152,639,179"/>
-<area shape="rect" id="node4" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,50,164,91"/>
-<area shape="rect" id="node6" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="238,86,431,127"/>
-<area shape="rect" id="node7" href="$classGeneticGenerator.html#a06385f10266a65cd8328e5e8a9bca7b5" title=" " alt="" coords="212,152,457,179"/>
+<area shape="rect" id="node1" title="convToBinary Convert truth table indices to binary representation This method converts the indices of..." alt="" coords="1279,145,1461,171"/>
+<area shape="rect" id="node2" href="$classFromTruthTableGenerator.html#af62aed8e75fa2f22340420c3993c41f0" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="1044,108,1231,149"/>
+<area shape="rect" id="node12" href="$TruthTableTests_8cpp.html#af95f059095cd515ffd275e973a3291e5" title=" " alt="" coords="1110,174,1165,201"/>
+<area shape="rect" id="node3" href="$classALUGenerator.html#ae5f0cc483eedc4c0829ed74eab06794b" title=" " alt="" coords="787,13,993,55"/>
+<area shape="rect" id="node7" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="212,71,443,127"/>
+<area shape="rect" id="node8" href="$classGeneticGenerator.html#aea417dcc4d2198ad417c4db7d1168f41" title=" " alt="" coords="784,137,996,179"/>
+<area shape="rect" id="node11" href="$SimpleGeneratorsTests_8cpp.html#a54232518920db4d53f06043a62442ff5" title=" " alt="" coords="863,203,917,230"/>
+<area shape="rect" id="node4" href="$classALUGenerator.html#af65a400ed2efb31ea199e77bcfcaa267" title="generatorALU represents the generation of a combinational circuit of an ALU (Arithmetic Logic Unit)." alt="" coords="508,17,719,43"/>
+<area shape="rect" id="node5" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="243,5,412,47"/>
+<area shape="rect" id="node6" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,79,164,120"/>
+<area shape="rect" id="node9" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="231,152,424,193"/>
+<area shape="rect" id="node10" href="$classGeneticGenerator.html#a06385f10266a65cd8328e5e8a9bca7b5" title=" " alt="" coords="491,195,736,222"/>
 </map>

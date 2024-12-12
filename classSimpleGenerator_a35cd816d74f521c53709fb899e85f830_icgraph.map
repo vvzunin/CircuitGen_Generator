@@ -1,0 +1,10 @@
+<map id="SimpleGenerator::randomGenerator" name="SimpleGenerator::randomGenerator">
+<area shape="rect" id="node1" title=" " alt="" coords="1223,71,1477,98"/>
+<area shape="rect" id="node2" href="$classNumOperationsGenerator.html#a4d82ad0aaf80da7e2ee12fae22c7591e" title="generatorNumOperation" alt="" coords="985,64,1175,105"/>
+<area shape="rect" id="node3" href="$classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="429,5,675,47"/>
+<area shape="rect" id="node5" href="$classALUGenerator.html#a8c77e737b0c8bd1c50989d75f8b2815d" title=" " alt="" coords="723,64,937,105"/>
+<area shape="rect" id="node8" href="$SimpleGeneratorsTests_8cpp.html#ab4ce49dae3b876eef4b1f33680d48346" title=" " alt="" coords="803,130,857,157"/>
+<area shape="rect" id="node4" href="$classDataBaseGenerator.html#a25632c1511ff0efd653809da5b9a004f" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,35,164,76"/>
+<area shape="rect" id="node6" href="$classALUGenerator.html#af65a400ed2efb31ea199e77bcfcaa267" title="generatorALU represents the generation of a combinational circuit of an ALU (Arithmetic Logic Unit)." alt="" coords="447,71,657,98"/>
+<area shape="rect" id="node7" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="212,64,381,105"/>
+</map>

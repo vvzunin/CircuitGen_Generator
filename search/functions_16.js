@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zhegalkinfromtruthtable_3664',['zhegalkinFromTruthTable',['../classSimpleGenerators.html#abe2fb580fe65b11a84770b9f99ef3c99',1,'SimpleGenerators']]]
+  ['zhegalkinfromtruthtable_3739',['zhegalkinFromTruthTable',['../classALUGenerator.html#af4e759cb6bc2c74efafbb54b312a3366',1,'ALUGenerator::zhegalkinFromTruthTable()'],['../classFromTruthTableGenerator.html#a53d6c92106dd5aac4b2e775330546991',1,'FromTruthTableGenerator::zhegalkinFromTruthTable()']]]
 ];
