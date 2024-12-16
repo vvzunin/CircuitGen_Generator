@@ -16,17 +16,6 @@
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
 #include <CircuitGenGenerator/ThreadPool.hpp>
-// #include <generators/Genetic/GeneticParameters.hpp>
-// #include <generators/Genetic/GenGenerator.hpp>
-#include <generators/simple/ArithmeticGenerator.hpp>
-#include <generators/simple/FromTruthTableGenerator.hpp>
-#include <generators/simple/CoderGenerator.hpp>
-#include <generators/simple/RandLevelGenerator.hpp>
-#include <generators/simple/PlexerGenerator.hpp>
-#include <generators/simple/ALUGenerator.hpp>
-#include <generators/simple/ComparisonGenerator.hpp>
-#include <generators/simple/NumOperationsGenerator.hpp>
-#include <generators/simple/ParityGenerator.hpp>
 
 using namespace std::chrono;
 using namespace Threading;
@@ -205,66 +194,6 @@ void DataBaseGenerator::processCircuit(std::shared_ptr<OrientedGraph> graph,
   addDataToReturn(graph);
 }
 
-void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseRandLevel(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseRandLevelExperimental(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseNumOperations(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseGenetic(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseSummator(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseComparison(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseEncoder(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseParity(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseSubtractor(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseMultiplexer(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseDemultiplexer(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseMultiplier(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseDecoder(
-    const GenerationParameters &i_param) {
-}
-
-void DataBaseGenerator::generateDataBaseALU(
-    const GenerationParameters &i_param) {
-}
-
 // maybe this method should be rewritten using map with GenerationTypes and
 // FuncAlias
 std::function<void(const GenerationParameters &)>
@@ -272,34 +201,7 @@ DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
   using FuncAlias = void (DataBaseGenerator::*)(const GenerationParameters &);
   FuncAlias generateMethodFunc = nullptr;
 
-  std::unordered_map<GenerationTypes, FuncAlias> generatorMap = {
-      {GenerationTypes::FromRandomTruthTable,
-       &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::RandLevel, &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::RandLevelExperimental,
-       &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::NumOperation, &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::Genetic, &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::Comparison, &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::Encoder, &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::Subtractor, &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::Multiplexer, &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::Demultiplexer, &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::Decoder, &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::Parity, &DataBaseGenerator::generateDataBase},
-      {GenerationTypes::ALU, &DataBaseGenerator::generateDataBase}};
-
-  if (generatorMap.find(i_methodType) != generatorMap.end()) {
-    generateMethodFunc = generatorMap[i_methodType];
-  } else {
-    std::clog << "Something went wrong while getting generation method. "
-              << "\"FromRandomTruthTable\" is set as generation method."
-              << std::endl;
-    generateMethodFunc =
-        &DataBaseGenerator::generateDataBaseFromRandomTruthTable;
-  }
-
-  // generateMethodFunc = &DataBaseGenerator::generateDataBase;
+  generateMethodFunc = &DataBaseGenerator::generateDataBase;
 
   return std::bind(generateMethodFunc, this, std::placeholders::_1);
 }
