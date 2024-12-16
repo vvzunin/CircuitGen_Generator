@@ -453,62 +453,37 @@ DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
   using FuncAlias = void (DataBaseGenerator::*)(const GenerationParameters &);
   FuncAlias generateMethodFunc = nullptr;
 
-  switch (i_methodType) {
-    case GenerationTypes::FromRandomTruthTable:
-      generateMethodFunc =
-          &DataBaseGenerator::generateDataBaseFromRandomTruthTable;
-      break;
-    case GenerationTypes::RandLevel:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseRandLevel;
-      break;
-    case GenerationTypes::RandLevelExperimental:
-      generateMethodFunc =
-          &DataBaseGenerator::generateDataBaseRandLevelExperimental;
-      break;
-    case GenerationTypes::NumOperation:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseNumOperations;
-      break;
-    case GenerationTypes::Genetic:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseGenetic;
-      break;
-    case GenerationTypes::Summator:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseSummator;
-      break;
-    case GenerationTypes::Comparison:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseComparison;
-      break;
-    case GenerationTypes::Encoder:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseEncoder;
-      break;
-    case GenerationTypes::Subtractor:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseSubtractor;
-      break;
-    case GenerationTypes::Multiplexer:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseMultiplexer;
-      break;
-    case GenerationTypes::Demultiplexer:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseDemultiplexer;
-      break;
-    case GenerationTypes::Multiplier:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseMultiplier;
-      break;
-    case GenerationTypes::Decoder:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseDecoder;
-      break;
-    case GenerationTypes::Parity:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseParity;
-      break;
-    case GenerationTypes::ALU:
-      generateMethodFunc = &DataBaseGenerator::generateDataBaseALU;
-      break;
+  std::unordered_map<GenerationTypes, FuncAlias> generatorMap = {
+      {GenerationTypes::FromRandomTruthTable,
+       &DataBaseGenerator::generateDataBaseFromRandomTruthTable},
+      {GenerationTypes::RandLevel,
+       &DataBaseGenerator::generateDataBaseRandLevel},
+      {GenerationTypes::RandLevelExperimental,
+       &DataBaseGenerator::generateDataBaseRandLevelExperimental},
+      {GenerationTypes::NumOperation,
+       &DataBaseGenerator::generateDataBaseNumOperations},
+      {GenerationTypes::Genetic, &DataBaseGenerator::generateDataBaseGenetic},
+      {GenerationTypes::Comparison,
+       &DataBaseGenerator::generateDataBaseComparison},
+      {GenerationTypes::Encoder, &DataBaseGenerator::generateDataBaseEncoder},
+      {GenerationTypes::Subtractor,
+       &DataBaseGenerator::generateDataBaseSubtractor},
+      {GenerationTypes::Multiplexer,
+       &DataBaseGenerator::generateDataBaseMultiplexer},
+      {GenerationTypes::Demultiplexer,
+       &DataBaseGenerator::generateDataBaseDemultiplexer},
+      {GenerationTypes::Decoder, &DataBaseGenerator::generateDataBaseDecoder},
+      {GenerationTypes::Parity, &DataBaseGenerator::generateDataBaseParity},
+      {GenerationTypes::ALU, &DataBaseGenerator::generateDataBaseALU}};
 
-    default:
-      std::clog << "Something went wrong while getting generation method. "
-                << "\"FromRandomTruthTable\" is set as generation method."
-                << std::endl;
-      generateMethodFunc =
-          &DataBaseGenerator::generateDataBaseFromRandomTruthTable;
-      break;
+  if (generatorMap.find(i_methodType) != generatorMap.end()) {
+    generateMethodFunc = generatorMap[i_methodType];
+  } else {
+    std::clog << "Something went wrong while getting generation method. "
+              << "\"FromRandomTruthTable\" is set as generation method."
+              << std::endl;
+    generateMethodFunc =
+        &DataBaseGenerator::generateDataBaseFromRandomTruthTable;
   }
 
   return std::bind(generateMethodFunc, this, std::placeholders::_1);
