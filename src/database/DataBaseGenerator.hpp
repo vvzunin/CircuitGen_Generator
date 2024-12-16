@@ -7,6 +7,7 @@
 #include <vector>
 
 #include <additional/RandomGeneratorWithSeed.hpp>
+#include <baseStructures/truthTable/TruthTable.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
 #include <settings/Settings.hpp>
 
@@ -87,6 +88,14 @@ private:
   void runGeneratorByDefault(const DataBaseGeneratorParameters &i_gp,
                              uint8_t parallel = 1,
                              bool createIdDirectories = true);
+
+  void processCircuit(std::shared_ptr<OrientedGraph> graph,
+                      const TruthTable &tt, const GenerationParameters &i_param,
+                      const std::string name = "");
+
+  void processCircuit(std::shared_ptr<OrientedGraph> graph,
+                      const GenerationParameters &i_param,
+                      const std::string name = "");
 
   void
   generateDataBaseFromRandomTruthTable(const GenerationParameters &i_params);

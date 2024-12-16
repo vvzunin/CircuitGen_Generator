@@ -170,6 +170,41 @@ void DataBaseGenerator::addDataToReturn(GraphPtr graph) {
   d_resWrite.unlock();
 }
 
+void DataBaseGenerator::processCircuit(std::shared_ptr<OrientedGraph> graph,
+                                       const TruthTable &tt,
+                                       const GenerationParameters &i_param,
+                                       const std::string name) {
+
+  Circuit c(graph);
+  c.setTable(tt);
+  c.setPath(d_mainPath);
+  if (name.empty())
+    c.setCircuitName(i_param.getName());
+  else
+    c.setCircuitName(name);
+  c.generate(i_param.getMakeGraphMLClassic(),
+             i_param.getMakeGraphMLPseudoABCD(),
+             i_param.getMakeGraphMLOpenABCD());
+
+  addDataToReturn(graph);
+}
+
+void DataBaseGenerator::processCircuit(std::shared_ptr<OrientedGraph> graph,
+                                       const GenerationParameters &i_param,
+                                       const std::string name) {
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  if (name.empty())
+    c.setCircuitName(i_param.getName());
+  else
+    c.setCircuitName(name);
+  c.generate(i_param.getMakeGraphMLClassic(),
+             i_param.getMakeGraphMLPseudoABCD(),
+             i_param.getMakeGraphMLOpenABCD());
+
+  addDataToReturn(graph);
+}
+
 void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     const GenerationParameters &i_param) {
   TruthTable tt(i_param.getInputs(), i_param.getOutputs(), 0.0);
@@ -198,17 +233,8 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     allGraphs.push_back(graph);
   }
 
-  for (auto curGraph: allGraphs) {
-    Circuit c(curGraph);
-    c.setTable(tt);
-    c.setPath(d_mainPath);
-    c.setCircuitName(curGraph->getName());
-    c.generate(i_param.getMakeGraphMLClassic(),
-               i_param.getMakeGraphMLPseudoABCD(),
-               i_param.getMakeGraphMLOpenABCD());
-
-    addDataToReturn(curGraph);
-  }
+  for (auto curGraph: allGraphs)
+    processCircuit(curGraph, tt, i_param, curGraph->getName());
 }
 
 void DataBaseGenerator::generateDataBaseRandLevel(
@@ -216,14 +242,7 @@ void DataBaseGenerator::generateDataBaseRandLevel(
   RandLevelGenerator generator(i_param);
   GraphPtr graph = generator.generatorRandLevel();
 
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseRandLevelExperimental(
@@ -238,17 +257,7 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
   // std::clog << "Time taken on experimental: " << duration.count()
   //           << " microseconds" << std::endl;
 
-  // std::clog << "Update started\n";
-  Circuit c(graph);
-  // std::clog << "Update ended\n";
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseNumOperations(
@@ -259,14 +268,7 @@ void DataBaseGenerator::generateDataBaseNumOperations(
   circs.push_back({"NumOperation", generator.generatorNumOperation()});
 
   for (auto [name, graph]: circs) {
-    Circuit c(graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(i_param.getName());
-    c.generate(i_param.getMakeGraphMLClassic(),
-               i_param.getMakeGraphMLPseudoABCD(),
-               i_param.getMakeGraphMLOpenABCD());
-
-    addDataToReturn(graph);
+    processCircuit(graph, i_param);
   }
 }
 
@@ -281,14 +283,7 @@ void DataBaseGenerator::generateDataBaseGenetic(
   auto graphs = gg.getGraphsFromPopulation(population);
 
   for (auto graph: graphs) {
-    Circuit c(graph);
-    c.setPath(d_mainPath);
-    c.setCircuitName(graph->getName());
-    c.generate(i_param.getMakeGraphMLClassic(),
-               i_param.getMakeGraphMLPseudoABCD(),
-               i_param.getMakeGraphMLOpenABCD());
-
-    addDataToReturn(graph);
+    processCircuit(graph, i_param, graph->getName());
   }
 }
 
@@ -297,14 +292,7 @@ void DataBaseGenerator::generateDataBaseSummator(
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorSummator();
 
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseComparison(
@@ -312,14 +300,7 @@ void DataBaseGenerator::generateDataBaseComparison(
   ComparisonGenerator sg(i_param);
   GraphPtr graph = sg.generatorComparison();
 
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseEncoder(
@@ -327,14 +308,7 @@ void DataBaseGenerator::generateDataBaseEncoder(
   CoderGenerator sg(i_param);
   GraphPtr graph = sg.generatorEncoder();
 
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseParity(
@@ -342,14 +316,7 @@ void DataBaseGenerator::generateDataBaseParity(
   ParityGenerator sg(i_param);
   GraphPtr graph = sg.generatorParity();
 
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseSubtractor(
@@ -357,14 +324,7 @@ void DataBaseGenerator::generateDataBaseSubtractor(
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorSubtractor();
 
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseMultiplexer(
@@ -372,14 +332,7 @@ void DataBaseGenerator::generateDataBaseMultiplexer(
   PlexerGenerator sg(i_param);
   GraphPtr graph = sg.generatorMultiplexer();
 
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseDemultiplexer(
@@ -387,14 +340,7 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
   PlexerGenerator sg(i_param);
   GraphPtr graph = sg.generatorDemultiplexer();
 
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseMultiplier(
@@ -402,14 +348,7 @@ void DataBaseGenerator::generateDataBaseMultiplier(
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorMultiplier();
 
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseDecoder(
@@ -417,14 +356,7 @@ void DataBaseGenerator::generateDataBaseDecoder(
   CoderGenerator sg(i_param);
   GraphPtr graph = sg.generatorDecoder();
 
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 void DataBaseGenerator::generateDataBaseALU(
@@ -432,18 +364,7 @@ void DataBaseGenerator::generateDataBaseALU(
   ALUGenerator sg(i_param);
   GraphPtr graph = sg.generatorALU();
 
-  // LOG(INFO) << "Generation ALU complete!";
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  // LOG(INFO) << "Start circuit generation!";
-  c.generate(i_param.getMakeGraphMLClassic(),
-             i_param.getMakeGraphMLPseudoABCD(),
-             i_param.getMakeGraphMLOpenABCD());
-
-  // LOG(INFO) << "Full ALU complete!";
-
-  addDataToReturn(graph);
+  processCircuit(graph, i_param);
 }
 
 // maybe this method should be rewritten using map with GenerationTypes and
