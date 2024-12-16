@@ -65,12 +65,24 @@ public:
                            uint8_t parallel = 1,
                            bool createIdDirectories = true);
 
+protected:
+  virtual void generateDataBase(const GenerationParameters &i_param){};
+
+  void processCircuit(std::shared_ptr<OrientedGraph> graph,
+                      const TruthTable &tt, const GenerationParameters &i_param,
+                      const std::string name = "");
+
+  void processCircuit(std::shared_ptr<OrientedGraph> graph,
+                      const GenerationParameters &i_param,
+                      const std::string name = "");
+
+  std::string d_mainPath = ".";
+
 private:
   std::vector<GraphPtr> d_generatedGraphs;
   std::vector<std::string> d_generatedGraphsNames;
   std::mutex d_resWrite;
 
-  std::string d_mainPath = ".";
   std::shared_ptr<Settings> d_settings =
       Settings::getInstance("DataBaseGenerator");
   DataBaseGeneratorParameters d_parameters; // why we need this var?
@@ -88,14 +100,6 @@ private:
   void runGeneratorByDefault(const DataBaseGeneratorParameters &i_gp,
                              uint8_t parallel = 1,
                              bool createIdDirectories = true);
-
-  void processCircuit(std::shared_ptr<OrientedGraph> graph,
-                      const TruthTable &tt, const GenerationParameters &i_param,
-                      const std::string name = "");
-
-  void processCircuit(std::shared_ptr<OrientedGraph> graph,
-                      const GenerationParameters &i_param,
-                      const std::string name = "");
 
   void
   generateDataBaseFromRandomTruthTable(const GenerationParameters &i_params);
