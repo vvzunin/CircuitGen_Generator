@@ -3,6 +3,10 @@
 #include <string>
 
 #include "database/DataBaseGenerator.hpp"
+#include "database/FromRandomTruthTableDataBaseGenerator.hpp"
+#include "database/NumOperationsDataBaseGenerator.hpp"
+#include "database/RandLevelDataBaseGenerator.hpp"
+#include "database/RandLevelExperimentalDataBaseGenerator.hpp"
 
 #include <gtest/gtest.h>
 
@@ -38,7 +42,7 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
   gParams1.setCNFT(true);
   DataBaseGeneratorParameters dbParams1(1, 4, 1, 5, 1, FromRandomTruthTable,
                                         gParams1);
-  DataBaseGenerator generator1(dbParams1);
+  FromRandomTruthTableDataBaseGenerator generator1(dbParams1);
   auto part1 = generator1.generateTypeForGraph(dbParams1).second;
   std::sort(part1.begin(), part1.end(), by_hash());
 
@@ -46,7 +50,7 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
   gParams2.setCNFT(true);
   DataBaseGeneratorParameters dbParams2(1, 4, 1, 5, 1, FromRandomTruthTable,
                                         gParams2);
-  DataBaseGenerator generator2(dbParams2);
+  FromRandomTruthTableDataBaseGenerator generator2(dbParams2);
   auto part2 = generator2.generateTypeForGraph(dbParams2).second;
   std::sort(part2.begin(), part2.end(), by_hash());
 
@@ -73,7 +77,7 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
   gParams3.setCNFT(true);
   DataBaseGeneratorParameters dbParams3(2, 6, 2, 6, 1, FromRandomTruthTable,
                                         gParams3);
-  DataBaseGenerator generator3(dbParams3);
+  FromRandomTruthTableDataBaseGenerator generator3(dbParams3);
   auto part3 = generator3.generateTypeForGraph(dbParams3).second;
   std::sort(part3.begin(), part3.end(), by_hash());
 
@@ -81,7 +85,7 @@ TEST(GenerateDataBaseFromRandomTruthTable, EqualWithTheSameSeeds) {
   gParams4.setCNFT(true);
   DataBaseGeneratorParameters dbParams4(2, 6, 2, 6, 1, FromRandomTruthTable,
                                         gParams4);
-  DataBaseGenerator generator4(dbParams4);
+  FromRandomTruthTableDataBaseGenerator generator4(dbParams4);
   auto part4 = generator4.generateTypeForGraph(dbParams4).second;
   std::sort(part4.begin(), part4.end(), by_hash());
 
@@ -105,13 +109,13 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
   GenerationParameters gParams1(dir, "1", 1, 1, 1);
   gParams1.setRandLevelParameters(1, 5, 1, 5);
   DataBaseGeneratorParameters dbParams1(1, 5, 1, 5, 1, RandLevel, gParams1);
-  DataBaseGenerator generator1(dbParams1);
+  RandLevelDataBaseGenerator generator1(dbParams1);
   generator1.generateTypeDefault(dbParams1);
 
   GenerationParameters gParams2(dir, "2", 1, 1, 1);
   gParams2.setRandLevelParameters(1, 5, 1, 5);
   DataBaseGeneratorParameters dbParams2(1, 5, 1, 5, 1, RandLevel, gParams2);
-  DataBaseGenerator generator2(dbParams2);
+  RandLevelDataBaseGenerator generator2(dbParams2);
   generator2.generateTypeDefault(dbParams2);
 
   std::string dir1 = mainDir + "/" + dir + "/" + "1";
@@ -129,13 +133,13 @@ TEST(GenerateDataBaseRandLevel, EqualWithTheSameSeeds) {
   GenerationParameters gParams3(dir, "3", 1, 1, 1);
   gParams3.setRandLevelParameters(1, 10, 1, 10);
   DataBaseGeneratorParameters dbParams3(2, 6, 2, 6, 4, RandLevel, gParams3);
-  DataBaseGenerator generator3(dbParams3);
+  RandLevelDataBaseGenerator generator3(dbParams3);
   generator1.generateTypeDefault(dbParams3);
 
   GenerationParameters gParams4(dir, "4", 1, 1, 1);
   gParams4.setRandLevelParameters(1, 10, 1, 10);
   DataBaseGeneratorParameters dbParams4(2, 6, 2, 6, 4, RandLevel, gParams4);
-  DataBaseGenerator generator4(dbParams4);
+  RandLevelDataBaseGenerator generator4(dbParams4);
   generator2.generateTypeDefault(dbParams4);
 
   dir1 = mainDir + "/" + dir + "/" + "3";
@@ -164,13 +168,13 @@ TEST(generateDataBaseNumOperations, EqualWithTheSameSeeds) {
   GenerationParameters gParams1(dir, "1", 5, 5, 1);
   gParams1.setNumOperationParameters(logicOper, false);
   DataBaseGeneratorParameters dbParams1(1, 5, 1, 5, 1, NumOperation, gParams1);
-  DataBaseGenerator generator1(dbParams1);
+  NumOperationsDataBaseGenerator generator1(dbParams1);
   generator1.generateTypeDefault(dbParams1);
 
   GenerationParameters gParams2(dir, "2", 5, 5, 1);
   gParams2.setNumOperationParameters(logicOper, false);
   DataBaseGeneratorParameters dbParams2(1, 5, 1, 5, 1, NumOperation, gParams2);
-  DataBaseGenerator generator2(dbParams2);
+  NumOperationsDataBaseGenerator generator2(dbParams2);
   generator2.generateTypeDefault(dbParams2);
 
   // receive all json files
@@ -197,14 +201,14 @@ TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
   gParams1.setRandLevelParameters(1, 5, 1, 5);
   DataBaseGeneratorParameters dbParams1(1, 5, 1, 5, 1, RandLevelExperimental,
                                         gParams1);
-  DataBaseGenerator generator1(dbParams1);
+  RandLevelExperimentalDataBaseGenerator generator1(dbParams1);
   generator1.generateTypeDefault(dbParams1);
 
   GenerationParameters gParams2(dir, "2", 5, 5, 1);
   gParams2.setRandLevelParameters(1, 5, 1, 5);
   DataBaseGeneratorParameters dbParams2(1, 5, 1, 5, 1, RandLevelExperimental,
                                         gParams2);
-  DataBaseGenerator generator2(dbParams2);
+  RandLevelExperimentalDataBaseGenerator generator2(dbParams2);
   generator2.generateTypeDefault(dbParams2);
 
   // receive all json files
@@ -224,14 +228,14 @@ TEST(GenerateDataBaseRandLevelExperimental, EqualWithTheSameSeeds) {
   gParams3.setRandLevelParameters(2, 10, 2, 10);
   DataBaseGeneratorParameters dbParams3(2, 7, 2, 7, 3, RandLevelExperimental,
                                         gParams3);
-  DataBaseGenerator generator3(dbParams3);
+  RandLevelExperimentalDataBaseGenerator generator3(dbParams3);
   generator3.generateTypeDefault(dbParams3);
 
   GenerationParameters gParams4(dir, "4", 1, 1, 1);
   gParams4.setRandLevelParameters(2, 10, 2, 10);
   DataBaseGeneratorParameters dbParams4(2, 7, 2, 7, 3, RandLevelExperimental,
                                         gParams4);
-  DataBaseGenerator generator4(dbParams4);
+  RandLevelExperimentalDataBaseGenerator generator4(dbParams4);
   generator4.generateTypeDefault(dbParams4);
 
   dir1 = mainDir + "/" + dir + "/" + "3";

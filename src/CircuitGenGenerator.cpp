@@ -11,7 +11,24 @@
 
 #include <additional/AuxiliaryMethods.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
+
 #include <database/DataBaseGenerator.hpp>
+#include <database/ALUDataBaseGenerator.hpp>
+#include <database/ComparisonDataBaseGenerator.hpp>
+#include <database/DecoderDataBaseGenerator.hpp>
+#include <database/DemultiplexerDataBaseGenerator.hpp>
+#include <database/EncoderDataBaseGenerator.hpp>
+#include <database/FromRandomTruthTableDataBaseGenerator.hpp>
+#include <database/GeneticDataBaseGenerator.hpp>
+#include <database/MultiplexerDataBaseGenerator.hpp>
+#include <database/MultiplierDataBaseGenerator.hpp>
+#include <database/NumOperationsDataBaseGenerator.hpp>
+#include <database/ParityDataBaseGenerator.hpp>
+#include <database/RandLevelDataBaseGenerator.hpp>
+#include <database/RandLevelExperimentalDataBaseGenerator.hpp>
+#include <database/SubtractorDataBaseGenerator.hpp>
+#include <database/SummatorDataBaseGenerator.hpp>
+
 #include <database/DataBaseGeneratorParameters.hpp>
 #include <generators/GenerationParameters.hpp>
 #include <getopt.h>
@@ -547,7 +564,42 @@ void runGeneration(
         minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, gp
     );
 
-    DataBaseGenerator generator(dbgp);
+    std::unique_ptr<DataBaseGenerator> generator;
+
+
+    switch(gt) {
+      default:
+      case GenerationTypes::FromRandomTruthTable:
+      generator = std::make_unique<FromRandomTruthTableDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::RandLevel:
+      generator = std::make_unique<RandLevelDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::RandLevelExperimental:
+      generator = std::make_unique<RandLevelExperimentalDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::NumOperation:
+      generator = std::make_unique<NumOperationsDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::Genetic:
+      generator = std::make_unique<GeneticDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::Summator:
+      generator = std::make_unique<SummatorDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::Comparison:
+      generator = std::make_unique<ComparisonDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::Encoder:
+      generator = std::make_unique<EncoderDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::Subtractor:
+      generator = std::make_unique<SubtractorDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::Multiplexer:
+      generator = std::make_unique<MultiplexerDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::Demultiplexer:
+      generator = std::make_unique<DemultiplexerDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::Multiplier:
+      generator = std::make_unique<MultiplierDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::Decoder:
+      generator = std::make_unique<DecoderDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::Parity:
+      generator = std::make_unique<ParityDataBaseGenerator>(dbgp); break;
+      case GenerationTypes::ALU:
+      generator = std::make_unique<ALUDataBaseGenerator>(dbgp); break;
+    }
 
     uint8_t           parallel =
         data.contains("multithread") ? (uint8_t)data["multithread"] : 1;
@@ -566,7 +618,7 @@ void runGeneration(
     // LOG(INFO) << "Generation started.";
     // Запускаем генерацию с учетом многопоточности и создания поддерикторий
     callable(
-        generator,
+        *generator,
         dbgp,
         parallel,
         data.contains("create_id_directories")

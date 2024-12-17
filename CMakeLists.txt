@@ -90,6 +90,22 @@ set(SOURCES
   src/generators/simple/ComparisonGenerator.cpp
   src/generators/simple/NumOperationsGenerator.cpp
   src/generators/simple/ParityGenerator.cpp
+
+  src/database/ALUDataBaseGenerator.cpp
+  src/database/ComparisonDataBaseGenerator.cpp
+  src/database/DecoderDataBaseGenerator.cpp
+  src/database/DemultiplexerDataBaseGenerator.cpp
+  src/database/EncoderDataBaseGenerator.cpp
+  src/database/FromRandomTruthTableDataBaseGenerator.cpp
+  src/database/GeneticDataBaseGenerator.cpp
+  src/database/MultiplexerDataBaseGenerator.cpp
+  src/database/MultiplierDataBaseGenerator.cpp
+  src/database/NumOperationsDataBaseGenerator.cpp
+  src/database/ParityDataBaseGenerator.cpp
+  src/database/RandLevelDataBaseGenerator.cpp
+  src/database/RandLevelExperimentalDataBaseGenerator.cpp
+  src/database/SubtractorDataBaseGenerator.cpp
+  src/database/SummatorDataBaseGenerator.cpp
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 
