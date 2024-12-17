@@ -24,7 +24,7 @@ void DataBaseGenerator::runGeneratorByDefault(
     const DataBaseGeneratorParameters &i_dbgp, uint8_t parallel,
     bool createIdDirectories) {
   GenerationTypes gt = i_dbgp.getGenerationType();
-  
+
   // TODO: make normal code
   std::string dir = d_settings->getDatasetPath();
 
