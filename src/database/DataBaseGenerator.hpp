@@ -92,15 +92,6 @@ private:
                              uint8_t parallel = 1,
                              bool createIdDirectories = true);
 
-  /// @brief getGenerateMethod
-  /// Retrieves a method for generating a database based on the provided
-  /// generation type
-  /// @param i_methodType The type of generation method to retrieve
-  /// @return Function pointer to the corresponding database generation method
-
-  std::function<void(const GenerationParameters &)>
-  getGenerateMethod(const GenerationTypes i_methodType);
-
   void addDataToReturn(GraphPtr graph);
 
   RandomGeneratorWithSeed d_randGenerator;

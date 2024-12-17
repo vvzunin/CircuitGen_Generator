@@ -24,8 +24,7 @@ void DataBaseGenerator::runGeneratorByDefault(
     const DataBaseGeneratorParameters &i_dbgp, uint8_t parallel,
     bool createIdDirectories) {
   GenerationTypes gt = i_dbgp.getGenerationType();
-  std::function<void(const GenerationParameters &)> generator =
-      getGenerateMethod(gt);
+  
   // TODO: make normal code
   std::string dir = d_settings->getDatasetPath();
 
@@ -88,7 +87,7 @@ void DataBaseGenerator::runGeneratorByDefault(
           GenerationParameters param = d_parameters.getGenerationParameters();
           param.setSeed(*iter + i + j);
 
-          auto runGenerator = [generator, param]() { generator(param); };
+          auto runGenerator = [this, param]() { generateDataBase(param); };
 
           pool.submit(runGenerator);
 
@@ -105,7 +104,7 @@ void DataBaseGenerator::runGeneratorByDefault(
           GenerationParameters param = d_parameters.getGenerationParameters();
           param.setSeed(*iter + i + j);
 
-          generator(param);
+          generateDataBase(param);
 
           ++d_dirCount;
           ++iter;
@@ -192,16 +191,4 @@ void DataBaseGenerator::processCircuit(std::shared_ptr<OrientedGraph> graph,
              i_param.getMakeGraphMLOpenABCD());
 
   addDataToReturn(graph);
-}
-
-// maybe this method should be rewritten using map with GenerationTypes and
-// FuncAlias
-std::function<void(const GenerationParameters &)>
-DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
-  using FuncAlias = void (DataBaseGenerator::*)(const GenerationParameters &);
-  FuncAlias generateMethodFunc = nullptr;
-
-  generateMethodFunc = &DataBaseGenerator::generateDataBase;
-
-  return std::bind(generateMethodFunc, this, std::placeholders::_1);
 }
