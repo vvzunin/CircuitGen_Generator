@@ -5,6 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <vector>
+#include <limits.h> // INT_MAX
 
 #include "DataBaseGenerator.hpp"
 
@@ -17,7 +18,15 @@
 #include <CircuitGenGenerator/ThreadPool.hpp>
 #include <generators/Genetic/GeneticParameters.hpp>
 #include <generators/Genetic/GenGenerator.hpp>
-#include <generators/simple/SimpleGenerators.hpp>
+#include <generators/simple/ArithmeticGenerator.hpp>
+#include <generators/simple/FromTruthTableGenerator.hpp>
+#include <generators/simple/CoderGenerator.hpp>
+#include <generators/simple/RandLevelGenerator.hpp>
+#include <generators/simple/PlexerGenerator.hpp>
+#include <generators/simple/ALUGenerator.hpp>
+#include <generators/simple/ComparisonGenerator.hpp>
+#include <generators/simple/NumOperationsGenerator.hpp>
+#include <generators/simple/ParityGenerator.hpp>
 
 using namespace std::chrono;
 using namespace Threading;
@@ -165,8 +174,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     const GenerationParameters &i_param) {
   TruthTable tt(i_param.getInputs(), i_param.getOutputs(), 0.0);
 
-  SimpleGenerators tftt(i_param.getSeed());
-  tftt.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  FromTruthTableGenerator tftt(i_param);
 
   std::vector<GraphPtr> allGraphs;
 
@@ -205,15 +213,8 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
 
 void DataBaseGenerator::generateDataBaseRandLevel(
     const GenerationParameters &i_param) {
-  SimpleGenerators generator(i_param.getSeed());
-  generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
-
-  GraphPtr graph =
-      generator.generatorRandLevel(i_param.getRandLevel().getMinLevel(),
-                                   i_param.getRandLevel().getMaxLevel(),
-                                   i_param.getRandLevel().getMinElements(),
-                                   i_param.getRandLevel().getMaxElements(),
-                                   i_param.getInputs(), i_param.getOutputs());
+  RandLevelGenerator generator(i_param);
+  GraphPtr graph = generator.generatorRandLevel();
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -227,16 +228,10 @@ void DataBaseGenerator::generateDataBaseRandLevel(
 
 void DataBaseGenerator::generateDataBaseRandLevelExperimental(
     const GenerationParameters &i_param) {
-  SimpleGenerators generator(i_param.getSeed());
-  generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  RandLevelGenerator generator(i_param);
 
   auto start = high_resolution_clock::now();
-  GraphPtr graph = generator.generatorRandLevelExperimental(
-      i_param.getRandLevel().getMinLevel(),
-      i_param.getRandLevel().getMaxLevel(),
-      i_param.getRandLevel().getMinElements(),
-      i_param.getRandLevel().getMaxElements(), i_param.getInputs(),
-      i_param.getOutputs());
+  GraphPtr graph = generator.generatorRandLevelExperimental();
 
   auto stop = high_resolution_clock::now();
   auto duration = duration_cast<microseconds>(stop - start);
@@ -258,15 +253,10 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
 
 void DataBaseGenerator::generateDataBaseNumOperations(
     const GenerationParameters &i_param) {
-  SimpleGenerators generator(i_param.getSeed());
-  generator.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  NumOperationsGenerator generator(i_param);
 
   std::vector<std::pair<std::string, GraphPtr>> circs;
-  circs.push_back(
-      {"NumOperation", generator.generatorNumOperation(
-                           i_param.getInputs(), i_param.getOutputs(),
-                           i_param.getNumOperations().getLogicOpers(),
-                           i_param.getNumOperations().getLeaveEmptyOut())});
+  circs.push_back({"NumOperation", generator.generatorNumOperation()});
 
   for (auto [name, graph]: circs) {
     Circuit c(graph);
@@ -304,14 +294,9 @@ void DataBaseGenerator::generateDataBaseGenetic(
 
 void DataBaseGenerator::generateDataBaseSummator(
     const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  ArithmeticGenerator sg(i_param);
+  GraphPtr graph = sg.generatorSummator();
 
-  int32_t bits = i_param.getInputs();
-  bool overflowIn = i_param.getSummator().getOverFlowIn();
-  bool overflowOut = i_param.getSummator().getOverFlowOut();
-  bool minus = i_param.getSummator().getMinus();
-  GraphPtr graph = sg.generatorSummator(bits, overflowIn, overflowOut, minus);
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -324,14 +309,9 @@ void DataBaseGenerator::generateDataBaseSummator(
 
 void DataBaseGenerator::generateDataBaseComparison(
     const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  ComparisonGenerator sg(i_param);
+  GraphPtr graph = sg.generatorComparison();
 
-  int32_t i_bits = i_param.getInputs();
-  bool compare0 = i_param.getComparison().getCompare0();
-  bool compare1 = i_param.getComparison().getCompare1();
-  bool compare2 = i_param.getComparison().getCompare2();
-  GraphPtr graph = sg.generatorComparison(i_bits, compare0, compare1, compare2);
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -344,11 +324,9 @@ void DataBaseGenerator::generateDataBaseComparison(
 
 void DataBaseGenerator::generateDataBaseEncoder(
     const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  CoderGenerator sg(i_param);
+  GraphPtr graph = sg.generatorEncoder();
 
-  int32_t i_bits = i_param.getInputs();
-  GraphPtr graph = sg.generatorEncoder(i_bits);
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -361,11 +339,9 @@ void DataBaseGenerator::generateDataBaseEncoder(
 
 void DataBaseGenerator::generateDataBaseParity(
     const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  ParityGenerator sg(i_param);
+  GraphPtr graph = sg.generatorParity();
 
-  int32_t bits = i_param.getInputs();
-  GraphPtr graph = sg.generatorParity(bits);
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -378,13 +354,9 @@ void DataBaseGenerator::generateDataBaseParity(
 
 void DataBaseGenerator::generateDataBaseSubtractor(
     const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  ArithmeticGenerator sg(i_param);
+  GraphPtr graph = sg.generatorSubtractor();
 
-  GraphPtr graph = sg.generatorSubtractor(
-      i_param.getInputs(), i_param.getSubtractor().getOverFlowIn(),
-      i_param.getSubtractor().getOverFlowOut(),
-      i_param.getSubtractor().getSub());
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -397,11 +369,9 @@ void DataBaseGenerator::generateDataBaseSubtractor(
 
 void DataBaseGenerator::generateDataBaseMultiplexer(
     const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  PlexerGenerator sg(i_param);
+  GraphPtr graph = sg.generatorMultiplexer();
 
-  int32_t i_bits = i_param.getInputs();
-  GraphPtr graph = sg.generatorMultiplexer(i_bits);
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -414,11 +384,9 @@ void DataBaseGenerator::generateDataBaseMultiplexer(
 
 void DataBaseGenerator::generateDataBaseDemultiplexer(
     const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  PlexerGenerator sg(i_param);
+  GraphPtr graph = sg.generatorDemultiplexer();
 
-  int32_t i_bits = i_param.getOutputs();
-  GraphPtr graph = sg.generatorDemultiplexer(i_bits);
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -431,10 +399,9 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
 
 void DataBaseGenerator::generateDataBaseMultiplier(
     const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  ArithmeticGenerator sg(i_param);
+  GraphPtr graph = sg.generatorMultiplier();
 
-  GraphPtr graph = sg.generatorMultiplier(i_param.getInputs());
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -447,10 +414,9 @@ void DataBaseGenerator::generateDataBaseMultiplier(
 
 void DataBaseGenerator::generateDataBaseDecoder(
     const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  CoderGenerator sg(i_param);
+  GraphPtr graph = sg.generatorDecoder();
 
-  GraphPtr graph = sg.generatorDecoder(i_param.getInputs());
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -463,22 +429,9 @@ void DataBaseGenerator::generateDataBaseDecoder(
 
 void DataBaseGenerator::generateDataBaseALU(
     const GenerationParameters &i_param) {
-  SimpleGenerators sg(i_param.getSeed());
-  sg.setGatesInputsInfo(i_param.getGatesInputsInfo());
+  ALUGenerator sg(i_param);
+  GraphPtr graph = sg.generatorALU();
 
-  GraphPtr graph = sg.generatorALU(
-      i_param.getInputs(), i_param.getOutputs(), i_param.getALU().getALL(),
-      i_param.getALU().getSUM(), i_param.getALU().getSUB(),
-      i_param.getALU().getNSUM(), i_param.getALU().getNSUB(),
-      i_param.getALU().getMULT(), i_param.getALU().getCOM(),
-      i_param.getALU().getAND(), i_param.getALU().getNAND(),
-      i_param.getALU().getOR(), i_param.getALU().getNOR(),
-      i_param.getALU().getXOR(), i_param.getALU().getXNOR(),
-      i_param.getALU().getCNF(), i_param.getALU().getRNL(),
-      i_param.getALU().getNUMOP(), i_param.getALU().getminLevel(),
-      i_param.getALU().getmaxLevel(), i_param.getALU().getminElement(),
-      i_param.getALU().getmaxElement(), i_param.getALU().getm(),
-      i_param.getALU().getLeaveEmptyOut());
   // LOG(INFO) << "Generation ALU complete!";
   Circuit c(graph);
   c.setPath(d_mainPath);
