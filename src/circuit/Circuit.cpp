@@ -10,9 +10,10 @@
 
 #include "Circuit.hpp"
 
+#include <CircuitGenGraph/enums.hpp>
+
 #include <additional/AuxiliaryMethods.hpp>
 #include <additional/filesTools/FilesTools.hpp>
-#include <CircuitGenGraph/enums.hpp>
 
 Circuit::Circuit(GraphPtr const i_graph,
                  const std::vector<std::string> &i_logExpressions) {
@@ -96,8 +97,8 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   }
 
   // iterate through inputs
-  for (auto inp: inputs) {
-    for (auto child: inp->getOutConnections()) {
+  for (auto *inp: inputs) {
+    for (auto *child: inp->getOutConnections()) {
       std::string to =
           child->getGate() != Gates::GateDefault
               ? DefaultSettings::parseGateToString(child->getGate())
@@ -107,8 +108,8 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   }
 
   // iterate through outputs
-  for (auto out: outputs) {
-    for (auto child: out->getInConnections()) {
+  for (auto *out: outputs) {
+    for (auto *child: out->getInConnections()) {
       if (child) {
         // here we do not parse pair input-output
         if (child->getType() == VertexTypes::input) {
@@ -127,8 +128,8 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   }
 
   // iterate through constants
-  for (auto inp: constants) {
-    for (auto child: inp->getOutConnections()) {
+  for (auto *inp: constants) {
+    for (auto *child: inp->getOutConnections()) {
       // here we do not parse pair const-output
       if (child->getType() == VertexTypes::output) {
         continue;
@@ -387,8 +388,8 @@ bool Circuit::generate(bool i_makeGraphMLClassic, bool i_makeGraphMLPseudoABCD,
     d_graph->updateLevels();
   }
   // LOG(INFO) << "Writing DOT for " << d_circuitName;
-  if (!graphToDOT(d_path, i_pathExists))
-    return false;
+  // if (!graphToDOT(d_path, i_pathExists))
+  //   return false;
   // LOG(INFO) << "Writing DOT ended for " << d_circuitName;
 
   // LOG(INFO) << "Writing GraphML for " << d_circuitName;

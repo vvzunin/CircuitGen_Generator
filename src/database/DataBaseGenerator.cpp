@@ -5,9 +5,10 @@
 #include <iostream>
 #include <limits>
 #include <vector>
-#include <limits.h> // INT_MAX
 
 #include "DataBaseGenerator.hpp"
+
+#include <CircuitGenGenerator/ThreadPool.hpp>
 
 #include <additional/AuxiliaryMethods.hpp>
 #include <additional/filesTools/FilesTools.hpp>
@@ -15,18 +16,18 @@
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
-#include <CircuitGenGenerator/ThreadPool.hpp>
-#include <generators/Genetic/GeneticParameters.hpp>
 #include <generators/Genetic/GenGenerator.hpp>
-#include <generators/simple/ArithmeticGenerator.hpp>
-#include <generators/simple/FromTruthTableGenerator.hpp>
-#include <generators/simple/CoderGenerator.hpp>
-#include <generators/simple/RandLevelGenerator.hpp>
-#include <generators/simple/PlexerGenerator.hpp>
+#include <generators/Genetic/GeneticParameters.hpp>
 #include <generators/simple/ALUGenerator.hpp>
+#include <generators/simple/ArithmeticGenerator.hpp>
+#include <generators/simple/CoderGenerator.hpp>
 #include <generators/simple/ComparisonGenerator.hpp>
+#include <generators/simple/FromTruthTableGenerator.hpp>
 #include <generators/simple/NumOperationsGenerator.hpp>
 #include <generators/simple/ParityGenerator.hpp>
+#include <generators/simple/PlexerGenerator.hpp>
+#include <generators/simple/RandLevelGenerator.hpp>
+
 
 using namespace std::chrono;
 using namespace Threading;
@@ -77,7 +78,7 @@ void DataBaseGenerator::runGeneratorByDefault(
   d_randGenerator.setSeed(AuxMethods::getRandSeed());
 
   auto randGeneratorLambda = [&]() {
-    return d_randGenerator.getRandInt(0, INT_MAX);
+    return d_randGenerator.getRandInt(0, std::numeric_limits<int>::max());
   };
   // we create int sequence, which would give us diffetent seeds for each repeat
   std::generate(seeds.begin(), seeds.end(), randGeneratorLambda);
@@ -99,7 +100,7 @@ void DataBaseGenerator::runGeneratorByDefault(
           GenerationParameters param = d_parameters.getGenerationParameters();
           param.setSeed(*iter + i + j);
 
-          auto runGenerator = [generator, param]() { generator(param); };
+          auto runGenerator = [&generator, &param]() { generator(param); };
 
           pool.submit(runGenerator);
 
@@ -230,11 +231,11 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
     const GenerationParameters &i_param) {
   RandLevelGenerator generator(i_param);
 
-  auto start = high_resolution_clock::now();
+  // auto start = high_resolution_clock::now();
   GraphPtr graph = generator.generatorRandLevelExperimental();
 
-  auto stop = high_resolution_clock::now();
-  auto duration = duration_cast<microseconds>(stop - start);
+  // auto stop = high_resolution_clock::now();
+  // auto duration = duration_cast<microseconds>(stop - start);
   // std::clog << "Time taken on experimental: " << duration.count()
   //           << " microseconds" << std::endl;
 

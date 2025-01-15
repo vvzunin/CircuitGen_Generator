@@ -27,4 +27,14 @@ public:
 
   GraphPtr generatorNumOperation(const GenerationParameters &i_param);
   GraphPtr generatorNumOperation();
+
+  // moved it here, because we need to use templates
+  template<typename T>
+  T randomGenerator(const std::map<T, int32_t> &i_map) {
+    // rand element of map
+    auto val = i_map.begin();
+    std::advance(val, d_randGenerator.getRandInt(0, i_map.size()));
+
+    return val->first;
+  }
 };
