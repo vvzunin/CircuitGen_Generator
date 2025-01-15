@@ -44,7 +44,8 @@ set(ORIENTED_GRAPH CircuitGenGraph)
 FetchContent_Declare(
   ${ORIENTED_GRAPH}
   GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
-  GIT_TAG v1.3.0
+  GIT_TAG 9ea3597
+  CMAKE_ARGS -DENABLE_OPTIMIZATIONS_GRAPH=ON
 )
 FetchContent_MakeAvailable(${ORIENTED_GRAPH})
 
@@ -214,6 +215,13 @@ target_include_directories(
 )
 
 target_compile_features(CircuitGenGenerator_lib PUBLIC cxx_std_17)
+
+option(ENABLE_OPTIMIZATIONS_GEN "Enable compiler optimizations for CircuitGenGenerator_lib" OFF)
+
+if(ENABLE_OPTIMIZATIONS_GEN)
+  message(STATUS "Compiler optimizations enabled for CircuitGenGenerator_lib")
+  target_compile_options(CircuitGenGenerator_lib PRIVATE -O2)
+endif()
 
 configure_package_config_file(cmake/CircuitGenGenerator-config.cmake.in CircuitGenGenerator-config.cmake
   INSTALL_DESTINATION "${CircuitGenGenerator_INSTALL_CMAKEDIR}")
