@@ -44,7 +44,7 @@ set(ORIENTED_GRAPH CircuitGenGraph)
 FetchContent_Declare(
   ${ORIENTED_GRAPH}
   GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
-  GIT_TAG c5cea22
+  GIT_TAG v1.3.1
   CMAKE_ARGS -DENABLE_OPTIMIZATIONS_GRAPH=ON
 )
 FetchContent_MakeAvailable(${ORIENTED_GRAPH})
