@@ -193,7 +193,7 @@ RecombinationCrossingShuffling(
   int32_t input = i_population[0].getChromosomeType().getInput();
   int32_t output = i_population[0].getChromosomeType().getOutput();
   int32_t size = i_population[0].getChromosomeType().size();
-  int32_t referencePoint = AuxMethods::getRandInt(0, size);
+  int32_t referencePoint;
 
   std::vector<ChromosomeType<TruthTable, TruthTableParameters>> survivors;
 

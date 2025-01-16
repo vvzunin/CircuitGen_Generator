@@ -13,24 +13,23 @@ MutationType(MutationParameters i_mutationParameters,
     return MutationTruthTable::MutationBinary(i_mutationParameters,
                                               i_population);
 
-  else if (i_mutationParameters.getMutationType() == MutationTypes::Density)
+  if (i_mutationParameters.getMutationType() == MutationTypes::Density)
     return MutationTruthTable::MutationDensity(i_mutationParameters,
                                                i_population);
 
-  else if (i_mutationParameters.getMutationType() ==
-           MutationTypes::AccessionDel)
+  if (i_mutationParameters.getMutationType() == MutationTypes::AccessionDel)
     return MutationTruthTable::MutationAccessionDel(i_mutationParameters,
                                                     i_population);
 
-  else if (i_mutationParameters.getMutationType() == MutationTypes::InsertDel)
+  if (i_mutationParameters.getMutationType() == MutationTypes::InsertDel)
     return MutationTruthTable::MutationInsertDel(i_mutationParameters,
                                                  i_population);
 
-  else if (i_mutationParameters.getMutationType() == MutationTypes::Exchange)
+  if (i_mutationParameters.getMutationType() == MutationTypes::Exchange)
     return MutationTruthTable::MutationExchange(i_mutationParameters,
                                                 i_population);
 
-  else if (i_mutationParameters.getMutationType() == MutationTypes::Delete)
+  if (i_mutationParameters.getMutationType() == MutationTypes::Delete)
     return MutationTruthTable::MutationDelete(i_mutationParameters,
                                               i_population);
 

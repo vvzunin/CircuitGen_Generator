@@ -9,8 +9,9 @@
 #include <string>
 #include <vector>
 
-#include <additional/AuxiliaryMethods.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
+
+#include <additional/AuxiliaryMethods.hpp>
 #include <database/DataBaseGenerator.hpp>
 #include <database/DataBaseGeneratorParameters.hpp>
 #include <generators/GenerationParameters.hpp>
@@ -142,6 +143,9 @@ void runGeneration(
     bool makeGraphMLOpenABCD   = data.contains("make_graphml_open_abc_d")
                                    ? (bool)data["make_graphml_open_abc_d"]
                                    : false;
+    bool makeDOT               = data.contains("make_dot")
+                                   ? (bool)data["make_dot"]
+                                   : false;
 
     // Считывание информации по логичсеким элементам.
     std::map<std::string, std::vector<int32_t>> gatesInputsInfo;
@@ -181,7 +185,8 @@ void runGeneration(
         repeats,
         makeGraphMLClassic,
         makeGraphMLPseudoABCD,
-        makeGraphMLOpenABCD
+        makeGraphMLOpenABCD,
+        makeDOT
     );
 
     gp.setGatesInputInfo(gatesInputsInfo);
@@ -262,11 +267,12 @@ void runGeneration(
 
     // Основные параметры для Genetic
     if (data["type_of_generation"] == "Genetic") {
-      int32_t numOfSurv = 1;
-      if (data.contains("surv_num"))
-        int32_t numOfSurv = data["surv_num"];
-      else
-        std::clog << "Parameter surv_num is not set." << std::endl;
+      // TODO NOT USED
+      // int32_t numOfSurv = 1;
+      // if (data.contains("surv_num"))
+      //   numOfSurv = data["surv_num"];
+      // else
+      //   std::clog << "Parameter surv_num is not set." << std::endl;
 
       MutationTypes mType;
       if (data.contains("mut_type")) {

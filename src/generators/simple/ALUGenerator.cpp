@@ -1,13 +1,14 @@
-﻿#include "ALUGenerator.hpp"
-#include <additional/AuxiliaryMethods.hpp>
-#include <CircuitGenGenerator/ThreadPool.hpp>
+﻿#include <CircuitGenGenerator/ThreadPool.hpp>
 
+#include <additional/AuxiliaryMethods.hpp>
+
+#include "ALUGenerator.hpp"
 #include "ArithmeticGenerator.hpp"
 #include "ComparisonGenerator.hpp"
-#include "PlexerGenerator.hpp"
 #include "FromTruthTableGenerator.hpp"
-#include "RandLevelGenerator.hpp"
 #include "NumOperationsGenerator.hpp"
+#include "PlexerGenerator.hpp"
+#include "RandLevelGenerator.hpp"
 
 #define ADD_WITH_MUTEX_TO_VEC(val) \
   ({ \
@@ -66,6 +67,8 @@ GraphPtr ALUGenerator::generatorALU(
       (OR ? 1 : 0) + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0) +
       (CNF ? 3 : 0) + (RNL ? 1 : 0) + (NUM_OP ? 1 : 0);
 
+  // TODO not used code. Fix
+#if 0
   // размерность АЛУ (сколько генераций мультиплексоров необходимо выполнить)
   int32_t size = i_bits;
   size = MULT ? i_bits * 2 : (SUM || NSUM || SUB || NSUB ? i_bits + 1 : i_bits);
@@ -82,6 +85,7 @@ GraphPtr ALUGenerator::generatorALU(
   } else if (SUM || NSUM || SUB || NSUB) {
     size = i_bits + 1;
   }
+#endif
 
   int32_t k = 0;
   for (int32_t t = 0; t <= x; t++) {
@@ -192,7 +196,7 @@ GraphPtr ALUGenerator::generatorALU(
       std::vector<VertexPtr> newInputs = inputs;
 
       mtx.lock();
-      auto add = graph->addInput("sum_p0");
+      auto *add = graph->addInput("sum_p0");
       mtx.unlock();
 
       newInputs.insert(newInputs.begin() + 2, add);
@@ -222,7 +226,7 @@ GraphPtr ALUGenerator::generatorALU(
       std::vector<VertexPtr> newInputs = inputs;
 
       mtx.lock();
-      auto add = graph->addInput("sub_z0");
+      auto *add = graph->addInput("sub_z0");
       mtx.unlock();
 
       newInputs.insert(newInputs.begin() + 2, add);
@@ -252,7 +256,7 @@ GraphPtr ALUGenerator::generatorALU(
       std::vector<VertexPtr> newInputs = inputs;
 
       mtx.lock();
-      auto add = graph->addInput("nsum_p0");
+      auto *add = graph->addInput("nsum_p0");
       mtx.unlock();
 
       newInputs.insert(newInputs.begin() + 2, add);
@@ -282,7 +286,7 @@ GraphPtr ALUGenerator::generatorALU(
       std::vector<VertexPtr> newInputs = inputs;
 
       mtx.lock();
-      auto add = graph->addInput("nsub_z0");
+      auto *add = graph->addInput("nsub_z0");
       mtx.unlock();
 
       newInputs.insert(newInputs.begin() + 2, add);

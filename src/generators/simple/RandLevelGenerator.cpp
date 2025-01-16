@@ -120,7 +120,7 @@ GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
   std::vector<VertexPtr> inputs;
   inputs.reserve(i_inputs);
 
-  for (auto i: graph->getVerticesByType(VertexTypes::input)) {
+  for (auto *i: graph->getVerticesByType(VertexTypes::input)) {
     inputs.push_back(i);
   }
   auto curGates(inputs);
@@ -224,7 +224,7 @@ GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
 
   // std::clog << "writing out gates" << std::endl;
   for (int32_t i = 0; i < i_outputs; ++i) {
-    auto child1 = curGates[d_randGenerator.getRandInt(0, curGates.size())];
+    auto *child1 = curGates[d_randGenerator.getRandInt(0, curGates.size())];
     expr = "f" + std::to_string(i + 1);
     VertexPtr newVertex = graph->addOutput(expr);
 

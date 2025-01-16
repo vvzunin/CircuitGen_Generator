@@ -35,8 +35,7 @@ NumOperationsGenerator::NumOperationsGenerator(uint_fast32_t i_seed) :
 }
 
 NumOperationsGenerator::NumOperationsGenerator(
-    const GenerationParameters &i_param) :
-    SimpleGenerator(i_param) {
+    const GenerationParameters &i_param) : SimpleGenerator(i_param) {
 }
 
 GraphPtr NumOperationsGenerator::generatorNumOperation(
@@ -88,7 +87,7 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
 
     if (oper == Gates::GateNot || oper == Gates::GateBuf) {
       std::string ver1_name = randomGenerator(levelName);
-      auto ver1 = levelNamePtr[ver1_name];
+      auto *ver1 = levelNamePtr[ver1_name];
 
       // name = d_settings->getLogicOperation(oper).first + "(" + ver1 + ")";
       name_ptr = graph->addGate(oper);

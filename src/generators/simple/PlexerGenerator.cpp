@@ -1,4 +1,5 @@
 ﻿#include <bitset>
+
 #include "PlexerGenerator.hpp"
 
 PlexerGenerator::PlexerGenerator() : SimpleGenerator() {

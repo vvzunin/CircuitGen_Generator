@@ -299,12 +299,13 @@ public:
                        uint32_t i_outputs, uint32_t i_iteration,
                        bool i_makeGraphMLClassic = false,
                        bool i_makeGraphMLPsedoABCD = false,
-                       bool i_makeGraphMLOpenABCD = false) :
-      d_name(i_name),
-      d_requestId(i_requestId), d_inputs(i_inputs), d_outputs(i_outputs),
-      d_iteration(i_iteration), d_makeGraphMLClassic(i_makeGraphMLClassic),
+                       bool i_makeGraphMLOpenABCD = false,
+                       bool i_makeDOT = false) :
+      d_name(i_name), d_requestId(i_requestId), d_inputs(i_inputs),
+      d_outputs(i_outputs), d_iteration(i_iteration),
+      d_makeGraphMLClassic(i_makeGraphMLClassic),
       d_makeGraphMLPseudoABCD(i_makeGraphMLPsedoABCD),
-      d_makeGraphMLOpenABCD(i_makeGraphMLOpenABCD){};
+      d_makeGraphMLOpenABCD(i_makeGraphMLOpenABCD), d_makeDOT(i_makeDOT) {};
 
   std::string getName() const { return d_name; }
 
@@ -327,6 +328,7 @@ public:
   bool getMakeGraphMLClassic() const { return d_makeGraphMLClassic; }
   bool getMakeGraphMLPseudoABCD() const { return d_makeGraphMLPseudoABCD; }
   bool getMakeGraphMLOpenABCD() const { return d_makeGraphMLOpenABCD; }
+  bool getMakeDOT() const { return d_makeDOT; }
 
   std::uint_fast32_t getSeed() const { return d_seed; }
 
@@ -483,6 +485,7 @@ private:
   bool d_makeGraphMLClassic;
   bool d_makeGraphMLPseudoABCD;
   bool d_makeGraphMLOpenABCD;
+  bool d_makeDOT;
 
   std::map<std::string, std::vector<int32_t>> d_gatesInputsInfo;
 
