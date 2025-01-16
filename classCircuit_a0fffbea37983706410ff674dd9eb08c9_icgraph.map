@@ -1,6 +1,6 @@
 <map id="Circuit::graphToVerilog" name="Circuit::graphToVerilog">
 <area shape="rect" id="node1" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="737,519,905,546"/>
-<area shape="rect" id="node2" href="$classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" id="node2" href="$classCircuit.html#acf56ad46f6802cae1a06882dc1018ab2" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
 <area shape="rect" id="node3" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
 <area shape="rect" id="node5" href="$classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
 <area shape="rect" id="node6" href="$classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>

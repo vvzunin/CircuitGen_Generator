@@ -8,7 +8,6 @@ var classSimpleGenerator =
     [ "getParameters", "classSimpleGenerator.html#a0883ee8407b3ee88fc511427d41d2734", null ],
     [ "getRandomElement", "classSimpleGenerator.html#ad50e98b8f284116e3866f6be0d0e9681", null ],
     [ "getRandomElement", "classSimpleGenerator.html#acc4c115fd63317d5f127f13ad85cdd56", null ],
-    [ "randomGenerator", "classSimpleGenerator.html#a35cd816d74f521c53709fb899e85f830", null ],
     [ "setGatesInputsInfo", "classSimpleGenerator.html#a9ec97636c4a57f2723b4d37d4305a28f", null ],
     [ "d_gatesInputsInfo", "classSimpleGenerator.html#a1d73c308a7c33918d81425732efc6f3c", null ],
     [ "d_maxGateNumber", "classSimpleGenerator.html#a6f9e3b240855f84e4651e752fe334e25", null ],

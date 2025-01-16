@@ -244,6 +244,7 @@ var annotated_dup =
     [ "Chromosome", "classChromosome.html", "classChromosome" ],
     [ "ChromosomeType", "classChromosomeType.html", "classChromosomeType" ],
     [ "Circuit", "classCircuit.html", "classCircuit" ],
+    [ "CircuitArgs", "structCircuitArgs.html", "structCircuitArgs" ],
     [ "CircuitParameters", "classCircuitParameters.html", "classCircuitParameters" ],
     [ "CNNFromTruthTableParameters", "classCNNFromTruthTableParameters.html", "classCNNFromTruthTableParameters" ],
     [ "CoderGenerator", "classCoderGenerator.html", "classCoderGenerator" ],

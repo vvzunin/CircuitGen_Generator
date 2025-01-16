@@ -1,52 +1,52 @@
 <map id="DataBaseGenerator::getGenerateMethod" name="DataBaseGenerator::getGenerateMethod">
-<area shape="rect" id="node1" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,609,164,650"/>
-<area shape="rect" id="node2" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,151,446,193"/>
-<area shape="rect" id="node14" href="$classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,282,472,323"/>
-<area shape="rect" id="node16" href="$classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,413,460,454"/>
-<area shape="rect" id="node18" href="$classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,347,479,389"/>
-<area shape="rect" id="node20" href="$classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,935,459,977"/>
-<area shape="rect" id="node22" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,1323,477,1379"/>
-<area shape="rect" id="node33" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,1001,458,1042"/>
-<area shape="rect" id="node37" href="$classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,478,469,519"/>
-<area shape="rect" id="node39" href="$classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,217,464,258"/>
-<area shape="rect" id="node41" href="$classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,870,484,911"/>
-<area shape="rect" id="node43" href="$classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,674,451,715"/>
-<area shape="rect" id="node45" href="$classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,609,467,650"/>
-<area shape="rect" id="node46" href="$classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,543,511,585"/>
-<area shape="rect" id="node47" href="$classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,739,467,781"/>
-<area shape="rect" id="node49" href="$classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,805,467,846"/>
-<area shape="rect" id="node3" href="$classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="623,681,753,708"/>
-<area shape="rect" id="node7" href="$classALUGenerator.html#af65a400ed2efb31ea199e77bcfcaa267" title="generatorALU represents the generation of a combinational circuit of an ALU (Arithmetic Logic Unit)." alt="" coords="583,5,793,32"/>
-<area shape="rect" id="node8" href="$classGenerationParameters.html#aed2938223a2a7b8fddd87218abb189d4" title=" " alt="" coords="593,733,783,774"/>
-<area shape="rect" id="node9" href="$classGenerationParameters.html#aeccc0983840788f03ae4cd9e06f1c1f3" title=" " alt="" coords="581,383,795,425"/>
-<area shape="rect" id="node10" href="$classGenerationParameters.html#abc21152ae59f53741545d14075dbde3d" title=" " alt="" coords="574,449,802,490"/>
-<area shape="rect" id="node11" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="604,514,772,555"/>
-<area shape="rect" id="node12" href="$classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="601,580,775,607"/>
-<area shape="rect" id="node13" href="$classCircuit.html#a71e323bb28864ea40f60fdc1fd693add" title="setPath This method is designed to set the path where the files associated with the digital circuit w..." alt="" coords="628,631,748,657"/>
-<area shape="rect" id="node4" href="$classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f" title="graphToDOT The graph To DOT method in the Circuit class converts the combinational circuit into code ..." alt="" coords="883,631,1034,657"/>
-<area shape="rect" id="node5" href="$classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="868,681,1049,708"/>
-<area shape="rect" id="node6" href="$classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="875,732,1043,759"/>
-<area shape="rect" id="node15" href="$classComparisonGenerator.html#a9fad15ecee92f178702d774e8d41f733" title=" " alt="" coords="603,122,773,163"/>
-<area shape="rect" id="node17" href="$classCoderGenerator.html#ab5ac30365cbe716e3a6c13bad4799b41" title="generatorDecoder represents the generation of a combinational decoder circuit." alt="" coords="590,253,786,294"/>
-<area shape="rect" id="node19" href="$classPlexerGenerator.html#a2c7716ef1c87c334897516fe935c0594" title="generatorDemultiplexer represents the generation of the combinational circuit of the demultiplexer." alt="" coords="589,187,787,229"/>
-<area shape="rect" id="node21" href="$classCoderGenerator.html#ac61f6b08be5524a3b902e436d5f51bc4" title="generatorEncoder represents the generation of a combinational scheme of a standard binary encoder." alt="" coords="590,1059,786,1101"/>
-<area shape="rect" id="node23" href="$classFromTruthTableGenerator.html#af62aed8e75fa2f22340420c3993c41f0" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="865,1271,1052,1313"/>
-<area shape="rect" id="node24" href="$classGenerationParameters.html#a2f4ad9ff5987e4d4d3a658e2f10fef83" title=" " alt="" coords="604,1542,772,1583"/>
-<area shape="rect" id="node25" href="$classCNNFromTruthTableParameters.html#a1f0b1d57ffe32026525230f2de39ccd0" title=" " alt="" coords="576,1607,800,1649"/>
-<area shape="rect" id="node26" href="$classCNNFromTruthTableParameters.html#a12b5f0f950abdf4058da9409809c6662" title=" " alt="" coords="576,1673,800,1714"/>
-<area shape="rect" id="node27" href="$classGenerationParameters.html#ab5415cce0d7d4e0417491f460a0e3a3a" title=" " alt="" coords="604,1738,772,1779"/>
-<area shape="rect" id="node28" href="$classGenerationParameters.html#a1f3eb45bdbff9fddee1236d2f442a300" title=" " alt="" coords="604,1803,772,1845"/>
-<area shape="rect" id="node29" href="$classzhegalkinFromTruthTableParameters.html#a153865fe9c9e75894cfbfbcfcd2437a3" title=" " alt="" coords="559,1869,817,1910"/>
-<area shape="rect" id="node30" href="$classGenerationParameters.html#ad9124167a78b118d3ecfe254ebdd984a" title=" " alt="" coords="604,1359,772,1401"/>
-<area shape="rect" id="node31" href="$classCircuit.html#a5afd009c717105e7f2c36c02e233661c" title="setTable This method is designed to set up a truth table for a digital circuit." alt="" coords="625,1425,751,1452"/>
-<area shape="rect" id="node32" href="$classFromTruthTableGenerator.html#a53d6c92106dd5aac4b2e775330546991" title=" " alt="" coords="592,1477,784,1518"/>
-<area shape="rect" id="node34" href="$classGeneticGenerator.html#aaf537ed82bcded2e79880a1fad8add5b" title="generate Generates a genetic population and carries out evolutionary processes The method creates an ..." alt="" coords="587,1125,789,1152"/>
-<area shape="rect" id="node35" href="$classGenerationParameters.html#ab66c082601d3c2e4fd3b664a66592b96" title=" " alt="" coords="604,1177,772,1218"/>
-<area shape="rect" id="node36" href="$classGeneticGenerator.html#aea417dcc4d2198ad417c4db7d1168f41" title=" " alt="" coords="582,1242,794,1283"/>
-<area shape="rect" id="node38" href="$classPlexerGenerator.html#a25f22db1821adb09525a5bac4d780282" title="generatorMultiplexer represents the generation of a combinational multiplexer circuit." alt="" coords="589,318,787,359"/>
-<area shape="rect" id="node40" href="$classArithmeticGenerator.html#a55a38857c8462a1ee82ee4cf45ae9b47" title=" " alt="" coords="611,57,765,98"/>
-<area shape="rect" id="node42" href="$classNumOperationsGenerator.html#a4d82ad0aaf80da7e2ee12fae22c7591e" title="generatorNumOperation" alt="" coords="593,994,783,1035"/>
-<area shape="rect" id="node44" href="$classParityGenerator.html#adb5576681fce6a2dc8b8685d048ffe70" title="generatorParity represents the generation of a combinational parity check scheme." alt="" coords="591,798,785,839"/>
-<area shape="rect" id="node48" href="$classArithmeticGenerator.html#ac5469df5a0f4656f619b1e004722692d" title="generatorComparison represents the generation of a combinational comparator circuit." alt="" coords="608,863,768,905"/>
-<area shape="rect" id="node50" href="$classArithmeticGenerator.html#a8af0387cfad23d47151915b27bc2a56f" title="generatorSummator represents the generation of a combinational adder circuit." alt="" coords="607,929,769,970"/>
+<area shape="rect" id="node1" title="getGenerateMethod Retrieves a method for generating a database based on the provided generation type" alt="" coords="5,617,164,658"/>
+<area shape="rect" id="node2" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,159,446,201"/>
+<area shape="rect" id="node14" href="$classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,421,472,462"/>
+<area shape="rect" id="node16" href="$classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,290,460,331"/>
+<area shape="rect" id="node18" href="$classDataBaseGenerator.html#a896a7600daa183c018b39eebf9136800" title="generateDataBaseDemultiplexer Generates a database representing a demultiplexer circuit" alt="" coords="244,486,479,527"/>
+<area shape="rect" id="node20" href="$classDataBaseGenerator.html#a6fce34b3a9d87af732768c49b0d5ae3b" title="generateDataBaseEncoder Generates a database representing a comparison circuit" alt="" coords="264,747,459,789"/>
+<area shape="rect" id="node22" href="$classDataBaseGenerator.html#af4c8c81c72bf2699c55832c0c4ded764" title=" " alt="" coords="246,1367,477,1423"/>
+<area shape="rect" id="node33" href="$classDataBaseGenerator.html#abcc5179735a139280f4341be7ac54aff" title="generateDataBaseGenetic The method is designed to generate a database using genetic algorithms" alt="" coords="265,1009,458,1050"/>
+<area shape="rect" id="node37" href="$classDataBaseGenerator.html#a3a26033dd14934db127063caf0025175" title="generateDataBaseMultiplexer Generates a database representing a multiplexer circuit" alt="" coords="253,943,469,985"/>
+<area shape="rect" id="node39" href="$classDataBaseGenerator.html#ad9bf82876e4be785552b5d7ac1e04caa" title="generateDataBaseMultiplier Generates a database representing a multiplier circuit" alt="" coords="259,355,464,397"/>
+<area shape="rect" id="node41" href="$classDataBaseGenerator.html#a71cb26ca84dd54145b5a95fbfc0da79b" title="generateDataBaseNumOperations The method is designed to generate a database based on a given number o..." alt="" coords="239,225,484,266"/>
+<area shape="rect" id="node43" href="$classDataBaseGenerator.html#a73bfb370cd36cea369075ad9f8d3ff38" title="generateDataBaseParity Generates a database representing a parity circuit" alt="" coords="271,682,451,723"/>
+<area shape="rect" id="node45" href="$classDataBaseGenerator.html#a92191749f74f8660972e648f10611a8c" title="generateDataBaseRandLevel The method is responsible for generating a database based on randomly gener..." alt="" coords="256,551,467,593"/>
+<area shape="rect" id="node46" href="$classDataBaseGenerator.html#aaba6c929833cb121a88f0fd3acf5e406" title="generateDataBaseRandLevelExperimental The method is intended for experimental database generation bas..." alt="" coords="212,617,511,658"/>
+<area shape="rect" id="node47" href="$classDataBaseGenerator.html#a65e14be0b8a4b3e35985a538387bbd6e" title="generateDataBaseSubtractor Generates a database representing a subtractor circuit" alt="" coords="256,813,467,854"/>
+<area shape="rect" id="node49" href="$classDataBaseGenerator.html#a6909e6cc8fee10beec59ce359bc228d0" title="generateDataBaseSummator Generates a database representing a summator circuit" alt="" coords="256,878,467,919"/>
+<area shape="rect" id="node3" href="$classCircuit.html#acf56ad46f6802cae1a06882dc1018ab2" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="623,552,753,579"/>
+<area shape="rect" id="node6" href="$classALUGenerator.html#af65a400ed2efb31ea199e77bcfcaa267" title="generatorALU represents the generation of a combinational circuit of an ALU (Arithmetic Logic Unit)." alt="" coords="583,5,793,32"/>
+<area shape="rect" id="node7" href="$classGenerationParameters.html#a0aa30d18bffed262c829f0ea6de34de1" title=" " alt="" coords="604,603,772,645"/>
+<area shape="rect" id="node8" href="$classGenerationParameters.html#aed2938223a2a7b8fddd87218abb189d4" title=" " alt="" coords="593,669,783,710"/>
+<area shape="rect" id="node9" href="$classGenerationParameters.html#aeccc0983840788f03ae4cd9e06f1c1f3" title=" " alt="" coords="581,486,795,527"/>
+<area shape="rect" id="node10" href="$classGenerationParameters.html#abc21152ae59f53741545d14075dbde3d" title=" " alt="" coords="574,734,802,775"/>
+<area shape="rect" id="node11" href="$classGenerationParameters.html#a3220cd863174ccbfd31f4a7965759350" title=" " alt="" coords="604,799,772,841"/>
+<area shape="rect" id="node12" href="$classCircuit.html#a6b0bf9c0af70133d2389c6a2b9c81299" title="setCircuitName This method is used to set the name of the digital circuit." alt="" coords="601,384,775,411"/>
+<area shape="rect" id="node13" href="$classCircuit.html#a71e323bb28864ea40f60fdc1fd693add" title="setPath This method is designed to set the path where the files associated with the digital circuit w..." alt="" coords="628,435,748,461"/>
+<area shape="rect" id="node4" href="$classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f" title="graphToDOT The graph To DOT method in the Circuit class converts the combinational circuit into code ..." alt="" coords="883,577,1034,604"/>
+<area shape="rect" id="node5" href="$classCircuit.html#a29977b7d740f3706410ce5c2dfe2dfe4" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="868,527,1049,553"/>
+<area shape="rect" id="node15" href="$classComparisonGenerator.html#a9fad15ecee92f178702d774e8d41f733" title=" " alt="" coords="603,253,773,294"/>
+<area shape="rect" id="node17" href="$classCoderGenerator.html#ab5ac30365cbe716e3a6c13bad4799b41" title="generatorDecoder represents the generation of a combinational decoder circuit." alt="" coords="590,122,786,163"/>
+<area shape="rect" id="node19" href="$classPlexerGenerator.html#a2c7716ef1c87c334897516fe935c0594" title="generatorDemultiplexer represents the generation of the combinational circuit of the demultiplexer." alt="" coords="589,318,787,359"/>
+<area shape="rect" id="node21" href="$classCoderGenerator.html#ac61f6b08be5524a3b902e436d5f51bc4" title="generatorEncoder represents the generation of a combinational scheme of a standard binary encoder." alt="" coords="590,930,786,971"/>
+<area shape="rect" id="node23" href="$classFromTruthTableGenerator.html#af62aed8e75fa2f22340420c3993c41f0" title="cnfFromTruthTable accepts a truth table as an input in the form of a Truth Table object and returns a..." alt="" coords="865,1527,1052,1569"/>
+<area shape="rect" id="node24" href="$classGenerationParameters.html#a2f4ad9ff5987e4d4d3a658e2f10fef83" title=" " alt="" coords="604,1805,772,1846"/>
+<area shape="rect" id="node25" href="$classCNNFromTruthTableParameters.html#a1f0b1d57ffe32026525230f2de39ccd0" title=" " alt="" coords="576,1870,800,1911"/>
+<area shape="rect" id="node26" href="$classCNNFromTruthTableParameters.html#a12b5f0f950abdf4058da9409809c6662" title=" " alt="" coords="576,1935,800,1977"/>
+<area shape="rect" id="node27" href="$classGenerationParameters.html#ab5415cce0d7d4e0417491f460a0e3a3a" title=" " alt="" coords="604,1374,772,1415"/>
+<area shape="rect" id="node28" href="$classGenerationParameters.html#a1f3eb45bdbff9fddee1236d2f442a300" title=" " alt="" coords="604,1439,772,1481"/>
+<area shape="rect" id="node29" href="$classzhegalkinFromTruthTableParameters.html#a153865fe9c9e75894cfbfbcfcd2437a3" title=" " alt="" coords="559,1505,817,1546"/>
+<area shape="rect" id="node30" href="$classGenerationParameters.html#ad9124167a78b118d3ecfe254ebdd984a" title=" " alt="" coords="604,1570,772,1611"/>
+<area shape="rect" id="node31" href="$classCircuit.html#a5afd009c717105e7f2c36c02e233661c" title="setTable This method is designed to set up a truth table for a digital circuit." alt="" coords="625,1636,751,1663"/>
+<area shape="rect" id="node32" href="$classFromTruthTableGenerator.html#a53d6c92106dd5aac4b2e775330546991" title=" " alt="" coords="592,1687,784,1729"/>
+<area shape="rect" id="node34" href="$classGeneticGenerator.html#aaf537ed82bcded2e79880a1fad8add5b" title="generate Generates a genetic population and carries out evolutionary processes The method creates an ..." alt="" coords="587,1192,789,1219"/>
+<area shape="rect" id="node35" href="$classGenerationParameters.html#ab66c082601d3c2e4fd3b664a66592b96" title=" " alt="" coords="604,1243,772,1285"/>
+<area shape="rect" id="node36" href="$classGeneticGenerator.html#aea417dcc4d2198ad417c4db7d1168f41" title=" " alt="" coords="582,1309,794,1350"/>
+<area shape="rect" id="node38" href="$classPlexerGenerator.html#a25f22db1821adb09525a5bac4d780282" title="generatorMultiplexer represents the generation of a combinational multiplexer circuit." alt="" coords="589,1126,787,1167"/>
+<area shape="rect" id="node40" href="$classArithmeticGenerator.html#a55a38857c8462a1ee82ee4cf45ae9b47" title=" " alt="" coords="611,187,765,229"/>
+<area shape="rect" id="node42" href="$classNumOperationsGenerator.html#a4d82ad0aaf80da7e2ee12fae22c7591e" title="generatorNumOperation" alt="" coords="593,57,783,98"/>
+<area shape="rect" id="node44" href="$classParityGenerator.html#adb5576681fce6a2dc8b8685d048ffe70" title="generatorParity represents the generation of a combinational parity check scheme." alt="" coords="591,865,785,906"/>
+<area shape="rect" id="node48" href="$classArithmeticGenerator.html#ac5469df5a0f4656f619b1e004722692d" title="generatorComparison represents the generation of a combinational comparator circuit." alt="" coords="608,995,768,1037"/>
+<area shape="rect" id="node50" href="$classArithmeticGenerator.html#a8af0387cfad23d47151915b27bc2a56f" title="generatorSummator represents the generation of a combinational adder circuit." alt="" coords="607,1061,769,1102"/>
 </map>

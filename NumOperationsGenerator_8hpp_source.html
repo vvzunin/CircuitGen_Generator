@@ -115,13 +115,26 @@ $(document).ready(function(){initNavTree('NumOperationsGenerator_8hpp_source.htm
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  GraphPtr <a class="code" href="classNumOperationsGenerator.html#a18c485f0720e25587a31fd7892c458ba">generatorNumOperation</a>(<span class="keyword">const</span> <a class="code" href="classGenerationParameters.html">GenerationParameters</a> &amp;i_param);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  GraphPtr <a class="code" href="classNumOperationsGenerator.html#a18c485f0720e25587a31fd7892c458ba">generatorNumOperation</a>();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="comment">// moved it here, because we need to use templates</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classNumOperationsGenerator.html#aa1db13f3eda785042b6207368c9adc6d">   33</a></span>&#160;  T <a class="code" href="classNumOperationsGenerator.html#aa1db13f3eda785042b6207368c9adc6d">randomGenerator</a>(<span class="keyword">const</span> std::map&lt;T, int32_t&gt; &amp;i_map) {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// rand element of map</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">auto</span> val = i_map.begin();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::advance(val, <a class="code" href="classSimpleGenerator.html#a7a907b85cda052ad56817a2b6ec17678">d_randGenerator</a>.<a class="code" href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d">getRandInt</a>(0, i_map.size()));</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">return</span> val-&gt;first;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
 <div class="ttc" id="aSimpleGenerator_8hpp_html"><div class="ttname"><a href="SimpleGenerator_8hpp.html">SimpleGenerator.hpp</a></div></div>
 <div class="ttc" id="aclassGenerationParameters_html"><div class="ttname"><a href="classGenerationParameters.html">GenerationParameters</a></div><div class="ttdef"><b>Definition:</b> GenerationParameters.hpp:295</div></div>
 <div class="ttc" id="aclassNumOperationsGenerator_html"><div class="ttname"><a href="classNumOperationsGenerator.html">NumOperationsGenerator</a></div><div class="ttdef"><b>Definition:</b> NumOperationsGenerator.hpp:4</div></div>
 <div class="ttc" id="aclassNumOperationsGenerator_html_a18c485f0720e25587a31fd7892c458ba"><div class="ttname"><a href="classNumOperationsGenerator.html#a18c485f0720e25587a31fd7892c458ba">NumOperationsGenerator::generatorNumOperation</a></div><div class="ttdeci">GraphPtr generatorNumOperation()</div><div class="ttdef"><b>Definition:</b> NumOperationsGenerator.cpp:156</div></div>
 <div class="ttc" id="aclassNumOperationsGenerator_html_a8483ff36a63c280d3148f1afc30fc54d"><div class="ttname"><a href="classNumOperationsGenerator.html#a8483ff36a63c280d3148f1afc30fc54d">NumOperationsGenerator::NumOperationsGenerator</a></div><div class="ttdeci">NumOperationsGenerator()</div><div class="ttdef"><b>Definition:</b> NumOperationsGenerator.cpp:30</div></div>
+<div class="ttc" id="aclassNumOperationsGenerator_html_aa1db13f3eda785042b6207368c9adc6d"><div class="ttname"><a href="classNumOperationsGenerator.html#aa1db13f3eda785042b6207368c9adc6d">NumOperationsGenerator::randomGenerator</a></div><div class="ttdeci">T randomGenerator(const std::map&lt; T, int32_t &gt; &amp;i_map)</div><div class="ttdef"><b>Definition:</b> NumOperationsGenerator.hpp:33</div></div>
+<div class="ttc" id="aclassRandomGeneratorWithSeed_html_a124a925dff79eb0fd459a6029432457d"><div class="ttname"><a href="classRandomGeneratorWithSeed.html#a124a925dff79eb0fd459a6029432457d">RandomGeneratorWithSeed::getRandInt</a></div><div class="ttdeci">int32_t getRandInt(int32_t lower, int32_t upper, bool inclusively=false)</div><div class="ttdoc">getRandInt Method to generate a random integer within a specified range.</div><div class="ttdef"><b>Definition:</b> RandomGeneratorWithSeed.hpp:55</div></div>
 <div class="ttc" id="aclassSimpleGenerator_html"><div class="ttname"><a href="classSimpleGenerator.html">SimpleGenerator</a></div><div class="ttdef"><b>Definition:</b> SimpleGenerator.hpp:16</div></div>
+<div class="ttc" id="aclassSimpleGenerator_html_a7a907b85cda052ad56817a2b6ec17678"><div class="ttname"><a href="classSimpleGenerator.html#a7a907b85cda052ad56817a2b6ec17678">SimpleGenerator::d_randGenerator</a></div><div class="ttdeci">RandomGeneratorWithSeed d_randGenerator</div><div class="ttdef"><b>Definition:</b> SimpleGenerator.hpp:114</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

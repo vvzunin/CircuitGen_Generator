@@ -1,6 +1,6 @@
 var classGenerationParameters =
 [
-    [ "GenerationParameters", "classGenerationParameters.html#a93ae4bae2bdba6db7b57d289e9d44e29", null ],
+    [ "GenerationParameters", "classGenerationParameters.html#ae283462d6754fc08d707c654c2c0fd54", null ],
     [ "getALU", "classGenerationParameters.html#a45496b83544a8d17202ae34b4b2ea308", null ],
     [ "getCNF", "classGenerationParameters.html#a2f4ad9ff5987e4d4d3a658e2f10fef83", null ],
     [ "getComparison", "classGenerationParameters.html#a2d8cea359034ed45dfff44f32b39904b", null ],
@@ -8,6 +8,7 @@ var classGenerationParameters =
     [ "getGenetic", "classGenerationParameters.html#ab66c082601d3c2e4fd3b664a66592b96", null ],
     [ "getInputs", "classGenerationParameters.html#ab5415cce0d7d4e0417491f460a0e3a3a", null ],
     [ "getIteration", "classGenerationParameters.html#ab867b15035b3cb2b87131feab25f5857", null ],
+    [ "getMakeDOT", "classGenerationParameters.html#a0aa30d18bffed262c829f0ea6de34de1", null ],
     [ "getMakeGraphMLClassic", "classGenerationParameters.html#aed2938223a2a7b8fddd87218abb189d4", null ],
     [ "getMakeGraphMLOpenABCD", "classGenerationParameters.html#aeccc0983840788f03ae4cd9e06f1c1f3", null ],
     [ "getMakeGraphMLPseudoABCD", "classGenerationParameters.html#abc21152ae59f53741545d14075dbde3d", null ],
@@ -53,6 +54,7 @@ var classGenerationParameters =
     [ "d_geneticParameters", "classGenerationParameters.html#a152d1bb6843b402bd5b6c90ea5f8b6b9", null ],
     [ "d_inputs", "classGenerationParameters.html#a0550ce658f8c26917be67412b615a4da", null ],
     [ "d_iteration", "classGenerationParameters.html#a2e606917d264caac129f8505088cad8c", null ],
+    [ "d_makeDOT", "classGenerationParameters.html#a154c5a42269b3f9ac85d4c51c1136479", null ],
     [ "d_makeGraphMLClassic", "classGenerationParameters.html#a41853a387c7403967109a1e1e03a4eca", null ],
     [ "d_makeGraphMLOpenABCD", "classGenerationParameters.html#ae4fed4995f8149796c16ccbfb59a340f", null ],
     [ "d_makeGraphMLPseudoABCD", "classGenerationParameters.html#aba5b59216b7491c8e4c0a3408fa8c075", null ],

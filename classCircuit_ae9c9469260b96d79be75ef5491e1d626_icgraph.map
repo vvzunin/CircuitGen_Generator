@@ -1,6 +1,6 @@
 <map id="Circuit::updateCircuitParameters" name="Circuit::updateCircuitParameters">
 <area shape="rect" id="node1" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="963,519,1196,546"/>
-<area shape="rect" id="node2" href="$classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" id="node2" href="$classCircuit.html#acf56ad46f6802cae1a06882dc1018ab2" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
 <area shape="rect" id="node20" href="$classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="737,545,915,571"/>
 <area shape="rect" id="node3" href="$classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
 <area shape="rect" id="node5" href="$classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>

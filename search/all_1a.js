@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['zhegalkinfromtruthtable_2376',['zhegalkinFromTruthTable',['../classALUGenerator.html#af4e759cb6bc2c74efafbb54b312a3366',1,'ALUGenerator::zhegalkinFromTruthTable()'],['../classFromTruthTableGenerator.html#a53d6c92106dd5aac4b2e775330546991',1,'FromTruthTableGenerator::zhegalkinFromTruthTable()']]],
-  ['zhegalkinfromtruthtableparameters_2377',['zhegalkinFromTruthTableParameters',['../classzhegalkinFromTruthTableParameters.html',1,'']]]
+  ['zhegalkinfromtruthtable_2380',['zhegalkinFromTruthTable',['../classALUGenerator.html#af4e759cb6bc2c74efafbb54b312a3366',1,'ALUGenerator::zhegalkinFromTruthTable()'],['../classFromTruthTableGenerator.html#a53d6c92106dd5aac4b2e775330546991',1,'FromTruthTableGenerator::zhegalkinFromTruthTable()']]],
+  ['zhegalkinfromtruthtableparameters_2381',['zhegalkinFromTruthTableParameters',['../classzhegalkinFromTruthTableParameters.html',1,'']]]
 ];

@@ -136,15 +136,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a34dd6d70848e31e3d579bacfa239e65f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f">graphToDOT</a> (const std::string &amp;i_path, bool i_pathExists=false)</td></tr>
 <tr class="memdesc:a34dd6d70848e31e3d579bacfa239e65f"><td class="mdescLeft">&#160;</td><td class="mdescRight">graphToDOT The graph To DOT method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class converts the combinational circuit into code in the DOT hardware description language and writes it to a file.  <a href="classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f">More...</a><br /></td></tr>
 <tr class="separator:a34dd6d70848e31e3d579bacfa239e65f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d0427d7f384c2965b354ac4acb1cc34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34">graphToGraphML</a> (const std::string &amp;i_path, bool i_makeGraphMLClassic=false, bool i_makeGraphMLPseudoABCD=false, bool i_makeGraphMLOpenABCD=false, bool i_pathExists=false)</td></tr>
-<tr class="memdesc:a0d0427d7f384c2965b354ac4acb1cc34"><td class="mdescLeft">&#160;</td><td class="mdescRight">saveParameters The save Parameters method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format.  <a href="classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34">More...</a><br /></td></tr>
-<tr class="separator:a0d0427d7f384c2965b354ac4acb1cc34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29977b7d740f3706410ce5c2dfe2dfe4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a29977b7d740f3706410ce5c2dfe2dfe4">graphToGraphML</a> (const std::string &amp;i_path, const <a class="el" href="structCircuitArgs.html">CircuitArgs</a> &amp;args)</td></tr>
+<tr class="memdesc:a29977b7d740f3706410ce5c2dfe2dfe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">saveParameters The save Parameters method in the <a class="el" href="classCircuit.html" title="class Circuit">Circuit</a> class is designed to save circuit parameters to a file in JSON format The method saves the main parameters of the circuit, such as the name, number of inputs and outputs, maximum level, etc., in JSON format.  <a href="classCircuit.html#a29977b7d740f3706410ce5c2dfe2dfe4">More...</a><br /></td></tr>
+<tr class="separator:a29977b7d740f3706410ce5c2dfe2dfe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c42de8f6dbf2cb5f726fc480529bb0d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d">saveParameters</a> (GraphPtr i_subGraph, std::ofstream &amp;i_outputFile, bool i_isSubGraph=false)</td></tr>
 <tr class="memdesc:a3c42de8f6dbf2cb5f726fc480529bb0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">saveAdditionalStats This save Additional Stats method is designed to save additional statistics related to the execution of the ABC command (a program for synthesizing digital circuits) in a JSON file.  <a href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d">More...</a><br /></td></tr>
 <tr class="separator:a3c42de8f6dbf2cb5f726fc480529bb0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2ec1ad53802bbf158f4003044c7e83e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e">generate</a> (bool i_makeGraphMLClassic=false, bool i_makeGraphMLPseudoABCD=false, bool i_makeGraphMLOpenABCD=false, bool i_pathExists=false)</td></tr>
-<tr class="memdesc:af2ec1ad53802bbf158f4003044c7e83e"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate This generate method is designed to generate various representations of a digital circuit (for example, Verilog, RTL, Bench) and perform optimizations using the ABC program (if necessary), as well as save digital circuit parameters and additional statistics  <a href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e">More...</a><br /></td></tr>
-<tr class="separator:af2ec1ad53802bbf158f4003044c7e83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf56ad46f6802cae1a06882dc1018ab2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#acf56ad46f6802cae1a06882dc1018ab2">generate</a> (<a class="el" href="structCircuitArgs.html">CircuitArgs</a> args={})</td></tr>
+<tr class="memdesc:acf56ad46f6802cae1a06882dc1018ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate This generate method is designed to generate various representations of a digital circuit (for example, Verilog, RTL, Bench) and perform optimizations using the ABC program (if necessary), as well as save digital circuit parameters and additional statistics  <a href="classCircuit.html#acf56ad46f6802cae1a06882dc1018ab2">More...</a><br /></td></tr>
+<tr class="separator:acf56ad46f6802cae1a06882dc1018ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5afd009c717105e7f2c36c02e233661c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCircuit.html#a5afd009c717105e7f2c36c02e233661c">setTable</a> (const <a class="el" href="classTruthTable.html">TruthTable</a> &amp;i_tt)</td></tr>
 <tr class="memdesc:a5afd009c717105e7f2c36c02e233661c"><td class="mdescLeft">&#160;</td><td class="mdescRight">setTable This method is designed to set up a truth table for a digital circuit.  <a href="classCircuit.html#a5afd009c717105e7f2c36c02e233661c">More...</a><br /></td></tr>
 <tr class="separator:a5afd009c717105e7f2c36c02e233661c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -317,8 +317,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="af2ec1ad53802bbf158f4003044c7e83e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2ec1ad53802bbf158f4003044c7e83e">&#9670;&nbsp;</a></span>generate()</h2>
+<a id="acf56ad46f6802cae1a06882dc1018ab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf56ad46f6802cae1a06882dc1018ab2">&#9670;&nbsp;</a></span>generate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -326,31 +326,9 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">bool Circuit::generate </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>i_makeGraphMLClassic</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="structCircuitArgs.html">CircuitArgs</a>&#160;</td>
+          <td class="paramname"><em>args</em> = <code>{}</code></td><td>)</td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>i_makeGraphMLPseudoABCD</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>i_makeGraphMLOpenABCD</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>i_pathExists</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -371,11 +349,11 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph.png" border="0" usemap="#aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph" alt=""/></div>
-<map name="aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph" id="aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_cgraph">
+<div class="center"><img src="classCircuit_acf56ad46f6802cae1a06882dc1018ab2_cgraph.png" border="0" usemap="#aclassCircuit_acf56ad46f6802cae1a06882dc1018ab2_cgraph" alt=""/></div>
+<map name="aclassCircuit_acf56ad46f6802cae1a06882dc1018ab2_cgraph" id="aclassCircuit_acf56ad46f6802cae1a06882dc1018ab2_cgraph">
 <area shape="rect" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="5,107,136,133"/>
 <area shape="rect" href="classCircuit.html#a34dd6d70848e31e3d579bacfa239e65f" title="graphToDOT The graph To DOT method in the Circuit class converts the combinational circuit into code ..." alt="" coords="199,5,350,32"/>
-<area shape="rect" href="classCircuit.html#a0d0427d7f384c2965b354ac4acb1cc34" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="184,56,365,83"/>
+<area shape="rect" href="classCircuit.html#a29977b7d740f3706410ce5c2dfe2dfe4" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="184,56,365,83"/>
 <area shape="rect" href="classCircuit.html#a0fffbea37983706410ff674dd9eb08c9" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="191,107,359,133"/>
 <area shape="rect" href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="186,157,363,184"/>
 <area shape="rect" href="classCircuit.html#ae9c9469260b96d79be75ef5491e1d626" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="413,183,647,209"/>
@@ -384,8 +362,8 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCircuit_af2ec1ad53802bbf158f4003044c7e83e_icgraph.png" border="0" usemap="#aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_icgraph" alt=""/></div>
-<map name="aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_icgraph" id="aclassCircuit_af2ec1ad53802bbf158f4003044c7e83e_icgraph">
+<div class="center"><img src="classCircuit_acf56ad46f6802cae1a06882dc1018ab2_icgraph.png" border="0" usemap="#aclassCircuit_acf56ad46f6802cae1a06882dc1018ab2_icgraph" alt=""/></div>
+<map name="aclassCircuit_acf56ad46f6802cae1a06882dc1018ab2_icgraph" id="aclassCircuit_acf56ad46f6802cae1a06882dc1018ab2_icgraph">
 <area shape="rect" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
 <area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
 <area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
@@ -477,7 +455,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classCircuit_a34dd6d70848e31e3d579bacfa239e65f_icgraph.png" border="0" usemap="#aclassCircuit_a34dd6d70848e31e3d579bacfa239e65f_icgraph" alt=""/></div>
 <map name="aclassCircuit_a34dd6d70848e31e3d579bacfa239e65f_icgraph" id="aclassCircuit_a34dd6d70848e31e3d579bacfa239e65f_icgraph">
 <area shape="rect" title="graphToDOT The graph To DOT method in the Circuit class converts the combinational circuit into code ..." alt="" coords="737,519,888,546"/>
-<area shape="rect" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classCircuit.html#acf56ad46f6802cae1a06882dc1018ab2" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
 <area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
 <area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
 <area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
@@ -500,8 +478,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a0d0427d7f384c2965b354ac4acb1cc34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d0427d7f384c2965b354ac4acb1cc34">&#9670;&nbsp;</a></span>graphToGraphML()</h2>
+<a id="a29977b7d740f3706410ce5c2dfe2dfe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29977b7d740f3706410ce5c2dfe2dfe4">&#9670;&nbsp;</a></span>graphToGraphML()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -515,26 +493,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>i_makeGraphMLClassic</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>i_makeGraphMLPseudoABCD</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>i_makeGraphMLOpenABCD</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>i_pathExists</em> = <code>false</code>&#160;</td>
+          <td class="paramtype">const <a class="el" href="structCircuitArgs.html">CircuitArgs</a> &amp;&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -556,10 +516,10 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCircuit_a0d0427d7f384c2965b354ac4acb1cc34_icgraph.png" border="0" usemap="#aclassCircuit_a0d0427d7f384c2965b354ac4acb1cc34_icgraph" alt=""/></div>
-<map name="aclassCircuit_a0d0427d7f384c2965b354ac4acb1cc34_icgraph" id="aclassCircuit_a0d0427d7f384c2965b354ac4acb1cc34_icgraph">
+<div class="center"><img src="classCircuit_a29977b7d740f3706410ce5c2dfe2dfe4_icgraph.png" border="0" usemap="#aclassCircuit_a29977b7d740f3706410ce5c2dfe2dfe4_icgraph" alt=""/></div>
+<map name="aclassCircuit_a29977b7d740f3706410ce5c2dfe2dfe4_icgraph" id="aclassCircuit_a29977b7d740f3706410ce5c2dfe2dfe4_icgraph">
 <area shape="rect" title="saveParameters The save Parameters method in the Circuit class is designed to save circuit parameters..." alt="" coords="737,519,919,546"/>
-<area shape="rect" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classCircuit.html#acf56ad46f6802cae1a06882dc1018ab2" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
 <area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
 <area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
 <area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
@@ -623,7 +583,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classCircuit_a0fffbea37983706410ff674dd9eb08c9_icgraph.png" border="0" usemap="#aclassCircuit_a0fffbea37983706410ff674dd9eb08c9_icgraph" alt=""/></div>
 <map name="aclassCircuit_a0fffbea37983706410ff674dd9eb08c9_icgraph" id="aclassCircuit_a0fffbea37983706410ff674dd9eb08c9_icgraph">
 <area shape="rect" title="graphToVerilog The graph To Verilog method in the Circuit class converts the combinational circuit in..." alt="" coords="737,519,905,546"/>
-<area shape="rect" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classCircuit.html#acf56ad46f6802cae1a06882dc1018ab2" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
 <area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
 <area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
 <area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
@@ -702,7 +662,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_icgraph.png" border="0" usemap="#aclassCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_icgraph" alt=""/></div>
 <map name="aclassCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_icgraph" id="aclassCircuit_a3c42de8f6dbf2cb5f726fc480529bb0d_icgraph">
 <area shape="rect" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="737,519,915,546"/>
-<area shape="rect" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classCircuit.html#acf56ad46f6802cae1a06882dc1018ab2" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
 <area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
 <area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>
 <area shape="rect" href="classDataBaseGenerator.html#ace40cd423c891d122179fa9c2638291e" title="generateDataBaseDecoder Generates a database representing a decoder circuit" alt="" coords="263,136,460,177"/>
@@ -931,7 +891,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classCircuit_ae9c9469260b96d79be75ef5491e1d626_icgraph.png" border="0" usemap="#aclassCircuit_ae9c9469260b96d79be75ef5491e1d626_icgraph" alt=""/></div>
 <map name="aclassCircuit_ae9c9469260b96d79be75ef5491e1d626_icgraph" id="aclassCircuit_ae9c9469260b96d79be75ef5491e1d626_icgraph">
 <area shape="rect" title="updateCircuitsParameters A method for updating the parameters of a combinational circuit" alt="" coords="963,519,1196,546"/>
-<area shape="rect" href="classCircuit.html#af2ec1ad53802bbf158f4003044c7e83e" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
+<area shape="rect" href="classCircuit.html#acf56ad46f6802cae1a06882dc1018ab2" title="generate This generate method is designed to generate various representations of a digital circuit (f..." alt="" coords="559,519,689,546"/>
 <area shape="rect" href="classCircuit.html#a3c42de8f6dbf2cb5f726fc480529bb0d" title="saveAdditionalStats This save Additional Stats method is designed to save additional statistics relat..." alt="" coords="737,545,915,571"/>
 <area shape="rect" href="classDataBaseGenerator.html#aa9f09aaf0e167ce319d120f7a9b8826e" title="generateDataBaseALU Generates a database representing an Arithmetic Logic Unit (ALU) circuit" alt="" coords="277,5,446,47"/>
 <area shape="rect" href="classDataBaseGenerator.html#a4b1033cbc2af5a721072a85619b9e0c7" title="generateDataBaseComparison Generates a database representing a comparison circuit" alt="" coords="251,71,472,112"/>

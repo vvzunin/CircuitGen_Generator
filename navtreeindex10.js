@@ -1,5 +1,7 @@
 var NAVTREEINDEX10 =
 {
+"easylogging_09_09_8h.html#a4ba1dc2803e8c2b8dab61f6614bbbf59":[14,0,4,0,1,197],
+"easylogging_09_09_8h.html#a4c7bb43f0604c5fb30d01eed0a790d0c":[14,0,4,0,1,253],
 "easylogging_09_09_8h.html#a4cc1773b7818fbb25c99059799c23c94":[14,0,4,0,1,99],
 "easylogging_09_09_8h.html#a4f2c476d5b8958d5e3e7bb9d1935dea1":[14,0,4,0,1,336],
 "easylogging_09_09_8h.html#a4fd6355840c14b7af2f2ceb2d02685e4":[14,0,4,0,1,261],
@@ -220,8 +222,8 @@ var NAVTREEINDEX10 =
 "export_8hpp.html":[14,0,1,1],
 "export_8hpp_source.html":[14,0,1,1],
 "files.html":[14,0],
-"functions.html":[13,3,0],
 "functions.html":[13,3,0,0],
+"functions.html":[13,3,0],
 "functions__.html":[13,3,0,1],
 "functions_a.html":[13,3,0,2],
 "functions_b.html":[13,3,0,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX10 =
 "functions_func_m.html":[13,3,1,12],
 "functions_func_n.html":[13,3,1,13],
 "functions_func_o.html":[13,3,1,14],
-"functions_func_p.html":[13,3,1,15],
-"functions_func_r.html":[13,3,1,16],
-"functions_func_s.html":[13,3,1,17]
+"functions_func_p.html":[13,3,1,15]
 };

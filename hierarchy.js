@@ -25,6 +25,7 @@ var hierarchy =
     [ "Chromosome< T >", "classChromosome.html", null ],
     [ "ChromosomeType< Type, ParametersTypes >", "classChromosomeType.html", null ],
     [ "Circuit", "classCircuit.html", null ],
+    [ "CircuitArgs", "structCircuitArgs.html", null ],
     [ "CircuitParameters", "classCircuitParameters.html", null ],
     [ "CNNFromTruthTableParameters", "classCNNFromTruthTableParameters.html", null ],
     [ "el::base::utils::CommandLineArgs", "classel_1_1base_1_1utils_1_1CommandLineArgs.html", null ],
