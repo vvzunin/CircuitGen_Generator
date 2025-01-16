@@ -9,7 +9,8 @@ FromTruthTableGenerator::FromTruthTableGenerator(uint_fast32_t i_seed) :
 }
 
 FromTruthTableGenerator::FromTruthTableGenerator(
-    const GenerationParameters &i_param) : SimpleGenerator(i_param) {
+    const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
 }
 
 GraphPtr FromTruthTableGenerator::cnfFromTruthTable(const TruthTable &i_table,

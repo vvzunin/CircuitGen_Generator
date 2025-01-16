@@ -30,7 +30,8 @@ void TruthTable::setSeed(uint_fast32_t i_seed) {
 
 TruthTable::TruthTable(int32_t i_input, int32_t i_output,
                        const std::vector<std::vector<bool>> &i_array) :
-    d_input(i_input), d_output(i_output) {
+    d_input(i_input),
+    d_output(i_output) {
   d_size = 1u << d_input;
   if (i_array.size() == 0 || i_array.size() != d_size ||
       i_array[0].size() != d_output)

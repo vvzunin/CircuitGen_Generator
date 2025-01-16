@@ -35,7 +35,8 @@ NumOperationsGenerator::NumOperationsGenerator(uint_fast32_t i_seed) :
 }
 
 NumOperationsGenerator::NumOperationsGenerator(
-    const GenerationParameters &i_param) : SimpleGenerator(i_param) {
+    const GenerationParameters &i_param) :
+    SimpleGenerator(i_param) {
 }
 
 GraphPtr NumOperationsGenerator::generatorNumOperation(

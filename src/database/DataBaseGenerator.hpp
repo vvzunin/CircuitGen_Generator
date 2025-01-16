@@ -37,7 +37,7 @@ public:
   /// @param i_parameters
 
   DataBaseGenerator(const DataBaseGeneratorParameters &i_parameters) :
-      d_parameters(i_parameters) {};
+      d_parameters(i_parameters){};
 
   /// @brief generateTypeForGraph The generate Type method of the DataBase
   /// Generator class is responsible for generating a database of a certain type
