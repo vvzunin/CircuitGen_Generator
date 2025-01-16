@@ -9,6 +9,25 @@
 
 #include "CircuitParameters.hpp"
 
+struct CircuitArgs {
+  CircuitArgs(bool d_makeGraphMLClassic = false,
+              bool d_makeGraphMLPseudoABCD = false,
+              bool d_makeGraphMLOpenABCD = false, bool d_makeDOT = false,
+              bool d_pathExists = false)
+
+      :
+      d_makeGraphMLClassic(d_makeGraphMLClassic),
+      d_makeGraphMLPseudoABCD(d_makeGraphMLPseudoABCD),
+      d_makeGraphMLOpenABCD(d_makeGraphMLOpenABCD), d_makeDOT(d_makeDOT),
+      d_pathExists(d_pathExists) {}
+
+  bool d_makeGraphMLClassic;
+  bool d_makeGraphMLPseudoABCD;
+  bool d_makeGraphMLOpenABCD;
+  bool d_makeDOT;
+  bool d_pathExists;
+};
+
 /// class Circuit
 /// @param OrientedGraph pointer to a Oriented graph = nullptr
 /// @param d_logExpressions A string vector containing logical expressions
@@ -80,11 +99,7 @@ public:
   /// the parameters are saved successfully.
   /// */
 
-  bool graphToGraphML(const std::string &i_path,
-                      bool i_makeGraphMLClassic = false,
-                      bool i_makeGraphMLPseudoABCD = false,
-                      bool i_makeGraphMLOpenABCD = false,
-                      bool i_pathExists = false);
+  bool graphToGraphML(const std::string &i_path, const CircuitArgs &args);
 
   /// @brief saveAdditionalStats This save Additional Stats method is designed
   /// to save additional statistics related to the execution of the ABC command
@@ -121,9 +136,7 @@ public:
   /// successful
   /// */
 
-  bool generate(bool i_makeGraphMLClassic = false,
-                bool i_makeGraphMLPseudoABCD = false,
-                bool i_makeGraphMLOpenABCD = false, bool i_pathExists = false);
+  bool generate(CircuitArgs args = {});
 
   /// @brief setTable This method is designed to set up a truth table for a
   /// digital circuit.

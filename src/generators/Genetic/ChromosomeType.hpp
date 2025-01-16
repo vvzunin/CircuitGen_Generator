@@ -38,7 +38,7 @@ public:
         for (const auto &nucleosom: nucleosoms)
           if (nucleosom)
             numInt++;
-      d_adaptationIndex = abs(
+      d_adaptationIndex = std::abs(
           0.5 - (numInt / (d_Chromosome.size() * d_Chromosome.getOutput())));
     }
   }

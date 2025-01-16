@@ -13,8 +13,8 @@
     "make_graphml_classic": true,
     "make_graphml_pseudo_abc_d": true,
     "make_graphml_open_abc_d": true,
+    "make_dot": false,
     "create_id_directories": true,
-    "library_name": "sky130",
 
     "overflowIn": true,
     "overflowOut": true,

@@ -10,9 +10,10 @@
 
 #include "Circuit.hpp"
 
+#include <CircuitGenGraph/enums.hpp>
+
 #include <additional/AuxiliaryMethods.hpp>
 #include <additional/filesTools/FilesTools.hpp>
-#include <CircuitGenGraph/enums.hpp>
 
 Circuit::Circuit(GraphPtr const i_graph,
                  const std::vector<std::string> &i_logExpressions) {
@@ -96,8 +97,8 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   }
 
   // iterate through inputs
-  for (auto inp: inputs) {
-    for (auto child: inp->getOutConnections()) {
+  for (auto *inp: inputs) {
+    for (auto *child: inp->getOutConnections()) {
       std::string to =
           child->getGate() != Gates::GateDefault
               ? DefaultSettings::parseGateToString(child->getGate())
@@ -107,8 +108,8 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   }
 
   // iterate through outputs
-  for (auto out: outputs) {
-    for (auto child: out->getInConnections()) {
+  for (auto *out: outputs) {
+    for (auto *child: out->getInConnections()) {
       if (child) {
         // here we do not parse pair input-output
         if (child->getType() == VertexTypes::input) {
@@ -127,8 +128,8 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   }
 
   // iterate through constants
-  for (auto inp: constants) {
-    for (auto child: inp->getOutConnections()) {
+  for (auto *inp: constants) {
+    for (auto *child: inp->getOutConnections()) {
       // here we do not parse pair const-output
       if (child->getType() == VertexTypes::output) {
         continue;
@@ -156,29 +157,10 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists) {
      i_path)) std::filesystem::create_directory(i_path);
      */
 
-  static std::string filename;
-  static std::string s;
-
-  size_t previousSizeOfFileName = filename.size();
-
   if (!d_graph->getSubGraphs().empty()) {
     std::string folderSubgraphs = d_path + "/submodules";
     std::filesystem::create_directory(folderSubgraphs);
   }
-  filename = d_path + "/" + d_circuitName + ".v";
-
-  size_t pos = (s.find_last_of('/')) + 1;
-  size_t pos2 = (filename.find_last_of('/')) + 1;
-
-  if (previousSizeOfFileName == 0)
-    s = std::filesystem::current_path().string() + "/" +
-        filename; // static variable will be created one time and then will be
-                  // used through running of the program
-  else
-    s.replace(pos, previousSizeOfFileName, filename, pos2,
-              previousSizeOfFileName);
-
-  bool f = std::filesystem::exists(s);
 
   return d_graph->toVerilog(d_path, d_circuitName + ".v").first;
 }
@@ -197,51 +179,30 @@ bool Circuit::graphToDOT(const std::string &i_path, bool i_pathExists) {
     d_graph->resetCounters(subGr);
   }
 
-  static std::string filename;
-  static std::string s;
-
-  size_t previousSizeOfFileName = filename.size();
-
   if (!d_graph->getSubGraphs().empty()) {
     std::string folderSubgraphs = d_path + "/submodulesDOT";
     std::filesystem::create_directory(folderSubgraphs);
   }
-  filename = d_path + "/" + d_circuitName + ".dot";
-
-  size_t pos = (s.find_last_of('/')) + 1;
-  size_t pos2 = (filename.find_last_of('/')) + 1;
-
-  if (previousSizeOfFileName == 0)
-    s = std::filesystem::current_path().string() + "/" +
-        filename; // static variable will be created one time and then will be
-                  // used through running of the program
-  else
-    s.replace(pos, previousSizeOfFileName, filename, pos2,
-              previousSizeOfFileName);
-
-  bool f = std::filesystem::exists(s);
 
   return d_graph->toDOT(d_path, d_circuitName + ".dot").first;
 }
 
 bool Circuit::graphToGraphML(const std::string &i_path,
-                             bool i_makeGraphMLClassic,
-                             bool i_makeGraphMLPseudoABCD,
-                             bool i_makeGraphMLOpenABCD, bool i_pathExists) {
+                             const CircuitArgs &args) {
   // LOG(INFO) << "Start graphToGraphML";
-  if (i_makeGraphMLClassic) {
+  if (args.d_makeGraphMLClassic) {
     std::ofstream w(i_path + "/" + d_circuitName + "_Classic.graphml");
     d_graph->toGraphMLClassic(w);
     w.close();
   }
   // // LOG(INFO) << "GraphMLClassic complete";
-  if (i_makeGraphMLPseudoABCD) {
+  if (args.d_makeGraphMLPseudoABCD) {
     std::ofstream w(i_path + "/" + d_circuitName + "_PseudoABC-D.graphml");
     d_graph->toGraphMLPseudoABCD(w);
     w.close();
   }
   // // LOG(INFO) << "GraphMLPseudoABCD complete";
-  if (i_makeGraphMLOpenABCD) {
+  if (args.d_makeGraphMLOpenABCD) {
     std::ofstream w(i_path + "/" + d_circuitName + "_OpenABC-D.graphml");
     d_graph->toGraphMLOpenABCD(w);
     w.close();
@@ -368,8 +329,7 @@ bool Circuit::checkExistingHash() // TODO: is it really need return true when
   return false;
 }
 
-bool Circuit::generate(bool i_makeGraphMLClassic, bool i_makeGraphMLPseudoABCD,
-                       bool i_makeGraphMLOpenABCD, bool i_pathExists) {
+bool Circuit::generate(CircuitArgs args) {
   // creating all files in sub directories
   std::string d_path_temp = d_path + d_circuitName;
   d_path += d_circuitName + "/";
@@ -379,21 +339,20 @@ bool Circuit::generate(bool i_makeGraphMLClassic, bool i_makeGraphMLPseudoABCD,
   // if (!i_pathExists)
   // d_path += d_circuitName;
   // // LOG(INFO) << "Writing verilog for " << d_circuitName;
-  if (!graphToVerilog(d_path, i_pathExists))
+  if (!graphToVerilog(d_path, args.d_pathExists))
     return false;
   // // LOG(INFO) << "Writing verilog ended for " << d_circuitName;
-  if (i_makeGraphMLClassic || i_makeGraphMLOpenABCD ||
-      i_makeGraphMLPseudoABCD) {
+  if (args.d_makeGraphMLClassic || args.d_makeGraphMLOpenABCD ||
+      args.d_makeGraphMLPseudoABCD) {
     d_graph->updateLevels();
   }
   // LOG(INFO) << "Writing DOT for " << d_circuitName;
-  if (!graphToDOT(d_path, i_pathExists))
+  if (args.d_makeDOT && !graphToDOT(d_path, args.d_pathExists))
     return false;
   // LOG(INFO) << "Writing DOT ended for " << d_circuitName;
 
   // LOG(INFO) << "Writing GraphML for " << d_circuitName;
-  if (graphToGraphML(d_path, i_makeGraphMLClassic, i_makeGraphMLPseudoABCD,
-                     i_makeGraphMLOpenABCD, i_pathExists)) {
+  if (graphToGraphML(d_path, args)) {
     // LOG(INFO) << "Writing GraphML ended for " << d_circuitName;
   }
 

@@ -204,7 +204,8 @@ VertexPtr Parser::multipleVerteciesToOne(std::vector<VertexPtr> curLayout,
           // we save curSize for saving us from add
           // new edges to oper
           break;
-        } else if (k < curLayout.size() - 1) {
+        }
+        if (k < curLayout.size() - 1) {
           oper = graph->addGate(operation);
         }
 
@@ -323,7 +324,7 @@ VertexPtr Parser::parseToVertex(const std::string &i_expr) {
                          splited_expr_next.second[1]);
   }
   // in case of const we also need to add gate to it
-  else if (splited_expr_next.second[0] == "const") {
+  if (splited_expr_next.second[0] == "const") {
     outPtr =
         d_graph->addConst(splited_expr.second[2][0], splited_expr.second[2]);
   } else {

@@ -55,16 +55,6 @@ protected:
   std::shared_ptr<Settings> d_settings = Settings::getInstance("GraphVertex");
   std::map<Gates, int32_t> delNull(std::map<Gates, int32_t> i_copyLogicOper);
 
-  // moved it here, because we need to use templates
-  template<typename T>
-  T randomGenerator(const std::map<T, int32_t> &i_map) {
-    // rand element of map
-    auto val = i_map.begin();
-    std::advance(val, d_randGenerator.getRandInt(0, i_map.size()));
-
-    return val->first;
-  }
-
   std::pair<Gates, int32_t> getRandomElement(const GatesInfo &i_info);
   std::pair<Gates, int32_t> getRandomElement(uint32_t i_gatesLimit);
 
