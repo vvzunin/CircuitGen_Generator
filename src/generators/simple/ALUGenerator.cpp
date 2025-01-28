@@ -121,14 +121,14 @@ GraphPtr ALUGenerator::generatorALU(
 
   std::string A;
   if (AND) {
-    std::vector<VertexPtr> ands;
+    std::vector<VertexPtr> and_values;
     for (int32_t i = 0; i < i_bits; i++) {
       A = std::to_string(i);
       VertexPtr and_ALU = graph->addGate(Gates::GateAnd, "and_ALU" + A);
       graph->addEdges({inputs_A[i], inputs_B[i]}, and_ALU);
-      ands.push_back(and_ALU);
+      and_values.push_back(and_ALU);
     }
-    ADD_WITH_MUTEX_TO_VEC(ands);
+    ADD_WITH_MUTEX_TO_VEC(and_values);
   }
   if (NAND) {
     std::vector<VertexPtr> nands;

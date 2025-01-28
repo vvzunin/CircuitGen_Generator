@@ -23,7 +23,7 @@ GraphPtr CoderGenerator::generatorEncoder(uint32_t i_bits) {
 
     std::vector<VertexPtr> inputs_x(i_bits);
     std::vector<VertexPtr> not_x(i_bits);
-    std::vector<VertexPtr> ands(pow(2, i_outbits));
+    std::vector<VertexPtr> and_values(pow(2, i_outbits));
 
     // создание инверсий входов
     for (uint32_t i = 0; i < i_bits; i++) {
@@ -68,7 +68,7 @@ GraphPtr CoderGenerator::generatorEncoder(uint32_t i_bits) {
         }
       }
       graph->addEdges(Xs, and_xs);
-      ands[i] = and_xs;
+      and_values[i] = and_xs;
     }
 
     int32_t n = 1;
@@ -77,7 +77,8 @@ GraphPtr CoderGenerator::generatorEncoder(uint32_t i_bits) {
                                        "or_for_output" + std::to_string(i + 1));
       std::vector<VertexPtr> ors;
       for (int32_t j = n; j < pow(2, i_outbits); j += n * 2) {
-        ors.insert(ors.end(), ands.begin() + j, ands.begin() + j + n);
+        ors.insert(ors.end(), and_values.begin() + j,
+                   and_values.begin() + j + n);
       }
       graph->addEdges(ors, or_xs);
       n *= 2;
