@@ -1,4 +1,5 @@
 ﻿#include <bitset>
+#include <iostream>
 
 #include "CoderGenerator.hpp"
 

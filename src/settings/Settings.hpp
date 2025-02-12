@@ -6,7 +6,7 @@
 #include <utility>
 #include <vector>
 
-#include <CircuitGenGraph/DefaultSettings.hpp>
+#include <CircuitGenGraph/GraphUtils.hpp>
 
 /// @file Settings.hpp
 
@@ -72,9 +72,9 @@ enum GenerationTypes {   /// Generating a circuit from a random truth table
 ///
 ///
 
-class Settings : public DefaultSettings {
+class Settings {
 public:
-  Settings(const std::string &i_path) : DefaultSettings(i_path) {}
+  Settings(const std::string &i_path) {}
 
   static void resetSingletone() { d_singleton = nullptr; }
   Settings(Settings &other) = delete;
@@ -102,65 +102,10 @@ public:
 
   static std::shared_ptr<Settings> getInstance(const std::string &i_value);
 
-  /// @brief loadSettings Downloads settings from a file
-  /// The method loads the settings from a file with the name specified in
-  /// the data member in_filename. If the file exists, the method reads the
-  /// settings values from it and updates the corresponding data members of
-  /// the class
-
-  void loadSettings();
-
   /// @brief getInstanceName Gets the name of the current instance of settings
   /// @return std::string Name of the current instance of settings
 
   std::string getInstanceName() const;
-
-  /// @brief getLogicOperationsKeys Returns the keys of logical operations
-  /// @return std::vector<Gates> A vector containing the keys of logical
-  /// operations
-
-  std::vector<Gates> getLogicOperationsKeys();
-
-  /// @brief getLogicOperationsWithGates Returns logical operations along with
-  /// information about the presence of a single input
-  /// The method returns a pair of vectors: the first vector contains
-  /// information about whether each a logical operation has only one
-  /// input(true if this is the case, false otherwise),
-  /// and the second vector contains the keys(enumerated values) of all
-  /// available logical operations
-  /// @return std::pair<std::vector<bool>, std::vector<Gates>> A pair of
-  /// vectors: information about the presence of a single input and the keys
-  /// of logical operations
-  /// @code
-  /// // Creating an instance of the Settings class or getting it from an
-  /// // existing object
-  /// std::shared_ptr<Settings>        settingsInstance =
-  /// Settings::getInstance("/path/to/settings");
-  /// // Get logical operations together with information about the presence
-  /// // of a single input
-  /// std::pair<std::vector<bool>, std::vector<Gates>> logicOperationsInfo =
-  /// settingsInstance->getLogicOperationsWithGates();
-  /// // Output information about each logical operation
-  /// for (size_t i = 0; i < logicOperationsInfo.second.size(); ++i)
-  /// {
-  /// std::string operationName =
-  /// settingsInstance->parseGateToString(logicOperationsInfo.second[i]);
-  /// bool hasOneInput = logicOperationsInfo.first[i];
-  /// std::cout << "Operation: " << operationName;
-  /// if (hasOneInput)
-  /// {
-  ///   std::cout << " (Has one input)";
-  /// }
-  /// else
-  /// {
-  ///   std::cout << " (Does not have one input)";
-  /// }
-  /// std::cout << std::endl;
-  /// }
-  /// @endcode
-
-  std::pair<std::vector<bool>, std::vector<Gates>>
-  getLogicOperationsWithGates();
 
   /// @brief getDatasetPath Returns the path to the dataset
   /// @return std::string The path to the dataset
@@ -218,19 +163,6 @@ public:
   /// @return uint32_t Maximum number of outputs
 
   uint32_t getMaxOutputs() const;
-
-  /// @brief getLogicOperations all logical operations
-  /// The method returns a dictionary containing all logical operations
-  /// in the form of a pair, where the key is a string representing the
-  /// name of the operation, and the value is a pair in which the first
-  /// element is a string representing the name of the operation, and the
-  /// second element is an integer value representing the identifier of
-  /// the operation
-  /// @return std::map<std::string, std::pair<std::string, int32_t>> Dictionary
-  /// with logical operations
-
-  std::map<std::string, std::pair<std::string, int32_t>>
-  getLogicOperations() const;
 
   /// @brief getPathNadezhda Returns the path to Nadezhda
   /// @return std::string Path to Nadezhda

@@ -26,7 +26,7 @@ GraphPtr RandLevelGenerator::generatorRandLevel(
   else
     maxLevel = 1;
 
-  auto [hasOneGate, logOper] = d_settings->getLogicOperationsWithGates();
+  auto [hasOneGate, logOper] = GraphUtils::getLogicOperationsWithGates();
 
   int32_t choice;
   std::string expr;
