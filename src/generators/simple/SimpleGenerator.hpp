@@ -1,15 +1,16 @@
 ﻿#pragma once
 
 #include <algorithm>
+#include <iostream>
 #include <map>
 #include <memory>
 #include <vector>
 
-#include <additional/RandomGeneratorWithSeed.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
-#include <settings/Settings.hpp>
 
+#include <additional/RandomGeneratorWithSeed.hpp>
 #include <generators/GenerationParameters.hpp>
+#include <settings/Settings.hpp>
 
 using GatesInfo = std::map<Gates, std::vector<int32_t>>;
 

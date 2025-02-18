@@ -223,7 +223,7 @@ void runGeneration(
 
       std::map<Gates, int32_t> m;
 
-      for (auto &el: data.items()) {
+      for (const auto &el: data.items()) {
         if (std::find(v.begin(), v.end(), el.key()) != v.end()) {
           m.insert({stringToGate[el.key().substr(4, 10)], el.value()});
         }

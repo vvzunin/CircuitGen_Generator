@@ -25,12 +25,12 @@ void SimpleGenerator::setGatesInputsInfo(
     const std::map<std::string, std::vector<int32_t>> &i_info) {
   d_minGateNumber = INT_MAX;
 
-  for (auto &[key, value]: i_info) {
+  for (const auto &[key, value]: i_info) {
     d_maxGateNumber = std::max(*std::max_element(value.begin(), value.end()),
                                d_maxGateNumber);
     d_minGateNumber = std::min(*std::max_element(value.begin(), value.end()),
                                d_minGateNumber);
-    d_gatesInputsInfo[d_settings->parseStringToGate(key)] = value;
+    d_gatesInputsInfo[GraphUtils::parseStringToGate(key)] = value;
   }
 
   // TODO is it a good idea to add here hew gates

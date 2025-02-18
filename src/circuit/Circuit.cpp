@@ -76,7 +76,7 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
 
   for (auto [key, value]: i_graph->getGatesCount()) {
     d_circuitParameters
-        .d_numElementsOfEachType[d_settings->parseGateToString(key)] = value;
+        .d_numElementsOfEachType[GraphUtils::parseGateToString(key)] = value;
     d_circuitParameters.d_numGates += value;
   }
 
@@ -90,19 +90,17 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   for (auto [from, sub]: i_graph->getEdgesGatesCount()) {
     for (auto [to, count]: sub) {
       d_circuitParameters
-          .d_numEdgesOfEachType[{DefaultSettings::parseGateToString(from),
-                                 DefaultSettings::parseGateToString(to)}] =
-          count;
+          .d_numEdgesOfEachType[{GraphUtils::parseGateToString(from),
+                                 GraphUtils::parseGateToString(to)}] = count;
     }
   }
 
   // iterate through inputs
   for (auto *inp: inputs) {
     for (auto *child: inp->getOutConnections()) {
-      std::string to =
-          child->getGate() != Gates::GateDefault
-              ? DefaultSettings::parseGateToString(child->getGate())
-              : child->getTypeName();
+      std::string to = child->getGate() != Gates::GateDefault
+                           ? GraphUtils::parseGateToString(child->getGate())
+                           : child->getTypeName();
       ++d_circuitParameters.d_numEdgesOfEachType[{"input", to}];
     }
   }
@@ -116,10 +114,9 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
           continue;
         }
 
-        std::string from =
-            child->getGate() != Gates::GateDefault
-                ? DefaultSettings::parseGateToString(child->getGate())
-                : child->getTypeName();
+        std::string from = child->getGate() != Gates::GateDefault
+                               ? GraphUtils::parseGateToString(child->getGate())
+                               : child->getTypeName();
         ++d_circuitParameters.d_numEdgesOfEachType[{from, "output"}];
       } else {
         throw std::invalid_argument("Dead pointer!");
@@ -134,10 +131,9 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
       if (child->getType() == VertexTypes::output) {
         continue;
       }
-      std::string to =
-          child->getGate() != Gates::GateDefault
-              ? DefaultSettings::parseGateToString(child->getGate())
-              : child->getTypeName();
+      std::string to = child->getGate() != Gates::GateDefault
+                           ? GraphUtils::parseGateToString(child->getGate())
+                           : child->getTypeName();
 
       ++d_circuitParameters.d_numEdgesOfEachType[{"const", to}];
     }

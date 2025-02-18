@@ -1,6 +1,7 @@
 ﻿#pragma once
-#include <generators/simple/SimpleGenerator.hpp>
+
 #include <baseStructures/truthTable/TruthTable.hpp>
+#include <generators/simple/SimpleGenerator.hpp>
 
 class FromTruthTableGenerator : public SimpleGenerator {
 public:

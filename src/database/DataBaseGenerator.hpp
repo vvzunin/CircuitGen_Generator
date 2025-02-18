@@ -6,8 +6,9 @@
 #include <string>
 #include <vector>
 
-#include <additional/RandomGeneratorWithSeed.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
+
+#include <additional/RandomGeneratorWithSeed.hpp>
 #include <settings/Settings.hpp>
 
 #include "DataBaseGeneratorParameters.hpp"

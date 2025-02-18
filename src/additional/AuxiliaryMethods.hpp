@@ -21,8 +21,9 @@
 /// TO DO: list the other functions
 /// </summary>
 
-#include <circuit/Circuit.hpp>
 #include <CircuitGenGraph/DefaultAuxiliaryMethods.hpp>
+
+#include <circuit/Circuit.hpp>
 
 namespace AuxMethods {
 
