@@ -42,7 +42,7 @@
 ### Установка пакетов с помощью apt
 
 ```
-sudo apt install clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-buildls
+sudo apt install clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build
 
 ```
 
