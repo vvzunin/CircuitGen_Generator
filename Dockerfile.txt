@@ -1,0 +1,47 @@
+FROM ubuntu:24.04
+
+WORKDIR /app
+
+COPY . /app
+
+RUN apt update && apt install -y cmake g++ gcc git
+
+# Create the CMakeUserPresets.json file
+RUN echo '{
+  "version": 2,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 14,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "dev",
+      "binaryDir": "${sourceDir}/build/dev",
+      "inherits": ["dev-mode", "ci-linux"],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "dev",
+      "configurePreset": "dev",
+      "configuration": "Debug"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "dev",
+      "configurePreset": "dev",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}' > /app/CMakeUserPresets.json
+
+CMD ["chmod", "+x", "buildGenerator.sh"]
+CMD ["./buildGenerator.sh"]
