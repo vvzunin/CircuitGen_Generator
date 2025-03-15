@@ -14,6 +14,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_INIT} -std=c++17 -fPIC")
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 add_subdirectory(lib)
 include_directories(lib)
 

@@ -31,14 +31,6 @@ void Settings::setNumThread(uint16_t i_numThreads) {
   d_numThreads = i_numThreads;
 }
 
-std::string Settings::getPathNadezhda() const {
-  return d_pathToNadezhda;
-}
-
-std::string Settings::getNadezhdaVar(const std::string &key) const {
-  return d_nadezhda.at(key);
-}
-
 std::string Settings::getDatasetPath() const {
   return d_datasetPath;
 }
