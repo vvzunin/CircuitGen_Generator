@@ -3,6 +3,8 @@
 
 #include "../Parents/ParentsParameters.hpp"
 
+namespace CG_Gen {
+
 enum RecombinationTypes {
   CrossingEachExitInTurnMany, // relative to several reference points
   CrossingUniform,            //
@@ -34,3 +36,5 @@ private:
   double d_maskProbability = 0.5;
   int32_t d_recombinationNumber = 1;
 };
+
+} // namespace CG_Gen

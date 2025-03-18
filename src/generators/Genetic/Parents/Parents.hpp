@@ -9,6 +9,8 @@
 #include "ParentsParameters.hpp"
 #include "ParentsTruthTable.hpp"
 
+namespace CG_Gen {
+
 template<typename Type, typename ParametersType>
 std::vector<int32_t> ParentsTypesWorker(
     ParentsParameters i_parentsParameters,
@@ -32,3 +34,5 @@ ParentsTypesWorker(ParentsParameters i_parentsParameters,
   // default to remove warning
   return {};
 }
+
+} // namespace CG_Gen

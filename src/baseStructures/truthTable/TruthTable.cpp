@@ -8,6 +8,8 @@
 
 #include <additional/AuxiliaryMethods.hpp>
 
+namespace CG_Gen {
+
 TruthTable::TruthTable() {
   d_randGenerator.setSeed(AuxMethods::getRandSeed());
   d_settings = Settings::getInstance("TruthTable");
@@ -148,3 +150,5 @@ void TruthTable::printTable() const {
   }
   std::cout << ss.str();
 }
+
+} // namespace CG_Gen

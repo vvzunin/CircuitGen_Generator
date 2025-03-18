@@ -11,7 +11,7 @@
 #include "../Parents/ParentsParameters.hpp"
 #include "RecombinationParameters.hpp"
 
-namespace RecombinationsTruthTable {
+namespace CG_Gen::RecombinationsTruthTable {
 std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
 RecombinationCrossingEachExitInTurnMany(
     RecombinationParameters i_recombinationParameters,
@@ -37,4 +37,4 @@ RecombinationCrossingShuffling(
     RecombinationParameters i_recombinationParameters,
     std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population);
 // namespace end
-} // namespace RecombinationsTruthTable
+} // namespace CG_Gen::RecombinationsTruthTable

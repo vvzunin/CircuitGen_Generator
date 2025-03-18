@@ -3,6 +3,8 @@
 
 #include "CoderGenerator.hpp"
 
+namespace CG_Gen {
+
 CoderGenerator::CoderGenerator() : SimpleGenerator() {
 }
 
@@ -160,3 +162,5 @@ GraphPtr CoderGenerator::generatorEncoder() {
 GraphPtr CoderGenerator::generatorDecoder() {
   return generatorDecoder(getParameters());
 }
+
+} // namespace CG_Gen

@@ -4,6 +4,8 @@
 #include "./Recombination/RecombinationParameters.hpp"
 #include "./Selections/SelectionParameters.hpp"
 
+namespace CG_Gen {
+
 /// @todo: fill in the description of the class fields
 /// @class GeneticParameters
 /// Class representing genetic algorithm parameters
@@ -119,3 +121,5 @@ public:
   /// @return true if the parameters are equal, otherwise false
   bool operator==(const TruthTableParameters &r);
 };
+
+} // namespace CG_Gen

@@ -4,6 +4,8 @@
 
 #include "MutationTruthTable.hpp"
 
+namespace CG_Gen {
+
 template<>
 std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
 MutationType(MutationParameters i_mutationParameters,
@@ -38,3 +40,5 @@ MutationType(MutationParameters i_mutationParameters,
   // default to remove warning
   return {};
 }
+
+} // namespace CG_Gen

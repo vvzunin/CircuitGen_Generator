@@ -3,6 +3,8 @@
 #include "SimpleGenerator.hpp"
 #include <additional/AuxiliaryMethods.hpp>
 
+namespace CG_Gen {
+
 SimpleGenerator::SimpleGenerator() {
   d_randGenerator.setSeed(AuxMethods::getRandSeed());
 }
@@ -121,3 +123,5 @@ SimpleGenerator::delNull(std::map<Gates, int32_t> i_copyLogicOper) {
     i_copyLogicOper.erase(op);
   return i_copyLogicOper;
 }
+
+} // namespace CG_Gen

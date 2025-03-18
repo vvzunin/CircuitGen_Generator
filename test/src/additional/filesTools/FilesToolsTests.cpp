@@ -6,7 +6,7 @@
 
 #include "easylogging++Init.hpp"
 namespace fs = std::filesystem;
-using namespace FilesTools;
+using namespace CG_Gen::FilesTools;
 // I check the using of getDirectories and I can confirm that in test we can let
 // ourselves do not care about order of directories in the vector. Full
 // understanding will come after  all comments below.

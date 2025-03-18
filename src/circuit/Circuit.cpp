@@ -15,6 +15,8 @@
 #include <additional/AuxiliaryMethods.hpp>
 #include <additional/filesTools/FilesTools.hpp>
 
+namespace CG_Gen {
+
 Circuit::Circuit(GraphPtr const i_graph,
                  const std::vector<std::string> &i_logExpressions) {
   d_graph = i_graph;
@@ -554,3 +556,5 @@ Circuit Circuit::fromVerilog(const std::string &i_filepath) {
   // }
   return circuit;
 }
+
+} // namespace CG_Gen

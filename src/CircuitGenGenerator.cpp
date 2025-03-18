@@ -23,6 +23,7 @@
 #include "CircuitGenGenerator/export.hpp"
 
 using namespace std::chrono;
+using namespace CG_Gen;
 
 void runGeneration(
     std::string json_path,
@@ -43,7 +44,7 @@ void runGeneration(
     }
 
     // Задаем сид рандомизации.
-    AuxMethods::setRandSeed(!data.contains("seed") || data["seed"] == -1
+    CG_Gen::AuxMethods::setRandSeed(!data.contains("seed") || data["seed"] == -1
                                 ? static_cast<uint_fast32_t>(std::time(0))
                                 : static_cast<uint_fast32_t>(data["seed"]));
     // EVERYWHERE seed from json is getting here. It is like a storage for seed
@@ -524,6 +525,7 @@ void runGeneration(
 }
 
 namespace CircuitGenGenerator {
+
 std::vector<ResultGraph> runGenerationFromJsonForGraph(std::string json_path) {
   std::vector<ResultGraph> finalRes;
 

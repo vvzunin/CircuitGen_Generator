@@ -8,6 +8,8 @@
 #include "RecombinationParameters.hpp"
 #include "RecombinationsTruthTable.hpp"
 
+namespace CG_Gen {
+
 template<typename Type, typename ParametersType>
 std::vector<ChromosomeType<Type, ParametersType>> RecombinationType(
     RecombinationParameters i_recombinationParameters,
@@ -56,3 +58,5 @@ RecombinationType(RecombinationParameters i_recombinationParameters,
   // default case
   return {};
 }
+
+} // namespace CG_Gen

@@ -1,5 +1,7 @@
 ﻿#include "ArithmeticGenerator.hpp"
 
+namespace CG_Gen {
+
 ArithmeticGenerator::ArithmeticGenerator() : SimpleGenerator() {
 }
 
@@ -410,3 +412,5 @@ GraphPtr ArithmeticGenerator::generatorSubtractor() {
 GraphPtr ArithmeticGenerator::generatorMultiplier() {
   return generatorMultiplier(getParameters());
 }
+
+} // namespace CG_Gen

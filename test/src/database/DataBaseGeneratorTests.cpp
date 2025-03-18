@@ -10,6 +10,9 @@
 #include "circuit/Circuit.hpp"
 #include "easylogging++Init.hpp"
 
+using namespace CG_Graph;
+using namespace CG_Gen;
+
 std::vector<std::string> getJsons(std::string &path) {
   std::vector<std::string> names = FilesTools::getDirectories(path);
   std::sort(names.begin(), names.end());

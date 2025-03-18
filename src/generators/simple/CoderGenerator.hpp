@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include <generators/simple/SimpleGenerator.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 class CoderGenerator : public SimpleGenerator {
 public:
   CoderGenerator();
@@ -36,3 +40,5 @@ public:
   GraphPtr generatorEncoder();
   GraphPtr generatorDecoder();
 };
+
+} // namespace CG_Gen

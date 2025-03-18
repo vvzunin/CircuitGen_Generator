@@ -12,7 +12,11 @@
 #include <generators/GenerationParameters.hpp>
 #include <settings/Settings.hpp>
 
-using GatesInfo = std::map<Gates, std::vector<int32_t>>;
+using GatesInfo = std::map<CG_Graph::Gates, std::vector<int32_t>>;
+
+namespace CG_Gen {
+
+using namespace CG_Graph;
 
 class SimpleGenerator {
 public:
@@ -119,3 +123,5 @@ protected:
 private:
   const GenerationParameters *d_parameters = nullptr;
 };
+
+} // namespace CG_Gen

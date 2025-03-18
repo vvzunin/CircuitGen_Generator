@@ -11,7 +11,7 @@
 /// the file system
 /// */
 
-namespace FilesTools {
+namespace CG_Gen::FilesTools {
 
 /// @brief getDirectories This function takes the path to a directory and
 /// returns a string vector containing the names of all subdirectories of that
@@ -48,4 +48,4 @@ std::string getParentDirOf(const std::string &i_path);
 /// */
 
 std::string loadStringFile(const std::filesystem::path &p);
-} // namespace FilesTools
+} // namespace CG_Gen::FilesTools

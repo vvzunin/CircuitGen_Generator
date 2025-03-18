@@ -10,6 +10,8 @@
 
 /// @file Settings.hpp
 
+namespace CG_Gen {
+
 enum LibrariesTypes { SKY_LIB };
 
 /// @brief GenerationTypes
@@ -263,3 +265,5 @@ private:
   uint32_t d_maxInputs = 50;
   uint32_t d_maxOutputs = 50;
 };
+
+} // namespace CG_Gen

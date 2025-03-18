@@ -18,6 +18,8 @@
 /// @param d_settings Shared pointer to Settings object.
 /// @param d_randGenerator Random number generator.
 
+namespace CG_Gen {
+
 class TruthTable {
 public:
   TruthTable();
@@ -202,3 +204,5 @@ private:
   std::shared_ptr<Settings> d_settings = Settings::getInstance("TruthTable");
   RandomGeneratorWithSeed d_randGenerator;
 };
+
+} // namespace CG_Gen

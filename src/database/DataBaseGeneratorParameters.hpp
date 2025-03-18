@@ -3,6 +3,8 @@
 #include <generators/GenerationParameters.hpp>
 #include <settings/Settings.hpp>
 
+namespace CG_Gen {
+
 /// class DataBaseGeneratorParameters
 /// @param d_minInputs Minimum number of input signals for database generation
 /// @param d_maxInputs The maximum number of input signals to generate a
@@ -116,3 +118,5 @@ private:
   GenerationTypes d_generationTypes = GenerationTypes::FromRandomTruthTable;
   GenerationParameters d_generationParameters;
 };
+
+} // namespace CG_Gen

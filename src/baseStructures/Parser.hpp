@@ -9,7 +9,10 @@
 #include <CircuitGenGraph/OrientedGraph.hpp>
 #include <settings/Settings.hpp>
 
-using GatesInfo = std::map<Gates, std::vector<int32_t>>;
+using GatesInfo = std::map<CG_Graph::Gates, std::vector<int32_t>>;
+
+namespace CG_Gen {
+using namespace CG_Graph;
 
 /// class Parser
 /// @param d_logExpressions It can represent a set of logical expressions
@@ -200,3 +203,5 @@ private:
 
   GatesInfo d_gatesInputsInfo;
 };
+
+} // namespace CG_Gen

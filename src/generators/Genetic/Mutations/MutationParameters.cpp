@@ -2,6 +2,8 @@
 
 #include "MutationParameters.hpp"
 
+namespace CG_Gen {
+
 void MutationParameters::setMutationType(MutationTypes i_mutationType) {
   d_mutationType = i_mutationType;
 }
@@ -41,3 +43,5 @@ bool MutationParameters::operator==(const MutationParameters &r) const {
          std::tie(r.d_mutationType, r.d_probabilityGen, r.d_exchangeType,
                   r.d_probabilityTruthTable);
 }
+
+} // namespace CG_Gen

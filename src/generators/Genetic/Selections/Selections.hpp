@@ -8,6 +8,8 @@
 #include "SelectionParameters.hpp"
 #include "SelectionsTruthTable.hpp"
 
+namespace CG_Gen {
+
 template<typename Type, typename ParametersType>
 std::vector<ChromosomeType<Type, ParametersType>>
 SelectionType(SelectionParameters i_selectionParameters,
@@ -24,3 +26,5 @@ SelectionType(SelectionParameters i_selectionParameters,
   // default to remove warning
   return {};
 }
+
+} // namespace CG_Gen

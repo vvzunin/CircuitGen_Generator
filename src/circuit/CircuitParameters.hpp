@@ -2,6 +2,8 @@
 
 #include <string>
 
+namespace CG_Gen {
+
 /// @todo: to add desc fields of the class
 /// class CircuitParameters
 ///
@@ -53,3 +55,5 @@ public:
   std::map<std::string, size_t> d_numElementsOfEachType;
   std::map<std::pair<std::string, std::string>, size_t> d_numEdgesOfEachType;
 };
+
+} // namespace CG_Gen

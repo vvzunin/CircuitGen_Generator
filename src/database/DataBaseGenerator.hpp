@@ -16,6 +16,8 @@
 using ResultGraph = std::pair<std::string, std::vector<GraphPtr>>;
 using ResultPath = std::pair<std::string, std::vector<std::string>>;
 
+namespace CG_Gen {
+
 enum ReturnType { DEFAULT, GRAPH, PATH, FUNCTION };
 
 /// class DataBaseGenerator
@@ -218,3 +220,5 @@ private:
 
   ReturnType d_type = ReturnType::DEFAULT;
 };
+
+} // namespace CG_Gen

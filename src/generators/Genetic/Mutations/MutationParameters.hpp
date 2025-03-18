@@ -1,6 +1,8 @@
 #pragma once
 #include <cstdint>
 
+namespace CG_Gen {
+
 enum MutationTypes {
   Binary,
   Density,
@@ -29,3 +31,5 @@ private:
   int32_t d_exchangeType = 0;
   double d_probabilityTruthTable = 0.1;
 };
+
+} // namespace CG_Gen

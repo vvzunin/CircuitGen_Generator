@@ -4,6 +4,8 @@
 
 #include "easylogging++Init.hpp"
 
+using namespace CG_Gen;
+
 TEST(GeneticParametersTest, ConstructorTest) {
   GeneticParameters gp(5, 3);
   EXPECT_EQ(gp.getInputs(), 5);

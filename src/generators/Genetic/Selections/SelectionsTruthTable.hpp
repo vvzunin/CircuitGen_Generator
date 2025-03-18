@@ -5,7 +5,7 @@
 
 #include "../ChromosomeType.hpp"
 
-namespace SelectionsTruthTable {
+namespace CG_Gen::SelectionsTruthTable {
 inline std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
 SelectionBase(SelectionParameters i_selectionParameters,
               std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
@@ -45,4 +45,4 @@ SelectionBase(SelectionParameters i_selectionParameters,
   return survivors;
 }
 // namespace end
-} // namespace SelectionsTruthTable
+} // namespace CG_Gen::SelectionsTruthTable

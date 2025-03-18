@@ -3,7 +3,12 @@
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <generators/simple/SimpleGenerator.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 class ALUGenerator : public SimpleGenerator {
+
 public:
   ALUGenerator();
   ALUGenerator(uint_fast32_t i_seed);
@@ -103,3 +108,5 @@ private:
                                  std::map<Gates, int32_t> i_logicOper,
                                  bool i_leaveEmptyOut = true);
 };
+
+} // namespace CG_Gen

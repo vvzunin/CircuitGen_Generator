@@ -1,5 +1,7 @@
 ﻿#include "RandLevelGenerator.hpp"
 
+namespace CG_Gen {
+
 RandLevelGenerator::RandLevelGenerator() : SimpleGenerator() {
 }
 
@@ -261,3 +263,5 @@ GraphPtr RandLevelGenerator::generatorRandLevel() {
 GraphPtr RandLevelGenerator::generatorRandLevelExperimental() {
   return generatorRandLevelExperimental(getParameters());
 }
+
+} // namespace CG_Gen

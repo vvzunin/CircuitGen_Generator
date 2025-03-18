@@ -1,5 +1,7 @@
 ﻿#include "ParityGenerator.hpp"
 
+namespace CG_Gen {
+
 ParityGenerator::ParityGenerator() : SimpleGenerator() {
 }
 
@@ -64,3 +66,5 @@ GraphPtr ParityGenerator::generatorParity(const GenerationParameters &i_param) {
 GraphPtr ParityGenerator::generatorParity() {
   return generatorParity(getParameters());
 }
+
+} // namespace CG_Gen

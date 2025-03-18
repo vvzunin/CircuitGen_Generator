@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+namespace CG_Gen {
+
 enum ParentsTypes { Panmixia, Inbringing, Outbrinding, Tournament, Roulette };
 
 class ParentsParameters {
@@ -16,3 +18,5 @@ private:
   int32_t d_tournamentNumber = 2;
   ParentsTypes d_parentsType = ParentsTypes::Panmixia;
 };
+
+} // namespace CG_Gen

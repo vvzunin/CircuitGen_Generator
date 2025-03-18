@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+namespace CG_Gen {
+
 enum SelectionTypes { Base };
 
 class SelectionParameters {
@@ -16,3 +18,5 @@ private:
   SelectionTypes d_selectionType = SelectionTypes::Base;
   int32_t d_numOfSurvivors = 0;
 };
+
+} // namespace CG_Gen
