@@ -35,7 +35,6 @@ CG_Gen::RandomGeneratorWithSeed gen;
 // namespace end
 } // namespace
 
-
 namespace CG_Gen::AuxMethods {
 
 void setRandSeed(std::uint_fast32_t seed) {
@@ -72,10 +71,8 @@ std::string readAllFile(const std::string &filename) {
   return buffer.str();
 }
 
-std::vector<int32_t> getRandomIntList(size_t i_n,
-                                                  int32_t i_minNumber,
-                                                  int32_t i_maxNumber,
-                                                  bool repite) {
+std::vector<int32_t> getRandomIntList(size_t i_n, int32_t i_minNumber,
+                                      int32_t i_maxNumber, bool repite) {
   return gen.getRandomIntList(i_n, i_minNumber, i_maxNumber, repite);
 }
 
@@ -128,8 +125,7 @@ template std::vector<std::pair<int32_t, double>>
 sortDictByValue(const std::map<int32_t, double> &i_dict, bool up);
 
 template std::vector<std::pair<std::string, int32_t>>
-sortDictByValue(const std::map<std::string, int32_t> &i_dict,
-                            bool up);
+sortDictByValue(const std::map<std::string, int32_t> &i_dict, bool up);
 
 std::string removeSpaces(const std::string &i_s) {
   std::string res = "";
@@ -148,8 +144,7 @@ size_t skipSpaces(const std::string &i_s, size_t i_start) {
   return res;
 }
 
-std::string intToStringWithZeroes(uint32_t i_num,
-                                              size_t i_totalDigits) {
+std::string intToStringWithZeroes(uint32_t i_num, size_t i_totalDigits) {
   size_t numLength = std::to_string(i_num).length();
   i_totalDigits = std::max(numLength, i_totalDigits);
   std::stringstream ss;
