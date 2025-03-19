@@ -41,11 +41,20 @@ include(FetchContent)
 
 set(ORIENTED_GRAPH CircuitGenGraph)
 
-FetchContent_Declare(
-  ${ORIENTED_GRAPH}
-  GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
-  GIT_TAG 2057a2a
-)
+if (NOT DEFINED LOCAL_BUILD)
+  FetchContent_Declare(
+    ${ORIENTED_GRAPH}
+    GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
+    GIT_TAG 2057a2a
+  )
+else()
+  FetchContent_Declare(
+    ${ORIENTED_GRAPH}
+    SOURCE_DIR ${LOCAL_BUILD}
+  )
+  message(STATUS "Using local graph build")
+endif()
+
 FetchContent_MakeAvailable(${ORIENTED_GRAPH})
 
 set(PUBLIC_HEADERS
