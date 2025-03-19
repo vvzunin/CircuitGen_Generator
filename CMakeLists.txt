@@ -4,7 +4,7 @@ include(cmake/prelude.cmake)
 
 project(
   CircuitGen_Generator
-  VERSION 1.3.0
+  VERSION 1.3.1
   DESCRIPTION "Program for circuits dataset generation"
   HOMEPAGE_URL "https://github.com/vvzunin/CircuitGen_Generator"
   LANGUAGES CXX
@@ -45,7 +45,7 @@ if (NOT DEFINED LOCAL_BUILD)
   FetchContent_Declare(
     ${ORIENTED_GRAPH}
     GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
-    GIT_TAG 2057a2a
+    GIT_TAG v1.4.0
   )
 else()
   FetchContent_Declare(
