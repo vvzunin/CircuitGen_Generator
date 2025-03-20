@@ -44,7 +44,7 @@ set(ORIENTED_GRAPH CircuitGenGraph)
 if (NOT DEFINED LOCAL_BUILD)
   FetchContent_Declare(
     ${ORIENTED_GRAPH}
-    GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
+    GIT_REPOSITORY https://hub.mos.ru/circuitgen/CircuitGen_Graph
     GIT_TAG v1.4.0
   )
 else()
