@@ -99,7 +99,7 @@ void DataBaseGenerator::runGeneratorByDefault(
           GenerationParameters param = d_parameters.getGenerationParameters();
           param.setSeed(*iter + i + j);
 
-          auto runGenerator = [&generator, &param]() { generator(param); };
+          auto runGenerator = [&generator, param]() { generator(param); };
 
           pool.submit(runGenerator);
 
