@@ -42,7 +42,8 @@
 ### Установка пакетов с помощью apt
 
 ```
-sudo apt install clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja
+sudo apt install clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build
+
 ```
 
 ### Установка cmake 3.28.1

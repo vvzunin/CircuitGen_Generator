@@ -51,7 +51,6 @@ TEST(SettingsTest, LoadSettingsTest) {
   auto settings = Settings::getInstance("");
 
   EXPECT_EQ(settings->getNumThread(), 4);
-  EXPECT_EQ(settings->getPathNadezhda(), "./Generator/source/data/Nadezhda");
   std::filesystem::remove(settingsPath);
 }
 

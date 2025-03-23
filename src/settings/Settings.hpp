@@ -35,7 +35,7 @@ enum GenerationTypes {   /// Generating a circuit from a random truth table
   Decoder,               /// Parity
   Parity,                /// Arithmetic Logic Unit (ALU)
   ALU
-};
+}; /* Simple */
 
 /// @todo: To add Description some fields
 /// class Settings
@@ -53,11 +53,6 @@ enum GenerationTypes {   /// Generating a circuit from a random truth table
 /// directory with the dataset. The default value is "./dataset"
 /// @param d_libraryPath This is a string field that contains the path to the
 /// library directory. The default value is set to "Generator/libs"
-/// @param d_pathToNadezhda This is a string field that contains the path to the
-/// directory with Nadezhda data. The default value is set to
-/// "./Generator/source/data/Nadezhda". However, this path is not in the
-/// project*
-/// @param d_nadezhda ???
 /// @param d_numThreads The number of threads that are used in the application.
 /// The default value is 4
 /// @param d_logicOperations This is an associative std::map container that maps
@@ -166,19 +161,6 @@ public:
 
   uint32_t getMaxOutputs() const;
 
-  /// @brief getPathNadezhda Returns the path to Nadezhda
-  /// @return std::string Path to Nadezhda
-
-  std::string getPathNadezhda() const;
-
-  /// @brief getNadezhdaVar Gets the value of a variable from the Nadezhda
-  /// dictionary by key
-  /// @param key The key used to search for a value in the Nadezhda dictionary
-  /// @return std::string The value corresponding to the provided key in the
-  /// Nadezhda dictionary
-
-  std::string getNadezhdaVar(const std::string &key) const;
-
   /// @brief getNumThread Retrieves the number of threads used for processing
   /// @return uint16_t The number of threads configured for processing
   /// @code
@@ -237,12 +219,6 @@ private:
   std::string d_datasetPath = "./dataset";
   std::string d_libraryPath = "Generator/libs";
   // Settings d_instance;
-  std::string d_pathToNadezhda = "./Generator/source/data/Nadezhda";
-  std::map<std::string, std::string> d_nadezhda = {
-      {"python", "python3"},
-      {"resynthesis", "Nadezhda/Scripts/resynthesis_local_rewriting.pyc"},
-      {"reliability", "Nadezhda/Scripts/check_reliability.pyc"},
-      {"liberty", "Nadezda/Test/Nangate.lib"}};
   uint16_t d_numThreads = 4;
 
   std::map<GenerationTypes, std::string> generationTypeToPrefix = {
@@ -261,6 +237,9 @@ private:
       {GenerationTypes::Multiplexer, "CCGTCMP"},
       {GenerationTypes::Decoder, "CCGDCR"},
       {GenerationTypes::ALU, "CCGALU"}};
+  /*
+    SimpleGenerator
+  */
 
   uint32_t d_maxInputs = 50;
   uint32_t d_maxOutputs = 50;
