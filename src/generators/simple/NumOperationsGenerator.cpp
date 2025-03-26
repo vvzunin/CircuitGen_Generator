@@ -50,9 +50,9 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
   std::map<std::string, VertexPtr> levelNamePtr;
   std::vector<VertexPtr> nameOut, nameInput;
 
-  for (const auto &elem: i_logicOper) {
-    std::cout << elem.first << " " << elem.second << "\n";
-  }
+  // for (const auto &elem: i_logicOper) {
+  //   std::cout << elem.first << " " << elem.second << "\n";
+  // }
 
   copyLogicOper = i_logicOper;
 

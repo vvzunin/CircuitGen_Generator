@@ -1,8 +1,14 @@
 #pragma once
 
 #include <cstdint>
+#include <map>
+#include <string>
 
 enum SelectionTypes { Base };
+
+static const std::map<std::string, SelectionTypes> SelectionType2Name = {
+  {"Base", Base},
+};
 
 class SelectionParameters {
 public:

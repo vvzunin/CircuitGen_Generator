@@ -1,6 +1,13 @@
 #pragma once
 
+#include <map>
+#include <string>
+
 enum GenotypeParametersTypes { TruthTableEnum };
+
+static const std::map<std::string, GenotypeParametersTypes> GenotypeParametersType2Name = {
+  {"TruthTableEnum", TruthTableEnum},
+};
 
 template<typename T>
 class Chromosome {
