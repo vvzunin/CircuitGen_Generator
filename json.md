@@ -1,10 +1,13 @@
 # JSON файлы
+
 Для генерации комбинационных схем с использованием командной строки необходимо создать JSON файл.
 
 Набор использованных методов описан в следующих статьях:
-1) V. V. Zunin, A. Y. Romanov, Solovyev R. Developing Methods for Combinational Circuit Generation, in: 2022 International Russian Automation Conference (RusAutoCon). IEEE, 2022. [doi](https://doi.org/10.1109/RusAutoCon54946.2022.9896390)
+
+1. V. V. Zunin, A. Y. Romanov, Solovyev R. Developing Methods for Combinational Circuit Generation, in: 2022 International Russian Automation Conference (RusAutoCon). IEEE, 2022. [doi](https://doi.org/10.1109/RusAutoCon54946.2022.9896390)
 
 JSON файл может содержать несколько наборов генерации:
+
 ```
 [
     {
@@ -15,107 +18,163 @@ JSON файл может содержать несколько наборов г
     }
 ]
 ```
-Для каждого набора генерации необходимо задать набор параметров:
-1) Сид генерации (опциональный параметр):
-   1) seed - int; сид для генератора случайных чисел, -1 или отсутствие поля для псевдослучайного сида;
-2) Определение пути генерации:
-   1) dataset_path - string; путь к директории для хранения датасета, опциональный параметр, по умолчанию - "./dataset"
-   2) dataset_id - int; обозначение датасета схем;
-   3) id - int; обозначение подкатегории датасета;
-3) Общие параметры генерации:
-   1) min_in - int; минимальное количество входов;
-   2) max_in - int; максимальное количество входов;
-   3) min_out - int; минимальное количество выходов;
-   4) max_out - int; максимальное количество выходов;
-   5) repeat_n - int; количества повторений для каждого набора (num_in-num_out);
-4) Выбор типа генерации:
-   1) Выбор происходит путем указания в "type_of_generation" типа генерации:
-      1) ALU;
-      2) Comparison;
-      3) Decoder;
-      4) Demultiplexer;
-      5) Encoder;
-      6) From Random Truth Table;
-      7) Genetic;
-      8) Multiplexer;
-      9) Multiplier;
-     10) Num Operation;
-     11) Parity;
-     12) Rand Level;
-     13) Rand Level Experimental;
-     14) Subtractor;
-     15) Summator;
-5) В зависимости от типа генерации необходимо описать требуемые параметры:
-   1) From Random Truth Table:
-      1) CNFF - bool; необходимо ли создать схему с использованием СДНФ;
-      2) CNFT - bool; необходимо ли создать схему с использованием СКНФ;
-   2) Rand Level:
-      1) max_level - int; максимальное количество уровней в схеме;
-      2) max_elem - int; максимальное количество элементов на каждом уровне;
-   3) Num Operation:
-      1) leave_empty_out - bool; оставлять ли пустые выходы;
-      2) num_<type> - int; количество элементов каждого типа из возможных: and, nand, or, nor, not, buf, xor, xnor;
-   4) Genetic:
-      1) chromosome_type - тип хромосомы из возможных: Truth Table;
-      2) playback_type - тип рекомбинации из возможных: CrossingEachExitInTurnMany, CrossingUniform, CrossingTriadic, CrossingReducedReplacement, CrossingShuffling;
-         1) selection_type_parent - тип отбора родителей: Panmixia, Inbringing, Outbrinding, Tournament, Roulette;
-         2) tourSize - int; размер турнира для Tournament;
-         3) ref_points - int; для CrossingEachExitInTurnMany
-      3) mut_type - тип мутации хромосом из возможных: Binary, Density, AccessionDel, InsertDel, Exchange, Delete;
-         1) mut_chance - float; шанс мутации;
-         2) swap_type - int (0, 1 или 2);
-         3) ratio_in_table - float; распределение 0 и 1 в таблице истинности;
-      4) selection_type - тип отбора после мутации: Base;
-      5) population_size - int; размер начальной популяции;
-      6) cycles - int; максимальное количество циклов генерации;
-      7) out_ratio - float; значение критерия окончания работы генетического алгоритма;
-      8) mask_prob - float; RecombinationCrossingTriadic и CrossingUniform;
-      9) rec_num - int; количество рекомбинаций;
-      10) surv_num - int; количество выживших.
-   5) Summator:
-      1) overflowIn - bool; необходимо ли создать дополнительный вход (первоначальный перенос) для первого разряда генерации;
-      2) overflowOut - bool; необходимо ли создать дополнительный выход (последний перенос) для последнего разряда генерации;
-      3) minus - bool; выбор отрицательной суммы.
-   6) Subtractor:
-      1) overflowIn - bool; необходимо ли создать дополнительный вход (первоначальный заем) для первого разряда генерации;
-      2) overflowOut - bool; необходимо ли создать дополнительный выход (последний заем) для последнего разряда генерации;
-      3) sub - bool; выбор вычитателя и вычитаемого (при false - B-A, при true - A-B).
-   7) Comparison:
-      1) "equal" - bool; выбор операции сравнения: равенство;
-      2) "less" - bool; выбор операции сравнения: меньше;
-      3) "more" - bool; выбор операции сравнения: больше.
-   8) ALU:
-      1) "ALL" - bool; выбор всех типов генераций из доступных (все значения ниже будут true);
-      2) "SUM" - bool; выбор генерации Summator с положительной суммой; 
-      3) "SUB" - bool; выбор генерации Subtractor с выбором вычитаемого B и вычитателя A;
-      4) "NSUM" - bool; выбор генерации Summator с отрицательной суммой;
-      5) "NSUB" - bool; выбор генерации Subtractor с выбором вычитаемого A и вычитателя B;
-      6) "MULT" - bool; выбор генерации Multiplier;
-      7) "COM" - bool; выбор генерации Comparison;
-      8) "AND" - bool; выбор логической операции И;
-      9) "NAND" - bool; выбор логической операции НЕ-И;
-      10) "OR" - bool; выбор логической операции ИЛИ;
-      11) "NOR" - bool; выбор логической операции НЕ-ИЛИ;
-      12) "XOR" - bool; выбор логической операции Исключающее ИЛИ;
-      13) "XNOR" - bool; выбор логической операции Исключающее НЕ-ИЛИ;
-      14) "CNF" - bool; выбор генерации From Random Truth Table (CNFT, CNFF, Zhegalkin);
-      15) "RNL" - bool; выбор генерации Rand Level;
-      16) "NUM_OP" - bool; выбор генерации Num Operation.
+
+Каждый набор генерации состоит из нескольких блоков (для параметров в скобках указывается их тип, дефолтное значение, ялвялется ли параметр обязательным, дефолное значение, если параметр опциональный):
+
+1. Набор глобальных параметров
+   1. `multithread` (int, опциональный) - количество потоков, используемых в процессе генерации, дефолтное значение: 1
+2. Набор параметров генерации - блок `GenerationParameters`
+   1. `gates_inputs_info` (опциональный) - блох входных значений для графа
+   2. `min_in` (int, опциональный, 1) - минимальное количество входов
+   3. `max_in` (int, опциональный, 1) - максимальное количество входов
+   4. `min_out` (int, опциональный, 1) - минимальное количество выходов
+   5. `max_out` (int, опциональный, 1) - максимальное количество выходов
+   6. `repeat_n` (int, опциональный, 1) - количество повторений для каждого набора
+   7. `seed` (int, опциональный, -1) - сид для генератора случайных чисел, при значении -1 используется случайное значение
+   8. <b>`type_of_generation`</b> (enum, обязательный) - выбор типа генерации, возможны следующие значения:
+      1. `From Random Truth Table` - генерация по случайной таблице истинности
+      2. `Rand Level` - генерация со случайной глубиной графа
+      3. `Rand Level Experimental` - экспериментальная версия генератора `Rand Level`
+      4. `Num Operation` - генерация логических операций
+      5. `Comparison` - генерация блока сравнений
+      6. `Summator` - генерация сумматора
+      7. `Multiplier` - генерация умножителя
+      8. `Subtractor` - генерация делителя
+      9. `Multiplexer` - генерация мультиплексора
+      10. `Demultiplexer` - генерация демультиплексора
+      11. `Encoder` - генерация кодироващика
+      12. `Decoder` - генерация декодера
+      13. `Genetic` - генерация на основе генетических алгоритмов
+      14. `Parity`
+      15. `ALU` - генерация арифметико-логического устройства
+3. Набор параметров выходных результатов генерации - блок `OutputParameters`
+   1. `create_id_directories` (bool, опциональный, false) - необходимо ли создавать директории для датасетов в сооответствии с их `id`
+   2. <b>`dataset_id`</b> (string, обязательный) - номер датасета в папке сохранения датасетов
+   3. `dataset_path` (string, опциональный, "./dataset") - путь к директории для хранения датасета
+   4. <b>`id`</b> (int, обязательный) - обозначение подкатегории датасета
+   5. `make_graphml_classic` (bool, опциональный, false) - необходимо ли сохранять классическое graphml представление графа
+   6. `make_graphml_pseudo_abc_d` (bool, опциональный, false) - необходимо ли сохранять pseudo_abc graphml представление графа
+   7. `make_graphml_open_abc_d` (bool, опциональный, false) - необходимо ли сохранять open_abc graphml представление графа
+   8. `make_dot` (bool, опциональный, false) - необходимо ли сохранять dot представление графа
+4. Набор параметров, специфичных для конкретного типа генерации, блоки являются обязательными для конкретных типов генерации, их названия соответствуют значению `type_of_generation`:
+   1. `From Random Truth Table`
+      1. `CNFF` (bool, опциональный, false) - создавать ли схему с помощью СДНФ
+      2. `CNFT` (bool, опциональный, false) - создавать ли схему с помощью СКНФ
+      3. `Zhegalkin` (bool, опциональный, false) - создавать ли схему с помощью полинома Жегалкина
+   2. `Rand Level`
+      1. `min_level` (int, опциональный, 1) - минимальное количество уровней в схеме
+      2. `max_level` (int, опциональный, 1) - максимальное количество уровней в схеме
+      3. `min_elem` (int, опциональный, 1) - минимальное количество элементов в схеме
+      4. `max_elem` (int, опциональный, 1) - максимальное количество элементов в схеме
+   3. `Rand Level Experimental`
+      1. `min_level` (int, опциональный, 1) - минимальное количество уровней в схеме
+      2. `max_level` (int, опциональный, 1) - максимальное количество уровней в схеме
+      3. `min_elem` (int, опциональный, 1) - минимальное количество элементов в схеме
+      4. `max_elem` (int, опциональный, 1) - максимальное количество элементов в схеме
+   4. `Num Operation`
+      1. `leave_empty_out` (bool, опциональный, false) - оставлять ли пустые входы
+      2. `num_and` (int, опциональный, 1) - количество элементов типа and
+      3. `num_nand` (int, опциональный, 1) - количество элементов типа nand
+      4. `num_or` (int, опциональный, 1) - количество элементов типа or
+      5. `num_not` (int, опциональный, 1) - количество элементов типа not
+      6. `num_nor` (int, опциональный, 1) - количество элементов типа nor
+      7. `num_buf` (int, опциональный, 1) - количество элементов типа buf
+      8. `num_xor` (int, опциональный, 1) - количество элементов типа xor
+      9. `num_xnor` (int, опциональный, 1) - количество элементов типа xnor
+   5. `Comparison`
+      1. `equal` (bool, опциональный, false) - генерация операции сравнения "равно"
+      2. `less` (bool, опциональный, false) - генерация операции сравнения "меньше"
+      3. `more` (bool, опциональный, false) - генерация операции сравнения "больше"
+   6. `Summator`
+      1. `minus` (bool, опциональный, false) - использовать отрицательную сумму
+      2. `overflowIn` (bool, опциональный, false) - необходимо ли создать дополнительный вход для переноса в первый разряд
+      3. `overflowOut` (bool, опциональный, false) - необходимо ли создать дополнительный выход для переноса из последнего разряда
+   7. `Multiplier` - на данный момент нет специфичных параметров
+   8. `Subtractor`
+      1. `overflowIn` (bool, опциональный, false) - необходимо ли создать дополнительный вход для переноса в первый разряд
+      2. `overflowOut` (bool, опциональный, false) - необходимо ли создать дополнительный выход для переноса из последнего разряда
+      3. `sub` (bool, опциональный, false) - выбор вычитаемого, при true вычитаемое - второе число
+   9. `Multiplexer` - на данный момент нет специфичных параметров
+   10. `Demultiplexer` - на данный момент нет специфичных параметров
+   11. `Encoder` - на данный момент нет специфичных параметров
+   12. `Decoder` - на данный момент нет специфичных параметров
+   13. `Genetic`
+       1. <b>`chromosome_type`</b> (string, обязательный) - тип хромосомы, возможные значения:
+          1. `TruthTableEnum`
+       2. `cycles` (int, опциональный, 1) - максимальное количество циклов генерации
+       3. `mask_prob` (double, опциональный, 1.0)
+       4. `mut_chance` (double, опциональный, 0.5) - шанс мутации
+       5. <b>`mut_type`</b> (string, обязательный) - тип мутации хромосом, возможные значения
+          1. `Binary`
+          2. `Density`
+          3. `AccessionDel`
+          4. `InsertDel`
+          5. `Exchange`
+          6. `Delete`
+       6. `out_ratio` (double, опциональный, 1.0) - значение критерия окончания работы генератора
+       7. <b>`playback_type`</b> (string, обязательный) - тип рекомбинации, возможные значения:
+          1. `CrossingEachExitInTurnMany`
+          2. `CrossingUniform`
+          3. `CrossingTriadic`
+          4. `CrossingReducedReplacement`
+          5. `CrossingShuffling`
+       8. `population_size` (int, опциональный, 1) - размер начальной популяции
+       9. `ratio_in_table` (double, опциональный, 1.0)- распределение 0 и 1 в таблице истинности
+       10. `rec_num` (int, опциональный, 1) - количество рекомбинаций
+       11. `ref_points` (int, опциональный, 1)
+       12. <b>`selection_type`</b> (string, обязательный) - тип отбора после мутации, возможные значения:
+           1. `Base`
+       13. <b>`selection_type_parent`</b> (string, обязательный) - тип отбора мутации, возможные значения:
+           1. `Panmixia`
+           2. `Inbringing`
+           3. `Outbrinding`
+           4. `Tournament`
+           5. `Roulette`
+       14. `surv_num` (int, опциональный, 1) - количество выживших
+       15. `swap_type` (int, опциональный, 1) - возможные значения:
+           1. `0`
+           2. `1`
+           3. `2`
+       16. `tour_size` (int, опциональный, 1) - размер турнира для Tournament
+   14. `Parity` - на данный момент нет специфичных параметров
+   15. `ALU`
+       1. `ALL` (bool, опциональный, false) - выбор всех типов генерации, аналогично выставлению для всех типов true
+       2. `AND` (bool, опциональный, false) - выбор логической операции И
+       3. `NAND` (bool, опциональный, false) - выбор логической операции НЕ-И
+       4. `OR` (bool, опциональный, false) - выбор логической операции ИЛИ
+       5. `NOR` (bool, опциональный, false) - выбор логической операции НЕ-ИЛИ
+       6. `XOR` (bool, опциональный, false) - выбор логической операции Исключающее ИЛИ
+       7. `XNOR` (bool, опциональный, false) - выбор логической операции Исключающее НЕ-ИЛИ
+       8. `SUM` (bool, опциональный, false) - выбор генерации Summator с положительной суммой
+       9. `NSUM` (bool, опциональный, false) - выбор генерации Summator с отрицательной суммой
+       10. `MULT` (bool, опциональный, false) - выбор генерации Multiplier
+       11. `SUB` (bool, опциональный, false) - выбор генерации Subtractor с выбором вычитаемого B и вычитателя A
+       12. `NSUB` (bool, опциональный, false) - выбор генерации Subtractor с выбором вычитаемого A и вычитателя B
+       13. `COM` (bool, опциональный, false) - выбор генерации Comparison
+       14. `CNF` (bool, опциональный, false) - выбор генерации From Random Truth Table (CNFT, CNFF, Zhegalkin)
+       15. `RNL` (bool, опциональный, false) - выбор генерации Rand Level
+       16. `NUM_OP` (bool, опциональный, false) - выбор генерации Num Operation
+       17. `min_level` (int, опциональный, 1) - минимальное количество уровней в схеме
+       18. `max_level` (int, опциональный, 1) - максимальное количество уровней в схеме
+       19. `min_elem` (int, опциональный, 1) - минимальное количество элементов в схеме
+       20. `max_elem` (int, опциональный, 1) - максимальное количество элементов в схеме
+       21. `leave_empty_out` (bool, опциональный, false) - оставлять ли пустые входы
 
 В [примере](examples/json/sampleAll.json) JSON файла указаны все возможные параметры генерации (кроме сида), что позволяет использовать его для всех параметров генерации с минимальными изменениями.
 В дополнении в той же папке имются индивидуальные JSON файлы под каждый тип генерации:
+
 1. [From Random Truth Table](examples/json/sampleTruthTable.json)
 2. [Rand Level](examples/json/sampleRandLevel.json)
 3. [Rand Level Experimental](examples/json/sampleRandLevelExperimental.json)
 4. [Num Operation](examples/json/sampleNumOperation.json)
-5. [Genetic](examples/json/sampleGenetic.json)
+5. [Comparison](examples/json/sampleComparison.json)
 6. [Summator](examples/json/sampleGenetic.json)
-7. [Comparison](examples/json/sampleComparison.json)
-8. [Encoder](examples/json/sampleEncoder.json)
-9. [Parity](examples/json/sampleParity.json)
-10. [Subtractor](examples/json/sampleSubtractor.json)
-11. [Multiplexer](examples/json/sampleMultiplexer.json)
-12. [Demultiplexer](examples/json/sampleDemultiplexer.json)
-13. [Multiplier](examples/json/sampleMultiplier.json)
-14. [Decoder](examples/json/sampleDecoder.json)
+7. [Multiplier](examples/json/sampleMultiplier.json)
+8. [Subtractor](examples/json/sampleSubtractor.json)
+9. [Multiplexer](examples/json/sampleMultiplexer.json)
+10. [Demultiplexer](examples/json/sampleDemultiplexer.json)
+11. [Encoder](examples/json/sampleEncoder.json)
+12. [Decoder](examples/json/sampleDecoder.json)
+13. [Genetic](examples/json/sampleGenetic.json)
+14. [Parity](examples/json/sampleParity.json)
 15. [ALU](examples/json/sampleALU.json)
