@@ -7,7 +7,8 @@
 #include "../Mutations/MutationTruthTable.hpp"
 #include "../Parents/Parents.hpp"
 
-namespace RecombinationsTruthTable {
+namespace CG_Gen::RecombinationsTruthTable {
+
 std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
 RecombinationCrossingEachExitInTurnMany(
     RecombinationParameters i_recombinationParameters,
@@ -230,4 +231,4 @@ RecombinationCrossingShuffling(
   return survivors;
 }
 // namespace end
-} // namespace RecombinationsTruthTable
+} // namespace CG_Gen::RecombinationsTruthTable

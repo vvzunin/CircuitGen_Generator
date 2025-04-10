@@ -25,7 +25,7 @@
 
 #include <circuit/Circuit.hpp>
 
-namespace AuxMethods {
+namespace CG_Gen::AuxMethods {
 
 /// @brief setRandSeed Sets the grain to generate pseudorandom numbers
 /// @param seed A grain for generating random numbers. Must be a positive
@@ -194,4 +194,4 @@ transpose(const std::vector<std::vector<T>> &matrix);
 // TODO: if need CopyDirectory
 std::string intToStringWithZeroes(uint32_t i_num, size_t i_totalDigits = 5);
 
-} // namespace AuxMethods
+} // namespace CG_Gen::AuxMethods

@@ -22,6 +22,8 @@ std::string deleteDoubleSpaces(const std::string &s) {
 }
 } // namespace
 
+namespace CG_Gen {
+
 Parser::Parser(const std::string &i_logExpression,
                const std::map<std::string, std::vector<int32_t>> &i_info) {
   d_logExpressions.push_back(deleteDoubleSpaces(i_logExpression));
@@ -382,3 +384,5 @@ std::string Parser::deleteExtraSpaces(std::string i_s) {
 
   return i_s;
 }
+
+} // namespace CG_Gen

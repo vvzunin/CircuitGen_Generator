@@ -8,6 +8,10 @@
 #include <generators/Genetic/GeneticParameters.hpp>
 #include <settings/Settings.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 /// class CNNFromTruthTableParameters
 /// @param d_generateLimitations It may refer to conditions or restrictions that
 /// can be applied to combinational logic, for example, imposing restrictions on
@@ -88,6 +92,7 @@ private:
 /// */
 
 class GeneratorNumOperationParameters {
+
 public:
   int32_t getLogicOper(const Gates &i_op) const {
     if (d_logicOper.find(i_op) != d_logicOper.end())
@@ -501,3 +506,5 @@ private:
   GeneratorALUParameters d_generatorALUParameters;
   GeneticParameters d_geneticParameters;
 };
+
+} // namespace CG_Gen

@@ -4,6 +4,9 @@
 
 #include "easylogging++Init.hpp"
 
+using namespace CG_Graph;
+using namespace CG_Gen;
+
 TruthTable createRandomTruthTable(int32_t inputs, int32_t outputs) {
   std::vector<std::vector<bool>> table(
       static_cast<std::vector<std::vector<bool>>::size_type>(outputs),

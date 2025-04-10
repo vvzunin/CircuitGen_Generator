@@ -4,6 +4,8 @@
 
 #include "easylogging++Init.hpp"
 
+using namespace CG_Gen;
+
 TEST(MutationParametersTest, SetAndGetMutationType) {
   MutationParameters params;
   params.setMutationType(MutationTypes::Density);

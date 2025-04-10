@@ -3,6 +3,8 @@
 
 #include "GeneticParameters.hpp"
 
+namespace CG_Gen {
+
 void GeneticParameters::setKeyEndProcessIndex(double i_keyEndProcessIndex) {
   d_keyEndProcessIndex = i_keyEndProcessIndex;
 }
@@ -93,3 +95,5 @@ bool TruthTableParameters::operator==(const TruthTableParameters &r) {
                   r.d_selectionParameters, r.d_recombinationParameters,
                   r.d_mutationParameters, r.d_keyEndProcessIndex);
 }
+
+} // namespace CG_Gen

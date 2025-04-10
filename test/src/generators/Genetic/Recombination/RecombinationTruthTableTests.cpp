@@ -3,6 +3,8 @@
 #include "easylogging++Init.hpp"
 #include "generators/Genetic/Recombination/RecombinationsTruthTable.hpp"
 
+using namespace CG_Gen;
+
 std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
 createPopulation(int numIndividuals, int inputSize, int outputSize) {
   std::vector<ChromosomeType<TruthTable, TruthTableParameters>> population;

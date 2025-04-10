@@ -7,6 +7,9 @@
 #include "easylogging++Init.hpp"
 #include "fstream"
 
+using namespace CG_Graph;
+using namespace CG_Gen;
+
 const std::string testDirectory = std::filesystem::current_path();
 
 TEST(Circuit, TestingVerilogAndParametersForEmptyGraph) {
@@ -23,7 +26,9 @@ TEST(Circuit, TestingVerilogAndParametersForEmptyGraph) {
     fileStream.close();
   }
 
-  bool saveSuccess = circuit.saveParameters(true);
+  std::ofstream fileStream(paramsFilePath);
+  bool saveSuccess = circuit.saveParameters(graphPtr, fileStream, true);
+  fileStream.close();
 
   EXPECT_TRUE(std::filesystem::exists(verilogFilePath));
   EXPECT_TRUE(std::filesystem::exists(paramsFilePath));
@@ -55,7 +60,9 @@ TEST(Circuit, TestingVerilogAndParametersSimpleANDCircuit) {
     fileStream.close();
   }
 
-  bool saveSuccess = circuit.saveParameters(true);
+  std::ofstream fileStream(paramsFilePath);
+  bool saveSuccess = circuit.saveParameters(graphPtr, fileStream, true);
+  fileStream.close();
 
   EXPECT_TRUE(std::filesystem::exists(verilogFilePath));
   EXPECT_TRUE(std::filesystem::exists(paramsFilePath));
@@ -87,7 +94,9 @@ TEST(Circuit, TestingVerilogAndParametersSimpleORGate) {
     fileStream.close();
   }
 
-  bool saveSuccess = circuit.saveParameters(true);
+  std::ofstream fileStream(paramsFilePath);
+  bool saveSuccess = circuit.saveParameters(graphPtr, fileStream, true);
+  fileStream.close();
 
   EXPECT_TRUE(std::filesystem::exists(verilogFilePath));
   EXPECT_TRUE(std::filesystem::exists(paramsFilePath));
@@ -117,7 +126,9 @@ TEST(Circuit, TestingVerilogAndParametersNOTGate) {
     fileStream.close();
   }
 
-  bool saveSuccess = circuit.saveParameters(true);
+  std::ofstream fileStream(paramsFilePath);
+  bool saveSuccess = circuit.saveParameters(graphPtr, fileStream, true);
+  fileStream.close();
 
   EXPECT_TRUE(std::filesystem::exists(verilogFilePath));
   EXPECT_TRUE(std::filesystem::exists(paramsFilePath));
@@ -156,7 +167,9 @@ TEST(Circuit, TestingVerilogAndParametersComplexLogicCircuit) {
     fileStream.close();
   }
 
-  bool saveSuccess = circuit.saveParameters(true);
+  std::ofstream fileStream(paramsFilePath);
+  bool saveSuccess = circuit.saveParameters(graphPtr, fileStream, true);
+  fileStream.close();
 
   EXPECT_TRUE(std::filesystem::exists(verilogFilePath));
   EXPECT_TRUE(std::filesystem::exists(paramsFilePath));
@@ -189,7 +202,9 @@ TEST(Circuit, TestingVerilogAndParametersMultipleOutputs) {
     fileStream.close();
   }
 
-  bool saveSuccess = circuit.saveParameters(true);
+  std::ofstream fileStream(paramsFilePath);
+  bool saveSuccess = circuit.saveParameters(graphPtr, fileStream, true);
+  fileStream.close();
 
   EXPECT_TRUE(std::filesystem::exists(verilogFilePath));
   EXPECT_TRUE(std::filesystem::exists(paramsFilePath));
@@ -220,7 +235,9 @@ TEST(Circuit, TestingVerilogAndParametersFeedbackLoop) {
     fileStream.close();
   }
 
-  bool saveSuccess = circuit.saveParameters(true);
+  std::ofstream fileStream(paramsFilePath);
+  bool saveSuccess = circuit.saveParameters(graphPtr, fileStream, true);
+  fileStream.close();
 
   EXPECT_TRUE(std::filesystem::exists(verilogFilePath));
   EXPECT_TRUE(std::filesystem::exists(paramsFilePath));

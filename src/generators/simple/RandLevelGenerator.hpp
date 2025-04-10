@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include <generators/simple/SimpleGenerator.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 class RandLevelGenerator : public SimpleGenerator {
 public:
   RandLevelGenerator();
@@ -79,3 +83,5 @@ public:
 
   GraphPtr generatorRandLevelExperimental();
 };
+
+} // namespace CG_Gen

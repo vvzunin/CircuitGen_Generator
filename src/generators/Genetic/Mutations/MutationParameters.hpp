@@ -3,6 +3,8 @@
 #include <map>
 #include <string>
 
+namespace CG_Gen {
+
 enum MutationTypes {
   Binary,
   Density,
@@ -13,13 +15,12 @@ enum MutationTypes {
 };
 
 static const std::map<std::string, MutationTypes> MutationType2Name = {
-  {"Binary", Binary},
-  {"Density", Density},
-  {"AccessionDel", AccessionDel},
-  {"InsertDel", InsertDel},
-  {"Exchange", Exchange},
-  {"Delete", Delete}
-};
+    {"Binary", Binary},
+    {"Density", Density},
+    {"AccessionDel", AccessionDel},
+    {"InsertDel", InsertDel},
+    {"Exchange", Exchange},
+    {"Delete", Delete}};
 
 class MutationParameters {
 public:
@@ -40,3 +41,5 @@ private:
   int32_t d_exchangeType = 0;
   double d_probabilityTruthTable = 0.1;
 };
+
+} // namespace CG_Gen

@@ -24,8 +24,9 @@ int32_t maxValueInMap(const std::map<T, int32_t> &i_map) {
   return res;
 }
 
-// namespace end
 } // namespace
+
+namespace CG_Gen {
 
 NumOperationsGenerator::NumOperationsGenerator() : SimpleGenerator() {
 }
@@ -156,3 +157,5 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
 GraphPtr NumOperationsGenerator::generatorNumOperation() {
   return generatorNumOperation(getParameters());
 }
+
+} // namespace CG_Gen

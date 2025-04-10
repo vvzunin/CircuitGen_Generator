@@ -6,6 +6,8 @@
 
 #include "Settings.hpp"
 
+namespace CG_Gen {
+
 std::shared_ptr<Settings> Settings::d_singleton = nullptr;
 
 std::shared_ptr<Settings> Settings::getInstance(const std::string &i_value) {
@@ -64,3 +66,5 @@ uint32_t Settings::getMaxInputs() const {
 uint32_t Settings::getMaxOutputs() const {
   return d_maxOutputs;
 }
+
+} // namespace CG_Gen

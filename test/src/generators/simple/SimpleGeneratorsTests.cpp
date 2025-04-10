@@ -11,6 +11,9 @@
 
 #include "easylogging++Init.hpp"
 
+using namespace CG_Graph;
+using namespace CG_Gen;
+
 // CNF
 TEST(CnfFromTruthTableTest, EqualWithTheSameParametrs) {
   FromTruthTableGenerator generator1 = FromTruthTableGenerator(1);

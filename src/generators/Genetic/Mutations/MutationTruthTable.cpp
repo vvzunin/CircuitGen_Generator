@@ -8,7 +8,8 @@
 
 #include <additional/AuxiliaryMethods.hpp>
 
-namespace MutationTruthTable {
+namespace CG_Gen::MutationTruthTable {
+
 std::vector<std::vector<bool>>
 MutationTable(std::vector<std::vector<bool>> i_table, double i_probability) {
   std::srand(std::time(0));
@@ -204,4 +205,4 @@ MutationDelete(MutationParameters i_mutationParameters,
   return i_population;
 }
 // namespace end
-} // namespace MutationTruthTable
+} // namespace CG_Gen::MutationTruthTable

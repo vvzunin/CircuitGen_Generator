@@ -1,6 +1,8 @@
 ﻿#include "FromTruthTableGenerator.hpp"
 #include <baseStructures/Parser.hpp>
 
+namespace CG_Gen {
+
 FromTruthTableGenerator::FromTruthTableGenerator() : SimpleGenerator() {
 }
 
@@ -181,3 +183,5 @@ FromTruthTableGenerator::zhegalkinFromTruthTable(const TruthTable &i_table) {
   }
   return graph;
 }
+
+} // namespace CG_Gen

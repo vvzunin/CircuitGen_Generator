@@ -13,6 +13,8 @@
 /// @param d_gen std::minstd_rand object used for generating random numbers.
 /// */
 
+namespace CG_Gen {
+
 class RandomGeneratorWithSeed {
 public:
   RandomGeneratorWithSeed() = default;
@@ -104,5 +106,7 @@ private:
   std::uint_fast32_t d_seed;
   std::minstd_rand d_gen;
 };
+
+} // namespace CG_Gen
 
 #endif
