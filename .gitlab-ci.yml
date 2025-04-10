@@ -63,7 +63,7 @@ test:
   before_script:
     - apt update -q
     - apt upgrade -y -q
-    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build git
+    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake ninja-build git cppcheck
   script:
     - cmake --preset=ci-ubuntu
     - cmake --build build --config Release -j $(nproc)
