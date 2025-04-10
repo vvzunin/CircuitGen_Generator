@@ -28,7 +28,7 @@ coverage:
   before_script:
     - apt update -q
     - apt upgrade -y -q
-    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build
+    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build git
     - apt install lcov -y
   script:
     - cmake --preset=ci-coverage
@@ -49,7 +49,7 @@ sanitize:
   before_script:
     - apt update -q
     - apt upgrade -y -q
-    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build
+    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build git
   script:
     - cmake --preset=ci-sanitize
     - cmake --build build/sanitize -j $(nproc)
@@ -63,7 +63,7 @@ test:
   before_script:
     - apt update -q
     - apt upgrade -y -q
-    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build
+    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build git
   script:
     - cmake --preset=ci-ubuntu
     - cmake --build build --config Release -j $(nproc)
