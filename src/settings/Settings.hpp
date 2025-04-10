@@ -19,23 +19,41 @@ enum LibrariesTypes { SKY_LIB };
 /// This enumeration defines the various types of digital circuit generation
 /// that can be used to create a variety of logic circuits.
 
-enum GenerationTypes {   /// Generating a circuit from a random truth table
-  FromRandomTruthTable,  /// Random level (experimental)
-  RandLevel,             /// Experimental random level generation
-  RandLevelExperimental, /// Generating a circuit with numerical operations
-  NumOperation,          /// Genetic generation of the circuit
-  Genetic,               /// Adder
-  Summator,              /// The comparison block
-  Comparison,            /// The encoder
-  Encoder,               /// Subtractor
-  Subtractor,            /// Multiplexer
-  Multiplexer,           /// Demultiplexer
-  Demultiplexer,         /// Multiplier
-  Multiplier,            /// Decoder
-  Decoder,               /// Parity
-  Parity,                /// Arithmetic Logic Unit (ALU)
-  ALU
+enum GenerationTypes {
+  FromRandomTruthTable,  /// Generating a circuit from a random truth table
+  RandLevel,             /// Random level (experimental)
+  RandLevelExperimental, /// Experimental random level generation
+  NumOperation,          /// Generating a circuit with numerical operations
+  Comparison,            /// The comparison block
+  Summator,              /// Adder
+  Multiplier,            /// Multiplier
+  Subtractor,            /// Subtractor
+  Multiplexer,           /// Multiplexer
+  Demultiplexer,         /// Demultiplexer
+  Encoder,               /// Encoder
+  Decoder,               /// Decoder
+  Genetic,               /// Genetic generation of the circuit
+  Parity,                /// Parity
+  ALU                    /// Arithmetic Logic Unit (ALU)
 }; /* Simple */
+
+static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
+  {"From Random Truth Table", FromRandomTruthTable},
+  {"Rand Level", RandLevel},
+  {"Rand Level Experimental", RandLevelExperimental},
+  {"Num Operation", NumOperation},
+  {"Comparison", Comparison},
+  {"Summator", Summator},
+  {"Multiplier", Multiplier},
+  {"Subtractor", Subtractor},
+  {"Multiplexer", Multiplexer},
+  {"Demultiplexer", Demultiplexer},
+  {"Encoder", Encoder},
+  {"Decoder", Decoder},
+  {"Genetic", Genetic},
+  {"Parity", Parity},
+  {"ALU", ALU}
+};
 
 /// @todo: To add Description some fields
 /// class Settings

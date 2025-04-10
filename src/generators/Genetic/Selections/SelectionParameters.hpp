@@ -1,10 +1,16 @@
 #pragma once
 
 #include <cstdint>
+#include <map>
+#include <string>
 
 namespace CG_Gen {
 
 enum SelectionTypes { Base };
+
+static const std::map<std::string, SelectionTypes> SelectionType2Name = {
+  {"Base", Base},
+};
 
 class SelectionParameters {
 public:

@@ -1,5 +1,7 @@
 #pragma once
 #include <cstdint>
+#include <map>
+#include <string>
 
 namespace CG_Gen {
 
@@ -10,6 +12,15 @@ enum MutationTypes {
   InsertDel,
   Exchange,
   Delete
+};
+
+static const std::map<std::string, MutationTypes> MutationType2Name = {
+  {"Binary", Binary},
+  {"Density", Density},
+  {"AccessionDel", AccessionDel},
+  {"InsertDel", InsertDel},
+  {"Exchange", Exchange},
+  {"Delete", Delete}
 };
 
 class MutationParameters {
