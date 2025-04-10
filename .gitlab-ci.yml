@@ -1,0 +1,102 @@
+# Описание для сборки при коммите в main
+image: ubuntu:22.04
+
+stages:
+  - lint
+  - coverage
+  - sanitize
+  - test
+  - docs
+
+lint:
+  stage: lint
+  before_script:
+    - apt update -q
+    - apt upgrade -y -q
+    - apt install -y -q python3.10 python3-pip python3.10-dev
+    - apt install -y -q ninja-build clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake git
+    - python3 --version
+  script:
+    - pip3 install codespell
+    - cmake -D FORMAT_COMMAND=clang-format-15 -P cmake/lint.cmake
+    - cmake -P cmake/spell.cmake
+
+coverage:
+  stage: coverage
+  needs:
+    - job: lint
+  before_script:
+    - apt update -q
+    - apt upgrade -y -q
+    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build
+    - apt install lcov -y
+  script:
+    - cmake --preset=ci-coverage
+    - cmake --build build/coverage -j $(nproc)
+    - cd build/coverage
+    - ctest --output-on-failure --no-tests=error -j $(nproc)
+    - cd ../..
+    - cmake --build build/coverage -t coverage
+
+sanitize:
+  stage: sanitize
+  needs:
+    - job: lint
+  variables: 
+    CXX: 'clang++-14'
+    ASAN_OPTIONS: 'strict_string_checks=1:detect_stack_use_after_return=1:check_initialization_order=1:strict_init_order=1:detect_leaks=1:detect_odr_violation=1'
+    UBSAN_OPTIONS: 'print_stacktrace=1'
+  before_script:
+    - apt update -q
+    - apt upgrade -y -q
+    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build
+  script:
+    - cmake --preset=ci-sanitize
+    - cmake --build build/sanitize -j $(nproc)
+    - cd build/sanitize
+    - ctest --output-on-failure --no-tests=error -j $(nproc)
+
+test:
+  stage: test
+  needs:
+    - job: lint
+  before_script:
+    - apt update -q
+    - apt upgrade -y -q
+    - apt install -y -q clang clang-tidy clang-format-15 doxygen g++ gcc make openssl cmake lcov ninja-build
+  script:
+    - cmake --preset=ci-ubuntu
+    - cmake --build build --config Release -j $(nproc)
+    - cmake --install build --config Release --prefix prefix
+    - cd build
+    - ctest --output-on-failure --no-tests=error --output-junit ctest_results.xml -C Release -j $(nproc)
+    - cd ..
+  artifacts:
+    when: always
+    paths:
+      - build/ctest_results.xml
+    reports:
+      junit: build/ctest_results.xml
+
+docs:
+  stage: docs
+  needs:
+    - job: sanitize
+    - job: test
+  before_script:
+    - apt update -q
+    - apt upgrade -y -q
+    - apt install -y -q python3.10 python3-pip python3.10-dev
+    - apt install -y -q ninja-build clang clang-tidy cppcheck clang-format-15 doxygen g++ gcc make openssl cmake git wget
+    - python3 --version
+    - pip3 install jinja2 Pygments
+    - apt install -y -q doxygen graphviz ghostscript
+  script:
+    - mkdir -p build/docs
+    - cd build/docs
+    - cmake "-DPROJECT_SOURCE_DIR=$PWD/../.." "-DPROJECT_BINARY_DIR=$PWD/.." -P ../../cmake/docs-ci.cmake
+  artifacts:
+    untracked: false
+    expire_in: 30 days
+    paths:
+      - build/docs
