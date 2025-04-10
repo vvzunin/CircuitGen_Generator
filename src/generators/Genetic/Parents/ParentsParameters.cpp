@@ -3,6 +3,8 @@
 
 #include "ParentsParameters.hpp"
 
+namespace CG_Gen {
+
 void ParentsParameters::setParentsType(ParentsTypes i_parentsTypes) {
   d_parentsType = i_parentsTypes;
 }
@@ -23,3 +25,5 @@ bool ParentsParameters::operator==(const ParentsParameters &r) const {
   return std::tuple(d_tournamentNumber, d_parentsType) ==
          std::tuple(r.d_tournamentNumber, r.d_parentsType);
 }
+
+} // namespace CG_Gen

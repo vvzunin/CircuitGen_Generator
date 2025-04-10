@@ -10,6 +10,10 @@
 
 #include "CircuitParameters.hpp"
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 struct CircuitArgs {
   CircuitArgs(bool d_makeGraphMLClassic = false,
               bool d_makeGraphMLPseudoABCD = false,
@@ -206,3 +210,5 @@ private:
   /// @return
   bool checkExistingHash();
 };
+
+} // namespace CG_Gen

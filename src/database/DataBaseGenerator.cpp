@@ -31,6 +31,8 @@
 using namespace std::chrono;
 using namespace Threading;
 
+namespace CG_Gen {
+
 void DataBaseGenerator::runGeneratorByDefault(
     const DataBaseGeneratorParameters &i_dbgp, uint8_t parallel,
     bool createIdDirectories) {
@@ -513,3 +515,5 @@ DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
 
   return std::bind(generateMethodFunc, this, std::placeholders::_1);
 }
+
+} // namespace CG_Gen

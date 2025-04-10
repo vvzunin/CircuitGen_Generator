@@ -2,6 +2,8 @@
 
 #include "PlexerGenerator.hpp"
 
+namespace CG_Gen {
+
 PlexerGenerator::PlexerGenerator() : SimpleGenerator() {
 }
 
@@ -171,3 +173,5 @@ GraphPtr PlexerGenerator::generatorMultiplexer() {
 GraphPtr PlexerGenerator::generatorDemultiplexer() {
   return generatorDemultiplexer(getParameters());
 }
+
+} // namespace CG_Gen

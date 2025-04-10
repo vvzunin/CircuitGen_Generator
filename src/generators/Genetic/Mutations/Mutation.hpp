@@ -6,6 +6,8 @@
 #include "MutationParameters.hpp"
 #include "MutationTruthTable.hpp"
 
+namespace CG_Gen {
+
 template<typename Type, typename ParametersType>
 std::vector<ChromosomeType<Type, ParametersType>>
 MutationType(MutationParameters i_mutationParameters,
@@ -14,3 +16,5 @@ template<>
 std::vector<ChromosomeType<TruthTable, TruthTableParameters>> MutationType(
     MutationParameters i_mutationParameters,
     std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population);
+
+} // namespace CG_Gen

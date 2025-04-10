@@ -7,9 +7,12 @@
 
 #include "easylogging++Init.hpp"
 
+using namespace CG_Graph;
+using namespace CG_Gen::AuxMethods;
+
 TEST(test_aux_methods, test_remove_spaces_without_spaces) {
   std::string answer = "word";
-  EXPECT_EQ(answer, AuxMethods::removeSpaces(answer));
+  EXPECT_EQ(answer, removeSpaces(answer));
 }
 
 TEST(test_aux_methods, test_read_empty_file) {
@@ -17,7 +20,7 @@ TEST(test_aux_methods, test_read_empty_file) {
   std::string path = "src/additional/testData_AuxiliaryMethodsTests/"
                      "test_empty_file.txt";
 
-  EXPECT_EQ(answer, AuxMethods::readAllFile(path));
+  EXPECT_EQ(answer, readAllFile(path));
 }
 
 TEST(test_aux_methods, test_read_one_line) {
@@ -25,7 +28,7 @@ TEST(test_aux_methods, test_read_one_line) {
   std::string path = "src/additional/testData_AuxiliaryMethodsTests/"
                      "one_line_file.txt";
 
-  EXPECT_EQ(answer, AuxMethods::readAllFile(path));
+  EXPECT_EQ(answer, readAllFile(path));
 }
 
 TEST(test_aux_methods, test_read_two_lines) {
@@ -33,7 +36,7 @@ TEST(test_aux_methods, test_read_two_lines) {
   std::string path = "src/additional/testData_AuxiliaryMethodsTests/"
                      "test_two_lines.txt";
 
-  EXPECT_EQ(answer, AuxMethods::readAllFile(path));
+  EXPECT_EQ(answer, readAllFile(path));
 }
 
 TEST(test_aux_methods, test_read_one_line_with_tab) {
@@ -41,7 +44,7 @@ TEST(test_aux_methods, test_read_one_line_with_tab) {
   std::string path = "src/additional/testData_AuxiliaryMethodsTests/"
                      "test_one_line_with_tab.txt";
 
-  EXPECT_EQ(answer, AuxMethods::readAllFile(path));
+  EXPECT_EQ(answer, readAllFile(path));
 }
 
 TEST(test_aux_methods, test_read_two_line_with_tab) {
@@ -49,7 +52,7 @@ TEST(test_aux_methods, test_read_two_line_with_tab) {
   std::string path = "src/additional/testData_AuxiliaryMethodsTests/"
                      "test_two_line_with_tab.txt";
 
-  EXPECT_EQ(answer, AuxMethods::readAllFile(path));
+  EXPECT_EQ(answer, readAllFile(path));
 }
 
 TEST(test_aux_methods, test_read_non_existent_file) {
@@ -57,10 +60,8 @@ TEST(test_aux_methods, test_read_non_existent_file) {
   std::string path = "src/additional/testData_AuxiliaryMethodsTests/"
                      "bla_bla_bla.txt";
 
-  EXPECT_THROW(AuxMethods::readAllFile(path), std::runtime_error);
+  EXPECT_THROW(readAllFile(path), std::runtime_error);
 }
-
-using namespace AuxMethods;
 
 TEST(TestAuxiliaryRemoveSpaces, NormalTest) {
   // Created  instances of std::string which going to be input for removeSpaces.

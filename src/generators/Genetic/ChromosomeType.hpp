@@ -7,6 +7,8 @@
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <settings/Settings.hpp>
 
+namespace CG_Gen {
+
 template<typename Type, typename ParametersTypes>
 class ChromosomeType {
 public:
@@ -117,3 +119,5 @@ private:
 //   return std::tie(d_adaptationIndex, d_Chromosome, d_name) ==
 //   std::tie(r.d_adaptationIndex, r.d_Chromosome, r.d_name);
 // }
+
+} // namespace CG_Gen

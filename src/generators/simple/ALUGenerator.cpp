@@ -25,6 +25,8 @@
     mtx.unlock(); \
   })
 
+namespace CG_Gen {
+
 ALUGenerator::ALUGenerator() : SimpleGenerator() {
 }
 
@@ -503,3 +505,5 @@ GraphPtr ALUGenerator::generatorALU(const GenerationParameters &i_param) {
 GraphPtr ALUGenerator::generatorALU() {
   return generatorALU(getParameters());
 }
+
+} // namespace CG_Gen

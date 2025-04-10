@@ -10,6 +10,8 @@
 
 #include "../ChromosomeType.hpp"
 
+namespace CG_Gen {
+
 inline std::vector<int32_t>
 GetHemming(int32_t i_t,
            std::vector<ChromosomeType<TruthTable, TruthTableParameters>>
@@ -111,3 +113,5 @@ ParentsRoulette(ParentsParameters i_parentsParameters,
                     i_population) {
   return ParentsTournament(i_parentsParameters, i_population);
 }
+
+} // namespace CG_Gen

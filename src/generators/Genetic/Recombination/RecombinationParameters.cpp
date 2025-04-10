@@ -2,6 +2,8 @@
 
 #include "RecombinationParameters.hpp"
 
+namespace CG_Gen {
+
 void RecombinationParameters::setMaskProbability(double i_maskProbability) {
   d_maskProbability = i_maskProbability;
 }
@@ -52,3 +54,5 @@ bool RecombinationParameters::operator==(
          std::tie(r.d_recombinationType, r.d_parentsParameters, r.d_refPoints,
                   r.d_maskProbability, r.d_recombinationNumber);
 }
+
+} // namespace CG_Gen

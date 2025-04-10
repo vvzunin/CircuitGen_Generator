@@ -4,6 +4,8 @@
 
 #include "easylogging++Init.hpp"
 
+using namespace CG_Gen;
+
 TEST(MutationTruthTableTest, MutationTable) {
   std::vector<std::vector<bool>> table = {
       {true, false, true}, {false, true, false}, {true, true, false}};

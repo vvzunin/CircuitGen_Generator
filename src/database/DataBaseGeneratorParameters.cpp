@@ -1,5 +1,7 @@
 #include "DataBaseGeneratorParameters.hpp"
 
+namespace CG_Gen {
+
 DataBaseGeneratorParameters::DataBaseGeneratorParameters(
     uint32_t i_minInputs, uint32_t i_maxInputs, uint32_t i_minOutputs,
     uint32_t i_maxOutputs, uint32_t i_eachIteration, GenerationTypes i_gt,
@@ -53,3 +55,5 @@ DataBaseGeneratorParameters::getGenerationParameters() const {
 GenerationTypes DataBaseGeneratorParameters::getGenerationType() const {
   return d_generationTypes;
 }
+
+} // namespace CG_Gen

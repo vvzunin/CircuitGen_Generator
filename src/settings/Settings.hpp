@@ -10,6 +10,8 @@
 
 /// @file Settings.hpp
 
+namespace CG_Gen {
+
 enum LibrariesTypes { SKY_LIB };
 
 /// @brief GenerationTypes
@@ -33,25 +35,24 @@ enum GenerationTypes {
   Genetic,               /// Genetic generation of the circuit
   Parity,                /// Parity
   ALU                    /// Arithmetic Logic Unit (ALU)
-}; /* Simple */
+};                       /* Simple */
 
 static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
-  {"From Random Truth Table", FromRandomTruthTable},
-  {"Rand Level", RandLevel},
-  {"Rand Level Experimental", RandLevelExperimental},
-  {"Num Operation", NumOperation},
-  {"Comparison", Comparison},
-  {"Summator", Summator},
-  {"Multiplier", Multiplier},
-  {"Subtractor", Subtractor},
-  {"Multiplexer", Multiplexer},
-  {"Demultiplexer", Demultiplexer},
-  {"Encoder", Encoder},
-  {"Decoder", Decoder},
-  {"Genetic", Genetic},
-  {"Parity", Parity},
-  {"ALU", ALU}
-};
+    {"From Random Truth Table", FromRandomTruthTable},
+    {"Rand Level", RandLevel},
+    {"Rand Level Experimental", RandLevelExperimental},
+    {"Num Operation", NumOperation},
+    {"Comparison", Comparison},
+    {"Summator", Summator},
+    {"Multiplier", Multiplier},
+    {"Subtractor", Subtractor},
+    {"Multiplexer", Multiplexer},
+    {"Demultiplexer", Demultiplexer},
+    {"Encoder", Encoder},
+    {"Decoder", Decoder},
+    {"Genetic", Genetic},
+    {"Parity", Parity},
+    {"ALU", ALU}};
 
 /// @todo: To add Description some fields
 /// class Settings
@@ -260,3 +261,5 @@ private:
   uint32_t d_maxInputs = 50;
   uint32_t d_maxOutputs = 50;
 };
+
+} // namespace CG_Gen

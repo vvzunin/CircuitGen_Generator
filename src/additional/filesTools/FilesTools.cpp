@@ -1,6 +1,6 @@
 #include "FilesTools.hpp"
 
-namespace FilesTools {
+namespace CG_Gen::FilesTools {
 std::vector<std::string> getDirectories(std::string &path) {
   std::vector<std::string> res;
 
@@ -47,4 +47,4 @@ std::string loadStringFile(const std::filesystem::path &p) {
   file.read(&str[0], sz);
   return str;
 }
-} // namespace FilesTools
+} // namespace CG_Gen::FilesTools

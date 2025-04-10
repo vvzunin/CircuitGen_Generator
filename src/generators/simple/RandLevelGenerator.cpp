@@ -1,5 +1,7 @@
 ﻿#include "RandLevelGenerator.hpp"
 
+namespace CG_Gen {
+
 RandLevelGenerator::RandLevelGenerator() : SimpleGenerator() {
 }
 
@@ -34,6 +36,10 @@ GraphPtr RandLevelGenerator::generatorRandLevel(
       "", (i_maxElements * i_minElements + i_inputs + i_outputs) *
               sizeof(GraphVertexBase));
   int32_t child1, child2;
+
+  graph->reserve(VertexTypes::input, i_inputs);
+  graph->reserve(VertexTypes::output, i_outputs);
+  graph->reserve(VertexTypes::gate, maxLevel * i_maxElements);
 
   for (int32_t i = 0; i < i_inputs; ++i) {
     expr = "x" + std::to_string(i);
@@ -261,3 +267,5 @@ GraphPtr RandLevelGenerator::generatorRandLevel() {
 GraphPtr RandLevelGenerator::generatorRandLevelExperimental() {
   return generatorRandLevelExperimental(getParameters());
 }
+
+} // namespace CG_Gen

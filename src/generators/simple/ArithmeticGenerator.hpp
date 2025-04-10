@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include <generators/simple/SimpleGenerator.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 class ArithmeticGenerator : public SimpleGenerator {
 public:
   ArithmeticGenerator();
@@ -64,3 +68,5 @@ public:
 
   GraphPtr generatorMultiplier();
 };
+
+} // namespace CG_Gen
