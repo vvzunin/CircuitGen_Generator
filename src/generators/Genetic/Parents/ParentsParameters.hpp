@@ -9,12 +9,11 @@ namespace CG_Gen {
 enum ParentsTypes { Panmixia, Inbringing, Outbrinding, Tournament, Roulette };
 
 static const std::map<std::string, ParentsTypes> ParentsType2Name = {
-  {"Panmixia", Panmixia},
-  {"Inbringing", Inbringing},
-  {"Outbrinding", Outbrinding},
-  {"Tournament", Tournament},
-  {"Roulette", Roulette}
-};
+    {"Panmixia", Panmixia},
+    {"Inbringing", Inbringing},
+    {"Outbrinding", Outbrinding},
+    {"Tournament", Tournament},
+    {"Roulette", Roulette}};
 
 class ParentsParameters {
 public:

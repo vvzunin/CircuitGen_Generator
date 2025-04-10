@@ -200,7 +200,7 @@ void setNumOperation(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 
   std::map<Gates, int> m;
 
-  for(const auto &[key, val]: mapping) {
+  for (const auto &[key, val]: mapping) {
     const int count = readWithCheck<int>(i_data[name], key, 1);
     m[val] = count;
   }
@@ -291,7 +291,8 @@ void setGenetic(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 
   // currently not used
   [[maybe_unused]] const GenotypeParametersTypes chromosomeType =
-      readEnumWithCheck<GenotypeParametersTypes>(i_data[name], "chromosome_type", GenotypeParametersType2Name);
+      readEnumWithCheck<GenotypeParametersTypes>(
+          i_data[name], "chromosome_type", GenotypeParametersType2Name);
   [[maybe_unused]] const int32_t exchangeType =
       readWithCheck<int32_t>(i_data[name], "swap_type", 1);
   [[maybe_unused]] const double mutationChance =
@@ -487,7 +488,7 @@ std::vector<ResultGraph> runGenerationFromJsonForGraph(std::string json_path) {
             dbgp, multithread, create_id_directories));
       };
 
-    runGeneration(json_path, runGeneratorForGraph);
+  runGeneration(json_path, runGeneratorForGraph);
   return finalRes;
 }
 
@@ -502,7 +503,7 @@ std::vector<ResultPath> runGenerationFromJsonForPath(std::string json_path) {
             dbgp, multithread, create_id_directories));
       };
 
-    runGeneration(json_path, runGeneratorForGraph);
+  runGeneration(json_path, runGeneratorForGraph);
 
   return finalRes;
 }
@@ -514,6 +515,6 @@ void runGenerationFromJson(std::string json_path) {
         generator.generateTypeDefault(dbgp, multithread, create_id_directories);
       };
 
-    runGeneration(json_path, runGeneratorForGraph);
+  runGeneration(json_path, runGeneratorForGraph);
 }
 } // namespace CircuitGenGenerator

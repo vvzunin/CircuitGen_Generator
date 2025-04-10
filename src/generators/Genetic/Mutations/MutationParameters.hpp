@@ -15,13 +15,12 @@ enum MutationTypes {
 };
 
 static const std::map<std::string, MutationTypes> MutationType2Name = {
-  {"Binary", Binary},
-  {"Density", Density},
-  {"AccessionDel", AccessionDel},
-  {"InsertDel", InsertDel},
-  {"Exchange", Exchange},
-  {"Delete", Delete}
-};
+    {"Binary", Binary},
+    {"Density", Density},
+    {"AccessionDel", AccessionDel},
+    {"InsertDel", InsertDel},
+    {"Exchange", Exchange},
+    {"Delete", Delete}};
 
 class MutationParameters {
 public:

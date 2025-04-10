@@ -13,13 +13,12 @@ enum RecombinationTypes {
   CrossingShuffling
 };
 
-static const std::map<std::string, RecombinationTypes> RecombinationType2Name = {
-  {"CrossingEachExitInTurnMany", CrossingEachExitInTurnMany},
-  {"CrossingUniform", CrossingUniform},
-  {"CrossingTriadic", CrossingTriadic},
-  {"CrossingReducedReplacement", CrossingReducedReplacement},
-  {"CrossingShuffling", CrossingShuffling}
-};
+static const std::map<std::string, RecombinationTypes> RecombinationType2Name =
+    {{"CrossingEachExitInTurnMany", CrossingEachExitInTurnMany},
+     {"CrossingUniform", CrossingUniform},
+     {"CrossingTriadic", CrossingTriadic},
+     {"CrossingReducedReplacement", CrossingReducedReplacement},
+     {"CrossingShuffling", CrossingShuffling}};
 
 class RecombinationParameters {
 public:
