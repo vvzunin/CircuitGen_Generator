@@ -15,7 +15,7 @@
 
 Данный флаг позволяет указать путь до локального репозитория графа (`OrientedGraph`). Использование данного флага позволяет тестировать ваши изменения, внесенные в код графа, без отправки последних в удаленное хранилище и указание нового тега при подключении графа в `CMakeLists.txt` с помощью `FetchContent_Declare`. Для использования данного флага укажите полный путь до директории, где находится граф. Например: 
 ```
-cmake -S . -B build -G Ninjs -DLOCAL_BUILD=/home/user/CicruitGen_Graph
+cmake -S . -B build -G Ninja -DLOCAL_BUILD=/home/user/CicruitGen_Graph
 ```
 
 ### CircuitGenGenerator_DEVELOPER_MODE
