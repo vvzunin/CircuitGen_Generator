@@ -160,21 +160,21 @@ JSON файл может содержать несколько наборов г
        20. `max_elem` (int, опциональный, 1) - максимальное количество элементов в схеме
        21. `leave_empty_out` (bool, опциональный, false) - оставлять ли пустые входы
 
-В [примере](examples/json/sampleAll.json) JSON файла указаны все возможные параметры генерации (кроме сида), что позволяет использовать его для всех параметров генерации с минимальными изменениями.
+В [примере](../examples/json/sampleAll.json) JSON файла указаны все возможные параметры генерации (кроме сида), что позволяет использовать его для всех параметров генерации с минимальными изменениями.
 В дополнении в той же папке имются индивидуальные JSON файлы под каждый тип генерации:
 
-1. [From Random Truth Table](examples/json/sampleTruthTable.json)
-2. [Rand Level](examples/json/sampleRandLevel.json)
-3. [Rand Level Experimental](examples/json/sampleRandLevelExperimental.json)
-4. [Num Operation](examples/json/sampleNumOperation.json)
-5. [Comparison](examples/json/sampleComparison.json)
-6. [Summator](examples/json/sampleGenetic.json)
-7. [Multiplier](examples/json/sampleMultiplier.json)
-8. [Subtractor](examples/json/sampleSubtractor.json)
-9. [Multiplexer](examples/json/sampleMultiplexer.json)
-10. [Demultiplexer](examples/json/sampleDemultiplexer.json)
-11. [Encoder](examples/json/sampleEncoder.json)
-12. [Decoder](examples/json/sampleDecoder.json)
-13. [Genetic](examples/json/sampleGenetic.json)
-14. [Parity](examples/json/sampleParity.json)
-15. [ALU](examples/json/sampleALU.json)
+1. [From Random Truth Table](../examples/json/sampleTruthTable.json)
+2. [Rand Level](../examples/json/sampleRandLevel.json)
+3. [Rand Level Experimental](../examples/json/sampleRandLevelExperimental.json)
+4. [Num Operation](../examples/json/sampleNumOperation.json)
+5. [Comparison](../examples/json/sampleComparison.json)
+6. [Summator](../examples/json/sampleGenetic.json)
+7. [Multiplier](../examples/json/sampleMultiplier.json)
+8. [Subtractor](../examples/json/sampleSubtractor.json)
+9. [Multiplexer](../examples/json/sampleMultiplexer.json)
+10. [Demultiplexer](../examples/json/sampleDemultiplexer.json)
+11. [Encoder](../examples/json/sampleEncoder.json)
+12. [Decoder](../examples/json/sampleDecoder.json)
+13. [Genetic](../examples/json/sampleGenetic.json)
+14. [Parity](../examples/json/sampleParity.json)
+15. [ALU](../examples/json/sampleALU.json)
