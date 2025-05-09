@@ -259,6 +259,45 @@ private:
   bool d_LeaveEmptyOut;
 };
 
+/// class GeneratorMealyMooreParameters
+/// @param d_numStates The number of states in the graph
+/// @param d_GenType Flag for what machine to use - Mealy (0) or Moore (1)
+/// @param d_saveDOT_mmg Flag for either creating (1) or not (0) of a dot file
+
+class GeneratorMealyMooreParameters {
+
+public:
+  bool getGenType() { return d_GenType; }
+  bool getsaveDOT_mmg() { return d_saveDOT_mmg; }
+  uint32_t getNumStates() { return d_NumStates; }
+  void setGenType(bool i_GenType) { d_GenType = i_GenType; }
+  void setNumStates(uint32_t i_NumStates) { d_NumStates = i_NumStates; }
+  void setsaveDOT_mmg(bool i_saveDOT_mmg) { d_saveDOT_mmg = i_saveDOT_mmg; }
+
+private:
+  bool d_saveDOT_mmg;
+  bool d_GenType = false;
+  uint32_t d_NumStates;
+};
+
+/// class GeneratorDotToGraphParameters
+/// @param d_DotPath The path to a folder where dot file is located
+/// @param d_GenTypeDot Flag for what type of machine is represented in dot file
+/// - Mealy (0) or Moore (1)
+
+class GeneratorDotToGraphParameters {
+
+public:
+  std::string getDotPath() { return d_DotPath; }
+  bool getGenTypeDot() { return d_GenTypeDot; }
+  void setDotPath(std::string i_DotPath) { d_DotPath = i_DotPath; }
+  void setGenTypeDot(bool i_GenTypeDot) { d_GenTypeDot = i_GenTypeDot; }
+
+private:
+  std::string d_DotPath;
+  bool d_GenTypeDot = false;
+};
+
 /// @todo: To add desc some fields
 /// class GenerationParameters
 /// @param d_name Generation name
@@ -376,6 +415,13 @@ public:
   void setLimit(bool i_limit) {
     d_cnfFromTruthTableParameters.setLimit(i_limit);
   }
+  GeneratorMealyMooreParameters getMealyMoore() const {
+    return d_generatorMealyMooreParameters;
+  }
+
+  GeneratorDotToGraphParameters getDotToGraph() const {
+    return d_generatorDotToGraphParameters;
+  }
   void setRandLevelParameters(uint32_t i_minLevel, uint32_t i_maxLevel,
                               uint32_t i_minElements, uint32_t i_maxElements) {
     d_generatorRandLevelParameters.setMinLevel(i_minLevel);
@@ -480,6 +526,18 @@ public:
     d_geneticParameters.setKeyEndProcessIndex(i_keyEndProcessIndex);
   }
 
+  void setMealyMooreParameters(bool i_GenType, uint32_t i_NumStates,
+                               bool i_saveDOT_mmg) {
+    d_generatorMealyMooreParameters.setGenType(i_GenType);
+    d_generatorMealyMooreParameters.setNumStates(i_NumStates);
+    d_generatorMealyMooreParameters.setsaveDOT_mmg(i_saveDOT_mmg);
+  }
+
+  void setDotToGraphParameters(bool i_GenTypeDot, std::string i_DotPath) {
+    d_generatorDotToGraphParameters.setGenTypeDot(i_GenTypeDot);
+    d_generatorDotToGraphParameters.setDotPath(i_DotPath);
+  }
+
 private:
   std::string d_name = "";
   std::string d_requestId;
@@ -505,6 +563,8 @@ private:
   GeneratorSubtractorParameters d_generatorSubtractorParameters;
   GeneratorALUParameters d_generatorALUParameters;
   GeneticParameters d_geneticParameters;
+  GeneratorMealyMooreParameters d_generatorMealyMooreParameters;
+  GeneratorDotToGraphParameters d_generatorDotToGraphParameters;
   bool d_convertToBasis = false;
 };
 

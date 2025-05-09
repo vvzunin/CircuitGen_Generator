@@ -34,8 +34,10 @@ enum GenerationTypes {
   Decoder,               /// Decoder
   Genetic,               /// Genetic generation of the circuit
   Parity,                /// Parity
-  ALU                    /// Arithmetic Logic Unit (ALU)
-};                       /* Simple */
+  ALU,                   /// Arithmetic Logic Unit (ALU)
+  MealyMoore,            /// Mealy and Moore
+  DotToGraph /// Dot to graph converter (Mealy and Moore only for now)
+};           /* Simple */
 
 static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
     {"From Random Truth Table", FromRandomTruthTable},
@@ -52,7 +54,9 @@ static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
     {"Decoder", Decoder},
     {"Genetic", Genetic},
     {"Parity", Parity},
-    {"ALU", ALU}};
+    {"ALU", ALU},
+    {"MealyMoore", MealyMoore},
+    {"DotToGraph", DotToGraph}};
 
 /// @todo: To add Description some fields
 /// class Settings
@@ -253,7 +257,9 @@ private:
       {GenerationTypes::Demultiplexer, "CCGTCDMP"},
       {GenerationTypes::Multiplexer, "CCGTCMP"},
       {GenerationTypes::Decoder, "CCGDCR"},
-      {GenerationTypes::ALU, "CCGALU"}};
+      {GenerationTypes::ALU, "CCGALU"},
+      {GenerationTypes::MealyMoore, "CCGMM"},
+      {GenerationTypes::DotToGraph, "CCGDTG"}};
   /*
     SimpleGenerator
   */

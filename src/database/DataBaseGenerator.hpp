@@ -204,6 +204,22 @@ private:
 
   void generateDataBaseALU(const GenerationParameters &i_param);
 
+  /// @brief generateDataBaseMealyMoore
+  /// Generates a database representing a Mealy or Moore circuit in dot and
+  /// OrientedGraph form
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the Mealy or Moore circuit database
+
+  void generateDataBaseMealyMoore(const GenerationParameters &i_param);
+
+  /// @brief generateDataBaseDotToGraph
+  /// Generates a database representing a Mealy or Moore circuit from dot form
+  /// to graph
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the Mealy or Moore circuit database
+
+  void generateDataBaseDotToGraph(const GenerationParameters &i_param);
+
   /// @brief getGenerateMethod
   /// Retrieves a method for generating a database based on the provided
   /// generation type

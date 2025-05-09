@@ -327,6 +327,88 @@ bool Circuit::checkExistingHash() // TODO: is it really need return true when
   return false;
 }
 
+void Circuit::setDot_mmg(DotReturn i_dot) {
+  d_dot = i_dot;
+}
+
+bool Circuit::generateDOTmmg(CircuitArgs args) {
+  std::string d_path_temp = d_path + d_circuitName;
+  d_path += d_circuitName + "/";
+  std::filesystem::create_directories(d_path);
+
+  std::string filename = d_path + d_circuitName + ".dot";
+  std::ofstream i_outputFile(filename);
+  std::cerr << filename << std::endl << d_path << std::endl;
+  if (!i_outputFile.is_open()) {
+    std::cerr << "Failed to open file: " << filename << std::endl;
+    return false;
+  }
+
+  if (d_dot.empty()) {
+    std::cerr << "d_dot is empty or save_dot_mmg is set as false" << std::endl;
+    return false;
+  }
+
+  i_outputFile << "digraph " << d_circuitName << " {\n";
+  i_outputFile << "    rankdir=LR;\n";
+  i_outputFile << "    node [shape=circle];\n\n";
+
+  for (const auto &element: d_dot) {
+    switch (element.first) {
+      case DotTypes::DotGate: {
+        auto name_it = element.second.find("name");
+        auto label_it = element.second.find("label");
+        auto shape_it = element.second.find("shape");
+
+        if (name_it != element.second.end()) {
+          i_outputFile << "    " << name_it->second;
+
+          if (label_it != element.second.end() ||
+              shape_it != element.second.end()) {
+            i_outputFile << " [";
+
+            if (label_it != element.second.end()) {
+              i_outputFile << "label=\"" << label_it->second << "\"";
+            }
+
+            if (shape_it != element.second.end()) {
+              if (label_it != element.second.end())
+                i_outputFile << ", ";
+              i_outputFile << "shape=" << shape_it->second;
+            }
+
+            i_outputFile << "]";
+          }
+          i_outputFile << ";\n";
+        }
+        break;
+      }
+      case DotTypes::DotEdge: {
+        auto from_it = element.second.find("from");
+        auto to_it = element.second.find("to");
+        auto label_it = element.second.find("label");
+
+        if (from_it != element.second.end() && to_it != element.second.end()) {
+          i_outputFile << "    " << from_it->second << " -> " << to_it->second;
+
+          if (label_it != element.second.end() && !label_it->second.empty()) {
+            i_outputFile << " [label=\"" << label_it->second << "\"]";
+          }
+          i_outputFile << ";\n";
+        }
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
+  i_outputFile << "}\n";
+  i_outputFile.close();
+
+  return true;
+}
+
 bool Circuit::generate(CircuitArgs args) {
   // creating all files in sub directories
   std::string d_path_temp = d_path + d_circuitName;

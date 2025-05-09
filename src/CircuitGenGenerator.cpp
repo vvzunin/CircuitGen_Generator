@@ -348,6 +348,27 @@ void setALU(const nlohmann::json &i_data, GenerationParameters *i_gp) {
                          min_elem, max_elem, m, leave_empty_out);
 }
 
+void setMealyMoore(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "MealyMoore";
+  check(i_data, name);
+
+  const bool genType = readWithCheck<bool>(i_data[name], "gen_type", false);
+  const uint32_t numStates = readWithCheck<uint32_t>(i_data[name], "num_states", 0);
+  const bool saveDOT_mmg = readWithCheck<bool>(i_data[name], "save_dot_mmg", false);
+
+  i_gp->setMealyMooreParameters(genType, numStates, saveDOT_mmg);
+}
+
+void setDotToGraph(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "DotToGraph";
+  check(i_data, name);
+
+  const bool GenTypeDot = readWithCheck<bool>(i_data[name], "gen_type_dot", false);
+  const std::string DotPath = readWithCheck<std::string>(i_data[name], "dotpath", "./dataset/21/3");
+
+  i_gp->setDotToGraphParameters(GenTypeDot, DotPath);
+}
+
 DataBaseGeneratorParameters *
 setGenerationParameters(const nlohmann::json &i_data) {
   GenerationTypes gt;
@@ -419,6 +440,14 @@ setGenerationParameters(const nlohmann::json &i_data) {
     case GenerationTypes::ALU: {
       setALU(i_data, gp);
       break;
+    case GenerationTypes::MealyMoore: {
+      setMealyMoore(i_data, gp);
+      break;
+    }
+    case GenerationTypes::DotToGraph: {
+      setDotToGraph(i_data, gp);
+      break;
+    }
     }
   }
 
@@ -436,6 +465,12 @@ setGenerationParameters(const nlohmann::json &i_data) {
   return dbgp;
 }
 
+/// @brief runGeneration reads json file and runs specified generator/
+/// for DotToGraph generator it reads folderpath from json and changes 
+/// json file for DotToGraphGenerator so it receives every .dot file in folderpath.
+/// Then it runs DotToGraphGenerator for every .dot file in folder. This change is for DotToGraphGenerator only.
+/// @param folderPath path to a folder containing .dot files for DotToGraphGenerator
+
 void runGeneration(
     std::string i_json_path,
     std::function<void(DataBaseGenerator &, const DataBaseGeneratorParameters &,
@@ -451,19 +486,43 @@ void runGeneration(
     DataBaseGeneratorParameters *dbgp = setGenerationParameters(data);
 
     DataBaseGenerator generator(*dbgp);
-
+      
     const uint8_t threads = readWithCheck<uint8_t>(data, "multithread", 1);
     const bool createDirs = readWithCheck<bool>(data["OutputParameters"],
                                                 "create_id_directories", false);
 
-    auto start = high_resolution_clock::now();
 
-    generator.generateTypeForGraph(*dbgp, threads, createDirs);
+    if (dbgp->getGenerationType() == DotToGraph){
 
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop - start);
-    std::clog << "Time taken: " << duration.count() << " microseconds"
-              << std::endl;
+      std::string folderPath = readWithCheck<std::string>(data["DotToGraph"], "dotpath", "", true);
+
+      for (const auto &entry : std::filesystem::directory_iterator(folderPath)) {
+        if (entry.path().extension() == ".dot") {
+          auto start = std::chrono::high_resolution_clock::now();
+
+          data["DotToGraph"]["dotpath"] = entry.path().string();
+          delete dbgp;
+          dbgp = setGenerationParameters(data);
+          DataBaseGenerator generator(*dbgp);
+          generator.generateTypeForGraph(*dbgp, threads, createDirs);
+          auto stop = std::chrono::high_resolution_clock::now();
+          auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+          std::clog << "Processed file: " << entry.path() 
+                    << " | Time: " << duration.count() << " microseconds\n";
+        }
+      }
+    }
+    else{
+      auto start = high_resolution_clock::now();
+
+      generator.generateTypeForGraph(*dbgp, threads, createDirs);
+  
+      auto stop = high_resolution_clock::now();
+      auto duration = duration_cast<microseconds>(stop - start);
+      std::clog << "Time taken: " << duration.count() << " microseconds"
+                << std::endl;
+    }
+    delete dbgp;  
   }
 }
 
