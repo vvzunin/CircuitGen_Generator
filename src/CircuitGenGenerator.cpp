@@ -467,7 +467,7 @@ setGenerationParameters(const nlohmann::json &i_data) {
 
 /// @brief runGeneration reads json file and runs specified generator/
 /// for DotToGraph generator it reads folderpath from json and changes 
-/// json file for DotToGraphGenerator so it recieves every .dot file in folderpath.
+/// json file for DotToGraphGenerator so it receives every .dot file in folderpath.
 /// Then it runs DotToGraphGenerator for every .dot file in folder. This change is for DotToGraphGenerator only.
 /// @param folderPath path to a folder containing .dot files for DotToGraphGenerator
 
