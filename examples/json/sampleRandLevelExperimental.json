@@ -3,6 +3,7 @@
     "multithread": 4,
 
     "GenerationParameters": {
+      "convert_to_basis": false,
       "gates_inputs_info": {
         "and": [2, 4, 8],
         "nand": [2, 4, 8],

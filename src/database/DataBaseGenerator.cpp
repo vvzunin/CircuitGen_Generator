@@ -16,6 +16,7 @@
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
+#include <generators/BasisConverter.hpp>
 #include <generators/Genetic/GenGenerator.hpp>
 #include <generators/Genetic/GeneticParameters.hpp>
 #include <generators/simple/ALUGenerator.hpp>
@@ -179,6 +180,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
   FromTruthTableGenerator tftt(i_param);
 
   std::vector<GraphPtr> allGraphs;
+  const bool convertToBasis = i_param.getConvertToBasis();
 
   GraphPtr graph;
   if (i_param.getZhegalkin().getZhegalkin()) {
@@ -200,6 +202,12 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     allGraphs.push_back(graph);
   }
 
+  if (convertToBasis) {
+    for (auto curGraph: allGraphs) {
+      curGraph = convertGraphToBasis(curGraph, i_param.getGatesInputsInfo());
+    }
+  }
+
   for (auto curGraph: allGraphs) {
     Circuit c(curGraph);
     c.setTable(tt);
@@ -217,6 +225,10 @@ void DataBaseGenerator::generateDataBaseRandLevel(
     const GenerationParameters &i_param) {
   RandLevelGenerator generator(i_param);
   GraphPtr graph = generator.generatorRandLevel();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -240,6 +252,10 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
   // std::clog << "Time taken on experimental: " << duration.count()
   //           << " microseconds" << std::endl;
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   // std::clog << "Update started\n";
   Circuit c(graph);
   // std::clog << "Update ended\n";
@@ -259,6 +275,13 @@ void DataBaseGenerator::generateDataBaseNumOperations(
 
   std::vector<std::pair<std::string, GraphPtr>> circs;
   circs.push_back({"NumOperation", generator.generatorNumOperation()});
+
+  if (i_param.getConvertToBasis()) {
+    for (auto &curGraph: circs) {
+      curGraph.second =
+          convertGraphToBasis(curGraph.second, i_param.getGatesInputsInfo());
+    }
+  }
 
   for (auto [name, graph]: circs) {
     Circuit c(graph);
@@ -282,6 +305,12 @@ void DataBaseGenerator::generateDataBaseGenetic(
   const auto &population = gg.generate();
   auto graphs = gg.getGraphsFromPopulation(population);
 
+  if (i_param.getConvertToBasis()) {
+    for (auto graph: graphs) {
+      graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+    }
+  }
+
   for (auto graph: graphs) {
     Circuit c(graph);
     c.setPath(d_mainPath);
@@ -299,6 +328,10 @@ void DataBaseGenerator::generateDataBaseSummator(
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorSummator();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -313,6 +346,10 @@ void DataBaseGenerator::generateDataBaseComparison(
     const GenerationParameters &i_param) {
   ComparisonGenerator sg(i_param);
   GraphPtr graph = sg.generatorComparison();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -329,6 +366,10 @@ void DataBaseGenerator::generateDataBaseEncoder(
   CoderGenerator sg(i_param);
   GraphPtr graph = sg.generatorEncoder();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -343,6 +384,10 @@ void DataBaseGenerator::generateDataBaseParity(
     const GenerationParameters &i_param) {
   ParityGenerator sg(i_param);
   GraphPtr graph = sg.generatorParity();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -359,6 +404,10 @@ void DataBaseGenerator::generateDataBaseSubtractor(
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorSubtractor();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -373,6 +422,10 @@ void DataBaseGenerator::generateDataBaseMultiplexer(
     const GenerationParameters &i_param) {
   PlexerGenerator sg(i_param);
   GraphPtr graph = sg.generatorMultiplexer();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -389,6 +442,10 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
   PlexerGenerator sg(i_param);
   GraphPtr graph = sg.generatorDemultiplexer();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -403,6 +460,10 @@ void DataBaseGenerator::generateDataBaseMultiplier(
     const GenerationParameters &i_param) {
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorMultiplier();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -419,6 +480,10 @@ void DataBaseGenerator::generateDataBaseDecoder(
   CoderGenerator sg(i_param);
   GraphPtr graph = sg.generatorDecoder();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -433,6 +498,10 @@ void DataBaseGenerator::generateDataBaseALU(
     const GenerationParameters &i_param) {
   ALUGenerator sg(i_param);
   GraphPtr graph = sg.generatorALU();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   // LOG(INFO) << "Generation ALU complete!";
   Circuit c(graph);
