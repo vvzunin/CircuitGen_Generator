@@ -17,7 +17,7 @@ public:
   /// @param i_input The number of input variables in the graph
   /// @param i_output The number of outputs in the graph
   /// @param i_numStates The number of states in the graph
-  /// @param i_seed The seed used for randomizing transisions and outputs
+  /// @param i_seed The seed used for randomizing transitions and outputs
   /// @param i_saveDOT_mmg Flag for either creating (1) or not (0) of a dot file
   /// @return the created dot form of a graph
   DotReturn generatorMealy(uint32_t i_Inputs, uint32_t i_Outputs,
@@ -32,7 +32,7 @@ public:
   /// @param i_input The number of input variables in the graph
   /// @param i_output The number of outputs in the graph
   /// @param i_numStates The number of states in the graph
-  /// @param i_seed The seed used for randomizing transisions and outputs
+  /// @param i_seed The seed used for randomizing transitions and outputs
   /// @param i_saveDOT_mmg Flag for either creating (1) or not (0) of a dot file
   /// @return the created dot form of a graph
   DotReturn generatorMoore(uint32_t i_Inputs, uint32_t i_Outputs,
@@ -51,7 +51,7 @@ public:
   /// @param i_input The number of input variables in the graph
   /// @param i_output The number of outputs in the graph
   /// @param i_numStates The number of states in the graph
-  /// @param i_seed The seed used for randomizing transisions and outputs
+  /// @param i_seed The seed used for randomizing transitions and outputs
   /// @param i_saveDOT_mmg Flag for either creating (1) or not (0) of a dot file
   /// @return OrientedGraph
   GraphPtr generatorDotReturnToGraphMealy(uint32_t i_Inputs, uint32_t i_Outputs,
@@ -66,7 +66,7 @@ public:
   /// @param i_input The number of input variables in the graph
   /// @param i_output The number of outputs in the graph
   /// @param i_numStates The number of states in the graph
-  /// @param i_seed The seed used for randomizing transisions and outputs
+  /// @param i_seed The seed used for randomizing transitions and outputs
   /// @param i_saveDOT_mmg Flag for either creating (1) or not (0) of a dot file
   /// @return OrientedGraph
   GraphPtr generatorDotReturnToGraphMoore(uint32_t i_Inputs, uint32_t i_Outputs,
