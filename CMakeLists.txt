@@ -102,6 +102,8 @@ set(SOURCES
   src/generators/simple/NumOperationsGenerator.cpp
   src/generators/simple/ParityGenerator.cpp
   src/generators/BasisConverter.cpp
+  src/generators/simple/MealyMooreGenerator.cpp
+  src/generators/simple/DotToGraphGenerator.cpp
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 

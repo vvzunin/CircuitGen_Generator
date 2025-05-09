@@ -23,7 +23,9 @@
 #include <generators/simple/ArithmeticGenerator.hpp>
 #include <generators/simple/CoderGenerator.hpp>
 #include <generators/simple/ComparisonGenerator.hpp>
+#include <generators/simple/DotToGraphGenerator.hpp>
 #include <generators/simple/FromTruthTableGenerator.hpp>
+#include <generators/simple/MealyMooreGenerator.hpp>
 #include <generators/simple/NumOperationsGenerator.hpp>
 #include <generators/simple/ParityGenerator.hpp>
 #include <generators/simple/PlexerGenerator.hpp>
@@ -517,6 +519,42 @@ void DataBaseGenerator::generateDataBaseALU(
   addDataToReturn(graph);
 }
 
+void DataBaseGenerator::generateDataBaseMealyMoore(
+    const GenerationParameters &i_param) {
+  MealyMooreGenerator mmg(i_param);
+  GraphPtr graph = mmg.generatorDotReturnToGraph();
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  if (i_param.getMealyMoore().getsaveDOT_mmg() == true) {
+    DotReturn dot = mmg.generatorMealyMoore();
+    c.setDot_mmg(dot);
+    c.generateDOTmmg({i_param.getMakeGraphMLClassic(),
+                      i_param.getMakeGraphMLPseudoABCD(),
+                      i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
+  }
+  c.generate({i_param.getMakeGraphMLClassic(),
+              i_param.getMakeGraphMLPseudoABCD(),
+              i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
+
+  addDataToReturn(graph);
+}
+
+void DataBaseGenerator::generateDataBaseDotToGraph(
+    const GenerationParameters &i_param) {
+  DotToGraphGenerator dtg(i_param);
+  GraphPtr graph = dtg.generatorDotToGraph();
+
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate({i_param.getMakeGraphMLClassic(),
+              i_param.getMakeGraphMLPseudoABCD(),
+              i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
+
+  addDataToReturn(graph);
+}
+
 // maybe this method should be rewritten using map with GenerationTypes and
 // FuncAlias
 std::function<void(const GenerationParameters &)>
@@ -571,6 +609,12 @@ DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
       break;
     case GenerationTypes::ALU:
       generateMethodFunc = &DataBaseGenerator::generateDataBaseALU;
+      break;
+    case GenerationTypes::MealyMoore:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseMealyMoore;
+      break;
+    case GenerationTypes::DotToGraph:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseDotToGraph;
       break;
 
     default:
