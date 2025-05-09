@@ -112,7 +112,7 @@ GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
     maxLevel = 1;
 
   std::string expr;
-  GraphPtr graph(new OrientedGraph);
+  GraphPtr graph = std::make_shared<OrientedGraph>();
 
   for (uint32_t i = 0; i < i_inputs; ++i) {
     expr = "x" + std::to_string(i);
