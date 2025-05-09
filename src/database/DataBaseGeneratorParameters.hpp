@@ -117,6 +117,7 @@ private:
   uint32_t d_eachIteration = 0;
   GenerationTypes d_generationTypes = GenerationTypes::FromRandomTruthTable;
   GenerationParameters d_generationParameters;
+  bool d_convertToBasis = false;
 };
 
 } // namespace CG_Gen

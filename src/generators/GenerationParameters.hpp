@@ -305,12 +305,13 @@ public:
                        bool i_makeGraphMLClassic = false,
                        bool i_makeGraphMLPsedoABCD = false,
                        bool i_makeGraphMLOpenABCD = false,
-                       bool i_makeDOT = false) :
+                       bool i_makeDOT = false, bool i_convertToBasis = false) :
       d_name(i_name),
       d_requestId(i_requestId), d_inputs(i_inputs), d_outputs(i_outputs),
       d_iteration(i_iteration), d_makeGraphMLClassic(i_makeGraphMLClassic),
       d_makeGraphMLPseudoABCD(i_makeGraphMLPsedoABCD),
-      d_makeGraphMLOpenABCD(i_makeGraphMLOpenABCD), d_makeDOT(i_makeDOT){};
+      d_makeGraphMLOpenABCD(i_makeGraphMLOpenABCD), d_makeDOT(i_makeDOT),
+      d_convertToBasis(i_convertToBasis){};
 
   std::string getName() const { return d_name; }
 
@@ -334,17 +335,16 @@ public:
   bool getMakeGraphMLPseudoABCD() const { return d_makeGraphMLPseudoABCD; }
   bool getMakeGraphMLOpenABCD() const { return d_makeGraphMLOpenABCD; }
   bool getMakeDOT() const { return d_makeDOT; }
+  bool getConvertToBasis() const { return d_convertToBasis; }
 
   std::uint_fast32_t getSeed() const { return d_seed; }
 
   void setSeed(std::uint_fast32_t i_seed) { d_seed = i_seed; }
 
-  std::map<std::string, std::vector<int32_t>> getGatesInputsInfo() const {
-    return d_gatesInputsInfo;
-  }
+  using GatesInputsInfo = std::map<std::string, std::vector<int32_t>>;
+  GatesInputsInfo getGatesInputsInfo() const { return d_gatesInputsInfo; }
 
-  void setGatesInputInfo(
-      const std::map<std::string, std::vector<int32_t>> &i_gatesInputsInfo) {
+  void setGatesInputInfo(const GatesInputsInfo &i_gatesInputsInfo) {
     d_gatesInputsInfo = i_gatesInputsInfo;
   }
 
@@ -505,6 +505,7 @@ private:
   GeneratorSubtractorParameters d_generatorSubtractorParameters;
   GeneratorALUParameters d_generatorALUParameters;
   GeneticParameters d_geneticParameters;
+  bool d_convertToBasis = false;
 };
 
 } // namespace CG_Gen

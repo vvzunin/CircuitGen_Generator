@@ -101,6 +101,7 @@ set(SOURCES
   src/generators/simple/ComparisonGenerator.cpp
   src/generators/simple/NumOperationsGenerator.cpp
   src/generators/simple/ParityGenerator.cpp
+  src/generators/BasisConverter.cpp
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 

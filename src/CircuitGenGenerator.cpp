@@ -69,7 +69,7 @@ GenerationParameters *getBasicParameters(const nlohmann::json &i_data,
                                          GenerationTypes &i_type,
                                          int &i_minInputs, int &i_maxInputs,
                                          int &i_minOutputs, int &i_maxOutputs,
-                                         int &i_repeats) {
+                                         int &i_repeats, bool &i_convertToBasis) {
   const std::string name = "GenerationParameters";
   check(i_data, name);
   int seed = readWithCheck<int>(i_data[name], "seed", -1);
@@ -80,6 +80,8 @@ GenerationParameters *getBasicParameters(const nlohmann::json &i_data,
   i_minOutputs = readWithCheck<int>(i_data[name], "min_out", 1);
   i_maxOutputs = readWithCheck<int>(i_data[name], "max_out", 1);
   i_repeats = readWithCheck<int>(i_data[name], "repeat_n", 1);
+
+  i_convertToBasis = readWithCheck<bool>(i_data[name], "convert_to_basis", false);
 
   // Считывание информации по логичсеким элементам.
   std::map<std::string, std::vector<int>> gatesInputsInfo;
@@ -96,17 +98,6 @@ GenerationParameters *getBasicParameters(const nlohmann::json &i_data,
         gatesInputsInfo[gate.key()] = gatesNumber;
       }
     }
-  }
-
-  // if gates_inputs_info in json was empty or there was no such data in json
-  if (!gatesInputsInfo.size()) {
-    // default init data
-    gatesInputsInfo["and"] = {2};
-    gatesInputsInfo["nand"] = {2};
-    gatesInputsInfo["or"] = {2};
-    gatesInputsInfo["nor"] = {2};
-    gatesInputsInfo["xor"] = {2};
-    gatesInputsInfo["xnor"] = {2};
   }
 
   // get generation type
@@ -137,7 +128,7 @@ GenerationParameters *getBasicParameters(const nlohmann::json &i_data,
 
   gp = new GenerationParameters(datasetId, requestId, i_minInputs, i_minOutputs,
                                 i_repeats, makeGraphMLClassic,
-                                makeGraphMLPseudo, makeGraphMLOpen, makeDot);
+                                makeGraphMLPseudo, makeGraphMLOpen, makeDot, i_convertToBasis);
   gp->setGatesInputInfo(gatesInputsInfo);
 
   return gp;
@@ -363,8 +354,9 @@ setGenerationParameters(const nlohmann::json &i_data) {
   int minInputs, maxInputs;
   int minOutputs, maxOutputs;
   int repeats;
+  bool convertToBasis;
   GenerationParameters *gp = getBasicParameters(
-      i_data, gt, minInputs, maxInputs, minOutputs, maxOutputs, repeats);
+      i_data, gt, minInputs, maxInputs, minOutputs, maxOutputs, repeats, convertToBasis);
 
   // Setting generation type.
   switch (gt) {
