@@ -221,11 +221,12 @@ private:
   void generateDataBaseDotToGraph(const GenerationParameters &i_param);
 
   /// @brief generateDataBaseCascade
-  /// Generates a database representing a Cascade Mealy and Moore circuit in OrientedGraph form
+  /// Generates a database representing a Cascade Mealy and Moore circuit in
+  /// OrientedGraph form
   /// @param i_param An object of the GenerationParameters class containing
   /// parameters for generating the Cascade circuit database
 
-  void generateDataBaseCascade(const GenerationParameters& i_param);
+  void generateDataBaseCascade(const GenerationParameters &i_param);
 
   /// @brief getGenerateMethod
   /// Retrieves a method for generating a database based on the provided

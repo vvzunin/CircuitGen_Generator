@@ -557,18 +557,18 @@ void DataBaseGenerator::generateDataBaseDotToGraph(
 }
 
 void DataBaseGenerator::generateDataBaseCascade(
-  const GenerationParameters &i_param) {
-CascadeGenerator ccd(i_param);
-GraphPtr graph = ccd.generatorCascade();
+    const GenerationParameters &i_param) {
+  CascadeGenerator ccd(i_param);
+  GraphPtr graph = ccd.generatorCascade();
 
-Circuit c(graph);
-c.setPath(d_mainPath);
-c.setCircuitName(i_param.getName());
-c.generate({i_param.getMakeGraphMLClassic(),
-            i_param.getMakeGraphMLPseudoABCD(),
-            i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate({i_param.getMakeGraphMLClassic(),
+              i_param.getMakeGraphMLPseudoABCD(),
+              i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
 
-addDataToReturn(graph);
+  addDataToReturn(graph);
 }
 
 // maybe this method should be rewritten using map with GenerationTypes and
@@ -635,7 +635,6 @@ DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
     case GenerationTypes::Cascade:
       generateMethodFunc = &DataBaseGenerator::generateDataBaseCascade;
       break;
-      
 
     default:
       std::clog << "Something went wrong while getting generation method. "

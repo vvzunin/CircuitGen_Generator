@@ -37,8 +37,8 @@ enum GenerationTypes {
   ALU,                   /// Arithmetic Logic Unit (ALU)
   MealyMoore,            /// Mealy and Moore
   DotToGraph, /// Dot to graph converter (Mealy and Moore only for now)
-  Cascade                /// Cascade
-};           /* Simple */
+  Cascade     /// Cascade
+};            /* Simple */
 
 static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
     {"From Random Truth Table", FromRandomTruthTable},
