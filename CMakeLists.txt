@@ -104,6 +104,7 @@ set(SOURCES
   src/generators/BasisConverter.cpp
   src/generators/simple/MealyMooreGenerator.cpp
   src/generators/simple/DotToGraphGenerator.cpp
+  src/generators/simple/CascadeGenerator.cpp
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 

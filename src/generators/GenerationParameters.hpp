@@ -298,6 +298,33 @@ private:
   bool d_GenTypeDot = false;
 };
 
+/// class GeneratorCascadeParameters
+/// @param d_NumAutomatons The number of machines in the graph
+/// @param d_MaxNumStates The maximum number of states in each machine
+/// @param d_MinNumStates The minimum number of states in each machine
+
+class GeneratorCascadeParameters {
+
+public:
+  uint32_t getNumAutomatons() { return d_NumAutomatons; }
+  uint32_t getMaxNumStates() { return d_MaxNumStates; }
+  uint32_t getMinNumStates() { return d_MinNumStates; }
+  void setNumAutomatons(uint32_t i_NumAutomatons) {
+    d_NumAutomatons = i_NumAutomatons;
+  }
+  void setMaxNumStates(uint32_t i_MaxNumStates) {
+    d_MaxNumStates = i_MaxNumStates;
+  }
+  void setMinNumStates(uint32_t i_MinNumStates) {
+    d_MinNumStates = i_MinNumStates;
+  }
+
+private:
+  uint32_t d_NumAutomatons;
+  uint32_t d_MaxNumStates;
+  uint32_t d_MinNumStates;
+};
+
 /// @todo: To add desc some fields
 /// class GenerationParameters
 /// @param d_name Generation name
@@ -422,6 +449,9 @@ public:
   GeneratorDotToGraphParameters getDotToGraph() const {
     return d_generatorDotToGraphParameters;
   }
+  GeneratorCascadeParameters getCascade() const {
+    return d_generatorCascadeParameters;
+  }
   void setRandLevelParameters(uint32_t i_minLevel, uint32_t i_maxLevel,
                               uint32_t i_minElements, uint32_t i_maxElements) {
     d_generatorRandLevelParameters.setMinLevel(i_minLevel);
@@ -538,6 +568,13 @@ public:
     d_generatorDotToGraphParameters.setDotPath(i_DotPath);
   }
 
+  void setCascadeParameters(uint32_t i_MaxNumStates, uint32_t i_MinNumStates,
+                            uint32_t i_NumAutomatons) {
+    d_generatorCascadeParameters.setNumAutomatons(i_NumAutomatons);
+    d_generatorCascadeParameters.setMaxNumStates(i_MaxNumStates);
+    d_generatorCascadeParameters.setMinNumStates(i_MinNumStates);
+  }
+
 private:
   std::string d_name = "";
   std::string d_requestId;
@@ -565,6 +602,7 @@ private:
   GeneticParameters d_geneticParameters;
   GeneratorMealyMooreParameters d_generatorMealyMooreParameters;
   GeneratorDotToGraphParameters d_generatorDotToGraphParameters;
+  GeneratorCascadeParameters d_generatorCascadeParameters;
   bool d_convertToBasis = false;
 };
 

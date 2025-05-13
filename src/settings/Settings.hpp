@@ -36,8 +36,9 @@ enum GenerationTypes {
   Parity,                /// Parity
   ALU,                   /// Arithmetic Logic Unit (ALU)
   MealyMoore,            /// Mealy and Moore
-  DotToGraph /// Dot to graph converter (Mealy and Moore only for now)
-};           /* Simple */
+  DotToGraph, /// Dot to graph converter (Mealy and Moore only for now)
+  Cascade     /// Cascade
+};            /* Simple */
 
 static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
     {"FromRandomTruthTable", FromRandomTruthTable},
@@ -56,7 +57,8 @@ static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
     {"Parity", Parity},
     {"ALU", ALU},
     {"MealyMoore", MealyMoore},
-    {"DotToGraph", DotToGraph}};
+    {"DotToGraph", DotToGraph},
+    {"Cascade", Cascade}};
 
 /// @todo: To add Description some fields
 /// class Settings
@@ -259,7 +261,8 @@ private:
       {GenerationTypes::Decoder, "CCGDCR"},
       {GenerationTypes::ALU, "CCGALU"},
       {GenerationTypes::MealyMoore, "CCGMM"},
-      {GenerationTypes::DotToGraph, "CCGDTG"}};
+      {GenerationTypes::DotToGraph, "CCGDTG"},
+      {GenerationTypes::Cascade, "CCGCCD"}};
   /*
     SimpleGenerator
   */
