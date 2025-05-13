@@ -369,6 +369,17 @@ void setDotToGraph(const nlohmann::json &i_data, GenerationParameters *i_gp) {
   i_gp->setDotToGraphParameters(GenTypeDot, DotPath);
 }
 
+void setCascade(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Cascade";
+  check(i_data, name);
+  
+  const uint32_t MaxNumStates = readWithCheck<uint32_t>(i_data[name], "max_num_states", 1);
+  const uint32_t MinNumStates = readWithCheck<uint32_t>(i_data[name], "min_num_states", 1);
+  const uint32_t NumAutomaton = readWithCheck<uint32_t>(i_data[name], "num_automatons", 1);
+
+  i_gp->setCascadeParameters(MaxNumStates, MinNumStates, NumAutomaton);
+}
+
 DataBaseGeneratorParameters *
 setGenerationParameters(const nlohmann::json &i_data) {
   GenerationTypes gt;
@@ -440,6 +451,7 @@ setGenerationParameters(const nlohmann::json &i_data) {
     case GenerationTypes::ALU: {
       setALU(i_data, gp);
       break;
+    }
     case GenerationTypes::MealyMoore: {
       setMealyMoore(i_data, gp);
       break;
@@ -448,6 +460,9 @@ setGenerationParameters(const nlohmann::json &i_data) {
       setDotToGraph(i_data, gp);
       break;
     }
+        case GenerationTypes::Cascade: {
+      setCascade(i_data, gp);
+      break;
     }
   }
 

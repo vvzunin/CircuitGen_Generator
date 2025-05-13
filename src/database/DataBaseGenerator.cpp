@@ -21,6 +21,7 @@
 #include <generators/Genetic/GeneticParameters.hpp>
 #include <generators/simple/ALUGenerator.hpp>
 #include <generators/simple/ArithmeticGenerator.hpp>
+#include <generators/simple/CascadeGenerator.hpp>
 #include <generators/simple/CoderGenerator.hpp>
 #include <generators/simple/ComparisonGenerator.hpp>
 #include <generators/simple/DotToGraphGenerator.hpp>
@@ -555,6 +556,21 @@ void DataBaseGenerator::generateDataBaseDotToGraph(
   addDataToReturn(graph);
 }
 
+void DataBaseGenerator::generateDataBaseCascade(
+  const GenerationParameters &i_param) {
+CascadeGenerator ccd(i_param);
+GraphPtr graph = ccd.generatorCascade();
+
+Circuit c(graph);
+c.setPath(d_mainPath);
+c.setCircuitName(i_param.getName());
+c.generate({i_param.getMakeGraphMLClassic(),
+            i_param.getMakeGraphMLPseudoABCD(),
+            i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
+
+addDataToReturn(graph);
+}
+
 // maybe this method should be rewritten using map with GenerationTypes and
 // FuncAlias
 std::function<void(const GenerationParameters &)>
@@ -616,6 +632,10 @@ DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
     case GenerationTypes::DotToGraph:
       generateMethodFunc = &DataBaseGenerator::generateDataBaseDotToGraph;
       break;
+    case GenerationTypes::Cascade:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseCascade;
+      break;
+      
 
     default:
       std::clog << "Something went wrong while getting generation method. "

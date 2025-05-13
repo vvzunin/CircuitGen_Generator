@@ -47,7 +47,7 @@ if (NOT DEFINED LOCAL_BUILD)
   FetchContent_Declare(
     ${ORIENTED_GRAPH}
     GIT_REPOSITORY https://hub.mos.ru/circuitgen/CircuitGen_Graph
-    GIT_TAG v1.4.1
+    GIT_TAG v1.5.1
   )
 else()
   FetchContent_Declare(
@@ -101,9 +101,9 @@ set(SOURCES
   src/generators/simple/ComparisonGenerator.cpp
   src/generators/simple/NumOperationsGenerator.cpp
   src/generators/simple/ParityGenerator.cpp
-  src/generators/BasisConverter.cpp
   src/generators/simple/MealyMooreGenerator.cpp
   src/generators/simple/DotToGraphGenerator.cpp
+  src/generators/simple/CascadeGenerator.cpp
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 
