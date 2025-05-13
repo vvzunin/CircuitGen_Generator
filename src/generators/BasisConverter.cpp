@@ -2,8 +2,8 @@
 #include <CircuitGenGraph/GraphUtils.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
 #include <functional>
-#include <unordered_map>
 #include <iostream>
+#include <unordered_map>
 
 namespace {
 using namespace CG_Gen;
