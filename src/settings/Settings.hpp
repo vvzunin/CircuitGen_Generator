@@ -41,10 +41,10 @@ enum GenerationTypes {
 };            /* Simple */
 
 static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
-    {"From Random Truth Table", FromRandomTruthTable},
-    {"Rand Level", RandLevel},
-    {"Rand Level Experimental", RandLevelExperimental},
-    {"Num Operation", NumOperation},
+    {"FromRandomTruthTable", FromRandomTruthTable},
+    {"RandLevel", RandLevel},
+    {"RandLevelExperimental", RandLevelExperimental},
+    {"NumOperation", NumOperation},
     {"Comparison", Comparison},
     {"Summator", Summator},
     {"Multiplier", Multiplier},

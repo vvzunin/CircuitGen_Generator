@@ -1,5 +1,4 @@
 #include <algorithm>
-#include <chrono>
 #include <cstdint>
 #include <filesystem>
 #include <iostream>
@@ -206,9 +205,12 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
   }
 
   if (convertToBasis) {
+    std::vector<GraphPtr> convertedGraphs;
     for (auto curGraph: allGraphs) {
-      curGraph = convertGraphToBasis(curGraph, i_param.getGatesInputsInfo());
+      convertedGraphs.push_back(
+          convertGraphToBasis(curGraph, i_param.getGatesInputsInfo()));
     }
+    allGraphs = convertedGraphs;
   }
 
   for (auto curGraph: allGraphs) {

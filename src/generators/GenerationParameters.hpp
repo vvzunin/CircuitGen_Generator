@@ -445,12 +445,12 @@ public:
   GeneratorMealyMooreParameters getMealyMoore() const {
     return d_generatorMealyMooreParameters;
   }
-  GeneratorCascadeParameters getCascade() const {
-    return d_generatorCascadeParameters;
-  }
 
   GeneratorDotToGraphParameters getDotToGraph() const {
     return d_generatorDotToGraphParameters;
+  }
+  GeneratorCascadeParameters getCascade() const {
+    return d_generatorCascadeParameters;
   }
   void setRandLevelParameters(uint32_t i_minLevel, uint32_t i_maxLevel,
                               uint32_t i_minElements, uint32_t i_maxElements) {

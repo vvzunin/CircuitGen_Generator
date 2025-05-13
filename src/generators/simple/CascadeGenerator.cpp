@@ -36,11 +36,6 @@ GraphPtr CascadeGenerator::generatorCascade() {
   uint32_t numGlobalInputs = getParameters().getInputs();
   uint32_t numOutputs = getParameters().getOutputs();
 
-  if (numOutputs < numGlobalInputs) {
-    throw std::invalid_argument("Number of outputs must be >= number of inputs "
-                                "for cascade connection.");
-  }
-
   std::vector<VertexPtr> global_inputs;
   for (uint32_t i = 0; i < numGlobalInputs; ++i) {
     global_inputs.push_back(graph->addInput("x" + std::to_string(i)));
@@ -67,10 +62,6 @@ GraphPtr CascadeGenerator::generatorCascade() {
         automaton_inputs.push_back(buf);
       }
     } else {
-      if (previous_outputs.size() < numGlobalInputs) {
-        throw std::runtime_error(
-            "Not enough outputs from previous automaton to connect as inputs");
-      }
       for (uint32_t i = 0; i < numGlobalInputs; ++i) {
         VertexPtr buf =
             graph->addGate(Gates::GateBuf, "a" + std::to_string(automaton_idx) +

@@ -460,7 +460,7 @@ setGenerationParameters(const nlohmann::json &i_data) {
       setDotToGraph(i_data, gp);
       break;
     }
-        case GenerationTypes::Cascade: {
+    case GenerationTypes::Cascade: {
       setCascade(i_data, gp);
       break;
     }
