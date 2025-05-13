@@ -18,7 +18,7 @@ public:
   /// @param i_output The number of outputs in the graph
   /// @param i_MaxNumStates The maximum number of states in each machine
   /// @param i_MinNumStates The minimum number of states in each machine
-  /// @param i_seed The seed used for randomizing transisions and outputs
+  /// @param i_seed The seed used for randomizing transitions and outputs
   /// @param i_NumAutomatons The number of machines in graph
   /// @return the created graph
   GraphPtr generatorCascade();
