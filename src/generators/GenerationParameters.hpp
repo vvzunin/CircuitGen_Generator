@@ -300,8 +300,8 @@ private:
 
 /// class GeneratorCascadeParameters
 /// @param d_NumAutomatons The number of machines in the graph
-/// @param d_MaxNumStates The maximun number of states in each machine
-/// @param d_MinNumStates The minimun number of states in each machine
+/// @param d_MaxNumStates The maximum number of states in each machine
+/// @param d_MinNumStates The minimum number of states in each machine
 
 class GeneratorCascadeParameters {
 
