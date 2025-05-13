@@ -18,7 +18,7 @@
       "max_out": 5,
       "repeat_n": 1,    
       "seed": 41,
-      "type_of_generation": "Rand Level"
+      "type_of_generation": "RandLevel"
     },
 
     "OutputParameters": {

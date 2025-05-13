@@ -18,7 +18,7 @@
       "max_out": 5,
       "repeat_n": 1,    
       "seed": 2,
-      "type_of_generation": "From Random Truth Table"
+      "type_of_generation": "FromRandomTruthTable"
     },
 
     "OutputParameters": {

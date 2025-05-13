@@ -18,7 +18,7 @@
       "max_out": 50,
       "repeat_n": 1,    
       "seed": 20,
-      "type_of_generation": "Rand Level Experimental"
+      "type_of_generation": "RandLevelExperimental"
     },
 
     "OutputParameters": {

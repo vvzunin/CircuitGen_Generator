@@ -2,8 +2,8 @@
 #include <CircuitGenGraph/GraphUtils.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
 #include <functional>
-#include <unordered_map>
 #include <iostream>
+#include <unordered_map>
 
 namespace {
 using namespace CG_Gen;
@@ -290,7 +290,11 @@ VertexPtr addVertexToBasis(
     return graph->addInput("input_" + vertex->getName());
   }
   if (vertex->getType() == CG_Graph::VertexTypes::output) {
-    return graph->addOutput("output_" + vertex->getName());
+    auto *output = graph->addOutput("output_" + vertex->getName());
+    for (const auto &parent: parents) {
+      graph->addEdge(parent, output);
+    }
+    return output;
   }
   if (vertex->getType() == CG_Graph::VertexTypes::constant) {
     return graph->addConst(vertex->getValue(), "const_" + vertex->getName());
@@ -330,6 +334,18 @@ void printVertex(VertexPtr vertex) {
   std::cout << std::endl;
 }
 
+void printGraph(GraphPtr graph) {
+  std::cout << "Graph: " << graph->getName() << std::endl;
+  std::cout << "Vertices: " << std::endl;
+  const auto maxLevel = graph->getMaxLevel();
+  std::cout << "Max level: " << maxLevel << std::endl;
+  for (size_t level = 0; level <= maxLevel; ++level) {
+    const auto &verticesByLevel = graph->getVerticesByLevel(level);
+    for (const auto &vertex: verticesByLevel) {
+      printVertex(vertex);
+    }
+  }
+}
 } // namespace
 
 namespace CG_Gen {
@@ -357,8 +373,6 @@ convertGraphToBasis(GraphPtr graph,
   }
 
   GraphPtr newGraph = std::make_shared<CG_Graph::OrientedGraph>();
-  std::vector<VertexPtr> vertices =
-      graph->getBaseVertexes()[CG_Graph::VertexTypes::input];
 
   size_t maxLevel = graph->getMaxLevel();
   size_t idx = 0;
@@ -378,6 +392,8 @@ convertGraphToBasis(GraphPtr graph,
       vertexOld2New[vertex] = basisVertex;
     }
   }
+
+  newGraph->setName(graph->getName() + "_" + basisName);
 
   return newGraph;
 }
