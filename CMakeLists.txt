@@ -101,6 +101,7 @@ set(SOURCES
   src/generators/simple/ComparisonGenerator.cpp
   src/generators/simple/NumOperationsGenerator.cpp
   src/generators/simple/ParityGenerator.cpp
+  src/generators/BasisConverter.cpp
   src/generators/simple/MealyMooreGenerator.cpp
   src/generators/simple/DotToGraphGenerator.cpp
   src/generators/simple/CascadeGenerator.cpp
