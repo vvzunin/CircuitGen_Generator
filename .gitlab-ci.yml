@@ -88,12 +88,6 @@ tests:
   - if: $CI_COMMIT_TAG == null
 
 docs:
-  variables:
-    NAS_IP: vvzunin.me
-    NAS_PORT: 10003
-    DSM_VERSION: 7
-    DOCS_PATH: ./
-    SYNOLOGY_TARGET_PATH: /web/CircuitGen/test
   stage: docs
   image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
   needs:
@@ -101,13 +95,11 @@ docs:
     - tests
   before_script:
     - python3 --version
-    - pip install python-dotenv psycopg2-binary synology-drive-api
   script:
     - echo "Commit received. Building docs for $CI_DEFAULT_BRANCH"
     - mkdir -p build/docs
     - cd build/docs
     - cmake "-DPROJECT_SOURCE_DIR=$PWD/../.." "-DPROJECT_BINARY_DIR=$PWD/.." -P ../../cmake/docs-ci.cmake
-    - python3 ../../make_dataset/views.py "$NAS_USER" "$NAS_PASS" "$NAS_IP" "$NAS_PORT" "$DSM_VERSION" "$DOCS_PATH" "$SYNOLOGY_TARGET_PATH"
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
   tags:
