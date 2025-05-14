@@ -63,7 +63,7 @@ RUN wget https://www.doxygen.nl/files/doxygen-${doxygen_version}.src.tar.gz && \
     rm -r doxygen-${doxygen_version}
 
 # Устанавливаем Python-зависимости
-RUN pip3 install codespell jinja2 Pygments
+RUN pip3 install codespell jinja2 Pygments synology-drive-api
 
 # Создаем рабочую директорию
 WORKDIR /circuitgen
