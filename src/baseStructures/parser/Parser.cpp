@@ -119,7 +119,7 @@ Parser::splitLogicExpression(std::string i_expr) {
   int32_t l = 0;
 
   while (l <= GraphUtils::getLogicOperation("input").second) {
-    std::string_view oper = GraphUtils::fromOperationsToHierarchy(l);
+    std::string_view oper = GraphUtils::fromHierarchyToOperation(l);
     // so, what was the problem
     // here we have been looking for a substr in string, substr was
     // an operation. Or has higher (I meen lower code number) priority,

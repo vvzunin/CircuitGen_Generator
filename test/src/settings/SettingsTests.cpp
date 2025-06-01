@@ -1,8 +1,8 @@
-#include <gtest/gtest.h>
+#include "settings/Settings.hpp"
 
 #include "easylogging++Init.hpp"
-#include "settings/Settings.hpp"
-#include <exception>
+#include <gtest/gtest.h>
+
 #include <filesystem>
 #include <fstream>
 #include <memory>
@@ -82,7 +82,7 @@ TEST(TestSettings, TestDefaultLoadSettings) {
 
   int32_t count = 0;
   for (auto value: operToHierAns) {
-    EXPECT_EQ(value, GraphUtils::fromOperationsToHierarchy(count));
+    EXPECT_EQ(value, GraphUtils::fromHierarchyToOperation(count));
     ++count;
   }
 
@@ -119,7 +119,7 @@ TEST(SettingsTest,
         {5, "nor"}, {7, "not"}, {8, "buf"},  {2, "xor"}, {1, "xnor"}};
 
     for (auto const &[key, val]: correctOperationsToHierarchy) {
-      EXPECT_EQ(val, GraphUtils::fromOperationsToHierarchy(key));
+      EXPECT_EQ(val, GraphUtils::fromHierarchyToOperation(key));
     }
   }
 }

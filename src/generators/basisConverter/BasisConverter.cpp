@@ -1,7 +1,9 @@
 #include "generators/basisConverter/BasisConverter.hpp"
 
+#include <CircuitGenGraph/DefaultAuxiliaryMethods.hpp>
 #include <CircuitGenGraph/GraphUtils.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
+
 #include <functional>
 #include <iostream>
 #include <unordered_map>
@@ -314,9 +316,8 @@ VertexPtr addVertexToBasis(
     return vert;
   }
 
-  std::stringstream ss;
-  ss << "Unsupported vertex type for converting to " << name;
-  throw std::invalid_argument(ss.str());
+  throw std::invalid_argument(AuxMethodsGraph::format(
+      "Unsupported vertex type for converting to {}", name));
 }
 
 void printVertex(VertexPtr vertex) {

@@ -29,34 +29,34 @@ TEST(CnfFromTruthTableTest, EqualWithTheSameParametrs) {
   EXPECT_EQ(str1, str2);
   graphPtr1 = generator3.cnfFromTruthTable(table, true);
   graphPtr2 = generator4.cnfFromTruthTable(table, true);
-  str1 = graphPtr1->calculateHash(true);
-  str2 = graphPtr2->calculateHash(true);
+  str1 = graphPtr1->calculateHash();
+  str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
   table =
       TruthTable{1, 1, std::vector<std::vector<bool>>({{1}, {1}, {1}, {0}})};
   graphPtr1 = generator1.cnfFromTruthTable(table, false);
   graphPtr2 = generator2.cnfFromTruthTable(table, true);
-  str1 = graphPtr1->calculateHash(true);
-  str2 = graphPtr2->calculateHash(true);
+  str1 = graphPtr1->calculateHash();
+  str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
   graphPtr1 = generator3.cnfFromTruthTable(table, true);
   graphPtr2 = generator4.cnfFromTruthTable(table, true);
-  str1 = graphPtr1->calculateHash(true);
-  str2 = graphPtr2->calculateHash(true);
+  str1 = graphPtr1->calculateHash();
+  str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
   table = TruthTable{
       1, 1, std::vector<std::vector<bool>>({{1, 1}, {1, 1}, {1, 1}, {0, 0}})};
   graphPtr1 = generator1.cnfFromTruthTable(table, true);
   graphPtr2 = generator2.cnfFromTruthTable(table, true);
-  str1 = graphPtr1->calculateHash(true);
-  str2 = graphPtr2->calculateHash(true);
+  str1 = graphPtr1->calculateHash();
+  str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
   graphPtr1 = generator3.cnfFromTruthTable(table, true);
   graphPtr2 = generator4.cnfFromTruthTable(table, true);
-  str1 = graphPtr1->calculateHash(true);
-  str2 = graphPtr2->calculateHash(true);
+  str1 = graphPtr1->calculateHash();
+  str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 }
 
@@ -79,24 +79,24 @@ TEST(GeneratorRandLevelTest, EqualWithTheSameParametrs) {
       generator1.generatorRandLevel(1, 3, 1, 3, 3, 3);
   std::shared_ptr<OrientedGraph> graphPtr2 =
       generator2.generatorRandLevel(1, 3, 1, 3, 3, 3);
-  std::string str1 = graphPtr1->calculateHash(true);
-  std::string str2 = graphPtr2->calculateHash(true);
+  std::string str1 = graphPtr1->calculateHash();
+  std::string str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
   graphPtr1 = generator3.generatorRandLevel(1, 3, 1, 3, 3, 3);
   graphPtr2 = generator4.generatorRandLevel(1, 3, 1, 3, 3, 3);
-  str1 = graphPtr1->calculateHash(true);
-  str2 = graphPtr2->calculateHash(true);
+  str1 = graphPtr1->calculateHash();
+  str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
   graphPtr1 = generator1.generatorRandLevel(2, 6, 2, 6, 4, 4);
   graphPtr2 = generator2.generatorRandLevel(2, 6, 2, 6, 4, 4);
-  str1 = graphPtr1->calculateHash(true);
-  str2 = graphPtr2->calculateHash(true);
+  str1 = graphPtr1->calculateHash();
+  str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
   graphPtr1 = generator3.generatorRandLevel(2, 6, 2, 6, 4, 4);
   graphPtr2 = generator4.generatorRandLevel(2, 6, 2, 6, 4, 4);
-  str1 = graphPtr1->calculateHash(true);
-  str2 = graphPtr2->calculateHash(true);
+  str1 = graphPtr1->calculateHash();
+  str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 }
 
@@ -119,13 +119,13 @@ TEST(GeneratorRandLevelExperimentalTest, EqualWithTheSameParametrs) {
       generator1.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
   std::shared_ptr<OrientedGraph> graphPtr2 =
       generator2.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
-  std::string str1 = graphPtr1->calculateHash(true);
-  std::string str2 = graphPtr2->calculateHash(true);
+  std::string str1 = graphPtr1->calculateHash();
+  std::string str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
   graphPtr1 = generator3.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
   graphPtr2 = generator4.generatorRandLevelExperimental(1, 3, 1, 3, 3, 3);
-  str1 = graphPtr1->calculateHash(true);
-  str2 = graphPtr2->calculateHash(true);
+  str1 = graphPtr1->calculateHash();
+  str2 = graphPtr2->calculateHash();
   EXPECT_EQ(str1, str2);
 
   //-error
