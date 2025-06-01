@@ -82,7 +82,7 @@
     },
     {
       "name": "ci-linux",
-      "generator": "Unix Makefiles",
+      "generator": "Ninja",
       "hidden": true,
       "inherits": [
         "ci-std"

@@ -160,7 +160,7 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists) {
     std::filesystem::create_directory(folderSubgraphs);
   }
 
-  return d_graph->toVerilog(d_path, d_circuitName + ".v").first;
+  return d_graph->toVerilog(d_path, d_circuitName + ".v");
 }
 
 bool Circuit::graphToDOT(const std::string &i_path, bool i_pathExists) {
@@ -182,7 +182,7 @@ bool Circuit::graphToDOT(const std::string &i_path, bool i_pathExists) {
     std::filesystem::create_directory(folderSubgraphs);
   }
 
-  return d_graph->toDOT(d_path, d_circuitName + ".dot").first;
+  return d_graph->toDOT(d_path, d_circuitName + ".dot");
 }
 
 bool Circuit::graphToGraphML(const std::string &i_path,
@@ -285,7 +285,7 @@ bool Circuit::saveParameters(GraphPtr i_graph, std::ofstream &i_outputFile,
 
   if (!i_graph->getSubGraphs().empty()) {
     i_outputFile << tab << "\"submodules\" : {" << std::endl;
-    std::set<GraphPtr> subSet = d_graph->getSetSubGraphs();
+    std::set<GraphPtr> subSet = d_graph->getSubGraphs();
     for (auto sub = subSet.begin(); sub != subSet.end();) {
       // LOG(INFO) << "Submodule " << sub->get()->getName();
       updateCircuitParameters(*sub);
