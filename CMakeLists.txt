@@ -47,7 +47,7 @@ if (NOT DEFINED LOCAL_BUILD)
   FetchContent_Declare(
     ${ORIENTED_GRAPH}
     GIT_REPOSITORY https://hub.mos.ru/circuitgen/CircuitGen_Graph
-    GIT_TAG 223e390e29045d1aa974d2391201c376c98240cd
+    GIT_TAG 54562f3a7e2fb6b87e14494e53043efba4c6a020
   )
 else()
   FetchContent_Declare(
