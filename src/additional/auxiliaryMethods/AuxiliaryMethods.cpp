@@ -24,15 +24,14 @@ std::vector<std::string> splitString(const std::string &s, char delimiter) {
 
   return tokens;
 }
-
-CG_Gen::RandomGeneratorWithSeed gen;
-
 // namespace end
 } // namespace
 
 namespace CG_Gen::AuxMethods {
 
 using namespace CG_Graph;
+
+CG_Gen::RandomGeneratorWithSeed gen = {};
 
 void setRandSeed(std::uint_fast32_t seed) {
   gen.setSeed(seed);

@@ -36,7 +36,8 @@
       "min_level": 100,
       "max_level": 100,
       "min_elem": 100,
-      "max_elem": 100
+      "max_elem": 100,
+      "synthetic_connected": false 
     }
   }
 ]

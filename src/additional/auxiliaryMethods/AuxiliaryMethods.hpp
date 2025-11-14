@@ -21,6 +21,8 @@
 
 namespace CG_Gen::AuxMethods {
 
+extern CG_Gen::RandomGeneratorWithSeed gen;
+
 /// @brief setRandSeed Sets the grain to generate pseudorandom numbers
 /// @param seed A grain for generating random numbers. Must be a positive
 /// integer.
@@ -65,6 +67,16 @@ int32_t getRandInt(int32_t lower, int32_t upper, bool inclusively = false);
 /// @endcode
 
 double getRandDouble(double lower, double upper);
+
+template<typename T>
+std::pair<T, T> getTwoRandomElements(const std::vector<T>& v) {
+  return gen.getTwoRandomElements(v);
+}
+
+template<typename T>
+T getRandomElement(const std::vector<T>& v) {
+  return gen.getRandomElement(v);
+}
 
 /// @brief readAllFile Reads the contents of the file and returns it as a
 /// string
