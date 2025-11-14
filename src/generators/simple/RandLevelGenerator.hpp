@@ -34,7 +34,8 @@ public:
 
   GraphPtr generatorRandLevel(uint32_t i_minLevel, uint32_t i_maxLevel,
                               uint32_t i_minElements, uint32_t i_maxElements,
-                              uint32_t i_inputs, uint32_t i_outputs);
+                              uint32_t i_inputs, uint32_t i_outputs,
+                              bool syntheticConnected = false);
 
   GraphPtr generatorRandLevel(const GenerationParameters &i_param);
 

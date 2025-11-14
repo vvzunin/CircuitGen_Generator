@@ -159,8 +159,11 @@ void setRandLevel(const nlohmann::json &i_data, GenerationParameters *i_gp) {
   const auto maxLevel = readWithCheck<int>(i_data[name], "max_level", 1);
   const auto minElem = readWithCheck<int>(i_data[name], "min_elem", 1);
   const auto maxElem = readWithCheck<int>(i_data[name], "max_elem", 1);
+  const auto syntheticConnected =
+      readWithCheck<bool>(i_data[name], "synthetic_connected", false);
 
-  i_gp->setRandLevelParameters(minLevel, maxLevel, minElem, maxElem);
+  i_gp->setRandLevelParameters(
+      minLevel, maxLevel, minElem, maxElem, syntheticConnected);
 }
 
 void setRandLevelExperimental(const nlohmann::json &i_data,

@@ -1,4 +1,9 @@
 ﻿#include "RandLevelGenerator.hpp"
+#include "additional/AuxiliaryMethods.hpp"
+#include <CircuitGenGraph/GraphUtils.hpp>
+#include <cstddef>
+#include <cstdint>
+#include <vector>
 
 namespace CG_Gen {
 
@@ -15,7 +20,8 @@ RandLevelGenerator::RandLevelGenerator(const GenerationParameters &i_param) :
 
 GraphPtr RandLevelGenerator::generatorRandLevel(
     uint32_t i_minLevel, uint32_t i_maxLevel, uint32_t i_minElements,
-    uint32_t i_maxElements, uint32_t i_inputs, uint32_t i_outputs) {
+    uint32_t i_maxElements, uint32_t i_inputs, uint32_t i_outputs,
+    bool syntheticConnected) {
   int32_t maxLevel;
 
   if (i_minLevel > i_maxLevel)
@@ -30,56 +36,65 @@ GraphPtr RandLevelGenerator::generatorRandLevel(
 
   auto [hasOneGate, logOper] = GraphUtils::getLogicOperationsWithGates();
 
+  if (syntheticConnected) {
+    int delta = 0;
+    // removes not, buf
+    for (int i = 0; i < logOper.size(); ++i) {
+      hasOneGate[delta] = hasOneGate[i];
+      logOper[delta] = logOper[i]; 
+      if (!hasOneGate[i]) {
+        delta += 1;
+      }
+    }
+    logOper.resize(delta);
+    hasOneGate.resize(delta);
+  }
+
   int32_t choice;
   std::string expr;
   GraphPtr graph = std::make_shared<OrientedGraph>(
       "", (i_maxElements * i_minElements + i_inputs + i_outputs) *
               sizeof(GraphVertexBase));
-  int32_t child1, child2;
 
-  graph->reserve(VertexTypes::input, i_inputs);
   graph->reserve(VertexTypes::output, i_outputs);
   graph->reserve(VertexTypes::gate, maxLevel * i_maxElements);
 
-  for (int32_t i = 0; i < i_inputs; ++i) {
-    expr = "x" + std::to_string(i);
-    graph->addInput(expr);
-  }
+  auto nameGen =
+      [] (size_t i) -> std::string { return "x" + std::to_string(i); };
+  std::vector<VertexPtr> values = graph->addInputs(i_inputs, nameGen);
 
   int32_t currIndex = i_inputs;
-  int32_t prevIndex = 0;
 
   for (int32_t i = 1; i < maxLevel; ++i) {
-    int32_t position = 0;
     // how many elements would be at this level
     int32_t elemLevel =
         i_maxElements > 1
             ? d_randGenerator.getRandInt(i_minElements, i_maxElements, true)
             : 2;
-
+    std::vector<VertexPtr> newValues;
+    newValues.reserve(elemLevel);
     for (int32_t j = 0; j < elemLevel; ++j) {
       choice = d_randGenerator.getRandInt(0, logOper.size());
-
+      VertexPtr newVertex;
       if (hasOneGate[choice]) {
-        child1 = d_randGenerator.getRandInt(0, currIndex);
+        int32_t child1 = d_randGenerator.getRandInt(0, currIndex);
 
-        VertexPtr newVertex = graph->addGate(logOper[choice]);
+        newVertex = graph->addGate(logOper[choice]);
         graph->addEdge(graph->getVerticeByIndex(child1), newVertex);
 
+      } else if (!syntheticConnected) {
+        auto [child1, child2] = AuxMethods::getTwoRandomElements(values);
+
+        newVertex = graph->addGate(logOper[choice]);
+        graph->addEdges({child2, child1}, newVertex);
       } else {
-        child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
-        child2 = d_randGenerator.getRandInt(prevIndex, currIndex);
-
-        VertexPtr newVertex = graph->addGate(logOper[choice]);
-        graph->addEdges({graph->getVerticeByIndex(child2),
-                         graph->getVerticeByIndex(child1)},
-                        newVertex);
+        newVertex = graph->addGate(logOper[choice]);
+        graph->addEdges(values, newVertex);
       }
-      ++position;
+      newValues.push_back(newVertex);
     }
-
-    prevIndex += currIndex - prevIndex;
-    currIndex += position;
+    currIndex += newValues.size();
+    values = std::move(newValues);
 
     // std::clog << i / (float)maxLevel * 100 << "%" << std::endl;
   }
@@ -87,10 +102,10 @@ GraphPtr RandLevelGenerator::generatorRandLevel(
   // TODO: fix when elements less than outputs
 
   for (int32_t i = 0; i < i_outputs; ++i) {
-    child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
+    VertexPtr child1 = d_randGenerator.getRandomElement(values);
     expr = "f" + std::to_string(i + 1);
     VertexPtr newVertex = graph->addOutput(expr);
-    graph->addEdge(graph->getVerticeByIndex(child1), newVertex);
+    graph->addEdge(child1, newVertex);
   }
   // std::clog << "end\n";
 
@@ -243,19 +258,22 @@ GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
 
 GraphPtr
 RandLevelGenerator::generatorRandLevel(const GenerationParameters &i_param) {
-  return generatorRandLevel(i_param.getRandLevel().getMinLevel(),
-                            i_param.getRandLevel().getMaxLevel(),
-                            i_param.getRandLevel().getMinElements(),
-                            i_param.getRandLevel().getMaxElements(),
-                            i_param.getInputs(), i_param.getOutputs());
+  const auto &params = i_param.getRandLevel();
+  return generatorRandLevel(params.getMinLevel(),
+                            params.getMaxLevel(),
+                            params.getMinElements(),
+                            params.getMaxElements(),
+                            i_param.getInputs(), i_param.getOutputs(),
+                            params.getSyntheticConnected());
 }
 
 GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
     const GenerationParameters &i_param) {
-  return generatorRandLevelExperimental(i_param.getRandLevel().getMinLevel(),
-                                        i_param.getRandLevel().getMaxLevel(),
-                                        i_param.getRandLevel().getMinElements(),
-                                        i_param.getRandLevel().getMaxElements(),
+  const auto &params = i_param.getRandLevel();
+  return generatorRandLevelExperimental(params.getMinLevel(),
+                                        params.getMaxLevel(),
+                                        params.getMinElements(),
+                                        params.getMaxElements(),
                                         i_param.getInputs(),
                                         i_param.getOutputs());
 }

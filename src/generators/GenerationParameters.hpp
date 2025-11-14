@@ -75,11 +75,18 @@ public:
 
   void setMaxElements(uint32_t i_maxElements) { d_maxElements = i_maxElements; }
 
+  uint32_t getSyntheticConnected() const { return d_syntheticConnected; }
+
+  void setSyntheticConnected(bool i_syntheticConnected) {
+    d_syntheticConnected = i_syntheticConnected;
+  }
+
 private:
   uint32_t d_minLevel = 0;
   uint32_t d_maxLevel = 0;
   uint32_t d_minElements = 0;
   uint32_t d_maxElements = 0;
+  bool d_syntheticConnected = false;
 };
 
 /// class GeneratorNumOperationParameters
@@ -453,11 +460,13 @@ public:
     return d_generatorCascadeParameters;
   }
   void setRandLevelParameters(uint32_t i_minLevel, uint32_t i_maxLevel,
-                              uint32_t i_minElements, uint32_t i_maxElements) {
+                              uint32_t i_minElements, uint32_t i_maxElements,
+                              bool i_syntheticConnected = false) {
     d_generatorRandLevelParameters.setMinLevel(i_minLevel);
     d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
     d_generatorRandLevelParameters.setMinElements(i_minElements);
     d_generatorRandLevelParameters.setMaxElements(i_maxElements);
+    d_generatorRandLevelParameters.setSyntheticConnected(i_syntheticConnected);
   }
   void setNumOperationParameters(const std::map<Gates, int32_t> &i_m,
                                  bool i_LeaveEmptyOut) {
