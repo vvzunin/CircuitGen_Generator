@@ -1,4 +1,6 @@
 ﻿#pragma once
+
+#include <CircuitGenGraph/GraphVertexBase.hpp>
 #include <generators/simple/SimpleGenerator.hpp>
 
 namespace CG_Gen {
@@ -62,11 +64,18 @@ public:
 
   GraphPtr generatorMultiplier(const GenerationParameters &i_param);
 
+  GraphPtr generateNonRestoringDiv(const GenerationParameters &i_param) const;
+
+  GraphPtr generateAdvancedArithmetic(
+      const GenerationParameters &i_param) const;
+
   GraphPtr generatorSummator();
 
   GraphPtr generatorSubtractor();
 
   GraphPtr generatorMultiplier();
+
+  GraphPtr generateAdvancedArithmetic() const;
 };
 
 } // namespace CG_Gen

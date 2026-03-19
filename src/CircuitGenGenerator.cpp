@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <chrono>
+#include <cstdlib>
 #include <fstream>
 #include <functional>
 #include <iostream>
@@ -23,14 +24,16 @@
 #include "generators/Genetic/Parents/ParentsParameters.hpp"
 #include "generators/Genetic/Recombination/RecombinationParameters.hpp"
 #include "generators/Genetic/Selections/SelectionParameters.hpp"
+#include "generators/simple/ArithmeticGenerator.hpp"
+#include "generators/simple/arithmetic/ArithmeticUtils.hpp"
 
 using namespace std::chrono;
 using namespace CG_Gen;
 
-bool check(const nlohmann::json &i_data, const std::string &i_param,
+bool check(const nlohmann::json &i_data, const std::string_view &i_param,
            bool isExit = true) {
   if (!i_data.contains(i_param)) {
-    std::cerr << "JSON file doesn't contains " + i_param + "!" << std::endl;
+    std::cerr << "JSON file doesn't contains " << i_param << "!" << '\n';
     if (isExit)
       std::exit(1);
     return false;
@@ -42,7 +45,7 @@ template<typename Type>
 Type readWithCheck(const nlohmann::json &i_data, const std::string &i_param,
                    Type i_default, bool isExit = false) {
   if (!i_data.contains(i_param)) {
-    std::cerr << "JSON file doesn't contains " + i_param + "!" << std::endl;
+    std::cerr << "JSON file doesn't contains " + i_param + "!" << '\n';
     if (isExit)
       std::exit(1);
     return i_default;
@@ -54,12 +57,12 @@ template<typename Type>
 Type readEnumWithCheck(const nlohmann::json &i_data, const std::string &i_param,
                        const std::map<std::string, Type> &values_map) {
   if (!i_data.contains(i_param)) {
-    std::cerr << "JSON file doesn't contains " + i_param + "!" << std::endl;
+    std::cerr << "JSON file doesn't contains " + i_param + "!" << '\n';
     std::exit(1);
   }
   const std::string valStr = static_cast<std::string>(i_data[i_param]);
   if (values_map.find(valStr) == values_map.end()) {
-    std::cerr << "Unsupported type for parameter " << i_param << std::endl;
+    std::cerr << "Unsupported type for parameter " << i_param << '\n';
     exit(1);
   }
   return values_map.at(valStr);
@@ -70,7 +73,7 @@ GenerationParameters *getBasicParameters(const nlohmann::json &i_data,
                                          int &i_minInputs, int &i_maxInputs,
                                          int &i_minOutputs, int &i_maxOutputs,
                                          int &i_repeats, bool &i_convertToBasis) {
-  const std::string name = "GenerationParameters";
+  const static constexpr std::string_view name = "GenerationParameters";
   check(i_data, name);
   int seed = readWithCheck<int>(i_data[name], "seed", -1);
   AuxMethods::setRandSeed(seed == -1 ? static_cast<unsigned>(std::time(0))
@@ -136,7 +139,7 @@ GenerationParameters *getBasicParameters(const nlohmann::json &i_data,
 
 void setFromTruthTable(const nlohmann::json &i_data,
                        GenerationParameters *i_gp) {
-  std::string name = "FromRandomTruthTable";
+  static constexpr std::string_view name = "FromRandomTruthTable";
   // Основные параметры для From Random Truth Table
   check(i_data, name);
   bool cnff = readWithCheck<bool>(i_data[name], "CNFF", false);
@@ -144,7 +147,7 @@ void setFromTruthTable(const nlohmann::json &i_data,
   bool zhegalkin = readWithCheck<bool>(i_data[name], "Zhegalkin", false);
   if (!(cnff || cnft || zhegalkin)) {
     std::cerr << "Parameters for selected generation type is not set."
-              << std::endl;
+              << '\n';
     exit(1);
   }
   i_gp->setCNFF(cnff);
@@ -152,8 +155,35 @@ void setFromTruthTable(const nlohmann::json &i_data,
   i_gp->setZhegalkin(zhegalkin);
 }
 
+void setArithmetic(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  static constexpr std::string_view name = "Arithmetic";
+  check(i_data, name);
+  const auto sizeA = readWithCheck<int>(i_data[name], "sizeA", 1);
+  const auto sizeB = readWithCheck<int>(i_data[name], "sizeB", 1);
+  const auto sizeY = readWithCheck<int>(i_data[name], "sizeY", 1);
+
+  // TODO: think if we really need outputs size in such way
+  if (sizeA + sizeB != i_gp->getInputs()) {
+    std::cerr << "Inputs number should match with arity bit width of both "
+        "inputs. Excpected '" << i_gp->getInputs() << "', bout found '"
+        << sizeA + sizeB << "'\n";
+    std::exit(1);
+  }
+
+  const bool isSigned = readWithCheck<bool>(i_data[name], "is_signed", false);
+  const std::string type = readWithCheck<std::string>(i_data[name], "type", "ADD");
+
+  const auto typeEnum = ArithemticOperations::getArithmeticType(type);
+  if (typeEnum == ArithemticOperations::UNDEFINED) {
+    std::cerr << "Found unsupported operation type: '" << type << "'\n"; 
+    std::exit(1);
+  }
+
+  i_gp->setArithmeticParameters(sizeA, sizeB, sizeY, isSigned, typeEnum);
+}
+
 void setRandLevel(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "RandLevel";
+  static constexpr std::string_view name = "RandLevel";
   check(i_data, name);
   const auto minLevel = readWithCheck<int>(i_data[name], "min_level", 1);
   const auto maxLevel = readWithCheck<int>(i_data[name], "max_level", 1);
@@ -168,7 +198,7 @@ void setRandLevel(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 
 void setRandLevelExperimental(const nlohmann::json &i_data,
                               GenerationParameters *i_gp) {
-  std::string name = "RandLevelExperimental";
+  static constexpr std::string_view name = "RandLevelExperimental";
   check(i_data, name);
   const auto minLevel = readWithCheck<int>(i_data[name], "min_level", 1);
   const auto maxLevel = readWithCheck<int>(i_data[name], "max_level", 1);
@@ -179,7 +209,7 @@ void setRandLevelExperimental(const nlohmann::json &i_data,
 }
 
 void setNumOperation(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "NumOperation";
+  static constexpr std::string_view name = "NumOperation";
   check(i_data, name);
 
   bool LeaveEmptyOut =
@@ -203,7 +233,7 @@ void setNumOperation(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 }
 
 void setComparison(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "Comparison";
+  static constexpr std::string_view name = "Comparison";
   check(i_data, name);
 
   const bool equal = readWithCheck<bool>(i_data[name], "equal", false);
@@ -214,7 +244,7 @@ void setComparison(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 }
 
 void setSummator(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "Summator";
+  static constexpr std::string_view name = "Summator";
   check(i_data, name);
 
   const bool overflowIn =
@@ -227,12 +257,12 @@ void setSummator(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 }
 
 void setMultiplier(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "Multiplier";
+  static constexpr std::string_view name = "Multiplier";
   check(i_data, name, false);
 }
 
 void setSubtractor(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "Subtractor";
+  static constexpr std::string_view name = "Subtractor";
   check(i_data, name);
 
   const bool overflowIn =
@@ -245,28 +275,28 @@ void setSubtractor(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 }
 
 void setMultiplexer(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "Multiplexer";
+  static constexpr std::string_view name = "Multiplexer";
   check(i_data, name, false);
 }
 
 void setDemultiplexer(const nlohmann::json &i_data,
                       GenerationParameters *i_gp) {
-  std::string name = "Demultiplexer";
+  static constexpr std::string_view name = "Demultiplexer";
   check(i_data, name, false);
 }
 
 void setEncoder(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "Encoder";
+  static constexpr std::string_view name = "Encoder";
   check(i_data, name, false);
 }
 
 void setDecoder(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "Decoder";
+  static constexpr std::string_view name = "Decoder";
   check(i_data, name, false);
 }
 
 void setGenetic(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "Genetic";
+  static constexpr std::string_view name = "Genetic";
   check(i_data, name);
 
   const int32_t populationSize =
@@ -311,12 +341,12 @@ void setGenetic(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 }
 
 void setParity(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "Parity";
+  static constexpr std::string_view name = "Parity";
   check(i_data, name, false);
 }
 
 void setALU(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "ALU";
+  static constexpr std::string_view name = "ALU";
   check(i_data, name);
 
   const bool ALL = readWithCheck<bool>(i_data[name], "ALL", false);
@@ -352,7 +382,7 @@ void setALU(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 }
 
 void setMealyMoore(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "MealyMoore";
+  static constexpr std::string_view name = "MealyMoore";
   check(i_data, name);
 
   const bool genType = readWithCheck<bool>(i_data[name], "gen_type", false);
@@ -363,7 +393,7 @@ void setMealyMoore(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 }
 
 void setDotToGraph(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "DotToGraph";
+  static constexpr std::string_view name = "DotToGraph";
   check(i_data, name);
 
   const bool GenTypeDot = readWithCheck<bool>(i_data[name], "gen_type_dot", false);
@@ -373,7 +403,7 @@ void setDotToGraph(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 }
 
 void setCascade(const nlohmann::json &i_data, GenerationParameters *i_gp) {
-  std::string name = "Cascade";
+  static constexpr std::string_view name = "Cascade";
   check(i_data, name);
   
   const uint32_t MaxNumStates = readWithCheck<uint32_t>(i_data[name], "max_num_states", 1);
@@ -467,6 +497,9 @@ setGenerationParameters(const nlohmann::json &i_data) {
       setCascade(i_data, gp);
       break;
     }
+    case Arithmetic:
+      setArithmetic(i_data, gp);
+      break;
   }
 
   DataBaseGeneratorParameters *dbgp = new DataBaseGeneratorParameters(
@@ -538,7 +571,7 @@ void runGeneration(
       auto stop = high_resolution_clock::now();
       auto duration = duration_cast<microseconds>(stop - start);
       std::clog << "Time taken: " << duration.count() << " microseconds"
-                << std::endl;
+                << '\n';
     }
     delete dbgp;  
   }

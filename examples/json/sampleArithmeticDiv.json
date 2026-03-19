@@ -1,0 +1,43 @@
+[
+  {
+    "multithread": 4,
+
+    "GenerationParameters": {
+      "convert_to_basis": false,
+      "gates_inputs_info": {
+        "and": [2, 8],
+        "nand": [2],
+        "or": [2, 4, 8],
+        "nor": [2, 4, 8],
+        "xor": [2, 10],
+        "xnor": [2, 3]
+      },
+      "min_in": 10,
+      "max_in": 10,
+      "min_out": 10,
+      "max_out": 10,
+      "repeat_n": 1,    
+      "seed": 20,
+      "type_of_generation": "Arithmetic"
+    },
+
+    "OutputParameters": {
+      "create_id_directories": true,
+      "dataset_id": "20",
+      "dataset_path": "./generation_results/",
+      "id": 0,
+      "make_graphml_classic": true,
+      "make_graphml_pseudo_abc_d": true,
+      "make_graphml_open_abc_d": true,
+      "make_dot": false
+    },
+
+    "Arithmetic": {
+      "sizeA": 5,
+      "sizeB": 5,
+      "sizeY": 10,
+      "is_signed": false,
+      "type": "DIV"
+    }
+  }
+]

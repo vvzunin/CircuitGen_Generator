@@ -3,8 +3,6 @@
 #include <map>
 #include <memory>
 #include <string>
-#include <utility>
-#include <vector>
 
 #include <CircuitGenGraph/GraphUtils.hpp>
 
@@ -36,8 +34,10 @@ enum GenerationTypes {
   Parity,                /// Parity
   ALU,                   /// Arithmetic Logic Unit (ALU)
   MealyMoore,            /// Mealy and Moore
-  DotToGraph, /// Dot to graph converter (Mealy and Moore only for now)
-  Cascade     /// Cascade
+  DotToGraph,            /// Dot to graph converter (Mealy and Moore only for now)
+  Cascade,               /// Cascade
+  Arithmetic             /// Basic name for multiple 
+                         /// specialized arithmetic generators
 };            /* Simple */
 
 static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
@@ -58,7 +58,9 @@ static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
     {"ALU", ALU},
     {"MealyMoore", MealyMoore},
     {"DotToGraph", DotToGraph},
-    {"Cascade", Cascade}};
+    {"Cascade", Cascade},
+    {"Arithmetic", Arithmetic}
+  };
 
 /// @todo: To add Description some fields
 /// class Settings
@@ -262,7 +264,8 @@ private:
       {GenerationTypes::ALU, "CCGALU"},
       {GenerationTypes::MealyMoore, "CCGMM"},
       {GenerationTypes::DotToGraph, "CCGDTG"},
-      {GenerationTypes::Cascade, "CCGCCD"}};
+      {GenerationTypes::Cascade, "CCGCCD"},
+      {GenerationTypes::Arithmetic, "CCGARI"}};
   /*
     SimpleGenerator
   */

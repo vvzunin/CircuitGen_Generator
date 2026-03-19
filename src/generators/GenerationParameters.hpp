@@ -1,5 +1,6 @@
 #pragma once
 
+#include "generators/simple/arithmetic/ArithmeticUtils.hpp"
 #include <cstdint>
 #include <map>
 #include <string>
@@ -191,6 +192,26 @@ private:
   bool d_sub = false;
 };
 
+class GeneratorArithmeticParameters {
+public:
+  uint32_t getSizeA() const { return d_sizeA; }
+  uint32_t getSizeB() const { return d_sizeB; }
+  uint32_t getSizeY() const { return d_sizeY; }
+  bool getSign() const { return d_isSigned; }
+  ArithemticOperations::Types getType() const { return d_type; }
+
+  void setSizeA(uint32_t i_sizeA) { d_sizeA = i_sizeA; }
+  void setSizeB(uint32_t i_sizeB) { d_sizeB = i_sizeB; }
+  void setSizeY(uint32_t i_sizeY) { d_sizeY = i_sizeY; }
+  void setSigned(bool i_isSigned) { d_isSigned = i_isSigned; }
+  void setType(ArithemticOperations::Types i_type) { d_type = i_type; }
+
+private:
+  uint32_t d_sizeA = 0, d_sizeB = 0, d_sizeY = 0;
+  bool d_isSigned = false;
+  ArithemticOperations::Types d_type;
+};
+
 /// @todo: Desc class
 class GeneratorALUParameters {
 public:
@@ -372,6 +393,9 @@ private:
 
 class GenerationParameters {
 public:
+  using GatesInputsInfo = std::map<std::string, std::vector<int32_t>>;
+
+public:
   GenerationParameters(const std::string &i_name,
                        const std::string &i_requestId, uint32_t i_inputs,
                        uint32_t i_outputs, uint32_t i_iteration,
@@ -414,7 +438,6 @@ public:
 
   void setSeed(std::uint_fast32_t i_seed) { d_seed = i_seed; }
 
-  using GatesInputsInfo = std::map<std::string, std::vector<int32_t>>;
   GatesInputsInfo getGatesInputsInfo() const { return d_gatesInputsInfo; }
 
   void setGatesInputInfo(const GatesInputsInfo &i_gatesInputsInfo) {
@@ -424,24 +447,35 @@ public:
   CNNFromTruthTableParameters getCNF() const {
     return d_cnfFromTruthTableParameters;
   }
+
   zhegalkinFromTruthTableParameters getZhegalkin() const {
     return d_ZhegalkinFromTruthTableParameters;
   }
+
   GeneratorRandLevelParameters getRandLevel() const {
     return d_generatorRandLevelParameters;
   }
+
   GeneratorNumOperationParameters getNumOperations() const {
     return d_generatorNumOperationParameters;
   }
+
   GeneratorSummatorParameters getSummator() const {
     return d_generatorSummatorParameters;
   }
+
   GeneratorComparisonParameters getComparison() const {
     return d_generatorComparisonParameters;
   }
+
   GeneratorSubtractorParameters getSubtractor() const {
     return d_generatorSubtractorParameters;
   }
+
+  const GeneratorArithmeticParameters &getArithmetic() const {
+    return d_generatorArithmeticParameters;
+  }
+
   GeneratorALUParameters getALU() const { return d_generatorALUParameters; }
   GeneticParameters getGenetic() const { return d_geneticParameters; }
   void setCNFF(bool i_CNFF) { d_cnfFromTruthTableParameters.setCNFF(i_CNFF); }
@@ -584,6 +618,18 @@ public:
     d_generatorCascadeParameters.setMinNumStates(i_MinNumStates);
   }
 
+  void setArithmeticParameters(uint32_t i_sizeA,
+                               uint32_t i_sizeB,
+                               uint32_t i_sizeY,
+                               bool i_isSigned,
+                               ArithemticOperations::Types i_type) {
+    d_generatorArithmeticParameters.setSizeA(i_sizeA);
+    d_generatorArithmeticParameters.setSizeB(i_sizeB);
+    d_generatorArithmeticParameters.setSizeY(i_sizeY);
+    d_generatorArithmeticParameters.setSigned(i_isSigned);
+    d_generatorArithmeticParameters.setType(i_type);
+  }
+
 private:
   std::string d_name = "";
   std::string d_requestId;
@@ -607,6 +653,7 @@ private:
   GeneratorSummatorParameters d_generatorSummatorParameters;
   GeneratorComparisonParameters d_generatorComparisonParameters;
   GeneratorSubtractorParameters d_generatorSubtractorParameters;
+  GeneratorArithmeticParameters d_generatorArithmeticParameters;
   GeneratorALUParameters d_generatorALUParameters;
   GeneticParameters d_geneticParameters;
   GeneratorMealyMooreParameters d_generatorMealyMooreParameters;

@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "DataBaseGenerator.hpp"
+#include "settings/Settings.hpp"
 
 #include <CircuitGenGenerator/ThreadPool.hpp>
 
@@ -573,6 +574,21 @@ void DataBaseGenerator::generateDataBaseCascade(
   addDataToReturn(graph);
 }
 
+void DataBaseGenerator::generateDataBaseArithmetic(
+    const GenerationParameters &i_param) {
+  ArithmeticGenerator ccd(i_param);
+  GraphPtr graph = ccd.generateAdvancedArithmetic();
+
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate({i_param.getMakeGraphMLClassic(),
+              i_param.getMakeGraphMLPseudoABCD(),
+              i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
+
+  addDataToReturn(graph);
+}
+
 // maybe this method should be rewritten using map with GenerationTypes and
 // FuncAlias
 std::function<void(const GenerationParameters &)>
@@ -637,7 +653,9 @@ DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
     case GenerationTypes::Cascade:
       generateMethodFunc = &DataBaseGenerator::generateDataBaseCascade;
       break;
-
+    case GenerationTypes::Arithmetic:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseArithmetic;
+      break;
     default:
       std::clog << "Something went wrong while getting generation method. "
                 << "\"FromRandomTruthTable\" is set as generation method."

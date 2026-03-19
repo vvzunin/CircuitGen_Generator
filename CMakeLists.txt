@@ -91,8 +91,9 @@ set(SOURCES
   src/generators/Genetic/Mutations/MutationParameters.cpp
   src/generators/Genetic/Mutations/MutationTruthTable.cpp
   src/settings/Settings.cpp
+
+  src/generators/BasisConverter.cpp
   src/generators/simple/SimpleGenerator.cpp
-  src/generators/simple/ArithmeticGenerator.cpp
   src/generators/simple/FromTruthTableGenerator.cpp
   src/generators/simple/CoderGenerator.cpp
   src/generators/simple/RandLevelGenerator.cpp
@@ -101,10 +102,18 @@ set(SOURCES
   src/generators/simple/ComparisonGenerator.cpp
   src/generators/simple/NumOperationsGenerator.cpp
   src/generators/simple/ParityGenerator.cpp
-  src/generators/BasisConverter.cpp
   src/generators/simple/MealyMooreGenerator.cpp
   src/generators/simple/DotToGraphGenerator.cpp
   src/generators/simple/CascadeGenerator.cpp
+
+  src/generators/simple/ArithmeticGenerator.cpp
+  src/generators/simple/arithmetic/ArithmeticUtils.cpp
+  src/generators/simple/arithmetic/NonRestoringDivision.cpp
+  src/generators/simple/arithmetic/SimpleAdder.cpp
+  src/generators/simple/arithmetic/SimpleMultiplier.cpp
+  src/generators/simple/arithmetic/SimpleSubstractor.cpp
+
+  src/generators/simple/common/GeneratorUtils.cpp
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 

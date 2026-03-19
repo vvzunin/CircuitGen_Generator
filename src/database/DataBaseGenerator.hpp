@@ -141,6 +141,8 @@ private:
 
   void generateDataBaseSummator(const GenerationParameters &i_param);
 
+  void generateDataBaseArithmetic(const GenerationParameters &i_param);
+
   /// @brief generateDataBaseComparison
   /// Generates a database representing a comparison circuit
   /// @param i_param An object of the GenerationParameters class containing
