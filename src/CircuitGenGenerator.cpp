@@ -165,7 +165,7 @@ void setArithmetic(const nlohmann::json &i_data, GenerationParameters *i_gp) {
   // TODO: think if we really need outputs size in such way
   if (sizeA + sizeB != i_gp->getInputs()) {
     std::cerr << "Inputs number should match with arity bit width of both "
-                 "inputs. Excpected '"
+                 "inputs. Expected '"
               << i_gp->getInputs() << "', bout found '" << sizeA + sizeB
               << "'\n";
     std::exit(1);
