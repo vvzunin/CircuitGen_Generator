@@ -22,6 +22,8 @@ std::string deleteDoubleSpaces(const std::string &s) {
 }
 } // namespace
 
+namespace CG_Gen {
+
 Parser::Parser(const std::string &i_logExpression,
                const std::map<std::string, std::vector<int32_t>> &i_info) {
   d_logExpressions.push_back(deleteDoubleSpaces(i_logExpression));
@@ -55,8 +57,8 @@ GraphPtr Parser::getGraph() const {
 
 void Parser::setGatesInputsInfo(
     const std::map<std::string, std::vector<int32_t>> &i_info) {
-  for (auto &[key, value]: i_info) {
-    d_gatesInputsInfo[d_settings->parseStringToGate(key)] = value;
+  for (const auto &[key, value]: i_info) {
+    d_gatesInputsInfo[GraphUtils::parseStringToGate(key)] = value;
   }
 }
 
@@ -117,8 +119,8 @@ std::pair<int32_t, std::vector<std::string>>
 Parser::splitLogicExpression(std::string i_expr) {
   int32_t l = 0;
 
-  while (l <= d_settings->getLogicOperation("input").second) {
-    std::string_view oper = d_settings->fromOperationsToHierarchy(l);
+  while (l <= GraphUtils::getLogicOperation("input").second) {
+    std::string_view oper = GraphUtils::fromHierarchyToOperation(l);
     // so, what was the problem
     // here we have been looking for a substr in string, substr was
     // an operation. Or has higher (I meen lower code number) priority,
@@ -139,7 +141,7 @@ Parser::splitLogicExpression(std::string i_expr) {
       }
 
       if (!inBrackets(brackets.second, index)) {
-        std::string newOp = d_settings->fromOperationsToName(oper);
+        std::string newOp = GraphUtils::fromOperationsToName(oper);
 
         if (lst.empty())
           lst.push_back(deleteExtraSpaces(newOp));
@@ -330,7 +332,7 @@ VertexPtr Parser::parseToVertex(const std::string &i_expr) {
   } else {
     allGates.reserve(splited_expr_next.second.size() - 1);
 
-    Gates oper = d_settings->parseStringToGate(splited_expr_next.second[0]);
+    Gates oper = GraphUtils::parseStringToGate(splited_expr_next.second[0]);
     splited_expr_next.second.erase(splited_expr_next.second.begin());
 
     for (auto futureVertex: splited_expr_next.second) {
@@ -382,3 +384,5 @@ std::string Parser::deleteExtraSpaces(std::string i_s) {
 
   return i_s;
 }
+
+} // namespace CG_Gen

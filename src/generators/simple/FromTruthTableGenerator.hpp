@@ -1,6 +1,11 @@
 ﻿#pragma once
-#include <generators/simple/SimpleGenerator.hpp>
+
 #include <baseStructures/truthTable/TruthTable.hpp>
+#include <generators/simple/SimpleGenerator.hpp>
+
+namespace CG_Gen {
+
+using namespace CG_Graph;
 
 class FromTruthTableGenerator : public SimpleGenerator {
 public:
@@ -35,3 +40,5 @@ public:
   GraphPtr cnfFromTruthTable(const TruthTable &i_table, bool i_tp = true);
   GraphPtr zhegalkinFromTruthTable(const TruthTable &i_table);
 };
+
+} // namespace CG_Gen

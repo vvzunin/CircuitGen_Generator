@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include <generators/simple/SimpleGenerator.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 class RandLevelGenerator : public SimpleGenerator {
 public:
   RandLevelGenerator();
@@ -30,7 +34,8 @@ public:
 
   GraphPtr generatorRandLevel(uint32_t i_minLevel, uint32_t i_maxLevel,
                               uint32_t i_minElements, uint32_t i_maxElements,
-                              uint32_t i_inputs, uint32_t i_outputs);
+                              uint32_t i_inputs, uint32_t i_outputs,
+                              bool syntheticConnected = false);
 
   GraphPtr generatorRandLevel(const GenerationParameters &i_param);
 
@@ -79,3 +84,5 @@ public:
 
   GraphPtr generatorRandLevelExperimental();
 };
+
+} // namespace CG_Gen

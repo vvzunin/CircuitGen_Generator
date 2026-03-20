@@ -2,6 +2,8 @@
 
 #include "PlexerGenerator.hpp"
 
+namespace CG_Gen {
+
 PlexerGenerator::PlexerGenerator() : SimpleGenerator() {
 }
 
@@ -24,7 +26,7 @@ GraphPtr PlexerGenerator::generatorMultiplexer(uint32_t i_bits) {
   }
 
   std::vector<std::string> F(i_bits);
-  std::vector<VertexPtr> ands(i_bits);
+  std::vector<VertexPtr> and_values(i_bits);
   std::vector<std::string> S(k);
   std::vector<VertexPtr> Sp(k);
   std::vector<VertexPtr> NSp(k);
@@ -48,27 +50,27 @@ GraphPtr PlexerGenerator::generatorMultiplexer(uint32_t i_bits) {
     }
     // механизм создания связей между входами и and
     for (int32_t i = 0; i < i_bits; i++) {
-      ands[i] = graph->addGate(Gates::GateAnd, "and_for_or_" + Z[i]);
-      graph->addEdge(Zp[i], ands[i]);
+      and_values[i] = graph->addGate(Gates::GateAnd, "and_for_or_" + Z[i]);
+      graph->addEdge(Zp[i], and_values[i]);
     }
 
     for (int32_t i = 0; i < i_bits; i++) {
       int32_t len = F[i].size();
       for (int32_t w = 0; w < k; w++) {
         if (len < w + 1) {
-          graph->addEdge(NSp[w], ands[i]);
+          graph->addEdge(NSp[w], and_values[i]);
         } else {
           char u = F[i][len - w - 1];
           if (u == '1') {
-            graph->addEdge(Sp[w], ands[i]);
+            graph->addEdge(Sp[w], and_values[i]);
           } else {
-            graph->addEdge(NSp[w], ands[i]);
+            graph->addEdge(NSp[w], and_values[i]);
           }
         }
       }
     }
     VertexPtr common_or = graph->addGate(Gates::GateOr, "or_for_output");
-    graph->addEdges(ands, common_or);
+    graph->addEdges(and_values, common_or);
     graph->addEdge(common_or, output_f);
   } else if (i_bits == 1) {
     Zp[0] = graph->addInput("x" + Z[0]);
@@ -104,7 +106,7 @@ GraphPtr PlexerGenerator::generatorDemultiplexer(uint32_t i_bits) {
   }
 
   std::vector<std::string> F(i_bits);
-  std::vector<VertexPtr> ands(i_bits);
+  std::vector<VertexPtr> and_values(i_bits);
   std::vector<std::string> S(k);
   std::vector<VertexPtr> Sp(k);
   std::vector<VertexPtr> NSp(k);
@@ -127,22 +129,22 @@ GraphPtr PlexerGenerator::generatorDemultiplexer(uint32_t i_bits) {
     }
 
     for (int32_t i = 0; i <= i_bits - 1; i++) {
-      ands[i] = graph->addGate(Gates::GateAnd, "and_for_output_" + Z[i]);
-      graph->addEdge(input_f, ands[i]);
-      graph->addEdge(ands[i], Zp[i]);
+      and_values[i] = graph->addGate(Gates::GateAnd, "and_for_output_" + Z[i]);
+      graph->addEdge(input_f, and_values[i]);
+      graph->addEdge(and_values[i], Zp[i]);
     }
 
     for (int32_t i = 0; i <= i_bits - 1; i++) {
       int32_t len = F[i].size();
       for (int32_t w = 0; w <= k - 1; w++) {
         if (len < w + 1) {
-          graph->addEdge(NSp[w], ands[i]);
+          graph->addEdge(NSp[w], and_values[i]);
         } else {
           char u = F[i][len - w - 1];
           if (u == '1') {
-            graph->addEdge(Sp[w], ands[i]);
+            graph->addEdge(Sp[w], and_values[i]);
           } else {
-            graph->addEdge(NSp[w], ands[i]);
+            graph->addEdge(NSp[w], and_values[i]);
           }
         }
       }
@@ -171,3 +173,5 @@ GraphPtr PlexerGenerator::generatorMultiplexer() {
 GraphPtr PlexerGenerator::generatorDemultiplexer() {
   return generatorDemultiplexer(getParameters());
 }
+
+} // namespace CG_Gen

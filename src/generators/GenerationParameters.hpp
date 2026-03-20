@@ -8,6 +8,10 @@
 #include <generators/Genetic/GeneticParameters.hpp>
 #include <settings/Settings.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 /// class CNNFromTruthTableParameters
 /// @param d_generateLimitations It may refer to conditions or restrictions that
 /// can be applied to combinational logic, for example, imposing restrictions on
@@ -71,11 +75,18 @@ public:
 
   void setMaxElements(uint32_t i_maxElements) { d_maxElements = i_maxElements; }
 
+  uint32_t getSyntheticConnected() const { return d_syntheticConnected; }
+
+  void setSyntheticConnected(bool i_syntheticConnected) {
+    d_syntheticConnected = i_syntheticConnected;
+  }
+
 private:
   uint32_t d_minLevel = 0;
   uint32_t d_maxLevel = 0;
   uint32_t d_minElements = 0;
   uint32_t d_maxElements = 0;
+  bool d_syntheticConnected = false;
 };
 
 /// class GeneratorNumOperationParameters
@@ -88,6 +99,7 @@ private:
 /// */
 
 class GeneratorNumOperationParameters {
+
 public:
   int32_t getLogicOper(const Gates &i_op) const {
     if (d_logicOper.find(i_op) != d_logicOper.end())
@@ -254,6 +266,72 @@ private:
   bool d_LeaveEmptyOut;
 };
 
+/// class GeneratorMealyMooreParameters
+/// @param d_numStates The number of states in the graph
+/// @param d_GenType Flag for what machine to use - Mealy (0) or Moore (1)
+/// @param d_saveDOT_mmg Flag for either creating (1) or not (0) of a dot file
+
+class GeneratorMealyMooreParameters {
+
+public:
+  bool getGenType() { return d_GenType; }
+  bool getsaveDOT_mmg() { return d_saveDOT_mmg; }
+  uint32_t getNumStates() { return d_NumStates; }
+  void setGenType(bool i_GenType) { d_GenType = i_GenType; }
+  void setNumStates(uint32_t i_NumStates) { d_NumStates = i_NumStates; }
+  void setsaveDOT_mmg(bool i_saveDOT_mmg) { d_saveDOT_mmg = i_saveDOT_mmg; }
+
+private:
+  bool d_saveDOT_mmg;
+  bool d_GenType = false;
+  uint32_t d_NumStates;
+};
+
+/// class GeneratorDotToGraphParameters
+/// @param d_DotPath The path to a folder where dot file is located
+/// @param d_GenTypeDot Flag for what type of machine is represented in dot file
+/// - Mealy (0) or Moore (1)
+
+class GeneratorDotToGraphParameters {
+
+public:
+  std::string getDotPath() { return d_DotPath; }
+  bool getGenTypeDot() { return d_GenTypeDot; }
+  void setDotPath(std::string i_DotPath) { d_DotPath = i_DotPath; }
+  void setGenTypeDot(bool i_GenTypeDot) { d_GenTypeDot = i_GenTypeDot; }
+
+private:
+  std::string d_DotPath;
+  bool d_GenTypeDot = false;
+};
+
+/// class GeneratorCascadeParameters
+/// @param d_NumAutomatons The number of machines in the graph
+/// @param d_MaxNumStates The maximum number of states in each machine
+/// @param d_MinNumStates The minimum number of states in each machine
+
+class GeneratorCascadeParameters {
+
+public:
+  uint32_t getNumAutomatons() { return d_NumAutomatons; }
+  uint32_t getMaxNumStates() { return d_MaxNumStates; }
+  uint32_t getMinNumStates() { return d_MinNumStates; }
+  void setNumAutomatons(uint32_t i_NumAutomatons) {
+    d_NumAutomatons = i_NumAutomatons;
+  }
+  void setMaxNumStates(uint32_t i_MaxNumStates) {
+    d_MaxNumStates = i_MaxNumStates;
+  }
+  void setMinNumStates(uint32_t i_MinNumStates) {
+    d_MinNumStates = i_MinNumStates;
+  }
+
+private:
+  uint32_t d_NumAutomatons;
+  uint32_t d_MaxNumStates;
+  uint32_t d_MinNumStates;
+};
+
 /// @todo: To add desc some fields
 /// class GenerationParameters
 /// @param d_name Generation name
@@ -300,12 +378,13 @@ public:
                        bool i_makeGraphMLClassic = false,
                        bool i_makeGraphMLPsedoABCD = false,
                        bool i_makeGraphMLOpenABCD = false,
-                       bool i_makeDOT = false) :
+                       bool i_makeDOT = false, bool i_convertToBasis = false) :
       d_name(i_name),
       d_requestId(i_requestId), d_inputs(i_inputs), d_outputs(i_outputs),
       d_iteration(i_iteration), d_makeGraphMLClassic(i_makeGraphMLClassic),
       d_makeGraphMLPseudoABCD(i_makeGraphMLPsedoABCD),
-      d_makeGraphMLOpenABCD(i_makeGraphMLOpenABCD), d_makeDOT(i_makeDOT){};
+      d_makeGraphMLOpenABCD(i_makeGraphMLOpenABCD), d_makeDOT(i_makeDOT),
+      d_convertToBasis(i_convertToBasis){};
 
   std::string getName() const { return d_name; }
 
@@ -329,17 +408,16 @@ public:
   bool getMakeGraphMLPseudoABCD() const { return d_makeGraphMLPseudoABCD; }
   bool getMakeGraphMLOpenABCD() const { return d_makeGraphMLOpenABCD; }
   bool getMakeDOT() const { return d_makeDOT; }
+  bool getConvertToBasis() const { return d_convertToBasis; }
 
   std::uint_fast32_t getSeed() const { return d_seed; }
 
   void setSeed(std::uint_fast32_t i_seed) { d_seed = i_seed; }
 
-  std::map<std::string, std::vector<int32_t>> getGatesInputsInfo() const {
-    return d_gatesInputsInfo;
-  }
+  using GatesInputsInfo = std::map<std::string, std::vector<int32_t>>;
+  GatesInputsInfo getGatesInputsInfo() const { return d_gatesInputsInfo; }
 
-  void setGatesInputInfo(
-      const std::map<std::string, std::vector<int32_t>> &i_gatesInputsInfo) {
+  void setGatesInputInfo(const GatesInputsInfo &i_gatesInputsInfo) {
     d_gatesInputsInfo = i_gatesInputsInfo;
   }
 
@@ -371,12 +449,24 @@ public:
   void setLimit(bool i_limit) {
     d_cnfFromTruthTableParameters.setLimit(i_limit);
   }
+  GeneratorMealyMooreParameters getMealyMoore() const {
+    return d_generatorMealyMooreParameters;
+  }
+
+  GeneratorDotToGraphParameters getDotToGraph() const {
+    return d_generatorDotToGraphParameters;
+  }
+  GeneratorCascadeParameters getCascade() const {
+    return d_generatorCascadeParameters;
+  }
   void setRandLevelParameters(uint32_t i_minLevel, uint32_t i_maxLevel,
-                              uint32_t i_minElements, uint32_t i_maxElements) {
+                              uint32_t i_minElements, uint32_t i_maxElements,
+                              bool i_syntheticConnected = false) {
     d_generatorRandLevelParameters.setMinLevel(i_minLevel);
     d_generatorRandLevelParameters.setMaxLevel(i_maxLevel);
     d_generatorRandLevelParameters.setMinElements(i_minElements);
     d_generatorRandLevelParameters.setMaxElements(i_maxElements);
+    d_generatorRandLevelParameters.setSyntheticConnected(i_syntheticConnected);
   }
   void setNumOperationParameters(const std::map<Gates, int32_t> &i_m,
                                  bool i_LeaveEmptyOut) {
@@ -475,6 +565,25 @@ public:
     d_geneticParameters.setKeyEndProcessIndex(i_keyEndProcessIndex);
   }
 
+  void setMealyMooreParameters(bool i_GenType, uint32_t i_NumStates,
+                               bool i_saveDOT_mmg) {
+    d_generatorMealyMooreParameters.setGenType(i_GenType);
+    d_generatorMealyMooreParameters.setNumStates(i_NumStates);
+    d_generatorMealyMooreParameters.setsaveDOT_mmg(i_saveDOT_mmg);
+  }
+
+  void setDotToGraphParameters(bool i_GenTypeDot, std::string i_DotPath) {
+    d_generatorDotToGraphParameters.setGenTypeDot(i_GenTypeDot);
+    d_generatorDotToGraphParameters.setDotPath(i_DotPath);
+  }
+
+  void setCascadeParameters(uint32_t i_MaxNumStates, uint32_t i_MinNumStates,
+                            uint32_t i_NumAutomatons) {
+    d_generatorCascadeParameters.setNumAutomatons(i_NumAutomatons);
+    d_generatorCascadeParameters.setMaxNumStates(i_MaxNumStates);
+    d_generatorCascadeParameters.setMinNumStates(i_MinNumStates);
+  }
+
 private:
   std::string d_name = "";
   std::string d_requestId;
@@ -500,4 +609,10 @@ private:
   GeneratorSubtractorParameters d_generatorSubtractorParameters;
   GeneratorALUParameters d_generatorALUParameters;
   GeneticParameters d_geneticParameters;
+  GeneratorMealyMooreParameters d_generatorMealyMooreParameters;
+  GeneratorDotToGraphParameters d_generatorDotToGraphParameters;
+  GeneratorCascadeParameters d_generatorCascadeParameters;
+  bool d_convertToBasis = false;
 };
+
+} // namespace CG_Gen

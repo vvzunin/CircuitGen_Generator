@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include <generators/simple/SimpleGenerator.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 class ComparisonGenerator : public SimpleGenerator {
 public:
   ComparisonGenerator();
@@ -12,3 +16,5 @@ public:
   GraphPtr generatorComparison(const GenerationParameters &i_param);
   GraphPtr generatorComparison();
 };
+
+} // namespace CG_Gen

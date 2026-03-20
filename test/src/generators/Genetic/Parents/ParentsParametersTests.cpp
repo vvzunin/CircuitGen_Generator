@@ -4,6 +4,8 @@
 
 #include "easylogging++Init.hpp"
 
+using namespace CG_Gen;
+
 TEST(ParentsParametersTest, SetAndGetParentsType) {
   ParentsParameters params;
   params.setParentsType(ParentsTypes::Tournament);

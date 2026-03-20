@@ -1,6 +1,8 @@
 ﻿#include "FromTruthTableGenerator.hpp"
 #include <baseStructures/Parser.hpp>
 
+namespace CG_Gen {
+
 FromTruthTableGenerator::FromTruthTableGenerator() : SimpleGenerator() {
 }
 
@@ -89,13 +91,14 @@ GraphPtr FromTruthTableGenerator::cnfFromTruthTable(const TruthTable &i_table,
         // add NOT
         if (bin[tmp][k] ^ i_tp) {
           if (!inputs_not.count(x_input)) {
-            inputs_not[x_input] =
-                graph->addGate(Gates::GateNot, x_input->getName("not_"));
-          }
+            x_input = (inputs_not[x_input] = graph->addGate(
+                           Gates::GateNot, x_input->getName("not_")));
 
-          // Get NOT operation
-          x_input = inputs_not[x_input];
-          graph->addEdge(inputs[k], x_input);
+            graph->addEdge(inputs[k], x_input);
+          } else {
+            // Get NOT operation
+            x_input = inputs_not[x_input];
+          }
         }
 
         nextLayout.push_back(x_input);
@@ -181,3 +184,5 @@ FromTruthTableGenerator::zhegalkinFromTruthTable(const TruthTable &i_table) {
   }
   return graph;
 }
+
+} // namespace CG_Gen

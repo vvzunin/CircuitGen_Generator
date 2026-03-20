@@ -1,19 +1,37 @@
 [
   {
-    "seed": 20,
-    "dataset_id": "5",
-    "id": 0,
-    "type_of_generation": "Encoder",
-    "min_in": 3,
-    "max_in": 5,
-    "min_out": 4,
-    "max_out": 5,
-    "repeat_n": 1,
     "multithread": 4,
-    "make_graphml_classic": true,
-    "make_graphml_pseudo_abc_d": true,
-    "make_graphml_open_abc_d": true,
-    "create_id_directories": true,
-    "make_dot": false
+
+    "GenerationParameters": {
+      "convert_to_basis": false,
+      "gates_inputs_info": {
+        "and": [2, 8],
+        "nand": [2],
+        "or": [2, 4, 8],
+        "nor": [2, 4, 8],
+        "xor": [2, 10],
+        "xnor": [2, 3]
+      },
+      "min_in": 4,
+      "max_in": 5,
+      "min_out": 4,
+      "max_out": 5,
+      "repeat_n": 1,    
+      "seed": 20,
+      "type_of_generation": "Encoder"
+    },
+
+    "OutputParameters": {
+      "create_id_directories": true,
+      "dataset_id": "5",
+      "dataset_path": "./generation_results/",
+      "id": 0,
+      "make_graphml_classic": true,
+      "make_graphml_pseudo_abc_d": true,
+      "make_graphml_open_abc_d": true,
+      "make_dot": false
+    },
+
+    "Encoder": {}
   }
 ]

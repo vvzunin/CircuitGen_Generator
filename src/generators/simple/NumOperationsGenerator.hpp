@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include <generators/simple/SimpleGenerator.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 class NumOperationsGenerator : public SimpleGenerator {
 public:
   NumOperationsGenerator();
@@ -38,3 +42,5 @@ public:
     return val->first;
   }
 };
+
+} // namespace CG_Gen

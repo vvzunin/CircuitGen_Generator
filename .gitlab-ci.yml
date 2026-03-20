@@ -1,0 +1,159 @@
+stages:
+  - docker
+  - check
+  - test
+  - docs
+  - release
+
+variables:
+  DOCKERFILE_CI_NAME: Dockerfile.ci
+  DOCKERFILE_DEV_NAME: Dockerfile.dev
+  DOCKER_CI_SYSTEM: ubuntu:22.04
+  DOCKER_CI_TAG: latest
+  REGISTRY_URL: registry-hub.mos.ru
+  GROUP_NAME: circuitgen
+  REPO_NAME: circuitgen_generator
+  DOCKER_URL: $REGISTRY_URL/$GROUP_NAME/$REPO_NAME
+
+lint:
+  stage: check
+  image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  before_script:
+    - python3 --version
+  script:
+    - cmake -D FORMAT_COMMAND=clang-format-15 -P cmake/lint.cmake
+    - cmake -P cmake/spell.cmake
+  tags:
+    - docker
+  rules:
+  - if: $CI_COMMIT_TAG == null
+
+sanitize:
+  stage: check
+  image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  variables: 
+    CXX: 'clang++-14'
+    ASAN_OPTIONS: 'strict_string_checks=1:detect_stack_use_after_return=1:check_initialization_order=1:strict_init_order=1:detect_leaks=1:detect_odr_violation=1'
+    UBSAN_OPTIONS: 'print_stacktrace=1'
+  script:
+    - cmake --preset=ci-sanitize
+    - cmake --build build/sanitize -j $(nproc)
+    - cd build/sanitize
+    - ctest --output-on-failure --no-tests=error -j $(nproc)
+  tags:
+    - docker
+  rules:
+  - if: $CI_COMMIT_TAG == null
+
+coverage:
+  stage: test
+  image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  needs:
+    - lint
+    - sanitize
+  script:
+    - cmake --preset=ci-coverage
+    - cmake --build build/coverage -j $(nproc)
+    - cd build/coverage
+    - ctest --output-on-failure --no-tests=error -j $(nproc)
+    - cd ../..
+    - cmake --build build/coverage -t coverage
+  tags:
+    - docker
+  rules:
+  - if: $CI_COMMIT_TAG == null
+
+tests:
+  stage: test
+  image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  needs:
+    - lint
+    - sanitize
+  script:
+    - cmake --preset=ci-ubuntu
+    - cmake --build build --config Release -j $(nproc)
+    - cmake --install build --config Release --prefix prefix
+    - cd build
+    - ctest --output-on-failure --no-tests=error --output-junit ctest_results.xml -C Release -j $(nproc)
+    - cd ..
+  artifacts:
+    when: always
+    paths:
+      - build/ctest_results.xml
+    reports:
+      junit: build/ctest_results.xml
+  tags:
+    - docker
+  rules:
+  - if: $CI_COMMIT_TAG == null
+
+docs:
+  stage: docs
+  image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  needs:
+    - coverage
+    - tests
+  before_script:
+    - python3 --version
+  script:
+    - echo "Commit received. Building docs for $CI_DEFAULT_BRANCH"
+    - mkdir -p build/docs
+    - cd build/docs
+    - cmake "-DPROJECT_SOURCE_DIR=$PWD/../.." "-DPROJECT_BINARY_DIR=$PWD/.." -P ../../cmake/docs-ci.cmake
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
+  tags:
+    - docker
+
+release-from-tag:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - echo "Creating release $CI_COMMIT_TAG"
+  release:
+    tag_name: $CI_COMMIT_TAG
+    name: 'Release $CI_COMMIT_TAG'
+    description: "Release $CI_COMMIT_TAG of components in $CI_PROJECT_PATH"
+  tags:
+    - docker
+  rules:
+    - if: $CI_COMMIT_TAG
+
+docker-ci:
+  stage: docker
+  before_script:
+    - docker login "$REGISTRY_URL" -u vvzunin -p "$moshub_token_docker_ci"
+  script:
+    - echo "Creating docker image with tag ci_$DOCKER_CI_TAG" && echo "Image will push to $DOCKER_URL"
+    - docker buildx build --pull --rm --provenance=false --no-cache --build-arg system=$DOCKER_CI_SYSTEM -f $DOCKERFILE_CI_NAME -t registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG .
+    - docker image push registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - $DOCKERFILE_CI_NAME
+        - .gitlab-ci.yml
+    - if: $CI_COMMIT_TAG
+      variables:
+        DOCKER_CI_TAG: $CI_COMMIT_TAG
+  tags:
+    - powershell
+
+docker-dev:
+  stage: docker
+  before_script:
+    - docker login "$REGISTRY_URL" -u vvzunin -p "$moshub_token_docker_ci"
+  script:
+    - echo "Creating docker image with tag dev_$DOCKER_CI_TAG" && echo "Image will push to $DOCKER_URL"
+    - docker buildx build --pull --rm --provenance=false --no-cache --build-arg system=registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG -f $DOCKERFILE_DEV_NAME -t registry-hub.mos.ru/circuitgen/circuitgen_generator:dev_$DOCKER_CI_TAG .
+    - docker image push registry-hub.mos.ru/circuitgen/circuitgen_generator:dev_$DOCKER_CI_TAG
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - $DOCKERFILE_CI_NAME
+        - $DOCKERFILE_DEV_NAME
+        - .gitlab-ci.yml
+    - if: $CI_COMMIT_TAG
+      variables:
+        DOCKER_CI_TAG: $CI_COMMIT_TAG
+  tags:
+    - powershell

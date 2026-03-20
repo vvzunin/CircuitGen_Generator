@@ -3,6 +3,8 @@
 
 #include "SelectionParameters.hpp"
 
+namespace CG_Gen {
+
 void SelectionParameters::setSelectionType(SelectionTypes i_selectionType) {
   d_selectionType = i_selectionType;
 }
@@ -23,3 +25,5 @@ bool SelectionParameters::operator==(const SelectionParameters &r) const {
   return std::tie(d_selectionType, d_numOfSurvivors) ==
          std::tie(r.d_selectionType, r.d_numOfSurvivors);
 }
+
+} // namespace CG_Gen

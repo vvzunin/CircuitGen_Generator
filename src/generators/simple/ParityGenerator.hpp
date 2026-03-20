@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include <generators/simple/SimpleGenerator.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 class ParityGenerator : public SimpleGenerator {
 public:
   ParityGenerator();
@@ -21,3 +25,5 @@ public:
   GraphPtr generatorParity(const GenerationParameters &i_param);
   GraphPtr generatorParity();
 };
+
+} // namespace CG_Gen

@@ -15,6 +15,8 @@
 #include <additional/AuxiliaryMethods.hpp>
 #include <additional/filesTools/FilesTools.hpp>
 
+namespace CG_Gen {
+
 Circuit::Circuit(GraphPtr const i_graph,
                  const std::vector<std::string> &i_logExpressions) {
   d_graph = i_graph;
@@ -76,7 +78,7 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
 
   for (auto [key, value]: i_graph->getGatesCount()) {
     d_circuitParameters
-        .d_numElementsOfEachType[d_settings->parseGateToString(key)] = value;
+        .d_numElementsOfEachType[GraphUtils::parseGateToString(key)] = value;
     d_circuitParameters.d_numGates += value;
   }
 
@@ -90,19 +92,17 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   for (auto [from, sub]: i_graph->getEdgesGatesCount()) {
     for (auto [to, count]: sub) {
       d_circuitParameters
-          .d_numEdgesOfEachType[{DefaultSettings::parseGateToString(from),
-                                 DefaultSettings::parseGateToString(to)}] =
-          count;
+          .d_numEdgesOfEachType[{GraphUtils::parseGateToString(from),
+                                 GraphUtils::parseGateToString(to)}] = count;
     }
   }
 
   // iterate through inputs
   for (auto *inp: inputs) {
     for (auto *child: inp->getOutConnections()) {
-      std::string to =
-          child->getGate() != Gates::GateDefault
-              ? DefaultSettings::parseGateToString(child->getGate())
-              : child->getTypeName();
+      std::string to = child->getGate() != Gates::GateDefault
+                           ? GraphUtils::parseGateToString(child->getGate())
+                           : child->getTypeName();
       ++d_circuitParameters.d_numEdgesOfEachType[{"input", to}];
     }
   }
@@ -116,10 +116,9 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
           continue;
         }
 
-        std::string from =
-            child->getGate() != Gates::GateDefault
-                ? DefaultSettings::parseGateToString(child->getGate())
-                : child->getTypeName();
+        std::string from = child->getGate() != Gates::GateDefault
+                               ? GraphUtils::parseGateToString(child->getGate())
+                               : child->getTypeName();
         ++d_circuitParameters.d_numEdgesOfEachType[{from, "output"}];
       } else {
         throw std::invalid_argument("Dead pointer!");
@@ -134,10 +133,9 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
       if (child->getType() == VertexTypes::output) {
         continue;
       }
-      std::string to =
-          child->getGate() != Gates::GateDefault
-              ? DefaultSettings::parseGateToString(child->getGate())
-              : child->getTypeName();
+      std::string to = child->getGate() != Gates::GateDefault
+                           ? GraphUtils::parseGateToString(child->getGate())
+                           : child->getTypeName();
 
       ++d_circuitParameters.d_numEdgesOfEachType[{"const", to}];
     }
@@ -162,7 +160,7 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists) {
     std::filesystem::create_directory(folderSubgraphs);
   }
 
-  return d_graph->toVerilog(d_path, d_circuitName + ".v").first;
+  return d_graph->toVerilog(d_path, d_circuitName + ".v");
 }
 
 bool Circuit::graphToDOT(const std::string &i_path, bool i_pathExists) {
@@ -184,7 +182,7 @@ bool Circuit::graphToDOT(const std::string &i_path, bool i_pathExists) {
     std::filesystem::create_directory(folderSubgraphs);
   }
 
-  return d_graph->toDOT(d_path, d_circuitName + ".dot").first;
+  return d_graph->toDOT(d_path, d_circuitName + ".dot");
 }
 
 bool Circuit::graphToGraphML(const std::string &i_path,
@@ -287,7 +285,7 @@ bool Circuit::saveParameters(GraphPtr i_graph, std::ofstream &i_outputFile,
 
   if (!i_graph->getSubGraphs().empty()) {
     i_outputFile << tab << "\"submodules\" : {" << std::endl;
-    std::set<GraphPtr> subSet = d_graph->getSetSubGraphs();
+    std::set<GraphPtr> subSet = d_graph->getSubGraphs();
     for (auto sub = subSet.begin(); sub != subSet.end();) {
       // LOG(INFO) << "Submodule " << sub->get()->getName();
       updateCircuitParameters(*sub);
@@ -327,6 +325,88 @@ bool Circuit::checkExistingHash() // TODO: is it really need return true when
       return false; // TODO: costul
 
   return false;
+}
+
+void Circuit::setDot_mmg(DotReturn i_dot) {
+  d_dot = i_dot;
+}
+
+bool Circuit::generateDOTmmg(CircuitArgs args) {
+  std::string d_path_temp = d_path + d_circuitName;
+  d_path += d_circuitName + "/";
+  std::filesystem::create_directories(d_path);
+
+  std::string filename = d_path + d_circuitName + ".dot";
+  std::ofstream i_outputFile(filename);
+  std::cerr << filename << std::endl << d_path << std::endl;
+  if (!i_outputFile.is_open()) {
+    std::cerr << "Failed to open file: " << filename << std::endl;
+    return false;
+  }
+
+  if (d_dot.empty()) {
+    std::cerr << "d_dot is empty or save_dot_mmg is set as false" << std::endl;
+    return false;
+  }
+
+  i_outputFile << "digraph " << d_circuitName << " {\n";
+  i_outputFile << "    rankdir=LR;\n";
+  i_outputFile << "    node [shape=circle];\n\n";
+
+  for (const auto &element: d_dot) {
+    switch (element.first) {
+      case DotTypes::DotGate: {
+        auto name_it = element.second.find("name");
+        auto label_it = element.second.find("label");
+        auto shape_it = element.second.find("shape");
+
+        if (name_it != element.second.end()) {
+          i_outputFile << "    " << name_it->second;
+
+          if (label_it != element.second.end() ||
+              shape_it != element.second.end()) {
+            i_outputFile << " [";
+
+            if (label_it != element.second.end()) {
+              i_outputFile << "label=\"" << label_it->second << "\"";
+            }
+
+            if (shape_it != element.second.end()) {
+              if (label_it != element.second.end())
+                i_outputFile << ", ";
+              i_outputFile << "shape=" << shape_it->second;
+            }
+
+            i_outputFile << "]";
+          }
+          i_outputFile << ";\n";
+        }
+        break;
+      }
+      case DotTypes::DotEdge: {
+        auto from_it = element.second.find("from");
+        auto to_it = element.second.find("to");
+        auto label_it = element.second.find("label");
+
+        if (from_it != element.second.end() && to_it != element.second.end()) {
+          i_outputFile << "    " << from_it->second << " -> " << to_it->second;
+
+          if (label_it != element.second.end() && !label_it->second.empty()) {
+            i_outputFile << " [label=\"" << label_it->second << "\"]";
+          }
+          i_outputFile << ";\n";
+        }
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
+  i_outputFile << "}\n";
+  i_outputFile.close();
+
+  return true;
 }
 
 bool Circuit::generate(CircuitArgs args) {
@@ -558,3 +638,5 @@ Circuit Circuit::fromVerilog(const std::string &i_filepath) {
   // }
   return circuit;
 }
+
+} // namespace CG_Gen

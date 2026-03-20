@@ -13,3 +13,6 @@ CMakeUserPresets.json
 dataset/
 settings.json
 *.log
+generation_results/*
+
+.cache/

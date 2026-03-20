@@ -1,0 +1,42 @@
+[
+    {
+      "multithread": 16,
+  
+      "GenerationParameters": {
+        "convert_to_basis": false,
+        "gates_inputs_info": {
+          "and": [2, 8],
+          "nand": [2],
+          "or": [2, 4, 8],
+          "nor": [2, 4, 8],
+          "xor": [2, 10],
+          "xnor": [2, 3]
+        },
+        "min_in": 50,
+        "max_in": 50,
+        "min_out": 50,
+        "max_out": 50, 
+        "repeat_n": 1,    
+        "seed": 34234,
+        "type_of_generation": "Cascade"
+      },
+  
+      "OutputParameters": {
+        "create_id_directories": true,
+        "dataset_id": "22",
+        "dataset_path": "./generation_results/",
+        "id": 0,
+        "make_graphml_classic": true,
+        "make_graphml_pseudo_abc_d": true,
+        "make_graphml_open_abc_d": true,
+        "make_dot": true
+      },
+  
+      "Cascade": {
+        "max_num_states": 100,
+        "min_num_states": 100,
+        "num_automatons": 15
+      }
+    }
+  ]
+  

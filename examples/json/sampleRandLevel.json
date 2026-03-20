@@ -1,24 +1,43 @@
 [
   {
-    "seed": 41,
-    "dataset_id": "11",
-    "id": 2,
-    "type_of_generation": "Rand Level",
-    "min_in": 5,
-    "max_in": 5,
-    "min_out": 5,
-    "max_out": 5,
-    "repeat_n": 1,    
     "multithread": 16,
-    "make_graphml_classic": true,
-    "make_graphml_pseudo_abc_d": true,
-    "make_graphml_open_abc_d": true,
-    "create_id_directories": true,
-    "make_dot": true,
 
-    "min_level": 100,
-    "max_level": 100,
-    "min_elem": 100,
-    "max_elem": 100
+    "GenerationParameters": {
+      "convert_to_basis": false,
+      "gates_inputs_info": {
+        "and": [2, 8],
+        "nand": [2],
+        "or": [2, 4, 8],
+        "nor": [2, 4, 8],
+        "xor": [2, 10],
+        "xnor": [2, 3]
+      },
+      "min_in": 5,
+      "max_in": 5,
+      "min_out": 5,
+      "max_out": 5,
+      "repeat_n": 1,    
+      "seed": 41,
+      "type_of_generation": "RandLevel"
+    },
+
+    "OutputParameters": {
+      "create_id_directories": true,
+      "dataset_id": "11",
+      "dataset_path": "./generation_results/",
+      "id": 2,
+      "make_graphml_classic": true,
+      "make_graphml_pseudo_abc_d": true,
+      "make_graphml_open_abc_d": true,
+      "make_dot": true
+    },
+
+    "RandLevel": {
+      "min_level": 100,
+      "max_level": 100,
+      "min_elem": 100,
+      "max_elem": 100,
+      "synthetic_connected": false 
+    }
   }
 ]

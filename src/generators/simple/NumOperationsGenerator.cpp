@@ -24,8 +24,9 @@ int32_t maxValueInMap(const std::map<T, int32_t> &i_map) {
   return res;
 }
 
-// namespace end
 } // namespace
+
+namespace CG_Gen {
 
 NumOperationsGenerator::NumOperationsGenerator() : SimpleGenerator() {
 }
@@ -50,9 +51,9 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
   std::map<std::string, VertexPtr> levelNamePtr;
   std::vector<VertexPtr> nameOut, nameInput;
 
-  for (const auto &elem: i_logicOper) {
-    std::cout << elem.first << " " << elem.second << "\n";
-  }
+  // for (const auto &elem: i_logicOper) {
+  //   std::cout << elem.first << " " << elem.second << "\n";
+  // }
 
   copyLogicOper = i_logicOper;
 
@@ -156,3 +157,5 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
 GraphPtr NumOperationsGenerator::generatorNumOperation() {
   return generatorNumOperation(getParameters());
 }
+
+} // namespace CG_Gen

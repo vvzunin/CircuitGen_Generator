@@ -1,7 +1,5 @@
 #include <algorithm>
-#include <array>
 #include <chrono>
-#include <filesystem>
 #include <fstream>
 #include <functional>
 #include <iostream>
@@ -20,510 +18,534 @@
 #include <settings/Settings.hpp>
 #include <unistd.h>
 
-#include "CircuitGenGenerator/export.hpp"
+#include "generators/Genetic/Chromosome.hpp"
+#include "generators/Genetic/Mutations/MutationParameters.hpp"
+#include "generators/Genetic/Parents/ParentsParameters.hpp"
+#include "generators/Genetic/Recombination/RecombinationParameters.hpp"
+#include "generators/Genetic/Selections/SelectionParameters.hpp"
 
 using namespace std::chrono;
+using namespace CG_Gen;
+
+bool check(const nlohmann::json &i_data, const std::string &i_param,
+           bool isExit = true) {
+  if (!i_data.contains(i_param)) {
+    std::cerr << "JSON file doesn't contains " + i_param + "!" << std::endl;
+    if (isExit)
+      std::exit(1);
+    return false;
+  }
+  return true;
+}
+
+template<typename Type>
+Type readWithCheck(const nlohmann::json &i_data, const std::string &i_param,
+                   Type i_default, bool isExit = false) {
+  if (!i_data.contains(i_param)) {
+    std::cerr << "JSON file doesn't contains " + i_param + "!" << std::endl;
+    if (isExit)
+      std::exit(1);
+    return i_default;
+  }
+  return static_cast<Type>(i_data[i_param]);
+}
+
+template<typename Type>
+Type readEnumWithCheck(const nlohmann::json &i_data, const std::string &i_param,
+                       const std::map<std::string, Type> &values_map) {
+  if (!i_data.contains(i_param)) {
+    std::cerr << "JSON file doesn't contains " + i_param + "!" << std::endl;
+    std::exit(1);
+  }
+  const std::string valStr = static_cast<std::string>(i_data[i_param]);
+  if (values_map.find(valStr) == values_map.end()) {
+    std::cerr << "Unsupported type for parameter " << i_param << std::endl;
+    exit(1);
+  }
+  return values_map.at(valStr);
+}
+
+GenerationParameters *getBasicParameters(const nlohmann::json &i_data,
+                                         GenerationTypes &i_type,
+                                         int &i_minInputs, int &i_maxInputs,
+                                         int &i_minOutputs, int &i_maxOutputs,
+                                         int &i_repeats, bool &i_convertToBasis) {
+  const std::string name = "GenerationParameters";
+  check(i_data, name);
+  int seed = readWithCheck<int>(i_data[name], "seed", -1);
+  AuxMethods::setRandSeed(seed == -1 ? static_cast<unsigned>(std::time(0))
+                                     : static_cast<unsigned>(seed));
+  i_minInputs = readWithCheck<int>(i_data[name], "min_in", 1);
+  i_maxInputs = readWithCheck<int>(i_data[name], "max_in", 1);
+  i_minOutputs = readWithCheck<int>(i_data[name], "min_out", 1);
+  i_maxOutputs = readWithCheck<int>(i_data[name], "max_out", 1);
+  i_repeats = readWithCheck<int>(i_data[name], "repeat_n", 1);
+
+  i_convertToBasis = readWithCheck<bool>(i_data[name], "convert_to_basis", false);
+
+  // Считывание информации по логичсеким элементам.
+  std::map<std::string, std::vector<int>> gatesInputsInfo;
+
+  if (check(i_data[name], "gates_inputs_info")) {
+    for (auto gate: i_data[name]["gates_inputs_info"].items()) {
+      std::vector<int> gatesNumber =
+          static_cast<std::vector<int>>(gate.value());
+
+      // sorting data. It's important for fast generator work
+      if (!gatesNumber.empty()) {
+        std::sort(gatesNumber.begin(), gatesNumber.end());
+
+        gatesInputsInfo[gate.key()] = gatesNumber;
+      }
+    }
+  }
+
+  // get generation type
+  i_type = readEnumWithCheck(i_data[name], "type_of_generation",
+                             GenerationTypes2Name);
+
+  GenerationParameters *gp;
+
+  bool isExit = false;
+  if (readWithCheck<bool>(i_data["OutputParameters"], "create_id_directories",
+                          false))
+    isExit = true;
+  std::string datasetId = readWithCheck<std::string>(i_data["OutputParameters"],
+                                                     "dataset_id", "0", isExit);
+  int requestIdSTR =
+      readWithCheck<int>(i_data["OutputParameters"], "id", 0, isExit);
+  std::string requestId = std::to_string(requestIdSTR);
+
+  // for GraphML
+  bool makeGraphMLClassic = readWithCheck<bool>(i_data["OutputParameters"],
+                                                "make_graphml_classic", false);
+  bool makeGraphMLPseudo = readWithCheck<bool>(
+      i_data["OutputParameters"], "make_graphml_pseudo_abc_d", false);
+  bool makeGraphMLOpen = readWithCheck<bool>(i_data["OutputParameters"],
+                                             "make_graphml_open_abc_d", false);
+  bool makeDot =
+      readWithCheck<bool>(i_data["OutputParameters"], "make_dot", false);
+
+  gp = new GenerationParameters(datasetId, requestId, i_minInputs, i_minOutputs,
+                                i_repeats, makeGraphMLClassic,
+                                makeGraphMLPseudo, makeGraphMLOpen, makeDot, i_convertToBasis);
+  gp->setGatesInputInfo(gatesInputsInfo);
+
+  return gp;
+}
+
+void setFromTruthTable(const nlohmann::json &i_data,
+                       GenerationParameters *i_gp) {
+  std::string name = "FromRandomTruthTable";
+  // Основные параметры для From Random Truth Table
+  check(i_data, name);
+  bool cnff = readWithCheck<bool>(i_data[name], "CNFF", false);
+  bool cnft = readWithCheck<bool>(i_data[name], "CNFT", false);
+  bool zhegalkin = readWithCheck<bool>(i_data[name], "Zhegalkin", false);
+  if (!(cnff || cnft || zhegalkin)) {
+    std::cerr << "Parameters for selected generation type is not set."
+              << std::endl;
+    exit(1);
+  }
+  i_gp->setCNFF(cnff);
+  i_gp->setCNFT(cnft);
+  i_gp->setZhegalkin(zhegalkin);
+}
+
+void setRandLevel(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "RandLevel";
+  check(i_data, name);
+  const auto minLevel = readWithCheck<int>(i_data[name], "min_level", 1);
+  const auto maxLevel = readWithCheck<int>(i_data[name], "max_level", 1);
+  const auto minElem = readWithCheck<int>(i_data[name], "min_elem", 1);
+  const auto maxElem = readWithCheck<int>(i_data[name], "max_elem", 1);
+  const auto syntheticConnected =
+      readWithCheck<bool>(i_data[name], "synthetic_connected", false);
+
+  i_gp->setRandLevelParameters(
+      minLevel, maxLevel, minElem, maxElem, syntheticConnected);
+}
+
+void setRandLevelExperimental(const nlohmann::json &i_data,
+                              GenerationParameters *i_gp) {
+  std::string name = "RandLevelExperimental";
+  check(i_data, name);
+  const auto minLevel = readWithCheck<int>(i_data[name], "min_level", 1);
+  const auto maxLevel = readWithCheck<int>(i_data[name], "max_level", 1);
+  const auto minElem = readWithCheck<int>(i_data[name], "min_elem", 1);
+  const auto maxElem = readWithCheck<int>(i_data[name], "max_elem", 1);
+
+  i_gp->setRandLevelParameters(minLevel, maxLevel, minElem, maxElem);
+}
+
+void setNumOperation(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "NumOperation";
+  check(i_data, name);
+
+  bool LeaveEmptyOut =
+      readWithCheck<bool>(i_data[name], "leave_empty_out", false);
+
+  std::map<std::string, Gates> mapping = {
+      {"num_and", Gates::GateAnd}, {"num_nand", Gates::GateNand},
+      {"num_or", Gates::GateOr},   {"num_not", Gates::GateNot},
+      {"num_nor", Gates::GateNor}, {"num_buf", Gates::GateBuf},
+      {"num_xor", Gates::GateXor}, {"num_xnor", Gates::GateXnor},
+  };
+
+  std::map<Gates, int> m;
+
+  for (const auto &[key, val]: mapping) {
+    const int count = readWithCheck<int>(i_data[name], key, 1);
+    m[val] = count;
+  }
+
+  i_gp->setNumOperationParameters(m, LeaveEmptyOut);
+}
+
+void setComparison(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Comparison";
+  check(i_data, name);
+
+  const bool equal = readWithCheck<bool>(i_data[name], "equal", false);
+  const bool less = readWithCheck<bool>(i_data[name], "less", false);
+  const bool more = readWithCheck<bool>(i_data[name], "more", false);
+
+  i_gp->setComparisonParameters(equal, less, more);
+}
+
+void setSummator(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Summator";
+  check(i_data, name);
+
+  const bool overflowIn =
+      readWithCheck<bool>(i_data[name], "overflowIn", false);
+  const bool overflowOut =
+      readWithCheck<bool>(i_data[name], "overflowOut", false);
+  const bool minus = readWithCheck<bool>(i_data[name], "minus", false);
+
+  i_gp->setSummatorParameters(overflowIn, overflowOut, minus);
+}
+
+void setMultiplier(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Multiplier";
+  check(i_data, name, false);
+}
+
+void setSubtractor(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Subtractor";
+  check(i_data, name);
+
+  const bool overflowIn =
+      readWithCheck<bool>(i_data[name], "overflowIn", false);
+  const bool overflowOut =
+      readWithCheck<bool>(i_data[name], "overflowOut", false);
+  const bool sub = readWithCheck<bool>(i_data[name], "sub", false);
+
+  i_gp->setSubtractorParameters(overflowIn, overflowOut, sub);
+}
+
+void setMultiplexer(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Multiplexer";
+  check(i_data, name, false);
+}
+
+void setDemultiplexer(const nlohmann::json &i_data,
+                      GenerationParameters *i_gp) {
+  std::string name = "Demultiplexer";
+  check(i_data, name, false);
+}
+
+void setEncoder(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Encoder";
+  check(i_data, name, false);
+}
+
+void setDecoder(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Decoder";
+  check(i_data, name, false);
+}
+
+void setGenetic(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Genetic";
+  check(i_data, name);
+
+  const int32_t populationSize =
+      readWithCheck<int32_t>(i_data[name], "population_size", 1);
+  const int32_t numOfCycles = readWithCheck<int32_t>(i_data[name], "cycles", 1);
+  const ParentsTypes selecTypeParent = readEnumWithCheck<ParentsTypes>(
+      i_data[name], "selection_type_parent", ParentsType2Name);
+  const int32_t tourSize = readWithCheck<int32_t>(i_data[name], "tour_size", 1);
+  const RecombinationTypes recombinationType =
+      readEnumWithCheck<RecombinationTypes>(i_data[name], "playback_type",
+                                            RecombinationType2Name);
+  const int32_t refPoints =
+      readWithCheck<int32_t>(i_data[name], "ref_points", 1);
+  const double maskProb = readWithCheck<double>(i_data[name], "mask_prob", 1.0);
+  const int32_t recNum = readWithCheck<int32_t>(i_data[name], "rec_num", 1);
+
+  // currently not used
+  [[maybe_unused]] const GenotypeParametersTypes chromosomeType =
+      readEnumWithCheck<GenotypeParametersTypes>(
+          i_data[name], "chromosome_type", GenotypeParametersType2Name);
+  [[maybe_unused]] const int32_t exchangeType =
+      readWithCheck<int32_t>(i_data[name], "swap_type", 1);
+  [[maybe_unused]] const double mutationChance =
+      readWithCheck<double>(i_data[name], "mut_chance", 0.5);
+  [[maybe_unused]] const MutationTypes mutationType =
+      readEnumWithCheck<MutationTypes>(i_data[name], "mut_type",
+                                       MutationType2Name);
+  [[maybe_unused]] const double outRatio =
+      readWithCheck<double>(i_data[name], "out_ratio", 1.0);
+  [[maybe_unused]] const double probabilityTruthTable =
+      readWithCheck<double>(i_data[name], "ratio_in_table", 1.0);
+  [[maybe_unused]] const SelectionTypes selType =
+      readEnumWithCheck<SelectionTypes>(i_data[name], "selection_type",
+                                        SelectionType2Name);
+  [[maybe_unused]] const int32_t survNum =
+      readWithCheck<int32_t>(i_data[name], "surv_num", 1);
+
+  i_gp->setPopulationSize(populationSize);
+  i_gp->setNumOfCycles(numOfCycles);
+  i_gp->setRecombinationParameters(selecTypeParent, tourSize, recombinationType,
+                                   refPoints, maskProb, recNum);
+}
+
+void setParity(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Parity";
+  check(i_data, name, false);
+}
+
+void setALU(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "ALU";
+  check(i_data, name);
+
+  const bool ALL = readWithCheck<bool>(i_data[name], "ALL", false);
+  const bool AND = readWithCheck<bool>(i_data[name], "AND", false);
+  const bool NAND = readWithCheck<bool>(i_data[name], "NAND", false);
+  const bool OR = readWithCheck<bool>(i_data[name], "OR", false);
+  const bool NOR = readWithCheck<bool>(i_data[name], "NOR", false);
+  const bool XOR = readWithCheck<bool>(i_data[name], "XOR", false);
+  const bool XNOR = readWithCheck<bool>(i_data[name], "XNOR", false);
+  const bool SUM = readWithCheck<bool>(i_data[name], "SUM", false);
+  const bool NSUM = readWithCheck<bool>(i_data[name], "NSUM", false);
+  const bool MULT = readWithCheck<bool>(i_data[name], "MULT", false);
+  const bool SUB = readWithCheck<bool>(i_data[name], "SUB", false);
+  const bool NSUB = readWithCheck<bool>(i_data[name], "NSUB", false);
+  const bool COM = readWithCheck<bool>(i_data[name], "COM", false);
+  const bool CNF = readWithCheck<bool>(i_data[name], "CNF", false);
+  const bool RNL = readWithCheck<bool>(i_data[name], "RNL", false);
+  const bool NUM_OP = readWithCheck<bool>(i_data[name], "NUM_OP", false);
+
+  const int min_level = readWithCheck<int>(i_data[name], "min_level", 1);
+  const int max_level = readWithCheck<int>(i_data[name], "max_level", 1);
+  const int min_elem = readWithCheck<int>(i_data[name], "min_elem", 1);
+  const int max_elem = readWithCheck<int>(i_data[name], "max_elem", 1);
+  const bool leave_empty_out =
+      readWithCheck<bool>(i_data[name], "leave_empty_out", false);
+
+  // not initialized now
+  std::map<Gates, int32_t> m;
+
+  i_gp->setALUParameters(ALL, SUM, SUB, NSUM, NSUB, MULT, COM, AND, NAND, OR,
+                         NOR, XOR, XNOR, CNF, RNL, NUM_OP, min_level, max_level,
+                         min_elem, max_elem, m, leave_empty_out);
+}
+
+void setMealyMoore(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "MealyMoore";
+  check(i_data, name);
+
+  const bool genType = readWithCheck<bool>(i_data[name], "gen_type", false);
+  const uint32_t numStates = readWithCheck<uint32_t>(i_data[name], "num_states", 0);
+  const bool saveDOT_mmg = readWithCheck<bool>(i_data[name], "save_dot_mmg", false);
+
+  i_gp->setMealyMooreParameters(genType, numStates, saveDOT_mmg);
+}
+
+void setDotToGraph(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "DotToGraph";
+  check(i_data, name);
+
+  const bool GenTypeDot = readWithCheck<bool>(i_data[name], "gen_type_dot", false);
+  const std::string DotPath = readWithCheck<std::string>(i_data[name], "dotpath", "./dataset/21/3");
+
+  i_gp->setDotToGraphParameters(GenTypeDot, DotPath);
+}
+
+void setCascade(const nlohmann::json &i_data, GenerationParameters *i_gp) {
+  std::string name = "Cascade";
+  check(i_data, name);
+  
+  const uint32_t MaxNumStates = readWithCheck<uint32_t>(i_data[name], "max_num_states", 1);
+  const uint32_t MinNumStates = readWithCheck<uint32_t>(i_data[name], "min_num_states", 1);
+  const uint32_t NumAutomaton = readWithCheck<uint32_t>(i_data[name], "num_automatons", 1);
+
+  i_gp->setCascadeParameters(MaxNumStates, MinNumStates, NumAutomaton);
+}
+
+DataBaseGeneratorParameters *
+setGenerationParameters(const nlohmann::json &i_data) {
+  GenerationTypes gt;
+  int minInputs, maxInputs;
+  int minOutputs, maxOutputs;
+  int repeats;
+  bool convertToBasis;
+  GenerationParameters *gp = getBasicParameters(
+      i_data, gt, minInputs, maxInputs, minOutputs, maxOutputs, repeats, convertToBasis);
+
+  // Setting generation type.
+  switch (gt) {
+    case GenerationTypes::FromRandomTruthTable: {
+      setFromTruthTable(i_data, gp);
+      break;
+    }
+    case GenerationTypes::RandLevel: {
+      setRandLevel(i_data, gp);
+      break;
+    }
+    case GenerationTypes::RandLevelExperimental: {
+      setRandLevelExperimental(i_data, gp);
+      break;
+    }
+    case GenerationTypes::NumOperation: {
+      setNumOperation(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Comparison: {
+      setComparison(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Summator: {
+      setSummator(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Multiplier: {
+      setMultiplier(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Subtractor: {
+      setSubtractor(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Multiplexer: {
+      setMultiplexer(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Demultiplexer: {
+      setDemultiplexer(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Encoder: {
+      setEncoder(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Decoder: {
+      setDecoder(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Genetic: {
+      setGenetic(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Parity: {
+      setParity(i_data, gp);
+      break;
+    }
+    case GenerationTypes::ALU: {
+      setALU(i_data, gp);
+      break;
+    }
+    case GenerationTypes::MealyMoore: {
+      setMealyMoore(i_data, gp);
+      break;
+    }
+    case GenerationTypes::DotToGraph: {
+      setDotToGraph(i_data, gp);
+      break;
+    }
+    case GenerationTypes::Cascade: {
+      setCascade(i_data, gp);
+      break;
+    }
+  }
+
+  DataBaseGeneratorParameters *dbgp = new DataBaseGeneratorParameters(
+      minInputs, maxInputs, minOutputs, maxOutputs, repeats, gt, *gp);
+
+  auto instance = Settings::getInstance("CircuitGenGenerator");
+
+  if (check(i_data["OutputParameters"], "dataset_path")) {
+    const auto path =
+        static_cast<std::string>(i_data["OutputParameters"]["dataset_path"]);
+    instance->setDatasetPath(path);
+  }
+
+  return dbgp;
+}
+
+/// @brief runGeneration reads json file and runs specified generator/
+/// for DotToGraph generator it reads folderpath from json and changes 
+/// json file for DotToGraphGenerator so it receives every .dot file in folderpath.
+/// Then it runs DotToGraphGenerator for every .dot file in folder. This change is for DotToGraphGenerator only.
+/// @param folderPath path to a folder containing .dot files for DotToGraphGenerator
 
 void runGeneration(
-    std::string json_path,
+    std::string i_json_path,
     std::function<void(DataBaseGenerator &, const DataBaseGeneratorParameters &,
                        uint8_t, bool)>
-        callable) {
-  std::ifstream f(json_path);
+        i_callable) {
+  std::ifstream f(i_json_path);
   nlohmann::json DATA = nlohmann::json::parse(f);
   // Read all json objects in json file.
 
   for (auto it = DATA.begin(); it != DATA.end(); it++) {
     nlohmann::json data = *it;
 
-    // Проверка на наличие типа генерации. Если его нет, то завершаем программу.
-    if (!data.contains("type_of_generation")) {
-      std::cerr << "No generation type!" << std::endl;
-      return;
-    }
+    DataBaseGeneratorParameters *dbgp = setGenerationParameters(data);
 
-    // Задаем сид рандомизации.
-    AuxMethods::setRandSeed(!data.contains("seed") || data["seed"] == -1
-                                ? static_cast<uint_fast32_t>(std::time(0))
-                                : static_cast<uint_fast32_t>(data["seed"]));
-    // EVERYWHERE seed from json is getting here. It is like a storage for seed
-    // for all future usages`
+    DataBaseGenerator generator(*dbgp);
+      
+    const uint8_t threads = readWithCheck<uint8_t>(data, "multithread", 1);
+    const bool createDirs = readWithCheck<bool>(data["OutputParameters"],
+                                                "create_id_directories", false);
 
-    // Задаем основные параметры генерации
-    GenerationTypes gt;
-    if (data["type_of_generation"] == "From Random Truth Table")
-      gt = GenerationTypes::FromRandomTruthTable;
-    else if (data["type_of_generation"] == "Rand Level")
-      gt = GenerationTypes::RandLevel;
-    else if (data["type_of_generation"] == "Rand Level Experimental")
-      gt = GenerationTypes::RandLevelExperimental;
-    else if (data["type_of_generation"] == "Num Operation")
-      gt = GenerationTypes::NumOperation;
-    else if (data["type_of_generation"] == "Genetic")
-      gt = GenerationTypes::Genetic;
-    else if (data["type_of_generation"] == "Summator")
-      gt = GenerationTypes::Summator;
-    else if (data["type_of_generation"] == "Comparison")
-      gt = GenerationTypes::Comparison;
-    else if (data["type_of_generation"] == "Encoder")
-      gt = GenerationTypes::Encoder;
-    else if (data["type_of_generation"] == "Subtractor")
-      gt = GenerationTypes::Subtractor;
-    else if (data["type_of_generation"] == "Multiplexer")
-      gt = GenerationTypes::Multiplexer;
-    else if (data["type_of_generation"] == "Demultiplexer")
-      gt = GenerationTypes::Demultiplexer;
-    else if (data["type_of_generation"] == "Multiplier")
-      gt = GenerationTypes::Multiplier;
-    else if (data["type_of_generation"] == "Decoder")
-      gt = GenerationTypes::Decoder;
-    else if (data["type_of_generation"] == "Parity")
-      gt = GenerationTypes::Parity;
 
-    else if (data["type_of_generation"] == "ALU")
-      gt = GenerationTypes::ALU;
-    else {
-      std::cerr << "Unsupported generation type" << std::endl;
-      return;
-    }
+    if (dbgp->getGenerationType() == DotToGraph){
 
-    std::string datasetId = data.contains("dataset_id")
-                                ? static_cast<std::string>(data["dataset_id"])
-                                : "0";
+      std::string folderPath = readWithCheck<std::string>(data["DotToGraph"], "dotpath", "", true);
 
-    uint32_t requestIdINT = data.contains("id") ? (uint32_t)data["id"] : 0;
+      for (const auto &entry : std::filesystem::directory_iterator(folderPath)) {
+        if (entry.path().extension() == ".dot") {
+          auto start = std::chrono::high_resolution_clock::now();
 
-    std::string requestId = std::to_string(requestIdINT);
-
-    uint32_t minInputs = 1;
-    uint32_t maxInputs = 1;
-    uint32_t minOutputs = 1;
-    uint32_t maxOutputs = 1;
-    uint32_t repeats = 1;
-
-    if (data.contains("min_in")) {
-      minInputs = data["min_in"];
-    } else {
-      std::clog << "min_in is not in json" << std::endl;
-    }
-    if (data.contains("max_in")) {
-      maxInputs = data["max_in"];
-    } else {
-      std::clog << "max_in is not in json" << std::endl;
-    }
-    if (data.contains("min_out")) {
-      minOutputs = data["min_out"];
-    } else {
-      std::clog << "min_out is not in json" << std::endl;
-    }
-    if (data.contains("max_out")) {
-      maxOutputs = data["max_out"];
-    } else {
-      std::clog << "max_out is not in json" << std::endl;
-    }
-    if (data.contains("repeat_n")) {
-      repeats = data["repeat_n"];
-    } else {
-      std::clog << "repeat_n is not in json" << std::endl;
-    }
-
-    // for GraphML
-    bool makeGraphMLClassic = data.contains("make_graphml_classic")
-                                  ? (bool)data["make_graphml_classic"]
-                                  : false;
-    bool makeGraphMLPseudoABCD = data.contains("make_graphml_pseudo_abc_d")
-                                     ? (bool)data["make_graphml_pseudo_abc_d"]
-                                     : false;
-    bool makeGraphMLOpenABCD = data.contains("make_graphml_open_abc_d")
-                                   ? (bool)data["make_graphml_open_abc_d"]
-                                   : false;
-    bool makeDOT = data.contains("make_dot") ? (bool)data["make_dot"] : false;
-
-    // Считывание информации по логичсеким элементам.
-    std::map<std::string, std::vector<int32_t>> gatesInputsInfo;
-
-    if (data.contains("gates_inputs_info")) {
-      for (auto gate: data["gates_inputs_info"].items()) {
-        std::vector<int32_t> gatesNumber =
-            static_cast<std::vector<int32_t>>(gate.value());
-
-        // sorting data. It's important for fast generator work
-        if (gatesNumber.size()) {
-          std::sort(gatesNumber.begin(), gatesNumber.end());
-
-          gatesInputsInfo[gate.key()] = gatesNumber;
+          data["DotToGraph"]["dotpath"] = entry.path().string();
+          delete dbgp;
+          dbgp = setGenerationParameters(data);
+          DataBaseGenerator generator(*dbgp);
+          generator.generateTypeForGraph(*dbgp, threads, createDirs);
+          auto stop = std::chrono::high_resolution_clock::now();
+          auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+          std::clog << "Processed file: " << entry.path() 
+                    << " | Time: " << duration.count() << " microseconds\n";
         }
       }
     }
-    // TODO: shell we fill gatesInputsInfo always?
-    // // if gates_inputs_info in json was empty or there was no such data in
-    // json if (!gatesInputsInfo.size()) {
-    //   // default init data
-    //   gatesInputsInfo["and"]  = {2};
-    //   gatesInputsInfo["nand"] = {2};
-    //   gatesInputsInfo["or"]   = {2};
-    //   gatesInputsInfo["nor"]  = {2};
-    //   gatesInputsInfo["xor"]  = {2};
-    //   gatesInputsInfo["xnor"] = {2};
-    // }
+    else{
+      auto start = high_resolution_clock::now();
 
-    // TODO:: make function that return DataBaseGeneratorParameters from json
-    // Recording of json data to gp
-    GenerationParameters gp(datasetId, requestId, minInputs, minOutputs,
-                            repeats, makeGraphMLClassic, makeGraphMLPseudoABCD,
-                            makeGraphMLOpenABCD, makeDOT);
-
-    gp.setGatesInputInfo(gatesInputsInfo);
-    // ------------------------------------------------------------------------
-
-    // Основные параметры для From Random Truth Table
-    if (data["type_of_generation"] == "From Random Truth Table") {
-      if (!(data.contains("CNFF") || data.contains("CNFT") ||
-            data.contains("Zhegalkin"))) {
-        std::cerr << "Parameters for selected generation type is not set."
-                  << std::endl;
-        return;
-      }
-      gp.setCNFF(data.contains("CNFF") ? (bool)data["CNFF"] : false);
-      gp.setCNFT(data.contains("CNFT") ? (bool)data["CNFT"] : false);
-      gp.setZhegalkin(data.contains("Zhegalkin") ? (bool)data["Zhegalkin"]
-                                                 : false);
+      generator.generateTypeForGraph(*dbgp, threads, createDirs);
+  
+      auto stop = high_resolution_clock::now();
+      auto duration = duration_cast<microseconds>(stop - start);
+      std::clog << "Time taken: " << duration.count() << " microseconds"
+                << std::endl;
     }
-
-    // Основные параметры для Rand Level
-    if (static_cast<std::string>(data["type_of_generation"])
-            .find("Rand Level") != std::string::npos) {
-      if (!(data.contains("max_level") || data.contains("max_elem")))
-        std::clog << "Parameters for selected generation type is not set. "
-                     "Parameters sets to default."
-                  << std::endl;
-
-      uint32_t minLevel =
-          data.contains("min_level") ? (uint32_t)data["min_level"] : 0;
-      uint32_t maxLevel =
-          data.contains("max_level") ? (uint32_t)data["max_level"] : 0;
-      uint32_t minElement =
-          data.contains("min_elem") ? (uint32_t)data["min_elem"] : 0;
-      uint32_t maxElement =
-          data.contains("max_elem") ? (uint32_t)data["max_elem"] : 0;
-      gp.setRandLevelParameters(minLevel, maxLevel, minElement, maxElement);
-    }
-
-    // Основные параметры для Num Operation
-    if (data["type_of_generation"] == "Num Operation") {
-      std::vector<std::string> v = {"num_and", "num_nand", "num_or",
-                                    "num_not", "num_nor",  "num_buf",
-                                    "num_xor", "num_xnor"};
-
-      std::map<std::string, Gates> stringToGate = {
-          {"and", Gates::GateAnd}, {"nand", Gates::GateNand},
-          {"or", Gates::GateOr},   {"nor", Gates::GateNor},
-          {"not", Gates::GateNot}, {"buf", Gates::GateBuf},
-          {"xor", Gates::GateXor}, {"xnor", Gates::GateXnor}};
-
-      std::map<Gates, int32_t> m;
-
-      for (auto &el: data.items()) {
-        if (std::find(v.begin(), v.end(), el.key()) != v.end()) {
-          m.insert({stringToGate[el.key().substr(4, 10)], el.value()});
-        }
-      }
-
-      bool LeaveEmptyOut = false;
-      if (data.contains("leave_empty_out"))
-        LeaveEmptyOut = data["leave_empty_out"];
-      else
-        std::clog << "LeaveEmptyOut is not set." << std::endl;
-
-      gp.setNumOperationParameters(m, LeaveEmptyOut);
-    }
-
-    // Основные параметры для Genetic
-    if (data["type_of_generation"] == "Genetic") {
-      // TODO NOT USED
-      // int32_t numOfSurv = 1;
-      // if (data.contains("surv_num"))
-      //   numOfSurv = data["surv_num"];
-      // else
-      //   std::clog << "Parameter surv_num is not set." << std::endl;
-
-      MutationTypes mType;
-      if (data.contains("mut_type")) {
-        std::string mutType = data["mut_type"];
-
-        if (mutType == "Binary")
-          mType = MutationTypes::Binary;
-        else if (mutType == "Density")
-          mType = MutationTypes::Density;
-        else if (mutType == "AccessionDel")
-          mType = MutationTypes::AccessionDel;
-        else if (mutType == "InsertDel")
-          mType = MutationTypes::InsertDel;
-        else if (mutType == "Exchange")
-          mType = MutationTypes::Exchange;
-        else if (mutType == "Delete")
-          mType = MutationTypes::Delete;
-        else {
-          std::cerr << "Unsupported mutType." << std::endl;
-          return;
-        }
-      } else {
-        std::cerr << "Parameters for mutType is not set." << std::endl;
-        return;
-      }
-
-      double mutChance = 0.5;
-      if (data.contains("mut_chance"))
-        mutChance = data["mut_chance"];
-      else
-        std::clog << "Parameter mutChance is not set." << std::endl;
-
-      int32_t exchangeType = 0;
-      if (data.contains("swap_type"))
-        exchangeType = data["swap_type"];
-      else
-        std::clog << "Parameter swap_type is not set." << std::endl;
-
-      double outRatio = 1.0;
-      if (data.contains("out_ratio"))
-        outRatio = data["out_ratio"];
-      else
-        std::clog << "Parameter out_ratio is not set." << std::endl;
-
-      double probabilityTruthTable = 1.0;
-      if (data.contains("ratio_in_table"))
-        probabilityTruthTable = data["ratio_in_table"];
-      else
-        std::clog << "Parameter ratio_in_table is not set." << std::endl;
-
-      int32_t recNum = 1;
-      if (data.contains("rec_num"))
-        recNum = data["rec_num"];
-      else
-        std::clog << "Parameter rec_num is not set." << std::endl;
-
-      int32_t refPoints = 1;
-      if (data.contains("ref_points"))
-        refPoints = data["ref_points"];
-      else
-        std::clog << "Parameter ref_points is not set." << std::endl;
-
-      int32_t tourSize = 1;
-      if (data.contains("tour_size"))
-        tourSize = data["tour_size"];
-      else
-        std::clog << "Parameter tour_size is not set." << std::endl;
-
-      std::string selectionTypeParent = data["selection_type_parent"];
-      ParentsTypes selecTypeParent;
-      if (selectionTypeParent == "Panmixia")
-        selecTypeParent = ParentsTypes::Panmixia;
-      else if (selectionTypeParent == "Inbringing")
-        selecTypeParent = ParentsTypes::Inbringing;
-      else if (selectionTypeParent == "Outbrinding")
-        selecTypeParent = ParentsTypes::Outbrinding;
-      else if (selectionTypeParent == "Tournament")
-        selecTypeParent = ParentsTypes::Tournament;
-      else if (selectionTypeParent == "Roulette")
-        selecTypeParent = ParentsTypes::Roulette;
-      else {
-        std::cerr << "Unsupported selectionTypeParent." << std::endl;
-        return;
-      }
-
-      std::string recombinationType = data["playback_type"];
-      RecombinationTypes recombType;
-      if (recombinationType == "CrossingEachExitInTurnMany")
-        recombType = RecombinationTypes::CrossingEachExitInTurnMany;
-      else if (recombinationType == "CrossingUniform")
-        recombType = RecombinationTypes::CrossingUniform;
-      else if (recombinationType == "CrossingTriadic")
-        recombType = RecombinationTypes::CrossingTriadic;
-      else if (recombinationType == "CrossingReducedReplacement")
-        recombType = RecombinationTypes::CrossingReducedReplacement;
-      else if (recombinationType == "CrossingShuffling")
-        recombType = RecombinationTypes::CrossingShuffling;
-      else {
-        std::cerr << "Unsupported recombinationType." << std::endl;
-        return;
-      }
-
-      double maskProb = 1.0;
-      if (data.contains("mask_prob"))
-        maskProb = data["mask_prob"];
-      else
-        std::clog << "Parameter mask_prob is not set." << std::endl;
-
-      int32_t populationSize = 1;
-      if (data.contains("population_size"))
-        populationSize = data["population_size"];
-      else
-        std::clog << "Parameter population_size is not set." << std::endl;
-
-      int32_t numOfCycles = 1;
-      if (data.contains("cycles"))
-        numOfCycles = data["cycles"];
-      else
-        std::clog << "Parameter cycles is not set." << std::endl;
-
-      std::string selectionType = data["selection_type"];
-      SelectionTypes selType;
-      if (selectionType == "Base")
-        selType = SelectionTypes::Base;
-
-      int32_t survNum = data["surv_num"];
-
-      gp.setPopulationSize(populationSize);
-      gp.setNumOfCycles(numOfCycles);
-      gp.setRecombinationParameters(selecTypeParent, tourSize, recombType,
-                                    refPoints, maskProb, recNum);
-      gp.setMutationParameters(mType, mutChance, exchangeType,
-                               probabilityTruthTable);
-      gp.setSelectionParameters(selType, survNum);
-      gp.setKeyEndProcessIndex(outRatio);
-      // gp.setGeneticParameters(numOfSurv, mutType, mutChance, swapType,
-      // ratioInTable, recNum, refPoints, tourSize, selectionTypeParent);
-    }
-
-    if (static_cast<std::string>(data["type_of_generation"])
-            .find("Subtractor") != std::string::npos) {
-      if (!(data.contains("overflowIn") || data.contains("overflowOut") ||
-            data.contains("sub")))
-        std::clog << "Parameters for selected generation type is not set. "
-                     "Parameters sets to default."
-                  << std::endl;
-
-      bool overflowIn =
-          data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
-      bool overflowOut =
-          data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
-      bool sub = data.contains("sub") ? (bool)data["sub"] : false;
-      gp.setSubtractorParameters(overflowIn, overflowOut, sub);
-    }
-
-    if (static_cast<std::string>(data["type_of_generation"]).find("Summator") !=
-        std::string::npos) {
-      if (!(data.contains("overflowIn") || data.contains("overflowOut") ||
-            data.contains("minus")))
-        std::clog << "Parameters for selected generation type is not set. "
-                     "Parameters sets to default."
-                  << std::endl;
-
-      bool overflowIn =
-          data.contains("overflowIn") ? (bool)data["overflowIn"] : false;
-      bool overflowOut =
-          data.contains("overflowOut") ? (bool)data["overflowOut"] : false;
-      bool minus = data.contains("minus") ? (bool)data["minus"] : false;
-      gp.setSummatorParameters(overflowIn, overflowOut, minus);
-    }
-
-    if (static_cast<std::string>(data["type_of_generation"])
-            .find("Comparison") != std::string::npos) {
-      if (!(data.contains("equal") || data.contains("less") ||
-            data.contains("more")))
-        std::clog << "Parameters for selected generation type is not set. "
-                     "Parameters sets to default."
-                  << std::endl;
-
-      bool compare0 = data.contains("equal") ? (bool)data["equal"] : false;
-      bool compare1 = data.contains("less") ? (bool)data["less"] : false;
-      bool compare2 = data.contains("more") ? (bool)data["more"] : false;
-      gp.setComparisonParameters(compare0, compare1, compare2);
-    }
-
-    if (static_cast<std::string>(data["type_of_generation"]).find("ALU") !=
-        std::string::npos) {
-      if (!(data.contains("ALL") || data.contains("SUM") ||
-            data.contains("SUB") || data.contains("NSUM") ||
-            data.contains("NSUB") || data.contains("MULT") ||
-            data.contains("COM") || data.contains("AND") ||
-            data.contains("NAND") || data.contains("OR") ||
-            data.contains("NOR") || data.contains("XOR") ||
-            data.contains("XNOR") || data.contains("CNF")))
-        std::clog << "Parameters for selected generation type is not set. "
-                     "Parameters sets to default."
-                  << std::endl;
-
-      bool ALL = data.contains("ALL") ? (bool)data["ALL"] : false;
-      bool SUM = data.contains("SUM") ? (bool)data["SUM"] : false;
-      bool SUB = data.contains("SUB") ? (bool)data["SUB"] : false;
-      bool NSUM = data.contains("NSUM") ? (bool)data["NSUM"] : false;
-      bool NSUB = data.contains("NSUB") ? (bool)data["NSUB"] : false;
-      bool MULT = data.contains("MULT") ? (bool)data["MULT"] : false;
-      bool COM = data.contains("COM") ? (bool)data["COM"] : false;
-      bool AND = data.contains("AND") ? (bool)data["AND"] : false;
-      bool NAND = data.contains("NAND") ? (bool)data["NAND"] : false;
-      bool OR = data.contains("OR") ? (bool)data["OR"] : false;
-      bool NOR = data.contains("NOR") ? (bool)data["NOR"] : false;
-      bool XOR = data.contains("XOR") ? (bool)data["XOR"] : false;
-      bool XNOR = data.contains("XNOR") ? (bool)data["XNOR"] : false;
-      bool CNF = data.contains("CNF") ? (bool)data["CNF"] : false;
-      bool RNL = data.contains("RNL") ? (bool)data["RNL"] : false;
-      bool NUM_OP = data.contains("NUM_OP") ? (bool)data["NUM_OP"] : false;
-      // для RNL
-      uint32_t minLevel =
-          data.contains("min_level") ? (uint32_t)data["min_level"] : 0;
-      uint32_t maxLevel =
-          data.contains("max_level") ? (uint32_t)data["max_level"] : 0;
-      uint32_t minElement =
-          data.contains("min_elem") ? (uint32_t)data["min_elem"] : 0;
-      uint32_t maxElement =
-          data.contains("max_elem") ? (uint32_t)data["max_elem"] : 0;
-      // для NUM_OP
-      std::vector<std::string> v = {"num_and", "num_nand", "num_or",
-                                    "num_not", "num_nor",  "num_buf",
-                                    "num_xor", "num_xnor"};
-      std::map<std::string, Gates> stringToGate = {
-          {"and", Gates::GateAnd}, {"nand", Gates::GateNand},
-          {"or", Gates::GateOr},   {"nor", Gates::GateNor},
-          {"not", Gates::GateNot}, {"buf", Gates::GateBuf},
-          {"xor", Gates::GateXor}, {"xnor", Gates::GateXnor}};
-      std::map<Gates, int32_t> m;
-      bool LeaveEmptyOut = false;
-      if (data.contains("leave_empty_out"))
-        LeaveEmptyOut = data["leave_empty_out"];
-      else
-        std::clog << "LeaveEmptyOut is not set." << std::endl;
-
-      gp.setALUParameters(ALL, SUM, SUB, NSUM, NSUB, MULT, COM, AND, NAND, OR,
-                          NOR, XOR, XNOR, CNF, RNL, NUM_OP, minLevel, maxLevel,
-                          minElement, maxElement, m, LeaveEmptyOut);
-    }
-    DataBaseGeneratorParameters dbgp(minInputs, maxInputs, minOutputs,
-                                     maxOutputs, repeats, gt, gp);
-
-    DataBaseGenerator generator(dbgp);
-
-    uint8_t parallel =
-        data.contains("multithread") ? (uint8_t)data["multithread"] : 1;
-    if (!parallel) {
-      parallel = 1;
-    }
-
-    Settings::getInstance("CircuitGenGenerator")->setNumThread(parallel);
-
-    if (data.contains("dataset_path")) {
-      Settings::getInstance("CircuitGenGenerator")
-          ->setDatasetPath(static_cast<std::string>(data["dataset_path"]));
-    }
-
-    auto start = high_resolution_clock::now();
-    // LOG(INFO) << "Generation started.";
-    // Запускаем генерацию с учетом многопоточности и создания поддерикторий
-    callable(generator, dbgp, parallel,
-             data.contains("create_id_directories")
-                 ? (bool)data["create_id_directories"]
-                 : true);
-    // LOG(INFO) << "Generation complete!";
-
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop - start);
-    std::clog << "Time taken: " << duration.count() << " microseconds"
-              << std::endl;
+    delete dbgp;  
   }
 }
 
 namespace CircuitGenGenerator {
+
 std::vector<ResultGraph> runGenerationFromJsonForGraph(std::string json_path) {
   std::vector<ResultGraph> finalRes;
 

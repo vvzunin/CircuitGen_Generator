@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include <generators/simple/SimpleGenerator.hpp>
 
+namespace CG_Gen {
+
+using namespace CG_Graph;
+
 class PlexerGenerator : public SimpleGenerator {
 public:
   PlexerGenerator();
@@ -37,3 +41,5 @@ public:
   GraphPtr generatorMultiplexer();
   GraphPtr generatorDemultiplexer();
 };
+
+} // namespace CG_Gen

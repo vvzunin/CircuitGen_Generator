@@ -1,6 +1,7 @@
 #ifndef RANDOM_GENERATION_WITH_SEED
 #define RANDOM_GENERATION_WITH_SEED
 
+#include <cassert>
 #include <cstdint>
 #include <random>
 #include <stdexcept>
@@ -12,6 +13,8 @@
 /// @param d_seed Holds the current seed value.
 /// @param d_gen std::minstd_rand object used for generating random numbers.
 /// */
+
+namespace CG_Gen {
 
 class RandomGeneratorWithSeed {
 public:
@@ -95,6 +98,33 @@ public:
     return randomNumbers;
   }
 
+  template<typename T>
+  std::pair<T, T> getTwoRandomElements(const std::vector<T>& v) {
+    assert(v.size() > 0);
+    if (v.size() < 2)
+      return {v.back(), v.back()};
+
+    std::uniform_int_distribution<size_t> d1(0, v.size() - 1);
+    std::uniform_int_distribution<size_t> d2(0, v.size() - 2);
+
+    size_t i = d1(d_gen);
+    size_t j = d2(d_gen);
+    if (j >= i) j++;
+
+    return {v[i], v[j]};
+  }
+
+  template<typename T>
+  T getRandomElement(const std::vector<T>& v) {
+    assert(v.size() > 0);
+
+    std::uniform_int_distribution<size_t> d1(0, v.size() - 1);
+
+    size_t i = d1(d_gen);
+
+    return v[i];
+  }
+
   double getRandDouble(double lower, double upper) {
     std::uniform_real_distribution<> dis(lower, upper);
     return dis(d_gen);
@@ -104,5 +134,7 @@ private:
   std::uint_fast32_t d_seed;
   std::minstd_rand d_gen;
 };
+
+} // namespace CG_Gen
 
 #endif

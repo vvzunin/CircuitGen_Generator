@@ -1,33 +1,42 @@
 [
   {
-    "seed": 20,
-    "dataset_id": "12",
-    "id": 50,
-    "type_of_generation": "Rand Level Experimental",
-    "min_in": 50,
-    "max_in": 50,
-    "min_out": 50,
-    "max_out": 50,
-    "repeat_n": 1,    
     "multithread": 4,
-    "make_graphml_classic": true,
-    "make_graphml_pseudo_abc_d": true,
-    "make_graphml_open_abc_d": true,
-    "create_id_directories": true,
-    "make_dot": false,
-    
-    "gates_inputs_info": {
-      "and": [2, 4, 8],
-      "nand": [2, 4, 8],
-      "or": [2, 8],
-      "nor": [16, 4, 8],
-      "xor": [2, 8, 4],
-      "xnor": [2, 16, 8]
+
+    "GenerationParameters": {
+      "convert_to_basis": false,
+      "gates_inputs_info": {
+        "and": [2, 4, 8],
+        "nand": [2, 4, 8],
+        "or": [2, 8],
+        "nor": [16, 4, 8],
+        "xor": [2, 8, 4],
+        "xnor": [2, 16, 8]
+      },
+      "min_in": 50,
+      "max_in": 50,
+      "min_out": 50,
+      "max_out": 50,
+      "repeat_n": 1,    
+      "seed": 20,
+      "type_of_generation": "RandLevelExperimental"
     },
 
-    "min_level": 100,
-    "max_level": 100,
-    "min_elem": 1000,
-    "max_elem": 1000
+    "OutputParameters": {
+      "create_id_directories": true,
+      "dataset_id": "12",
+      "dataset_path": "./generation_results/",
+      "id": 50,
+      "make_graphml_classic": true,
+      "make_graphml_pseudo_abc_d": true,
+      "make_graphml_open_abc_d": true,
+      "make_dot": false
+    },
+
+    "RandLevelExperimental": {
+      "min_level": 100,
+      "max_level": 100,
+      "min_elem": 100,
+      "max_elem": 100
+    }
   }
 ]

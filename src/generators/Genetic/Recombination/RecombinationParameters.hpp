@@ -3,6 +3,8 @@
 
 #include "../Parents/ParentsParameters.hpp"
 
+namespace CG_Gen {
+
 enum RecombinationTypes {
   CrossingEachExitInTurnMany, // relative to several reference points
   CrossingUniform,            //
@@ -10,6 +12,13 @@ enum RecombinationTypes {
   CrossingReducedReplacement,
   CrossingShuffling
 };
+
+static const std::map<std::string, RecombinationTypes> RecombinationType2Name =
+    {{"CrossingEachExitInTurnMany", CrossingEachExitInTurnMany},
+     {"CrossingUniform", CrossingUniform},
+     {"CrossingTriadic", CrossingTriadic},
+     {"CrossingReducedReplacement", CrossingReducedReplacement},
+     {"CrossingShuffling", CrossingShuffling}};
 
 class RecombinationParameters {
 public:
@@ -34,3 +43,5 @@ private:
   double d_maskProbability = 0.5;
   int32_t d_recombinationNumber = 1;
 };
+
+} // namespace CG_Gen

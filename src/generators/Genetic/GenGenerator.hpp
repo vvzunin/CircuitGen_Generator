@@ -25,6 +25,8 @@ bool isNumber(const std::string &s) {
   return true;
 }
 
+namespace CG_Gen {
+
 /// @brief GeneticGenerator
 /// Template class for generating genetic populations
 /// @tparam Type Type of chromosome in a genetic population
@@ -222,3 +224,5 @@ private:
 
 //     return max;
 // }
+
+} // namespace CG_Gen

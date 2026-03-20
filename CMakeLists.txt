@@ -4,7 +4,7 @@ include(cmake/prelude.cmake)
 
 project(
   CircuitGen_Generator
-  VERSION 1.3.0
+  VERSION 1.3.1
   DESCRIPTION "Program for circuits dataset generation"
   HOMEPAGE_URL "https://github.com/vvzunin/CircuitGen_Generator"
   LANGUAGES CXX
@@ -13,6 +13,8 @@ project(
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_INIT} -std=c++17 -fPIC")
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(lib)
 include_directories(lib)
@@ -41,12 +43,20 @@ include(FetchContent)
 
 set(ORIENTED_GRAPH CircuitGenGraph)
 
-FetchContent_Declare(
-  ${ORIENTED_GRAPH}
-  GIT_REPOSITORY https://github.com/vvzunin/CircuitGen_Graph
-  GIT_TAG v1.3.1
-  CMAKE_ARGS -DENABLE_OPTIMIZATIONS_GRAPH=ON
-)
+if (NOT DEFINED LOCAL_BUILD)
+  FetchContent_Declare(
+    ${ORIENTED_GRAPH}
+    GIT_REPOSITORY https://hub.mos.ru/circuitgen/CircuitGen_Graph
+    GIT_TAG db5b8a531e02cc4f5b4cbfedcf830dbce2b5b47e
+  )
+else()
+  FetchContent_Declare(
+    ${ORIENTED_GRAPH}
+    SOURCE_DIR ${LOCAL_BUILD}
+  )
+  message(STATUS "Using local graph build")
+endif()
+
 FetchContent_MakeAvailable(${ORIENTED_GRAPH})
 
 set(PUBLIC_HEADERS
@@ -91,6 +101,10 @@ set(SOURCES
   src/generators/simple/ComparisonGenerator.cpp
   src/generators/simple/NumOperationsGenerator.cpp
   src/generators/simple/ParityGenerator.cpp
+  src/generators/BasisConverter.cpp
+  src/generators/simple/MealyMooreGenerator.cpp
+  src/generators/simple/DotToGraphGenerator.cpp
+  src/generators/simple/CascadeGenerator.cpp
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 
@@ -225,12 +239,7 @@ target_include_directories(
 
 target_compile_features(CircuitGenGenerator_lib PUBLIC cxx_std_17)
 
-option(ENABLE_OPTIMIZATIONS_GEN "Enable compiler optimizations for CircuitGenGenerator_lib" OFF)
-
-if(ENABLE_OPTIMIZATIONS_GEN)
-  message(STATUS "Compiler optimizations enabled for CircuitGenGenerator_lib")
-  target_compile_options(CircuitGenGenerator_lib PRIVATE -O2)
-endif()
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 
 configure_package_config_file(cmake/CircuitGenGenerator-config.cmake.in CircuitGenGenerator-config.cmake
   INSTALL_DESTINATION "${CircuitGenGenerator_INSTALL_CMAKEDIR}")

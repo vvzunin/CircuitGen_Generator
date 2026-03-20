@@ -8,6 +8,8 @@
 #include "RecombinationParameters.hpp"
 #include "RecombinationsTruthTable.hpp"
 
+namespace CG_Gen {
+
 template<typename Type, typename ParametersType>
 std::vector<ChromosomeType<Type, ParametersType>> RecombinationType(
     RecombinationParameters i_recombinationParameters,
@@ -29,29 +31,32 @@ RecombinationType(RecombinationParameters i_recombinationParameters,
 
     return RecombinationsTruthTable::RecombinationCrossingEachExitInTurnMany(
         i_recombinationParameters, i_population);
-  } else {
-    // TODO why it is empty?
-    // std::cout << "2" << std::endl;
   }
+  // else {
+  // TODO why it is empty?
+  // std::cout << "2" << std::endl;
+  // }
   // std::cout << "3"<< std::endl;
 
   if (i_recombinationParameters.getRecombinationType() ==
       RecombinationTypes::CrossingUniform)
     return RecombinationsTruthTable::RecombinationCrossingUniform(
         i_recombinationParameters, i_population);
-  else if (i_recombinationParameters.getRecombinationType() ==
-           RecombinationTypes::CrossingTriadic)
+  if (i_recombinationParameters.getRecombinationType() ==
+      RecombinationTypes::CrossingTriadic)
     return RecombinationsTruthTable::RecombinationCrossingTriadic(
         i_recombinationParameters, i_population);
-  else if (i_recombinationParameters.getRecombinationType() ==
-           RecombinationTypes::CrossingReducedReplacement)
+  if (i_recombinationParameters.getRecombinationType() ==
+      RecombinationTypes::CrossingReducedReplacement)
     return RecombinationsTruthTable::RecombinationCrossingReducedReplacement(
         i_recombinationParameters, i_population);
-  else if (i_recombinationParameters.getRecombinationType() ==
-           RecombinationTypes::CrossingShuffling)
+  if (i_recombinationParameters.getRecombinationType() ==
+      RecombinationTypes::CrossingShuffling)
     return RecombinationsTruthTable::RecombinationCrossingShuffling(
         i_recombinationParameters, i_population);
 
   // default case
   return {};
 }
+
+} // namespace CG_Gen

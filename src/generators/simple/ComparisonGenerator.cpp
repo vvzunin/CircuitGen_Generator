@@ -1,5 +1,7 @@
 ﻿#include "ComparisonGenerator.hpp"
 
+namespace CG_Gen {
+
 ComparisonGenerator::ComparisonGenerator() : SimpleGenerator() {
 }
 
@@ -130,3 +132,5 @@ ComparisonGenerator::generatorComparison(const GenerationParameters &i_param) {
 GraphPtr ComparisonGenerator::generatorComparison() {
   return generatorComparison(getParameters());
 }
+
+} // namespace CG_Gen

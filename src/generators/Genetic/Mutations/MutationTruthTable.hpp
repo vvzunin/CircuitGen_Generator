@@ -6,7 +6,7 @@
 
 #include "../ChromosomeType.hpp"
 
-namespace MutationTruthTable {
+namespace CG_Gen::MutationTruthTable {
 std::vector<std::vector<bool>>
 MutationTable(std::vector<std::vector<bool>> i_table, double i_probability);
 
@@ -39,4 +39,4 @@ std::vector<ChromosomeType<TruthTable, TruthTableParameters>> MutationDelete(
     MutationParameters i_mutationParameters,
     std::vector<ChromosomeType<TruthTable, TruthTableParameters>> i_population);
 // namespace end
-} // namespace MutationTruthTable
+} // namespace CG_Gen::MutationTruthTable

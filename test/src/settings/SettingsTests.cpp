@@ -1,4 +1,3 @@
-#include <exception>
 #include <filesystem>
 #include <fstream>
 #include <memory>
@@ -9,6 +8,9 @@
 #include <gtest/gtest.h>
 
 #include "easylogging++Init.hpp"
+
+using namespace CG_Graph;
+using namespace CG_Gen;
 
 std::string fileName =
     "settings.dat"; // To test LoadSettings by default. See below.
@@ -48,14 +50,10 @@ TEST(SettingsTest, LoadSettingsTest) {
   auto settings = Settings::getInstance("");
 
   EXPECT_EQ(settings->getNumThread(), 4);
-  EXPECT_EQ(settings->getPathNadezhda(), "./Generator/source/data/Nadezhda");
   std::filesystem::remove(settingsPath);
 }
 
 TEST(TestSettings, TestDefaultLoadSettings) {
-  std::shared_ptr<Settings> t =
-      Settings::getInstance("test_default_load_settings");
-
   std::vector<std::string_view> operToHierAns(11);
   operToHierAns[0] = "=";
   operToHierAns[1] = "xnor";
@@ -85,12 +83,12 @@ TEST(TestSettings, TestDefaultLoadSettings) {
 
   int32_t count = 0;
   for (auto value: operToHierAns) {
-    EXPECT_EQ(value, t->fromOperationsToHierarchy(count));
+    EXPECT_EQ(value, GraphUtils::fromHierarchyToOperation(count));
     ++count;
   }
 
   for (const auto &[key, value]: operToNameAns) {
-    EXPECT_EQ(value, t->fromOperationsToName(key));
+    EXPECT_EQ(value, GraphUtils::fromOperationsToName(key));
   }
 }
 
@@ -101,7 +99,7 @@ TEST(SettingsTest,
         Settings::getInstance(" "); // Here we call implicitly loadSettings.
     // Below I going to write down correct samples that I want to use to compare
     // with the output of the loadSettings
-    std::map<std::string, std::pair<std::string, int32_t>>
+    std::map<std::string, std::pair<std::string_view, int32_t>>
         correctLogicOperations = {
             {"input", {"", 10}}, {"output", {"=", 0}},  {"const", {"1'b0", 9}},
             {"and", {"and", 4}}, {"nand", {"nand", 3}}, {"or", {"or", 6}},
@@ -109,7 +107,7 @@ TEST(SettingsTest,
             {"xor", {"xor", 2}}, {"xnor", {"xnor", 1}}};
 
     for (auto const &[key, val]: correctLogicOperations) {
-      EXPECT_EQ(correctLogicOperations[key], SetPtr->getLogicOperation(key));
+      EXPECT_EQ(val, GraphUtils::getLogicOperation(key));
     }
   }
 }
@@ -117,16 +115,12 @@ TEST(SettingsTest,
 TEST(SettingsTest,
      DefaultInitializationWithLoadSettingsWriteCorrectOperationsToHierarchy) {
   if (!std::filesystem::exists(fileName)) {
-    std::shared_ptr<Settings> SetPtr =
-        Settings::getInstance(" "); // Here we call implicitly loadSettings.
-    // Below I going to write down correct samples that I want to use to compare
-    // with the output of the loadSettings
     std::map<int32_t, std::string_view> correctOperationsToHierarchy = {
         {10, ""},   {0, "="},   {9, "1'b0"}, {4, "and"}, {3, "nand"}, {6, "or"},
         {5, "nor"}, {7, "not"}, {8, "buf"},  {2, "xor"}, {1, "xnor"}};
 
     for (auto const &[key, val]: correctOperationsToHierarchy) {
-      EXPECT_EQ(val, SetPtr->fromOperationsToHierarchy(key));
+      EXPECT_EQ(val, GraphUtils::fromHierarchyToOperation(key));
     }
   }
 }
@@ -134,11 +128,6 @@ TEST(SettingsTest,
 TEST(SettingsTest,
      DefaultInitializationWithLoadSettingsWriteCorrectOperationsToName) {
   if (!std::filesystem::exists(fileName)) {
-    std::shared_ptr<Settings> SetPtr =
-        Settings::getInstance(" "); // Here we call implicitly loadSettings.
-    // Below I going to write down correct samples that I want to use to compare
-    // with the output of the loadSettings
-
     std::map<std::string_view, std::string> correctOperationsToName = {
         {"", "input"},
         {"=", "output"},
@@ -153,7 +142,7 @@ TEST(SettingsTest,
         {"xnor", "xnor"}};
 
     for (auto [key, val]: correctOperationsToName) {
-      EXPECT_EQ(val, SetPtr->fromOperationsToName(key));
+      EXPECT_EQ(val, GraphUtils::fromOperationsToName(key));
     }
   }
 }

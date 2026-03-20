@@ -6,9 +6,11 @@
 #include <utility>
 #include <vector>
 
-#include <CircuitGenGraph/DefaultSettings.hpp>
+#include <CircuitGenGraph/GraphUtils.hpp>
 
 /// @file Settings.hpp
+
+namespace CG_Gen {
 
 enum LibrariesTypes { SKY_LIB };
 
@@ -17,23 +19,46 @@ enum LibrariesTypes { SKY_LIB };
 /// This enumeration defines the various types of digital circuit generation
 /// that can be used to create a variety of logic circuits.
 
-enum GenerationTypes {   /// Generating a circuit from a random truth table
-  FromRandomTruthTable,  /// Random level (experimental)
-  RandLevel,             /// Experimental random level generation
-  RandLevelExperimental, /// Generating a circuit with numerical operations
-  NumOperation,          /// Genetic generation of the circuit
-  Genetic,               /// Adder
-  Summator,              /// The comparison block
-  Comparison,            /// The encoder
-  Encoder,               /// Subtractor
-  Subtractor,            /// Multiplexer
-  Multiplexer,           /// Demultiplexer
-  Demultiplexer,         /// Multiplier
-  Multiplier,            /// Decoder
-  Decoder,               /// Parity
-  Parity,                /// Arithmetic Logic Unit (ALU)
-  ALU
-};
+enum GenerationTypes {
+  FromRandomTruthTable,  /// Generating a circuit from a random truth table
+  RandLevel,             /// Random level (experimental)
+  RandLevelExperimental, /// Experimental random level generation
+  NumOperation,          /// Generating a circuit with numerical operations
+  Comparison,            /// The comparison block
+  Summator,              /// Adder
+  Multiplier,            /// Multiplier
+  Subtractor,            /// Subtractor
+  Multiplexer,           /// Multiplexer
+  Demultiplexer,         /// Demultiplexer
+  Encoder,               /// Encoder
+  Decoder,               /// Decoder
+  Genetic,               /// Genetic generation of the circuit
+  Parity,                /// Parity
+  ALU,                   /// Arithmetic Logic Unit (ALU)
+  MealyMoore,            /// Mealy and Moore
+  DotToGraph, /// Dot to graph converter (Mealy and Moore only for now)
+  Cascade     /// Cascade
+};            /* Simple */
+
+static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
+    {"FromRandomTruthTable", FromRandomTruthTable},
+    {"RandLevel", RandLevel},
+    {"RandLevelExperimental", RandLevelExperimental},
+    {"NumOperation", NumOperation},
+    {"Comparison", Comparison},
+    {"Summator", Summator},
+    {"Multiplier", Multiplier},
+    {"Subtractor", Subtractor},
+    {"Multiplexer", Multiplexer},
+    {"Demultiplexer", Demultiplexer},
+    {"Encoder", Encoder},
+    {"Decoder", Decoder},
+    {"Genetic", Genetic},
+    {"Parity", Parity},
+    {"ALU", ALU},
+    {"MealyMoore", MealyMoore},
+    {"DotToGraph", DotToGraph},
+    {"Cascade", Cascade}};
 
 /// @todo: To add Description some fields
 /// class Settings
@@ -51,11 +76,6 @@ enum GenerationTypes {   /// Generating a circuit from a random truth table
 /// directory with the dataset. The default value is "./dataset"
 /// @param d_libraryPath This is a string field that contains the path to the
 /// library directory. The default value is set to "Generator/libs"
-/// @param d_pathToNadezhda This is a string field that contains the path to the
-/// directory with Nadezhda data. The default value is set to
-/// "./Generator/source/data/Nadezhda". However, this path is not in the
-/// project*
-/// @param d_nadezhda ???
 /// @param d_numThreads The number of threads that are used in the application.
 /// The default value is 4
 /// @param d_logicOperations This is an associative std::map container that maps
@@ -72,9 +92,9 @@ enum GenerationTypes {   /// Generating a circuit from a random truth table
 ///
 ///
 
-class Settings : public DefaultSettings {
+class Settings {
 public:
-  Settings(const std::string &i_path) : DefaultSettings(i_path) {}
+  Settings(const std::string &i_path) {}
 
   static void resetSingletone() { d_singleton = nullptr; }
   Settings(Settings &other) = delete;
@@ -102,65 +122,10 @@ public:
 
   static std::shared_ptr<Settings> getInstance(const std::string &i_value);
 
-  /// @brief loadSettings Downloads settings from a file
-  /// The method loads the settings from a file with the name specified in
-  /// the data member in_filename. If the file exists, the method reads the
-  /// settings values from it and updates the corresponding data members of
-  /// the class
-
-  void loadSettings();
-
   /// @brief getInstanceName Gets the name of the current instance of settings
   /// @return std::string Name of the current instance of settings
 
   std::string getInstanceName() const;
-
-  /// @brief getLogicOperationsKeys Returns the keys of logical operations
-  /// @return std::vector<Gates> A vector containing the keys of logical
-  /// operations
-
-  std::vector<Gates> getLogicOperationsKeys();
-
-  /// @brief getLogicOperationsWithGates Returns logical operations along with
-  /// information about the presence of a single input
-  /// The method returns a pair of vectors: the first vector contains
-  /// information about whether each a logical operation has only one
-  /// input(true if this is the case, false otherwise),
-  /// and the second vector contains the keys(enumerated values) of all
-  /// available logical operations
-  /// @return std::pair<std::vector<bool>, std::vector<Gates>> A pair of
-  /// vectors: information about the presence of a single input and the keys
-  /// of logical operations
-  /// @code
-  /// // Creating an instance of the Settings class or getting it from an
-  /// // existing object
-  /// std::shared_ptr<Settings>        settingsInstance =
-  /// Settings::getInstance("/path/to/settings");
-  /// // Get logical operations together with information about the presence
-  /// // of a single input
-  /// std::pair<std::vector<bool>, std::vector<Gates>> logicOperationsInfo =
-  /// settingsInstance->getLogicOperationsWithGates();
-  /// // Output information about each logical operation
-  /// for (size_t i = 0; i < logicOperationsInfo.second.size(); ++i)
-  /// {
-  /// std::string operationName =
-  /// settingsInstance->parseGateToString(logicOperationsInfo.second[i]);
-  /// bool hasOneInput = logicOperationsInfo.first[i];
-  /// std::cout << "Operation: " << operationName;
-  /// if (hasOneInput)
-  /// {
-  ///   std::cout << " (Has one input)";
-  /// }
-  /// else
-  /// {
-  ///   std::cout << " (Does not have one input)";
-  /// }
-  /// std::cout << std::endl;
-  /// }
-  /// @endcode
-
-  std::pair<std::vector<bool>, std::vector<Gates>>
-  getLogicOperationsWithGates();
 
   /// @brief getDatasetPath Returns the path to the dataset
   /// @return std::string The path to the dataset
@@ -218,32 +183,6 @@ public:
   /// @return uint32_t Maximum number of outputs
 
   uint32_t getMaxOutputs() const;
-
-  /// @brief getLogicOperations all logical operations
-  /// The method returns a dictionary containing all logical operations
-  /// in the form of a pair, where the key is a string representing the
-  /// name of the operation, and the value is a pair in which the first
-  /// element is a string representing the name of the operation, and the
-  /// second element is an integer value representing the identifier of
-  /// the operation
-  /// @return std::map<std::string, std::pair<std::string, int32_t>> Dictionary
-  /// with logical operations
-
-  std::map<std::string, std::pair<std::string, int32_t>>
-  getLogicOperations() const;
-
-  /// @brief getPathNadezhda Returns the path to Nadezhda
-  /// @return std::string Path to Nadezhda
-
-  std::string getPathNadezhda() const;
-
-  /// @brief getNadezhdaVar Gets the value of a variable from the Nadezhda
-  /// dictionary by key
-  /// @param key The key used to search for a value in the Nadezhda dictionary
-  /// @return std::string The value corresponding to the provided key in the
-  /// Nadezhda dictionary
-
-  std::string getNadezhdaVar(const std::string &key) const;
 
   /// @brief getNumThread Retrieves the number of threads used for processing
   /// @return uint16_t The number of threads configured for processing
@@ -303,12 +242,6 @@ private:
   std::string d_datasetPath = "./dataset";
   std::string d_libraryPath = "Generator/libs";
   // Settings d_instance;
-  std::string d_pathToNadezhda = "./Generator/source/data/Nadezhda";
-  std::map<std::string, std::string> d_nadezhda = {
-      {"python", "python3"},
-      {"resynthesis", "Nadezhda/Scripts/resynthesis_local_rewriting.pyc"},
-      {"reliability", "Nadezhda/Scripts/check_reliability.pyc"},
-      {"liberty", "Nadezda/Test/Nangate.lib"}};
   uint16_t d_numThreads = 4;
 
   std::map<GenerationTypes, std::string> generationTypeToPrefix = {
@@ -326,8 +259,16 @@ private:
       {GenerationTypes::Demultiplexer, "CCGTCDMP"},
       {GenerationTypes::Multiplexer, "CCGTCMP"},
       {GenerationTypes::Decoder, "CCGDCR"},
-      {GenerationTypes::ALU, "CCGALU"}};
+      {GenerationTypes::ALU, "CCGALU"},
+      {GenerationTypes::MealyMoore, "CCGMM"},
+      {GenerationTypes::DotToGraph, "CCGDTG"},
+      {GenerationTypes::Cascade, "CCGCCD"}};
+  /*
+    SimpleGenerator
+  */
 
   uint32_t d_maxInputs = 50;
   uint32_t d_maxOutputs = 50;
 };
+
+} // namespace CG_Gen

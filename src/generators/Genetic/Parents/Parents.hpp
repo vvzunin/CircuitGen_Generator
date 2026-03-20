@@ -9,6 +9,8 @@
 #include "ParentsParameters.hpp"
 #include "ParentsTruthTable.hpp"
 
+namespace CG_Gen {
+
 template<typename Type, typename ParametersType>
 std::vector<int32_t> ParentsTypesWorker(
     ParentsParameters i_parentsParameters,
@@ -20,11 +22,11 @@ ParentsTypesWorker(ParentsParameters i_parentsParameters,
                        i_population) {
   if (i_parentsParameters.getParentsType() == ParentsTypes::Panmixia)
     return ParentsPanmixia(i_parentsParameters, i_population);
-  else if (i_parentsParameters.getParentsType() == ParentsTypes::Inbringing)
+  if (i_parentsParameters.getParentsType() == ParentsTypes::Inbringing)
     return ParentsInbrinding(i_parentsParameters, i_population);
-  else if (i_parentsParameters.getParentsType() == ParentsTypes::Outbrinding)
+  if (i_parentsParameters.getParentsType() == ParentsTypes::Outbrinding)
     return ParentsOutbrinding(i_parentsParameters, i_population);
-  else if (i_parentsParameters.getParentsType() == ParentsTypes::Tournament)
+  if (i_parentsParameters.getParentsType() == ParentsTypes::Tournament)
     return ParentsTournament(i_parentsParameters, i_population);
   // TODO: info about ParentsRoulette
   std::cout << "UNUSUAL ParentTypes IN ParentsTypes" << std::endl;
@@ -32,3 +34,5 @@ ParentsTypesWorker(ParentsParameters i_parentsParameters,
   // default to remove warning
   return {};
 }
+
+} // namespace CG_Gen

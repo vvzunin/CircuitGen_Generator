@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <functional>
@@ -6,14 +5,17 @@
 #include <string>
 #include <vector>
 
-#include <additional/RandomGeneratorWithSeed.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
+
+#include <additional/RandomGeneratorWithSeed.hpp>
 #include <settings/Settings.hpp>
 
 #include "DataBaseGeneratorParameters.hpp"
 
 using ResultGraph = std::pair<std::string, std::vector<GraphPtr>>;
 using ResultPath = std::pair<std::string, std::vector<std::string>>;
+
+namespace CG_Gen {
 
 enum ReturnType { DEFAULT, GRAPH, PATH, FUNCTION };
 
@@ -202,6 +204,30 @@ private:
 
   void generateDataBaseALU(const GenerationParameters &i_param);
 
+  /// @brief generateDataBaseMealyMoore
+  /// Generates a database representing a Mealy or Moore circuit in dot and
+  /// OrientedGraph form
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the Mealy or Moore circuit database
+
+  void generateDataBaseMealyMoore(const GenerationParameters &i_param);
+
+  /// @brief generateDataBaseDotToGraph
+  /// Generates a database representing a Mealy or Moore circuit from dot form
+  /// to graph
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the Mealy or Moore circuit database
+
+  void generateDataBaseDotToGraph(const GenerationParameters &i_param);
+
+  /// @brief generateDataBaseCascade
+  /// Generates a database representing a Cascade Mealy and Moore circuit in
+  /// OrientedGraph form
+  /// @param i_param An object of the GenerationParameters class containing
+  /// parameters for generating the Cascade circuit database
+
+  void generateDataBaseCascade(const GenerationParameters &i_param);
+
   /// @brief getGenerateMethod
   /// Retrieves a method for generating a database based on the provided
   /// generation type
@@ -217,3 +243,5 @@ private:
 
   ReturnType d_type = ReturnType::DEFAULT;
 };
+
+} // namespace CG_Gen

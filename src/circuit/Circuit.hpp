@@ -4,10 +4,15 @@
 #include <string>
 #include <vector>
 
-#include <baseStructures/truthTable/TruthTable.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
 
+#include <baseStructures/truthTable/TruthTable.hpp>
+
 #include "CircuitParameters.hpp"
+
+namespace CG_Gen {
+
+using namespace CG_Graph;
 
 struct CircuitArgs {
   CircuitArgs(bool d_makeGraphMLClassic = false,
@@ -138,6 +143,11 @@ public:
 
   bool generate(CircuitArgs args = {});
 
+  /// @brief generateDOTmmg This generate method is designed to save Mealy or
+  /// Moore DotReturn class as .dot file
+
+  bool generateDOTmmg(CircuitArgs args = {});
+
   /// @brief setTable This method is designed to set up a truth table for a
   /// digital circuit.
   /// @param i_tt The Truth Table, which must be installed for the digital
@@ -162,6 +172,13 @@ public:
   /// */
 
   void setCircuitName(const std::string &i_circName);
+
+  /// @brief setDot_mmg This method is used to set the DotReturn d_dot value
+  ///
+  /// @param i_circName A string containing a new name for the digital circuit
+  /// */
+
+  void setDot_mmg(DotReturn i_dot);
 
   /// @brief getIndexOfWireName This method is designed to get the index of the
   /// vertex in the graph by the name of the wire.
@@ -193,6 +210,7 @@ public:
 
 private:
   GraphPtr d_graph;
+  DotReturn d_dot;
   std::vector<std::string> d_logExpressions;
   TruthTable d_tTable;
   std::string d_path;
@@ -205,3 +223,5 @@ private:
   /// @return
   bool checkExistingHash();
 };
+
+} // namespace CG_Gen

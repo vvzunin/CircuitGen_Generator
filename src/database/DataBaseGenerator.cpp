@@ -1,5 +1,4 @@
 #include <algorithm>
-#include <chrono>
 #include <cstdint>
 #include <filesystem>
 #include <iostream>
@@ -16,13 +15,17 @@
 #include <baseStructures/truthTable/TruthTable.hpp>
 #include <circuit/Circuit.hpp>
 #include <circuit/CircuitParameters.hpp>
+#include <generators/BasisConverter.hpp>
 #include <generators/Genetic/GenGenerator.hpp>
 #include <generators/Genetic/GeneticParameters.hpp>
 #include <generators/simple/ALUGenerator.hpp>
 #include <generators/simple/ArithmeticGenerator.hpp>
+#include <generators/simple/CascadeGenerator.hpp>
 #include <generators/simple/CoderGenerator.hpp>
 #include <generators/simple/ComparisonGenerator.hpp>
+#include <generators/simple/DotToGraphGenerator.hpp>
 #include <generators/simple/FromTruthTableGenerator.hpp>
+#include <generators/simple/MealyMooreGenerator.hpp>
 #include <generators/simple/NumOperationsGenerator.hpp>
 #include <generators/simple/ParityGenerator.hpp>
 #include <generators/simple/PlexerGenerator.hpp>
@@ -30,6 +33,8 @@
 
 using namespace std::chrono;
 using namespace Threading;
+
+namespace CG_Gen {
 
 void DataBaseGenerator::runGeneratorByDefault(
     const DataBaseGeneratorParameters &i_dbgp, uint8_t parallel,
@@ -99,7 +104,7 @@ void DataBaseGenerator::runGeneratorByDefault(
           GenerationParameters param = d_parameters.getGenerationParameters();
           param.setSeed(*iter + i + j);
 
-          auto runGenerator = [&generator, &param]() { generator(param); };
+          auto runGenerator = [&generator, param]() { generator(param); };
 
           pool.submit(runGenerator);
 
@@ -177,6 +182,7 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
   FromTruthTableGenerator tftt(i_param);
 
   std::vector<GraphPtr> allGraphs;
+  const bool convertToBasis = i_param.getConvertToBasis();
 
   GraphPtr graph;
   if (i_param.getZhegalkin().getZhegalkin()) {
@@ -198,6 +204,15 @@ void DataBaseGenerator::generateDataBaseFromRandomTruthTable(
     allGraphs.push_back(graph);
   }
 
+  if (convertToBasis) {
+    std::vector<GraphPtr> convertedGraphs;
+    for (auto curGraph: allGraphs) {
+      convertedGraphs.push_back(
+          convertGraphToBasis(curGraph, i_param.getGatesInputsInfo()));
+    }
+    allGraphs = convertedGraphs;
+  }
+
   for (auto curGraph: allGraphs) {
     Circuit c(curGraph);
     c.setTable(tt);
@@ -215,6 +230,10 @@ void DataBaseGenerator::generateDataBaseRandLevel(
     const GenerationParameters &i_param) {
   RandLevelGenerator generator(i_param);
   GraphPtr graph = generator.generatorRandLevel();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -238,6 +257,10 @@ void DataBaseGenerator::generateDataBaseRandLevelExperimental(
   // std::clog << "Time taken on experimental: " << duration.count()
   //           << " microseconds" << std::endl;
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   // std::clog << "Update started\n";
   Circuit c(graph);
   // std::clog << "Update ended\n";
@@ -257,6 +280,13 @@ void DataBaseGenerator::generateDataBaseNumOperations(
 
   std::vector<std::pair<std::string, GraphPtr>> circs;
   circs.push_back({"NumOperation", generator.generatorNumOperation()});
+
+  if (i_param.getConvertToBasis()) {
+    for (auto &curGraph: circs) {
+      curGraph.second =
+          convertGraphToBasis(curGraph.second, i_param.getGatesInputsInfo());
+    }
+  }
 
   for (auto [name, graph]: circs) {
     Circuit c(graph);
@@ -280,6 +310,12 @@ void DataBaseGenerator::generateDataBaseGenetic(
   const auto &population = gg.generate();
   auto graphs = gg.getGraphsFromPopulation(population);
 
+  if (i_param.getConvertToBasis()) {
+    for (auto graph: graphs) {
+      graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+    }
+  }
+
   for (auto graph: graphs) {
     Circuit c(graph);
     c.setPath(d_mainPath);
@@ -297,6 +333,10 @@ void DataBaseGenerator::generateDataBaseSummator(
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorSummator();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -311,6 +351,10 @@ void DataBaseGenerator::generateDataBaseComparison(
     const GenerationParameters &i_param) {
   ComparisonGenerator sg(i_param);
   GraphPtr graph = sg.generatorComparison();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -327,6 +371,10 @@ void DataBaseGenerator::generateDataBaseEncoder(
   CoderGenerator sg(i_param);
   GraphPtr graph = sg.generatorEncoder();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -341,6 +389,10 @@ void DataBaseGenerator::generateDataBaseParity(
     const GenerationParameters &i_param) {
   ParityGenerator sg(i_param);
   GraphPtr graph = sg.generatorParity();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -357,6 +409,10 @@ void DataBaseGenerator::generateDataBaseSubtractor(
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorSubtractor();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -371,6 +427,10 @@ void DataBaseGenerator::generateDataBaseMultiplexer(
     const GenerationParameters &i_param) {
   PlexerGenerator sg(i_param);
   GraphPtr graph = sg.generatorMultiplexer();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -387,6 +447,10 @@ void DataBaseGenerator::generateDataBaseDemultiplexer(
   PlexerGenerator sg(i_param);
   GraphPtr graph = sg.generatorDemultiplexer();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -401,6 +465,10 @@ void DataBaseGenerator::generateDataBaseMultiplier(
     const GenerationParameters &i_param) {
   ArithmeticGenerator sg(i_param);
   GraphPtr graph = sg.generatorMultiplier();
+
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
 
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -417,6 +485,10 @@ void DataBaseGenerator::generateDataBaseDecoder(
   CoderGenerator sg(i_param);
   GraphPtr graph = sg.generatorDecoder();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
@@ -432,6 +504,10 @@ void DataBaseGenerator::generateDataBaseALU(
   ALUGenerator sg(i_param);
   GraphPtr graph = sg.generatorALU();
 
+  if (i_param.getConvertToBasis()) {
+    graph = convertGraphToBasis(graph, i_param.getGatesInputsInfo());
+  }
+
   // LOG(INFO) << "Generation ALU complete!";
   Circuit c(graph);
   c.setPath(d_mainPath);
@@ -442,6 +518,57 @@ void DataBaseGenerator::generateDataBaseALU(
               i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
 
   // LOG(INFO) << "Full ALU complete!";
+
+  addDataToReturn(graph);
+}
+
+void DataBaseGenerator::generateDataBaseMealyMoore(
+    const GenerationParameters &i_param) {
+  MealyMooreGenerator mmg(i_param);
+  GraphPtr graph = mmg.generatorDotReturnToGraph();
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  if (i_param.getMealyMoore().getsaveDOT_mmg() == true) {
+    DotReturn dot = mmg.generatorMealyMoore();
+    c.setDot_mmg(dot);
+    c.generateDOTmmg({i_param.getMakeGraphMLClassic(),
+                      i_param.getMakeGraphMLPseudoABCD(),
+                      i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
+  }
+  c.generate({i_param.getMakeGraphMLClassic(),
+              i_param.getMakeGraphMLPseudoABCD(),
+              i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
+
+  addDataToReturn(graph);
+}
+
+void DataBaseGenerator::generateDataBaseDotToGraph(
+    const GenerationParameters &i_param) {
+  DotToGraphGenerator dtg(i_param);
+  GraphPtr graph = dtg.generatorDotToGraph();
+
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate({i_param.getMakeGraphMLClassic(),
+              i_param.getMakeGraphMLPseudoABCD(),
+              i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
+
+  addDataToReturn(graph);
+}
+
+void DataBaseGenerator::generateDataBaseCascade(
+    const GenerationParameters &i_param) {
+  CascadeGenerator ccd(i_param);
+  GraphPtr graph = ccd.generatorCascade();
+
+  Circuit c(graph);
+  c.setPath(d_mainPath);
+  c.setCircuitName(i_param.getName());
+  c.generate({i_param.getMakeGraphMLClassic(),
+              i_param.getMakeGraphMLPseudoABCD(),
+              i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
 
   addDataToReturn(graph);
 }
@@ -501,6 +628,15 @@ DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
     case GenerationTypes::ALU:
       generateMethodFunc = &DataBaseGenerator::generateDataBaseALU;
       break;
+    case GenerationTypes::MealyMoore:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseMealyMoore;
+      break;
+    case GenerationTypes::DotToGraph:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseDotToGraph;
+      break;
+    case GenerationTypes::Cascade:
+      generateMethodFunc = &DataBaseGenerator::generateDataBaseCascade;
+      break;
 
     default:
       std::clog << "Something went wrong while getting generation method. "
@@ -513,3 +649,5 @@ DataBaseGenerator::getGenerateMethod(const GenerationTypes i_methodType) {
 
   return std::bind(generateMethodFunc, this, std::placeholders::_1);
 }
+
+} // namespace CG_Gen
