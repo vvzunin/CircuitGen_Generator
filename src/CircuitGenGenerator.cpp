@@ -68,11 +68,10 @@ Type readEnumWithCheck(const nlohmann::json &i_data, const std::string &i_param,
   return values_map.at(valStr);
 }
 
-GenerationParameters *getBasicParameters(const nlohmann::json &i_data,
-                                         GenerationTypes &i_type,
-                                         int &i_minInputs, int &i_maxInputs,
-                                         int &i_minOutputs, int &i_maxOutputs,
-                                         int &i_repeats, bool &i_convertToBasis) {
+GenerationParameters *
+getBasicParameters(const nlohmann::json &i_data, GenerationTypes &i_type,
+                   int &i_minInputs, int &i_maxInputs, int &i_minOutputs,
+                   int &i_maxOutputs, int &i_repeats, bool &i_convertToBasis) {
   const static constexpr std::string_view name = "GenerationParameters";
   check(i_data, name);
   int seed = readWithCheck<int>(i_data[name], "seed", -1);
@@ -84,7 +83,8 @@ GenerationParameters *getBasicParameters(const nlohmann::json &i_data,
   i_maxOutputs = readWithCheck<int>(i_data[name], "max_out", 1);
   i_repeats = readWithCheck<int>(i_data[name], "repeat_n", 1);
 
-  i_convertToBasis = readWithCheck<bool>(i_data[name], "convert_to_basis", false);
+  i_convertToBasis =
+      readWithCheck<bool>(i_data[name], "convert_to_basis", false);
 
   // Считывание информации по логичсеким элементам.
   std::map<std::string, std::vector<int>> gatesInputsInfo;
@@ -129,9 +129,10 @@ GenerationParameters *getBasicParameters(const nlohmann::json &i_data,
   bool makeDot =
       readWithCheck<bool>(i_data["OutputParameters"], "make_dot", false);
 
-  gp = new GenerationParameters(datasetId, requestId, i_minInputs, i_minOutputs,
-                                i_repeats, makeGraphMLClassic,
-                                makeGraphMLPseudo, makeGraphMLOpen, makeDot, i_convertToBasis);
+  gp =
+      new GenerationParameters(datasetId, requestId, i_minInputs, i_minOutputs,
+                               i_repeats, makeGraphMLClassic, makeGraphMLPseudo,
+                               makeGraphMLOpen, makeDot, i_convertToBasis);
   gp->setGatesInputInfo(gatesInputsInfo);
 
   return gp;
@@ -146,8 +147,7 @@ void setFromTruthTable(const nlohmann::json &i_data,
   bool cnft = readWithCheck<bool>(i_data[name], "CNFT", false);
   bool zhegalkin = readWithCheck<bool>(i_data[name], "Zhegalkin", false);
   if (!(cnff || cnft || zhegalkin)) {
-    std::cerr << "Parameters for selected generation type is not set."
-              << '\n';
+    std::cerr << "Parameters for selected generation type is not set." << '\n';
     exit(1);
   }
   i_gp->setCNFF(cnff);
@@ -165,17 +165,19 @@ void setArithmetic(const nlohmann::json &i_data, GenerationParameters *i_gp) {
   // TODO: think if we really need outputs size in such way
   if (sizeA + sizeB != i_gp->getInputs()) {
     std::cerr << "Inputs number should match with arity bit width of both "
-        "inputs. Excpected '" << i_gp->getInputs() << "', bout found '"
-        << sizeA + sizeB << "'\n";
+                 "inputs. Excpected '"
+              << i_gp->getInputs() << "', bout found '" << sizeA + sizeB
+              << "'\n";
     std::exit(1);
   }
 
   const bool isSigned = readWithCheck<bool>(i_data[name], "is_signed", false);
-  const std::string type = readWithCheck<std::string>(i_data[name], "type", "ADD");
+  const std::string type =
+      readWithCheck<std::string>(i_data[name], "type", "ADD");
 
   const auto typeEnum = ArithemticOperations::getArithmeticType(type);
   if (typeEnum == ArithemticOperations::UNDEFINED) {
-    std::cerr << "Found unsupported operation type: '" << type << "'\n"; 
+    std::cerr << "Found unsupported operation type: '" << type << "'\n";
     std::exit(1);
   }
 
@@ -192,8 +194,8 @@ void setRandLevel(const nlohmann::json &i_data, GenerationParameters *i_gp) {
   const auto syntheticConnected =
       readWithCheck<bool>(i_data[name], "synthetic_connected", false);
 
-  i_gp->setRandLevelParameters(
-      minLevel, maxLevel, minElem, maxElem, syntheticConnected);
+  i_gp->setRandLevelParameters(minLevel, maxLevel, minElem, maxElem,
+                               syntheticConnected);
 }
 
 void setRandLevelExperimental(const nlohmann::json &i_data,
@@ -386,8 +388,10 @@ void setMealyMoore(const nlohmann::json &i_data, GenerationParameters *i_gp) {
   check(i_data, name);
 
   const bool genType = readWithCheck<bool>(i_data[name], "gen_type", false);
-  const uint32_t numStates = readWithCheck<uint32_t>(i_data[name], "num_states", 0);
-  const bool saveDOT_mmg = readWithCheck<bool>(i_data[name], "save_dot_mmg", false);
+  const uint32_t numStates =
+      readWithCheck<uint32_t>(i_data[name], "num_states", 0);
+  const bool saveDOT_mmg =
+      readWithCheck<bool>(i_data[name], "save_dot_mmg", false);
 
   i_gp->setMealyMooreParameters(genType, numStates, saveDOT_mmg);
 }
@@ -396,8 +400,10 @@ void setDotToGraph(const nlohmann::json &i_data, GenerationParameters *i_gp) {
   static constexpr std::string_view name = "DotToGraph";
   check(i_data, name);
 
-  const bool GenTypeDot = readWithCheck<bool>(i_data[name], "gen_type_dot", false);
-  const std::string DotPath = readWithCheck<std::string>(i_data[name], "dotpath", "./dataset/21/3");
+  const bool GenTypeDot =
+      readWithCheck<bool>(i_data[name], "gen_type_dot", false);
+  const std::string DotPath =
+      readWithCheck<std::string>(i_data[name], "dotpath", "./dataset/21/3");
 
   i_gp->setDotToGraphParameters(GenTypeDot, DotPath);
 }
@@ -405,10 +411,13 @@ void setDotToGraph(const nlohmann::json &i_data, GenerationParameters *i_gp) {
 void setCascade(const nlohmann::json &i_data, GenerationParameters *i_gp) {
   static constexpr std::string_view name = "Cascade";
   check(i_data, name);
-  
-  const uint32_t MaxNumStates = readWithCheck<uint32_t>(i_data[name], "max_num_states", 1);
-  const uint32_t MinNumStates = readWithCheck<uint32_t>(i_data[name], "min_num_states", 1);
-  const uint32_t NumAutomaton = readWithCheck<uint32_t>(i_data[name], "num_automatons", 1);
+
+  const uint32_t MaxNumStates =
+      readWithCheck<uint32_t>(i_data[name], "max_num_states", 1);
+  const uint32_t MinNumStates =
+      readWithCheck<uint32_t>(i_data[name], "min_num_states", 1);
+  const uint32_t NumAutomaton =
+      readWithCheck<uint32_t>(i_data[name], "num_automatons", 1);
 
   i_gp->setCascadeParameters(MaxNumStates, MinNumStates, NumAutomaton);
 }
@@ -420,8 +429,9 @@ setGenerationParameters(const nlohmann::json &i_data) {
   int minOutputs, maxOutputs;
   int repeats;
   bool convertToBasis;
-  GenerationParameters *gp = getBasicParameters(
-      i_data, gt, minInputs, maxInputs, minOutputs, maxOutputs, repeats, convertToBasis);
+  GenerationParameters *gp =
+      getBasicParameters(i_data, gt, minInputs, maxInputs, minOutputs,
+                         maxOutputs, repeats, convertToBasis);
 
   // Setting generation type.
   switch (gt) {
@@ -517,10 +527,12 @@ setGenerationParameters(const nlohmann::json &i_data) {
 }
 
 /// @brief runGeneration reads json file and runs specified generator/
-/// for DotToGraph generator it reads folderpath from json and changes 
-/// json file for DotToGraphGenerator so it receives every .dot file in folderpath.
-/// Then it runs DotToGraphGenerator for every .dot file in folder. This change is for DotToGraphGenerator only.
-/// @param folderPath path to a folder containing .dot files for DotToGraphGenerator
+/// for DotToGraph generator it reads folderpath from json and changes
+/// json file for DotToGraphGenerator so it receives every .dot file in
+/// folderpath. Then it runs DotToGraphGenerator for every .dot file in folder.
+/// This change is for DotToGraphGenerator only.
+/// @param folderPath path to a folder containing .dot files for
+/// DotToGraphGenerator
 
 void runGeneration(
     std::string i_json_path,
@@ -537,17 +549,17 @@ void runGeneration(
     DataBaseGeneratorParameters *dbgp = setGenerationParameters(data);
 
     DataBaseGenerator generator(*dbgp);
-      
+
     const uint8_t threads = readWithCheck<uint8_t>(data, "multithread", 1);
     const bool createDirs = readWithCheck<bool>(data["OutputParameters"],
                                                 "create_id_directories", false);
 
+    if (dbgp->getGenerationType() == DotToGraph) {
 
-    if (dbgp->getGenerationType() == DotToGraph){
+      std::string folderPath =
+          readWithCheck<std::string>(data["DotToGraph"], "dotpath", "", true);
 
-      std::string folderPath = readWithCheck<std::string>(data["DotToGraph"], "dotpath", "", true);
-
-      for (const auto &entry : std::filesystem::directory_iterator(folderPath)) {
+      for (const auto &entry: std::filesystem::directory_iterator(folderPath)) {
         if (entry.path().extension() == ".dot") {
           auto start = std::chrono::high_resolution_clock::now();
 
@@ -557,23 +569,23 @@ void runGeneration(
           DataBaseGenerator generator(*dbgp);
           generator.generateTypeForGraph(*dbgp, threads, createDirs);
           auto stop = std::chrono::high_resolution_clock::now();
-          auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-          std::clog << "Processed file: " << entry.path() 
+          auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
+              stop - start);
+          std::clog << "Processed file: " << entry.path()
                     << " | Time: " << duration.count() << " microseconds\n";
         }
       }
-    }
-    else{
+    } else {
       auto start = high_resolution_clock::now();
 
       generator.generateTypeForGraph(*dbgp, threads, createDirs);
-  
+
       auto stop = high_resolution_clock::now();
       auto duration = duration_cast<microseconds>(stop - start);
       std::clog << "Time taken: " << duration.count() << " microseconds"
                 << '\n';
     }
-    delete dbgp;  
+    delete dbgp;
   }
 }
 

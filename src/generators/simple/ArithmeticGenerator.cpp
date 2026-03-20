@@ -13,18 +13,19 @@ ArithmeticGenerator::ArithmeticGenerator(const GenerationParameters &i_param) :
     SimpleGenerator(i_param) {
 }
 
-GraphPtr
-ArithmeticGenerator::generateAdvancedArithmetic(
+GraphPtr ArithmeticGenerator::generateAdvancedArithmetic(
     const GenerationParameters &i_param) const {
   switch (i_param.getArithmetic().getType()) {
     case ArithemticOperations::DIV:
       return generateNonRestoringDiv(i_param);
+    case ArithemticOperations::INC:
+      return generateIncrement(i_param);
+    case ArithemticOperations::DEC:
+      return generateDecrement(i_param);
     case ArithemticOperations::MUL:
     case ArithemticOperations::ADD:
     case ArithemticOperations::SUB:
     case ArithemticOperations::NEG:
-    case ArithemticOperations::INC:
-    case ArithemticOperations::DEC:
     case ArithemticOperations::UNDEFINED:
       std::cerr << "Unsupported operation type found. "
                    "Generationg default division\n";

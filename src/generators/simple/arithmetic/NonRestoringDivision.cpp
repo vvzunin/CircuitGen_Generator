@@ -33,10 +33,8 @@ struct AbscData {
   }
 };
 
-AbscData
-synthAbsc(GraphPtr graph,
-          const AbscData &data,
-          CG_Graph::GraphVertexBase *zero)  {
+AbscData synthAbsc(GraphPtr graph, const AbscData &data,
+                   CG_Graph::GraphVertexBase *zero) {
   // input [1:0] a, input n, input s
   if (data.value.digit == zero && data.value.sign == zero) {
     return data;
@@ -84,11 +82,8 @@ synthAbsc(GraphPtr graph,
   return resp;
 }
 
-HcData
-synthHc(GraphPtr graph,
-        CG_Graph::GraphVertexBase *digit,
-        const Sd2 &abss,
-        CG_Graph::GraphVertexBase *zero) {
+HcData synthHc(GraphPtr graph, CG_Graph::GraphVertexBase *digit,
+               const Sd2 &abss, CG_Graph::GraphVertexBase *zero) {
   HcData resp;
   if (digit == zero) {
     resp.carry = abss.sign;
@@ -120,11 +115,9 @@ synthHc(GraphPtr graph,
   return resp;
 }
 
-Sd2
-synthSum(GraphPtr graph,
-         CG_Graph::GraphVertexBase *horizontal,
-         CG_Graph::GraphVertexBase *carry,
-         CG_Graph::GraphVertexBase *zero) {
+Sd2 synthSum(GraphPtr graph, CG_Graph::GraphVertexBase *horizontal,
+             CG_Graph::GraphVertexBase *carry,
+             CG_Graph::GraphVertexBase *zero) {
   Sd2 resp;
   if (horizontal == zero) {
     resp.digit = carry;
@@ -146,8 +139,7 @@ synthSum(GraphPtr graph,
   return resp;
 }
 
-GraphPtr
-ArithmeticGenerator::generateNonRestoringDiv(
+GraphPtr ArithmeticGenerator::generateNonRestoringDiv(
     const GenerationParameters &i_param) const {
   uint32_t sizeA = i_param.getArithmetic().getSizeA();
   uint32_t sizeB = i_param.getArithmetic().getSizeB();
@@ -163,10 +155,9 @@ ArithmeticGenerator::generateNonRestoringDiv(
   if (useSign) {
     inverseSign = graph->addGate(GateXor);
     graph->addEdges({inputsForA.back(), inputsForB.back()}, inverseSign);
-    auto negA =
-        twosComplement(graph, inputsForA, inputsForA.size(), true);
-    inputsForA = MuxGenerator::addMux2(
-        graph, inputsForA.back(), inputsForA, negA);
+    auto negA = twosComplement(graph, inputsForA, inputsForA.size(), true);
+    inputsForA =
+        MuxGenerator::addMux2(graph, inputsForA.back(), inputsForA, negA);
   }
   auto *zero = graph->addConst('0');
   if (inputsForB.size() == 1) {
@@ -179,10 +170,10 @@ ArithmeticGenerator::generateNonRestoringDiv(
   outputs.reserve(sizeY);
 
   if (useSign) {
-    std::vector<VertexPtr> negB = twosComplement(
-        graph, inputsForB, inputsForB.size(), true
-    );
-    inputsForB = MuxGenerator::addMux2(graph, inputsForB.back(), inputsForB, negB);
+    std::vector<VertexPtr> negB =
+        twosComplement(graph, inputsForB, inputsForB.size(), true);
+    inputsForB =
+        MuxGenerator::addMux2(graph, inputsForB.back(), inputsForB, negB);
   }
   if (inputsForA.size() > inputsForB.size()) {
     inputsForB.resize(inputsForA.size(), useSign ? inputsForB.back() : zero);
@@ -194,9 +185,8 @@ ArithmeticGenerator::generateNonRestoringDiv(
   int size = width;
   std::vector<VertexPtr> dividendTree;
   if (size > 1) {
-    dividendTree = synthLadnerFisherPrefixDecisionTree(
-        graph, inputsForA, size - 1
-    );
+    dividendTree =
+        synthLadnerFisherPrefixDecisionTree(graph, inputsForA, size - 1);
   }
 
   // prepare data structures
@@ -250,7 +240,7 @@ ArithmeticGenerator::generateNonRestoringDiv(
       if (i == size - 1) {
         s = abscVec[0].sign;
       } else {
-        auto *inv  = graph->addGate(GateNot);
+        auto *inv = graph->addGate(GateNot);
         graph->addEdge(abscVec[0].notNull, inv);
 
         s = graph->addGate(GateAnd);

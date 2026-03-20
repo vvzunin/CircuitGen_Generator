@@ -618,10 +618,8 @@ public:
     d_generatorCascadeParameters.setMinNumStates(i_MinNumStates);
   }
 
-  void setArithmeticParameters(uint32_t i_sizeA,
-                               uint32_t i_sizeB,
-                               uint32_t i_sizeY,
-                               bool i_isSigned,
+  void setArithmeticParameters(uint32_t i_sizeA, uint32_t i_sizeB,
+                               uint32_t i_sizeY, bool i_isSigned,
                                ArithemticOperations::Types i_type) {
     d_generatorArithmeticParameters.setSizeA(i_sizeA);
     d_generatorArithmeticParameters.setSizeB(i_sizeB);

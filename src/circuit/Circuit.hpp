@@ -9,6 +9,7 @@
 #include <baseStructures/truthTable/TruthTable.hpp>
 
 #include "CircuitParameters.hpp"
+#include "generators/simple/arithmetic/ArithmeticUtils.hpp"
 
 namespace CG_Gen {
 
@@ -207,6 +208,8 @@ public:
   /// @param i_filepath
 
   Circuit fromVerilog(const std::string &i_filepath);
+
+  void setArithmeticType(ArithemticOperations::Types i_type);
 
 private:
   GraphPtr d_graph;

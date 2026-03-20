@@ -1,6 +1,5 @@
 #include "../ArithmeticGenerator.hpp"
 
-
 namespace CG_Gen {
 
 GraphPtr ArithmeticGenerator::generatorSummator(uint32_t i_bits,
@@ -105,5 +104,5 @@ ArithmeticGenerator::generatorSummator(const GenerationParameters &i_param) {
 GraphPtr ArithmeticGenerator::generatorSummator() {
   return generatorSummator(getParameters());
 }
-  
+
 } // namespace CG_Gen

@@ -37,7 +37,7 @@
       "sizeB": 0,
       "sizeY": 10,
       "is_signed": false,
-      "type": "INC"
+      "type": "DEC"
     }
   }
 ]

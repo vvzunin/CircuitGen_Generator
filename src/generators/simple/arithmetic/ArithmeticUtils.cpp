@@ -7,13 +7,9 @@
 
 namespace CG_Gen {
 
-std::vector<VertexPtr>
-synthLadnerFisherPrefixDecisionTree(
-    GraphPtr graph,
-    const std::vector<VertexPtr> &inputs,
-    uint16_t outSize,
-    CG_Graph::Gates operation
-) {
+std::vector<VertexPtr> synthLadnerFisherPrefixDecisionTree(
+    GraphPtr graph, const std::vector<VertexPtr> &inputs, uint16_t outSize,
+    CG_Graph::Gates operation) {
   outSize = std::min(outSize, static_cast<uint16_t>(inputs.size()));
   std::vector<VertexPtr> current = inputs;
   current.resize(outSize);
@@ -54,21 +50,17 @@ synthLadnerFisherPrefixDecisionTree(
 }
 
 std::vector<VertexPtr>
-commonPrefixOperations(GraphPtr graph,
-                       const std::vector<VertexPtr> &word,
-                       const uint32_t width,
-                       const bool signExtend,
+commonPrefixOperations(GraphPtr graph, const std::vector<VertexPtr> &word,
+                       const uint32_t width, const bool signExtend,
                        ArithemticOperations::Types oper) {
   const auto size = std::min(word.size(), static_cast<size_t>(width));
   assert(size != 0);
 
-  const auto logicOper = oper == ArithemticOperations::ADD
-      ? CG_Graph::GateAnd
-      : CG_Graph::GateOr;
+  const auto logicOper =
+      oper == ArithemticOperations::ADD ? CG_Graph::GateAnd : CG_Graph::GateOr;
 
-  const auto decisionTree = synthLadnerFisherPrefixDecisionTree(
-      graph, word, size, logicOper
-  );
+  const auto decisionTree =
+      synthLadnerFisherPrefixDecisionTree(graph, word, size, logicOper);
 
   std::vector<VertexPtr> result(size);
   if (oper == ArithemticOperations::NEG) {
@@ -86,9 +78,8 @@ commonPrefixOperations(GraphPtr graph,
     if (oper == ArithemticOperations::SUB) {
       std::swap(inv, whenFalse);
     }
-    result[i] = MuxGenerator::addMux2(
-        graph, decisionTree[i - 1], whenFalse, inv
-    );
+    result[i] =
+        MuxGenerator::addMux2(graph, decisionTree[i - 1], whenFalse, inv);
   }
   auto *sign = decisionTree.back();
   if (signExtend) {
@@ -106,16 +97,12 @@ commonPrefixOperations(GraphPtr graph,
   return result;
 }
 
-std::vector<VertexPtr>
-twosComplement(
-    GraphPtr graph,
-    const std::vector<VertexPtr> &word,
-    const uint32_t width,
-    const bool signExtend
-) {
-  return commonPrefixOperations(
-      graph, word, width, signExtend, ArithemticOperations::NEG
-  );
+std::vector<VertexPtr> twosComplement(GraphPtr graph,
+                                      const std::vector<VertexPtr> &word,
+                                      const uint32_t width,
+                                      const bool signExtend) {
+  return commonPrefixOperations(graph, word, width, signExtend,
+                                ArithemticOperations::NEG);
 }
 
 } // namespace CG_Gen

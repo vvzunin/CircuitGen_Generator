@@ -114,4 +114,4 @@ GraphPtr ArithmeticGenerator::generatorSubtractor() {
   return generatorSubtractor(getParameters());
 }
 
-} // namespace CG_Gen 
+} // namespace CG_Gen

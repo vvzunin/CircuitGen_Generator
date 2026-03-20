@@ -47,7 +47,7 @@ if (NOT DEFINED LOCAL_BUILD)
   FetchContent_Declare(
     ${ORIENTED_GRAPH}
     GIT_REPOSITORY https://hub.mos.ru/circuitgen/CircuitGen_Graph
-    GIT_TAG db5b8a531e02cc4f5b4cbfedcf830dbce2b5b47e
+    GIT_TAG 3e8c0b9
   )
 else()
   FetchContent_Declare(
@@ -108,6 +108,7 @@ set(SOURCES
 
   src/generators/simple/ArithmeticGenerator.cpp
   src/generators/simple/arithmetic/ArithmeticUtils.cpp
+  src/generators/simple/arithmetic/IncrementDecrement.cpp
   src/generators/simple/arithmetic/NonRestoringDivision.cpp
   src/generators/simple/arithmetic/SimpleAdder.cpp
   src/generators/simple/arithmetic/SimpleMultiplier.cpp

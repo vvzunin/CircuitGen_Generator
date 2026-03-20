@@ -5,9 +5,7 @@
 
 namespace CG_Gen {
 
-VertexPtr MuxGenerator::addMux2(GraphPtr graph,
-                                VertexPtr sel,
-                                VertexPtr x,
+VertexPtr MuxGenerator::addMux2(GraphPtr graph, VertexPtr sel, VertexPtr x,
                                 VertexPtr y) {
   if (!sel || !x || !y) {
     return nullptr;
@@ -19,7 +17,7 @@ VertexPtr MuxGenerator::addMux2(GraphPtr graph,
   auto *ifSecond = graph->addGate(GateAnd);
 
   graph->addEdges({inv, x}, ifFirst);
-  graph->addEdges({inv, y}, sel);
+  graph->addEdges({sel, y}, ifSecond);
 
   auto *result = graph->addGate(GateOr);
   graph->addEdges({ifFirst, ifSecond}, result);
@@ -27,11 +25,9 @@ VertexPtr MuxGenerator::addMux2(GraphPtr graph,
   return result;
 }
 
-std::vector<VertexPtr>
-MuxGenerator::addMux2(GraphPtr graph,
-                      VertexPtr sel,
-                      const std::vector<VertexPtr> &x,
-                      const std::vector<VertexPtr> &y) {
+std::vector<VertexPtr> MuxGenerator::addMux2(GraphPtr graph, VertexPtr sel,
+                                             const std::vector<VertexPtr> &x,
+                                             const std::vector<VertexPtr> &y) {
   if (x.size() != y.size() || x.empty() || !sel) {
     return {};
   }

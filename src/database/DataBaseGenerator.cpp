@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "DataBaseGenerator.hpp"
+#include "generators/simple/arithmetic/ArithmeticUtils.hpp"
 #include "settings/Settings.hpp"
 
 #include <CircuitGenGenerator/ThreadPool.hpp>
@@ -341,6 +342,7 @@ void DataBaseGenerator::generateDataBaseSummator(
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
+  c.setArithmeticType(ArithemticOperations::ADD);
   c.generate({i_param.getMakeGraphMLClassic(),
               i_param.getMakeGraphMLPseudoABCD(),
               i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
@@ -417,6 +419,7 @@ void DataBaseGenerator::generateDataBaseSubtractor(
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
+  c.setArithmeticType(ArithemticOperations::SUB);
   c.generate({i_param.getMakeGraphMLClassic(),
               i_param.getMakeGraphMLPseudoABCD(),
               i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
@@ -474,6 +477,7 @@ void DataBaseGenerator::generateDataBaseMultiplier(
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
+  c.setArithmeticType(ArithemticOperations::MUL);
   c.generate({i_param.getMakeGraphMLClassic(),
               i_param.getMakeGraphMLPseudoABCD(),
               i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
@@ -578,10 +582,12 @@ void DataBaseGenerator::generateDataBaseArithmetic(
     const GenerationParameters &i_param) {
   ArithmeticGenerator ccd(i_param);
   GraphPtr graph = ccd.generateAdvancedArithmetic();
+  auto type = i_param.getArithmetic().getType();
 
   Circuit c(graph);
   c.setPath(d_mainPath);
   c.setCircuitName(i_param.getName());
+  c.setArithmeticType(type);
   c.generate({i_param.getMakeGraphMLClassic(),
               i_param.getMakeGraphMLPseudoABCD(),
               i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});

@@ -9,6 +9,7 @@
 #include <thread>
 
 #include "Circuit.hpp"
+#include "generators/simple/arithmetic/ArithmeticUtils.hpp"
 
 #include <CircuitGenGraph/enums.hpp>
 
@@ -241,6 +242,13 @@ bool Circuit::saveParameters(GraphPtr i_graph, std::ofstream &i_outputFile,
   i_outputFile << tab << "\"connected\": " << std::boolalpha
                << i_graph->isConnected() << "," << std::endl;
 
+  if (d_circuitParameters.d_ArithmType != ArithemticOperations::UNDEFINED) {
+    i_outputFile << tab << "\"atithmetic_operation\": \""
+                 << ArithemticOperations::getName(
+                        d_circuitParameters.d_ArithmType)
+                 << "\"," << std::endl;
+  }
+
   i_outputFile << tab << "\"numElementsOfEachType\": {" << std::endl;
 
   bool first = true;
@@ -463,6 +471,10 @@ bool Circuit::generate(CircuitArgs args) {
 
 void Circuit::setTable(const TruthTable &i_tt) {
   d_tTable = i_tt;
+}
+
+void Circuit::setArithmeticType(ArithemticOperations::Types i_type) {
+  d_circuitParameters.d_ArithmType = i_type;
 }
 
 void Circuit::setPath(const std::string &i_path) {

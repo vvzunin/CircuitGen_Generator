@@ -1,6 +1,5 @@
 #include "../ArithmeticGenerator.hpp"
 
-
 namespace CG_Gen {
 
 GraphPtr ArithmeticGenerator::generatorMultiplier(uint32_t i_bits) {

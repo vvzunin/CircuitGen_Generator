@@ -1,5 +1,8 @@
 #pragma once
 
+#include "generators/simple/arithmetic/ArithmeticUtils.hpp"
+#include <cstdint>
+#include <map>
 #include <string>
 
 namespace CG_Gen {
@@ -43,6 +46,10 @@ public:
 
   /// @todo: rewrite getters and setters
   std::string d_name = "";
+  std::string d_hashCode = "";
+  std::map<std::string, size_t> d_numElementsOfEachType;
+  std::map<std::pair<std::string, std::string>, size_t> d_numEdgesOfEachType;
+
   uint32_t d_numInputs = 0;
   uint32_t d_numConstants = 0;
   uint32_t d_numOutputs = 0;
@@ -51,9 +58,8 @@ public:
   uint32_t d_numGates = 0;
   double d_size = 0.;
   double d_area = 0.;
-  std::string d_hashCode = "";
-  std::map<std::string, size_t> d_numElementsOfEachType;
-  std::map<std::pair<std::string, std::string>, size_t> d_numEdgesOfEachType;
+
+  ArithemticOperations::Types d_ArithmType = ArithemticOperations::UNDEFINED;
 };
 
 } // namespace CG_Gen

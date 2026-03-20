@@ -99,7 +99,7 @@ public:
   }
 
   template<typename T>
-  std::pair<T, T> getTwoRandomElements(const std::vector<T>& v) {
+  std::pair<T, T> getTwoRandomElements(const std::vector<T> &v) {
     assert(v.size() > 0);
     if (v.size() < 2)
       return {v.back(), v.back()};
@@ -109,13 +109,14 @@ public:
 
     size_t i = d1(d_gen);
     size_t j = d2(d_gen);
-    if (j >= i) j++;
+    if (j >= i)
+      j++;
 
     return {v[i], v[j]};
   }
 
   template<typename T>
-  T getRandomElement(const std::vector<T>& v) {
+  T getRandomElement(const std::vector<T> &v) {
     assert(v.size() > 0);
 
     std::uniform_int_distribution<size_t> d1(0, v.size() - 1);

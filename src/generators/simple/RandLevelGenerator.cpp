@@ -41,7 +41,7 @@ GraphPtr RandLevelGenerator::generatorRandLevel(
     // removes not, buf
     for (int i = 0; i < logOper.size(); ++i) {
       hasOneGate[delta] = hasOneGate[i];
-      logOper[delta] = logOper[i]; 
+      logOper[delta] = logOper[i];
       if (!hasOneGate[i]) {
         delta += 1;
       }
@@ -59,8 +59,9 @@ GraphPtr RandLevelGenerator::generatorRandLevel(
   graph->reserve(VertexTypes::output, i_outputs);
   graph->reserve(VertexTypes::gate, maxLevel * i_maxElements);
 
-  auto nameGen =
-      [] (size_t i) -> std::string { return "x" + std::to_string(i); };
+  auto nameGen = [](size_t i) -> std::string {
+    return "x" + std::to_string(i);
+  };
   std::vector<VertexPtr> values = graph->addInputs(i_inputs, nameGen);
 
   int32_t currIndex = i_inputs;
@@ -83,7 +84,7 @@ GraphPtr RandLevelGenerator::generatorRandLevel(
         graph->addEdge(graph->getVerticeByIndex(child1), newVertex);
 
       } else if (!syntheticConnected) {
-        auto [child1, child2] = AuxMethods::getTwoRandomElements(values);
+        auto [child1, child2] = d_randGenerator.getTwoRandomElements(values);
 
         newVertex = graph->addGate(logOper[choice]);
         graph->addEdges({child2, child1}, newVertex);
@@ -259,10 +260,8 @@ GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
 GraphPtr
 RandLevelGenerator::generatorRandLevel(const GenerationParameters &i_param) {
   const auto &params = i_param.getRandLevel();
-  return generatorRandLevel(params.getMinLevel(),
-                            params.getMaxLevel(),
-                            params.getMinElements(),
-                            params.getMaxElements(),
+  return generatorRandLevel(params.getMinLevel(), params.getMaxLevel(),
+                            params.getMinElements(), params.getMaxElements(),
                             i_param.getInputs(), i_param.getOutputs(),
                             params.getSyntheticConnected());
 }
@@ -270,12 +269,9 @@ RandLevelGenerator::generatorRandLevel(const GenerationParameters &i_param) {
 GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
     const GenerationParameters &i_param) {
   const auto &params = i_param.getRandLevel();
-  return generatorRandLevelExperimental(params.getMinLevel(),
-                                        params.getMaxLevel(),
-                                        params.getMinElements(),
-                                        params.getMaxElements(),
-                                        i_param.getInputs(),
-                                        i_param.getOutputs());
+  return generatorRandLevelExperimental(
+      params.getMinLevel(), params.getMaxLevel(), params.getMinElements(),
+      params.getMaxElements(), i_param.getInputs(), i_param.getOutputs());
 }
 
 GraphPtr RandLevelGenerator::generatorRandLevel() {

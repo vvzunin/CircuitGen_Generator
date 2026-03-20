@@ -66,8 +66,12 @@ public:
 
   GraphPtr generateNonRestoringDiv(const GenerationParameters &i_param) const;
 
-  GraphPtr generateAdvancedArithmetic(
-      const GenerationParameters &i_param) const;
+  GraphPtr generateIncrement(const GenerationParameters &i_param) const;
+
+  GraphPtr generateDecrement(const GenerationParameters &i_param) const;
+
+  GraphPtr
+  generateAdvancedArithmetic(const GenerationParameters &i_param) const;
 
   GraphPtr generatorSummator();
 

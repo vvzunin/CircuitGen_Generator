@@ -34,10 +34,10 @@ enum GenerationTypes {
   Parity,                /// Parity
   ALU,                   /// Arithmetic Logic Unit (ALU)
   MealyMoore,            /// Mealy and Moore
-  DotToGraph,            /// Dot to graph converter (Mealy and Moore only for now)
-  Cascade,               /// Cascade
-  Arithmetic             /// Basic name for multiple 
-                         /// specialized arithmetic generators
+  DotToGraph, /// Dot to graph converter (Mealy and Moore only for now)
+  Cascade,    /// Cascade
+  Arithmetic  /// Basic name for multiple
+              /// specialized arithmetic generators
 };            /* Simple */
 
 static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
@@ -59,8 +59,7 @@ static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
     {"MealyMoore", MealyMoore},
     {"DotToGraph", DotToGraph},
     {"Cascade", Cascade},
-    {"Arithmetic", Arithmetic}
-  };
+    {"Arithmetic", Arithmetic}};
 
 /// @todo: To add Description some fields
 /// class Settings

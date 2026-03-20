@@ -69,12 +69,12 @@ int32_t getRandInt(int32_t lower, int32_t upper, bool inclusively = false);
 double getRandDouble(double lower, double upper);
 
 template<typename T>
-std::pair<T, T> getTwoRandomElements(const std::vector<T>& v) {
+std::pair<T, T> getTwoRandomElements(const std::vector<T> &v) {
   return gen.getTwoRandomElements(v);
 }
 
 template<typename T>
-T getRandomElement(const std::vector<T>& v) {
+T getRandomElement(const std::vector<T> &v) {
   return gen.getRandomElement(v);
 }
 
