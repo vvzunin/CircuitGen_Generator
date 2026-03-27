@@ -39,7 +39,7 @@ sanitize:
     - cmake --preset=ci-sanitize
     - cmake --build build/sanitize -j $(nproc)
     - cd build/sanitize
-    - ctest --output-on-failure --no-tests=error -j $(nproc)
+    - ctest --output-on-failure --no-tests=error -j 1
   tags:
     - docker
   rules:
