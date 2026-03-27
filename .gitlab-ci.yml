@@ -141,7 +141,8 @@ docker-ci:
 docker-dev:
   stage: docker
   needs:
-    - docker-ci
+    - job: docker-ci
+      optional: true
   before_script:
     - docker login "$REGISTRY_URL" -u "$NAS_Harbor_USER" -p "$NAS_Harbor_PASS"
   script:
