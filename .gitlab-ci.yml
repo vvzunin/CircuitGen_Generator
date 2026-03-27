@@ -122,7 +122,7 @@ release-from-tag:
 docker-ci:
   stage: docker
   before_script:
-    - docker login "$REGISTRY_URL" -u vvzunin -p "$moshub_token_docker_ci"
+    - docker login "$REGISTRY_URL" -u "$NAS_Harbor_USER" -p "$NAS_Harbor_PASS"
   script:
     - echo "Creating docker image with tag $DOCKER_CI_TAG" && echo "Image will push to $DOCKER_URL"
     - docker buildx build --pull --rm --provenance=false --no-cache --build-arg system=$DOCKER_CI_SYSTEM -f $DOCKERFILE_CI_NAME -t vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG .
@@ -141,7 +141,7 @@ docker-ci:
 docker-dev:
   stage: docker
   before_script:
-    - docker login "$REGISTRY_URL" -u vvzunin -p "$moshub_token_docker_ci"
+    - docker login "$REGISTRY_URL" -u "$NAS_Harbor_USER" -p "$NAS_Harbor_PASS"
   script:
     - echo "Creating docker image with tag dev_$DOCKER_CI_TAG" && echo "Image will push to $DOCKER_URL"
     - docker buildx build --pull --rm --provenance=false --no-cache --build-arg system=vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG -f $DOCKERFILE_DEV_NAME -t vvzunin.me:5201/circuitgen/generator/dev:$DOCKER_CI_TAG .
