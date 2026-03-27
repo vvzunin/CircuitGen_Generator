@@ -10,14 +10,14 @@ variables:
   DOCKERFILE_DEV_NAME: Dockerfile.dev
   DOCKER_CI_SYSTEM: ubuntu:22.04
   DOCKER_CI_TAG: latest
-  REGISTRY_URL: registry-hub.mos.ru
+  REGISTRY_URL: vvzunin.me:5201
   GROUP_NAME: circuitgen
-  REPO_NAME: circuitgen_generator
+  REPO_NAME: generator
   DOCKER_URL: $REGISTRY_URL/$GROUP_NAME/$REPO_NAME
 
 lint:
   stage: check
-  image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  image: vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
   before_script:
     - python3 --version
   script:
@@ -30,7 +30,7 @@ lint:
 
 sanitize:
   stage: check
-  image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  image: vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
   variables: 
     CXX: 'clang++-14'
     ASAN_OPTIONS: 'strict_string_checks=1:detect_stack_use_after_return=1:check_initialization_order=1:strict_init_order=1:detect_leaks=1:detect_odr_violation=1'
@@ -47,7 +47,7 @@ sanitize:
 
 coverage:
   stage: test
-  image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  image: vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
   needs:
     - lint
     - sanitize
@@ -65,7 +65,7 @@ coverage:
 
 tests:
   stage: test
-  image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  image: vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
   needs:
     - lint
     - sanitize
@@ -89,7 +89,7 @@ tests:
 
 docs:
   stage: docs
-  image: registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+  image: vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
   needs:
     - coverage
     - tests
@@ -124,9 +124,9 @@ docker-ci:
   before_script:
     - docker login "$REGISTRY_URL" -u vvzunin -p "$moshub_token_docker_ci"
   script:
-    - echo "Creating docker image with tag ci_$DOCKER_CI_TAG" && echo "Image will push to $DOCKER_URL"
-    - docker buildx build --pull --rm --provenance=false --no-cache --build-arg system=$DOCKER_CI_SYSTEM -f $DOCKERFILE_CI_NAME -t registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG .
-    - docker image push registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG
+    - echo "Creating docker image with tag $DOCKER_CI_TAG" && echo "Image will push to $DOCKER_URL"
+    - docker buildx build --pull --rm --provenance=false --no-cache --build-arg system=$DOCKER_CI_SYSTEM -f $DOCKERFILE_CI_NAME -t vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG .
+    - docker image push vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
@@ -144,8 +144,8 @@ docker-dev:
     - docker login "$REGISTRY_URL" -u vvzunin -p "$moshub_token_docker_ci"
   script:
     - echo "Creating docker image with tag dev_$DOCKER_CI_TAG" && echo "Image will push to $DOCKER_URL"
-    - docker buildx build --pull --rm --provenance=false --no-cache --build-arg system=registry-hub.mos.ru/circuitgen/circuitgen_generator:ci_$DOCKER_CI_TAG -f $DOCKERFILE_DEV_NAME -t registry-hub.mos.ru/circuitgen/circuitgen_generator:dev_$DOCKER_CI_TAG .
-    - docker image push registry-hub.mos.ru/circuitgen/circuitgen_generator:dev_$DOCKER_CI_TAG
+    - docker buildx build --pull --rm --provenance=false --no-cache --build-arg system=vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG -f $DOCKERFILE_DEV_NAME -t vvzunin.me:5201/circuitgen/generator/dev:$DOCKER_CI_TAG .
+    - docker image push vvzunin.me:5201/circuitgen/generator/dev:$DOCKER_CI_TAG
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
