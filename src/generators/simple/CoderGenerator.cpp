@@ -1,4 +1,13 @@
-﻿#include <bitset>
+/**
+ * @file CoderGenerator.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Andrew <Kusooyarou@bk.ru>
+ * @author anvibabenko <anvibabenko@edu.hse.ru>
+ */
+
+#include <bitset>
 #include <iostream>
 
 #include "CoderGenerator.hpp"
@@ -55,9 +64,10 @@ GraphPtr CoderGenerator::generatorEncoder(uint32_t i_bits) {
         }
       }
       if (check) {
-        // если количество входных значений не было значением степени двойки, то
-        // подключается доп. функция, которая создает дополнительные варианты
-        // операции and для заполнения недостающих результатов для выходов
+        // если количество входных значений не было значением степени двойки,
+        // то подключается доп. функция, которая создает дополнительные
+        // варианты операции and для заполнения недостающих результатов для
+        // выходов
         Xs[0] = inputs_x[0];
         Xs[shift] = inputs_x[shift];
         for (int32_t j = shift + 1; j < i_bits; j++)

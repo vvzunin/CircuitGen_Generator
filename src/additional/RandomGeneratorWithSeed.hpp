@@ -65,7 +65,7 @@ public:
       throw std::invalid_argument(
           "RandomGeneratorWithSeed random int: upper: " +
           std::to_string(upper) +
-          " boder is bigger than lower: " + std::to_string(lower));
+          " border is bigger than lower: " + std::to_string(lower));
 
     std::uniform_int_distribution<> dis(lower, upper);
 

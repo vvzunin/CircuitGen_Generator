@@ -1,9 +1,9 @@
-//
-// Created by ywx1235144 on 1/17/24.
-//
-// ywx1235144 is Sergey Yakovlev, FCS student,
-// an excellent programmer and just a good person.
-// He has written this thread pool
+/**
+ * @file ThreadPool.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Zunin Vladimir <vzunin@hse.ru>
+ */
 
 #include <CircuitGenGenerator/ThreadPool.hpp>
 

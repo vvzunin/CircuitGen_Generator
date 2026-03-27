@@ -1,3 +1,9 @@
+/**
+ * @file MealyMooreGenerator.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author dsvasilenko1 <dsvasilenko_1@edu.hse.ru>
+ */
+
 #include <algorithm>
 #include <fstream>
 #include <memory>

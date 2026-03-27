@@ -28,7 +28,7 @@ ParentsTypesWorker(ParentsParameters i_parentsParameters,
     return ParentsOutbrinding(i_parentsParameters, i_population);
   if (i_parentsParameters.getParentsType() == ParentsTypes::Tournament)
     return ParentsTournament(i_parentsParameters, i_population);
-  // TODO: info about ParentsRoulette
+  // @todo info about ParentsRoulette
   std::cout << "UNUSUAL ParentTypes IN ParentsTypes" << std::endl;
 
   // default to remove warning

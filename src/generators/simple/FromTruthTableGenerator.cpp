@@ -1,4 +1,13 @@
-﻿#include "FromTruthTableGenerator.hpp"
+/**
+ * @file FromTruthTableGenerator.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Andrew <Kusooyarou@bk.ru>
+ * @author anvibabenko <anvibabenko@edu.hse.ru>
+ */
+
+#include "FromTruthTableGenerator.hpp"
 #include <baseStructures/Parser.hpp>
 
 namespace CG_Gen {
@@ -31,7 +40,7 @@ GraphPtr FromTruthTableGenerator::cnfFromTruthTable(const TruthTable &i_table,
     inputs.push_back(graph->addInput("x" + std::to_string(k)));
   }
 
-  // TODO make nand-or generation etc
+  // @todo make nand-or generation etc
   if (!d_gatesInputsInfo.count(Gates::GateAnd)) {
     d_gatesInputsInfo[Gates::GateAnd] = {(int32_t)inputs.size()};
   }

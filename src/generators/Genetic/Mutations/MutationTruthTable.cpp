@@ -1,3 +1,14 @@
+/**
+ * @file MutationTruthTable.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Alexey Goulyev <avgulev_1@edu.hse.ru>
+ * @author Zunin Vladimir <vzunin@hse.ru>
+ * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
+ * @author Asdfds1 <103683616+Asdfds1@users.noreply.github.com>
+ * @author Asdfds1 <ziazetdinov@list.ru>
+ */
 
 #include <algorithm>
 #include <ctime>

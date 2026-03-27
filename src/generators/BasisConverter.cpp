@@ -1,3 +1,10 @@
+/**
+ * @file BasisConverter.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Portnyagin Egor <egorport48@gmail.com>
+ * @author Портнягин Егор Романович <egorport48@gmail.com>
+ */
+
 #include "BasisConverter.hpp"
 #include <CircuitGenGraph/GraphUtils.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
@@ -11,7 +18,7 @@ using namespace CG_Gen;
 #define Ensure(CONDITION, MESSAGE) \
   if (!(CONDITION)) { \
     throw std::runtime_error(MESSAGE); \
-  }
+  } // namespace
 
 std::string gateTypeToString(Gates gate) {
   switch (gate) {

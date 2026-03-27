@@ -1,4 +1,13 @@
-﻿#include <limits.h> // INT_MAX
+/**
+ * @file SimpleGenerator.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author anvibabenko <anvibabenko@edu.hse.ru>
+ * @author Andrew <Kusooyarou@bk.ru>
+ */
+
+#include <limits.h> // INT_MAX
 
 #include "SimpleGenerator.hpp"
 #include <additional/AuxiliaryMethods.hpp>
@@ -35,7 +44,7 @@ void SimpleGenerator::setGatesInputsInfo(
     d_gatesInputsInfo[GraphUtils::parseStringToGate(key)] = value;
   }
 
-  // TODO is it a good idea to add here hew gates
+  // @todo is it a good idea to add here hew gates
   d_gatesInputsInfo[Gates::GateNot] = {1};
   d_gatesInputsInfo[Gates::GateBuf] = {1};
 }

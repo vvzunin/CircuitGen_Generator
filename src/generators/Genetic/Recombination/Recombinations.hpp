@@ -33,7 +33,7 @@ RecombinationType(RecombinationParameters i_recombinationParameters,
         i_recombinationParameters, i_population);
   }
   // else {
-  // TODO why it is empty?
+  // @todo why it is empty?
   // std::cout << "2" << std::endl;
   // }
   // std::cout << "3"<< std::endl;

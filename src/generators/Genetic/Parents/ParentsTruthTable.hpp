@@ -106,7 +106,7 @@ ParentsTournament(ParentsParameters i_parentsParameters,
   return {res[0], res[1]};
 }
 
-// TODO: is this ParentTournament???
+// @todo is this ParentTournament???
 inline std::vector<int32_t>
 ParentsRoulette(ParentsParameters i_parentsParameters,
                 std::vector<ChromosomeType<TruthTable, TruthTableParameters>>

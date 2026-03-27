@@ -1,4 +1,13 @@
-﻿#include "ParityGenerator.hpp"
+/**
+ * @file ParityGenerator.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Andrew <Kusooyarou@bk.ru>
+ * @author anvibabenko <anvibabenko@edu.hse.ru>
+ */
+
+#include "ParityGenerator.hpp"
 
 namespace CG_Gen {
 

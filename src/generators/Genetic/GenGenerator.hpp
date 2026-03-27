@@ -78,7 +78,7 @@ public:
               d_parameters.getMutationParameters(), newPopulation);
       d_population = SelectionType<Type, ParametersType>(
           d_parameters.getSelectionParameters(), mutants);
-      // TODO make flag if necessary
+      // @todo make flag if necessary
       // savePopulation(d_population);
     }
 
@@ -150,7 +150,7 @@ private:
               std::string("ind" + std::to_string(i)), gen);
       d_population.push_back(ind);
     }
-    // TODO make flag if necessary
+    // @todo make flag if necessary
     // savePopulation(d_population);
   }
 
@@ -182,7 +182,7 @@ private:
 //     d_outputs(i_inout.second),
 //     d_mainPath(i_mainPath)
 // {
-//     std::string dataPath = d_settings->getDatasetPath() + "/Genetic";//TODO::
+//     std::string dataPath = d_settings->getDatasetPath() + "/Genetic";// @todo
 //     Make general function if (FilesTools::isDirectoryExists(dataPath))
 //     {
 //         for (const auto& entry :

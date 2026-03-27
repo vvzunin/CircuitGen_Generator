@@ -1,3 +1,27 @@
+/**
+ * @file DataBaseGenerator.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author dsvasilenko1 <dsvasilenko_1@edu.hse.ru>
+ * @author Portnyagin Egor <egorport48@gmail.com>
+ * @author Портнягин Егор Романович <egorport48@gmail.com>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Andrew <Kusooyarou@bk.ru>
+ * @author anvibabenko <anvibabenko@edu.hse.ru>
+ * @author Alexey Goulyev <avgulev_1@edu.hse.ru>
+ * @author Asdfds1 <ziazetdinov@list.ru>
+ * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
+ * @author fedorsosenkov <fedor.sosenkov0204@gmail.com>
+ * @author Dan11lK0valev <dakovalyov@edu.hse.ru>
+ * @author Zunin Vladimir <vzunin@hse.ru>
+ * @author Goulyev Alexey <avgulev_1@edu.hse.ru>
+ * @author Sergey Smolov <smolov@ispras.ru>
+ * @author Alina <al_zotova@mail.ru>
+ * @author Vladimir Zunin <Volodya12309@gmail.com>
+ * @author Radzhabov <rrradzhabov@edu.hse.ru>
+ * @author mdan2000 <mdan_2000@mail.ru>
+ */
+
 #include <algorithm>
 #include <cstdint>
 #include <filesystem>
@@ -42,7 +66,7 @@ void DataBaseGenerator::runGeneratorByDefault(
   GenerationTypes gt = i_dbgp.getGenerationType();
   std::function<void(const GenerationParameters &)> generator =
       getGenerateMethod(gt);
-  // TODO: make normal code
+  // @todo make normal code
   std::string dir = d_settings->getDatasetPath();
 
   if (createIdDirectories)
@@ -73,7 +97,7 @@ void DataBaseGenerator::runGeneratorByDefault(
       d_dirCount = std::max(
           d_dirCount,
           std::stoi(s0) +
-              1); // TODO: in general code n is int32, is it really need?
+              1); // @todo in general code n is int32, is it really need?
     }
   }
 
@@ -113,7 +137,7 @@ void DataBaseGenerator::runGeneratorByDefault(
         }
       } else {
         for (int32_t tt = 0; tt < i_dbgp.getEachIteration(); ++tt) {
-          // TODO: it is that Rustam told about iteration?
+          // @todo it is that Rustam told about iteration?
           d_parameters.setIteration(tt);
           d_parameters.setName(d_settings->getGenerationMethodPrefix(gt) +
                                AuxMethods::intToStringWithZeroes(d_dirCount));

@@ -1,3 +1,20 @@
+/**
+ * @file TruthTable.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Alexey Goulyev <avgulev_1@edu.hse.ru>
+ * @author Zunin Vladimir <vzunin@hse.ru>
+ * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
+ * @author Asdfds1 <ziazetdinov@list.ru>
+ * @author Goulyev Alexey <avgulev_1@edu.hse.ru>
+ * @author Гульев Алексей <avgulev_1@edu.hse.ru>
+ * @author Vladimir Zunin <Volodya12309@gmail.com>
+ * @author Rustam Radzhabov <rrradzhabov@edu.hse.ru>
+ * @author Radzhabov Rustam <rrradzhabov@edu.hse.ru>
+ * @author mdan2000 <mdan_2000@mail.ru>
+ */
+
 #include <ctime>
 #include <iostream>
 #include <iterator>
