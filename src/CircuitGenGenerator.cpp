@@ -1,3 +1,25 @@
+/**
+ * @file CircuitGenGenerator.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author dsvasilenko1 <dsvasilenko_1@edu.hse.ru>
+ * @author Василенко Даниил Сергеевич <dan.vasilenko@mail.ru>
+ * @author Портнягин Егор Романович <egorport48@gmail.com>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Portnyagin Egor <egorport48@gmail.com>
+ * @author Alexey Goulyev <avgulev_1@edu.hse.ru>
+ * @author Asdfds1 <ziazetdinov@list.ru>
+ * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
+ * @author Dan11lK0valev <dakovalyov@edu.hse.ru>
+ * @author Zunin Vladimir <vzunin@hse.ru>
+ * @author Goulyev Alexey <avgulev_1@edu.hse.ru>
+ * @author Гульев Алексей <avgulev_1@edu.hse.ru>
+ * @author Vladimir Zunin <Volodya12309@gmail.com>
+ * @author Radzhabov <rrradzhabov@edu.hse.ru>
+ * @author kudr.max <mdkudryashov@edu.hse.ru>
+ * @author mdan2000 <mdan_2000@mail.ru>
+ */
+
 #include <algorithm>
 #include <chrono>
 #include <fstream>

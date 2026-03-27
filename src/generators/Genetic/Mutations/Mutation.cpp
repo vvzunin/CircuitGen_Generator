@@ -1,3 +1,13 @@
+/**
+ * @file Mutation.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Zunin Vladimir <vzunin@hse.ru>
+ * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
+ * @author Asdfds1 <ziazetdinov@list.ru>
+ */
+
 #include <iostream>
 
 #include "Mutation.hpp"

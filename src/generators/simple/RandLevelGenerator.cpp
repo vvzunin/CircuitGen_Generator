@@ -1,4 +1,13 @@
-﻿#include "RandLevelGenerator.hpp"
+/**
+ * @file RandLevelGenerator.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Andrew <Kusooyarou@bk.ru>
+ * @author anvibabenko <anvibabenko@edu.hse.ru>
+ */
+
+#include "RandLevelGenerator.hpp"
 
 namespace CG_Gen {
 
@@ -84,7 +93,7 @@ GraphPtr RandLevelGenerator::generatorRandLevel(
     // std::clog << i / (float)maxLevel * 100 << "%" << std::endl;
   }
 
-  // TODO: fix when elements less than outputs
+  // @todo fix when elements less than outputs
 
   for (int32_t i = 0; i < i_outputs; ++i) {
     child1 = d_randGenerator.getRandInt(prevIndex, currIndex);
@@ -131,7 +140,7 @@ GraphPtr RandLevelGenerator::generatorRandLevelExperimental(
   }
   auto curGates(inputs);
 
-  // TODO what if we will need to use n-gate elements, should we add consts
+  // @todo what if we will need to use n-gate elements, should we add consts
   // usage?
 
   int32_t currIndex = i_inputs;

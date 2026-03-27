@@ -1,4 +1,13 @@
-﻿#include <CircuitGenGenerator/ThreadPool.hpp>
+/**
+ * @file ALUGenerator.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Andrew <Kusooyarou@bk.ru>
+ * @author anvibabenko <anvibabenko@edu.hse.ru>
+ */
+
+#include <CircuitGenGenerator/ThreadPool.hpp>
 
 #include <additional/AuxiliaryMethods.hpp>
 
@@ -69,7 +78,7 @@ GraphPtr ALUGenerator::generatorALU(
       (OR ? 1 : 0) + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0) +
       (CNF ? 3 : 0) + (RNL ? 1 : 0) + (NUM_OP ? 1 : 0);
 
-  // TODO not used code. Fix
+  // @todo not used code. Fix
 #if 0
   // размерность АЛУ (сколько генераций мультиплексоров необходимо выполнить)
   int32_t size = i_bits;

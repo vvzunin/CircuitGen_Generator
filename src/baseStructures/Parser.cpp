@@ -1,3 +1,17 @@
+/**
+ * @file Parser.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Alexey Goulyev <avgulev_1@edu.hse.ru>
+ * @author Zunin Vladimir <vzunin@hse.ru>
+ * @author magomed <mrnavruzov@edu.hse.ru>
+ * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
+ * @author Dan11lK0valev <dakovalyov@edu.hse.ru>
+ * @author Vladimir Zunin <Volodya12309@gmail.com>
+ * @author mdan2000 <mdan_2000@mail.ru>
+ */
+
 #include <algorithm>
 #include <cassert>
 #include <iostream>

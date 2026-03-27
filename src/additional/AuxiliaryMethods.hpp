@@ -8,9 +8,9 @@
 #include <vector>
 
 /// @file AuxiliaryMethods.hpp
-/// TODO: ToEnum
-/// TODO: if need LineReader
-/// TODO: if need CopyDirectory
+/// @todo ToEnum
+/// @todo if need LineReader
+/// @todo if need CopyDirectory
 
 /// namespace AuxMethods It was created to organize a set of auxiliary
 /// functions and methods that can be used in various parts of a
@@ -18,7 +18,7 @@
 /// Functions: Random number generation, Reading files,
 /// Data sorting and processing (includes methods for sorting
 /// dictionaries by their values and for working with spaces in strings)
-/// TO DO: list the other functions
+/// @todo list the other functions
 /// </summary>
 
 #include <CircuitGenGraph/DefaultAuxiliaryMethods.hpp>
@@ -140,8 +140,8 @@ std::vector<int32_t> getRandomIntList(size_t i_n, int32_t i_minNumber,
 template<typename Key, typename Value>
 std::vector<std::pair<Key, Value>>
 sortDictByValue(const std::map<Key, Value> &i_dict, bool up = true);
-// TODO: ToEnum
-// TODO: if need LineReader
+// @todo ToEnum
+// @todo if need LineReader
 
 /// @brief removeSpaces Removes spaces, tabs, and newline characters from a
 /// string
@@ -191,7 +191,7 @@ template<typename T>
 std::vector<std::vector<T>>
 transpose(const std::vector<std::vector<T>> &matrix);
 
-// TODO: if need CopyDirectory
+// @todo if need CopyDirectory
 std::string intToStringWithZeroes(uint32_t i_num, size_t i_totalDigits = 5);
 
 } // namespace CG_Gen::AuxMethods

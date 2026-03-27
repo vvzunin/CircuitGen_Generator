@@ -111,7 +111,7 @@ public:
   /// parsing of all expressions.
   /// @return True if parsing is successful for all expressions, false otherwise
   /// @code
-  /// TO DO:
+  /// // @todo add example
   /// @endcode
 
   bool parseAll();
@@ -125,8 +125,7 @@ public:
   setGatesInputsInfo(const std::map<std::string, std::vector<int32_t>> &i_info);
 
   /// @brief setGatesInputsInfo
-  /// TO DO:
-  /// Analog setGatesInputsInfo
+  /// Analog setGatesInputsInfo. @todo Describe.
   /// @param GatesInfo = std::map<Gates, std::vector<int32_t>>
   void setGatesInputsInfo(const GatesInfo &i_info);
 
@@ -143,7 +142,7 @@ private:
   /// and a vector of pairs representing the positions of opening and closing
   /// brackets
   /// @code
-  /// TO DO:
+  /// // @todo add example
   /// @endcode
 
   std::pair<bool, std::vector<std::pair<int32_t, int32_t>>>
@@ -179,7 +178,7 @@ private:
   /// @return A pointer to the vertex representing the parsed input variable,
   /// with or without the NOT operation
   /// @code
-  /// TO DO:
+  /// // @todo add example
   /// @endcode
 
   VertexPtr parseInputNot(std::string oper, std::string name);

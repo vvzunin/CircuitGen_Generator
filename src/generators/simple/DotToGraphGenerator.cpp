@@ -1,3 +1,10 @@
+/**
+ * @file DotToGraphGenerator.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Василенко Даниил Сергеевич <dan.vasilenko@mail.ru>
+ * @author dsvasilenko1 <dsvasilenko_1@edu.hse.ru>
+ */
+
 #include <algorithm>
 #include <filesystem>
 #include <fstream>

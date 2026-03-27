@@ -1,3 +1,13 @@
+/**
+ * @file ParentsParameters.cpp
+ * @author Vladimir Zunin <vzunin@hse.ru>
+ * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Alexey Goulyev <avgulev_1@edu.hse.ru>
+ * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
+ * @author Asdfds1 <ziazetdinov@list.ru>
+ */
+
 #include <cstdint>
 #include <tuple>
 
