@@ -76,7 +76,7 @@ public:
 
   void setMaxElements(uint32_t i_maxElements) { d_maxElements = i_maxElements; }
 
-  uint32_t getSyntheticConnected() const { return d_syntheticConnected; }
+  bool getSyntheticConnected() const { return d_syntheticConnected; }
 
   void setSyntheticConnected(bool i_syntheticConnected) {
     d_syntheticConnected = i_syntheticConnected;

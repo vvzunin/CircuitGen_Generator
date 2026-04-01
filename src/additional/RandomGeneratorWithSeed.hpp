@@ -117,7 +117,9 @@ public:
 
   template<typename T>
   T getRandomElement(const std::vector<T> &v) {
-    assert(v.size() > 0);
+    if (v.empty()) {
+      throw std::invalid_argument("Vector is empty");
+    }
 
     std::uniform_int_distribution<size_t> d1(0, v.size() - 1);
 
