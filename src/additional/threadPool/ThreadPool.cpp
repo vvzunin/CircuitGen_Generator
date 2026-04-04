@@ -1,11 +1,11 @@
-/**
- * @file ThreadPool.cpp
- * @author Vladimir Zunin <vzunin@hse.ru>
- * @author Fuuulkrum7 <ilka747428@gmail.com>
- * @author Zunin Vladimir <vzunin@hse.ru>
- */
+//
+// Created by ywx1235144 on 1/17/24.
+//
+// ywx1235144 is Sergey Yakovlev, FCS student,
+// an excellent programmer and just a good person.
+// He has written this thread pool
 
-#include <CircuitGenGenerator/ThreadPool.hpp>
+#include "CircuitGenGenerator/ThreadPool.hpp"
 
 using namespace Threading;
 

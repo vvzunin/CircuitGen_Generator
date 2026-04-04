@@ -1,15 +1,5 @@
-/**
- * @file Circuit.cpp
- * @brief Реализация класса Circuit (генерация схем, хеши, параметры).
- * @author Vladimir Zunin <vzunin@hse.ru>
- * @author Fuuulkrum7 <ilka747428@gmail.com>
- * @author Alexey Goulyev <avgulev_1@edu.hse.ru>
- * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
- * @author dsvasilenko1 <dsvasilenko_1@edu.hse.ru>
- * @author Radzhabov <rrradzhabov@edu.hse.ru>
- * @author mdan2000 <mdan_2000@mail.ru>
- * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
- */
+#include "Circuit.hpp"
+
 #include <cmath>
 #include <cstdio>
 #include <filesystem>
@@ -19,13 +9,6 @@
 #include <mutex>
 #include <sstream>
 #include <thread>
-
-#include "Circuit.hpp"
-
-#include <CircuitGenGraph/enums.hpp>
-
-#include <additional/AuxiliaryMethods.hpp>
-#include <additional/filesTools/FilesTools.hpp>
 
 namespace CG_Gen {
 
@@ -79,7 +62,7 @@ void Circuit::updateCircuitParameters(GraphPtr i_graph) {
   d_circuitParameters.d_maxLevel = i_graph->getMaxLevel();
 
   d_circuitParameters.d_numEdges = i_graph->getEdgesCount();
-  // @todo Добавить корректную реализацию
+  // TODO: Добавить корректную реализацию
   // for (const auto &row : i_graph->getAdjacencyMatrixReference())
   //     for (auto el : row)
   //         if (el)
@@ -161,12 +144,11 @@ bool Circuit::graphToVerilog(const std::string &i_path, bool i_pathExists) {
   if (d_graph->isEmptyFull())
     return false;
 
-  /* if (!i_pathExists) // @todo work with directory
+  /* if (!i_pathExists) // TODO: work with directory
          if
-  (!FilesTools::isDirectoryExists(
-      std::filesystem::current_path().string() +
-      i_path)) std::filesystem::create_directory(i_path);
-  */
+     (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() +
+     i_path)) std::filesystem::create_directory(i_path);
+     */
 
   if (!d_graph->getSubGraphs().empty()) {
     std::string folderSubgraphs = d_path + "/submodules";
@@ -180,11 +162,10 @@ bool Circuit::graphToDOT(const std::string &i_path, bool i_pathExists) {
   if (d_graph->isEmptyFull())
     return false;
 
-  /* if (!i_pathExists) // @todo work with directory
+  /* if (!i_pathExists) // TODO: work with directory
       if
   (!FilesTools::isDirectoryExists(std::filesystem::current_path().string() +
-                                  i_path))
-      std::filesystem::create_directory(i_path);
+  i_path)) std::filesystem::create_directory(i_path);
   */
 
   for (auto subGr: d_graph->getSubGraphs()) {
@@ -321,7 +302,7 @@ bool Circuit::saveParameters(GraphPtr i_graph, std::ofstream &i_outputFile,
   return true;
 }
 
-bool Circuit::checkExistingHash() // @todo is it really need return true when
+bool Circuit::checkExistingHash() // TODO: is it really need return true when
                                   // hash wrong?
 {
   std::string path = FilesTools::getParentDirOf(d_path);
@@ -336,7 +317,7 @@ bool Circuit::checkExistingHash() // @todo is it really need return true when
 
   while (r >> hash)
     if (hash != d_circuitParameters.d_hashCode)
-      return false; // @todo costul
+      return false; // TODO: costul
 
   return false;
 }
@@ -458,7 +439,7 @@ bool Circuit::generate(CircuitArgs args) {
   saveParameters(d_graph, i_outputFile);
   // LOG(INFO) << "Circuit parameters saved." << d_circuitName;
 
-  // @todo costul
+  // TODO: costul
   // if (checkExistingHash() || d_circuitParameters.d_reliability == 0 ||
   // d_circuitParameters.d_gates == 0)
   //{
@@ -506,7 +487,7 @@ Circuit Circuit::fromVerilog(const std::string &i_filepath) {
   // std::string verilog_module = readAllFile(i_filepath);
 
   // int start = verilog_module.find("module ");
-  // // @todo would it work with "module NAME("
+  // // TODO would it work with "module NAME("
   // std::string left_brace = " (";
   // size_t io_names_start = verilog_module.find_first_of(left_brace, start +
   // MODULE_WORD_SIZE);
@@ -570,7 +551,7 @@ Circuit Circuit::fromVerilog(const std::string &i_filepath) {
   // {
   //     int wire_start = verilog_module.find("wire ", start) + WIRE_WORD_SIZE;
   //     int wire_end = verilog_module.find(";", wire_start);
-  //     // @todo we really need this? std::string wires =
+  //     // TODO: we really need this? std::string wires =
   //     removeSpaces(s.substr(wire_start, wire_end - wire_start)); start =
   //     wire_start + 1;
   // }
@@ -612,7 +593,7 @@ Circuit Circuit::fromVerilog(const std::string &i_filepath) {
   //                     circuit.addVertex(wire, "none", wire);
 
   //             circuit.setVerticeOperation(circuit.getIndexOfWireName(wires[0]),
-  //             type); if (wires.size() > 3) // @todo what the magic number?
+  //             type); if (wires.size() > 3) // TODO: what the magic number?
   //             {
   //                 std::string prev = wires[1];
 

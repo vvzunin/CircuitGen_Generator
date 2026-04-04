@@ -1,14 +1,12 @@
+#include <gtest/gtest.h>
+
+#include "easylogging++Init.hpp"
+#include "settings/Settings.hpp"
 #include <exception>
 #include <filesystem>
 #include <fstream>
 #include <memory>
 #include <string>
-
-#include "settings/Settings.hpp"
-
-#include <gtest/gtest.h>
-
-#include "easylogging++Init.hpp"
 
 using namespace CG_Graph;
 using namespace CG_Gen;

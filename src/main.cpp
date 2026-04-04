@@ -1,34 +1,16 @@
-/**
- * @file main.cpp
- * @author Vladimir Zunin <vzunin@hse.ru>
- * @author Fuuulkrum7 <ilka747428@gmail.com>
- * @author Alexey Goulyev <avgulev_1@edu.hse.ru>
- * @author Asdfds1 <ziazetdinov@list.ru>
- * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
- * @author Zunin Vladimir <vzunin@hse.ru>
- * @author Goulyev Alexey <avgulev_1@edu.hse.ru>
- * @author Гульев Алексей <avgulev_1@edu.hse.ru>
- * @author Vladimir Zunin <Volodya12309@gmail.com>
- * @author Radzhabov <rrradzhabov@edu.hse.ru>
- * @author kudr.max <mdkudryashov@edu.hse.ru>
- * @author mdan2000 <mdan_2000@mail.ru>
- */
-
+#include "CircuitGenGenerator/CircuitGenGenerator.hpp"
 #include <algorithm>
 #include <array>
 #include <chrono>
+#include <easyloggingpp/easylogging++.h>
 #include <filesystem>
 #include <fstream>
+#include <getopt.h>
 #include <iostream>
 #include <map>
 #include <string>
-#include <vector>
-
-#include <easyloggingpp/easylogging++.h>
-#include <getopt.h>
 #include <unistd.h>
-
-#include "CircuitGenGenerator/CircuitGenGenerator.hpp"
+#include <vector>
 INITIALIZE_EASYLOGGINGPP
 
 using namespace std::chrono;
@@ -73,6 +55,10 @@ int main(int argc, char **argv) {
   // LOG(INFO) << "Starting generation ...";
   // json_path = "../../examples/json/sampleRandLevel.json";
   // std::clog << std::filesystem::current_path() << std::endl;
+
+  std::cout << "generator Version: " << CircuitGenGenerator::getVersion()
+            << std::endl;
+
   CircuitGenGenerator::runGenerationFromJson(json_path);
 
   return 0;

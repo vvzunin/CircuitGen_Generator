@@ -1,14 +1,12 @@
-#include <algorithm>
-#include <filesystem>
-#include <string>
-
-#include "database/DataBaseGenerator.hpp"
-
 #include <gtest/gtest.h>
 
 #include "additional/filesTools/FilesTools.hpp"
 #include "circuit/Circuit.hpp"
+#include "database/dataBaseGenerator/DataBaseGenerator.hpp"
 #include "easylogging++Init.hpp"
+#include <algorithm>
+#include <filesystem>
+#include <string>
 
 using namespace CG_Graph;
 using namespace CG_Gen;

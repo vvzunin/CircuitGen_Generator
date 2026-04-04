@@ -1,16 +1,7 @@
-/**
- * @file FilesTools.cpp
- * @author Vladimir Zunin <vzunin@hse.ru>
- * @author Чернявских Илья Игоревич <fuuulkrum7@gmail.com>
- * @author Fuuulkrum7 <ilka747428@gmail.com>
- * @author Alexey Goulyev <avgulev_1@edu.hse.ru>
- * @author Zunin Vladimir <vzunin@hse.ru>
- * @author Vladimir Zunin <Volodya12309@gmail.com>
- * @author Radzhabov <rrradzhabov@edu.hse.ru>
- * @author mdan2000 <mdan_2000@mail.ru>
- */
+#include "additional/filesTools/FilesTools.hpp"
 
-#include "FilesTools.hpp"
+#include <fstream>
+#include <iostream>
 
 namespace CG_Gen::FilesTools {
 std::vector<std::string> getDirectories(std::string &path) {

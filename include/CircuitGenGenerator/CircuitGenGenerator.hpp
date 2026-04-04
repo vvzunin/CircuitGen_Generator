@@ -6,17 +6,12 @@
  */
 #pragma once
 
+#include <CircuitGenGenerator/export.hpp>
+#include <CircuitGenGenerator/info.hpp>
 #include <memory>
 #include <string>
 #include <vector>
 
-#include <CircuitGenGenerator/export.hpp>
-
-/**
- * @author Vladimir Zunin <vzunin@hse.ru>
- * @author Fuuulkrum7 <ilka747428@gmail.com>
- * @author Zunin Vladimir <vzunin@hse.ru>
- */
 class OrientedGraph;
 
 namespace CircuitGenGenerator {
@@ -33,5 +28,8 @@ std::
     runGenerationFromJsonForPath(std::string json_path);
 /** @author Fuuulkrum7 <ilka747428@gmail.com> */
 CIRCUITGENGENERATOR_EXPORT void runGenerationFromJson(std::string json_path);
+CIRCUITGENGENERATOR_EXPORT std::string getVersion() {
+  return CircuitGen_Generator_version;
+}
 
 } // namespace CircuitGenGenerator

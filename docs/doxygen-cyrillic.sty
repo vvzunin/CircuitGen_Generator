@@ -1,0 +1,16 @@
+% Loaded after Doxygen's preamble: override sans/roman/mono with Unicode fonts
+% so Russian (and other non-Latin) text renders in refman.pdf (XeLaTeX/LuaLaTeX).
+\ProvidesPackage{doxygen-cyrillic}[2026/04/04 Doxygen PDF Unicode fonts]
+\RequirePackage{iftex}
+\ifPDFTeX
+  \PackageInfo{doxygen-cyrillic}{Skipped under pdfLaTeX; use XeLaTeX for Cyrillic}
+  \endinput
+\fi
+% Doxygen loads LATEX_EXTRA_STYLESHEET before fontspec; unicode-math loads later and may reset text fonts.
+\RequirePackage{fontspec}
+\AtBeginDocument{%
+  \defaultfontfeatures{Ligatures=TeX}%
+  \setsansfont{DejaVu Sans}%
+  \setmainfont{DejaVu Serif}%
+  \setmonofont{DejaVu Sans Mono}%
+}

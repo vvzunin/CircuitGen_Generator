@@ -1,15 +1,14 @@
-#include <generators/simple/ArithmeticGenerator.hpp>
-#include <generators/simple/FromTruthTableGenerator.hpp>
-#include <generators/simple/CoderGenerator.hpp>
-#include <generators/simple/RandLevelGenerator.hpp>
-#include <generators/simple/PlexerGenerator.hpp>
-#include <generators/simple/ComparisonGenerator.hpp>
-#include <generators/simple/NumOperationsGenerator.hpp>
-#include <generators/simple/ParityGenerator.hpp>
-
 #include <gtest/gtest.h>
 
 #include "easylogging++Init.hpp"
+#include <generators/simple/arithmetic/ArithmeticGenerator.hpp>
+#include <generators/simple/coder/CoderGenerator.hpp>
+#include <generators/simple/comparison/ComparisonGenerator.hpp>
+#include <generators/simple/fromTruthTable/FromTruthTableGenerator.hpp>
+#include <generators/simple/numOperations/NumOperationsGenerator.hpp>
+#include <generators/simple/parity/ParityGenerator.hpp>
+#include <generators/simple/plexer/PlexerGenerator.hpp>
+#include <generators/simple/randLevel/RandLevelGenerator.hpp>
 
 using namespace CG_Graph;
 using namespace CG_Gen;

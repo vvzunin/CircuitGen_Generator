@@ -6,7 +6,9 @@
 .idea/*
 .vs/
 .vscode/
-build/
+.venv/
+.venv-docs/
+build*/
 cmake-build-*/
 CMakeLists.txt.user
 CMakeUserPresets.json
@@ -14,4 +16,3 @@ dataset/
 settings.json
 *.log
 generation_results/*
-.cache

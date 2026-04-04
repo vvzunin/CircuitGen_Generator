@@ -1,162 +1,988 @@
+workflow:
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /\[skip ci\]/i
+      when: never
+    # No pipeline for draft MRs (GitLab flag or "Draft:" title prefix).
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_DRAFT == "true"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE =~ /^Draft:/
+      when: never
+    - if: $CI_COMMIT_TAG
+      variables:
+        DOCKER_CI_TAG: $CI_COMMIT_TAG
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      variables:
+        DOCKER_CI_TAG: "mr-$CI_MERGE_REQUEST_IID-$CI_COMMIT_SHORT_SHA"
+    - if: $CI_COMMIT_BRANCH
+      variables:
+        DOCKER_CI_TAG: $CI_COMMIT_REF_SLUG
+    - when: always
+      variables:
+        DOCKER_CI_TAG: $CI_COMMIT_REF_SLUG
+
 stages:
-  - docker
+  # Проверка согласованности .gitlab-ci.yml с матрицей ОС (generate-gitlab-os-matrix.sh --check).
+  - validate
+  # Сборка базовых образов CI/dev для Ubuntu 24.04 — источник $DOCKER_CI_IMAGE для lint/check/test.
+  - docker-ubuntu
+  # Линт, cppcheck, санитайзеры и прочие проверки в образе CI по умолчанию.
   - check
+  # Юнит-тесты, покрытие и примеры в образе CI по умолчанию.
   - test
+  # Образы Docker для остальных ОС из матрицы и release-слои (после успешных тестов на Ubuntu).
+  - docker-matrix
+  # Те же проверки (lint, static-analysis, …) по вторичным ОС — только MR / default / теги (см. .secondary-os-matrix-rules).
+  - check-os
+  # Тесты и примеры по вторичным ОС — только MR / default / теги.
+  - test-os
+  # Полная проверка install-deps и сценариев на «чистых» образах ОС (os-image-build-push + os-full-check).
+  - os-check
+  # Сборка документации (Doxygen/m.css, PDF и т.д.).
   - docs
+  # Создание GitLab Release для тегов версий.
   - release
 
 variables:
-  DOCKERFILE_CI_NAME: Dockerfile.ci
-  DOCKERFILE_DEV_NAME: Dockerfile.dev
+  DOCKERFILE_CI_NAME: dockerfile/Dockerfile.ci
+  DOCKERFILE_DEV_NAME: dockerfile/Dockerfile.dev
+  DOCKERFILE_RELEASE_NAME: dockerfile/Dockerfile.release
   DOCKER_CI_SYSTEM: ubuntu:22.04
-  DOCKER_CI_TAG: latest
+  DOCKER_CI_TAG: $CI_COMMIT_REF_SLUG
   REGISTRY_URL: vvzunin.me:5201
+  # Optional CI/CD variable: HARBOR_WEB_UI_URL — HTTPS URL of Harbor web UI (not the Docker endpoint on :5201); used by release-from-tag.
   GROUP_NAME: circuitgen
   REPO_NAME: generator
   DOCKER_URL: $REGISTRY_URL/$GROUP_NAME/$REPO_NAME
+  DOCKER_CI_IMAGE: $DOCKER_URL/ubuntu-24.04/ci:$DOCKER_CI_TAG
+  DOCKER_DEV_IMAGE: $DOCKER_URL/ubuntu-24.04/dev:$DOCKER_CI_TAG
+  DOCKER_RELEASE_IMAGE: $DOCKER_URL/ubuntu-24.04/release:$DOCKER_CI_TAG
+  FF_NETWORK_PER_BUILD: "1"
+
+# Generated sections in this file (markers) must match scripts/config/supported-os.sh (see generate-gitlab-os-matrix.sh).
+#
+# Jobs using docker:* + docker:*-dind need GitLab Runner with privileged=true (Docker executor).
+gitlab-os-matrix-check:
+  stage: validate
+  image: debian:bookworm-slim
+  script:
+    - bash scripts/ci/generate-gitlab-os-matrix.sh --check
+  rules:
+    - if: $CI_COMMIT_TAG == null
+  tags:
+    - docker
+
+.docker-images-base:
+  image: docker:27
+  services:
+    - docker:27-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_CI_IMAGE: $DOCKER_URL/$IMAGE_OS_SUFFIX/ci:$DOCKER_CI_TAG
+    DOCKER_DEV_IMAGE: $DOCKER_URL/$IMAGE_OS_SUFFIX/dev:$DOCKER_CI_TAG
+    DOCKER_RELEASE_IMAGE: $DOCKER_URL/$IMAGE_OS_SUFFIX/release:$DOCKER_CI_TAG
+  before_script:
+    - apk add --no-cache bash git
+    - bash scripts/ci/docker-registry-login.sh
+  script:
+    - bash scripts/ci/docker-build-ci.sh
+    - bash scripts/ci/docker-build-dev.sh
+  rules:
+    # MR pipelines do not set CI_COMMIT_BRANCH; only merge_request_event matches them.
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_COMMIT_TAG
+  tags:
+    - docker
+
+# Secondary OS images + matrix (docker-images-* except 24.04, lint-os-*, …): skip plain
+# feature-branch push pipelines; run on merge requests, default branch, and tags.
+.secondary-os-matrix-rules:
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+docker-images-ubuntu-24.04:
+  extends: .docker-images-base
+  stage: docker-ubuntu
+  variables:
+    TARGET_OS: ubuntu-24.04
+    DOCKER_CI_SYSTEM: ubuntu:24.04
+    IMAGE_OS_SUFFIX: ubuntu-24.04
+
+# BEGIN generated: docker-images jobs (generate-gitlab-os-matrix.sh)
+docker-images-ubuntu-22.04:
+  stage: docker-matrix
+  extends:
+    - .docker-images-base
+    - .secondary-os-matrix-rules
+  needs:
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
+    - job: tests
+      artifacts: false
+    - job: examples
+      artifacts: false
+  variables:
+    TARGET_OS: ubuntu-22.04
+    DOCKER_CI_SYSTEM: ubuntu:22.04
+    IMAGE_OS_SUFFIX: ubuntu-22.04
+
+docker-images-debian-13:
+  stage: docker-matrix
+  extends:
+    - .docker-images-base
+    - .secondary-os-matrix-rules
+  needs:
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
+    - job: tests
+      artifacts: false
+    - job: examples
+      artifacts: false
+  variables:
+    TARGET_OS: debian-13
+    DOCKER_CI_SYSTEM: debian:13
+    IMAGE_OS_SUFFIX: debian-13
+
+docker-images-fedora-42:
+  stage: docker-matrix
+  extends:
+    - .docker-images-base
+    - .secondary-os-matrix-rules
+  needs:
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
+    - job: tests
+      artifacts: false
+    - job: examples
+      artifacts: false
+  variables:
+    TARGET_OS: fedora-42
+    DOCKER_CI_SYSTEM: fedora:42
+    IMAGE_OS_SUFFIX: fedora-42
+
+docker-images-fedora-43:
+  stage: docker-matrix
+  extends:
+    - .docker-images-base
+    - .secondary-os-matrix-rules
+  needs:
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
+    - job: tests
+      artifacts: false
+    - job: examples
+      artifacts: false
+  variables:
+    TARGET_OS: fedora-43
+    DOCKER_CI_SYSTEM: fedora:43
+    IMAGE_OS_SUFFIX: fedora-43
+# END generated: docker-images jobs (generate-gitlab-os-matrix.sh)
+
+.docker-release-base:
+  stage: docker-matrix
+  image: docker:27
+  services:
+    - docker:27-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_CI_IMAGE: $DOCKER_URL/$IMAGE_OS_SUFFIX/ci:$DOCKER_CI_TAG
+    DOCKER_DEV_IMAGE: $DOCKER_URL/$IMAGE_OS_SUFFIX/dev:$DOCKER_CI_TAG
+    DOCKER_RELEASE_IMAGE: $DOCKER_URL/$IMAGE_OS_SUFFIX/release:$DOCKER_CI_TAG
+  before_script:
+    - apk add --no-cache bash git
+    - bash scripts/ci/docker-registry-login.sh
+  script:
+    - bash scripts/ci/docker-build-release.sh
+  rules:
+    - if: $CI_COMMIT_TAG
+  tags:
+    - docker
+
+# BEGIN generated: docker-release jobs (generate-gitlab-os-matrix.sh)
+docker-release-ubuntu-22.04:
+  stage: docker-matrix
+  extends: .docker-release-base
+  needs:
+    - job: tests
+      artifacts: false
+    - job: examples
+      artifacts: false
+  variables:
+    TARGET_OS: ubuntu-22.04
+    DOCKER_CI_SYSTEM: ubuntu:22.04
+    IMAGE_OS_SUFFIX: ubuntu-22.04
+
+docker-release-ubuntu-24.04:
+  stage: docker-matrix
+  extends: .docker-release-base
+  needs:
+    - job: tests
+      artifacts: false
+    - job: examples
+      artifacts: false
+  variables:
+    TARGET_OS: ubuntu-24.04
+    DOCKER_CI_SYSTEM: ubuntu:24.04
+    IMAGE_OS_SUFFIX: ubuntu-24.04
+
+docker-release-debian-13:
+  stage: docker-matrix
+  extends: .docker-release-base
+  needs:
+    - job: tests
+      artifacts: false
+    - job: examples
+      artifacts: false
+  variables:
+    TARGET_OS: debian-13
+    DOCKER_CI_SYSTEM: debian:13
+    IMAGE_OS_SUFFIX: debian-13
+
+docker-release-fedora-42:
+  stage: docker-matrix
+  extends: .docker-release-base
+  needs:
+    - job: tests
+      artifacts: false
+    - job: examples
+      artifacts: false
+  variables:
+    TARGET_OS: fedora-42
+    DOCKER_CI_SYSTEM: fedora:42
+    IMAGE_OS_SUFFIX: fedora-42
+
+docker-release-fedora-43:
+  stage: docker-matrix
+  extends: .docker-release-base
+  needs:
+    - job: tests
+      artifacts: false
+    - job: examples
+      artifacts: false
+  variables:
+    TARGET_OS: fedora-43
+    DOCKER_CI_SYSTEM: fedora:43
+    IMAGE_OS_SUFFIX: fedora-43
+# END generated: docker-release jobs (generate-gitlab-os-matrix.sh)
+
+.ci-cmake-job:
+  image: $DOCKER_CI_IMAGE
+  tags:
+    - docker
+
+.os-setup-check-job:
+  stage: os-check
+  image: docker:27
+  services:
+    - docker:27-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  before_script:
+    - apk add --no-cache bash
+    - bash scripts/ci/docker-registry-login.sh
+  script:
+    - bash scripts/ci/os-image-build-push.sh
+    - bash scripts/ci/os-full-check.sh
+  rules:
+    - if: $CI_COMMIT_TAG == null
+  tags:
+    - docker
+
+# BEGIN generated: os-system-validation-main jobs (generate-gitlab-os-matrix.sh)
+os-system-validation-main-ubuntu-22.04:
+  extends: .os-setup-check-job
+  variables:
+    TARGET_OS: ubuntu-22.04
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
+      when: manual
+
+os-system-validation-main-ubuntu-24.04:
+  extends: .os-setup-check-job
+  variables:
+    TARGET_OS: ubuntu-24.04
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
+      when: manual
+
+os-system-validation-main-debian-13:
+  extends: .os-setup-check-job
+  variables:
+    TARGET_OS: debian-13
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
+      when: manual
+
+os-system-validation-main-fedora-42:
+  extends: .os-setup-check-job
+  variables:
+    TARGET_OS: fedora-42
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
+      when: manual
+
+os-system-validation-main-fedora-43:
+  extends: .os-setup-check-job
+  variables:
+    TARGET_OS: fedora-43
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
+      when: manual
+# END generated: os-system-validation-main jobs (generate-gitlab-os-matrix.sh)
 
 lint:
   stage: check
-  image: vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
+  extends: .ci-cmake-job
+  needs:
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
   before_script:
     - python3 --version
   script:
-    - cmake -D FORMAT_COMMAND=clang-format-15 -P cmake/lint.cmake
-    - cmake -P cmake/spell.cmake
-  tags:
-    - docker
-  rules:
-  - if: $CI_COMMIT_TAG == null
+    - bash scripts/ci/lint.sh
 
 sanitize:
   stage: check
-  image: vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
-  variables: 
-    # CXX: 'clang++-14'
-    ASAN_OPTIONS: 'strict_string_checks=1:detect_stack_use_after_return=1:check_initialization_order=1:strict_init_order=1:detect_leaks=1:detect_odr_violation=1'
-    UBSAN_OPTIONS: 'print_stacktrace=1'
+  extends: .ci-cmake-job
+  needs:
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
   script:
-    - cmake --preset=ci-sanitize
-    - cmake --build build/sanitize -j $(nproc)
-    - cd build/sanitize
-    - ctest --output-on-failure --no-tests=error -j $(nproc)
-  tags:
-    - docker
-  rules:
-  - if: $CI_COMMIT_TAG == null
+    - bash scripts/ci/sanitize.sh
+
+static-analysis:
+  stage: check
+  extends: .ci-cmake-job
+  needs:
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
+  script:
+    - bash scripts/ci/static-analysis.sh
 
 coverage:
   stage: test
-  image: vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
+  extends: .ci-cmake-job
   needs:
-    - lint
-    - sanitize
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
+    - job: lint
+      artifacts: false
+    - job: sanitize
+      artifacts: false
+    - job: static-analysis
+      artifacts: false
+  dependencies: []
+  coverage: '/TOTAL_COVERAGE=([0-9]+(?:\.[0-9]+)?)%/'
   script:
-    - cmake --preset=ci-coverage
-    - cmake --build build/coverage -j $(nproc)
-    - cd build/coverage
-    - ctest --output-on-failure --no-tests=error -j $(nproc)
-    - cd ../..
-    - cmake --build build/coverage -t coverage
-  tags:
-    - docker
-  rules:
-  - if: $CI_COMMIT_TAG == null
-
-tests:
-  stage: test
-  image: vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
-  needs:
-    - lint
-    - sanitize
-  script:
-    - cmake --preset=ci-ubuntu
-    - cmake --build build --config Release -j $(nproc)
-    - cmake --install build --config Release --prefix prefix
-    - cd build
-    - ctest --output-on-failure --no-tests=error --output-junit ctest_results.xml -C Release -j $(nproc)
-    - cd ..
+    - bash scripts/ci/coverage.sh
   artifacts:
     when: always
     paths:
-      - build/ctest_results.xml
-    reports:
-      junit: build/ctest_results.xml
-  tags:
-    - docker
-  rules:
-  - if: $CI_COMMIT_TAG == null
+      - build/coverage/coverage.info
+      - build/coverage/coverage_summary.txt
 
-docs:
-  stage: docs
-  image: vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
+tests:
+  stage: test
+  extends: .ci-cmake-job
   needs:
-    - coverage
-    - tests
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
+    - job: lint
+      artifacts: false
+    - job: sanitize
+      artifacts: false
+    - job: static-analysis
+      artifacts: false
+  dependencies: []
+  script:
+    - bash scripts/ci/tests.sh
+
+examples:
+  stage: test
+  extends: .ci-cmake-job
+  needs:
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
+    - job: lint
+      artifacts: false
+  dependencies: []
+  script:
+    - bash scripts/ci/examples.sh
+  artifacts:
+    when: always
+    paths:
+      - build/release-ci/ctest_results.xml
+    reports:
+      junit: build/release-ci/ctest_results.xml
+
+# BEGIN generated: secondary-os check jobs (generate-gitlab-os-matrix.sh)
+lint-os-ubuntu-22.04:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: ubuntu-22.04
+    DOCKER_CI_SYSTEM: ubuntu:22.04
+    IMAGE_OS_SUFFIX: ubuntu-22.04
+    DOCKER_CI_IMAGE: $DOCKER_URL/ubuntu-22.04/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-ubuntu-22.04
+      artifacts: false
   before_script:
     - python3 --version
   script:
-    - echo "Commit received. Building docs for $CI_DEFAULT_BRANCH"
-    - mkdir -p build/docs
-    - cd build/docs
-    - cmake "-DPROJECT_SOURCE_DIR=$PWD/../.." "-DPROJECT_BINARY_DIR=$PWD/.." -P ../../cmake/docs-ci.cmake
+    - bash scripts/ci/lint.sh
+
+sanitize-os-ubuntu-22.04:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: ubuntu-22.04
+    DOCKER_CI_SYSTEM: ubuntu:22.04
+    IMAGE_OS_SUFFIX: ubuntu-22.04
+    DOCKER_CI_IMAGE: $DOCKER_URL/ubuntu-22.04/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-ubuntu-22.04
+      artifacts: false
+  script:
+    - bash scripts/ci/sanitize.sh
+
+static-analysis-os-ubuntu-22.04:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: ubuntu-22.04
+    DOCKER_CI_SYSTEM: ubuntu:22.04
+    IMAGE_OS_SUFFIX: ubuntu-22.04
+    DOCKER_CI_IMAGE: $DOCKER_URL/ubuntu-22.04/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-ubuntu-22.04
+      artifacts: false
+  script:
+    - bash scripts/ci/static-analysis.sh
+
+lint-os-debian-13:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: debian-13
+    DOCKER_CI_SYSTEM: debian:13
+    IMAGE_OS_SUFFIX: debian-13
+    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-debian-13
+      artifacts: false
+  before_script:
+    - python3 --version
+  script:
+    - bash scripts/ci/lint.sh
+
+sanitize-os-debian-13:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: debian-13
+    DOCKER_CI_SYSTEM: debian:13
+    IMAGE_OS_SUFFIX: debian-13
+    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-debian-13
+      artifacts: false
+  script:
+    - bash scripts/ci/sanitize.sh
+
+static-analysis-os-debian-13:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: debian-13
+    DOCKER_CI_SYSTEM: debian:13
+    IMAGE_OS_SUFFIX: debian-13
+    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-debian-13
+      artifacts: false
+  script:
+    - bash scripts/ci/static-analysis.sh
+
+lint-os-fedora-42:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-42
+    DOCKER_CI_SYSTEM: fedora:42
+    IMAGE_OS_SUFFIX: fedora-42
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-42
+      artifacts: false
+  before_script:
+    - python3 --version
+  script:
+    - bash scripts/ci/lint.sh
+
+sanitize-os-fedora-42:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-42
+    DOCKER_CI_SYSTEM: fedora:42
+    IMAGE_OS_SUFFIX: fedora-42
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-42
+      artifacts: false
+  script:
+    - bash scripts/ci/sanitize.sh
+
+static-analysis-os-fedora-42:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-42
+    DOCKER_CI_SYSTEM: fedora:42
+    IMAGE_OS_SUFFIX: fedora-42
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-42
+      artifacts: false
+  script:
+    - bash scripts/ci/static-analysis.sh
+
+lint-os-fedora-43:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-43
+    DOCKER_CI_SYSTEM: fedora:43
+    IMAGE_OS_SUFFIX: fedora-43
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-43/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-43
+      artifacts: false
+  before_script:
+    - python3 --version
+  script:
+    - bash scripts/ci/lint.sh
+
+sanitize-os-fedora-43:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-43
+    DOCKER_CI_SYSTEM: fedora:43
+    IMAGE_OS_SUFFIX: fedora-43
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-43/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-43
+      artifacts: false
+  script:
+    - bash scripts/ci/sanitize.sh
+
+static-analysis-os-fedora-43:
+  stage: check-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-43
+    DOCKER_CI_SYSTEM: fedora:43
+    IMAGE_OS_SUFFIX: fedora-43
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-43/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-43
+      artifacts: false
+  script:
+    - bash scripts/ci/static-analysis.sh
+# END generated: secondary-os check jobs (generate-gitlab-os-matrix.sh)
+
+# BEGIN generated: secondary-os test jobs (generate-gitlab-os-matrix.sh)
+coverage-os-ubuntu-22.04:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: ubuntu-22.04
+    DOCKER_CI_SYSTEM: ubuntu:22.04
+    IMAGE_OS_SUFFIX: ubuntu-22.04
+    DOCKER_CI_IMAGE: $DOCKER_URL/ubuntu-22.04/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-ubuntu-22.04
+      artifacts: false
+    - job: lint-os-ubuntu-22.04
+      artifacts: false
+    - job: sanitize-os-ubuntu-22.04
+      artifacts: false
+    - job: static-analysis-os-ubuntu-22.04
+      artifacts: false
+  dependencies: []
+  coverage: '/TOTAL_COVERAGE=([0-9]+(?:\.[0-9]+)?)%/'
+  script:
+    - bash scripts/ci/coverage.sh
+  artifacts:
+    when: always
+    paths:
+      - build/coverage/coverage.info
+      - build/coverage/coverage_summary.txt
+
+tests-os-ubuntu-22.04:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: ubuntu-22.04
+    DOCKER_CI_SYSTEM: ubuntu:22.04
+    IMAGE_OS_SUFFIX: ubuntu-22.04
+    DOCKER_CI_IMAGE: $DOCKER_URL/ubuntu-22.04/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-ubuntu-22.04
+      artifacts: false
+    - job: lint-os-ubuntu-22.04
+      artifacts: false
+    - job: sanitize-os-ubuntu-22.04
+      artifacts: false
+    - job: static-analysis-os-ubuntu-22.04
+      artifacts: false
+  dependencies: []
+  script:
+    - bash scripts/ci/tests.sh
+
+examples-os-ubuntu-22.04:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: ubuntu-22.04
+    DOCKER_CI_SYSTEM: ubuntu:22.04
+    IMAGE_OS_SUFFIX: ubuntu-22.04
+    DOCKER_CI_IMAGE: $DOCKER_URL/ubuntu-22.04/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-ubuntu-22.04
+      artifacts: false
+    - job: lint-os-ubuntu-22.04
+      artifacts: false
+  dependencies: []
+  script:
+    - bash scripts/ci/examples.sh
+  artifacts:
+    when: always
+    paths:
+      - build/release-ci/ctest_results.xml
+    reports:
+      junit: build/release-ci/ctest_results.xml
+
+coverage-os-debian-13:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: debian-13
+    DOCKER_CI_SYSTEM: debian:13
+    IMAGE_OS_SUFFIX: debian-13
+    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-debian-13
+      artifacts: false
+    - job: lint-os-debian-13
+      artifacts: false
+    - job: sanitize-os-debian-13
+      artifacts: false
+    - job: static-analysis-os-debian-13
+      artifacts: false
+  dependencies: []
+  coverage: '/TOTAL_COVERAGE=([0-9]+(?:\.[0-9]+)?)%/'
+  script:
+    - bash scripts/ci/coverage.sh
+  artifacts:
+    when: always
+    paths:
+      - build/coverage/coverage.info
+      - build/coverage/coverage_summary.txt
+
+tests-os-debian-13:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: debian-13
+    DOCKER_CI_SYSTEM: debian:13
+    IMAGE_OS_SUFFIX: debian-13
+    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-debian-13
+      artifacts: false
+    - job: lint-os-debian-13
+      artifacts: false
+    - job: sanitize-os-debian-13
+      artifacts: false
+    - job: static-analysis-os-debian-13
+      artifacts: false
+  dependencies: []
+  script:
+    - bash scripts/ci/tests.sh
+
+examples-os-debian-13:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: debian-13
+    DOCKER_CI_SYSTEM: debian:13
+    IMAGE_OS_SUFFIX: debian-13
+    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-debian-13
+      artifacts: false
+    - job: lint-os-debian-13
+      artifacts: false
+  dependencies: []
+  script:
+    - bash scripts/ci/examples.sh
+  artifacts:
+    when: always
+    paths:
+      - build/release-ci/ctest_results.xml
+    reports:
+      junit: build/release-ci/ctest_results.xml
+
+coverage-os-fedora-42:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-42
+    DOCKER_CI_SYSTEM: fedora:42
+    IMAGE_OS_SUFFIX: fedora-42
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-42
+      artifacts: false
+    - job: lint-os-fedora-42
+      artifacts: false
+    - job: sanitize-os-fedora-42
+      artifacts: false
+    - job: static-analysis-os-fedora-42
+      artifacts: false
+  dependencies: []
+  coverage: '/TOTAL_COVERAGE=([0-9]+(?:\.[0-9]+)?)%/'
+  script:
+    - bash scripts/ci/coverage.sh
+  artifacts:
+    when: always
+    paths:
+      - build/coverage/coverage.info
+      - build/coverage/coverage_summary.txt
+
+tests-os-fedora-42:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-42
+    DOCKER_CI_SYSTEM: fedora:42
+    IMAGE_OS_SUFFIX: fedora-42
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-42
+      artifacts: false
+    - job: lint-os-fedora-42
+      artifacts: false
+    - job: sanitize-os-fedora-42
+      artifacts: false
+    - job: static-analysis-os-fedora-42
+      artifacts: false
+  dependencies: []
+  script:
+    - bash scripts/ci/tests.sh
+
+examples-os-fedora-42:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-42
+    DOCKER_CI_SYSTEM: fedora:42
+    IMAGE_OS_SUFFIX: fedora-42
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-42
+      artifacts: false
+    - job: lint-os-fedora-42
+      artifacts: false
+  dependencies: []
+  script:
+    - bash scripts/ci/examples.sh
+  artifacts:
+    when: always
+    paths:
+      - build/release-ci/ctest_results.xml
+    reports:
+      junit: build/release-ci/ctest_results.xml
+
+coverage-os-fedora-43:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-43
+    DOCKER_CI_SYSTEM: fedora:43
+    IMAGE_OS_SUFFIX: fedora-43
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-43/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-43
+      artifacts: false
+    - job: lint-os-fedora-43
+      artifacts: false
+    - job: sanitize-os-fedora-43
+      artifacts: false
+    - job: static-analysis-os-fedora-43
+      artifacts: false
+  dependencies: []
+  coverage: '/TOTAL_COVERAGE=([0-9]+(?:\.[0-9]+)?)%/'
+  script:
+    - bash scripts/ci/coverage.sh
+  artifacts:
+    when: always
+    paths:
+      - build/coverage/coverage.info
+      - build/coverage/coverage_summary.txt
+
+tests-os-fedora-43:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-43
+    DOCKER_CI_SYSTEM: fedora:43
+    IMAGE_OS_SUFFIX: fedora-43
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-43/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-43
+      artifacts: false
+    - job: lint-os-fedora-43
+      artifacts: false
+    - job: sanitize-os-fedora-43
+      artifacts: false
+    - job: static-analysis-os-fedora-43
+      artifacts: false
+  dependencies: []
+  script:
+    - bash scripts/ci/tests.sh
+
+examples-os-fedora-43:
+  stage: test-os
+  extends:
+    - .ci-cmake-job
+    - .secondary-os-matrix-rules
+  variables:
+    TARGET_OS: fedora-43
+    DOCKER_CI_SYSTEM: fedora:43
+    IMAGE_OS_SUFFIX: fedora-43
+    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-43/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-fedora-43
+      artifacts: false
+    - job: lint-os-fedora-43
+      artifacts: false
+  dependencies: []
+  script:
+    - bash scripts/ci/examples.sh
+  artifacts:
+    when: always
+    paths:
+      - build/release-ci/ctest_results.xml
+    reports:
+      junit: build/release-ci/ctest_results.xml
+# END generated: secondary-os test jobs (generate-gitlab-os-matrix.sh)
+
+docs:
+  stage: docs
+  extends: .ci-cmake-job
+  variables:
+    DOCKER_CI_IMAGE: $DOCKER_URL/ubuntu-24.04/ci:$DOCKER_CI_TAG
+  needs:
+    - job: docker-images-ubuntu-24.04
+      artifacts: false
+    - job: coverage
+      artifacts: false
+    - job: tests
+      artifacts: false
+    - job: examples
+      artifacts: false
+  dependencies: []
+  before_script:
+    - python3 --version
+  script:
+    - bash scripts/ci/docs.sh
+  after_script:
+    - |
+      if [ -n "${CI_COMMIT_TAG:-}" ]; then
+        tar czf "docs_${CI_COMMIT_TAG}.tar.gz" -C build docs
+      else
+        tar czf docs_latest.tar.gz -C build docs
+      fi
+  artifacts:
+    when: always
+    paths:
+      - '*.tar.gz'
   rules:
-    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
-  tags:
-    - docker
+    - if: $CI_COMMIT_MESSAGE =~ /\[skip ci\]/i
+      when: never
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - docs/**/*
+        - cmake/**/*
+        - scripts/ci/docs.sh
+        - cmake/docs-ci.cmake
+        - scripts/setup/install-deps-*.sh
+        - README.md
 
 release-from-tag:
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
+  before_script:
+    - apk add --no-cache bash
   script:
-    - echo "Creating release $CI_COMMIT_TAG"
-  release:
-    tag_name: $CI_COMMIT_TAG
-    name: 'Release $CI_COMMIT_TAG'
-    description: "Release $CI_COMMIT_TAG of components in $CI_PROJECT_PATH"
+    - bash scripts/ci/create-gitlab-release.sh
   tags:
     - docker
   rules:
     - if: $CI_COMMIT_TAG
-
-docker-ci:
-  stage: docker
-  before_script:
-    - docker login "$REGISTRY_URL" -u "$NAS_Harbor_USER" -p "$NAS_Harbor_PASS"
-  script:
-    - echo "Creating docker image with tag $DOCKER_CI_TAG" && echo "Image will push to $DOCKER_URL"
-    - docker buildx build --pull --rm --provenance=false --no-cache --build-arg system=$DOCKER_CI_SYSTEM -f $DOCKERFILE_CI_NAME -t vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG .
-    - docker image push vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      changes:
-        - $DOCKERFILE_CI_NAME
-        - .gitlab-ci.yml
-    - if: $CI_COMMIT_TAG
-      variables:
-        DOCKER_CI_TAG: $CI_COMMIT_TAG
-  tags:
-    - powershell
-
-docker-dev:
-  stage: docker
-  needs:
-    - job: docker-ci
-      optional: true
-  before_script:
-    - docker login "$REGISTRY_URL" -u "$NAS_Harbor_USER" -p "$NAS_Harbor_PASS"
-  script:
-    - echo "Creating docker image with tag dev_$DOCKER_CI_TAG" && echo "Image will push to $DOCKER_URL"
-    - docker buildx build --pull --rm --provenance=false --no-cache --build-arg system=vvzunin.me:5201/circuitgen/generator/ci:$DOCKER_CI_TAG -f $DOCKERFILE_DEV_NAME -t vvzunin.me:5201/circuitgen/generator/dev:$DOCKER_CI_TAG .
-    - docker image push vvzunin.me:5201/circuitgen/generator/dev:$DOCKER_CI_TAG
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      changes:
-        - $DOCKERFILE_CI_NAME
-        - $DOCKERFILE_DEV_NAME
-        - .gitlab-ci.yml
-    - if: $CI_COMMIT_TAG
-      variables:
-        DOCKER_CI_TAG: $CI_COMMIT_TAG
-  tags:
-    - powershell

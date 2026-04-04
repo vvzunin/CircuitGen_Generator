@@ -1,0 +1,95 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26,
+    "patch": 0
+  },
+  "include": [
+    "CMakePresets.json"
+  ],
+  "configurePresets": [
+    {
+      "name": "dev",
+      "displayName": "Dev (Ninja, cross-platform)",
+      "description": "Default local development preset for Linux/macOS/Windows",
+      "binaryDir": "${sourceDir}/build/dev",
+      "inherits": ["dev-mode", "ci-base"],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "coverage",
+      "displayName": "Coverage (Linux/macOS)",
+      "description": "Coverage profile for gcov/lcov based toolchains",
+      "binaryDir": "${sourceDir}/build/coverage",
+      "inherits": ["dev-mode", "ci-base"],
+      "condition": {
+        "type": "notEquals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "ENABLE_COVERAGE": "ON",
+        "CMAKE_BUILD_TYPE": "Coverage",
+        "CMAKE_CXX_FLAGS_COVERAGE": "-Og -g --coverage -fkeep-inline-functions",
+        "CMAKE_EXE_LINKER_FLAGS_COVERAGE": "--coverage",
+        "CMAKE_SHARED_LINKER_FLAGS_COVERAGE": "--coverage"
+      }
+    },
+    {
+      "name": "dev-msvc",
+      "displayName": "Dev (MSVC, Windows)",
+      "description": "Windows preset with MSVC warning/security flags",
+      "binaryDir": "${sourceDir}/build/dev-msvc",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "inherits": ["dev-mode", "ci-base", "flags-msvc"],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "dev",
+      "displayName": "Build Dev",
+      "description": "Build local debug configuration",
+      "configurePreset": "dev",
+      "configuration": "Debug"
+    },
+    {
+      "name": "coverage",
+      "displayName": "Build Coverage",
+      "description": "Build local coverage configuration",
+      "configurePreset": "coverage",
+      "configuration": "Debug"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "dev",
+      "displayName": "Test Dev",
+      "description": "Run local tests for debug build",
+      "configurePreset": "dev",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "coverage",
+      "displayName": "Test Coverage",
+      "description": "Run local tests for coverage build",
+      "configurePreset": "coverage",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

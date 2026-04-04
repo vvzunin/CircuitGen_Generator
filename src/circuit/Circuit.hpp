@@ -1,14 +1,15 @@
 #pragma once
 
+#include "additional/auxiliaryMethods/AuxiliaryMethods.hpp"
+#include "additional/filesTools/FilesTools.hpp"
+#include "baseStructures/truthTable/TruthTable.hpp"
+#include "circuit/parameters/CircuitParameters.hpp"
+#include "settings/Settings.hpp"
+#include <CircuitGenGraph/OrientedGraph.hpp>
+#include <CircuitGenGraph/enums.hpp>
 #include <memory>
 #include <string>
 #include <vector>
-
-#include <CircuitGenGraph/OrientedGraph.hpp>
-
-#include <baseStructures/truthTable/TruthTable.hpp>
-
-#include "CircuitParameters.hpp"
 
 namespace CG_Gen {
 

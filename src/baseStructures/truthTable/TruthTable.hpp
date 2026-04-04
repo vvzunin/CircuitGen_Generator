@@ -1,11 +1,11 @@
 #pragma once
 
+#include "additional/RandomGeneratorWithSeed.hpp"
+#include "additional/auxiliaryMethods/AuxiliaryMethods.hpp"
+#include "generators/genetic/parameters/GeneticParameters.hpp"
+#include "settings/Settings.hpp"
 #include <memory>
 #include <vector>
-
-#include <additional/RandomGeneratorWithSeed.hpp>
-#include <generators/Genetic/GeneticParameters.hpp>
-#include <settings/Settings.hpp>
 
 /// class TruthTable
 /// Represents a truth table for a combinational logic circuit
@@ -41,6 +41,7 @@ public:
   /// generating the truth table. Setting the seed allows for reproducible
   /// random number sequences.
   /// @param i_seed The seed for random number generation.
+  /// @note Example:
   /// @code
   /// TruthTable table;
   /// table.setSeed(123);
@@ -73,6 +74,7 @@ public:
   /// @brief getInput
   /// Get the number of input variables in the truth table.
   /// @return The number of input variables.
+  /// @note Example:
   /// @code
   /// TruthTable table;
   /// int32_t numInputs = table.getInput();
@@ -84,6 +86,7 @@ public:
   /// @brief getOutput
   /// Get the number of output variables in the truth table
   /// @return The number of output variables.
+  /// @note Example:
   /// @code
   /// TruthTable table;
   /// int32_t numOutputs = table.getOutput();
@@ -97,6 +100,7 @@ public:
   /// This method returns the total number of rows in the truth table.
   /// Each rows corresponds to a unique combination of input values
   /// @return The size of the truth table (number of rows).
+  /// @note Example:
   /// @code
   /// // Creating a truth table with 3 input variables and 2 output variables
   /// TruthTable table (3,2);
@@ -112,6 +116,7 @@ public:
   /// The output table contains the truth values for each combination of input
   /// variables.
   /// @return The output table as a two-dimensional vector of boolean values.
+  /// @note Example:
   /// @code
   /// // Assuming a truth table with 2 input variables and 1 output variable
   /// TruthTable table(2, 1);
@@ -140,6 +145,7 @@ public:
   /// @param i The row index of the output table.
   /// @param j @todo
   /// @return The truth value at the specified position.
+  /// @note Example:
   /// @code
   /// // Assuming a truth table with 3 input variables and 2 output variable
   /// TruthTable table(3, 2);
@@ -160,6 +166,7 @@ public:
   /// [true, false, true].
   /// @return A two-dimensional vector representing the binary representation
   /// of each row index in the truth table.
+  /// @note Example:
   /// @code
   /// // Assuming a truth table with 3 input variables and 2 output variable
   /// TruthTable table(3, 2);
@@ -186,6 +193,7 @@ public:
   /// boolean values.
   /// After printing the table, a newline character is inserted to separate
   /// rows.
+  /// @note Example:
   /// @code
   /// // Assuming a truth table with 3 input variables and 2 output variable
   /// TruthTable table(3, 2);

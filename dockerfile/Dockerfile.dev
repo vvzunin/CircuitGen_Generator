@@ -1,0 +1,75 @@
+ARG system="circuitgen/generator/ubuntu-24.04/ci:local"
+
+FROM ${system}
+
+RUN set -eux; \
+  if command -v apt-get >/dev/null 2>&1; then \
+    apt-get update; \
+    apt-get upgrade -y; \
+    apt-get install -y gdb nano sudo vim; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/*; \
+  elif command -v dnf >/dev/null 2>&1; then \
+    # Skip `dnf upgrade`: it can pull openh264 from fedora-cisco-openh264; Cisco's CDN often
+    # returns 403 in automated/CI networks, breaking the image build. Base `ci` image is rebuilt regularly.
+    dnf -y install gdb nano sudo vim; \
+    dnf clean all; \
+    rm -rf /var/cache/dnf/*; \
+  else \
+    echo "Unsupported package manager in base image"; \
+    exit 1; \
+  fi
+
+ARG USERNAME=devuser
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+# Ubuntu (and similar) images often ship uid/gid 1000 (e.g. user/group "ubuntu").
+# Reuse or rename them instead of failing on groupadd/useradd.
+RUN set -eux; \
+  if getent group "${USER_GID}" >/dev/null; then \
+    GROUP_NAME="$(getent group "${USER_GID}" | cut -d: -f1)"; \
+  else \
+    groupadd --gid "${USER_GID}" "${USERNAME}"; \
+    GROUP_NAME="${USERNAME}"; \
+  fi; \
+  if getent passwd "${USERNAME}" >/dev/null; then \
+    :; \
+  elif getent passwd "${USER_UID}" >/dev/null; then \
+    OLD_USER="$(getent passwd "${USER_UID}" | cut -d: -f1)"; \
+    if [ "${GROUP_NAME}" != "${USERNAME}" ]; then \
+      groupmod -n "${USERNAME}" "${GROUP_NAME}"; \
+    fi; \
+    usermod -l "${USERNAME}" "${OLD_USER}"; \
+    if [ -d "/home/${OLD_USER}" ] && [ ! -d "/home/${USERNAME}" ]; then \
+      mv "/home/${OLD_USER}" "/home/${USERNAME}"; \
+    fi; \
+    usermod -d "/home/${USERNAME}" "${USERNAME}" 2>/dev/null || true; \
+  else \
+    useradd --uid "${USER_UID}" --gid "${GROUP_NAME}" -m "${USERNAME}"; \
+  fi; \
+  echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> "/etc/sudoers.d/${USERNAME}"; \
+  chmod 0440 "/etc/sudoers.d/${USERNAME}"
+
+WORKDIR /circuitgen
+RUN chown -R $USERNAME:$USERNAME /circuitgen
+
+WORKDIR /circuitgen/generator
+
+COPY . .
+
+# Prefer user-local presets when provided in build context.
+# Fallback to repository template otherwise.
+RUN if [ -f /circuitgen/generator/CMakeUserPresets.json ]; then \
+      echo "Using user-provided CMakeUserPresets.json"; \
+    else \
+      echo "Using CMakeUserPresets.json.example"; \
+      cp /circuitgen/generator/CMakeUserPresets.json.example /circuitgen/generator/CMakeUserPresets.json; \
+    fi
+
+
+USER $USERNAME
+
+ENV PATH="/usr/local/bin:$PATH"
+ENV CC=/usr/bin/gcc
+ENV CXX=/usr/bin/g++
