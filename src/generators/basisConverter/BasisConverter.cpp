@@ -12,7 +12,7 @@ using namespace CG_Gen;
 #define Ensure(CONDITION, MESSAGE) \
   if (!(CONDITION)) { \
     throw std::runtime_error(MESSAGE); \
-  }
+  } // namespace
 
 std::string gateTypeToString(Gates gate) {
   switch (gate) {

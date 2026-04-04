@@ -35,7 +35,7 @@ void SimpleGenerator::setGatesInputsInfo(
     d_gatesInputsInfo[GraphUtils::parseStringToGate(key)] = value;
   }
 
-  // TODO is it a good idea to add here hew gates
+  // @todo is it a good idea to add here hew gates
   d_gatesInputsInfo[Gates::GateNot] = {1};
   d_gatesInputsInfo[Gates::GateBuf] = {1};
 }

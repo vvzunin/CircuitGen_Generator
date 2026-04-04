@@ -62,7 +62,7 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
     name = "x" + std::to_string(i);
     name_ptr = graph->addInput(name);
 
-    // TODO and how can it be changed?
+    // @todo and how can it be changed?
     levelName[name_ptr->getName()] = name_ptr->getLevel();
     levelNamePtr[name_ptr->getName()] = name_ptr;
     if (!i_leaveEmptyOut)
@@ -79,10 +79,10 @@ GraphPtr NumOperationsGenerator::generatorNumOperation(
     sumOper += value;
 
   copyLogicOper = delNull(copyLogicOper);
-  // TODO it is TOO slow
+  // @todo it is TOO slow
   for (int32_t i = 0; i < sumOper; ++i) {
-    // TODO: optimize
-    // TODO change whole gen
+    // @todo optimize
+    // @todo change whole gen
     Gates oper = randomGenerator(copyLogicOper);
     --copyLogicOper[oper];
 

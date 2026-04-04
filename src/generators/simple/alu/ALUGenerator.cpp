@@ -68,7 +68,7 @@ GraphPtr ALUGenerator::generatorALU(
       (OR ? 1 : 0) + (NOR ? 1 : 0) + (XOR ? 1 : 0) + (XNOR ? 1 : 0) +
       (CNF ? 3 : 0) + (RNL ? 1 : 0) + (NUM_OP ? 1 : 0);
 
-  // TODO not used code. Fix
+  // @todo not used code. Fix
 #if 0
   // размерность АЛУ (сколько генераций мультиплексоров необходимо выполнить)
   int32_t size = i_bits;

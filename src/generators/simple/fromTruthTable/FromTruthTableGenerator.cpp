@@ -31,7 +31,7 @@ GraphPtr FromTruthTableGenerator::cnfFromTruthTable(const TruthTable &i_table,
     inputs.push_back(graph->addInput("x" + std::to_string(k)));
   }
 
-  // TODO make nand-or generation etc
+  // @todo make nand-or generation etc
   if (!d_gatesInputsInfo.count(Gates::GateAnd)) {
     d_gatesInputsInfo[Gates::GateAnd] = {(int32_t)inputs.size()};
   }

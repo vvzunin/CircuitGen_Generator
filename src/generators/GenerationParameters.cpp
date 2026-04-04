@@ -1,4 +1,13 @@
-// #include <vector>
+/**
+ * @file GenerationParameters.cpp
+ * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
+ * @author Asdfds1 <ziazetdinov@list.ru>
+ * @author Zunin Vladimir <vzunin@hse.ru>
+ * @author Fuuulkrum7 <ilka747428@gmail.com>
+ * @author Vladimir Zunin <Volodya12309@gmail.com>
+ * @author Radzhabov <rrradzhabov@edu.hse.ru>
+ * @author mdan2000 <mdan_2000@mail.ru>
+ */
 
 // #include "GenerationParameters.hpp"
 // void GenerationParameters::setRecombinationParameters(ParentsTypes
