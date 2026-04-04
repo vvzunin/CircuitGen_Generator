@@ -3,4 +3,6 @@ DOXYFILE = 'Doxyfile'
 LINKS_NAVBAR1 = [
     (None, 'pages', []),
     (None, 'namespaces', []),
+    ('@MCSS_NAV_CLASSES@', 'annotated', []),
+    ('@MCSS_NAV_FILES@', 'files', []),
 ]

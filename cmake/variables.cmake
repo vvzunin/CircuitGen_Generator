@@ -1,4 +1,4 @@
-# ---- Developer mode ----
+set(line_max_len 80)
 
 # Developer mode enables targets and code paths in the CMake scripts that are
 # only relevant for the developer(s) of CircuitGenGenerator

@@ -1,18 +1,16 @@
+#include "CircuitGenGenerator/CircuitGenGenerator.hpp"
 #include <algorithm>
 #include <array>
 #include <chrono>
+#include <easyloggingpp/easylogging++.h>
 #include <filesystem>
 #include <fstream>
+#include <getopt.h>
 #include <iostream>
 #include <map>
 #include <string>
-#include <vector>
-
-#include <easyloggingpp/easylogging++.h>
-#include <getopt.h>
 #include <unistd.h>
-
-#include "CircuitGenGenerator/CircuitGenGenerator.hpp"
+#include <vector>
 INITIALIZE_EASYLOGGINGPP
 
 using namespace std::chrono;
@@ -57,6 +55,10 @@ int main(int argc, char **argv) {
   // LOG(INFO) << "Starting generation ...";
   // json_path = "../../examples/json/sampleRandLevel.json";
   // std::clog << std::filesystem::current_path() << std::endl;
+
+  std::cout << "generator Version: " << CircuitGenGenerator::getVersion()
+            << std::endl;
+
   CircuitGenGenerator::runGenerationFromJson(json_path);
 
   return 0;

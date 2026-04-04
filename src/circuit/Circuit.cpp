@@ -1,3 +1,5 @@
+#include "Circuit.hpp"
+
 #include <cmath>
 #include <cstdio>
 #include <filesystem>
@@ -7,13 +9,6 @@
 #include <mutex>
 #include <sstream>
 #include <thread>
-
-#include "Circuit.hpp"
-
-#include <CircuitGenGraph/enums.hpp>
-
-#include <additional/AuxiliaryMethods.hpp>
-#include <additional/filesTools/FilesTools.hpp>
 
 namespace CG_Gen {
 

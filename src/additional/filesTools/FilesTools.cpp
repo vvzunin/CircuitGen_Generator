@@ -1,4 +1,7 @@
-#include "FilesTools.hpp"
+#include "additional/filesTools/FilesTools.hpp"
+
+#include <fstream>
+#include <iostream>
 
 namespace CG_Gen::FilesTools {
 std::vector<std::string> getDirectories(std::string &path) {

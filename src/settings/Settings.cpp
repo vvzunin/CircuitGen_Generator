@@ -1,10 +1,10 @@
+#include "settings/Settings.hpp"
+
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <memory>
-
-#include "Settings.hpp"
 
 namespace CG_Gen {
 

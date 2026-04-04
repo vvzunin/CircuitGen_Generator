@@ -1,0 +1,18 @@
+ARG system="ubuntu:22.04"
+FROM ${system}
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /tmp/circuitgen-setup
+COPY scripts/config/supported-os.sh ./scripts/config/
+COPY scripts/setup ./scripts/setup
+
+RUN bash scripts/setup/install-deps-for-current-os.sh
+
+RUN bash scripts/setup/ci-python-venv.sh jinja2 Pygments synology-drive-api && \
+  rm -rf /tmp/circuitgen-setup
+
+ENV CIRCUITGEN_PYTHON_VENV=/opt/circuitgen-venv
+ENV PATH="/opt/circuitgen-venv/bin:${PATH}"
+
+WORKDIR /circuitgen

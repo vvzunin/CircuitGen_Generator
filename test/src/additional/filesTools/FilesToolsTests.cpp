@@ -1,10 +1,8 @@
-#include <algorithm>
-
-#include "additional/filesTools/FilesTools.hpp"
-
 #include <gtest/gtest.h>
 
+#include "additional/filesTools/FilesTools.hpp"
 #include "easylogging++Init.hpp"
+#include <algorithm>
 namespace fs = std::filesystem;
 using namespace CG_Gen::FilesTools;
 // I check the using of getDirectories and I can confirm that in test we can let

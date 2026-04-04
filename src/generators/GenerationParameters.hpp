@@ -1,12 +1,11 @@
 #pragma once
 
 #include <cstdint>
+#include <generators/genetic/parameters/GeneticParameters.hpp>
 #include <map>
+#include <settings/Settings.hpp>
 #include <string>
 #include <vector>
-
-#include <generators/Genetic/GeneticParameters.hpp>
-#include <settings/Settings.hpp>
 
 namespace CG_Gen {
 
@@ -372,12 +371,12 @@ public:
                        bool i_makeGraphMLPsedoABCD = false,
                        bool i_makeGraphMLOpenABCD = false,
                        bool i_makeDOT = false, bool i_convertToBasis = false) :
-      d_name(i_name),
-      d_requestId(i_requestId), d_inputs(i_inputs), d_outputs(i_outputs),
-      d_iteration(i_iteration), d_makeGraphMLClassic(i_makeGraphMLClassic),
+      d_name(i_name), d_requestId(i_requestId), d_inputs(i_inputs),
+      d_outputs(i_outputs), d_iteration(i_iteration),
+      d_makeGraphMLClassic(i_makeGraphMLClassic),
       d_makeGraphMLPseudoABCD(i_makeGraphMLPsedoABCD),
       d_makeGraphMLOpenABCD(i_makeGraphMLOpenABCD), d_makeDOT(i_makeDOT),
-      d_convertToBasis(i_convertToBasis){};
+      d_convertToBasis(i_convertToBasis) {};
 
   std::string getName() const { return d_name; }
 

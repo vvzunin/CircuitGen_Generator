@@ -1,4 +1,4 @@
-#include "easyloggingpp/easylogging++.h"
+#include <easyloggingpp/easylogging++.h>
 INITIALIZE_EASYLOGGINGPP
 
 #include "string.h"

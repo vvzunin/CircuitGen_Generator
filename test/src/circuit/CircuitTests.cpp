@@ -1,11 +1,9 @@
-#include <filesystem>
-
-#include "circuit/Circuit.hpp"
-
 #include <gtest/gtest.h>
 
+#include "circuit/Circuit.hpp"
 #include "easylogging++Init.hpp"
 #include "fstream"
+#include <filesystem>
 
 using namespace CG_Graph;
 using namespace CG_Gen;
@@ -217,11 +215,13 @@ TEST(Circuit, TestingVerilogAndParametersMultipleOutputs) {
 TEST(Circuit, TestingVerilogAndParametersFeedbackLoop) {
   GraphPtr graphPtr = std::make_shared<OrientedGraph>("FeedbackLoop");
   auto input = graphPtr->addInput("input");
+  auto buf = graphPtr->addGate(Gates::GateBuf, "buf");
   auto andGate = graphPtr->addGate(Gates::GateAnd, "andGate");
   auto output = graphPtr->addOutput("output");
   graphPtr->addEdge(input, andGate);
-  graphPtr->addEdge(andGate, output);
-  graphPtr->addEdge(output, andGate);
+  graphPtr->addEdge(buf, andGate);
+  graphPtr->addEdge(andGate, buf);
+  graphPtr->addEdge(buf, output);
 
   Circuit circuit(graphPtr, {});
   circuit.setCircuitName("feedback_loop");

@@ -1,0 +1,12 @@
+#ifndef _CIRCUITGEN_GENERATOR_INFO_H_
+#define _CIRCUITGEN_GENERATOR_INFO_H_
+
+#include <string>
+
+namespace CircuitGenGenerator {
+
+const std::string CircuitGen_Generator_version = "${CMAKE_PROJECT_VERSION}";
+
+} // namespace CircuitGenGenerator
+
+#endif /* _CIRCUITGEN_GENERATOR_INFO_H_ */

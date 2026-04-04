@@ -6,7 +6,9 @@
 .idea/*
 .vs/
 .vscode/
-build/
+.venv/
+.venv-docs/
+build*/
 cmake-build-*/
 CMakeLists.txt.user
 CMakeUserPresets.json

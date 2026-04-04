@@ -15,12 +15,14 @@ if(FIX)
 endif()
 
 execute_process(
-    COMMAND "${SPELL_COMMAND}" ${flag}
-    WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-    RESULT_VARIABLE result
+  COMMAND "${SPELL_COMMAND}" ${flag}
+  WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
+  RESULT_VARIABLE result
 )
 
-if(result EQUAL "65")
+if(result MATCHES "No such file or directory")
+  message(FATAL_ERROR "Spell checker '${SPELL_COMMAND}' is not found. Install it or override SPELL_COMMAND.")
+elseif(result EQUAL "65")
   message(FATAL_ERROR "Run again with FIX=YES to fix these errors.")
 elseif(result EQUAL "64")
   message(FATAL_ERROR "Spell checker printed the usage info. Bad arguments?")

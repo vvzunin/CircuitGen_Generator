@@ -1,45 +1,44 @@
-cmake_minimum_required(VERSION 3.14)
-
-include(cmake/prelude.cmake)
+# Минимальная версия CMake для сборки
+cmake_minimum_required(VERSION 3.26)
 
 project(
-  CircuitGen_Generator
+  CircuitGenGenerator
   VERSION 1.3.1
-  DESCRIPTION "Program for circuits dataset generation"
-  HOMEPAGE_URL "https://github.com/vvzunin/CircuitGen_Generator"
+  DESCRIPTION "Program for circuits generation"
+  HOMEPAGE_URL "https://hub.mos.ru/circuitgen/CircuitGen_Generator"
   LANGUAGES CXX
 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_INIT} -std=c++17 -fPIC")
-include(cmake/project-is-top-level.cmake)
-include(cmake/variables.cmake)
+list(APPEND PROJECT_SUPPORTED_SYSTEMS "Linux")
+
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/utils.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/checks.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/folders.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/variables.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/lint-targets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/spell-targets.cmake")
+
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/CMakeGraphVizOptions.cmake")
+
+include(GNUInstallDirs)
+include(CheckIPOSupported)
+include(ExternalProject)
+include(FetchContent)
+
+check_ipo_supported(RESULT ipo_supported)
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ${ipo_supported})
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_subdirectory(lib)
-include_directories(lib)
-
+set_if_undefined(CircuitGenGenerator_INSTALL_CMAKEDIR
+  "${CMAKE_INSTALL_LIBDIR}/cmake/CircuitGenGenerator-${PROJECT_VERSION}" CACHE STRING
+  "Install path for CircuitGenGenerator package-related CMake files")
+set_if_undefined(CMAKE_CXX_VISIBILITY_PRESET default)
+set_if_undefined(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
 
-# ---- Declare library ----
-set(
-  PROJECT_LIBS
-  # Internal libraries
-  additional
-  baseStructures
-  Circuit
-  DataBaseGenerator
-)
-
-set(
-  EXTERNAL_LIBS
-  # External libraries
-  Threads::Threads
-)
-
-include(ExternalProject)
-include(FetchContent)
+# Подключение внешних зависимостей
+list(APPEND external_targets CircuitGenGraph)
 
 set(ORIENTED_GRAPH CircuitGenGraph)
 
@@ -58,234 +57,63 @@ else()
 endif()
 
 FetchContent_MakeAvailable(${ORIENTED_GRAPH})
+add_folders(Libraries CircuitGenGraph)
 
-set(PUBLIC_HEADERS
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/export.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/CircuitGenGenerator.hpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/CircuitGenGenerator/ThreadPool.hpp
-)
+list(APPEND external_targets Threads)
+find_package(Threads REQUIRED)
 
-set(SOURCES
-  src/additional/AuxiliaryMethods.cpp
-  src/additional/filesTools/FilesTools.cpp
-  src/additional/threadPool/ThreadPool.cpp
-  src/baseStructures/Parser.cpp
-  src/baseStructures/truthTable/TruthTable.cpp
-  src/circuit/Circuit.cpp
-  src/database/DataBaseGenerator.cpp
-  src/database/DataBaseGeneratorParameters.cpp
-  src/generators/Genetic/GeneticParameters.cpp
-  src/generators/Genetic/GenGenerator.hpp
-  src/generators/Genetic/Chromosome.hpp
-  src/generators/Genetic/ChromosomeType.hpp
-  src/generators/Genetic/Selections/Selections.hpp
-  src/generators/Genetic/Selections/SelectionParameters.cpp
-  src/generators/Genetic/Selections/SelectionsTruthTable.hpp
-  src/generators/Genetic/Recombination/Recombinations.hpp
-  src/generators/Genetic/Recombination/RecombinationParameters.cpp
-  src/generators/Genetic/Recombination/RecombinationsTruthTable.cpp
-  src/generators/Genetic/Parents/Parents.hpp
-  src/generators/Genetic/Parents/ParentsParameters.cpp
-  src/generators/Genetic/Parents/ParentsTruthTable.hpp
-  src/generators/Genetic/Mutations/Mutation.cpp
-  src/generators/Genetic/Mutations/MutationParameters.cpp
-  src/generators/Genetic/Mutations/MutationTruthTable.cpp
-  src/settings/Settings.cpp
-  src/generators/simple/SimpleGenerator.cpp
-  src/generators/simple/ArithmeticGenerator.cpp
-  src/generators/simple/FromTruthTableGenerator.cpp
-  src/generators/simple/CoderGenerator.cpp
-  src/generators/simple/RandLevelGenerator.cpp
-  src/generators/simple/PlexerGenerator.cpp
-  src/generators/simple/ALUGenerator.cpp
-  src/generators/simple/ComparisonGenerator.cpp
-  src/generators/simple/NumOperationsGenerator.cpp
-  src/generators/simple/ParityGenerator.cpp
-  src/generators/BasisConverter.cpp
-  src/generators/simple/MealyMooreGenerator.cpp
-  src/generators/simple/DotToGraphGenerator.cpp
-  src/generators/simple/CascadeGenerator.cpp
-)
-
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" 
-  FILES 
-  src/CircuitGenGenerator.cpp 
-  ${SOURCES}
-)
-
-add_library(
-  CircuitGenGenerator_lib
-)
-add_library(CircuitGenGenerator::CircuitGenGenerator ALIAS CircuitGenGenerator_lib)
-
-if(NOT TARGET easylogging++)
-  add_library(
-    easylogging++ STATIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/easyloggingpp/easylogging++.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/easyloggingpp/easylogging++.h
+find_program(CLANG_TIDY NAMES clang-tidy)
+if(PROJECT_IS_TOP_LEVEL)
+  option(CircuitGenGenerator_ENABLE_CLANG_TIDY "Run clang-tidy during build" OFF)
+endif()
+if (CLANG_TIDY AND CircuitGenGenerator_ENABLE_CLANG_TIDY)
+  set(GENERATOR_CLANG_TIDY
+    ${CLANG_TIDY};
+    -line-filter=[{"name":".hpp"},{"name":".hpp.in"},{"name":".cpp"}]
   )
+elseif(CLANG_TIDY)
+  message(STATUS "clang-tidy found but disabled (set CircuitGenGenerator_ENABLE_CLANG_TIDY=ON to enable)")
+else()
+  message(STATUS "clang-tidy not found")
+endif()
+
+# TODO: Добавить в код
+# list(APPEND external_targets Gettext)
+# find_package(Gettext REQUIRED)
+
+add_subdirectory(lib)
+add_subdirectory(src)
+include(CTest)
+if(BUILD_TESTING)
+  add_subdirectory(test)
+endif()
+# include_directories(lib)
+
+if(PROJECT_IS_TOP_LEVEL)
+  option(CircuitGenGenerator_DEVELOPER_MODE "Enable developer mode" OFF)
+  option(CircuitGenGenerator_BUILD_EXAMPLES "Build CircuitGenGenerator examples" OFF)
+  option(BUILD_MCSS_DOCS "Build documentation using Doxygen and m.css" OFF)
+  if(BUILD_MCSS_DOCS)
+    include(cmake/docs.cmake)
+  endif()
+  option(ENABLE_COVERAGE "Enable coverage support separate from CTest's" ON)
+  if(ENABLE_COVERAGE)
+    include(cmake/coverage.cmake)
+  endif()
+endif()
+
+print_cmake_info(Green)
+print_build_info(Green)
+print_system_info(Green)
+
+if(PROJECT_IS_TOP_LEVEL)
+  print_project_info(Green)
 endif()
 
 configure_file(
   easylogging++.conf
-  easylogging++.conf
+  "${PROJECT_BINARY_DIR}/bin/easylogging++.conf"
   COPYONLY
-)
-
-find_program(CLANG_TIDY NAMES clang-tidy)
-
-if (CLANG_TIDY)
-  set(GENERATOR_CLANG_TIDY
-    ${CLANG_TIDY};
-    -line-filter=[{"name":".hpp"},{"name":".cpp"}]
-  )
-  set_target_properties(CircuitGenGenerator_lib PROPERTIES
-    CXX_CLANG_TIDY "${GENERATOR_CLANG_TIDY}"
-  )
-else()
-  message("clang-tidy not found")
-endif()
-
-include(cmake/utils.cmake)
-include(GNUInstallDirs)
-
-set_if_undefined(CircuitGenGenerator_INSTALL_CMAKEDIR
-  "${CMAKE_INSTALL_LIBDIR}/cmake/CircuitGenGenerator-${PROJECT_VERSION}" CACHE STRING
-  "Install path for CircuitGenGenerator package-related CMake files")
-
-if(DEFINED CircuitGenGenerator_SHARED_LIBS)
-  set(BUILD_SHARED_LIBS ${CircuitGenGenerator_SHARED_LIBS})
-endif()
-
-option(CircuitGenGenerator_BUILD_EXAMPLES "Build CircuitGenGenerator examples" OFF)
-
-set_if_undefined(CMAKE_CXX_VISIBILITY_PRESET default)
-set_if_undefined(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
-
-if(NOT BUILD_SHARED_LIBS)
-  target_compile_definitions(CircuitGenGenerator_lib PUBLIC CircuitGenGenerator_STATIC_DEFINE)
-endif()
-
-set(export_file_name "export_shared.hpp")
-
-if(NOT BUILD_SHARED_LIBS)
-  set(export_file_name "export_static.hpp")
-endif()
-
-include(GenerateExportHeader)
-generate_export_header(
-  CircuitGenGenerator_lib
-  BASE_NAME CircuitGenGenerator
-  EXPORT_FILE_NAME include/CircuitGenGenerator/${export_file_name}
-  CUSTOM_CONTENT_FROM_VARIABLE pragma_suppress_c4251
-)
-
-set_target_properties(
-  CircuitGenGenerator_lib PROPERTIES
-  VERSION "${PROJECT_VERSION}"
-  SOVERSION "${PROJECT_VERSION_MAJOR}"
-  EXPORT_NAME CircuitGenGenerator
-  OUTPUT_NAME CircuitGenGenerator
-  PUBLIC_HEADER "${PUBLIC_HEADERS}"
-)
-
-list(APPEND PUBLIC_HEADERS
-  "${CMAKE_CURRENT_BINARY_DIR}/include/CircuitGenGenerator/${export_file_name}")
-
-include(CMakePackageConfigHelpers)
-
-target_link_libraries(
-  CircuitGenGenerator_lib PRIVATE 
-  ${EXTERNAL_LIBS} 
-  CircuitGenGraph::CircuitGenGraph
-  PUBLIC
-  easylogging++
-)
-
-target_sources(CircuitGenGenerator_lib 
-  PRIVATE 
-  src/CircuitGenGenerator.cpp ${SOURCES}
-)
-
-target_include_directories(
-  CircuitGenGenerator_lib ${warning_guard}
-  PUBLIC
-  "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
-)
-
-target_include_directories(
-  CircuitGenGenerator_lib SYSTEM
-  PUBLIC
-  "\$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"
-)
-
-include_directories("${CMAKE_SOURCE_DIR}/include")
-# add_compile_options(-fsanitize=address)
-# add_link_options(-fsanitize=address)
-target_include_directories(CircuitGenGenerator_lib
-  PUBLIC
-  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
-  PRIVATE
-  "src"  
-)
-
-target_include_directories(
-  CircuitGenGenerator_lib ${warning_guard}
-  PUBLIC
-  "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>"
-)
-
-target_compile_features(CircuitGenGenerator_lib PUBLIC cxx_std_17)
-
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
-
-configure_package_config_file(cmake/CircuitGenGenerator-config.cmake.in CircuitGenGenerator-config.cmake
-  INSTALL_DESTINATION "${CircuitGenGenerator_INSTALL_CMAKEDIR}")
-
-write_basic_package_version_file(CircuitGenGenerator-config-version.cmake
-  COMPATIBILITY SameMajorVersion)
-
-install(TARGETS CircuitGenGenerator_lib easylogging++
-  EXPORT CircuitGenGenerator_export
-  RUNTIME COMPONENT CircuitGenGenerator
-  LIBRARY COMPONENT CircuitGenGenerator NAMELINK_COMPONENT CircuitGenGenerator-dev
-  ARCHIVE COMPONENT CircuitGenGenerator-dev
-  PUBLIC_HEADER COMPONENT CircuitGenGenerator-dev
-  DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/CircuitGenGenerator")
-
-set(targets_file "CircuitGenGenerator-shared-targets.cmake")
-
-if(NOT BUILD_SHARED_LIBS)
-  set(targets_file "CircuitGenGenerator-static-targets.cmake")
-endif()
-
-install(EXPORT CircuitGenGenerator_export
-  COMPONENT CircuitGenGenerator-dev
-  FILE "${targets_file}"
-  DESTINATION "${CircuitGenGenerator_INSTALL_CMAKEDIR}"
-  NAMESPACE CircuitGenGenerator::)
-
-install(FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/CircuitGenGenerator-config.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/CircuitGenGenerator-config-version.cmake"
-  COMPONENT CircuitGenGenerator-dev
-  DESTINATION "${CircuitGenGenerator_INSTALL_CMAKEDIR}")
-
-# ---- Declare executable ----
-add_executable(CircuitGenGenerator_exe src/main.cpp)
-add_executable(CircuitGenGenerator::exe ALIAS CircuitGenGenerator_exe)
-
-set_property(TARGET CircuitGenGenerator_exe PROPERTY OUTPUT_NAME CircuitGenGenerator)
-
-target_compile_features(CircuitGenGenerator_exe PRIVATE cxx_std_17)
-
-target_link_libraries(
-  CircuitGenGenerator_exe
-  PRIVATE
-    CircuitGenGenerator::CircuitGenGenerator
-    easylogging++
 )
 
 # ---- Install rules ----
@@ -293,13 +121,10 @@ if(NOT CMAKE_SKIP_INSTALL_RULES)
   include(cmake/install-rules.cmake)
 endif()
 
-# ---- Examples ----
-if(PROJECT_IS_TOP_LEVEL)
-  option(BUILD_EXAMPLES "Build examples tree." "${CircuitGenGenerator_DEVELOPER_MODE}")
-
-  if(BUILD_EXAMPLES)
-    add_subdirectory(examples)
-  endif()
+# Examples (optional): must be registered before the developer-mode early return so that
+# Release + CircuitGenGenerator_BUILD_EXAMPLES=ON can still add this subdirectory.
+if(PROJECT_IS_TOP_LEVEL AND CircuitGenGenerator_BUILD_EXAMPLES)
+  add_subdirectory(examples)
 endif()
 
 # ---- Developer mode ----
@@ -312,4 +137,24 @@ elseif(NOT PROJECT_IS_TOP_LEVEL)
   )
 endif()
 
-include(cmake/dev-mode.cmake)
+# if(ENABLE_LOGGING)
+#   target_compile_definitions(CircuitGenGenerator_exe PRIVATE -DLOGGING)
+# endif()
+
+# if (DEBUG)
+#   target_compile_options(CircuitGenGenerator_exe PUBLIC -fnoinline-functions)
+# endif()
+
+# if (RELEASE)
+#   target_compile_options(CircuitGenGenerator_exe PUBLIC -finline-functions)
+# endif()
+
+target_compile_options(CircuitGenGenerator_lib PUBLIC -Wpedantic)
+target_compile_options(CircuitGenGenerator_lib PUBLIC -Wall)
+# target_compile_options(CircuitGenGenerator_lib PUBLIC -H)
+# target_compile_options(threadPool PUBLIC -H)
+# target_compile_options(CircuitGenGenerator_exe PUBLIC -H)
+target_compile_options(CircuitGenGenerator_exe PUBLIC -Wpedantic)
+target_compile_options(CircuitGenGenerator_exe PUBLIC -Wall)
+
+add_folders(Project)
