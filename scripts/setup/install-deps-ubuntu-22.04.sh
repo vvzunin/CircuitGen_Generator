@@ -22,6 +22,14 @@ if [[ "${ID:-}" != "ubuntu" || "${VERSION_ID:-}" != "22.04" ]]; then
 fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Docker/CI: debconf must not prompt (e.g. tzdata "Geographic area:") or the image build hangs.
+export DEBIAN_FRONTEND=noninteractive
+export TZ="${TZ:-Europe/Moscow}"
+debconf-set-selections <<'EOF'
+tzdata tzdata/Areas select Europe
+tzdata tzdata/Zones/Europe select Moscow
+EOF
+
 # Docs: Doxygen + m.css + LaTeX PDF need xelatex + DejaVu (fontspec in docs/doxygen-cyrillic.sty), Ghostscript (libgs),
 # and texlive-lang-cyrillic (t2aenc.def) when Doxygen emits Russian LaTeX with [T2A]{fontenc} (also if pdfLaTeX is used).
 PACKAGES=(

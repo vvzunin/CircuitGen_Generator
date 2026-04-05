@@ -2152,9 +2152,10 @@ USE_PDFLATEX           = YES
 # keyboard input is necessary and ERROR_STOP In errorstop mode, TeX will stop at
 # each error, asking for user intervention.
 # The default value is: NO.
+# Set YES for CI: missing fonts otherwise drop LaTeX into interactive "?" and hang until job timeout.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_BATCHMODE        = NO
+LATEX_BATCHMODE        = YES
 
 # If the LATEX_HIDE_INDICES tag is set to YES then doxygen will not include the
 # index chapters (such as File Index, Compound Index, etc.) in the output.

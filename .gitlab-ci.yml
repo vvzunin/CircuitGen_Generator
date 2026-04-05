@@ -276,6 +276,8 @@ docker-release-fedora-43:
 
 .os-setup-check-job:
   stage: os-check
+  # Full image build (--no-cache) + run-all (lint…docs) can exceed 1h on some OS runners.
+  timeout: 3h
   image: docker:27
   services:
     - docker:27-dind
