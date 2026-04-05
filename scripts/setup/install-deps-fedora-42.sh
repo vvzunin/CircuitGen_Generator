@@ -24,6 +24,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Docs: Doxygen + m.css + LaTeX PDF need xelatex + DejaVu (fontspec in docs/doxygen-cyrillic.sty), Ghostscript (libgs),
 # texlive-cyrillic (t2aenc.def) for Russian [T2A]{fontenc} from Doxygen, and texlive-xetex for xelatex.
+# texlive-wasysym: wasy7 metrics for \\usepackage{wasysym} in Doxygen refman (avoids mktextfm hang).
 PACKAGES=(
   bison
   clang
@@ -57,6 +58,7 @@ PACKAGES=(
   texlive-cyrillic
   texlive-latex
   texlive-scheme-basic
+  texlive-wasysym
   texlive-xetex
   wget
 )
