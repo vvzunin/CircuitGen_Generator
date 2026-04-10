@@ -4,6 +4,8 @@ set -euo pipefail
 # Verify dependency installers inside Docker images.
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+REPO_DIR_NAME="$(basename "${ROOT_DIR}")"
+CONTAINER_WORKDIR="/circuitgen/${REPO_DIR_NAME}"
 # shellcheck source=../config/supported-os.sh
 source "${ROOT_DIR}/scripts/config/supported-os.sh"
 
@@ -20,8 +22,8 @@ run_check() {
 
   echo "==> Verifying ${script_path} in ${image}"
   docker run --rm \
-    -v "${ROOT_DIR}:${ROOT_DIR}" \
-    -w "${ROOT_DIR}" \
+    -v "${ROOT_DIR}:${CONTAINER_WORKDIR}" \
+    -w "${CONTAINER_WORKDIR}" \
     "${image}" \
     bash "${script_path}"
 }

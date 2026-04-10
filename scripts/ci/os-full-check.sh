@@ -4,6 +4,8 @@ set -euo pipefail
 # Run full CI checks inside an OS-specific CI image.
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+REPO_DIR_NAME="$(basename "${ROOT_DIR}")"
+CONTAINER_WORKDIR="/circuitgen/${REPO_DIR_NAME}"
 cd "${ROOT_DIR}"
 
 TARGET_OS="${TARGET_OS:-}"
@@ -21,7 +23,7 @@ echo "Running full checks in image: ${OS_IMAGE_TAG}"
 docker run --rm -t \
   -e "DOCS_RUNNER=local" \
   -e "DOXYGEN_CLANG_ASSISTED_PARSING=YES" \
-  -v "${ROOT_DIR}:${ROOT_DIR}" \
-  -w "${ROOT_DIR}" \
+  -v "${ROOT_DIR}:${CONTAINER_WORKDIR}" \
+  -w "${CONTAINER_WORKDIR}" \
   "${OS_IMAGE_TAG}" \
   bash scripts/ci/run-all.sh

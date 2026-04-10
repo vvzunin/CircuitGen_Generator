@@ -14,4 +14,6 @@
 | [CmakeFlags.md](CmakeFlags.md) | Флаги CMake |
 | [Versioning.md](Versioning.md) | Семантическое версионирование (SemVer) релизов |
 
+| [Format.md](Format.md) | Памятка по форматированию и стилю |
+
 **English:** [Documentation in English](../en/README.md)

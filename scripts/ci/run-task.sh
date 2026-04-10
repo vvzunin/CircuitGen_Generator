@@ -12,6 +12,8 @@ set -euo pipefail
 #   TARGET_OS / DOCKER_CI_SYSTEM  (see scripts/docker/docker-paths.sh)
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+REPO_DIR_NAME="$(basename "${ROOT_DIR}")"
+CONTAINER_WORKDIR="/circuitgen/${REPO_DIR_NAME}"
 cd "${ROOT_DIR}"
 # shellcheck source=../docker/docker-paths.sh
 source "${ROOT_DIR}/scripts/docker/docker-paths.sh"
@@ -48,8 +50,8 @@ if [[ "${CI_RUNNER}" == "docker" ]]; then
     -u "$(id -u):$(id -g)" \
     -e "CI_DEFAULT_BRANCH=${CI_DEFAULT_BRANCH:-}" \
     -e "JOBS=${JOBS:-$(nproc)}" \
-    -v "${ROOT_DIR}:${ROOT_DIR}" \
-    -w "${ROOT_DIR}" \
+    -v "${ROOT_DIR}:${CONTAINER_WORKDIR}" \
+    -w "${CONTAINER_WORKDIR}" \
     "${CI_IMAGE_TAG}" \
     bash "${SCRIPT_PATH}"
   exit 0

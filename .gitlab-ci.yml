@@ -129,40 +129,6 @@ docker-images-ubuntu-22.04:
     DOCKER_CI_SYSTEM: ubuntu:22.04
     IMAGE_OS_SUFFIX: ubuntu-22.04
 
-docker-images-debian-13:
-  stage: docker-matrix
-  extends:
-    - .docker-images-base
-    - .secondary-os-matrix-rules
-  needs:
-    - job: docker-images-ubuntu-24.04
-      artifacts: false
-    - job: tests
-      artifacts: false
-    - job: examples
-      artifacts: false
-  variables:
-    TARGET_OS: debian-13
-    DOCKER_CI_SYSTEM: debian:13
-    IMAGE_OS_SUFFIX: debian-13
-
-docker-images-fedora-42:
-  stage: docker-matrix
-  extends:
-    - .docker-images-base
-    - .secondary-os-matrix-rules
-  needs:
-    - job: docker-images-ubuntu-24.04
-      artifacts: false
-    - job: tests
-      artifacts: false
-    - job: examples
-      artifacts: false
-  variables:
-    TARGET_OS: fedora-42
-    DOCKER_CI_SYSTEM: fedora:42
-    IMAGE_OS_SUFFIX: fedora-42
-
 docker-images-fedora-43:
   stage: docker-matrix
   extends:
@@ -229,32 +195,6 @@ docker-release-ubuntu-24.04:
     DOCKER_CI_SYSTEM: ubuntu:24.04
     IMAGE_OS_SUFFIX: ubuntu-24.04
 
-docker-release-debian-13:
-  stage: docker-matrix
-  extends: .docker-release-base
-  needs:
-    - job: tests
-      artifacts: false
-    - job: examples
-      artifacts: false
-  variables:
-    TARGET_OS: debian-13
-    DOCKER_CI_SYSTEM: debian:13
-    IMAGE_OS_SUFFIX: debian-13
-
-docker-release-fedora-42:
-  stage: docker-matrix
-  extends: .docker-release-base
-  needs:
-    - job: tests
-      artifacts: false
-    - job: examples
-      artifacts: false
-  variables:
-    TARGET_OS: fedora-42
-    DOCKER_CI_SYSTEM: fedora:42
-    IMAGE_OS_SUFFIX: fedora-42
-
 docker-release-fedora-43:
   stage: docker-matrix
   extends: .docker-release-base
@@ -308,22 +248,6 @@ os-system-validation-main-ubuntu-24.04:
   extends: .os-setup-check-job
   variables:
     TARGET_OS: ubuntu-24.04
-  rules:
-    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
-      when: manual
-
-os-system-validation-main-debian-13:
-  extends: .os-setup-check-job
-  variables:
-    TARGET_OS: debian-13
-  rules:
-    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
-      when: manual
-
-os-system-validation-main-fedora-42:
-  extends: .os-setup-check-job
-  variables:
-    TARGET_OS: fedora-42
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH) && ($CI_COMMIT_TAG == null)
       when: manual
@@ -387,6 +311,7 @@ coverage:
     paths:
       - build/coverage/coverage.info
       - build/coverage/coverage_summary.txt
+      - build/coverage/html
 
 tests:
   stage: test
@@ -473,106 +398,6 @@ static-analysis-os-ubuntu-22.04:
   script:
     - bash scripts/ci/static-analysis.sh
 
-lint-os-debian-13:
-  stage: check-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: debian-13
-    DOCKER_CI_SYSTEM: debian:13
-    IMAGE_OS_SUFFIX: debian-13
-    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-debian-13
-      artifacts: false
-  before_script:
-    - python3 --version
-  script:
-    - bash scripts/ci/lint.sh
-
-sanitize-os-debian-13:
-  stage: check-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: debian-13
-    DOCKER_CI_SYSTEM: debian:13
-    IMAGE_OS_SUFFIX: debian-13
-    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-debian-13
-      artifacts: false
-  script:
-    - bash scripts/ci/sanitize.sh
-
-static-analysis-os-debian-13:
-  stage: check-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: debian-13
-    DOCKER_CI_SYSTEM: debian:13
-    IMAGE_OS_SUFFIX: debian-13
-    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-debian-13
-      artifacts: false
-  script:
-    - bash scripts/ci/static-analysis.sh
-
-lint-os-fedora-42:
-  stage: check-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: fedora-42
-    DOCKER_CI_SYSTEM: fedora:42
-    IMAGE_OS_SUFFIX: fedora-42
-    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-fedora-42
-      artifacts: false
-  before_script:
-    - python3 --version
-  script:
-    - bash scripts/ci/lint.sh
-
-sanitize-os-fedora-42:
-  stage: check-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: fedora-42
-    DOCKER_CI_SYSTEM: fedora:42
-    IMAGE_OS_SUFFIX: fedora-42
-    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-fedora-42
-      artifacts: false
-  script:
-    - bash scripts/ci/sanitize.sh
-
-static-analysis-os-fedora-42:
-  stage: check-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: fedora-42
-    DOCKER_CI_SYSTEM: fedora:42
-    IMAGE_OS_SUFFIX: fedora-42
-    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-fedora-42
-      artifacts: false
-  script:
-    - bash scripts/ci/static-analysis.sh
-
 lint-os-fedora-43:
   stage: check-os
   extends:
@@ -653,6 +478,7 @@ coverage-os-ubuntu-22.04:
     paths:
       - build/coverage/coverage.info
       - build/coverage/coverage_summary.txt
+      - build/coverage/html
 
 tests-os-ubuntu-22.04:
   stage: test-os
@@ -702,160 +528,6 @@ examples-os-ubuntu-22.04:
     reports:
       junit: build/release-ci/ctest_results.xml
 
-coverage-os-debian-13:
-  stage: test-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: debian-13
-    DOCKER_CI_SYSTEM: debian:13
-    IMAGE_OS_SUFFIX: debian-13
-    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-debian-13
-      artifacts: false
-    - job: lint-os-debian-13
-      artifacts: false
-    - job: sanitize-os-debian-13
-      artifacts: false
-    - job: static-analysis-os-debian-13
-      artifacts: false
-  dependencies: []
-  coverage: '/TOTAL_COVERAGE=([0-9]+(?:\.[0-9]+)?)%/'
-  script:
-    - bash scripts/ci/coverage.sh
-  artifacts:
-    when: always
-    paths:
-      - build/coverage/coverage.info
-      - build/coverage/coverage_summary.txt
-
-tests-os-debian-13:
-  stage: test-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: debian-13
-    DOCKER_CI_SYSTEM: debian:13
-    IMAGE_OS_SUFFIX: debian-13
-    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-debian-13
-      artifacts: false
-    - job: lint-os-debian-13
-      artifacts: false
-    - job: sanitize-os-debian-13
-      artifacts: false
-    - job: static-analysis-os-debian-13
-      artifacts: false
-  dependencies: []
-  script:
-    - bash scripts/ci/tests.sh
-
-examples-os-debian-13:
-  stage: test-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: debian-13
-    DOCKER_CI_SYSTEM: debian:13
-    IMAGE_OS_SUFFIX: debian-13
-    DOCKER_CI_IMAGE: $DOCKER_URL/debian-13/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-debian-13
-      artifacts: false
-    - job: lint-os-debian-13
-      artifacts: false
-  dependencies: []
-  script:
-    - bash scripts/ci/examples.sh
-  artifacts:
-    when: always
-    paths:
-      - build/release-ci/ctest_results.xml
-    reports:
-      junit: build/release-ci/ctest_results.xml
-
-coverage-os-fedora-42:
-  stage: test-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: fedora-42
-    DOCKER_CI_SYSTEM: fedora:42
-    IMAGE_OS_SUFFIX: fedora-42
-    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-fedora-42
-      artifacts: false
-    - job: lint-os-fedora-42
-      artifacts: false
-    - job: sanitize-os-fedora-42
-      artifacts: false
-    - job: static-analysis-os-fedora-42
-      artifacts: false
-  dependencies: []
-  coverage: '/TOTAL_COVERAGE=([0-9]+(?:\.[0-9]+)?)%/'
-  script:
-    - bash scripts/ci/coverage.sh
-  artifacts:
-    when: always
-    paths:
-      - build/coverage/coverage.info
-      - build/coverage/coverage_summary.txt
-
-tests-os-fedora-42:
-  stage: test-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: fedora-42
-    DOCKER_CI_SYSTEM: fedora:42
-    IMAGE_OS_SUFFIX: fedora-42
-    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-fedora-42
-      artifacts: false
-    - job: lint-os-fedora-42
-      artifacts: false
-    - job: sanitize-os-fedora-42
-      artifacts: false
-    - job: static-analysis-os-fedora-42
-      artifacts: false
-  dependencies: []
-  script:
-    - bash scripts/ci/tests.sh
-
-examples-os-fedora-42:
-  stage: test-os
-  extends:
-    - .ci-cmake-job
-    - .secondary-os-matrix-rules
-  variables:
-    TARGET_OS: fedora-42
-    DOCKER_CI_SYSTEM: fedora:42
-    IMAGE_OS_SUFFIX: fedora-42
-    DOCKER_CI_IMAGE: $DOCKER_URL/fedora-42/ci:$DOCKER_CI_TAG
-  needs:
-    - job: docker-images-fedora-42
-      artifacts: false
-    - job: lint-os-fedora-42
-      artifacts: false
-  dependencies: []
-  script:
-    - bash scripts/ci/examples.sh
-  artifacts:
-    when: always
-    paths:
-      - build/release-ci/ctest_results.xml
-    reports:
-      junit: build/release-ci/ctest_results.xml
-
 coverage-os-fedora-43:
   stage: test-os
   extends:
@@ -884,6 +556,7 @@ coverage-os-fedora-43:
     paths:
       - build/coverage/coverage.info
       - build/coverage/coverage_summary.txt
+      - build/coverage/html
 
 tests-os-fedora-43:
   stage: test-os

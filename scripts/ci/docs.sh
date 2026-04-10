@@ -2,6 +2,8 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+REPO_DIR_NAME="$(basename "${ROOT_DIR}")"
+CONTAINER_WORKDIR="/circuitgen/${REPO_DIR_NAME}"
 # shellcheck source=../docker/docker-paths.sh
 source "${ROOT_DIR}/scripts/docker/docker-paths.sh"
 if [[ -z "${CI_IMAGE_TAG:-}" ]]; then
@@ -42,8 +44,8 @@ if [[ "${DOCS_RUNNER}" == "docker" ]]; then
     -e "DOXYGEN_LANG_VARIANTS=${DOXYGEN_LANG_VARIANTS}" \
     -e "DOXYGEN_SKIP_DOT_GRAPHS=${DOXYGEN_SKIP_DOT_GRAPHS}" \
     -e "DOXYGEN_SKIP_REFMAN_PDF=${DOXYGEN_SKIP_REFMAN_PDF}" \
-    -v "${ROOT_DIR}:${ROOT_DIR}" \
-    -w "${ROOT_DIR}" \
+    -v "${ROOT_DIR}:${CONTAINER_WORKDIR}" \
+    -w "${CONTAINER_WORKDIR}" \
     "${CI_IMAGE_TAG}" \
     bash scripts/ci/docs.sh
   exit 0
