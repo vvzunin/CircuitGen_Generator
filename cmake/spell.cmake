@@ -9,6 +9,9 @@ endmacro()
 default(SPELL_COMMAND codespell)
 default(FIX NO)
 
+# -P scripts do not define PROJECT_SOURCE_DIR; this file lives in <root>/cmake/.
+get_filename_component(_spell_project_root "${CMAKE_CURRENT_LIST_DIR}/.." ABSOLUTE)
+
 set(flag "")
 if(FIX)
   set(flag -w)
@@ -16,7 +19,7 @@ endif()
 
 execute_process(
   COMMAND "${SPELL_COMMAND}" ${flag}
-  WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
+  WORKING_DIRECTORY "${_spell_project_root}"
   RESULT_VARIABLE result
 )
 

@@ -4,7 +4,7 @@
 # Used by scripts/docker/docker-paths.sh, CI helpers, Dockerfiles (via helper scripts).
 # GitLab matrix: run scripts/ci/generate-gitlab-os-matrix.sh --write after changing entries.
 #
-# Slug format: ubuntu-22.04, debian-13, fedora-42 (matches install-deps-<slug>.sh and IMAGE_OS_SUFFIX).
+# Slug format: ubuntu-22.04, ubuntu-24.04, fedora-43 (matches install-deps-<slug>.sh and IMAGE_OS_SUFFIX).
 
 _SUPPORTED_OS_CONFIG_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
@@ -12,8 +12,6 @@ _SUPPORTED_OS_CONFIG_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 SUPPORTED_OS_ENTRIES=(
   "ubuntu-22.04|ubuntu:22.04"
   "ubuntu-24.04|ubuntu:24.04"
-  "debian-13|debian:13"
-  "fedora-42|fedora:42"
   "fedora-43|fedora:43"
 )
 

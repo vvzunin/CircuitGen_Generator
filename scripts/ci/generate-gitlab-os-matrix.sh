@@ -189,6 +189,7 @@ emit_secondary_os_test_jobs() {
     echo "    paths:"
     echo "      - build/coverage/coverage.info"
     echo "      - build/coverage/coverage_summary.txt"
+    echo "      - build/coverage/html"
     echo ""
     echo "tests-os-${slug}:"
     echo "  stage: test-os"
