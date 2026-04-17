@@ -10,15 +10,18 @@ workflow:
     - if: $CI_COMMIT_TAG
       variables:
         DOCKER_CI_TAG: $CI_COMMIT_TAG
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_COMMIT_REF_SLUG
+      variables:
+        DOCKER_CI_TAG: $CI_COMMIT_REF_SLUG
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       variables:
-        DOCKER_CI_TAG: "mr-$CI_MERGE_REQUEST_IID-$CI_COMMIT_SHORT_SHA"
+        DOCKER_CI_TAG: $CI_COMMIT_SHORT_SHA
     - if: $CI_COMMIT_BRANCH
       variables:
         DOCKER_CI_TAG: $CI_COMMIT_REF_SLUG
     - when: always
       variables:
-        DOCKER_CI_TAG: $CI_COMMIT_REF_SLUG
+        DOCKER_CI_TAG: $CI_COMMIT_SHORT_SHA
 
 stages:
   # Проверка согласованности .gitlab-ci.yml с матрицей ОС (generate-gitlab-os-matrix.sh --check).
@@ -47,8 +50,10 @@ variables:
   DOCKERFILE_DEV_NAME: dockerfile/Dockerfile.dev
   DOCKERFILE_RELEASE_NAME: dockerfile/Dockerfile.release
   DOCKER_CI_SYSTEM: ubuntu:22.04
-  DOCKER_CI_TAG: $CI_COMMIT_REF_SLUG
+  DOCKER_CI_TAG: $CI_COMMIT_SHORT_SHA
   REGISTRY_URL: vvzunin.me:5201
+  DOCKER_HUB_PROXY_PROJECT: proxy_cache_docker_hub
+  DOCKER_GITLAB_PROXY_PROJECT: proxy_cache_gitlab
   # Optional CI/CD variable: HARBOR_WEB_UI_URL — HTTPS URL of Harbor web UI (not the Docker endpoint on :5201); used by release-from-tag.
   GROUP_NAME: circuitgen
   REPO_NAME: generator
@@ -72,9 +77,11 @@ gitlab-os-matrix-check:
     - docker
 
 .docker-images-base:
-  image: docker:27
+  image: $REGISTRY_URL/$DOCKER_HUB_PROXY_PROJECT/library/docker:27
+  resource_group: "$CI_PROJECT_PATH_SLUG:docker-images:$IMAGE_OS_SUFFIX"
   services:
-    - docker:27-dind
+    - name: $REGISTRY_URL/$DOCKER_HUB_PROXY_PROJECT/library/docker:27-dind
+      alias: docker
   variables:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_TLS_CERTDIR: ""
@@ -82,11 +89,20 @@ gitlab-os-matrix-check:
     DOCKER_DEV_IMAGE: $DOCKER_URL/$IMAGE_OS_SUFFIX/dev:$DOCKER_CI_TAG
     DOCKER_RELEASE_IMAGE: $DOCKER_URL/$IMAGE_OS_SUFFIX/release:$DOCKER_CI_TAG
   before_script:
-    - apk add --no-cache bash git
+    - sh scripts/ci/apk-install-with-retry.sh bash git
     - bash scripts/ci/docker-registry-login.sh
   script:
     - bash scripts/ci/docker-build-ci.sh
-    - bash scripts/ci/docker-build-dev.sh
+    - |
+      if [[ -n "${CI_COMMIT_TAG:-}" || "${CI_COMMIT_BRANCH:-}" == "${CI_DEFAULT_BRANCH:-}" ]]; then
+        bash scripts/ci/docker-build-dev.sh
+      else
+        echo "Skipping dev image build (only default branch and tags build dev images)."
+      fi
+  after_script:
+    - |
+      echo "Removing local dev image: ${DOCKER_DEV_IMAGE}"
+      docker image rm -f "${DOCKER_DEV_IMAGE}" || true
   rules:
     # MR pipelines do not set CI_COMMIT_BRANCH; only merge_request_event matches them.
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
@@ -149,9 +165,11 @@ docker-images-fedora-43:
 
 .docker-release-base:
   stage: docker-matrix
-  image: docker:27
+  image: $REGISTRY_URL/$DOCKER_HUB_PROXY_PROJECT/library/docker:27
+  resource_group: "$CI_PROJECT_PATH_SLUG:docker-release:$IMAGE_OS_SUFFIX"
   services:
-    - docker:27-dind
+    - name: $REGISTRY_URL/$DOCKER_HUB_PROXY_PROJECT/library/docker:27-dind
+      alias: docker
   variables:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_TLS_CERTDIR: ""
@@ -159,10 +177,14 @@ docker-images-fedora-43:
     DOCKER_DEV_IMAGE: $DOCKER_URL/$IMAGE_OS_SUFFIX/dev:$DOCKER_CI_TAG
     DOCKER_RELEASE_IMAGE: $DOCKER_URL/$IMAGE_OS_SUFFIX/release:$DOCKER_CI_TAG
   before_script:
-    - apk add --no-cache bash git
+    - sh scripts/ci/apk-install-with-retry.sh bash git
     - bash scripts/ci/docker-registry-login.sh
   script:
     - bash scripts/ci/docker-build-release.sh
+  after_script:
+    - |
+      echo "Removing local release image: ${DOCKER_RELEASE_IMAGE}"
+      docker image rm -f "${DOCKER_RELEASE_IMAGE}" || true
   rules:
     - if: $CI_COMMIT_TAG
   tags:
@@ -216,20 +238,27 @@ docker-release-fedora-43:
 
 .os-setup-check-job:
   stage: os-check
+  resource_group: "$CI_PROJECT_PATH_SLUG:os-check:$TARGET_OS"
   # Full image build (--no-cache) + run-all (lint…docs) can exceed 1h on some OS runners.
   timeout: 3h
-  image: docker:27
+  image: $REGISTRY_URL/$DOCKER_HUB_PROXY_PROJECT/library/docker:27
   services:
-    - docker:27-dind
+    - name: $REGISTRY_URL/$DOCKER_HUB_PROXY_PROJECT/library/docker:27-dind
+      alias: docker
   variables:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_TLS_CERTDIR: ""
   before_script:
-    - apk add --no-cache bash
+    - sh scripts/ci/apk-install-with-retry.sh bash
     - bash scripts/ci/docker-registry-login.sh
   script:
     - bash scripts/ci/os-image-build-push.sh
     - bash scripts/ci/os-full-check.sh
+  after_script:
+    - |
+      OS_IMAGE_TAG="${DOCKER_URL}/os-${TARGET_OS}:${DOCKER_CI_TAG}"
+      echo "Removing local OS image: ${OS_IMAGE_TAG}"
+      docker image rm -f "${OS_IMAGE_TAG}" || true
   rules:
     - if: $CI_COMMIT_TAG == null
   tags:
@@ -643,7 +672,19 @@ docs:
     - if: $CI_COMMIT_TAG
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
+        # Documentation sources and Doxygen configuration.
         - docs/**/*
+        - scripts/docs/**/*
+        # Doxygen inputs include public headers and sources.
+        - include/**/*
+        - src/**/*
+        # CMake presets / config affect compile_commands.json generation for clang-assisted parsing.
+        - CMakePresets.json
+        - CMakeLists.txt
+        - src/CMakeLists.txt
+        - examples/CMakeLists.txt
+        - test/CMakeLists.txt
+        # CI/docs tooling and dependency installers can change the doc build environment.
         - cmake/**/*
         - scripts/ci/docs.sh
         - cmake/docs-ci.cmake
@@ -652,9 +693,9 @@ docs:
 
 release-from-tag:
   stage: release
-  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  image: $REGISTRY_URL/$DOCKER_GITLAB_PROXY_PROJECT/gitlab-org/release-cli:latest
   before_script:
-    - apk add --no-cache bash
+    - sh scripts/ci/apk-install-with-retry.sh bash
   script:
     - bash scripts/ci/create-gitlab-release.sh
   tags:

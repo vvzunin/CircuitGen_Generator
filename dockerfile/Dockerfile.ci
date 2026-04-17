@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.6
 ARG system="ubuntu:22.04"
 FROM ${system}
 
@@ -7,9 +8,13 @@ WORKDIR /tmp/circuitgen-setup
 COPY scripts/config/supported-os.sh ./scripts/config/
 COPY scripts/setup ./scripts/setup
 
-RUN bash scripts/setup/install-deps-for-current-os.sh
+RUN --mount=type=secret,id=pip_conf,target=/tmp/pip.conf,required=false \
+    PIP_CONFIG_FILE=/tmp/pip.conf \
+    bash scripts/setup/install-deps-for-current-os.sh
 
-RUN bash scripts/setup/ci-python-venv.sh jinja2 Pygments synology-drive-api && \
+RUN --mount=type=secret,id=pip_conf,target=/tmp/pip.conf,required=false \
+    PIP_CONFIG_FILE=/tmp/pip.conf \
+    bash scripts/setup/ci-python-venv.sh jinja2 Pygments synology-drive-api && \
   rm -rf /tmp/circuitgen-setup
 
 ENV CIRCUITGEN_PYTHON_VENV=/opt/circuitgen-venv

@@ -18,13 +18,46 @@ case "${role}" in
     ;;
 esac
 
-if ! docker manifest inspect "${img}" >/dev/null 2>&1; then
-  exit 1
+# In MR pipelines, prefer immutable SHA tag if it already exists:
+# commit pipeline may have built and pushed it just before MR pipeline started.
+sha_img=""
+if [[ "${role}" == "ci" && -n "${CI_COMMIT_SHORT_SHA:-}" ]]; then
+  sha_img="${img%:*}:${CI_COMMIT_SHORT_SHA}"
+fi
+if [[ -n "${sha_img}" && docker manifest inspect "${sha_img}" >/dev/null 2>&1 ]]; then
+  echo "Skipping ${role} build: immutable SHA image exists (${sha_img})."
+  exit 0
 fi
 
+if docker manifest inspect "${img}" >/dev/null 2>&1; then
+  echo "Skipping ${role} build: ${img} exists and relevant paths unchanged."
+  exit 0
+fi
+
+# Build is required when relevant context files changed.
 if bash "${ROOT_DIR}/scripts/ci/docker-context-changed.sh" "${role}"; then
   exit 1
 fi
 
-echo "Skipping ${role} build: ${img} exists and relevant paths unchanged."
-exit 0
+# In MR pipelines, branch and MR jobs can race on the same image tag.
+# Give the branch pipeline a small window to finish push before rebuilding.
+if [[ "${CI_PIPELINE_SOURCE:-}" == "merge_request_event" ]]; then
+  wait_seconds="${DOCKER_SKIP_WAIT_SECONDS:-60}"
+  interval_seconds="${DOCKER_SKIP_WAIT_INTERVAL_SECONDS:-10}"
+  elapsed=0
+  while [[ "${elapsed}" -lt "${wait_seconds}" ]]; do
+    echo "Image ${img} not found yet; waiting ${interval_seconds}s (${elapsed}/${wait_seconds})..."
+    sleep "${interval_seconds}"
+    elapsed=$((elapsed + interval_seconds))
+    if [[ -n "${sha_img}" && docker manifest inspect "${sha_img}" >/dev/null 2>&1 ]]; then
+      echo "Skipping ${role} build: immutable SHA image appeared (${sha_img})."
+      exit 0
+    fi
+    if docker manifest inspect "${img}" >/dev/null 2>&1; then
+      echo "Skipping ${role} build: ${img} appeared in registry and context is unchanged."
+      exit 0
+    fi
+  done
+fi
+
+exit 1

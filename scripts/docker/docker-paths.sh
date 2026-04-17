@@ -53,7 +53,13 @@ docker_paths_local_ci_dev() {
 
 docker_paths_ci_registry_tags() {
   DOCKER_CI_TAG="${DOCKER_CI_TAG:-latest}"
-  DOCKER_CI_IMAGE="${DOCKER_CI_IMAGE:-${DOCKER_URL}/${IMAGE_OS_SUFFIX}/ci:${DOCKER_CI_TAG}}"
-  DOCKER_DEV_IMAGE="${DOCKER_DEV_IMAGE:-${DOCKER_URL}/${IMAGE_OS_SUFFIX}/dev:${DOCKER_CI_TAG}}"
-  DOCKER_RELEASE_IMAGE="${DOCKER_RELEASE_IMAGE:-${DOCKER_URL}/${IMAGE_OS_SUFFIX}/release:${DOCKER_CI_TAG}}"
+  if [[ -z "${DOCKER_CI_IMAGE:-}" || "${DOCKER_CI_IMAGE}" == *: ]]; then
+    DOCKER_CI_IMAGE="${DOCKER_URL}/${IMAGE_OS_SUFFIX}/ci:${DOCKER_CI_TAG}"
+  fi
+  if [[ -z "${DOCKER_DEV_IMAGE:-}" || "${DOCKER_DEV_IMAGE}" == *: ]]; then
+    DOCKER_DEV_IMAGE="${DOCKER_URL}/${IMAGE_OS_SUFFIX}/dev:${DOCKER_CI_TAG}"
+  fi
+  if [[ -z "${DOCKER_RELEASE_IMAGE:-}" || "${DOCKER_RELEASE_IMAGE}" == *: ]]; then
+    DOCKER_RELEASE_IMAGE="${DOCKER_URL}/${IMAGE_OS_SUFFIX}/release:${DOCKER_CI_TAG}"
+  fi
 }
