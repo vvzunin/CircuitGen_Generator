@@ -17,6 +17,10 @@ docker_paths_apply_target_os
 docker_paths_image_os_suffix
 docker_paths_ci_registry_tags
 
+# Prefer Harbor proxy cache for Docker Hub base images in CI.
+DOCKER_CI_SYSTEM="$(REGISTRY_URL="${REGISTRY_URL}" DOCKER_HUB_PROXY_PROJECT="${DOCKER_HUB_PROXY_PROJECT:-}" \
+  bash "${ROOT_DIR}/scripts/ci/docker-hub-proxy-image.sh" "${DOCKER_CI_SYSTEM}")"
+
 if [[ -n "${CI:-}" ]]; then
   if bash "${ROOT_DIR}/scripts/ci/docker-skip-if-unchanged.sh" release; then
     exit 0

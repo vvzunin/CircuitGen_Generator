@@ -28,7 +28,12 @@ case "${role}" in
   dev)
     paths=(
       dockerfile/Dockerfile.dev
+      dockerfile/Dockerfile.ci
+      scripts/setup
+      scripts/config/supported-os.sh
+      scripts/docker
       scripts/ci/docker-build-dev.sh
+      scripts/ci/docker-build-ci.sh
       scripts/ci/docker-skip-if-unchanged.sh
       scripts/ci/docker-context-changed.sh
     )
@@ -36,6 +41,9 @@ case "${role}" in
   release)
     paths=(
       dockerfile/Dockerfile.release
+      scripts/setup
+      scripts/config/supported-os.sh
+      scripts/docker
       scripts/ci/docker-build-release.sh
       scripts/ci/docker-skip-if-unchanged.sh
       scripts/ci/docker-context-changed.sh
