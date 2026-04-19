@@ -431,13 +431,15 @@ bool Circuit::generate(CircuitArgs args) {
     // LOG(INFO) << "Writing GraphML ended for " << d_circuitName;
   }
 
-  updateCircuitParameters(d_graph);
+  if (args.d_saveCircuitParametersJson) {
+    updateCircuitParameters(d_graph);
 
-  std::string filename = d_path + "/" + d_circuitName + ".json";
-  std::ofstream i_outputFile(filename);
+    std::string filename = d_path + "/" + d_circuitName + ".json";
+    std::ofstream i_outputFile(filename);
 
-  saveParameters(d_graph, i_outputFile);
-  // LOG(INFO) << "Circuit parameters saved." << d_circuitName;
+    saveParameters(d_graph, i_outputFile);
+    // LOG(INFO) << "Circuit parameters saved." << d_circuitName;
+  }
 
   // TODO: costul
   // if (checkExistingHash() || d_circuitParameters.d_reliability == 0 ||

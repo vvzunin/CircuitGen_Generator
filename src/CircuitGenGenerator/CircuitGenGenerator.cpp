@@ -125,11 +125,14 @@ getBasicParameters(const nlohmann::json &i_data, GenerationTypes &i_type,
                                              "make_graphml_open_abc_d", false);
   bool makeDot =
       readWithCheck<bool>(i_data["OutputParameters"], "make_dot", false);
+  const bool saveCircuitParametersJson = readWithCheck<bool>(
+      i_data["OutputParameters"], "save_circuit_parameters_json", true);
 
   gp =
       new GenerationParameters(datasetId, requestId, i_minInputs, i_minOutputs,
                                i_repeats, makeGraphMLClassic, makeGraphMLPseudo,
-                               makeGraphMLOpen, makeDot, i_convertToBasis);
+                               makeGraphMLOpen, makeDot, i_convertToBasis,
+                               saveCircuitParametersJson);
   gp->setGatesInputInfo(gatesInputsInfo);
 
   return gp;
