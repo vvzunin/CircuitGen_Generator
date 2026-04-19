@@ -11,6 +11,67 @@ cp CMakeUserPresets.json.example CMakeUserPresets.json
 
 The project defaults to the `Ninja` generator.
 
+### CMake presets (reference)
+
+This repository uses [CMake presets](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html): schema **version 6** and `cmakeMinimumRequired` **3.26** (see `CMakePresets.json` in the repo root).
+
+| File | Role |
+|------|------|
+| `CMakePresets.json` | Committed presets: **release**, **release-ci**, **release-examples**, CI profiles (**ci-ubuntu**, **ci-coverage**, **ci-sanitize**, **ci-static-analysis**, …), **ci-examples-dev**, plus hidden presets (**dev-mode**, compiler flag bundles, Ninja/C++17 bases). |
+| `CMakeUserPresets.json` | **Local only** (gitignored). After clone: `cp CMakeUserPresets.json.example CMakeUserPresets.json`. Defines **dev**, **coverage**, **dev-msvc**, … and `include`s this repo’s `CMakePresets.json`. |
+
+Configure, build, and test a typical **Debug** tree:
+
+```sh
+cmake --preset=dev
+cmake --build --preset=dev -j"$(nproc)"
+ctest --preset=dev
+```
+
+**Release + tests** using only committed presets (CI parity, no `CMakeUserPresets.json`):
+
+```sh
+cmake --preset=release-ci
+cmake --build --preset=release-ci -j"$(nproc)"
+ctest --preset=release-ci
+```
+
+Run `cmake --list-presets` to see every configure preset visible from your working copy.
+
+**Cross-repository reference:** developer/examples toggles differ only by cache variable names (set through the hidden **dev-mode** bundle used by `dev` / many CI presets):
+
+| Repository | Developer mode | Examples |
+|------------|-----------------|----------|
+| Generator | `CircuitGenGenerator_DEVELOPER_MODE` | `CircuitGenGenerator_BUILD_EXAMPLES` |
+| Graph | `CircuitGenGraph_DEVELOPER_MODE` | `CircuitGenGraph_BUILD_EXAMPLES` |
+| Parameters | `OptimizationsVerilogLib_DEVELOPER_MODE` | `optimizationsveriloglib_BUILD_EXAMPLES` |
+
+### CMake: adding new C++ sources
+
+Sources are grouped into **libraries** declared beside the code; parents use `add_subdirectory`.
+
+1. **Directory** — place files under `src/` (and public headers under `include/...` when exporting an API).
+2. **Register** — from the parent `CMakeLists.txt`, `add_subdirectory(<subdir>)` if you added a new folder.
+3. **Leaf `CMakeLists.txt`** — typical internal library skeleton:
+
+   ```cmake
+   add_library(myLeaf STATIC MyLeaf.cpp)
+   target_include_directories(myLeaf PUBLIC
+     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>
+   )
+   target_link_libraries(myLeaf PUBLIC …)  # existing targets your code uses
+   add_folders(MyLeaf)  # optional IDE grouping (cmake/folders.cmake)
+   ```
+
+4. **Wire upward** — executables or larger libraries that call your code must `target_link_libraries(... myLeaf ...)`.
+5. **Reconfigure** — any `CMakeLists.txt` edit requires a fresh CMake run (`cmake --preset=dev` or equivalent).
+
+**Repository-specific layout hints**
+
+- **Generator:** many features are small static libraries under `src/generators/simple/<name>/CMakeLists.txt`; see `src/generators/simple/simple/CMakeLists.txt` for a canonical pattern. Parents under `src/generators/simple/CMakeLists.txt` chain `add_subdirectory` calls.
+- **Graph:** the primary `CircuitGenGraph` target lists `.cpp` files in `src/CMakeLists.txt` (`SOURCES`, `LIBS`) and public headers in `include/CircuitGenGraph/` (`PUBLIC_HEADER` / install metadata). Append new translation units and headers there when you extend the core library.
+- **Parameters:** the main library and OpenLane CLI live in `src/CMakeLists.txt` (`SOURCES` for `CircuitGenParameters`, executable target **`CircuitGenParameters_exe`** with runtime name **`CircuitGenParameters`** — same pattern as `CircuitGenGenerator_exe` / `CircuitGenGenerator`; entry source `CircuitGenToOpenLane.cpp`; `OptimizationsVerilogLib::…` aliases). Enable `add_subdirectory(examples)` with `-D optimizationsveriloglib_BUILD_EXAMPLES=ON` at the top level; extend `SOURCES` or add another `add_library` next to existing patterns when you add modules.
+
 Common workflows:
 
 ```sh

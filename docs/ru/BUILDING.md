@@ -11,6 +11,67 @@ cp CMakeUserPresets.json.example CMakeUserPresets.json
 
 В проекте по умолчанию используется генератор `Ninja`.
 
+### Пресеты CMake (справка)
+
+В репозитории используются [пресеты CMake](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html): схема **version 6**, `cmakeMinimumRequired` **3.26** (см. `CMakePresets.json` в корне).
+
+| Файл | Назначение |
+|------|------------|
+| `CMakePresets.json` | Общие пресеты в git: **release**, **release-ci**, **release-examples**, CI-профили (**ci-ubuntu**, **ci-coverage**, **ci-sanitize**, **ci-static-analysis**, …), **ci-examples-dev**, а также скрытые базовые пресеты (**dev-mode**, наборы флагов компилятора, Ninja/C++17). |
+| `CMakeUserPresets.json` | **Только локально** (в `.gitignore`). После клона: `cp CMakeUserPresets.json.example CMakeUserPresets.json`. Задаёт **dev**, **coverage**, **dev-msvc**, … и подключает `CMakePresets.json` через `include`. |
+
+Типичная цепочка **конфигурация → сборка → тесты** (Debug):
+
+```sh
+cmake --preset=dev
+cmake --build --preset=dev -j"$(nproc)"
+ctest --preset=dev
+```
+
+**Release с тестами** только из закоммиченных пресетов (как в CI, без `CMakeUserPresets.json`):
+
+```sh
+cmake --preset=release-ci
+cmake --build --preset=release-ci -j"$(nproc)"
+ctest --preset=release-ci
+```
+
+Список доступных пресетов: `cmake --list-presets`.
+
+**Сводка по трём репозиториям:** переключатели режима разработчика и примеров отличаются только именами переменных кэша CMake (их выставляет скрытый набор **dev-mode**, от которого наследуются `dev` и многие CI-пресеты):
+
+| Репозиторий | Режим разработчика | Примеры |
+|-------------|-------------------|---------|
+| Generator | `CircuitGenGenerator_DEVELOPER_MODE` | `CircuitGenGenerator_BUILD_EXAMPLES` |
+| Graph | `CircuitGenGraph_DEVELOPER_MODE` | `CircuitGenGraph_BUILD_EXAMPLES` |
+| Parameters | `OptimizationsVerilogLib_DEVELOPER_MODE` | `optimizationsveriloglib_BUILD_EXAMPLES` |
+
+### CMake: новые исходники и `CMakeLists.txt`
+
+Код собирается в **библиотеки** рядом с файлами; родительские каталоги подключают дочерние через `add_subdirectory`.
+
+1. **Каталог** — размещайте файлы под `src/` (и публичные заголовки под `include/…`, если API экспортируется).
+2. **Регистрация** — в родительском `CMakeLists.txt` добавьте `add_subdirectory(<подкаталог>)`, если создали новую папку.
+3. **Листовой `CMakeLists.txt`** — типичный каркас внутренней статической библиотеки:
+
+   ```cmake
+   add_library(myLeaf STATIC MyLeaf.cpp)
+   target_include_directories(myLeaf PUBLIC
+     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>
+   )
+   target_link_libraries(myLeaf PUBLIC …)  # нужные уже существующие цели
+   add_folders(MyLeaf)  # группировка в IDE (cmake/folders.cmake)
+   ```
+
+4. **Связь наверх** — исполняемый файл или «большая» библиотека, использующая ваш код, должны указать `myLeaf` в `target_link_libraries`.
+5. **Переконфигурация** — после любого изменения `CMakeLists.txt` снова запустите CMake (`cmake --preset=dev` или эквивалент).
+
+**Особенности по репозиториям**
+
+- **Generator:** много мелких статических библиотек в `src/generators/simple/<имя>/CMakeLists.txt`; образец — `src/generators/simple/simple/CMakeLists.txt`. Родитель `src/generators/simple/CMakeLists.txt` вызывает цепочку `add_subdirectory`.
+- **Graph:** основная цель `CircuitGenGraph` задаётся в `src/CMakeLists.txt` списками `SOURCES`, `LIBS` и заголовками в `include/CircuitGenGraph/` (`PUBLIC_HEADER` и правила установки). Новые `.cpp` и заголовки добавляйте туда при расширении библиотеки.
+- **Parameters:** основная библиотека и CLI OpenLane в `src/CMakeLists.txt` (`SOURCES` для `CircuitGenParameters`, цель **`CircuitGenParameters_exe`** с именем исполняемого файла **`CircuitGenParameters`** — как у `CircuitGenGenerator_exe` / `CircuitGenGenerator`; точка входа `CircuitGenToOpenLane.cpp`; алиасы `OptimizationsVerilogLib::…`). Подкаталог `examples/` включается при `-D optimizationsveriloglib_BUILD_EXAMPLES=ON` на верхнем уровне; новые модули — через расширение `SOURCES` или отдельный `add_library` по аналогии с соседними целями.
+
 Базовые сценарии:
 
 ```sh

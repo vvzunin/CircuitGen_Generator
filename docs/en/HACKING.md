@@ -15,7 +15,7 @@ Developer mode is always enabled in CI workflows.
 
 ### Presets
 
-This project uses [CMake presets][1]. Install the [latest CMake][2] to get the best experience.
+This project uses [CMake presets][1]. Install the [latest CMake][2] to get the best experience. For **tables of configure/build/test presets**, **cache variable names shared across CircuitGen repositories**, and **how to add new sources and `CMakeLists.txt` targets**, see [BUILDING.md](BUILDING.md).
 
 You can pass `CircuitGenGenerator_DEVELOPER_MODE` in several ways; this repo prefers presets.
 
