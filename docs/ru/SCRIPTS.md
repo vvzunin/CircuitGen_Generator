@@ -3,6 +3,12 @@
 В репозитории скрипты сгруппированы по каталогам в `scripts/`.
 Скрипты вызывают CMake presets и Docker-сборки, не дублируя логику конфигурации.
 
+## Документация CI
+
+- [CI_PIPELINE.md](CI_PIPELINE.md) — конвейер GitLab, стадии, архитектура
+- [CI_SCRIPTS.md](CI_SCRIPTS.md) — справочник по каждому файлу в `scripts/ci`
+- Обслуживание диска Windows (runner): `scripts/ci/docker-prune-keep-bases.ps1` — [CI_SCRIPTS.md §7](CI_SCRIPTS.md#docker-prune-runner-windows) (RU), [EN](../en/CI_SCRIPTS.md#docker-prune-runner-windows)
+
 ## Структура
 
 ```text
@@ -325,7 +331,7 @@ bash scripts/release/suggest-next-version.sh --verbose
 - `scripts/setup/install-deps-ubuntu-24.04.sh`  
   Устанавливает недостающие зависимости для Ubuntu 24.04.
 - `scripts/setup/install-deps-debian-13.sh`  
-  Устанавливает недостающие зависимости для Debian 13 (trixie). Пин `clang-format` **18.1.8** через `install-clang-format-ci.sh` (колёсо PyPI), как в остальных образах CI.
+  Устанавливает недостающие зависимости для Debian 13 (trixie). Пин `clang-format` **18.1.8** через `install-clang-format-ci.sh` (колесо PyPI), как в остальных образах CI.
 - `scripts/setup/install-deps-fedora-42.sh`  
   Устанавливает недостающие зависимости для Fedora Workstation 42.
 - `scripts/setup/install-deps-fedora-43.sh`  
@@ -375,7 +381,7 @@ bash scripts/setup/verify-installers-docker.sh ubuntu-24.04
 - `scripts/ci/run-task.sh <task>`  
   Запускает один CI-этап (`lint`, `sanitize`, `static-analysis`, `coverage`, `tests`, `examples`, `docs`) в выбранном режиме.
 - `scripts/ci/run-all.sh`  
-  Запускает полный CI-пайплайн проверок: `lint -> static-analysis -> sanitize -> coverage -> tests -> examples -> docs`.
+  Запускает полный CI-пайплайн проверок: `lint -> static-analysis -> sanitize -> coverage -> tests -> examples -> docs` (локально по шагам; в GitLab часть job’ов параллельна).
 
 Примеры:
 

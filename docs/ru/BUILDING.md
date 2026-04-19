@@ -150,11 +150,11 @@ bash scripts/ci/docs.sh
 DOXYGEN_LANG_VARIANTS="en=english" bash scripts/ci/docs.sh
 ```
 
-Для каждого варианта Doxygen **`OUTPUT_LANGUAGE`** (подписи в HTML, LaTeX, поиске) соответствует варианту: `ru=russian` — русский интерфейс, `en=english` — английский. Это задаётся в `cmake/docs-ci.cmake` вместе с подписями навбара m.css в `conf.py`.
+Для каждого варианта Doxygen **`OUTPUT_LANGUAGE`** (подписи в HTML, LaTeX, поиске) соответствует варианту: `ru=russian` — русский интерфейс, `en=english` — английский. Это задается в `cmake/docs-ci.cmake` вместе с подписями навбара m.css в `conf.py`.
 
 **Локально** мультиязычный вывод совпадает с CI, но лежит в `build/dev/docs/.../{en,ru}/`: запустите **`bash scripts/dev/build-docs.sh`** (конфигурирует preset `dev` для `compile_commands.json`, затем тот же генератор, что и в CI).
 
-Опционально: при **`BUILD_MCSS_DOCS=ON`** цель CMake **`docs`** (`cmake/docs.cmake`) собирает **один** язык в `build/dev/docs/html` (без подпапок `en`/`ru`); язык задаётся кэшем **`DOXYGEN_DOCUMENTATION_LANGUAGE`** (`english` или `russian`). После смены выполните повторную конфигурацию `cmake`.
+Опционально: при **`BUILD_MCSS_DOCS=ON`** цель CMake **`docs`** (`cmake/docs.cmake`) собирает **один** язык в `build/dev/docs/html` (без подпапок `en`/`ru`); язык задается кэшем **`DOXYGEN_DOCUMENTATION_LANGUAGE`** (`english` или `russian`). После смены выполните повторную конфигурацию `cmake`.
 
 Для сборки PDF нужен LaTeX toolchain (`pdflatex`, `makeindex`), он устанавливается
 скриптами `scripts/setup/install-deps-*.sh` и в CI-образе `dockerfile/Dockerfile.ci`.

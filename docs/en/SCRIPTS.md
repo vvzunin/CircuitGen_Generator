@@ -2,6 +2,12 @@
 
 Scripts live under `scripts/`. They invoke CMake presets and Docker builds without duplicating configure logic.
 
+## CI documentation
+
+- [CI_PIPELINE.md](CI_PIPELINE.md) — GitLab pipeline, stages, architecture
+- [CI_SCRIPTS.md](CI_SCRIPTS.md) — per-file reference for `scripts/ci`
+- Windows runner disk maintenance: `scripts/ci/docker-prune-keep-bases.ps1` — [CI_SCRIPTS.md §7](CI_SCRIPTS.md#docker-prune-runner-windows) (EN), [RU](../ru/CI_SCRIPTS.md#docker-prune-runner-windows)
+
 ## Layout
 
 ```text
@@ -351,7 +357,7 @@ For `scripts/ci/docs.sh` additionally:
 ### Wrappers
 
 - `scripts/ci/run-task.sh <task>` — one CI stage (`lint`, `sanitize`, `static-analysis`, `coverage`, `tests`, `examples`, `docs`).
-- `scripts/ci/run-all.sh` — full pipeline: `lint -> static-analysis -> sanitize -> coverage -> tests -> examples -> docs`.
+- `scripts/ci/run-all.sh` — full pipeline: `lint -> static-analysis -> sanitize -> coverage -> tests -> examples -> docs` (serialized locally; GitLab runs several jobs in parallel).
 
 Examples:
 
