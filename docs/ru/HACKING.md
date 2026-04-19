@@ -266,3 +266,7 @@ enum VertexTypes { ///  input vertex
   subGraph   
 };
 ```
+
+## CI и GitLab
+
+Конвейер, стадии и архитектура: [CI_PIPELINE.md](CI_PIPELINE.md). Справочник по `scripts/ci`: [CI_SCRIPTS.md](CI_SCRIPTS.md). Матрица ОС и регенерация `.gitlab-ci.yml`: разделы про `supported-os.sh` и `generate-gitlab-os-matrix.sh` в [SCRIPTS.md](SCRIPTS.md).

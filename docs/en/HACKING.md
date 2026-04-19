@@ -256,4 +256,8 @@ enum VertexTypes { ///  input vertex
 };
 ```
 
+## CI and GitLab
+
+Pipeline, stages, and architecture: [CI_PIPELINE.md](CI_PIPELINE.md). Full `scripts/ci` reference: [CI_SCRIPTS.md](CI_SCRIPTS.md). OS matrix and `.gitlab-ci.yml` regeneration: see `supported-os.sh` and `generate-gitlab-os-matrix.sh` in [SCRIPTS.md](SCRIPTS.md).
+
 **Русский:** [HACKING](../ru/HACKING.md)
