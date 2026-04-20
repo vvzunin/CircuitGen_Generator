@@ -36,8 +36,8 @@ namespace CG_Gen {
 
 namespace {
 
-CircuitArgs circuitArgsFromGenerationParameters(
-    const GenerationParameters &i_param) {
+CircuitArgs
+circuitArgsFromGenerationParameters(const GenerationParameters &i_param) {
   return CircuitArgs(i_param.getMakeGraphMLClassic(),
                      i_param.getMakeGraphMLPseudoABCD(),
                      i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT(),

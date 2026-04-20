@@ -2,6 +2,6 @@
 builtin = clear,rare,en-GB_to_en-US,names,informal,code
 check-filenames =
 check-hidden =
-skip = */.git,*/build,*/prefix,lib,*/src/additional/threadPool/UnboundedMPMCQueue.hpp,ignore_words_spellcheck
+skip = */.git,*/build,build-*,*/prefix,lib,*/src/additional/threadPool/UnboundedMPMCQueue.hpp,ignore_words_spellcheck
 quiet-level = 2
 ignore-words = ignore_words_spellcheck

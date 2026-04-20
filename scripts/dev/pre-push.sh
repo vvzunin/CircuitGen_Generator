@@ -18,6 +18,11 @@ command -v codespell >/dev/null 2>&1 || { echo "codespell is required for spell-
 
 echo "==> Cleaning local build tree"
 rm -rf build
+shopt -s nullglob
+for _cg_pre_push_build_dir in build-*; do
+  rm -rf "${_cg_pre_push_build_dir}"
+done
+shopt -u nullglob
 
 echo "==> Configure dev preset"
 cmake --preset=dev

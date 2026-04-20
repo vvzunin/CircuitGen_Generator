@@ -23,8 +23,7 @@ struct CircuitArgs {
 
   CircuitArgs(bool d_makeGraphMLClassic, bool d_makeGraphMLPseudoABCD,
               bool d_makeGraphMLOpenABCD, bool d_makeDOT, bool d_pathExists,
-              bool d_saveCircuitParametersJson)
-      :
+              bool d_saveCircuitParametersJson) :
       d_makeGraphMLClassic(d_makeGraphMLClassic),
       d_makeGraphMLPseudoABCD(d_makeGraphMLPseudoABCD),
       d_makeGraphMLOpenABCD(d_makeGraphMLOpenABCD), d_makeDOT(d_makeDOT),
