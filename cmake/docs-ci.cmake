@@ -217,6 +217,16 @@ if((XELATEX_EXECUTABLE OR PDFLATEX_EXECUTABLE) AND NOT DOXYGEN_SKIP_REFMAN_PDF)
     RESULT_VARIABLE result
   )
   if(NOT result EQUAL "0")
+    if(EXISTS "${out}/latex/refman.log")
+      execute_process(
+        COMMAND sh -c "tail -n 120 refman.log"
+        WORKING_DIRECTORY "${out}/latex"
+        OUTPUT_VARIABLE _doxy_refman_log_tail
+        ERROR_QUIET
+      )
+      string(STRIP "${_doxy_refman_log_tail}" _doxy_refman_log_tail)
+      message(WARNING "LaTeX PDF build failed; tail of refman.log:\n${_doxy_refman_log_tail}")
+    endif()
     message(FATAL_ERROR "LaTeX/PDF build returned with ${result}")
   endif()
   execute_process(
