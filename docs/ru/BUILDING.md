@@ -143,7 +143,7 @@ cmake --build --preset=release-examples -j "$(nproc)"
 cmake --build --preset=release-examples --target run-examples -j "$(nproc)"
 ```
 
-JSON-файлы в `examples/json/` — входные данные для сценариев генерации; текущий пример **`empty_example`** линкуется с библиотекой и проверяет, что цепочка сборки примеров работает.
+JSON-файлы в `examples/json/` — входные данные для `CircuitGenGenerator::runGenerationFromJson`. Среди C++-примеров: **`empty_example`** (дымовой тест), **`example_print_version`**, запуск по JSON — **`example_run_comparison_json`**, **`example_run_truth_table_json`**, **`example_run_parity_json`** (общий исходник `example_run_preset_json.cpp`, путь к JSON задаётся на этапе конфигурации CMake через `add_json_example`), а также **`example_run_json_for_graph`** (`runGenerationFromJsonForGraph`, `add_for_graph_example`). См. `examples/CMakeLists.txt`.
 
 ### Сборка с MSVC
 
@@ -330,7 +330,7 @@ target_link_libraries(
 #### runGenerationFromJsonForGraph
 Аналогично, получает на вход путь до файла json. В отличие от предыдущей функции, возвращает следующую структуру:
 `std::vector<std::pair<std::string, std::vector<GraphPtr>>>`. Для `std::pair<std::string, std::vector<GraphPtr>>` существует псевдоним ResultGraph.
-Первым значением в паре является путь до папки, где находятся сгенерированные verilog-файлы. Второе значение пары, вектор, содержит ссылки на графы, сгенерированные по данному пути.
+Первым значением в паре является путь до папки, где находятся сгенерированные verilog-файлы. Второе значение пары, вектор, содержит ссылки на графы, сгенерированные по данному пути. На каждый объект верхнего уровня в JSON-файле формируется один элемент вектора (используется тот же путь генерации, что и у `runGenerationFromJson`, с возвратом графов в память).
 #### runGenerationFromJsonForPath
 Аналогично, получает на вход путь до файла json. Возвращает `std::vector<std::pair<std::string, std::vector<std::string>>>`. В отличие от предыдущей функции, вместо графов возвращаются их имена, используемые как имена папок с созданными Verilog-файлами соответствующих графов, а также в качестве имен файлов.
 

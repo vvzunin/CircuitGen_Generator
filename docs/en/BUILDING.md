@@ -143,7 +143,7 @@ cmake --build --preset=release-examples -j "$(nproc)"
 cmake --build --preset=release-examples --target run-examples -j "$(nproc)"
 ```
 
-JSON files under `examples/json/` feed the generation scenarios; the current **`empty_example`** links the library and sanity-checks the examples build.
+JSON files under `examples/json/` are inputs for `CircuitGenGenerator::runGenerationFromJson`. The C++ example targets include **`empty_example`** (smoke test), **`example_print_version`**, JSON runners **`example_run_comparison_json`**, **`example_run_truth_table_json`**, and **`example_run_parity_json`** (each compiles `example_run_preset_json.cpp` with a compile-time JSON path via `add_json_example`), plus **`example_run_json_for_graph`** (`runGenerationFromJsonForGraph`, `add_for_graph_example`). See `examples/CMakeLists.txt`.
 
 ### Building with MSVC
 
@@ -333,7 +333,7 @@ Takes a path to a JSON file. Returns nothing.
 
 #### `runGenerationFromJsonForGraph`
 
-Same JSON input. Returns `std::vector<std::pair<std::string, std::vector<GraphPtr>>>` (alias `ResultGraph`). The first element of each pair is the folder with generated Verilog; the second is the list of graphs for that path.
+Same JSON input. Returns `std::vector<std::pair<std::string, std::vector<GraphPtr>>>` (alias `ResultGraph`). The first element of each pair is the folder with generated Verilog; the second is the list of graphs for that path. One vector element is produced per top-level JSON object in the file (the implementation invokes the same generation path as `runGenerationFromJson`, collecting graphs instead of only writing files).
 
 #### `runGenerationFromJsonForPath`
 

@@ -58,6 +58,7 @@ Each batch contains several blocks (for each parameter: type, default, whether r
    6. `make_graphml_pseudo_abc_d` (bool, optional, default false) — write pseudo-ABC GraphML  
    7. `make_graphml_open_abc_d` (bool, optional, default false) — write open-ABC GraphML  
    8. `make_dot` (bool, optional, default false) — write Graphviz DOT  
+   9. `save_circuit_parameters_json` (bool, optional, default true) — when true, run circuit parameter extraction and write `<circuitName>.json` next to Verilog; when false, only emit Verilog and any other outputs enabled above (no per-circuit JSON)  
 4. Type-specific blocks — required names match `type_of_generation`:  
    1. `From Random Truth Table`  
       1. `CNFF` (bool, optional, default false) — build with canonical DNF  
