@@ -41,12 +41,14 @@ PACKAGES=(
   flex
   gcc
   gcc-c++
+  glibc-devel
   ghostscript
   libgs
   git
   graphviz
   lcov
   libasan
+  libstdc++-devel
   libubsan
   llvm-devel
   make
