@@ -187,6 +187,30 @@ elseif(EXISTS "${src}/include/CircuitGenGraph/GraphUtils.hpp")
   )
 endif()
 
+# Doxygen's libclang does not pick up GCC's resource include dirs; without them, parsing system
+# headers fails (e.g. stddef.h not found) on Fedora CI.
+if(UNIX AND NOT APPLE)
+  find_program(_DOXY_GCC_FOR_INCLUDES NAMES gcc)
+  if(_DOXY_GCC_FOR_INCLUDES)
+    execute_process(
+      COMMAND "${_DOXY_GCC_FOR_INCLUDES}" -print-file-name=include
+      OUTPUT_VARIABLE _doxy_gcc_builtin_include
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    if(IS_DIRECTORY "${_doxy_gcc_builtin_include}")
+      string(APPEND DOXYGEN_CLANG_OPTIONS_CONFIGURED " -isystem \"${_doxy_gcc_builtin_include}\"")
+    endif()
+    execute_process(
+      COMMAND "${_DOXY_GCC_FOR_INCLUDES}" -print-file-name=include-fixed
+      OUTPUT_VARIABLE _doxy_gcc_include_fixed
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    if(IS_DIRECTORY "${_doxy_gcc_include_fixed}")
+      string(APPEND DOXYGEN_CLANG_OPTIONS_CONFIGURED " -isystem \"${_doxy_gcc_include_fixed}\"")
+    endif()
+  endif()
+endif()
+
 set(out "${DOXYGEN_OUTPUT_DIRECTORY}")
 
 foreach(file IN ITEMS Doxyfile conf.py)
@@ -211,11 +235,17 @@ endif()
 
 if((XELATEX_EXECUTABLE OR PDFLATEX_EXECUTABLE) AND NOT DOXYGEN_SKIP_REFMAN_PDF)
   file(MAKE_DIRECTORY "${out}/pdf")
-  execute_process(
-    COMMAND make
-    WORKING_DIRECTORY "${out}/latex"
-    RESULT_VARIABLE result
-  )
+  set(result 1)
+  foreach(_doxy_latex_pass RANGE 0 3)
+    execute_process(
+      COMMAND make
+      WORKING_DIRECTORY "${out}/latex"
+      RESULT_VARIABLE result
+    )
+    if(result EQUAL "0")
+      break()
+    endif()
+  endforeach()
   if(NOT result EQUAL "0")
     if(EXISTS "${out}/latex/refman.log")
       execute_process(
