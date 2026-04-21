@@ -139,6 +139,6 @@ build/CircuitGenGenerator --json_path <path_to_json>
 # Лицензия
 <a name="license"></a>
 
-Смотрите файл с [лицензией](LICENSE.md).
+Смотрите файл с [лицензией](LICENSE).
 
 [&#8593; Contents](#content_rus)

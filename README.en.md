@@ -155,6 +155,6 @@ Prefix list: [GeneratorsPrefixes.md](docs/en/GeneratorsPrefixes.md).
 # License
 <a name="license"></a>
 
-See [LICENSE.md](LICENSE.md).
+See [LICENSE](LICENSE).
 
 [&#8593; Contents](#content_en)
