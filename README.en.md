@@ -45,7 +45,7 @@ A developer handbook is available [here](https://drive.google.com/file/d/1eKWMpF
 
 ## Installing dependencies
 
-Package lists and extra steps (Kitware CMake when needed, pinned **clang-format**, **lcov** 2+ on Ubuntu 22.04, Doxygen, TeX for docs, etc.) live under **[`scripts/setup/`](scripts/setup/)** — one script per supported OS, for example:
+Package lists and extra steps (Kitware CMake when needed, pinned **clang-format**, **lcov** 2+ on Ubuntu 22.04, Doxygen, TeX for docs, etc.) live under **[scripts/setup/](scripts/setup/)** — one script per supported OS, for example:
 
 - [`install-deps-ubuntu-22.04.sh`](scripts/setup/install-deps-ubuntu-22.04.sh)
 - [`install-deps-ubuntu-24.04.sh`](scripts/setup/install-deps-ubuntu-24.04.sh)

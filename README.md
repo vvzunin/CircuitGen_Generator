@@ -43,7 +43,7 @@
 
 ## Установка зависимостей
 
-Актуальные списки пакетов и доп. шаги (CMake с Kitware при необходимости, **clang-format**, **lcov** 2+ на Ubuntu 22.04, Doxygen, TeX для документации и т.д.) — в скриптах **[`scripts/setup/`](scripts/setup/)** по ОС из CI-матрицы, например:
+Актуальные списки пакетов и доп. шаги (CMake с Kitware при необходимости, **clang-format**, **lcov** 2+ на Ubuntu 22.04, Doxygen, TeX для документации и т.д.) — в скриптах **[scripts/setup/](scripts/setup/)** по ОС из CI-матрицы, например:
 
 - [`install-deps-ubuntu-22.04.sh`](scripts/setup/install-deps-ubuntu-22.04.sh)
 - [`install-deps-ubuntu-24.04.sh`](scripts/setup/install-deps-ubuntu-24.04.sh)
