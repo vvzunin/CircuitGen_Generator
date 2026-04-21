@@ -1,6 +1,6 @@
 /**
  * @file example_run_preset_json.cpp
- * @brief Запуск генерации из JSON (путь задаётся CMake: CIRCUITGEN_EXAMPLE_JSON_FILE).
+ * @brief Запуск генерации из JSON (путь задается CMake: CIRCUITGEN_EXAMPLE_JSON_FILE).
  */
 #include <CircuitGenGenerator/CircuitGenGenerator.hpp>
 #include <easyloggingpp/easylogging++.h>

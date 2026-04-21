@@ -1,6 +1,6 @@
 /**
  * @file example_run_json_for_graph.cpp
- * @brief runGenerationFromJsonForGraph: пакеты схем в памяти (путь к JSON задаётся
+ * @brief runGenerationFromJsonForGraph: пакеты схем в памяти (путь к JSON задается
  *        CMake: CIRCUITGEN_EXAMPLE_JSON_FILE).
  */
 #include <CircuitGenGenerator/CircuitGenGenerator.hpp>
