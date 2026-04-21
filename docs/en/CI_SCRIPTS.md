@@ -138,7 +138,7 @@ Matches the comment-based help at the top of the `.ps1`.
 
 ### FAQ
 
-Long runs / stuck `docker system df` — common on huge stores or slow disks. **Free space on `C:` did not increase** after `rmi` — run **`-CompactDockerDataVhdx`**. **`Optimize-VHD` fails** — admin, Hyper-V, fully stop Docker/WSL. **Custom bases** — extend **`-ExtraKeepPattern`** on full `REPOSITORY`.
+Long runs / stuck `docker system df` — common on huge stores or slow disks. **Free space on `C:` did not increase** after `rmi` — run **`-CompactDockerDataVhdx`**. **`Optimize-VHD`** fails — admin, Hyper-V, fully stop Docker/WSL. **Custom bases** — extend **`-ExtraKeepPattern`** on full `REPOSITORY`.
 
 ### Automation and safety
 
