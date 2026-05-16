@@ -1,5 +1,6 @@
 #include "CircuitGenGenerator/info.hpp"
 #include "additional/auxiliaryMethods/AuxiliaryMethods.hpp"
+#include "chiselModule/ChiselProject.hpp"
 #include "database/dataBaseGenerator/DataBaseGenerator.hpp"
 #include "database/dataBaseGeneratorParameters/DataBaseGeneratorParameters.hpp"
 #include "generators/GenerationParameters.hpp"
@@ -11,6 +12,7 @@
 #include "settings/Settings.hpp"
 #include <algorithm>
 #include <chrono>
+#include <filesystem>
 #include <fstream>
 #include <functional>
 #include <getopt.h>
@@ -595,5 +597,29 @@ void runGenerationFromJson(std::string json_path) {
       };
 
   runGeneration(json_path, runGeneratorForGraph);
+}
+
+bool runChiselGeneration(std::string chisel_path, std::string project_root) {
+  std::filesystem::path baseDirPath =
+      std::filesystem::absolute(std::filesystem::u8path(project_root));
+  std::filesystem::path chiselPath = std::filesystem::u8path(chisel_path);
+  std::filesystem::path outputPath =
+      baseDirPath / "generation_results" / "chisel";
+  std::filesystem::path tempRootPath = baseDirPath / "src" / "chiselModule";
+  const auto timestamp = duration_cast<nanoseconds>(
+                             high_resolution_clock::now().time_since_epoch())
+                             .count();
+  const std::string tempDirName =
+      "tempdir_" + std::to_string(timestamp) + "_" + std::to_string(getpid());
+  std::filesystem::path tempDirPath = tempRootPath / tempDirName;
+
+  try {
+    ChiselProject chiselProject(baseDirPath, tempDirPath, outputPath,
+                                chiselPath);
+    return chiselProject.createVerilog();
+  } catch (const std::exception &error) {
+    std::cerr << "Chisel generation failed: " << error.what() << std::endl;
+    return false;
+  }
 }
 } // namespace CircuitGenGenerator

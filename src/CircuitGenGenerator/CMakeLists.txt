@@ -68,6 +68,7 @@ target_link_libraries(
   dataBase
   generators
   settings
+  chiselProject
 
   PUBLIC
   easylogging++
