@@ -13,8 +13,12 @@
 #   NAS_URL              — DSM base URL (default in CI: https://vvzunin.me:5001)
 #   NAS_DEPLOY_STRICT    — "true" fails the job on deploy errors; default true in CI, false locally
 #   NAS_INSECURE_SSL     — "true" to pass curl -k (self-signed TLS only)
+#   NAS_OTP_CODE         — 2FA one-time password if DSM requires it (SYNO.API.Auth error 403)
 #   DOCS_PDF_BASE_NAME   — Doxygen PDF basename without .pdf (default: CMake project() name)
 #   REPO_DOCS_NAME       — HTML subfolder and PDF prefix (default: project name without CircuitGen)
+#
+# SYNO.API.Auth login errors: 400 bad credentials, 401 account disabled, 402 no File Station
+# permission for NAS_USER, 403/404 two-step verification (use NAS_OTP_CODE or app password).
 
 set -euo pipefail
 
@@ -22,6 +26,7 @@ NAS_URL="${NAS_URL:-}"
 NAS_USER="${NAS_USER:-}"
 NAS_PASS="${NAS_PASS:-}"
 NAS_DOCS="${NAS_DOCS:-}"
+NAS_OTP_CODE="${NAS_OTP_CODE:-}"
 NAS_INSECURE_SSL="${NAS_INSECURE_SSL:-false}"
 # CI must upload docs to NAS; local runs skip when credentials are unset unless forced.
 if [[ -n "${CI:-}" ]]; then
@@ -69,6 +74,13 @@ if [[ -z "${NAS_URL}" || -z "${NAS_USER}" || -z "${NAS_PASS}" || -z "${NAS_DOCS}
   fi
   echo "deploy-synology: credentials not set — skipping upload (non-strict local run)"
   exit 0
+fi
+
+NAS_USER="$(trim_credential "${NAS_USER}")"
+NAS_PASS="$(trim_credential "${NAS_PASS}")"
+NAS_DOCS="$(trim_credential "${NAS_DOCS}")"
+if [[ -n "${NAS_OTP_CODE}" ]]; then
+  NAS_OTP_CODE="$(trim_credential "${NAS_OTP_CODE}")"
 fi
 
 NAS_DOCS="${NAS_DOCS%/}"
@@ -148,6 +160,69 @@ json_success() {
   [[ "$(echo "${response}" | jq -r '.success // false')" == "true" ]]
 }
 
+trim_credential() {
+  local value="$1"
+  value="${value//$'\r'/}"
+  value="${value//$'\n'/}"
+  value="${value#"${value%%[![:space:]]*}"}"
+  value="${value%"${value##*[![:space:]]}"}"
+  printf '%s' "${value}"
+}
+
+syno_api_auth_error_hint() {
+  local code="$1"
+  case "${code}" in
+    400)
+      echo "No such account or incorrect password — check NAS_USER and NAS_PASS in CI/CD Variables."
+      ;;
+    401)
+      echo "Account is disabled in DSM."
+      ;;
+    402)
+      echo "Permission denied — enable File Station for NAS_USER (DSM → Control Panel → User & Group → Applications → File Station: Allow)."
+      ;;
+    403)
+      echo "2-step verification required — set masked NAS_OTP_CODE in CI/CD or use an application-specific password."
+      ;;
+    404)
+      echo "Invalid 2-step verification code — check NAS_OTP_CODE."
+      ;;
+    *)
+      echo "See Synology File Station API guide (SYNO.API.Auth error codes)."
+      ;;
+  esac
+}
+
+resolve_auth_api_version() {
+  local info max_ver
+  info="$(curl -s "${CURL_OPTS[@]}" -G "${NAS_URL}/webapi/query.cgi" \
+    --data-urlencode "api=SYNO.API.Info" \
+    --data-urlencode "version=1" \
+    --data-urlencode "method=query" \
+    --data-urlencode "query=SYNO.API.Auth")"
+  max_ver="$(echo "${info}" | jq -r '.data["SYNO.API.Auth"].maxVersion // empty')"
+  if [[ -n "${max_ver}" && "${max_ver}" =~ ^[0-9]+$ ]]; then
+    AUTH_API_VERSION="${max_ver}"
+  fi
+}
+
+syno_login() {
+  local auth_args=(
+    -G "${NAS_URL}/webapi/auth.cgi"
+    --data-urlencode "api=SYNO.API.Auth"
+    --data-urlencode "version=${AUTH_API_VERSION}"
+    --data-urlencode "method=login"
+    --data-urlencode "account=${NAS_USER}"
+    --data-urlencode "passwd=${NAS_PASS}"
+    --data-urlencode "session=FileStation"
+    --data-urlencode "format=sid"
+  )
+  if [[ -n "${NAS_OTP_CODE}" ]]; then
+    auth_args+=(--data-urlencode "otp_code=${NAS_OTP_CODE}")
+  fi
+  curl -s "${CURL_OPTS[@]}" "${auth_args[@]}"
+}
+
 # Non-blocking Delete/Extract tasks must be polled via each API's status method (not BackgroundTask).
 wait_filestation_task() {
   local api="$1"
@@ -183,18 +258,14 @@ wait_filestation_task() {
   handle_deploy_error "timeout waiting for ${api} task ${task_id}"
 }
 
-echo "deploy-synology: authenticating"
-AUTH_RESPONSE="$(curl -s "${CURL_OPTS[@]}" -G "${NAS_URL}/webapi/auth.cgi" \
-  --data-urlencode "api=SYNO.API.Auth" \
-  --data-urlencode "version=${AUTH_API_VERSION}" \
-  --data-urlencode "method=login" \
-  --data-urlencode "account=${NAS_USER}" \
-  --data-urlencode "passwd=${NAS_PASS}" \
-  --data-urlencode "session=FileStation" \
-  --data-urlencode "format=sid")"
+resolve_auth_api_version
+echo "deploy-synology: authenticating (SYNO.API.Auth v${AUTH_API_VERSION}, user=${NAS_USER})"
+AUTH_RESPONSE="$(syno_login)"
 
 if ! json_success "${AUTH_RESPONSE}"; then
-  handle_deploy_error "login failed: ${AUTH_RESPONSE}"
+  auth_err_code="$(echo "${AUTH_RESPONSE}" | jq -r '.error.code // empty')"
+  auth_hint="$(syno_api_auth_error_hint "${auth_err_code}")"
+  handle_deploy_error "login failed (code ${auth_err_code}): ${auth_hint} Response: ${AUTH_RESPONSE}"
 fi
 
 SID="$(echo "${AUTH_RESPONSE}" | jq -r '.data.sid')"
