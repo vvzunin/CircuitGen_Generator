@@ -10,14 +10,15 @@ COPY scripts/setup ./scripts/setup
 
 RUN --mount=type=secret,id=pip_conf,target=/tmp/pip.conf,required=false \
     PIP_CONFIG_FILE=/tmp/pip.conf \
-    bash scripts/setup/install-deps-for-current-os.sh
+    bash scripts/setup/install-deps-for-current-os.sh && \
+    bash scripts/setup/write-circuitgen-java-home.sh
 
 RUN --mount=type=secret,id=pip_conf,target=/tmp/pip.conf,required=false \
     PIP_CONFIG_FILE=/tmp/pip.conf \
     bash scripts/setup/ci-python-venv.sh jinja2 Pygments synology-drive-api && \
   rm -rf /tmp/circuitgen-setup
 
-ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-21.0.6.0.10-1.x86_64
+# JAVA_HOME is set in /etc/profile.d/circuitgen-java.sh at image build time.
 ENV CIRCUITGEN_PYTHON_VENV=/opt/circuitgen-venv
 ENV PATH="/opt/circuitgen-venv/bin:${PATH}"
 

@@ -60,7 +60,16 @@ std::filesystem::path getUniqueTempDir() {
                              std::to_string(rand()));
 }
 
+bool chiselToolchainAvailable() {
+  return std::system("java -version >/dev/null 2>&1") == 0 &&
+         std::system("sbt --version >/dev/null 2>&1") == 0;
+}
+
 TEST(ChiselProject, checkPackagesTest) {
+  if (!chiselToolchainAvailable()) {
+    GTEST_SKIP() << "java/sbt toolchain not available";
+  }
+
   std::filesystem::path tempDirectory = getUniqueTempDir();
 
   std::filesystem::path inputPath =
@@ -152,6 +161,10 @@ TEST(ChiselProject, WithMainModuleTest) {
 }
 
 TEST(ChiselProject, createVerilogTest) {
+  if (!chiselToolchainAvailable()) {
+    GTEST_SKIP() << "java/sbt toolchain not available";
+  }
+
   std::filesystem::path tempDirectory = getUniqueTempDir();
   std::filesystem::path inputPath =
       currentDirectory / "testData_ChiselModule" / "no_main.scala";
