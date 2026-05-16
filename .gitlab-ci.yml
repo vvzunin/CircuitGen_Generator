@@ -644,6 +644,8 @@ docs:
     # Synology deploy: NAS_USER, NAS_PASS, NAS_DOCS in CI/CD Variables (masked).
     NAS_URL: "https://vvzunin.me:5001"
     NAS_DEPLOY_STRICT: "true"
+    REPO_DOCS_NAME: "Generator"
+    DOCS_PDF_BASE_NAME: "CircuitGenGenerator"
   needs:
     - job: docker-images-ubuntu-24.04
       artifacts: false
@@ -681,6 +683,8 @@ docs:
         - docs/**/*
         - scripts/docs/**/*
         - scripts/docs/deploy-synology.sh
+        - scripts/docs/nas-docs-names.sh
+        - scripts/ci/test_deploy_mock.sh
         # Doxygen inputs include public headers and sources.
         - include/**/*
         - src/**/*

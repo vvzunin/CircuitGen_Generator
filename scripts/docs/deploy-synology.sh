@@ -9,12 +9,12 @@
 #   NAS_PASS   — password (masked)
 #   NAS_DOCS   — destination folder on NAS (e.g. /volume1/web/docs/circuitgen)
 #
-# Optional (see .gitlab-ci.yml defaults):
+# Optional (see .gitlab-ci.yml and scripts/docs/nas-docs-names.sh):
 #   NAS_URL              — DSM base URL (default in CI: https://vvzunin.me:5001)
 #   NAS_DEPLOY_STRICT    — "true" fails the job on deploy errors; default true in CI, false locally
 #   NAS_INSECURE_SSL     — "true" to pass curl -k (self-signed TLS only)
-#   DOCS_PDF_BASE_NAME   — Doxygen PDF basename without .pdf (default: CircuitGenGenerator)
-#   REPO_DOCS_NAME       — HTML subfolder and PDF prefix (default: Generator)
+#   DOCS_PDF_BASE_NAME   — Doxygen PDF basename without .pdf (default: CMake project() name)
+#   REPO_DOCS_NAME       — HTML subfolder and PDF prefix (default: project name without CircuitGen)
 
 set -euo pipefail
 
@@ -29,9 +29,6 @@ if [[ -n "${CI:-}" ]]; then
 else
   NAS_DEPLOY_STRICT="${NAS_DEPLOY_STRICT:-false}"
 fi
-DOCS_PDF_BASE_NAME="${DOCS_PDF_BASE_NAME:-CircuitGenGenerator}"
-REPO_DOCS_NAME="${REPO_DOCS_NAME:-Generator}"
-ARCHIVE_NAME="${ARCHIVE_NAME:-${REPO_DOCS_NAME}_docs_deploy.zip}"
 
 # Per Synology File Station API guide (SYNO.API.Auth).
 AUTH_API_VERSION="${AUTH_API_VERSION:-3}"
@@ -79,6 +76,12 @@ NAS_URL="${NAS_URL%/}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+# shellcheck source=nas-docs-names.sh
+source "${SCRIPT_DIR}/nas-docs-names.sh"
+resolve_nas_docs_names "${PROJECT_ROOT}"
+
+ARCHIVE_NAME="${ARCHIVE_NAME:-${REPO_DOCS_NAME}_docs_deploy.zip}"
+
 DOCS_BASE="${PROJECT_ROOT}/build/docs"
 STAGING_DIR="${PROJECT_ROOT}/build/docs-nas-staging"
 ARCHIVE_PATH="${PROJECT_ROOT}/${ARCHIVE_NAME}"
@@ -98,6 +101,7 @@ echo "deploy-synology: preparing deployment bundle"
 echo "  NAS URL: ${NAS_URL}"
 echo "  NAS path: ${NAS_DOCS}"
 echo "  strict mode: ${NAS_DEPLOY_STRICT}"
+echo "  docs bundle: ${REPO_DOCS_NAME} (PDF base: ${DOCS_PDF_BASE_NAME})"
 
 rm -rf "${STAGING_DIR}"
 mkdir -p "${STAGING_DIR}/${REPO_DOCS_NAME}"
