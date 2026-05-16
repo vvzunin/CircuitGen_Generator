@@ -62,6 +62,15 @@ require_tool() {
   fi
 }
 
+trim_credential() {
+  local value="$1"
+  value="${value//$'\r'/}"
+  value="${value//$'\n'/}"
+  value="${value#"${value%%[![:space:]]*}"}"
+  value="${value%"${value##*[![:space:]]}"}"
+  printf '%s' "${value}"
+}
+
 require_tool curl
 require_tool jq
 require_tool zip
@@ -158,15 +167,6 @@ syno_get() {
 json_success() {
   local response="$1"
   [[ "$(echo "${response}" | jq -r '.success // false')" == "true" ]]
-}
-
-trim_credential() {
-  local value="$1"
-  value="${value//$'\r'/}"
-  value="${value//$'\n'/}"
-  value="${value#"${value%%[![:space:]]*}"}"
-  value="${value%"${value##*[![:space:]]}"}"
-  printf '%s' "${value}"
 }
 
 syno_api_auth_error_hint() {
