@@ -5,21 +5,29 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "${ROOT_DIR}"
 
-REPO_DOCS_NAME="${REPO_DOCS_NAME:-Generator}"
+# shellcheck source=../docs/nas-docs-names.sh
+source "${ROOT_DIR}/scripts/docs/nas-docs-names.sh"
+resolve_nas_docs_names "${ROOT_DIR}"
+
 ARCHIVE_NAME="${ARCHIVE_NAME:-${REPO_DOCS_NAME}_docs_deploy.zip}"
 STAGING_DIR="${ROOT_DIR}/build/docs-nas-staging-mock"
 ARCHIVE_PATH="${ROOT_DIR}/${ARCHIVE_NAME}"
 DEPLOY_SCRIPT="scripts/docs/deploy-synology.sh"
+NAMES_SCRIPT="scripts/docs/nas-docs-names.sh"
 
 echo "=== test_deploy_mock: dependencies ==="
 for tool in zip bash python3; do
   command -v "${tool}" >/dev/null
 done
+test -f "${NAMES_SCRIPT}"
 grep -q 'require_tool jq' "${DEPLOY_SCRIPT}"
 grep -q 'require_tool curl' "${DEPLOY_SCRIPT}"
+grep -q 'resolve_nas_docs_names' "${DEPLOY_SCRIPT}"
+grep -q 'nas-docs-names.sh' "${DEPLOY_SCRIPT}"
 
 echo "=== test_deploy_mock: deploy script checks ==="
 bash -n "${DEPLOY_SCRIPT}"
+bash -n "${NAMES_SCRIPT}"
 grep -q 'NAS_USER' "${DEPLOY_SCRIPT}"
 grep -q 'NAS_PASS' "${DEPLOY_SCRIPT}"
 grep -q 'NAS_DOCS' "${DEPLOY_SCRIPT}"
@@ -36,6 +44,9 @@ grep -q '${REPO_DOCS_NAME}/ru' "${DEPLOY_SCRIPT}"
 grep -q '${REPO_DOCS_NAME}/en' "${DEPLOY_SCRIPT}"
 ! grep -q 'SYNOLOGY_' "${DEPLOY_SCRIPT}"
 ! grep -q '.env.example' "${DEPLOY_SCRIPT}"
+
+echo "=== test_deploy_mock: resolved names (${REPO_DOCS_NAME}, ${DOCS_PDF_BASE_NAME}) ==="
+[[ -n "${REPO_DOCS_NAME}" && -n "${DOCS_PDF_BASE_NAME}" ]]
 
 echo "=== test_deploy_mock: staging layout ==="
 rm -rf "${STAGING_DIR}" "${ARCHIVE_PATH}"
@@ -60,6 +71,8 @@ python3 -c "import yaml; yaml.safe_load(open('.gitlab-ci.yml'))"
 grep -q 'deploy-synology.sh' .gitlab-ci.yml
 grep -q 'NAS_URL' .gitlab-ci.yml
 grep -q 'NAS_DEPLOY_STRICT: "true"' .gitlab-ci.yml
+grep -q 'REPO_DOCS_NAME:' .gitlab-ci.yml
+grep -q 'DOCS_PDF_BASE_NAME:' .gitlab-ci.yml
 grep -q 'NAS_DEPLOY_STRICT:-true' "${DEPLOY_SCRIPT}"
 ! grep -q 'SYNOLOGY_' .gitlab-ci.yml
 
