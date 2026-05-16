@@ -5,10 +5,14 @@ add_subdirectory(CircuitGenGenerator)
 add_subdirectory(database)
 add_subdirectory(generators)
 add_subdirectory(settings)
+add_subdirectory(chiselModule)
 
 # ---- Declare executable ----
 add_executable(CircuitGenGenerator_exe main.cpp)
 add_executable(CircuitGenGenerator::exe ALIAS CircuitGenGenerator_exe)
+target_compile_definitions(CircuitGenGenerator_exe PRIVATE
+  PROJECT_SOURCE_DIR="${PROJECT_SOURCE_DIR}"
+)
 
 if (CLANG_TIDY AND CircuitGenGenerator_ENABLE_CLANG_TIDY)
   set_target_properties(CircuitGenGenerator_exe PROPERTIES

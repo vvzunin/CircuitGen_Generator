@@ -48,12 +48,14 @@ PACKAGES=(
   ghostscript
   libgs10
   git
+  gpg
   graphviz
   lcov
   libclang-dev
   llvm-dev
   make
   ninja-build
+  openjdk-21-jdk
   openssl
   python3
   python3-dev
@@ -101,5 +103,7 @@ fi
 bash "${SCRIPT_DIR}/install-clang-format-ci.sh"
 
 bash "${SCRIPT_DIR}/install-doxygen-llvm.sh"
+
+bash "${SCRIPT_DIR}/install-sbt.sh"
 
 echo "Dependency installation finished for Ubuntu 24.04."

@@ -39,12 +39,14 @@ PACKAGES=(
   dejavu-sans-mono-fonts
   dejavu-serif-fonts
   flex
+  java-21-openjdk-devel
   gcc
   gcc-c++
   glibc-devel
   ghostscript
   libgs
   git
+  gpg
   graphviz
   lcov
   libasan
@@ -101,5 +103,7 @@ fi
 bash "${SCRIPT_DIR}/install-clang-format-ci.sh"
 
 bash "${SCRIPT_DIR}/install-doxygen-llvm.sh"
+
+bash "${SCRIPT_DIR}/install-sbt.sh"
 
 echo "Dependency installation finished for Fedora 42."
