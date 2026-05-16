@@ -3,6 +3,7 @@
 */*/.vscode
 .clangd
 .DS_Store
+.env
 .idea/*
 .vs/
 .vscode/

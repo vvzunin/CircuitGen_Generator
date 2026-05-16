@@ -641,6 +641,9 @@ docs:
   extends: .ci-cmake-job
   variables:
     DOCKER_CI_IMAGE: $DOCKER_URL/ubuntu-24.04/ci:$DOCKER_CI_TAG
+    # Synology deploy: NAS_USER, NAS_PASS, NAS_DOCS in CI/CD Variables (masked).
+    NAS_URL: "https://vvzunin.me:5001"
+    NAS_DEPLOY_STRICT: "true"
   needs:
     - job: docker-images-ubuntu-24.04
       artifacts: false
@@ -653,8 +656,10 @@ docs:
   dependencies: []
   before_script:
     - python3 --version
+    - apt-get update -q && apt-get install -y -q zip jq
   script:
     - bash scripts/ci/docs.sh
+    - bash scripts/docs/deploy-synology.sh
   after_script:
     - |
       if [ -n "${CI_COMMIT_TAG:-}" ]; then
@@ -675,6 +680,7 @@ docs:
         # Documentation sources and Doxygen configuration.
         - docs/**/*
         - scripts/docs/**/*
+        - scripts/docs/deploy-synology.sh
         # Doxygen inputs include public headers and sources.
         - include/**/*
         - src/**/*
