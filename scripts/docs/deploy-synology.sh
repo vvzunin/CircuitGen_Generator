@@ -14,6 +14,7 @@
 #   NAS_DEPLOY_STRICT    — "true" fails the job on deploy errors; default true in CI, false locally
 #   NAS_INSECURE_SSL     — "true" to pass curl -k (self-signed TLS only)
 #   NAS_OTP_CODE         — 2FA one-time password if DSM requires it (SYNO.API.Auth error 403)
+#   NAS_AUTH_API_VERSION — override SYNO.API.Auth version (default 3 for File Station; not DSM max)
 #   DOCS_PDF_BASE_NAME   — Doxygen PDF basename without .pdf (default: CMake project() name)
 #   REPO_DOCS_NAME       — HTML subfolder and PDF prefix (default: project name without CircuitGen)
 #
@@ -141,27 +142,29 @@ rm -f "${ARCHIVE_PATH}"
 ARCHIVE_SIZE="$(du -h "${ARCHIVE_PATH}" | cut -f1)"
 echo "deploy-synology: archive ${ARCHIVE_NAME} (${ARCHIVE_SIZE})"
 
+COOKIE_JAR="$(mktemp)"
+chmod 600 "${COOKIE_JAR}"
 SID=""
 cleanup() {
   if [[ -n "${SID}" ]]; then
-    curl -s "${CURL_OPTS[@]}" -G "${NAS_URL}/webapi/auth.cgi" \
+    curl -s "${CURL_OPTS[@]}" -b "${COOKIE_JAR}" -G "${NAS_URL}/webapi/auth.cgi" \
       --data-urlencode "api=SYNO.API.Auth" \
       --data-urlencode "version=1" \
       --data-urlencode "method=logout" \
       --data-urlencode "session=FileStation" \
       --data-urlencode "_sid=${SID}" >/dev/null || true
   fi
-  rm -f "${ARCHIVE_PATH}"
+  rm -f "${COOKIE_JAR}" "${ARCHIVE_PATH}"
   rm -rf "${STAGING_DIR}"
 }
 trap cleanup EXIT
 
 syno_post() {
-  curl -s "${CURL_OPTS[@]}" -X POST "${NAS_URL}/webapi/entry.cgi" "$@"
+  curl -s "${CURL_OPTS[@]}" -b "${COOKIE_JAR}" -X POST "${NAS_URL}/webapi/entry.cgi" "$@"
 }
 
 syno_get() {
-  curl -s "${CURL_OPTS[@]}" -G "${NAS_URL}/webapi/entry.cgi" "$@"
+  curl -s "${CURL_OPTS[@]}" -b "${COOKIE_JAR}" -G "${NAS_URL}/webapi/entry.cgi" "$@"
 }
 
 json_success() {
@@ -194,20 +197,31 @@ syno_api_auth_error_hint() {
 }
 
 resolve_auth_api_version() {
-  local info max_ver
-  info="$(curl -s "${CURL_OPTS[@]}" -G "${NAS_URL}/webapi/query.cgi" \
-    --data-urlencode "api=SYNO.API.Info" \
-    --data-urlencode "version=1" \
-    --data-urlencode "method=query" \
-    --data-urlencode "query=SYNO.API.Auth")"
-  max_ver="$(echo "${info}" | jq -r '.data["SYNO.API.Auth"].maxVersion // empty')"
-  if [[ -n "${max_ver}" && "${max_ver}" =~ ^[0-9]+$ ]]; then
-    AUTH_API_VERSION="${max_ver}"
+  if [[ -n "${NAS_AUTH_API_VERSION:-}" ]]; then
+    AUTH_API_VERSION="${NAS_AUTH_API_VERSION}"
+    return
+  fi
+  # File Station APIs expect SYNO.API.Auth v3 (see File Station API guide). DSM may
+  # advertise v7, but that SID is rejected by File Station Upload (error 119).
+  AUTH_API_VERSION=3
+  if [[ -n "${NAS_OTP_CODE}" ]]; then
+    local info max_ver
+    info="$(curl -s "${CURL_OPTS[@]}" -G "${NAS_URL}/webapi/query.cgi" \
+      --data-urlencode "api=SYNO.API.Info" \
+      --data-urlencode "version=1" \
+      --data-urlencode "method=query" \
+      --data-urlencode "query=SYNO.API.Auth")"
+    max_ver="$(echo "${info}" | jq -r '.data["SYNO.API.Auth"].maxVersion // empty')"
+    if [[ -n "${max_ver}" && "${max_ver}" =~ ^[0-9]+$ && "${max_ver}" -ge 6 ]]; then
+      AUTH_API_VERSION="${max_ver}"
+    fi
   fi
 }
 
 syno_login() {
   local auth_args=(
+    -c "${COOKIE_JAR}"
+    -b "${COOKIE_JAR}"
     -G "${NAS_URL}/webapi/auth.cgi"
     --data-urlencode "api=SYNO.API.Auth"
     --data-urlencode "version=${AUTH_API_VERSION}"
@@ -300,13 +314,13 @@ else
 fi
 
 echo "deploy-synology: uploading ${ARCHIVE_NAME}"
-# RFC 1867: file part must be last (Synology File Station Upload API).
-UPLOAD_RESPONSE="$(curl -s "${CURL_OPTS[@]}" -X POST \
-  "${NAS_URL}/webapi/entry.cgi" \
+# RFC 1867: file part must be last. _sid goes in the query string (not a form field).
+UPLOAD_SID_QUERY="$(jq -rn --arg sid "${SID}" '"_sid=" + ($sid|@uri)')"
+UPLOAD_RESPONSE="$(curl -s "${CURL_OPTS[@]}" -b "${COOKIE_JAR}" -X POST \
+  "${NAS_URL}/webapi/entry.cgi?${UPLOAD_SID_QUERY}" \
   -F "api=SYNO.FileStation.Upload" \
   -F "version=${FILESTATION_API_VERSION}" \
   -F "method=upload" \
-  -F "_sid=${SID}" \
   -F "path=${NAS_DOCS}" \
   -F "create_parents=true" \
   -F "overwrite=true" \
