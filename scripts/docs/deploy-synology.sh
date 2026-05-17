@@ -14,7 +14,7 @@
 #   NAS_DEPLOY_STRICT    — "true" fails the job on deploy errors; default true in CI, false locally
 #   NAS_INSECURE_SSL     — "true" to pass curl -k (self-signed TLS only)
 #   NAS_OTP_CODE         — 2FA one-time password if DSM requires it (SYNO.API.Auth error 403)
-#   NAS_AUTH_API_VERSION — override SYNO.API.Auth version (default 3 for File Station; not DSM max)
+#   NAS_AUTH_API_VERSION — override SYNO.API.Auth version (default: NAS maxVersion, fallback 3 on error 119)
 #   DOCS_PDF_BASE_NAME   — Doxygen PDF basename without .pdf (default: CMake project() name)
 #   REPO_DOCS_NAME       — HTML subfolder and PDF prefix (default: project name without CircuitGen)
 #
@@ -172,6 +172,11 @@ json_success() {
   [[ "$(echo "${response}" | jq -r '.success // false')" == "true" ]]
 }
 
+json_error_code() {
+  local response="$1"
+  echo "${response}" | jq -r '.error.code // empty'
+}
+
 syno_api_auth_error_hint() {
   local code="$1"
   case "${code}" in
@@ -201,21 +206,48 @@ resolve_auth_api_version() {
     AUTH_API_VERSION="${NAS_AUTH_API_VERSION}"
     return
   fi
-  # File Station APIs expect SYNO.API.Auth v3 (see File Station API guide). DSM may
-  # advertise v7, but that SID is rejected by File Station Upload (error 119).
+  # File Station guide documents Auth v3; DSM 7+ often reports maxVersion 7 in SYNO.API.Info.
   AUTH_API_VERSION=3
-  if [[ -n "${NAS_OTP_CODE}" ]]; then
-    local info max_ver
-    info="$(curl -s "${CURL_OPTS[@]}" -G "${NAS_URL}/webapi/query.cgi" \
-      --data-urlencode "api=SYNO.API.Info" \
-      --data-urlencode "version=1" \
-      --data-urlencode "method=query" \
-      --data-urlencode "query=SYNO.API.Auth")"
-    max_ver="$(echo "${info}" | jq -r '.data["SYNO.API.Auth"].maxVersion // empty')"
-    if [[ -n "${max_ver}" && "${max_ver}" =~ ^[0-9]+$ && "${max_ver}" -ge 6 ]]; then
-      AUTH_API_VERSION="${max_ver}"
-    fi
+  local info max_ver
+  info="$(curl -s "${CURL_OPTS[@]}" -G "${NAS_URL}/webapi/query.cgi" \
+    --data-urlencode "api=SYNO.API.Info" \
+    --data-urlencode "version=1" \
+    --data-urlencode "method=query" \
+    --data-urlencode "query=SYNO.API.Auth")"
+  max_ver="$(echo "${info}" | jq -r '.data["SYNO.API.Auth"].maxVersion // empty')"
+  if [[ -n "${max_ver}" && "${max_ver}" =~ ^[0-9]+$ ]]; then
+    AUTH_API_VERSION="${max_ver}"
   fi
+}
+
+syno_establish_session() {
+  echo "deploy-synology: authenticating (SYNO.API.Auth v${AUTH_API_VERSION}, user=${NAS_USER})"
+  AUTH_RESPONSE="$(syno_login)"
+
+  if ! json_success "${AUTH_RESPONSE}"; then
+    auth_err_code="$(json_error_code "${AUTH_RESPONSE}")"
+    auth_hint="$(syno_api_auth_error_hint "${auth_err_code}")"
+    handle_deploy_error "login failed (code ${auth_err_code}): ${auth_hint} Response: ${AUTH_RESPONSE}"
+  fi
+
+  SID="$(echo "${AUTH_RESPONSE}" | jq -r '.data.sid')"
+  if [[ -z "${SID}" || "${SID}" == "null" ]]; then
+    handle_deploy_error "login returned empty SID: ${AUTH_RESPONSE}"
+  fi
+}
+
+syno_upload_archive() {
+  local upload_sid_query
+  upload_sid_query="$(jq -rn --arg sid "${SID}" '"_sid=" + ($sid|@uri)')"
+  curl -s "${CURL_OPTS[@]}" -b "${COOKIE_JAR}" -X POST \
+    "${NAS_URL}/webapi/entry.cgi?${upload_sid_query}" \
+    -F "api=SYNO.FileStation.Upload" \
+    -F "version=${FILESTATION_API_VERSION}" \
+    -F "method=upload" \
+    -F "path=${NAS_DOCS}" \
+    -F "create_parents=true" \
+    -F "overwrite=true" \
+    -F "file=@${ARCHIVE_PATH};filename=${ARCHIVE_NAME}"
 }
 
 syno_login() {
@@ -273,19 +305,7 @@ wait_filestation_task() {
 }
 
 resolve_auth_api_version
-echo "deploy-synology: authenticating (SYNO.API.Auth v${AUTH_API_VERSION}, user=${NAS_USER})"
-AUTH_RESPONSE="$(syno_login)"
-
-if ! json_success "${AUTH_RESPONSE}"; then
-  auth_err_code="$(echo "${AUTH_RESPONSE}" | jq -r '.error.code // empty')"
-  auth_hint="$(syno_api_auth_error_hint "${auth_err_code}")"
-  handle_deploy_error "login failed (code ${auth_err_code}): ${auth_hint} Response: ${AUTH_RESPONSE}"
-fi
-
-SID="$(echo "${AUTH_RESPONSE}" | jq -r '.data.sid')"
-if [[ -z "${SID}" || "${SID}" == "null" ]]; then
-  handle_deploy_error "login returned empty SID: ${AUTH_RESPONSE}"
-fi
+syno_establish_session
 
 DELETE_PATHS_JSON="$(jq -n \
   --arg pdf_ru "${NAS_DOCS}/${REPO_DOCS_NAME}.pdf" \
@@ -315,16 +335,15 @@ fi
 
 echo "deploy-synology: uploading ${ARCHIVE_NAME}"
 # RFC 1867: file part must be last. _sid goes in the query string (not a form field).
-UPLOAD_SID_QUERY="$(jq -rn --arg sid "${SID}" '"_sid=" + ($sid|@uri)')"
-UPLOAD_RESPONSE="$(curl -s "${CURL_OPTS[@]}" -b "${COOKIE_JAR}" -X POST \
-  "${NAS_URL}/webapi/entry.cgi?${UPLOAD_SID_QUERY}" \
-  -F "api=SYNO.FileStation.Upload" \
-  -F "version=${FILESTATION_API_VERSION}" \
-  -F "method=upload" \
-  -F "path=${NAS_DOCS}" \
-  -F "create_parents=true" \
-  -F "overwrite=true" \
-  -F "file=@${ARCHIVE_PATH};filename=${ARCHIVE_NAME}")"
+UPLOAD_RESPONSE="$(syno_upload_archive)"
+if [[ -n "${UPLOAD_RESPONSE}" ]] && ! json_success "${UPLOAD_RESPONSE}"; then
+  if [[ "$(json_error_code "${UPLOAD_RESPONSE}")" == "119" && "${AUTH_API_VERSION}" != "3" ]]; then
+    echo "deploy-synology: upload got SID not found (119) with Auth v${AUTH_API_VERSION}, retrying with v3"
+    AUTH_API_VERSION=3
+    syno_establish_session
+    UPLOAD_RESPONSE="$(syno_upload_archive)"
+  fi
+fi
 
 if [[ -n "${UPLOAD_RESPONSE}" ]] && ! json_success "${UPLOAD_RESPONSE}"; then
   handle_deploy_error "upload failed: ${UPLOAD_RESPONSE}"
