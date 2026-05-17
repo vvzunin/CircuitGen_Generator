@@ -651,10 +651,13 @@ docs:
       artifacts: false
     - job: coverage
       artifacts: false
+      optional: true
     - job: tests
       artifacts: false
+      optional: true
     - job: examples
       artifacts: false
+      optional: true
   dependencies: []
   before_script:
     - python3 --version
@@ -685,21 +688,20 @@ docs:
         - scripts/docs/deploy-synology.sh
         - scripts/docs/nas-docs-names.sh
         - scripts/ci/test_deploy_mock.sh
-        # Doxygen inputs include public headers and sources.
+        - .gitlab-ci.yml
         - include/**/*
         - src/**/*
-        # CMake presets / config affect compile_commands.json generation for clang-assisted parsing.
         - CMakePresets.json
         - CMakeLists.txt
         - src/CMakeLists.txt
         - examples/CMakeLists.txt
         - test/CMakeLists.txt
-        # CI/docs tooling and dependency installers can change the doc build environment.
         - cmake/**/*
         - scripts/ci/docs.sh
         - cmake/docs-ci.cmake
         - scripts/setup/install-deps-*.sh
         - README.md
+        - README.en.md
 
 release-from-tag:
   stage: release
