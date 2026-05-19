@@ -13,5 +13,6 @@
 | [CmakeFlags.md](CmakeFlags.md) | Флаги CMake |
 | [Versioning.md](Versioning.md) | Семантическое версионирование (SemVer) релизов |
 | [Format.md](Format.md) | Памятка по форматированию и стилю |
+| [FUNCTIONALITY.md](FUNCTIONALITY.md) | Назначение репозитория и основные возможности Generator |
 
 **English:** [Documentation in English](../en/README.md)

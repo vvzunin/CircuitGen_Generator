@@ -13,3 +13,4 @@ CI and `scripts/ci` (kept in sync across Parameters / Graph / Generator):
 CMake presets, CI-parity build commands, and **how to add new sources / `CMakeLists.txt` targets** (same structure in **en**/**ru** across all three repos):
 
 - [BUILDING (EN)](en/BUILDING.md) · [BUILDING (RU)](ru/BUILDING.md)
+- [FUNCTIONALITY (EN)](en/FUNCTIONALITY.md) · [FUNCTIONALITY (RU)](ru/FUNCTIONALITY.md) — repository role and capabilities
