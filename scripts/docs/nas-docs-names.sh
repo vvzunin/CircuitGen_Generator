@@ -4,6 +4,17 @@
 # Priority: environment variables, then CMake project() from CMakeLists.txt.
 # REPO_DOCS_NAME defaults to the project name without a leading "CircuitGen" prefix
 # (CircuitGenGenerator → Generator, CircuitGenGraph → Graph, etc.).
+#
+# normalize_nas_docs_path: File Station API paths are share-relative (/share/...).
+# DSM absolute paths (/volume1/share/...) are accepted in CI and normalized here.
+
+normalize_nas_docs_path() {
+  local path="${1%/}"
+  if [[ "${path}" =~ ^/volume[0-9]+/(.+)$ ]]; then
+    path="/${BASH_REMATCH[1]}"
+  fi
+  printf '%s' "${path}"
+}
 
 resolve_nas_docs_names() {
   local project_root="${1:?project root required}"

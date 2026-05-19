@@ -7,7 +7,7 @@
 # Required CI/CD variables (GitLab → Settings → CI/CD → Variables):
 #   NAS_USER   — File Station account
 #   NAS_PASS   — password (masked)
-#   NAS_DOCS   — destination folder on NAS (e.g. /volume1/web/docs/circuitgen)
+#   NAS_DOCS   — destination folder (share path /web/docs/... or DSM /volume1/web/docs/...)
 #
 # Optional (see .gitlab-ci.yml and scripts/docs/nas-docs-names.sh):
 #   NAS_URL              — DSM base URL (default in CI: https://vvzunin.me:5001)
@@ -100,6 +100,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 # shellcheck source=nas-docs-names.sh
 source "${SCRIPT_DIR}/nas-docs-names.sh"
+_orig_nas_docs="${NAS_DOCS}"
+NAS_DOCS="$(normalize_nas_docs_path "${NAS_DOCS}")"
+if [[ "${NAS_DOCS}" != "${_orig_nas_docs}" ]]; then
+  echo "deploy-synology: normalized NAS_DOCS for File Station API: ${_orig_nas_docs} -> ${NAS_DOCS}"
+fi
 resolve_nas_docs_names "${PROJECT_ROOT}"
 
 ARCHIVE_NAME="${ARCHIVE_NAME:-${REPO_DOCS_NAME}_docs_deploy.zip}"

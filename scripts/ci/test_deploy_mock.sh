@@ -9,11 +9,18 @@ cd "${ROOT_DIR}"
 source "${ROOT_DIR}/scripts/docs/nas-docs-names.sh"
 resolve_nas_docs_names "${ROOT_DIR}"
 
+DEPLOY_SCRIPT="scripts/docs/deploy-synology.sh"
+NAMES_SCRIPT="scripts/docs/nas-docs-names.sh"
+
+echo "=== test_deploy_mock: NAS path normalization ==="
+[[ "$(normalize_nas_docs_path '/volume1/web/docs/CircuitGen/test')" == '/web/docs/CircuitGen/test' ]]
+[[ "$(normalize_nas_docs_path '/web/docs/CircuitGen/test')" == '/web/docs/CircuitGen/test' ]]
+[[ "$(normalize_nas_docs_path '/volume2/share/folder/')" == '/share/folder' ]]
+grep -q 'normalize_nas_docs_path' "${DEPLOY_SCRIPT}"
+
 ARCHIVE_NAME="${ARCHIVE_NAME:-${REPO_DOCS_NAME}_docs_deploy.zip}"
 STAGING_DIR="${ROOT_DIR}/build/docs-nas-staging-mock"
 ARCHIVE_PATH="${ROOT_DIR}/${ARCHIVE_NAME}"
-DEPLOY_SCRIPT="scripts/docs/deploy-synology.sh"
-NAMES_SCRIPT="scripts/docs/nas-docs-names.sh"
 
 echo "=== test_deploy_mock: dependencies ==="
 for tool in zip bash python3; do
