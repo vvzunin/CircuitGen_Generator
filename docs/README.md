@@ -14,3 +14,10 @@ CMake presets, CI-parity build commands, and **how to add new sources / `CMakeLi
 
 - [BUILDING (EN)](en/BUILDING.md) · [BUILDING (RU)](ru/BUILDING.md)
 - [FUNCTIONALITY (EN)](en/FUNCTIONALITY.md) · [FUNCTIONALITY (RU)](ru/FUNCTIONALITY.md) — repository role and capabilities
+
+Generator-specific guides:
+
+- JSON format: [RU](ru/json.md) · [EN](en/json.md)
+- New generator: [RU](ru/NewGenerator.md) · [EN](en/NewGenerator.md)
+- Output prefixes: [RU](ru/GeneratorsPrefixes.md) · [EN](en/GeneratorsPrefixes.md)
+- Changelog: [RU](ru/CHANGELOG.md) · [EN](en/CHANGELOG.md)

@@ -14,5 +14,9 @@
 | [Versioning.md](Versioning.md) | Семантическое версионирование (SemVer) релизов |
 | [Format.md](Format.md) | Памятка по форматированию и стилю |
 | [FUNCTIONALITY.md](FUNCTIONALITY.md) | Назначение репозитория и основные возможности Generator |
+| [json.md](json.md) | Формат JSON-заданий |
+| [NewGenerator.md](NewGenerator.md) | Добавление нового генератора |
+| [GeneratorsPrefixes.md](GeneratorsPrefixes.md) | Префиксы выходных каталогов |
+| [CHANGELOG.md](CHANGELOG.md) | Журнал изменений по релизам (SemVer-теги) |
 
 **English:** [Documentation in English](../en/README.md)

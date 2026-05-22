@@ -14,5 +14,9 @@
 | [Versioning.md](Versioning.md) | Semantic versioning (SemVer) for releases |
 | [Format.md](Format.md) | Formatting and style helper |
 | [FUNCTIONALITY.md](FUNCTIONALITY.md) | Repository purpose and main Generator capabilities |
+| [json.md](json.md) | JSON job format |
+| [NewGenerator.md](NewGenerator.md) | Adding a new generator |
+| [GeneratorsPrefixes.md](GeneratorsPrefixes.md) | Output directory prefixes |
+| [CHANGELOG.md](CHANGELOG.md) | Release history (SemVer tags) |
 
 **Русский:** [Документация на русском](../ru/README.md)

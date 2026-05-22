@@ -2,7 +2,9 @@
 
 **Язык:** Русский | [English](README.en.md)  
 **Документация:** [Русский](docs/ru/README.md) | [English](docs/en/README.md)  
-**Версионирование (SemVer):** [русский](docs/ru/Versioning.md) | [English](docs/en/Versioning.md)  
+**Функционал:** [русский](docs/ru/FUNCTIONALITY.md) | [English](docs/en/FUNCTIONALITY.md)
+**Версионирование (SemVer):** [русский](docs/ru/Versioning.md) | [English](docs/en/Versioning.md)
+**Журнал изменений:** [русский](docs/ru/CHANGELOG.md) | [English](docs/en/CHANGELOG.md)  
 **Вклад:** [русский](docs/ru/CONTRIBUTING.md) | [English](docs/en/CONTRIBUTING.md)  
 **Запросы на слияние (MR):** [русский](docs/ru/MergeRequests.md) | [English](docs/en/MergeRequests.md)
 

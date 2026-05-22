@@ -95,5 +95,5 @@ Add a generator: type in `Settings.hpp`, parameter class, implementation under `
 - [json.md](json.md) — JSON format  
 - [GeneratorsPrefixes.md](GeneratorsPrefixes.md) — output prefixes  
 - [BUILDING.md](BUILDING.md) — build and CI  
-
-**Русский:** [FUNCTIONALITY.md](../ru/FUNCTIONALITY.md)
+- [CHANGELOG.md](CHANGELOG.md) — release history  
+- Russian version: [FUNCTIONALITY.md](../ru/FUNCTIONALITY.md)
