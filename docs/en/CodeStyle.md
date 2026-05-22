@@ -50,7 +50,7 @@ Short example:
 /// @param i_dividend Dividend.
 /// @param i_divisor Divisor.
 /// @return Division result.
-/// @throw std::runtime_error If i_divisor == 0.
+/// @throws{std::runtime_error} If i_divisor == 0.
 double divide(double i_dividend, double i_divisor);
 ```
 
@@ -94,7 +94,7 @@ public:
 /// @code
 /// double result = divide(10.0, 2.0); // 5.0
 /// @endcode
-/// @throw std::runtime_error If divisor is zero.
+/// @throws{std::runtime_error} If divisor is zero.
 double divide(double i_dividend, double i_divisor)
 {
   if (i_divisor == 0.0)

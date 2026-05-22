@@ -202,7 +202,7 @@ public:
 /// @param divisor Divisor.
 /// @return double Quotient.
 ///
-/// @throw runtime_error If the divisor is zero.
+/// @throws{std::runtime_error} If the divisor is zero.
 
 double divide(double dividend, double divisor)
 {
@@ -230,7 +230,7 @@ double divide(double dividend, double divisor)
 /// double b = 2.0;
 /// double result = divide(a, b); // result is 5.0
 /// @endcode
-/// @throw runtime_error If the divisor is zero.
+/// @throws{std::runtime_error} If the divisor is zero.
 
 double divide(double dividend, double divisor)
 {

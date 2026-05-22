@@ -68,7 +68,7 @@ public:
   /// @code
   /// // @todo: Examples
   /// @endcode
-  /// @throw std::invalid_argument. The method starts by checking the input
+  /// @throws{std::invalid_argument} The method starts by checking the input
   /// parameters for correctness: if the minimum level is greater than the
   /// maximum or the minimum number of elements is greater than the maximum,
   /// the method throws an exception std::invalid_argument.

@@ -5,6 +5,11 @@ The [repository root README](../README.md) is the project landing page (overview
 - [Русский — полное оглавление](ru/README.md)
 - [English — full index](en/README.md)
 
+Published API reference (HTML + PDF, RU/EN) after CI `docs` job on `main` / tags:
+
+- Portal: [https://vvzunin.me/docs/CircuitGen/](https://vvzunin.me/docs/CircuitGen/)
+- This module: `modules/generator/` (see [scripts/docs/DEPLOY.md](../scripts/docs/DEPLOY.md))
+
 CI and `scripts/ci` (kept in sync across Parameters / Graph / Generator):
 
 - [CI pipeline (RU)](ru/CI_PIPELINE.md) · [CI pipeline (EN)](en/CI_PIPELINE.md)

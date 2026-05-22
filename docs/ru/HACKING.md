@@ -211,7 +211,7 @@ public:
 /// @param divisor Делитель.
 /// @return double Результат деления.
 ///
-/// @throw runtime_error Если делитель равен нулю.
+/// @throws{std::runtime_error} Если делитель равен нулю.
 
 double divide(double dividend, double divisor)
 {
@@ -240,7 +240,7 @@ double divide(double dividend, double divisor)
 /// double b = 2.0;
 /// double result = divide(a, b); // result будет равен 5.0
 /// @endcode
-/// @throw runtime_error Если делитель равен нулю.
+/// @throws{std::runtime_error} Если делитель равен нулю.
 
 double divide(double dividend, double divisor)
 {

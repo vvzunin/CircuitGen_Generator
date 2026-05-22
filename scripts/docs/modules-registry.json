@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "modules": [
+    {
+      "id": "graph",
+      "name": { "ru": "Graph", "en": "Graph" },
+      "description": {
+        "ru": "Графовое представление цифровых схем",
+        "en": "Graph representation of digital circuits"
+      },
+      "repo": "https://github.com/vvzunin/CircuitGen_Graph"
+    },
+    {
+      "id": "generator",
+      "name": { "ru": "Generator", "en": "Generator" },
+      "description": {
+        "ru": "Генератор цифровых схем",
+        "en": "Digital circuit generator"
+      },
+      "repo": "https://github.com/vvzunin/CircuitGen_Generator"
+    },
+    {
+      "id": "parameters",
+      "name": { "ru": "Parameters", "en": "Parameters" },
+      "description": {
+        "ru": "Расчёт параметров цифровых схем",
+        "en": "Digital circuit parameter estimation"
+      },
+      "repo": "https://github.com/vvzunin/CircuitGen_Parameters"
+    },
+    {
+      "id": "ai",
+      "name": { "ru": "AI", "en": "AI" },
+      "description": {
+        "ru": "Машинное обучение для оценки параметров схем",
+        "en": "Machine learning for circuit parameter estimation"
+      },
+      "repo": "https://github.com/vvzunin/CircuitGen_AI",
+      "planned": true
+    },
+    {
+      "id": "lorina",
+      "name": { "ru": "Lorina", "en": "Lorina" },
+      "description": {
+        "ru": "Парсер Verilog (интеграция Lorina)",
+        "en": "Verilog parser (Lorina integration)"
+      },
+      "planned": true
+    },
+    {
+      "id": "testing",
+      "name": { "ru": "Testing", "en": "Testing" },
+      "description": {
+        "ru": "Инфраструктура тестирования CircuitGen",
+        "en": "CircuitGen testing infrastructure"
+      },
+      "planned": true
+    },
+    {
+      "id": "circuitgen",
+      "name": { "ru": "CircuitGen", "en": "CircuitGen" },
+      "description": {
+        "ru": "Единая система генерации и хранения датасета",
+        "en": "Unified dataset generation and storage system"
+      },
+      "repo": "https://github.com/vvzunin/CircuitGen",
+      "planned": true
+    }
+  ]
+}

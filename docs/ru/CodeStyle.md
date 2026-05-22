@@ -51,7 +51,7 @@
 /// @param i_dividend Делимое.
 /// @param i_divisor Делитель.
 /// @return Результат деления.
-/// @throw std::runtime_error Если i_divisor == 0.
+/// @throws{std::runtime_error} Если i_divisor == 0.
 double divide(double i_dividend, double i_divisor);
 ```
 
@@ -95,7 +95,7 @@ public:
 /// @code
 /// double result = divide(10.0, 2.0); // 5.0
 /// @endcode
-/// @throw std::runtime_error Если делитель равен нулю.
+/// @throws{std::runtime_error} Если делитель равен нулю.
 double divide(double i_dividend, double i_divisor)
 {
   if (i_divisor == 0.0)

@@ -78,7 +78,7 @@ double getRandDouble(double lower, double upper);
 /// std::cout << "File content:" << std::endl;
 /// std::cout << content << std::endl;
 /// @endcode
-/// @throws std::runtime_error if the file cannot be opened
+/// @throws{std::runtime_error} if the file cannot be opened
 
 std::string readAllFile(const std::string &filename);
 

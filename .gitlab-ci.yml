@@ -644,8 +644,10 @@ docs:
     # Synology deploy: NAS_USER, NAS_PASS, NAS_DOCS in CI/CD Variables (masked).
     NAS_URL: "https://vvzunin.me:5001"
     NAS_DEPLOY_STRICT: "true"
+    DOCS_MODULE_SLUG: "generator"
     REPO_DOCS_NAME: "Generator"
     DOCS_PDF_BASE_NAME: "CircuitGenGenerator"
+    DOCS_PUBLIC_BASE_URL: "https://vvzunin.me/docs/CircuitGen"
   needs:
     - job: docker-images-ubuntu-24.04
       artifacts: false
