@@ -46,6 +46,7 @@ bash scripts/release/suggest-next-version.sh --any-patch
 
 ## См. также
 
+- [CHANGELOG.md](CHANGELOG.md) — журнал изменений по релизам ([English](../en/CHANGELOG.md))  
 - [Semantic Versioning 2.0.0](https://semver.org/) — полная спецификация и FAQ  
 - [CONTRIBUTING.md](CONTRIBUTING.md) — соглашения о сообщениях коммитов (дополняют, но не заменяют номера релизов)
 

@@ -25,7 +25,7 @@ Generator — прикладной слой над библиотекой **Grap
 | `Genetic` | Эволюционный поиск схем (хромосомы, мутации, скрещивания, отбор) |
 | `NumOperation` | Числовые операции на битовых векторах |
 | `Summator`, `Subtractor`, `Multiplier` | Арифметические блоки |
-| `Comparison`, `Parity` | Сравнение, чётность |
+| `Comparison`, `Parity` | Сравнение, четность |
 | `Encoder`, `Decoder`, `Multiplexer`, `Demultiplexer` | Кодеры и мультиплексирование |
 | `ALU` | Арифметико-логическое устройство |
 | `MealyMoore` | Конечные автоматы (Mealy/Moore) |
@@ -95,5 +95,5 @@ Generator — прикладной слой над библиотекой **Grap
 - [json.md](json.md) — формат JSON  
 - [GeneratorsPrefixes.md](GeneratorsPrefixes.md) — префиксы каталогов  
 - [BUILDING.md](BUILDING.md) — сборка и CI  
-
-**English:** [FUNCTIONALITY.md](../en/FUNCTIONALITY.md)
+- [CHANGELOG.md](CHANGELOG.md) — журнал изменений  
+- English version: [FUNCTIONALITY.md](../en/FUNCTIONALITY.md)
