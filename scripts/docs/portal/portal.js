@@ -15,6 +15,9 @@
       htmlEn: "HTML (EN)",
       version: "Версия",
       built: "Сборка",
+      repoLink: "Репозиторий",
+      dockerDev: "Docker dev",
+      dockerRelease: "Docker release",
     },
     en: {
       tagline: "Project module documentation",
@@ -29,8 +32,21 @@
       htmlEn: "HTML (EN)",
       version: "Version",
       built: "Built",
+      repoLink: "Repository",
+      dockerDev: "Docker dev",
+      dockerRelease: "Docker release",
     },
   };
+
+  let catalogRegistry = null;
+  let manifestBase = "";
+
+  const langSelect = document.getElementById("ui-lang");
+  langSelect.addEventListener("change", () => {
+    uiLang = langSelect.value;
+    localStorage.setItem("circuitgen-docs-ui-lang", uiLang);
+    init();
+  });
 
   let uiLang = localStorage.getItem("circuitgen-docs-ui-lang") || "ru";
 
@@ -51,6 +67,128 @@
     const base = (baseUrl || "").replace(/\/$/, "");
     const path = String(rel).replace(/^\//, "");
     return base ? base + "/" + path : path;
+  }
+
+  /** Build a manifest module entry from modules/<id>/meta.json (stable layout). */
+  function entryFromModuleMeta(meta) {
+    const slug = meta.id;
+    return {
+      id: meta.id,
+      name: meta.name,
+      description: meta.description || null,
+      version: meta.version,
+      builtAt: meta.builtAt,
+      commit: meta.commit,
+      ref: meta.ref,
+      pipelineId: meta.pipelineId,
+      repo: meta.repo,
+      docker: meta.docker || null,
+      planned: false,
+      basePath: "modules/" + slug,
+      formats: {
+        pdf: {
+          ru: "modules/" + slug + "/" + meta.formats.pdf.ru,
+          en: "modules/" + slug + "/" + meta.formats.pdf.en,
+        },
+        html: {
+          ru: "modules/" + slug + "/" + meta.formats.html.ru,
+          en: "modules/" + slug + "/" + meta.formats.html.en,
+        },
+      },
+    };
+  }
+
+  /**
+   * Merge manifest.json with per-module meta.json on disk.
+   * Survives parallel CI deploys that overwrite manifest with a single module.
+   */
+  function mergeManifestWithDeployed(registry, manifest, deployedById) {
+    const byId = new Map();
+
+    deployedById.forEach((entry, id) => {
+      byId.set(id, entry);
+    });
+
+    (manifest.modules || []).forEach((m) => {
+      if (byId.has(m.id)) {
+        byId.set(m.id, Object.assign({}, byId.get(m.id), m));
+      } else {
+        byId.set(m.id, m);
+      }
+    });
+
+    const order = (registry.modules || []).map((m) => m.id);
+    const extra = [...byId.keys()].filter((id) => !order.includes(id));
+    const ids = [...order, ...extra];
+
+    const modules = ids.map((id) => byId.get(id)).filter(Boolean);
+    return Object.assign({}, manifest, { modules: modules });
+  }
+
+  const DEFAULT_DOCKER_OS_LIST = ["ubuntu-22.04", "ubuntu-24.04", "fedora-43"];
+
+  function normalizeReleaseTag(version, explicitTag) {
+    if (explicitTag) {
+      return String(explicitTag).startsWith("v") ? explicitTag : "v" + explicitTag;
+    }
+    if (!version) return "latest";
+    return String(version).startsWith("v") ? version : "v" + version;
+  }
+
+  /** Per-OS dev/release entries: {registry}/{group}/{repo}/{os}/{flavor}:{tag} */
+  function resolveDockerImageLinks(reg, man, registry) {
+    if (man && man.docker && Array.isArray(man.docker.images) && man.docker.images.length) {
+      return man.docker.images.flatMap(function (img) {
+        return [
+          { os: img.os, flavor: "dev", pull: img.dev && img.dev.pull, harborUrl: img.dev && img.dev.harborUrl },
+          {
+            os: img.os,
+            flavor: "release",
+            pull: img.release && img.release.pull,
+            harborUrl: img.release && img.release.harborUrl,
+          },
+        ];
+      }).filter(function (e) {
+        return e.pull;
+      });
+    }
+
+    const d = Object.assign({}, registry.dockerDefaults || {}, reg.docker || {});
+    if (!d.imageRepo) return [];
+
+    const host = d.registryHost || "vvzunin.me:5201";
+    const group = d.group || "circuitgen";
+    const osList = d.osList || DEFAULT_DOCKER_OS_LIST;
+    const devTag = d.devTag || "main";
+    const releaseTag = normalizeReleaseTag(man && man.version, d.releaseTag);
+    const harborBase = (d.harborWebBase || "").replace(/\/$/, "");
+
+    return osList.flatMap(function (os) {
+      function entry(flavor, tag) {
+        const pull = host + "/" + group + "/" + d.imageRepo + "/" + os + "/" + flavor + ":" + tag;
+        const harborUrl = harborBase
+          ? harborBase + "/" + encodeURIComponent(d.imageRepo + "/" + os + "/" + flavor) + "/artifacts-tab"
+          : null;
+        return { os: os, flavor: flavor, pull: pull, harborUrl: harborUrl };
+      }
+      return [entry("dev", devTag), entry("release", releaseTag)];
+    });
+  }
+
+  function appendDockerLinks(links, reg, man, registry) {
+    resolveDockerImageLinks(reg, man, registry).forEach(function (entry) {
+      const a = document.createElement("a");
+      a.className = "docker";
+      const flavorLabel = entry.flavor === "dev" ? t("dockerDev") : t("dockerRelease");
+      a.textContent = flavorLabel + " (" + entry.os + ")";
+      if (entry.harborUrl) {
+        a.href = entry.harborUrl;
+        a.target = "_blank";
+        a.rel = "noopener";
+      }
+      if (entry.pull) a.title = "docker pull " + entry.pull;
+      links.appendChild(a);
+    });
   }
 
   function mergeCatalog(registry, manifest) {
@@ -93,14 +231,16 @@
       badge.className = "badge planned";
       badge.textContent = t("planned");
       links.appendChild(badge);
-      if (reg.repo) {
+      const repoUrl = reg.repo;
+      if (repoUrl) {
         const repo = document.createElement("a");
-        repo.href = reg.repo;
+        repo.href = repoUrl;
         repo.target = "_blank";
         repo.rel = "noopener";
-        repo.textContent = "GitHub";
+        repo.textContent = t("repoLink");
         links.appendChild(repo);
       }
+      if (catalogRegistry) appendDockerLinks(links, reg, man, catalogRegistry);
       return card;
     }
 
@@ -127,19 +267,20 @@
       links.appendChild(a);
     });
 
-    if (man.repo || reg.repo) {
+    const repoUrl = reg.repo || man.repo;
+    if (repoUrl) {
       const repo = document.createElement("a");
-      repo.href = man.repo || reg.repo;
+      repo.href = repoUrl;
       repo.target = "_blank";
       repo.rel = "noopener";
-      repo.textContent = "GitHub";
+      repo.textContent = t("repoLink");
       links.appendChild(repo);
     }
 
+    if (catalogRegistry) appendDockerLinks(links, reg, man, catalogRegistry);
+
     return card;
   }
-
-  let manifestBase = "";
 
   async function loadJson(url) {
     const res = await fetch(url, { cache: "no-store" });
@@ -147,20 +288,28 @@
     return res.json();
   }
 
+  async function discoverDeployedModules(registry) {
+    const byId = new Map();
+    const checks = (registry.modules || []).map(async (reg) => {
+      const url = "modules/" + reg.id + "/meta.json";
+      try {
+        const meta = await loadJson(url);
+        if (meta && meta.id && meta.formats) {
+          byId.set(meta.id, entryFromModuleMeta(meta));
+        }
+      } catch (_err) {
+        /* module not deployed yet */
+      }
+    });
+    await Promise.all(checks);
+    return byId;
+  }
+
   async function init() {
     const status = document.getElementById("status");
     const grid = document.getElementById("modules");
     const updatedEl = document.getElementById("updated-at");
-    const langSelect = document.getElementById("ui-lang");
-
     langSelect.value = uiLang;
-    langSelect.addEventListener("change", () => {
-      uiLang = langSelect.value;
-      localStorage.setItem("circuitgen-docs-ui-lang", uiLang);
-      applyUiStrings();
-      init();
-    });
-
     applyUiStrings();
     status.textContent = t("loading");
     status.className = "status";
@@ -172,13 +321,21 @@
         loadJson("modules-registry.json"),
         loadJson("manifest.json"),
       ]);
-      manifestBase = manifest.baseUrl || "";
-      if (manifest.updatedAt) {
-        updatedEl.textContent = manifest.updatedAt;
-        updatedEl.dateTime = manifest.updatedAt;
+      catalogRegistry = registry;
+      const deployedById = await discoverDeployedModules(registry);
+      const effectiveManifest = mergeManifestWithDeployed(
+        registry,
+        manifest,
+        deployedById
+      );
+
+      manifestBase = effectiveManifest.baseUrl || manifest.baseUrl || "";
+      if (effectiveManifest.updatedAt) {
+        updatedEl.textContent = effectiveManifest.updatedAt;
+        updatedEl.dateTime = effectiveManifest.updatedAt;
       }
 
-      const items = mergeCatalog(registry, manifest);
+      const items = mergeCatalog(registry, effectiveManifest);
       items.forEach((item) => grid.appendChild(formatCard(item)));
       status.hidden = true;
       grid.hidden = false;

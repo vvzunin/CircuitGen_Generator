@@ -182,6 +182,57 @@ nas_fs_download_file() {
   curl -sf "${NAS_FS_CURL_OPTS[@]}" -b "${NAS_FS_COOKIE_JAR}" -o "${local_path}" "${dlink}"
 }
 
+nas_fs_list_folder() {
+  local folder_path="$1"
+  nas_fs_syno_get \
+    --data-urlencode "api=SYNO.FileStation.List" \
+    --data-urlencode "version=${NAS_FS_API_VERSION}" \
+    --data-urlencode "method=list" \
+    --data-urlencode "folder_path=${folder_path}" \
+    --data-urlencode "_sid=${NAS_FS_SID}"
+}
+
+# Build a JSON array of meta.json objects for sibling modules already on NAS.
+# Skips DOCS_MODULE_SLUG (replaced by the current deploy). Avoids manifest.json
+# races when several module pipelines run in parallel.
+nas_fs_collect_remote_module_metas() {
+  local output_path="$1"
+  local modules_root="${NAS_DOCS}/modules"
+  local list_response collected=0
+
+  list_response="$(nas_fs_list_folder "${modules_root}")"
+  if ! nas_fs_json_success "${list_response}"; then
+    echo "deploy-synology: modules list unavailable (empty or first deploy): $(echo "${list_response}" | jq -c '.error // .' 2>/dev/null || echo "${list_response}")"
+    echo "[]" >"${output_path}"
+    return 0
+  fi
+
+  local tmp_dir entries=()
+  tmp_dir="$(mktemp -d)"
+  while IFS= read -r slug; do
+    [[ -z "${slug}" ]] && continue
+    if [[ "${slug}" == "${DOCS_MODULE_SLUG}" ]]; then
+      continue
+    fi
+    local meta_tmp="${tmp_dir}/${slug}.json"
+    if nas_fs_download_file "${modules_root}/${slug}/meta.json" "${meta_tmp}"; then
+      if jq -e '.id and .formats' "${meta_tmp}" >/dev/null 2>&1; then
+        entries+=("$(cat "${meta_tmp}")")
+        collected=$((collected + 1))
+      fi
+    fi
+  done < <(echo "${list_response}" | jq -r '.data.files[]? | select(.isdir == true or .isdir == "dir") | .name')
+
+  rm -rf "${tmp_dir}"
+
+  if ((${#entries[@]} > 0)); then
+    printf '%s\n' "${entries[@]}" | jq -s '.' >"${output_path}"
+  else
+    echo "[]" >"${output_path}"
+  fi
+  echo "deploy-synology: collected ${collected} sibling module meta(s) from NAS"
+}
+
 nas_fs_fetch_remote_manifest() {
   local dest="$1"
   local remote="${NAS_DOCS}/manifest.json"

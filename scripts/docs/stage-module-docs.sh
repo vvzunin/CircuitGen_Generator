@@ -29,8 +29,23 @@ stage_module_docs() {
   cp "${ru_pdf_src}" "${module_root}/pdf/ru.pdf"
   cp "${en_pdf_src}" "${module_root}/pdf/en.pdf"
 
-  local built_at
+  local built_at registry_host group_name image_repo dev_tag release_tag harbor_base os_list_json
   built_at="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+  registry_host="${REGISTRY_URL:-vvzunin.me:5201}"
+  group_name="${GROUP_NAME:-circuitgen}"
+  image_repo="${REPO_NAME:-${DOCS_MODULE_SLUG}}"
+  dev_tag="${DOCKER_DEV_TAG:-main}"
+  if [[ -n "${CI_COMMIT_TAG:-}" ]]; then
+    release_tag="${CI_COMMIT_TAG}"
+  else
+    release_tag="v${PROJECT_VERSION#v}"
+  fi
+  if [[ -n "${DOCKER_RELEASE_TAG:-}" ]]; then
+    release_tag="${DOCKER_RELEASE_TAG}"
+  fi
+  harbor_base="${DOCS_HARBOR_WEB_BASE:-https://vvzunin.me/harbor/projects/circuitgen/repositories}"
+  harbor_base="${harbor_base%/}"
+  os_list_json="${DOCKER_OS_LIST_JSON:-[\"ubuntu-22.04\",\"ubuntu-24.04\",\"fedora-43\"]}"
 
   jq -n \
     --arg id "${DOCS_MODULE_SLUG}" \
@@ -41,20 +56,55 @@ stage_module_docs() {
     --arg ref "${CI_COMMIT_REF_NAME:-}" \
     --arg pipeline "${CI_PIPELINE_ID:-}" \
     --arg repo "${DOCS_MODULE_REPO:-}" \
-    '{
-      id: $id,
-      name: { ru: $name, en: $name },
-      version: $version,
-      builtAt: $builtAt,
-      commit: (if $commit == "" then null else $commit end),
-      ref: (if $ref == "" then null else $ref end),
-      pipelineId: (if $pipeline == "" then null else $pipeline end),
-      repo: (if $repo == "" then null else $repo end),
-      formats: {
-        pdf: { ru: "pdf/ru.pdf", en: "pdf/en.pdf" },
-        html: { ru: "html/ru/", en: "html/en/" }
+    --arg registryHost "${registry_host}" \
+    --arg group "${group_name}" \
+    --arg imageRepo "${image_repo}" \
+    --arg devTag "${dev_tag}" \
+    --arg releaseTag "${release_tag}" \
+    --arg harborWebBase "${harbor_base}" \
+    --argjson osList "${os_list_json}" \
+    '
+      def harbor_url($os; $flavor):
+        ($harborWebBase + "/" + ($imageRepo + "/" + $os + "/" + $flavor | @uri) + "/artifacts-tab");
+      def pull_ref($os; $flavor; $tag):
+        ($registryHost + "/" + $group + "/" + $imageRepo + "/" + $os + "/" + $flavor + ":" + $tag);
+      {
+        id: $id,
+        name: { ru: $name, en: $name },
+        version: $version,
+        builtAt: $builtAt,
+        commit: (if $commit == "" then null else $commit end),
+        ref: (if $ref == "" then null else $ref end),
+        pipelineId: (if $pipeline == "" then null else $pipeline end),
+        repo: (if $repo == "" then null else $repo end),
+        docker: {
+          registryHost: $registryHost,
+          group: $group,
+          imageRepo: $imageRepo,
+          osList: $osList,
+          devTag: $devTag,
+          releaseTag: $releaseTag,
+          harborWebBase: $harborWebBase,
+          images: [
+            $osList[] | . as $os | {
+              os: $os,
+              dev: {
+                pull: pull_ref($os; "dev"; $devTag),
+                harborUrl: harbor_url($os; "dev")
+              },
+              release: {
+                pull: pull_ref($os; "release"; $releaseTag),
+                harborUrl: harbor_url($os; "release")
+              }
+            }
+          ]
+        },
+        formats: {
+          pdf: { ru: "pdf/ru.pdf", en: "pdf/en.pdf" },
+          html: { ru: "html/ru/", en: "html/en/" }
+        }
       }
-    }' >"${module_root}/meta.json"
+    ' >"${module_root}/meta.json"
 
   echo "stage-module-docs: staged modules/${DOCS_MODULE_SLUG}/"
 }

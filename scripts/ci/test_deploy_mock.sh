@@ -50,6 +50,7 @@ grep -q 'SYNO.FileStation.Extract' "${DEPLOY_SCRIPT}"
 grep -q 'nas_fs_delete_paths' "${DEPLOY_SCRIPT}"
 grep -q 'stage_module_docs' "${DEPLOY_SCRIPT}"
 grep -q 'write_manifest' "${DEPLOY_SCRIPT}"
+grep -q 'nas_fs_collect_remote_module_metas' "${DEPLOY_SCRIPT}"
 grep -q 'modules/${DOCS_MODULE_SLUG}' "${DEPLOY_SCRIPT}"
 ! grep -q '${REPO_DOCS_NAME}.pdf' "${DEPLOY_SCRIPT}"
 ! grep -q 'legacy_pdf' "${DEPLOY_SCRIPT}"
@@ -73,6 +74,29 @@ stage_module_docs "${STAGING_DIR}" "${DOCS_BASE}"
 stage_portal_assets "${STAGING_DIR}" "${ROOT_DIR}/scripts/docs/portal"
 write_manifest "${STAGING_DIR}/manifest.json" "${STAGING_DIR}/modules/${DOCS_MODULE_SLUG}/meta.json" ""
 
+REMOTE_METAS="${STAGING_DIR}/remote-metas.json"
+echo '[]' >"${REMOTE_METAS}"
+
+echo "=== test_deploy_mock: multi-module manifest merge ==="
+OTHER_SLUG="other-module-mock"
+OTHER_META="${STAGING_DIR}/other-meta.json"
+mkdir -p "${STAGING_DIR}/modules/${OTHER_SLUG}"
+jq -n --arg id "${OTHER_SLUG}" '{
+  id: $id,
+  name: { ru: "Other", en: "Other" },
+  version: "0.0.0",
+  builtAt: "2020-01-01T00:00:00Z",
+  formats: {
+    pdf: { ru: "pdf/ru.pdf", en: "pdf/en.pdf" },
+    html: { ru: "html/ru/", en: "html/en/" }
+  }
+}' >"${OTHER_META}"
+printf '[%s]' "$(cat "${OTHER_META}")" >"${REMOTE_METAS}"
+write_manifest "${STAGING_DIR}/manifest-merged.json" \
+  "${STAGING_DIR}/modules/${DOCS_MODULE_SLUG}/meta.json" "" "${REMOTE_METAS}"
+jq -e --arg a "${DOCS_MODULE_SLUG}" --arg b "${OTHER_SLUG}" \
+  '[.modules[].id] | sort == ([$a, $b] | sort)' "${STAGING_DIR}/manifest-merged.json" >/dev/null
+
 [[ -f "${STAGING_DIR}/modules/${DOCS_MODULE_SLUG}/pdf/ru.pdf" ]]
 [[ -f "${STAGING_DIR}/modules/${DOCS_MODULE_SLUG}/pdf/en.pdf" ]]
 [[ -f "${STAGING_DIR}/modules/${DOCS_MODULE_SLUG}/html/ru/index.html" ]]
@@ -82,6 +106,11 @@ write_manifest "${STAGING_DIR}/manifest.json" "${STAGING_DIR}/modules/${DOCS_MOD
 [[ -f "${STAGING_DIR}/modules-registry.json" ]]
 
 jq -e --arg id "${DOCS_MODULE_SLUG}" '.modules[] | select(.id == $id)' "${STAGING_DIR}/manifest.json" >/dev/null
+meta="${STAGING_DIR}/modules/${DOCS_MODULE_SLUG}/meta.json"
+jq -e '(.docker.images | length) == 3' "${meta}" >/dev/null
+jq -r '.docker.images[] | select(.os == "fedora-43") | .dev.pull' "${meta}" | grep -q '/circuitgen/graph/fedora-43/dev:main$'
+jq -r '.docker.images[] | select(.os == "fedora-43") | .release.pull' "${meta}" | grep -q '/circuitgen/graph/fedora-43/release:v1.6.0$'
+grep -q 'dockerDefaults' scripts/docs/modules-registry.json
 
 (
   cd "${STAGING_DIR}"

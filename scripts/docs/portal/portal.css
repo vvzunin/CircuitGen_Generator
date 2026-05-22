@@ -130,6 +130,15 @@ select {
   background: var(--accent-hover);
 }
 
+.links a.docker {
+  background: #2a3d52;
+  border: 1px solid var(--border);
+}
+
+.links a.docker:hover {
+  background: #354d66;
+}
+
 .links span.badge {
   background: var(--border);
   color: var(--muted);

@@ -107,6 +107,7 @@ ARCHIVE_PATH="${PROJECT_ROOT}/${ARCHIVE_NAME}"
 PORTAL_DIR="${SCRIPT_DIR}/portal"
 MODULE_DIR="${NAS_DOCS}/modules/${DOCS_MODULE_SLUG}"
 REMOTE_MANIFEST_TMP="$(mktemp)"
+REMOTE_MODULE_METAS_TMP="$(mktemp)"
 
 echo "deploy-synology: preparing deployment bundle"
 echo "  NAS URL: ${NAS_URL}"
@@ -135,7 +136,7 @@ cleanup() {
       --data-urlencode "session=FileStation" \
       --data-urlencode "_sid=${NAS_FS_SID}" >/dev/null || true
   fi
-  rm -f "${COOKIE_JAR}" "${ARCHIVE_PATH}" "${REMOTE_MANIFEST_TMP}"
+  rm -f "${COOKIE_JAR}" "${ARCHIVE_PATH}" "${REMOTE_MANIFEST_TMP}" "${REMOTE_MODULE_METAS_TMP}"
   rm -rf "${STAGING_DIR}"
 }
 trap cleanup EXIT
@@ -144,10 +145,12 @@ nas_fs_resolve_auth_api_version
 nas_fs_establish_session
 
 nas_fs_fetch_remote_manifest "${REMOTE_MANIFEST_TMP}" || true
+nas_fs_collect_remote_module_metas "${REMOTE_MODULE_METAS_TMP}"
 write_manifest \
   "${STAGING_DIR}/manifest.json" \
   "${STAGING_DIR}/modules/${DOCS_MODULE_SLUG}/meta.json" \
-  "${REMOTE_MANIFEST_TMP}"
+  "${REMOTE_MANIFEST_TMP}" \
+  "${REMOTE_MODULE_METAS_TMP}"
 
 rm -f "${ARCHIVE_PATH}"
 (
