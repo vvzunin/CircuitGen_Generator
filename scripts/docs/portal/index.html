@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CircuitGen — Documentation</title>
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1>CircuitGen</h1>
+      <p class="tagline" data-i18n="tagline">Документация модулей проекта</p>
+      <div class="toolbar">
+        <label for="ui-lang" class="sr-only" data-i18n="uiLangLabel">Язык интерфейса</label>
+        <select id="ui-lang" aria-label="UI language">
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <p id="status" class="status" role="status">Loading…</p>
+    <div id="modules" class="modules-grid" hidden></div>
+  </main>
+  <footer class="site-footer wrap">
+    <p><span data-i18n="updated">Обновлено</span>: <time id="updated-at">—</time></p>
+  </footer>
+  <script src="portal.js"></script>
+</body>
+</html>
