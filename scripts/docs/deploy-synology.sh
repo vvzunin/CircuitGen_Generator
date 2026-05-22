@@ -2,10 +2,12 @@
 # Deploy generated documentation (HTML + PDF, en/ru) to Synology NAS via File Station API.
 #
 # Layout on NAS (under NAS_DOCS, e.g. /web/docs/CircuitGen):
-#   index.html, manifest.json, modules-registry.json
-#   modules/<slug>/pdf/{ru,en}.pdf, html/{ru,en}/, meta.json
+#   index.html, manifest.json (schema v2), modules-registry.json
+#   modules/<slug>/versions.json
+#   modules/<slug>/versions/<channel>/  — channel is main or release tag (v1.6.0)
+#     meta.json, pdf/{ru,en}.pdf, html/{ru,en}/
 #
-# See scripts/docs/DEPLOY.md and Synology File Station Official API guide.
+# See docs/en/DEPLOY.md and Synology File Station Official API guide.
 
 set -euo pipefail
 
@@ -36,6 +38,8 @@ source "${SCRIPT_DIR}/nas-docs-names.sh"
 source "${SCRIPT_DIR}/stage-module-docs.sh"
 # shellcheck source=manifest-merge.sh
 source "${SCRIPT_DIR}/manifest-merge.sh"
+# shellcheck source=versions-index.sh
+source "${SCRIPT_DIR}/versions-index.sh"
 # shellcheck source=nas-filestation-api.sh
 source "${SCRIPT_DIR}/nas-filestation-api.sh"
 
@@ -105,14 +109,16 @@ DOCS_BASE="${PROJECT_ROOT}/build/docs"
 STAGING_DIR="${PROJECT_ROOT}/build/docs-nas-staging"
 ARCHIVE_PATH="${PROJECT_ROOT}/${ARCHIVE_NAME}"
 PORTAL_DIR="${SCRIPT_DIR}/portal"
-MODULE_DIR="${NAS_DOCS}/modules/${DOCS_MODULE_SLUG}"
+MODULE_VERSION_DIR="${NAS_DOCS}/modules/${DOCS_MODULE_SLUG}/versions/${DOCS_VERSION_CHANNEL}"
 REMOTE_MANIFEST_TMP="$(mktemp)"
-REMOTE_MODULE_METAS_TMP="$(mktemp)"
+REMOTE_MODULES_TMP="$(mktemp)"
+REMOTE_VERSIONS_TMP="$(mktemp)"
 
 echo "deploy-synology: preparing deployment bundle"
 echo "  NAS URL: ${NAS_URL}"
 echo "  NAS path: ${NAS_DOCS}"
 echo "  module slug: ${DOCS_MODULE_SLUG} (display: ${REPO_DOCS_NAME})"
+echo "  docs channel: ${DOCS_VERSION_CHANNEL}"
 echo "  PDF base: ${DOCS_PDF_BASE_NAME}"
 
 rm -rf "${STAGING_DIR}"
@@ -136,7 +142,7 @@ cleanup() {
       --data-urlencode "session=FileStation" \
       --data-urlencode "_sid=${NAS_FS_SID}" >/dev/null || true
   fi
-  rm -f "${COOKIE_JAR}" "${ARCHIVE_PATH}" "${REMOTE_MANIFEST_TMP}" "${REMOTE_MODULE_METAS_TMP}"
+  rm -f "${COOKIE_JAR}" "${ARCHIVE_PATH}" "${REMOTE_MANIFEST_TMP}" "${REMOTE_MODULES_TMP}" "${REMOTE_VERSIONS_TMP}"
   rm -rf "${STAGING_DIR}"
 }
 trap cleanup EXIT
@@ -145,12 +151,17 @@ nas_fs_resolve_auth_api_version
 nas_fs_establish_session
 
 nas_fs_fetch_remote_manifest "${REMOTE_MANIFEST_TMP}" || true
-nas_fs_collect_remote_module_metas "${REMOTE_MODULE_METAS_TMP}"
+nas_fs_fetch_remote_versions_index "${REMOTE_VERSIONS_TMP}" || true
+write_module_versions_index \
+  "${STAGING_DIR}" \
+  "${STAGING_DIR}/modules/${DOCS_MODULE_SLUG}/versions/${DOCS_VERSION_CHANNEL}/meta.json" \
+  "${REMOTE_VERSIONS_TMP}"
+nas_fs_collect_remote_modules_for_manifest "${REMOTE_MODULES_TMP}"
 write_manifest \
   "${STAGING_DIR}/manifest.json" \
-  "${STAGING_DIR}/modules/${DOCS_MODULE_SLUG}/meta.json" \
+  "${STAGING_DIR}/modules/${DOCS_MODULE_SLUG}/versions/${DOCS_VERSION_CHANNEL}/meta.json" \
   "${REMOTE_MANIFEST_TMP}" \
-  "${REMOTE_MODULE_METAS_TMP}"
+  "${REMOTE_MODULES_TMP}"
 
 rm -f "${ARCHIVE_PATH}"
 (
@@ -162,11 +173,11 @@ ARCHIVE_SIZE="$(du -h "${ARCHIVE_PATH}" | cut -f1)"
 echo "deploy-synology: archive ${ARCHIVE_NAME} (${ARCHIVE_SIZE})"
 
 DELETE_PATHS_JSON="$(jq -n \
-  --arg module_dir "${MODULE_DIR}" \
+  --arg version_dir "${MODULE_VERSION_DIR}" \
   --arg archive "${NAS_DOCS}/${ARCHIVE_NAME}" \
-  '[$module_dir, $archive]')"
+  '[$version_dir, $archive]')"
 
-echo "deploy-synology: removing previous module documentation on NAS"
+echo "deploy-synology: removing previous docs for channel ${DOCS_VERSION_CHANNEL} on NAS"
 nas_fs_delete_paths "${DELETE_PATHS_JSON}"
 
 echo "deploy-synology: uploading ${ARCHIVE_NAME}"
@@ -211,8 +222,10 @@ nas_fs_delete_paths "${ARCHIVE_DELETE_PATH}" || true
 BASE_PUBLIC="${DOCS_PUBLIC_BASE_URL:-https://vvzunin.me/docs/CircuitGen}"
 BASE_PUBLIC="${BASE_PUBLIC%/}"
 echo "deploy-synology: deployment complete"
+DOC_BASE="${BASE_PUBLIC}/modules/${DOCS_MODULE_SLUG}/versions/${DOCS_VERSION_CHANNEL}"
 echo "  Portal: ${BASE_PUBLIC}/"
-echo "  PDF (ru): ${BASE_PUBLIC}/modules/${DOCS_MODULE_SLUG}/pdf/ru.pdf"
-echo "  PDF (en): ${BASE_PUBLIC}/modules/${DOCS_MODULE_SLUG}/pdf/en.pdf"
-echo "  HTML (ru): ${BASE_PUBLIC}/modules/${DOCS_MODULE_SLUG}/html/ru/"
-echo "  HTML (en): ${BASE_PUBLIC}/modules/${DOCS_MODULE_SLUG}/html/en/"
+echo "  Channel: ${DOCS_VERSION_CHANNEL}"
+echo "  PDF (ru): ${DOC_BASE}/pdf/ru.pdf"
+echo "  PDF (en): ${DOC_BASE}/pdf/en.pdf"
+echo "  HTML (ru): ${DOC_BASE}/html/ru/"
+echo "  HTML (en): ${DOC_BASE}/html/en/"

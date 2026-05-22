@@ -101,6 +101,29 @@ select {
   flex: 1;
 }
 
+.version-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.version-row label {
+  margin: 0;
+}
+
+.doc-version-select {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  max-width: 100%;
+}
+
 .meta {
   font-size: 0.8rem;
   color: var(--muted);

@@ -68,7 +68,7 @@ Generator — прикладной слой над библиотекой **Grap
 
 - CMake, пресеты `dev` / `release-ci`, скрипты `scripts/dev/build-debug.sh`, `scripts/release/build.sh`.
 - Docker-образы CI/dev/release (`scripts/docker/`).
-- Документация Doxygen, деплой на NAS (как в Graph/Parameters).
+- Документация Doxygen (HTML/PDF, ru/en). Задание CI **`docs`** публикует на общий портал NAS: `versions/main/`, `versions/<tag>/` ([DEPLOY.md](DEPLOY.md)).
 - Платформы: Linux (основной CI), также Windows/macOS через CMake (см. [README.md](../../README.md)).
 
 ## Зависимости

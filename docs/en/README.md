@@ -7,7 +7,8 @@
 | [BUILDING.md](BUILDING.md) | CMake presets, CI parity builds, adding sources / `CMakeLists.txt` (synced overview across CircuitGen repos) |
 | [SCRIPTS.md](SCRIPTS.md) | `scripts/` overview |
 | [CI_PIPELINE.md](CI_PIPELINE.md) | GitLab CI: stages, architecture, OS matrix |
-| [CI_SCRIPTS.md](CI_SCRIPTS.md) | Reference for `scripts/ci` (incl. Windows runner `docker-prune-keep-bases.ps1`, §7) |
+| [CI_SCRIPTS.md](CI_SCRIPTS.md) | Reference for `scripts/ci` (NAS deploy §7; Windows runner `docker-prune-keep-bases.ps1`, §8) |
+| [DEPLOY.md](DEPLOY.md) | Synology NAS documentation deploy: version channels, portal, scripts |
 | [HACKING.md](HACKING.md) | Developer workflow, CI parity, pointers to presets / CMake layout |
 | [CodeStyle.md](CodeStyle.md) | Coding style |
 | [CmakeFlags.md](CmakeFlags.md) | CMake flags |

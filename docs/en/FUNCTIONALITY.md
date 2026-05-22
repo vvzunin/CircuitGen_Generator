@@ -68,7 +68,7 @@ Implementation: `src/generators/`, `src/database/`, `src/circuit/`, `src/setting
 
 - CMake, `dev` / `release-ci` presets, `scripts/dev/build-debug.sh`, `scripts/release/build.sh`.
 - Docker CI/dev/release images (`scripts/docker/`).
-- Doxygen docs, NAS deploy (same pattern as Graph/Parameters).
+- Doxygen docs (HTML/PDF, ru/en). CI job **`docs`** publishes to the shared NAS portal: `versions/main/`, `versions/<tag>/`, merged manifest ([DEPLOY.md](DEPLOY.md)).
 - Platforms: Linux (primary CI), Windows/macOS via CMake ([README.md](../../README.en.md)).
 
 ## Dependencies

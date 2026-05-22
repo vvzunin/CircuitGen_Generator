@@ -12,7 +12,8 @@
 
 - Генерация на **Chisel** и интеграция в CLI.
 - Примеры API и JSON (`examples/`); флаг `save_circuit_parameters_json`.
-- Деплой Doxygen-документации на Synology NAS из CI.
+- Деплой Doxygen-документации на Synology NAS из CI: общий портал, `manifest.json` схема v2, деревья версий (`versions/main/`, `versions/<tag>/`).
+- Набор скриптов `scripts/docs/` (`versions-index.sh`, `manifest-merge.sh`, `modules-registry.json`, UI портала); `scripts/ci/test_deploy_mock.sh`.
 - Обзор функционала в `docs/ru|en/FUNCTIONALITY.md`.
 - Журнал изменений в `docs/ru|en/CHANGELOG.md`.
 
@@ -26,7 +27,7 @@
 
 - `runGeneration`: вызов callback во всех ветках.
 - Генетический/автоматный генератор: слияние init/transition DFF.
-- CI: Java/Chisel sanitize, LaTeX/PDF, NAS Auth v3.
+- CI: Java/Chisel sanitize, LaTeX/PDF, NAS Auth v3; слияние manifest при параллельном CI; переключение языка портала без дублирования карточек; `versions.json` из всех каналов в стадии.
 
 ---
 

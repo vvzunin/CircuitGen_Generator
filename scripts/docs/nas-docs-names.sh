@@ -5,6 +5,7 @@
 #   DOCS_PDF_BASE_NAME  — Doxygen PDF basename (CMake project() name)
 #   REPO_DOCS_NAME      — display name (Graph, Generator, …)
 #   DOCS_MODULE_SLUG    — URL path segment under modules/ (graph, generator, …)
+#   DOCS_VERSION_CHANNEL — docs tree id: main (default branch) or release tag (v1.6.0)
 #   PROJECT_VERSION     — from CMake project(VERSION …)
 #   DOCS_MODULE_REPO    — repository URL (CMake HOMEPAGE_URL or DOCS_MODULE_REPO)
 #
@@ -45,6 +46,19 @@ _cmake_project_field() {
   ' "${cmake_file}"
 }
 
+resolve_docs_version_channel() {
+  if [[ -n "${DOCS_VERSION_CHANNEL:-}" ]]; then
+    export DOCS_VERSION_CHANNEL
+    return 0
+  fi
+  if [[ -n "${CI_COMMIT_TAG:-}" ]]; then
+    DOCS_VERSION_CHANNEL="${CI_COMMIT_TAG}"
+  else
+    DOCS_VERSION_CHANNEL="main"
+  fi
+  export DOCS_VERSION_CHANNEL
+}
+
 resolve_nas_docs_names() {
   local project_root="${1:?project root required}"
   local cmake_file="${project_root}/CMakeLists.txt"
@@ -83,5 +97,7 @@ resolve_nas_docs_names() {
     DOCS_MODULE_REPO="$(_cmake_project_field "${cmake_file}" homepage)"
   fi
 
-  export DOCS_PDF_BASE_NAME REPO_DOCS_NAME DOCS_MODULE_SLUG PROJECT_VERSION DOCS_MODULE_REPO
+  resolve_docs_version_channel
+
+  export DOCS_PDF_BASE_NAME REPO_DOCS_NAME DOCS_MODULE_SLUG PROJECT_VERSION DOCS_MODULE_REPO DOCS_VERSION_CHANNEL
 }

@@ -12,7 +12,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - **Chisel**-based Verilog generation and CLI integration.
 - API and JSON examples (`examples/`); `save_circuit_parameters_json` flag.
-- Synology NAS documentation deploy from CI.
+- Synology NAS documentation deploy from CI: shared portal, `manifest.json` schema v2, multi-version trees (`versions/main/`, `versions/<tag>/`).
+- `scripts/docs/` deploy toolkit (`versions-index.sh`, `manifest-merge.sh`, `modules-registry.json`, portal UI); `scripts/ci/test_deploy_mock.sh`.
 - Functionality overview in `docs/ru|en/FUNCTIONALITY.md`.
 - Changelog in `docs/ru|en/CHANGELOG.md`.
 
@@ -26,7 +27,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - `runGeneration`: callback invoked on all code paths.
 - Genetic/state-machine generator: merge init/transition DFFs.
-- CI: Java/Chisel sanitize, LaTeX/PDF, NAS Auth v3.
+- CI: Java/Chisel sanitize, LaTeX/PDF, NAS Auth v3; manifest merge across parallel module pipelines; portal language toggle without duplicate cards; `versions.json` from all staged channels.
 
 ---
 

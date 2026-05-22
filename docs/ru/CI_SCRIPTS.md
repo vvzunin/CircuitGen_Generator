@@ -1,6 +1,6 @@
 # Справочник: `scripts/ci`
 
-Текст **синхронизируется** между репозиториями Parameters, Graph и Generator. Поведение скриптов одно и то же; в job’ах GitLab подставляются переменные (`REPO_NAME`, `DOCKER_URL`, …) из `.gitlab-ci.yml`.
+Текст **синхронизируется** между репозиториями Parameters, Graph и Generator. Поведение скриптов одно и то же; в заданиях GitLab подставляются переменные (`REPO_NAME`, `DOCKER_URL`, …) из `.gitlab-ci.yml`.
 
 Общая картина конвейера: [CI_PIPELINE.md](CI_PIPELINE.md).
 
@@ -49,7 +49,8 @@
 | **`tests.sh`** | Запуск тестов (CTest и т.п.). |
 | **`coverage.sh`** | Покрытие кода. |
 | **`examples.sh`** | Сборка/запуск примеров. |
-| **`docs.sh`** | Сборка документации в CI. |
+| **`docs.sh`** | Сборка Doxygen (`build/docs/{en,ru}/…`). В задании GitLab **`docs`** после неё вызывается **`deploy-synology.sh`** (не входит в `docs.sh`). |
+| **`test_deploy_mock.sh`** | Офлайн-проверка стадии NAS, `versions.json` и `manifest.json` (схема v2). |
 
 ---
 
@@ -71,9 +72,29 @@
 
 ---
 
+## 7. Публикация документации на NAS (`scripts/docs`)
+
+Задание GitLab **`docs`** использует эти скрипты после **`docs.sh`**. Одинаковые скрипты хранятся в Graph, Generator и Parameters.
+
+| Скрипт | Назначение |
+|--------|------------|
+| **`deploy-synology.sh`** | Стадия, zip, загрузка на Synology (File Station API), обновление портала |
+| **`stage-module-docs.sh`** | `modules/<slug>/versions/<channel>/` (HTML/PDF, `meta.json`) |
+| **`versions-index.sh`** | Слияние `versions.json` (NAS + все каналы в стадии) |
+| **`manifest-merge.sh`** | `manifest.json` схема v2; слияние соседних модулей с NAS (без гонки при параллельном CI) |
+| **`nas-filestation-api.sh`** | Аутентификация Auth v3, загрузка, распаковка, обход модулей на NAS |
+| **`nas-docs-names.sh`** | Канал: `main` или `CI_COMMIT_TAG` |
+| **`test_deploy_mock.sh`** | Офлайн-проверка раскладки деплоя без NAS (в `scripts/ci/`) |
+
+Переменные: `NAS_URL`, `NAS_USER`, `NAS_PASS`, `NAS_DOCS`, `DOCS_MODULE_SLUG`, `DOCS_PUBLIC_BASE_URL`, … — **[DEPLOY.md](DEPLOY.md)**.
+
+Портал: `scripts/docs/portal/`, каталог **`modules-registry.json`** (hub.mos.ru, Docker по ОС).
+
+---
+
 <a id="docker-prune-runner-windows"></a>
 
-## 7. Обслуживание runner (Windows): `docker-prune-keep-bases.ps1`
+## 8. Обслуживание runner (Windows): `docker-prune-keep-bases.ps1`
 
 PowerShell-скрипт для **Windows 11** с **Docker Desktop (WSL2)** на хостах с **GitLab Runner**: снимает накопленные **небазовые** образы и при необходимости **сжимает** `docker_data.vhdx`, чтобы на томе Windows реально освободилось место. **Не** является шагом `.gitlab-ci.yml`; это ручное или плановое обслуживание машины runner’а.
 
@@ -148,7 +169,7 @@ Get-Help .\scripts\ci\docker-prune-keep-bases.ps1 -Full
 
 ---
 
-## 8. Связанные каталоги
+## 9. Связанные каталоги
 
 | Каталог | Роль |
 |---------|------|

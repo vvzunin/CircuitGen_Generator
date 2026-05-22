@@ -7,7 +7,8 @@
 | [BUILDING.md](BUILDING.md) | Пресеты CMake, CI parity, новые исходники и `CMakeLists.txt` (общий обзор по репозиториям CircuitGen) |
 | [SCRIPTS.md](SCRIPTS.md) | Обзор `scripts/` |
 | [CI_PIPELINE.md](CI_PIPELINE.md) | GitLab CI: стадии, архитектура, матрица ОС |
-| [CI_SCRIPTS.md](CI_SCRIPTS.md) | Справочник по `scripts/ci` (в т.ч. Windows-runner: `docker-prune-keep-bases.ps1`, §7) |
+| [CI_SCRIPTS.md](CI_SCRIPTS.md) | Справочник по `scripts/ci` (NAS §7; Windows-runner: `docker-prune-keep-bases.ps1`, §8) |
+| [DEPLOY.md](DEPLOY.md) | Публикация документации на Synology NAS: каналы версий, портал, скрипты |
 | [HACKING.md](HACKING.md) | Workflow разработки, CI parity, ссылки на пресеты и CMake |
 | [CodeStyle.md](CodeStyle.md) | Стиль кода |
 | [CmakeFlags.md](CmakeFlags.md) | Флаги CMake |

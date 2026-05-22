@@ -115,8 +115,8 @@ flowchart LR
 | **docker-matrix** | Образы **ci** для вторичных ОС после успешных **`tests`** и **`examples`** на Ubuntu 24.04; **release**-образы на тегах (`docker-release-*`, те же зависимости). |
 | **check-os** / **test-os** | Те же проверки на **вторичных ОС** (ограничения `rules`, см. `.secondary-os-matrix-rules`). |
 | **os-check** | Полная проверка установки зависимостей и сценариев на «чистых» образах ОС (`os-image-build-push` + `os-full-check`), увеличенный `timeout`. |
-| **docs** | Сборка документации (Doxygen и др.) по `rules` / изменениям путей. |
-| **release** | Создание GitLab Release на тегах (`create-gitlab-release.sh`). |
+| **docs** | Doxygen (`scripts/ci/docs.sh`), затем деплой на Synology NAS (`scripts/docs/deploy-synology.sh`). **Теги:** всегда (`versions/<tag>/`). **Ветка по умолчанию:** `changes:` → канал `versions/main/`. См. [DEPLOY.md](DEPLOY.md). |
+| **release** | GitLab Release только по тегам (`create-gitlab-release.sh`); на NAS документацию не выкладывает. |
 
 ---
 
@@ -149,4 +149,4 @@ flowchart LR
 
 ## 7. Обслуживание runner (Windows)
 
-Для хостов с **Docker Desktop (WSL2)** и накоплением данных используйте **`scripts/ci/docker-prune-keep-bases.ps1`**. Полное описание — в [CI_SCRIPTS.md §7](CI_SCRIPTS.md#docker-prune-runner-windows) (рус.) / [англ. версия](../en/CI_SCRIPTS.md#docker-prune-runner-windows). Это **не** шаг GitLab job’а по умолчанию, а ручное/плановое обслуживание диска.
+Для хостов с **Docker Desktop (WSL2)** и накоплением данных используйте **`scripts/ci/docker-prune-keep-bases.ps1`**. Полное описание — в [CI_SCRIPTS.md §8](CI_SCRIPTS.md#docker-prune-runner-windows) (рус.) / [англ. версия](../en/CI_SCRIPTS.md#docker-prune-runner-windows). Это **не** шаг GitLab job’а по умолчанию, а ручное/плановое обслуживание диска.

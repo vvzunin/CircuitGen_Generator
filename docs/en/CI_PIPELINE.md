@@ -115,8 +115,8 @@ See the top of `.gitlab-ci.yml` in the repo for the exact conditions.
 | **docker-matrix** | **ci** images for secondary OSes after successful **`tests`** and **`examples`** on Ubuntu 24.04; **`docker-release-*`** on tags (same **needs**). |
 | **check-os** / **test-os** | Same checks on **secondary OS** images (see `rules` / `.secondary-os-matrix-rules`). |
 | **os-check** | Full install-deps and scenario checks on “clean” OS images (`os-image-build-push` + `os-full-check`), higher `timeout`. |
-| **docs** | Documentation build (Doxygen, etc.) with path-based `rules`. |
-| **release** | GitLab Release creation on version tags (`create-gitlab-release.sh`). |
+| **docs** | Doxygen build (`scripts/ci/docs.sh`), then Synology NAS deploy (`scripts/docs/deploy-synology.sh`). **Tags:** always run (frozen channel `versions/<tag>/`). **Default branch:** path-based `changes:`; channel `versions/main/`. See [DEPLOY.md](DEPLOY.md). |
+| **release** | GitLab Release on tags only (`create-gitlab-release.sh`); does not upload docs to NAS. |
 
 ---
 
@@ -149,4 +149,4 @@ More detail: [CI_SCRIPTS.md](CI_SCRIPTS.md), [SCRIPTS.md](SCRIPTS.md), [HACKING.
 
 ## 7. Windows runner maintenance
 
-For hosts using **Docker Desktop (WSL2)** where disk usage grows, use **`scripts/ci/docker-prune-keep-bases.ps1`**. Full instructions: [CI_SCRIPTS.md §7](CI_SCRIPTS.md#docker-prune-runner-windows) (EN) / [Russian version](../ru/CI_SCRIPTS.md#docker-prune-runner-windows). This is **not** a default GitLab job step; it is manual or scheduled host maintenance.
+For hosts using **Docker Desktop (WSL2)** where disk usage grows, use **`scripts/ci/docker-prune-keep-bases.ps1`**. Full instructions: [CI_SCRIPTS.md §8](CI_SCRIPTS.md#docker-prune-runner-windows) (EN) / [Russian version](../ru/CI_SCRIPTS.md#docker-prune-runner-windows). This is **not** a default GitLab job step; it is manual or scheduled host maintenance.

@@ -49,7 +49,8 @@ See `run-task.sh` for the supported task names (`lint`, `sanitize`, `static-anal
 | **`tests.sh`** | Run tests (CTest, etc.). |
 | **`coverage.sh`** | Code coverage. |
 | **`examples.sh`** | Build/run examples. |
-| **`docs.sh`** | Documentation build in CI. |
+| **`docs.sh`** | Doxygen build (`build/docs/{en,ru}/…`). In GitLab job **`docs`**, followed by **`deploy-synology.sh`** (not part of `docs.sh` itself). |
+| **`test_deploy_mock.sh`** | Offline check of NAS staging, `versions.json`, and `manifest.json` (schema v2). |
 
 ---
 
@@ -71,9 +72,29 @@ See `run-task.sh` for the supported task names (`lint`, `sanitize`, `static-anal
 
 ---
 
+## 7. Documentation NAS deploy (`scripts/docs`)
+
+The GitLab **`docs`** job uses these scripts after **`docs.sh`**. The same scripts are kept in Graph, Generator, and Parameters.
+
+| Script | Purpose |
+|--------|---------|
+| **`deploy-synology.sh`** | Stage, zip, upload to Synology (File Station API), refresh portal |
+| **`stage-module-docs.sh`** | `modules/<slug>/versions/<channel>/` (HTML/PDF, `meta.json`) |
+| **`versions-index.sh`** | Merge `versions.json` (remote + all staged channels) |
+| **`manifest-merge.sh`** | `manifest.json` schema v2; merge sibling modules from NAS (parallel CI safe) |
+| **`nas-filestation-api.sh`** | Auth v3, upload, extract, remote module discovery |
+| **`nas-docs-names.sh`** | Channel: `main` vs `CI_COMMIT_TAG` |
+| **`test_deploy_mock.sh`** | Offline deployment layout check without NAS (see `scripts/ci/`) |
+
+Variables: `NAS_URL`, `NAS_USER`, `NAS_PASS`, `NAS_DOCS`, `DOCS_MODULE_SLUG`, `DOCS_PUBLIC_BASE_URL`, … — see **[DEPLOY.md](DEPLOY.md)**.
+
+Portal: `scripts/docs/portal/`, catalog **`modules-registry.json`** (hub.mos.ru, Docker links per OS).
+
+---
+
 <a id="docker-prune-runner-windows"></a>
 
-## 7. Windows runner maintenance: `docker-prune-keep-bases.ps1`
+## 8. Windows runner maintenance: `docker-prune-keep-bases.ps1`
 
 PowerShell script for **Windows 11** hosts with **Docker Desktop (WSL2)** and **GitLab Runner**: removes accumulated **non-base** images and optionally **compacts** `docker_data.vhdx` so **free space on the Windows volume** grows. This is **not** a `.gitlab-ci.yml` job; it is **manual or scheduled** runner host maintenance.
 
@@ -148,7 +169,7 @@ Windows Task Scheduler + `powershell.exe -File …\docker-prune-keep-bases.ps1`;
 
 ---
 
-## 8. Related directories
+## 9. Related directories
 
 | Directory | Role |
 |-----------|------|

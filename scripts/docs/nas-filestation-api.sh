@@ -192,17 +192,124 @@ nas_fs_list_folder() {
     --data-urlencode "_sid=${NAS_FS_SID}"
 }
 
-# Build a JSON array of meta.json objects for sibling modules already on NAS.
-# Skips DOCS_MODULE_SLUG (replaced by the current deploy). Avoids manifest.json
-# races when several module pipelines run in parallel.
-nas_fs_collect_remote_module_metas() {
+nas_fs_fetch_remote_versions_index() {
+  local dest="$1"
+  local remote="${NAS_DOCS}/modules/${DOCS_MODULE_SLUG}/versions.json"
+  if nas_fs_download_file "${remote}" "${dest}"; then
+    echo "deploy-synology: merged with existing versions.json for ${DOCS_MODULE_SLUG}"
+    return 0
+  fi
+  echo "deploy-synology: no remote versions.json for ${DOCS_MODULE_SLUG}"
+  return 1
+}
+
+# Build one manifest module object from versions.json + per-channel meta on NAS.
+_nas_fs_module_from_slug() {
+  local modules_root="$1"
+  local slug="$2"
+  local tmp_dir="$3"
+
+  local versions_tmp="${tmp_dir}/${slug}-versions.json"
+  local legacy_meta="${tmp_dir}/${slug}-legacy-meta.json"
+
+  if nas_fs_download_file "${modules_root}/${slug}/versions.json" "${versions_tmp}"; then
+    local channels_json="[]"
+    while IFS= read -r channel; do
+      [[ -z "${channel}" ]] && continue
+      local meta_tmp="${tmp_dir}/${slug}-${channel}-meta.json"
+      if ! nas_fs_download_file "${modules_root}/${slug}/versions/${channel}/meta.json" "${meta_tmp}"; then
+        continue
+      fi
+      local ch_entry
+      ch_entry="$(jq -c --arg slug "${slug}" --arg channel "${channel}" '
+        . as $meta
+        | ("modules/" + $slug + "/versions/" + $channel) as $base
+        | {
+            id: $channel,
+            kind: ($meta.docsKind // (if $channel == "main" then "branch" else "release" end)),
+            label: ($meta.docsLabel // $channel),
+            version: $meta.version,
+            builtAt: $meta.builtAt,
+            commit: $meta.commit,
+            ref: $meta.ref,
+            pipelineId: $meta.pipelineId,
+            formats: {
+              pdf: { ru: ($base + "/pdf/ru.pdf"), en: ($base + "/pdf/en.pdf") },
+              html: { ru: ($base + "/html/ru/"), en: ($base + "/html/en/") }
+            }
+          }
+      ' "${meta_tmp}")"
+      channels_json="$(jq -c --argjson ch "${ch_entry}" '. + [$ch]' <<<"${channels_json}")"
+    done < <(jq -r '.channels[]?.id // empty' "${versions_tmp}")
+
+    if [[ "$(jq 'length' <<<"${channels_json}")" -gt 0 ]]; then
+      jq -n \
+        --arg id "${slug}" \
+        --argjson channels "${channels_json}" \
+        --slurpfile idx "${versions_tmp}" \
+        '{
+          id: $id,
+          name: { ru: $id, en: $id },
+          planned: false,
+          defaultChannel: ($idx[0].defaultChannel // "main"),
+          channels: $channels
+        }'
+      return 0
+    fi
+  fi
+
+  if nas_fs_download_file "${modules_root}/${slug}/meta.json" "${legacy_meta}"; then
+    if jq -e '.id and .formats' "${legacy_meta}" >/dev/null 2>&1; then
+      jq -c '
+        . as $meta
+        | ("modules/" + $meta.id) as $base
+        | {
+            id: $meta.id,
+            name: ($meta.name // { ru: $meta.id, en: $meta.id }),
+            repo: $meta.repo,
+            docker: ($meta.docker // null),
+            planned: false,
+            defaultChannel: "main",
+            channels: [
+              {
+                id: "main",
+                kind: "branch",
+                label: "main",
+                version: $meta.version,
+                builtAt: $meta.builtAt,
+                commit: $meta.commit,
+                ref: $meta.ref,
+                pipelineId: $meta.pipelineId,
+                formats: {
+                  pdf: {
+                    ru: ($base + "/" + $meta.formats.pdf.ru),
+                    en: ($base + "/" + $meta.formats.pdf.en)
+                  },
+                  html: {
+                    ru: ($base + "/" + $meta.formats.html.ru),
+                    en: ($base + "/" + $meta.formats.html.en)
+                  }
+                }
+              }
+            ]
+          }
+      ' "${legacy_meta}"
+      return 0
+    fi
+  fi
+
+  return 1
+}
+
+# JSON array of sibling module manifest entries (schema v2). Skips current slug.
+nas_fs_collect_remote_modules_for_manifest() {
   local output_path="$1"
   local modules_root="${NAS_DOCS}/modules"
   local list_response collected=0
 
   list_response="$(nas_fs_list_folder "${modules_root}")"
   if ! nas_fs_json_success "${list_response}"; then
-    echo "deploy-synology: modules list unavailable (empty or first deploy): $(echo "${list_response}" | jq -c '.error // .' 2>/dev/null || echo "${list_response}")"
+    echo "deploy-synology: modules list unavailable (empty or first deploy)"
     echo "[]" >"${output_path}"
     return 0
   fi
@@ -214,12 +321,10 @@ nas_fs_collect_remote_module_metas() {
     if [[ "${slug}" == "${DOCS_MODULE_SLUG}" ]]; then
       continue
     fi
-    local meta_tmp="${tmp_dir}/${slug}.json"
-    if nas_fs_download_file "${modules_root}/${slug}/meta.json" "${meta_tmp}"; then
-      if jq -e '.id and .formats' "${meta_tmp}" >/dev/null 2>&1; then
-        entries+=("$(cat "${meta_tmp}")")
-        collected=$((collected + 1))
-      fi
+    local module_json
+    if module_json="$(_nas_fs_module_from_slug "${modules_root}" "${slug}" "${tmp_dir}")"; then
+      entries+=("${module_json}")
+      collected=$((collected + 1))
     fi
   done < <(echo "${list_response}" | jq -r '.data.files[]? | select(.isdir == true or .isdir == "dir") | .name')
 
@@ -230,7 +335,12 @@ nas_fs_collect_remote_module_metas() {
   else
     echo "[]" >"${output_path}"
   fi
-  echo "deploy-synology: collected ${collected} sibling module meta(s) from NAS"
+  echo "deploy-synology: collected ${collected} sibling module(s) with versioned docs from NAS"
+}
+
+# Backward-compatible alias (older deploy scripts).
+nas_fs_collect_remote_module_metas() {
+  nas_fs_collect_remote_modules_for_manifest "$@"
 }
 
 nas_fs_fetch_remote_manifest() {

@@ -5,6 +5,7 @@
     ru: {
       tagline: "Документация модулей проекта",
       uiLangLabel: "Язык интерфейса",
+      docsVersionLabel: "Версия документации",
       updated: "Обновлено",
       loading: "Загрузка каталога…",
       loadError: "Не удалось загрузить manifest.json",
@@ -18,10 +19,13 @@
       repoLink: "Репозиторий",
       dockerDev: "Docker dev",
       dockerRelease: "Docker release",
+      channelMain: "main (ветка)",
+      channelRelease: "релиз",
     },
     en: {
       tagline: "Project module documentation",
       uiLangLabel: "Interface language",
+      docsVersionLabel: "Documentation version",
       updated: "Updated",
       loading: "Loading catalog…",
       loadError: "Failed to load manifest.json",
@@ -35,6 +39,8 @@
       repoLink: "Repository",
       dockerDev: "Docker dev",
       dockerRelease: "Docker release",
+      channelMain: "main (branch)",
+      channelRelease: "release",
     },
   };
 
@@ -69,59 +75,92 @@
     return base ? base + "/" + path : path;
   }
 
-  /** Build a manifest module entry from modules/<id>/meta.json (stable layout). */
-  function entryFromModuleMeta(meta) {
-    const slug = meta.id;
+  function channelFromMeta(meta, channelId) {
+    const base = "modules/" + meta.id + "/versions/" + channelId;
     return {
-      id: meta.id,
-      name: meta.name,
-      description: meta.description || null,
+      id: channelId,
+      kind: meta.docsKind || (channelId === "main" ? "branch" : "release"),
+      label: meta.docsLabel || channelId,
       version: meta.version,
       builtAt: meta.builtAt,
       commit: meta.commit,
       ref: meta.ref,
-      pipelineId: meta.pipelineId,
-      repo: meta.repo,
-      docker: meta.docker || null,
-      planned: false,
-      basePath: "modules/" + slug,
       formats: {
         pdf: {
-          ru: "modules/" + slug + "/" + meta.formats.pdf.ru,
-          en: "modules/" + slug + "/" + meta.formats.pdf.en,
+          ru: base + "/pdf/ru.pdf",
+          en: base + "/pdf/en.pdf",
         },
         html: {
-          ru: "modules/" + slug + "/" + meta.formats.html.ru,
-          en: "modules/" + slug + "/" + meta.formats.html.en,
+          ru: base + "/html/ru/",
+          en: base + "/html/en/",
         },
       },
     };
   }
 
-  /**
-   * Merge manifest.json with per-module meta.json on disk.
-   * Survives parallel CI deploys that overwrite manifest with a single module.
-   */
+  function legacyChannelFromModule(man) {
+    const base = man.basePath || "modules/" + man.id;
+    return {
+      id: "main",
+      kind: "branch",
+      label: "main",
+      version: man.version,
+      builtAt: man.builtAt,
+      formats: man.formats || {},
+    };
+  }
+
+  function normalizeModule(man) {
+    if (!man) return null;
+    if (Array.isArray(man.channels) && man.channels.length > 0) {
+      return {
+        id: man.id,
+        name: man.name,
+        repo: man.repo,
+        docker: man.docker,
+        defaultChannel: man.defaultChannel || man.channels[0].id,
+        channels: man.channels,
+      };
+    }
+    return {
+      id: man.id,
+      name: man.name,
+      repo: man.repo,
+      docker: man.docker,
+      defaultChannel: "main",
+      channels: [legacyChannelFromModule(man)],
+    };
+  }
+
+  function channelLabel(ch) {
+    if (ch.kind === "branch" || ch.id === "main") {
+      return ch.label || t("channelMain");
+    }
+    return (ch.label || ch.id) + " (" + t("channelRelease") + ")";
+  }
+
   function mergeManifestWithDeployed(registry, manifest, deployedById) {
     const byId = new Map();
-
     deployedById.forEach((entry, id) => {
-      byId.set(id, entry);
+      byId.set(id, normalizeModule(entry));
     });
-
     (manifest.modules || []).forEach((m) => {
-      if (byId.has(m.id)) {
-        byId.set(m.id, Object.assign({}, byId.get(m.id), m));
+      const norm = normalizeModule(m);
+      if (!norm) return;
+      if (byId.has(norm.id)) {
+        const disk = byId.get(norm.id);
+        const chMap = new Map();
+        (disk.channels || []).forEach((c) => chMap.set(c.id, c));
+        (norm.channels || []).forEach((c) => chMap.set(c.id, Object.assign({}, chMap.get(c.id), c)));
+        norm.channels = [...chMap.values()].sort((a, b) => a.id.localeCompare(b.id));
+        byId.set(norm.id, Object.assign({}, disk, norm, { channels: norm.channels }));
       } else {
-        byId.set(m.id, m);
+        byId.set(norm.id, norm);
       }
     });
-
     const order = (registry.modules || []).map((m) => m.id);
     const extra = [...byId.keys()].filter((id) => !order.includes(id));
-    const ids = [...order, ...extra];
-
-    const modules = ids.map((id) => byId.get(id)).filter(Boolean);
+    const modules = [...order, ...extra].map((id) => byId.get(id)).filter(Boolean);
     return Object.assign({}, manifest, { modules: modules });
   }
 
@@ -135,8 +174,10 @@
     return String(version).startsWith("v") ? version : "v" + version;
   }
 
-  /** Per-OS dev/release entries: {registry}/{group}/{repo}/{os}/{flavor}:{tag} */
-  function resolveDockerImageLinks(reg, man, registry) {
+  function resolveDockerImageLinks(reg, man, registry, channelId) {
+    const channel = (man && man.channels || []).find((c) => c.id === channelId);
+    const releaseTag = channel && channel.id !== "main" ? channel.id : null;
+
     if (man && man.docker && Array.isArray(man.docker.images) && man.docker.images.length) {
       return man.docker.images.flatMap(function (img) {
         return [
@@ -160,7 +201,7 @@
     const group = d.group || "circuitgen";
     const osList = d.osList || DEFAULT_DOCKER_OS_LIST;
     const devTag = d.devTag || "main";
-    const releaseTag = normalizeReleaseTag(man && man.version, d.releaseTag);
+    const relTag = normalizeReleaseTag(channel && channel.version, releaseTag || d.releaseTag);
     const harborBase = (d.harborWebBase || "").replace(/\/$/, "");
 
     return osList.flatMap(function (os) {
@@ -171,12 +212,12 @@
           : null;
         return { os: os, flavor: flavor, pull: pull, harborUrl: harborUrl };
       }
-      return [entry("dev", devTag), entry("release", releaseTag)];
+      return [entry("dev", devTag), entry("release", relTag)];
     });
   }
 
-  function appendDockerLinks(links, reg, man, registry) {
-    resolveDockerImageLinks(reg, man, registry).forEach(function (entry) {
+  function appendDockerLinks(links, reg, man, registry, channelId) {
+    resolveDockerImageLinks(reg, man, registry, channelId).forEach(function (entry) {
       const a = document.createElement("a");
       a.className = "docker";
       const flavorLabel = entry.flavor === "dev" ? t("dockerDev") : t("dockerRelease");
@@ -191,66 +232,8 @@
     });
   }
 
-  function mergeCatalog(registry, manifest) {
-    const deployed = new Map((manifest.modules || []).map((m) => [m.id, m]));
-    const order = (registry.modules || []).map((m) => m.id);
-    const extra = (manifest.modules || [])
-      .filter((m) => !order.includes(m.id))
-      .map((m) => m.id);
-    const ids = [...order, ...extra];
-
-    return ids.map((id) => {
-      const reg = (registry.modules || []).find((m) => m.id === id) || { id };
-      const man = deployed.get(id);
-      const planned = reg.planned === true && !man;
-      return { reg, man, planned };
-    });
-  }
-
-  function formatCard(item) {
-    const { reg, man, planned } = item;
-    const name =
-      (reg.name && (reg.name[uiLang] || reg.name.en || reg.name.ru)) ||
-      (man && man.name && (man.name[uiLang] || man.name.en)) ||
-      reg.id;
-    const desc =
-      (reg.description &&
-        (reg.description[uiLang] || reg.description.en || reg.description.ru)) ||
-      "";
-
-    const card = document.createElement("article");
-    card.className = "module-card" + (planned ? " planned" : "");
-    card.innerHTML = "<h2></h2><p class=\"desc\"></p><div class=\"meta\"></div><div class=\"links\"></div>";
-    card.querySelector("h2").textContent = name;
-    card.querySelector(".desc").textContent = desc;
-
-    const links = card.querySelector(".links");
-
-    if (planned || !man) {
-      const badge = document.createElement("span");
-      badge.className = "badge planned";
-      badge.textContent = t("planned");
-      links.appendChild(badge);
-      const repoUrl = reg.repo;
-      if (repoUrl) {
-        const repo = document.createElement("a");
-        repo.href = repoUrl;
-        repo.target = "_blank";
-        repo.rel = "noopener";
-        repo.textContent = t("repoLink");
-        links.appendChild(repo);
-      }
-      if (catalogRegistry) appendDockerLinks(links, reg, man, catalogRegistry);
-      return card;
-    }
-
-    const meta = card.querySelector(".meta");
-    const parts = [];
-    if (man.version) parts.push(t("version") + ": " + man.version);
-    if (man.builtAt) parts.push(t("built") + ": " + man.builtAt);
-    meta.textContent = parts.join(" · ");
-
-    const fmt = man.formats || {};
+  function appendDocLinks(links, channel) {
+    const fmt = channel.formats || {};
     const pairs = [
       ["pdfRu", fmt.pdf && fmt.pdf.ru],
       ["pdfEn", fmt.pdf && fmt.pdf.en],
@@ -266,6 +249,88 @@
       if (labelKey.startsWith("html")) a.target = "_blank";
       links.appendChild(a);
     });
+  }
+
+  function mergeCatalog(registry, manifest) {
+    const deployed = new Map((manifest.modules || []).map((m) => [m.id, normalizeModule(m)]));
+    const order = (registry.modules || []).map((m) => m.id);
+    const extra = (manifest.modules || [])
+      .filter((m) => !order.includes(m.id))
+      .map((m) => m.id);
+    const ids = [...order, ...extra];
+
+    return ids.map((id) => {
+      const reg = (registry.modules || []).find((m) => m.id === id) || { id };
+      const man = deployed.get(id);
+      const planned = reg.planned === true && !man;
+      return { reg, man, planned };
+    });
+  }
+
+  function renderCardContent(card, item, selectedChannelId) {
+    const { reg, man, planned } = item;
+    const links = card.querySelector(".links");
+    const meta = card.querySelector(".meta");
+    const versionRow = card.querySelector(".version-row");
+    links.innerHTML = "";
+    versionRow.innerHTML = "";
+
+    if (planned || !man || !man.channels || man.channels.length === 0) {
+      versionRow.hidden = true;
+      const badge = document.createElement("span");
+      badge.className = "badge planned";
+      badge.textContent = t("planned");
+      links.appendChild(badge);
+      if (reg.repo) {
+        const repo = document.createElement("a");
+        repo.href = reg.repo;
+        repo.target = "_blank";
+        repo.rel = "noopener";
+        repo.textContent = t("repoLink");
+        links.appendChild(repo);
+      }
+      if (catalogRegistry) appendDockerLinks(links, reg, man, catalogRegistry, "main");
+      return;
+    }
+
+    let channelId = selectedChannelId || man.defaultChannel || man.channels[0].id;
+    let channel = man.channels.find((c) => c.id === channelId);
+    if (!channel) {
+      channelId = man.channels[0].id;
+      channel = man.channels[0];
+    }
+
+    if (man.channels.length > 1) {
+      versionRow.hidden = false;
+      const label = document.createElement("label");
+      label.setAttribute("for", "doc-ver-" + man.id);
+      label.textContent = t("docsVersionLabel") + ": ";
+      const select = document.createElement("select");
+      select.id = "doc-ver-" + man.id;
+      select.className = "doc-version-select";
+      man.channels.forEach((ch) => {
+        const opt = document.createElement("option");
+        opt.value = ch.id;
+        opt.textContent = channelLabel(ch);
+        if (ch.id === channelId) opt.selected = true;
+        select.appendChild(opt);
+      });
+      select.addEventListener("change", () => {
+        card.dataset.selectedChannel = select.value;
+        renderCardContent(card, item, select.value);
+      });
+      versionRow.appendChild(label);
+      versionRow.appendChild(select);
+    } else {
+      versionRow.hidden = true;
+    }
+
+    const parts = [];
+    if (channel.version) parts.push(t("version") + ": " + channel.version);
+    if (channel.builtAt) parts.push(t("built") + ": " + channel.builtAt);
+    meta.textContent = parts.join(" · ");
+
+    appendDocLinks(links, channel);
 
     const repoUrl = reg.repo || man.repo;
     if (repoUrl) {
@@ -277,8 +342,32 @@
       links.appendChild(repo);
     }
 
-    if (catalogRegistry) appendDockerLinks(links, reg, man, catalogRegistry);
+    if (catalogRegistry) appendDockerLinks(links, reg, man, catalogRegistry, channelId);
+  }
 
+  function formatCard(item) {
+    const { reg, man, planned } = item;
+    const name =
+      (reg.name && (reg.name[uiLang] || reg.name.en || reg.name.ru)) ||
+      (man && man.name && (man.name[uiLang] || man.name.en)) ||
+      reg.id;
+    const desc =
+      (reg.description &&
+        (reg.description[uiLang] || reg.description.en || reg.description.ru)) ||
+      "";
+
+    const card = document.createElement("article");
+    card.className = "module-card" + (planned ? " planned" : "");
+    card.innerHTML =
+      '<h2></h2><p class="desc"></p><div class="version-row" hidden></div><div class="meta"></div><div class="links"></div>';
+    card.querySelector("h2").textContent = name;
+    card.querySelector(".desc").textContent = desc;
+
+    if (man && man.defaultChannel) {
+      card.dataset.selectedChannel = man.defaultChannel;
+    }
+
+    renderCardContent(card, item, card.dataset.selectedChannel);
     return card;
   }
 
@@ -288,20 +377,80 @@
     return res.json();
   }
 
+  async function discoverModule(reg) {
+    const id = reg.id;
+
+    try {
+      const vindex = await loadJson("modules/" + id + "/versions.json");
+      const channels = [];
+      let firstMeta = null;
+      for (const ch of vindex.channels || []) {
+        try {
+          const meta = await loadJson("modules/" + id + "/versions/" + ch.id + "/meta.json");
+          if (!firstMeta) firstMeta = meta;
+          channels.push(channelFromMeta(meta, ch.id));
+        } catch (_err) {
+          /* channel tree missing on disk */
+        }
+      }
+      if (channels.length > 0) {
+        return {
+          id: id,
+          name: (firstMeta && firstMeta.name) || reg.name,
+          repo: (firstMeta && firstMeta.repo) || reg.repo,
+          docker: firstMeta && firstMeta.docker,
+          defaultChannel: vindex.defaultChannel || "main",
+          channels: channels,
+        };
+      }
+    } catch (_err) {
+      /* no versions.json */
+    }
+
+    try {
+      const meta = await loadJson("modules/" + id + "/meta.json");
+      if (meta.docsChannel) {
+        return {
+          id: id,
+          name: meta.name || reg.name,
+          repo: meta.repo || reg.repo,
+          docker: meta.docker,
+          defaultChannel: meta.docsChannel,
+          channels: [channelFromMeta(meta, meta.docsChannel)],
+        };
+      }
+      return normalizeModule({
+        id: meta.id,
+        name: meta.name,
+        repo: meta.repo,
+        docker: meta.docker,
+        version: meta.version,
+        builtAt: meta.builtAt,
+        basePath: "modules/" + id,
+        formats: {
+          pdf: {
+            ru: "modules/" + id + "/" + meta.formats.pdf.ru,
+            en: "modules/" + id + "/" + meta.formats.pdf.en,
+          },
+          html: {
+            ru: "modules/" + id + "/" + meta.formats.html.ru,
+            en: "modules/" + id + "/" + meta.formats.html.en,
+          },
+        },
+      });
+    } catch (_err) {
+      return null;
+    }
+  }
+
   async function discoverDeployedModules(registry) {
     const byId = new Map();
-    const checks = (registry.modules || []).map(async (reg) => {
-      const url = "modules/" + reg.id + "/meta.json";
-      try {
-        const meta = await loadJson(url);
-        if (meta && meta.id && meta.formats) {
-          byId.set(meta.id, entryFromModuleMeta(meta));
-        }
-      } catch (_err) {
-        /* module not deployed yet */
-      }
-    });
-    await Promise.all(checks);
+    await Promise.all(
+      (registry.modules || []).map(async (reg) => {
+        const mod = await discoverModule(reg);
+        if (mod) byId.set(reg.id, mod);
+      })
+    );
     return byId;
   }
 
@@ -323,11 +472,7 @@
       ]);
       catalogRegistry = registry;
       const deployedById = await discoverDeployedModules(registry);
-      const effectiveManifest = mergeManifestWithDeployed(
-        registry,
-        manifest,
-        deployedById
-      );
+      const effectiveManifest = mergeManifestWithDeployed(registry, manifest, deployedById);
 
       manifestBase = effectiveManifest.baseUrl || manifest.baseUrl || "";
       if (effectiveManifest.updatedAt) {

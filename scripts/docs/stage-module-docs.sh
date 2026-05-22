@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Stage built documentation for Synology deploy (modules/<slug>/ layout).
+# Stage built documentation for Synology deploy (modules/<slug>/versions/<channel>/ layout).
 # Requires resolve_nas_docs_names() and DOCS_BASE paths to exist.
 
 set -euo pipefail
@@ -8,7 +8,7 @@ stage_module_docs() {
   local staging_dir="${1:?staging directory required}"
   local docs_base="${2:?docs base directory required}"
 
-  local module_root="${staging_dir}/modules/${DOCS_MODULE_SLUG}"
+  local module_root="${staging_dir}/modules/${DOCS_MODULE_SLUG}/versions/${DOCS_VERSION_CHANNEL}"
   local ru_pdf_src="${docs_base}/pdf/ru/${DOCS_PDF_BASE_NAME}.pdf"
   local en_pdf_src="${docs_base}/pdf/en/${DOCS_PDF_BASE_NAME}.pdf"
   local ru_html_src="${docs_base}/html/ru"
@@ -30,6 +30,7 @@ stage_module_docs() {
   cp "${en_pdf_src}" "${module_root}/pdf/en.pdf"
 
   local built_at registry_host group_name image_repo dev_tag release_tag harbor_base os_list_json
+  local docs_kind docs_label
   built_at="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
   registry_host="${REGISTRY_URL:-vvzunin.me:5201}"
   group_name="${GROUP_NAME:-circuitgen}"
@@ -37,8 +38,12 @@ stage_module_docs() {
   dev_tag="${DOCKER_DEV_TAG:-main}"
   if [[ -n "${CI_COMMIT_TAG:-}" ]]; then
     release_tag="${CI_COMMIT_TAG}"
+    docs_kind="release"
+    docs_label="${CI_COMMIT_TAG}"
   else
     release_tag="v${PROJECT_VERSION#v}"
+    docs_kind="branch"
+    docs_label="main"
   fi
   if [[ -n "${DOCKER_RELEASE_TAG:-}" ]]; then
     release_tag="${DOCKER_RELEASE_TAG}"
@@ -56,6 +61,9 @@ stage_module_docs() {
     --arg ref "${CI_COMMIT_REF_NAME:-}" \
     --arg pipeline "${CI_PIPELINE_ID:-}" \
     --arg repo "${DOCS_MODULE_REPO:-}" \
+    --arg docsChannel "${DOCS_VERSION_CHANNEL}" \
+    --arg docsKind "${docs_kind}" \
+    --arg docsLabel "${docs_label}" \
     --arg registryHost "${registry_host}" \
     --arg group "${group_name}" \
     --arg imageRepo "${image_repo}" \
@@ -77,6 +85,9 @@ stage_module_docs() {
         ref: (if $ref == "" then null else $ref end),
         pipelineId: (if $pipeline == "" then null else $pipeline end),
         repo: (if $repo == "" then null else $repo end),
+        docsChannel: $docsChannel,
+        docsKind: $docsKind,
+        docsLabel: $docsLabel,
         docker: {
           registryHost: $registryHost,
           group: $group,
@@ -106,7 +117,7 @@ stage_module_docs() {
       }
     ' >"${module_root}/meta.json"
 
-  echo "stage-module-docs: staged modules/${DOCS_MODULE_SLUG}/"
+  echo "stage-module-docs: staged modules/${DOCS_MODULE_SLUG}/versions/${DOCS_VERSION_CHANNEL}/"
 }
 
 stage_portal_assets() {
