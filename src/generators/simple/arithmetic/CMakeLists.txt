@@ -8,6 +8,17 @@ add_library(arithmeticGenerator STATIC
   SimpleSubstractor.cpp
 )
 
+target_sources(arithmeticGenerator PRIVATE
+     IncrementDecrement.cpp
+    NonRestoringDivision.cpp
+    SimpleAdder.cpp 
+    SimpleMultiplier.cpp  
+    SimpleSubstractor.cpp
+    WallaceTree.cpp
+    ArithmeticUtils.cpp
+    GeneratorUtils.cpp
+    # добавьте все остальные файлы через пробел или с новой строки
+)
 target_include_directories(arithmeticGenerator PUBLIC
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>
 )

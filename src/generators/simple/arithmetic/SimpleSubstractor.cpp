@@ -1,6 +1,69 @@
 #include "ArithmeticGenerator.hpp"
 
 namespace CG_Gen {
+GraphPtr ArithmeticGenerator::generatorBusSubtractor(
+    uint32_t i_bits,
+    bool i_overflowIn,
+    bool i_overflowOut,
+    bool i_sub,
+    std::string_view i_name) {
+  std::vector<VertexPtr> inputs;
+  std::string busX = "busX_";
+  std::string busY = "busY_";
+
+  GraphPtr busConnectGraph = std::make_shared<OrientedGraph>();
+  busConnectGraph->setName(busConnectGraph->getName()+ "_CRA_SUBSTRACTION");
+  VertexPtr x = busConnectGraph->addInputBus("busX", i_bits);
+  VertexPtr y = busConnectGraph->addInputBus("busY", i_bits);
+  VertexPtr d = busConnectGraph->addOutputBus("diff", i_bits);
+
+  inputs.push_back(busConnectGraph->addSliceBus(x, 0, 1, busX + '0'));
+  inputs.push_back(busConnectGraph->addSliceBus(y, 0, 1, busY + '0'));
+
+  if (i_overflowIn) {
+    inputs.push_back(busConnectGraph->addInput("overflowIn"));
+  }
+
+  for (size_t i = 1; i < i_bits; ++i) {
+    inputs.push_back(busConnectGraph->addSliceBus(x, i, 1, busX + std::to_string(i)));
+    inputs.push_back(busConnectGraph->addSliceBus(y, i, 1, busY + std::to_string(i)));
+  }
+
+  GraphPtr subtractorGraph = generatorSubtractor(
+      i_bits,
+      i_overflowIn,
+      i_overflowOut,
+      i_sub
+  );
+
+  std::vector<VertexPtr> outputs = busConnectGraph->addSubGraph(
+      subtractorGraph,
+      inputs
+  );
+
+  VertexPtr concatenationDiff = busConnectGraph->addGateBus(GateConcatenation);
+
+  auto diffEnd = outputs.end();
+  if (i_overflowOut) {
+    --diffEnd;
+  }
+
+  busConnectGraph->addEdges(
+      {outputs.begin(), diffEnd},
+      concatenationDiff
+  );
+
+  busConnectGraph->addEdge(concatenationDiff, d);
+
+  if (i_overflowOut) {
+    busConnectGraph->addEdge(
+        outputs.back(),
+        busConnectGraph->addOutput("overflowOut")
+    );
+  }
+
+  return busConnectGraph;
+}  
 
 GraphPtr ArithmeticGenerator::generatorSubtractor(uint32_t i_bits,
                                                   bool i_overflowIn,

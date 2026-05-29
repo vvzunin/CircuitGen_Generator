@@ -1,9 +1,13 @@
 #include "ArithmeticGenerator.hpp"
 #include "ArithmeticUtils.hpp"
+
 #include "generators/simple/common/GeneratorUtils.hpp"
+
 #include <CircuitGenGraph/GraphUtils.hpp>
 #include <CircuitGenGraph/GraphVertexBase.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
+
+#include <cstddef>
 #include <cstdint>
 #include <memory>
 
@@ -136,6 +140,211 @@ Sd2 synthSum(GraphPtr graph, CG_Graph::GraphVertexBase *horizontal,
   resp.sign = graph->addGate(GateAnd);
   graph->addEdges({carry, inv}, resp.sign);
   return resp;
+}
+
+
+GraphPtr ArithmeticGenerator::generateNonRestoringDiv(
+    size_t sizeA, size_t sizeB, size_t sizeY, bool useSign) const {
+  GraphPtr graph = std::make_shared<OrientedGraph>();
+
+  auto inputsForA = graph->addInputs(sizeA);
+  auto inputsForB = graph->addInputs(sizeB);
+
+  VertexPtr inverseSign;
+  if (useSign) {
+    inverseSign = graph->addGate(GateXor);
+    graph->addEdges({inputsForA.back(), inputsForB.back()}, inverseSign);
+    auto negA = twosComplement(graph, inputsForA, inputsForA.size(), true);
+    inputsForA =
+        MuxGenerator::addMux2(graph, inputsForA.back(), inputsForA, negA);
+  }
+  auto *zero = graph->addConst('0');
+  if (inputsForB.size() == 1) {
+    inputsForA.resize(sizeY, zero);
+    graph->addOutputs(inputsForA);
+    return graph;
+  }
+
+  std::vector<VertexPtr> outputs;
+  outputs.reserve(sizeY);
+
+  if (useSign) {
+    std::vector<VertexPtr> negB =
+        twosComplement(graph, inputsForB, inputsForB.size(), true);
+    inputsForB =
+        MuxGenerator::addMux2(graph, inputsForB.back(), inputsForB, negB);
+  }
+  if (inputsForA.size() > inputsForB.size()) {
+    inputsForB.resize(inputsForA.size(), useSign ? inputsForB.back() : zero);
+  } else {
+    inputsForA.resize(inputsForB.size(), useSign ? inputsForA.back() : zero);
+  }
+
+  int width = static_cast<int>(inputsForA.size());
+  int size = width;
+  std::vector<VertexPtr> dividendTree;
+  if (size > 1) {
+    dividendTree =
+        synthLadnerFisherPrefixDecisionTree(graph, inputsForA, size - 1);
+  }
+
+  // prepare data structures
+  std::vector<AbscData> abscVec;
+  abscVec.reserve((width << 1) + 1);
+
+  CG_Graph::GraphVertexBase *signPrev = zero, *q_neg;
+  Sd2 value = {zero, inputsForA.back()};
+  AbscData absc = {value, zero, zero};
+  abscVec.push_back(absc);
+
+  // fill with zeros; they would be skipped,
+  // but are used for correct vector indexing
+  value.digit = zero;
+  absc.value = value;
+  abscVec.resize(width + 1, absc);
+  outputs.resize(std::min<int>(width, sizeY));
+
+  for (int i = width - 1; i >= 0; --i) {
+    HcData hcData, prevHcData;
+    abscVec[width].clearSN(zero);
+    for (int j = width; j >= 0; --j) {
+      Sd2 sumData;
+      prevHcData = hcData;
+
+      if (j > 0) {
+        auto *next = j <= size ? inputsForB[j - 1] : zero;
+        hcData = synthHc(graph, next, abscVec[j - 1].value, zero);
+      }
+
+      if (j == 0) {
+        sumData.digit = prevHcData.horizontal;
+        sumData.sign = zero;
+      } else if (j == width) {
+        sumData = synthSum(graph, abscVec[j].value.digit, hcData.carry, zero);
+      } else {
+        sumData = synthSum(graph, prevHcData.horizontal, hcData.carry, zero);
+      }
+      abscVec[j].value = sumData;
+      abscVec[j] = synthAbsc(graph, abscVec[j], zero);
+
+      if (j > 0) {
+        abscVec[j - 1].copySN(abscVec[j]);
+      }
+    }
+
+    CG_Graph::GraphVertexBase *n, *s;
+    if (i > 0) {
+      n = graph->addGate(GateOr);
+      graph->addEdges({dividendTree[i - 1], abscVec[0].notNull}, n);
+      if (i == size - 1) {
+        s = abscVec[0].sign;
+      } else {
+        auto *inv = graph->addGate(GateNot);
+        graph->addEdge(abscVec[0].notNull, inv);
+
+        s = graph->addGate(GateAnd);
+        graph->addEdges({dividendTree[i - 1], inv, signPrev}, s);
+
+        auto *tmp = graph->addGate(GateOr);
+        graph->addEdges({s, abscVec[0].sign}, tmp);
+        s = tmp;
+      }
+      if (signPrev != zero) {
+        auto *tmp = graph->addGate(GateXor);
+        graph->addEdges({signPrev, s}, tmp);
+        signPrev = tmp;
+      } else {
+        signPrev = s;
+      }
+
+      absc.clearSN(zero);
+      auto *nextN = inputsForA[i - 1];
+
+      absc.value = {graph->addGate(GateAnd), nextN};
+      graph->addEdges({nextN, signPrev}, absc.value.sign);
+
+      abscVec.insert(abscVec.begin(), absc);
+    } else {
+      n = abscVec[0].notNull;
+      s = abscVec[0].sign;
+    }
+
+    if (i == size - 1) {
+      q_neg = s;
+    } else {
+      auto *tmp = graph->addGate(GateXor);
+      graph->addEdges({s, q_neg}, tmp);
+      q_neg = tmp;
+    }
+    auto *tmp = graph->addGate(GateAnd);
+    graph->addEdges({n, q_neg}, tmp);
+    q_neg = tmp;
+    if (i < sizeY) {
+      outputs[i] = graph->addGate(GateNot);
+      graph->addEdge(q_neg, outputs[i]);
+    }
+
+    ++width;
+  }
+
+  if (useSign) {
+    std::vector<VertexPtr> negOut =
+        twosComplement(graph, outputs, outputs.size(), true);
+    outputs = MuxGenerator::addMux2(graph, inverseSign, outputs, negOut);
+  }
+  outputs.resize(sizeY, useSign ? outputs.back() : zero);
+
+  graph->addOutputs(outputs);
+  return graph;
+}
+GraphPtr ArithmeticGenerator::generatorBusNonRestoringDiv(
+    size_t sizeA,
+    size_t sizeB,
+    size_t sizeY,
+    bool useSign,
+  std::string_view i_name) const {
+  std::vector<VertexPtr> inputs;
+  inputs.reserve(sizeA + sizeB);
+    std::string busX = "busX_";
+  std::string busY = "busY_";
+  GraphPtr busConnectGraph = std::make_shared<OrientedGraph>();
+  busConnectGraph->setName(busConnectGraph->getName() +"_NON_RESTORING_DIV");
+  VertexPtr a = busConnectGraph->addInputBus("busX", sizeA);
+  VertexPtr b = busConnectGraph->addInputBus("busY", sizeB);
+  VertexPtr y = busConnectGraph->addOutputBus("quotient", sizeY);
+
+  for (size_t i = 0; i < sizeA; ++i) {
+    inputs.push_back(busConnectGraph->addSliceBus(a, i, 1, busX + std::to_string(i)));
+  }
+
+  for (size_t i = 0; i < sizeB; ++i) {
+    inputs.push_back(busConnectGraph->addSliceBus(b, i, 1, busY + std::to_string(i)));
+  }
+
+  GraphPtr divGraph = generateNonRestoringDiv(
+      sizeA,
+      sizeB,
+      sizeY,
+      useSign
+  );
+
+  std::vector<VertexPtr> outputs = busConnectGraph->addSubGraph(
+      divGraph,
+      inputs
+  );
+
+  VertexPtr concatenationQuotient = busConnectGraph->addGateBus(
+      GateConcatenation
+  );
+
+  busConnectGraph->addEdges(
+      {outputs.begin(), outputs.end()},
+      concatenationQuotient
+  );
+
+  busConnectGraph->addEdge(concatenationQuotient, y);
+
+  return busConnectGraph;
 }
 
 GraphPtr ArithmeticGenerator::generateNonRestoringDiv(

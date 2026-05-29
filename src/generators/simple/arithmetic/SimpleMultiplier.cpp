@@ -1,6 +1,37 @@
 #include "ArithmeticGenerator.hpp"
 
 namespace CG_Gen {
+  GraphPtr ArithmeticGenerator::generatorBusMultiplier(uint32_t i_bits, std::string_view i_name) {
+  std::vector<VertexPtr> inputs;
+  std::string busX = "busX_";
+  std::string busY = "busY_";
+  GraphPtr busConnectGraph = std::make_shared<OrientedGraph>();
+  busConnectGraph->setName(busConnectGraph->getName()+"_MATRIX_MULTIPLICATION");
+  VertexPtr x = busConnectGraph->addInputBus("busX", i_bits);
+  VertexPtr y = busConnectGraph->addInputBus("busY", i_bits);
+
+  VertexPtr product = busConnectGraph->addOutputBus("mul", i_bits * 2);
+
+  for (size_t i = 0; i < i_bits; ++i) {
+    inputs.push_back(busConnectGraph->addSliceBus(y, i, 1, busY + std::to_string(i)));
+    inputs.push_back(busConnectGraph->addSliceBus(x, i, 1, busX + std::to_string(i)));
+  }
+
+  GraphPtr multiplierGraph = generatorMultiplier(i_bits);
+  std::vector<VertexPtr> outputs = busConnectGraph->addSubGraph(
+      multiplierGraph,
+      inputs
+  );
+
+  VertexPtr concatenationProduct = busConnectGraph->addGateBus(GateConcatenation);
+  busConnectGraph->addEdges(
+      {outputs.begin(), outputs.end()},
+      concatenationProduct
+  );
+  busConnectGraph->addEdge(concatenationProduct, product);
+
+  return busConnectGraph;
+}
 
 GraphPtr ArithmeticGenerator::generatorMultiplier(uint32_t i_bits) {
   GraphPtr graph(new OrientedGraph);
