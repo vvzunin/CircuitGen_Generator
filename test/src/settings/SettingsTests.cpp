@@ -1,8 +1,7 @@
-#include "settings/Settings.hpp"
-
-#include "easylogging++Init.hpp"
 #include <gtest/gtest.h>
 
+#include "easylogging++Init.hpp"
+#include "settings/Settings.hpp"
 #include <filesystem>
 #include <fstream>
 #include <string>

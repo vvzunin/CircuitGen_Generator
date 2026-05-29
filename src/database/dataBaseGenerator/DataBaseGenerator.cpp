@@ -1,34 +1,32 @@
+#include "DataBaseGenerator.hpp"
+
+#include "generators/simple/arithmetic/ArithmeticUtils.hpp"
+#include "settings/Settings.hpp"
+#include <CircuitGenGenerator/ThreadPool.hpp>
+#include <additional/auxiliaryMethods/AuxiliaryMethods.hpp>
+#include <additional/filesTools/FilesTools.hpp>
+#include <baseStructures/parser/Parser.hpp>
+#include <baseStructures/truthTable/TruthTable.hpp>
+#include <circuit/Circuit.hpp>
+#include <circuit/parameters/CircuitParameters.hpp>
+#include <generators/basisConverter/BasisConverter.hpp>
+#include <generators/genetic/GeneticGenerator.hpp>
+#include <generators/genetic/parameters/GeneticParameters.hpp>
+#include <generators/simple/alu/ALUGenerator.hpp>
+#include <generators/simple/arithmetic/ArithmeticGenerator.hpp>
+#include <generators/simple/cascade/CascadeGenerator.hpp>
+#include <generators/simple/coder/CoderGenerator.hpp>
+#include <generators/simple/comparison/ComparisonGenerator.hpp>
+#include <generators/simple/dot/DotGenerator.hpp>
+#include <generators/simple/fromTruthTable/FromTruthTableGenerator.hpp>
+#include <generators/simple/numOperations/NumOperationsGenerator.hpp>
+#include <generators/simple/parity/ParityGenerator.hpp>
+#include <generators/simple/plexer/PlexerGenerator.hpp>
+#include <generators/simple/randLevel/RandLevelGenerator.hpp>
+#include <generators/simple/stateMachine/MealyMooreGenerator.hpp>
 #include <iostream>
 #include <limits>
 #include <vector>
-
-#include "DataBaseGenerator.hpp"
-#include "generators/simple/arithmetic/ArithmeticUtils.hpp"
-#include "settings/Settings.hpp"
-
-#include <CircuitGenGenerator/ThreadPool.hpp>
-
-#include <additional/AuxiliaryMethods.hpp>
-#include <additional/filesTools/FilesTools.hpp>
-#include <baseStructures/Parser.hpp>
-#include <baseStructures/truthTable/TruthTable.hpp>
-#include <circuit/Circuit.hpp>
-#include <circuit/CircuitParameters.hpp>
-#include <generators/BasisConverter.hpp>
-#include <generators/Genetic/GenGenerator.hpp>
-#include <generators/Genetic/GeneticParameters.hpp>
-#include <generators/simple/ALUGenerator.hpp>
-#include <generators/simple/ArithmeticGenerator.hpp>
-#include <generators/simple/CascadeGenerator.hpp>
-#include <generators/simple/CoderGenerator.hpp>
-#include <generators/simple/ComparisonGenerator.hpp>
-#include <generators/simple/DotToGraphGenerator.hpp>
-#include <generators/simple/FromTruthTableGenerator.hpp>
-#include <generators/simple/MealyMooreGenerator.hpp>
-#include <generators/simple/NumOperationsGenerator.hpp>
-#include <generators/simple/ParityGenerator.hpp>
-#include <generators/simple/PlexerGenerator.hpp>
-#include <generators/simple/RandLevelGenerator.hpp>
 
 using namespace std::chrono;
 using namespace Threading;
@@ -560,23 +558,6 @@ void DataBaseGenerator::generateDataBaseArithmetic(
   c.setCircuitName(i_param.getName());
   c.setArithmeticType(type);
   c.generate(circuitArgsFromGenerationParameters(i_param));
-
-  addDataToReturn(graph);
-}
-
-void DataBaseGenerator::generateDataBaseArithmetic(
-    const GenerationParameters &i_param) {
-  ArithmeticGenerator ccd(i_param);
-  GraphPtr graph = ccd.generateAdvancedArithmetic();
-  auto type = i_param.getArithmetic().getType();
-
-  Circuit c(graph);
-  c.setPath(d_mainPath);
-  c.setCircuitName(i_param.getName());
-  c.setArithmeticType(type);
-  c.generate({i_param.getMakeGraphMLClassic(),
-              i_param.getMakeGraphMLPseudoABCD(),
-              i_param.getMakeGraphMLOpenABCD(), i_param.getMakeDOT()});
 
   addDataToReturn(graph);
 }

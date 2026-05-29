@@ -1,4 +1,4 @@
-#include "../ArithmeticGenerator.hpp"
+#include "ArithmeticGenerator.hpp"
 #include "generators/simple/arithmetic/ArithmeticUtils.hpp"
 #include <vector>
 

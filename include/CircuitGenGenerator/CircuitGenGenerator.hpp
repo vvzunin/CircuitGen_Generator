@@ -1,10 +1,10 @@
+#pragma once
 /**
  * @file CircuitGenGenerator.hpp
  * @author Vladimir Zunin <vzunin@hse.ru>
  * @author Fuuulkrum7 <ilka747428@gmail.com>
  * @author Zunin Vladimir <vzunin@hse.ru>
  */
-#pragma once
 
 #include <CircuitGenGenerator/export.hpp>
 #include <CircuitGenGenerator/info.hpp>

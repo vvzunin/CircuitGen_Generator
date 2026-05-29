@@ -1,4 +1,12 @@
-add_library(arithmeticGenerator STATIC ArithmeticGenerator.cpp)
+add_library(arithmeticGenerator STATIC
+  ArithmeticGenerator.cpp
+  ArithmeticUtils.cpp
+  IncrementDecrement.cpp
+  NonRestoringDivision.cpp
+  SimpleAdder.cpp
+  SimpleMultiplier.cpp
+  SimpleSubstractor.cpp
+)
 
 target_include_directories(arithmeticGenerator PUBLIC
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>

@@ -2,7 +2,6 @@
 
 #include <CircuitGenGraph/GraphUtils.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
-
 #include <cstdint>
 #include <iterator>
 #include <string_view>

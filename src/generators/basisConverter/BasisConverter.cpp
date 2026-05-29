@@ -1,8 +1,8 @@
 #include "BasisConverter.hpp"
+
 #include <CircuitGenGraph/DefaultAuxiliaryMethods.hpp>
 #include <CircuitGenGraph/GraphUtils.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>
-
 #include <functional>
 #include <iostream>
 #include <unordered_map>

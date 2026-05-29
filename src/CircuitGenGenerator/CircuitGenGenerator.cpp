@@ -10,7 +10,6 @@
 #include "generators/genetic/recombination/parameters/RecombinationParameters.hpp"
 #include "generators/genetic/selections/parameters/SelectionParameters.hpp"
 #include "settings/Settings.hpp"
-
 #include <algorithm>
 #include <chrono>
 #include <cstdlib>

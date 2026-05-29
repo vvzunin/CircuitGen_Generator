@@ -5,4 +5,5 @@ Checks: >
     clang-analyzer-*,
     readability-qualified-auto,
     -llvm-qualified-auto,
-    -llvm-header-guard
+    -llvm-header-guard,
+    -llvm-use-ranges

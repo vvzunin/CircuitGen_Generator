@@ -49,7 +49,7 @@ if (NOT DEFINED LOCAL_BUILD)
   FetchContent_Declare(
     ${ORIENTED_GRAPH}
     GIT_REPOSITORY https://hub.mos.ru/circuitgen/CircuitGen_Graph
-    GIT_TAG 0c2445661b00600f484d5851f0ab7415060567c8
+    GIT_TAG 4a4d823
   )
 else()
   FetchContent_Declare(
@@ -67,7 +67,7 @@ find_package(Threads REQUIRED)
 
 find_program(CLANG_TIDY NAMES clang-tidy)
 if(PROJECT_IS_TOP_LEVEL)
-  option(CircuitGenGenerator_ENABLE_CLANG_TIDY "Run clang-tidy during build" OFF)
+  option(CircuitGenGenerator_ENABLE_CLANG_TIDY "Run clang-tidy during build" ON)
 endif()
 if (CLANG_TIDY AND CircuitGenGenerator_ENABLE_CLANG_TIDY)
   set(GENERATOR_CLANG_TIDY
@@ -79,6 +79,7 @@ elseif(CLANG_TIDY)
 else()
   message(STATUS "clang-tidy not found")
 endif()
+set(BUILD_TESTING_Graph OFF CACHE BOOL "" FORCE)
 
 # TODO: Добавить в код
 # list(APPEND external_targets Gettext)
@@ -86,11 +87,11 @@ endif()
 
 add_subdirectory(lib)
 add_subdirectory(src)
+
 include(CTest)
-if(BUILD_TESTING)
+if(BUILD_TESTING_Generator)
   add_subdirectory(test)
 endif()
-# include_directories(lib)
 
 if(PROJECT_IS_TOP_LEVEL)
   option(CircuitGenGenerator_DEVELOPER_MODE "Enable developer mode" OFF)

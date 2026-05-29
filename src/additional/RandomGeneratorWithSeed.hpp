@@ -1,5 +1,4 @@
-#ifndef RANDOM_GENERATION_WITH_SEED
-#define RANDOM_GENERATION_WITH_SEED
+#pragma once
 
 #include <cassert>
 #include <cstdint>
@@ -109,7 +108,8 @@ public:
 
     size_t i = d1(d_gen);
     size_t j = d2(d_gen);
-    if (j >= i) j++;
+    if (j >= i)
+      j++;
 
     return {v[i], v[j]};
   }
@@ -138,5 +138,3 @@ private:
 };
 
 } // namespace CG_Gen
-
-#endif

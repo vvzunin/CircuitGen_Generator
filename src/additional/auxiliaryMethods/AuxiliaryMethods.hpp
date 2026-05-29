@@ -1,5 +1,6 @@
 #pragma once
 
+#include <additional/RandomGeneratorWithSeed.hpp>
 #include <cstdint>
 #include <map>
 #include <string>

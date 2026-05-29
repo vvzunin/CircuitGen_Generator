@@ -7,17 +7,11 @@
 #include "settings/Settings.hpp"
 #include <CircuitGenGraph/OrientedGraph.hpp>
 #include <CircuitGenGraph/enums.hpp>
+#include <baseStructures/truthTable/TruthTable.hpp>
+#include <generators/simple/arithmetic/ArithmeticUtils.hpp>
 #include <memory>
 #include <string>
 #include <vector>
-
-#include <CircuitGenGraph/OrientedGraph.hpp>
-
-#include <baseStructures/truthTable/TruthTable.hpp>
-
-#include "CircuitParameters.hpp"
-
-#include <generators/simple/arithmetic/ArithmeticUtils.hpp>
 
 namespace CG_Gen {
 

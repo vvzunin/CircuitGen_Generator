@@ -1,7 +1,6 @@
+#include "ArithmeticGenerator.hpp"
 #include "ArithmeticUtils.hpp"
-#include "../ArithmeticGenerator.hpp"
 #include "generators/simple/common/GeneratorUtils.hpp"
-
 #include <CircuitGenGraph/GraphUtils.hpp>
 #include <CircuitGenGraph/GraphVertexBase.hpp>
 #include <CircuitGenGraph/OrientedGraph.hpp>

@@ -1,4 +1,4 @@
-#include "../ArithmeticGenerator.hpp"
+#include "ArithmeticGenerator.hpp"
 
 namespace CG_Gen {
 

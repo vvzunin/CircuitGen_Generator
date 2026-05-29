@@ -215,7 +215,7 @@
       "inherits": ["release-common"],
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
-        "BUILD_TESTING": "OFF"
+        "BUILD_TESTING_Generator": "OFF"
       }
     },
     {
@@ -225,7 +225,7 @@
       "inherits": ["release-common"],
       "binaryDir": "${sourceDir}/build/release-ci",
       "cacheVariables": {
-        "BUILD_TESTING": "ON"
+        "BUILD_TESTING_Generator": "ON"
       }
     },
     {

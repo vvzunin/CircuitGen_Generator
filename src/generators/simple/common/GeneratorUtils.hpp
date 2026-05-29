@@ -1,6 +1,6 @@
 #pragma once
 
-#include "generators/simple/SimpleGenerator.hpp"
+#include "generators/simple/simple/SimpleGenerator.hpp"
 
 namespace CG_Gen {
 

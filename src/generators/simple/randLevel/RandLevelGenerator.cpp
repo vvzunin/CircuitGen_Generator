@@ -1,7 +1,7 @@
 #include "RandLevelGenerator.hpp"
-#include "additional/AuxiliaryMethods.hpp"
-#include <CircuitGenGraph/GraphUtils.hpp>
 
+#include <CircuitGenGraph/GraphUtils.hpp>
+#include <additional/auxiliaryMethods/AuxiliaryMethods.hpp>
 #include <cstddef>
 #include <cstdint>
 #include <vector>
@@ -60,8 +60,9 @@ GraphPtr RandLevelGenerator::generatorRandLevel(
   graph->reserve(VertexTypes::output, i_outputs);
   graph->reserve(VertexTypes::gate, maxLevel * i_maxElements);
 
-  auto nameGen =
-      [] (size_t i) -> std::string { return "x" + std::to_string(i); };
+  auto nameGen = [](size_t i) -> std::string {
+    return "x" + std::to_string(i);
+  };
   std::vector<VertexPtr> values = graph->addInputs(i_inputs, nameGen);
 
   int32_t currIndex = i_inputs;

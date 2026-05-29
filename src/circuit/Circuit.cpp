@@ -1,17 +1,13 @@
 #include "Circuit.hpp"
 
+#include <CircuitGenGraph/enums.hpp>
+#include <additional/auxiliaryMethods/AuxiliaryMethods.hpp>
+#include <additional/filesTools/FilesTools.hpp>
 #include <filesystem>
 #include <fstream>
+#include <generators/simple/arithmetic/ArithmeticUtils.hpp>
 #include <iostream>
 #include <sstream>
-
-#include "Circuit.hpp"
-#include <generators/simple/arithmetic/ArithmeticUtils.hpp>
-
-#include <CircuitGenGraph/enums.hpp>
-
-#include <additional/AuxiliaryMethods.hpp>
-#include <additional/filesTools/FilesTools.hpp>
 
 namespace CG_Gen {
 

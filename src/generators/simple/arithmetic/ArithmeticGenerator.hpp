@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <CircuitGenGraph/GraphVertexBase.hpp>
-#include <generators/simple/SimpleGenerator.hpp>
+#include <generators/simple/simple/SimpleGenerator.hpp>
 
 namespace CG_Gen {
 

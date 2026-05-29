@@ -2,6 +2,7 @@ add_subdirectory(alu)
 add_subdirectory(arithmetic)
 add_subdirectory(cascade)
 add_subdirectory(coder)
+add_subdirectory(common)
 add_subdirectory(comparison)
 add_subdirectory(dot)
 add_subdirectory(fromTruthTable)
@@ -19,6 +20,7 @@ target_link_libraries(simpleGenerators INTERFACE
   arithmeticGenerator
   cascadeGenerator
   coderGenerator
+  commomUtils
   comparisonGenerator
   dotGenerator
   fromTruthTableGenerator
