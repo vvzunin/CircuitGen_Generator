@@ -25,9 +25,9 @@ Add a new class for generator-specific parameters. Name it **Generator** + \<Gen
 
 In **GenerationParameters**, add a *private* member of the new class named **d_generator** + \<GeneratorName\> + **Parameters** — e.g. **d_generatorNewGeneratorNameParameters**. Add a getter and setter: the getter returns the struct; the setter accepts values and assigns them.
 
-## 3. [SimpleGenerators.hpp](../../src/generators/simple/SimpleGenerators.hpp) and [SimpleGenerators.cpp](../../src/generators/simple/SimpleGenerators.cpp)
+## 3. [SimpleGenerator.hpp](../../src/generators/simple/simple/SimpleGenerator.hpp) and [SimpleGenerator.cpp](../../src/generators/simple/simple/SimpleGenerator.cpp)
 
-Implement the generator. In **SimpleGenerators.hpp**, declare:
+Implement the generator in a dedicated class under `src/generators/simple/<generator>/` (see e.g. `arithmetic/ArithmeticGenerator.hpp`), typically **subclassing `SimpleGenerator`**. In your generator header, declare:
 
 ```cpp
 GraphPtr generatorNewGeneratorName(...);
@@ -38,17 +38,17 @@ The method must return **GraphPtr** (`std::shared_ptr<OrientedGraph>`) and take 
 > [!IMPORTANT]
 > Input variable names must start with **i_**.
 
-In **SimpleGenerators.cpp**, implement:
+In the matching `.cpp`, implement:
 
 ```cpp
-GraphPtr SimpleGenerators::generatorNewGeneratorName(...) {
+GraphPtr NewGeneratorName::generatorNewGeneratorName(...) {
    ...
 }
 ```
 
 ## 4. [DataBaseGenerator.hpp](../../src/database/dataBaseGenerator/DataBaseGenerator.hpp) and [DataBaseGenerator.cpp](../../src/database/dataBaseGenerator/DataBaseGenerator.cpp)
 
-In **DataBaseGenerator**, add a method that takes a const reference to generation parameters *i_param*, constructs **SimpleGenerators**, calls your generator with parameters from *i_param* in the declared order, stores the result in **GraphPtr**, builds **Circuit** from the graph, calls `setPath` with *d_mainPath*, `setCircuitName` with `i_param.getName()`, then `generate` with `i_param.getMakeGraphMLClassic()`, `i_param.getMakeGraphMLPseudoABCD()`, `i_param.getMakeGraphMLOpenABCD()`.
+In **DataBaseGenerator**, add a method that takes a const reference to generation parameters *i_param*, constructs your **generator object** (a `SimpleGenerator` subclass), calls your generator with parameters from *i_param* in the declared order, stores the result in **GraphPtr**, builds **Circuit** from the graph, calls `setPath` with *d_mainPath*, `setCircuitName` with `i_param.getName()`, then `generate` with `i_param.getMakeGraphMLClassic()`, `i_param.getMakeGraphMLPseudoABCD()`, `i_param.getMakeGraphMLOpenABCD()`.
 
 <!--
 Currently only getMakeGraphMLClassic(), getMakeGraphMLPseudoABCD(), getMakeGraphMLOpenABCD() are wired; extend as needed.
@@ -58,7 +58,7 @@ Example implementation:
 
 ```cpp
 void DataBaseGenerator::generateNewGeneratorName(GenerationParameters &i_param) {
-  SimpleGenerators sg;
+  NewGeneratorName sg(i_param);
   ...
   GraphPtr graph = sg.generatorNewGeneratorName(...);
   Circuit c (graph);
@@ -86,7 +86,7 @@ case GenerationTypes::NewGeneratorName:
   break;
 ```
 
-## 5. [CircuitGenGenerator.cpp](../../src/CircuitGenGenerator.cpp)
+## 5. [CircuitGenGenerator.cpp](../../src/CircuitGenGenerator/CircuitGenGenerator.cpp)
 
 In **runGenerationFromJson**, after initializing *GenerationTypes gt*, parse the JSON and set the type when `type_of_generation` matches:
 

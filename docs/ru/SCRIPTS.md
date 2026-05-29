@@ -3,6 +3,13 @@
 В репозитории скрипты сгруппированы по каталогам в `scripts/`.
 Скрипты вызывают CMake presets и Docker-сборки, не дублируя логику конфигурации.
 
+## Документация CI
+
+- [CI_PIPELINE.md](CI_PIPELINE.md) — конвейер GitLab, стадии, архитектура
+- [CI_SCRIPTS.md](CI_SCRIPTS.md) — справочник по каждому файлу в `scripts/ci`
+- [DEPLOY.md](DEPLOY.md) — деплой на Synology NAS, каналы версий, портал
+- Обслуживание диска Windows (runner): `scripts/ci/docker-prune-keep-bases.ps1` — [CI_SCRIPTS.md §8](CI_SCRIPTS.md#docker-prune-runner-windows) (RU), [EN](../en/CI_SCRIPTS.md#docker-prune-runner-windows)
+
 ## Структура
 
 ```text
@@ -52,6 +59,16 @@ scripts/
     install-deps-fedora-43.sh
     verify-installers-docker.sh
     install-deps-for-current-os.sh
+  docs/
+    build-doxygen-lang-variants.sh
+    deploy-synology.sh
+    stage-module-docs.sh
+    versions-index.sh
+    manifest-merge.sh
+    nas-filestation-api.sh
+    nas-docs-names.sh
+    modules-registry.json
+    portal/                 # index.html, portal.js, portal.css
 ```
 
 Помеченные секции **джобов по одной ОС** в **`.gitlab-ci.yml`** (между комментариями `BEGIN generated` / `END generated`) **генерируются** из `scripts/config/supported-os.sh` (см. ниже); правьте только `supported-os.sh` и скрипты установки `install-deps-<slug>.sh`, затем выполните **`generate-gitlab-os-matrix.sh --write`**.
@@ -162,6 +179,27 @@ bash scripts/dev/build-docs.sh
 Вывод в духе CI в `build/docs/.../{en,ru}/`: **`bash scripts/ci/docs.sh`**.
 
 Цель CMake **`docs`** (только при **`BUILD_MCSS_DOCS=ON`**) использует **`cmake/docs.cmake`** для **одного** языка в `build/dev/docs/html` (плоская структура); язык — **`DOXYGEN_DOCUMENTATION_LANGUAGE`**.
+
+## Публикация документации (Synology NAS)
+
+Скрипты в `scripts/docs/` (одинаково в Graph, Generator, Parameters). Руководство по деплою: **[DEPLOY.md](DEPLOY.md)**.
+
+| Скрипт | Назначение |
+|--------|------------|
+| **`deploy-synology.sh`** | Стадия, zip, загрузка на NAS (File Station API), обновление корня портала |
+| **`stage-module-docs.sh`** | HTML/PDF в `modules/<slug>/versions/<channel>/` |
+| **`versions-index.sh`** | Слияние `versions.json` (NAS + все `versions/*/meta.json` в стадии) |
+| **`manifest-merge.sh`** | Сборка `manifest.json` (схема v2, `channels[]` по модулям) |
+| **`nas-filestation-api.sh`** | Авторизация, загрузка, распаковка, список модулей на NAS для manifest |
+| **`nas-docs-names.sh`** | Slug, имя PDF, канал (`main` или `CI_COMMIT_TAG`) |
+| **`modules-registry.json`** | Каталог портала: репозитории hub.mos.ru, ссылки Docker dev/release по ОС |
+| **`portal/*`** | UI портала (ru/en), выбор версии на карточке модуля |
+
+Джоб GitLab **`docs`**: `scripts/ci/docs.sh`, затем **`deploy-synology.sh`**. Теги — всегда; ветка по умолчанию — по `changes:` (см. `.gitlab-ci.yml`).
+
+Локально без NAS: `NAS_DEPLOY_STRICT=false bash scripts/docs/deploy-synology.sh` после сборки документации.
+
+Проверка раскладки без сети: **`bash scripts/ci/test_deploy_mock.sh`**.
 
 ## Скрипт: локальное покрытие
 
@@ -325,7 +363,7 @@ bash scripts/release/suggest-next-version.sh --verbose
 - `scripts/setup/install-deps-ubuntu-24.04.sh`  
   Устанавливает недостающие зависимости для Ubuntu 24.04.
 - `scripts/setup/install-deps-debian-13.sh`  
-  Устанавливает недостающие зависимости для Debian 13 (trixie). Пин `clang-format` **18.1.8** через `install-clang-format-ci.sh` (колёсо PyPI), как в остальных образах CI.
+  Устанавливает недостающие зависимости для Debian 13 (trixie). Пин `clang-format` **18.1.8** через `install-clang-format-ci.sh` (колесо PyPI), как в остальных образах CI.
 - `scripts/setup/install-deps-fedora-42.sh`  
   Устанавливает недостающие зависимости для Fedora Workstation 42.
 - `scripts/setup/install-deps-fedora-43.sh`  
@@ -375,7 +413,7 @@ bash scripts/setup/verify-installers-docker.sh ubuntu-24.04
 - `scripts/ci/run-task.sh <task>`  
   Запускает один CI-этап (`lint`, `sanitize`, `static-analysis`, `coverage`, `tests`, `examples`, `docs`) в выбранном режиме.
 - `scripts/ci/run-all.sh`  
-  Запускает полный CI-пайплайн проверок: `lint -> static-analysis -> sanitize -> coverage -> tests -> examples -> docs`.
+  Запускает полный CI-пайплайн проверок: `lint -> static-analysis -> sanitize -> coverage -> tests -> examples -> docs` (локально по шагам; в GitLab часть job’ов параллельна).
 
 Примеры:
 
@@ -416,6 +454,8 @@ CI_RUNNER=docker CI_IMAGE_TAG=circuitgen/generator/ubuntu-24.04/ci:local bash sc
   При локальном запуске по умолчанию использует Docker-образ `CI_IMAGE_TAG`
   (по умолчанию `circuitgen/generator/ubuntu-24.04/ci:local` через `scripts/docker/docker-paths.sh`).
   Скрипт завершится с ошибкой, если обнаружит Doxygen без поддержки `CLANG_ASSISTED_PARSING`.
+  В задании GitLab **`docs`** после сборки вызывается **`deploy-synology.sh`** (см. [DEPLOY.md](DEPLOY.md)).
+- `scripts/ci/test_deploy_mock.sh` — проверка стадии NAS, `versions.json` и `manifest.json` без реального NAS.
 
 ### Согласованность matrix GitLab
 

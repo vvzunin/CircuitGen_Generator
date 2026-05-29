@@ -8,6 +8,8 @@
 # - parse_xml: compound.name assignment (same as extract_metadata; used before prefix_wbr).
 # - _search.py ResultMap.serialize: offset for URL must use "if e.url:" (not "if e.name and e.url"),
 #   otherwise empty compound names break assert len(output) == offset.
+# - parse_xml (sectiondef): newer Doxygen adds non-memberdef nodes under <sectiondef>; iterate
+#   memberdef only (findall), otherwise parse_func hits AssertionError on wrong element kind.
 function(mcss_patch_doxygen_py script_path)
   if(NOT EXISTS "${script_path}")
     return()
@@ -75,6 +77,15 @@ function(mcss_patch_doxygen_py script_path)
     string(REPLACE
       "    compound.name = compounddef.find('title').text if compound.kind in ['page', 'group'] and compounddef.findtext('title') else compounddef.find('compoundname').text"
       "    compound.name = (compounddef.find('title').text if compound.kind in ['page', 'group'] and compounddef.findtext('title') else compounddef.find('compoundname').text) or ''"
+      _py "${_py}")
+    set(_changed TRUE)
+  endif()
+
+  string(FIND "${_py}" "for memberdef in compounddef_child:" _md_loop_idx)
+  if(NOT _md_loop_idx EQUAL -1)
+    string(REPLACE
+      "for memberdef in compounddef_child:"
+      "for memberdef in compounddef_child.findall('memberdef'):"
       _py "${_py}")
     set(_changed TRUE)
   endif()

@@ -297,6 +297,7 @@ void parseDotContent(GraphPtr graph, const std::string &content, bool isMoore) {
   }
 
   std::unordered_map<std::string, VertexPtr> state_ors;
+  std::unordered_map<std::string, VertexPtr> state_dffs;
   for (const auto &[name, info]: states) {
     for (const auto &[from, label, to]: info.transitions) {
       std::string in = label;
@@ -328,6 +329,7 @@ void parseDotContent(GraphPtr graph, const std::string &content, bool isMoore) {
                                  or_gate, reset, "dff_" + to);
         graph->addEdge(dff, state_bufs[to]);
         state_ors[to] = or_gate;
+        state_dffs[to] = dff;
       }
 
       graph->addEdge(and_gate, state_ors[to]);
@@ -351,7 +353,15 @@ void parseDotContent(GraphPtr graph, const std::string &content, bool isMoore) {
   VertexPtr dff =
       graph->addSequential(static_cast<SequentialTypes>(ASYNC | ff | RST),
                            clock, or_gate, reset, "init_dff");
-  graph->addEdge(dff, state_bufs[init]);
+  if (state_dffs.count(init)) {
+    graph->removeEdge(state_dffs[init], state_bufs[init]);
+    VertexPtr merge = graph->addGate(Gates::GateOr, "init_merge_" + init);
+    graph->addEdge(state_dffs[init], merge);
+    graph->addEdge(dff, merge);
+    graph->addEdge(merge, state_bufs[init]);
+  } else {
+    graph->addEdge(dff, state_bufs[init]);
+  }
 }
 
 DotReturn

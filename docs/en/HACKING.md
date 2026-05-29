@@ -15,7 +15,7 @@ Developer mode is always enabled in CI workflows.
 
 ### Presets
 
-This project uses [CMake presets][1]. Install the [latest CMake][2] to get the best experience.
+This project uses [CMake presets][1]. Install the [latest CMake][2] to get the best experience. For **tables of configure/build/test presets**, **cache variable names shared across CircuitGen repositories**, and **how to add new sources and `CMakeLists.txt` targets**, see [BUILDING.md](BUILDING.md).
 
 You can pass `CircuitGenGenerator_DEVELOPER_MODE` in several ways; this repo prefers presets.
 
@@ -202,7 +202,7 @@ public:
 /// @param divisor Divisor.
 /// @return double Quotient.
 ///
-/// @throw runtime_error If the divisor is zero.
+/// @throws{std::runtime_error} If the divisor is zero.
 
 double divide(double dividend, double divisor)
 {
@@ -230,7 +230,7 @@ double divide(double dividend, double divisor)
 /// double b = 2.0;
 /// double result = divide(a, b); // result is 5.0
 /// @endcode
-/// @throw runtime_error If the divisor is zero.
+/// @throws{std::runtime_error} If the divisor is zero.
 
 double divide(double dividend, double divisor)
 {
@@ -255,5 +255,9 @@ enum VertexTypes { ///  input vertex
   subGraph   
 };
 ```
+
+## CI and GitLab
+
+Pipeline, stages, and architecture: [CI_PIPELINE.md](CI_PIPELINE.md). Full `scripts/ci` reference: [CI_SCRIPTS.md](CI_SCRIPTS.md). OS matrix and `.gitlab-ci.yml` regeneration: see `supported-os.sh` and `generate-gitlab-os-matrix.sh` in [SCRIPTS.md](SCRIPTS.md).
 
 **Русский:** [HACKING](../ru/HACKING.md)

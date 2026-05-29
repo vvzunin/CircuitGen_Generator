@@ -2,7 +2,9 @@
 
 **Язык:** Русский | [English](README.en.md)  
 **Документация:** [Русский](docs/ru/README.md) | [English](docs/en/README.md)  
-**Версионирование (SemVer):** [русский](docs/ru/Versioning.md) | [English](docs/en/Versioning.md)  
+**Функционал:** [русский](docs/ru/FUNCTIONALITY.md) | [English](docs/en/FUNCTIONALITY.md)
+**Версионирование (SemVer):** [русский](docs/ru/Versioning.md) | [English](docs/en/Versioning.md)
+**Журнал изменений:** [русский](docs/ru/CHANGELOG.md) | [English](docs/en/CHANGELOG.md)  
 **Вклад:** [русский](docs/ru/CONTRIBUTING.md) | [English](docs/en/CONTRIBUTING.md)  
 **Запросы на слияние (MR):** [русский](docs/ru/MergeRequests.md) | [English](docs/en/MergeRequests.md)
 
@@ -43,7 +45,7 @@
 
 ## Установка зависимостей
 
-Актуальные списки пакетов и доп. шаги (CMake с Kitware при необходимости, **clang-format**, **lcov** 2+ на Ubuntu 22.04, Doxygen, TeX для документации и т.д.) — в скриптах **[`scripts/setup/`](scripts/setup/)** по ОС из CI-матрицы, например:
+Актуальные списки пакетов и доп. шаги (CMake с Kitware при необходимости, **clang-format**, **lcov** 2+ на Ubuntu 22.04, Doxygen, TeX для документации и т.д.) — в скриптах **[scripts/setup/](scripts/setup/)** по ОС из CI-матрицы, например:
 
 - [`install-deps-ubuntu-22.04.sh`](scripts/setup/install-deps-ubuntu-22.04.sh)
 - [`install-deps-ubuntu-24.04.sh`](scripts/setup/install-deps-ubuntu-24.04.sh)
@@ -139,6 +141,6 @@ build/CircuitGenGenerator --json_path <path_to_json>
 # Лицензия
 <a name="license"></a>
 
-Смотрите файл с [лицензией](LICENSE.md).
+Смотрите файл с [лицензией](LICENSE).
 
 [&#8593; Contents](#content_rus)

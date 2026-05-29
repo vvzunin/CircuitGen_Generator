@@ -2,7 +2,9 @@
 
 **Language:** [Русский](README.md) | English  
 **Documentation:** [Russian](docs/ru/README.md) | [English](docs/en/README.md)  
-**Versioning (SemVer):** [Russian](docs/ru/Versioning.md) | [English](docs/en/Versioning.md)  
+**Functionality:** [Russian](docs/ru/FUNCTIONALITY.md) | [English](docs/en/FUNCTIONALITY.md)
+**Versioning (SemVer):** [Russian](docs/ru/Versioning.md) | [English](docs/en/Versioning.md)
+**Changelog:** [Russian](docs/ru/CHANGELOG.md) | [English](docs/en/CHANGELOG.md)  
 **Contributing:** [Russian](docs/ru/CONTRIBUTING.md) | [English](docs/en/CONTRIBUTING.md)  
 **Merge requests:** [Russian](docs/ru/MergeRequests.md) | [English](docs/en/MergeRequests.md)
 
@@ -45,7 +47,7 @@ A developer handbook is available [here](https://drive.google.com/file/d/1eKWMpF
 
 ## Installing dependencies
 
-Package lists and extra steps (Kitware CMake when needed, pinned **clang-format**, **lcov** 2+ on Ubuntu 22.04, Doxygen, TeX for docs, etc.) live under **[`scripts/setup/`](scripts/setup/)** — one script per supported OS, for example:
+Package lists and extra steps (Kitware CMake when needed, pinned **clang-format**, **lcov** 2+ on Ubuntu 22.04, Doxygen, TeX for docs, etc.) live under **[scripts/setup/](scripts/setup/)** — one script per supported OS, for example:
 
 - [`install-deps-ubuntu-22.04.sh`](scripts/setup/install-deps-ubuntu-22.04.sh)
 - [`install-deps-ubuntu-24.04.sh`](scripts/setup/install-deps-ubuntu-24.04.sh)
@@ -155,6 +157,6 @@ Prefix list: [GeneratorsPrefixes.md](docs/en/GeneratorsPrefixes.md).
 # License
 <a name="license"></a>
 
-See [LICENSE.md](LICENSE.md).
+See [LICENSE](LICENSE).
 
 [&#8593; Contents](#content_en)

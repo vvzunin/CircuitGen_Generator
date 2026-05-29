@@ -401,13 +401,15 @@ public:
                        bool i_makeGraphMLClassic = false,
                        bool i_makeGraphMLPsedoABCD = false,
                        bool i_makeGraphMLOpenABCD = false,
-                       bool i_makeDOT = false, bool i_convertToBasis = false) :
+                       bool i_makeDOT = false, bool i_convertToBasis = false,
+                       bool i_saveCircuitParametersJson = true) :
       d_name(i_name), d_requestId(i_requestId), d_inputs(i_inputs),
       d_outputs(i_outputs), d_iteration(i_iteration),
       d_makeGraphMLClassic(i_makeGraphMLClassic),
       d_makeGraphMLPseudoABCD(i_makeGraphMLPsedoABCD),
       d_makeGraphMLOpenABCD(i_makeGraphMLOpenABCD), d_makeDOT(i_makeDOT),
-      d_convertToBasis(i_convertToBasis) {};
+      d_convertToBasis(i_convertToBasis),
+      d_saveCircuitParametersJson(i_saveCircuitParametersJson) {};
 
   std::string getName() const { return d_name; }
 
@@ -432,6 +434,12 @@ public:
   bool getMakeGraphMLOpenABCD() const { return d_makeGraphMLOpenABCD; }
   bool getMakeDOT() const { return d_makeDOT; }
   bool getConvertToBasis() const { return d_convertToBasis; }
+  bool getSaveCircuitParametersJson() const {
+    return d_saveCircuitParametersJson;
+  }
+  void setSaveCircuitParametersJson(bool i_v) {
+    d_saveCircuitParametersJson = i_v;
+  }
 
   std::uint_fast32_t getSeed() const { return d_seed; }
 
@@ -657,6 +665,7 @@ private:
   GeneratorDotToGraphParameters d_generatorDotToGraphParameters;
   GeneratorCascadeParameters d_generatorCascadeParameters;
   bool d_convertToBasis = false;
+  bool d_saveCircuitParametersJson = true;
 };
 
 } // namespace CG_Gen

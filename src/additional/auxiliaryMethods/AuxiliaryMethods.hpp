@@ -91,7 +91,7 @@ T getRandomElement(const std::vector<T> &v) {
 /// std::cout << "File content:" << std::endl;
 /// std::cout << content << std::endl;
 /// @endcode
-/// @throws std::runtime_error if the file cannot be opened
+/// @throws{std::runtime_error} if the file cannot be opened
 
 std::string readAllFile(const std::string &filename);
 

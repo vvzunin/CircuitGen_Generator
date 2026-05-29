@@ -1,6 +1,7 @@
 add_subdirectory(auxiliaryMethods)
 add_subdirectory(filesTools)
 add_subdirectory(threadPool)
+add_subdirectory(tempProjectDir)
 
 # Интерфейсная библиотека для генератора случайных чисел
 add_library(randomGeneratorWithSeed INTERFACE)
@@ -17,6 +18,7 @@ target_link_libraries(additional INTERFACE
   threadPool
   filesTools
   auxiliaryMethods
+  tempProjectDir
 )
 
 # Экспортируем включения из additional, если нужно, чтобы клиенты видели .h файлы

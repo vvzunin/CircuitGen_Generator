@@ -2,6 +2,13 @@
 
 Scripts live under `scripts/`. They invoke CMake presets and Docker builds without duplicating configure logic.
 
+## CI documentation
+
+- [CI_PIPELINE.md](CI_PIPELINE.md) — GitLab pipeline, stages, architecture
+- [CI_SCRIPTS.md](CI_SCRIPTS.md) — per-file reference for `scripts/ci`
+- [DEPLOY.md](DEPLOY.md) — Synology NAS deploy, version channels, portal
+- Windows runner disk maintenance: `scripts/ci/docker-prune-keep-bases.ps1` — [CI_SCRIPTS.md §8](CI_SCRIPTS.md#docker-prune-runner-windows) (EN), [RU](../ru/CI_SCRIPTS.md#docker-prune-runner-windows)
+
 ## Layout
 
 ```text
@@ -51,6 +58,16 @@ scripts/
     install-deps-fedora-43.sh
     verify-installers-docker.sh
     install-deps-for-current-os.sh
+  docs/
+    build-doxygen-lang-variants.sh
+    deploy-synology.sh
+    stage-module-docs.sh
+    versions-index.sh
+    manifest-merge.sh
+    nas-filestation-api.sh
+    nas-docs-names.sh
+    modules-registry.json
+    portal/                 # index.html, portal.js, portal.css
 ```
 
 Marked **per-OS job** sections in **`.gitlab-ci.yml`** (between `BEGIN generated` / `END generated` comments) are **generated** from `scripts/config/supported-os.sh` (see below); edit `supported-os.sh` and `install-deps-<slug>.sh` only, then run **`generate-gitlab-os-matrix.sh --write`**.
@@ -161,6 +178,27 @@ Parameters:
 CI-style output under `build/docs/.../{en,ru}/`: **`bash scripts/ci/docs.sh`**.
 
 The CMake target **`docs`** (only if **`BUILD_MCSS_DOCS=ON`**) uses **`cmake/docs.cmake`** for a **single** language into `build/dev/docs/html` (flat); set **`DOXYGEN_DOCUMENTATION_LANGUAGE`** for that workflow.
+
+## Documentation deploy (Synology NAS)
+
+Scripts live under `scripts/docs/` (same tree in Graph, Generator, Parameters). Deploy guide: **[DEPLOY.md](DEPLOY.md)**.
+
+| Script | Purpose |
+|--------|---------|
+| **`deploy-synology.sh`** | Stage docs, zip, upload to NAS via File Station API, refresh portal root |
+| **`stage-module-docs.sh`** | Place HTML/PDF under `modules/<slug>/versions/<channel>/` |
+| **`versions-index.sh`** | Merge `versions.json` (NAS + all staged `versions/*/meta.json`) |
+| **`manifest-merge.sh`** | Build `manifest.json` (schema v2, per-module `channels[]`) |
+| **`nas-filestation-api.sh`** | Auth, upload, extract, list remote modules for manifest merge |
+| **`nas-docs-names.sh`** | `DOCS_MODULE_SLUG`, PDF basename, channel (`main` vs `CI_COMMIT_TAG`) |
+| **`modules-registry.json`** | Portal catalog: hub.mos.ru repos, Docker dev/release links per OS |
+| **`portal/*`** | Public index UI with ru/en and per-module version selector |
+
+GitLab job **`docs`**: `scripts/ci/docs.sh`, then **`deploy-synology.sh`**. Tags always run; default branch uses path-based `changes:` (see `.gitlab-ci.yml`).
+
+Local run without NAS: `NAS_DEPLOY_STRICT=false bash scripts/docs/deploy-synology.sh` after a docs build.
+
+Layout check (no network): **`bash scripts/ci/test_deploy_mock.sh`**.
 
 ## Script: local coverage
 
@@ -351,7 +389,7 @@ For `scripts/ci/docs.sh` additionally:
 ### Wrappers
 
 - `scripts/ci/run-task.sh <task>` — one CI stage (`lint`, `sanitize`, `static-analysis`, `coverage`, `tests`, `examples`, `docs`).
-- `scripts/ci/run-all.sh` — full pipeline: `lint -> static-analysis -> sanitize -> coverage -> tests -> examples -> docs`.
+- `scripts/ci/run-all.sh` — full pipeline: `lint -> static-analysis -> sanitize -> coverage -> tests -> examples -> docs` (serialized locally; GitLab runs several jobs in parallel).
 
 Examples:
 
@@ -374,7 +412,8 @@ CI_RUNNER=docker CI_IMAGE_TAG=circuitgen/generator/ubuntu-24.04/ci:local bash sc
   Default **`DOXYGEN_LANG_VARIANTS="en=english;ru=russian"`** (see `scripts/docs/build-doxygen-lang-variants.sh`).
   Conditional blocks: `\english ... \lang_end`, `\russian ... \lang_end` (Doxygen `\if` sections).
   Local runs default to Docker `CI_IMAGE_TAG` (`circuitgen/generator/ubuntu-24.04/ci:local` via `scripts/docker/docker-paths.sh`).
-  Fails if Doxygen lacks `CLANG_ASSISTED_PARSING`.
+  Fails if Doxygen lacks `CLANG_ASSISTED_PARSING`. In GitLab **`docs`** job only, **`deploy-synology.sh`** runs afterward (see [DEPLOY.md](DEPLOY.md)).
+- `scripts/ci/test_deploy_mock.sh` — validate NAS staging, `versions.json`, and `manifest.json` without a real NAS.
 
 ### GitLab matrix consistency
 

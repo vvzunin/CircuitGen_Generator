@@ -24,22 +24,26 @@ namespace CG_Gen {
 using namespace CG_Graph;
 
 struct CircuitArgs {
-  CircuitArgs(bool d_makeGraphMLClassic = false,
-              bool d_makeGraphMLPseudoABCD = false,
-              bool d_makeGraphMLOpenABCD = false, bool d_makeDOT = false,
-              bool d_pathExists = false)
+  /// When true (default), Circuit::generate runs updateCircuitParameters and
+  /// writes the per-circuit JSON parameter file. When false, only Verilog and
+  /// other requested exports (GraphML, DOT, …) are produced.
+  CircuitArgs() : CircuitArgs(false, false, false, false, false, true) {}
 
-      :
+  CircuitArgs(bool d_makeGraphMLClassic, bool d_makeGraphMLPseudoABCD,
+              bool d_makeGraphMLOpenABCD, bool d_makeDOT, bool d_pathExists,
+              bool d_saveCircuitParametersJson) :
       d_makeGraphMLClassic(d_makeGraphMLClassic),
       d_makeGraphMLPseudoABCD(d_makeGraphMLPseudoABCD),
       d_makeGraphMLOpenABCD(d_makeGraphMLOpenABCD), d_makeDOT(d_makeDOT),
-      d_pathExists(d_pathExists) {}
+      d_pathExists(d_pathExists),
+      d_saveCircuitParametersJson(d_saveCircuitParametersJson) {}
 
   bool d_makeGraphMLClassic;
   bool d_makeGraphMLPseudoABCD;
   bool d_makeGraphMLOpenABCD;
   bool d_makeDOT;
   bool d_pathExists;
+  bool d_saveCircuitParametersJson;
 };
 
 /// class Circuit
@@ -150,12 +154,12 @@ public:
   /// successful
   /// */
 
-  bool generate(CircuitArgs args = {});
+  bool generate(CircuitArgs args = CircuitArgs());
 
   /// @brief generateDOTmmg This generate method is designed to save Mealy or
   /// Moore DotReturn class as .dot file
 
-  bool generateDOTmmg(CircuitArgs args = {});
+  bool generateDOTmmg(CircuitArgs args = CircuitArgs());
 
   /// @brief setTable This method is designed to set up a truth table for a
   /// digital circuit.

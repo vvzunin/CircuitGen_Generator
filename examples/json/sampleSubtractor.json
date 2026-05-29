@@ -29,7 +29,8 @@
       "make_graphml_classic": true,
       "make_graphml_pseudo_abc_d": true,
       "make_graphml_open_abc_d": true,
-      "make_dot": false
+      "make_dot": false,
+      "save_circuit_parameters_json": true
     },
 
     "Subtractor": {

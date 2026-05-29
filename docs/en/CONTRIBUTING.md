@@ -48,4 +48,6 @@ Developer notes are in [`HACKING.md`](HACKING.md).
 
 If you use CMake presets as documented, **do not** commit `CMakeUserPresets.json` to version control even if upstream CMake examples suggest checking it in.
 
+Some Markdown files are **mirrored** across Generator, Graph, and Parameters (for example the `BUILDING.md` preset + “new sources / CMakeLists” sections, `CI_PIPELINE.md`, `CI_SCRIPTS.md`, and the extra bullets in `docs/README.md`). When you change them, keep the **same structure and wording** in all three repositories unless the edit is clearly repo-specific (package names, `REPO_NAME` / Docker paths, PDF product filename).
+
 **Русский:** [Вклад](../ru/CONTRIBUTING.md)

@@ -4,3 +4,25 @@ The [repository root README](../README.md) is the project landing page (overview
 
 - [Русский — полное оглавление](ru/README.md)
 - [English — full index](en/README.md)
+
+Published API reference (HTML + PDF, RU/EN) after CI **`docs`** job on the default branch or Git tags:
+
+- Portal: [https://vvzunin.me/docs/CircuitGen/](https://vvzunin.me/docs/CircuitGen/) — version selector per module when several channels exist (`main` + release tags).
+- This module: `modules/generator/` with `versions/main/` (branch) and `versions/<tag>/` (tags); see [en/DEPLOY.md](en/DEPLOY.md) · [ru/DEPLOY.md](ru/DEPLOY.md).
+
+CI and `scripts/ci` (kept in sync across Parameters / Graph / Generator):
+
+- [CI pipeline (RU)](ru/CI_PIPELINE.md) · [CI pipeline (EN)](en/CI_PIPELINE.md)
+- [CI scripts reference (RU)](ru/CI_SCRIPTS.md) · [CI scripts reference (EN)](en/CI_SCRIPTS.md) — NAS deploy ([en/DEPLOY.md](en/DEPLOY.md) · [ru/DEPLOY.md](ru/DEPLOY.md); CI_SCRIPTS §7); Windows runner (`docker-prune-keep-bases.ps1`, §8 / `docker-prune-runner-windows`)
+
+CMake presets, CI-parity build commands, and **how to add new sources / `CMakeLists.txt` targets** (same structure in **en**/**ru** across all three repos):
+
+- [BUILDING (EN)](en/BUILDING.md) · [BUILDING (RU)](ru/BUILDING.md)
+- [FUNCTIONALITY (EN)](en/FUNCTIONALITY.md) · [FUNCTIONALITY (RU)](ru/FUNCTIONALITY.md) — repository role and capabilities
+
+Generator-specific guides:
+
+- JSON format: [RU](ru/json.md) · [EN](en/json.md)
+- New generator: [RU](ru/NewGenerator.md) · [EN](en/NewGenerator.md)
+- Output prefixes: [RU](ru/GeneratorsPrefixes.md) · [EN](en/GeneratorsPrefixes.md)
+- Changelog: [RU](ru/CHANGELOG.md) · [EN](en/CHANGELOG.md)

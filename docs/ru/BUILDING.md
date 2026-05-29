@@ -11,6 +11,67 @@ cp CMakeUserPresets.json.example CMakeUserPresets.json
 
 В проекте по умолчанию используется генератор `Ninja`.
 
+### Пресеты CMake (справка)
+
+В репозитории используются [пресеты CMake](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html): схема **version 6**, `cmakeMinimumRequired` **3.26** (см. `CMakePresets.json` в корне).
+
+| Файл | Назначение |
+|------|------------|
+| `CMakePresets.json` | Общие пресеты в git: **release**, **release-ci**, **release-examples**, CI-профили (**ci-ubuntu**, **ci-coverage**, **ci-sanitize**, **ci-static-analysis**, …), **ci-examples-dev**, а также скрытые базовые пресеты (**dev-mode**, наборы флагов компилятора, Ninja/C++17). |
+| `CMakeUserPresets.json` | **Только локально** (в `.gitignore`). После клона: `cp CMakeUserPresets.json.example CMakeUserPresets.json`. Задает **dev**, **coverage**, **dev-msvc**, … и подключает `CMakePresets.json` через `include`. |
+
+Типичная цепочка **конфигурация → сборка → тесты** (Debug):
+
+```sh
+cmake --preset=dev
+cmake --build --preset=dev -j"$(nproc)"
+ctest --preset=dev
+```
+
+**Release с тестами** только из закоммиченных пресетов (как в CI, без `CMakeUserPresets.json`):
+
+```sh
+cmake --preset=release-ci
+cmake --build --preset=release-ci -j"$(nproc)"
+ctest --preset=release-ci
+```
+
+Список доступных пресетов: `cmake --list-presets`.
+
+**Сводка по трем репозиториям:** переключатели режима разработчика и примеров отличаются только именами переменных кэша CMake (их выставляет скрытый набор **dev-mode**, от которого наследуются `dev` и многие CI-пресеты):
+
+| Репозиторий | Режим разработчика | Примеры |
+|-------------|-------------------|---------|
+| Generator | `CircuitGenGenerator_DEVELOPER_MODE` | `CircuitGenGenerator_BUILD_EXAMPLES` |
+| Graph | `CircuitGenGraph_DEVELOPER_MODE` | `CircuitGenGraph_BUILD_EXAMPLES` |
+| Parameters | `OptimizationsVerilogLib_DEVELOPER_MODE` | `optimizationsveriloglib_BUILD_EXAMPLES` |
+
+### CMake: новые исходники и `CMakeLists.txt`
+
+Код собирается в **библиотеки** рядом с файлами; родительские каталоги подключают дочерние через `add_subdirectory`.
+
+1. **Каталог** — размещайте файлы под `src/` (и публичные заголовки под `include/…`, если API экспортируется).
+2. **Регистрация** — в родительском `CMakeLists.txt` добавьте `add_subdirectory(<подкаталог>)`, если создали новую папку.
+3. **Листовой `CMakeLists.txt`** — типичный каркас внутренней статической библиотеки:
+
+   ```cmake
+   add_library(myLeaf STATIC MyLeaf.cpp)
+   target_include_directories(myLeaf PUBLIC
+     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>
+   )
+   target_link_libraries(myLeaf PUBLIC …)  # нужные уже существующие цели
+   add_folders(MyLeaf)  # группировка в IDE (cmake/folders.cmake)
+   ```
+
+4. **Связь наверх** — исполняемый файл или «большая» библиотека, использующая ваш код, должны указать `myLeaf` в `target_link_libraries`.
+5. **Переконфигурация** — после любого изменения `CMakeLists.txt` снова запустите CMake (`cmake --preset=dev` или эквивалент).
+
+**Особенности по репозиториям**
+
+- **Generator:** много мелких статических библиотек в `src/generators/simple/<имя>/CMakeLists.txt`; образец — `src/generators/simple/simple/CMakeLists.txt`. Родитель `src/generators/simple/CMakeLists.txt` вызывает цепочку `add_subdirectory`.
+- **Graph:** основная цель `CircuitGenGraph` задается в `src/CMakeLists.txt` списками `SOURCES`, `LIBS` и заголовками в `include/CircuitGenGraph/` (`PUBLIC_HEADER` и правила установки). Новые `.cpp` и заголовки добавляйте туда при расширении библиотеки.
+- **Parameters:** основная библиотека и CLI OpenLane в `src/CMakeLists.txt` (`SOURCES` для `CircuitGenParameters`, цель **`CircuitGenParameters_exe`** с именем исполняемого файла **`CircuitGenParameters`** — как у `CircuitGenGenerator_exe` / `CircuitGenGenerator`; точка входа `CircuitGenToOpenLane.cpp`; алиасы `OptimizationsVerilogLib::…`). Подкаталог `examples/` включается при `-D optimizationsveriloglib_BUILD_EXAMPLES=ON` на верхнем уровне; новые модули — через расширение `SOURCES` или отдельный `add_library` по аналогии с соседними целями.
+
 Базовые сценарии:
 
 ```sh
@@ -82,7 +143,7 @@ cmake --build --preset=release-examples -j "$(nproc)"
 cmake --build --preset=release-examples --target run-examples -j "$(nproc)"
 ```
 
-JSON-файлы в `examples/json/` — входные данные для сценариев генерации; текущий пример **`empty_example`** линкуется с библиотекой и проверяет, что цепочка сборки примеров работает.
+JSON-файлы в `examples/json/` — входные данные для `CircuitGenGenerator::runGenerationFromJson`. Среди C++-примеров: **`empty_example`** (дымовой тест), **`example_print_version`**, запуск по JSON — **`example_run_comparison_json`**, **`example_run_truth_table_json`**, **`example_run_parity_json`** (общий исходник `example_run_preset_json.cpp`, путь к JSON задается на этапе конфигурации CMake через `add_json_example`), а также **`example_run_json_for_graph`** (`runGenerationFromJsonForGraph`, `add_for_graph_example`). См. `examples/CMakeLists.txt`.
 
 ### Сборка с MSVC
 
@@ -150,11 +211,11 @@ bash scripts/ci/docs.sh
 DOXYGEN_LANG_VARIANTS="en=english" bash scripts/ci/docs.sh
 ```
 
-Для каждого варианта Doxygen **`OUTPUT_LANGUAGE`** (подписи в HTML, LaTeX, поиске) соответствует варианту: `ru=russian` — русский интерфейс, `en=english` — английский. Это задаётся в `cmake/docs-ci.cmake` вместе с подписями навбара m.css в `conf.py`.
+Для каждого варианта Doxygen **`OUTPUT_LANGUAGE`** (подписи в HTML, LaTeX, поиске) соответствует варианту: `ru=russian` — русский интерфейс, `en=english` — английский. Это задается в `cmake/docs-ci.cmake` вместе с подписями навбара m.css в `conf.py`.
 
 **Локально** мультиязычный вывод совпадает с CI, но лежит в `build/dev/docs/.../{en,ru}/`: запустите **`bash scripts/dev/build-docs.sh`** (конфигурирует preset `dev` для `compile_commands.json`, затем тот же генератор, что и в CI).
 
-Опционально: при **`BUILD_MCSS_DOCS=ON`** цель CMake **`docs`** (`cmake/docs.cmake`) собирает **один** язык в `build/dev/docs/html` (без подпапок `en`/`ru`); язык задаётся кэшем **`DOXYGEN_DOCUMENTATION_LANGUAGE`** (`english` или `russian`). После смены выполните повторную конфигурацию `cmake`.
+Опционально: при **`BUILD_MCSS_DOCS=ON`** цель CMake **`docs`** (`cmake/docs.cmake`) собирает **один** язык в `build/dev/docs/html` (без подпапок `en`/`ru`); язык задается кэшем **`DOXYGEN_DOCUMENTATION_LANGUAGE`** (`english` или `russian`). После смены выполните повторную конфигурацию `cmake`.
 
 Для сборки PDF нужен LaTeX toolchain (`pdflatex`, `makeindex`), он устанавливается
 скриптами `scripts/setup/install-deps-*.sh` и в CI-образе `dockerfile/Dockerfile.ci`.
@@ -269,7 +330,7 @@ target_link_libraries(
 #### runGenerationFromJsonForGraph
 Аналогично, получает на вход путь до файла json. В отличие от предыдущей функции, возвращает следующую структуру:
 `std::vector<std::pair<std::string, std::vector<GraphPtr>>>`. Для `std::pair<std::string, std::vector<GraphPtr>>` существует псевдоним ResultGraph.
-Первым значением в паре является путь до папки, где находятся сгенерированные verilog-файлы. Второе значение пары, вектор, содержит ссылки на графы, сгенерированные по данному пути.
+Первым значением в паре является путь до папки, где находятся сгенерированные verilog-файлы. Второе значение пары, вектор, содержит ссылки на графы, сгенерированные по данному пути. На каждый объект верхнего уровня в JSON-файле формируется один элемент вектора (используется тот же путь генерации, что и у `runGenerationFromJson`, с возвратом графов в память).
 #### runGenerationFromJsonForPath
 Аналогично, получает на вход путь до файла json. Возвращает `std::vector<std::pair<std::string, std::vector<std::string>>>`. В отличие от предыдущей функции, вместо графов возвращаются их имена, используемые как имена папок с созданными Verilog-файлами соответствующих графов, а также в качестве имен файлов.
 

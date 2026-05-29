@@ -138,6 +138,30 @@ if(CMAKE_PROJECT_NAME STREQUAL "CircuitGenGenerator")
   )
 endif()
 
+# Doxygen's libclang does not pick up GCC's resource include dirs; without them, parsing system
+# headers fails (e.g. stddef.h not found) on Linux CI.
+if(UNIX AND NOT APPLE)
+  find_program(_DOXY_GCC_FOR_INCLUDES NAMES gcc)
+  if(_DOXY_GCC_FOR_INCLUDES)
+    execute_process(
+      COMMAND "${_DOXY_GCC_FOR_INCLUDES}" -print-file-name=include
+      OUTPUT_VARIABLE _doxy_gcc_builtin_include
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    if(IS_DIRECTORY "${_doxy_gcc_builtin_include}")
+      string(APPEND DOXYGEN_CLANG_OPTIONS_CONFIGURED " -isystem \"${_doxy_gcc_builtin_include}\"")
+    endif()
+    execute_process(
+      COMMAND "${_DOXY_GCC_FOR_INCLUDES}" -print-file-name=include-fixed
+      OUTPUT_VARIABLE _doxy_gcc_include_fixed
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    if(IS_DIRECTORY "${_doxy_gcc_include_fixed}")
+      string(APPEND DOXYGEN_CLANG_OPTIONS_CONFIGURED " -isystem \"${_doxy_gcc_include_fixed}\"")
+    endif()
+  endif()
+endif()
+
 set(working_dir "${PROJECT_BINARY_DIR}/docs")
 
 foreach(file IN ITEMS Doxyfile conf.py)
@@ -160,7 +184,7 @@ if((XELATEX_EXECUTABLE OR PDFLATEX_EXECUTABLE) AND NOT DOXYGEN_SKIP_REFMAN_PDF)
       "${DOXYGEN_OUTPUT_DIRECTORY}/doxygen-cyrillic.sty"
       COMMAND "${CMAKE_COMMAND}" -E env "PYTHONUNBUFFERED=1" "${Python3_EXECUTABLE}" "${mcss_script}" "${config}"
       COMMAND "${CMAKE_COMMAND}" -E make_directory "${DOXYGEN_OUTPUT_DIRECTORY}/pdf"
-      COMMAND "${CMAKE_COMMAND}" -E chdir "${DOXYGEN_OUTPUT_DIRECTORY}/latex" make
+      COMMAND "${CMAKE_COMMAND}" -E chdir "${DOXYGEN_OUTPUT_DIRECTORY}/latex" bash -c "for n in 1 2 3 4; do make && exit 0; done; exit 1"
       COMMAND "${CMAKE_COMMAND}" -E copy_if_different
       "${DOXYGEN_OUTPUT_DIRECTORY}/latex/refman.pdf"
       "${DOXYGEN_OUTPUT_DIRECTORY}/pdf/${PROJECT_NAME}.pdf"

@@ -48,17 +48,20 @@ PACKAGES=(
   ghostscript
   libgs10
   git
+  gpg
   graphviz
   lcov
   libclang-dev
   llvm-dev
   make
   ninja-build
+  openjdk-21-jdk
   openssl
   python3
   python3-dev
   python3-pip
   python3-venv
+  sbt
   texlive-fonts-recommended
   texlive-lang-cyrillic
   texlive-latex-base

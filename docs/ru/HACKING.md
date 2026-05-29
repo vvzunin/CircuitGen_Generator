@@ -16,7 +16,7 @@
 
 ### Пресеты
 
-В этом проекте используются [пресеты][1] для упрощения процесса настройки проекта. Как разработчику вам рекомендуется всегда устанавливать [последнюю версию CMake][2], чтобы использовать последние дополнения качества жизни.
+В этом проекте используются [пресеты][1] для упрощения процесса настройки проекта. Как разработчику вам рекомендуется всегда устанавливать [последнюю версию CMake][2], чтобы использовать последние дополнения качества жизни. **Таблицы пресетов, имена переменных кэша в трех репозиториях CircuitGen и порядок подключения новых исходников в CMake** — в [BUILDING.md](BUILDING.md).
 
 У вас есть несколько вариантов передачи `CircuitGenGenerator_DEVELOPER_MODE` в команду настройки, но в этом проекте предпочитают использовать пресеты.
 
@@ -211,7 +211,7 @@ public:
 /// @param divisor Делитель.
 /// @return double Результат деления.
 ///
-/// @throw runtime_error Если делитель равен нулю.
+/// @throws{std::runtime_error} Если делитель равен нулю.
 
 double divide(double dividend, double divisor)
 {
@@ -240,7 +240,7 @@ double divide(double dividend, double divisor)
 /// double b = 2.0;
 /// double result = divide(a, b); // result будет равен 5.0
 /// @endcode
-/// @throw runtime_error Если делитель равен нулю.
+/// @throws{std::runtime_error} Если делитель равен нулю.
 
 double divide(double dividend, double divisor)
 {
@@ -266,3 +266,7 @@ enum VertexTypes { ///  input vertex
   subGraph   
 };
 ```
+
+## CI и GitLab
+
+Конвейер, стадии и архитектура: [CI_PIPELINE.md](CI_PIPELINE.md). Справочник по `scripts/ci`: [CI_SCRIPTS.md](CI_SCRIPTS.md). Матрица ОС и регенерация `.gitlab-ci.yml`: разделы про `supported-os.sh` и `generate-gitlab-os-matrix.sh` в [SCRIPTS.md](SCRIPTS.md).

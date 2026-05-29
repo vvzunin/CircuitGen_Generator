@@ -15,8 +15,11 @@ include("${CMAKE_CURRENT_LIST_DIR}/cmake/utils.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/cmake/checks.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/cmake/folders.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/cmake/variables.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/cmake/lint-targets.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/cmake/spell-targets.cmake")
+
+if(PROJECT_IS_TOP_LEVEL)
+  include("${CMAKE_CURRENT_LIST_DIR}/cmake/lint-targets.cmake")
+  include("${CMAKE_CURRENT_LIST_DIR}/cmake/spell-targets.cmake")
+endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/cmake/CMakeGraphVizOptions.cmake")
 
@@ -117,7 +120,7 @@ configure_file(
 )
 
 # ---- Install rules ----
-if(NOT CMAKE_SKIP_INSTALL_RULES)
+if(NOT CMAKE_SKIP_INSTALL_RULES AND PROJECT_IS_TOP_LEVEL)
   include(cmake/install-rules.cmake)
 endif()
 

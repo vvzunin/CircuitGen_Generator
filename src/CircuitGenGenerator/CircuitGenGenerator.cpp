@@ -1,5 +1,6 @@
 #include "CircuitGenGenerator/info.hpp"
 #include "additional/auxiliaryMethods/AuxiliaryMethods.hpp"
+#include "chiselModule/ChiselProject.hpp"
 #include "database/dataBaseGenerator/DataBaseGenerator.hpp"
 #include "database/dataBaseGeneratorParameters/DataBaseGeneratorParameters.hpp"
 #include "generators/GenerationParameters.hpp"
@@ -127,11 +128,13 @@ getBasicParameters(const nlohmann::json &i_data, GenerationTypes &i_type,
                                              "make_graphml_open_abc_d", false);
   bool makeDot =
       readWithCheck<bool>(i_data["OutputParameters"], "make_dot", false);
+  const bool saveCircuitParametersJson = readWithCheck<bool>(
+      i_data["OutputParameters"], "save_circuit_parameters_json", true);
 
-  gp =
-      new GenerationParameters(datasetId, requestId, i_minInputs, i_minOutputs,
-                               i_repeats, makeGraphMLClassic, makeGraphMLPseudo,
-                               makeGraphMLOpen, makeDot, i_convertToBasis);
+  gp = new GenerationParameters(datasetId, requestId, i_minInputs, i_minOutputs,
+                                i_repeats, makeGraphMLClassic,
+                                makeGraphMLPseudo, makeGraphMLOpen, makeDot,
+                                i_convertToBasis, saveCircuitParametersJson);
   gp->setGatesInputInfo(gatesInputsInfo);
 
   return gp;
@@ -566,7 +569,7 @@ void runGeneration(
           delete dbgp;
           dbgp = setGenerationParameters(data);
           DataBaseGenerator generator(*dbgp);
-          generator.generateTypeForGraph(*dbgp, threads, createDirs);
+          i_callable(generator, *dbgp, threads, createDirs);
           auto stop = std::chrono::high_resolution_clock::now();
           auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
               stop - start);
@@ -577,7 +580,7 @@ void runGeneration(
     } else {
       auto start = high_resolution_clock::now();
 
-      generator.generateTypeForGraph(*dbgp, threads, createDirs);
+      i_callable(generator, *dbgp, threads, createDirs);
 
       auto stop = high_resolution_clock::now();
       auto duration = duration_cast<microseconds>(stop - start);
@@ -629,5 +632,29 @@ void runGenerationFromJson(std::string json_path) {
       };
 
   runGeneration(json_path, runGeneratorForGraph);
+}
+
+bool runChiselGeneration(std::string chisel_path, std::string project_root) {
+  std::filesystem::path baseDirPath =
+      std::filesystem::absolute(std::filesystem::u8path(project_root));
+  std::filesystem::path chiselPath = std::filesystem::u8path(chisel_path);
+  std::filesystem::path outputPath =
+      baseDirPath / "generation_results" / "chisel";
+  std::filesystem::path tempRootPath = baseDirPath / "src" / "chiselModule";
+  const auto timestamp = duration_cast<nanoseconds>(
+                             high_resolution_clock::now().time_since_epoch())
+                             .count();
+  const std::string tempDirName =
+      "tempdir_" + std::to_string(timestamp) + "_" + std::to_string(getpid());
+  std::filesystem::path tempDirPath = tempRootPath / tempDirName;
+
+  try {
+    ChiselProject chiselProject(baseDirPath, tempDirPath, outputPath,
+                                chiselPath);
+    return chiselProject.createVerilog();
+  } catch (const std::exception &error) {
+    std::cerr << "Chisel generation failed: " << error.what() << std::endl;
+    return false;
+  }
 }
 } // namespace CircuitGenGenerator

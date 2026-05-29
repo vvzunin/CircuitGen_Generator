@@ -56,7 +56,7 @@ public:
 
   /// @brief add designed to add an item to the queue
   /// @param item the item to be added to the queue
-  /// @throw std::runtime_error Thrown when adding to a closed queue.
+  /// @throws{std::runtime_error} Thrown when adding to a closed queue.
   /// @par Example
   /// @code
   /// // Creating a queue for integers.

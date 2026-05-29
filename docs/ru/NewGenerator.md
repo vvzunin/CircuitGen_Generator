@@ -9,30 +9,30 @@
 {GenerationTypes::NewGeneratorName, "CCGNGN"}
 ```
 **CCG** — **Combinational Circuit Generator**, вместо **NGN** можно указать более подходящее на взгляд автора обозначения для созданного метода генерации.
-## 2. [GeneratorParameters.hpp](../../src/generators/GenerationParameters.hpp)
+## 2. [GenerationParameters.hpp](../../src/generators/GenerationParameters.hpp)
 В файле необходимо создать новый класс, в который нужно будет добавить дополнительные параметры для использования нового генератора. Название класса должно соответствовать требованию: **Generator** + <имя генератор> + **Parameters**. Используя генератор из примера, назовем класс так: **GeneratorNewGeneratorNameParameters**.
 > [!IMPORTANT]
 > Не нужно добавлять параметры, для количества входов и выходов схемы. Вся информация о них находится в классе **GenerationParameters** в этом же файле.
 
 Далее необходимо в классе **GenerationParameters** создать в разделе *private* переменную ранее созданного класса. Название переменной соответствует следующему требованию: **d_generator** + <имя генератор> + **Parameters**. Для примера переменная будет иметь следующее название: **d_generatorNewGeneratorNameParameters**.
 Для данной переменной необходимо создать геттер и сеттер. Геттер возвращает саму переменную, сеттер — получает на вход переменные для данного класса и записывает в переменную с параметрами.
-## 3. [SimpleGenerators.hpp](../../src/generators/simple/SimpleGenerators.hpp) и [SimpleGenerators.cpp](../../src/generators/simple/SimpleGenerators.cpp)
-В данных файлах необходимо реализовать сам генератор (метод для генерации схемы). В **SimpleGenerators.h** необходимо добавить описание метода генерации:
+## 3. [SimpleGenerator.hpp](../../src/generators/simple/simple/SimpleGenerator.hpp) и [SimpleGenerator.cpp](../../src/generators/simple/simple/SimpleGenerator.cpp)
+Реализация — в отдельном классе в каталоге `src/generators/simple/<имя>/` (см. пример `arithmetic/ArithmeticGenerator.hpp`), обычно как **наследник `SimpleGenerator`**. В заголовке генератора добавьте объявление метода:
 ```cpp
 GraphPtr generatorNewGeneratorName(...);
 ```
-В качестве результата метод должен возвращать сгенерированную схему в формате **GraphPtr**, являющуюся, в свою очердедь, псевдонимом для типа **std::shared_ptr<OrientedGraph>**. В качестве входных данных метод должен принимать все необходмые для его использования переменные.
+В качестве результата метод должен возвращать сгенерированную схему в формате **GraphPtr**, который, в свою очередь, является псевдонимом для типа **std::shared_ptr<OrientedGraph>**. В качестве входных данных метод должен принимать все необходимые для его использования переменные.
 > [!IMPORTANT]
 > Имена входных переменных должны начинаться с префикса **i_**.
 
-В **SimpleGenerators.cpp** необходимо реализовать сам генератор:
+В соответствующем `.cpp` реализуйте метод:
 ```cpp
-GraphPtr SimpleGenerators::generatorNewGeneratorName(...) {
+GraphPtr NewGeneratorName::generatorNewGeneratorName(...) {
    ...
 }
 ```
 ## 4. [DataBaseGenerator.hpp](../../src/database/dataBaseGenerator/DataBaseGenerator.hpp) и [DataBaseGenerator.cpp](../../src/database/dataBaseGenerator/DataBaseGenerator.cpp)
-В классе **DataBaseGenerator** необходимо реализовать метод, который будет на вход получать константную ссылку на параметры генерации *i_param*,  которая содержит все необходимые параметры генерации. В данном методе необходимо создать объект класса **SimpleGenerator** и запустить в нем ранее созданный метод, в который нужно передать все необходимые параметры из *i_param* в том же порядке, в котором они были описаны в реализации метода. Результат необходимо записать в переменную типа **GraphPtr**. После этого необходимо создать переменную типа **Circuit** и в качестве параметра конструктора передать полученный граф. После этого необходимо задать путь генерации (setPath) в качестве которого выступает *d_mainPath*. Также нужно задать название схемы (setCircuitName) присутствующее в параметрах генерации (i_param.getName()). После этого необходимо запустить генерацию схемы в формате Verilog и обсчет параметров (generate), передав набор параметров: i_param.getMakeGraphMLClassic(), i_param.getMakeGraphMLPseudoABCD(), i_param.getMakeGraphMLOpenABCD().
+В классе **DataBaseGenerator** необходимо реализовать метод, который будет на вход получать константную ссылку на параметры генерации *i_param*,  которая содержит все необходимые параметры генерации. В данном методе необходимо создать объект вашего класса генератора (наследника **SimpleGenerator**) и вызвать в нем ранее созданный метод, в который нужно передать все необходимые параметры из *i_param* в том же порядке, в котором они были описаны в реализации метода. Результат необходимо записать в переменную типа **GraphPtr**. После этого необходимо создать переменную типа **Circuit** и в качестве параметра конструктора передать полученный граф. После этого необходимо задать путь генерации (setPath) в качестве которого выступает *d_mainPath*. Также нужно задать название схемы (setCircuitName) присутствующее в параметрах генерации (i_param.getName()). После этого необходимо запустить генерацию схемы в формате Verilog и обсчет параметров (generate), передав набор параметров: i_param.getMakeGraphMLClassic(), i_param.getMakeGraphMLPseudoABCD(), i_param.getMakeGraphMLOpenABCD().
 <!--
 На данный момент в коде используется только i_param.getMakeGraphMLClassic(), i_param.getMakeGraphMLPseudoABCD(), i_param.getMakeGraphMLOpenABCD(). По мере реализации нужно добавить другие параметры из списка ниже (или ввести новые)
 i_param.getLibraryName(), i_param.getCalculateStatsAbc(), i_param.getMakeOptimizedFiles(), i_param.getMakeFirrtl(), i_param.getMakeBench()
@@ -41,7 +41,7 @@ i_param.getLibraryName(), i_param.getCalculateStatsAbc(), i_param.getMakeOptimiz
 Используя приведенные ранее примеры названий методов, получаем следующий код для реализации метода:
 ```cpp
 void DataBaseGenerator::generateNewGeneratorName(GenerationParameters &i_param) {
-  SimpleGenerators sg;
+  NewGeneratorName sg(i_param);
   ...
   GraphPtr graph = sg.generatorNewGeneratorName(...);
   Circuit c (graph);
@@ -64,7 +64,7 @@ case GenerationTypes::NewGeneratorName:
   generateMethodFunc = &DataBaseGenerator::generateNewGeneratorName;
   break;
 ```
-## 5. [CircuitGenGenerator.cpp](../../src/CircuitGenGenerator.cpp)
+## 5. [CircuitGenGenerator.cpp](../../src/CircuitGenGenerator/CircuitGenGenerator.cpp)
 Последним шагом является редактирование файла **CircuitGenGenerator.cpp**. В функцию **runGenerationFromJson** после инициализации *GenerationTypes gt* необходимо добавить условие на выбор метода генерации. Используя ранее заданное название генератора в качестве примера, получим следующий участок кода:
 ```cpp
 else if (data["type_of_generation"] == "NewGeneratorName")

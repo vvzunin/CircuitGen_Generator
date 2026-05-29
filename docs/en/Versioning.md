@@ -46,6 +46,7 @@ If nothing matches and `--any-patch` is not set, the script prints the current v
 
 ## See also
 
+- [CHANGELOG.md](CHANGELOG.md) — release history ([Русский](../ru/CHANGELOG.md))  
 - [Semantic Versioning 2.0.0](https://semver.org/) — full specification and FAQ  
 - [CONTRIBUTING.md](CONTRIBUTING.md) — commit message conventions (orthogonal to release numbers, but both help communicate change)
 

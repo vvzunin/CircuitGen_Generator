@@ -1,3 +1,7 @@
+if(TARGET nlohmann)
+  return()
+endif()
+
 add_library(nlohmann INTERFACE)
 
 # json.hpp lives at lib/nlohmann/json.hpp; consumers use <nlohmann/json.hpp>, so the

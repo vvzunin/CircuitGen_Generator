@@ -1,6 +1,6 @@
 /**
  * @file GenerationParameters.cpp
- * @author Даниил Ковалёв <dakovalyov@miem.hse.ru>
+ * @author Даниил Ковалев <dakovalyov@miem.hse.ru>
  * @author Asdfds1 <ziazetdinov@list.ru>
  * @author Zunin Vladimir <vzunin@hse.ru>
  * @author Fuuulkrum7 <ilka747428@gmail.com>

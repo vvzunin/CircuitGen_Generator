@@ -31,5 +31,7 @@ CIRCUITGENGENERATOR_EXPORT void runGenerationFromJson(std::string json_path);
 CIRCUITGENGENERATOR_EXPORT std::string getVersion() {
   return CircuitGen_Generator_version;
 }
+CIRCUITGENGENERATOR_EXPORT bool runChiselGeneration(std::string chisel_path,
+                                                    std::string project_root);
 
 } // namespace CircuitGenGenerator

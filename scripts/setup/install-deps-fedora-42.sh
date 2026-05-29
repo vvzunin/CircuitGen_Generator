@@ -25,6 +25,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Docs: Doxygen + m.css + LaTeX PDF need xelatex + DejaVu (fontspec in docs/doxygen-cyrillic.sty), Ghostscript (libgs),
 # texlive-cyrillic (t2aenc.def) for Russian [T2A]{fontenc} from Doxygen, and texlive-xetex for xelatex.
 # texlive-wasysym: wasy7 metrics for \\usepackage{wasysym} in Doxygen refman (avoids mktextfm hang).
+# Doxygen 1.13+ latex/header.tex loads unicode-math and etoc ([deeplevels]) under XeTeX/LuaTeX; on Fedora these are
+# separate texlive-* RPMs and are not always pulled by texlive-collection-latexextra alone.
 PACKAGES=(
   bison
   clang
@@ -37,14 +39,18 @@ PACKAGES=(
   dejavu-sans-mono-fonts
   dejavu-serif-fonts
   flex
+  java-21-openjdk-devel
   gcc
   gcc-c++
+  glibc-devel
   ghostscript
   libgs
   git
+  gpg
   graphviz
   lcov
   libasan
+  libstdc++-devel
   libubsan
   llvm-devel
   make
@@ -56,8 +62,10 @@ PACKAGES=(
   python3-pip
   texlive-collection-latexextra
   texlive-cyrillic
+  texlive-etoc
   texlive-latex
   texlive-scheme-basic
+  texlive-unicode-math
   texlive-wasysym
   texlive-xetex
   wget
@@ -95,5 +103,7 @@ fi
 bash "${SCRIPT_DIR}/install-clang-format-ci.sh"
 
 bash "${SCRIPT_DIR}/install-doxygen-llvm.sh"
+
+bash "${SCRIPT_DIR}/install-sbt.sh"
 
 echo "Dependency installation finished for Fedora 42."

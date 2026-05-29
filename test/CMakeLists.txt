@@ -101,5 +101,11 @@ add_new_test(RecombinationParametersTests "generators/genetic/recombination/para
 add_new_test(RecombinationTruthTableTests "generators/genetic/recombination/truthTable" geneticRecombinationsTruthTable)
 add_new_test(SimpleGeneratorsTests        "generators/simple"                           simpleGenerators)
 add_new_test(SettingsTests                "settings"                                    settings)
+add_new_test(TempProjectDirTests          "additional/tempProjectDir"                   tempProjectDir)
+add_new_test(ChiselProjectTests           "chiselModule/chiselProject"                  chiselProject)
+add_files(src/chiselModule/testData_ChiselModule/no_main.scala)
+add_files(src/chiselModule/testData_ChiselModule/with_main.scala)
+add_files(src/additional/tempProjectDir/testData/test_empty.txt)
+add_files(src/additional/tempProjectDir/testData/test_not_empty.txt)
 
 add_folders(Test)

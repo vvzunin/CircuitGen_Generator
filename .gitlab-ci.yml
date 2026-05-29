@@ -641,20 +641,32 @@ docs:
   extends: .ci-cmake-job
   variables:
     DOCKER_CI_IMAGE: $DOCKER_URL/ubuntu-24.04/ci:$DOCKER_CI_TAG
+    # Synology deploy: NAS_USER, NAS_PASS, NAS_DOCS in CI/CD Variables (masked).
+    NAS_URL: "https://vvzunin.me:5001"
+    NAS_DEPLOY_STRICT: "true"
+    DOCS_MODULE_SLUG: "generator"
+    REPO_DOCS_NAME: "Generator"
+    DOCS_PDF_BASE_NAME: "CircuitGenGenerator"
+    DOCS_PUBLIC_BASE_URL: "https://vvzunin.me/docs/CircuitGen"
   needs:
     - job: docker-images-ubuntu-24.04
       artifacts: false
     - job: coverage
       artifacts: false
+      optional: true
     - job: tests
       artifacts: false
+      optional: true
     - job: examples
       artifacts: false
+      optional: true
   dependencies: []
   before_script:
     - python3 --version
+    - apt-get update -q && apt-get install -y -q zip jq
   script:
     - bash scripts/ci/docs.sh
+    - bash scripts/docs/deploy-synology.sh
   after_script:
     - |
       if [ -n "${CI_COMMIT_TAG:-}" ]; then
@@ -675,21 +687,23 @@ docs:
         # Documentation sources and Doxygen configuration.
         - docs/**/*
         - scripts/docs/**/*
-        # Doxygen inputs include public headers and sources.
+        - scripts/docs/deploy-synology.sh
+        - scripts/docs/nas-docs-names.sh
+        - scripts/ci/test_deploy_mock.sh
+        - .gitlab-ci.yml
         - include/**/*
         - src/**/*
-        # CMake presets / config affect compile_commands.json generation for clang-assisted parsing.
         - CMakePresets.json
         - CMakeLists.txt
         - src/CMakeLists.txt
         - examples/CMakeLists.txt
         - test/CMakeLists.txt
-        # CI/docs tooling and dependency installers can change the doc build environment.
         - cmake/**/*
         - scripts/ci/docs.sh
         - cmake/docs-ci.cmake
         - scripts/setup/install-deps-*.sh
         - README.md
+        - README.en.md
 
 release-from-tag:
   stage: release

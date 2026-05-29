@@ -48,6 +48,7 @@ PACKAGES=(
   ghostscript
   libgs9
   git
+  gpg
   graphviz
   lcov
   libcapture-tiny-perl
@@ -56,6 +57,7 @@ PACKAGES=(
   llvm-dev
   make
   ninja-build
+  openjdk-21-jdk
   openssl
   python3
   python3-dev
@@ -121,5 +123,7 @@ bash "${SCRIPT_DIR}/install-clang-format-ci.sh"
 bash "${SCRIPT_DIR}/install-lcov-ci.sh"
 
 bash "${SCRIPT_DIR}/install-doxygen-llvm.sh"
+
+bash "${SCRIPT_DIR}/install-sbt.sh"
 
 echo "Dependency installation finished for Ubuntu 22.04."
