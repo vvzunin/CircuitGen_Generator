@@ -67,6 +67,9 @@ target_link_libraries(
   circuit
   dataBase
   generators
+  "-Wl,--whole-archive"
+  arithmeticGenerator
+  "-Wl,--no-whole-archive"
   settings
   chiselProject
 
