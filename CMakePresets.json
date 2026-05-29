@@ -1,13 +1,42 @@
 {
-  "version": 2,
+  "version": 6,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 14,
+    "minor": 26,
     "patch": 0
   },
   "configurePresets": [
     {
+      "name": "generator-ninja",
+      "description": "Ninja backend for fast, parallel builds (default for this project)",
+      "hidden": true,
+      "generator": "Ninja"
+    },
+    {
+      "name": "cxx-std-17",
+      "description": "C++17 with extensions disabled",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_EXTENSIONS": "OFF",
+        "CMAKE_CXX_STANDARD": "17",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON"
+      }
+    },
+    {
+      "name": "release-common",
+      "description": "Shared Release flags: Ninja, C++17, no dev mode, no coverage",
+      "hidden": true,
+      "inherits": ["generator-ninja", "cxx-std-17"],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CircuitGenGenerator_DEVELOPER_MODE": "OFF",
+        "CircuitGenGenerator_BUILD_EXAMPLES": "OFF",
+        "ENABLE_COVERAGE": "OFF"
+      }
+    },
+    {
       "name": "cmake-pedantic",
+      "description": "Strict CMake diagnostics for local development",
       "hidden": true,
       "warnings": {
         "dev": true,
@@ -23,15 +52,18 @@
     },
     {
       "name": "dev-mode",
+      "description": "Developer mode defaults: examples ON, extra diagnostics, PIC",
       "hidden": true,
       "inherits": "cmake-pedantic",
       "cacheVariables": {
         "CircuitGenGenerator_DEVELOPER_MODE": "ON",
+        "CircuitGenGenerator_BUILD_EXAMPLES": "ON",
         "CMAKE_CXX_FLAGS": "-fPIC"
       }
     },
     {
       "name": "cppcheck",
+      "description": "Enable cppcheck static analysis for C++ sources",
       "hidden": true,
       "cacheVariables": {
         "CMAKE_CXX_CPPCHECK": "cppcheck;--inline-suppr"
@@ -39,6 +71,7 @@
     },
     {
       "name": "clang-tidy",
+      "description": "Enable clang-tidy checks for project code only",
       "hidden": true,
       "cacheVariables": {
         "CMAKE_CXX_CLANG_TIDY": "clang-tidy;--header-filter=^${sourceDir}/src, ^${sourceDir}/include, ^${sourceDir}/examples, ^${sourceDir}/test"
@@ -46,13 +79,9 @@
     },
     {
       "name": "ci-std",
-      "description": "This preset makes sure the project actually builds with at least the specified standard",
+      "description": "Alias for cxx-std-17 (CI and legacy preset names)",
       "hidden": true,
-      "cacheVariables": {
-        "CMAKE_CXX_EXTENSIONS": "OFF",
-        "CMAKE_CXX_STANDARD": "17",
-        "CMAKE_CXX_STANDARD_REQUIRED": "ON"
-      }
+      "inherits": ["cxx-std-17"]
     },
     {
       "name": "flags-gcc-clang",
@@ -82,17 +111,27 @@
     },
     {
       "name": "ci-linux",
-      "generator": "Ninja",
+      "description": "Legacy Linux CI alias (kept for compatibility)",
       "hidden": true,
-      "inherits": [
-        "ci-std"
-      ],
+      "inherits": ["ci-base"],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "ci-base",
+      "description": "Cross-platform CI baseline: Ninja + C++17 + Release",
+      "hidden": true,
+      "inherits": ["generator-ninja", "ci-std"],
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
       }
     },
     {
       "name": "coverage-linux",
+      "description": "Linux coverage configuration (gcov/lcov toolchain)",
       "binaryDir": "${sourceDir}/build/coverage",
       "inherits": "ci-linux",
       "hidden": true,
@@ -106,15 +145,29 @@
     },
     {
       "name": "ci-coverage",
+      "displayName": "CI Coverage (Linux)",
+      "description": "Run tests with coverage collection and summary output",
       "inherits": ["coverage-linux", "dev-mode"],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
       "cacheVariables": {
-        "COVERAGE_HTML_COMMAND": ""
+        "COVERAGE_ENABLE_HTML": "OFF"
       }
     },
     {
       "name": "ci-sanitize",
+      "displayName": "CI Sanitize",
+      "description": "ASan/UBSan build for fast runtime issue detection",
       "binaryDir": "${sourceDir}/build/sanitize",
-      "inherits": ["ci-linux", "dev-mode"],
+      "inherits": ["ci-base", "dev-mode"],
+      "condition": {
+        "type": "notEquals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Sanitize",
         "CMAKE_CXX_FLAGS_SANITIZE": "-U_FORTIFY_SOURCE -O2 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-common"
@@ -122,16 +175,127 @@
     },
     {
       "name": "ci-build",
+      "description": "Shared CI binary directory root",
       "binaryDir": "${sourceDir}/build",
       "hidden": true
     },
     {
       "name": "ci-ubuntu",
-      "inherits": ["ci-build", "ci-linux", "clang-tidy", "cppcheck", "dev-mode"]
+      "displayName": "CI Ubuntu",
+      "description": "Main Linux CI profile with lint tools enabled",
+      "inherits": ["ci-build", "ci-base", "clang-tidy", "cppcheck", "dev-mode"],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "ci-static-analysis",
+      "displayName": "CI static analysis",
+      "description": "clang-tidy during compile; cppcheck is run from scripts/ci/static-analysis.sh (project mode, not CMAKE_CXX_CPPCHECK)",
+      "inherits": ["ci-build", "ci-base", "clang-tidy", "dev-mode"],
+      "binaryDir": "${sourceDir}/build/static-analysis",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
     },
     {
       "name": "ci-self",
-      "inherits": ["ci-build", "ci-linux", "clang-tidy", "cppcheck", "dev-mode"]
+      "displayName": "CI Self",
+      "description": "Cross-platform self-hosted CI profile",
+      "inherits": ["ci-build", "ci-base", "clang-tidy", "cppcheck", "dev-mode"]
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "description": "Optimized release build for packaging and deployment (no tests)",
+      "inherits": ["release-common"],
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "BUILD_TESTING": "OFF"
+      }
+    },
+    {
+      "name": "release-ci",
+      "displayName": "Release (CI)",
+      "description": "Release configuration with tests enabled (GitLab CI, local parity)",
+      "inherits": ["release-common"],
+      "binaryDir": "${sourceDir}/build/release-ci",
+      "cacheVariables": {
+        "BUILD_TESTING": "ON"
+      }
+    },
+    {
+      "name": "ci-examples-dev",
+      "displayName": "Examples (Debug)",
+      "description": "Debug build with developer mode and examples (CI / docs parity with local dev preset)",
+      "inherits": ["dev-mode", "ci-base"],
+      "binaryDir": "${sourceDir}/build/ci-examples-dev",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release-examples",
+      "displayName": "Release with examples",
+      "description": "Optimized release with example programs built and runnable (no unit tests)",
+      "inherits": ["release"],
+      "binaryDir": "${sourceDir}/build/release-examples",
+      "cacheVariables": {
+        "CircuitGenGenerator_BUILD_EXAMPLES": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "displayName": "Build Release",
+      "description": "Compile production configuration without tests",
+      "configurePreset": "release",
+      "jobs": 0
+    },
+    {
+      "name": "release-ci",
+      "displayName": "Build Release (CI)",
+      "description": "Compile release configuration used by CI tests",
+      "configurePreset": "release-ci",
+      "jobs": 0
+    },
+    {
+      "name": "ci-static-analysis",
+      "displayName": "Build static analysis",
+      "description": "clang-tidy and cppcheck during compilation",
+      "configurePreset": "ci-static-analysis",
+      "jobs": 0
+    },
+    {
+      "name": "ci-examples-dev",
+      "displayName": "Build examples (Debug)",
+      "configurePreset": "ci-examples-dev",
+      "jobs": 0
+    },
+    {
+      "name": "release-examples",
+      "displayName": "Build release with examples",
+      "configurePreset": "release-examples",
+      "jobs": 0
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "release-ci",
+      "displayName": "Test Release (CI)",
+      "description": "Run ctest for release-ci and fail if no tests are found",
+      "configurePreset": "release-ci",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error"
+      }
     }
   ]
 }

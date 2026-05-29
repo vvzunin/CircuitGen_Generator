@@ -1,10 +1,8 @@
-#include <vector>
-
-#include "baseStructures/truthTable/TruthTable.hpp"
-
 #include <gtest/gtest.h>
 
+#include "baseStructures/truthTable/TruthTable.hpp"
 #include "easylogging++Init.hpp"
+#include <vector>
 
 using namespace CG_Graph;
 using namespace CG_Gen;

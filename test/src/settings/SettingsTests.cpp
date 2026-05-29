@@ -1,13 +1,11 @@
-#include <filesystem>
-#include <fstream>
-#include <memory>
-#include <string>
-
 #include "settings/Settings.hpp"
 
+#include "easylogging++Init.hpp"
 #include <gtest/gtest.h>
 
-#include "easylogging++Init.hpp"
+#include <filesystem>
+#include <fstream>
+#include <string>
 
 using namespace CG_Graph;
 using namespace CG_Gen;

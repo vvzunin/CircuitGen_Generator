@@ -1,0 +1,27 @@
+# Release image: only toolchain to build and run the executable (no Doxygen, TeX, LLVM-doxygen, lint, etc.).
+# Supported bases: scripts/config/supported-os.sh (toolchain: scripts/docker/install-release-toolchain.sh).
+ARG BASE_IMAGE=ubuntu:24.04
+FROM ${BASE_IMAGE}
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /tmp
+COPY scripts/config/supported-os.sh ./scripts/config/
+COPY scripts/docker/install-release-toolchain.sh ./scripts/docker/
+RUN bash scripts/docker/install-release-toolchain.sh
+
+WORKDIR /circuitgen/generator
+
+COPY . .
+
+# Prefer user-local presets when provided in build context.
+RUN if [ -f /circuitgen/generator/CMakeUserPresets.json ]; then \
+      echo "Using user-provided CMakeUserPresets.json"; \
+    else \
+      echo "Using CMakeUserPresets.json.example"; \
+      cp /circuitgen/generator/CMakeUserPresets.json.example /circuitgen/generator/CMakeUserPresets.json; \
+    fi
+
+# Production build: executable only (BUILD_TESTING=OFF), no docs/lint targets.
+RUN cmake --preset=release && \
+    cmake --build --preset=release -j "$(nproc)"

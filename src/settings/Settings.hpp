@@ -1,10 +1,9 @@
 #pragma once
 
+#include <CircuitGenGraph/GraphUtils.hpp>
 #include <map>
 #include <memory>
 #include <string>
-
-#include <CircuitGenGraph/GraphUtils.hpp>
 
 /// @file Settings.hpp
 
@@ -35,10 +34,8 @@ enum GenerationTypes {
   ALU,                   /// Arithmetic Logic Unit (ALU)
   MealyMoore,            /// Mealy and Moore
   DotToGraph, /// Dot to graph converter (Mealy and Moore only for now)
-  Cascade,    /// Cascade
-  Arithmetic  /// Basic name for multiple
-              /// specialized arithmetic generators
-};            /* Simple */
+  Cascade     /// Cascade
+}; /* Simple */
 
 static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
     {"FromRandomTruthTable", FromRandomTruthTable},
@@ -58,8 +55,7 @@ static const std::map<std::string, GenerationTypes> GenerationTypes2Name = {
     {"ALU", ALU},
     {"MealyMoore", MealyMoore},
     {"DotToGraph", DotToGraph},
-    {"Cascade", Cascade},
-    {"Arithmetic", Arithmetic}};
+    {"Cascade", Cascade}};
 
 /// @todo: To add Description some fields
 /// class Settings
@@ -110,6 +106,7 @@ public:
   /// @param i_value The value of the path to the settings
   /// @return std::shared_ptr<Settings> A pointer to a single instance of
   /// the Settings class
+  /// @note Example:
   /// @code
   /// // Creating a single instance of the Settings class, if it hasn't been
   /// // created yet, and we get a pointer to it
@@ -147,6 +144,7 @@ public:
   /// @param i_methodType A GenerationTypes variable containing the name of the
   /// generation method
   /// @return std::string Prefix of the generation method
+  /// @note Example:
   /// @code
   /// // Creating an instance of the Settings class or getting it from an
   /// existing object
@@ -187,6 +185,7 @@ public:
 
   /// @brief getNumThread Retrieves the number of threads used for processing
   /// @return uint16_t The number of threads configured for processing
+  /// @note Example:
   /// @code
   /// // Creating an instance of the Settings class or getting it from an
   /// existing object std::shared_ptr<Settings> settingsInstance =
@@ -208,6 +207,7 @@ public:
   /// It retrieves the string representation from the internal map date
   /// ToString, which maps enum values of gates to their string
   /// representations.
+  /// @note Example:
   /// @code
   /// // Creating an instance of the Settings class or getting it from an
   /// existing object std::shared_ptr<Settings> settingsInstance =
@@ -225,6 +225,7 @@ private:
   /// dataset information, Nadezhda dictionary, number of threads, logical
   /// operations, operation hierarchies, operation names, and maximum
   /// inputs/outputs, to the file in a structured format
+  /// @note Example:
   /// @code
   /// // Creating an instance of the Settings class or getting it from an
   /// existing object std::shared_ptr<Settings> settingsInstance =
@@ -263,8 +264,7 @@ private:
       {GenerationTypes::ALU, "CCGALU"},
       {GenerationTypes::MealyMoore, "CCGMM"},
       {GenerationTypes::DotToGraph, "CCGDTG"},
-      {GenerationTypes::Cascade, "CCGCCD"},
-      {GenerationTypes::Arithmetic, "CCGARI"}};
+      {GenerationTypes::Cascade, "CCGCCD"}};
   /*
     SimpleGenerator
   */

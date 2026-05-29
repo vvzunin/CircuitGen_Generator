@@ -10,17 +10,23 @@ FetchContent_Declare(
 
   # Url for googletest download.
   GIT_REPOSITORY https://github.com/google/googletest
-  GIT_TAG v1.14.0
+  GIT_TAG v1.17.0
 )
+# Do not pollute product install with test framework artifacts.
+set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+set(INSTALL_GMOCK OFF CACHE BOOL "" FORCE)
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
 FetchContent_MakeAvailable(gtest)
+add_folders(Libraries gtest)
 
-include(../cmake/project-is-top-level.cmake)
+include(../cmake/checks.cmake)
 include(../cmake/folders.cmake)
 
-add_compile_options(-fsanitize=address)
-add_link_options(-fsanitize=address)
+option(CircuitGenGenerator_TESTS_ENABLE_ASAN "Enable AddressSanitizer for tests" ON)
+if(CircuitGenGenerator_TESTS_ENABLE_ASAN AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  add_compile_options(-fsanitize=address)
+  add_link_options(-fsanitize=address)
+endif()
 
 # ---- Tests ----
 
@@ -30,73 +36,70 @@ configure_file(
   COPYONLY
 )
 
-# Test AuxiliaryMethodsTests
-configure_file(
-  src/additional/testData_AuxiliaryMethodsTests/one_line_file.txt
-  src/additional/testData_AuxiliaryMethodsTests/one_line_file.txt
-  COPYONLY)
-
-configure_file(
-  src/additional/testData_AuxiliaryMethodsTests/test_empty_file.txt
-  src/additional/testData_AuxiliaryMethodsTests/test_empty_file.txt
-  COPYONLY)
-
-configure_file(
-  src/additional/testData_AuxiliaryMethodsTests/test_one_line_with_tab.txt
-  src/additional/testData_AuxiliaryMethodsTests/test_one_line_with_tab.txt
-  COPYONLY)
-
-configure_file(
-  src/additional/testData_AuxiliaryMethodsTests/test_two_line_with_tab.txt
-  src/additional/testData_AuxiliaryMethodsTests/test_two_line_with_tab.txt
-  COPYONLY)
-
-configure_file(
-  src/additional/testData_AuxiliaryMethodsTests/test_two_lines.txt
-  src/additional/testData_AuxiliaryMethodsTests/test_two_lines.txt
-  COPYONLY)
-
-function(add_new_test name folders)
+function(add_new_test name folders targets)
+  set(test_target "CircuitGenGenerator_test_${name}")
   add_executable(
-    CircuitGenGenerator_test_${name}
+    ${test_target}
     src/${folders}/${name}.cpp
   )
 
   target_link_libraries(
-    CircuitGenGenerator_test_${name}
+    ${test_target}
     PRIVATE
       GTest::gtest_main
-      ${EXTERNAL_LIBS}
-      CircuitGenGenerator::CircuitGenGenerator
+      Threads::Threads
+      # CircuitGenGenerator::CircuitGenGenerator
       CircuitGenGraph::CircuitGenGraph
       easylogging++
+
+      ${targets}
   )
 
-  target_compile_features(CircuitGenGenerator_test_${name} PRIVATE cxx_std_17)
+  # target_compile_features(${test_target} PRIVATE cxx_std_17)
 
   target_include_directories(
-    CircuitGenGenerator_test_${name} ${warning_guard}
+    ${test_target} ${warning_guard}
     PUBLIC
       "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../src>"
       "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>"
   )
-  add_test(NAME ${name} COMMAND CircuitGenGenerator_test_${name})
+  add_test(NAME ${name} COMMAND ${test_target})
 endfunction()
 
-add_new_test(AuxiliaryMethodsTests "additional")
-add_new_test(FilesToolsTests "additional/filesTools")
-add_new_test(TruthTableTests "baseStructures/truthTable")
-# add_new_test(CircuitTests "circuit")
-add_new_test(DataBaseGeneratorTests "database")
-add_new_test(SimpleGeneratorsTests "generators/simple")
-add_new_test(SettingsTests "settings")
-add_new_test(GeneticParametersTests "generators/Genetic")
-add_new_test(MutationParametersTests "generators/Genetic/Mutations")
-add_new_test(MutationTruthTableTests "generators/Genetic/Mutations")
-add_new_test(ParentsParametersTests "generators/Genetic/Parents")
-add_new_test(ParentsTruthTableTests "generators/Genetic/Parents")
-add_new_test(RecombinationsTests "generators/Genetic/Recombination")
-add_new_test(RecombinationParametersTests "generators/Genetic/Recombination")
-add_new_test(RecombinationTruthTableTests "generators/Genetic/Recombination")
+function (add_files pathFrom)
+  if (ARGC GREATER_EQUAL 2)
+    set(pathTo ${ARGV1})
+  else()
+    set(pathTo ${pathFrom})
+  endif()
+  configure_file(
+    ${pathFrom}
+    ${pathTo}
+    COPYONLY
+  )
+
+endfunction()
+
+add_new_test(AuxiliaryMethodsTests        "additional/auxiliaryMethods"                 auxiliaryMethods)
+add_files(src/additional/auxiliaryMethods/testData/one_line_file.txt)
+add_files(src/additional/auxiliaryMethods/testData/test_empty_file.txt)
+add_files(src/additional/auxiliaryMethods/testData/test_one_line_with_tab.txt)
+add_files(src/additional/auxiliaryMethods/testData/test_two_line_with_tab.txt)
+add_files(src/additional/auxiliaryMethods/testData/test_two_lines.txt)
+
+add_new_test(FilesToolsTests              "additional/filesTools"                       filesTools)
+add_new_test(TruthTableTests              "baseStructures/truthTable"                   truthTable)
+add_new_test(CircuitTests                 "circuit"                                     circuit)
+add_new_test(DataBaseGeneratorTests       "database"                                    dataBase)
+add_new_test(MutationParametersTests      "generators/genetic/mutations/parameters"     geneticMutationParameters)
+add_new_test(MutationTruthTableTests      "generators/genetic/mutations/truthTable"     geneticMutationTruthTable)
+add_new_test(GeneticParametersTests       "generators/genetic/parameters"               geneticParameters)
+add_new_test(ParentsTruthTableTests       "generators/genetic/parents"                  geneticParents)
+add_new_test(ParentsParametersTests       "generators/genetic/parents/parameters"       geneticParents;geneticParentsParameters)
+add_new_test(RecombinationsTests          "generators/genetic/recombination"            geneticRecombination)
+add_new_test(RecombinationParametersTests "generators/genetic/recombination/parameters" geneticRecombinationParameters)
+add_new_test(RecombinationTruthTableTests "generators/genetic/recombination/truthTable" geneticRecombinationsTruthTable)
+add_new_test(SimpleGeneratorsTests        "generators/simple"                           simpleGenerators)
+add_new_test(SettingsTests                "settings"                                    settings)
 
 add_folders(Test)

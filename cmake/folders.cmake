@@ -6,6 +6,10 @@ set_property(GLOBAL PROPERTY USE_FOLDERS YES)
 # already has a folder assigned, then that target will be skipped.
 function(add_folders name)
   get_property(targets DIRECTORY PROPERTY BUILDSYSTEM_TARGETS)
+  if (ARGN)
+    set(targets ${ARGN})
+  endif()
+
   foreach(target IN LISTS targets)
     get_property(folder TARGET "${target}" PROPERTY FOLDER)
     if(DEFINED folder)
@@ -18,4 +22,5 @@ function(add_folders name)
     endif()
     set_property(TARGET "${target}" PROPERTY FOLDER "${folder}Targets")
   endforeach()
+
 endfunction()

@@ -27,6 +27,8 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 
+
+
 # This tag specifies the encoding used for all characters in the configuration
 # file that follow. The default is UTF-8 which is also the encoding used for all
 # text before the first occurrence of this tag. Doxygen uses libiconv (or the
@@ -61,7 +63,7 @@ PROJECT_BRIEF          = "Desc of Backeknd"
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
 
-PROJECT_LOGO           = "@PROJECT_SOURCE_DIR@/docs/logo_1.png"
+PROJECT_LOGO           = "@PROJECT_SOURCE_DIR@/docs/logo.png"
 
 # With the PROJECT_ICON tag one can specify an icon that is included in the tabs
 # when the HTML document is shown. Doxygen will copy the logo to the output
@@ -119,7 +121,7 @@ ALLOW_UNICODE_NAMES    = NO
 # Swedish, Turkish, Ukrainian and Vietnamese.
 # The default value is: English.
 
-OUTPUT_LANGUAGE        = English
+OUTPUT_LANGUAGE        = @DOXYGEN_OUTPUT_LANGUAGE@
 
 # If the BRIEF_MEMBER_DESC tag is set to YES, doxygen will include brief member
 # descriptions after the members that are listed in the file and class
@@ -289,7 +291,9 @@ TAB_SIZE               = 2
 # with the commands \{ and \} for these it is advised to use the version @{ and
 # @} or use a double escape (\\{ and \\})
 
-ALIASES                =
+# Alias names must be [A-Za-z0-9_] only (Doxygen 1.9.x); 1.10+ allows '~' in names.
+# Use \english / \russian / \lang_end in comments (not \~english).
+ALIASES                = "english=\if english" "russian=\if russian" "lang_end=\endif"
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
 # only. Doxygen will then generate output that is more tailored for C. For
@@ -348,7 +352,7 @@ OPTIMIZE_OUTPUT_SLICE  = NO
 #
 # Note see also the list of default file extension mappings.
 
-EXTENSION_MAPPING      = .m.css=m.css
+EXTENSION_MAPPING      =
 
 # If the MARKDOWN_SUPPORT tag is enabled then doxygen pre-processes all comments
 # according to the Markdown format, which allows for more readable
@@ -502,7 +506,7 @@ LOOKUP_CACHE_SIZE      = 0
 # DOT_NUM_THREADS setting.
 # Minimum value: 0, maximum value: 32, default value: 1.
 
-NUM_PROC_THREADS       = 1
+NUM_PROC_THREADS       = 0
 
 # If the TIMESTAMP tag is set different from NO then each generated page will
 # contain the date or date and time when the page was generated. Setting this to
@@ -765,7 +769,7 @@ GENERATE_DEPRECATEDLIST= YES
 # sections, marked by \if <section_label> ... \endif and \cond <section_label>
 # ... \endcond blocks.
 
-ENABLED_SECTIONS       =
+ENABLED_SECTIONS       = @DOXYGEN_ENABLED_SECTIONS@
 
 # The MAX_INITIALIZER_LINES tag determines the maximum number of lines that the
 # initial value of a variable or macro / define can have for it to appear in the
@@ -949,7 +953,8 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT = "@PROJECT_SOURCE_DIR@/include" "@PROJECT_SOURCE_DIR@/src" "@PROJECT_SOURCE_DIR@/docs/pages" "@PROJECT_SOURCE_DIR@/README.md "@PROJECT_SOURCE_DIR@/HACKING.md" "@PROJECT_SOURCE_DIR@/CONTRIBUTING.md" "@PROJECT_SOURCE_DIR@CODE_OF_CONDUCT.md" "@PROJECT_SOURCE_DIR@NewGenerator.md" "@PROJECT_SOURCE_DIR@json.md" "@PROJECT_SOURCE_DIR@" "@PROJECT_SOURCE_DIR@BUILDING.md" "@PROJECT_SOURCE_DIR@/docs/CodeStyle.md"
+# Markdown guides: docs/en or docs/ru via @DOXYGEN_DOCS_LANG_SUBDIR@ (cmake/docs.cmake, cmake/docs-ci.cmake). Root README.md is not used — it is Russian-first; the PDF/HTML main page uses docs/<lang>/README.md.
+INPUT = "@PROJECT_SOURCE_DIR@/include" "@PROJECT_SOURCE_DIR@/src" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/README.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/BUILDING.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/CmakeFlags.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/CodeStyle.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/CONTRIBUTING.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/GeneratorsPrefixes.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/HACKING.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/json.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/MergeRequests.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/NewGenerator.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/SCRIPTS.md" "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/Versioning.md"
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -1165,7 +1170,7 @@ FILTER_SOURCE_PATTERNS =
 # (index.html). This can be useful if you have a project on for instance GitHub
 # and want to reuse the introduction page also for the doxygen output.
 
-USE_MDFILE_AS_MAINPAGE = "@PROJECT_SOURCE_DIR@/README.md"
+USE_MDFILE_AS_MAINPAGE = "@PROJECT_SOURCE_DIR@/docs/@DOXYGEN_DOCS_LANG_SUBDIR@/README.md"
 
 # The Fortran standard specifies that for fixed formatted Fortran code all
 # characters from position 72 are to be considered as comment. A common
@@ -1272,7 +1277,7 @@ VERBATIM_HEADERS       = YES
 # generated with the -Duse_libclang=ON option for CMake.
 # The default value is: NO.
 
-CLANG_ASSISTED_PARSING = NO
+CLANG_ASSISTED_PARSING = @DOXYGEN_CLANG_ASSISTED_PARSING@
 
 # If the CLANG_ASSISTED_PARSING tag is set to YES and the CLANG_ADD_INC_PATHS
 # tag is set to YES then doxygen will add the directory of each input to the
@@ -1288,7 +1293,7 @@ CLANG_ADD_INC_PATHS    = YES
 # specified with INPUT and INCLUDE_PATH.
 # This tag requires that the tag CLANG_ASSISTED_PARSING is set to YES.
 
-CLANG_OPTIONS          =
+CLANG_OPTIONS          = @DOXYGEN_CLANG_OPTIONS_CONFIGURED@
 
 # If clang assisted parsing is enabled you can provide the clang parser with the
 # path to the directory containing a file called compile_commands.json. This
@@ -1301,7 +1306,7 @@ CLANG_OPTIONS          =
 # Note: The availability of this option depends on whether or not doxygen was
 # generated with the -Duse_libclang=ON option for CMake.
 
-CLANG_DATABASE_PATH    =
+CLANG_DATABASE_PATH    = @DOXYGEN_CLANG_DATABASE_PATH@
 
 #---------------------------------------------------------------------------
 # Configuration options related to the alphabetical class index
@@ -1330,7 +1335,7 @@ IGNORE_PREFIX          =
 # If the GENERATE_HTML tag is set to YES, doxygen will generate HTML output
 # The default value is: YES.
 
-GENERATE_HTML          = YES
+GENERATE_HTML          = NO
 
 # The HTML_OUTPUT tag is used to specify where the HTML docs will be put. If a
 # relative path is entered the value of OUTPUT_DIRECTORY will be put in front of
@@ -1996,7 +2001,7 @@ EXTRA_SEARCH_MAPPINGS  =
 # If the GENERATE_LATEX tag is set to YES, doxygen will generate LaTeX output.
 # The default value is: YES.
 
-GENERATE_LATEX         = NO
+GENERATE_LATEX         = @DOXYGEN_GENERATE_LATEX_VALUE@
 
 # The LATEX_OUTPUT tag is used to specify where the LaTeX docs will be put. If a
 # relative path is entered the value of OUTPUT_DIRECTORY will be put in front of
@@ -2015,8 +2020,9 @@ LATEX_OUTPUT           = latex
 # default can have been set differently, this depends on the implementation of
 # the output language.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
+# Set to xelatex by CMake when available (Unicode/Cyrillic in README; see cmake/docs.cmake).
 
-LATEX_CMD_NAME         =
+LATEX_CMD_NAME         = @DOXYGEN_LATEX_CMD_NAME@
 
 # The MAKEINDEX_CMD_NAME tag can be used to specify the command name to generate
 # index for LaTeX.
@@ -2064,6 +2070,7 @@ PAPER_TYPE             = a4
 # EXTRA_PACKAGES=[intlimits]{amsmath}
 # If left blank no extra packages will be included.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
+# Do not put comma-separated babel options here: Doxygen splits on commas and breaks \usepackage.
 
 EXTRA_PACKAGES         =
 
@@ -2105,7 +2112,7 @@ LATEX_FOOTER           =
 # list).
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_EXTRA_STYLESHEET =
+LATEX_EXTRA_STYLESHEET = doxygen-cyrillic.sty
 
 # The LATEX_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the LATEX_OUTPUT output
@@ -2145,9 +2152,10 @@ USE_PDFLATEX           = YES
 # keyboard input is necessary and ERROR_STOP In errorstop mode, TeX will stop at
 # each error, asking for user intervention.
 # The default value is: NO.
+# Set YES for CI: missing fonts otherwise drop LaTeX into interactive "?" and hang until job timeout.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_BATCHMODE        = NO
+LATEX_BATCHMODE        = YES
 
 # If the LATEX_HIDE_INDICES tag is set to YES then doxygen will not include the
 # index chapters (such as File Index, Compound Index, etc.) in the output.
@@ -2280,7 +2288,7 @@ MAN_LINKS              = NO
 # captures the structure of the code including all documentation.
 # The default value is: NO.
 
-GENERATE_XML           = NO
+GENERATE_XML           = YES
 
 # The XML_OUTPUT tag is used to specify where the XML pages will be put. If a
 # relative path is entered the value of OUTPUT_DIRECTORY will be put in front of
@@ -2542,7 +2550,7 @@ HIDE_UNDOC_RELATIONS   = YES
 # set to NO
 # The default value is: NO.
 
-HAVE_DOT               = YES
+HAVE_DOT               = @DOXYGEN_HAVE_DOT_VALUE@
 
 # The DOT_NUM_THREADS specifies the number of dot invocations doxygen is allowed
 # to run in parallel. When set to 0 doxygen will base this on the number of
@@ -2785,7 +2793,7 @@ INTERACTIVE_SVG        = NO
 # found. If left blank, it is assumed the dot tool can be found in the path.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-DOT_PATH               = 
+DOT_PATH               = @DOXYGEN_DOT_PATH@
 
 # The DOTFILE_DIRS tag can be used to specify one or more directories that
 # contain dot files that are included in the documentation (see the \dotfile

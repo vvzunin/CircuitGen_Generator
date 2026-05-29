@@ -56,6 +56,8 @@ public:
 
   /// @brief add designed to add an item to the queue
   /// @param item the item to be added to the queue
+  /// @throw std::runtime_error Thrown when adding to a closed queue.
+  /// @par Example
   /// @code
   /// // Creating a queue for integers.
   /// Threading::UnboundedMPMCQueue<int> queue;
@@ -64,8 +66,6 @@ public:
   /// queue.add(17);
   /// queue.add(99);
   /// @endcode
-  /// @throw std::runtime_error. It is thrown out if an attempt is made to
-  /// add an item to a closed queue
 
   void add(T item) {
     std::unique_lock lock(mtx);
@@ -80,7 +80,7 @@ public:
   /// Close queue. All waiting threads will receive nullopt.
 
   /// @brief close it is used to close the queue
-  /// Example usage:
+  /// @par Example
   /// @code
   /// // Closing the queue
   /// queue.close()

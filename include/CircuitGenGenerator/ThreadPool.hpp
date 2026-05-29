@@ -7,10 +7,9 @@
 
 #pragma once
 
+#include "CircuitGenGenerator/UnboundedMPMCQueue.hpp"
 #include <functional>
 #include <thread>
-
-#include "UnboundedMPMCQueue.hpp"
 
 namespace Threading {
 
